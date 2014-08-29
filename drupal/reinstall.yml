@@ -22,6 +22,7 @@
     mysql_db: name={{ mysql_db }} state=present
 
   - name: Installing drupal
+    sudo: yes
     shell: "drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }}"
 
   handlers:
