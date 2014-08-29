@@ -1,8 +1,14 @@
 drupal project
 ======
 
-Drupal project is for ...
+Drupal project is for SPS
 
+For obtaining development environment locally You should install vagrant and puppet and from console ran
+```sh
+vagrant up && vagrant ssh
+```
+afterwards.
+You will be logged into virtual machine.
 
 use 
 ```sh
