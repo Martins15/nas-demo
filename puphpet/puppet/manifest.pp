@@ -1442,17 +1442,99 @@ mysql_grant { "drupal@%/drupal.*":
 # include solr
 
 apt::ppa { 'ppa:ansible/ansible': }
+apt::ppa { 'ppa:chris-lea/node.js': }
 
 exec { "apt-update":
-  command => "/usr/bin/apt-get update"
+  command => "/usr/bin/apt-get update",
+  returns => [0, 100]
 }
 
 package { "software-properties-common":
   ensure  => latest
 }
 
+class ruby::ruby193 {
+
+package { "python-software-properties":
+  ensure  => latest
+}
+package { "ruby1.9.1":
+  ensure  => latest,
+  require => Package['python-software-properties']
+}
+package { "ruby1.9.1-dev":
+  ensure  => latest,
+  require => Package['ruby1.9.1']
+}
+package { "rubygems1.9.1":
+  ensure  => latest,
+  require => Package['ruby1.9.1-dev']
+}
+package { "irb1.9.1":
+  ensure  => latest,
+  require => Package['rubygems1.9.1']
+}
+package { "ri1.9.1":
+  ensure  => latest,
+  require => Package['irb1.9.1']
+}
+package { "rdoc1.9.1":
+  ensure  => latest,
+  require => Package['ri1.9.1']
+}
+package { "build-essential":
+  ensure  => latest,
+  require => Package['rdoc1.9.1']
+}
+package { "libopenssl-ruby1.9.1":
+  ensure  => latest,
+  require => Package['build-essential']
+}
+package { "libssl-dev":
+  ensure  => latest,
+  require => Package['libopenssl-ruby1.9.1']
+}
+package { "zlib1g-dev":
+  ensure  => latest,
+  require => Package['libssl-dev']
+}
+
+# Will also update gem, irb, rdoc, rake, etc.
+alternatives { 'ruby':
+  path    => '/usr/bin/ruby1.9.1',
+  require => Package['ruby1.9.1'],
+}
+
+alternatives { 'gem':
+  path    => '/usr/bin/gem1.9.1',
+  require => Package['rubygems1.9.1'],
+}
+
+}
+
+# magic!
+include ruby::ruby193
+
+include nodejs
+
+package { 'jshint':
+  ensure   => present,
+  provider => 'npm',
+  require => Class['ruby::ruby193']
+}
+
+package { 'scss-lint':
+  ensure   => latest,
+  provider => 'gem',
+  require => Class['ruby::ruby193']
+}
+
 package { "python-mysqldb":
   ensure  => latest
+}
+exec { "phpcs":
+  command => "pear install PHP_CodeSniffer",
+  returns => [0, 1, 100]
 }
 
 include ansible::master
