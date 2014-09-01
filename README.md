@@ -1,7 +1,7 @@
 drupal project
 ======
 
-Drupal project is for SPS
+Drupal project is for NAS
 
 For obtaining development environment locally You should install vagrant and puppet and from console ran
 ```sh
@@ -15,6 +15,11 @@ use
 sh reinstall.sh
 ```
 for drupal reinstallation from scratch
+
+```sh
+sh runsniffers.sh
+```
+for local execution of sniffers stack
 
 Virtual host for accessing ppdorg drupal installation 
 
