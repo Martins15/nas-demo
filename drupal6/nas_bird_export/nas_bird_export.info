@@ -1,0 +1,5 @@
+name = "NAS Bird Export"
+package = "NAS"
+core = 6.x
+php = 5.2
+
