@@ -1,0 +1,6 @@
+name = NAS feature
+description = Feature with dependencies of all features to be enabled.
+core = 7.x
+package = Features
+dependencies[] = nas_bird
+features[features_api][] = api:2
