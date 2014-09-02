@@ -4,4 +4,13 @@ core = 7.x
 dependencies[] = block
 dependencies[] = dblog
 
-
+; Contrib modules
+dependencies[] = admin_menu
+dependencies[] = ctools
+dependencies[] = panels
+dependencies[] = panelizer
+dependencies[] = page_manager
+dependencies[] = pathauto
+dependencies[] = module_filter
+dependencies[] = views
+dependencies[] = views_ui
