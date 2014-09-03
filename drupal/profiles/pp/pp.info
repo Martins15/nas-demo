@@ -25,7 +25,6 @@ dependencies[] = views
 dependencies[] = views_ui
 dependencies[] = entityreference
 dependencies[] = field_group
-dependencies[] = video_embed_field
 
 ; Features
 dependencies[] = nas_master

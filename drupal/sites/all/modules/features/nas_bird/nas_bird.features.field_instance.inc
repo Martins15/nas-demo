@@ -680,49 +680,6 @@ function nas_bird_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-bird-field_bird_video'
-  $field_instances['node-bird-field_bird_video'] = array(
-    'bundle' => 'bird',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'video_embed_field',
-        'settings' => array(
-          'description' => 1,
-          'description_position' => 'bottom',
-          'video_style' => 'normal',
-        ),
-        'type' => 'video_embed_field',
-        'weight' => 20,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_bird_video',
-    'label' => 'Video',
-    'required' => 0,
-    'settings' => array(
-      'description_field' => 0,
-      'description_length' => 128,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'video_embed_field',
-      'settings' => array(),
-      'type' => 'video_embed_field_video',
-      'weight' => 13,
-    ),
-  );
-
   // Exported field_instance: 'node-bird-field_hero_image'
   $field_instances['node-bird-field_hero_image'] = array(
     'bundle' => 'bird',
@@ -839,7 +796,6 @@ function nas_bird_field_default_field_instances() {
   t('Scientific Name');
   t('Similar Bird');
   t('Songs and Calls');
-  t('Video');
 
   return $field_instances;
 }
