@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Bird import feed feature.
+ */
+
+include_once 'nas_bird_import_feed.features.inc';
