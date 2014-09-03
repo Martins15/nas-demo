@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+* Implementation of hook_menu().
+*/
+function nas_bird_export_menu() {
+  $items = array();
+
+  $items['nas/node-list/%content_type'] = array(
+    'title' => t('Export nids of the given content type'),
+    'page callback' => 'nas_node_list_callback',
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+   );
+  $items['nas/node/%nid'] = array(
+    'title' => t('Load node object as json of the given nid'),
+    'page callback' => 'nas_node_nid_callback',
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+   );
+
+   return $items;
+}
+
+/**
+ * function nas_node_list_callback()
+ *
+ * @return json with nids list of the given content type.
+ *
+ */
+function nas_node_list_callback($content_type) {
+  $result = db_query("SELECT nid FROM node WHERE type = '%s'", $content_type);
+  $nids = array();
+  while ($obj = db_fetch_object($result)) {
+    $nids[] = $obj->nid;
+  }
+
+  return json_encode($nids);
+}
+
+/**
+ * function nas_node_nid_callback()
+ *
+ * @return json of the given node by nid.
+ *
+ */
+function nas_node_nid_callback($nid) {
+  $node = node_load($nid);
+
+  return json_encode($node);
+}

@@ -4,8 +4,17 @@ core = 7.x
 dependencies[] = block
 dependencies[] = dblog
 
+; Core modules
+dependencies[] = image
+dependencies[] = list
+dependencies[] = number
+dependencies[] = options
+dependencies[] = file
+dependencies[] = field_ui
+dependencies[] = taxonomy
+
 ; Contrib modules
-dependencies[] = admin_menu
+dependencies[] = admin_menu_toolbar
 dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = panelizer
@@ -14,3 +23,8 @@ dependencies[] = pathauto
 dependencies[] = module_filter
 dependencies[] = views
 dependencies[] = views_ui
+dependencies[] = entityreference
+dependencies[] = field_group
+
+; Features
+dependencies[] = nas_master
