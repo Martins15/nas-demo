@@ -27,4 +27,4 @@ dependencies[] = entityreference
 dependencies[] = field_group
 
 ; Features
-dependencies[] = nas_feature
+dependencies[] = nas_master

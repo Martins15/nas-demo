@@ -1,0 +1,5 @@
+name = NAS master
+core = 7.x
+package = NAS
+dependencies[] = nas_bird
+features[features_api][] = api:2
