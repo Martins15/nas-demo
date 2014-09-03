@@ -10,16 +10,18 @@
 function nas_bird_export_menu() {
   $items = array();
 
-  $items['nas/node-list/%content_type'] = array(
+  $items['nas/node-list/%'] = array(
     'title' => t('Export nids of the given content type'),
     'page callback' => 'nas_node_list_callback',
     'page arguments' => array(2),
+    'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
    );
-  $items['nas/node/%nid'] = array(
+  $items['nas/node/%'] = array(
     'title' => t('Load node object as json of the given nid'),
     'page callback' => 'nas_node_nid_callback',
     'page arguments' => array(2),
+    'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
    );
 
@@ -39,7 +41,7 @@ function nas_node_list_callback($content_type) {
     $nids[] = $obj->nid;
   }
 
-  return json_encode($nids);
+  print json_encode($nids);
 }
 
 /**
@@ -51,5 +53,5 @@ function nas_node_list_callback($content_type) {
 function nas_node_nid_callback($nid) {
   $node = node_load($nid);
 
-  return json_encode($node);
+  print json_encode($node);
 }
