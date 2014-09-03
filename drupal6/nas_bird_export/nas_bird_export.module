@@ -10,15 +10,16 @@
 function nas_bird_export_menu() {
   $items = array();
 
-  $items['nas/birds/export'] = array(
-    'title' => t('Export bird content type ids'),
-    'page callback' => 'nas_birds_export_callback',
+  $items['nas/node-list/%content_type'] = array(
+    'title' => t('Export nids of the given content type'),
+    'page callback' => 'nas_node_list_callback',
+    'page arguments' => array(2),
     'type' => MENU_CALLBACK,
    );
-  $items['nas/birds/export/%'] = array(
-    'title' => t('Load bird content type nodes'),
-    'page callback' => 'nas_birds_export_id_callback',
-    'page arguments' => array(3),
+  $items['nas/node/%nid'] = array(
+    'title' => t('Load node object as json of the given nid'),
+    'page callback' => 'nas_node_nid_callback',
+    'page arguments' => array(2),
     'type' => MENU_CALLBACK,
    );
 
@@ -26,14 +27,13 @@ function nas_bird_export_menu() {
 }
 
 /**
- * function nas_birds_export_callback()
+ * function nas_node_list_callback()
  *
- * @return json with birds content type IDs.
+ * @return json with nids list of the given content type.
  *
  */
-function nas_birds_export_callback() {
-  $node_type = 'bird';
-  $result = db_query("SELECT nid FROM node WHERE type = '%s'", $node_type);
+function nas_node_list_callback($content_type) {
+  $result = db_query("SELECT nid FROM node WHERE type = '%s'", $content_type);
   $nids = array();
   while ($obj = db_fetch_object($result)) {
     $nids[] = $obj->nid;
@@ -43,12 +43,12 @@ function nas_birds_export_callback() {
 }
 
 /**
- * function nas_birds_export_id_callback()
+ * function nas_node_nid_callback()
  *
- * @return json of node object loaded by nid.
+ * @return json of the given node by nid.
  *
  */
-function nas_birds_export_id_callback($nid) {
+function nas_node_nid_callback($nid) {
   $node = node_load($nid);
 
   return json_encode($node);
