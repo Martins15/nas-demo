@@ -63,6 +63,7 @@ function nas_bird_field_group_info() {
       2 => 'field_bird_illustration',
       3 => 'field_bird_audio',
       4 => 'field_bird_rangemap',
+      5 => 'field_bird_video',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -91,12 +92,11 @@ function nas_bird_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'field_bird_conserv_status',
-      1 => 'field_description',
-      2 => 'field_bird_family',
-      3 => 'field_bird_calls',
-      4 => 'field_bird_region',
-      5 => 'field_bird_habitat',
-      6 => 'field_bird_description',
+      1 => 'field_bird_family',
+      2 => 'field_bird_calls',
+      3 => 'field_bird_region',
+      4 => 'field_bird_habitat',
+      5 => 'field_bird_description',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
