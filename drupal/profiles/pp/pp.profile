@@ -4,8 +4,8 @@
  * Enables modules and site configuration for a pp site installation.
  */
 
-define('EXPORT_NODE_LIST_NIDS_URL', 'http://audubon.wearepropeople.md/nas/node-list/');
-define('LOAD_NODE_JSON_OBJECT_URL', 'http://audubon.wearepropeople.md/nas/node/');
+define('EXPORT_NODE_LIST_NIDS_URL', 'http://audubon.wearepropeople.md/export/node-list/');
+define('LOAD_NODE_JSON_OBJECT_URL', 'http://audubon.wearepropeople.md/export/node/');
 
 /**
  * Implements hook_form_FORM_ID_alter() for install_configure_form().
