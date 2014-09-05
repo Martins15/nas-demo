@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS overrides feature.
+ */
+
+include_once 'nas_overrides.features.inc';
