@@ -1,0 +1,128 @@
+// ---------------
+// Bird Guide Card
+// Big 'ol card with tabular information etc.
+// One for each individual bird page in the guide
+// ---------------
+
+$guide-border: 1px solid #ececec;
+
+.bird-guide-card {
+  @extend %card;
+  position: relative;
+  z-index: 2;
+  padding: $column-gutter $column-gutter 0 $column-gutter;
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    border: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    padding: $column-gutter $column-gutter/2 0 $column-gutter/2;
+  }
+
+  i {
+    vertical-align: middle;
+  }
+}
+
+// Tag in upper-left corner, says "PRIORITY BIRD" (so far)
+.bird-guide-tag {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 150px;
+
+  background-color: $color-tomato;
+  color: $color-white;
+
+  @include font-smoothing(off);
+  font-family: $font-sans;
+  font-size: $size-text-small;
+  line-height: $size-line-small;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    top: 0;
+    left: 0;
+  }
+}
+
+// Name and illustration
+.bird-guide-header {
+  padding-bottom: $column-gutter;
+  border-bottom: $guide-border;
+
+  .common-name {
+    margin: $column-gutter/2 0 0 0;
+  }
+  .scientific-name {
+    font-size: $size-text-medium;
+    font-style: italic;
+    line-height: $size-line-pull;
+  }
+  .illustration {
+    text-align: center;
+  }
+}
+
+// Card body
+.bird-guide-body {
+  @include breakpoint(medium-up) {
+    > .row > .columns.large-8 {
+      border-right: $guide-border;
+      padding-right: 0;
+    }
+    > .row > .columns.large-4 {
+      padding-left: 0;
+    }
+  }
+}
+
+// Sections of content in the card, delineated by borders
+.bird-guide-section {
+  border-bottom: $guide-border;
+  padding: $column-gutter;
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    padding: $column-gutter 0;
+  }
+
+  &.small { 
+    @include breakpoint(medium-up) {
+      padding: $column-gutter/2 $column-gutter; 
+    }
+
+    p {
+      margin-bottom: $size-space;
+    }
+  }
+  &.left-col { 
+    padding-left: 0;
+    @include breakpoint(max-width, #{upper-bound($medium-range)}) {
+      .columns + .columns {
+        margin-top: $column-gutter;
+      }
+    }
+  }
+  &.right-col {
+    @include breakpoint(max-width, #{upper-bound($small-range)}) {
+      
+    }
+  }
+
+  &:last-child { border-bottom: 0; }
+  &.center { text-align: center; }
+
+  &.sans {
+    font-family: $font-sans;
+    font-size: $size-text-small;
+    line-height: $size-line-small;
+  }
+}
+
+.illustration-attribution {
+  font-style: italic;
+  font-size: $size-text-tiny;
+  line-height: $size-line-small;
+  text-align: center;
+}

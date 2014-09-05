@@ -1,0 +1,80 @@
+// -------------
+// Header Button
+// Visible on mobile for toggling parts of nav
+// -------------
+
+%header-btn {
+  display: block;
+  position: absolute;
+  padding: $size-space 0;
+  top: 5px;
+  height: 40px;
+  width: 40px;
+
+  @include transition(none);
+  color: $color-white !important;
+  font-size: 28px;
+  text-decoration: none !important;
+
+  // Breakpoints
+  @include breakpoint(medium-up) {
+    top: 10px;
+  }
+
+  @include breakpoint(large-up) {
+    display: none;
+  }
+
+  &:before {
+    position: relative;
+  }
+  
+  // Variants
+  &.icon-close {
+    color: transparent !important;
+    &:before {
+      top: 0;
+    }
+  }
+  .global-header.alt & {
+    padding-top: $column-gutter/2;
+    top: 5px;
+  }
+
+  .global-header.microsite & {
+    @include breakpoint(large-up) {
+      display: block;
+      top: 10px;
+    }
+    @include breakpoint(min-width, 901px) {
+      display: none;
+    }
+  }
+}
+
+.header-btn-menu {
+  @extend %header-btn;
+  margin-left: $column-gutter/2;
+  left: 0;
+  background-position: left center;
+  &:before {
+    top: -1px;
+  }
+}
+
+.header-btn-search,
+.header-btn-search-alt {
+  @extend %header-btn;
+  margin-right: $column-gutter/2;
+  right: 0;
+  text-align: right;
+  background-position: right center;
+
+  .global-header.microsite & {
+    top: 0;
+
+    &.icon-close {
+      top: 5px;
+    }
+  }
+}
