@@ -1,3 +1,11 @@
+<?php
+
+/**
+ * @file
+ * Default theme implementation to display a single Drupal page.
+ */
+?>
+
 <header class="<?php print $header_classes; ?>">
   <div class="row">
     <div class="columns">
