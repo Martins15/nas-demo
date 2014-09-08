@@ -24,7 +24,18 @@ function nas_html_head_alter(&$head_elements) {
  */
 function nas_preprocess_page(&$vars) {
   $vars['header_classes'] = 'global-header ';
+  if (drupal_is_front_page()) {
+    $vars['header_classes'] .= 'transparent dark-text light-bg';
+  }
   if (arg(0) == 'node' && is_numeric(arg(1)) && !arg(2)) {
     $vars['header_classes'] .= 'alt standard';
   }
+}
+
+/**
+ * Implements hook_css_alter().
+ */
+function nas_css_alter(&$css) {
+  unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
+  unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
 }
