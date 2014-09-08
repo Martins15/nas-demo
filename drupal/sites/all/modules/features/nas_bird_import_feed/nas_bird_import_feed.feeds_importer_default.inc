@@ -36,13 +36,13 @@ function nas_bird_import_feed_feeds_importer_default() {
           'title' => array(
             'name' => 'title',
             'value' => 'title',
-            'debug' => 1,
+            'debug' => 0,
             'weight' => '2',
           ),
           'nid' => array(
             'name' => 'nid',
             'value' => 'nid',
-            'debug' => 1,
+            'debug' => 0,
             'weight' => '3',
           ),
           'body' => array(
@@ -92,6 +92,30 @@ function nas_bird_import_feed_feeds_importer_default() {
             'value' => 'path',
             'debug' => 0,
             'weight' => '11',
+          ),
+          'field_speices_image' => array(
+            'name' => 'field_speices_image',
+            'value' => 'field_speices_image.[*]',
+            'debug' => 0,
+            'weight' => '12',
+          ),
+          'field_rangemaps' => array(
+            'name' => 'field_rangemaps',
+            'value' => 'field_rangemaps.[*]',
+            'debug' => 0,
+            'weight' => '13',
+          ),
+          'field_bird_call' => array(
+            'name' => 'field_bird_call',
+            'value' => 'field_bird_call.[*]',
+            'debug' => 0,
+            'weight' => '14',
+          ),
+          'field_similar_species' => array(
+            'name' => 'field_similar_species',
+            'value' => 'field_similar_species[*]',
+            'debug' => 0,
+            'weight' => '15',
           ),
         ),
         'display_errors' => 0,

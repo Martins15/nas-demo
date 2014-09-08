@@ -58,12 +58,12 @@ function nas_bird_field_group_info() {
     'label' => 'Media',
     'weight' => '3',
     'children' => array(
-      0 => 'field_hero_image',
-      1 => 'field_bird_photo',
-      2 => 'field_bird_illustration',
-      3 => 'field_bird_audio',
-      4 => 'field_bird_rangemap',
-      5 => 'field_bird_video',
+      0 => 'field_bird_photo',
+      1 => 'field_bird_audio',
+      2 => 'field_bird_rangemap',
+      3 => 'field_bird_video',
+      4 => 'field_hero_image',
+      5 => 'field_bird_illustration',
     ),
     'format_type' => 'htab',
     'format_settings' => array(

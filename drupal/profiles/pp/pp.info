@@ -30,6 +30,9 @@ dependencies[] = feeds_ui
 dependencies[] = features
 dependencies[] = diff
 dependencies[] = strongarm
+dependencies[] = mediafield
+dependencies[] = file_entity
+dependencies[] = media_internet
 
 ; Features
 dependencies[] = nas_master
