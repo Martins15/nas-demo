@@ -1,0 +1,131 @@
+// --------
+// Comments
+// --------
+
+.comments {
+  padding: $column-gutter*2 0 0 0;
+}
+
+// Comments section header
+
+.comments-header {
+  border-bottom: 1px solid $color-light-gray;
+  margin-bottom: $column-gutter/2;
+  padding-bottom: $column-gutter/2;
+
+  color: #888;
+  font-family: $font-sans;
+  font-size: $size-text-medium;
+
+  a {
+    font-size: $size-text-small;
+    margin-right: 12px;
+    vertical-align: bottom;
+  }
+}
+
+.comments-count {
+  display: inline-block;
+  vertical-align: bottom;
+
+  i {
+    font-size: $size-text-medium;
+    margin-right: $size-space;
+    position: relative;
+    top: 1px;
+  }
+
+  @include breakpoint(tiny-only) {
+    font-size: $size-text-medium;
+  }
+}
+
+.comments-add-button {
+  float: right;
+}
+
+.comments-toggler {
+  float: right;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+
+  .open {
+    display: none;
+  }
+
+  &.open {
+    .open { display: inline-block; }
+    .closed { display: none; }
+  }
+}
+
+// Comments content
+
+.comments-content {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+
+// Single comment
+
+.comment {
+  font-family: $font-sans;
+  margin-top: $column-gutter*1.5;
+  padding-left: 55px;
+  position: relative;
+
+  @include breakpoint(large-up) {
+    padding-left: 75px;
+  }
+}
+
+.comment-author-image {
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  img {
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  @include breakpoint(large-up) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.comment-author-name {
+  font-size: $size-text-medium;
+  margin-right: $size-space/2;
+}
+
+.comment-timestamp {
+  color: $color-middle-gray;
+  display: block;
+
+  @include breakpoint(large-up) {
+    display: inline-block;
+  }
+}
+
+.comment-body {
+  margin: $size-space/2 0;
+}
+
+.comment-footer {
+  a {
+    color: $color-warm-gray;
+    font-size: $size-text-small;
+    &:not(:first-child) {
+      margin-left: $size-space/2;
+      padding-left: $size-space/2;
+      border-left: 1px solid $color-light-gray;
+    }
+  }
+}

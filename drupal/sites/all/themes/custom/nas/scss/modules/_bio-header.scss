@@ -1,0 +1,42 @@
+.bio-header {
+  font-family: $font-sans;
+}
+
+.bio-image {
+  border-radius: 100%;
+  width: 130px;
+  height: 130px;
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    display: block;
+    margin: 0 auto;
+  }
+  @include breakpoint(medium-up) {
+    float: left;
+    margin-right: $column-gutter;
+  }
+}
+
+.bio-eyebrow {
+  display: block;
+  font-size: $size-text-medium;
+  margin-top: 5px;
+}
+
+.bio-name {
+  margin-bottom: $size-space/2;
+
+  a {
+    color: $color-bright-blue;
+  }
+  i {
+    font-size: 32px;
+    vertical-align: middle;
+    margin-left: $size-space*2;
+  }
+}
+
+.bio-title {
+  font-size: 30px;
+  font-weight: 300;
+}

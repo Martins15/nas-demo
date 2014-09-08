@@ -1,0 +1,36 @@
+.header-subtitle {
+  font-family: $font-sans;
+  font-size: $size-text-large;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+
+  &:hover {
+    color: $color-bright-blue;
+  }
+
+  .global-header & {
+    color: $color-white;
+    display: none;
+    float: left;
+    margin-left: 180px;
+    margin-top: 18px;
+
+    span {
+      display: none;
+    }
+
+    @include breakpoint(large-up) {
+      display: inline-block;
+    }
+
+    @include breakpoint(min-width, 901px) {
+      margin-left: 130px;
+    }
+
+    @include breakpoint(min-width, 931px) {
+      span {
+        display: inline;
+      }
+    }
+  }
+}
