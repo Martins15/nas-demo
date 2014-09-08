@@ -25,6 +25,10 @@ dependencies[] = views
 dependencies[] = views_ui
 dependencies[] = entityreference
 dependencies[] = field_group
+dependencies[] = feeds_ex
+dependencies[] = feeds_ui
+dependencies[] = features
+dependencies[] = diff
 
 ; Features
 dependencies[] = nas_master
