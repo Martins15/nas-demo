@@ -1,0 +1,26 @@
+@mixin breakpoint($query, $value: "", $media: "screen") {
+  // If the query's a keyword, just use that pre-existing breakpoint
+  @if $query == tiny-up { @media #{$tiny-up} { @content; } }
+  @else if $query == tiny-only { @media #{$tiny-only} { @content; } }
+  @else if $query == small-up { @media #{$small-up} { @content; } }
+  @else if $query == small-only { @media #{$small-only} { @content; } }
+  @else if $query == medium-up { @media #{$medium-up} { @content; } }
+  @else if $query == medium-only { @media #{$medium-only} { @content; } }
+  @else if $query == large-up { @media #{$large-up} { @content; } }
+  @else if $query == large-only { @media #{$large-only} { @content; } }
+  @else if $query == xlarge-up { @media #{$xlarge-up} { @content; } }
+  @else if $query == xlarge-only { @media #{$xlarge-only} { @content; } }
+
+  // Otherwise make a media query out of the provided value
+  @else {
+    @media only #{$media} and (#{$query}: #{$value}) {
+      @content;
+    } 
+  }
+}
+
+@mixin width-range($lower: 0px, $upper: 999999px, $media: "screen") {
+  @media only #{$media} and (min-width: #{$lower}) and (max-width: #{$upper}) {
+    @content;
+  }
+}

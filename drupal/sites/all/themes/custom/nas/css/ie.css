@@ -1,0 +1,62 @@
+.show-for-ie {
+  display: block !important;
+  visibility: visible !important; }
+
+.show-for-ie-ib {
+  display: inline-block !important; }
+
+.show-for-ie-in {
+  display: inline !important; }
+
+.hide-for-ie {
+  display: none !important; }
+
+.strip-nav ul {
+  width: 1000px !important;
+  overflow: visible; }
+
+.dont-miss {
+  height: 38px; }
+
+.primary-nav-item,
+.action-nav-item {
+  margin-right: 5px; }
+
+.wordmark,
+.hero,
+.breakout-section,
+.breakout-section-hero,
+.card-set,
+.icon-binoculars,
+.icon-close,
+.slideshow-button,
+.banner {
+  -ms-behavior: url(../js/backgroundsize.min.htc); }
+
+section,
+header,
+footer,
+aside,
+.mailing-list {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important; }
+
+.slideshow-img img {
+  max-height: 600px;
+  width: 100%; }
+
+.bg-egg {
+  display: none !important; }
+
+.bird-card-set,
+.bird-card-grid {
+  background-image: none !important; }
+
+.mailing-list .row:before {
+  background-image: none !important; }
+
+.mailing-list-text {
+  padding-left: 0; }
+
+.editorial-card-banner i {
+  display: none !important; }

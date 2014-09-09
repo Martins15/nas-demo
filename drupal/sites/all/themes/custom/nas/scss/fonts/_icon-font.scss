@@ -1,0 +1,143 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot?qw9hs9');
+	src:url('../fonts/icomoon.eot?#iefixqw9hs9') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?qw9hs9') format('woff'),
+		url('../fonts/icomoon.ttf?qw9hs9') format('truetype'),
+		url('../fonts/icomoon.svg?qw9hs9#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	&:before {
+		font-size: 1;
+	}
+}
+
+.icon-mail:before {
+	content: "\f0ca";
+}
+.icon-facebook:before {
+	content: "\f610";
+}
+.icon-twitter:before {
+	content: "\f611";
+}
+.icon-youtube:before {
+	content: "\f612";
+}
+.icon-pinterest:before {
+	content: "\f613";
+}
+.icon-quote:before {
+	content: "\f614";
+}
+.icon-info:before {
+	content: "\f615";
+}
+.icon-spin-widdershins:before {
+	content: "\f616";
+}
+.icon-spin-clockwise:before {
+	content: "\f617";
+}
+.icon-home:before {
+	content: "\f618";
+}
+.icon-delete:before {
+	content: "\f619";
+}
+.icon-chevron-right:before {
+	content: "\f61a";
+}
+.icon-chevron-left:before {
+	content: "\f61b";
+}
+.icon-music:before {
+	content: "\f61c";
+}
+.icon-check:before {
+	content: "\f61d";
+}
+.icon-arrow-right:before {
+	content: "\f61e";
+}
+.icon-expand:before {
+	content: "\f61f";
+}
+.icon-arrow-left:before {
+	content: "\f620";
+}
+.icon-zoom:before {
+	content: "\f621";
+}
+.icon-slides:before {
+	content: "\f622";
+}
+.icon-paper-airplane:before {
+	content: "\f623";
+}
+.icon-map:before {
+	content: "\f624";
+}
+.icon-marker:before {
+	content: "\f625";
+}
+.icon-grid:before {
+	content: "\f626";
+}
+.icon-burst:before {
+	content: "\f627";
+}
+.icon-chevron-up:before {
+	content: "\f628";
+}
+.icon-comment:before {
+	content: "\f629";
+}
+.icon-calendar:before {
+	content: "\f62a";
+}
+.icon-newspaper:before {
+	content: "\f62b";
+}
+.icon-camera:before {
+	content: "\f62c";
+}
+.icon-video:before {
+	content: "\f62d";
+}
+.icon-sound-off:before {
+	content: "\f62e";
+}
+.icon-sound-half:before {
+	content: "\f62f";
+}
+.icon-sound-full:before {
+	content: "\f630";
+}
+.icon-magnifier:before {
+	content: "\f631";
+}
+.icon-bookmark:before {
+	content: "\f632";
+}
+.icon-link:before {
+	content: "\f633";
+}

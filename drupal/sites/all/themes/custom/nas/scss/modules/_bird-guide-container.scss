@@ -1,0 +1,82 @@
+// --------------------
+// Bird Guide Container
+// Has the bird hero image, contains the bird card
+// Collapses to a much simpler style in mobile
+// --------------------
+
+.bird-guide-container {
+  background-color: #000;
+  position: relative;
+
+  @include breakpoint(tiny-only) {
+    background-color: #fff;
+  }
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    min-height: 0;
+    padding: 300px 0 0 0;
+
+    > .row > .column {
+      padding: 0;
+    }
+  }
+  @include breakpoint(small-up) {
+    padding: 400px 0 $column-gutter 0;
+  }
+  @include breakpoint(medium-up) {
+    padding: 420px 0 $column-gutter 0;
+  }
+  @include breakpoint(min-width, 960px) {
+    padding-top: 600px;
+  }
+  @include breakpoint(min-width, 1080px) {
+    padding-top: 640px;
+  }
+}
+
+.bird-guide-image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  text-align: center;
+
+  img {
+    width: 150%;
+    max-width: none;
+    margin-left: -25%;
+  }
+
+  @include breakpoint(small-up) {
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(rgba($color-black, 0) 0%, rgba($color-black, 0.1) 20%, $color-black 100%);
+    }
+  }
+
+  @include breakpoint(medium-up) {
+    img {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  @include breakpoint(large-up) {
+    &:after {
+      height: 200px;
+    }
+  }
+
+  @include breakpoint(min-width, 960px) {
+    &:after {
+      height: 300px;
+    }
+  }
+}

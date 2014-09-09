@@ -1,0 +1,9 @@
+// Breakout Cards
+.breakout-card {
+  @extend %card;
+  background-color: rgba($color-black, 0.6);
+  border:0;
+}
+.breakout-card-content {
+  @extend %card-content;
+}

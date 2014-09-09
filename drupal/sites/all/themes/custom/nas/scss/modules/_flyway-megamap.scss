@@ -1,0 +1,164 @@
+.flyway-megamap {
+  height: 400px;
+  background-position: center 100px;
+  background-size: 450px auto;
+
+  // Gradients
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    height: 160px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &:before {
+    top: 0;
+    background: linear-gradient(rgba($color-white, 1), rgba($color-white, 1) 30%, rgba($color-white, 0));
+  }
+  &:after {
+    top: auto;
+    bottom: 0 !important; // override hero gradient
+    background: linear-gradient(rgba($color-white, 0), rgba($color-white, 1) 85%);
+  }
+
+  // Keep header above gradients
+  .hero-header {
+    position: relative;
+    z-index: 2;
+    background: none !important;
+    @include breakpoint(large-up) {
+      margin-top: 100px;
+    }
+  }
+
+  .hero-blurb {
+    font-size: $size-text-medium;
+    line-height: $size-text-medium + 5px;
+  }
+
+  @include breakpoint(small-up) {
+    height: 500px;
+    background-position: center 100px;
+    background-size: 650px auto;
+
+    &:before,
+    &:after {
+      height: 220px;
+    }
+  }
+
+  @include breakpoint(medium-up) {
+    height: 600px;
+  }
+
+  @include breakpoint(large-up) {
+    height: 800px;
+    background-size: 1000px auto;
+
+    &:before,
+    &:after {
+      height: 300px;
+    }
+  }
+}
+
+.flyway-megamap-instructions {
+  position: relative;
+  z-index: 2;
+
+  @include breakpoint(medium-up) {
+    top: -100px;
+  }
+}
+
+.flyway-megamap-points-container {
+  position: relative;
+}
+
+.flyway-megamap-point {
+  position: relative;
+  z-index: 2;
+  font-family: $font-sans;
+  text-align: center;
+
+  .portrait {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 4px solid $color-white;
+    border-radius: 100%;
+    box-shadow: 0 1px 3px rgba($color-black, 0.3);
+    @include transition-property(transform -webkit-transform -moz-transform);
+    @include transition-duration(0.1s);
+    @include transition-timing-function(ease-in-out);
+  }
+  .name {
+    margin-top: 15px;
+    text-shadow: 0 1px 0 rgba($color-white, 0.3);
+    .bird {
+      color: $color-bright-blue !important;
+      font-size: $size-text-medium; 
+    }
+    .flyway {
+      color: #777; 
+    }
+  }
+
+  &:hover {
+    .portrait {
+      @include transform(scale(1.10));
+    }
+  }
+
+  @include breakpoint(max-width, #{upper-bound($medium-range)}) {
+    float: left;
+    width: 25%;
+    top: 130px;
+
+    &:nth-child(odd) {
+      top: 110px;
+    }
+  }
+
+  @include breakpoint(small-only) {
+    top: 200px;
+  
+    &:nth-child(odd) {
+      top: 180px;
+    }
+
+    .portrait {
+      width: 75px;
+      height: 75px;
+      border: 6px solid $color-white;
+    }
+  }
+
+  @include breakpoint(medium-up) {
+    .portrait {
+      width: 85px;
+      height: 85px;
+      border: 6px solid $color-white;
+    }
+  }
+
+  @include breakpoint(large-up) {
+    position: absolute;
+
+    .portrait {
+      width: 100px;
+      height: 100px;
+      border: 8px solid $color-white;
+    }
+  }
+
+  @include breakpoint(min-width, 900px) {
+    .portrait {
+      width: 150px;
+      height: 150px;
+      border: 12px solid $color-white;
+    }
+  }
+}

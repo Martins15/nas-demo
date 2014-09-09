@@ -1,0 +1,95 @@
+// -------------
+// Wordmark Logo
+// -------------
+
+.wordmark {
+  @include user-select(none); // don't allow selection of the hidden text
+  background-image: url(../img/wordmark-white-mobile.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+  display: block;
+  height: 28px;
+  width: 132px;
+  margin: $size-space auto;
+
+  // Breakpoints
+  @include breakpoint(small-up) {
+    top: 0;
+    position: absolute;
+    margin: $size-space 0 $size-space 32px;
+  }
+  @include breakpoint(medium-up) {
+    background-image: url(../img/wordmark-white.png);
+    height: 32px;
+    width: 151px;
+    margin: $size-space*1 0 $size-space*1.5 $size-space*4; 
+  }
+  @include breakpoint(large-up) {
+    bottom: 0;
+    top: auto;
+    margin-left: 0;
+    // Variations
+    .global-header.dark-text & {
+      @include breakpoint(medium-up) {
+        background-image: url(../img/wordmark-black.png);
+      }
+    }
+  }
+  @include breakpoint(min-width, 880px) {
+    height: 50px;
+    width: 236px;
+    margin: $size-space*2.5 0 $size-space*2 0; 
+  }
+
+  .global-header.alt & {
+    background-image: url(../img/wordmark-white-mobile.png);
+    height: 28px;
+    width: 132px;
+    margin-top: $size-space;
+    margin-bottom: $size-space;
+    top: 0;
+  }
+
+  .global-header.microsite & {
+    @include breakpoint(large-up) {
+      height: 24px;
+      width: 113px;
+      top: 6px;
+      left: 50px;
+    }
+    @include breakpoint(min-width, 901px) {
+      left: $column-gutter/2;
+    }
+  }
+
+  &.text {
+    background-image: none;
+    text-indent: 0;
+    color: $color-white !important;
+    width: auto;
+    height: auto;
+    min-height: 28px;
+    margin: $size-space 0;
+    text-align: center;
+    font-size: $size-text-medium;
+
+    @include breakpoint(small-up) {
+      margin: 12px 0 $size-space 32px;
+    }
+    @include breakpoint(medium-up) {
+      margin: 19px 0 $size-space*1.5 $size-space*4; 
+      font-size: $size-text-h3;
+    }
+    @include breakpoint(large-up) {
+      margin: $size-space 0;
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: -1px;
+    }
+    @include breakpoint(min-width, 840px) {
+      font-size: 48px;
+      margin: $size-space 0 20px 0;
+    }
+  }
+}

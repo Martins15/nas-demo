@@ -1,0 +1,121 @@
+.focal-bird-dropdown {
+  background-color: $color-bone-white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  color: $color-warm-gray;
+  font-family: $font-sans;
+
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  overflow: hidden;
+  max-height: 0px;
+
+  @include transition-property(max-height);
+  @include transition-duration(0.3s);
+
+  &.show {
+    height: auto;
+    max-height: 220px;
+  }
+
+  .row {
+    padding: 12.5px 0;
+  }
+
+  .thumb-strip {
+    margin-top: 4px;
+
+    li {
+      a {
+        color: $color-warm-gray;
+
+        &:hover {
+          color: $color-orange;
+        }
+      }
+
+      .name {
+        height: 45px;
+        width: 97px;
+        padding: 0 5px;
+        font-family: $font-sans;
+        font-size: 13px;
+        line-height: 18px;
+        text-align: center;
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        &:before {
+          content: "";
+          display: inline-block;
+          height: 100%;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  .thumb-strip-prev,
+  .thumb-strip-next {
+    height: 97px;
+  }
+
+  .thumb-strip-prev { border-right: 10px solid $color-bone-white; }
+  .thumb-strip-next { border-left: 10px solid $color-bone-white; }
+
+}
+
+.focal-bird-dropdown-nav {
+  padding-bottom: $column-gutter/2;
+  font-size: $size-text-base;
+  line-height: $size-text-medium;
+
+  a {
+    color: $color-warm-gray;
+    &:hover {
+      color: $color-orange;
+    }
+  }
+
+  i {
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  .search {
+    float: right;
+  }
+
+  .filter {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+
+    select {
+      @include appearance(none);
+      margin-bottom: 0;
+      padding: 0 20px 0 0;
+      background-color: transparent;
+      background-image: none;
+      border: 0;
+      height: auto;
+      color: $color-warm-gray;
+    }
+
+    i {
+      position: absolute;
+      top: 0;
+      right: 0;
+      pointer-events: none;
+
+      &:before {
+        @include transform(rotate(180deg));
+        display: inline-block;
+      }
+    }
+  }
+}

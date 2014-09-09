@@ -1,0 +1,30 @@
+// Arrow graphic for mobile nav togglers
+
+@mixin nav-toggler-graphic() {
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+  }
+  &:before { // block
+    background-color: #F9F9F9;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $column-gutter*2;
+  }
+  &:after { // arrow
+    border: 7px solid transparent;
+    border-top: 7px solid $color-light-gray;
+    top: 18px;
+    right: 19px;
+  }
+
+  // States
+  &.open:after {
+    top: 11px;
+    border: 7px solid transparent;
+    border-bottom: 7px solid $color-light-gray;
+  }
+}

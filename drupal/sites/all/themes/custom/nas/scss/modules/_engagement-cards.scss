@@ -1,0 +1,94 @@
+/* @todo Add a markup example */
+
+// ----------------
+// Engagement Cards
+// ----------------
+
+.engagement-card {
+  @extend %card;
+}
+
+.engagement-card-content {
+  @extend %card-content;
+  position: relative;
+  min-height: 220px;
+  padding-bottom: 60px;
+
+  @include breakpoint(medium-up) {
+    min-height: 230px;
+  }
+
+  &.no-min-height {
+    min-height: 0;
+    padding-bottom: $column-gutter;
+  }
+}
+
+.engagement-card-cta {
+  text-align: center;
+  padding-top: $column-gutter/2;
+  position: absolute;
+  left: 0;
+  bottom: $column-gutter;
+  width: 100%;
+
+  .button {
+    font-size: $size-text-base;
+  }
+
+  .engagement-card-content.no-min-height & {
+    position: static;
+  }
+}
+
+.engagement-card-photo {
+  @extend %card-photo;
+  display: none;
+
+  @include breakpoint(medium-up) {
+    display: block;
+  }
+}
+
+.engagement-card-headline {
+  color: $color-orange;
+  font-size: $size-text-h3;
+  font-family: $font-sans;  
+  font-weight: 300;
+  letter-spacing: -1px;
+  line-height: $size-text-h3 + 3px;
+  margin-bottom: $size-space;
+
+  @include breakpoint(min-width, 900px) {
+    font-size: $size-text-engagement;
+    line-height: $size-text-engagement + 3px;
+  }
+}
+
+// Variants
+.engagement-card.side-note {
+  .engagement-card-content {
+    height: auto;
+    padding-bottom: $size-space;
+  }
+
+  @include breakpoint(medium-up) {
+    border: 0;
+    border-left: 1px solid $color-light-gray;
+    box-shadow: none;
+    padding-left: $column-gutter/2;
+
+    .engagement-card-headline {
+      color: $color-text-gray;
+      font-size: $size-text-h4;
+      font-weight: 400;
+      line-height: $size-text-h4;
+    }
+    .engagement-card-cta {
+      text-align: left;
+    }
+    .engagement-card-photo {
+      display: none;
+    }
+  }
+}

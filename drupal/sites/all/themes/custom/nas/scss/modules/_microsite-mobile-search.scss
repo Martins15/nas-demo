@@ -1,0 +1,17 @@
+.microsite-mobile-search {
+  padding: 8px $column-gutter/2;
+
+  input, button {
+    margin: 0;
+    float: left;
+  }
+
+  input {
+    width: 80%; 
+    border-radius: 5px 0 0 5px !important;
+  }
+  button {
+    width: 20%;
+    border-radius: 0 5px 5px 0 !important;
+  }
+}
