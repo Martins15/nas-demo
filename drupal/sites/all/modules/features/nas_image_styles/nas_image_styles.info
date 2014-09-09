@@ -3,5 +3,5 @@ core = 7.x
 package = NAS
 dependencies[] = image
 features[features_api][] = api:2
-features[image][] = 189x100sc
-features[image][] = 97x97sc
+features[image][] = nas_bird_node_full_illustration
+features[image][] = nas_bird_photo_thumbnnail
