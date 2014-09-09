@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Plugin definition file for panel's layout.
+ */
+
+/**
  * Implementation of hook_panels_layouts()
  */
 // Plugin definition

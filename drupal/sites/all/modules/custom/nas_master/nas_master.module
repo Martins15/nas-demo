@@ -46,13 +46,9 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
 
           //Additionally save Alt and Title if exist
           if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
-            watchdog('debug', print_r($value['data'],1));
             $file_entity = file_load($file->fid);
-
             $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
             $file_entity->field_file_image_title_text[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
-            watchdog('debug', print_r($file_entity,1));
-
             file_save($file_entity);
           }
         }
@@ -66,7 +62,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $doc = system_retrieve_file($remoteDocPath, NULL, FALSE, FILE_EXISTS_REPLACE);
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_rangemap[LANGUAGE_NONE][$key]['fid'] = $file->fid;
-          
+
           //Additionally save Alt and Title if exist
           if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
             $file_entity = file_load($file->fid);
@@ -85,7 +81,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $doc = system_retrieve_file($remoteDocPath, NULL, FALSE, FILE_EXISTS_REPLACE);
           $file = nas_master_add_existing_file($doc, 'audio');
           $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
-          
+
           //Additionally save description if exist to separate field field_audio_description
           if (!empty($value['data']['description'])) {
             $file_entity = file_load($file->fid);
