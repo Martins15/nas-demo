@@ -35,13 +35,16 @@ function pp_install_tasks(&$install_state) {
 /**
  * Batch operation for pp_import_nodes().
  */
-function pp_import_nodes_batch($nid) {
-  $importer_id = 'birds_import';
-  $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
-  $source = feeds_source($importer_id);
-  $source->addConfig($config);
-  $source->save();
-  $source->import();
+function pp_import_nodes_batch($nids) {
+  foreach ($nids as $nid) {
+    $importer_id = 'birds_import';
+    $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
+    $source = feeds_source($importer_id);
+    $source->addConfig($config);
+    $source->save();
+    $source->import();
+    unset($source);
+  }
 }
 
 /**
@@ -54,15 +57,30 @@ function pp_import_nodes() {
 
   $operations = array();
 
-  foreach ($node_nids as $nid) {
-    $operations[] = array('pp_import_nodes_batch', array($nid));
+  // For benchmarking.
+  $node_nids = array_slice($node_nids, 0, 50);
+
+  foreach (array_chunk($node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk));
   }
+
+  variable_set('pp_import_timer', time());
 
   $batch = array(
     'operations' => $operations,
     'title' => st('Content import'),
     'error_message' => st('The import process has encountered an error.'),
+    'finished' => 'pp_import_save_timer',
   );
 
   return $batch;
+}
+
+function pp_import_save_timer() {
+  $start = variable_get('pp_import_timer', time());
+  $stop = time();
+  watchdog('pp_import_time', number_format(($stop - $start) / 60, 2));
+  variable_del('pp_import_timer');
+  // Remove all messages.
+  unset($_SESSION['messages']['status']);
 }
