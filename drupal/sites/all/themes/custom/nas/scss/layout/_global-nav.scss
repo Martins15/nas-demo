@@ -1,0 +1,27 @@
+// -----------------
+// Global Navigation
+// -----------------
+
+.global-nav {
+  @include breakpoint(max-width, 767px) {
+    padding-top: $size-space*1.5;
+  }
+  @include breakpoint(medium-only) {
+    padding-top: $size-space;
+  }
+  @include breakpoint(tiny-up) {
+    padding-top: 0;
+  }
+  @include breakpoint(large-up) {
+    padding-bottom: $size-space*5; // spacing for positioned primary nav
+    height: 95px;
+  }
+
+  .global-header.alt & {
+    padding-bottom: 0;
+    height: auto;
+    @include breakpoint(small-up) {
+      padding-top: 50px;
+    }
+  }
+}

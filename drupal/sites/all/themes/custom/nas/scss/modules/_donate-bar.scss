@@ -1,0 +1,55 @@
+// ----------
+// Donate Bar
+// In-content or in-sidebar donation CTA
+// ----------
+
+%donate-bar-bird {
+  background-image: url(engagement-bird-2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 32.8px;
+  height: 113.33333px;
+  position: absolute;
+  left: -24px;
+  top: 5px;
+}
+
+.donate-bar {
+  color: $color-warm-gray;
+  background-color: $color-bone-white;
+  font-family: $font-sans;
+  font-size: $size-text-small;
+  line-height: $size-line-small;
+  padding: $size-space $size-space*2;
+  margin: $column-gutter 0; 
+  position: relative;
+  &:before {
+    @extend %donate-bar-bird;
+    @include breakpoint(min-width, 1020px) {
+      content: "";
+    }
+  }
+
+  @include breakpoint(medium-up) {
+    font-size: $size-text-medium;
+    line-height: $size-line-base;
+  }
+}
+
+%donate-bar-el {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.donate-bar-caption {
+  @extend %donate-bar-el;
+  padding-right: $size-space;
+  width: 70%;
+}
+
+.donate-bar-button {
+  @extend %donate-bar-el;
+  text-align: right;
+  width: 30%;
+}

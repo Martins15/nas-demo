@@ -1,0 +1,30 @@
+.curtain-fallback {
+  height: 640px;
+  background-size: cover;
+  background-position: center bottom;
+  position: relative;
+  display: block;
+
+  &.focus-left { background-position: center left; }
+  &.focus-right { background-position: center right; }
+
+  .curtain-card {
+    padding: $size-space;
+  }
+  .curtain-card-headline {
+    font-size: $size-text-large;
+  }
+
+  @include breakpoint(tiny-only) {
+    height: 480px;
+  }
+  @include breakpoint(large-up) {
+    display: none;
+  }
+}
+
+.curtain-fallback-content {
+  position: absolute;
+  width: 100%;
+  bottom: $column-gutter;
+}

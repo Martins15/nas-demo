@@ -1,0 +1,144 @@
+// -------------
+// Header Search
+// -------------
+
+.header-search {
+  display: none;
+  text-align: right;
+
+  // States
+  &.show {
+    display: block;
+  }
+}
+
+// Children
+.header-search-close {
+  color: $color-orange !important;
+  font-size: $size-text-large;
+  margin-left: $size-space;
+  padding: $size-space 0;
+  position: relative;
+  top: 3px;
+  vertical-align: middle;
+}
+input.header-search-input {
+  display: inline-block;
+  width: 50%;
+  margin-right: 2%;
+}
+input.header-search-input,
+.header-search-button {
+  height: 30px;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.header-search-button {
+  vertical-align: middle;
+  i {
+    vertical-align: middle;
+    font-size: 30px;
+    position: relative;
+    top: 1px;
+    left: -1px;
+  }
+}
+
+// Breakpoints
+@include breakpoint(tiny-only) {
+  .header-search {
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 60px;
+    margin: 0 -$column-gutter/2 0 -$column-gutter/2;
+    padding: $size-space $column-gutter/2;
+    position: absolute;
+    top: 60px;
+    &.show + .global-nav {
+      margin-top: 74px;
+    }
+  }
+  input.header-search-input,
+  .header-search-button {
+    display: block;
+    height: 40px;
+    float: left;
+  }
+  input.header-search-input {
+    width: 82%;
+    margin-right: 3%;
+    padding-left: $size-space;
+  }
+  .header-search-button {
+    width: 15%;
+  }
+}
+@include breakpoint(small-up) { 
+  .header-search {
+    background-color: $color-black;
+    height: 40px; 
+    width: 50%;
+    padding: 10px 0;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    z-index: 3;
+  }
+  input.header-search-input {
+    width: 70%;
+    margin-right: $size-space;
+  }
+  .header-search-button {
+    padding: $size-space/2 $size-space !important;
+  }
+}
+@include breakpoint(medium-only) {
+  .header-search {
+    height: 59px; 
+    padding: 15px 0;
+  }
+  .header-search-button i {
+    font-size: 24px;
+    vertical-align: text-top;
+    top: 0;
+  }
+}
+@include breakpoint(large-up) { 
+  .header-search {
+    background-color: transparent;
+    position: static;
+    float: right;
+    height: 95px; 
+    padding: 28px 0;
+  }
+  input.header-search-input {
+    width: 67.5%;
+  }
+  input.header-search-input,
+  .header-search-button {
+    height: 40px;
+    i {
+      position: relative;
+      top: 3px;
+    }
+  }
+  .header-search-button {
+    min-width: 60px;
+  }
+}
+
+@include breakpoint(medium-up) {
+  .global-header.alt .header-search {
+    height: 50px;
+    padding: 10px 0;
+
+    input.header-search-input,
+    .header-search-button {
+      height: 30px;
+      i {
+        font-size: 24px;
+        top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+.microsite-cta-form {
+  background-image: url(card-set-bg-3.jpg);
+  background-image: url(../img/climate-pledge-bg.jpg);
+  background-position: bottom center;
+  overflow: hidden;
+  position: relative;
+
+  @include breakpoint(large-up) {
+    background-size: 1440px auto;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 0;
+
+    @include breakpoint(large-up) {
+      left: 15%;
+      right: 15%;
+    }
+    @include breakpoint(min-width, 1000px) {
+      left: 20%;
+      right: 20%;
+    }
+  }
+
+  .row {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-set-heading {
+    color: $color-tomato;
+    font-size: $size-text-engagement;
+    line-height: $size-text-engagement + 5px;
+
+    @include breakpoint(max-width, #{upper-bound($small-range)}) {
+      font-size: $size-text-large + 5px;
+      line-height: $size-text-large + 8px;
+    }
+  }
+
+  .card-set-wrapper,
+  .card-set-dots {
+    &.off {
+      visibility: hidden;
+      position: absolute;
+      overflow: hidden;
+      opacity: 0;
+    }
+  }
+
+  .donation-form-body {
+    &.off {
+      display: none;
+    }
+  }
+
+
+  .donation-form-body,
+  .card-set-heading,
+  .microsite-form-blurb,
+  .card-set-wrapper {
+    @include transition(opacity .5s ease-in-out);
+  }
+
+  .disappear {
+    opacity: 0;
+  }
+
+
+
+  .social-sharing-icon{
+    font-size:50px;
+  }
+
+
+}
+
+.microsite-form-blurb {
+  text-shadow: 0 1px 0 rgba($color-white, 0.4);
+  font-size: $size-text-medium - 3px;
+  line-height: $size-line-pull - 3px;
+  text-align: center;
+
+  & + & {
+    margin-top: $size-line-base/2;
+  }
+}
+.microsite-cta-form{
+  position:relative;
+  min-height:480px;
+}
+.microsite-thanks{
+  font-size:$size-text-medium;
+  text-shadow: 0 1px 0 rgba($color-white, 0.4);
+  line-height:1.5;
+}
+.response {
+  position:absolute;
+  top:0;
+  width:100%;
+  &.off {
+    display:none;
+  }
+}
+.call {
+  position:absolute;
+  top:0;
+  width:100%;
+  &.off{
+    display:none;
+  }
+}
+
