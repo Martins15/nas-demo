@@ -42,6 +42,9 @@ function pp_import_nodes_batch($nid) {
   $source->addConfig($config);
   $source->save();
   $source->import();
+  $source->state(FEEDS_FETCH);
+  $source->state(FEEDS_PROCESS);
+  $source->state(FEEDS_PROCESS_CLEAR);
 }
 
 /**
