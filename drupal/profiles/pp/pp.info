@@ -36,3 +36,6 @@ dependencies[] = media_internet
 
 ; Features
 dependencies[] = nas_master
+
+; Development
+dependencies[] = devel
