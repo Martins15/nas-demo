@@ -1,0 +1,22 @@
+// --------------
+// Contact Info
+// Sidebar contact info
+// --------------
+
+.contact-info {
+  font-family: $font-serif;
+  font-size: $size-text-tiny + 1px;
+  line-height: $size-line-small;
+
+  &.sans {
+    font-family: $font-sans;
+  }
+  &.large {
+    font-size: $size-text-small;
+    line-height: $size-line-small;
+  }
+
+  p {
+    margin-bottom: $size-space;
+  }
+}

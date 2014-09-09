@@ -1,0 +1,144 @@
+// -------------
+// Bird Card Set
+// Scrolling container for bird cards
+// 
+// Example markup:
+//
+// <div class="bird-card-set">
+//   <div class="row">
+//     <div class="tiny-3 columns">
+//       <figure class="bird-card">
+//         <div class="bird-card-illustration">
+//           <a href="#"><img src="<!-- @path bird-1.png -->" alt=""></a>
+//         </div>
+//         <figcaption class="bird-card-caption">
+//           <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
+//           <p class="scientific-name">Campylorhynchus brunneicapillus</p>
+//         </figcaption>
+//         <a href="#" class="ss-standard ss-highvolume bird-card-audio"></a>
+//       </figure>
+//     </div>
+//     ... [three more cards]
+//   </div>
+// </div>
+// -------------
+
+.bird-card-set {
+  position: relative;
+  overflow: hidden; 
+  padding-top: 10px;
+
+  .bird-card-scroller {
+    width: $row-width;
+  }
+
+  .bird-card {
+    margin: 0 auto ($column-gutter/2) auto;
+  }
+
+  .indicator {
+    text-align: center;
+    color: #888;
+
+    @include breakpoint(min-width, 1000px) {
+      visibility: hidden;
+    }
+  }
+
+  .indicator-right,
+  .indicator-left {
+    &.disabled {
+      opacity: 0.4;
+    }
+  }
+
+  &.bg-bone-white {
+    background-color: $color-bone-white;
+  }
+  @include breakpoint(large-up) {
+    &.bg-boa {
+      background-image: url(card-set-bg-2.jpg);
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: center top;
+      @include transition(background-image 0.5s ease-in-out);
+
+      .row {
+        @include transition(opacity 0.5s ease-in-out);
+      }
+
+      &.show-bg {
+        background-image: url(card-set-bg-2-color.jpg);
+
+        .row {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+.bird-card-set-bg-caption {
+  display: none;
+  color: $color-white;
+  background-color: rgba($color-black, 0.6);
+  font-size: $size-text-small;
+  line-height: $size-line-small;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .row {
+    opacity: 1 !important;
+    padding: $size-space 0;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    a {
+      color: $color-white;
+    }
+  }
+
+  .show-bg & {
+    @include breakpoint(large-up) {
+      display: block;
+    }
+  }
+}
+
+.bird-card-set-sidebar {
+  .tiny-6:first-child {
+    padding-right: $column-gutter/4;
+  }
+  .tiny-6:last-child {
+    padding-left: $column-gutter/4;
+  }
+}
+
+@include breakpoint(tiny-only) {
+  .bird-card-set {
+    .bird-card-container {
+      width: 75%;
+      margin: 0 auto;
+      padding: 0;
+    }
+    .bird-card-scroller {
+      width: 400%;
+    }
+    .bird-card {
+      max-width: 240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+@include width-range(400px, 480px) {
+  .bird-card-set {
+    .bird-card-container {
+      width: 60%;
+    }
+  }
+}

@@ -1,0 +1,147 @@
+.bird-card-grid {
+  @include transition(height 0.5s ease-in-out);
+  overflow: hidden;
+  position: relative;
+  
+  @include breakpoint(medium-up) {
+    padding: $column-gutter 0;
+  }
+
+  // BG
+  @include breakpoint(large-up) {
+    background-image: url(grid-bg.jpg);
+    background-size: 85% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+
+  &.no-bg {
+    background-image: none !important;
+  }
+
+  // Bird card animations and states
+  .bird-card {
+    margin-bottom: $column-gutter/2;
+
+    &,
+    &.appear {
+      @include animation(appear .3s ease-in-out);
+    }
+    &.disappear {
+      @include animation(disappear .3s ease-in-out);
+    }
+    &.invisible {
+      visibility: hidden;
+    }
+
+    &.appear,
+    &.disappear {
+      @include transition-property(none);
+    }
+  }
+
+  .columns,
+  .column {
+    margin-bottom: $column-gutter/2;
+  }
+
+  // Bird card sizes
+  @include breakpoint(tiny-only) {
+    @include bird-card-smallest;
+    .tiny-6 {
+      &:nth-child(odd) {
+        padding-right: $column-gutter/4;
+        clear: left;
+      }
+      &:nth-child(even) {
+        padding-left: $column-gutter/4;
+        clear: right;
+      }
+    }
+  }
+  @include breakpoint(min-width, 400px) {
+    @include bird-card-smaller;
+  }
+  @include breakpoint(min-width, 520px) {
+    @include bird-card-small;
+  }
+  @include breakpoint(medium-only) {
+    @include bird-card-smaller;
+  }
+  @include breakpoint(large-up) {
+    @include bird-card-smaller;
+  }
+  @include breakpoint(min-width, 900px) {
+    @include bird-card-small;
+  }
+  
+  // Easter egg: lovely full color background
+  &.show-bg {
+    @include transition(background-image 0.5s ease-in-out);
+    background-image: url(grid-bg-color.jpg);
+    .row {
+      @include transition(opacity 0.5s ease-in-out);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .bg-egg {
+    bottom: $column-gutter*4;
+    @include breakpoint(min-width, 1170px) {
+      bottom: $column-gutter;
+    }
+  }
+}
+
+.bird-card-grid-bg-caption {
+  display: none;
+  background-color: rgba($color-black, 0.6);
+  color: $color-white;
+  font-size: $size-text-small;
+  line-height: $size-line-small;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .row {
+    opacity: 1 !important;
+    padding: $size-space 0;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    a {
+      color: $color-white;
+    }
+  }
+
+  .show-bg & {
+    @include breakpoint(large-up) {
+      display: block;
+    }
+  }
+}
+
+// Keyframes!
+
+@include keyframes(appear) {
+  from {
+    opacity: 0;
+    @include transform(scale(.99) translateY(5px));
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@include keyframes(disappear) {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    @include transform(scale(.99) translateY(5px));
+  }
+}

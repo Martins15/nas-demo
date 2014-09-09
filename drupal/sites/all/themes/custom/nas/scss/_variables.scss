@@ -1,0 +1,57 @@
+// ------
+// Colors
+// ------
+
+$color-black:                   #000;
+$color-white:                   #fff;
+// Primary colors
+$color-orange:                  #E18400;
+$color-tomato:                  #F15936;
+$color-bright-blue:             #0AA8E3;
+$color-pea-green:               #7BA701;
+// Secondary colors
+$color-dark-gray:               #262626;
+$color-text-gray:               #404040;
+$color-warm-gray:               #838078;
+$color-light-gray:              #d4d4d4;
+$color-middle-gray:             #aaa;
+$color-bone-white:              #FBFAF6;
+
+// -----------
+// Font Stacks
+// -----------
+
+$font-serif:                    "Noto Serif", Georgia, serif;
+$font-sans:                     "Source Sans Pro", Verdana, sans-serif;
+
+// -----
+// Sizes
+// -----
+
+// Generic UI text sizes
+$size-text-tiny:                12px;
+$size-text-small:               15px;
+$size-line-small:               20px;
+$size-text-medium:              20px;
+$size-text-large:               24px;
+// Base text
+$size-text-base:                17px;
+$size-line-base:                25.5px;
+// Pull quotes out of base text
+$size-text-pull:                23px;
+$size-line-pull:                30px;
+// Heading "eyebrow"
+$size-text-eyebrow:             20px;
+// Headings
+$size-text-h1:                  52px;
+$size-line-h1:                  $size-text-h1 + 5px;
+$size-text-h2:                  33px;
+$size-line-h2:                  $size-text-h2 + 5px;
+$size-text-h3:                  28px;
+$size-line-h3:                  $size-text-h3 + 3px;
+$size-text-h4:                  23px;
+$size-line-h4:                  $size-line-base + 3px;
+$size-text-engagement:          40px;
+
+// Generic small element spacing
+$size-space:                    10px;
