@@ -1,0 +1,259 @@
+.show-for-ie {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.show-for-ie-ib {
+  display: inline-block !important;
+}
+
+.show-for-ie-in {
+  display: inline !important;
+}
+
+.hide-for-ie {
+  display: none !important;
+}
+
+.strip-nav ul {
+  width: 1000px !important;
+  overflow: visible;
+}
+
+.dont-miss {
+  height: 38px;
+}
+
+.primary-nav-item,
+.action-nav-item {
+  margin-right: 5px;
+}
+
+.primary-nav-toggler.open,
+.primary-sub-nav.show {
+  background-color: #fcfcfc !important;
+}
+
+.header-btn-menu,
+.header-btn-search,
+.header-btn-search-alt {
+  display: none !important;
+}
+
+.section-nav li {
+  margin-left: 10px;
+}
+
+.hero-inline-list li {
+  margin-left: 10px;
+}
+
+.wordmark,
+.hero,
+.breakout-section,
+.breakout-section-hero,
+.card-set,
+.icon-binoculars,
+.icon-close,
+.slideshow-button,
+.conservation-slider-button,
+.flyway-slides-paddle,
+.banner,
+.icon-close,
+.icon-menu,
+.icon-binoculars {
+  -ms-behavior: url(backgroundsize.min.htc);
+}
+
+.breakout-section.black-bg .breakout-section-hero:not(:last-child):after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 100px;
+  background-image: url(ie/black-gradient-up.png);
+  background-repeat: repeat-x;
+}
+
+.guide-bar .preamble {
+  display: inline-block !important;
+}
+.guide-bar .canon-logo {
+  display: inline !important;
+}
+.guide-bar .guide-bar-attribution {
+  margin-top: -2px;
+}
+
+.breakout-section-box,
+.slideshow-button,
+.conservation-slider-button,
+.title-slide .slide-img:after,
+.end-slide .slide-img:after,
+.flyway-slides-paddle {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000) !important;
+  zoom: 1;
+}
+
+.slide {
+  position: relative;
+}
+
+.slideshow-button {
+  top: 40% !important;
+  margin-top: -30px;
+}
+
+.end-slide .slide-img img,
+.title-slide .slide-img img {
+  visibility: hidden;
+}
+
+.end-slide-content,
+.title-slide-content {
+  position: absolute;
+  top: 100px;
+  width: 90%;
+  left: 5%;
+}
+
+.slideshow {
+  top: -60px;
+}
+.slideshow .icon-chevron-left,
+.slideshow .icon-chevron-right {
+  display: none !important;
+}
+
+.end-slide-links li {
+  margin-right: 10px;
+}
+
+section,
+header,
+footer,
+aside,
+.mailing-list {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.slideshow-img img {
+  max-height: 600px;
+  width: 100%;
+}
+
+.bg-egg {
+  display: none !important;
+}
+
+.bird-card-set,
+.bird-card-grid {
+  background-image: none !important;
+}
+
+.mailing-list .row:before {
+  background-image: none !important;
+}
+
+.mailing-list-text {
+  padding-left: 0;
+}
+
+.donate-bar:before {
+  background-image: none !important;
+}
+
+.editorial-card-banner i,
+.bird-guide-card i {
+  display: none !important;
+}
+
+.flyway-megamap {
+  height: 800px;
+  background-size: cover;
+  background-position: center center !important;
+}
+
+.flyway-megamap-point .portrait {
+  border: 0px !important;
+}
+
+.flyway-path-map {
+  visibility: hidden;
+}
+.flyway-path-map.current {
+  visibility: visible;
+}
+.flyway-path-map .flyway-megamap-point {
+  margin-top: 0 !important;
+  top: 300px;
+}
+
+.icon-video,
+.icon-facebook,
+.icon-magnifier,
+.icon-mail,
+.icon-twitter,
+.icon-pinterest,
+.icon-youtube,
+.icon-sound-full,
+.icon-spin-widdershins {
+  display: inline-block;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+.icon-video:before,
+.icon-facebook:before,
+.icon-magnifier:before,
+.icon-mail:before,
+.icon-twitter:before,
+.icon-pinterest:before,
+.icon-youtube:before,
+.icon-sound-full:before,
+.icon-spin-widdershins:before {
+  content: "";
+}
+
+.icon-video {
+  background-image: url(ie/icon-video.png);
+}
+
+.icon-facebook {
+  background-image: url(ie/icon-facebook.png);
+}
+
+.icon-magnifier {
+  background-image: url(ie/icon-magnifier.png);
+}
+
+.icon-mail {
+  background-image: url(ie/icon-mail.png);
+}
+
+.icon-twitter {
+  background-image: url(ie/icon-twitter.png);
+}
+
+.icon-pinterest {
+  background-image: url(ie/icon-pinterest.png);
+}
+
+.icon-youtube {
+  background-image: url(ie/icon-youtube.png);
+}
+
+.icon-spin-widdershins {
+  background-image: url(ie/icon-spin-widdershins.png);
+}
+
+.icon-sound-full {
+  background-image: url(ie/icon-sound-full.png);
+}
+
+.global-header.dark-text .primary-nav-search i.icon-magnifier {
+  background-image: url(ie/icon-magnifier-dark.png);
+}
