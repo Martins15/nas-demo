@@ -4,4 +4,6 @@ package = NAS
 dependencies[] = nas_bird
 dependencies[] = nas_bird_import_feed
 dependencies[] = nas_overrides
+dependencies[] = nas_image_styles
+dependencies[] = nas_pages
 features[features_api][] = api:2
