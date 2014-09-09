@@ -462,7 +462,7 @@ function nas_bird_field_default_field_instances() {
         'label' => 'above',
         'module' => 'mediafield',
         'settings' => array(
-          'file_view_mode' => 'default',
+          'file_view_mode' => 'teaser',
         ),
         'type' => 'media',
         'weight' => 25,

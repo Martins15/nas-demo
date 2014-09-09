@@ -23,12 +23,12 @@ function nas_html_head_alter(&$head_elements) {
  * Implements hook_preprocess_page().
  */
 function nas_preprocess_page(&$vars) {
-  $vars['header_classes'] = 'global-header ';
+  $vars['header_classes'] = 'global-header';
   if (drupal_is_front_page()) {
-    $vars['header_classes'] .= 'transparent dark-text light-bg';
+    $vars['header_classes'] .= ' transparent dark-text light-bg';
   }
   if (arg(0) == 'node' && is_numeric(arg(1)) && !arg(2)) {
-    $vars['header_classes'] .= 'alt standard';
+    $vars['header_classes'] .= ' alt standard';
   }
 }
 

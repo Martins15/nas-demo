@@ -22,7 +22,7 @@ function pp_form_install_configure_form_alter(&$form, $form_state) {
  */
 function pp_install_tasks(&$install_state) {
   $tasks = array();
-	$tasks['content_import'] = array(
+  $tasks['content_import'] = array(
     'display_name' => st('Content import'),
 	  'display' => TRUE,
 	  'type' => 'batch',

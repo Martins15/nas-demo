@@ -10,12 +10,12 @@
 function nas_image_styles_image_default_styles() {
   $styles = array();
 
-  // Exported image style: 189x100sc.
-  $styles['189x100sc'] = array(
-    'name' => '189x100sc',
-    'label' => '189x100sc',
+  // Exported image style: nas_bird_node_full_illustration.
+  $styles['nas_bird_node_full_illustration'] = array(
+    'name' => 'nas_bird_node_full_illustration',
+    'label' => 'nas_bird_node_full_illustration',
     'effects' => array(
-      1 => array(
+      3 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -33,12 +33,12 @@ function nas_image_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: 97x97sc.
-  $styles['97x97sc'] = array(
-    'name' => '97x97sc',
-    'label' => '97x97sc',
+  // Exported image style: nas_bird_photo_thumbnnail.
+  $styles['nas_bird_photo_thumbnnail'] = array(
+    'name' => 'nas_bird_photo_thumbnnail',
+    'label' => 'nas_bird_photo_thumbnnail',
     'effects' => array(
-      2 => array(
+      4 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',

@@ -35,7 +35,7 @@ function nas_master_add_existing_file($file_drupal_path, $type, $uid = 1, $statu
  */
 function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'birds_import') {
-    //Save speices_image field data to field_bird_photo.
+    // Save speices_image field data to field_bird_photo.
     if (!empty($item['field_speices_image'])) {
       foreach ($item['field_speices_image'] as $key => $value) {
         if (isset($value['fid'])) {
@@ -44,7 +44,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_photo[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          //Additionally save Alt and Title if exist
+          // Additionally save Alt and Title if exist
           if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
             $file_entity = file_load($file->fid);
             $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
@@ -54,7 +54,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
         }
       }
     }
-    //Save field_rangemaps field data to field_bird_rangemap.
+    // Save field_rangemaps field data to field_bird_rangemap.
     if (!empty($item['field_rangemaps'])) {
       foreach ($item['field_rangemaps'] as $key => $value) {
         if (isset($value['fid'])) {
@@ -63,7 +63,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_rangemap[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          //Additionally save Alt and Title if exist
+          // Additionally save Alt and Title if exist
           if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
             $file_entity = file_load($file->fid);
             $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
@@ -73,7 +73,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
         }
       }
     }
-    //Save field_bird_call field data to field_bird_audio.
+    // Save field_bird_call field data to field_bird_audio.
     if (!empty($item['field_bird_call'])) {
       foreach ($item['field_bird_call'] as $key => $value) {
         if (isset($value['fid'])) {
@@ -82,7 +82,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $file = nas_master_add_existing_file($doc, 'audio');
           $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          //Additionally save description if exist to separate field field_audio_description
+          // Additionally save description if exist to separate field field_audio_description
           if (!empty($value['data']['description'])) {
             $file_entity = file_load($file->fid);
             $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
