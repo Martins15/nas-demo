@@ -21,29 +21,29 @@ stylesheets[all][] = css/app.css
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
 
-scripts[] = js/mule/responsive-events.js
-scripts[] = js/mule/iscroll.js
-scripts[] = js/mule/nav.js
-scripts[] = js/mule/jquery.mousewheel.js
-scripts[] = js/mule/jquery.colorbox-min.js
-scripts[] = js/mule/scrolljack.js
-scripts[] = js/mule/card-equalizer.js
-scripts[] = js/mule/article-reflow.js
-scripts[] = js/mule/curtain.js
-scripts[] = js/mule/bird-card-set.js
-scripts[] = js/mule/strip-nav.js
-scripts[] = js/mule/card-set.js
-scripts[] = js/mule/thumb-strip.js
-scripts[] = js/mule/slideshow.js
-scripts[] = js/mule/conservation-slider.js
-scripts[] = js/mule/bg-respond.js
-scripts[] = js/mule/bird-guide-respond.js
-scripts[] = js/mule/toggler.js
-scripts[] = js/mule/inline-map.js
-scripts[] = js/mule/responsive-tables.js
-scripts[] = js/mule/bird-guide-grid.js
-scripts[] = js/mule/flyway-minimap.js
-scripts[] = js/mule/flyway-slides.js
+scripts[] = js/mute/responsive-events.js
+scripts[] = js/mute/iscroll.js
+scripts[] = js/mute/nav.js
+scripts[] = js/mute/jquery.mousewheel.js
+scripts[] = js/mute/jquery.colorbox-min.js
+scripts[] = js/mute/scrolljack.js
+scripts[] = js/mute/card-equalizer.js
+scripts[] = js/mute/article-reflow.js
+scripts[] = js/mute/curtain.js
+scripts[] = js/mute/bird-card-set.js
+scripts[] = js/mute/strip-nav.js
+scripts[] = js/mute/card-set.js
+scripts[] = js/mute/thumb-strip.js
+scripts[] = js/mute/slideshow.js
+scripts[] = js/mute/conservation-slider.js
+scripts[] = js/mute/bg-respond.js
+scripts[] = js/mute/bird-guide-respond.js
+scripts[] = js/mute/toggler.js
+scripts[] = js/mute/inline-map.js
+scripts[] = js/mute/responsive-tables.js
+scripts[] = js/mute/bird-guide-grid.js
+scripts[] = js/mute/flyway-minimap.js
+scripts[] = js/mute/flyway-slides.js
 
 ; Panels layouts. You can place multiple layouts under the "layouts" folder.
 plugins[panels][layouts] = layouts
