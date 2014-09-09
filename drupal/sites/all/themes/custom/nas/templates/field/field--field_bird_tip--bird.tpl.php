@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file field.tpl.php
  * Template implementation to display the value of a field.
