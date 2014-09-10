@@ -55,6 +55,11 @@ function pp_import_nodes() {
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $node_nids = drupal_json_decode($result->data);
 
+  // No need to import whole set of birds for local development.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $node_nids = array_slice($node_nids, 0, 20);
+  }
+
   $operations = array();
 
   foreach (array_chunk($node_nids, 10) as $chunk) {
@@ -76,7 +81,7 @@ function pp_import_nodes() {
 function pp_import_save_timer() {
   $start = variable_get('pp_import_timer', time());
   $stop = time();
-  watchdog('pp_import_time', number_format(($stop - $start) / 60, 2));
+  watchdog('pp_import_time', number_format(($stop - $start) / 60, 2) . 'm');
   variable_del('pp_import_timer');
   // Remove all messages.
   unset($_SESSION['messages']['status']);
