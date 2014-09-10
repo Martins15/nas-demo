@@ -35,13 +35,16 @@ function pp_install_tasks(&$install_state) {
 /**
  * Batch operation for pp_import_nodes().
  */
-function pp_import_nodes_batch($nid) {
-  $importer_id = 'birds_import';
-  $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
-  $source = feeds_source($importer_id);
-  $source->addConfig($config);
-  $source->save();
-  $source->import();
+function pp_import_nodes_batch($nids) {
+  foreach ($nids as $nid) {
+    $importer_id = 'birds_import';
+    $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
+    $source = feeds_source($importer_id);
+    $source->addConfig($config);
+    $source->save();
+    feeds_cache_clear(FALSE);
+    $source->import();
+  }
 }
 
 /**
@@ -52,17 +55,34 @@ function pp_import_nodes() {
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $node_nids = drupal_json_decode($result->data);
 
+  // No need to import whole set of birds for local development.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $node_nids = array_slice($node_nids, 0, 20);
+  }
+
   $operations = array();
 
-  foreach ($node_nids as $nid) {
-    $operations[] = array('pp_import_nodes_batch', array($nid));
+  foreach (array_chunk($node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk));
   }
+
+  variable_set('pp_import_timer', time());
 
   $batch = array(
     'operations' => $operations,
     'title' => st('Content import'),
     'error_message' => st('The import process has encountered an error.'),
+    'finished' => 'pp_import_save_timer',
   );
 
   return $batch;
+}
+
+function pp_import_save_timer() {
+  $start = variable_get('pp_import_timer', time());
+  $stop = time();
+  watchdog('pp_import_time', number_format(($stop - $start) / 60, 2) . 'm');
+  variable_del('pp_import_timer');
+  // Remove all messages.
+  unset($_SESSION['messages']['status']);
 }
