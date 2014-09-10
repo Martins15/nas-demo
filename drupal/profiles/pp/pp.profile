@@ -42,8 +42,8 @@ function pp_import_nodes_batch($nids) {
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
+    feeds_cache_clear(FALSE);
     $source->import();
-    unset($source);
   }
 }
 
@@ -56,9 +56,6 @@ function pp_import_nodes() {
   $node_nids = drupal_json_decode($result->data);
 
   $operations = array();
-
-  // For benchmarking.
-  $node_nids = array_slice($node_nids, 0, 50);
 
   foreach (array_chunk($node_nids, 10) as $chunk) {
     $operations[] = array('pp_import_nodes_batch', array($chunk));
