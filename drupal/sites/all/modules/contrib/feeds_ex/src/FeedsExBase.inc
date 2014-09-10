@@ -250,7 +250,10 @@ abstract class FeedsExBase extends FeedsParser {
       }
 
       $item[$machine_name] = $result;
-      $variables[$variable_map[$machine_name]] = is_array($result) ? reset($result) : $result;
+      while (is_array($result)) {
+        $result = reset($result);
+      }
+      $variables[$variable_map[$machine_name]] = $result;
     }
 
     return $item;
