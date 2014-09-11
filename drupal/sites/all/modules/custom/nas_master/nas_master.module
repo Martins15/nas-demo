@@ -112,7 +112,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           }
         }
       }
-      // Save terms if exist
+      // Save terms if exist.
       if (!empty($bird_family_terms)) {
         foreach ($bird_family_terms as $key => $term) {
           $entity->field_bird_family[LANGUAGE_NONE][$key]['tid'] = $term->tid;
