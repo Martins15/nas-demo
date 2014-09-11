@@ -24,11 +24,11 @@ function pp_install_tasks(&$install_state) {
   $tasks = array();
   $tasks['content_import'] = array(
     'display_name' => st('Content import'),
-	  'display' => TRUE,
-	  'type' => 'batch',
-	  'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
-	  'function' => 'pp_import_nodes',
-	);
+    'display' => TRUE,
+    'type' => 'batch',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_import_nodes',
+  );
   return $tasks;
 }
 
@@ -77,7 +77,7 @@ function pp_import_nodes() {
     'operations' => $operations,
     'title' => st('Content import'),
     'error_message' => st('The import process has encountered an error.'),
-    'finished' => 'pp_import_save_timer',
+    'finished' => 'pp_import_finished',
   );
 
   return $batch;
@@ -90,4 +90,16 @@ function pp_import_save_timer() {
   variable_del('pp_import_timer');
   // Remove all messages.
   unset($_SESSION['messages']['status']);
+}
+
+/**
+ * Finished function for import nodes.
+ */
+function pp_import_finished() {
+  // Launch save timer function.
+  pp_import_save_timer();
+  // Check and launch nas_master_modify_references function for after import operations.
+  if (function_exists('nas_master_modify_references')) {
+    nas_master_modify_references();
+  }
 }
