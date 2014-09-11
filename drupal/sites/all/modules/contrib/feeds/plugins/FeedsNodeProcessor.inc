@@ -123,7 +123,10 @@ class FeedsNodeProcessor extends FeedsProcessor {
    * Save a node.
    */
   public function entitySave($entity) {
+    variable_set('menu_rebuild_needed', FALSE);
+    lock_acquire('menu_rebuild');
     node_save($entity);
+    lock_release('menu_rebuild');
   }
 
   /**
