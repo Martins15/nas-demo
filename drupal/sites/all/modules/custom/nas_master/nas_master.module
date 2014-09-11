@@ -97,7 +97,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
       $bird_family_terms = array();
       $bird_region_terms = array();
 
-      // Check if there are any terms we have to save 
+      // Check if there are any terms we have to save
       foreach ($item['taxonomy'] as $key => $value) {
         if (isset($value['name'])) {
           $term = taxonomy_get_term_by_name($value['name']);
@@ -141,11 +141,11 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
  * Fix references after all nodes have been created.
  */
 function nas_master_modify_references() {
-  $type = 'bird'; 
+  $type = 'bird';
   $nodes = node_load_multiple(array(), array('type' => $type));
   // First step is creating mapping of old and new nids.
   $node_bird_mapped_nids = array();
-  foreach($nodes as $node) {
+  foreach ($nodes as $node) {
     $field_related_bird = field_get_items('node', $node, 'field_related_bird');
     if (!empty($field_related_bird)) {
       $old_nid_of_current_node = $field_related_bird[0]['target_id'];
@@ -153,7 +153,7 @@ function nas_master_modify_references() {
     }
   }
   // Second step is modifying of old nids to new nids based on mapping.
-  foreach($nodes as $node) {
+  foreach ($nodes as $node) {
     $field_related_bird = field_get_items('node', $node, 'field_related_bird');
     if (!empty($field_related_bird)) {
       // We dont need old nid anymore in the array, so remove it.
