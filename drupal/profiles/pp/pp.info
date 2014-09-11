@@ -33,6 +33,7 @@ dependencies[] = strongarm
 dependencies[] = mediafield
 dependencies[] = file_entity
 dependencies[] = media_internet
+dependencies[] = uuid_features
 
 ; Features
 dependencies[] = nas_master

@@ -113,9 +113,15 @@ function nas_bird_import_feed_feeds_importer_default() {
           ),
           'field_similar_species' => array(
             'name' => 'field_similar_species',
-            'value' => 'field_similar_species[*]',
+            'value' => 'field_similar_species.[*]',
             'debug' => 0,
             'weight' => '15',
+          ),
+          'taxonomy' => array(
+            'name' => 'taxonomy',
+            'value' => 'taxonomy.[*]',
+            'debug' => 0,
+            'weight' => '16',
           ),
         ),
         'display_errors' => 0,
