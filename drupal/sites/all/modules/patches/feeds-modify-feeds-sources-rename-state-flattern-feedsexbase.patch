@@ -1,0 +1,148 @@
+diff --git a/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc b/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
+index da90718..95655f8 100644
+--- a/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
++++ b/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
+@@ -340,14 +340,14 @@ class FeedsSource extends FeedsConfigurable {
+     try {
+       // If fetcher result is empty, we are starting a new import, log.
+       if (empty($this->fetcher_result)) {
+-        $this->state[FEEDS_START] = time();
++        $this->setState(FEEDS_START, time());
+       }
+ 
+       // Fetch.
+       if (empty($this->fetcher_result) || FEEDS_BATCH_COMPLETE == $this->progressParsing()) {
+         $this->fetcher_result = $this->importer->fetcher->fetch($this);
+         // Clean the parser's state, we are parsing an entirely new file.
+-        unset($this->state[FEEDS_PARSE]);
++        $this->unsetState(FEEDS_PARSE);
+       }
+ 
+       // Parse.
+@@ -370,7 +370,8 @@ class FeedsSource extends FeedsConfigurable {
+         $this->log('import', 'Imported in !s s', array('!s' => $this->imported - $this->state[FEEDS_START]), WATCHDOG_INFO);
+       }
+       module_invoke_all('feeds_after_import', $this);
+-      unset($this->fetcher_result, $this->state);
++      unset($this->fetcher_result);
++      $this->clearState();
+     }
+     $this->save();
+     if (isset($e)) {
+@@ -409,7 +410,7 @@ class FeedsSource extends FeedsConfigurable {
+     $result = $this->progressClearing();
+     if ($result == FEEDS_BATCH_COMPLETE || isset($e)) {
+       module_invoke_all('feeds_after_clear', $this);
+-      unset($this->state);
++      $this->clearState();
+     }
+     $this->save();
+     if (isset($e)) {
+@@ -422,15 +423,15 @@ class FeedsSource extends FeedsConfigurable {
+    * Report progress as float between 0 and 1. 1 = FEEDS_BATCH_COMPLETE.
+    */
+   public function progressParsing() {
+-    return $this->state(FEEDS_PARSE)->progress;
++    return $this->getState(FEEDS_PARSE)->progress;
+   }
+ 
+   /**
+    * Report progress as float between 0 and 1. 1 = FEEDS_BATCH_COMPLETE.
+    */
+   public function progressImporting() {
+-    $fetcher = $this->state(FEEDS_FETCH);
+-    $parser = $this->state(FEEDS_PARSE);
++    $fetcher = $this->getState(FEEDS_FETCH);
++    $parser = $this->getState(FEEDS_PARSE);
+     if ($fetcher->progress == FEEDS_BATCH_COMPLETE && $parser->progress == FEEDS_BATCH_COMPLETE) {
+       return FEEDS_BATCH_COMPLETE;
+     }
+@@ -449,7 +450,7 @@ class FeedsSource extends FeedsConfigurable {
+    * Report progress on clearing.
+    */
+   public function progressClearing() {
+-    return $this->state(FEEDS_PROCESS_CLEAR)->progress;
++    return $this->getState(FEEDS_PROCESS_CLEAR)->progress;
+   }
+ 
+   /**
+@@ -463,7 +464,7 @@ class FeedsSource extends FeedsConfigurable {
+    * @return
+    *   The FeedsState object for the given stage.
+    */
+-  public function state($stage) {
++  public function getState($stage) {
+     if (!is_array($this->state)) {
+       $this->state = array();
+     }
+@@ -474,6 +475,32 @@ class FeedsSource extends FeedsConfigurable {
+   }
+ 
+   /**
++   * Set the state.
++   */
++  public function setState($key, $value) {
++    if (!is_array($this->state)) {
++      $this->state = array();
++    }
++    $this->state[$key] = $value;
++  }
++
++  /**
++   * Remove state value.
++   */
++  public function unsetState($key) {
++    if (isset($this->state[$key])) {
++      unset($this->state[$key]);
++    }
++  }
++
++  /**
++   * Remove all values from state.
++   */
++  public function clearState() {
++    $this->state = array();
++  }
++
++  /**
+    * Count items imported by this source.
+    */
+   public function itemCount() {
+diff --git a/drupal/sites/all/modules/contrib/feeds/plugins/FeedsProcessor.inc b/drupal/sites/all/modules/contrib/feeds/plugins/FeedsProcessor.inc
+index c2b0af5..215f64d 100755
+--- a/drupal/sites/all/modules/contrib/feeds/plugins/FeedsProcessor.inc
++++ b/drupal/sites/all/modules/contrib/feeds/plugins/FeedsProcessor.inc
+@@ -175,7 +175,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
+    *   The result of the parsing stage.
+    */
+   public function process(FeedsSource $source, FeedsParserResult $parser_result) {
+-    $state = $source->state(FEEDS_PROCESS);
++    $state = $source->getState(FEEDS_PROCESS);
+ 
+     while ($item = $parser_result->shiftItem()) {
+ 
+@@ -324,7 +324,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
+    *   the processing stage.
+    */
+   public function clear(FeedsSource $source) {
+-    $state = $source->state(FEEDS_PROCESS_CLEAR);
++    $state = $source->getState(FEEDS_PROCESS_CLEAR);
+ 
+     // Build base select statement.
+     $info = $this->entityInfo();
+diff --git a/drupal/sites/all/modules/contrib/feeds_ex/src/FeedsExBase.inc b/drupal/sites/all/modules/contrib/feeds_ex/src/FeedsExBase.inc
+index 946436f..b3a45ea 100644
+--- a/drupal/sites/all/modules/contrib/feeds_ex/src/FeedsExBase.inc
++++ b/drupal/sites/all/modules/contrib/feeds_ex/src/FeedsExBase.inc
+@@ -250,7 +250,10 @@ abstract class FeedsExBase extends FeedsParser {
+       }
+ 
+       $item[$machine_name] = $result;
+-      $variables[$variable_map[$machine_name]] = is_array($result) ? reset($result) : $result;
++      while (is_array($result)) {
++        $result = reset($result);
++      }
++      $variables[$variable_map[$machine_name]] = $result;
+     }
+ 
+     return $item;
