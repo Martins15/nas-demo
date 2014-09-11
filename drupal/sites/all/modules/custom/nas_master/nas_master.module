@@ -44,7 +44,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_photo[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          // Additionally save Alt and Title if exist
+          // Additionally save Alt and Title if exist.
           if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
             $file_entity = file_load($file->fid);
             $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
@@ -63,7 +63,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_rangemap[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          // Additionally save Alt and Title if exist
+          // Additionally save Alt and Title if exist.
           if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
             $file_entity = file_load($file->fid);
             $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
@@ -82,7 +82,7 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
           $file = nas_master_add_existing_file($doc, 'audio');
           $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          // Additionally save description if exist to separate field field_audio_description
+          // Additionally save description if exist to separate field field_audio_description.
           if (!empty($value['data']['description'])) {
             $file_entity = file_load($file->fid);
             $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
@@ -91,5 +91,83 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
         }
       }
     }
+    // Save old taxonomy terms to existed terms if match.
+    if (!empty($item['taxonomy'])) {
+
+      $bird_family_terms = array();
+      $bird_region_terms = array();
+
+      // Check if there are any terms we have to save.
+      foreach ($item['taxonomy'] as $key => $value) {
+        if (isset($value['name'])) {
+          $term = taxonomy_get_term_by_name($value['name']);
+          if (!empty($term)) {
+            $term = reset($term);
+            if ($term->vocabulary_machine_name == 'bird_family') {
+              $bird_family_terms[] = $term;
+            }
+            if ($term->vocabulary_machine_name == 'bird_region') {
+              $bird_region_terms[] = $term;
+            }
+          }
+        }
+      }
+      // Save terms if exist.
+      if (!empty($bird_family_terms)) {
+        foreach ($bird_family_terms as $key => $term) {
+          $entity->field_bird_family[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+        }
+      }
+      if (!empty($bird_region_terms)) {
+        foreach ($bird_region_terms as $key => $term) {
+          $entity->field_bird_region[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+        }
+      }
+    }
+    // Save field_similar_species data.
+    if (!empty($item['field_similar_species'])) {
+      // Set old NID as first id for futher access.
+      $entity->field_related_bird[LANGUAGE_NONE][0]['target_id'] = $item['nid'];
+      foreach ($item['field_similar_species'] as $key => $value) {
+        if (isset($value['nid'])) {
+          $entity->field_related_bird[LANGUAGE_NONE][$key + 1]['target_id'] = $value['nid'];
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Fix references after all nodes have been created.
+ */
+function nas_master_modify_references() {
+  $type = 'bird';
+  $nodes = node_load_multiple(array(), array('type' => $type));
+  // First step is creating mapping of old and new nids.
+  $node_bird_mapped_nids = array();
+  foreach ($nodes as $node) {
+    $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+    if (!empty($field_related_bird)) {
+      $old_nid_of_current_node = $field_related_bird[0]['target_id'];
+      $node_bird_mapped_nids[$old_nid_of_current_node] = $node->nid;
+    }
+  }
+  // Second step is modifying of old nids to new nids based on mapping.
+  foreach ($nodes as $node) {
+    $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+    if (empty($field_related_bird)) {
+      continue;
+    }
+    // We dont need old nid anymore in the array, so remove it.
+    array_shift($field_related_bird);
+    // Lets modify old nids to new nids.
+    foreach ($field_related_bird as $key => $target_id) {
+      isset($node_bird_mapped_nids[$target_id['target_id']]) ? $new_nid = $node_bird_mapped_nids[$target_id['target_id']] : $new_nid = '';
+      if (!empty($new_nid)) {
+        $node->field_related_bird[LANGUAGE_NONE][$key]['target_id'] = $new_nid;
+      }
+    }
+    // Finally update the node's field.
+    field_attach_update('node', $node);
   }
 }

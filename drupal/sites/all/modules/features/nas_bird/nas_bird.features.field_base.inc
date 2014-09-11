@@ -186,7 +186,7 @@ function nas_bird_field_default_field_bases() {
   // Exported field_base: 'field_bird_family'
   $field_bases['field_bird_family'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_bird_family',
@@ -610,7 +610,7 @@ function nas_bird_field_default_field_bases() {
   // Exported field_base: 'field_related_bird'
   $field_bases['field_related_bird'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_related_bird',
