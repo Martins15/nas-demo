@@ -167,6 +167,8 @@ function nas_master_modify_references() {
         $node->field_related_bird[LANGUAGE_NONE][$key]['target_id'] = $new_nid;
       }
     }
+    // Remove the last item due to shifted array.
+    array_pop($node->field_related_bird[LANGUAGE_NONE]);
     // Finally update the node's field.
     field_attach_update('node', $node);
   }
