@@ -98,8 +98,8 @@ function pp_import_save_timer() {
 function pp_import_finished() {
   // Launch save timer function.
   pp_import_save_timer();
-  // Check and launch nas_master_feeds_presave function for after import operations.
-  if (function_exists('nas_master_feeds_presave')) {
-    nas_master_feeds_presave();
+  // Check and launch nas_master_modify_references function for after import operations.
+  if (function_exists('nas_master_modify_references')) {
+    nas_master_modify_references();
   }
 }
