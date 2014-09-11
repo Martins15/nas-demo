@@ -51,6 +51,11 @@ function pp_import_nodes_batch($nids) {
  * Main function for import nodes.
  */
 function pp_import_nodes() {
+
+  // Clear static caches so ctools_export_load_object can load feeds_importer
+  // from enabled feature.
+  drupal_static_reset();
+
   $content_type = 'bird';
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $node_nids = drupal_json_decode($result->data);
