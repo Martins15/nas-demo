@@ -75,10 +75,12 @@ function pp_import_nodes() {
 
   $batch = array(
     'operations' => $operations,
-    'title' => st('Content import'),
-    'error_message' => st('The import process has encountered an error.'),
+    'title' => t('Content import'),
+    'error_message' => t('The import process has encountered an error.'),
     'finished' => 'pp_import_finished',
   );
+
+  batch_set($batch);
 
   return $batch;
 }
