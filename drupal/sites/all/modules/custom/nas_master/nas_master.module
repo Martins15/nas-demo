@@ -167,7 +167,51 @@ function nas_master_modify_references() {
         $node->field_related_bird[LANGUAGE_NONE][$key]['target_id'] = $new_nid;
       }
     }
+    // Remove the last item due to shifted array.
+    array_pop($node->field_related_bird[LANGUAGE_NONE]);
     // Finally update the node's field.
     field_attach_update('node', $node);
   }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_master_menu() {
+  $items = array();
+  $items['nas/import'] = array(
+    'title' => 'Import content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_import_content_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Callback form for nas/import page.
+ */
+function nas_master_import_content_form($form, &$form_state) {
+  $form['types'] = array(
+    '#type' => 'checkboxes',
+    '#options' => array('bird' => t('Bird')),
+    '#title' => t('Content types to import'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Submit form for nas/import page.
+ */
+function nas_master_import_content_form_submit($form, &$form_state) {
+  if ($form_state['values']['types']['bird']) {
+    // Run the same import as on the installation process.
+    pp_import_nodes();
+  }
+  return $form;
 }
