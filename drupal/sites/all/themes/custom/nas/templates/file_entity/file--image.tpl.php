@@ -72,4 +72,3 @@
 <?php
   print render($content);
 ?>
-
