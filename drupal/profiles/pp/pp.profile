@@ -61,6 +61,10 @@ function pp_import_nodes() {
     $operations[] = array('pp_import_nodes_batch', array($chunk, 'birds_import'));
   }
 
+  foreach (array_chunk($news_node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk, 'news_import'));
+  }
+
   variable_set('pp_import_timer', time());
 
   $batch = array(
