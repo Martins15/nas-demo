@@ -5,6 +5,9 @@
  * template.php
  */
 
+/**
+ * Implements hook_html_head_alter().
+ */
 function nas_html_head_alter(&$head_elements) {
   if (empty($head_elements['X-UA-Compatible'])) {
     $head_elements['X-UA-Compatible'] = array(
@@ -38,4 +41,5 @@ function nas_preprocess_page(&$vars) {
 function nas_css_alter(&$css) {
   unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
   unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
+  unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
 }

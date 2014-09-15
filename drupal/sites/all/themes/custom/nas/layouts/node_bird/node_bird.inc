@@ -6,9 +6,9 @@
  */
 
 /**
- * Implementation of hook_panels_layouts()
+ * Implementation of hook_panels_layouts().
  */
-// Plugin definition
+// Plugin definition.
 $plugin = array(
   'title' => t('Bird node page'),
   'category' => t('Columns: 1'),
