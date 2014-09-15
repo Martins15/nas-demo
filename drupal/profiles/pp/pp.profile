@@ -33,21 +33,6 @@ function pp_install_tasks(&$install_state) {
 }
 
 /**
- * Batch operation for pp_import_nodes().
- */
-function pp_import_nodes_batch($nids) {
-  foreach ($nids as $nid) {
-    $importer_id = 'birds_import';
-    $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
-    $source = feeds_source($importer_id);
-    $source->addConfig($config);
-    $source->save();
-    feeds_cache_clear(FALSE);
-    $source->import();
-  }
-}
-
-/**
  * Main function for import nodes.
  */
 function pp_import_nodes() {
@@ -58,17 +43,26 @@ function pp_import_nodes() {
 
   $content_type = 'bird';
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
-  $node_nids = drupal_json_decode($result->data);
+  $bird_node_nids = drupal_json_decode($result->data);
+
+  $content_type = 'news';
+  $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
+  $news_node_nids = drupal_json_decode($result->data);
 
   // No need to import whole set of birds for local development.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-    $node_nids = array_slice($node_nids, 0, 20);
+    $bird_node_nids = array_slice($bird_node_nids, 0, 20);
+    $news_node_nids = array_slice($news_node_nids, 0, 20);
   }
 
   $operations = array();
 
-  foreach (array_chunk($node_nids, 10) as $chunk) {
-    $operations[] = array('pp_import_nodes_batch', array($chunk));
+  foreach (array_chunk($bird_node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk, 'birds_import'));
+  }
+
+  foreach (array_chunk($news_node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk, 'news_import'));
   }
 
   variable_set('pp_import_timer', time());
@@ -83,6 +77,20 @@ function pp_import_nodes() {
   batch_set($batch);
 
   return $batch;
+}
+
+/**
+ * Batch operation for pp_import_nodes().
+ */
+function pp_import_nodes_batch($nids, $importer_id) {
+  foreach ($nids as $nid) {
+    $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
+    $source = feeds_source($importer_id);
+    $source->addConfig($config);
+    $source->save();
+    feeds_cache_clear(FALSE);
+    $source->import();
+  }
 }
 
 function pp_import_save_timer() {
