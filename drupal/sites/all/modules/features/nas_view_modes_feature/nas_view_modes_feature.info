@@ -1,0 +1,8 @@
+name = NAS View modes
+core = 7.x
+package = NAS
+dependencies[] = ctools
+dependencies[] = ds
+features[ctools][] = ds:ds:1
+features[ds_view_modes][] = nas_bird_teaser_illustration
+features[features_api][] = api:2

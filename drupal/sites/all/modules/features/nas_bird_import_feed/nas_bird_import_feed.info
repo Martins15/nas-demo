@@ -1,8 +1,0 @@
-name = Bird import feed
-core = 7.x
-package = Feeds
-features[ctools][] = feeds:feeds_importer_default:1
-features[features_api][] = api:2
-features[feeds_importer][] = birds_import
-features_exclude[dependencies][ctools] = ctools
-features_exclude[dependencies][feeds] = feeds

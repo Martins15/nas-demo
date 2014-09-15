@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the NAS Image Styles feature.
- */
-
-include_once 'nas_image_styles.features.inc';
