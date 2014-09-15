@@ -4,7 +4,7 @@
  * Drupal needs this blank file.
  */
 
-define('NAS_LIVE_SITE_URL', 'http://www.audubon.org/');
+define('NAS_MASTER_LIVE_SITE_URL', 'http://www.audubon.org/');
 
 /**
  * Custom function for saving files.
@@ -15,15 +15,15 @@ function nas_master_add_existing_file($file_drupal_path, $type, $uid = 1, $statu
 
   if (!$file) {
     $file = (object) array(
-        'filename' => basename($file_drupal_path),
-        'filepath' => $file_drupal_path,
-        'filemime' => file_get_mimetype($file_drupal_path),
-        'filesize' => filesize($file_drupal_path),
-        'uid' => $uid,
-        'status' => $status,
-        'timestamp' => time(),
-        'uri' => $file_drupal_path,
-        'type' => $type,
+      'filename' => basename($file_drupal_path),
+      'filepath' => $file_drupal_path,
+      'filemime' => file_get_mimetype($file_drupal_path),
+      'filesize' => filesize($file_drupal_path),
+      'uid' => $uid,
+      'status' => $status,
+      'timestamp' => time(),
+      'uri' => $file_drupal_path,
+      'type' => $type,
     );
     drupal_write_record('file_managed', $file);
   }
@@ -39,8 +39,8 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
     if (!empty($item['field_speices_image'])) {
       foreach ($item['field_speices_image'] as $key => $value) {
         if (isset($value['fid'])) {
-          $remoteDocPath = NAS_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($value['filepath']));
-          $doc = system_retrieve_file($remoteDocPath, NULL, FALSE, FILE_EXISTS_REPLACE);
+          $remote_doc_path = NAS_MASTER_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($value['filepath']));
+          $doc = system_retrieve_file($remote_doc_path, NULL, FALSE, FILE_EXISTS_REPLACE);
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_photo[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
@@ -58,8 +58,8 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
     if (!empty($item['field_rangemaps'])) {
       foreach ($item['field_rangemaps'] as $key => $value) {
         if (isset($value['fid'])) {
-          $remoteDocPath = NAS_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($value['filepath']));
-          $doc = system_retrieve_file($remoteDocPath, NULL, FALSE, FILE_EXISTS_REPLACE);
+          $remote_doc_path = NAS_MASTER_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($value['filepath']));
+          $doc = system_retrieve_file($remote_doc_path, NULL, FALSE, FILE_EXISTS_REPLACE);
           $file = nas_master_add_existing_file($doc, 'image');
           $entity->field_bird_rangemap[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
@@ -77,12 +77,13 @@ function nas_master_feeds_presave(FeedsSource $source, $entity, $item) {
     if (!empty($item['field_bird_call'])) {
       foreach ($item['field_bird_call'] as $key => $value) {
         if (isset($value['fid'])) {
-          $remoteDocPath = NAS_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($value['filepath']));
-          $doc = system_retrieve_file($remoteDocPath, NULL, FALSE, FILE_EXISTS_REPLACE);
+          $remote_doc_path = NAS_MASTER_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($value['filepath']));
+          $doc = system_retrieve_file($remote_doc_path, NULL, FALSE, FILE_EXISTS_REPLACE);
           $file = nas_master_add_existing_file($doc, 'audio');
           $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-          // Additionally save description if exist to separate field field_audio_description.
+          // Additionally save description if exist to
+          // separate field field_audio_description.
           if (!empty($value['data']['description'])) {
             $file_entity = file_load($file->fid);
             $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
@@ -214,4 +215,202 @@ function nas_master_import_content_form_submit($form, &$form_state) {
     pp_import_nodes();
   }
   return $form;
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ *
+ * Take ownership of the sound manager 2 inline player formatter.
+ */
+function nas_master_field_formatter_info_alter(&$info) {
+  if (isset($info['soundmanager2_inline_player'])) {
+    $info['soundmanager2_inline_player']['module'] = 'nas_master';
+  }
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function nas_master_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $element = soundmanager2_field_formatter_settings_form($field, $instance, $view_mode, $form, $form_state);
+
+  $display = $instance['display'][$view_mode];
+
+  switch ($display['type']) {
+    case 'soundmanager2_inline_player':
+      // Add an additional file title option.
+      $options = _link_text_options();
+      $options['file_description'] = t('NAS Audio Description');
+      $element['text']['#options'] = $options;
+      break;
+
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function nas_master_field_formatter_settings_summary($field, $instance, $view_mode) {
+  return soundmanager2_field_formatter_settings_summary($field, $instance, $view_mode);
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ *
+ * This gets set in hook_field_formatter_info_alter().
+ */
+function nas_master_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  $tracks = array();
+  foreach ($items as $delta => $item) {
+    // Prepend a random parameter to the URL in case this track appears.
+    // multiple times in the same page.
+    $attributes = array();
+    if ($settings['audio_type'] != 'default') {
+      $attributes['type'] = $settings['audio_type'];
+    }
+    $url_options = array('query' => array('uuid' => uniqid()), 'attributes' => $attributes);
+    if (isset($item['file'])) {
+      // A Media file type.
+      $file = $item['file'];
+      // Get text to use in link.
+      $text = $file->filename;
+      if (array_key_exists('text', $settings)) {
+        if ($settings['text'] == 'description' && !empty($item['description'])) {
+          $text = $file->description;
+        }
+        elseif ($settings['text'] == 'title' && !empty($entity->title)) {
+          $text = $entity->title;
+        }
+        elseif ($settings['text'] == 'file_description'
+          && isset($item['file']->field_audio_description[LANGUAGE_NONE][0]['safe_value'])
+          && !empty($item['file']->field_audio_description[LANGUAGE_NONE][0]['safe_value'])
+        ) {
+          $text = $item['file']->field_audio_description[LANGUAGE_NONE][0]['safe_value'];
+        }
+      }
+      // Add our small audio icon markup.
+      $icon_markup = '<i class="icon-sound-full"></i>';
+      $text = $icon_markup . ' ' . $text;
+      // Enable html output.
+      $url_options['html'] = TRUE;
+      $tracks[$delta] = l($text, file_create_url($file->uri), $url_options);
+    }
+    elseif (isset($item['url'])) {
+      // A Link file type.
+      $file = $item['url'];
+      // Get text to use in link.
+      $text = $item['title'];
+      if (array_key_exists('text', $settings)) {
+        if ($settings['text'] == 'description' && !empty($item['description'])) {
+          $text = $item['title'];
+        }
+        elseif ($settings['text'] == 'title' && !empty($entity->title)) {
+          $text = $entity->title;
+        }
+      }
+      $tracks[$delta] = l($text, file_create_url($item['url']), $url_options);
+    }
+    else {
+      // Get text to use in link.
+      $text = $item['filename'];
+      if (array_key_exists('text', $settings)) {
+        if ($settings['text'] == 'description' && !empty($item['description'])) {
+          $text = $item['description'];
+        }
+        elseif ($settings['text'] == 'title' && !empty($entity->title)) {
+          $text = $entity->title;
+        }
+      }
+
+      $tracks[$delta] = l($text, file_create_url($item['uri']), $url_options);
+    }
+    switch ($display['type']) {
+      case 'soundmanager2_page_player':
+        $element[0] = array(
+          '#theme' => 'soundmanager2_page_player',
+          '#tracks' => $tracks,
+          '#attached' => array(
+            'library' => array(
+              array('soundmanager2', variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2'),
+              array('soundmanager2', 'soundmanager2_page_player'),
+            ),
+          ),
+        );
+        drupal_add_js(array('soundmanager2' => array(
+          'stream' => $settings['stream'],
+        )), 'setting');
+        // Add in the config files.
+        theme('soundmanager2_config');
+        if ($settings['pause'] == 'stop') {
+          theme('soundmanager2_page_player_pause');
+        }
+
+        break;
+
+      case 'soundmanager2_ui360':
+        $element[0] = array(
+          '#theme' => 'soundmanager2_ui360',
+          '#tracks' => $tracks,
+          '#settings' => $settings,
+          '#attached' => array(
+            'library' => array(
+              array('soundmanager2', variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2'),
+              array('soundmanager2', 'soundmanager2_ui360'),
+            ),
+          ),
+        );
+        // Add relevant JS settings.
+        drupal_add_js(array('soundmanager2' => array(
+          'visualization' => $settings['visualization'],
+          'waveform' => $settings['waveform'],
+          'eq' => $settings['eq'],
+          'amplifier' => $settings['amplifier'],
+          'stream' => $settings['stream'],
+        )), 'setting');
+
+        // Add CSS.
+        drupal_add_css('.ui360-vis, .ui360-vis .sm2-360ui, .sm2-inline-list .ui360-vis { width: ' . $settings['diameter'] . 'px; height: ' . $settings['diameter'] . 'px; } .ui360-vis .sm2-timing { line-height: ' . $settings['diameter'] . 'px; } .sm2-inline-list .ui360, .sm2-inline-block .ui360 { margin-bottom: 0; }', 'inline');
+        drupal_add_css('#sm2-container { height: 0; overflow: hidden; visibility: hidden; }');
+
+        // Add in the config files.
+        theme('soundmanager2_config');
+        theme('soundmanager2_config_ui360');
+        if ($settings['pause'] == 'stop') {
+          theme('soundmanager2_config_ui360_pause');
+        }
+
+        break;
+
+      case 'soundmanager2_inline_player':
+        $element[0] = array(
+          '#theme' => 'soundmanager2_inline_player',
+          '#tracks' => $tracks,
+          '#attached' => array(
+            'library' => array(
+              array('soundmanager2', variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2'),
+              array('soundmanager2', 'soundmanager2_inline_player'),
+            ),
+          ),
+        );
+
+        drupal_add_js(array('soundmanager2' => array(
+          'stream' => $settings['stream'],
+        )), 'setting');
+
+        // Add in the config files.
+        theme('soundmanager2_config');
+        if ($settings['pause'] == 'stop') {
+          theme('soundmanager2_inline_player_pause');
+        }
+
+        break;
+    }
+  }
+
+  return $element;
 }
