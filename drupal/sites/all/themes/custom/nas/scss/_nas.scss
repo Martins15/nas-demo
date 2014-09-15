@@ -1,23 +1,26 @@
 .sm2_playing .icon-sound-full:before {
-  content: "\e600";
+  content: '\e600';
   font-size: 11px;
   left: -1px;
   position: relative;
   top: -2px;
 }
+
 .bird-card-set {
   .views-field-field-bird-audio {
     display: block;
     font-size: 15px;
+    left: 0;
     line-height: 15px;
     padding: 10px 25px 25px 10px;
     position: absolute;
-    left: 0;
     top: 0;
+
     .sm2_link {
       font-size: 0;
+      
       .icon-sound-full {
-       font-size: 15px;
+        font-size: 15px;
       }
     }
   }

@@ -83,7 +83,7 @@
 <div class="row">
   <div class="column">
     <div id="node-<?php print $node->nid; ?>" class="bird-guide-card <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-      <?php if ($node->field_bird_priority[LANGUAGE_NONE][0]['value']): ?>
+      <?php if ($bird_priority): ?>
       <div class="bird-guide-tag"><?php print t('Priority Bird'); ?></div>
       <?php endif; ?>
       <header class="bird-guide-header">

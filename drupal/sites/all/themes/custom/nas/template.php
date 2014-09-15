@@ -23,6 +23,16 @@ function nas_html_head_alter(&$head_elements) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ */
+function nas_preprocess_node(&$vars) {
+  if ($vars['type'] == 'bird') {
+    $get_field_bird_priority = field_get_items('node', $vars['node'], 'field_bird_priority');
+    $get_field_bird_priority[0]['value'] ? $vars['bird_priority'] = TRUE : $vars['bird_priority'] = FALSE;
+  }
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function nas_preprocess_page(&$vars) {
