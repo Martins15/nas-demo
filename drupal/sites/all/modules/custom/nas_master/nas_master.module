@@ -341,7 +341,8 @@ function nas_master_field_formatter_view($entity_type, $entity, $field, $instanc
             ),
           ),
         );
-        drupal_add_js(array('soundmanager2' => array(
+        drupal_add_js(array(
+          'soundmanager2' => array(
           'stream' => $settings['stream'],
         )), 'setting');
         // Add in the config files.
@@ -365,7 +366,8 @@ function nas_master_field_formatter_view($entity_type, $entity, $field, $instanc
           ),
         );
         // Add relevant JS settings.
-        drupal_add_js(array('soundmanager2' => array(
+        drupal_add_js(array(
+          'soundmanager2' => array(
           'visualization' => $settings['visualization'],
           'waveform' => $settings['waveform'],
           'eq' => $settings['eq'],
@@ -398,7 +400,8 @@ function nas_master_field_formatter_view($entity_type, $entity, $field, $instanc
           ),
         );
 
-        drupal_add_js(array('soundmanager2' => array(
+        drupal_add_js(array(
+          'soundmanager2' => array(
           'stream' => $settings['stream'],
         )), 'setting');
 
