@@ -286,11 +286,10 @@ function nas_master_field_formatter_view($entity_type, $entity, $field, $instanc
         elseif ($settings['text'] == 'title' && !empty($entity->title)) {
           $text = $entity->title;
         }
-        elseif ($settings['text'] == 'file_description'
-          && isset($item['file']->field_audio_description[LANGUAGE_NONE][0]['safe_value'])
-          && !empty($item['file']->field_audio_description[LANGUAGE_NONE][0]['safe_value'])
-        ) {
-          $text = $item['file']->field_audio_description[LANGUAGE_NONE][0]['safe_value'];
+        elseif ($settings['text'] == 'file_description') {
+          $get_field_audio_description = field_get_items('file', $item['file'], 'field_audio_description');
+          $field_audio_description = field_view_value('file', $item['file'], 'field_audio_description', $get_field_audio_description[0]);
+          $text = $field_audio_description['#markup'];
         }
       }
       // Add our small audio icon markup.
@@ -306,10 +305,7 @@ function nas_master_field_formatter_view($entity_type, $entity, $field, $instanc
       // Get text to use in link.
       $text = $item['title'];
       if (array_key_exists('text', $settings)) {
-        if ($settings['text'] == 'description' && !empty($item['description'])) {
-          $text = $item['title'];
-        }
-        elseif ($settings['text'] == 'title' && !empty($entity->title)) {
+        if ($settings['text'] == 'title' && !empty($entity->title)) {
           $text = $entity->title;
         }
       }
