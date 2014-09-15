@@ -28,7 +28,7 @@ function nas_html_head_alter(&$head_elements) {
 function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'bird') {
     $get_field_bird_priority = field_get_items('node', $vars['node'], 'field_bird_priority');
-    $get_field_bird_priority[0]['value'] ? $vars['bird_priority'] = TRUE : $vars['bird_priority'] = FALSE;
+    $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
   }
 }
 
