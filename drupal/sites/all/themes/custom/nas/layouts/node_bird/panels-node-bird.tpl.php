@@ -10,10 +10,6 @@
     <div class="bird-guide-image">
       <?php print $content['top']; ?>
     </div>
-    <div class="row">
-      <div class="column">
-        <?php print $content['main']; ?>
-      </div>
-    </div>
+    <?php print $content['main']; ?>
   </div>
 </section>

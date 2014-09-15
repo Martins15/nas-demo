@@ -80,85 +80,87 @@
  * @ingroup themeable
  */
 ?>
-<div id="node-<?php print $node->nid; ?>" class="bird-guide-card <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <header class="bird-guide-header">
-    <div class="row">
-      <div class="medium-8 columns">
-        <h1 class="common-name"><?php print $title; ?></h1>
-        <p class="scientific-name">
-          <?php print render($content['field_bird_sci_name']); ?>
-        </p>
-      </div>
-      <div class="medium-4 columns illustration hide-for-small hide-for-tiny hide-for-medium">
-        <?php print render($content['field_bird_illustration']); ?>
-      </div>
-    </div>
-  </header>
-  <section class="bird-guide-body">
-    <div class="row">
-      <div class="large-8 columns">
-        <section class="bird-guide-section left-col">
-          <table class="collapse">
-            <tbody>
-                <?php print render($content['field_bird_conserv_status']); ?>
-                <?php print render($content['field_bird_family']); ?>
-                <?php print render($content['field_bird_description']); ?>
-                <?php print render($content['field_bird_habitat']); ?>
-            </tbody>
-          </table>
-          <?php print render($content['body']); ?>
-        </section>
-        <section class="bird-guide-section left-col">
-          <h5><i class="icon-camera"></i> <?php print t('Photo Gallery'); ?></h5>
-          <div class="thumb-strip clearfix">
-            <a class="thumb-strip-prev"><i class="icon-chevron-left"></i></a>
-            <div class="thumb-strip-wrapper">
-              <?php print render($content['field_bird_photo']); ?>
-            </div>
-            <a class="thumb-strip-next"><i class="icon-chevron-right"></i></a>
+<div class="row">
+  <div class="column">
+    <div id="node-<?php print $node->nid; ?>" class="bird-guide-card <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+      <?php if ($bird_priority): ?>
+      <div class="bird-guide-tag"><?php print t('Priority Bird'); ?></div>
+      <?php endif; ?>
+      <header class="bird-guide-header">
+        <div class="row">
+          <div class="medium-8 columns">
+            <h1 class="common-name"><?php print $title; ?></h1>
+            <p class="scientific-name">
+              <?php print render($content['field_bird_sci_name']); ?>
+            </p>
           </div>
-        </section>
-        <section class="bird-guide-section left-col sans">
-          <div class="row">
-            <div class="large-6 columns">
-              <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
-                <?php print render($content['field_bird_calls']); ?>
-              <br>
-              <!-- TO DO: Write some javascript for audio slidedown -->
-              <ul class="no-bullets">
-                <?php print render($content['field_bird_audio']); ?>
-                <li><a href="#"><i class="icon-sound-full"></i> song #1</a></li>
-              </ul>
-              <!-- END TO DO. -->
-            </div>
-            <div class="large-6 columns">
-              <?php print render($content['field_bird_nesting']); ?>
-              <br>
-              <?php print render($content['field_bird_range']); ?>
-            </div>
+          <div class="medium-4 columns illustration hide-for-small hide-for-tiny hide-for-medium">
+            <?php print render($content['field_bird_illustration']); ?>
           </div>
-        </section>
-      </div>
-      <div class="large-4 columns">
-        <!-- TO DO: Add fields and replace markup -->
-        <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
-          <p>Illustration © David Allen Sibley.<br><a href="#">Learn more about these drawings.</a></p>
-        </section>
-        <div id="bird-cta">
-          <section class="social-sharing bird-guide-section right-col small center">
-            <span class="social-sharing-caption small">Share this bird</span>
-            <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
-          </section>
-          <section class="bird-guide-section right-col small center">
-            <a href="#" class="button large">Help the Brown Thrasher</a>
-          </section>
-        <!-- END TO DO. -->
-        </div><section id="bird-dyk" class="bird-guide-section right-col small sans">
-          <?php print render($content['field_bird_tip']); ?>
-        </section><section id="bird-map" class="bird-guide-section right-col">
-          <?php print render($content['field_bird_rangemap']); ?>
-        </section>
-      </div>
+        </div>
+      </header>
+      <section class="bird-guide-body">
+        <div class="row">
+          <div class="large-8 columns">
+            <section class="bird-guide-section left-col">
+              <table class="collapse">
+                <tbody>
+                    <?php print render($content['field_bird_conserv_status']); ?>
+                    <?php print render($content['field_bird_family']); ?>
+                    <?php print render($content['field_bird_description']); ?>
+                    <?php print render($content['field_bird_habitat']); ?>
+                </tbody>
+              </table>
+              <?php print render($content['body']); ?>
+            </section>
+            <section class="bird-guide-section left-col">
+              <h5><i class="icon-camera"></i> <?php print t('Photo Gallery'); ?></h5>
+              <div class="thumb-strip clearfix">
+                <a class="thumb-strip-prev"><i class="icon-chevron-left"></i></a>
+                <div class="thumb-strip-wrapper">
+                  <?php print render($content['field_bird_photo']); ?>
+                </div>
+                <a class="thumb-strip-next"><i class="icon-chevron-right"></i></a>
+              </div>
+            </section>
+            <section class="bird-guide-section left-col sans">
+              <div class="row">
+                <div class="large-6 columns">
+                  <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
+                    <?php print render($content['field_bird_calls']); ?>
+                  <br>
+                    <?php print render($content['field_bird_audio']); ?>
+                </div>
+                <div class="large-6 columns">
+                  <?php print render($content['field_bird_nesting']); ?>
+                  <br>
+                  <?php print render($content['field_bird_range']); ?>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="large-4 columns">
+            <!-- TO DO: Add fields and replace markup -->
+            <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
+              <p>Illustration © David Allen Sibley.<br><a href="#">Learn more about these drawings.</a></p>
+            </section>
+            <div id="bird-cta">
+              <section class="social-sharing bird-guide-section right-col small center">
+                <span class="social-sharing-caption small">Share this bird</span>
+                <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
+              </section>
+              <section class="bird-guide-section right-col small center">
+                <a href="#" class="button large">Help the Brown Thrasher</a>
+              </section>
+            <!-- END TO DO. -->
+            </div><section id="bird-dyk" class="bird-guide-section right-col small sans">
+              <?php print render($content['field_bird_tip']); ?>
+            </section><section id="bird-map" class="bird-guide-section right-col">
+              <?php print render($content['field_bird_rangemap']); ?>
+            </section>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+  </div>
 </div>
