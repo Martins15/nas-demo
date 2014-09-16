@@ -5,7 +5,7 @@
  */
 
 define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
-define('NAS_FILES_CACHE_DIR', DRUPAL_ROOT . '/import_files_cache');
+define('NAS_FILES_CACHE_DIR', '/var/www/cache');
 
 /**
  * Implements hook_ctools_plugin_api().

@@ -7,6 +7,3 @@ sites/*/private
 
 # Ignore other paths
 sites/all/themes/custom/nas/.sass-cache
-
-# Ignore import cached files
-import_files_cache/*
