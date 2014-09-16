@@ -18,7 +18,7 @@ function nas_import_feeds_feature_feeds_importer_default() {
     'name' => 'Birds import',
     'description' => '',
     'fetcher' => array(
-      'plugin_key' => 'FeedsHTTPFetcher',
+      'plugin_key' => 'NASFeedsHTTPFetcher',
       'config' => array(
         'auto_detect_feeds' => FALSE,
         'use_pubsubhubbub' => FALSE,
