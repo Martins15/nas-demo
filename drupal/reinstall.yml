@@ -12,6 +12,7 @@
     mysql_user: drupal
     mysql_pass: drupal
     mysql_db: drupal
+    cache_folder: /var/www/cache
 
   tasks:
 
@@ -20,6 +21,10 @@
 
   - name: Creating drupal database
     mysql_db: name={{ mysql_db }} state=present
+    
+  - name: Creating cache folder
+    sudo: yes
+    file: path={{ cache_folder }} state=directory owner=www-data mode=775 recurse=yes
 
   - name: Installing drupal
     sudo: yes
