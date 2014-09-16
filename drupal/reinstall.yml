@@ -24,7 +24,7 @@
     
   - name: Creating cache folder
     sudo: yes
-    file: path={{ cache_folder }} state=directory owner=www-data mode=775
+    file: path={{ cache_folder }} state=directory owner=www-data mode=775 recurse=yes
 
   - name: Installing drupal
     sudo: yes
