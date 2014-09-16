@@ -247,7 +247,7 @@ function nas_bird_type_feature_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'nas_master',
+        'module' => 'nas_soundmanager',
         'settings' => array(
           'audio_type' => 'default',
           'pause' => 'pause',

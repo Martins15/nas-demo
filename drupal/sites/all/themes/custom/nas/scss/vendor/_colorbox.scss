@@ -61,8 +61,8 @@
             font-style: italic;
         }
         #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
-        #cboxLoadingOverlay{background:url(images/loading_background.png) no-repeat center center;}
-        #cboxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+        #cboxLoadingOverlay{background:url(../img/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(../img/loading.gif) no-repeat center center;}
 
         /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
         #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
@@ -71,9 +71,9 @@
         #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
 
         #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
-        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(images/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(../img/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
         #cboxPrevious:hover{background-position:-75px -25px;}
-        #cboxNext{position:absolute; bottom:0; left:27px; background:url(images/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxNext{position:absolute; bottom:0; left:27px; background:url(../img/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
         #cboxNext:hover{background-position:-50px -25px;}
         #cboxClose{
             position:absolute; 
@@ -83,10 +83,11 @@
             height:42px;
             font-size: 0;
             outline: 0 !important;
+            opacity: 1 !important;
             padding: 11px 13px;
             border-radius: 100%;
             background-color: $color-black;
-            background-image: url(icon-close.png);
+            background-image: url(../img/icon-close.png);
             background-size: 21px 21px;
             background-repeat: no-repeat;
             background-position: center center;
