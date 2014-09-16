@@ -5,6 +5,7 @@
  */
 
 define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
+define('NAS_FILES_CACHE_DIR', DRUPAL_ROOT . '/import_files_cache');
 
 /**
  * Implements hook_feeds_presave().
@@ -144,8 +145,19 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
  * Custom function for saving files.
  */
 function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT) {
-  $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($remote_filepath));
-  $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
+  $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
+  if (file_exists($cached_filepath)) {
+    $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
+  }
+  else {
+    $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($remote_filepath));
+    $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
+
+
+    $cached_directory = drupal_dirname($cached_filepath);
+    file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
+    file_unmanaged_copy($filepath, $cached_filepath);
+  }
 
   $files = file_load_multiple(array(), array('uri' => $filepath));
   $file = reset($files);
