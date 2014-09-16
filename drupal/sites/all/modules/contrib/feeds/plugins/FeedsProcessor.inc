@@ -175,7 +175,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
    *   The result of the parsing stage.
    */
   public function process(FeedsSource $source, FeedsParserResult $parser_result) {
-    $state = $source->state(FEEDS_PROCESS);
+    $state = $source->getState(FEEDS_PROCESS);
 
     while ($item = $parser_result->shiftItem()) {
 
@@ -324,7 +324,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
    *   the processing stage.
    */
   public function clear(FeedsSource $source) {
-    $state = $source->state(FEEDS_PROCESS_CLEAR);
+    $state = $source->getState(FEEDS_PROCESS_CLEAR);
 
     // Build base select statement.
     $info = $this->entityInfo();

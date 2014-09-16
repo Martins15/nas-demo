@@ -1,0 +1,30 @@
+diff --git a/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc b/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
+index 98cd0f1..da90718 100644
+--- a/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
++++ b/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
+@@ -366,7 +366,9 @@ class FeedsSource extends FeedsConfigurable {
+     $result = $this->progressImporting();
+     if ($result == FEEDS_BATCH_COMPLETE || isset($e)) {
+       $this->imported = time();
+-      $this->log('import', 'Imported in !s s', array('!s' => $this->imported - $this->state[FEEDS_START]), WATCHDOG_INFO);
++      if (isset($this->state[FEEDS_START])) {
++        $this->log('import', 'Imported in !s s', array('!s' => $this->imported - $this->state[FEEDS_START]), WATCHDOG_INFO);
++      }
+       module_invoke_all('feeds_after_import', $this);
+       unset($this->fetcher_result, $this->state);
+     }
+diff --git a/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc b/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
+index 519dfc5..717f12d 100644
+--- a/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
++++ b/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
+@@ -123,7 +123,10 @@ class FeedsNodeProcessor extends FeedsProcessor {
+    * Save a node.
+    */
+   public function entitySave($entity) {
++    variable_set('menu_rebuild_needed', FALSE);
++    lock_acquire('menu_rebuild');
+     node_save($entity);
++    lock_release('menu_rebuild');
+   }
+ 
+   /**

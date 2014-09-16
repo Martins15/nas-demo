@@ -3679,11 +3679,11 @@ ul.pagination li {
 }
 
 #cboxLoadingOverlay {
-  background: url(images/loading_background.png) no-repeat center center;
+  background: url(../img/loading_background.png) no-repeat center center;
 }
 
 #cboxLoadingGraphic {
-  background: url(images/loading.gif) no-repeat center center;
+  background: url(../img/loading.gif) no-repeat center center;
 }
 
 /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
@@ -3712,7 +3712,7 @@ ul.pagination li {
   position: absolute;
   bottom: 0;
   left: 0;
-  background: url(images/controls.png) no-repeat -75px 0;
+  background: url(../img/controls.png) no-repeat -75px 0;
   width: 25px;
   height: 25px;
   text-indent: -9999px;
@@ -3726,7 +3726,7 @@ ul.pagination li {
   position: absolute;
   bottom: 0;
   left: 27px;
-  background: url(images/controls.png) no-repeat -50px 0;
+  background: url(../img/controls.png) no-repeat -50px 0;
   width: 25px;
   height: 25px;
   text-indent: -9999px;
@@ -3744,10 +3744,11 @@ ul.pagination li {
   height: 42px;
   font-size: 0;
   outline: 0 !important;
+  opacity: 1 !important;
   padding: 11px 13px;
   border-radius: 100%;
   background-color: #000;
-  background-image: url(icon-close.png);
+  background-image: url(../img/icon-close.png);
   background-size: 21px 21px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -11204,4 +11205,28 @@ body.touch .sticky-wrapper {
 }
 .welcome-card.orange .welcome-card-banner {
   background-color: #dd7537;
+}
+
+.sm2_playing .icon-sound-full:before {
+  content: '\e600';
+  font-size: 11px;
+  left: -1px;
+  position: relative;
+  top: -2px;
+}
+
+.bird-card-set .views-field-field-bird-audio {
+  display: block;
+  font-size: 15px;
+  left: 0;
+  line-height: 15px;
+  padding: 10px 25px 25px 10px;
+  position: absolute;
+  top: 0;
+}
+.bird-card-set .views-field-field-bird-audio .sm2_link {
+  font-size: 0;
+}
+.bird-card-set .views-field-field-bird-audio .sm2_link .icon-sound-full {
+  font-size: 15px;
 }

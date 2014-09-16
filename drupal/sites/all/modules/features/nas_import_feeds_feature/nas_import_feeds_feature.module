@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Import feeds feature.
+ */
+
+include_once 'nas_import_feeds_feature.features.inc';

@@ -1,0 +1,247 @@
+<?php
+/**
+ * @file
+ * Modifications to import process.
+ */
+
+define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
+  if ($entity->feeds_item->id == 'birds_import') {
+    nas_import_feeds_presave_birds_import($source, $entity, $item);
+  }
+  if ($entity->feeds_item->id == 'news_import') {
+    nas_import_feeds_presave_news_import($source, $entity, $item);
+  }
+}
+
+/**
+ * hook_feeds_presave for birds_import importer.
+ */
+function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $item) {
+  // Save speices_image field data to field_bird_photo.
+  if (!empty($item['field_speices_image'])) {
+    nas_import_import_image($entity, $item['field_speices_image'], 'field_bird_photo');
+  }
+
+  // Save field_rangemaps field data to field_bird_rangemap.
+  if (!empty($item['field_rangemaps'])) {
+    nas_import_import_image($entity, $item['field_rangemaps'], 'field_bird_rangemap');
+  }
+
+  // Save field_bird_call field data to field_bird_audio.
+  if (!empty($item['field_bird_call'])) {
+    foreach ($item['field_bird_call'] as $key => $value) {
+      if (!isset($value['fid'])) {
+        continue;
+      }
+      $file = nas_import_add_existing_file($value['filepath'], 'audio');
+      $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
+
+      // Additionally save description if exist to
+      // separate field field_audio_description.
+      if (!empty($value['data']['description'])) {
+        $file_entity = file_load($file->fid);
+        $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
+        file_save($file_entity);
+      }
+    }
+  }
+  // Save old taxonomy terms to existed terms if match.
+  if (!empty($item['taxonomy'])) {
+
+    $bird_family_terms = array();
+    $bird_region_terms = array();
+
+    // Check if there are any terms we have to save.
+    foreach ($item['taxonomy'] as $key => $value) {
+      if (isset($value['name'])) {
+        $term = taxonomy_get_term_by_name($value['name']);
+        if (!empty($term)) {
+          $term = reset($term);
+          if ($term->vocabulary_machine_name == 'bird_family') {
+            $bird_family_terms[] = $term;
+          }
+          if ($term->vocabulary_machine_name == 'bird_region') {
+            $bird_region_terms[] = $term;
+          }
+        }
+      }
+    }
+    // Save terms if exist.
+    if (!empty($bird_family_terms)) {
+      foreach ($bird_family_terms as $key => $term) {
+        $entity->field_bird_family[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+      }
+    }
+    if (!empty($bird_region_terms)) {
+      foreach ($bird_region_terms as $key => $term) {
+        $entity->field_bird_region[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+      }
+    }
+  }
+  // Save field_similar_species data.
+  if (!empty($item['field_similar_species'])) {
+    // Set old NID as first id for futher access.
+    $entity->field_related_bird[LANGUAGE_NONE][0]['target_id'] = $item['nid'];
+    foreach ($item['field_similar_species'] as $key => $value) {
+      if (isset($value['nid'])) {
+        $entity->field_related_bird[LANGUAGE_NONE][$key + 1]['target_id'] = $value['nid'];
+      }
+    }
+  }
+}
+
+/**
+ * hook_feeds_presave for news_import importer.
+ */
+function nas_import_feeds_presave_news_import($source, $entity, $item) {
+  // Save news image to d7 field_image field.
+  if (!empty($item['field_image_ref'])) {
+    foreach ($item['field_image_ref'] as $field_value) {
+      $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
+      $image_node = drupal_json_decode($result->data);
+      $image_node = reset($image_node);
+      if (!empty($image_node['field_photo'])) {
+        nas_import_import_image($entity, $image_node['field_photo'], 'field_image');
+      }
+    }
+  }
+}
+
+/**
+ * Retrieve and save remote file.
+ *
+ * @param object $entity
+ *   I.e. node.
+ * @param array $d6_field_array
+ *   Drupal 6 field value array.
+ * @param string $d7_field_name
+ *   Name of the field for drupal 7.
+ */
+function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
+  foreach ($d6_field_array as $key => $value) {
+    if (!isset($value['fid'])) {
+      continue;
+    }
+    $file = nas_import_add_existing_file($value['filepath'], 'image');
+    $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+
+    // Additionally save Alt and Title if exist.
+    if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
+      $file_entity = file_load($file->fid);
+      $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
+      $file_entity->field_file_image_title_text[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
+      file_save($file_entity);
+    }
+  }
+}
+
+/**
+ * Custom function for saving files.
+ */
+function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT) {
+  $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($remote_filepath));
+  $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
+
+  $files = file_load_multiple(array(), array('uri' => $filepath));
+  $file = reset($files);
+
+  if (!$file) {
+    $file = (object) array(
+      'filename' => basename($filepath),
+      'filepath' => $filepath,
+      'filemime' => file_get_mimetype($filepath),
+      'filesize' => filesize($filepath),
+      'uid' => $uid,
+      'status' => $status,
+      'timestamp' => REQUEST_TIME,
+      'uri' => $filepath,
+      'type' => $type,
+    );
+    drupal_write_record('file_managed', $file);
+  }
+  return $file;
+}
+
+/**
+ * Fix references after all nodes have been created.
+ */
+function nas_import_modify_references() {
+  $type = 'bird';
+  $nodes = node_load_multiple(array(), array('type' => $type));
+  // First step is creating mapping of old and new nids.
+  $node_bird_mapped_nids = array();
+  foreach ($nodes as $node) {
+    $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+    if (!empty($field_related_bird)) {
+      $old_nid_of_current_node = $field_related_bird[0]['target_id'];
+      $node_bird_mapped_nids[$old_nid_of_current_node] = $node->nid;
+    }
+  }
+  // Second step is modifying of old nids to new nids based on mapping.
+  foreach ($nodes as $node) {
+    $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+    if (empty($field_related_bird)) {
+      continue;
+    }
+    // We dont need old nid anymore in the array, so remove it.
+    array_shift($field_related_bird);
+    // Lets modify old nids to new nids.
+    foreach ($field_related_bird as $key => $target_id) {
+      isset($node_bird_mapped_nids[$target_id['target_id']]) ? $new_nid = $node_bird_mapped_nids[$target_id['target_id']] : $new_nid = '';
+      if (!empty($new_nid)) {
+        $node->field_related_bird[LANGUAGE_NONE][$key]['target_id'] = $new_nid;
+      }
+    }
+    // Remove the last item due to shifted array.
+    array_pop($node->field_related_bird[LANGUAGE_NONE]);
+    // Finally update the node's field.
+    field_attach_update('node', $node);
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_import_menu() {
+  $items = array();
+  $items['nas/import'] = array(
+    'title' => 'Import content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_import_import_content_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Callback form for nas/import page.
+ */
+function nas_import_import_content_form($form, &$form_state) {
+  $form['types'] = array(
+    '#type' => 'checkboxes',
+    '#options' => array('bird' => t('Bird')),
+    '#title' => t('Content types to import'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Submit form for nas/import page.
+ */
+function nas_import_import_content_form_submit($form, &$form_state) {
+  if ($form_state['values']['types']['bird']) {
+    // Run the same import as on the installation process.
+    pp_import_nodes();
+  }
+  return $form;
+}

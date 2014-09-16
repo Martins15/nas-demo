@@ -1,0 +1,13 @@
+diff --git a/drupal/sites/all/modules/contrib/soundmanager2/soundmanager2.install b/drupal/sites/all/modules/contrib/soundmanager2/soundmanager2.install
+index 60e3c73..319c4ed 100644
+--- a/drupal/sites/all/modules/contrib/soundmanager2/soundmanager2.install
++++ b/drupal/sites/all/modules/contrib/soundmanager2/soundmanager2.install
+@@ -39,7 +39,7 @@ function soundmanager2_requirements($phase) {
+   else if ($phase == 'install') {
+     $requirements['soundmanager2']['title'] = $t('SoundManager 2');
+     $requirements['soundmanager2']['value'] = $t('SoundManager 2: remember!');
+-    $requirements['soundmanager2']['description'] = $t('You must install !download to %sm2dir, or !configure.', array('!download' => l(t('SoundManager 2'), 'http://www.schillmania.com/projects/soundmanager2/doc/download/'), '%sm2dir' => $sm2_path, '!configure' => l(t('configure its installation path'), 'admin/config/media/soundmanager2')));
++    $requirements['soundmanager2']['description'] = $t('You must install <a href="!download">SoundManager 2</a> to %sm2dir.', array('!download' => 'http://www.schillmania.com/projects/soundmanager2/doc/download/', '%sm2dir' => $sm2_path));
+     $requirements['soundmanager2']['severity'] = REQUIREMENT_INFO;
+   }
+ 
