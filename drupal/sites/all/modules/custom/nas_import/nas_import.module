@@ -8,6 +8,34 @@ define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
 define('NAS_FILES_CACHE_DIR', DRUPAL_ROOT . '/import_files_cache');
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function nas_import_ctools_plugin_api($owner, $api) {
+  if ($owner == 'feeds' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_feeds_plugins().
+ */
+function nas_import_feeds_plugins() {
+  $info = array();
+  $info['NASFeedsHTTPFetcher'] = array(
+    'name' => 'NAS Feeds HTTP Fetcher',
+    'description' => 'Uses cache fr HTTPFetcher.',
+    'help' => 'Calls will check if we already have data cached on files system.',
+    'handler' => array(
+      'parent' => 'FeedsHTTPFetcher',
+      'class' => 'NASFeedsHTTPFetcher',
+      'file' => 'NASFeedsHTTPFetcher.inc',
+      'path' => drupal_get_path('module', 'nas_import'),
+    ),
+  );
+  return $info;
+}
+
+/**
  * Implements hook_feeds_presave().
  */
 function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
@@ -103,6 +131,9 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   // Save news image to d7 field_image field.
   if (!empty($item['field_image_ref'])) {
     foreach ($item['field_image_ref'] as $field_value) {
+      if (!isset($field_value['nid'])) {
+        continue;
+      }
       $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
       $image_node = drupal_json_decode($result->data);
       $image_node = reset($image_node);

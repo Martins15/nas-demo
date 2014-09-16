@@ -84,7 +84,7 @@ function pp_import_nodes() {
  */
 function pp_import_nodes_batch($nids, $importer_id) {
   foreach ($nids as $nid) {
-    $config = array('FeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
+    $config = array('NASFeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
