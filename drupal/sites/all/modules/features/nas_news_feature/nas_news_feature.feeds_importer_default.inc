@@ -54,6 +54,12 @@ function nas_news_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '4',
           ),
+          'field_image_ref' => array(
+            'name' => 'field_image_ref',
+            'value' => 'field_image_ref.[*]',
+            'debug' => 0,
+            'weight' => '5',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
