@@ -109,7 +109,7 @@ function pp_import_finished() {
   // Launch save timer function.
   pp_import_save_timer();
   // Check and launch nas_master_modify_references function for after import operations.
-  if (function_exists('nas_master_modify_references')) {
-    nas_master_modify_references();
+  if (function_exists('nas_import_modify_references')) {
+    nas_import_modify_references();
   }
 }

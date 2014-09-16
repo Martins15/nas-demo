@@ -1,0 +1,5 @@
+name = NAS Soundmanager
+description = Provide a field formatter view for Soundmanager2 module
+core = 7.x
+package = NAS
+dependencies[] = soundmanager2
