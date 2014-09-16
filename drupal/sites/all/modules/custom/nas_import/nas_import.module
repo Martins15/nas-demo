@@ -13,6 +13,9 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'birds_import') {
     nas_import_feeds_presave_birds_import($source, $entity, $item);
   }
+  if ($entity->feeds_item->id == 'news_import') {
+    nas_import_feeds_presave_news_import($source, $entity, $item);
+  }
 }
 
 /**
@@ -93,6 +96,23 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
 }
 
 /**
+ * hook_feeds_presave for news_import importer.
+ */
+function nas_import_feeds_presave_news_import($source, $entity, $item) {
+  // Save news image to d7 field_image field.
+  if (!empty($item['field_image_ref'])) {
+    foreach ($item['field_image_ref'] as $field_value) {
+      $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
+      $image_node = drupal_json_decode($result->data);
+      $image_node = reset($image_node);
+      if (!empty($image_node['field_photo'])) {
+        nas_import_import_image($entity, $image_node['field_photo'], 'field_image');
+      }
+    }
+  }
+}
+
+/**
  * Retrieve and save remote file.
  *
  * @param object $entity
@@ -108,7 +128,7 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
       continue;
     }
     $file = nas_import_add_existing_file($value['filepath'], 'image');
-    $entity->{$d7_field_name}[LANGUAGE_NONE][$key]['fid'] = $file->fid;
+    $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
 
     // Additionally save Alt and Title if exist.
     if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
