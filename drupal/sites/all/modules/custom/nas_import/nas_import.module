@@ -32,17 +32,18 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
   // Save field_bird_call field data to field_bird_audio.
   if (!empty($item['field_bird_call'])) {
     foreach ($item['field_bird_call'] as $key => $value) {
-      if (isset($value['fid'])) {
-        $file = nas_import_add_existing_file($value['filepath'], 'audio');
-        $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
+      if (!isset($value['fid'])) {
+        continue;
+      }
+      $file = nas_import_add_existing_file($value['filepath'], 'audio');
+      $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
 
-        // Additionally save description if exist to
-        // separate field field_audio_description.
-        if (!empty($value['data']['description'])) {
-          $file_entity = file_load($file->fid);
-          $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
-          file_save($file_entity);
-        }
+      // Additionally save description if exist to
+      // separate field field_audio_description.
+      if (!empty($value['data']['description'])) {
+        $file_entity = file_load($file->fid);
+        $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
+        file_save($file_entity);
       }
     }
   }
