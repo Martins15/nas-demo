@@ -73,6 +73,11 @@
  * desired field language; for example, $node->body['en'], thus overriding any
  * language negotiation rule that was previously applied.
  *
+ * Custom variables:
+ * - $bird_priority: Boolean, check if field_bird_priority true or false.
+ * - $bird_illustration_author: Contains data from field_bird_illustration's alt.
+ * - $learn_more_link: Static link for article.
+ *
  * @see template_preprocess()
  * @see template_preprocess_node()
  * @see template_process()
