@@ -12,3 +12,5 @@ dependencies[] = nas_news_feature
 dependencies[] = nas_colorbox_feature
 dependencies[] = nas_import
 dependencies[] = nas_soundmanager
+dependencies[] = nas_site_template_feature
+dependencies[] = nas_birds_guide_feature
