@@ -38,6 +38,7 @@ dependencies[] = uuid_features
 dependencies[] = libraries
 dependencies[] = ds
 dependencies[] = soundmanager2
+dependencies[] = jquery_update
 
 ; Custom modules
 dependencies[] = nas_master
