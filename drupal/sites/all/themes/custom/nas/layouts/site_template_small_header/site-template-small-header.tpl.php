@@ -1,3 +1,10 @@
+<?php
+/**
+ * @file
+ * Site template with small header.
+ */
+?>
+
 <body>
   <header class="global-header alt standard">
     <?php print $content['header']; ?>
