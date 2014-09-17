@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Template of NAS One Column. Used in Birds Guide.
+ * Template of NAS One Column. Used in Bird Guide.
  */
 ?>
 <?php print $content['header']; ?>
