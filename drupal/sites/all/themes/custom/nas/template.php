@@ -29,6 +29,14 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'bird') {
     $get_field_bird_priority = field_get_items('node', $vars['node'], 'field_bird_priority');
     $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
+    // Get author of illustration.
+    $get_field_bird_illustration_author = field_get_items('node', $vars['node'], 'field_bird_illustration');
+    if (!empty($get_field_bird_illustration_author)) {
+      $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_image_alt_text');
+      $vars['bird_illustration_author'] = $bird_illustration_author[0]['#markup'];
+    }
+    // Add static link.
+    $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
   }
 }
 

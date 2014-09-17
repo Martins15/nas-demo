@@ -142,7 +142,15 @@
           <div class="large-4 columns">
             <!-- TO DO: Add fields and replace markup -->
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
-              <p>Illustration © David Allen Sibley.<br><a href="#">Learn more about these drawings.</a></p>
+              <p>
+                <?php if (isset($bird_illustration_author)): ?>
+                  <?php print $bird_illustration_author; ?>
+                <?php endif; ?>
+                <br>
+                <?php if (isset($learn_more_link)): ?>
+                  <?php print $learn_more_link; ?>
+                <?php endif; ?>
+              </p>
             </section>
             <div id="bird-cta">
               <section class="social-sharing bird-guide-section right-col small center">

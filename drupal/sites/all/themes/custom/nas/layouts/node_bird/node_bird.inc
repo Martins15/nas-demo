@@ -17,5 +17,9 @@ $plugin = array(
   'regions' => array(
     'top' => t('Top'),
     'main' => t('Main'),
+    'similar_birds' => t('Similar birds'),
+    'in_action_top' => t('In Action Header'),
+    'in_action_left' => t('In Action Left'),
+    'in_action_right' => t('In Action Right'),
   ),
 );
