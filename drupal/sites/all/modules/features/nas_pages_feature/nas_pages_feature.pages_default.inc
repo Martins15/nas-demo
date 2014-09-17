@@ -53,6 +53,11 @@ function nas_pages_feature_default_page_manager_handlers() {
       'center' => NULL,
       'main' => NULL,
       'top' => NULL,
+      'in_action' => NULL,
+      'in_action_top' => NULL,
+      'in_action_left' => NULL,
+      'in_action_right' => NULL,
+      'similar_birds' => NULL,
     ),
   );
   $display->cache = array();
@@ -60,6 +65,69 @@ function nas_pages_feature_default_page_manager_handlers() {
   $display->uuid = '03d7de87-b684-47ae-bceb-a6f25b1a3a21';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-2cdd7fb8-39e0-476b-8e47-54e549b9ecc4';
+    $pane->panel = 'in_action_left';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_bird_video';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'media',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'default',
+      ),
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2cdd7fb8-39e0-476b-8e47-54e549b9ecc4';
+    $display->content['new-2cdd7fb8-39e0-476b-8e47-54e549b9ecc4'] = $pane;
+    $display->panels['in_action_left'][0] = 'new-2cdd7fb8-39e0-476b-8e47-54e549b9ecc4';
+    $pane = new stdClass();
+    $pane->pid = 'new-3b1996bf-ea01-40c5-a326-81346d9e75e1';
+    $pane->panel = 'in_action_top';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Header In Action',
+      'title' => '',
+      'body' => '<div class="columns">
+            <h2 class="thin">%node:title in Action</h2>
+          </div>
+          <div class="columns">
+            <ul class="section-nav inline-list hide-for-small hide-for-tiny">
+              <li><a href="#">More Video »</a></li>
+            </ul>
+          </div>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3b1996bf-ea01-40c5-a326-81346d9e75e1';
+    $display->content['new-3b1996bf-ea01-40c5-a326-81346d9e75e1'] = $pane;
+    $display->panels['in_action_top'][0] = 'new-3b1996bf-ea01-40c5-a326-81346d9e75e1';
     $pane = new stdClass();
     $pane->pid = 'new-5cd9a453-813c-49d0-a53b-a993d849fe91';
     $pane->panel = 'main';
@@ -91,7 +159,7 @@ function nas_pages_feature_default_page_manager_handlers() {
     $display->panels['main'][0] = 'new-5cd9a453-813c-49d0-a53b-a993d849fe91';
     $pane = new stdClass();
     $pane->pid = 'new-76946730-1196-4585-b57e-e60ffb76b872';
-    $pane->panel = 'main';
+    $pane->panel = 'similar_birds';
     $pane->type = 'views_panes';
     $pane->subtype = 'nas_similar_birds-nas_similar_birds';
     $pane->shown = TRUE;
@@ -109,11 +177,11 @@ function nas_pages_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '76946730-1196-4585-b57e-e60ffb76b872';
     $display->content['new-76946730-1196-4585-b57e-e60ffb76b872'] = $pane;
-    $display->panels['main'][1] = 'new-76946730-1196-4585-b57e-e60ffb76b872';
+    $display->panels['similar_birds'][0] = 'new-76946730-1196-4585-b57e-e60ffb76b872';
     $pane = new stdClass();
     $pane->pid = 'new-dc350348-0980-4693-a7b0-216fcb7b2679';
     $pane->panel = 'top';
