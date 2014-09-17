@@ -298,6 +298,86 @@ function nas_bird_type_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-bird-field_bird_call_pattern'
+  $field_instances['node-bird-field_bird_call_pattern'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 32,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_call_pattern',
+    'label' => 'Bird Call Pattern',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 37,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_call_type'
+  $field_instances['node-bird-field_bird_call_type'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 27,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_call_type',
+    'label' => 'Bird Call Type',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'node-bird-field_bird_calls'
   $field_instances['node-bird-field_bird_calls'] = array(
     'bundle' => 'bird',
@@ -335,6 +415,86 @@ function nas_bird_type_feature_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_category'
+  $field_instances['node-bird-field_bird_category'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 28,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_category',
+    'label' => 'Bird Category',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_color'
+  $field_instances['node-bird-field_bird_color'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 26,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_color',
+    'label' => 'Bird Color',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 31,
     ),
   );
 
@@ -492,6 +652,46 @@ function nas_bird_type_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-bird-field_bird_habitat2'
+  $field_instances['node-bird-field_bird_habitat2'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 29,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_habitat2',
+    'label' => 'Bird Habitat',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 34,
+    ),
+  );
+
   // Exported field_instance: 'node-bird-field_bird_illustration'
   $field_instances['node-bird-field_bird_illustration'] = array(
     'bundle' => 'bird',
@@ -544,6 +744,46 @@ function nas_bird_type_feature_field_default_field_instances() {
       ),
       'type' => 'media_generic',
       'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_locomotion'
+  $field_instances['node-bird-field_bird_locomotion'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 30,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_locomotion',
+    'label' => 'Bird Locomotion',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 35,
     ),
   );
 
@@ -857,6 +1097,86 @@ function nas_bird_type_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-bird-field_bird_sec_species_name'
+  $field_instances['node-bird-field_bird_sec_species_name'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 34,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_sec_species_name',
+    'label' => 'Secondary Species Name',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_size'
+  $field_instances['node-bird-field_bird_size'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 31,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_size',
+    'label' => 'Bird Size',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 36,
+    ),
+  );
+
   // Exported field_instance: 'node-bird-field_bird_tip'
   $field_instances['node-bird-field_bird_tip'] = array(
     'bundle' => 'bird',
@@ -951,6 +1271,46 @@ function nas_bird_type_feature_field_default_field_instances() {
       ),
       'type' => 'media_generic',
       'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_wing_shape'
+  $field_instances['node-bird-field_bird_wing_shape'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 33,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_wing_shape',
+    'label' => 'Bird Wing Shape',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 38,
     ),
   );
 
@@ -1059,6 +1419,14 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Alternative text is used by screen readers, search engines, and when the image cannot be loaded. By adding alt text you improve accessibility and search engine optimization.');
   t('Audio');
   t('Background Cover');
+  t('Bird Call Pattern');
+  t('Bird Call Type');
+  t('Bird Category');
+  t('Bird Color');
+  t('Bird Habitat');
+  t('Bird Locomotion');
+  t('Bird Size');
+  t('Bird Wing Shape');
   t('Body');
   t('Conservation Status');
   t('Description');
@@ -1075,6 +1443,7 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Range information associated with the given species.');
   t('Region');
   t('Scientific Name');
+  t('Secondary Species Name');
   t('Similar Bird');
   t('Songs and Calls');
   t('Title Text');

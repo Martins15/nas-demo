@@ -41,7 +41,7 @@ function nas_bird_type_feature_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
