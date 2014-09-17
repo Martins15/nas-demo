@@ -123,6 +123,12 @@ function nas_import_feeds_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '16',
           ),
+          'field_second_name' => array(
+            'name' => 'field_second_name',
+            'value' => 'field_second_name.[*]',
+            'debug' => 0,
+            'weight' => '17',
+          ),
         ),
         'display_errors' => 0,
         'debug_mode' => 0,
@@ -186,6 +192,11 @@ function nas_import_feeds_feature_feeds_importer_default() {
           9 => array(
             'source' => 'path',
             'target' => 'path_alias',
+            'unique' => FALSE,
+          ),
+          10 => array(
+            'source' => 'field_second_name',
+            'target' => 'field_bird_sec_species_name',
             'unique' => FALSE,
           ),
         ),

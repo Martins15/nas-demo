@@ -73,6 +73,11 @@
  * desired field language; for example, $node->body['en'], thus overriding any
  * language negotiation rule that was previously applied.
  *
+ * Custom variables:
+ * - $bird_priority: Boolean, check if field_bird_priority true or false.
+ * - $bird_illustration_author: Contains data from field_bird_illustration's alt.
+ * - $learn_more_link: Static link for article.
+ *
  * @see template_preprocess()
  * @see template_preprocess_node()
  * @see template_process()
@@ -142,7 +147,15 @@
           <div class="large-4 columns">
             <!-- TO DO: Add fields and replace markup -->
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
-              <p>Illustration © David Allen Sibley.<br><a href="#">Learn more about these drawings.</a></p>
+              <p>
+                <?php if (isset($bird_illustration_author)): ?>
+                  <?php print $bird_illustration_author; ?>
+                <?php endif; ?>
+                <br>
+                <?php if (isset($learn_more_link)): ?>
+                  <?php print $learn_more_link; ?>
+                <?php endif; ?>
+              </p>
             </section>
             <div id="bird-cta">
               <section class="social-sharing bird-guide-section right-col small center">

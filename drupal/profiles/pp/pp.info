@@ -40,6 +40,7 @@ dependencies[] = libraries
 dependencies[] = ds
 dependencies[] = soundmanager2
 dependencies[] = menu_attributes
+dependencies[] = jquery_update
 
 ; Custom modules
 dependencies[] = nas_master
