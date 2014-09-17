@@ -1,0 +1,16 @@
+name = NAS master
+core = 7.x
+package = NAS
+dependencies[] = nas_bird_type_feature
+dependencies[] = nas_image_styles_feature
+dependencies[] = nas_import_feeds_feature
+dependencies[] = nas_overrides_feature
+dependencies[] = nas_view_modes_feature
+dependencies[] = nas_pages_feature
+dependencies[] = nas_views_feature
+dependencies[] = nas_news_feature
+dependencies[] = nas_colorbox_feature
+dependencies[] = nas_import
+dependencies[] = nas_soundmanager
+dependencies[] = nas_site_template_feature
+dependencies[] = nas_birds_guide_feature
