@@ -6,6 +6,14 @@
 
 define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
 define('NAS_FILES_CACHE_DIR', '/var/www/cache');
+define('NAS_OLD_D6_VID_HABITAT', 96);
+define('NAS_OLD_D6_VID_LOLOMOTION', 101);
+define('NAS_OLD_D6_VID_COLOR', 86);
+define('NAS_OLD_D6_VID_CALL_TYPE', 76);
+define('NAS_OLD_D6_VID_CATEGORY', 81);
+define('NAS_OLD_D6_VID_SIZE', 111);
+define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
+define('NAS_OLD_D6_VID_WING_SHAPE', 116);
 
 /**
  * Implements hook_ctools_plugin_api().
@@ -84,6 +92,14 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
 
     $bird_family_terms = array();
     $bird_region_terms = array();
+    $bird_call_type_terms = array();
+    $bird_color_terms = array();
+    $bird_category_terms = array();
+    $bird_habitat2_terms = array();
+    $bird_locomotion_terms = array();
+    $bird_call_pattern_terms = array();
+    $bird_wing_shape_terms = array();
+    $bird_size_terms = array();
 
     // Check if there are any terms we have to save.
     foreach ($item['taxonomy'] as $key => $value) {
@@ -98,6 +114,31 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
             $bird_region_terms[] = $term;
           }
         }
+        // Additionally get terms which don't exist.
+        if ($value['vid'] == NAS_OLD_D6_VID_COLOR) {
+          $bird_color_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_HABITAT) {
+          $bird_habitat2_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_LOLOMOTION) {
+          $bird_locomotion_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_CALL_TYPE) {
+          $bird_call_type_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_CATEGORY) {
+          $bird_category_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_SIZE) {
+          $bird_size_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_CALL_PATTERN) {
+          $bird_call_pattern_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_WING_SHAPE) {
+          $bird_wing_shape_terms[] = $value['name'];
+        }
       }
     }
     // Save terms if exist.
@@ -110,6 +151,31 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
       foreach ($bird_region_terms as $key => $term) {
         $entity->field_bird_region[LANGUAGE_NONE][$key]['tid'] = $term->tid;
       }
+    }
+    // Legacy field group.
+    foreach ($bird_color_terms as $key => $term) {
+      $entity->field_bird_color[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_call_pattern_terms as $key => $term) {
+      $entity->field_bird_call_pattern[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_habitat2_terms as $key => $term) {
+      $entity->field_bird_habitat2[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_locomotion_terms as $key => $term) {
+      $entity->field_bird_locomotion[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_call_type_terms as $key => $term) {
+      $entity->field_bird_call_type[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_category_terms as $key => $term) {
+      $entity->field_bird_category[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_size_terms as $key => $term) {
+      $entity->field_bird_size[LANGUAGE_NONE][$key]['value'] = $term;
+    }
+    foreach ($bird_wing_shape_terms as $key => $term) {
+      $entity->field_bird_wing_shape[LANGUAGE_NONE][$key]['value'] = $term;
     }
   }
   // Save field_similar_species data.
