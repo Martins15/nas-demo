@@ -29,3 +29,51 @@ function nas_menu_ctools_plugin_directory($owner, $plugin_type) {
     return 'plugins/' . $plugin_type;
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function nas_menu_theme() {
+  return array(
+    'nas_small_header' => array(
+      'arguments' => array('menu_tree' => NULL),
+      'template' => 'nas-small-header',
+    ),
+  );
+}
+
+/**
+ * Preprocess function for nas-small-header.tpl.php
+ */
+function template_nas_small_header(&$vars) {
+  $vars['frontpage_url'] = url('<front>');
+  $vars['site_name'] = check_plain(variable_get('site_name'));
+
+  $menu_tree = $vars['menu_tree'];
+
+  $items = array();
+  foreach ($menu_tree as $menu_item) {
+    $item = array(
+      'li_class' => isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '',
+      'a_class' => isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '',
+      'url' => url($menu_item['link']['link_path']),
+      'title' => check_plain($menu_item['link']['link_title']),
+    );
+
+    $item['#below'] = array();
+    if (!empty($menu_item['below'])) {
+      foreach ($menu_item['below'] as $sub_menu_item) {
+        $item['#below'][] = array(
+          'li_class' => isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '',
+          'a_class' => isset($sub_menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $sub_menu_item['link']['options']['attributes']['class']) : '',
+          'url' => url($sub_menu_item['link']['link_path']),
+          'title' => check_plain($sub_menu_item['link']['link_title']),
+        );
+      }
+    }
+
+    $items[] = $item;
+  }
+
+  $vars['items'] = $items;
+}

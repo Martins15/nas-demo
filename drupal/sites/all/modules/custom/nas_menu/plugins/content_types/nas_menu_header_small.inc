@@ -52,7 +52,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
         $content .= '<li class="primary-sub-nav-item' . $li_class . '">'
           . '<a class="primary-sub-nav-link' . $a_class . '" href="'
           . url($sub_menu_item['link']['link_path']) . '">'
-          . check_plain($menu_item['link']['link_title']) . '</a></li>';
+          . check_plain($sub_menu_item['link']['link_title']) . '</a></li>';
       }
       $content .= '</ul>';
     }
