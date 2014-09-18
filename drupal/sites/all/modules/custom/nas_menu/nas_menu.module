@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Customizations of the menu.
+ */
+
+/**
+ * Implements hook_menu_attribute_info().
+ */
+function nas_menu_menu_attribute_info_alter(array &$attributes) {
+  // Add a Tabindex attribute.
+  $attributes['liclass'] = array(
+    'label' => t('List item class'),
+    'description' => t('Specifies class of LI element.'),
+  );
+
+  // Remove the Access Key attribute.
+  foreach (array('accesskey', 'title', 'id', 'name', 'rel', 'style', 'target') as $key) {
+    unset($attributes[$key]);
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_menu_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}

@@ -12,6 +12,7 @@ dependencies[] = options
 dependencies[] = file
 dependencies[] = field_ui
 dependencies[] = taxonomy
+dependencies[] = menu
 
 ; Contrib modules
 dependencies[] = admin_menu_toolbar
@@ -38,6 +39,7 @@ dependencies[] = uuid_features
 dependencies[] = libraries
 dependencies[] = ds
 dependencies[] = soundmanager2
+dependencies[] = menu_attributes
 dependencies[] = jquery_update
 
 ; Custom modules
