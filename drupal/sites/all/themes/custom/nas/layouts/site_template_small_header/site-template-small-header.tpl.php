@@ -84,32 +84,6 @@
     </div>
   </section>
 </footer>
-  <script src="../../../js/iscroll.js"></script>
-<script src="../../../js/nav.js"></script>
-<script src="../../../js/jquery.mousewheel.js"></script>
-<script src="../../../js/jquery.colorbox-min.js"></script>
-<script src="../../../js/scrolljack.js"></script>
-<script src="../../../js/card-equalizer.js"></script>
-<script src="../../../js/article-reflow.js"></script>
-<script src="../../../js/curtain.js"></script>
-<script src="../../../js/bird-card-set.js"></script>
-<script src="../../../js/strip-nav.js"></script>
-<script src="../../../js/card-set.js"></script>
-<script src="../../../js/thumb-strip.js"></script>
-<script src="../../../js/slideshow.js"></script>
-<script src="../../../js/conservation-slider.js"></script>
-<script src="../../../js/bg-respond.js"></script>
-<script src="../../../js/bird-guide-respond.js"></script>
-<script src="../../../js/toggler.js"></script>
-<script src="../../../js/inline-map.js"></script>
-<script src="../../../js/responsive-events.js"></script>
-<script src="../../../js/responsive-tables.js"></script>
-<script src="../../../js/bird-guide-grid.js"></script>
-<script src="../../../js/flyway-minimap.js"></script>
-<script src="../../../js/flyway-slides.js"></script>
-<script src="../../../js/pledge-form-alt.js"></script>
-<script src="../../../js/expand-hero.js"></script>
-
 
   <!-- DEMO SCRIPT -->
   <script>
