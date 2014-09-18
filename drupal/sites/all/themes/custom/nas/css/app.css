@@ -4723,7 +4723,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 .mailing-list .row:before {
   content: "";
   position: absolute;
-  background-image: url(engagement-bird-1.png);
+  background-image: url(../img/engagement-bird-1.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 60px;
@@ -4834,7 +4834,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   }
 }
 .mailing-list.warbler .row:before {
-  background-image: url(engagement-bird-3.png);
+  background-image: url(../img/engagement-bird-3.png);
   width: 80px;
   height: 80px;
   top: -50px;
@@ -7041,7 +7041,7 @@ body.touch .primary-sub-nav-index {
   padding: 0;
 }
 .card-set.bg-1 {
-  background-image: url(card-set-bg-1.jpg);
+  background-image: url(../img/card-set-bg-1.jpg);
 }
 .card-set.bg-gray {
   background-color: #f8f8f8;
