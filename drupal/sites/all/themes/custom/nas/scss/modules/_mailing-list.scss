@@ -9,7 +9,7 @@
   &:before {
     content: "";
     position: absolute;
-    background-image: url(engagement-bird-1.png);
+    background-image: url(../img/engagement-bird-1.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 60px;
@@ -119,7 +119,7 @@
 $color-warbler-yellow: #DAA84B;
 .mailing-list.warbler {
   .row:before {
-    background-image: url(engagement-bird-3.png);
+    background-image: url(../img/engagement-bird-3.png);
     width: 80px;
     height: 80px;
     top: -50px;

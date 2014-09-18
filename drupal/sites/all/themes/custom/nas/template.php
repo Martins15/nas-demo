@@ -26,6 +26,7 @@ function nas_html_head_alter(&$head_elements) {
  * Implements hook_preprocess_node().
  */
 function nas_preprocess_node(&$vars) {
+  global $base_url;
   if ($vars['type'] == 'bird') {
     $get_field_bird_priority = field_get_items('node', $vars['node'], 'field_bird_priority');
     $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
@@ -37,6 +38,8 @@ function nas_preprocess_node(&$vars) {
     }
     // Add static link.
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
+    // Add Node Page absolute url.
+    $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
   }
 }
 
@@ -48,9 +51,6 @@ function nas_preprocess_page(&$vars) {
   if (drupal_is_front_page()) {
     $vars['header_classes'] .= ' transparent dark-text light-bg';
   }
-  if (arg(0) == 'node' && is_numeric(arg(1)) && !arg(2)) {
-    $vars['header_classes'] .= ' alt standard';
-  }
 }
 
 /**
@@ -61,4 +61,15 @@ function nas_css_alter(&$css) {
   unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
   unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
   unset($css[drupal_get_path('module', 'colorbox') . '/styles/plain/colorbox_style.css']);
+}
+
+/**
+ * Implements hook_preprocess_site_template_small_header().
+ */
+function nas_preprocess_site_template_small_header(&$vars) {
+  $vars['footer_logo'] = theme('image', array(
+      'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
+      'attributes' => array('class' => 'footer-logo'),
+    )
+  );
 }

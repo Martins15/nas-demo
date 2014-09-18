@@ -10,7 +10,7 @@
     <div class="row">
       <div class="column">
         <h2 class="guide-bar-title"><span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds</h2>
-        <div class="guide-bar-attribution"><span class="preamble">Brought to you by</span> <img class="canon-logo" src="../../../img/canon-logo.png"></div>
+        <div class="guide-bar-attribution"><span class="preamble">Brought to you by</span><img class="canon-logo" src="<?php print base_path() . path_to_theme() . '/img/canon-logo.png'; ?>"></div>
       </div>
     </div>
   </div>

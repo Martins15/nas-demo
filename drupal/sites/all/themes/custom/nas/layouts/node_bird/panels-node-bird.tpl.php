@@ -5,6 +5,59 @@
  * Template implementation to display the panel's layout.
  */
 ?>
+<?php print $content['header']; ?>
+  <div class="guide-bar">
+    <div class="row">
+      <div class="column">
+        <h2 class="guide-bar-title"><span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds</h2>
+        <a class="guide-bar-search toggle-bird-guide-search" href="#"><i class="icon-binoculars white"></i><i class="icon-binoculars black"></i> Find a Bird</a>
+        <div class="guide-bar-attribution"><span class="preamble">Brought to you by</span><img class="canon-logo" src="<?php print base_path() . path_to_theme() . '/img/canon-logo.png'; ?>"></div>
+      </div>
+    </div>
+  </div>
+  <div class="bird-guide-search">
+    <div class="row">
+      <div class="columns large-9 bird-guide-search-form">
+        <form>
+          <div class="bird-guide-search-input">
+            <input type="search" placeholder="Search for a bird in the guide..." class="bird-guide-search-input radius">
+          </div>
+          <button class="bird-guide-search-submit button pea-green"><span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">Search</span></button>
+
+          <div class="row">
+            <div class="columns medium-4">
+              <select name="" id="">
+                <option value="">Type of Bird</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+            </div>
+            <div class="columns medium-4">
+              <select name="" id="">
+                <option value="">Taxonomic Family</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+            </div>
+            <div class="columns medium-4">
+              <select name="" id="">
+                <option value="">Region</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="columns large-3 interactive-guide">
+        <p class="preamble">
+          <span class="small">Saw a bird?</span> <span class="large">Identify it.</span>
+        </p>
+        <a href="#" class="interactive-guide-button button blue">Our <span class="hide-for-small hide-for-tiny">Interactive </span>Guide</a>
+      </div>
+    </div>
+  </div>
+</header>
 <section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content no-padding">
   <div class="bird-guide-container hero large">
     <div class="bird-guide-image">
@@ -27,6 +80,18 @@
       </div>
       <div class="large-4 columns">
         <?php print $content['in_action_right']; ?>
+        <div class="engagement-card">
+          <div class="engagement-card-content no-min-height">
+            <h3 class="engagement-card-headline">Adopt a Bird</h3>
+            <p>Give the gift of Audubon support! Online adoptions allow you and your loved ones  help protect birds and their habitats.</p>
+            <div class="engagement-card-cta">
+              <a href="#" class="button tomato large">Adopt a Bird</a>
+            </div>
+          </div>
+          <div class="engagement-card-photo hide-for-medium">
+            <img src="<?php print base_path() . path_to_theme() . '/img/engagement-card-1.jpg'; ?>" alt="">
+          </div>
+        </div>
       </div>
       <div class="columns hide-for-medium hide-for-large hide-for-xlarge">
         <br>
@@ -34,4 +99,119 @@
       </div>
     </div>
   </div>
-</section>
+  <div id="in-the-news">
+    <?php print $content['in_the_news']; ?>
+  </div>
+  <div id="across-audubon">
+    <div class="row section-header">
+      <div class="columns">
+        <h2 class="thin">Brown Thrasher Across Audubon</h2>
+      </div>
+      <div class="columns">
+        <ul class="section-nav inline-list hide-for-small hide-for-tiny">
+          <li><a href="#">More Conservation Projects »</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row space-bottom">
+      <div class="large-4 columns">
+        <div class="editorial-card collapse-minimal">
+          <div class="editorial-card-photo">
+            <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-9.jpg'; ?>" alt=""></a>
+          </div>
+          <div class="editorial-card-content">
+            <a href="#" class="editorial-card-slug">Working Lands</a>
+            <h3 class="editorial-card-title"><a href="#">Improving Midwestern Ranch Lands</a></h3>
+            <p>Along with the title, we should include a short description of the project.</p>
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <div class="editorial-card collapse-minimal">
+          <div class="editorial-card-photo">
+            <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-8.jpg'; ?>" alt=""></a>
+          </div>
+          <div class="editorial-card-content">
+            <a href="#" class="editorial-card-slug">Citizen Science</a>
+            <h3 class="editorial-card-title"><a href="#">Colorado’s Adobe Creek Reservoir</a></h3>
+            <p>This IBA home to populations of migrating Brown Thrashers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="large-4 columns">
+        <div class="editorial-card collapse-minimal">
+          <div class="editorial-card-photo">
+            <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-9.jpg'; ?>" alt=""></a>
+          </div>
+          <div class="editorial-card-content">
+            <a href="#" class="editorial-card-slug">Working Lands</a>
+            <h3 class="editorial-card-title"><a href="#">Improving Midwestern Ranch Lands</a></h3>
+            <p>Along with the title, we should include a short description of the project.</p>
+          </div>
+        </div>
+      </div>
+      <ul class="section-nav inline-list hide-for-medium hide-for-large hide-for-xlarge">
+        <li><a href="#">More Conservation Projects »</a></li>
+      </ul>
+    </div>
+  </div>
+  </section>
+  <section class="card-set bg-1">
+    <div class="row">
+      <div class="column">
+        <h1 class="card-set-heading pea-green">These birds need your help</h1>
+      </div>
+    </div>
+    <div class="row card-set-wrapper">
+      <div class="clearfix card-set-scroller">
+        <div class="tiny-4 columns">
+          <div class="engagement-card">
+            <div class="engagement-card-content">
+              <h3 class="engagement-card-headline">Save the Brown Pelican</h3>
+              <p>Numerous oil spills along the Gulf Coast have threatened thousands of native birds.</p>
+              <div class="engagement-card-cta">
+                <a href="#" class="button tomato large">Endorse New Legislation</a>
+              </div>
+            </div>
+            <div class="engagement-card-photo">
+              <img src="<?php print base_path() . path_to_theme() . '/img/engagement-card-1.jpg'; ?>" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="tiny-4 columns">
+          <div class="engagement-card">
+            <div class="engagement-card-content">
+              <h3 class="engagement-card-headline">Join Audubon’s Volunteers Days</h3>
+              <p>Learn how you can make a real, lasting difference in your own community.</p>
+              <div class="engagement-card-cta">
+                <a href="#" class="button tomato large">Become a Volunteer</a>
+              </div>
+            </div>
+            <div class="engagement-card-photo">
+              <img src="<?php print base_path() . path_to_theme() . '/img/engagement-card-2.jpg'; ?>" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="tiny-4 columns">
+          <div class="engagement-card">
+            <div class="engagement-card-content">
+              <h3 class="engagement-card-headline">Adopt a Bird: Sandhill Crane</h3>
+              <p>Online adoptions allow you to help Audubon protect birds and their habitats.</p>
+              <div class="engagement-card-cta">
+                <a href="#" class="button tomato large">Adopt a Bird</a>
+              </div>
+            </div>
+            <div class="engagement-card-photo">
+              <img src="<?php print base_path() . path_to_theme() . '/img/engagement-card-3.jpg'; ?>" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-set-dots light">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>

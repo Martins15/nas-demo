@@ -5,40 +5,38 @@
  */
 ?>
 
-<body>
-  <header class="global-header alt standard">
-    <?php print $content['header']; ?>
-    <?php print $content['main']; ?>
-  
-<div class="row">
-  <div class="card-set-social social-sharing">
-    <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
-    <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
-    <a class="social-sharing-icon white" href="#"><i class="icon-facebook"></i></a>
-    <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
+<header class="global-header alt standard">
+  <?php print $content['header']; ?>
+  <?php print $content['main']; ?>
+
+  <div class="row">
+    <div class="card-set-social social-sharing">
+      <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
+      <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
+      <a class="social-sharing-icon white" href="#"><i class="icon-facebook"></i></a>
+      <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
+    </div>
   </div>
-</div>
 </section>
-  </section>
-  <aside class="mailing-list">
-<div class="row">
-  <div class="column">
-    <div class="mailing-list-text">
-      <h2 class="mailing-list-headline">Stay abreast of Audubon</h2>
-      <p class="mailing-list-caption"><em>Our email newsletter shares the latest programs and initiatives.</em></p>
-    </div><form class="mailing-list-form">
-      <input class="mailing-list-input radius" placeholder="Enter your email address" type="text">
-      <input class="button tomato large" type="submit" value="Sign Up">
-    </form>
+<aside class="mailing-list">
+  <div class="row">
+    <div class="column">
+      <div class="mailing-list-text">
+        <h2 class="mailing-list-headline">Stay abreast of Audubon</h2>
+        <p class="mailing-list-caption"><em>Our email newsletter shares the latest programs and initiatives.</em></p>
+      </div><form class="mailing-list-form">
+        <input class="mailing-list-input radius" placeholder="Enter your email address" type="text">
+        <input class="button tomato large" type="submit" value="Sign Up">
+      </form>
+    </div>
   </div>
-</div>
 </aside>
   <footer class="global-footer">
     <?php print $content['footer']; ?>
     <section class="footer-site-map">
     <div class="row">
       <div class="medium-12 large-3 columns">
-        <img class="footer-logo" src="../../../img/footer-logo.png" alt="">
+        <?php print $footer_logo; ?>
         <h5>National Audubon Society</h5>
         <p>Our mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife,  and their habitats for the benefit of humanity and the earth’s biological diversity.</p>
       </div>

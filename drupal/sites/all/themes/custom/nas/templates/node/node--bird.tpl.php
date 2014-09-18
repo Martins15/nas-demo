@@ -145,7 +145,6 @@
             </section>
           </div>
           <div class="large-4 columns">
-            <!-- TO DO: Add fields and replace markup -->
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
               <p>
                 <?php if (isset($bird_illustration_author)): ?>
@@ -159,16 +158,20 @@
             </section>
             <div id="bird-cta">
               <section class="social-sharing bird-guide-section right-col small center">
-                <span class="social-sharing-caption small">Share this bird</span>
-                <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
+                <span class="social-sharing-caption small"><?php print t('Share this bird'); ?></span>
+                <a class="social-sharing-icon blue small" target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>"><i class="icon-twitter"></i></a>&nbsp;
+                <a class="social-sharing-icon blue small" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>"><i class="icon-facebook"></i></a>&nbsp;
+                <a class="social-sharing-icon blue small" target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>"><i class="icon-pinterest"></i></a>&nbsp;
+                <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
               <section class="bird-guide-section right-col small center">
-                <a href="#" class="button large">Help the Brown Thrasher</a>
+                <a href="#" class="button large"><?php print t('Help the') . '&nbsp;' . $title; ?></a>
               </section>
-            <!-- END TO DO. -->
-            </div><section id="bird-dyk" class="bird-guide-section right-col small sans">
+            </div>
+            <section id="bird-dyk" class="bird-guide-section right-col small sans">
               <?php print render($content['field_bird_tip']); ?>
-            </section><section id="bird-map" class="bird-guide-section right-col">
+            </section>
+            <section id="bird-map" class="bird-guide-section right-col">
               <?php print render($content['field_bird_rangemap']); ?>
             </section>
           </div>

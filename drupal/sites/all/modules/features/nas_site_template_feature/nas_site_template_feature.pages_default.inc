@@ -39,8 +39,19 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'context' => 'argument_string_1',
           'not' => FALSE,
         ),
+        1 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'bird' => 'bird',
+              'news' => 'news',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
       ),
-      'logic' => 'and',
+      'logic' => 'or',
     ),
   );
   $display = new panels_display();

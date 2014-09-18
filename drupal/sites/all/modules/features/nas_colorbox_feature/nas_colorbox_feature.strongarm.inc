@@ -35,28 +35,28 @@ function nas_colorbox_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_custom_settings_activate';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['colorbox_custom_settings_activate'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_fixed';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['colorbox_fixed'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_initialheight';
-  $strongarm->value = '250';
+  $strongarm->value = '90%';
   $export['colorbox_initialheight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_initialwidth';
-  $strongarm->value = '300';
+  $strongarm->value = '80%';
   $export['colorbox_initialwidth'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -77,14 +77,14 @@ function nas_colorbox_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_maxheight';
-  $strongarm->value = '98%';
+  $strongarm->value = '90%';
   $export['colorbox_maxheight'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_maxwidth';
-  $strongarm->value = '98%';
+  $strongarm->value = '80%';
   $export['colorbox_maxwidth'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -163,7 +163,7 @@ system/ajax/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_style';
-  $strongarm->value = 'plain';
+  $strongarm->value = 'none';
   $export['colorbox_style'] = $strongarm;
 
   $strongarm = new stdClass();
