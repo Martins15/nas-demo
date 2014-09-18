@@ -1,8 +1,8 @@
 <?php
-  /**
-   * @file
-   * Tempalte for header with single menu.
-   */
+/**
+ * @file
+ * Tempalte for header with single menu.
+ */
 ?>
 <div class="row">
   <div class="columns">
