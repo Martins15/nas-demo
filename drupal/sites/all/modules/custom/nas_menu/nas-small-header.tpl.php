@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Tempalte for header with single menu.
+ * Template for header with single menu.
  *
  * Available variables:
  * - $frontpage_url: URL of the frontpage.
