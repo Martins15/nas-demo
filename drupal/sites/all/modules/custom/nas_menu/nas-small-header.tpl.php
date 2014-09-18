@@ -2,11 +2,45 @@
 /**
  * @file
  * Tempalte for header with single menu.
+ *
+ * Available variables:
+ * - $frontpage_url: URL of the frontpage.
+ * - $site_name: Site name variable,
+ * - $items: menu items. Example
+ *  $items = array(
+ *    array(
+ *      'li_class' => 'orange',
+ *      'a_class' => 'nav',
+ *      'url' => '/donate'
+ *      'title' => 'Donate',
+ *      '#below' => array(),
+ *    ),
+ *    array(
+ *      'li_class' => '',
+ *      'a_class' => 'nav',
+ *      'url' => '/birds'
+ *      'title' => 'Birds',
+ *      '#below' => array(
+ *        array(
+ *          'li_class' => '',
+ *          'a_class' => 'nav',
+ *          'url' => '/birds/birds-guide'
+ *          'title' => 'Birds Guide',
+ *        ),
+ *        array(
+ *          'li_class' => '',
+ *          'a_class' => 'nav',
+ *          'url' => '/birds/featured-events'
+ *          'title' => 'Featured Events',
+ *        ),
+ *      ),
+ *    ),
+ * );
  */
 ?>
 <div class="row">
   <div class="columns">
-    <a href="<?php print $frontpage_url; ?>" class="current-parent wordmark"><?php print site_name; ?></a>
+    <a href="<?php print $frontpage_url; ?>" class="current-parent wordmark"><?php print $site_name; ?></a>
     <!-- Only visible on small and medium screens -->
     <a href="#" class="icon-menu header-btn header-btn-menu"></a>
     <!-- / -->
