@@ -57,6 +57,100 @@ function nas_bird_type_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'file-image-field_file_caption'
+  $field_instances['file-image-field_file_caption'] = array(
+    'bundle' => 'image',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'file',
+    'field_name' => 'field_file_caption',
+    'label' => 'Caption',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+      'wysiwyg_override' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 4,
+      ),
+      'type' => 'text_textarea',
+      'weight' => -2,
+    ),
+  );
+
+  // Exported field_instance: 'file-image-field_file_credit'
+  $field_instances['file-image-field_file_credit'] = array(
+    'bundle' => 'image',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+      'preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'file',
+    'field_name' => 'field_file_credit',
+    'label' => 'Credit',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+      'wysiwyg_override' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 4,
+      ),
+      'type' => 'text_textarea',
+      'weight' => -1,
+    ),
+  );
+
   // Exported field_instance: 'file-image-field_file_image_alt_text'
   $field_instances['file-image-field_file_image_alt_text'] = array(
     'bundle' => 'image',
@@ -1428,7 +1522,9 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Bird Size');
   t('Bird Wing Shape');
   t('Body');
+  t('Caption');
   t('Conservation Status');
+  t('Credit');
   t('Description');
   t('Did You Know?');
   t('Family');

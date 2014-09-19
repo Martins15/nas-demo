@@ -232,7 +232,8 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
     if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
       $file_entity = file_load($file->fid);
       $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
-      $file_entity->field_file_image_title_text[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
+      // Save Title to a new field Credit.
+      $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
       file_save($file_entity);
     }
   }

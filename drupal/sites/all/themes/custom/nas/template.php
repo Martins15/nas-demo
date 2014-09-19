@@ -33,8 +33,12 @@ function nas_preprocess_node(&$vars) {
     // Get author of illustration.
     $get_field_bird_illustration_author = field_get_items('node', $vars['node'], 'field_bird_illustration');
     if (!empty($get_field_bird_illustration_author)) {
-      $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_image_alt_text');
-      $vars['bird_illustration_author'] = $bird_illustration_author[0]['#markup'];
+      $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_credit');
+      $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
+    }
+    else {
+      // We need the text until fields are not yet filled.
+      $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
     }
     // Add static link.
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
