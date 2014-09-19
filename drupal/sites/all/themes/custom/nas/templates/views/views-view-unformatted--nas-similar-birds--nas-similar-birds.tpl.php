@@ -21,19 +21,10 @@
     </div>
   </div>
   <div class="row bird-card-container">
-    <div class="bird-card-scroller">
+    <div class="owl-carousel">
     <?php foreach ($rows as $id => $row): ?>
-      <div class="columns tiny-3">
-        <figure class="bird-card">
-          <?php print $row; ?>
-        </figure>
-      </div>
+      <?php print $row; ?>
     <?php endforeach; ?>
-    </div>
-  </div>
-  <div class="row indicator space-bottom">
-    <div class="column">
-      <p><i class="indicator-left icon-arrow-left disabled"></i>&nbsp;&nbsp;&nbsp;<i class="indicator-right icon-arrow-right"></i></p>
     </div>
   </div>
 </div>

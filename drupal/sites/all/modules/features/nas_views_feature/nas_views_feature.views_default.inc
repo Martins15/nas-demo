@@ -177,7 +177,8 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Entity Reference: Referenced Entity */
@@ -191,6 +192,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
   $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_related_bird_target_id';
   $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_illustration']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_class'] = 'bird-card-illustration';
@@ -222,23 +224,16 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_bird_sci_name']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_bird_sci_name']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_bird_sci_name']['type'] = 'text_plain';
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figcaption class="bird-card-caption">
-<h4 class="common-name">[title]</h4>
-[field_bird_sci_name]
-</figcaption>';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Field: Content: Audio */
   $handler->display->display_options['fields']['field_bird_audio']['id'] = 'field_bird_audio';
   $handler->display->display_options['fields']['field_bird_audio']['table'] = 'field_data_field_bird_audio';
   $handler->display->display_options['fields']['field_bird_audio']['field'] = 'field_bird_audio';
   $handler->display->display_options['fields']['field_bird_audio']['relationship'] = 'field_related_bird_target_id';
   $handler->display->display_options['fields']['field_bird_audio']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_audio']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_bird_audio']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_audio']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_bird_audio']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_bird_audio']['type'] = 'soundmanager2_inline_player';
   $handler->display->display_options['fields']['field_bird_audio']['settings'] = array(
@@ -248,6 +243,26 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
+  /* Field: Output */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Output';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
+<div class="bird-card-illustration">
+<a href="/node/!1">[field_bird_illustration]</a>
+</div>
+<figcaption class="bird-card-caption">
+<h4 class="common-name">[title]</h4>
+[field_bird_sci_name]
+</figcaption>
+<div class="views-field-field-bird-audio">[field_bird_audio]</div>
+</figure>
+';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -286,9 +301,6 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['row_options']['inline'] = array(
-    'field_bird_illustration' => 'field_bird_illustration',
-  );
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
@@ -298,7 +310,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['allow']['link_to_view'] = 0;
   $handler->display->display_options['allow']['more_link'] = 0;
   $handler->display->display_options['allow']['path_override'] = 0;
-  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['title_override'] = 0;
   $handler->display->display_options['allow']['exposed_form'] = 0;
   $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
