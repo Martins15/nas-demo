@@ -38,6 +38,7 @@ function nas_news_feature_panelizer_defaults() {
       'left' => NULL,
       'middle' => NULL,
       'right' => NULL,
+      'header' => NULL,
     ),
   );
   $display->cache = array();
@@ -45,6 +46,77 @@ function nas_news_feature_panelizer_defaults() {
   $display->uuid = '7a89240a-c810-4c8b-8495-9723228b918b';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-6edbcb93-4777-4da8-af63-3077b51762c3';
+    $pane->panel = 'header';
+    $pane->type = 'page_breadcrumb';
+    $pane->subtype = 'page_breadcrumb';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6edbcb93-4777-4da8-af63-3077b51762c3';
+    $display->content['new-6edbcb93-4777-4da8-af63-3077b51762c3'] = $pane;
+    $display->panels['header'][0] = 'new-6edbcb93-4777-4da8-af63-3077b51762c3';
+    $pane = new stdClass();
+    $pane->pid = 'new-1665422d-57b1-4209-a650-2233526bf66d';
+    $pane->panel = 'header';
+    $pane->type = 'node_title';
+    $pane->subtype = 'node_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 1,
+      'markup' => 'h1',
+      'id' => '',
+      'class' => '',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '1665422d-57b1-4209-a650-2233526bf66d';
+    $display->content['new-1665422d-57b1-4209-a650-2233526bf66d'] = $pane;
+    $display->panels['header'][1] = 'new-1665422d-57b1-4209-a650-2233526bf66d';
+    $pane = new stdClass();
+    $pane->pid = 'new-12cc9b54-4616-4db3-93a9-9a5f8d98f601';
+    $pane->panel = 'left';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<section class="clearfix article-sidebar-section social-sharing no-caption hide-for-tiny hide-for-small hide-for-medium"><a class="social-sharing-icon" href="#"><i class="icon-twitter"></i></a><a class="social-sharing-icon" href="#"><i class="icon-facebook"></i></a><a class="social-sharing-icon" href="#"><i class="icon-mail"></i></a></section><section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium"><small class="article-date">Published Mar 25, 2014</small></section><section class="medium-12 clearfix article-sidebar-section contact-info"><h5>Press Contacts</h5><p><strong>David J. Ringer</strong><br>Media Relations Director<br>Main Office</p><p>225 Varick Street<br>New York, NY 10014</p><p><a href="mailto:dringer@audubon.org">dringer@audubon.org</a></p><p>(212) 979-3062</p></section>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '12cc9b54-4616-4db3-93a9-9a5f8d98f601';
+    $display->content['new-12cc9b54-4616-4db3-93a9-9a5f8d98f601'] = $pane;
+    $display->panels['left'][0] = 'new-12cc9b54-4616-4db3-93a9-9a5f8d98f601';
     $pane = new stdClass();
     $pane->pid = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
     $pane->panel = 'middle';
@@ -64,6 +136,7 @@ function nas_news_feature_panelizer_defaults() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'default',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -72,7 +145,44 @@ function nas_news_feature_panelizer_defaults() {
     $pane->uuid = '76711ab8-f681-4c6c-94f3-17f98f65045c';
     $display->content['new-76711ab8-f681-4c6c-94f3-17f98f65045c'] = $pane;
     $display->panels['middle'][0] = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
-  $display->hide_title = PANELS_TITLE_FIXED;
+    $pane = new stdClass();
+    $pane->pid = 'new-a3736529-9262-4ce6-8f12-65ac64a0a20e';
+    $pane->panel = 'right';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '<aside class="medium-12 article-aside small reflow reflow-into-sidebar-bottom" data-reflow-class="full-width">
+              <div class="other-releases story-list small">
+                <h5>Other Releases</h5>
+                <ul>
+                  <li><a href="#">Large Oil Spill in Galveston Bay Threatens Tens of Thousands of Birds</a></li>
+                  <li><a href="#">Audubon Statement on EPA Proposed "Waters of the United States" Rule</a></li>
+                  <li><a href="#">Former Republican Congressman and Silver Lake Partner Join Audubon Society Board As David B. Ford Named Chairman</a></li>
+                  <li><a href="#"> Audubon Chicago Region Welcomes Dynamic New Leadership</a></li>
+                  <li><a href="#">Audubon Gala Honors Leading Conservationists with Top Environmental Awards</a></li>
+                  <li class="more"><a href="#">View all press releases »</a></li>
+                </ul>
+              </div>
+            </aside>',
+      'format' => 'full_html',
+      'substitute' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a3736529-9262-4ce6-8f12-65ac64a0a20e';
+    $display->content['new-a3736529-9262-4ce6-8f12-65ac64a0a20e'] = $pane;
+    $display->panels['right'][0] = 'new-a3736529-9262-4ce6-8f12-65ac64a0a20e';
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
   $panelizer->display = $display;
   $export['node:news:default'] = $panelizer;
