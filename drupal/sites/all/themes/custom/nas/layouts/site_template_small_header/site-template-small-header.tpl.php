@@ -7,6 +7,8 @@
 
 <header class="global-header alt standard">
   <?php print $content['header']; ?>
+</header>
+<section class="global-content">
   <?php print $content['main']; ?>
 
   <div class="row">
