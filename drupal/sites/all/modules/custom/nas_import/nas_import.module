@@ -14,6 +14,8 @@ define('NAS_OLD_D6_VID_CATEGORY', 81);
 define('NAS_OLD_D6_VID_SIZE', 111);
 define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
 define('NAS_OLD_D6_VID_WING_SHAPE', 116);
+define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
+define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 
 /**
  * Implements hook_ctools_plugin_api().
@@ -188,6 +190,9 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
       }
     }
   }
+  // Add default images for empty fields.
+  $entity->field_bird_illustration[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ILLUSTRATION);
+  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_BACK_COVER);
 }
 
 /**
@@ -353,4 +358,34 @@ function nas_import_import_content_form_submit($form, &$form_state) {
     pp_import_nodes();
   }
   return $form;
+}
+
+/**
+ * Load default image by URI, or save from module's folder if not exist.
+ */
+function nas_import_get_default_image($filename) {
+  $default_uri = drupal_get_path('module', 'nas_import') . '/images/' . $filename;
+  $public_uri = 'public://' . $filename;
+
+  $files = file_load_multiple(array(), array('uri' => $public_uri));
+  $file = reset($files);
+
+  if (!$file) {
+    $filepath = file_unmanaged_copy($default_uri, NULL, FILE_EXISTS_REPLACE);
+    $file = (object) array(
+      'filename' => basename($filepath),
+      'filepath' => $filepath,
+      'filemime' => file_get_mimetype($filepath),
+      'filesize' => filesize($filepath),
+      'uid' => 1,
+      'status' => FILE_STATUS_PERMANENT,
+      'timestamp' => REQUEST_TIME,
+      'uri' => $filepath,
+      'type' => 'image',
+    );
+    drupal_write_record('file_managed', $file);
+    $files = file_load_multiple(array(), array('uri' => $public_uri));
+    $file = reset($files);
+  }
+  return $file->fid;
 }

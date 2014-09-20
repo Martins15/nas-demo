@@ -40,7 +40,9 @@ function nas_preprocess_node(&$vars) {
     $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
     if (!empty($get_field_bird_illustration_author)) {
       $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_credit');
-      $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
+      if (isset($bird_illustration_author[0])) {
+        $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
+      }
     }
     // Add static link.
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
