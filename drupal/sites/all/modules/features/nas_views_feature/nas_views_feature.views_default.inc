@@ -243,6 +243,14 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   /* Field: Output */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -251,7 +259,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
 <div class="bird-card-illustration">
-<a href="/node/!1">[field_bird_illustration]</a>
+<a href="[path]">[field_bird_illustration]</a>
 </div>
 <figcaption class="bird-card-caption">
 <h4 class="common-name">[title]</h4>

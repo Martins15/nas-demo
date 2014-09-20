@@ -28,17 +28,19 @@ function nas_html_head_alter(&$head_elements) {
 function nas_preprocess_node(&$vars) {
   global $base_url;
   if ($vars['type'] == 'bird') {
+    drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
+      'group' => JS_THEME,
+      'every_page' => FALSE,
+    ));
     $get_field_bird_priority = field_get_items('node', $vars['node'], 'field_bird_priority');
     $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
     // Get author of illustration.
     $get_field_bird_illustration_author = field_get_items('node', $vars['node'], 'field_bird_illustration');
+    // We need the text until fields are not yet filled.
+    $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
     if (!empty($get_field_bird_illustration_author)) {
       $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_credit');
       $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
-    }
-    else {
-      // We need the text until fields are not yet filled.
-      $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
     }
     // Add static link.
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');

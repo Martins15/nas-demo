@@ -47,9 +47,6 @@ scripts[] = js/mute/bird-guide-grid.js
 scripts[] = js/mute/flyway-minimap.js
 scripts[] = js/mute/flyway-slides.js
 
-;; Vendor
-scripts[] = js/vendor/owl-carousel/owl.carousel.min.js
-
 ;; NAS
 scripts[] = js/nas/owl-settings.js
 
