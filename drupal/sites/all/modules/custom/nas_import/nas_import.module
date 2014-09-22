@@ -370,7 +370,10 @@ function nas_import_get_default_image($filename) {
   $files = file_load_multiple(array(), array('uri' => $public_uri));
   $file = reset($files);
 
-  if (!$file) {
+  if ($file) {
+    return $file->fid;
+  }
+  else {
     $filepath = file_unmanaged_copy($default_uri, NULL, FILE_EXISTS_REPLACE);
     $file = (object) array(
       'filename' => basename($filepath),
@@ -386,6 +389,7 @@ function nas_import_get_default_image($filename) {
     drupal_write_record('file_managed', $file);
     $files = file_load_multiple(array(), array('uri' => $public_uri));
     $file = reset($files);
+
+    return $file->fid;
   }
-  return $file->fid;
 }
