@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * define ctools content type.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_footer_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_footer_theme() {
+  return array(
+      'nas_footer_menu' => array(
+          'arguments' => array('menu_tree' => NULL),
+          'template' => 'templates/nas-footer-menu',
+      ),
+      'nas_footer_copyright_menu' => array(
+          'arguments' => array('menu_tree' => NULL),
+          'template' => 'templates/nas-footer-copyright-menu',
+      ),
+      'nas_footer' => array(
+          'arguments' => array(
+              'logo' => NULL,
+              'mission_title' => NULL,
+              'mission' => NULL,
+              'copyright' => NULL,
+              'footer_menu' => NULL,
+              'footer_copyright_menu' => NULL,
+          ),
+          'template' => 'templates/nas-footer',
+      ),
+  );
+}

@@ -4,3 +4,9 @@
  * @file
  * For hook_update_X functions.
  */
+
+function nas_master_install() {
+  $source = DRUPAL_ROOT . '/sites/all/themes/custom/nas/img/footer-logo.png';
+  $destination = 'public://footer-logo.png';
+  file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
+}

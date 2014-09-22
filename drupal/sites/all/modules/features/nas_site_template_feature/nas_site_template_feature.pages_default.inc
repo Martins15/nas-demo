@@ -73,6 +73,32 @@ function nas_site_template_feature_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_footer_pane';
+    $pane->subtype = 'nas_footer_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'National Audubon Society',
+      'mission' => 'Our mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth’s biological diversity.',
+      'copyright' => 'National Audubon Society',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'logo_path' => 'public://footer-logo.png',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '651ca440-8d50-4a19-9d92-9a64bdce62dc';
+    $display->content['new-651ca440-8d50-4a19-9d92-9a64bdce62dc'] = $pane;
+    $display->panels['footer'][0] = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
+    $pane = new stdClass();
     $pane->pid = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane->panel = 'header';
     $pane->type = 'nas_menu_header_small';
