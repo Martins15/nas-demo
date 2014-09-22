@@ -11230,3 +11230,20 @@ body.touch .sticky-wrapper {
 .bird-card-set .views-field-field-bird-audio .sm2_link .icon-sound-full {
   font-size: 15px;
 }
+.bird-card-set .owl-carousel .owl-wrapper-outer {
+  padding-top: 5px;
+}
+.bird-card-set .owl-carousel .owl-controls {
+  text-align: center;
+  color: #888;
+}
+.bird-card-set .owl-carousel .owl-controls .disabled i {
+  opacity: 0.4;
+}
+.bird-card-set .owl-carousel .owl-controls .owl-prev, .bird-card-set .owl-carousel .owl-controls .owl-next {
+  display: inline;
+  margin: 0 5px;
+}
+.bird-card-set .owl-carousel .owl-item {
+  padding: 0 12.5px;
+}

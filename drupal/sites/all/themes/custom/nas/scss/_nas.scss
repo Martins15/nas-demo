@@ -24,4 +24,28 @@
       }
     }
   }
+
+  .owl-carousel {
+    .owl-wrapper-outer {
+      padding-top: 5px;
+    }
+
+    .owl-controls {
+      text-align: center;
+      color: #888;
+
+      .disabled i {
+        opacity: 0.4;
+      }
+
+      .owl-prev, .owl-next {
+        display: inline;
+        margin: 0 5px;
+      }
+    }
+
+    .owl-item {
+      padding: 0 12.5px;
+    }
+  }
 }
