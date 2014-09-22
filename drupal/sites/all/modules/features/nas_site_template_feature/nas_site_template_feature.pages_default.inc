@@ -82,9 +82,10 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $pane->configuration = array(
       'title' => 'National Audubon Society',
       'mission' => 'Our mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth’s biological diversity.',
-      'copyright' => 'Copyright © 2014 National Audubon Society, Inc.',
+      'copyright' => 'National Audubon Society',
       'override_title' => 0,
       'override_title_text' => '',
+      'logo_path' => 'public://footer-logo.png',
     );
     $pane->cache = array();
     $pane->style = array(

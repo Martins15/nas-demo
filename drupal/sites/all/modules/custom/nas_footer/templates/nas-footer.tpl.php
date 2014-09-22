@@ -8,7 +8,9 @@
 <section class="footer-site-map">
   <div class="row">
     <div class="medium-12 large-3 columns">
-      <img class="footer-logo" src="/sites/all/themes/custom/nas/img/footer-logo.png" alt="">
+      <?php if($logo) : ?>
+        <?php print $logo; ?>
+      <?php endif; ?>
       <h5><?php print $mission_title; ?></h5>
       <p><?php print $mission; ?></p>
     </div>

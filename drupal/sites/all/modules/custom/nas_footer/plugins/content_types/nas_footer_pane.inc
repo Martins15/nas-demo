@@ -17,6 +17,7 @@ $plugin = array(
     'render callback' => 'nas_footer_pane_custom_pane_render',
     'admin info' => 'nas_footer_pane_custom_pane_admin_info',
     'defaults' => array(
+        'logo_path' => 'public://footer-logo.png',
         'title' => '',
         'mission' => '',
         'copyright' => '',
@@ -29,6 +30,13 @@ $plugin = array(
  */
 function nas_footer_pane_custom_pane_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
+
+  $form['logo_path'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Path to logo'),
+      //'#description' => t('Text to display, it may use substitution strings'),
+      '#default_value' => $conf['logo_path'],
+  );
 
   $form['title'] = array(
       '#type' => 'textfield',
@@ -78,6 +86,13 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $title = '';
   $mission = '';
   $copyright = '';
+
+  $logo = '';
+  $logo_path = filter_xss($conf['logo_path']);
+  if ($logo_path) {
+    $logo = theme_image(array('path' => file_create_url($logo_path), 'alt' => '', 'attributes' => array('class' => array('footer-logo'))));
+  }
+
   // Update the strings to allow contexts.
   if (!empty($contexts)) {
     $title = ctools_context_keyword_substitute(filter_xss($conf['title']), array(), $contexts);
@@ -91,6 +106,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   $t_vars = array(
+      'logo' => $logo,
       'mission_title' => $title,
       'mission' => $mission,
       'copyright' => $copyright,

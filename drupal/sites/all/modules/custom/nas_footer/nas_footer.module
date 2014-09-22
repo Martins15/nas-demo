@@ -29,6 +29,7 @@ function nas_footer_theme() {
       ),
       'nas_footer' => array(
           'arguments' => array(
+              'logo' => NULL,
               'mission_title' => NULL,
               'mission' => NULL,
               'copyright' => NULL,
