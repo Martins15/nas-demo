@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * define ctools content type.
+ */
+
 define('NAS_MENU_FOOTER_MENU', 'menu-footer');
 define('NAS_MENU_FOOTER_COPYRIGHT_MENU', 'menu-footer-copyright');
 
@@ -75,9 +80,9 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $copyright = '';
   // Update the strings to allow contexts.
   if (!empty($contexts)) {
-    $title = ctools_context_keyword_substitute($conf['title'], array(), $contexts);
-    $mission = ctools_context_keyword_substitute($conf['mission'], array(), $contexts);
-    $copyright = ctools_context_keyword_substitute($conf['copyright'], array(), $contexts);
+    $title = ctools_context_keyword_substitute(filter_xss($conf['title']), array(), $contexts);
+    $mission = ctools_context_keyword_substitute(filter_xss($conf['mission']), array(), $contexts);
+    $copyright = ctools_context_keyword_substitute(filter_xss($conf['copyright']), array(), $contexts);
   }
 
   $footer_copyright_menu = theme('nas_footer_copyright_menu', array('menu_tree' => $footer_copyright_menu_tree));
@@ -92,10 +97,8 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
       'footer_menu' => $footer_menu,
       'footer_copyright_menu' => $footer_copyright_menu,
   );
-  
   $content = theme('nas_footer', $t_vars);
-  // initial content is blank
-  $block->title = t('Footer'); // This will be overridden by the user within the panel options.
+  $block->title = t('Footer');
   $block->content = $content;
 
   return $block;

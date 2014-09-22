@@ -1,3 +1,10 @@
+<?php
+/**
+ * @file
+ * Template for footer menu.
+ */
+?>
+
 <?php foreach ($menu_tree as $menu_item) : ?>
   <?php if ($menu_item['below']) : ?>
     <?php $item_attr = drupal_attributes(array('class' => $menu_item['link']['options']['attributes']['class'])); ?>

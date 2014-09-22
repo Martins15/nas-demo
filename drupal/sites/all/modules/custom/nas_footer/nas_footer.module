@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * define ctools content type.
+ */
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function nas_footer_ctools_plugin_directory($owner, $plugin_type) {
