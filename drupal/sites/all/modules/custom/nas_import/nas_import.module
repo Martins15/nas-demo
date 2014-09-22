@@ -373,23 +373,21 @@ function nas_import_get_default_image($filename) {
   if ($file) {
     return $file->fid;
   }
-  else {
-    $filepath = file_unmanaged_copy($default_uri, NULL, FILE_EXISTS_REPLACE);
-    $file = (object) array(
-      'filename' => basename($filepath),
-      'filepath' => $filepath,
-      'filemime' => file_get_mimetype($filepath),
-      'filesize' => filesize($filepath),
-      'uid' => 1,
-      'status' => FILE_STATUS_PERMANENT,
-      'timestamp' => REQUEST_TIME,
-      'uri' => $filepath,
-      'type' => 'image',
-    );
-    drupal_write_record('file_managed', $file);
-    $files = file_load_multiple(array(), array('uri' => $public_uri));
-    $file = reset($files);
+  $filepath = file_unmanaged_copy($default_uri, NULL, FILE_EXISTS_REPLACE);
+  $file = (object) array(
+    'filename' => basename($filepath),
+    'filepath' => $filepath,
+    'filemime' => file_get_mimetype($filepath),
+    'filesize' => filesize($filepath),
+    'uid' => 1,
+    'status' => FILE_STATUS_PERMANENT,
+    'timestamp' => REQUEST_TIME,
+    'uri' => $filepath,
+    'type' => 'image',
+  );
+  drupal_write_record('file_managed', $file);
+  $files = file_load_multiple(array(), array('uri' => $public_uri));
+  $file = reset($files);
 
-    return $file->fid;
-  }
+  return $file->fid;
 }
