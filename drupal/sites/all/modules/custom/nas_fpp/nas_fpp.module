@@ -52,6 +52,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Hero bird'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['hero_mobile'] = array(
+    'label' => t('Hero mobile'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**

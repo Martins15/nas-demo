@@ -87,25 +87,26 @@
 ?>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <div class="hero light-gradient">
+  <div class="hero <?php print $color_mode; ?>">
     <div class="hero-image">
-      <?php print render($content['field_hero_image']); ?>
-      <!-- TO DO: Add mobile image view mode. -->
-      <!-- <img src="../../img/hero-img-3-mobile.jpg" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
-      <img src="../../img/hero-img-3.jpg" alt="" class="hide-for-tiny hide-for-small"> -->
+      <?php print $hero_image; ?>
+      <?php print $hero_mobile; ?>
     </div>
     <div class="row">
       <div class="hero-header">
         <div class="column">
           <?php print $bird_priority_link; ?>
           <h2 class="hero-title"><?php print $title; ?></h2>
-          <div class="hero-text">
-            <p class="hero-paragraph"><?php print render($content['body']); ?> <br><?php print $learn_more_node_link; ?></p>
-            <?php print $hero_inline_links; ?>
-          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row hero-text-container"><div class="column"></div></div>
+  <div class="row hero-text-container">
+  <div class="column">
+    <div class="hero-text">
+      <p class="hero-paragraph"><?php print render($content['body']); ?> <br><?php print $learn_more_node_link; ?></p>
+      <?php print $hero_inline_links; ?>
+      </div>
+    </div>
+  </div>
 </div>

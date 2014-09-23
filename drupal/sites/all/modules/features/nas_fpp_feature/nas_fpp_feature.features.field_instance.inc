@@ -262,6 +262,41 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-nas_featured_content_cards-field_color_mode'
+  $field_instances['fieldable_panels_pane-nas_featured_content_cards-field_color_mode'] = array(
+    'bundle' => 'nas_featured_content_cards',
+    'default_value' => array(
+      0 => array(
+        'value' => 'dark',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_color_mode',
+    'label' => 'Color mode',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-nas_featured_content_cards-field_image'
   $field_instances['fieldable_panels_pane-nas_featured_content_cards-field_image'] = array(
     'bundle' => 'nas_featured_content_cards',
@@ -522,6 +557,7 @@ function nas_fpp_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Bird');
   t('Bottom links');
+  t('Color mode');
   t('Column count');
   t('Image');
   t('Similar Bird');

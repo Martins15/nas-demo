@@ -72,6 +72,35 @@ function nas_preprocess_node(&$vars) {
         ),
       ),
     ));
+    // Add hero image.
+    $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
+    $vars['hero_image'] = theme('image_style', array(
+      'style_name' => 'hero_image',
+      'path' => $get_field_hero_image[0]['file']->uri,
+      'attributes' => array(
+        'class' => array(
+          'hide-for-tiny',
+          'hide-for-small',
+        ),
+      ),
+    ));
+    $vars['hero_mobile'] = theme('image_style', array(
+      'style_name' => 'hero_mobile',
+      'path' => $get_field_hero_image[0]['file']->uri,
+      'attributes' => array(
+        'class' => array(
+          'hide-for-medium',
+          'hide-for-large',
+          'hide-for-xlarge',
+        ),
+      ),
+    ));
+    // Color mode.
+    $get_field_color_mode = field_get_items('node', $node, 'field_color_mode');
+    $vars['color_mode'] = 'light-gradient';
+    if ($get_field_color_mode[0]['value'] == 'dark') {
+      $vars['color_mode'] = 'light-text dark-gradient';
+    } 
   }
 }
 
@@ -140,6 +169,7 @@ function nas_preprocess_fieldable_panels_pane(&$vars) {
   if ($vars['elements']['#bundle'] == 'nas_featured_content_cards') {
     $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
     $vars['banner_image'] = file_create_url($get_field_image[0]['file']->uri);
+    // To Do: Add mobile images presets support.
     $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');
     $vars['banner_slug'] = l($get_field_link[0]['title'], $get_field_link[0]['url'], array('attributes' => array('class' => array('banner-slug'))));
     $vars['banner_title'] = $fpp->title;
@@ -158,6 +188,8 @@ function nas_preprocess_fieldable_panels_pane(&$vars) {
     ));
     $get_field_summary = field_get_items('fieldable_panels_pane', $fpp, 'field_summary');
     $vars['banner_summary'] = strip_tags($get_field_summary[0]['value']);
+    $get_field_color_mode = field_get_items('fieldable_panels_pane', $fpp, 'field_color_mode');
+    $vars['color_mode'] = $get_field_color_mode[0]['value'];
   }
   // Preprocess section for nas_fpp_bird_guide FPP.
   if ($vars['elements']['#bundle'] == 'nas_fpp_bird_guide') {

@@ -46,6 +46,7 @@ dependencies[] = fieldable_panels_panes
 ; Custom modules
 dependencies[] = nas_master
 dependencies[] = pp_wysiwyg
+dependencies[] = pp_crop
 
 ; Development
 dependencies[] = devel
