@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @file
  * Implementation of hook_install.
  *
  * @access public
@@ -13,8 +14,7 @@ function pp_crop_install() {
               ->condition('name', 'epsacrop', '=')
               ->execute()
               ->fetchField();
-
-// Make pp_crop module weight higher than epsacrop weight.
+  // Make pp_crop module weight higher than epsacrop weight.
   db_update('system')
     ->fields(array('weight' => $weight +1))
     ->condition('name', 'pp_crop', '=')

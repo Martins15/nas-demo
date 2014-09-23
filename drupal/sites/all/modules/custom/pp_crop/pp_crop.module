@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Image crop module.
+ */
+
+/**
  * Implements hook_permission().
  */
 function pp_crop_permission() {

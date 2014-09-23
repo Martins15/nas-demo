@@ -100,7 +100,7 @@ function nas_preprocess_node(&$vars) {
     $vars['color_mode'] = 'light-gradient';
     if ($get_field_color_mode[0]['value'] == 'dark') {
       $vars['color_mode'] = 'light-text dark-gradient';
-    } 
+    }
   }
 }
 
