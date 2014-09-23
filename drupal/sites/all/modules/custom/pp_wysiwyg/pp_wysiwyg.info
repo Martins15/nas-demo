@@ -1,0 +1,13 @@
+name = PP Wysiwyg
+description = Add wysiwyg and ckeditor.
+core = 7.x
+package = PP
+project = pp_wysiwyg
+
+dependencies[] = wysiwyg
+; Information added by Drupal.org packaging script on 2014-05-15
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "pp_wysiwyg"
+datestamp = "1400159858"
+
