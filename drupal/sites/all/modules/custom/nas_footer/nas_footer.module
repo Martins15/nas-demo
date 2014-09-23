@@ -53,7 +53,7 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
   $form['email'] = array(
       '#type' => 'textfield',
       '#attributes' => array(
-          'placeholder' => array('Enter your email address'),
+          'placeholder' => array(t('Enter your email address')),
           'class' => array('mailing-list-input', 'radius')
       ),
       '#nowrap' => TRUE,

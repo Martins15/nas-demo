@@ -89,7 +89,5 @@ function nas_form_element($variables) {
   if ($variables['element']['#nowrap']) {
     return $variables['element']['#children'];
   }
-  else {
-    theme_form_element($variables);
-  }
+  theme_form_element($variables);
 }

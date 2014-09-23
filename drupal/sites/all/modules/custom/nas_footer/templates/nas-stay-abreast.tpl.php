@@ -2,6 +2,11 @@
 /**
  * @file
  * Template for stay abreast footer section.
+ *
+ *  Variables:
+ * - $headline: The Headline string.
+ * - $caption: The caption string.
+ * - $form: The rendered form.
  */
 ?>
 <aside class="mailing-list">
