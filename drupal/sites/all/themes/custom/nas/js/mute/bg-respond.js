@@ -10,7 +10,7 @@ $(function() {
     }
     if(e.size == "medium" || e.size == "large") {
       size = "large";
-      $(".hero").append($(".hero-text"));
+      //$(".hero").append($(".hero-text"));
     }
 
     $(".bg-respond").each(function() {

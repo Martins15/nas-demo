@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Maintains an entity that appears as panel pane content.
+ */
+
+// Load nas_fpp.content.inc.
+module_load_include('inc', 'nas_fpp', 'nas_fpp.content');
+
+/**
+ * Implements hook_entity_info_alter()
+ */
+function nas_fpp_entity_info_alter(&$entity_info) {
+  $entity_info['fieldable_panels_pane']['bundles']['nas_editorial_cards'] = array(
+    'label' => t('Editorial cards'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_editorial_cards',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+  $entity_info['fieldable_panels_pane']['bundles']['nas_hero_bird'] = array(
+    'label' => t('Hero Bird'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_hero_bird',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+  $entity_info['fieldable_panels_pane']['bundles']['nas_featured_content_cards'] = array(
+    'label' => t('Featured content cards'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_featured_content_cards',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+  $entity_info['fieldable_panels_pane']['bundles']['nas_fpp_bird_guide'] = array(
+    'label' => t('The Audubon Bird Guide'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_fpp_bird_guide',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+  $entity_info['node']['view modes']['nas_node_view_mode_hero_bird'] = array(
+    'label' => t('Hero bird'),
+    'custom settings' => TRUE,
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_fpp_menu() {
+  $items = array();
+  $items['nas/fpp/content/add'] = array(
+    'title' => 'Add test FPP content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_fpp_test_content_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Callback form for nas/fpp/content/add page.
+ */
+function nas_fpp_test_content_form($form, &$form_state) {
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Submit form for nas/fpp/content/add page.
+ */
+function nas_fpp_test_content_form_submit($form, &$form_state) {
+  nas_fpp_add_test_content();
+  return $form;
+}
