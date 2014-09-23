@@ -38,5 +38,36 @@ function nas_footer_theme() {
           ),
           'template' => 'templates/nas-footer',
       ),
+      'nas_stay_abreast' => array(
+          'arguments' => array(
+              'headline' => NULL,
+              'caption' => NULL,
+              'form' => NULL,
+          ),
+          'template' => 'templates/nas-stay-abreast'
+      )
   );
+}
+
+function nas_footer_mail_subscription_form($form, &$form_state) {
+  $form['email'] = array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+          'placeholder' => array(t('Enter your email address')),
+          'class' => array('mailing-list-input', 'radius')
+      ),
+      '#size' => '',
+      '#id' => 'nas-mail-subscription-email'
+  );
+  $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Sign Up'),
+      '#attributes' => array(
+          'class' => array('button', 'tomato', 'large')
+      ),
+      '#id' => 'nas-mail-subscription-submit'
+  );
+  $form['#attributes']['class'] = array('mailing-list-form');
+
+  return $form;
 }
