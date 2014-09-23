@@ -86,7 +86,8 @@ function nas_preprocess_site_template_small_header(&$vars) {
  * Implements theme_form_element()
  */
 function nas_form_element($variables) {
-  if (isset($variables['element']['#nowrap']) && $variables['element']['#nowrap']) {
+  $no_wrap = array('nas-mail-subscription-email', 'nas-mail-subscription-submit');
+  if (isset($variables['element']['#id']) && in_array($variables['element']['#id'], $no_wrap)) {
     return $variables['element']['#children'];
   }
   return theme_form_element($variables);

@@ -56,8 +56,8 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
           'placeholder' => array(t('Enter your email address')),
           'class' => array('mailing-list-input', 'radius')
       ),
-      '#nowrap' => TRUE,
-      '#size' => ''
+      '#size' => '',
+      '#id' => 'nas-mail-subscription-email'
   );
   $form['submit'] = array(
       '#type' => 'submit',
@@ -65,7 +65,7 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
       '#attributes' => array(
           'class' => array('button', 'tomato', 'large')
       ),
-      '#nowrap' => TRUE
+      '#id' => 'nas-mail-subscription-submit'
   );
   $form['#attributes']['class'] = array('mailing-list-form');
 
