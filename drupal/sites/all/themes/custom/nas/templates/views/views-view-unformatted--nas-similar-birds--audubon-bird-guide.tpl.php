@@ -15,9 +15,7 @@
   <div class="columns">
     <ul class="section-nav inline-list">
       <li class="hide-for-small hide-for-tiny"><?php print l(t('Explore Our Bird Guide'), 'bird-guide'); ?></li>
-      <!-- (Design Change) First phase will not have a “Identify a Bird” section/link. -->
-      <!-- <li><?php //print l(t('Identify a Bird'), ''); ?></li> -->
-      <li><?php print l(t('Adopt a Bird'), '<front>',  array('attributes' => array('class' => array('cta')))); ?></li>
+      <li><?php print l(t('Adopt a Bird'), '<front>', array('attributes' => array('class' => array('cta')))); ?></li>
     </ul>
   </div>
 </div>

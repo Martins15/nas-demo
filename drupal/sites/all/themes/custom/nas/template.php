@@ -30,7 +30,7 @@ function nas_preprocess_node(&$vars) {
 
   $node = $vars['node'];
   // Tell Drupal that there is separate tpl.php files for view modes.
-  if(!empty($vars['view_mode'])) {
+  if (!empty($vars['view_mode'])) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
   }
 
@@ -65,9 +65,10 @@ function nas_preprocess_node(&$vars) {
         l(t('In the Bird Guide'), ''),
         l(t('More Priority Birds'), ''),
       ),
-      'attributes' => array('class' => array(
-        'hero-inline-list',
-        'inline-list'
+      'attributes' => array(
+        'class' => array(
+          'hero-inline-list',
+          'inline-list'
         ),
       ),
     ));
@@ -148,9 +149,10 @@ function nas_preprocess_fieldable_panels_pane(&$vars) {
     }
     $vars['banner_links'] = theme('item_list', array(
       'items' => $items,
-      'attributes' => array('class' => array(
-        'banner-links',
-        'inline-list'
+      'attributes' => array(
+        'class' => array(
+          'banner-links',
+          'inline-list'
         ),
       ),
     ));

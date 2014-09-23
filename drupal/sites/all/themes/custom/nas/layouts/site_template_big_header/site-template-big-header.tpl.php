@@ -114,7 +114,9 @@
       </div>
     </div>
   </div>
-  <?php //print $content['header']; ?>
+<?php 
+  //print $content['header'];
+?>
 </header>
 <?php print $content['main']; ?>
 <aside class="mailing-list">
