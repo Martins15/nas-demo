@@ -20,22 +20,7 @@
     </div>
   </div>
 </section>
-<aside class="mailing-list">
-  <div class="row">
-    <div class="column">
-      <div class="mailing-list-text">
-        <h2 class="mailing-list-headline">Stay abreast of Audubon</h2>
-        <p class="mailing-list-caption"><em>Our email newsletter shares the latest programs and initiatives.</em></p>
-      </div><form class="mailing-list-form">
-        <input class="mailing-list-input radius" placeholder="Enter your email address" type="text">
-        <input class="button tomato large" type="submit" value="Sign Up">
-      </form>
-    </div>
-  </div>
-</aside>
-<footer class="global-footer">
-  <?php print $content['footer']; ?>
-</footer>
+<?php print $content['footer']; ?>
 
   <!-- DEMO SCRIPT -->
   <script>

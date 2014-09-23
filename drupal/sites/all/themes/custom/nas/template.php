@@ -201,3 +201,14 @@ function nas_preprocess_fieldable_panels_pane(&$vars) {
     $vars['birds_view'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide', $args);
   }
 }
+
+/*
+ * Implements theme_form_element()
+ */
+function nas_form_element($variables) {
+  $no_wrap = array('nas-mail-subscription-email', 'nas-mail-subscription-submit');
+  if (isset($variables['element']['#id']) && in_array($variables['element']['#id'], $no_wrap)) {
+    return $variables['element']['#children'];
+  }
+  return theme_form_element($variables);
+}
