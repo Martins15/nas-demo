@@ -73,6 +73,30 @@ function nas_site_template_feature_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-acb37b3c-228f-4b64-a7bc-4dfbfc8bc321';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_stay_abreast_pane';
+    $pane->subtype = 'nas_stay_abreast_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'headline' => 'Stay abreast of Audubon',
+      'caption' => 'Our email newsletter shares the latest programs and initiatives.',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'acb37b3c-228f-4b64-a7bc-4dfbfc8bc321';
+    $display->content['new-acb37b3c-228f-4b64-a7bc-4dfbfc8bc321'] = $pane;
+    $display->panels['footer'][0] = 'new-acb37b3c-228f-4b64-a7bc-4dfbfc8bc321';
+    $pane = new stdClass();
     $pane->pid = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
     $pane->panel = 'footer';
     $pane->type = 'nas_footer_pane';
@@ -93,11 +117,11 @@ function nas_site_template_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '651ca440-8d50-4a19-9d92-9a64bdce62dc';
     $display->content['new-651ca440-8d50-4a19-9d92-9a64bdce62dc'] = $pane;
-    $display->panels['footer'][0] = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
+    $display->panels['footer'][1] = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
     $pane = new stdClass();
     $pane->pid = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane->panel = 'header';

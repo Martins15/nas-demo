@@ -81,3 +81,15 @@ function nas_preprocess_site_template_small_header(&$vars) {
     )
   );
 }
+
+/**
+ * Implements theme_form_element()
+ */
+function nas_form_element($variables) {
+  if ($variables['element']['#nowrap']) {
+    return $variables['element']['#children'];
+  }
+  else {
+    theme_form_element($variables);
+  }
+}
