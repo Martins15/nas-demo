@@ -29,7 +29,7 @@
       });
       $('img.pp-crop-thumbnail').each(function(){
         var src = $(this).attr('src');
-        var rand = Math.floor((Math.random()*1000)+1)
+        var rand = Math.floor((Math.random()*1000)+1);
         if (src.indexOf('?')) {
           src = src + '&rand=' + rand;
         }
@@ -39,6 +39,6 @@
         $(this).attr('src', src);
       });
     });
-  }
+  };
 
 })(jQuery);

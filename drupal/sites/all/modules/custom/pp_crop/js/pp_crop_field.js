@@ -8,7 +8,7 @@
       $('.fid').once('ppCropField').bind('change', function() {
         var $theme_variables_element = $(this).parent().find('.theme-variables');
         var fid = $(this).val();
-        if (fid == 0) {
+        if (fid === 0) {
           return;
         }
         // Remove existing "Manage thumbnails" link.
@@ -33,7 +33,7 @@
 
         if (!($theme_variables_element.data('theme-variables'))){
           return;
-        };
+        }
 
         // Create a link "Manage thumbnails" and attach click event handler.
         var link = '<a href="#" class="manage-thumbnails button" id="manage-thumbnails-link-' + fid + '">' + Drupal.t('Manage thumbnails') + '</a>';
@@ -69,7 +69,7 @@
         });
       });
     }
-  }
+  };
 
   Drupal.PPCrop = jQuery.extend(true, {}, Drupal.EPSACrop);
   Drupal.PPCrop.dialog = function(type_name, field_name, bundle, delta, img, trueSize) {
@@ -91,7 +91,7 @@
          */
         var image = this;
         var interval = setInterval(function() {
-          if ($.active == 0) {
+          if ($.active === 0) {
             $(image).attr('src', src);
             clearInterval(interval);
           }
@@ -99,6 +99,6 @@
 
       });
     });
-  }
+  };
 
 })(jQuery);

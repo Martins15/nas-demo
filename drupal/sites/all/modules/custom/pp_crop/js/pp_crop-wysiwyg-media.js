@@ -22,5 +22,5 @@
 
     // Insert placeholder markup into wysiwyg.
     Drupal.wysiwyg.instances[this.instanceId].insert(markup);
-  }
+  };
 })(jQuery);
