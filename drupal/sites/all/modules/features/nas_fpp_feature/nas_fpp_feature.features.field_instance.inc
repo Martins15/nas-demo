@@ -318,7 +318,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
-      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm',
+      'file_extensions' => 'jpg jpeg gif png',
       'user_register_form' => FALSE,
     ),
     'widget' => array(

@@ -146,66 +146,6 @@ function nas_preprocess_site_template_big_header(&$vars) {
   );
 }
 
-/**
- * Implements hook_preprocess_fieldable_panels_pane().
- */
-function nas_preprocess_fieldable_panels_pane(&$vars) {
-  $fpp = $vars['elements']['#fieldable_panels_pane'];
-  // Preprocess section for nas_editorial_cards FPP.
-  if ($vars['elements']['#bundle'] == 'nas_editorial_cards') {
-    $get_field_column_count = field_get_items('fieldable_panels_pane', $fpp, 'field_column_count');
-    $vars['classes_array'][] = 'large-' . $get_field_column_count[0]['value'];
-    $vars['editorial_card_photo'] = field_view_field('fieldable_panels_pane', $fpp, 'field_image', array('label' => 'hidden'));
-    $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');
-    $vars['editorial_card_slug'] = l($get_field_link[0]['title'], $get_field_link[0]['url'], array('attributes' => array('class' => array('editorial-card-slug'))));
-    $vars['editorial_card_title'] = l($fpp->title, $get_field_link[0]['url'], array('attributes' => array('class' => array('editorial-card-title'))));
-    $get_field_links = field_get_items('fieldable_panels_pane', $fpp, 'field_links');
-    foreach ($get_field_links as $link) {
-      $vars['editorial_card_links'][] = l($link['title'], $link['url'], array('attributes' => array('class' => array('editorial-card-link'))));
-    }
-    $vars['editorial_card_summary'] = field_view_field('fieldable_panels_pane', $fpp, 'field_summary', array('label' => 'hidden'));
-  }
-  // Preprocess section for nas_featured_content_cards FPP.
-  if ($vars['elements']['#bundle'] == 'nas_featured_content_cards') {
-    $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
-    $vars['banner_image'] = file_create_url($get_field_image[0]['file']->uri);
-    // To Do: Add mobile images presets support.
-    $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');
-    $vars['banner_slug'] = l($get_field_link[0]['title'], $get_field_link[0]['url'], array('attributes' => array('class' => array('banner-slug'))));
-    $vars['banner_title'] = $fpp->title;
-    $get_field_links = field_get_items('fieldable_panels_pane', $fpp, 'field_links');
-    foreach ($get_field_links as $link) {
-      $items[] = l($link['title'], $link['url']);
-    }
-    $vars['banner_links'] = theme('item_list', array(
-      'items' => $items,
-      'attributes' => array(
-        'class' => array(
-          'banner-links',
-          'inline-list'
-        ),
-      ),
-    ));
-    $get_field_summary = field_get_items('fieldable_panels_pane', $fpp, 'field_summary');
-    $vars['banner_summary'] = strip_tags($get_field_summary[0]['value']);
-    $get_field_color_mode = field_get_items('fieldable_panels_pane', $fpp, 'field_color_mode');
-    $vars['color_mode'] = $get_field_color_mode[0]['value'];
-  }
-  // Preprocess section for nas_fpp_bird_guide FPP.
-  if ($vars['elements']['#bundle'] == 'nas_fpp_bird_guide') {
-    $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
-    foreach ($get_field_related_bird as $value) {
-      $args[] = $value['target_id'];
-    }
-    $view_diplay_id = 'audubon_bird_guide_random';
-    if (count($args) == 4) {
-      $args = implode(' ', $args);
-      $view_diplay_id = 'audubon_bird_guide';
-    }
-    $vars['birds_view'] = views_embed_view('nas_similar_birds', $view_diplay_id, $args);
-  }
-}
-
 /*
  * Implements theme_form_element()
  */

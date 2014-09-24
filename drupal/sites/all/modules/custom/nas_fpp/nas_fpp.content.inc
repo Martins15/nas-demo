@@ -13,9 +13,6 @@ define('NAS_FPP_ED_CARD_2', 'editorial-card-6.jpg');
 define('NAS_FPP_ED_CARD_3', 'editorial-card-7.jpg');
 
 function nas_fpp_add_test_content() {
-  //$fpps = fieldable_panels_panes_load_multiple(array(1,2,3));
-  //var_dump($fpps);
-  //exit();
   $featured_fpp = new stdClass();
   $featured_fpp->reusable = 1;
   $featured_fpp->admin_title = 'Hero bird Audubon\'s Shearwater';
@@ -123,6 +120,7 @@ function nas_fpp_add_test_content() {
   );
   $featured_fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_IMAGE_BANNER_1));
   $featured_fpp->field_column_count[LANGUAGE_NONE][] = array('value' => '4');
+  $featured_fpp->field_color_mode[LANGUAGE_NONE][] = array('value' => 'dark');
   fieldable_panels_panes_save($featured_fpp);
 
   $featured_fpp = new stdClass();
@@ -142,7 +140,9 @@ function nas_fpp_add_test_content() {
   );
   $featured_fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_IMAGE_BANNER_2));
   $featured_fpp->field_column_count[LANGUAGE_NONE][] = array('value' => '4');
+  $featured_fpp->field_color_mode[LANGUAGE_NONE][] = array('value' => 'light');
   fieldable_panels_panes_save($featured_fpp);
+  drupal_set_message(t('Test FPP content has been added.'));
 }
 
 /**
