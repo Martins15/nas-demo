@@ -98,7 +98,7 @@ function nas_fpp_test_content_form_submit($form, &$form_state) {
 function nas_fpp_preprocess_fieldable_panels_pane(&$vars) {
   $function = 'nas_fpp_preprocess_fieldable_panels_pane_' . $vars['elements']['#bundle'];
   if (function_exists($function)) {
-   $function($vars);
+    $function($vars);
   }
 }
 
