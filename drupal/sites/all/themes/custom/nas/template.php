@@ -27,15 +27,22 @@ function nas_html_head_alter(&$head_elements) {
  */
 function nas_preprocess_node(&$vars) {
   global $base_url;
+
+  $node = $vars['node'];
+  // Tell Drupal that there is separate tpl.php files for view modes.
+  if (!empty($vars['view_mode'])) {
+    $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
+  }
+
   if ($vars['type'] == 'bird') {
     drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
       'group' => JS_THEME,
       'every_page' => FALSE,
     ));
-    $get_field_bird_priority = field_get_items('node', $vars['node'], 'field_bird_priority');
+    $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
     $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
     // Get author of illustration.
-    $get_field_bird_illustration_author = field_get_items('node', $vars['node'], 'field_bird_illustration');
+    $get_field_bird_illustration_author = field_get_items('node', $node, 'field_bird_illustration');
     // We need the text until fields are not yet filled.
     $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
     if (!empty($get_field_bird_illustration_author)) {
@@ -48,6 +55,52 @@ function nas_preprocess_node(&$vars) {
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
     // Add Node Page absolute url.
     $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+    // Add learn mode link.
+    $vars['learn_more_node_link'] = l(t('Learn more »'), $base_url . $vars['node_url']);
+    // Add Birds priority link.
+    $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
+    // Add hero inline links.
+    $vars['hero_inline_links'] = theme('item_list', array(
+      'items' => array(
+        l(t('In the Bird Guide'), ''),
+        l(t('More Priority Birds'), ''),
+      ),
+      'attributes' => array(
+        'class' => array(
+          'hero-inline-list',
+          'inline-list'
+        ),
+      ),
+    ));
+    // Add hero image.
+    $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
+    $vars['hero_image'] = theme('image_style', array(
+      'style_name' => 'hero_image',
+      'path' => $get_field_hero_image[0]['file']->uri,
+      'attributes' => array(
+        'class' => array(
+          'hide-for-tiny',
+          'hide-for-small',
+        ),
+      ),
+    ));
+    $vars['hero_mobile'] = theme('image_style', array(
+      'style_name' => 'hero_mobile',
+      'path' => $get_field_hero_image[0]['file']->uri,
+      'attributes' => array(
+        'class' => array(
+          'hide-for-medium',
+          'hide-for-large',
+          'hide-for-xlarge',
+        ),
+      ),
+    ));
+    // Color mode.
+    $get_field_color_mode = field_get_items('node', $node, 'field_color_mode');
+    $vars['color_mode'] = 'light-gradient';
+    if ($get_field_color_mode[0]['value'] == 'dark') {
+      $vars['color_mode'] = 'light-text dark-gradient';
+    }
   }
 }
 
@@ -83,6 +136,17 @@ function nas_preprocess_site_template_small_header(&$vars) {
 }
 
 /**
+ * Implements hook_preprocess_site_template_big_header().
+ */
+function nas_preprocess_site_template_big_header(&$vars) {
+  $vars['footer_logo'] = theme('image', array(
+      'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
+      'attributes' => array('class' => 'footer-logo'),
+    )
+  );
+}
+
+/*
  * Implements theme_form_element()
  */
 function nas_form_element($variables) {
