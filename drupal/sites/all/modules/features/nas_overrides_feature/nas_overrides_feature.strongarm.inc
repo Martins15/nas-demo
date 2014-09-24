@@ -13,8 +13,15 @@ function nas_overrides_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'adminimal_admin_menu_toolbar-disabled';
+  $strongarm->value = TRUE;
+  $export['adminimal_admin_menu_toolbar-disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'admin_theme';
-  $strongarm->value = 'bartik';
+  $strongarm->value = 'adminimal';
   $export['admin_theme'] = $strongarm;
 
   $strongarm = new stdClass();
