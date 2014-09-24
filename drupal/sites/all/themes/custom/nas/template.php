@@ -197,8 +197,12 @@ function nas_preprocess_fieldable_panels_pane(&$vars) {
     foreach ($get_field_related_bird as $value) {
       $args[] = $value['target_id'];
     }
-    $args = implode(' ', $args);
-    $vars['birds_view'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide', $args);
+    $view_diplay_id = 'audubon_bird_guide_random';
+    if (count($args) == 4) {
+      $args = implode(' ', $args);
+      $view_diplay_id = 'audubon_bird_guide';
+    }
+    $vars['birds_view'] = views_embed_view('nas_similar_birds', $view_diplay_id, $args);
   }
 }
 
