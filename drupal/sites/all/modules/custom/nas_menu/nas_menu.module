@@ -39,6 +39,17 @@ function nas_menu_theme() {
       'arguments' => array('menu_tree' => NULL),
       'template' => 'nas-small-header',
     ),
+    'nas_don_t_miss' => array(
+      'arguments' => array('items' => NULL),
+      'template' => 'templates/nas-don-t-miss',
+    ),
+    'nas_big_header' => array(
+      'arguments' => array(
+        'items' => NULL,
+        'frontpage_link' => NULL,
+        ),
+      'template' => 'templates/nas-big-header',
+    ),
   );
 }
 
