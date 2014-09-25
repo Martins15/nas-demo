@@ -29,7 +29,7 @@ Nav = {};
 
   Nav.handleTouch = function () {
     $(".primary-nav-toggler").removeAttr("href");
-  }
+  };
 
   Nav.bindMobile = function () {
     var onTrigger = StateManager.touch ? "touchend" : "click";
@@ -61,14 +61,14 @@ Nav = {};
 
       setTimeout(function () { // this is just a "next tick"
         if (window.scrollY > $this.offset().top) {
-          window.scrollTo(0, $this.offset().top)
+          window.scrollTo(0, $this.offset().top);
         }
       }, 0);
     });
 
     bindHeaderButton(".header-btn-menu", "icon-menu", ".mobile-nav");
     bindHeaderButton(".header-btn-search", "icon-magnifier", ".header-search");
-  }
+  };
 
 // @todo Refactor desktop and tablet; this is ridiculous
 
@@ -84,7 +84,7 @@ Nav = {};
     });
 
     Nav._bindSearch();
-  }
+  };
 
   Nav.bindTablet = function () {
     $(".primary-nav-toggler").bind("touchend", function () {
@@ -99,7 +99,7 @@ Nav = {};
     });
 
     Nav._bindSearch();
-  }
+  };
 
   Nav._toggleEffect = function ($this) {
     $(".primary-nav-toggler").not($this).removeClass("open");
@@ -107,7 +107,7 @@ Nav = {};
 
     $this.addClass("open");
     $this.next(".primary-sub-nav").addClass("show");
-  }
+  };
 
   Nav._bindSearch = function () {
     $(".primary-nav-search").bind("click", function () {
@@ -121,22 +121,22 @@ Nav = {};
       $(".global-nav").removeClass("hide");
       return false;
     });
-  }
+  };
 
   Nav.unbind = function () {
     $(".header-btn").unbind();
     $(".primary-nav-toggler").unbind();
     $(".primary-nav-toggler").parent().unbind();
-  }
+  };
 
   Nav.reset = function () {
     $(".header-btn").removeClass("icon-close");
     $(".mobile-nav").removeClass("show");
     $(".primary-nav-toggler").removeClass("open");
     $(".primary-sub-nav").removeClass("show");
-    $(".header-search").removeClass("show")
+    $(".header-search").removeClass("show");
     $(".global-nav").removeClass("hide");
-  }
+  };
 
   if (StateManager.touch) {
     Nav.handleTouch();
