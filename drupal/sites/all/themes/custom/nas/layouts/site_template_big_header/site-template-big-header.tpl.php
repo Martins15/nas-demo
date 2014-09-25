@@ -5,7 +5,7 @@
  */
 ?>
 
-<header class="global-header standard">
+<header class="global-header transparent light-bg dark-text">
   <?php print $content['header']; ?>
 </header>
 <section class="global-content">

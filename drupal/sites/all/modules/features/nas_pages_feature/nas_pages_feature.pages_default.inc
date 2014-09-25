@@ -21,7 +21,7 @@ function nas_pages_feature_default_page_manager_handlers() {
   $handler->conf = array(
     'title' => 'Bird',
     'no_blocks' => 1,
-    'pipeline' => 'standard',
+    'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
     'css_id' => '',

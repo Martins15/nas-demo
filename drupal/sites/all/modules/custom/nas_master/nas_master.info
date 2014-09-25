@@ -17,3 +17,6 @@ dependencies[] = nas_menu
 dependencies[] = nas_site_template_feature
 dependencies[] = nas_birds_guide_feature
 dependencies[] = nas_footer
+dependencies[] = nas_birds_landing_feature
+dependencies[] = nas_fpp_feature
+dependencies[] = nas_fpp
