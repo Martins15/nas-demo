@@ -27,7 +27,7 @@ function nas_menu_pane_big_render() {
   $menu_tree = menu_tree_all_data(NAS_MENU_MAIN_NAVIGATION, 2);
 
   $items = array();
-  
+
   foreach ($menu_tree as $menu_item) {
     $item = array();
     $item['li_class'] = 'primary-nav-item';
@@ -73,9 +73,12 @@ function nas_menu_pane_big_render() {
     }
   }
 
+  $form = drupal_get_form('nas_menu_search_form');
+  $rendered_form = drupal_render($form);
+
   $block = new stdClass();
   $frontpage_link = l(variable_get('site_name'), '<front>', array('attributes' => array('class' => array('current-parent', 'wordmark'))));
-  $content = theme('nas_big_header', array('items' => $items, 'frontpage_link' => $frontpage_link));
+  $content = theme('nas_big_header', array('items' => $items, 'frontpage_link' => $frontpage_link, 'form' => $rendered_form));
   $block->content = $content;
   return $block;
 }

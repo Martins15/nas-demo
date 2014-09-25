@@ -108,11 +108,13 @@ $(function() {
     $(".primary-nav-search").bind("click", function() {
       $(".header-search").addClass("show");
       $(".global-nav").addClass("hide");
+      return false;
     });
 
     $(".header-search-close").bind("click", function() {
       $(".header-search").removeClass("show");
       $(".global-nav").removeClass("hide");
+      return false;
     });
   }
 

@@ -86,9 +86,25 @@ function nas_preprocess_site_template_small_header(&$vars) {
  * Implements theme_form_element()
  */
 function nas_form_element($variables) {
-  $no_wrap = array('nas-mail-subscription-email', 'nas-mail-subscription-submit');
+  $no_wrap = array('nas-mail-subscription-email', 'nas-menu-search-input');
   if (isset($variables['element']['#id']) && in_array($variables['element']['#id'], $no_wrap)) {
     return $variables['element']['#children'];
   }
   return theme_form_element($variables);
+}
+
+/**
+ * Implements theme_button()
+ * used to return <button> tag when needed
+ */
+function nas_button($variables) {
+  $button_tag = array('edit-nas-search-btn');
+  $element = $variables['element'];
+  if (in_array($element['#id'], $button_tag)) {
+    $element['#attributes']['type'] = 'submit';
+    $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+    return '<button' . drupal_attributes($element['#attributes']) . '>' . $element['#value'] . '</button>';
+  }
+
+  return theme_button($variables);
 }

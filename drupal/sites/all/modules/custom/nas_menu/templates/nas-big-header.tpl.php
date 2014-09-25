@@ -34,11 +34,7 @@
     <a href="#" class="icon-magnifier header-btn header-btn-search"></a>
     <!-- / -->
     <div class="header-search clearfix">
-      <input class="header-search-input radius" type="search" placeholder="Search the Audubon network">
-      <button class="header-search-button button large pea-green">
-        <i class="icon-magnifier"></i>
-      </button>
-      <a href="#" class="hide-for-tiny hide-for-small hide-for-medium header-search-close"><i class="icon-close"></i></a>
+      <?php print $form; ?>
     </div>
     <div class="global-nav">
       <ul class="action-nav inline-list clearfix">
