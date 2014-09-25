@@ -42,3 +42,12 @@ If ```xip.io``` not working - create row with
 
 in ```/etc/hosts```
 
+For Windows users
+
+- install vagrant 1.5/1.6
+- install puppet
+- install cygwin console www.cygwin.com (Do select 32/64 bit depending of Your host system)
+- Run cygwin via right mouse button with "Run as administrator"
+- cd to project folder
+- git clone project repo  (Git should be configured for unix file endings)
+- vagrant up
