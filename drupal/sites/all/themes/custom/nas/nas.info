@@ -25,7 +25,7 @@ stylesheets[all][] = js/vendor/owl-carousel/owl.carousel.css
 ;; Mule
 scripts[] = js/mute/responsive-events.js
 scripts[] = js/mute/iscroll.js
-scripts[] = js/mute/nav.js
+;scripts[] = js/mute/nav.js
 scripts[] = js/mute/jquery.mousewheel.js
 ;scripts[] = js/mute/jquery.colorbox-min.js
 scripts[] = js/mute/scrolljack.js
@@ -49,6 +49,7 @@ scripts[] = js/mute/flyway-slides.js
 
 ;; NAS
 scripts[] = js/nas/owl-settings.js
+scripts[] = js/nas/nas-menu.js
 
 ; Panels layouts. You can place multiple layouts under the "layouts" folder.
 plugins[panels][layouts] = layouts

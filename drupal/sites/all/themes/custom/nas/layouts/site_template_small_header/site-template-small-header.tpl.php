@@ -24,7 +24,7 @@
 
   <!-- DEMO SCRIPT -->
   <script>
-
+(function($) {
     $(".load-more").bind("click", function(e) {
       e.preventDefault();
       var $this = $(this),
@@ -57,5 +57,5 @@
         $container.append($cards);
       }, 1500);
     });
-
+})(jQuery);
   </script>
