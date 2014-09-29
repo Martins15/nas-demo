@@ -48,7 +48,6 @@ scripts[] = js/mute/flyway-minimap.js
 scripts[] = js/mute/flyway-slides.js
 
 ;; NAS
-scripts[] = js/nas/owl-settings.js
 scripts[] = js/nas/nas-menu.js
 
 ; Panels layouts. You can place multiple layouts under the "layouts" folder.
