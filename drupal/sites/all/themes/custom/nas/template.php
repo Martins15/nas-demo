@@ -39,6 +39,10 @@ function nas_preprocess_node(&$vars) {
       'group' => JS_THEME,
       'every_page' => FALSE,
     ));
+    drupal_add_js(path_to_theme() . '/js/nas/owl-settings.js', array(
+      'group' => JS_THEME,
+      'every_page' => FALSE,
+    ));
     $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
     $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
     // Get author of illustration.
