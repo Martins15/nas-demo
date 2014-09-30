@@ -518,6 +518,826 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-footer_column-3:<front>',
   );
+  // Exported menu link: menu-header-big-donate-take-acti_donate:<front>
+  $menu_links['menu-header-big-donate-take-acti_donate:<front>'] = array(
+    'menu_name' => 'menu-header-big-donate-take-acti',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Donate',
+    'options' => array(
+      'attributes' => array(
+        'class' => array(
+          0 => 'action-nav-link',
+          1 => 'button',
+          2 => 'small',
+          3 => 'tomato',
+        ),
+        'liclass' => 'action-nav-item',
+      ),
+      'identifier' => 'menu-header-big-donate-take-acti_donate:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-donate-take-acti_take-action:<front>
+  $menu_links['menu-header-big-donate-take-acti_take-action:<front>'] = array(
+    'menu_name' => 'menu-header-big-donate-take-acti',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Take Action',
+    'options' => array(
+      'attributes' => array(
+        'class' => array(
+          0 => 'action-nav-link',
+          1 => 'button',
+          2 => 'small',
+          3 => 'tomato',
+        ),
+        'liclass' => 'action-nav-item',
+      ),
+      'identifier' => 'menu-header-big-donate-take-acti_take-action:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>
+  $menu_links['menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'About<span class="extra-nav-copy"> Us</span>',
+    'options' => array(
+      'attributes' => array(),
+      'html' => 1,
+      'identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_activities:<front>
+  $menu_links['menu-header-big-main-menu_activities:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Activities',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_activities:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_get-outside:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_advocacy:<front>
+  $menu_links['menu-header-big-main-menu_advocacy:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Advocacy',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_advocacy:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_audubon-climate-watch:<front>
+  $menu_links['menu-header-big-main-menu_audubon-climate-watch:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Audubon Climate Watch',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_audubon-climate-watch:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_bird-friendly-communities:<front>
+  $menu_links['menu-header-big-main-menu_bird-friendly-communities:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Bird Friendly Communities',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_bird-friendly-communities:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_bird-guide:<front>
+  $menu_links['menu-header-big-main-menu_bird-guide:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Bird Guide',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_bird-guide:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_birding:<front>
+  $menu_links['menu-header-big-main-menu_birding:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Birding',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_birding:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_get-outside:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_birds-in-the-news:<front>
+  $menu_links['menu-header-big-main-menu_birds-in-the-news:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Birds in the News',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_birds-in-the-news:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_birds-of-america:<front>
+  $menu_links['menu-header-big-main-menu_birds-of-america:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Birds of America',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_birds-of-america:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_birds:<front>
+  $menu_links['menu-header-big-main-menu_birds:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Birds',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_birds:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_climate--energy:<front>
+  $menu_links['menu-header-big-main-menu_climate--energy:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Climate & Energy',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_climate--energy:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_conservation:<front>
+  $menu_links['menu-header-big-main-menu_conservation:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Conservation',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_conservation:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_education:<front>
+  $menu_links['menu-header-big-main-menu_education:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Education',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_education:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -43,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_featured-events:<front>
+  $menu_links['menu-header-big-main-menu_featured-events:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Featured Events',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_featured-events:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_features:<front>
+  $menu_links['menu-header-big-main-menu_features:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Features',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_features:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_flyways:<front>
+  $menu_links['menu-header-big-main-menu_flyways:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Flyways',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_flyways:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_from-the-magazine:<front>
+  $menu_links['menu-header-big-main-menu_from-the-magazine:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'From the Magazine',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_from-the-magazine:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_features:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_get-outside:<front>
+  $menu_links['menu-header-big-main-menu_get-outside:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Get Outside',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_get-outside:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_i-classicon-magnifieri:<front>
+  $menu_links['menu-header-big-main-menu_i-classicon-magnifieri:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => '<i class="icon-magnifier"></i>',
+    'options' => array(
+      'attributes' => array(
+        'liclass' => 'primary-nav-search',
+      ),
+      'html' => 1,
+      'identifier' => 'menu-header-big-main-menu_i-classicon-magnifieri:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_important-bird-areas:<front>
+  $menu_links['menu-header-big-main-menu_important-bird-areas:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Important Bird Areas',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_important-bird-areas:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_inside-audubon:<front>
+  $menu_links['menu-header-big-main-menu_inside-audubon:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Inside Audubon',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_inside-audubon:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_map-stories:<front>
+  $menu_links['menu-header-big-main-menu_map-stories:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Map Stories',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_map-stories:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_features:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_news:<front>
+  $menu_links['menu-header-big-main-menu_news:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'News',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_news:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_photography:<front>
+  $menu_links['menu-header-big-main-menu_photography:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Photography',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_photography:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_get-outside:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_priority-birds:<front>
+  $menu_links['menu-header-big-main-menu_priority-birds:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Priority Birds',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_priority-birds:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_science:<front>
+  $menu_links['menu-header-big-main-menu_science:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Science',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_science:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_seas--shores:<front>
+  $menu_links['menu-header-big-main-menu_seas--shores:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Seas & Shores',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_seas--shores:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_travel:<front>
+  $menu_links['menu-header-big-main-menu_travel:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Travel',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_travel:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_get-outside:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_videos:<front>
+  $menu_links['menu-header-big-main-menu_videos:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Videos',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_videos:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_features:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_webcams:<front>
+  $menu_links['menu-header-big-main-menu_webcams:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Webcams',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_webcams:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_working-lands:<front>
+  $menu_links['menu-header-big-main-menu_working-lands:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Working Lands',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_working-lands:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -44,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-secondary-menu_audubon-near-you:<front>
+  $menu_links['menu-header-big-secondary-menu_audubon-near-you:<front>'] = array(
+    'menu_name' => 'menu-header-big-secondary-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Audubon Near You',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-secondary-menu_audubon-near-you:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-secondary-menu_magazine:<front>
+  $menu_links['menu-header-big-secondary-menu_magazine:<front>'] = array(
+    'menu_name' => 'menu-header-big-secondary-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Magazine',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-secondary-menu_magazine:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-secondary-menu_span-classshow-for-large-upgetspan-email-updates:<front>
+  $menu_links['menu-header-big-secondary-menu_span-classshow-for-large-upgetspan-email-updates:<front>'] = array(
+    'menu_name' => 'menu-header-big-secondary-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => '<span class="show-for-large-up">Get</span> Email Updates',
+    'options' => array(
+      'html' => 1,
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-secondary-menu_span-classshow-for-large-upgetspan-email-updates:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_adopt-a-bird:<front>
+  $menu_links['menu-header-don-t-miss_adopt-a-bird:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Adopt a Bird',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-don-t-miss_adopt-a-bird:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_galveston-bay-oil-spill:<front>
+  $menu_links['menu-header-don-t-miss_galveston-bay-oil-spill:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Galveston Bay Oil Spill',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-don-t-miss_galveston-bay-oil-spill:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_i-classicon-videoi-snowy-owl-webcam:<front>
+  $menu_links['menu-header-don-t-miss_i-classicon-videoi-snowy-owl-webcam:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => '<i class="icon-video"></i> Snowy Owl Webcam',
+    'options' => array(
+      'attributes' => array(),
+      'html' => 1,
+      'identifier' => 'menu-header-don-t-miss_i-classicon-videoi-snowy-owl-webcam:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_photography:<front>
+  $menu_links['menu-header-don-t-miss_photography:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Photography',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-don-t-miss_photography:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_piping-plover:<front>
+  $menu_links['menu-header-don-t-miss_piping-plover:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Piping Plover',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-don-t-miss_piping-plover:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -44,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_toyota-togethergreen:<front>
+  $menu_links['menu-header-don-t-miss_toyota-togethergreen:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Toyota TogetherGreen',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-don-t-miss_toyota-togethergreen:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-don-t-miss_wind-farms:<front>
+  $menu_links['menu-header-don-t-miss_wind-farms:<front>'] = array(
+    'menu_name' => 'menu-header-don-t-miss',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Wind Farms',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-don-t-miss_wind-farms:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+  );
   // Exported menu link: menu-header-small_audubon-climate-watch:<front>
   $menu_links['menu-header-small_audubon-climate-watch:<front>'] = array(
     'menu_name' => 'menu-header-small',
@@ -619,14 +1439,14 @@ function nas_menu_feature_menu_default_menu_links() {
     'router_path' => '',
     'link_title' => 'Donate',
     'options' => array(
+      'identifier' => 'menu-header-small_donate:<front>',
+      'html' => 1,
       'attributes' => array(
         'class' => array(
           0 => 'orange',
         ),
-        'liclass' => 'primary-nav-search',
         'id' => 'primary-nav-search',
       ),
-      'identifier' => 'menu-header-small_donate:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -861,15 +1681,27 @@ function nas_menu_feature_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
+  t('<i class="icon-magnifier"></i>');
+  t('<i class="icon-video"></i> Snowy Owl Webcam');
+  t('<span class="show-for-large-up">Get</span> Email Updates');
   t('About Us');
+  t('About<span class="extra-nav-copy"> Us</span>');
+  t('Activities');
+  t('Adopt a Bird');
+  t('Advocacy');
   t('Audubon Campus');
   t('Audubon Climate Watch');
   t('Audubon Near You');
+  t('Bird Friendly Communities');
+  t('Bird Guide');
   t('Bird guide');
+  t('Birding');
   t('Birds');
+  t('Birds in the News');
   t('Birds in the news');
   t('Birds of America');
   t('Careers');
+  t('Climate & Energy');
   t('Column 1');
   t('Column 2');
   t('Column 3');
@@ -878,14 +1710,17 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Contact Us');
   t('Donate');
   t('Donate to Audubon');
+  t('Education');
   t('Featured Events');
   t('Features');
   t('Find a Local Chapter');
   t('Flyways');
   t('From the Magazine');
+  t('Galveston Bay Oil Spill');
   t('Get Outside');
   t('Home');
   t('How to Help');
+  t('Important Bird Areas');
   t('Inside Audubon');
   t('Join the National Audubon Society');
   t('Legal Notices');
@@ -895,12 +1730,21 @@ function nas_menu_feature_menu_default_menu_links() {
   t('News');
   t('Newsroom');
   t('Online Store');
+  t('Photography');
+  t('Piping Plover');
   t('Priority Birds');
   t('Privacy Policy');
+  t('Science');
+  t('Seas & Shores');
+  t('Take Action');
+  t('Toyota TogetherGreen');
+  t('Travel');
   t('Update Your Information');
   t('User account');
   t('Videos');
   t('Webcams');
+  t('Wind Farms');
+  t('Working Lands');
 
 
   return $menu_links;

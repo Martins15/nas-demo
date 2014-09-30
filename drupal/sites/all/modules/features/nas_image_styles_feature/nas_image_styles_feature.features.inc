@@ -10,6 +10,83 @@
 function nas_image_styles_feature_image_default_styles() {
   $styles = array();
 
+  // Exported image style: bird_illustration.
+  $styles['bird_illustration'] = array(
+    'name' => 'bird_illustration',
+    'label' => 'Bird illustration',
+    'effects' => array(
+      4 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 189,
+          'height' => 100,
+          'upscale' => 0,
+        ),
+        'weight' => -10,
+      ),
+    ),
+  );
+
+  // Exported image style: bird_teaser_illustration.
+  $styles['bird_teaser_illustration'] = array(
+    'name' => 'bird_teaser_illustration',
+    'label' => 'Bird teaser illustration',
+    'effects' => array(
+      5 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 193,
+          'height' => 186,
+          'upscale' => 0,
+        ),
+        'weight' => -10,
+      ),
+    ),
+  );
+
+  // Exported image style: default_teaser_image.
+  $styles['default_teaser_image'] = array(
+    'name' => 'default_teaser_image',
+    'label' => 'default_teaser_image',
+    'effects' => array(
+      2 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 306,
+          'height' => 194,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: hero_image.
   $styles['hero_image'] = array(
     'name' => 'hero_image',

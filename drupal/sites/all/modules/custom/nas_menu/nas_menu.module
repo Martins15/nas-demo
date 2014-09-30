@@ -39,6 +39,18 @@ function nas_menu_theme() {
       'arguments' => array('menu_tree' => NULL),
       'template' => 'nas-small-header',
     ),
+    'nas_don_t_miss' => array(
+      'arguments' => array('items' => NULL),
+      'template' => 'templates/nas-don-t-miss',
+    ),
+    'nas_big_header' => array(
+      'arguments' => array(
+        'items' => NULL,
+        'frontpage_link' => NULL,
+        'form' => NULL
+      ),
+      'template' => 'templates/nas-big-header',
+    ),
   );
 }
 
@@ -76,4 +88,35 @@ function template_nas_small_header(&$vars) {
   }
 
   $vars['items'] = $items;
+}
+
+function nas_menu_search_form($form, &$form_state) {
+  $form['search'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Search the Audubon network')),
+      'class' => array('header-search-input', 'radius')
+    ),
+    '#size' => '',
+    '#id' => 'nas-menu-search-input'
+  );
+  $form['nas_search_btn'] = array(
+    '#type' => 'button',
+    '#value' => '<i class="icon-magnifier"></i>',
+    '#attributes' => array(
+      'class' => array('header-search-button', 'button', 'large', 'pea-green')
+    ),
+  );
+  $search_close = l('<i class="icon-close"></i>', '<front>', array(
+    'html' => TRUE,
+    'attributes' => array(
+      'class' => array('hide-for-tiny', 'hide-for-small', 'hide-for-medium', 'header-search-close')
+    )
+      )
+  );
+  $form['search_close'] = array(
+    '#markup' => $search_close
+  );
+
+  return $form;
 }
