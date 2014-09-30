@@ -93,6 +93,13 @@ function nas_news_feature_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
+      'epsacrop' => array(
+        'styles' => array(
+          'default_teaser_image' => 'default_teaser_image',
+          'hero_image' => 0,
+          'hero_mobile' => 0,
+        ),
+      ),
       'file_extensions' => 'jpg jpeg gif png',
       'user_register_form' => FALSE,
     ),

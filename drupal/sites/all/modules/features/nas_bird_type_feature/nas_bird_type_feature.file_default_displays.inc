@@ -32,7 +32,7 @@ function nas_bird_type_feature_file_default_displays() {
     'colorbox_gallery' => 'post',
     'colorbox_gallery_custom' => '',
     'colorbox_caption' => 'custom',
-    'colorbox_caption_custom' => '[file:field_file_credit] [file:field_file_caption]',
+    'colorbox_caption_custom' => '[file:field_file_caption] [file:field_file_credit]',
   );
   $export['image__preview__file_field_colorbox'] = $file_display;
 

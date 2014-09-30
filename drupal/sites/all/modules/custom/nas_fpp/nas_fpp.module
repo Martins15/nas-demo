@@ -56,6 +56,18 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Hero mobile'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['default_teaser_image'] = array(
+    'label' => t('Default teaser image'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['bird_illustration'] = array(
+    'label' => t('Bird illustration'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['bird_teaser_illustration'] = array(
+    'label' => t('Bird teaser illustration'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**

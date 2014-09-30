@@ -42,6 +42,7 @@ dependencies[] = soundmanager2
 dependencies[] = menu_attributes
 dependencies[] = jquery_update
 dependencies[] = fieldable_panels_panes
+dependencies[] = entityreference_autocomplete
 
 ; Custom modules
 dependencies[] = nas_master
