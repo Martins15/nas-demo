@@ -24,6 +24,12 @@ function nas_news_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'nas_node_view_mode_hero_bird' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -69,6 +75,12 @@ function nas_news_feature_field_default_field_instances() {
         'type' => 'media',
         'weight' => 2,
       ),
+      'nas_node_view_mode_hero_bird' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -81,6 +93,13 @@ function nas_news_feature_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
+      'epsacrop' => array(
+        'styles' => array(
+          'default_teaser_image' => 'default_teaser_image',
+          'hero_image' => 0,
+          'hero_mobile' => 0,
+        ),
+      ),
       'file_extensions' => 'jpg jpeg gif png',
       'user_register_form' => FALSE,
     ),
@@ -127,6 +146,12 @@ function nas_news_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 3,
       ),
+      'nas_node_view_mode_hero_bird' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -167,6 +192,12 @@ function nas_news_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'nas_node_view_mode_hero_bird' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',

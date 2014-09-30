@@ -10,21 +10,12 @@
 </header>
 <section class="global-content">
   <?php print $content['main']; ?>
-
-  <div class="row">
-    <div class="card-set-social social-sharing">
-      <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
-      <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
-      <a class="social-sharing-icon white" href="#"><i class="icon-facebook"></i></a>
-      <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
-    </div>
-  </div>
 </section>
 <?php print $content['footer']; ?>
 
   <!-- DEMO SCRIPT -->
   <script>
-
+(function($) {
     $(".load-more").bind("click", function(e) {
       e.preventDefault();
       var $this = $(this),
@@ -57,5 +48,5 @@
         $container.append($cards);
       }, 1500);
     });
-
+})(jQuery);
   </script>
