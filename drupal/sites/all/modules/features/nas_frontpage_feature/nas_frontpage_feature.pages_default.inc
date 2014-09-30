@@ -67,9 +67,27 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Links',
       'title' => 'Links',
-      'body' => '<h3>Pages</h3><ul><li><a href="/bird-guide">Bird Guide</a></li><li><a href="/birds-landing">Birds Landing page</a></li></ul><br/><br/>
+      'body' => '
+        <h3>Pages</h3><ul>
+        <li><a href="bird-guide">Bird Guide</a></li>
+        <li><a href="birds-landing">Birds Landing page</a></li></ul>
+        <br/><br/>
 
-<h3>Articles</h3><ul><li><a href="/newsroom/press-releases/2007/supreme-court-strips-excuses-epa-inaction-global-warming">Supreme Court Strips Excuses For Epa Inaction On Global Warming</a></li><li><a href="/newsroom/press-releases/2007/its-spring-planting-time">It\'s Spring Planting Time</a></li></ul><p>&nbsp;</p><p>&nbsp;</p><h3>Birds</h3><ul><li><a href="/birds/northern-gannet">Northern Gannet</a></li><li><a href="/birds/ashy-storm-petrel">Ashy Storm-Petrel</a></li></ul><p>&nbsp;</p><h3>Various links</h3><ul><li><a href="/admin/structure/menu/manage/menu-header-small">Header menu</a></li><li><a href="/admin/structure/menu/manage/menu-footer">Footer menu</a></li><li><a href="/admin/structure/menu/manage/menu-footer-copyright">Footer bottom menu</a></li><li><a href="/admin/structure/pages/nojs/operation/site_template/handlers/site_template_panel_context/content">Footer text changes (edit footer pane)</a></li></ul><p>&nbsp;</p>',
+        <h3>Articles</h3><ul>
+        <li><a href="newsroom/press-releases/2007/supreme-court-strips-excuses-epa-inaction-global-warming">Supreme Court Strips Excuses For Epa Inaction On Global Warming</a></li>
+        <li><a href="newsroom/press-releases/2007/its-spring-planting-time">It\'s Spring Planting Time</a></li></ul>
+        <br/><br/>
+
+        <h3>Birds</h3><ul>
+        <li><a href="birds/northern-gannet">Northern Gannet</a></li>
+        <li><a href="birds/ashy-storm-petrel">Ashy Storm-Petrel</a></li></ul>
+        <br/><br/>
+
+        <h3>Various links</h3><ul>
+        <li><a href="admin/structure/menu/manage/menu-header-small">Header menu</a></li>
+        <li><a href="admin/structure/menu/manage/menu-footer">Footer menu</a></li>
+        <li><a href="admin/structure/menu/manage/menu-footer-copyright">Footer bottom menu</a></li>
+        <li><a href="admin/structure/pages/nojs/operation/site_template/handlers/site_template_panel_context/content">Footer text changes (edit footer pane)</a></li></ul><p>&nbsp;</p>',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
