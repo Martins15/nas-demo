@@ -111,7 +111,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'file_view_mode' => 'default',
+    'file_view_mode' => 'default_teaser_image',
   );
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
@@ -197,7 +197,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'file_view_mode' => 'default',
+    'file_view_mode' => 'default_teaser_image',
   );
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
@@ -400,6 +400,92 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Illustration */
+  $handler->display->display_options['fields']['field_bird_illustration']['id'] = 'field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['table'] = 'field_data_field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_illustration']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_class'] = 'bird-card-illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
+    'file_view_mode' => 'bird_teaser_illustration',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+  /* Field: Content: Scientific Name */
+  $handler->display->display_options['fields']['field_bird_sci_name']['id'] = 'field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['table'] = 'field_data_field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['field'] = 'field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_sci_name']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_sci_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['text'] = '<p class="scientific-name">[field_bird_sci_name-value]</p>';
+  $handler->display->display_options['fields']['field_bird_sci_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['type'] = 'text_plain';
+  /* Field: Content: Audio */
+  $handler->display->display_options['fields']['field_bird_audio']['id'] = 'field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['table'] = 'field_data_field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['field'] = 'field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_audio']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_audio']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_audio']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_bird_audio']['type'] = 'soundmanager2_inline_player';
+  $handler->display->display_options['fields']['field_bird_audio']['settings'] = array(
+    'pause' => 'pause',
+    'text' => 'file_description',
+  );
+  $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: Output */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Output';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
+<div class="bird-card-illustration">
+<a href="[path]">[field_bird_illustration]</a>
+</div>
+<figcaption class="bird-card-caption">
+<h4 class="common-name">[title]</h4>
+[field_bird_sci_name]
+</figcaption>
+<div class="views-field-field-bird-audio">[field_bird_audio]</div>
+</figure>
+';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
   $handler->display->display_options['allow']['use_pager'] = 0;
@@ -436,6 +522,92 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Illustration */
+  $handler->display->display_options['fields']['field_bird_illustration']['id'] = 'field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['table'] = 'field_data_field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_illustration']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_class'] = 'bird-card-illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
+    'file_view_mode' => 'bird_teaser_illustration',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+  /* Field: Content: Scientific Name */
+  $handler->display->display_options['fields']['field_bird_sci_name']['id'] = 'field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['table'] = 'field_data_field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['field'] = 'field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_sci_name']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_sci_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['text'] = '<p class="scientific-name">[field_bird_sci_name-value]</p>';
+  $handler->display->display_options['fields']['field_bird_sci_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['type'] = 'text_plain';
+  /* Field: Content: Audio */
+  $handler->display->display_options['fields']['field_bird_audio']['id'] = 'field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['table'] = 'field_data_field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['field'] = 'field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_audio']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_audio']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_audio']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_bird_audio']['type'] = 'soundmanager2_inline_player';
+  $handler->display->display_options['fields']['field_bird_audio']['settings'] = array(
+    'pause' => 'pause',
+    'text' => 'file_description',
+  );
+  $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: Output */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Output';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
+<div class="bird-card-illustration">
+<a href="[path]">[field_bird_illustration]</a>
+</div>
+<figcaption class="bird-card-caption">
+<h4 class="common-name">[title]</h4>
+[field_bird_sci_name]
+</figcaption>
+<div class="views-field-field-bird-audio">[field_bird_audio]</div>
+</figure>
+';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Nid */
@@ -492,6 +664,92 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Illustration */
+  $handler->display->display_options['fields']['field_bird_illustration']['id'] = 'field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['table'] = 'field_data_field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_illustration']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_class'] = 'bird-card-illustration';
+  $handler->display->display_options['fields']['field_bird_illustration']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
+    'file_view_mode' => 'bird_teaser_illustration',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+  /* Field: Content: Scientific Name */
+  $handler->display->display_options['fields']['field_bird_sci_name']['id'] = 'field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['table'] = 'field_data_field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['field'] = 'field_bird_sci_name';
+  $handler->display->display_options['fields']['field_bird_sci_name']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_sci_name']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_sci_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['text'] = '<p class="scientific-name">[field_bird_sci_name-value]</p>';
+  $handler->display->display_options['fields']['field_bird_sci_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_sci_name']['type'] = 'text_plain';
+  /* Field: Content: Audio */
+  $handler->display->display_options['fields']['field_bird_audio']['id'] = 'field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['table'] = 'field_data_field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['field'] = 'field_bird_audio';
+  $handler->display->display_options['fields']['field_bird_audio']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['field_bird_audio']['label'] = '';
+  $handler->display->display_options['fields']['field_bird_audio']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_bird_audio']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_bird_audio']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_bird_audio']['type'] = 'soundmanager2_inline_player';
+  $handler->display->display_options['fields']['field_bird_audio']['settings'] = array(
+    'pause' => 'pause',
+    'text' => 'file_description',
+  );
+  $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: Output */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Output';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
+<div class="bird-card-illustration">
+<a href="[path]">[field_bird_illustration]</a>
+</div>
+<figcaption class="bird-card-caption">
+<h4 class="common-name">[title]</h4>
+[field_bird_sci_name]
+</figcaption>
+<div class="views-field-field-bird-audio">[field_bird_audio]</div>
+</figure>
+';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Global: Random */
   $handler->display->display_options['sorts']['random']['id'] = 'random';
