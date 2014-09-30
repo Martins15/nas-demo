@@ -34,8 +34,8 @@ function nas_panes_pane_in_the_news_custom_pane_edit_form($form, &$form_state) {
       '#type' => 'entityreference',
       '#title' => '',
       '#default_value' => !empty($conf[$data->nid][$i]['entity_reference']['entity_id']) ? $conf[$data->nid][$i]['entity_reference']['entity_id'] : '',
-      '#era_entity_type' => 'node',  // Mandatory.
-      '#era_bundles' => array('news'), // Optional (Any bundle by default).
+      '#era_entity_type' => 'node',
+      '#era_bundles' => array('news'),
     );
   }
 
@@ -61,7 +61,7 @@ function nas_panes_pane_in_the_news_custom_pane_edit_form_submit(&$form, &$form_
 function nas_panes_pane_in_the_news_custom_pane_render($subtype, $conf, $args, $contexts) {
   if (!empty($contexts)) {
     $data = reset($contexts)->data;
-      if ($data->type !== 'bird') {
+    if ($data->type !== 'bird') {
       return;
     }
   }
