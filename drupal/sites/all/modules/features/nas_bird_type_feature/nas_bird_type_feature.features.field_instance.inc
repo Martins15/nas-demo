@@ -83,6 +83,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_bird_teaser_illustration' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -135,6 +141,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_bird_teaser_illustration' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'preview' => array(
         'label' => 'above',
@@ -210,7 +222,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'preview' => array(
         'label' => 'above',
@@ -285,7 +297,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'preview' => array(
         'label' => 'above',
