@@ -245,7 +245,7 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'name' => 'node_type',
           'settings' => array(
             'type' => array(
-              'news' => 'news',
+              'article' => 'article',
             ),
           ),
           'context' => 'node',

@@ -102,7 +102,7 @@ function nas_news_feature_feeds_importer_default() {
         'update_existing' => '1',
         'input_format' => 'plain_text',
         'skip_hash_check' => 0,
-        'bundle' => 'news',
+        'bundle' => 'article',
       ),
     ),
     'content_type' => '',

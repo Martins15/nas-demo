@@ -24,8 +24,8 @@ function nas_news_feature_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function nas_news_feature_node_info() {
   $items = array(
-    'news' => array(
-      'name' => t('News Article'),
+    'article' => array(
+      'name' => t('Article'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

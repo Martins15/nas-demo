@@ -13,7 +13,7 @@ function nas_news_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__news';
+  $strongarm->name = 'field_bundle_settings_node__article';
   $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
@@ -28,36 +28,36 @@ function nas_news_feature_strongarm() {
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_node__news'] = $strongarm;
+  $export['field_bundle_settings_node__article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_news';
+  $strongarm->name = 'node_options_article';
   $strongarm->value = array(
     0 => 'status',
     1 => 'promote',
   );
-  $export['node_options_news'] = $strongarm;
+  $export['node_options_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_news';
+  $strongarm->name = 'node_preview_article';
   $strongarm->value = '0';
-  $export['node_preview_news'] = $strongarm;
+  $export['node_preview_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_news';
+  $strongarm->name = 'node_submitted_article';
   $strongarm->value = 1;
-  $export['node_submitted_news'] = $strongarm;
+  $export['node_submitted_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'panelizer_defaults_node_news';
+  $strongarm->name = 'panelizer_defaults_node_article';
   $strongarm->value = array(
     'status' => 1,
     'view modes' => array(
@@ -78,14 +78,14 @@ function nas_news_feature_strongarm() {
       ),
     ),
   );
-  $export['panelizer_defaults_node_news'] = $strongarm;
+  $export['panelizer_defaults_node_article'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'save_continue_news';
+  $strongarm->name = 'save_continue_article';
   $strongarm->value = 'Save and add fields';
-  $export['save_continue_news'] = $strongarm;
+  $export['save_continue_article'] = $strongarm;
 
   return $export;
 }
