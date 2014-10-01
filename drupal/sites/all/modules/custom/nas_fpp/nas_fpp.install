@@ -78,6 +78,10 @@ function nas_fpp_page_manager_handlers() {
  * Create FPPs test content.
  */
 function nas_fpp_create_panes() {
+  $text = '<p>The “feature” variant of the editorial card is a three-column/full-width version
+      intended for use atop list index pages (e.g., News). It includes a wide, landscape-oriented
+      feature image, as well as the standard category eyebrow, headline,
+      and one sentence story excerpt.</p>';
   $did_query = db_query(
     'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
     array(':layout' => 'birds_landing_page')
@@ -118,15 +122,9 @@ function nas_fpp_create_panes() {
   $fpp->field_link[LANGUAGE_NONE][] = array('url' => '<front>', 'title' => 'Audubon at Home');
   $fpp->field_links[LANGUAGE_NONE][] = array('url' => '<front>', 'title' => 'Learn how to protect them');
   $fpp->field_summary[LANGUAGE_NONE][] = array(
-    'value' => '<p>The “feature” variant of the editorial card is a three-column/full-width version
-      intended for use atop list index pages (e.g., News). It includes a wide, landscape-oriented
-      feature image, as well as the standard category eyebrow, headline,
-      and one sentence story excerpt.</p>',
+    'value' => $text,
     'format' => 'full_html',
-    'safe_value' => '<p>The “feature” variant of the editorial card is a three-column/full-width
-     version intended for use atop list index pages (e.g., News). It includes a wide,
-     landscape-oriented feature image, as well as the standard category eyebrow,
-     headline, and one sentence story excerpt.</p>',
+    'safe_value' => $text,
   );
   $fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_ED_CARD_1));
   $fpp->field_column_count[LANGUAGE_NONE][] = array('value' => '4');
@@ -143,14 +141,9 @@ function nas_fpp_create_panes() {
   $fpp->field_link[LANGUAGE_NONE][] = array('url' => '<front>', 'title' => 'Get into Birds');
   $fpp->field_links[LANGUAGE_NONE][] = array('url' => '<front>', 'title' => 'Learn some helpful tips');
   $fpp->field_summary[LANGUAGE_NONE][] = array(
-    'value' => '<p>The “feature” variant of the editorial card is a three-column/full-width version
-      intended for use atop list index pages (e.g., News). It includes a wide, landscape-oriented
-      feature image, as well as the standard category eyebrow, headline,
-      and one sentence story excerpt.</p>',
+    'value' => $text,
     'format' => 'full_html',
-    'safe_value' => '<p>The “feature” variant of the editorial card is a three-column/full-width
-     version intended for use atop list index pages (e.g., News). It includes a wide,
-     landscape-oriented feature image.</p>',
+    'safe_value' => $text,
   );
   $fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_ED_CARD_2));
   $fpp->field_column_count[LANGUAGE_NONE][] = array('value' => '4');
@@ -167,15 +160,9 @@ function nas_fpp_create_panes() {
   $fpp->field_link[LANGUAGE_NONE][] = array('url' => '<front>', 'title' => 'History of Audubon');
   $fpp->field_links[LANGUAGE_NONE][] = array('url' => '<front>', 'title' => 'Explore the classic illustrations');
   $fpp->field_summary[LANGUAGE_NONE][] = array(
-    'value' => '<p>The “feature” variant of the editorial card is a three-column/full-width version
-      intended for use atop list index pages (e.g., News). It includes a wide, landscape-oriented
-      feature image, as well as the standard category eyebrow, headline,
-      and one sentence story excerpt.</p>',
+    'value' => $text,
     'format' => 'full_html',
-    'safe_value' => '<p>The “feature” variant of the editorial card is a three-column/full-width
-     version intended for use atop list index pages (e.g., News). It includes a wide,
-     landscape-oriented feature image, as well as the standard category eyebrow,
-     headline, and one sentence story excerpt.</p>',
+    'safe_value' => $text,
   );
   $fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_ED_CARD_3));
   $fpp->field_column_count[LANGUAGE_NONE][] = array('value' => '4');
