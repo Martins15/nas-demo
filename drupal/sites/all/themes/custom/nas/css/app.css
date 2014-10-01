@@ -11248,3 +11248,6 @@ body.touch .sticky-wrapper {
 .bird-card-set .owl-carousel .owl-item {
   padding: 0 12.5px;
 }
+.contextual-links-wrapper ul.contextual-links li a {
+  color: black !important;
+}
