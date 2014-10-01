@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * nas_news_feature.features.field_instance.inc
+ * nas_article_feature.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function nas_news_feature_field_default_field_instances() {
+function nas_article_feature_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'node-article-body'

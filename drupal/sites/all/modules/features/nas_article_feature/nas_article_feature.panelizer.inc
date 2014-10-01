@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * nas_news_feature.panelizer.inc
+ * nas_article_feature.panelizer.inc
  */
 
 /**
  * Implements hook_panelizer_defaults().
  */
-function nas_news_feature_panelizer_defaults() {
+function nas_article_feature_panelizer_defaults() {
   $export = array();
 
   $panelizer = new stdClass();

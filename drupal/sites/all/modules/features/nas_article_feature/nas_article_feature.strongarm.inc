@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * nas_news_feature.strongarm.inc
+ * nas_article_feature.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function nas_news_feature_strongarm() {
+function nas_article_feature_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

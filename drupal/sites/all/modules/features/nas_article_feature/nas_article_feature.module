@@ -4,4 +4,4 @@
  * Code for the Articles feature.
  */
 
-include_once 'nas_news_feature.features.inc';
+include_once 'nas_article_feature.features.inc';
