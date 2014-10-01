@@ -61,7 +61,7 @@ function nas_menu_pane_big_render() {
     'secondary_ta' => NAS_MENU_SECONDARY_TAKE_ACTION,
   );
   foreach ($s_menus as $s_key => $s_menu) {
-    $s_menu_tree = menu_tree_all_data($s_menu, 1);;
+    $s_menu_tree = menu_tree_all_data($s_menu, 1);
     foreach ($s_menu_tree as $menu_item) {
       $item = array();
       $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';

@@ -231,27 +231,7 @@ function nas_site_template_feature_default_page_manager_handlers() {
     'relationships' => array(),
     'access' => array(
       'logic' => 'or',
-      'plugins' => array(
-        0 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'birds-landing',
-          ),
-          'context' => 'argument_string_1',
-          'not' => FALSE,
-        ),
-        1 => array(
-          'name' => 'node_type',
-          'settings' => array(
-            'type' => array(
-              'article' => 'article',
-            ),
-          ),
-          'context' => 'node',
-          'not' => FALSE,
-        ),
-      ),
+      'plugins' => array(),
     ),
   );
   $display = new panels_display();
