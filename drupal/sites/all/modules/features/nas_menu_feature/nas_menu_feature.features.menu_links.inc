@@ -584,7 +584,7 @@ function nas_menu_feature_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
     'weight' => -45,
     'customized' => 1,
@@ -623,28 +623,9 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -44,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
-  );
-  // Exported menu link: menu-header-big-main-menu_audubon-climate-watch:<front>
-  $menu_links['menu-header-big-main-menu_audubon-climate-watch:<front>'] = array(
-    'menu_name' => 'menu-header-big-main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Audubon Climate Watch',
-    'options' => array(
-      'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_audubon-climate-watch:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -47,
-    'customized' => 1,
-    'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_bird-friendly-communities:<front>
   $menu_links['menu-header-big-main-menu_bird-friendly-communities:<front>'] = array(
@@ -661,28 +642,9 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -47,
+    'weight' => -46,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
-  );
-  // Exported menu link: menu-header-big-main-menu_bird-guide:<front>
-  $menu_links['menu-header-big-main-menu_bird-guide:<front>'] = array(
-    'menu_name' => 'menu-header-big-main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Bird Guide',
-    'options' => array(
-      'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_bird-guide:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -49,
-    'customized' => 1,
-    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_birding:<front>
   $menu_links['menu-header-big-main-menu_birding:<front>'] = array(
@@ -722,22 +684,22 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
   );
-  // Exported menu link: menu-header-big-main-menu_birds-of-america:<front>
-  $menu_links['menu-header-big-main-menu_birds-of-america:<front>'] = array(
+  // Exported menu link: menu-header-big-main-menu_birds-of-north-america-field-guide:<front>
+  $menu_links['menu-header-big-main-menu_birds-of-north-america-field-guide:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Birds of America',
+    'link_title' => 'Birds of North America Field Guide',
     'options' => array(
+      'identifier' => 'menu-header-big-main-menu_birds-of-north-america-field-guide:<front>',
       'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_birds-of-america:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
   );
@@ -774,7 +736,7 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -45,
+    'weight' => -47,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
   );
@@ -815,24 +777,24 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
   );
-  // Exported menu link: menu-header-big-main-menu_featured-events:<front>
-  $menu_links['menu-header-big-main-menu_featured-events:<front>'] = array(
+  // Exported menu link: menu-header-big-main-menu_events:<front>
+  $menu_links['menu-header-big-main-menu_events:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Featured Events',
+    'link_title' => 'Events',
     'options' => array(
+      'identifier' => 'menu-header-big-main-menu_events:<front>',
       'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_featured-events:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -46,
     'customized' => 1,
-    'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
+    'parent_identifier' => 'menu-header-big-main-menu_get-outside:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_features:<front>
   $menu_links['menu-header-big-main-menu_features:<front>'] = array(
@@ -852,25 +814,6 @@ function nas_menu_feature_menu_default_menu_links() {
     'weight' => -49,
     'customized' => 1,
   );
-  // Exported menu link: menu-header-big-main-menu_flyways:<front>
-  $menu_links['menu-header-big-main-menu_flyways:<front>'] = array(
-    'menu_name' => 'menu-header-big-main-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => 'Flyways',
-    'options' => array(
-      'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_flyways:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -50,
-    'customized' => 1,
-    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
-  );
   // Exported menu link: menu-header-big-main-menu_from-the-magazine:<front>
   $menu_links['menu-header-big-main-menu_from-the-magazine:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
@@ -886,7 +829,7 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_features:<front>',
   );
@@ -926,25 +869,25 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => 0,
+    'weight' => -42,
     'customized' => 1,
   );
-  // Exported menu link: menu-header-big-main-menu_important-bird-areas:<front>
-  $menu_links['menu-header-big-main-menu_important-bird-areas:<front>'] = array(
+  // Exported menu link: menu-header-big-main-menu_ibas:<front>
+  $menu_links['menu-header-big-main-menu_ibas:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Important Bird Areas',
+    'link_title' => 'IBAs',
     'options' => array(
+      'identifier' => 'menu-header-big-main-menu_ibas:<front>',
       'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_important-bird-areas:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
   );
@@ -967,15 +910,34 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
   );
-  // Exported menu link: menu-header-big-main-menu_map-stories:<front>
-  $menu_links['menu-header-big-main-menu_map-stories:<front>'] = array(
+  // Exported menu link: menu-header-big-main-menu_john-james-audubons-birds-of-america:<front>
+  $menu_links['menu-header-big-main-menu_john-james-audubons-birds-of-america:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => 'Map Stories',
+    'link_title' => 'John James Audubon\'s Birds of America',
     'options' => array(
+      'identifier' => 'menu-header-big-main-menu_john-james-audubons-birds-of-america:<front>',
       'attributes' => array(),
-      'identifier' => 'menu-header-big-main-menu_map-stories:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_maps:<front>
+  $menu_links['menu-header-big-main-menu_maps:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Maps',
+    'options' => array(
+      'identifier' => 'menu-header-big-main-menu_maps:<front>',
+      'attributes' => array(),
     ),
     'module' => 'menu',
     'hidden' => 0,
@@ -1038,7 +1000,7 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -50,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
   );
@@ -1055,9 +1017,9 @@ function nas_menu_feature_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
-    'weight' => -50,
+    'weight' => -45,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
   );
@@ -1076,9 +1038,28 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -46,
+    'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_the-flyways:<front>
+  $menu_links['menu-header-big-main-menu_the-flyways:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'The Flyways',
+    'options' => array(
+      'identifier' => 'menu-header-big-main-menu_the-flyways:<front>',
+      'attributes' => array(),
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_travel:<front>
   $menu_links['menu-header-big-main-menu_travel:<front>'] = array(
@@ -1114,7 +1095,7 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => -49,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_features:<front>',
   );
@@ -1152,7 +1133,7 @@ function nas_menu_feature_menu_default_menu_links() {
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -44,
+    'weight' => -50,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
   );
@@ -1190,25 +1171,6 @@ function nas_menu_feature_menu_default_menu_links() {
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -50,
-    'customized' => 1,
-  );
-  // Exported menu link: menu-header-big-secondary-menu_span-classshow-for-large-upgetspan-email-updates:<front>
-  $menu_links['menu-header-big-secondary-menu_span-classshow-for-large-upgetspan-email-updates:<front>'] = array(
-    'menu_name' => 'menu-header-big-secondary-menu',
-    'link_path' => '<front>',
-    'router_path' => '',
-    'link_title' => '<span class="show-for-large-up">Get</span> Email Updates',
-    'options' => array(
-      'html' => 1,
-      'attributes' => array(),
-      'identifier' => 'menu-header-big-secondary-menu_span-classshow-for-large-upgetspan-email-updates:<front>',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 1,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -48,
     'customized' => 1,
   );
   // Exported menu link: menu-header-don-t-miss_adopt-a-bird:<front>
@@ -1683,7 +1645,6 @@ function nas_menu_feature_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('<i class="icon-magnifier"></i>');
   t('<i class="icon-video"></i> Snowy Owl Webcam');
-  t('<span class="show-for-large-up">Get</span> Email Updates');
   t('About Us');
   t('About<span class="extra-nav-copy"> Us</span>');
   t('Activities');
@@ -1693,13 +1654,13 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Audubon Climate Watch');
   t('Audubon Near You');
   t('Bird Friendly Communities');
-  t('Bird Guide');
   t('Bird guide');
   t('Birding');
   t('Birds');
   t('Birds in the News');
   t('Birds in the news');
   t('Birds of America');
+  t('Birds of North America Field Guide');
   t('Careers');
   t('Climate & Energy');
   t('Column 1');
@@ -1711,6 +1672,7 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Donate');
   t('Donate to Audubon');
   t('Education');
+  t('Events');
   t('Featured Events');
   t('Features');
   t('Find a Local Chapter');
@@ -1720,12 +1682,14 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Get Outside');
   t('Home');
   t('How to Help');
-  t('Important Bird Areas');
+  t('IBAs');
   t('Inside Audubon');
+  t('John James Audubon\'s Birds of America');
   t('Join the National Audubon Society');
   t('Legal Notices');
   t('Magazine');
   t('Map Stories');
+  t('Maps');
   t('Member Services');
   t('News');
   t('Newsroom');
@@ -1737,6 +1701,7 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Science');
   t('Seas & Shores');
   t('Take Action');
+  t('The Flyways');
   t('Toyota TogetherGreen');
   t('Travel');
   t('Update Your Information');
