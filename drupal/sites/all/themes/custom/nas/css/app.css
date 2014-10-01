@@ -11250,4 +11250,8 @@ body.touch .sticky-wrapper {
 }
 .contextual-links-wrapper ul.contextual-links li a {
   color: black !important;
+@media only screen and (min-width: 768px) {
+  .page-birds-landing #block-system-main {
+    margin-top: -100px;
+  }
 }

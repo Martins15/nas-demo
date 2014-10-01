@@ -98,8 +98,6 @@ function pp_import_save_timer() {
   $stop = time();
   watchdog('pp_import_time', number_format(($stop - $start) / 60, 2) . 'm');
   variable_del('pp_import_timer');
-  // Remove all messages.
-  unset($_SESSION['messages']['status']);
 }
 
 /**
@@ -112,4 +110,8 @@ function pp_import_finished() {
   if (function_exists('nas_import_modify_references')) {
     nas_import_modify_references();
   }
+  // We have to clear all caches for ability to load all node's fields data.
+  drupal_flush_all_caches();
+  // Remove all messages.
+  unset($_SESSION['messages']['status']);
 }
