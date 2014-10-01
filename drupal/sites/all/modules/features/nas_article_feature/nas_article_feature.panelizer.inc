@@ -1,22 +1,22 @@
 <?php
 /**
  * @file
- * nas_news_feature.panelizer.inc
+ * nas_article_feature.panelizer.inc
  */
 
 /**
  * Implements hook_panelizer_defaults().
  */
-function nas_news_feature_panelizer_defaults() {
+function nas_article_feature_panelizer_defaults() {
   $export = array();
 
   $panelizer = new stdClass();
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
-  $panelizer->name = 'node:news:default';
+  $panelizer->name = 'node:article:default';
   $panelizer->title = 'Default';
   $panelizer->panelizer_type = 'node';
-  $panelizer->panelizer_key = 'news';
+  $panelizer->panelizer_key = 'article';
   $panelizer->no_blocks = FALSE;
   $panelizer->css_id = '';
   $panelizer->css = '';
@@ -185,7 +185,7 @@ function nas_news_feature_panelizer_defaults() {
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
   $panelizer->display = $display;
-  $export['node:news:default'] = $panelizer;
+  $export['node:article:default'] = $panelizer;
 
   return $export;
 }
