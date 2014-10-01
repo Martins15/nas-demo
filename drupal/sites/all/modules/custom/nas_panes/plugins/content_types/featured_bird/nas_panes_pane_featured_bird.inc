@@ -23,7 +23,7 @@ $plugin = array(
  */
 function nas_panes_pane_featured_bird_custom_pane_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
-  
+
   $form['bird'] = array(
     '#type' => 'entityreference',
     '#title' => 'Featured Bird',
@@ -124,7 +124,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     'illustration_path' => $illustration_path,
     'contextual_links' => $contextual_links,
   ));
-  
+
   $block->content = $content;
   return $block;
 }

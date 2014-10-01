@@ -51,7 +51,7 @@ function nas_panes_ajax_render_alter(&$commands) {
     // changes in the cache. In order the page to see the changes we need
     // to save cache data to database.
     nas_panes_save_bird_guide_pane();
-    
+
     $commands[] = ctools_ajax_command_reload();
   }
 }

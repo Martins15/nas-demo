@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Install file of panes module.
+ **/
+
+/**
  * Implements hook_install().
  **/
 function nas_panes_install() {
