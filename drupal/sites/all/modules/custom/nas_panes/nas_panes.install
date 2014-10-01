@@ -3,11 +3,11 @@
 /**
  * @file
  * Install file of panes module.
- **/
+ */
 
 /**
  * Implements hook_install().
- **/
+ */
 function nas_panes_install() {
   // We need to save page to database as by default settings are in the feature
   // (code) as we rely on the panes information to be in the database.
