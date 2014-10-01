@@ -74,9 +74,8 @@
  * language negotiation rule that was previously applied.
  *
  * Custom variables:
- * - $bird_priority_link: Link to Priority Birds page.
- * - $hero_inline_links: Links to Birds guide page.
- * - $learn_more_node_link: Link to node page.
+ * - $bird_illustration: Bird illustration with link to node page.
+ * - $title_link: Title with link to node page.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -92,7 +91,7 @@
       <?php print $bird_illustration; ?>
     </div>
     <figcaption class="bird-card-caption">
-      <h4 class="common-name"><?php print l($title, $node_path, array('html' => TRUE)); ?></h4>
+      <h4 class="common-name"><?php print $title_link; ?></h4>
       <p class="scientific-name"><?php print render($content['field_bird_sci_name']); ?></p>
     </figcaption>
     <?php print render($content['field_bird_audio']); ?>
