@@ -5,7 +5,7 @@
  * Import data to taxonomy vocabulary Main menu.
  */
 
-define('NAS_VOC_MACHINE_NAME', 'bird_voc_main_menu');
+define('NAS_VOC_MACHINE_NAME', 'menu_section');
 
 
 /**
@@ -24,7 +24,7 @@ function nas_import_install() {
  */
 function nas_import_create_voc() {
   $bird_voc_main_menu = (object) array(
-    'name' => 'Bird Main Menu',
+    'name' => 'Menu Section',
     'description' => 'This vocabulary to Main menu',
     'machine_name' => NAS_VOC_MACHINE_NAME,
   );
@@ -35,7 +35,7 @@ function nas_import_create_voc() {
  * Function to created term to vocabulary Main menu. 
  */
 function nas_import_create_terms() {
-  $vocabulary = taxonomy_vocabulary_machine_name_load('bird_voc_main_menu');
+  $vocabulary = taxonomy_vocabulary_machine_name_load(NAS_VOC_MACHINE_NAME);
   $vid = $vocabulary->vid;
   // Array terms where @key - name term, @value - name parent term.
   $array_with_term = array(
@@ -93,7 +93,7 @@ function nas_import_create_terms() {
     $term->name = $name_term;
     $term->vid = $vid;
     if (!empty($name_parent_term)) {
-      $parent_term = taxonomy_get_term_by_name(strtolower($name_parent_term), 'bird_voc_main_menu');
+      $parent_term = taxonomy_get_term_by_name(strtolower($name_parent_term), NAS_VOC_MACHINE_NAME);
       if (!empty($parent_term) && key($parent_term)) {
         $term->parent = key($parent_term);
       }
