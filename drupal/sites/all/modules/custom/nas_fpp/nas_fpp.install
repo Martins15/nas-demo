@@ -257,5 +257,5 @@ function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0) {
     'position' => $position,
     'locks' => array(),
   );
-  drupal_write_record('panels_pane', $panels_pane); 
+  drupal_write_record('panels_pane', $panels_pane);
 }
