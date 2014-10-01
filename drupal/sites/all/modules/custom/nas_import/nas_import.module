@@ -116,7 +116,7 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
             $bird_region_terms[] = $term;
           }
         }
-        // Additionally get terms which don't exist.
+        // Additionally get terms which don't exist yet.
         if ($value['vid'] == NAS_OLD_D6_VID_COLOR) {
           $bird_color_terms[] = $value['name'];
         }
@@ -156,28 +156,44 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
     }
     // Legacy field group.
     foreach ($bird_color_terms as $key => $term) {
-      $entity->field_bird_color[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_color[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_color')
+      );
     }
     foreach ($bird_call_pattern_terms as $key => $term) {
-      $entity->field_bird_call_pattern[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_call_pattern[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_call_pattern')
+      );
     }
     foreach ($bird_habitat2_terms as $key => $term) {
-      $entity->field_bird_habitat2[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_habitat')
+      );
     }
     foreach ($bird_locomotion_terms as $key => $term) {
-      $entity->field_bird_locomotion[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_locomotion[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_locomotion')
+      );
     }
     foreach ($bird_call_type_terms as $key => $term) {
-      $entity->field_bird_call_type[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_call_type[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_call_type')
+      );
     }
     foreach ($bird_category_terms as $key => $term) {
-      $entity->field_bird_category[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_category[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_category')
+      );
     }
     foreach ($bird_size_terms as $key => $term) {
-      $entity->field_bird_size[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_size[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_size')
+      );
     }
     foreach ($bird_wing_shape_terms as $key => $term) {
-      $entity->field_bird_wing_shape[LANGUAGE_NONE][$key]['value'] = $term;
+      $entity->field_bird_wing_shape[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_wing_shape')
+      );
     }
   }
   // Save field_similar_species data.
@@ -390,4 +406,43 @@ function nas_import_get_default_image($filename) {
   $file = reset($files);
 
   return $file->fid;
+}
+
+/**
+ * Cached initialization for term, returns term tid if exists,
+ * creates new if no.
+ *
+ * @param string $name
+ *   Term name.
+ * @param string $vname
+ *   Vocabulary machine name.
+ *
+ * @return int
+ *   Taxonomy term tid.
+ */
+function nas_import_term_init($name, $vname) {
+  $vid = &drupal_static(__FUNCTION__ . '_vid_' . $vname);
+  if (!isset($vid)) {
+    $vocab = taxonomy_vocabulary_machine_name_load($vname);
+    $vid = $vocab->vid;
+    unset($vocab);
+  }
+  $term = &drupal_static(__FUNCTION__ . '_term_' . $name . $vid);
+  if (isset($term)) {
+    return $term;
+  }
+  $taxterm = taxonomy_get_term_by_name($name, $vname);
+  if (!empty($taxterm)) {
+    $first_term = array_shift($taxterm);
+    $term = $first_term->tid;
+
+    return $term;
+  }
+  $newterm = new stdClass();
+  $newterm->name = $name;
+  $newterm->vid = $vid;
+  taxonomy_term_save($newterm);
+  $term = $newterm->tid;
+
+  return $term;
 }
