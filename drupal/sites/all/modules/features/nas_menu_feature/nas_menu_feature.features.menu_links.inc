@@ -627,6 +627,44 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
   );
+  // Exported menu link: menu-header-big-main-menu_audubon-birds--climate-report:<front>
+  $menu_links['menu-header-big-main-menu_audubon-birds--climate-report:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Audubon Birds & Climate Report',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_audubon-birds--climate-report:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_science:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_audubon-near-you:<front>
+  $menu_links['menu-header-big-main-menu_audubon-near-you:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Audubon Near You',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_audubon-near-you:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+  );
   // Exported menu link: menu-header-big-main-menu_bird-friendly-communities:<front>
   $menu_links['menu-header-big-main-menu_bird-friendly-communities:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
@@ -721,6 +759,44 @@ function nas_menu_feature_menu_default_menu_links() {
     'weight' => -48,
     'customized' => 1,
   );
+  // Exported menu link: menu-header-big-main-menu_chapter-services:<front>
+  $menu_links['menu-header-big-main-menu_chapter-services:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Chapter Services',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_chapter-services:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -47,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_christmas-bird-count:<front>
+  $menu_links['menu-header-big-main-menu_christmas-bird-count:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Christmas Bird Count',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_christmas-bird-count:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_science:<front>',
+  );
   // Exported menu link: menu-header-big-main-menu_climate--energy:<front>
   $menu_links['menu-header-big-main-menu_climate--energy:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
@@ -757,6 +833,25 @@ function nas_menu_feature_menu_default_menu_links() {
     'expanded' => 0,
     'weight' => -47,
     'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-main-menu_contact-us:<front>
+  $menu_links['menu-header-big-main-menu_contact-us:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Contact Us',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_contact-us:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -43,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_education:<front>
   $menu_links['menu-header-big-main-menu_education:<front>'] = array(
@@ -851,26 +946,81 @@ function nas_menu_feature_menu_default_menu_links() {
     'weight' => -46,
     'customized' => 1,
   );
-  // Exported menu link: menu-header-big-main-menu_i-classicon-magnifieri:<front>
-  $menu_links['menu-header-big-main-menu_i-classicon-magnifieri:<front>'] = array(
+  // Exported menu link: menu-header-big-main-menu_great-backyard-bird-count:<front>
+  $menu_links['menu-header-big-main-menu_great-backyard-bird-count:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
     'link_path' => '<front>',
     'router_path' => '',
-    'link_title' => '<i class="icon-magnifier"></i>',
+    'link_title' => 'Great Backyard Bird Count',
     'options' => array(
-      'attributes' => array(
-        'liclass' => 'primary-nav-search',
-      ),
-      'html' => 1,
-      'identifier' => 'menu-header-big-main-menu_i-classicon-magnifieri:<front>',
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_great-backyard-bird-count:<front>',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 1,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -42,
+    'weight' => -48,
     'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_science:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_history:<front>
+  $menu_links['menu-header-big-main-menu_history:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'History',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_history:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -48,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_how-to-help:<front>
+  $menu_links['menu-header-big-main-menu_how-to-help:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'How To Help',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_how-to-help:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_hummingbirds-at-home:<front>
+  $menu_links['menu-header-big-main-menu_hummingbirds-at-home:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Hummingbirds at Home',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_hummingbirds-at-home:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -49,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_science:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_ibas:<front>
   $menu_links['menu-header-big-main-menu_ibas:<front>'] = array(
@@ -910,6 +1060,44 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_news:<front>',
   );
+  // Exported menu link: menu-header-big-main-menu_international:<front>
+  $menu_links['menu-header-big-main-menu_international:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'International',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_international:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_conservation:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_issues:<front>
+  $menu_links['menu-header-big-main-menu_issues:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Issues',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_issues:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -50,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_magazine:<front>',
+  );
   // Exported menu link: menu-header-big-main-menu_john-james-audubons-birds-of-america:<front>
   $menu_links['menu-header-big-main-menu_john-james-audubons-birds-of-america:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
@@ -928,6 +1116,43 @@ function nas_menu_feature_menu_default_menu_links() {
     'weight' => -48,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_leadership:<front>
+  $menu_links['menu-header-big-main-menu_leadership:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Leadership',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_leadership:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -45,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_magazine:<front>
+  $menu_links['menu-header-big-main-menu_magazine:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Magazine',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_magazine:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 1,
+    'expanded' => 0,
+    'weight' => -44,
+    'customized' => 1,
   );
   // Exported menu link: menu-header-big-main-menu_maps:<front>
   $menu_links['menu-header-big-main-menu_maps:<front>'] = array(
@@ -985,6 +1210,25 @@ function nas_menu_feature_menu_default_menu_links() {
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_get-outside:<front>',
   );
+  // Exported menu link: menu-header-big-main-menu_press-room:<front>
+  $menu_links['menu-header-big-main-menu_press-room:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Press Room',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_press-room:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -44,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
+  );
   // Exported menu link: menu-header-big-main-menu_priority-birds:<front>
   $menu_links['menu-header-big-main-menu_priority-birds:<front>'] = array(
     'menu_name' => 'menu-header-big-main-menu',
@@ -1003,6 +1247,25 @@ function nas_menu_feature_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
     'parent_identifier' => 'menu-header-big-main-menu_birds:<front>',
+  );
+  // Exported menu link: menu-header-big-main-menu_reports--financials:<front>
+  $menu_links['menu-header-big-main-menu_reports--financials:<front>'] = array(
+    'menu_name' => 'menu-header-big-main-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Reports & Financials',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-main-menu_reports--financials:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => -46,
+    'customized' => 1,
+    'parent_identifier' => 'menu-header-big-main-menu_aboutspan-classextra-nav-copy-usspan:<front>',
   );
   // Exported menu link: menu-header-big-main-menu_science:<front>
   $menu_links['menu-header-big-main-menu_science:<front>'] = array(
@@ -1153,6 +1416,24 @@ function nas_menu_feature_menu_default_menu_links() {
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -49,
+    'customized' => 1,
+  );
+  // Exported menu link: menu-header-big-secondary-menu_get-email-updates:<front>
+  $menu_links['menu-header-big-secondary-menu_get-email-updates:<front>'] = array(
+    'menu_name' => 'menu-header-big-secondary-menu',
+    'link_path' => '<front>',
+    'router_path' => '',
+    'link_title' => 'Get Email Updates',
+    'options' => array(
+      'attributes' => array(),
+      'identifier' => 'menu-header-big-secondary-menu_get-email-updates:<front>',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 1,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
     'customized' => 1,
   );
   // Exported menu link: menu-header-big-secondary-menu_magazine:<front>
@@ -1643,13 +1924,13 @@ function nas_menu_feature_menu_default_menu_links() {
   );
   // Translatables
   // Included for use with string extractors like potx.
-  t('<i class="icon-magnifier"></i>');
   t('<i class="icon-video"></i> Snowy Owl Webcam');
   t('About Us');
   t('About<span class="extra-nav-copy"> Us</span>');
   t('Activities');
   t('Adopt a Bird');
   t('Advocacy');
+  t('Audubon Birds & Climate Report');
   t('Audubon Campus');
   t('Audubon Climate Watch');
   t('Audubon Near You');
@@ -1662,6 +1943,8 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Birds of America');
   t('Birds of North America Field Guide');
   t('Careers');
+  t('Chapter Services');
+  t('Christmas Bird Count');
   t('Climate & Energy');
   t('Column 1');
   t('Column 2');
@@ -1679,13 +1962,21 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Flyways');
   t('From the Magazine');
   t('Galveston Bay Oil Spill');
+  t('Get Email Updates');
   t('Get Outside');
+  t('Great Backyard Bird Count');
+  t('History');
   t('Home');
+  t('How To Help');
   t('How to Help');
+  t('Hummingbirds at Home');
   t('IBAs');
   t('Inside Audubon');
+  t('International');
+  t('Issues');
   t('John James Audubon\'s Birds of America');
   t('Join the National Audubon Society');
+  t('Leadership');
   t('Legal Notices');
   t('Magazine');
   t('Map Stories');
@@ -1696,8 +1987,10 @@ function nas_menu_feature_menu_default_menu_links() {
   t('Online Store');
   t('Photography');
   t('Piping Plover');
+  t('Press Room');
   t('Priority Birds');
   t('Privacy Policy');
+  t('Reports & Financials');
   t('Science');
   t('Seas & Shores');
   t('Take Action');
