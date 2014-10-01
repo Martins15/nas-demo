@@ -5,9 +5,9 @@
   position: relative;
   top: -2px;
 }
-
-.bird-card-set {
-  .views-field-field-bird-audio {
+.bird-card {
+  .views-field-field-bird-audio,
+  .field-name-field-bird-audio {
     display: block;
     font-size: 15px;
     left: 0;
@@ -15,6 +15,14 @@
     padding: 10px 25px 25px 10px;
     position: absolute;
     top: 0;
+
+    li {
+      display: none;
+
+      &:first-child {
+        display: block;
+      }
+    }
 
     .sm2_link {
       font-size: 0;
@@ -24,7 +32,9 @@
       }
     }
   }
+}
 
+.bird-card-set {
   .owl-carousel {
     .owl-wrapper-outer {
       padding-top: 5px;

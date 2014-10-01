@@ -43,7 +43,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'nas_one_column';
+  $display->layout = 'bird_guide_page';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -51,6 +51,9 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'middle' => NULL,
       'header' => NULL,
       'main' => NULL,
+      'bird_card_grid' => NULL,
+      'in_the_news' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -59,19 +62,13 @@ function nas_birds_guide_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-3ed29580-71da-4b96-9a95-a5f9a065c89d';
-    $pane->panel = 'main';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->pid = 'new-0590ff1b-3ee4-46f3-986a-bb8960d71f3c';
+    $pane->panel = 'bird_card_grid';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_bird_guide-nas_bird_guide_fav_birds';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => '',
-      'body' => 'bird guide',
-      'format' => 'plain_text',
-      'substitute' => TRUE,
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -80,11 +77,11 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '3ed29580-71da-4b96-9a95-a5f9a065c89d';
-    $display->content['new-3ed29580-71da-4b96-9a95-a5f9a065c89d'] = $pane;
-    $display->panels['main'][0] = 'new-3ed29580-71da-4b96-9a95-a5f9a065c89d';
+    $pane->uuid = '0590ff1b-3ee4-46f3-986a-bb8960d71f3c';
+    $display->content['new-0590ff1b-3ee4-46f3-986a-bb8960d71f3c'] = $pane;
+    $display->panels['bird_card_grid'][0] = 'new-0590ff1b-3ee4-46f3-986a-bb8960d71f3c';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3ed29580-71da-4b96-9a95-a5f9a065c89d';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['birds_guide'] = $page;

@@ -7,10 +7,7 @@
 
 <header class="global-header alt standard">
   <?php print $content['header']; ?>
-</header>
-<section class="global-content">
-  <?php print $content['main']; ?>
-</section>
+<?php print $content['main']; ?>
 <?php print $content['footer']; ?>
 
   <!-- DEMO SCRIPT -->
