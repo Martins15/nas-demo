@@ -3,4 +3,4 @@ description = Stores Custom FPPs
 core = 7.x
 package = NAS
 dependencies[] = fieldable_panels_panes
-
+dependencies[] = nas_master
