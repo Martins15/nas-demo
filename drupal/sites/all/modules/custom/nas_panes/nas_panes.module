@@ -57,6 +57,19 @@ function nas_panes_ajax_render_alter(&$commands) {
 }
 
 /**
+ * Implements hook_modules_enabled().
+ *
+ * We need to run nas_panes_save_bird_guide_pane() after feature is enabled. As
+ * we are not sure if this module got enabled before or after feature is enabled
+ * we keep operation in both hook_modules_enabled() and hook_install().
+ */
+function nas_panes_modules_enabled($modules) {
+  if (in_array('nas_birds_guide_feature', $modules)) {
+    nas_panes_save_bird_guide_pane();
+  }
+}
+
+/**
  * Resave bird guide page (cache to database).
  */
 function nas_panes_save_bird_guide_pane() {
