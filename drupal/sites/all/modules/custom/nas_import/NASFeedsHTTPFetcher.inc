@@ -6,7 +6,7 @@
  */
 
 /**
- * Overrid to use cache.
+ * Override to use cache.
  */
 class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
   /**
@@ -36,7 +36,7 @@ class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
 }
 
 /**
- * Overrid to use NASFeedsHTTPFetcherResult.
+ * Extend basic FeedsHTTPFetcher to use NASFeedsHTTPFetcherResult.
  */
 class NASFeedsHTTPFetcher extends FeedsHTTPFetcher {
 
