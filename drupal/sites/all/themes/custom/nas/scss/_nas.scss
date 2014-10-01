@@ -33,7 +33,6 @@
     }
   }
 }
-
 .bird-card-set {
   .owl-carousel {
     .owl-wrapper-outer {
@@ -59,9 +58,11 @@
     }
   }
 }
-
-.page-birds-landing #block-system-main {
-  @include breakpoint(large-up) {
-    margin-top: -100px;
+.contextual-links-wrapper ul.contextual-links li a {
+  color: black !important;
+  .page-birds-landing #block-system-main {
+    @include breakpoint(large-up) {
+      margin-top: -100px;
+    }
   }
 }

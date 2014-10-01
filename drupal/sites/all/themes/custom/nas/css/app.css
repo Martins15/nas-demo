@@ -11261,8 +11261,11 @@ body.touch .sticky-wrapper {
   padding: 0 12.5px;
 }
 
+.contextual-links-wrapper ul.contextual-links li a {
+  color: black !important;
+}
 @media only screen and (min-width: 768px) {
-  .page-birds-landing #block-system-main {
+  .contextual-links-wrapper ul.contextual-links li a .page-birds-landing #block-system-main {
     margin-top: -100px;
   }
 }

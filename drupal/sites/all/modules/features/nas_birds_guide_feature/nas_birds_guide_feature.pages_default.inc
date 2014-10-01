@@ -43,7 +43,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'bird_guide_page';
+  $display->layout = 'nas_one_column';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -51,9 +51,6 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'middle' => NULL,
       'header' => NULL,
       'main' => NULL,
-      'bird_card_grid' => NULL,
-      'in_the_news' => NULL,
-      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -62,13 +59,25 @@ function nas_birds_guide_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-0590ff1b-3ee4-46f3-986a-bb8960d71f3c';
-    $pane->panel = 'bird_card_grid';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_bird_guide-nas_bird_guide_fav_birds';
+    $pane->pid = 'new-f36107fa-4ccd-416c-8a89-e7634025935f';
+    $pane->panel = 'main';
+    $pane->type = 'nas_panes_pane_featured_bird';
+    $pane->subtype = 'nas_panes_pane_featured_bird';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'bird' => array(
+        'entity_id' => '3',
+        'entity_label' => 'Great Shearwater',
+        'entity_type' => 'node',
+        'entity_bundle' => 'bird',
+      ),
+      'form_build_id' => 'form-LeJXU33aZBAe4WjuUzVFFcAA_YnMZ0j1MDKkRwcdqu8',
+      'form_token' => 'PD7CwKoHPhaby_FGI_upCMOVuvqnK25ZgR9eIV-DDgk',
+      'form_id' => 'nas_panes_pane_featured_bird_custom_pane_edit_form',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -77,9 +86,9 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '0590ff1b-3ee4-46f3-986a-bb8960d71f3c';
-    $display->content['new-0590ff1b-3ee4-46f3-986a-bb8960d71f3c'] = $pane;
-    $display->panels['bird_card_grid'][0] = 'new-0590ff1b-3ee4-46f3-986a-bb8960d71f3c';
+    $pane->uuid = 'f36107fa-4ccd-416c-8a89-e7634025935f';
+    $display->content['new-f36107fa-4ccd-416c-8a89-e7634025935f'] = $pane;
+    $display->panels['main'][0] = 'new-f36107fa-4ccd-416c-8a89-e7634025935f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
