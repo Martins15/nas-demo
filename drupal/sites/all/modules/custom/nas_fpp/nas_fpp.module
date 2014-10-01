@@ -71,40 +71,6 @@ function nas_fpp_entity_info_alter(&$entity_info) {
 }
 
 /**
- * Implements hook_menu().
- */
-function nas_fpp_menu() {
-  $items = array();
-  $items['nas/fpp/content/add'] = array(
-    'title' => 'Add test FPP content',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_fpp_test_content_form'),
-    'access arguments' => array('access administration pages'),
-    'type' => MENU_NORMAL_ITEM,
-  );
-  return $items;
-}
-
-/**
- * Callback form for nas/fpp/content/add page.
- */
-function nas_fpp_test_content_form($form, &$form_state) {
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => 'Submit',
-  );
-  return $form;
-}
-
-/**
- * Submit form for nas/fpp/content/add page.
- */
-function nas_fpp_test_content_form_submit($form, &$form_state) {
-  nas_fpp_add_test_content();
-  return $form;
-}
-
-/**
  * Implements hook_preprocess_fieldable_panels_pane().
  */
 function nas_fpp_preprocess_fieldable_panels_pane(&$vars) {
@@ -169,10 +135,11 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
 function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
   $fpp = $vars['elements']['#fieldable_panels_pane'];
   $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
+  $view_diplay_id = 'audubon_bird_guide_random';
+  $args = array();
   foreach ($get_field_related_bird as $value) {
     $args[] = $value['target_id'];
   }
-  $view_diplay_id = 'audubon_bird_guide_random';
   if (count($args) == 4) {
     $args = implode(' ', $args);
     $view_diplay_id = 'audubon_bird_guide';

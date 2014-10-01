@@ -49,3 +49,9 @@
     }
   }
 }
+
+.page-birds-landing #block-system-main {
+  @include breakpoint(large-up) {
+    margin-top: -100px;
+  }
+}

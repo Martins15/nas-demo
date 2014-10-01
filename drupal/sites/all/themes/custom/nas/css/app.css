@@ -11248,3 +11248,9 @@ body.touch .sticky-wrapper {
 .bird-card-set .owl-carousel .owl-item {
   padding: 0 12.5px;
 }
+
+@media only screen and (min-width: 768px) {
+  .page-birds-landing #block-system-main {
+    margin-top: -100px;
+  }
+}
