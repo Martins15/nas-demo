@@ -13,6 +13,7 @@ dependencies[] = file
 dependencies[] = field_ui
 dependencies[] = taxonomy
 dependencies[] = menu
+dependencies[] = contextual
 
 ; Contrib modules
 dependencies[] = admin_menu_toolbar
