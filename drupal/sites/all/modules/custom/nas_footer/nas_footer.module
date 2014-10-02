@@ -5,6 +5,8 @@
  * define ctools content type.
  */
 
+define('NAS_FOOTER_PAGE_MANAGER_CACHE_KEY', 'site_template');
+
 /**
  * Implements hook_ctools_plugin_directory().
  */
@@ -35,6 +37,7 @@ function nas_footer_theme() {
               'copyright' => NULL,
               'footer_menu' => NULL,
               'footer_copyright_menu' => NULL,
+              'contextual_links' => NULL
           ),
           'template' => 'templates/nas-footer',
       ),
@@ -70,4 +73,30 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
   $form['#attributes']['class'] = array('mailing-list-form');
 
   return $form;
+}
+
+/**
+ * Implements hook_ajax_render_alter().
+ */
+function nas_footer_ajax_render_alter(&$commands) {
+
+  $copy_commands = $commands;
+  $last_command = array_pop($copy_commands);
+  // Will get triggered when user submitted the form.
+  if (strpos($_GET['q'], NAS_FOOTER_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+    // Here we save the cache to database. When we edited the pane we made
+    // changes in the cache. In order the page to see the changes we need
+    // to save cache data to database.
+    nas_footer_save_footer_pane();
+
+    $commands[] = ctools_ajax_command_reload();
+  }
+}
+
+/**
+ * Resave bird guide page (cache to database).
+ */
+function nas_footer_save_footer_pane() {
+  $cache = page_manager_get_page_cache(NAS_FOOTER_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
 }

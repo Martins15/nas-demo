@@ -105,13 +105,37 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
   $block = new stdClass();
 
+  ctools_include('ajax');
+  ctools_include('modal');
+  ctools_modal_add_js();
+// Add ajax-responder so ctools_ajax_command_reload() will work.
+  ctools_add_js('ajax-responder');
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_footer_pane'))->fetchField();
+  if (empty($pid)) {
+    nas_footer_save_footer_pane();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_footer_pane'))->fetchField();
+  }
+
+  $custom_links = array(
+    'pane-edit' => array(
+      'title' => t('Edit pane'),
+      'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context_2::::/' . $pid,
+      'query' => array('reload' => 'true'),
+      'attributes' => array('class' => array('ctools-use-modal')),
+    ),
+  );
+
+  $contextual_links['menu'] = nas_menu_cl(NAS_MENU_FOOTER_MENU, $custom_links);
+  $contextual_links['cr_menu'] = nas_menu_cl(NAS_MENU_FOOTER_COPYRIGHT_MENU);
+  
   $t_vars = array(
-      'logo' => $logo,
-      'mission_title' => $title,
-      'mission' => $mission,
-      'copyright' => $copyright,
-      'footer_menu' => $footer_menu,
-      'footer_copyright_menu' => $footer_copyright_menu,
+    'logo' => $logo,
+    'mission_title' => $title,
+    'mission' => $mission,
+    'copyright' => $copyright,
+    'footer_menu' => $footer_menu,
+    'footer_copyright_menu' => $footer_copyright_menu,
+    'contextual_links' => $contextual_links
   );
   $content = theme('nas_footer', $t_vars);
   $block->title = t('Footer');
