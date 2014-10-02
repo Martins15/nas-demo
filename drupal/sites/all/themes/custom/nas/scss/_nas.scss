@@ -24,7 +24,7 @@
       }
     }
 
-    .sm2_link {
+    a {
       font-size: 0;
       
       .icon-sound-full {
@@ -64,5 +64,15 @@
     @include breakpoint(large-up) {
       margin-top: -100px;
     }
+  }
+}
+.bird-card-grid .pager-load-more {
+  .button.load-more:hover {
+    background-color: #EDECEA;
+  }
+  
+  &.pager-load-more-empty,
+  .ajax-progress-throbber {
+    display: none;
   }
 }

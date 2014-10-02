@@ -13,37 +13,20 @@
   <!-- DEMO SCRIPT -->
   <script>
 (function($) {
-    $(".load-more").bind("click", function(e) {
-      e.preventDefault();
-      var $this = $(this),
-          $container = $(".bird-card-grid-container"),
-          $cards = $container.contents(".columns").slice(0, 12).clone().addClass("invisible");
+  $(".bird-guide-search select").bind("change", function(e) {
+    var $this = $(this),
+        $container = $(".bird-card-grid-container"),
+        $cards = $container.contents(".columns").slice(0, 12).clone();
 
-      $this.addClass("active");
-
-      $(".bg-egg").css("display", "none");
-
-      setTimeout(function() {
-        $container.append($cards);
-        $cards.removeClass("invisible");
-        $this.removeClass("active");
-      }, 1500);
+    $container.find(".bird-card").addClass("disappear");
+    $(".bird-card.disappear").bind("animationend webkitAnimationEnd oanimationend MSAnimationEnd", function() {
+      $(this).addClass("invisible");
     });
-
-    $(".bird-guide-search select").bind("change", function(e) {
-      var $this = $(this),
-          $container = $(".bird-card-grid-container"),
-          $cards = $container.contents(".columns").slice(0, 12).clone();
-
-      $container.find(".bird-card").addClass("disappear");
-      $(".bird-card.disappear").bind("animationend webkitAnimationEnd oanimationend MSAnimationEnd", function() {
-        $(this).addClass("invisible");
-      });
-      setTimeout(function() {
-        $(".bird-card-grid .section-header h2").text("Matching Birds");
-        $container.children().remove();
-        $container.append($cards);
-      }, 1500);
-    });
+    setTimeout(function() {
+      $(".bird-card-grid .section-header h2").text("Matching Birds");
+      $container.children().remove();
+      $container.append($cards);
+    }, 1500);
+  });
 })(jQuery);
   </script>
