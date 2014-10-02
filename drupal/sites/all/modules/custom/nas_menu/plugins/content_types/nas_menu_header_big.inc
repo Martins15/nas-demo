@@ -77,9 +77,6 @@ function nas_menu_pane_big_render() {
 
   $form = drupal_get_form('nas_menu_search_form');
   $rendered_form = drupal_render($form);
-
-  
-  
   
   $block = new stdClass();
   $frontpage_link = l(variable_get('site_name'), '<front>', array('attributes' => array('class' => array('current-parent', 'wordmark'))));

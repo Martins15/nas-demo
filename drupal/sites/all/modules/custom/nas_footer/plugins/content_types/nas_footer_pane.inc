@@ -108,7 +108,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   ctools_include('ajax');
   ctools_include('modal');
   ctools_modal_add_js();
-// Add ajax-responder so ctools_ajax_command_reload() will work.
+  // Add ajax-responder so ctools_ajax_command_reload() will work.
   ctools_add_js('ajax-responder');
   $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_footer_pane'))->fetchField();
   if (empty($pid)) {
@@ -127,7 +127,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
   $contextual_links['menu'] = nas_menu_cl(NAS_MENU_FOOTER_MENU, $custom_links);
   $contextual_links['cr_menu'] = nas_menu_cl(NAS_MENU_FOOTER_COPYRIGHT_MENU);
-  
+
   $t_vars = array(
     'logo' => $logo,
     'mission_title' => $title,
