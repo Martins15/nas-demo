@@ -62,7 +62,7 @@ function nas_preprocess_node(&$vars) {
     // Add learn mode link.
     $nid = $vars['nid'];
     $link_node = drupal_get_path_alias('node/' . $nid);
-    $vars['learn_more_node_link'] = l(t('Learn more »'), $base_url . $link_node);
+    $vars['learn_more_node_link'] = l(t('Learn more »'), $link_node);
     // Add Birds priority link.
     $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
     // Add hero inline links.
