@@ -28,14 +28,14 @@ function nas_panes_pane_in_the_news_custom_pane_edit_form($form, &$form_state) {
       return $form;
     }
   }
-  // Limit to 3 numbers of News Articles.
+  // Limit to 3 numbers of Articles.
   for ($i = 1; $i <= 3; $i++) {
     $form[$data->nid][$i]['entity_reference'] = array(
       '#type' => 'entityreference',
       '#title' => '',
       '#default_value' => !empty($conf[$data->nid][$i]['entity_reference']['entity_id']) ? $conf[$data->nid][$i]['entity_reference']['entity_id'] : '',
       '#era_entity_type' => 'node',
-      '#era_bundles' => array('news'),
+      '#era_bundles' => array('article'),
     );
   }
 

@@ -68,7 +68,8 @@ function nas_preprocess_node(&$vars) {
     // Add Page absolute url.
     $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
     // Add learn mode link.
-    $vars['learn_more_node_link'] = l(t('Learn more »'), $node_path);
+    $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
+
     // Add Birds priority link.
     $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
     // Add hero inline links.

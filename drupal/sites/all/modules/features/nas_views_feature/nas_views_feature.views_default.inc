@@ -124,7 +124,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'news' => 'news',
+    'article' => 'article',
   );
 
   /* Display: Bird in the News (default) */
@@ -293,7 +293,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['arguments']['nid']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
   $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
-    'news' => 'news',
+    'article' => 'article',
   );
   $handler->display->display_options['arguments']['nid']['validate_options']['access'] = TRUE;
   $handler->display->display_options['arguments']['nid']['validate_options']['nid_type'] = 'nids';
