@@ -45,7 +45,8 @@ $speed-animation: 0.35s;
   &:hover i {
     color: rgba($color-black, 0.6);
   }
-  &.active i {
+  &.active i,
+  &.progress-disabled i {
     @include animation(spin $speed-animation linear infinite);
     color: rgba($color-black, 0.6);
   }
