@@ -1598,23 +1598,27 @@ function nas_bird_type_feature_field_default_field_instances() {
   // Exported field_instance: 'node-bird-field_bird_video'
   $field_instances['node-bird-field_bird_video'] = array(
     'bundle' => 'bird',
+    'default_value' => array(
+      0 => array(
+        'value' => '<iframe title="YouTube video player" src="http://www.youtube.com/embed/-J3HfllvXWE" frameborder="0" width="547" height="333"></iframe>',
+        'format' => 'video',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
-        'module' => 'mediafield',
-        'settings' => array(
-          'file_view_mode' => 'default',
-        ),
-        'type' => 'media',
-        'weight' => 23,
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 44,
       ),
       'nas_node_view_mode_hero_bird' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1625,35 +1629,19 @@ function nas_bird_type_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_video',
-    'label' => 'Video',
+    'label' => 'Bird video',
     'required' => 0,
     'settings' => array(
-      'file_extensions' => 'mov mp4 m4a m4v mpeg avi weba webp webm',
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'text',
       'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-          'youtube' => 'youtube',
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'document' => 0,
-          'image' => 0,
-          'video' => 'video',
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 0,
-          'media_internet' => 'media_internet',
-          'upload' => 'upload',
-          'youtube' => 'youtube',
-        ),
+        'rows' => 5,
       ),
-      'type' => 'media_generic',
+      'type' => 'text_textarea',
       'weight' => 20,
     ),
   );
@@ -1887,6 +1875,7 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Bird Locomotion');
   t('Bird Size');
   t('Bird Wing Shape');
+  t('Bird video');
   t('Body');
   t('Caption');
   t('Color mode');
@@ -1911,7 +1900,6 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Songs and Calls');
   t('Title Text');
   t('Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.');
-  t('Video');
 
   return $field_instances;
 }

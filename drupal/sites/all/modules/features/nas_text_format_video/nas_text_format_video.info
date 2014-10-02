@@ -1,0 +1,8 @@
+name = NAS Text Format Video
+description = Text format Video.
+core = 7.x
+package = NAS
+dependencies[] = features
+features[features_api][] = api:2
+features[filter][] = video
+project path = sites/all/modules/features
