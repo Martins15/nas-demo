@@ -3663,12 +3663,12 @@ ul.pagination li {
   bottom: -7px;
   left: 0;
   width: 100%;
-  padding: 7px 0;
-  text-align: center;
-  color: #aaa;
-  font-size: 15px;
+  padding: 7px 0 10px;
+  text-align: right;
+  color: #838078;
+  font-size: 14px;
   line-height: 20px;
-  font-style: italic;
+  font-family: "Source Sans Pro",Verdana,sans-serif;
 }
 
 #cboxCurrent {
