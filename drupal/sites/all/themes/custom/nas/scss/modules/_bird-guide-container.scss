@@ -37,13 +37,13 @@
 .bird-guide-image {
   position: absolute;
   top: 0;
-  height: auto;
   width: 100%;
   pointer-events: none;
   overflow: hidden;
   text-align: center;
 
   img {
+    height: auto;
     width: 150%;
     max-width: none;
     margin-left: -25%;
