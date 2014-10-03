@@ -770,23 +770,23 @@ function nas_bird_type_feature_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_bird_video',
     'foreign keys' => array(
-      'file_managed' => array(
+      'format' => array(
         'columns' => array(
-          'fid' => 'fid',
+          'format' => 'format',
         ),
-        'table' => 'file_managed',
+        'table' => 'filter_format',
       ),
     ),
     'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
+      'format' => array(
+        0 => 'format',
       ),
     ),
     'locked' => 0,
-    'module' => 'mediafield',
+    'module' => 'text',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'media',
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_bird_wing_shape'
