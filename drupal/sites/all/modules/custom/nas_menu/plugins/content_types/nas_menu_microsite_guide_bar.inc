@@ -4,6 +4,7 @@
  * @file
  * define ctools content type.
  */
+
 $plugin = array(
   'single' => TRUE,
   'title' => t('Bird Guide Bar'),
