@@ -232,6 +232,33 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
 }
 
 /**
+ * Implements hook_feeds_after_save().
+ */
+function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
+  if ($entity->feeds_item->id == 'news_import') {
+    // Set Press Release display for imported articles.
+    $panelizer_entity = array(
+      'entity_type' => 'node',
+      'entity_id' => $entity->nid,
+      'revision_id' => $entity->nid,
+      'name' => 'node:article:press_release',
+      'no_blocks' => 0,
+      'css_id' => '',
+      'css' => '',
+      'pipeline' => 'standard',
+      'contexts' => array(),
+      'relationships' => array(),
+      'did' => 0,
+      'view_mode' => 'page_manager',
+      'css_class' => '',
+      'title_element' => 'H2',
+      'link_to_entity' => 1,
+      'extra' => array(),
+    );
+    drupal_write_record('panelizer_entity', $panelizer_entity);
+  }
+}
+/**
  * Retrieve and save remote file.
  *
  * @param object $entity
