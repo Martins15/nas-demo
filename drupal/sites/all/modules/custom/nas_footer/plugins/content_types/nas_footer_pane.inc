@@ -114,7 +114,6 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   if (empty($pid)) {
     nas_footer_save_footer_pane();
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_footer_pane'))->fetchField();
-//    $pid = 'new-' . ctools_uuid_generate();
   }
 
   $custom_links = array(
