@@ -83,7 +83,7 @@ function nas_footer_ajax_render_alter(&$commands) {
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
-  if (strpos($_GET['q'], NAS_FOOTER_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+  if (strpos(arg(4), NAS_FOOTER_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos(arg(6), 'form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
     // Here we save the cache to database. When we edited the pane we made
     // changes in the cache. In order the page to see the changes we need
     // to save cache data to database.
@@ -98,5 +98,5 @@ function nas_footer_ajax_render_alter(&$commands) {
  */
 function nas_footer_save_footer_pane() {
   $cache = page_manager_get_page_cache(NAS_FOOTER_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
+  page_manager_save_page_cache(NAS_FOOTER_PAGE_MANAGER_CACHE_KEY);
 }
