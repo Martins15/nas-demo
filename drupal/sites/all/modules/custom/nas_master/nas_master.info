@@ -22,3 +22,4 @@ dependencies[] = nas_fpp_feature
 dependencies[] = nas_fpp
 dependencies[] = nas_panes
 dependencies[] = nas_frontpage_feature
+dependencies[] = nas_magazine_issue_feature

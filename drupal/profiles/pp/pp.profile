@@ -49,11 +49,16 @@ function pp_import_nodes() {
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $news_node_nids = drupal_json_decode($result->data);
 
+  $content_type = 'magazine_issue';
+  $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
+  $magazine_issue_node_nids = drupal_json_decode($result->data);
+
   // No need to import whole set of birds for local development.
-  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+//  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
     $news_node_nids = array_slice($news_node_nids, 0, 20);
-  }
+    $magazine_issue_node_nids = array_slice($magazine_issue_node_nids, 0, 5);
+//  }
 
   $operations = array();
 
@@ -63,6 +68,10 @@ function pp_import_nodes() {
 
   foreach (array_chunk($news_node_nids, 10) as $chunk) {
     $operations[] = array('pp_import_nodes_batch', array($chunk, 'news_import'));
+  }
+
+  foreach (array_chunk($magazine_issue_node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk, 'magazine_issue_import'));
   }
 
   variable_set('pp_import_timer', time());
