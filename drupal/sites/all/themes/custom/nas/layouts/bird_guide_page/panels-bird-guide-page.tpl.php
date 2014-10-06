@@ -17,52 +17,10 @@
 </header>
 <div class="bird-guide-search show">
   <div class="row">
-    <div class="columns large-9 bird-guide-search-form">
-      <form>
-        <div class="bird-guide-search-input">
-          <input type="search" placeholder="Search for a bird in the guide..." class="bird-guide-search-input radius">
-        </div>
-        <button class="bird-guide-search-submit button pea-green"><span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">Search</span></button>
-
-        <div class="row">
-          <div class="columns medium-4">
-            <select name="" id="">
-              <option value="">Type of Bird</option>
-              <option value=""></option>
-              <option value=""></option>
-            </select>
-          </div>
-          <div class="columns medium-4">
-            <select name="" id="">
-              <option value="">Taxonomic Family</option>
-              <option value="">Anatidae</option>
-              <option value="">Odontophoridae</option>
-              <option value="">Gaviidae</option>
-              <option value="">Phoenicopteridae</option>
-              <option value="">Procellariidae</option>
-              <option value="">Phaethontidae</option>
-              <option value="">Fregatidae</option>
-              <option value="">Phalacrocoracidae</option>
-              <option value="">Pelecanidae</option>
-            </select>
-          </div>
-          <div class="columns medium-4">
-            <select name="" id="">
-              <option value="">Region</option>
-              <option value=""></option>
-              <option value=""></option>
-            </select>
-          </div>
-        </div>
-      </form>
+    <div class="columns large-12 bird-guide-search-form">
+      <?php print $content['bird_guide_search']; ?>
     </div>
-    <div class="columns large-3 interactive-guide">
-      <p class="preamble">
-        <span class="small">Saw a bird?</span> <span class="large">Identify it.</span>
-      </p>
-      <a href="#" class="interactive-guide-button button blue">Our <span class="hide-for-small hide-for-tiny">Interactive </span>Guide</a>
-    </div>
-  </div>      
+  </div>
 </div>
 <section class="global-content">
   <div class="bird-card-grid">

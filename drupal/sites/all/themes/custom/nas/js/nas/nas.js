@@ -20,6 +20,20 @@
       });
     }
   };
+  
+  Drupal.behaviors.nasBirdGuide = {
+    attach: function (context, settings) {
+      $(".bird-guide-search select").once().change(function (e) {
+        var $container = $(".bird-card-grid-container");
+        $container.find(".bird-card").addClass("disappear");
+        $(".bird-card.disappear").bind("animationend webkitAnimationEnd oanimationend MSAnimationEnd", function () {
+          $(this).addClass("invisible");
+        });
+//        $(".bird-card-grid .section-header h2").text("Matching Birds");
+      });
+    }
+  };
+  
 })(jQuery);
 
 Nav = {};
