@@ -242,7 +242,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
           $term = reset($term);
           if ($term->vocabulary_machine_name == 'internal_tagging') {
             $internal_tagging_terms[] = $term;
-            continue; 
+            continue;
           }
         }
         // Additionally get terms which don't exist yet.
