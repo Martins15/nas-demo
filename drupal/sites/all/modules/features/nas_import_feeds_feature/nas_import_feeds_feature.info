@@ -1,8 +1,12 @@
 name = NAS Import feeds
+description = Feeds importers
 core = 7.x
 package = NAS
+version = 7.x-1.2
+project = nas_import_feeds_feature
 dependencies[] = ctools
 dependencies[] = feeds
 features[ctools][] = feeds:feeds_importer_default:1
 features[features_api][] = api:2
 features[feeds_importer][] = birds_import
+project path = sites/all/modules/features
