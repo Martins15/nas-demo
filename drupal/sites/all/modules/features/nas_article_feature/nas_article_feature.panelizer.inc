@@ -78,6 +78,75 @@ function nas_article_feature_panelizer_defaults() {
   $panelizer = new stdClass();
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
+  $panelizer->name = 'node:article:map';
+  $panelizer->title = 'Map';
+  $panelizer->panelizer_type = 'node';
+  $panelizer->panelizer_key = 'article';
+  $panelizer->no_blocks = FALSE;
+  $panelizer->css_id = '';
+  $panelizer->css = '';
+  $panelizer->pipeline = 'standard';
+  $panelizer->contexts = array();
+  $panelizer->relationships = array();
+  $panelizer->access = array();
+  $panelizer->view_mode = 'page_manager';
+  $panelizer->css_class = '';
+  $panelizer->title_element = 'H2';
+  $panelizer->link_to_entity = TRUE;
+  $panelizer->extra = array();
+  $display = new panels_display();
+  $display->layout = 'nas_article_map';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'header' => NULL,
+      'map' => NULL,
+      'main' => NULL,
+      'left' => NULL,
+      'right' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%node:title';
+  $display->uuid = '95b0f0b1-dbd1-4cb1-91bf-b43cad68143e';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
+    $pane->panel = 'main';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:body';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3ec4c305-f283-4e47-9100-957fcd36f14f';
+    $display->content['new-3ec4c305-f283-4e47-9100-957fcd36f14f'] = $pane;
+    $display->panels['main'][0] = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
+  $panelizer->display = $display;
+  $export['node:article:map'] = $panelizer;
+
+  $panelizer = new stdClass();
+  $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
+  $panelizer->api_version = 1;
   $panelizer->name = 'node:article:press_release';
   $panelizer->title = 'Press release';
   $panelizer->panelizer_type = 'node';
@@ -251,75 +320,6 @@ function nas_article_feature_panelizer_defaults() {
   $display->title_pane = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
   $panelizer->display = $display;
   $export['node:article:press_release'] = $panelizer;
-
-  $panelizer = new stdClass();
-  $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
-  $panelizer->api_version = 1;
-  $panelizer->name = 'node:article:map';
-  $panelizer->title = 'Map';
-  $panelizer->panelizer_type = 'node';
-  $panelizer->panelizer_key = 'article';
-  $panelizer->no_blocks = FALSE;
-  $panelizer->css_id = '';
-  $panelizer->css = '';
-  $panelizer->pipeline = 'standard';
-  $panelizer->contexts = array();
-  $panelizer->relationships = array();
-  $panelizer->access = array();
-  $panelizer->view_mode = 'page_manager';
-  $panelizer->css_class = '';
-  $panelizer->title_element = 'H2';
-  $panelizer->link_to_entity = TRUE;
-  $panelizer->extra = array();
-  $display = new panels_display();
-  $display->layout = 'nas_article_map';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'header' => NULL,
-      'map' => NULL,
-      'main' => NULL,
-      'left' => NULL,
-      'right' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = '%node:title';
-  $display->uuid = '95b0f0b1-dbd1-4cb1-91bf-b43cad68143e';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
-    $pane->panel = 'main';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:body';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3ec4c305-f283-4e47-9100-957fcd36f14f';
-    $display->content['new-3ec4c305-f283-4e47-9100-957fcd36f14f'] = $pane;
-    $display->panels['main'][0] = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
-  $panelizer->display = $display;
-  $export['node:article:map'] = $panelizer;
 
   return $export;
 }
