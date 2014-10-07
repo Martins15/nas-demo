@@ -14,6 +14,7 @@ define('NAS_OLD_D6_VID_CATEGORY', 81);
 define('NAS_OLD_D6_VID_SIZE', 111);
 define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
 define('NAS_OLD_D6_VID_WING_SHAPE', 116);
+define('NAS_OLD_D6_VID_ARTICLE_TYPE', 37);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 
@@ -226,6 +227,38 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_node = reset($image_node);
       if (!empty($image_node['field_photo'])) {
         nas_import_import_image($entity, $image_node['field_photo'], 'field_image');
+      }
+    }
+  }
+
+  // Save old taxonomy terms to existed terms if match.
+  if (!empty($item['taxonomy'])) {
+    $internal_tagging = array();
+    // Check if there are any terms we have to save.
+    foreach ($item['taxonomy'] as $key => $value) {
+      if (isset($value['name'])) {
+        $term = taxonomy_get_term_by_name($value['name']);
+        if (!empty($term)) {
+          $term = reset($term);
+          if ($term->vocabulary_machine_name == 'internal_tagging') {
+            $internal_tagging_terms[] = $term;
+            continue; 
+          }
+        }
+        // Additionally get terms which don't exist yet.
+        if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE) {
+          $internal_tagging_terms[] = $value['name'];
+        }
+      }
+    }
+    foreach ($internal_tagging_terms as $key => $term) {
+      if (is_object($term)) {
+        $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+      }
+      else {
+        $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+          'tid' => nas_import_term_init($term, 'internal_tagging')
+        );
       }
     }
   }

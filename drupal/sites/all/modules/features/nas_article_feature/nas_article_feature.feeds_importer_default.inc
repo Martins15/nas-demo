@@ -60,6 +60,12 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '5',
           ),
+          'taxonomy' => array(
+            'name' => 'taxonomy',
+            'value' => 'taxonomy.[*]',
+            'debug' => 0,
+            'weight' => '6',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
