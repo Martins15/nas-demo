@@ -232,34 +232,35 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   }
 
   // Save old taxonomy terms to existed terms if match.
-  if (!empty($item['taxonomy'])) {
-    $internal_tagging = array();
-    // Check if there are any terms we have to save.
-    foreach ($item['taxonomy'] as $key => $value) {
-      if (isset($value['name'])) {
-        $term = taxonomy_get_term_by_name($value['name']);
-        if (!empty($term)) {
-          $term = reset($term);
-          if ($term->vocabulary_machine_name == 'internal_tagging') {
-            $internal_tagging_terms[] = $term;
-            continue;
-          }
+  if (empty($item['taxonomy'])) {
+    return;
+  }
+  $internal_tagging = array();
+  // Check if there are any terms we have to save.
+  foreach ($item['taxonomy'] as $key => $value) {
+    if (isset($value['name'])) {
+      $term = taxonomy_get_term_by_name($value['name']);
+      if (!empty($term)) {
+        $term = reset($term);
+        if ($term->vocabulary_machine_name == 'internal_tagging') {
+          $internal_tagging_terms[] = $term;
+          continue;
         }
-        // Additionally get terms which don't exist yet.
-        if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE) {
-          $internal_tagging_terms[] = $value['name'];
-        }
+      }
+      // Additionally get terms which don't exist yet.
+      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE) {
+        $internal_tagging_terms[] = $value['name'];
       }
     }
-    foreach ($internal_tagging_terms as $key => $term) {
-      if (is_object($term)) {
-        $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
-      }
-      else {
-        $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
-          'tid' => nas_import_term_init($term, 'internal_tagging')
-        );
-      }
+  }
+  foreach ($internal_tagging_terms as $key => $term) {
+    if (is_object($term)) {
+      $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+    }
+    else {
+      $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'internal_tagging')
+      );
     }
   }
 }
