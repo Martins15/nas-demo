@@ -15,6 +15,7 @@
  * - $reset_button: A button to reset the exposed filter applied. May be optional.
  * - $button: The submit button for the form.
  * - $q in case of disabled 'clean urls' contains hidden input <input type="hidden" name="q" />
+ * 
  * @ingroup views_templates
  */
 ?>
