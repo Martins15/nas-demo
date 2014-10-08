@@ -24,11 +24,11 @@
     
   - name: Creating cache folder
     sudo: yes
-    file: path={{ cache_folder }} state=directory owner=www-data mode=775 recurse=yes
+    file: path={{ cache_folder }} state=directory recurse=yes
 
   - name: Installing drupal
     sudo: yes
-    shell: "drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }}"
+    shell: "APP_ENV=dev drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }}"
 
   handlers:
 #    - name: import livedb
