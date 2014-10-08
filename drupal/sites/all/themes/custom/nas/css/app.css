@@ -6025,11 +6025,13 @@ input.header-search-input,
   }
 }
 
+/*
 @media only screen and (min-width: 768px) {
   .bird-guide-search-form {
     padding-right: 25px;
   }
 }
+*/
 .bird-guide-search-form select {
   width: 100%;
   margin: 12.5px 0 0 0;

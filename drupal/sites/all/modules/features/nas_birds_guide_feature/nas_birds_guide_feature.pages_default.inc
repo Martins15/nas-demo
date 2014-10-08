@@ -54,6 +54,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'bird_card_grid' => NULL,
       'in_the_news' => NULL,
       'cards_set' => NULL,
+      'bird_guide_search' => NULL,
     ),
   );
   $display->cache = array();
@@ -80,6 +81,29 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->uuid = '502e83e2-2364-4ffe-af1d-aefc04d2477a';
     $display->content['new-502e83e2-2364-4ffe-af1d-aefc04d2477a'] = $pane;
     $display->panels['bird_card_grid'][0] = 'new-502e83e2-2364-4ffe-af1d-aefc04d2477a';
+    $pane = new stdClass();
+    $pane->pid = 'new-e340351d-0e88-407f-8952-f44411b6ca0e';
+    $pane->panel = 'bird_guide_search';
+    $pane->type = 'block';
+    $pane->subtype = 'views-9647e42f3c5129c09998cecbef5ad26f';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e340351d-0e88-407f-8952-f44411b6ca0e';
+    $display->content['new-e340351d-0e88-407f-8952-f44411b6ca0e'] = $pane;
+    $display->panels['bird_guide_search'][0] = 'new-e340351d-0e88-407f-8952-f44411b6ca0e';
     $pane = new stdClass();
     $pane->pid = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
     $pane->panel = 'header';
