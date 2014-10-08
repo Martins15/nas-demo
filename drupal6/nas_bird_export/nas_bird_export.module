@@ -49,13 +49,13 @@ function nas_bird_export_menu() {
  *
  */
 function nas_node_list_callback($content_type) {
-  $result = db_query("SELECT nid FROM node WHERE type = '%s'", $content_type);
+  $result = db_query("SELECT nid FROM {node} WHERE type = '%s'", $content_type);
   $nids = array();
   while ($obj = db_fetch_object($result)) {
     $nids[] = $obj->nid;
   }
 
-  print json_encode($nids);
+  print drupal_json($nids);
 }
 
 /**
@@ -67,7 +67,7 @@ function nas_node_list_callback($content_type) {
 function nas_node_nid_callback($nid) {
   $node = node_load($nid);
 
-  print json_encode(array($node));
+  print drupal_json(array($node));
 }
 
 /**
@@ -77,13 +77,13 @@ function nas_node_nid_callback($nid) {
  *
  */
 function nas_user_list_callback() {
-  $result = db_query("SELECT uid FROM users");
+  $result = db_query("SELECT uid FROM {users}");
   $uids = array();
   while ($obj = db_fetch_object($result)) {
     $uids[] = $obj->uid;
   }
 
-  print json_encode($uids);
+  print drupal_json($uids);
 }
 
 /**
@@ -95,5 +95,5 @@ function nas_user_list_callback() {
 function nas_user_uid_callback($uid) {
   $user = user_load($uid);
 
-  print json_encode(array($user));
+  print drupal_json(array($user));
 }
