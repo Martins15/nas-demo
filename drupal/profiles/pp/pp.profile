@@ -54,11 +54,11 @@ function pp_import_nodes() {
   $magazine_issue_node_nids = drupal_json_decode($result->data);
 
   // No need to import whole set of birds for local development.
-//  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
     $news_node_nids = array_slice($news_node_nids, 0, 20);
     $magazine_issue_node_nids = array_slice($magazine_issue_node_nids, 0, 5);
-//  }
+  }
 
   $operations = array();
 
