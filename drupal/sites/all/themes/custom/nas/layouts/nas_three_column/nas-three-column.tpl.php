@@ -14,7 +14,7 @@
     <aside class="medium-12 article-aside small reflow reflow-into-sidebar-bottom" data-reflow-class="full-width">
       <?php print $content['right']; ?>
     </aside>
-    <?php print $content['middle']; ?>
+    <?php print $content['main']; ?>
   </div>
   <div class="article-sidebar large-pull-10 large-2 columns">
     <?php print $content['left']; ?>
