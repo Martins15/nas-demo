@@ -6,57 +6,6 @@
  */
 ?>
 <?php print $content['header']; ?>
-  <div class="guide-bar">
-    <div class="row">
-      <div class="column">
-        <h2 class="guide-bar-title"><span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds</h2>
-        <a class="guide-bar-search toggle-bird-guide-search" href="#"><i class="icon-binoculars white"></i><i class="icon-binoculars black"></i> Find a Bird</a>
-        <div class="guide-bar-attribution"><span class="preamble">Brought to you by</span><img class="canon-logo" src="<?php print base_path() . path_to_theme() . '/img/canon-logo.png'; ?>"></div>
-      </div>
-    </div>
-  </div>
-  <div class="bird-guide-search">
-    <div class="row">
-      <div class="columns large-9 bird-guide-search-form">
-        <form>
-          <div class="bird-guide-search-input">
-            <input type="search" placeholder="Search for a bird in the guide..." class="bird-guide-search-input radius">
-          </div>
-          <button class="bird-guide-search-submit button pea-green"><span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">Search</span></button>
-
-          <div class="row">
-            <div class="columns medium-4">
-              <select name="" id="">
-                <option value="">Type of Bird</option>
-                <option value=""></option>
-                <option value=""></option>
-              </select>
-            </div>
-            <div class="columns medium-4">
-              <select name="" id="">
-                <option value="">Taxonomic Family</option>
-                <option value=""></option>
-                <option value=""></option>
-              </select>
-            </div>
-            <div class="columns medium-4">
-              <select name="" id="">
-                <option value="">Region</option>
-                <option value=""></option>
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="columns large-3 interactive-guide">
-        <p class="preamble">
-          <span class="small">Saw a bird?</span> <span class="large">Identify it.</span>
-        </p>
-        <a href="#" class="interactive-guide-button button blue">Our <span class="hide-for-small hide-for-tiny">Interactive </span>Guide</a>
-      </div>
-    </div>
-  </div>
 </header>
 <section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content no-padding">
   <div class="bird-guide-container hero large">
