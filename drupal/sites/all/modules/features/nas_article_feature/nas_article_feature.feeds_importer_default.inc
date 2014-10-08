@@ -66,6 +66,12 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '6',
           ),
+          'uid' => array(
+            'name' => 'uid',
+            'value' => 'uid',
+            'debug' => 0,
+            'weight' => '7',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
