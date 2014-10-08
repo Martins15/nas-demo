@@ -14,7 +14,7 @@
  * - $offset: A textfield to define the offset of the view. May be optional.
  * - $reset_button: A button to reset the exposed filter applied. May be optional.
  * - $button: The submit button for the form.
- *
+ * - $q in case of disabled 'claen urls' contains hidden input <input type="hidden" name="q" />
  * @ingroup views_templates
  */
 ?>
