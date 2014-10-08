@@ -29,7 +29,6 @@
         $(".bird-card.disappear").bind("animationend webkitAnimationEnd oanimationend MSAnimationEnd", function () {
           $(this).addClass("invisible");
         });
-//        $(".bird-card-grid .section-header h2").text("Matching Birds");
       });
     }
   };
