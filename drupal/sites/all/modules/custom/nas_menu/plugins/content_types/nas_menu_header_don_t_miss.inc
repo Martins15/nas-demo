@@ -32,7 +32,8 @@ function nas_menu_pane_don_t_miss_render() {
     $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
     $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
     $path = $menu_item['link']['link_path'];
-    $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+    $attributes = $a_class ? drupal_attributes(array('class' => $a_class)) : '';
+    $item['link'] = '<a href="' . check_plain(url($path)) . '"' . $attributes . '>' .  $title . '</a>';
     $items[] = $item;
   }
 
