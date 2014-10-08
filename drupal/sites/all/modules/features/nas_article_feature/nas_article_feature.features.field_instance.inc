@@ -1,18 +1,18 @@
 <?php
 /**
  * @file
- * nas_news_feature.features.field_instance.inc
+ * nas_article_feature.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function nas_news_feature_field_default_field_instances() {
+function nas_article_feature_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-news-body'
-  $field_instances['node-news-body'] = array(
-    'bundle' => 'news',
+  // Exported field_instance: 'node-article-body'
+  $field_instances['node-article-body'] = array(
+    'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -60,9 +60,9 @@ function nas_news_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_image'
-  $field_instances['node-news-field_image'] = array(
-    'bundle' => 'news',
+  // Exported field_instance: 'node-article-field_image'
+  $field_instances['node-article-field_image'] = array(
+    'bundle' => 'article',
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -130,9 +130,54 @@ function nas_news_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_related_bird'
-  $field_instances['node-news-field_related_bird'] = array(
-    'bundle' => 'news',
+  // Exported field_instance: 'node-article-field_internal_tagging'
+  $field_instances['node-article-field_internal_tagging'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'nas_node_view_mode_hero_bird' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_internal_tagging',
+    'label' => 'Internal tagging',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_related_bird'
+  $field_instances['node-article-field_related_bird'] = array(
+    'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -179,9 +224,58 @@ function nas_news_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-news-field_subtitle'
-  $field_instances['node-news-field_subtitle'] = array(
-    'bundle' => 'news',
+  // Exported field_instance: 'node-article-field_author'
+  $field_instances['node-article-field_author'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
+      'nas_node_view_mode_hero_bird' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_author',
+    'label' => 'Author',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_subtitle'
+  $field_instances['node-article-field_subtitle'] = array(
+    'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
@@ -227,8 +321,10 @@ function nas_news_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Author');
   t('Body');
   t('Image');
+  t('Internal tagging');
   t('Similar Bird');
   t('Subtitle');
 

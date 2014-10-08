@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * nas_news_feature.feeds_importer_default.inc
+ * nas_article_feature.feeds_importer_default.inc
  */
 
 /**
  * Implements hook_feeds_importer_default().
  */
-function nas_news_feature_feeds_importer_default() {
+function nas_article_feature_feeds_importer_default() {
   $export = array();
 
   $feeds_importer = new stdClass();
@@ -60,6 +60,18 @@ function nas_news_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '5',
           ),
+          'taxonomy' => array(
+            'name' => 'taxonomy',
+            'value' => 'taxonomy.[*]',
+            'debug' => 0,
+            'weight' => '6',
+          ),
+          'uid' => array(
+            'name' => 'uid',
+            'value' => 'uid',
+            'debug' => 0,
+            'weight' => '7',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
@@ -102,7 +114,7 @@ function nas_news_feature_feeds_importer_default() {
         'update_existing' => '1',
         'input_format' => 'plain_text',
         'skip_hash_check' => 0,
-        'bundle' => 'news',
+        'bundle' => 'article',
       ),
     ),
     'content_type' => '',

@@ -3663,12 +3663,12 @@ ul.pagination li {
   bottom: -7px;
   left: 0;
   width: 100%;
-  padding: 7px 0;
-  text-align: center;
-  color: #aaa;
-  font-size: 15px;
+  padding: 7px 0 10px;
+  text-align: right;
+  color: #838078;
+  font-size: 14px;
   line-height: 20px;
-  font-style: italic;
+  font-family: "Source Sans Pro",Verdana,sans-serif;
 }
 
 #cboxCurrent {
@@ -5040,7 +5040,7 @@ table.row-borders tbody td {
 .button.load-more:hover i {
   color: rgba(0, 0, 0, 0.6);
 }
-.button.load-more.active i {
+.button.load-more.active i, .button.load-more.progress-disabled i {
   -moz-animation: spin 0.35s linear infinite;
   -webkit-animation: spin 0.35s linear infinite;
   animation: spin 0.35s linear infinite;
@@ -7264,7 +7264,7 @@ body.touch .primary-sub-nav-index {
 }
 @media only screen and (min-width: 768px) {
   .bird-card-grid {
-    background-image: url(grid-bg.jpg);
+    background-image: url(../img/grid-bg.jpg);
     background-size: 85% auto;
     background-position: center top;
     background-repeat: no-repeat;
@@ -7405,7 +7405,7 @@ body.touch .primary-sub-nav-index {
   -o-transition: background-image 0.5s ease-in-out;
   -webkit-transition: background-image 0.5s ease-in-out;
   transition: background-image 0.5s ease-in-out;
-  background-image: url(grid-bg-color.jpg);
+  background-image: url(../img/grid-bg-color.jpg);
 }
 .bird-card-grid.show-bg .row {
   -moz-transition: opacity 0.5s ease-in-out;
@@ -8014,6 +8014,7 @@ body.black-bg .section-header a:hover {
   text-align: center;
 }
 .bird-guide-image img {
+  height: auto;
   width: 150%;
   max-width: none;
   margin-left: -25%;
@@ -9163,7 +9164,7 @@ body.black-bg .slide-caption {
 }
 .bg-egg.active {
   background-color: #000;
-  background-image: url(icon-close.png);
+  background-image: url(../img/icon-close.png);
   color: #E18400;
   font-size: 24px;
   line-height: 24px;
@@ -11216,7 +11217,8 @@ body.touch .sticky-wrapper {
   top: -2px;
 }
 
-.bird-card-set .views-field-field-bird-audio {
+.bird-card .views-field-field-bird-audio,
+.bird-card .field-name-field-bird-audio {
   display: block;
   font-size: 15px;
   left: 0;
@@ -11225,12 +11227,23 @@ body.touch .sticky-wrapper {
   position: absolute;
   top: 0;
 }
-.bird-card-set .views-field-field-bird-audio .sm2_link {
+.bird-card .views-field-field-bird-audio li,
+.bird-card .field-name-field-bird-audio li {
+  display: none;
+}
+.bird-card .views-field-field-bird-audio li:first-child,
+.bird-card .field-name-field-bird-audio li:first-child {
+  display: block;
+}
+.bird-card .views-field-field-bird-audio a,
+.bird-card .field-name-field-bird-audio a {
   font-size: 0;
 }
-.bird-card-set .views-field-field-bird-audio .sm2_link .icon-sound-full {
+.bird-card .views-field-field-bird-audio a .icon-sound-full,
+.bird-card .field-name-field-bird-audio a .icon-sound-full {
   font-size: 15px;
 }
+
 .bird-card-set .owl-carousel .owl-wrapper-outer {
   padding-top: 5px;
 }
@@ -11249,8 +11262,20 @@ body.touch .sticky-wrapper {
   padding: 0 12.5px;
 }
 
+.contextual-links-wrapper ul.contextual-links li a {
+  color: black !important;
+}
+
 @media only screen and (min-width: 768px) {
-  .page-birds-landing #block-system-main {
+  .page-birds-landing .field-name-field-related-bird {
     margin-top: -100px;
   }
+}
+
+.bird-card-grid .pager-load-more .button.load-more:hover {
+  background-color: #EDECEA;
+}
+.bird-card-grid .pager-load-more.pager-load-more-empty,
+.bird-card-grid .pager-load-more .ajax-progress-throbber {
+  display: none;
 }

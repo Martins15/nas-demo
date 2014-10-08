@@ -6,7 +6,10 @@
  */
 
 function nas_master_install() {
-  $source = DRUPAL_ROOT . '/sites/all/themes/custom/nas/img/footer-logo.png';
-  $destination = 'public://footer-logo.png';
-  file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
+  $files = array('footer-logo.png', 'canon-logo.png');
+  foreach ($files as $file) {
+    $source = DRUPAL_ROOT . '/sites/all/themes/custom/nas/img/' . $file;
+    $destination = 'public://' . $file;
+    file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
+  }
 }

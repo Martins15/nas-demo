@@ -53,12 +53,12 @@
             bottom: -7px; 
             left:0; 
             width:100%; 
-            padding: 7px 0;
-            text-align: center;
-            color:$color-middle-gray; 
-            font-size: $size-text-small;
+            padding: 7px 0 10px;
+            text-align: right;
+            color: $color-warm-gray; 
+            font-size: 14px;
             line-height: $size-line-small;
-            font-style: italic;
+            font-family: "Source Sans Pro",Verdana,sans-serif;
         }
         #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
         #cboxLoadingOverlay{background:url(../img/loading_background.png) no-repeat center center;}

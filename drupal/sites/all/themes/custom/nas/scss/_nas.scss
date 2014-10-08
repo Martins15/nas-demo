@@ -5,9 +5,9 @@
   position: relative;
   top: -2px;
 }
-
-.bird-card-set {
-  .views-field-field-bird-audio {
+.bird-card {
+  .views-field-field-bird-audio,
+  .field-name-field-bird-audio {
     display: block;
     font-size: 15px;
     left: 0;
@@ -16,7 +16,15 @@
     position: absolute;
     top: 0;
 
-    .sm2_link {
+    li {
+      display: none;
+
+      &:first-child {
+        display: block;
+      }
+    }
+
+    a {
       font-size: 0;
       
       .icon-sound-full {
@@ -24,7 +32,8 @@
       }
     }
   }
-
+}
+.bird-card-set {
   .owl-carousel {
     .owl-wrapper-outer {
       padding-top: 5px;
@@ -49,9 +58,21 @@
     }
   }
 }
-
-.page-birds-landing #block-system-main {
+.contextual-links-wrapper ul.contextual-links li a {
+  color: black !important;
+}
+.page-birds-landing .field-name-field-related-bird {
   @include breakpoint(large-up) {
     margin-top: -100px;
+  }
+}
+.bird-card-grid .pager-load-more {
+  .button.load-more:hover {
+    background-color: #EDECEA;
+  }
+  
+  &.pager-load-more-empty,
+  .ajax-progress-throbber {
+    display: none;
   }
 }

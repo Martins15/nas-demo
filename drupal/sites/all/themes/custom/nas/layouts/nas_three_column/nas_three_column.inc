@@ -10,13 +10,13 @@
  */
 // Plugin definition.
 $plugin = array(
-  'title' => t('Three column'),
+  'title' => t('Article default'),
   'category' => t('NAS'),
   'icon' => 'nas_three_column.png',
   'theme' => 'nas_three_column',
   'regions' => array(
     'left' => t('Left'),
-    'middle' => t('Middle'),
+    'main' => t('Main'),
     'right' => t('Right'),
     'header' => t('Header')
   ),
