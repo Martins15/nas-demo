@@ -273,7 +273,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
     if (isset($users_old_uids[$item['uid']])) {
       $contact_nid = $users_old_uids[$item['uid']];
     }
-    $entity->field_related_contact[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
   }
 }
 

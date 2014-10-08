@@ -224,8 +224,8 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_related_contact'
-  $field_instances['node-article-field_related_contact'] = array(
+  // Exported field_instance: 'node-article-field_author'
+  $field_instances['node-article-field_author'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
     'deleted' => 0,
@@ -254,7 +254,7 @@ function nas_article_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_related_contact',
+    'field_name' => 'field_author',
     'label' => 'Author',
     'required' => 0,
     'settings' => array(

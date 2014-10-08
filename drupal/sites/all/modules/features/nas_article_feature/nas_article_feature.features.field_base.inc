@@ -71,13 +71,13 @@ function nas_article_feature_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_related_contact'
-  $field_bases['field_related_contact'] = array(
+  // Exported field_base: 'field_author'
+  $field_bases['field_author'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_related_contact',
+    'field_name' => 'field_author',
     'foreign keys' => array(
       'node' => array(
         'columns' => array(
