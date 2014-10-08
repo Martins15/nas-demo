@@ -115,13 +115,13 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'bird' => array(
-        'entity_id' => '3',
-        'entity_label' => 'Great Shearwater',
+        'entity_id' => '25',
+        'entity_label' => 'Audubon\'s Shearwater',
         'entity_type' => 'node',
         'entity_bundle' => 'bird',
       ),
-      'form_build_id' => 'form-Cd3FcYM_qIwp2tA2a6Wi8HxKYvo4Hijl2-77hNBPvJs',
-      'form_token' => '0VMUOZ8fDZBg5PPL5WqS3KO4re7nTDTa1DJ6G7vSKB0',
+      'form_build_id' => 'form-ZhngCUb0ncAnvQiHV0iwPFXxprHGtwzDIfDwgyJ0YBQ',
+      'form_token' => 'Zs3uoy_c8O5mX-qgV5BxRNGcN0f8YQfeneyaNzM-kI4',
       'form_id' => 'nas_panes_pane_featured_bird_custom_pane_edit_form',
     );
     $pane->cache = array();

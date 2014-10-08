@@ -60,10 +60,10 @@
 }
 .contextual-links-wrapper ul.contextual-links li a {
   color: black !important;
-  .page-birds-landing #block-system-main {
-    @include breakpoint(large-up) {
-      margin-top: -100px;
-    }
+}
+.page-birds-landing .field-name-field-related-bird {
+  @include breakpoint(large-up) {
+    margin-top: -100px;
   }
 }
 .bird-card-grid .pager-load-more {

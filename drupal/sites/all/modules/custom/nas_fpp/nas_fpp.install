@@ -94,7 +94,7 @@ function nas_fpp_create_panes() {
   $fpp->category = 'NAS FPP';
   $fpp->title = 'Hero bird Audubon\'s Shearwater';
   $fpp->bundle = 'nas_hero_bird';
-  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 5);
+  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 25);
   fieldable_panels_panes_save($fpp);
   nas_fpp_create_panels_pane($did, $fpp->bundle, 'hero');
   unset($fpp);
@@ -105,10 +105,10 @@ function nas_fpp_create_panes() {
   $fpp->category = 'NAS FPP';
   $fpp->title = 'The Audubon Bird Guide';
   $fpp->bundle = 'nas_fpp_bird_guide';
-  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 2);
-  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 3);
-  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 9);
-  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 1);
+  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 25);
+  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 26);
+  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 30);
+  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => 34);
   fieldable_panels_panes_save($fpp);
   nas_fpp_create_panels_pane($did, $fpp->bundle, 'bird_card_set');
   unset($fpp);
