@@ -56,6 +56,9 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'news_import') {
     nas_import_feeds_presave_news_import($source, $entity, $item);
   }
+  if ($entity->feeds_item->id == 'users_import') {
+    nas_import_feeds_presave_users_import($source, $entity, $item);
+  }
 }
 
 /**
@@ -263,12 +266,35 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       );
     }
   }
+  // Replace old uid by Contact node nid.
+  if (!empty($item['uid'])) {
+    $users_old_uids = variable_get('nas_users_import_uids');
+    $contact_nid = 1;
+    if (isset($users_old_uids[$item['uid']])) {
+      $contact_nid = $users_old_uids[$item['uid']];
+    }
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
+}
+
+/**
+ * hook_feeds_presave for users_import importer.
+ */
+function nas_import_feeds_presave_users_import($source, $entity, $item) {
+  if (!empty($item['profile_full_name'])) {
+    $entity->title = $item['profile_full_name'];
+  }
 }
 
 /**
  * Implements hook_feeds_after_save().
  */
 function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
+  if ($entity->feeds_item->id == 'users_import') {
+    $users_old_uids = variable_get('nas_users_import_uids', '');
+    $users_old_uids[$item['uid']] = $entity->nid;
+    variable_set('nas_users_import_uids', $users_old_uids);
+  }
   if ($entity->feeds_item->id == 'news_import') {
     return;
   }
