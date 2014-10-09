@@ -41,7 +41,7 @@ function nas_panes_theme() {
         'page_link' => '',
       ),
       'template' => 'nas-featured-social-in-article',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/social_button_in_article'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article'
     ),
   );
 }
