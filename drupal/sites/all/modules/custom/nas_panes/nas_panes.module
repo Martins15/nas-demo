@@ -35,6 +35,14 @@ function nas_panes_theme() {
       'template' => 'nas-featured-bird',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird'
     ),
+    'nas_featured_social_in_article' => array(
+      'variables' => array(
+        'title' => '',
+        'page_link' => '',
+      ),
+      'template' => 'nas-featured-social-in-article',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/social_button_in_article'
+    ),
   );
 }
 
