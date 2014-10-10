@@ -115,7 +115,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'bird' => array(
-        'entity_id' => '25',
+        'entity_id' => nas_fpp_get_node_nid_by_type('bird'),
         'entity_label' => 'Audubon\'s Shearwater',
         'entity_type' => 'node',
         'entity_bundle' => 'bird',

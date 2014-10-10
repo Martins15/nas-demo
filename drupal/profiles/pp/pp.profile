@@ -31,6 +31,13 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_import_nodes',
   );
+  $tasks['content_after_import'] = array(
+    'display_name' => st('Content after import'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_content_after_import',
+  );
   return $tasks;
 }
 
@@ -114,6 +121,15 @@ function pp_import_users_batch($uids, $importer_id) {
     $source->save();
     feeds_cache_clear(FALSE);
     $source->import();
+  }
+}
+
+/**
+ * Function which executes on Contaent after import install task.
+ */
+function pp_content_after_import() {
+  if (function_exists('nas_fpp_create_panes')) {
+    nas_fpp_create_panes();
   }
 }
 
