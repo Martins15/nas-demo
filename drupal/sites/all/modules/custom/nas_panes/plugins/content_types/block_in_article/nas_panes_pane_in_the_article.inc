@@ -20,7 +20,6 @@ $plugin = array(
  */
 function nas_panes_pane_in_the_article_render($subtype, $conf, $args, $contexts) {
   global $base_url;
-
   if (!empty($contexts)) {
     $data = reset($contexts)->data;
     if ($data->type !== 'article') {
