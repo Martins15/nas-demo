@@ -131,6 +131,9 @@ function pp_content_after_import() {
   if (function_exists('nas_fpp_create_panes')) {
     nas_fpp_create_panes();
   }
+  if (function_exists('nas_fpp_get_node_nid_by_type')) {
+    variable_set('nas_random_bird_node_nid', nas_fpp_get_node_nid_by_type('bird'));
+  }
 }
 
 function pp_import_save_timer() {
