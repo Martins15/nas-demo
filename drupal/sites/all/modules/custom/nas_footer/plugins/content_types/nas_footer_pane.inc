@@ -72,6 +72,13 @@ function nas_footer_pane_custom_pane_edit_form_submit(&$form, &$form_state) {
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+
+  // As we have multiple site template variants footer block settings should be
+  // populate to all of the panes.
+  db_query('UPDATE {panels_pane} SET configuration = :configuration WHERE type = :type', array(
+    ':configuration' => serialize($form_state['conf']),
+    ':type' => 'nas_footer_pane',
+  ));
 }
 
 /**
@@ -119,7 +126,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $custom_links = array(
     'pane-edit' => array(
       'title' => t('edit texts/logo'),
-      'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context_2::::/' . $pid,
+      'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context::::/' . $pid,
       'query' => array('reload' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),

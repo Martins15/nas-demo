@@ -98,5 +98,16 @@ function nas_footer_ajax_render_alter(&$commands) {
  */
 function nas_footer_save_footer_pane() {
   $cache = page_manager_get_page_cache(NAS_FOOTER_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache(NAS_FOOTER_PAGE_MANAGER_CACHE_KEY);
+  $cache->changes = array(
+    'handlers' => TRUE,
+    'handlers/site_template_panel_context' => TRUE,
+    'handlers/site_template_panel_context/content' => TRUE,
+    'handlers/site_template_panel_context_2' => TRUE,
+    'handlers/site_template_panel_context_2/content' => TRUE,
+  );
+  $cache->changed = TRUE;
+  $cache->handler_info['site_template_panel_context']['changed'] = 2;
+  $cache->handler_info['site_template_panel_context_2']['changed'] = 2;
+
+  page_manager_save_page_cache($cache);
 }
