@@ -151,7 +151,7 @@ function nas_site_template_feature_default_page_manager_handlers() {
       'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
       'preamble' => 'Brought to you by',
       'logo' => 'public://canon-logo.png',
-      'css_class' => 'magazine',
+      'css_class' => '',
       'css_background_style' => '',
       'override_title' => 0,
       'override_title_text' => '',
