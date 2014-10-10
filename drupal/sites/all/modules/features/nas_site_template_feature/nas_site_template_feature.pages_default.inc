@@ -141,6 +141,33 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $display->content['new-84661503-5e89-4544-bf5b-25bb04044d1c'] = $pane;
     $display->panels['header'][0] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane = new stdClass();
+    $pane->pid = 'new-3e3bb628-7a85-4888-a986-4556b039f3bc';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_microsite_guide_bar';
+    $pane->subtype = 'nas_menu_microsite_guide_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+      'preamble' => 'Brought to you by',
+      'logo' => 'public://canon-logo.png',
+      'css_class' => '',
+      'css_background_style' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '3e3bb628-7a85-4888-a986-4556b039f3bc';
+    $display->content['new-3e3bb628-7a85-4888-a986-4556b039f3bc'] = $pane;
+    $display->panels['header'][1] = 'new-3e3bb628-7a85-4888-a986-4556b039f3bc';
+    $pane = new stdClass();
     $pane->pid = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $pane->panel = 'header';
     $pane->type = 'page_messages';
@@ -154,11 +181,11 @@ function nas_site_template_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $display->content['new-a0339ec9-9f49-4e9c-afc9-725b55382b74'] = $pane;
-    $display->panels['header'][1] = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
+    $display->panels['header'][2] = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $pane = new stdClass();
     $pane->pid = 'new-ec9f2f73-84aa-4522-8297-d205de9e5cd1';
     $pane->panel = 'main';

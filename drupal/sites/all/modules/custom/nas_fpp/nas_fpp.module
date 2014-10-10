@@ -52,6 +52,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Hero bird'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['hero'] = array(
+    'label' => t('Hero'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['hero_mobile'] = array(
     'label' => t('Hero mobile'),
     'custom settings' => TRUE,
@@ -134,15 +138,21 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
  */
 function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
   $fpp = $vars['elements']['#fieldable_panels_pane'];
+  $vars['title'] = $fpp->title;
+  $vars['links'] = theme('item_list', array(
+    'items' => array(
+      l(t('Explore Our Bird Guide'), ''),
+      l(t('Adopt a Bird'), '', array('attributes' => array('class' => array('cta')))),
+    ),
+    'attributes' => array(
+      'class' => array(
+        'section-nav',
+        'inline-list',
+        )
+      ),
+  ));
   $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
-  $view_diplay_id = 'audubon_bird_guide_random';
-  $args = array();
-  foreach ($get_field_related_bird as $value) {
-    $args[] = $value['target_id'];
+  if (count($get_field_related_bird) !== 4) {
+    $vars['fields'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide_random');
   }
-  if (count($args) == 4) {
-    $args = implode(' ', $args);
-    $view_diplay_id = 'audubon_bird_guide';
-  }
-  $vars['birds_view'] = views_embed_view('nas_similar_birds', $view_diplay_id, $args);
 }

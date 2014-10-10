@@ -6,6 +6,7 @@
  */
 ?>
 <?php print $content['header']; ?>
+</header>
 <?php print $content['hero']; ?>
 <section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content no-padding">
 
