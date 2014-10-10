@@ -51,7 +51,7 @@ function nas_fpp_get_node_nid_by_type($content_type) {
   $nid = db_select('node', 'n')
     ->fields('n', array('nid'))
     ->condition('n.type', $content_type, '=')
-    ->range(0,1)
+    ->range(0, 1)
     ->orderRandom()
     ->execute()
     ->fetchField();

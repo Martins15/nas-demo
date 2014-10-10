@@ -125,7 +125,7 @@ function pp_import_users_batch($uids, $importer_id) {
 }
 
 /**
- * Function which executes on Contaent after import install task.
+ * Function which executes on Content after import install task.
  */
 function pp_content_after_import() {
   if (function_exists('nas_fpp_create_panes')) {
