@@ -195,3 +195,29 @@ function nas_button($variables) {
 
   return theme_button($variables);
 }
+
+/*
+ * Implements theme_image().
+ * remove height and width to make image responsible
+ */
+function nas_image($variables) {
+  $attributes = $variables['attributes'];
+  $attributes['src'] = file_create_url($variables['path']);
+
+  $add_attributes = array('alt', 'title');
+  //this styles shouldn't have width and height for responsive design
+  $remove_attr_for = array('hero_mobile', 'hero_image');
+
+  if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
+    $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
+  }
+
+  foreach ($add_attributes as $key) {
+
+    if (isset($variables[$key])) {
+      $attributes[$key] = $variables[$key];
+    }
+  }
+
+  return '<img' . drupal_attributes($attributes) . ' />';
+}

@@ -5,8 +5,8 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-  <?php print $content['header']; ?>
-</header>
+<?php print $content['header']; ?>
+
 <div class="bird-guide-search show">
   <div class="row">
     <div class="columns large-12 bird-guide-search-form">
