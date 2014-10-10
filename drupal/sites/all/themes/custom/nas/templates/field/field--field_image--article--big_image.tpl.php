@@ -5,7 +5,8 @@
  * Template implementation to display the value of a field.
  */
 ?>
-<?php 
+<?php
+
   $item = array_shift($items);
   if(isset($item['file'])) {
     $item['file2'] = $item['file'];

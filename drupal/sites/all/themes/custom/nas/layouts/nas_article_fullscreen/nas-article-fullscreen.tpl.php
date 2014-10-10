@@ -4,11 +4,24 @@
  * Template of NAS One Column. Used in Bird Guide.
  */
 ?>
-<?php print $content['big_image']; ?>
+
+<div class="hero dark-gradient light-text expand">
+  <div class="hero-image">
+    <?php print $content['big_image']; ?>
+  </div>
+  <div class="row">
+    <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
+      <div class="columns large-10 large-centered">
+        <?php print $content['header_hero']; ?>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="global-content">
   <article class="article">
     <header class="article-header row">
-      <div class="large-10 large-centered columns">
+      <div class="large-10 large-centered columns hide-for-large hide-for-xlarge">
         <?php print $content['header']; ?>
       </div>
     </header>
