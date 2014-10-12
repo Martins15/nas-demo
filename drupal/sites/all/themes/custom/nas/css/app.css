@@ -900,10 +900,6 @@ meta.foundation-data-attribute-namespace {
     width: 100%;
   }
 
-  [class*="column"] + [class*="column"]:last-child {
-    float: right;
-  }
-
   [class*="column"] + [class*="column"].end {
     float: left;
   }
@@ -1183,10 +1179,6 @@ meta.foundation-data-attribute-namespace {
 
   .small-12 {
     width: 100%;
-  }
-
-  [class*="column"] + [class*="column"]:last-child {
-    float: right;
   }
 
   [class*="column"] + [class*="column"].end {
@@ -1470,10 +1462,6 @@ meta.foundation-data-attribute-namespace {
     width: 100%;
   }
 
-  [class*="column"] + [class*="column"]:last-child {
-    float: right;
-  }
-
   [class*="column"] + [class*="column"].end {
     float: left;
   }
@@ -1753,10 +1741,6 @@ meta.foundation-data-attribute-namespace {
 
   .large-12 {
     width: 100%;
-  }
-
-  [class*="column"] + [class*="column"]:last-child {
-    float: right;
   }
 
   [class*="column"] + [class*="column"].end {
@@ -6025,13 +6009,11 @@ input.header-search-input,
   }
 }
 
-/*
 @media only screen and (min-width: 768px) {
   .bird-guide-search-form {
     padding-right: 25px;
   }
 }
-*/
 .bird-guide-search-form select {
   width: 100%;
   margin: 12.5px 0 0 0;
@@ -11267,8 +11249,9 @@ body.touch .sticky-wrapper {
 .contextual-links-wrapper ul.contextual-links li a {
   color: black !important;
 }
+
 @media only screen and (min-width: 768px) {
-  .contextual-links-wrapper ul.contextual-links li a .page-birds-landing #block-system-main {
+  .page-birds-landing .field-name-field-related-bird {
     margin-top: -100px;
   }
 }

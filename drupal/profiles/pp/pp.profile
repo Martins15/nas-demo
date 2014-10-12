@@ -6,6 +6,8 @@
 
 define('EXPORT_NODE_LIST_NIDS_URL', 'http://audubon.wearepropeople.md/export/node-list/');
 define('LOAD_NODE_JSON_OBJECT_URL', 'http://audubon.wearepropeople.md/export/node/');
+define('EXPORT_USERS_LIST_UIDS_URL', 'http://audubon.wearepropeople.md/export/users-list/');
+define('LOAD_USER_JSON_OBJECT_URL', 'http://audubon.wearepropeople.md/export/user/');
 
 /**
  * Implements hook_form_FORM_ID_alter() for install_configure_form().
@@ -29,6 +31,13 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_import_nodes',
   );
+  $tasks['content_after_import'] = array(
+    'display_name' => st('Content after import'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_content_after_import',
+  );
   return $tasks;
 }
 
@@ -41,6 +50,9 @@ function pp_import_nodes() {
   // from enabled feature.
   drupal_static_reset();
 
+  $result = drupal_http_request(EXPORT_USERS_LIST_UIDS_URL);
+  $user_uids = drupal_json_decode($result->data);
+
   $content_type = 'bird';
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $bird_node_nids = drupal_json_decode($result->data);
@@ -51,11 +63,16 @@ function pp_import_nodes() {
 
   // No need to import whole set of birds for local development.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $user_uids = array_slice($user_uids, 0, 20);
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
     $news_node_nids = array_slice($news_node_nids, 0, 20);
   }
 
   $operations = array();
+
+  foreach (array_chunk($user_uids, 10) as $chunk) {
+    $operations[] = array('pp_import_users_batch', array($chunk, 'users_import'));
+  }
 
   foreach (array_chunk($bird_node_nids, 10) as $chunk) {
     $operations[] = array('pp_import_nodes_batch', array($chunk, 'birds_import'));
@@ -90,6 +107,32 @@ function pp_import_nodes_batch($nids, $importer_id) {
     $source->save();
     feeds_cache_clear(FALSE);
     $source->import();
+  }
+}
+
+/**
+ * Batch operation for users import to nodes.
+ */
+function pp_import_users_batch($uids, $importer_id) {
+  foreach ($uids as $uid) {
+    $config = array('NASFeedsHTTPFetcher' => array('source' => LOAD_USER_JSON_OBJECT_URL . $uid));
+    $source = feeds_source($importer_id);
+    $source->addConfig($config);
+    $source->save();
+    feeds_cache_clear(FALSE);
+    $source->import();
+  }
+}
+
+/**
+ * Function which executes on Content after import install task.
+ */
+function pp_content_after_import() {
+  if (function_exists('nas_fpp_create_panes')) {
+    nas_fpp_create_panes();
+  }
+  if (function_exists('nas_fpp_get_node_nid_by_type')) {
+    variable_set('nas_random_bird_node_nid', nas_fpp_get_node_nid_by_type('bird'));
   }
 }
 
