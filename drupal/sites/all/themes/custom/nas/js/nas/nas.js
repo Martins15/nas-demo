@@ -41,7 +41,7 @@
         settings.expandHero.oldHeight = $(".hero.expand").height();
 
         // Assume 2:3 aspect ratio if we can't calculate it
-        if (settings.expandHero.oldHeight == 0) {
+        if (settings.expandHero.oldHeight === 0) {
           settings.expandHero.oldHeight = settings.expandHero.oldWidth * 0.666667;
         }
       }
