@@ -11,7 +11,11 @@
     <div <?php print $item_attr; ?>>
       <ul class="footer-nav">
         <?php foreach ($menu_item['below'] as $sub_menu_item) : ?>
-          <li><?php print l($sub_menu_item['link']['link_title'], $sub_menu_item['link']['link_path']); ?></li>
+          <li>
+            <a href="<?php print url($sub_menu_item['link']['link_path']);?>">
+              <?php print check_plain($sub_menu_item['link']['link_title']); ?>
+            </a>
+          </li>
         <?php endforeach; ?>
       </ul>
     </div>
