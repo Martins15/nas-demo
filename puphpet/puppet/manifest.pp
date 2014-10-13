@@ -1565,3 +1565,8 @@ exec { "/etc/init.d/jetty restart":
 }
 
 include drupal::solr
+
+package { "ruby-compass":
+  ensure  => latest,
+  require => Class['ruby::ruby193']
+}
