@@ -1543,7 +1543,7 @@ exec { "phpcs":
 
 include ansible::master
 
-# Solr config installation. see
+# Solr config installation. see https://www.drupal.org/node/484800
 class drupal::solr {
 include solr
 file { "/usr/share/solr/default/conf":
