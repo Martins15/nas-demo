@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * nas_article_feature.feeds_importer_default.inc
+ * nas_magazine_issue_feature.feeds_importer_default.inc
  */
 
 /**
  * Implements hook_feeds_importer_default().
  */
-function nas_article_feature_feeds_importer_default() {
+function nas_magazine_issue_feature_feeds_importer_default() {
   $export = array();
 
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
-  $feeds_importer->id = 'news_import';
+  $feeds_importer->id = 'magazine_issues_import';
   $feeds_importer->config = array(
-    'name' => 'News import',
+    'name' => 'Magazine Issues import',
     'description' => '',
     'fetcher' => array(
       'plugin_key' => 'NASFeedsHTTPFetcher',
@@ -54,29 +54,11 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '4',
           ),
-          'field_image_ref' => array(
-            'name' => 'field_image_ref',
-            'value' => 'field_image_ref.[*]',
+          'field_magazine_cover' => array(
+            'name' => 'field_magazine_cover',
+            'value' => 'field_magazine_cover.[*]',
             'debug' => 0,
             'weight' => '5',
-          ),
-          'taxonomy' => array(
-            'name' => 'taxonomy',
-            'value' => 'taxonomy.[*]',
-            'debug' => 0,
-            'weight' => '6',
-          ),
-          'uid' => array(
-            'name' => 'uid',
-            'value' => 'uid',
-            'debug' => 0,
-            'weight' => '7',
-          ),
-          'field_magazine_issue_ref' => array(
-            'name' => 'field_magazine_issue_ref',
-            'value' => 'field_magazine_issue_ref.[*]',
-            'debug' => 0,
-            'weight' => '8',
           ),
         ),
         'context' => array(
@@ -97,30 +79,20 @@ function nas_article_feature_feeds_importer_default() {
         'authorize' => 0,
         'mappings' => array(
           0 => array(
-            'source' => 'nid',
-            'target' => 'guid',
-            'unique' => 1,
-          ),
-          1 => array(
             'source' => 'title',
             'target' => 'title',
             'unique' => FALSE,
           ),
-          2 => array(
-            'source' => 'body',
-            'target' => 'body',
-            'unique' => FALSE,
-          ),
-          3 => array(
-            'source' => 'path',
-            'target' => 'path_alias',
-            'unique' => FALSE,
+          1 => array(
+            'source' => 'nid',
+            'target' => 'guid',
+            'unique' => 1,
           ),
         ),
         'update_existing' => '1',
-        'input_format' => 'plain_text',
+        'input_format' => 'full_html',
         'skip_hash_check' => 0,
-        'bundle' => 'article',
+        'bundle' => 'magazine_issue',
       ),
     ),
     'content_type' => '',
@@ -130,7 +102,7 @@ function nas_article_feature_feeds_importer_default() {
     'import_on_create' => TRUE,
     'process_in_background' => FALSE,
   );
-  $export['news_import'] = $feeds_importer;
+  $export['magazine_issues_import'] = $feeds_importer;
 
   return $export;
 }

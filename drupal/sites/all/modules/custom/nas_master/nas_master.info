@@ -24,3 +24,4 @@ dependencies[] = nas_panes
 dependencies[] = nas_frontpage_feature
 dependencies[] = nas_text_format_video
 dependencies[] = nas_contact_type_feature
+dependencies[] = nas_magazine_issue_feature

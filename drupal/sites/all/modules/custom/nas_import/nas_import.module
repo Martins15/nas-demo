@@ -275,6 +275,10 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
     }
     $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
   }
+  // Save reference of Magazine Article to Magazine Issue.
+  if (!empty($item['field_magazine_issue_ref'][0]['nid'])) {
+    $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
+  }
 }
 
 /**
@@ -296,6 +300,15 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
     variable_set('nas_users_import_uids', $users_old_uids);
   }
   if ($entity->feeds_item->id == 'news_import') {
+    $nas_articles_nids_mapping = variable_get('nas_articles_nids_mapping', '');
+    $nas_articles_nids_mapping[$item['nid']] = $entity->nid;
+    variable_set('nas_articles_nids_mapping', $nas_articles_nids_mapping);
+    return;
+  }
+  if ($entity->feeds_item->id == 'magazine_issues_import') {
+    $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping', '');
+    $nas_magazine_issues_nids_mapping[$item['nid']] = $entity->nid;
+    variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
     return;
   }
   // Set Press Release display for imported articles.
@@ -417,6 +430,23 @@ function nas_import_modify_references() {
     }
     // Remove the last item due to shifted array.
     array_pop($node->field_related_bird[LANGUAGE_NONE]);
+    // Finally update the node's field.
+    field_attach_update('node', $node);
+  }
+
+  // Modify references for field_magazine_issue.
+  $nodes = node_load_multiple(array(), array('type' => 'article'));
+  foreach ($nodes as $node) {
+    $field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
+    if (empty($field_magazine_issue)) {
+      continue;
+    }
+    $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping');
+    // Lets modify old nids to new nids.
+    isset($nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']]) ? $new_nid = $nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']] : $new_nid = '';
+      if (!empty($new_nid)) {
+        $node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $new_nid;
+      }
     // Finally update the node's field.
     field_attach_update('node', $node);
   }
