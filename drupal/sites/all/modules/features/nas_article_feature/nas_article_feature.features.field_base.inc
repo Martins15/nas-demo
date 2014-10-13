@@ -47,7 +47,14 @@ function nas_article_feature_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_author',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -137,33 +144,6 @@ function nas_article_feature_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_image'
-  $field_bases['field_image'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_image',
-    'foreign keys' => array(
-      'file_managed' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
-    'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'mediafield',
-    'settings' => array(),
-    'translatable' => 0,
-    'type' => 'media',
-  );
-
   // Exported field_base: 'field_internal_tagging'
   $field_bases['field_internal_tagging'] = array(
     'active' => 1,
@@ -201,7 +181,7 @@ function nas_article_feature_field_default_field_bases() {
   // Exported field_base: 'field_menu_section'
   $field_bases['field_menu_section'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_menu_section',

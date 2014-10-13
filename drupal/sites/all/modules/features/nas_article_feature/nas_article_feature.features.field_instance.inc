@@ -63,12 +63,13 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_article_date'
   $field_instances['node-article-field_article_date'] = array(
     'bundle' => 'article',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'date',
+        'module' => NULL,
         'settings' => array(
           'format_type' => 'long',
           'fromto' => 'both',
@@ -76,7 +77,7 @@ function nas_article_feature_field_default_field_instances() {
           'multiple_number' => '',
           'multiple_to' => '',
         ),
-        'type' => 'date_default',
+        'type' => NULL,
         'weight' => 6,
       ),
       'nas_node_view_mode_hero_bird' => array(
@@ -105,7 +106,7 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'date',
+      'module' => NULL,
       'settings' => array(
         'increment' => 15,
         'input_format' => 'm/d/Y - H:i:s',
@@ -114,7 +115,7 @@ function nas_article_feature_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => 'date_text',
+      'type' => NULL,
       'weight' => 9,
     ),
   );
@@ -335,76 +336,6 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_image'
-  $field_instances['node-article-field_image'] = array(
-    'bundle' => 'article',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'mediafield',
-        'settings' => array(
-          'file_view_mode' => 'default',
-        ),
-        'type' => 'media',
-        'weight' => 2,
-      ),
-      'nas_node_view_mode_hero_bird' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_image',
-    'label' => 'Image',
-    'required' => 0,
-    'settings' => array(
-      'epsacrop' => array(
-        'styles' => array(
-          'default_teaser_image' => 'default_teaser_image',
-          'hero_image' => 0,
-          'hero_mobile' => 0,
-        ),
-      ),
-      'file_extensions' => 'jpg jpeg gif png',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'document' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 0,
-          'media_internet' => 0,
-          'upload' => 'upload',
-          'youtube' => 0,
-        ),
-      ),
-      'type' => 'media_generic',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'node-article-field_internal_tagging'
   $field_instances['node-article-field_internal_tagging'] = array(
     'bundle' => 'article',
@@ -486,12 +417,12 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'taxonomy',
+      'module' => 'options',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 10,
     ),
   );
@@ -647,7 +578,6 @@ function nas_article_feature_field_default_field_instances() {
   t('Custom Section');
   t('Date');
   t('Hero Image');
-  t('Image');
   t('Internal tagging');
   t('Map Embed');
   t('Menu Section');
