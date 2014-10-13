@@ -40,7 +40,7 @@ function nas_menu_theme() {
       'template' => 'templates/nas-small-header',
     ),
     'nas_don_t_miss' => array(
-      'arguments' => array('items' => NULL),
+      'arguments' => array('items' => NULL, 'contextual_links' => NULL),
       'template' => 'templates/nas-don-t-miss',
     ),
     'nas_big_header' => array(
@@ -128,4 +128,33 @@ function nas_menu_search_form($form, &$form_state) {
   );
 
   return $form;
+}
+
+/**
+ * Render contextual links for menu
+ */
+function nas_menu_cl($menu_delta, $additional_links = array()) {
+  if (!module_exists('contextual') || !user_access('access contextual links')) {
+    return FALSE;
+  }
+  $contextual_links['#contextual_links']['menu'] = array('admin/structure/menu/manage', array($menu_delta));
+  $contextual_links = contextual_pre_render_links($contextual_links);
+  if (isset($contextual_links['#links']['menu-edit'])) {
+    unset($contextual_links['#links']['menu-edit']);
+  }
+  if (isset($contextual_links['#links']['menu-list'])) {
+    $contextual_links['#links']['menu-list']['title'] = t('edit links');
+  }
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => array_merge($contextual_links['#links'], $additional_links),
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+
+  return drupal_render($build);
 }
