@@ -48,6 +48,7 @@ dependencies[] = entityreference_autocomplete
 dependencies[] = nas_master
 dependencies[] = pp_wysiwyg
 dependencies[] = pp_crop
+dependencies[] = nas_solr_feature
 
 ; Development
 dependencies[] = devel
