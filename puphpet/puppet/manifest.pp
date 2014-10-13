@@ -1547,7 +1547,7 @@ include ansible::master
 class drupal::solr {
 include solr
 file { "/usr/share/solr/default/conf":
-  source => "/var/www/drupal/sites/all/modules/contrib/apachesolr/solr-conf/solr-4.x",
+  source => "/var/www/drupal/sites/all/modules/contrib/search_api_solr/solr-conf/4.x",
   ensure => directory,
   recurse => true,
   force => true,
