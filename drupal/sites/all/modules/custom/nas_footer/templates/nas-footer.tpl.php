@@ -2,6 +2,15 @@
 /**
  * @file
  * Template for footer section.
+ * 
+ * Available variables:
+ * - $contextual_links: array of rendered links for all menus
+ * - $mission_title: string title
+ * - $mission:  string mission
+ * - $logo: <img> rendered image 
+ * - $footer_menu: themed footer menu
+ * - $copyright: string copyright message
+ * - $footer_copyright_menu: themed copyright menu
  */
 ?>
 <?php $cl_class = ($contextual_links['menu']) ? ' contextual-links-region' : '';?>

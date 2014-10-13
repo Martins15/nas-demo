@@ -134,28 +134,27 @@ function nas_menu_search_form($form, &$form_state) {
  * Render contextual links for menu
  */
 function nas_menu_cl($menu_delta, $additional_links = array()) {
-  $links = '';
-  $contextual_links['#contextual_links']['menu'] = array('admin/structure/menu/manage', array($menu_delta));
-  if (module_exists('contextual') && user_access('access contextual links')) {
-    $contextual_links = contextual_pre_render_links($contextual_links);
-    if (isset($contextual_links['#links']['menu-edit'])) {
-      unset($contextual_links['#links']['menu-edit']);
-    }
-    if (isset($contextual_links['#links']['menu-list'])) {
-      $contextual_links['#links']['menu-list']['title'] = t('edit links');
-    }
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => array_merge($contextual_links['#links'], $additional_links),
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $links = drupal_render($build);
+  if (!module_exists('contextual') || !user_access('access contextual links')) {
+    return FALSE;
   }
-
-  return $links;
+  $contextual_links['#contextual_links']['menu'] = array('admin/structure/menu/manage', array($menu_delta));
+  $contextual_links = contextual_pre_render_links($contextual_links);
+  if (isset($contextual_links['#links']['menu-edit'])) {
+    unset($contextual_links['#links']['menu-edit']);
+  }
+  if (isset($contextual_links['#links']['menu-list'])) {
+    $contextual_links['#links']['menu-list']['title'] = t('edit links');
+  }
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => array_merge($contextual_links['#links'], $additional_links),
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  
+  return drupal_render($build);
 }
