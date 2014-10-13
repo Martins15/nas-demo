@@ -5,7 +5,6 @@
  */
 ?>
 <?php print $content['header']; ?>
-</header>
 <?php print $content['map']; ?>
 <div class="hero small no-padding with-map" style="background-color: #F4F3F0;">
   <div class="hero-map" id="map-canvas">
