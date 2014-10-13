@@ -11263,3 +11263,15 @@ body.touch .sticky-wrapper {
 .bird-card-grid .pager-load-more .ajax-progress-throbber {
   display: none;
 }
+
+.strip-nav.small .contextual-links li {
+  margin: 0;
+  padding: 0;
+}
+
+.dont-miss ul.contextual-links {
+  width: auto !important;
+}
+.dont-miss .strip-nav {
+  overflow: visible;
+}

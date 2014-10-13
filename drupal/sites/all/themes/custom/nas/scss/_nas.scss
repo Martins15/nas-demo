@@ -76,3 +76,16 @@
     display: none;
   }
 }
+.strip-nav.small .contextual-links li {
+  margin: 0;
+  padding: 0;
+}
+.dont-miss {
+  ul.contextual-links {
+    width: auto !important;
+  }
+
+  .strip-nav {
+    overflow: visible;
+  }
+}
