@@ -444,9 +444,9 @@ function nas_import_modify_references() {
     $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping');
     // Lets modify old nids to new nids.
     isset($nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']]) ? $new_nid = $nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']] : $new_nid = '';
-      if (!empty($new_nid)) {
-        $node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $new_nid;
-      }
+    if (!empty($new_nid)) {
+      $node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $new_nid;
+    }
     // Finally update the node's field.
     field_attach_update('node', $node);
   }
