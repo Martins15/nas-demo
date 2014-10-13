@@ -303,6 +303,31 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
     $nas_articles_nids_mapping = variable_get('nas_articles_nids_mapping', '');
     $nas_articles_nids_mapping[$item['nid']] = $entity->nid;
     variable_set('nas_articles_nids_mapping', $nas_articles_nids_mapping);
+    // Set Press Release display for imported articles.
+    $panelizer_entity_name = 'node:article:press_release';
+    if ($item['type'] == 'magazine_article') {
+      // Set Big Image display for imported Magazine articles.
+      $panelizer_entity_name = 'node:article:big_image';
+    }
+    $panelizer_entity = array(
+      'entity_type' => 'node',
+      'entity_id' => $entity->nid,
+      'revision_id' => $entity->nid,
+      'name' => $panelizer_entity_name,
+      'no_blocks' => 0,
+      'css_id' => '',
+      'css' => '',
+      'pipeline' => 'standard',
+      'contexts' => array(),
+      'relationships' => array(),
+      'did' => 0,
+      'view_mode' => 'page_manager',
+      'css_class' => '',
+      'title_element' => 'H2',
+      'link_to_entity' => 1,
+      'extra' => array(),
+    );
+    drupal_write_record('panelizer_entity', $panelizer_entity);
     return;
   }
   if ($entity->feeds_item->id == 'magazine_issues_import') {
@@ -311,26 +336,6 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
     variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
     return;
   }
-  // Set Press Release display for imported articles.
-  $panelizer_entity = array(
-    'entity_type' => 'node',
-    'entity_id' => $entity->nid,
-    'revision_id' => $entity->nid,
-    'name' => 'node:article:press_release',
-    'no_blocks' => 0,
-    'css_id' => '',
-    'css' => '',
-    'pipeline' => 'standard',
-    'contexts' => array(),
-    'relationships' => array(),
-    'did' => 0,
-    'view_mode' => 'page_manager',
-    'css_class' => '',
-    'title_element' => 'H2',
-    'link_to_entity' => 1,
-    'extra' => array(),
-  );
-  drupal_write_record('panelizer_entity', $panelizer_entity);
 }
 /**
  * Retrieve and save remote file.

@@ -74,8 +74,24 @@ function pp_import_nodes() {
     $user_uids = array_slice($user_uids, 0, 20);
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
     $news_node_nids = array_slice($news_node_nids, 0, 20);
-    $magazine_issue_node_nids = array_slice($magazine_issue_node_nids, 0, 5);
-    $magazine_article_node_nids = array_slice($magazine_article_node_nids, 0, 20);
+    $magazine_issue_node_nids = array(
+      157656,
+      152231,
+      133216,
+      127951,
+    );
+    $magazine_article_node_nids = array(
+      159291,
+      159301,
+      160796,
+      162181,
+      161101,
+      152241,
+      145736,
+      121561,
+      146961,
+      154856,
+    );
   }
 
   // Both are going to the one content type article.

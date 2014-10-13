@@ -78,6 +78,12 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '8',
           ),
+          'type' => array(
+            'name' => 'type',
+            'value' => 'type',
+            'debug' => 0,
+            'weight' => '9',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
