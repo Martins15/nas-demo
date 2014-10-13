@@ -33,11 +33,11 @@
 
   - name: Solr - clearing index
     sudo: yes
-    shell: "drush -y search-api-clear"
+    shell: "{{ php_env_vars}} drush -y search-api-clear"
 
   - name: Solr - reindexing
     sudo: yes
-    shell: "drush -y search-api-index"
+    shell: "{{ php_env_vars}} drush -y search-api-index"
 
   handlers:
 #    - name: import livedb
