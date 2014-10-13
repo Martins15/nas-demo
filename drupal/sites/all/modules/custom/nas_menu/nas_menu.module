@@ -146,6 +146,6 @@ function nas_menu_cl($menu_delta, $additional_links = array()) {
       'library' => array(array('contextual', 'contextual-links')),
     ),
   );
-  
+
   return drupal_render($build);
 }
