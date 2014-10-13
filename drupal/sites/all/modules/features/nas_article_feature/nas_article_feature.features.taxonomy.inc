@@ -17,13 +17,5 @@ function nas_article_feature_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
-    'menu_section' => array(
-      'name' => 'Menu Section',
-      'machine_name' => 'menu_section',
-      'description' => 'This vocabulary to Main menu',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-    ),
   );
 }
