@@ -78,7 +78,7 @@ function nas_solr_feature_default_search_api_server() {
       "site_hash" : true,
       "scheme" : "http",
       "host" : "127.0.0.1",
-      "port" : "8080",
+      "port" : "8983",
       "path" : "\\/solr\\/default",
       "http_user" : "",
       "http_pass" : "",
