@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Articles feature.
+ */
+
+include_once 'nas_article_feature.features.inc';

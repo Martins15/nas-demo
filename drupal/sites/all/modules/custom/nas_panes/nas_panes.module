@@ -5,6 +5,8 @@
  * Maintains panel panes.
  */
 
+define('NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY', 'page-birds_guide');
+
 /**
  * Implements hook_ctools_plugin_directory().
  */
@@ -12,4 +14,60 @@ function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'ctools' && $plugin_type == 'content_types') {
     return 'plugins/' . $plugin_type;
   }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_panes_theme() {
+  return array(
+    'nas_featured_bird' => array(
+      'variables' => array(
+        'name' => '',
+        'scientific_name' => '',
+        'url' => '',
+        'image_path' => '',
+        'image_path_mobile' => '',
+        'image_string' => '',
+        'illustration_path' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'nas-featured-bird',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird'
+    ),
+    'nas_featured_social_in_article' => array(
+      'variables' => array(
+        'title' => '',
+        'page_link' => '',
+      ),
+      'template' => 'nas-featured-social-in-article',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article'
+    ),
+  );
+}
+
+/**
+ * Implements hook_ajax_render_alter().
+ */
+function nas_panes_ajax_render_alter(&$commands) {
+
+  $copy_commands = $commands;
+  $last_command = array_pop($copy_commands);
+  // Will get triggered when user submitted the form.
+  if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+    // Here we save the cache to database. When we edited the pane we made
+    // changes in the cache. In order the page to see the changes we need
+    // to save cache data to database.
+    nas_panes_save_bird_guide_pane();
+
+    $commands[] = ctools_ajax_command_reload();
+  }
+}
+
+/**
+ * Resave bird guide page (cache to database).
+ */
+function nas_panes_save_bird_guide_pane() {
+  $cache = page_manager_get_page_cache(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
 }

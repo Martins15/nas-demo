@@ -14,38 +14,8 @@
       </div>
     </div>
   </div>
-</header>
 
   <?php print $content['main']; ?>
-  <div class="hero light-text dark-gradient">
-    <div class="hero-image">
-      <img src="../../../img/hero-img-9-mobile.jpg" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
-      <img src="../../../img/hero-img-9.jpg" alt="" class="hide-for-tiny hide-for-small">
-    </div>
-    <div class="row">
-      <div class="hero-header">
-        <div class="column medium-8 large-9">
-          <a class="hero-slug" href="#">Featured Bird</a>
-          <h2 class="hero-title">Belted Kingfisher</h2>
-        </div>
-        <div class="hero-card-column column hide-for-small hide-for-tiny medium-4 large-3">
-          <figure class="bird-card">
-            <div class="bird-card-illustration">
-              <a href="#"><img src="../../../img/bird-7.jpg" alt=""></a>
-            </div>
-            <figcaption class="bird-card-caption">
-              <h4 class="common-name"><a href="#">Belted Kingfisher</a></h4>
-              <p class="scientific-name">Ceryle alcyon</p>
-            </figcaption>
-            <a href="#" class="icon-sound-full bird-card-audio"></a>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-attribution align-left row">
-    <p class="column">Photo: Chris Smith, Flickr Creative Commons</p>
-  </div>
   <div class="bird-guide-search show">
     <div class="row">
       <div class="columns large-9 bird-guide-search-form">

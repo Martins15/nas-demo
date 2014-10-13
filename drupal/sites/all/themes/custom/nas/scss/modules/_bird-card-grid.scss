@@ -9,7 +9,7 @@
 
   // BG
   @include breakpoint(large-up) {
-    background-image: url(grid-bg.jpg);
+    background-image: url(../img/grid-bg.jpg);
     background-size: 85% auto;
     background-position: center top;
     background-repeat: no-repeat;
@@ -78,7 +78,7 @@
   // Easter egg: lovely full color background
   &.show-bg {
     @include transition(background-image 0.5s ease-in-out);
-    background-image: url(grid-bg-color.jpg);
+    background-image: url(../img/grid-bg-color.jpg);
     .row {
       @include transition(opacity 0.5s ease-in-out);
       opacity: 0;

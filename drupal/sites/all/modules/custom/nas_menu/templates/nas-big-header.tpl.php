@@ -58,6 +58,9 @@
               <?php endif; ?>
             </li>
           <?php endforeach; ?>
+          <li class="primary-nav-item primary-nav-search">
+              <a href="/" class=""><i class="icon-magnifier"></i></a>
+          </li>
         </ul>
         <ul class="secondary-nav inline-list">
           <?php foreach ($items['secondary'] as $item) : ?>

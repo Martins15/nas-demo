@@ -14,6 +14,7 @@ define('NAS_OLD_D6_VID_CATEGORY', 81);
 define('NAS_OLD_D6_VID_SIZE', 111);
 define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
 define('NAS_OLD_D6_VID_WING_SHAPE', 116);
+define('NAS_OLD_D6_VID_ARTICLE_TYPE', 37);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 
@@ -54,6 +55,9 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   }
   if ($entity->feeds_item->id == 'news_import') {
     nas_import_feeds_presave_news_import($source, $entity, $item);
+  }
+  if ($entity->feeds_item->id == 'users_import') {
+    nas_import_feeds_presave_users_import($source, $entity, $item);
   }
 }
 
@@ -229,8 +233,92 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       }
     }
   }
+
+  // Save old taxonomy terms to existed terms if match.
+  if (empty($item['taxonomy'])) {
+    return;
+  }
+  $internal_tagging = array();
+  // Check if there are any terms we have to save.
+  foreach ($item['taxonomy'] as $key => $value) {
+    if (isset($value['name'])) {
+      $term = taxonomy_get_term_by_name($value['name']);
+      if (!empty($term)) {
+        $term = reset($term);
+        if ($term->vocabulary_machine_name == 'internal_tagging') {
+          $internal_tagging_terms[] = $term;
+          continue;
+        }
+      }
+      // Additionally get terms which don't exist yet.
+      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE) {
+        $internal_tagging_terms[] = $value['name'];
+      }
+    }
+  }
+  foreach ($internal_tagging_terms as $key => $term) {
+    if (is_object($term)) {
+      $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+    }
+    else {
+      $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'internal_tagging')
+      );
+    }
+  }
+  // Replace old uid by Contact node nid.
+  if (!empty($item['uid'])) {
+    $users_old_uids = variable_get('nas_users_import_uids');
+    $contact_nid = 1;
+    if (isset($users_old_uids[$item['uid']])) {
+      $contact_nid = $users_old_uids[$item['uid']];
+    }
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
 }
 
+/**
+ * hook_feeds_presave for users_import importer.
+ */
+function nas_import_feeds_presave_users_import($source, $entity, $item) {
+  if (!empty($item['profile_full_name'])) {
+    $entity->title = $item['profile_full_name'];
+  }
+}
+
+/**
+ * Implements hook_feeds_after_save().
+ */
+function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
+  if ($entity->feeds_item->id == 'users_import') {
+    $users_old_uids = variable_get('nas_users_import_uids', '');
+    $users_old_uids[$item['uid']] = $entity->nid;
+    variable_set('nas_users_import_uids', $users_old_uids);
+  }
+  if ($entity->feeds_item->id == 'news_import') {
+    return;
+  }
+  // Set Press Release display for imported articles.
+  $panelizer_entity = array(
+    'entity_type' => 'node',
+    'entity_id' => $entity->nid,
+    'revision_id' => $entity->nid,
+    'name' => 'node:article:press_release',
+    'no_blocks' => 0,
+    'css_id' => '',
+    'css' => '',
+    'pipeline' => 'standard',
+    'contexts' => array(),
+    'relationships' => array(),
+    'did' => 0,
+    'view_mode' => 'page_manager',
+    'css_class' => '',
+    'title_element' => 'H2',
+    'link_to_entity' => 1,
+    'extra' => array(),
+  );
+  drupal_write_record('panelizer_entity', $panelizer_entity);
+}
 /**
  * Retrieve and save remote file.
  *

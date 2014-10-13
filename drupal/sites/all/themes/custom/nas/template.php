@@ -6,6 +6,11 @@
  */
 
 /**
+ * Include overriden core functions used through out theme.
+ */
+include_once 'theme/pager.inc';
+
+/**
  * Implements hook_html_head_alter().
  */
 function nas_html_head_alter(&$head_elements) {
@@ -55,12 +60,16 @@ function nas_preprocess_node(&$vars) {
         $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
       }
     }
+    // Add node page path.
+    $node_path = $base_url. '/' . drupal_get_path_alias('node/' . $node->nid);
+    $vars['node_path'] = $node_path;
     // Add static link.
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
-    // Add Node Page absolute url.
+    // Add Page absolute url.
     $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
     // Add learn mode link.
-    $vars['learn_more_node_link'] = l(t('Learn more »'), $base_url . $vars['node_url']);
+    $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
+
     // Add Birds priority link.
     $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
     // Add hero inline links.
@@ -104,6 +113,15 @@ function nas_preprocess_node(&$vars) {
     $vars['color_mode'] = 'light-gradient';
     if ($get_field_color_mode[0]['value'] == 'dark') {
       $vars['color_mode'] = 'light-text dark-gradient';
+    }
+    if ($vars['view_mode'] == 'teaser') {
+      $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
+      // Add bird illustration image.
+      $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
+      $vars['bird_illustration'] = l(theme('image_style', array(
+        'style_name' => 'nas_bird_teaser_illustration',
+        'path' => $get_field_bird_illustration[0]['file']->uri,
+      )), $node_path, array('html' => TRUE));
     }
   }
 }
@@ -166,13 +184,75 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn');
+  $button_tag = array('edit-nas-search-btn', 'edit-submit-nas-bird-guide');
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';
+    element_set_attributes($element, array('id', 'name'));
     $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
     return '<button' . drupal_attributes($element['#attributes']) . '>' . $element['#value'] . '</button>';
   }
 
   return theme_button($variables);
+}
+
+/*
+ * Implements theme_image().
+ * remove height and width to make image responsible
+ */
+function nas_image($variables) {
+  $attributes = $variables['attributes'];
+  $attributes['src'] = file_create_url($variables['path']);
+
+  $add_attributes = array('alt', 'title');
+  //this styles shouldn't have width and height for responsive design
+  $remove_attr_for = array('hero_mobile', 'hero_image');
+
+  if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
+    $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
+  }
+
+  foreach ($add_attributes as $key) {
+
+    if (isset($variables[$key])) {
+      $attributes[$key] = $variables[$key];
+    }
+  }
+
+  return '<img' . drupal_attributes($attributes) . ' />';
+}
+
+/*
+ * Implements template_preprocess_field().
+ * adds additional hook sugestion to theme individualy fields for different
+ * panelizer styles
+ */
+function nas_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+  if (!isset($element['#object']->panelizer['page_manager']->name)) {
+    return;
+  }
+
+  $panelizer_style = $element['#object']->panelizer['page_manager']->name;
+  $bundle = $element['#bundle'];
+  $e_type = $element['#entity_type'];
+  $panelizer_style = str_replace($e_type . ':' . $bundle . ':', '', $panelizer_style);
+  if ($panelizer_style) {
+    $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
+        . $bundle . '__' . $panelizer_style;
+    $variables['theme_hook_suggestions'][] = $hook_sugestion;
+    if ($element['#pane_region']) {
+      $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
+    }
+  }
+}
+
+/*
+ * Implements template_preprocess_panels_pane().
+ */
+function nas_preprocess_panels_pane(&$vars) {
+  if (is_array($vars['content'])) {
+    // Will be used for theme_hook_suggestions in preprocess field.
+    $vars['content']['#pane_region'] = $vars['pane']->panel;
+  }
 }

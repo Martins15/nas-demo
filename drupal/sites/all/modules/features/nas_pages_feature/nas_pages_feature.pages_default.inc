@@ -68,7 +68,7 @@ function nas_pages_feature_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-2cdd7fb8-39e0-476b-8e47-54e549b9ecc4';
+    $pane->pid = 'new-a9afd97b-5a2f-490f-a784-91011dbf0a0e';
     $pane->panel = 'in_action_left';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_bird_video';
@@ -76,13 +76,11 @@ function nas_pages_feature_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'media',
+      'formatter' => 'text_default',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'file_view_mode' => 'default',
-      ),
+      'formatter_settings' => array(),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 1,
       'override_title_text' => '',
@@ -95,9 +93,9 @@ function nas_pages_feature_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '2cdd7fb8-39e0-476b-8e47-54e549b9ecc4';
-    $display->content['new-2cdd7fb8-39e0-476b-8e47-54e549b9ecc4'] = $pane;
-    $display->panels['in_action_left'][0] = 'new-2cdd7fb8-39e0-476b-8e47-54e549b9ecc4';
+    $pane->uuid = 'a9afd97b-5a2f-490f-a784-91011dbf0a0e';
+    $display->content['new-a9afd97b-5a2f-490f-a784-91011dbf0a0e'] = $pane;
+    $display->panels['in_action_left'][0] = 'new-a9afd97b-5a2f-490f-a784-91011dbf0a0e';
     $pane = new stdClass();
     $pane->pid = 'new-3b1996bf-ea01-40c5-a326-81346d9e75e1';
     $pane->panel = 'in_action_top';
@@ -219,7 +217,7 @@ function nas_pages_feature_default_page_manager_handlers() {
       'formatter_settings' => array(
         'image_style' => '',
         'image_link' => '',
-        'file_view_mode' => 'default',
+        'file_view_mode' => 'hero',
       ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 1,

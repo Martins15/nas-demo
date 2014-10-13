@@ -37,7 +37,7 @@ function nas_menu_theme() {
   return array(
     'nas_small_header' => array(
       'arguments' => array('menu_tree' => NULL),
-      'template' => 'nas-small-header',
+      'template' => 'templates/nas-small-header',
     ),
     'nas_don_t_miss' => array(
       'arguments' => array('items' => NULL),
@@ -50,6 +50,15 @@ function nas_menu_theme() {
         'form' => NULL
       ),
       'template' => 'templates/nas-big-header',
+    ),
+    'nas_guide_bar' => array(
+      'arguments' => array(
+        'div_attributes' => NULL,
+        'title' => NULL,
+        'preamble' => NULL,
+        'logo' => NULL
+      ),
+      'template' => 'templates/nas-guide-bar',
     ),
   );
 }

@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Add demo content.
+ *
+ * For debugging purposes you can call following code from /devel/php
+ * module_load_include('install', 'nas_fpp');
+ * nas_fpp_install();
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_fpp_install() {
+  nas_fpp_panels_display();
+
+  nas_fpp_page_manager_handlers();
+
+  nas_fpp_create_panes();
+}
+
+/**
+ * Create panels display.
+ */
+function nas_fpp_panels_display() {
+  // Birds landing.
+  $panels_display = panels_new_display();
+  $panels_display->layout = 'birds_landing_page';
+  $panels_display->panel_settings = array(
+    'default' => NULL,
+    'header' => NULL,
+    'cards' => NULL,
+    'hero' => NULL,
+    'banner_set' => NULL,
+    'bird_card_set' => NULL,
+  );
+  panels_save_display($panels_display);
+}
+
+/**
+ * Create page manager handlers.
+ */
+function nas_fpp_page_manager_handlers() {
+  // Birds landing.
+  $did_query = db_query(
+    'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
+    array(':layout' => 'birds_landing_page')
+  )->fetchCol();
+  $did = $did_query[0];
+
+  $page_manager_handler = array(
+    'name' => 'page_birds_landing_panel_context',
+    'task' => 'page',
+    'subtask' => 'birds_landing',
+    'handler' => 'panel_context',
+    'weight' => 0,
+    'conf' => array(
+      'title' => 'Panel',
+      'no_blocks' => 0,
+      'pipeline' => 'ipe',
+      'body_classes_to_remove' => '',
+      'body_classes_to_add' => '',
+      'css_id' => '',
+      'css' => '',
+      'contexts' => array(),
+      'relationships' => array(),
+      'access' => array(
+        'logic' => 'and',
+      ),
+      'did' => $did,
+    )
+  );
+  drupal_write_record('page_manager_handlers', $page_manager_handler);
+}
