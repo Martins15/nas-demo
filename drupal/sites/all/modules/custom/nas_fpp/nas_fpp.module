@@ -48,10 +48,6 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
-  $entity_info['node']['view modes']['nas_node_view_mode_hero_bird'] = array(
-    'label' => t('Hero bird'),
-    'custom settings' => TRUE,
-  );
   $entity_info['file']['view modes']['hero'] = array(
     'label' => t('Hero'),
     'custom settings' => TRUE,
