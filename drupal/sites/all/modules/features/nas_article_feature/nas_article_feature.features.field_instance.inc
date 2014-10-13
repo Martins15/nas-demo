@@ -106,7 +106,7 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => NULL,
+      'module' => 'date',
       'settings' => array(
         'increment' => 15,
         'input_format' => 'm/d/Y - H:i:s',
@@ -115,7 +115,7 @@ function nas_article_feature_field_default_field_instances() {
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
-      'type' => NULL,
+      'type' => 'date_text',
       'weight' => 9,
     ),
   );
