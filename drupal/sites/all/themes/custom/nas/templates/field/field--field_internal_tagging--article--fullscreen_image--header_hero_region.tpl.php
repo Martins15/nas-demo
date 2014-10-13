@@ -4,9 +4,8 @@
  * Template implementation to display the value of a field.
  */
 ?>
-
 <?php foreach ($items as $delta => $item): ?>
-  <p class="deck">
+  <span class="hero-slug">
     <?php print render($item); ?>
-  </p>
+  </span>
 <?php endforeach; ?>

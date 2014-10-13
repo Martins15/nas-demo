@@ -29,6 +29,7 @@ features[field_instance][] = node-article-field_subtitle
 features[node][] = article
 features[panelizer_defaults][] = node:article:big_image
 features[panelizer_defaults][] = node:article:default
+features[panelizer_defaults][] = node:article:fullscreen_image
 features[panelizer_defaults][] = node:article:map
 features[panelizer_defaults][] = node:article:press_release
 features[taxonomy][] = internal_tagging
