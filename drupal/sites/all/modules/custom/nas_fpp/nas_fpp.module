@@ -21,15 +21,6 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
-  $entity_info['fieldable_panels_pane']['bundles']['nas_hero_bird'] = array(
-    'label' => t('Hero Bird'),
-    'admin' => array(
-      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
-      'bundle argument' => 4,
-      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_hero_bird',
-      'access arguments' => array('administer fieldable panels panes'),
-    ),
-  );
   $entity_info['fieldable_panels_pane']['bundles']['nas_featured_content_cards'] = array(
     'label' => t('Featured content cards'),
     'admin' => array(
