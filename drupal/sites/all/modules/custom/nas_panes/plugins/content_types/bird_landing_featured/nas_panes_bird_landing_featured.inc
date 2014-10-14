@@ -30,15 +30,15 @@ function bird_landing_featured_form($form, &$form_state) {
 
   $form['image'] = array(
     '#type' => 'media',
-    '#tree' => TRUE, // Required
+    '#tree' => TRUE,
     '#title' => t('Image'),
     '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
     '#media_options' => array(
       'global' => array(
-        'file_extensions' => 'png jpg jpeg gif', // File extensions
+        'file_extensions' => 'png jpg jpeg gif',
         'max_filesize' => '10 MB',
-        'file_directory' => '', // Will be a subdirectory of the files directory
-        'types' => array('image'), // Refers to a file_entity bundle (such as audio, video, image, etc.)
+        'file_directory' => '',
+        'types' => array('image'),
       ),
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
@@ -165,7 +165,6 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     'contextual_links' => $contextual_links,
   ));
 
-//$content = 'works';
   $block->content = $content;
   return $block;
 }
