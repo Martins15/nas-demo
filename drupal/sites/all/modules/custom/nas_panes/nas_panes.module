@@ -48,6 +48,8 @@ function nas_panes_theme() {
         'image_path_mobile' => '',
         'summary' => '',
         'bird_guide_link' => '',
+        'category' => '',
+        'color' => '',
         'category_link' => '',
         'category_link_more' => '',
         'contextual_links' => '',
@@ -74,11 +76,17 @@ function nas_panes_ajax_render_alter(&$commands) {
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
-  if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+  if (strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
     // Here we save the cache to database. When we edited the pane we made
     // changes in the cache. In order the page to see the changes we need
     // to save cache data to database.
-    nas_panes_save_bird_guide_pane();
+    if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
+      nas_panes_save_bird_guide_pane();
+    }
+
+    if (strpos($_GET['q'], NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
+      nas_panes_save_bird_landing_page();
+    }
 
     $commands[] = ctools_ajax_command_reload();
   }

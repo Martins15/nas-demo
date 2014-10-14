@@ -63,7 +63,10 @@ function bird_landing_featured_form($form, &$form_state) {
   $form['color'] = array(
     '#type' => 'select',
     '#title' => t('Image color scheme'),
-    '#options' => array('dark', 'light'),
+    '#options' => array(
+      'dark' => 'dark',
+      'light' => 'light'
+    ),
     '#default_value' => !empty($conf['color']) ? $conf['color'] : '',
   );
 
@@ -160,10 +163,17 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     'summary' => $summary,
     'bird_guide_link' => $bird_guide_link,
     'category' => $category,
+    'color' => $conf['color'],
     'category_link_url' => $category_link_url,
     'category_link_more' => $category_link_more,
     'contextual_links' => $contextual_links,
   ));
+
+  $class = &drupal_static('nas_header_class');
+  $class = 'dark-bg';
+  if ($conf['color'] == 'light') {
+    $class = 'light-bg dark-text';
+  }
 
   $block->content = $content;
   return $block;
