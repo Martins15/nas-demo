@@ -34,9 +34,6 @@ function nas_bird_type_feature_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
-      'nas_node_view_mode_hero_bird' => array(
-        'custom_settings' => TRUE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(
