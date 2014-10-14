@@ -59,6 +59,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Bird teaser illustration'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['hero_cover_bird_page'] = array(
+    'label' => t('Hero cover bird page'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**

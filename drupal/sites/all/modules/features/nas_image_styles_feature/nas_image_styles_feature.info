@@ -6,6 +6,7 @@ features[features_api][] = api:2
 features[image][] = bird_illustration
 features[image][] = bird_teaser_illustration
 features[image][] = default_teaser_image
+features[image][] = hero_cover_bird_page
 features[image][] = hero_image
 features[image][] = hero_mobile
 features[image][] = nas_bird_node_full_illustration
