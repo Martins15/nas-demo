@@ -52,6 +52,7 @@ dependencies[] = views_load_more
 dependencies[] = nas_master
 dependencies[] = pp_wysiwyg
 dependencies[] = pp_crop
+dependencies[] = nas_solr_feature
 
 ; Development
 dependencies[] = devel

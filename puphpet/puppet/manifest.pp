@@ -1458,6 +1458,10 @@ class ruby::ruby193 {
 package { "python-software-properties":
   ensure  => latest
 }
+package { "libaugeas-ruby":
+  ensure => latest,
+  require => Package['python-software-properties']
+}
 package { "ruby1.9.1":
   ensure  => latest,
   require => Package['python-software-properties']
@@ -1533,9 +1537,36 @@ package { "python-mysqldb":
   ensure  => latest
 }
 exec { "phpcs":
-  command => "pear install PHP_CodeSniffer",
+  command => "pear install PHP_CodeSniffer-1.5.5",
   returns => [0, 1, 100]
 }
 
 include ansible::master
 
+# Solr config installation. see https://www.drupal.org/node/484800
+class drupal::solr {
+include solr
+file { "/usr/share/solr/default/conf":
+  source => "/var/www/drupal/sites/all/modules/contrib/search_api_solr/solr-conf/4.x",
+  ensure => directory,
+  recurse => true,
+  force => true,
+  owner => "jetty",
+  group => "jetty",
+  mode => 0755,
+  purge => true,
+}
+
+exec { "/etc/init.d/jetty restart":
+  subscribe => File["/usr/share/solr/default/conf"],
+  refreshonly => true,
+}
+
+}
+
+include drupal::solr
+
+package { "ruby-compass":
+  ensure  => latest,
+  require => Class['ruby::ruby193']
+}
