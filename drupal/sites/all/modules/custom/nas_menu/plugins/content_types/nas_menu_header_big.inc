@@ -56,6 +56,7 @@ function nas_menu_pane_big_render() {
     }
     $items['main'][] = $item;
   }
+  $items['main_cl'] = nas_menu_cl(NAS_MENU_MAIN_NAVIGATION);
   $s_menus = array(
     'secondary' => NAS_MENU_SECONDARY_NAVIGATION,
     'secondary_ta' => NAS_MENU_SECONDARY_TAKE_ACTION,
@@ -71,6 +72,7 @@ function nas_menu_pane_big_render() {
       $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
       $items[$s_key][] = $item;
     }
+    $items[$s_key. '_cl'] = nas_menu_cl($s_menu);
   }
 
   $form = drupal_get_form('nas_menu_search_form');
