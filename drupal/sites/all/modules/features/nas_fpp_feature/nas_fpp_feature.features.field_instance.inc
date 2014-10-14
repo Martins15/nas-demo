@@ -516,44 +516,6 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'fieldable_panels_pane-nas_hero_bird-field_related_bird'
-  $field_instances['fieldable_panels_pane-nas_hero_bird-field_related_bird'] = array(
-    'bundle' => 'nas_hero_bird',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'links' => 1,
-          'view_mode' => 'nas_node_view_mode_hero_bird',
-        ),
-        'type' => 'entityreference_entity_view',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_related_bird',
-    'label' => 'Bird',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => -3,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Bird');

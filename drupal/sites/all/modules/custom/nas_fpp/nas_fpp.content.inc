@@ -72,16 +72,36 @@ function nas_fpp_create_panes() {
   )->fetchCol();
   $did = $did_query[0];
 
-  $fpp = new stdClass();
-  $fpp->reusable = 1;
-  $fpp->admin_title = 'Hero bird Audubon\'s Shearwater';
-  $fpp->category = 'NAS FPP';
-  $fpp->title = 'Hero bird Audubon\'s Shearwater';
-  $fpp->bundle = 'nas_hero_bird';
-  $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
-  fieldable_panels_panes_save($fpp);
-  nas_fpp_create_panels_pane($did, $fpp->bundle, 'hero');
-  unset($fpp);
+  $pane = new stdClass();
+  $pane->did = $did;
+  $pane->panel = 'hero';
+  $pane->type = 'nas_panes_bird_landing_featured';
+  $pane->subtype = 'nas_panes_bird_landing_featured';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'bird' => array(
+      'entity_id' => db_query('SELECT nid FROM {node} WHERE title = :title', array(':title' => 'Great Shearwater'))->fetchField(),
+      'entity_label' => 'Great Shearwater',
+      'entity_type' => 'node',
+      'entity_bundle' => 'bird',
+    ),
+    'image' => '7',
+    'color' => '0',
+    'summary' => 'Curabitur blandit mollis lacus. Aenean commodo ligula eget dolor. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Pellentesque dapibus hendrerit tortor. Nam pretium turpis et arcu.',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  drupal_write_record('panels_pane', $pane);
+  unset($pane);
 
   $fpp = new stdClass();
   $fpp->reusable = 1;
@@ -94,7 +114,15 @@ function nas_fpp_create_panes() {
   $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
   $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
   fieldable_panels_panes_save($fpp);
-  nas_fpp_create_panels_pane($did, $fpp->bundle, 'bird_card_set');
+  $fpp_query = db_query(
+    'SELECT title FROM {fieldable_panels_panes} WHERE title LIKE :title',
+    array(':title' => $fpp->title)
+  )->fetchCol();
+  if (empty($fpp_query)) {
+    fieldable_panels_panes_save($fpp);
+    nas_fpp_create_panels_pane($did, $fpp->bundle, 'bird_card_set', 0);
+  }
+  unset($fpp_query);
   unset($fpp);
 
   $fpp = new stdClass();
