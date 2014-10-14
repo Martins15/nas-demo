@@ -538,7 +538,10 @@ class SearchApiSolrConnection implements SearchApiSolrConnectionInterface {
         // Add details, like Solr's exception message.
         $response->status_message .= $response->data;
       }
-      throw new SearchApiException('"' . $code . '" Status: ' . $response->status_message);
+      if (function_exists('watchdog')) {
+        watchdog('error', '"' . $code . '" Status: ' . $response->status_message);
+      }
+      // throw new SearchApiException('"' . $code . '" Status: ' . $response->status_message);
     }
 
     return $response;
