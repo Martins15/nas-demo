@@ -49,10 +49,10 @@ dependencies[] = entityreference_autocomplete
 dependencies[] = views_load_more
 
 ; Custom modules
+dependencies[] = nas_solr_feature
 dependencies[] = nas_master
 dependencies[] = pp_wysiwyg
 dependencies[] = pp_crop
-dependencies[] = nas_solr_feature
 
 ; Development
 dependencies[] = devel
