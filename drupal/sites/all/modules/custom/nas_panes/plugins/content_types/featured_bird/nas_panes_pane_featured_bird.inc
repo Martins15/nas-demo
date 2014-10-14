@@ -5,10 +5,6 @@
  * define ctools content type.
  */
 
-define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
-define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
-define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
-
 $plugin = array(
   'single' => TRUE,
   'title' => t('Bird Guide. Featured Bird'),
