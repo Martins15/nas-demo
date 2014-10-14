@@ -87,6 +87,35 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: hero_cover_bird_page.
+  $styles['hero_cover_bird_page'] = array(
+    'name' => 'hero_cover_bird_page',
+    'label' => 'Hero cover bird page',
+    'effects' => array(
+      1 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1920,
+          'height' => 1200,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: hero_image.
   $styles['hero_image'] = array(
     'name' => 'hero_image',
