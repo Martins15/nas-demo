@@ -15,6 +15,8 @@ define('NAS_OLD_D6_VID_SIZE', 111);
 define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
 define('NAS_OLD_D6_VID_WING_SHAPE', 116);
 define('NAS_OLD_D6_VID_ARTICLE_TYPE', 37);
+define('NAS_OLD_D6_VID_TOPIC', 13);
+define('NAS_OLD_D6_VID_MAGAZINE_CATEGORY', 41);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 
@@ -238,7 +240,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (empty($item['taxonomy'])) {
     return;
   }
-  $internal_tagging = array();
+  $internal_tagging_terms = array();
   // Check if there are any terms we have to save.
   foreach ($item['taxonomy'] as $key => $value) {
     if (isset($value['name'])) {
@@ -251,7 +253,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
         }
       }
       // Additionally get terms which don't exist yet.
-      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE) {
+      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE || $value['vid'] == NAS_OLD_D6_VID_TOPIC || $value['vid'] == NAS_OLD_D6_VID_MAGAZINE_CATEGORY) {
         $internal_tagging_terms[] = $value['name'];
       }
     }
@@ -261,7 +263,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
     }
     else {
-      $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+      $entity->field_internal_tagging[LANGUAGE_NONE][] = array(
         'tid' => nas_import_term_init($term, 'internal_tagging')
       );
     }
@@ -278,6 +280,9 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   // Save reference of Magazine Article to Magazine Issue.
   if (!empty($item['field_magazine_issue_ref'][0]['nid'])) {
     $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
+  }
+  if (!empty($item['created'])) {
+    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
   }
 }
 
@@ -568,4 +573,19 @@ function nas_import_term_init($name, $vname) {
   $term = $newterm->tid;
 
   return $term;
+}
+
+/**
+ * Update procedures for setting correct text format for fields data.
+ */
+function nas_update_text_fields_format() {
+  $fields = array('body', 'field_article_legacy', 'field_bird_description');
+  foreach ($fields as $field) {
+    $query = db_update('field_data_' . $field)
+    ->fields(array($field . '_format' => 'full_html'))
+    ->execute();
+    $query = db_update('field_revision_' . $field)
+    ->fields(array($field . '_format' => 'full_html'))
+    ->execute();
+  }
 }

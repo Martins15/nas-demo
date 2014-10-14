@@ -170,6 +170,9 @@ function pp_content_after_import() {
   if (function_exists('nas_fpp_get_node_nid_by_type')) {
     variable_set('nas_random_bird_node_nid', nas_fpp_get_node_nid_by_type('bird'));
   }
+  if (function_exists('nas_update_text_fields_format')) {
+    nas_update_text_fields_format();
+  }
 }
 
 function pp_import_save_timer() {

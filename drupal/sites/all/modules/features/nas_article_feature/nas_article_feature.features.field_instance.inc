@@ -113,6 +113,46 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-article-field_article_legacy'
+  $field_instances['node-article-field_article_legacy'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_article_legacy',
+    'label' => 'Legacy',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'node-article-field_article_map'
   $field_instances['node-article-field_article_map'] = array(
     'bundle' => 'article',
@@ -613,6 +653,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Date');
   t('Hero Image');
   t('Internal tagging');
+  t('Legacy');
   t('Magazine issue');
   t('Map Embed');
   t('Menu Section');
