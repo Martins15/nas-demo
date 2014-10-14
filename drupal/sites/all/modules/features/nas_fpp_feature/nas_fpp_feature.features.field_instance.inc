@@ -180,6 +180,41 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-nas_editorial_cards-field_column_count'
+  $field_instances['fieldable_panels_pane-nas_editorial_cards-field_column_count'] = array(
+    'bundle' => 'nas_editorial_cards',
+    'default_value' => array(
+      0 => array(
+        'value' => 4,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_column_count',
+    'label' => 'Column count',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-nas_editorial_cards-field_links'
   $field_instances['fieldable_panels_pane-nas_editorial_cards-field_links'] = array(
     'bundle' => 'nas_editorial_cards',
@@ -293,7 +328,7 @@ function nas_fpp_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -305,12 +340,13 @@ function nas_fpp_feature_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'mediafield',
+        'module' => 'image',
         'settings' => array(
-          'file_view_mode' => 'default',
+          'image_link' => '',
+          'image_style' => '',
         ),
-        'type' => 'media',
-        'weight' => 3,
+        'type' => 'image',
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'fieldable_panels_pane',
@@ -318,7 +354,24 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
-      'file_extensions' => 'jpg jpeg gif png',
+      'alt_field' => 0,
+      'default_image' => 0,
+      'epsacrop' => array(
+        'styles' => array(
+          'default_teaser_image' => 0,
+          'featured_bird' => 0,
+          'featured_bird_illustration' => 0,
+          'featured_bird_mobile' => 0,
+          'hero_image' => 0,
+          'hero_mobile' => 0,
+        ),
+      ),
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -336,10 +389,10 @@ function nas_fpp_feature_field_default_field_instances() {
           'video' => 0,
         ),
         'browser_plugins' => array(
-          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
           'media_default--media_browser_my_files' => 0,
           'media_internet' => 0,
-          'upload' => 0,
+          'upload' => 'upload',
           'youtube' => 0,
         ),
       ),
@@ -518,7 +571,6 @@ function nas_fpp_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Bird');
   t('Bottom links');
   t('Color mode');
   t('Column count');
