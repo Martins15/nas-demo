@@ -5168,6 +5168,10 @@ table.row-borders tbody td {
   margin: 10px 0;
   padding: 0 10px;
 }
+.strip-nav.small .contextual-links li {
+  margin: 0;
+  padding: 0;
+}
 
 /* @todo refactor like crazy for more hero variations */
 .hero {
@@ -5603,6 +5607,12 @@ img.hero-alt-img.current {
 }
 .dont-miss ul {
   width: 1000px !important;
+}
+.dont-miss ul.contextual-links {
+  width: auto !important;
+}
+.dont-miss.strip-nav {
+  overflow: visible;
 }
 
 .header-btn-menu, .header-btn-search,
@@ -11262,4 +11272,16 @@ body.touch .sticky-wrapper {
 .bird-card-grid .pager-load-more.pager-load-more-empty,
 .bird-card-grid .pager-load-more .ajax-progress-throbber {
   display: none;
+}
+
+.strip-nav.small .contextual-links li {
+  margin: 0;
+  padding: 0;
+}
+
+.dont-miss ul.contextual-links {
+  width: auto !important;
+}
+.dont-miss .strip-nav {
+  overflow: visible;
 }

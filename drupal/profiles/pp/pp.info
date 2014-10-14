@@ -19,6 +19,8 @@ dependencies[] = contextual
 dependencies[] = admin_menu_toolbar
 dependencies[] = ctools
 dependencies[] = panels
+dependencies[] = date
+dependencies[] = date_api
 dependencies[] = panelizer
 dependencies[] = page_manager
 dependencies[] = pathauto
@@ -50,6 +52,7 @@ dependencies[] = views_load_more
 dependencies[] = nas_master
 dependencies[] = pp_wysiwyg
 dependencies[] = pp_crop
+dependencies[] = nas_solr_feature
 
 ; Development
 dependencies[] = devel

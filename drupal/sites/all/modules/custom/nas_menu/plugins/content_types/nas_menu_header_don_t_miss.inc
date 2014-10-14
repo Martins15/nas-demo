@@ -36,10 +36,11 @@ function nas_menu_pane_don_t_miss_render() {
     $item['link'] = '<a href="' . check_plain(url($path)) . '"' . $attributes . '>' .  $title . '</a>';
     $items[] = $item;
   }
+  $cl = nas_menu_cl(NAS_MENU_HEADER_DON_T_MISS_MENU);
 
   $block = new stdClass();
 
-  $content = theme('nas_don_t_miss', array('items' => $items));
+  $content = theme('nas_don_t_miss', array('items' => $items, 'contextual_links' => $cl));
   $block->content = $content;
   return $block;
 }
