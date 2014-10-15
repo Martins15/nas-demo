@@ -73,7 +73,9 @@ function pp_import_nodes() {
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     $user_uids = array_slice($user_uids, 0, 20);
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
-    $news_node_nids = array_slice($news_node_nids, 0, 20);
+    $news_node_nids = array_slice($news_node_nids, 0, 19);
+    // To have a news node with embeded images.
+    $news_node_nids[] = 158806;
     $magazine_issue_node_nids = array(
       157656,
       152231,
