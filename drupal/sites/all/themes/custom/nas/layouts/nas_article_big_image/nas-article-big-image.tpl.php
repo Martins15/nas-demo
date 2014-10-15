@@ -35,16 +35,6 @@
       </div>
       <div class="article-sidebar large-pull-10 large-2 columns">
         <?php print $content['left']; ?>
-        <section class="clearfix article-sidebar-section social-sharing no-caption hide-for-tiny hide-for-small hide-for-medium">
-          <a class="social-sharing-icon" href="#"><i class="icon-twitter"></i></a>
-          <a class="social-sharing-icon" href="#"><i class="icon-facebook"></i></a>
-          <a class="social-sharing-icon" href="#"><i class="icon-mail"></i></a>
-        </section>
-        <section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">
-          <a href="#"><img src="../../img/author-1.png" alt="" class="article-author-image"></a>
-          <a href="#"><h5 class="article-author-name">Catherine MacMillanville</h5></a>
-          <small class="article-date">Published Mar 27, 2014</small>
-        </section>
         <section class="clearfix article-sidebar-section article-related-birds reflow reflow-into-body" data-reflow-class="article-aside half-width">
           <h5>Birds in This Story</h5>
           <div class="tiny-6 small-4 medium-6 large-12 columns">

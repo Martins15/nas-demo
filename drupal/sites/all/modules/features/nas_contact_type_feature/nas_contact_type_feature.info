@@ -10,6 +10,7 @@ dependencies[] = media
 dependencies[] = mediafield
 dependencies[] = nas_article_feature
 dependencies[] = nas_bird_type_feature
+dependencies[] = nas_fpp_feature
 dependencies[] = strongarm
 dependencies[] = text
 features[ctools][] = field_group:field_group:1
