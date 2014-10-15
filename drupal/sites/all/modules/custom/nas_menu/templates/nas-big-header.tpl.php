@@ -26,6 +26,7 @@
  * );
  */
 ?>
+<?php $cl_class = ($items['main_cl']) ? ' contextual-links-region' : ''; ?>
 <div class="row">
   <div class="columns">
     <?php print $frontpage_link; ?>
@@ -37,13 +38,15 @@
       <?php print $form; ?>
     </div>
     <div class="global-nav">
-      <ul class="action-nav inline-list clearfix">
+      <ul class="action-nav inline-list clearfix<?php print $cl_class; ?>">
+        <?php print $items['secondary_ta_cl']; ?>
         <?php foreach ($items['secondary_ta'] as $item) : ?>
           <li class="<?php print $item['li_class']; ?>"><?php print $item['link']; ?></li>
         <?php endforeach; ?>
       </ul>
       <div class="mobile-nav">
-        <ul class="primary-nav inline-list">
+        <ul class="primary-nav inline-list<?php print $cl_class; ?>">
+          <?php print $items['main_cl']; ?>
           <?php foreach ($items['main'] as $item) : ?>
             <li class="<?php print $item['li_class']; ?>">
               <?php print $item['link']; ?>
@@ -62,7 +65,8 @@
               <a href="/" class=""><i class="icon-magnifier"></i></a>
           </li>
         </ul>
-        <ul class="secondary-nav inline-list">
+        <ul class="secondary-nav inline-list<?php print $cl_class; ?>">
+          <?php print $items['secondary_cl']; ?>
           <?php foreach ($items['secondary'] as $item) : ?>
             <li class="<?php print $item['li_class']; ?>"><?php print $item['link']; ?></li>
           <?php endforeach; ?>

@@ -217,7 +217,7 @@ function nas_pages_feature_default_page_manager_handlers() {
       'formatter_settings' => array(
         'image_style' => '',
         'image_link' => '',
-        'file_view_mode' => 'hero',
+        'file_view_mode' => 'hero_cover_bird_page',
       ),
       'context' => 'argument_entity_id:node_1',
       'override_title' => 1,

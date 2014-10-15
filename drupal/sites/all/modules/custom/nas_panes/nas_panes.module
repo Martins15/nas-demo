@@ -6,6 +6,11 @@
  */
 
 define('NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY', 'page-birds_guide');
+define('NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-birds_landing');
+
+define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
+define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
+define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -35,6 +40,23 @@ function nas_panes_theme() {
       'template' => 'nas-featured-bird',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird'
     ),
+    'nas_bird_landing_featured' => array(
+      'variables' => array(
+        'name' => '',
+        'url' => '',
+        'image_path' => '',
+        'image_path_mobile' => '',
+        'summary' => '',
+        'bird_guide_link' => '',
+        'category' => '',
+        'color' => '',
+        'category_link' => '',
+        'category_link_more' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'bird-landing-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_landing_featured'
+    ),
     'nas_featured_social_in_article' => array(
       'variables' => array(
         'title' => '',
@@ -54,11 +76,17 @@ function nas_panes_ajax_render_alter(&$commands) {
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
-  if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+  if (strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
     // Here we save the cache to database. When we edited the pane we made
     // changes in the cache. In order the page to see the changes we need
     // to save cache data to database.
-    nas_panes_save_bird_guide_pane();
+    if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
+      nas_panes_save_bird_guide_pane();
+    }
+
+    if (strpos($_GET['q'], NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
+      nas_panes_save_bird_landing_page();
+    }
 
     $commands[] = ctools_ajax_command_reload();
   }
@@ -70,4 +98,23 @@ function nas_panes_ajax_render_alter(&$commands) {
 function nas_panes_save_bird_guide_pane() {
   $cache = page_manager_get_page_cache(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
   page_manager_save_page_cache($cache);
+}
+
+/**
+ * Resave bird landing page (cache to database).
+ */
+function nas_panes_save_bird_landing_page() {
+  $cache = page_manager_get_page_cache(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
+}
+
+/**
+ * Implements hook_ctools_plugin_post_alter().
+ *
+ * Remove "Edit Panel" contextual link form all panels pages.
+ */
+function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
+  if ($info['type'] == 'task_handlers') {
+    $plugin['contextual link'] = 'return';
+  }
 }

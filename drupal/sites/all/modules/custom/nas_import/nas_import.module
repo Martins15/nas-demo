@@ -15,6 +15,8 @@ define('NAS_OLD_D6_VID_SIZE', 111);
 define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
 define('NAS_OLD_D6_VID_WING_SHAPE', 116);
 define('NAS_OLD_D6_VID_ARTICLE_TYPE', 37);
+define('NAS_OLD_D6_VID_TOPIC', 13);
+define('NAS_OLD_D6_VID_MAGAZINE_CATEGORY', 41);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 
@@ -238,7 +240,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (empty($item['taxonomy'])) {
     return;
   }
-  $internal_tagging = array();
+  $internal_tagging_terms = array();
   // Check if there are any terms we have to save.
   foreach ($item['taxonomy'] as $key => $value) {
     if (isset($value['name'])) {
@@ -251,7 +253,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
         }
       }
       // Additionally get terms which don't exist yet.
-      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE) {
+      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE || $value['vid'] == NAS_OLD_D6_VID_TOPIC || $value['vid'] == NAS_OLD_D6_VID_MAGAZINE_CATEGORY) {
         $internal_tagging_terms[] = $value['name'];
       }
     }
@@ -261,7 +263,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
     }
     else {
-      $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+      $entity->field_internal_tagging[LANGUAGE_NONE][] = array(
         'tid' => nas_import_term_init($term, 'internal_tagging')
       );
     }
@@ -274,6 +276,13 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $contact_nid = $users_old_uids[$item['uid']];
     }
     $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
+  // Save reference of Magazine Article to Magazine Issue.
+  if (!empty($item['field_magazine_issue_ref'][0]['nid'])) {
+    $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
+  }
+  if (!empty($item['created'])) {
+    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
   }
 }
 
@@ -296,28 +305,42 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
     variable_set('nas_users_import_uids', $users_old_uids);
   }
   if ($entity->feeds_item->id == 'news_import') {
+    $nas_articles_nids_mapping = variable_get('nas_articles_nids_mapping', '');
+    $nas_articles_nids_mapping[$item['nid']] = $entity->nid;
+    variable_set('nas_articles_nids_mapping', $nas_articles_nids_mapping);
+    // Set Press Release display for imported articles.
+    $panelizer_entity_name = 'node:article:press_release';
+    if ($item['type'] == 'magazine_article') {
+      // Set Big Image display for imported Magazine articles.
+      $panelizer_entity_name = 'node:article:big_image';
+    }
+    $panelizer_entity = array(
+      'entity_type' => 'node',
+      'entity_id' => $entity->nid,
+      'revision_id' => $entity->nid,
+      'name' => $panelizer_entity_name,
+      'no_blocks' => 0,
+      'css_id' => '',
+      'css' => '',
+      'pipeline' => 'standard',
+      'contexts' => array(),
+      'relationships' => array(),
+      'did' => 0,
+      'view_mode' => 'page_manager',
+      'css_class' => '',
+      'title_element' => 'H2',
+      'link_to_entity' => 1,
+      'extra' => array(),
+    );
+    drupal_write_record('panelizer_entity', $panelizer_entity);
     return;
   }
-  // Set Press Release display for imported articles.
-  $panelizer_entity = array(
-    'entity_type' => 'node',
-    'entity_id' => $entity->nid,
-    'revision_id' => $entity->nid,
-    'name' => 'node:article:press_release',
-    'no_blocks' => 0,
-    'css_id' => '',
-    'css' => '',
-    'pipeline' => 'standard',
-    'contexts' => array(),
-    'relationships' => array(),
-    'did' => 0,
-    'view_mode' => 'page_manager',
-    'css_class' => '',
-    'title_element' => 'H2',
-    'link_to_entity' => 1,
-    'extra' => array(),
-  );
-  drupal_write_record('panelizer_entity', $panelizer_entity);
+  if ($entity->feeds_item->id == 'magazine_issues_import') {
+    $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping', '');
+    $nas_magazine_issues_nids_mapping[$item['nid']] = $entity->nid;
+    variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
+    return;
+  }
 }
 /**
  * Retrieve and save remote file.
@@ -417,6 +440,23 @@ function nas_import_modify_references() {
     }
     // Remove the last item due to shifted array.
     array_pop($node->field_related_bird[LANGUAGE_NONE]);
+    // Finally update the node's field.
+    field_attach_update('node', $node);
+  }
+
+  // Modify references for field_magazine_issue.
+  $nodes = node_load_multiple(array(), array('type' => 'article'));
+  foreach ($nodes as $node) {
+    $field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
+    if (empty($field_magazine_issue)) {
+      continue;
+    }
+    $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping');
+    // Lets modify old nids to new nids.
+    isset($nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']]) ? $new_nid = $nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']] : $new_nid = '';
+    if (!empty($new_nid)) {
+      $node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $new_nid;
+    }
     // Finally update the node's field.
     field_attach_update('node', $node);
   }
@@ -533,4 +573,19 @@ function nas_import_term_init($name, $vname) {
   $term = $newterm->tid;
 
   return $term;
+}
+
+/**
+ * Update procedures for setting correct text format for fields data.
+ */
+function nas_update_text_fields_format() {
+  $fields = array('body', 'field_article_legacy', 'field_bird_description');
+  foreach ($fields as $field) {
+    $query = db_update('field_data_' . $field)
+    ->fields(array($field . '_format' => 'full_html'))
+    ->execute();
+    $query = db_update('field_revision_' . $field)
+    ->fields(array($field . '_format' => 'full_html'))
+    ->execute();
+  }
 }
