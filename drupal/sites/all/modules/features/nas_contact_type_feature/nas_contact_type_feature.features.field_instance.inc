@@ -333,6 +333,8 @@ function nas_contact_type_feature_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
       'epsacrop' => array(
         'styles' => array(
           'default_teaser_image' => 0,
@@ -343,7 +345,12 @@ function nas_contact_type_feature_field_default_field_instances() {
           'hero_mobile' => 0,
         ),
       ),
+      'file_directory' => '',
       'file_extensions' => 'jpg jpeg gif png',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
