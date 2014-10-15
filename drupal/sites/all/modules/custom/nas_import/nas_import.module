@@ -240,19 +240,16 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
 
   // Convert inline images with captions.
   if (!empty($item['body'])) {
-    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/',
-      function ($matches) use ($images_mapping) {
-        $token = trim($matches[0], '[]');
-        list($image_id, $align, $caption) = explode('|', $token);
-        // Remove 'img:' from the beginning.
-        $image_id = (int) substr($image_id, 4);
-        // Remove 'caption:' from beginning.
-        $caption = substr($caption, 8);
-        // @TODO use captions as well.
-        return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
-      },
-    $item['body']);
-//      $entity->body[LANGUAGE_NONE][0]['format'] = 'full_html';
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // @TODO use captions as well.
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
   }
 
   // Save old taxonomy terms to existed terms if match.
