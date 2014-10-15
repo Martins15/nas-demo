@@ -4,7 +4,6 @@
  * Template of NAS One Column. Used in Bird Guide.
  */
 ?>
-<?php print $content['big_image']; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

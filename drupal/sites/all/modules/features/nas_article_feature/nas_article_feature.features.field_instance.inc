@@ -156,7 +156,12 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_article_map'
   $field_instances['node-article-field_article_map'] = array(
     'bundle' => 'article',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => '<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" scrolling="no" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=e47c7387f97d4f6f8f691e1c73e31a00&amp;extent=-74.1592,40.6498,-73.6521,40.8761"></iframe>',
+        'format' => 'map',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -179,6 +184,32 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Map Embed',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 0,
+          'map' => 'map',
+          'plain_text' => 0,
+          'video' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => 0,
+            ),
+            'map' => array(
+              'weight' => 0,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'video' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),

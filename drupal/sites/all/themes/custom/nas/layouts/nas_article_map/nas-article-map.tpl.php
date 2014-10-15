@@ -4,25 +4,18 @@
  * Template of Article layout with Map.
  */
 ?>
-<?php print $content['header']; ?>
-<?php print $content['map']; ?>
 <div class="hero small no-padding with-map" style="background-color: #F4F3F0;">
   <div class="hero-map" id="map-canvas">
-    <iframe style="width: 100%; height: 100%;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=a7fbd94f5a2d471a9d896a3bd11b5b76&amp;extent=-94.9765,29.1798,-94.6527,29.5374&amp;zoom=true"></iframe>
+    <?php print $content['map']; ?>
   </div>
 </div>
 <section class="global-content">
-  <?php print $content['main']; ?>
   <article class="article">
     <header class="article-header row">
       <div class="large-10 large-centered columns">
-        <a href="#" class="article-slug">In The News</a>
-        <h1>Texas Oil Spill Makes Landfall in a Key Environmentally Sensitive Area</h1>
-        <p class="deck">The slick moved out of Galveston Bay, into the Gulf of Mexico, and south down the Texas coast to Matagorda Island.</p>
+        <?php print $content['header']; ?>      
         <div class="article-meta clearfix hide-for-large hide-for-xlarge">
-          <a href="#"><img src="../../img/author-1.png" alt="" class="article-author-image"></a>
-          <span class="article-author-name"><a href="#">Catherine MacMillanville</a></span>
-          <small class="article-date">Published Mar 27, 2014</small>
+          <?php print $content['mobile_author']; ?>
         </div>
       </div>
     </header>
@@ -39,66 +32,22 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-1.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
             </div>
           </div>
         </aside>
-        <p>On Saturday March 22, about 170,000 gallons of oil spilled into Galveston Bay from a pierced oil barge. Since then, monitors from Houston Audubon Society have found approximately 100 oiled birds at Houston Audubon's <a href="#">Bolivar Flats Shorebird Sanctuary</a> and the surrounding area, and Audubon Texas staff have been monitoring Audubon's colonial waterbird sanctuaries in Galveston Bay. Oil and tar balls have washed up on Galveston-area beaches.</p>
-        <p>On Wednesday, Unified Command (a response structure that includes the U.S. Coast Guard, Texas General Land Office, and others) reported that an oil slick had moved out of Galveston Bay, into the Gulf, and south down the Texas coast, where winds and tides would carry it toward one of Texas's ecological treasures: Matagorda Bay.</p>
-        <p>Matagorda Bay, a tidal estuary located about 100 miles southwest of Galveston, Texas, is an environmentally sensitive area enclosed by peninsulas and barrier islands along Texas's Gulf Coast.  Within Matagorda Bay sits <a href="#">Chester Island</a>, a National Audubon Society-managed colonial waterbird sanctuary. The 70-acre sanctuary, previously known as Sundown Island, was renamed after warden Chester Smith, who managed the habitat for 25 years until his death, at 90, in 2011. Last year during the spring nesting season, island held more than 13,000 breeding pairs of birds, including brown pelican, reddish egret, and black skimmer. Most of these birds feed offshore, so even if oil doesn't directly impinge upon the island, the nesting colonies could become contaminated if adult birds encounter oil in the water or on other islands while searching for food.</p>
-        <p>As of this writing, it appears that no oil has come ashore at Chester Island. Audubon's team on the ground, which includes Chester Island wardens Tim and Peggy Wilkinson and Audubon Texas's director of conservation, Iliana Pena, have been onsite and are closely monitoring the birds, the habitat, and the emergency responders' activities.</p>
-        <blockquote>“The most significant of the rookery islands in the immediate area have been protected by boom systems put in place late yesterday and this morning,” Pena reported today. “So far, these islands have remained unaffected, but we are ready if needed to respond.” </blockquote>
-        <p>But Matagorda Island, a barrier island to the southwest of Matagorda Bay, was not so lucky. According to a source at Unified Command, oil from the Galveston spill has come ashore along approximately 15 miles of Matagorda Island beach. Notable bird species that live year-round or winter along this stretch of land include Wilson's Plover, Ruddy Turnstones, and Sanderlings. </p>
-        <aside class="article-aside half-width">
-          <figure class="article-image">
-            <a href="../../img/article-image-1.jpg" class="lightbox"><img src="../../img/article-image-1.jpg" /></a>
-            <figcaption class="article-aside-caption">
-              Caption information including name of bird (and photographer)
-            </figcaption>
-          </figure>
-        </aside>
-        <p>The U.S. Coast Guard and other emergency responders will be monitoring the area and surrounding waters for additional oil slicks that could make landfall. Matagorda Island is a Texas Parks and Wildlife Department Wildlife Management Area and is accessible only by boat. State and federal officials will lead the damage assessment and clean-up work on the island.</p>
-        <p>Matagorda Island, Matagorda Bay, San Antonio Bay, and Espiritu Santo Bay are not just critical nesting sites for pelicans, shorebirds, and herons. Aransas National Wildlife Refuge, less than five miles northwest of Matagorda Island, is the wintering grounds for the only self-sustaining wild, migratory flock of whooping cranes in the world. If the oil should overrun the barrier islands or otherwise make incursions into San Antonio Bay, this critically endangered bird could be imperiled as well.</p>
-        <p>Audubon has been committed to conserving and protecting bird habitat in Texas for more than a century and today protects 178 islands along the Texas Gulf Coast. Audubon staff remain on the ground monitoring birds and their habitats and advocating for effective response spill measures with authorities at Unified Command.</p>
+        <?php print $content['main']; ?>
       </div>
       <div class="article-sidebar large-pull-10 large-2 columns">
-        <section class="clearfix article-sidebar-section social-sharing no-caption hide-for-tiny hide-for-small hide-for-medium">
-          <a class="social-sharing-icon" href="#"><i class="icon-twitter"></i></a>
-          <a class="social-sharing-icon" href="#"><i class="icon-facebook"></i></a>
-          <a class="social-sharing-icon" href="#"><i class="icon-mail"></i></a>
-        </section>
+        <?php print $content['social']; ?>
         <section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">
-          <a href="#"><img src="../../img/author-1.png" alt="" class="article-author-image"></a>
-          <a href="#"><h5 class="article-author-name">Catherine MacMillanville</h5></a>
-          <small class="article-date">Published Mar 27, 2014</small>
+          <?php print $content['author']; ?>
         </section>
         <section class="clearfix article-sidebar-section article-related-birds reflow reflow-into-body" data-reflow-class="article-aside half-width">
-          <h5>Birds in This Story</h5>
-          <div class="tiny-6 large-12 columns">
-            <figure class="bird-card small">
-              <div class="bird-card-illustration">
-                <a href="#"><img src="../../img/bird-1.png" alt=""></a>
-              </div>
-              <figcaption class="bird-card-caption">
-                <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
-                <p class="scientific-name">Campylorhynchus brunneicapillus</p>
-              </figcaption>
-              <a href="#" class="icon-sound-full bird-card-audio"></a>
-            </figure>
-          </div>
-          <div class="tiny-6 large-12 columns">
-            <figure class="bird-card small">
-              <div class="bird-card-illustration">
-                <a href="#"><img src="../../img/bird-2.png" alt=""></a>
-              </div>
-              <figcaption class="bird-card-caption">
-                <h4 class="common-name"><a href="#">Bullock's Oriole</a></h4>
-                <p class="scientific-name">Icterus bullockii</p>
-              </figcaption>
-              <a href="#" class="icon-sound-full bird-card-audio"></a>
-            </figure>
-          </div>
+          <h5><?php print t('Birds in This Story'); ?></h5>
+          <?php print $content['birds']; ?>
         </section>
+        <?php print $content['left']; ?>
         <section class="clearfix article-sidebar-section popular-stories story-list small reflow reflow-into-bottom">
           <h5>Popular Stories</h5>
           <ul>
@@ -130,7 +79,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-1.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
             </div>
           </div>
         </div>
@@ -144,7 +93,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-2.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-2.jpg" alt="">
             </div>
           </div>
         </div>
@@ -158,7 +107,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-3.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-3.jpg" alt="">
             </div>
           </div>
         </div>

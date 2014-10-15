@@ -1,18 +1,21 @@
 <?php
 /**
  * @file
- * Template of NAS One Column. Used in Bird Guide.
+ * Template of NAS.
  */
 ?>
 
 <div class="hero dark-gradient light-text expand">
   <div class="hero-image">
     <?php print $content['big_image']; ?>
-  </div>
+  </div> 
   <div class="row">
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
       <div class="columns large-10 large-centered">
         <?php print $content['header_hero']; ?>
+        <div class="article-meta clearfix hide-for-large hide-for-xlarge">
+          <?php print $content['mobile_author']; ?>
+        </div>
       </div>
     </div>
   </div>
@@ -40,41 +43,22 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-1.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
             </div>
           </div>
         </aside>
         <?php print $content['main']; ?>
       </div>
       <div class="article-sidebar large-pull-10 large-2 columns">
-        <?php print $content['left']; ?>
-        <section class="clearfix article-sidebar-section article-related-birds reflow reflow-into-body" data-reflow-class="article-aside half-width">
-          <h5>Birds in This Story</h5>
-          <div class="tiny-6 small-4 medium-6 large-12 columns">
-            <figure class="bird-card small">
-              <div class="bird-card-illustration">
-                <a href="#"><img src="../../img/bird-1.png" alt=""></a>
-              </div>
-              <figcaption class="bird-card-caption">
-                <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
-                <p class="scientific-name">Campylorhynchus brunneicapillus</p>
-              </figcaption>
-              <a href="#" class="icon-sound-full bird-card-audio"></a>
-            </figure>
-          </div>
-          <div class="tiny-6 small-4 medium-6 large-12 columns end">
-            <figure class="bird-card small">
-              <div class="bird-card-illustration">
-                <a href="#"><img src="../../img/bird-2.png" alt=""></a>
-              </div>
-              <figcaption class="bird-card-caption">
-                <h4 class="common-name"><a href="#">Bullock's Oriole</a></h4>
-                <p class="scientific-name">Icterus bullockii</p>
-              </figcaption>
-              <a href="#" class="icon-sound-full bird-card-audio"></a>
-            </figure>
-          </div>
+        <?php print $content['social']; ?>
+        <section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">
+          <?php print $content['author']; ?>
         </section>
+        <section class="clearfix article-sidebar-section article-related-birds reflow reflow-into-body" data-reflow-class="article-aside half-width">
+          <h5><?php print t('Birds in This Story'); ?></h5>
+          <?php print $content['birds']; ?>
+        </section>
+        <?php print $content['left']; ?>
         <section class="clearfix article-sidebar-section popular-stories story-list small reflow reflow-into-bottom">
           <h5>Popular Stories</h5>
           <ul>
@@ -107,7 +91,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-1.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
             </div>
           </div>
         </div>
@@ -121,7 +105,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-2.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-2.jpg" alt="">
             </div>
           </div>
         </div>
@@ -135,7 +119,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../../img/engagement-card-3.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-3.jpg" alt="">
             </div>
           </div>
         </div>
