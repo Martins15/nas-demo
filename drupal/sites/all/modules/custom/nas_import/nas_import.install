@@ -17,6 +17,9 @@ function nas_import_install() {
 
   // Function to created term to vocabulary Main menu.
   nas_import_create_terms();
+  // Let's disable solr cron task for next 24 hours.
+  variable_set('search_api_solr_last_optimize', REQUEST_TIME);
+  variable_set('search_cron_limit', 0);
 }
 
 /**

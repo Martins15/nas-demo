@@ -21,15 +21,6 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
-  $entity_info['fieldable_panels_pane']['bundles']['nas_hero_bird'] = array(
-    'label' => t('Hero Bird'),
-    'admin' => array(
-      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
-      'bundle argument' => 4,
-      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_hero_bird',
-      'access arguments' => array('administer fieldable panels panes'),
-    ),
-  );
   $entity_info['fieldable_panels_pane']['bundles']['nas_featured_content_cards'] = array(
     'label' => t('Featured content cards'),
     'admin' => array(
@@ -47,10 +38,6 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_fpp_bird_guide',
       'access arguments' => array('administer fieldable panels panes'),
     ),
-  );
-  $entity_info['node']['view modes']['nas_node_view_mode_hero_bird'] = array(
-    'label' => t('Hero bird'),
-    'custom settings' => TRUE,
   );
   $entity_info['file']['view modes']['hero'] = array(
     'label' => t('Hero'),
@@ -70,6 +57,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   );
   $entity_info['file']['view modes']['bird_teaser_illustration'] = array(
     'label' => t('Bird teaser illustration'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['hero_cover_bird_page'] = array(
+    'label' => t('Hero cover bird page'),
     'custom settings' => TRUE,
   );
 }
@@ -109,7 +100,10 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_editorial_cards(&$vars) {
 function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$vars) {
   $fpp = $vars['elements']['#fieldable_panels_pane'];
   $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
-  $vars['banner_image'] = file_create_url($get_field_image[0]['file']->uri);
+  $vars['banner_image'] = '';
+  if (isset($get_field_image[0]['uri'])) {
+    $vars['banner_image'] = file_create_url($get_field_image[0]['uri']);
+  }
   // To Do: Add mobile images presets support.
   $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');
   $vars['banner_slug'] = l($get_field_link[0]['title'], $get_field_link[0]['url'], array('attributes' => array('class' => array('banner-slug'))));

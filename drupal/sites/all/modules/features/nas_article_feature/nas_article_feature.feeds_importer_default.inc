@@ -72,6 +72,30 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '7',
           ),
+          'field_magazine_issue_ref' => array(
+            'name' => 'field_magazine_issue_ref',
+            'value' => 'field_magazine_issue_ref.[*]',
+            'debug' => 0,
+            'weight' => '8',
+          ),
+          'type' => array(
+            'name' => 'type',
+            'value' => 'type',
+            'debug' => 0,
+            'weight' => '9',
+          ),
+          'field_article_intro' => array(
+            'name' => 'field_article_intro',
+            'value' => 'field_article_intro.[*]',
+            'debug' => 0,
+            'weight' => '11',
+          ),
+          'created' => array(
+            'name' => 'created',
+            'value' => 'created',
+            'debug' => 0,
+            'weight' => '12',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
@@ -108,6 +132,11 @@ function nas_article_feature_feeds_importer_default() {
           3 => array(
             'source' => 'path',
             'target' => 'path_alias',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'field_article_intro',
+            'target' => 'field_article_legacy',
             'unique' => FALSE,
           ),
         ),

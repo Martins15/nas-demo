@@ -20,5 +20,6 @@ $plugin = array(
     'main' => t('Main'),
     'left' => t('Left'),
     'right' => t('Right'),
+    'card_set' => t('Card Set')
   ),
 );

@@ -31,6 +31,14 @@
     sudo: yes
     shell: "{{ php_env_vars}} drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }}"
 
+  - name: Solr - clearing index
+    sudo: yes
+    shell: "{{ php_env_vars}} drush -y search-api-clear"
+
+  - name: Solr - reindexing
+    sudo: yes
+    shell: "{{ php_env_vars}} drush -y search-api-index"
+
   handlers:
 #    - name: import livedb
 #      mysql_db: name=livedrupal state=import target=livedb.sql.gz

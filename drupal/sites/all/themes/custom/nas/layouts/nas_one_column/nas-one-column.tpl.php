@@ -14,7 +14,6 @@
       </div>
     </div>
   </div>
-</header>
 
   <?php print $content['main']; ?>
   <div class="bird-guide-search show">

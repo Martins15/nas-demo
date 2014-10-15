@@ -18,6 +18,7 @@ $plugin = array(
     'left' => t('Left'),
     'main' => t('Main'),
     'right' => t('Right'),
-    'header' => t('Header')
+    'header' => t('Header'),
+    'card_set' => t('Card Set')
   ),
 );

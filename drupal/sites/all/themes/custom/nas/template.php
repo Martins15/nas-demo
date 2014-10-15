@@ -195,3 +195,64 @@ function nas_button($variables) {
 
   return theme_button($variables);
 }
+
+/*
+ * Implements theme_image().
+ * remove height and width to make image responsible
+ */
+function nas_image($variables) {
+  $attributes = $variables['attributes'];
+  $attributes['src'] = file_create_url($variables['path']);
+
+  $add_attributes = array('alt', 'title');
+  //this styles shouldn't have width and height for responsive design
+  $remove_attr_for = array('hero_mobile', 'hero_image');
+
+  if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
+    $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
+  }
+
+  foreach ($add_attributes as $key) {
+
+    if (isset($variables[$key])) {
+      $attributes[$key] = $variables[$key];
+    }
+  }
+
+  return '<img' . drupal_attributes($attributes) . ' />';
+}
+
+/*
+ * Implements template_preprocess_field().
+ * adds additional hook sugestion to theme individualy fields for different
+ * panelizer styles
+ */
+function nas_preprocess_field(&$variables, $hook) {
+  $element = $variables['element'];
+  if (!isset($element['#object']->panelizer['page_manager']->name)) {
+    return;
+  }
+
+  $panelizer_style = $element['#object']->panelizer['page_manager']->name;
+  $bundle = $element['#bundle'];
+  $e_type = $element['#entity_type'];
+  $panelizer_style = str_replace($e_type . ':' . $bundle . ':', '', $panelizer_style);
+  if ($panelizer_style) {
+    $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
+        . $bundle . '__' . $panelizer_style;
+    $variables['theme_hook_suggestions'][] = $hook_sugestion;
+    if ($element['#pane_region']) {
+      $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
+    }
+  }
+}
+
+/*
+ * Implements template_preprocess_panels_pane().
+ */
+function nas_preprocess_panels_pane(&$vars) {
+  if (is_array($vars['content'])) {
+    // Will be used for theme_hook_suggestions in preprocess field.
+    $vars['content']['#pane_region'] = $vars['pane']->panel;
+  }
+}
