@@ -49,6 +49,25 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'context' => 'node',
           'not' => FALSE,
         ),
+        2 => array(
+          'name' => 'entity_field_value:node:article:field_magazine_issue',
+          'settings' => array(
+            'field_magazine_issue' => array(
+              'und' => array(
+                0 => array(
+                  'target_id' => '',
+                ),
+              ),
+            ),
+            'field_magazine_issue_target_id' => array(
+              0 => array(
+                'target_id' => '',
+              ),
+            ),
+          ),
+          'context' => 'node',
+          'not' => TRUE,
+        ),
       ),
       'logic' => 'or',
     ),
@@ -146,7 +165,20 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $pane->type = 'nas_menu_microsite_guide_bar';
     $pane->subtype = 'nas_menu_microsite_guide_bar';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'article' => 'article',
+            ),
+          ),
+          'context' => 'node',
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
       'preamble' => 'Brought to you by',
@@ -186,6 +218,35 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $pane->uuid = 'a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $display->content['new-a0339ec9-9f49-4e9c-afc9-725b55382b74'] = $pane;
     $display->panels['header'][2] = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
+    $pane = new stdClass();
+    $pane->pid = 'new-7babeda2-d5ad-4110-9ac2-89a0e430cc08';
+    $pane->panel = 'header';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_magazine_issue';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_label',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'link' => 0,
+      ),
+      'context' => 'node',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '7babeda2-d5ad-4110-9ac2-89a0e430cc08';
+    $display->content['new-7babeda2-d5ad-4110-9ac2-89a0e430cc08'] = $pane;
+    $display->panels['header'][3] = 'new-7babeda2-d5ad-4110-9ac2-89a0e430cc08';
     $pane = new stdClass();
     $pane->pid = 'new-ec9f2f73-84aa-4522-8297-d205de9e5cd1';
     $pane->panel = 'main';
