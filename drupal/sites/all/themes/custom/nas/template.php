@@ -224,15 +224,13 @@ function nas_image($variables) {
 
 /*
  * Implements template_preprocess_field().
- * adds additional hook sugestion to theme individualy fields for different
- * panelizer styles
  */
 function nas_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
   if (!isset($element['#object']->panelizer['page_manager']->name)) {
     return;
   }
-
+  // Adds additional hook sugestion to theme individualy fields for different panelizer styles.
   $panelizer_style = $element['#object']->panelizer['page_manager']->name;
   $bundle = $element['#bundle'];
   $e_type = $element['#entity_type'];
@@ -245,6 +243,15 @@ function nas_preprocess_field(&$variables, $hook) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
     }
   }
+  // Call the preprocess functions if exist.
+  $function = 'nas_preprocess_field_' . $element['#field_name'];
+  $function_bundle = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle;
+  if (function_exists($function)) {
+    $function($variables);
+  }
+  if (function_exists($function_bundle)) {
+    $function_bundle($variables);
+  }
 }
 
 /*
@@ -255,4 +262,22 @@ function nas_preprocess_panels_pane(&$vars) {
     // Will be used for theme_hook_suggestions in preprocess field.
     $vars['content']['#pane_region'] = $vars['pane']->panel;
   }
+}
+
+/**
+ * Preprocess function for field_magazine_issue_article.
+ */
+function nas_preprocess_field_field_magazine_issue_article(&$vars) {
+  $element = $vars['element'];
+  // Prepare markup for supporting responsive features.
+  $str = $element[0]['#markup'];
+  $str = explode('-', $str);
+  $first_month = $str[0];
+  $str[1] = explode(' ', $str[1]);
+  $second_month = $str[1][0];
+  $vars['first_month_part_1'] = substr($first_month, 0, 3);
+  $vars['first_month_part_2'] = substr($first_month, 3);
+  $vars['sec_month_part_1'] = substr($second_month, 0, 3);
+  $vars['sec_month_part_2'] = substr($second_month, 3);
+  $vars['year'] = $str[1][1];
 }
