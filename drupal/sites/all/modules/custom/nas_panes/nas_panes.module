@@ -5,7 +5,7 @@
  * Maintains panel panes.
  */
 
-define('NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY', 'page-birds_guide');
+define('NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY', 'page-bird_guide');
 define('NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-birds_landing');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
