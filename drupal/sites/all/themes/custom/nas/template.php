@@ -114,7 +114,7 @@ function nas_preprocess_node(&$vars) {
     if ($get_field_color_mode[0]['value'] == 'dark') {
       $vars['color_mode'] = 'light-text dark-gradient';
     }
-    if ($vars['view_mode'] == 'teaser') {
+    if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
       $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
       // Add bird illustration image.
       $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
@@ -224,15 +224,13 @@ function nas_image($variables) {
 
 /*
  * Implements template_preprocess_field().
- * adds additional hook sugestion to theme individualy fields for different
- * panelizer styles
  */
 function nas_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
   if (!isset($element['#object']->panelizer['page_manager']->name)) {
     return;
   }
-
+  // Adds additional hook sugestion to theme individualy fields for different panelizer styles.
   $panelizer_style = $element['#object']->panelizer['page_manager']->name;
   $bundle = $element['#bundle'];
   $e_type = $element['#entity_type'];
@@ -245,6 +243,15 @@ function nas_preprocess_field(&$variables, $hook) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
     }
   }
+  // Call the preprocess functions if exist.
+  $function = 'nas_preprocess_field_' . $element['#field_name'];
+  $function_bundle = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle;
+  if (function_exists($function)) {
+    $function($variables);
+  }
+  if (function_exists($function_bundle)) {
+    $function_bundle($variables);
+  }
 }
 
 /*
@@ -255,4 +262,57 @@ function nas_preprocess_panels_pane(&$vars) {
     // Will be used for theme_hook_suggestions in preprocess field.
     $vars['content']['#pane_region'] = $vars['pane']->panel;
   }
+}
+
+
+/**
+ * Preprocess function for field_magazine_issue_article.
+ */
+function nas_preprocess_field_field_magazine_issue_article(&$vars) {
+  $element = $vars['element'];
+  // Prepare markup for supporting responsive features.
+  $str = $element[0]['#markup'];
+  $str = explode('-', $str);
+  $first_month = $str[0];
+  $str[1] = explode(' ', $str[1]);
+  $second_month = $str[1][0];
+  $vars['first_month_part_1'] = substr($first_month, 0, 3);
+  $vars['first_month_part_2'] = substr($first_month, 3);
+  $vars['sec_month_part_1'] = substr($second_month, 0, 3);
+  $vars['sec_month_part_2'] = substr($second_month, 3);
+  $vars['year'] = $str[1][1];
+}
+
+/*
+ * Implements theme_field().
+ */
+function nas_field__field_author__article($variables) {
+  $output = '';
+  foreach ($variables['items'] as $item) {
+    $entities = entity_load('node', array_values($item));
+    foreach ($entities as $id => $entity) {
+      $path = url('node/' . $id);
+      $image_field = field_get_items('node', $entity, 'field_image');
+      if ($image_field) {
+        $image_file = file_load($image_field[0]['fid']);
+        $image = theme('image_style', array(
+          'style_name' => 'thumbnail',
+          'path' => $image_file->uri,
+          'attributes' => array(
+            'class' => array(
+              'article-author-image',
+            ),
+          ),
+        ));
+        $output .= '<a href="' . $path . '">' . $image . '</a>';
+      }
+
+      $output .= '<a href="' . $path . '">'
+          . '<h5 class="article-author-name">' . check_plain($entity->title)
+          . '</h5></a>';
+    }
+  }
+  $published = date('M d, Y', $variables['element']['#object']->created);
+  $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
+  return $output;
 }

@@ -10,13 +10,12 @@
  */
 // Plugin definition.
 $plugin = array(
-  'title' => t('Article Big Image'),
+  'title' => t('Article default'),
   'category' => t('NAS'),
-  'icon' => 'nas_article_big_image.png',
-  'theme' => 'nas_article_big_image',
+  'icon' => 'nas_article_default.png',
+  'theme' => 'nas_article_default',
   'regions' => array(
     'header' => t('Header'),
-    'big_image' => t('Big image'),
     'main' => t('Main'),
     'mobile_author' => t('Mobile author'),
     'social' => t('Social icons'),
