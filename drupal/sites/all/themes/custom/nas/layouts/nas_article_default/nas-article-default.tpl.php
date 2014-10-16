@@ -1,10 +1,9 @@
 <?php
 /**
  * @file
- * Template of Article layout with Big image.
+ * Default template of Article layout.
  */
 ?>
-<?php print $content['big_image']; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

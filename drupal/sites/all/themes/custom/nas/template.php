@@ -114,7 +114,7 @@ function nas_preprocess_node(&$vars) {
     if ($get_field_color_mode[0]['value'] == 'dark') {
       $vars['color_mode'] = 'light-text dark-gradient';
     }
-    if ($vars['view_mode'] == 'teaser') {
+    if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
       $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
       // Add bird illustration image.
       $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
@@ -287,7 +287,7 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
  * Implements theme_field().
  */
 function nas_field__field_author__article($variables) {
-  $output = '<section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">';
+  $output = '';
   foreach ($variables['items'] as $item) {
     $entities = entity_load('node', array_values($item));
     foreach ($entities as $id => $entity) {
@@ -314,6 +314,5 @@ function nas_field__field_author__article($variables) {
   }
   $published = date('M d, Y', $variables['element']['#object']->created);
   $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
-  $output .= '</section>';
   return $output;
 }
