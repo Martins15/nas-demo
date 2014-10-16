@@ -114,7 +114,7 @@ function nas_preprocess_node(&$vars) {
     if ($get_field_color_mode[0]['value'] == 'dark') {
       $vars['color_mode'] = 'light-text dark-gradient';
     }
-    if ($vars['view_mode'] == 'teaser') {
+    if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
       $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
       // Add bird illustration image.
       $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');

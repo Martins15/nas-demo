@@ -1074,7 +1074,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->panel = 'birds';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_related_bird';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
@@ -1101,6 +1101,29 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '0c513489-5b6b-405d-9885-62d298de7cf6';
     $display->content['new-0c513489-5b6b-405d-9885-62d298de7cf6'] = $pane;
     $display->panels['birds'][0] = 'new-0c513489-5b6b-405d-9885-62d298de7cf6';
+    $pane = new stdClass();
+    $pane->pid = 'new-24ed57bc-7f2a-412b-bc7a-f7848d45622b';
+    $pane->panel = 'birds';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_similar_birds-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '24ed57bc-7f2a-412b-bc7a-f7848d45622b';
+    $display->content['new-24ed57bc-7f2a-412b-bc7a-f7848d45622b'] = $pane;
+    $display->panels['birds'][1] = 'new-24ed57bc-7f2a-412b-bc7a-f7848d45622b';
     $pane = new stdClass();
     $pane->pid = 'new-fa337704-8ee9-4719-9c8b-3897faa7d699';
     $pane->panel = 'header';
