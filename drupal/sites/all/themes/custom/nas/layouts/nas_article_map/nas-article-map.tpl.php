@@ -44,7 +44,6 @@
           <?php print $content['author']; ?>
         </section>
         <section class="clearfix article-sidebar-section article-related-birds reflow reflow-into-body" data-reflow-class="article-aside half-width">
-          <h5><?php print t('Birds in This Story'); ?></h5>
           <?php print $content['birds']; ?>
         </section>
         <?php print $content['left']; ?>
