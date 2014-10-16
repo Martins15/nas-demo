@@ -762,7 +762,7 @@ function nas_views_feature_views_default_views() {
   );
 
   /* Display: Birds in This Story */
-  $handler = $view->new_display('panel_pane', 'Birds in This Story', 'panel_pane_1');
+  $handler = $view->new_display('panel_pane', 'Birds in This Story', 'nas_birds_in_this_story');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Birds in This Story';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -783,8 +783,8 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['field_related_bird']['field'] = 'field_related_bird';
   $handler->display->display_options['fields']['field_related_bird']['label'] = '';
   $handler->display->display_options['fields']['field_related_bird']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_related_bird']['element_wrapper_class'] = 'tiny-centered medium-uncentered tiny-6 medium-12 large-12 columns';
   $handler->display->display_options['fields']['field_related_bird']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_related_bird']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_related_bird']['type'] = 'entityreference_entity_view';
   $handler->display->display_options['fields']['field_related_bird']['settings'] = array(
     'view_mode' => 'nas_node_teaser_small',
@@ -818,6 +818,15 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['exposed_form'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['argument_input'] = array(
     'nid' => array(
       'type' => 'context',
