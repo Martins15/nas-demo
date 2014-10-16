@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS disqus feature.
+ */
+
+include_once 'nas_disqus.features.inc';

@@ -21,6 +21,7 @@ dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = date
 dependencies[] = date_api
+dependencies[] = disqus
 dependencies[] = panelizer
 dependencies[] = page_manager
 dependencies[] = pathauto
