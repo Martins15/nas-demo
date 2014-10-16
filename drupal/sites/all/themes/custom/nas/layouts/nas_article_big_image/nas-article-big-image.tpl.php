@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Template of NAS One Column. Used in Bird Guide.
+ * Template of Article layout with Big image.
  */
 ?>
 <?php print $content['big_image']; ?>

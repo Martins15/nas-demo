@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Template of NAS One Column. Used in Bird Guide.
+ * Default template of Article layout.
  */
 ?>
 <section class="global-content">

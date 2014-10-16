@@ -1,15 +1,14 @@
 (function($) {
   Drupal.behaviors.article_reflow = {
     attach: function(context, settings) {
-      if(!$(".reflow-body").length == 0) {
+      if (!$(".reflow-body").length == 0) {
         $(document).bind("respond", function(e) {
-          if(e.size == "tiny" || e.size == "small" || e.size == "medium") {
-            if(Reflow.active == false) {
+          if (e.size == "tiny" || e.size == "small" || e.size == "medium") {
+            if (Reflow.active == false) {
               Reflow.go();
             }
-          }
-          else if(e.size == "large") {
-            if(Reflow.active == true) {
+          } else if (e.size == "large") {
+            if (Reflow.active == true) {
               Reflow.reset();
             }
           }
@@ -25,13 +24,13 @@
         Reflow.reset = function() {
           Reflow.$items.each(function() {
             var $this = $(this),
-                id = $this.attr("data-reflow-id"),
-                reflowClass = $this.attr("data-reflow-class"),
-                $placeholder = $("[data-reflow-placeholder='" + id + "']");
+              id = $this.attr("data-reflow-id"),
+              reflowClass = $this.attr("data-reflow-class"),
+              $placeholder = $("[data-reflow-placeholder='" + id + "']");
 
             $placeholder.after($this);
 
-            if(reflowClass) {
+            if (reflowClass) {
               $this.removeClass(reflowClass);
             }
           });
@@ -84,10 +83,10 @@
           console.log($item);
           console.log($placement);
 
-          if($placement.length) {
+          if ($placement.length) {
             $placement.after($item);
 
-            if($item.attr("data-reflow-class")) {
+            if ($item.attr("data-reflow-class")) {
               $item.addClass($item.attr("data-reflow-class"));
             }
           }
@@ -96,41 +95,41 @@
         // Returns a chunk of the body to put the reflowed item under
         Reflow._firstViableChunk = function() {
           var $allChunks = $(".reflow-body").find("p, ul, ol"),
-              goodChunks = [];
+            goodChunks = [];
 
           // Previous and next elements are text objects
           $allChunks.each(function() {
             var $this = $(this),
-                nextOkay = false,
-                prevOkay = false;
+              nextOkay = false,
+              prevOkay = false;
 
-            if($this.prev().is($allChunks)) {
+            if ($this.prev().is($allChunks)) {
               prevOkay = true;
             }
-            if($this.next().is($allChunks)) {
+            if ($this.next().is($allChunks)) {
               nextOkay = true;
             }
 
-            if(prevOkay && nextOkay) {
+            if (prevOkay && nextOkay) {
               goodChunks.push($this);
             }
           });
 
           // OR previous element is a figure and next is a text object
-          if(goodChunks.length == 0) {
+          if (goodChunks.length == 0) {
             $allChunks.each(function() {
               var $this = $(this),
-                  prevOkay = false,
-                  nextOkay = false;
+                prevOkay = false,
+                nextOkay = false;
 
-              if($this.prev().is("figure")) {
+              if ($this.prev().is("figure")) {
                 prevOkay = true;
               }
-              if($this.next().is($allChunks)) {
+              if ($this.next().is($allChunks)) {
                 nextOkay = true;
               }
 
-              if(prevOkay && nextOkay) {
+              if (prevOkay && nextOkay) {
                 goodChunks.push($this.prev());
               }
             });

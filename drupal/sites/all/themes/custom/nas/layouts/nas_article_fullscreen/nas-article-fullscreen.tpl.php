@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Template of NAS.
+ * Template of Article layout with Fullscreen image.
  */
 ?>
 
