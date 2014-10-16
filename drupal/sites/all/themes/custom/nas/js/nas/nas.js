@@ -1,4 +1,4 @@
-/*(function ($) {
+(function ($) {
   Drupal.behaviors.nasMenu = {
     attach: function (context, settings) {
       $(document).bind("respond", function (e) {
@@ -210,4 +210,4 @@ var Nas = Nas || {};
     }
   };
   
-})(jQuery);*/
+})(jQuery);
