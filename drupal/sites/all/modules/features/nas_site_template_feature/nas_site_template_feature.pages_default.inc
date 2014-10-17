@@ -19,7 +19,7 @@ function nas_site_template_feature_default_page_manager_handlers() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Bird guide',
+    'title' => 'Small header',
     'no_blocks' => 1,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -48,25 +48,6 @@ function nas_site_template_feature_default_page_manager_handlers() {
           ),
           'context' => 'node',
           'not' => FALSE,
-        ),
-        2 => array(
-          'name' => 'entity_field_value:node:article:field_magazine_issue',
-          'settings' => array(
-            'field_magazine_issue' => array(
-              'und' => array(
-                0 => array(
-                  'target_id' => '',
-                ),
-              ),
-            ),
-            'field_magazine_issue_target_id' => array(
-              0 => array(
-                'target_id' => '',
-              ),
-            ),
-          ),
-          'context' => 'node',
-          'not' => TRUE,
         ),
       ),
       'logic' => 'or',
@@ -160,48 +141,8 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $display->content['new-84661503-5e89-4544-bf5b-25bb04044d1c'] = $pane;
     $display->panels['header'][0] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane = new stdClass();
-    $pane->pid = 'new-3e3bb628-7a85-4888-a986-4556b039f3bc';
-    $pane->panel = 'header';
-    $pane->type = 'nas_menu_microsite_guide_bar';
-    $pane->subtype = 'nas_menu_microsite_guide_bar';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'node_type',
-          'settings' => array(
-            'type' => array(
-              'article' => 'article',
-            ),
-          ),
-          'context' => 'node',
-          'not' => TRUE,
-        ),
-      ),
-    );
-    $pane->configuration = array(
-      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
-      'preamble' => 'Brought to you by',
-      'logo' => 'public://canon-logo.png',
-      'css_class' => '',
-      'css_background_style' => '',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '3e3bb628-7a85-4888-a986-4556b039f3bc';
-    $display->content['new-3e3bb628-7a85-4888-a986-4556b039f3bc'] = $pane;
-    $display->panels['header'][1] = 'new-3e3bb628-7a85-4888-a986-4556b039f3bc';
-    $pane = new stdClass();
     $pane->pid = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
-    $pane->panel = 'header';
+    $pane->panel = 'main';
     $pane->type = 'page_messages';
     $pane->subtype = 'page_messages';
     $pane->shown = TRUE;
@@ -213,40 +154,11 @@ function nas_site_template_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = 'a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $display->content['new-a0339ec9-9f49-4e9c-afc9-725b55382b74'] = $pane;
-    $display->panels['header'][2] = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
-    $pane = new stdClass();
-    $pane->pid = 'new-7babeda2-d5ad-4110-9ac2-89a0e430cc08';
-    $pane->panel = 'header';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_magazine_issue';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'entityreference_label',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'link' => 0,
-      ),
-      'context' => 'node',
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = '7babeda2-d5ad-4110-9ac2-89a0e430cc08';
-    $display->content['new-7babeda2-d5ad-4110-9ac2-89a0e430cc08'] = $pane;
-    $display->panels['header'][3] = 'new-7babeda2-d5ad-4110-9ac2-89a0e430cc08';
+    $display->panels['main'][0] = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $pane = new stdClass();
     $pane->pid = 'new-ec9f2f73-84aa-4522-8297-d205de9e5cd1';
     $pane->panel = 'main';
@@ -266,11 +178,11 @@ function nas_site_template_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'ec9f2f73-84aa-4522-8297-d205de9e5cd1';
     $display->content['new-ec9f2f73-84aa-4522-8297-d205de9e5cd1'] = $pane;
-    $display->panels['main'][0] = 'new-ec9f2f73-84aa-4522-8297-d205de9e5cd1';
+    $display->panels['main'][1] = 'new-ec9f2f73-84aa-4522-8297-d205de9e5cd1';
     $pane = new stdClass();
     $pane->pid = 'new-6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858';
     $pane->panel = 'main';
@@ -289,11 +201,11 @@ function nas_site_template_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858';
     $display->content['new-6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858'] = $pane;
-    $display->panels['main'][1] = 'new-6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858';
+    $display->panels['main'][2] = 'new-6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -308,7 +220,7 @@ function nas_site_template_feature_default_page_manager_handlers() {
   $handler->handler = 'panel_context';
   $handler->weight = 1;
   $handler->conf = array(
-    'title' => 'Site template big header',
+    'title' => 'Big header',
     'no_blocks' => 1,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',

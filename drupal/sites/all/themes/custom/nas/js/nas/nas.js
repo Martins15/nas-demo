@@ -44,12 +44,12 @@
         if (settings.expandHero.oldHeight === 0) {
           settings.expandHero.oldHeight = settings.expandHero.oldWidth * 0.666667;
         }
+        $(".hero.expand").once('hero-expand', function () {
+          Nas.expandHero();
+        });
+        $(".hero.expand img").load(Nas.expandHero);
+        $(window).resize(Nas.expandHero);
       }
-      $(".hero.expand").once('hero-expand', function () {
-        Nas.expandHero();
-      });
-      $(".hero.expand img").load(Nas.expandHero);
-      $(window).resize(Nas.expandHero);
     }
   };
   
