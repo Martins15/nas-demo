@@ -9,7 +9,8 @@
  * @see template_preprocess_fieldable_panels_pane()
  */
 ?>
-<div class="row section-header">
+<div class="row section-header contextual-links-region">
+  <?php print $contextual_links; ?>
   <div class="columns">
     <h2 class="thin"><?php print $title; ?></h2>
   </div>

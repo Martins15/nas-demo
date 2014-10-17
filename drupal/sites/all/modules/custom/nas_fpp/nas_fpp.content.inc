@@ -113,7 +113,6 @@ function nas_fpp_create_panes() {
   $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
   $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
   $fpp->field_related_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
-  fieldable_panels_panes_save($fpp);
   $fpp_query = db_query(
     'SELECT title FROM {fieldable_panels_panes} WHERE title LIKE :title',
     array(':title' => $fpp->title)
