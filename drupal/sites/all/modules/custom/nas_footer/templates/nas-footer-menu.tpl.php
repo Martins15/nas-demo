@@ -43,11 +43,13 @@
     <div <?php print $item_attr; ?>>
       <ul class="footer-nav">
         <?php foreach ($menu_item['below'] as $sub_menu_item) : ?>
-          <li>
-            <a href="<?php print url($sub_menu_item['link']['link_path']); ?>">
-              <?php print check_plain($sub_menu_item['link']['link_title']); ?>
-            </a>
-          </li>
+          <?php if ($sub_menu_item['link']['hidden'] == FALSE) : ?>
+            <li>
+              <a href="<?php print url($sub_menu_item['link']['link_path']); ?>">
+                <?php print check_plain($sub_menu_item['link']['link_title']); ?>
+              </a>
+            </li>
+          <?php endif; ?>
         <?php endforeach; ?>
       </ul>
     </div>

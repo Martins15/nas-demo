@@ -29,32 +29,34 @@ function nas_menu_pane_big_render() {
   $items = array();
 
   foreach ($menu_tree as $menu_item) {
-    $item = array();
-    $item['li_class'] = 'primary-nav-item';
-    $item['li_class'] .= isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-    $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
-    if ($menu_item['below']) {
-      $a_class[] = 'primary-nav-toggler';
-    }
-    $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
-    $path = $menu_item['link']['link_path'];
-    $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
-    $item['below'] = array();
-    foreach ($menu_item['below'] as $sub_menu_item) {
-      $li_class = 'primary-sub-nav-item';
-      $li_class .= isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
-      $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? $sub_menu_item['link']['options']['attributes']['class'] : array();
-      $a_class[] = 'primary-sub-nav-link';
+    if ($menu_item['link']['hidden'] == FALSE) {
+      $item = array();
+      $item['li_class'] = 'primary-nav-item';
+      $item['li_class'] .= isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
+      $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
+      if ($menu_item['below']) {
+        $a_class[] = 'primary-nav-toggler';
+      }
+      $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
+      $path = $menu_item['link']['link_path'];
+      $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+      $item['below'] = array();
+      foreach ($menu_item['below'] as $sub_menu_item) {
+        $li_class = 'primary-sub-nav-item';
+        $li_class .= isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
+        $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? $sub_menu_item['link']['options']['attributes']['class'] : array();
+        $a_class[] = 'primary-sub-nav-link';
 
-      $title = filter_xss($sub_menu_item['link']['link_title']);
-      $path = $sub_menu_item['link']['link_path'];
-      $subitem_link = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
-      $item['below'][] = array(
-        'li_class' => $li_class,
-        'link' => $subitem_link
-      );
+        $title = filter_xss($sub_menu_item['link']['link_title']);
+        $path = $sub_menu_item['link']['link_path'];
+        $subitem_link = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+        $item['below'][] = array(
+          'li_class' => $li_class,
+          'link' => $subitem_link
+        );
+      }
+      $items['main'][] = $item;
     }
-    $items['main'][] = $item;
   }
   $items['main_cl'] = nas_menu_cl(NAS_MENU_MAIN_NAVIGATION);
   $s_menus = array(
@@ -64,15 +66,17 @@ function nas_menu_pane_big_render() {
   foreach ($s_menus as $s_key => $s_menu) {
     $s_menu_tree = menu_tree_all_data($s_menu, 1);
     foreach ($s_menu_tree as $menu_item) {
-      $item = array();
-      $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-      $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
-      $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
-      $path = $menu_item['link']['link_path'];
-      $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
-      $items[$s_key][] = $item;
+      if ($menu_item['link']['hidden'] == FALSE) {
+        $item = array();
+        $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
+        $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
+        $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
+        $path = $menu_item['link']['link_path'];
+        $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+        $items[$s_key][] = $item;
+      }
+      $items[$s_key. '_cl'] = nas_menu_cl($s_menu);
     }
-    $items[$s_key. '_cl'] = nas_menu_cl($s_menu);
   }
 
   $form = drupal_get_form('nas_menu_search_form');
