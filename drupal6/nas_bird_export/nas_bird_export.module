@@ -73,11 +73,14 @@ function nas_node_nid_callback($nid) {
 /**
  * function nas_user_list_callback().
  *
- * @return json with uids list.
+ * @return json with uids list of only users who have with content.
  *
  */
 function nas_user_list_callback() {
-  $result = db_query("SELECT uid FROM {users}");
+  $result = db_query("SELECT u.uid
+    FROM {users} u
+    INNER JOIN {node} n ON n.uid = u.uid
+    WHERE n.status = %d", 1);
   $uids = array();
   while ($obj = db_fetch_object($result)) {
     $uids[] = $obj->uid;
