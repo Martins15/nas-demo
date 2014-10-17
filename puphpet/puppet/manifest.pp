@@ -1542,29 +1542,23 @@ exec { "phpcs":
 }
 
 include ansible::master
-
+include solr
 # Solr config installation. see https://www.drupal.org/node/484800
 class drupal::solr {
-include solr
-file { "/usr/share/solr/default/conf":
-  source => "/var/www/drupal/sites/all/modules/contrib/search_api_solr/solr-conf/4.x",
-  ensure => directory,
-  recurse => true,
-  force => true,
-  owner => "jetty",
-  group => "jetty",
-  mode => 0755,
-  purge => true,
+
+exec { "copy_solr_config":
+  command => "rm -rf /usr/share/solr/default/conf/* && cp -r /var/www/drupal/sites/all/modules/contrib/search_api_solr/solr-conf/4.x/* /usr/share/solr/default/conf/",
+  returns => [0, 1, 100],
+  require => Class['solr'],
 }
 
+
 exec { "/etc/init.d/jetty restart":
-  subscribe => File["/usr/share/solr/default/conf"],
+  subscribe => Exec["copy_solr_config"],
   refreshonly => true,
 }
 
 }
-
-include drupal::solr
 
 package { "ruby-compass":
   ensure  => latest,
