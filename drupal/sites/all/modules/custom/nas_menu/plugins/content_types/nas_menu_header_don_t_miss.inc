@@ -27,6 +27,9 @@ function nas_menu_pane_don_t_miss_render() {
   $items = array();
 
   foreach ($menu_tree as $menu_item) {
+    if ($menu_item['link']['hidden'] == TRUE) {
+      continue;
+    }
     $item = array();
     $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
     $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
