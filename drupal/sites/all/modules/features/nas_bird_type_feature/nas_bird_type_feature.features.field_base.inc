@@ -991,7 +991,7 @@ function nas_bird_type_feature_field_default_field_bases() {
   // Exported field_base: 'field_related_bird'
   $field_bases['field_related_bird'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 4,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_related_bird',
