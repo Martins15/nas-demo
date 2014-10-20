@@ -224,6 +224,202 @@ function nas_import_feeds_feature_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'contacts_import';
+  $feeds_importer->config = array(
+    'name' => 'Contacts import',
+    'description' => '',
+    'fetcher' => array(
+      'plugin_key' => 'NASFeedsHTTPFetcher',
+      'config' => array(
+        'auto_detect_feeds' => FALSE,
+        'use_pubsubhubbub' => FALSE,
+        'designated_hub' => '',
+        'request_timeout' => NULL,
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsExJsonPath',
+      'config' => array(
+        'sources' => array(
+          'changed' => array(
+            'name' => 'changed',
+            'value' => 'changed',
+            'debug' => 0,
+            'weight' => '1',
+          ),
+          'title' => array(
+            'name' => 'title',
+            'value' => 'title',
+            'debug' => 0,
+            'weight' => '2',
+          ),
+          'nid' => array(
+            'name' => 'nid',
+            'value' => 'nid',
+            'debug' => 0,
+            'weight' => '3',
+          ),
+          'body' => array(
+            'name' => 'body',
+            'value' => 'body',
+            'debug' => 0,
+            'weight' => '4',
+          ),
+          'path' => array(
+            'name' => 'path',
+            'value' => 'path',
+            'debug' => 0,
+            'weight' => '5',
+          ),
+          'uid' => array(
+            'name' => 'uid',
+            'value' => 'uid',
+            'debug' => 0,
+            'weight' => '6',
+          ),
+          'status' => array(
+            'name' => 'status',
+            'value' => 'status',
+            'debug' => 0,
+            'weight' => '7',
+          ),
+          'created' => array(
+            'name' => 'created',
+            'value' => 'created',
+            'debug' => 0,
+            'weight' => '8',
+          ),
+          'picture' => array(
+            'name' => 'picture',
+            'value' => 'picture',
+            'debug' => 0,
+            'weight' => '9',
+          ),
+          'field_press_contact' => array(
+            'name' => 'field_press_contact',
+            'value' => 'field_press_contact',
+            'debug' => 0,
+            'weight' => '10',
+          ),
+          'field_profile_address' => array(
+            'name' => 'field_profile_address',
+            'value' => 'field_profile_address',
+            'debug' => 0,
+            'weight' => '12',
+          ),
+          'field_profile_telephone' => array(
+            'name' => 'field_profile_telephone',
+            'value' => 'field_profile_telephone[0].value',
+            'debug' => 0,
+            'weight' => '13',
+          ),
+          'field_profile_title' => array(
+            'name' => 'field_profile_title',
+            'value' => 'field_profile_title[0].value',
+            'debug' => 0,
+            'weight' => '14',
+          ),
+          'field_profile_url' => array(
+            'name' => 'field_profile_url',
+            'value' => 'field_profile_url[0].value',
+            'debug' => 0,
+            'weight' => '15',
+          ),
+          'field_profile_biography' => array(
+            'name' => 'field_profile_biography',
+            'value' => 'field_profile_biography',
+            'debug' => 0,
+            'weight' => '16',
+          ),
+          'field_profile_last_name' => array(
+            'name' => 'field_profile_last_name',
+            'value' => 'field_profile_last_name[0].value',
+            'debug' => 0,
+            'weight' => '17',
+          ),
+          'field_profile_office' => array(
+            'name' => 'field_profile_office',
+            'value' => 'field_profile_office[0].value',
+            'debug' => 0,
+            'weight' => '18',
+          ),
+        ),
+        'context' => array(
+          'value' => '$.*',
+        ),
+        'display_errors' => 0,
+        'source_encoding' => array(
+          0 => 'auto',
+        ),
+        'debug_mode' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsNodeProcessor',
+      'config' => array(
+        'expire' => '-1',
+        'author' => 0,
+        'authorize' => 0,
+        'mappings' => array(
+          0 => array(
+            'source' => 'nid',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
+            'source' => 'path',
+            'target' => 'path_alias',
+            'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'field_profile_telephone',
+            'target' => 'field_contact_phone',
+            'unique' => FALSE,
+          ),
+          3 => array(
+            'source' => 'field_profile_title',
+            'target' => 'field_contact_title',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'field_profile_biography',
+            'target' => 'field_contact_bio',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'field_profile_url',
+            'target' => 'field_contact_twitter:url',
+            'unique' => FALSE,
+          ),
+          6 => array(
+            'source' => 'title',
+            'target' => 'title',
+            'unique' => FALSE,
+          ),
+          7 => array(
+            'source' => 'field_profile_office',
+            'target' => 'field_contact_address',
+            'unique' => FALSE,
+          ),
+        ),
+        'update_existing' => '1',
+        'input_format' => 'plain_text',
+        'skip_hash_check' => 0,
+        'bundle' => 'contact',
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '-1',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['contacts_import'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
   $feeds_importer->id = 'users_import';
   $feeds_importer->config = array(
     'name' => 'Users import',
