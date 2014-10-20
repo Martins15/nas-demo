@@ -17,6 +17,7 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'big_image' => t('Big image'),
+    'header_hero_attr_text' => t('Hero attribution text'),
     'main' => t('Main'),
     'mobile_author' => t('Mobile author'),
     'social' => t('Social icons'),

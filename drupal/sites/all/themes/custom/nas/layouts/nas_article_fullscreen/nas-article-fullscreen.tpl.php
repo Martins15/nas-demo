@@ -20,7 +20,9 @@
     </div>
   </div>
 </div>
-
+<div class="hero-attribution row">
+  <div class="column"><span class="hero-attribution-text"><?php print $content['header_hero_attr_text']; ?></span></div>
+</div>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

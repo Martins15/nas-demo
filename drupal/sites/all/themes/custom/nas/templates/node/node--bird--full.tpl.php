@@ -168,9 +168,11 @@
                 <a href="#" class="button large"><?php print t('Help the') . '&nbsp;' . $title; ?></a>
               </section>
             </div>
+            <?php if (!empty($content['field_bird_tip'])): ?>
             <section id="bird-dyk" class="bird-guide-section right-col small sans">
               <?php print render($content['field_bird_tip']); ?>
             </section>
+            <?php endif; ?>
             <section id="bird-map" class="bird-guide-section right-col">
               <?php print render($content['field_bird_rangemap']); ?>
             </section>

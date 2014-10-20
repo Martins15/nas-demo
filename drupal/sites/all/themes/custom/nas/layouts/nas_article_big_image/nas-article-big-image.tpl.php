@@ -5,6 +5,13 @@
  */
 ?>
 <?php print $content['big_image']; ?>
+<div class="hero-caption">
+  <div class="row">
+    <div class="caption large-10 large-centered columns">
+      <p><?php print $content['header_hero_attr_text']; ?></p>
+    </div>
+  </div>
+</div>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">
