@@ -29,34 +29,35 @@ function nas_menu_pane_big_render() {
   $items = array();
 
   foreach ($menu_tree as $menu_item) {
-    if ($menu_item['link']['hidden'] == FALSE) {
-      $item = array();
-      $item['li_class'] = 'primary-nav-item';
-      $item['li_class'] .= isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-      $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
-      if ($menu_item['below']) {
-        $a_class[] = 'primary-nav-toggler';
-      }
-      $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
-      $path = $menu_item['link']['link_path'];
-      $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
-      $item['below'] = array();
-      foreach ($menu_item['below'] as $sub_menu_item) {
-        $li_class = 'primary-sub-nav-item';
-        $li_class .= isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
-        $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? $sub_menu_item['link']['options']['attributes']['class'] : array();
-        $a_class[] = 'primary-sub-nav-link';
-
-        $title = filter_xss($sub_menu_item['link']['link_title']);
-        $path = $sub_menu_item['link']['link_path'];
-        $subitem_link = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
-        $item['below'][] = array(
-          'li_class' => $li_class,
-          'link' => $subitem_link
-        );
-      }
-      $items['main'][] = $item;
+    if ($menu_item['link']['hidden'] == TRUE) {
+      continue;
     }
+    $item = array();
+    $item['li_class'] = 'primary-nav-item';
+    $item['li_class'] .= isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
+    $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
+    if ($menu_item['below']) {
+      $a_class[] = 'primary-nav-toggler';
+    }
+    $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
+    $path = $menu_item['link']['link_path'];
+    $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+    $item['below'] = array();
+    foreach ($menu_item['below'] as $sub_menu_item) {
+      $li_class = 'primary-sub-nav-item';
+      $li_class .= isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
+      $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? $sub_menu_item['link']['options']['attributes']['class'] : array();
+      $a_class[] = 'primary-sub-nav-link';
+
+      $title = filter_xss($sub_menu_item['link']['link_title']);
+      $path = $sub_menu_item['link']['link_path'];
+      $subitem_link = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+      $item['below'][] = array(
+        'li_class' => $li_class,
+        'link' => $subitem_link
+      );
+    }
+    $items['main'][] = $item;
   }
   $items['main_cl'] = nas_menu_cl(NAS_MENU_MAIN_NAVIGATION);
   $s_menus = array(

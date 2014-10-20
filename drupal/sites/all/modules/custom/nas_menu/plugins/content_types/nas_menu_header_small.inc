@@ -37,29 +37,31 @@ function nas_menu_nas_menu_header_small_content_type_render() {
           <ul class="primary-nav inline-list">';
 
   foreach ($menu_tree as $menu_item) {
-    if ($menu_item['link']['hidden'] == FALSE) {
-      $li_class = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-      $a_class = isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '';
-      $content .= '<li class="primary-nav-item ' . $li_class . '">
-        <a class="primary-nav-toggler' . $a_class . '" href="'
-          . url($menu_item['link']['link_path']) . '">'
-          . check_plain($menu_item['link']['link_title']) . '</a>';
-
-      if (!empty($menu_item['below'])) {
-        $content .= '<ul class="primary-sub-nav">';
-        foreach ($menu_item['below'] as $sub_menu_item) {
-          $li_class = isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
-          $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $sub_menu_item['link']['options']['attributes']['class']) : '';
-          $content .= '<li class="primary-sub-nav-item' . $li_class . '">'
-            . '<a class="primary-sub-nav-link' . $a_class . '" href="'
-            . url($sub_menu_item['link']['link_path']) . '">'
-            . check_plain($sub_menu_item['link']['link_title']) . '</a></li>';
-        }
-        $content .= '</ul>';
-      }
-
-      $content .= '</li>';
+    if ($menu_item['link']['hidden'] == TRUE) {
+      continue;
     }
+    $li_class = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
+    $a_class = isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '';
+    $content .= '<li class="primary-nav-item ' . $li_class . '">
+      <a class="primary-nav-toggler' . $a_class . '" href="'
+        . url($menu_item['link']['link_path']) . '">'
+        . check_plain($menu_item['link']['link_title']) . '</a>';
+
+    if (!empty($menu_item['below'])) {
+      $content .= '<ul class="primary-sub-nav">';
+      foreach ($menu_item['below'] as $sub_menu_item) {
+        $li_class = isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
+        $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $sub_menu_item['link']['options']['attributes']['class']) : '';
+        $content .= '<li class="primary-sub-nav-item' . $li_class . '">'
+          . '<a class="primary-sub-nav-link' . $a_class . '" href="'
+          . url($sub_menu_item['link']['link_path']) . '">'
+          . check_plain($sub_menu_item['link']['link_title']) . '</a></li>';
+      }
+      $content .= '</ul>';
+    }
+
+    $content .= '</li>';
+
   }
 
   $content .= '</ul></div></div></div></div>';

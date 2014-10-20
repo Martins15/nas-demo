@@ -27,16 +27,17 @@ function nas_menu_pane_don_t_miss_render() {
   $items = array();
 
   foreach ($menu_tree as $menu_item) {
-    if ($menu_item['link']['hidden'] == FALSE) {
-      $item = array();
-      $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-      $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
-      $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
-      $path = $menu_item['link']['link_path'];
-      $attributes = $a_class ? drupal_attributes(array('class' => $a_class)) : '';
-      $item['link'] = '<a href="' . check_plain(url($path)) . '"' . $attributes . '>' .  $title . '</a>';
-      $items[] = $item;
+    if ($menu_item['link']['hidden'] == TRUE) {
+      continue;
     }
+    $item = array();
+    $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
+    $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
+    $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
+    $path = $menu_item['link']['link_path'];
+    $attributes = $a_class ? drupal_attributes(array('class' => $a_class)) : '';
+    $item['link'] = '<a href="' . check_plain(url($path)) . '"' . $attributes . '>' .  $title . '</a>';
+      $items[] = $item;
   }
   $cl = nas_menu_cl(NAS_MENU_HEADER_DON_T_MISS_MENU);
 
