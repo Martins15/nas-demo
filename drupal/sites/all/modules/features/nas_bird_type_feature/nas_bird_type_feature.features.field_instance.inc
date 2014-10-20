@@ -175,7 +175,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'token' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -278,7 +278,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'token' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
@@ -397,7 +397,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'token' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
@@ -514,7 +514,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'token' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 1,
