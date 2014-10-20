@@ -37,7 +37,7 @@ function nas_menu_pane_don_t_miss_render() {
     $path = $menu_item['link']['link_path'];
     $attributes = $a_class ? drupal_attributes(array('class' => $a_class)) : '';
     $item['link'] = '<a href="' . check_plain(url($path)) . '"' . $attributes . '>' .  $title . '</a>';
-      $items[] = $item;
+    $items[] = $item;
   }
   $cl = nas_menu_cl(NAS_MENU_HEADER_DON_T_MISS_MENU);
 
