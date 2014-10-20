@@ -94,6 +94,11 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
       unset($footer_copyright_menu_tree[$key]);
     }
   }
+  foreach ($footer_menu_tree as $key => $value) {
+    if ($value['link']['hidden'] == TRUE) {
+      unset($footer_menu_tree[$key]);
+    }
+  }
   $title = '';
   $mission = '';
   $copyright = '';
