@@ -37,6 +37,9 @@ function nas_menu_nas_menu_header_small_content_type_render() {
           <ul class="primary-nav inline-list">';
 
   foreach ($menu_tree as $menu_item) {
+    if ($menu_item['link']['hidden'] == TRUE) {
+      continue;
+    }
     $li_class = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
     $a_class = isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '';
     $content .= '<li class="primary-nav-item ' . $li_class . '">
@@ -58,6 +61,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
     }
 
     $content .= '</li>';
+
   }
 
   $content .= '</ul></div></div></div></div>';
