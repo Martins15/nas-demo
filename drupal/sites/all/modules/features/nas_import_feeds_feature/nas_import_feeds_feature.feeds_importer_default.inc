@@ -347,7 +347,7 @@ function nas_import_feeds_feature_feeds_importer_default() {
         'context' => array(
           'value' => '$.*',
         ),
-        'display_errors' => 1,
+        'display_errors' => 0,
         'source_encoding' => array(
           0 => 'auto',
         ),
