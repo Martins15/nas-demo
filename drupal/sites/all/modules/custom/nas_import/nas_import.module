@@ -308,7 +308,15 @@ function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, 
     $office_name = _nas_office_name_by_id($item['field_profile_office']);
     $entity->field_contact_address[LANGUAGE_NONE][0] = array(
       'value' => $office_name,
-      'text_format' => 'plain_text',
+      'format' => 'plain_text',
+    );
+  }
+
+  // Set profile bio
+  if (!empty($item['field_profile_biography'])) {
+    $entity->field_contact_bio[LANGUAGE_NONE][0] = array(
+      'value' => $item['field_profile_biography'][0]['value'],
+      'format' => 'full_html',
     );
   }
 }
