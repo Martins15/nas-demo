@@ -136,6 +136,10 @@
     box-shadow: 0 0 7px rgba(#000, 0.3);
     min-width: 210px;
     padding: $size-space 0;
+
+    .primary-nav-toggler.final + & {
+      right: -5px;
+    }
   }
 }
 
