@@ -40,6 +40,24 @@ function nas_view_modes_feature_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'hero' => array(
+        'custom_settings' => TRUE,
+      ),
+      'bird_illustration' => array(
+        'custom_settings' => TRUE,
+      ),
+      'bird_teaser_illustration' => array(
+        'custom_settings' => TRUE,
+      ),
+      'hero_cover_bird_page' => array(
+        'custom_settings' => TRUE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -52,6 +70,14 @@ function nas_view_modes_feature_strongarm() {
           'nas_bird_teaser_illustration' => array(
             'weight' => '0',
             'visible' => TRUE,
+          ),
+          'token' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'nas_file_plain_text_fields' => array(
+            'weight' => '2',
+            'visible' => FALSE,
           ),
         ),
       ),
