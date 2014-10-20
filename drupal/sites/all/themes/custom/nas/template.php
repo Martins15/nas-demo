@@ -316,3 +316,10 @@ function nas_field__field_author__article($variables) {
   $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
   return $output;
 }
+
+/**
+ * Override theme_panels_default_style_render_region().
+ */
+function nas_panels_default_style_render_region($vars) {
+  return implode('', $vars['panes']);
+}

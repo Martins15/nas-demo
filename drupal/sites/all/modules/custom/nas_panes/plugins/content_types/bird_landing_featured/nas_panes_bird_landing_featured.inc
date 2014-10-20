@@ -67,7 +67,7 @@ function bird_landing_featured_form($form, &$form_state) {
       'dark' => 'dark',
       'light' => 'light'
     ),
-    '#default_value' => !empty($conf['color']) ? $conf['color'] : '',
+    '#default_value' => !empty($conf['color']) ? $conf['color'] : 'dark',
   );
 
   $form['summary'] = array(
@@ -163,7 +163,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     'summary' => $summary,
     'bird_guide_link' => $bird_guide_link,
     'category' => $category,
-    'color' => $conf['color'],
+    'color' => !empty($conf['color']) ? $conf['color'] : 'dark',
     'category_link_url' => $category_link_url,
     'category_link_more' => $category_link_more,
     'contextual_links' => $contextual_links,
