@@ -40,8 +40,8 @@ function nas_preprocess_node(&$vars) {
   }
 
   // Add node page path.
-    $node_path = $base_url. '/' . drupal_get_path_alias('node/' . $node->nid);
-    $vars['node_path'] = $node_path;
+  $node_path = $base_url. '/' . drupal_get_path_alias('node/' . $node->nid);
+  $vars['node_path'] = $node_path;
 
   if ($vars['type'] == 'bird') {
     drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
