@@ -105,6 +105,33 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $display->content['new-e340351d-0e88-407f-8952-f44411b6ca0e'] = $pane;
     $display->panels['bird_guide_search'][0] = 'new-e340351d-0e88-407f-8952-f44411b6ca0e';
     $pane = new stdClass();
+    $pane->pid = 'new-9affc8c1-f7c7-4b8d-a513-0c61645ee777';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_microsite_guide_bar';
+    $pane->subtype = 'nas_menu_microsite_guide_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+      'preamble' => 'Brought to you by',
+      'logo' => '/sites/all/themes/custom/nas/img/canon-logo.png',
+      'css_class' => '',
+      'css_background_style' => '#276074',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '9affc8c1-f7c7-4b8d-a513-0c61645ee777';
+    $display->content['new-9affc8c1-f7c7-4b8d-a513-0c61645ee777'] = $pane;
+    $display->panels['header'][0] = 'new-9affc8c1-f7c7-4b8d-a513-0c61645ee777';
+    $pane = new stdClass();
     $pane->pid = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
     $pane->panel = 'header';
     $pane->type = 'nas_panes_pane_featured_bird';
@@ -130,11 +157,11 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'b3b09b5b-713c-4fe4-8248-6f82f45519b3';
     $display->content['new-b3b09b5b-713c-4fe4-8248-6f82f45519b3'] = $pane;
-    $display->panels['header'][0] = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
+    $display->panels['header'][1] = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

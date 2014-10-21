@@ -81,7 +81,6 @@ function nas_menu_guide_bar_pane_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
-
   $title = filter_xss($conf['title'], array('span'));
   $preamble = check_plain($conf['preamble']);
   $css_class = trim(check_plain($conf['css_class']));
@@ -107,18 +106,16 @@ function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.
     ctools_add_js('ajax-responder');
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_menu_microsite_guide_bar'))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
     if (empty($pid)) {
-      // Reason not to use nas_footer_save_footer_pane is not to clear cache for
-      // site_template_panel_context_2
-      nas_menu_save_bird_guide_pane();
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_menu_microsite_guide_bar'))->fetchField();
+      nas_panes_save_bird_guide_pane();
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
     }
 
     $links = array(
       'pane-edit' => array(
         'title' => t('edit guide bar'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
