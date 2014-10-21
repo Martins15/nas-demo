@@ -37,7 +37,7 @@
 
   - name: Adding environment variable to settings.php
     sudo: yes
-    lineinfile: dest='sites/default/settings.php' line='$conf[\"environment\"] = \"{{ pp_environment }}\";'
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
 
   - name: Solr - clearing index
     sudo: yes
