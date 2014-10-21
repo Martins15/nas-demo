@@ -170,9 +170,9 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
   ));
 
   $class = &drupal_static('nas_header_class');
-  $class = 'dark-bg';
+  $class = 'dark-bg light-text transparent';
   if ($conf['color'] == 'light') {
-    $class = 'light-bg dark-text';
+    $class = 'light-bg dark-text transparent';
   }
 
   $block->content = $content;

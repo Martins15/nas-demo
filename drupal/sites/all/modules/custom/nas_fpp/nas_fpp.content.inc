@@ -72,6 +72,12 @@ function nas_fpp_create_panes() {
   )->fetchCol();
   $did = $did_query[0];
 
+  $did_news_query = db_query(
+    'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
+    array(':layout' => 'nas_news_page')
+  )->fetchCol();
+  $did_news = $did_news_query[0];
+
   $pane = new stdClass();
   $pane->did = $did;
   $pane->panel = 'hero';
@@ -91,6 +97,34 @@ function nas_fpp_create_panes() {
     'image' => '7',
     'color' => '0',
     'summary' => 'Curabitur blandit mollis lacus. Aenean commodo ligula eget dolor. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Pellentesque dapibus hendrerit tortor. Nam pretium turpis et arcu.',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  drupal_write_record('panels_pane', $pane);
+  unset($pane);
+
+  $pane = new stdClass();
+  $pane->did = $did_news;
+  $pane->panel = 'featured';
+  $pane->type = 'nas_panes_pane_featured_article';
+  $pane->subtype = 'nas_panes_pane_featured_article';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'article' => array(
+      'entity_id' => db_query('SELECT nid FROM {node} WHERE title = :title', array(':title' => 'Pelican Conservation Goes High Tech'))->fetchField(),
+      'entity_label' => 'Pelican Conservation Goes High Tech',
+      'entity_type' => 'node',
+      'entity_bundle' => 'article',
+    ),
   );
   $pane->cache = array();
   $pane->style = array(

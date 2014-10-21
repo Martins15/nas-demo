@@ -375,6 +375,57 @@ function nas_views_feature_views_default_views() {
       'label' => 'Content: Similar Bird (field_related_bird)',
     ),
   );
+
+  /* Display: Articles listing (top) */
+  $handler = $view->new_display('panel_pane', 'Articles listing (top)', 'panel_pane_1');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date (field_article_date) */
+  $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
+  $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
+
+  /* Display: Articles listing (bottom) */
+  $handler = $view->new_display('panel_pane', 'Articles listing (bottom)', 'panel_pane_2');
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['offset'] = '6';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
+  $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
+  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date (field_article_date) */
+  $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
+  $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
   $export['nas_news'] = $view;
 
   $view = new view();
