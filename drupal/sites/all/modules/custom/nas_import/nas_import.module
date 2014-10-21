@@ -19,6 +19,7 @@ define('NAS_OLD_D6_VID_TOPIC', 13);
 define('NAS_OLD_D6_VID_MAGAZINE_CATEGORY', 41);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
+define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
 /**
  * Implements hook_ctools_plugin_api().
@@ -287,6 +288,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (!empty($item['created'])) {
     $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
   }
+  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
 }
 
 /**

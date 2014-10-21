@@ -34,7 +34,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
   $handler->conf = array(
     'title' => 'Panel',
     'no_blocks' => 0,
-    'pipeline' => 'ipe',
+    'pipeline' => 'standard',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
     'css_id' => '',
@@ -115,7 +115,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'bird' => array(
-        'entity_id' => variable_get('nas_random_bird_node_nid'),
+        'entity_id' => '30',
         'entity_label' => 'Audubon\'s Shearwater',
         'entity_type' => 'node',
         'entity_bundle' => 'bird',
@@ -135,6 +135,46 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->uuid = 'b3b09b5b-713c-4fe4-8248-6f82f45519b3';
     $display->content['new-b3b09b5b-713c-4fe4-8248-6f82f45519b3'] = $pane;
     $display->panels['header'][0] = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
+    $pane = new stdClass();
+    $pane->pid = 'new-370ccda0-f986-4da9-ae20-b4445eca00d2';
+    $pane->panel = 'in_the_news';
+    $pane->type = 'nas_panes_pane_in_the_news';
+    $pane->subtype = 'nas_panes_pane_in_the_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      '' => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+        3 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-OFIinfe_qCGdW95x9kJzFM_M6b3M0yJdNZxUHhCu3Jc',
+      'form_token' => 'qoqaeGuTWjGAm--SoF2OdKrQindsybAcjJcEN0pjAV4',
+      'form_id' => 'nas_panes_pane_in_the_news_custom_pane_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '370ccda0-f986-4da9-ae20-b4445eca00d2';
+    $display->content['new-370ccda0-f986-4da9-ae20-b4445eca00d2'] = $pane;
+    $display->panels['in_the_news'][0] = 'new-370ccda0-f986-4da9-ae20-b4445eca00d2';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
