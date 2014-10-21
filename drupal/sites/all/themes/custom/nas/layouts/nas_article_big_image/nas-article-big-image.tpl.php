@@ -51,16 +51,6 @@
           <?php print $content['birds']; ?>
         </section>
         <?php print $content['left']; ?>
-        <section class="clearfix article-sidebar-section popular-stories story-list small reflow reflow-into-bottom">
-          <h5>Popular Stories</h5>
-          <ul>
-            <li><a href="#">With So Many Snowies to Study, Scientists are Discovering How Little We Know About This Bird</a></li>
-            <li><a href="#">Photo of the Day: Lilac-Breasted Roller</a></li>
-            <li><a href="#">Crows Understand Caw-se and Effect</a></li>
-            <li><a href="#">Green Energy: Can We Save the Planet and Save Birds?</a></li>
-            <li><a href="#">Nature Photography: Objectivitiy, Manipulation, and Ethics</a></li>
-          </ul>
-        </section>
       </div>
     </div>
   </article>
