@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Custom view template to display Explore Similar Birds.
+ * Custom view template to display Popular Stories side block.
  *
  * @ingroup views_templates
  */
