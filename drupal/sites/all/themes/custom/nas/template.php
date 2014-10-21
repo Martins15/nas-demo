@@ -38,6 +38,10 @@ function nas_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
   }
 
+  // Add node page path.
+  $node_path = url('node/' . $node->nid);
+  $vars['node_path'] = $node_path;
+
   if ($vars['type'] == 'bird') {
     nas_preprocess_node_bird($vars);
   }
@@ -158,6 +162,9 @@ function nas_preprocess_node_article(&$vars) {
   if (!empty($custom_link_title_item)) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_item[0]['safe_value']);
   }
+  if ($vars['type'] == 'article') {
+    $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
+  }
 }
 
 /**
@@ -273,7 +280,7 @@ function nas_preprocess_field(&$variables, $hook) {
     $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
         . $bundle . '__' . $panelizer_style;
     $variables['theme_hook_suggestions'][] = $hook_sugestion;
-    if ($element['#pane_region']) {
+    if (isset($element['#pane_region'])) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
     }
   }

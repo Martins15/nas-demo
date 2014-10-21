@@ -1,0 +1,13 @@
+diff --git a/ga_stats.module b/ga_stats.module
+index 54f6b24..a635ee8 100755
+--- a/ga_stats.module
++++ b/ga_stats.module
+@@ -46,7 +46,7 @@ function ga_stats_views_api() {
+  * Implements hook_cron().
+  */
+ function ga_stats_cron() {
+-  if (ga_stats_needs_update()) {
++  if (ga_stats_is_ready() && ga_stats_needs_update()) {
+     ga_stats_update_counts();
+   }
+ }

@@ -71,6 +71,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
         <h3>Pages</h3><ul>
         <li><a href="bird-guide">Bird Guide</a></li>
         <li><a href="birds-landing">Birds Landing page</a></li></ul>
+        <li><a href="news">News page</a></li></ul>
         <br/><br/>
 
         <h3>Articles</h3><ul>

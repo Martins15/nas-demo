@@ -7,6 +7,7 @@
 
 define('NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY', 'page-bird_guide');
 define('NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-birds_landing');
+define('NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY', 'page-news');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -73,6 +74,15 @@ function nas_panes_theme() {
       'template' => 'nas-featured-social-in-article',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article'
     ),
+    'nas_panes_social_news_block' => array(
+      'variables' => array(
+        'title' => '',
+        'page_link' => '',
+        'caption' => '',
+      ),
+      'template' => 'nas-panes-social-news-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
+    ),
   );
 }
 
@@ -96,6 +106,10 @@ function nas_panes_ajax_render_alter(&$commands) {
       nas_panes_save_bird_landing_page();
     }
 
+    if (strpos($_GET['q'], NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
+      nas_panes_save_news_page();
+    }
+
     $commands[] = ctools_ajax_command_reload();
   }
 }
@@ -113,6 +127,14 @@ function nas_panes_save_bird_guide_pane() {
  */
 function nas_panes_save_bird_landing_page() {
   $cache = page_manager_get_page_cache(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
+}
+
+/**
+ * Resave news page (cache to database).
+ */
+function nas_panes_save_news_page() {
+  $cache = page_manager_get_page_cache(NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY);
   page_manager_save_page_cache($cache);
 }
 
