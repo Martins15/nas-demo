@@ -40,7 +40,7 @@ function nas_preprocess_node(&$vars) {
   }
 
   // Add node page path.
-  $node_path = $base_url. '/' . drupal_get_path_alias('node/' . $node->nid);
+  $node_path = url('node/' . $node->nid);
   $vars['node_path'] = $node_path;
 
   if ($vars['type'] == 'bird') {
