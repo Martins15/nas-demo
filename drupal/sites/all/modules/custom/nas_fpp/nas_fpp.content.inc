@@ -103,6 +103,34 @@ function nas_fpp_create_panes() {
   drupal_write_record('panels_pane', $pane);
   unset($pane);
 
+  $pane = new stdClass();
+  $pane->did = $did;
+  $pane->panel = 'featured';
+  $pane->type = 'nas_panes_pane_featured_article';
+  $pane->subtype = 'nas_panes_pane_featured_article';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'article' => array(
+      'entity_id' => db_query('SELECT nid FROM {node} WHERE title = :title', array(':title' => 'Pelican Conservation Goes High Tech'))->fetchField(),
+      'entity_label' => 'Pelican Conservation Goes High Tech',
+      'entity_type' => 'node',
+      'entity_bundle' => 'article',
+    ),
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  drupal_write_record('panels_pane', $pane);
+  unset($pane);
+
   $fpp = new stdClass();
   $fpp->reusable = 1;
   $fpp->admin_title = 'The Audubon Bird Guide';

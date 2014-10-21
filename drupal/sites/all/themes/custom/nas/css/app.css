@@ -4294,6 +4294,7 @@ small {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  height: auto;
   width: 100%;
   vertical-align: middle;
 }
@@ -4849,7 +4850,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 }
 
 .donate-bar:before {
-  background-image: url(engagement-bird-2.png);
+  background-image: url(../img/engagement-bird-2.png);
   background-size: contain;
   background-repeat: no-repeat;
   width: 32.8px;
@@ -11286,4 +11287,8 @@ body.touch .sticky-wrapper {
 }
 .dont-miss .strip-nav {
   overflow: visible;
+}
+
+.editorial-card-body * {
+  display: inline;
 }
