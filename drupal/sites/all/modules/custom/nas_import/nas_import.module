@@ -251,7 +251,8 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
             }
           }
           if (!empty($base_url_from_drush)) {
-            $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($image_file->uri);
+            list(, $filename) = explode('://', $image_file->uri);
+            $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
           }
         }
         $images_mapping[$field_value['nid']] = $file_url;
