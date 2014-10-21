@@ -95,8 +95,10 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
     }
   }
   foreach ($footer_menu_tree as $key => $value) {
-    if ($value['link']['hidden'] == TRUE) {
-      unset($footer_menu_tree[$key]);
+    foreach ($footer_menu_tree[$key]['below'] as $keys => $values) {
+      if ($values['link']['hidden'] == TRUE) {
+        unset($footer_menu_tree[$key]['below'][$keys]);
+      }
     }
   }
   $title = '';
