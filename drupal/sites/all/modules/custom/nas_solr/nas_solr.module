@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Solr related customizations.
+ */
+
+/**
+ * Implements hook_entity_load().
+ */
+function nas_solr_entity_load($entities, $type) {
+  // Variable nas_environment is set in settings.php of demo and staging sites.
+  $environment = variable_get('nas_environment', '');
+  if ($type == 'search_api_server' && !empty($environment)) {
+    $entities[1]->options['path'] = '/solr/' . $environment;
+  }
+}
