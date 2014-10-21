@@ -67,17 +67,22 @@ function nas_node_list_callback($content_type) {
 function nas_node_nid_callback($nid) {
   $node = node_load($nid);
 
+  unset($node->data);
+
   print drupal_json(array($node));
 }
 
 /**
  * function nas_user_list_callback().
  *
- * @return json with uids list.
+ * @return json with uids list of only users who have with content.
  *
  */
 function nas_user_list_callback() {
-  $result = db_query("SELECT uid FROM {users}");
+  $result = db_query("SELECT u.uid
+    FROM {users} u
+    INNER JOIN {node} n ON n.uid = u.uid
+    WHERE n.status = %d", 1);
   $uids = array();
   while ($obj = db_fetch_object($result)) {
     $uids[] = $obj->uid;

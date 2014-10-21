@@ -53,9 +53,9 @@
     font-size: $size-text-tiny - 1px;
   }
 
-  // We don't need these extra gutters
-  .tiny-6:first-of-type { padding-left: 0; }
-  .tiny-6:last-of-type { padding-right: 0; }
+  .tiny-6 {
+    padding-left: 0;
+  }
 
   // If by reflow, a section ends up outisde the sidebar,
   // make sure to pad it

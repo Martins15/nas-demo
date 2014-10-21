@@ -74,7 +74,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $image_credit = isset($image_credit_item[0]['safe_value']) ? $image_credit_item[0]['safe_value'] : '';
   $image_string = trim(implode(' ', array($image_caption, $image_credit)));
   if (empty($image_string)) {
-    $image_string = t('PLACEHOLDER for hero image caption & credit');
+    $image_string = t('Please edit Caption and Credits of hero image of the selected bird.');
   }
 
   $illustration_item = field_get_items('node', $node, 'field_bird_illustration');
@@ -96,7 +96,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     $links = array(
       'edit' => array(
         'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_guide::page_birds_guide_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),

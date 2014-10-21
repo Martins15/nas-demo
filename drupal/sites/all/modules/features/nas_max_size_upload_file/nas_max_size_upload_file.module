@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Max size upload file feature.
+ */
+
+include_once 'nas_max_size_upload_file.features.inc';

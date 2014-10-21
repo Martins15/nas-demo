@@ -17,7 +17,11 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'map' => t('Map'),
+    'mobile_author' => t('Mobile author'),
     'main' => t('Main'),
+    'social' => t('Social icons'),
+    'author' => t('Author'),
+    'birds' => t('Birds in this story'),
     'left' => t('Left'),
     'right' => t('Right'),
   ),

@@ -21,6 +21,7 @@ dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = date
 dependencies[] = date_api
+dependencies[] = disqus
 dependencies[] = panelizer
 dependencies[] = page_manager
 dependencies[] = pathauto
@@ -47,6 +48,7 @@ dependencies[] = jquery_update
 dependencies[] = fieldable_panels_panes
 dependencies[] = entityreference_autocomplete
 dependencies[] = views_load_more
+dependencies[] = better_formats
 
 ; Custom modules
 dependencies[] = nas_solr_feature

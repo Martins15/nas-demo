@@ -114,7 +114,7 @@ function nas_preprocess_node(&$vars) {
     if ($get_field_color_mode[0]['value'] == 'dark') {
       $vars['color_mode'] = 'light-text dark-gradient';
     }
-    if ($vars['view_mode'] == 'teaser') {
+    if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
       $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
       // Add bird illustration image.
       $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
@@ -264,6 +264,7 @@ function nas_preprocess_panels_pane(&$vars) {
   }
 }
 
+
 /**
  * Preprocess function for field_magazine_issue_article.
  */
@@ -280,4 +281,45 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
   $vars['sec_month_part_1'] = substr($second_month, 0, 3);
   $vars['sec_month_part_2'] = substr($second_month, 3);
   $vars['year'] = $str[1][1];
+}
+
+/*
+ * Implements theme_field().
+ */
+function nas_field__field_author__article($variables) {
+  $output = '';
+  foreach ($variables['items'] as $item) {
+    $entities = entity_load('node', array_values($item));
+    foreach ($entities as $id => $entity) {
+      $path = url('node/' . $id);
+      $image_field = field_get_items('node', $entity, 'field_image');
+      if ($image_field) {
+        $image_file = file_load($image_field[0]['fid']);
+        $image = theme('image_style', array(
+          'style_name' => 'thumbnail',
+          'path' => $image_file->uri,
+          'attributes' => array(
+            'class' => array(
+              'article-author-image',
+            ),
+          ),
+        ));
+        $output .= '<a href="' . $path . '">' . $image . '</a>';
+      }
+
+      $output .= '<a href="' . $path . '">'
+          . '<h5 class="article-author-name">' . check_plain($entity->title)
+          . '</h5></a>';
+    }
+  }
+  $published = date('M d, Y', $variables['element']['#object']->created);
+  $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
+  return $output;
+}
+
+/**
+ * Override theme_panels_default_style_render_region().
+ */
+function nas_panels_default_style_render_region($vars) {
+  return implode('', $vars['panes']);
 }
