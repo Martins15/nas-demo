@@ -114,7 +114,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
       'preamble' => 'Brought to you by',
-      'logo' => '/sites/all/themes/custom/nas/img/canon-logo.png',
+      'logo' => 'sites/all/themes/custom/nas/img/canon-logo.png',
       'css_class' => '',
       'css_background_style' => '#276074',
       'override_title' => 0,
