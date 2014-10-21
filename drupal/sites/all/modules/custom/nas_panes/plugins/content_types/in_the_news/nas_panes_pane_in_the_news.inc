@@ -101,7 +101,7 @@ function nas_panes_pane_in_the_news_custom_pane_render($subtype, $conf, $args, $
       $news_nodes[] = node_load($result->nid);
     }
   }
-  
+
   $teasers = array();
   foreach ($news_nodes as $node) {
     $build = node_view($node, 'nas_node_teaser_small');
