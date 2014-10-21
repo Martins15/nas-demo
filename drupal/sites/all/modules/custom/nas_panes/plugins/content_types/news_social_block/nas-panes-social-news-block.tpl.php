@@ -11,7 +11,7 @@
 ?>
 <div class="social-sharing">
   <span class="social-sharing-caption small"><?php print $caption; ?></span>
-  <a class="social-sharing-icon blue" target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>"><i class="icon-twitter"></i></a>&nbsp;
-  <a class="social-sharing-icon blue" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>"><i class="icon-facebook"></i></a>&nbsp;
+  <a class="social-sharing-icon blue" target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>"><i class="icon-twitter"></i></a>
+  <a class="social-sharing-icon blue" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>"><i class="icon-facebook"></i></a>
   <a class="social-sharing-icon blue" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
 </div>
