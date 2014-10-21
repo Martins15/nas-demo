@@ -109,7 +109,9 @@ function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
     ctools_add_js('ajax-responder');
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_menu_microsite_guide_bar'))->fetchField();
     if (empty($pid)) {
-      nas_footer_save_footer_pane();
+      // Reason not to use nas_footer_save_footer_pane is not to clear cache for
+      // site_template_panel_context_2
+      nas_menu_save_bird_guide_pane();
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_menu_microsite_guide_bar'))->fetchField();
     }
 

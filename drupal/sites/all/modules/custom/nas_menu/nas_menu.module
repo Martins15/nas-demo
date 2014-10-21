@@ -159,3 +159,19 @@ function nas_menu_cl($menu_delta, $additional_links = array()) {
 
   return drupal_render($build);
 }
+
+/**
+ * Resave bird guide pages (cache to database).
+ */
+function nas_menu_save_bird_guide_pane() {
+  $cache = page_manager_get_page_cache('site_template');
+  $cache->changes = array(
+    'handlers' => TRUE,
+    'handlers/site_template_panel_context' => TRUE,
+    'handlers/site_template_panel_context/content' => TRUE,
+  );
+  $cache->changed = TRUE;
+  $cache->handler_info['site_template_panel_context']['changed'] = 2;
+
+  page_manager_save_page_cache($cache);
+}
