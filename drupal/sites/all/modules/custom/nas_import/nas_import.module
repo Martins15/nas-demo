@@ -240,6 +240,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       }
     }
     watchdog('import_globals', $GLOBALS['base_url']);
+    watchdog('import_globals_cwd', getcwd());
   }
 
   // Convert inline images with captions.
