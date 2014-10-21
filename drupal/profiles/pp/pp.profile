@@ -184,6 +184,9 @@ function pp_content_after_import() {
     if ($cache = page_manager_get_page_cache('page-birds_landing')) {
       page_manager_save_page_cache($cache);
     }
+    if ($cache = page_manager_get_page_cache('page-news')) {
+      page_manager_save_page_cache($cache);
+    }
     nas_fpp_create_panes();
   }
   if (function_exists('nas_fpp_get_node_nid_by_type')) {

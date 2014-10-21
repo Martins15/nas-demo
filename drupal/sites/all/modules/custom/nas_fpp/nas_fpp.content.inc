@@ -72,6 +72,12 @@ function nas_fpp_create_panes() {
   )->fetchCol();
   $did = $did_query[0];
 
+  $did_news_query = db_query(
+    'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
+    array(':layout' => 'nas_news_page')
+  )->fetchCol();
+  $did_news = $did_news_query[0];
+
   $pane = new stdClass();
   $pane->did = $did;
   $pane->panel = 'hero';
@@ -104,7 +110,7 @@ function nas_fpp_create_panes() {
   unset($pane);
 
   $pane = new stdClass();
-  $pane->did = $did;
+  $pane->did = $did_news;
   $pane->panel = 'featured';
   $pane->type = 'nas_panes_pane_featured_article';
   $pane->subtype = 'nas_panes_pane_featured_article';

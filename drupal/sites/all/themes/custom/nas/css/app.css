@@ -11269,11 +11269,11 @@ body.touch .sticky-wrapper {
   }
 }
 
-.bird-card-grid .pager-load-more .button.load-more:hover {
+.pager-load-more .button.load-more:hover {
   background-color: #EDECEA;
 }
-.bird-card-grid .pager-load-more.pager-load-more-empty,
-.bird-card-grid .pager-load-more .ajax-progress-throbber {
+.pager-load-more.pager-load-more-empty,
+.pager-load-more .ajax-progress-throbber {
   display: none;
 }
 
