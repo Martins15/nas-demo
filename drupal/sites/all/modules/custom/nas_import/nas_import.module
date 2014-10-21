@@ -236,15 +236,23 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_node = reset($image_node);
       if (!empty($image_node['field_photo'])) {
         $image_file = nas_import_import_image($entity, $image_node['field_photo']);
+        $file_url = file_create_url($image_file->uri);
         // For some reason simple file_create_url() doesn't work
         // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
         // via drush command if it is avaiable.
-        $base_url_from_drush = variable_get('nas_base_url', '');
-        if (!empty($base_url_from_drush)) {
-          $file_url = $base_url_from_drush . '/' . drupal_encode_path($image_file->uri);
-        }
-        else {
-          $file_url = file_create_url($image_file->uri);
+        if (function_exists('drush_main')) {
+          $drush_context = drush_get_context('DRUSH_COMMAND_ARGS');
+          $base_url_from_drush = '';
+          foreach ($drush_context as $drush_arg) {
+            if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
+              // Remove 'nas_base_url='.
+              $base_url_from_drush = substr($drush_arg, 13);
+              break;
+            }
+          }
+          if (!empty($base_url_from_drush)) {
+            $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($image_file->uri);
+          }
         }
         $images_mapping[$field_value['nid']] = $file_url;
       }
