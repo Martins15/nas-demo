@@ -237,6 +237,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       if (!empty($image_node['field_photo'])) {
         $image_file = nas_import_import_image($entity, $image_node['field_photo']);
         $images_mapping[$field_value['nid']] = file_create_url($image_file->uri);
+        watchdog('image_file_uri', $image_file->uri);
       }
     }
     watchdog('import_globals', $GLOBALS['base_url']);
