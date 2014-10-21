@@ -32,6 +32,7 @@
   overflow: hidden;
   img {
     @include user-select(none);
+    height: auto;
     width: 100%;
     vertical-align: middle;
   }

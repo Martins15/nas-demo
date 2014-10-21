@@ -5,8 +5,8 @@
  */
 ?>
 
-<header class="global-header transparent <?php
-  $color = &drupal_static('nas_header_class', 'light-bg dark-text');
+<header class="global-header <?php
+  $color = &drupal_static('nas_header_class');
   print $color;
 ?>">
   <?php print $content['header']; ?>

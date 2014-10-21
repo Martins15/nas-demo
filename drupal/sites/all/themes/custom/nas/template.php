@@ -39,6 +39,10 @@ function nas_preprocess_node(&$vars) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
   }
 
+  // Add node page path.
+  $node_path = url('node/' . $node->nid);
+  $vars['node_path'] = $node_path;
+
   if ($vars['type'] == 'bird') {
     drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
       'group' => JS_THEME,
@@ -60,9 +64,6 @@ function nas_preprocess_node(&$vars) {
         $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
       }
     }
-    // Add node page path.
-    $node_path = $base_url. '/' . drupal_get_path_alias('node/' . $node->nid);
-    $vars['node_path'] = $node_path;
     // Add static link.
     $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
     // Add Page absolute url.
@@ -123,6 +124,9 @@ function nas_preprocess_node(&$vars) {
         'path' => $get_field_bird_illustration[0]['file']->uri,
       )), $node_path, array('html' => TRUE));
     }
+  }
+  if ($vars['type'] == 'article') {
+    $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
   }
 }
 
@@ -239,7 +243,7 @@ function nas_preprocess_field(&$variables, $hook) {
     $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
         . $bundle . '__' . $panelizer_style;
     $variables['theme_hook_suggestions'][] = $hook_sugestion;
-    if ($element['#pane_region']) {
+    if (isset($element['#pane_region'])) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
     }
   }

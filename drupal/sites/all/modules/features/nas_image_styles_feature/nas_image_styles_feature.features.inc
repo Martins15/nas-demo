@@ -10,6 +10,64 @@
 function nas_image_styles_feature_image_default_styles() {
   $styles = array();
 
+  // Exported image style: article_featured.
+  $styles['article_featured'] = array(
+    'name' => 'article_featured',
+    'label' => 'Article featured',
+    'effects' => array(
+      2 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1007,
+          'height' => 600,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: article_teaser.
+  $styles['article_teaser'] = array(
+    'name' => 'article_teaser',
+    'label' => 'Article teaser',
+    'effects' => array(
+      1 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 401,
+          'height' => 300,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'white',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: bird_illustration.
   $styles['bird_illustration'] = array(
     'name' => 'bird_illustration',
