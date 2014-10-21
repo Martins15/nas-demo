@@ -100,13 +100,50 @@ function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
     $pane_attr['style'] = 'background-color: ' . $css_background_style;
   }
 
+  $contextual_links = '';
+  if (module_exists('contextual') && user_access('access contextual links')) {
+    ctools_include('ajax');
+    ctools_include('modal');
+    ctools_modal_add_js();
+    // Add ajax-responder so ctools_ajax_command_reload() will work.
+    ctools_add_js('ajax-responder');
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_menu_microsite_guide_bar'))->fetchField();
+    if (empty($pid)) {
+      nas_footer_save_footer_pane();
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_menu_microsite_guide_bar'))->fetchField();
+    }
+
+    $links = array(
+      'pane-edit' => array(
+        'title' => t('edit guide bar'),
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context::::/' . $pid,
+        'query' => array('reload' => 'true'),
+        'attributes' => array('class' => array('ctools-use-modal')),
+      ),
+    );
+    $pane_attr['class'][] = 'contextual-links-region';
+
+    $build = array(
+      '#prefix' => '<div class="contextual-links-wrapper">',
+      '#suffix' => '</div>',
+      '#theme' => 'links__contextual',
+      '#links' => $links,
+      '#attributes' => array('class' => array('contextual-links')),
+      '#attached' => array(
+        'library' => array(array('contextual', 'contextual-links')),
+      ),
+    );
+    $contextual_links = drupal_render($build);
+  }
+
   $block = new stdClass();
 
   $t_vars = array(
     'div_attributes' => drupal_attributes($pane_attr),
     'title' => $title,
     'preamble' => $preamble,
-    'logo' => $logo
+    'logo' => $logo,
+    'contextual_links' => $contextual_links,
   );
   $content = theme('nas_guide_bar', $t_vars);
   $block->title = t('Footer');

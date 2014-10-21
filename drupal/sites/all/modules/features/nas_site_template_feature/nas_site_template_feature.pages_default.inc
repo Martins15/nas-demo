@@ -141,6 +141,33 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $display->content['new-84661503-5e89-4544-bf5b-25bb04044d1c'] = $pane;
     $display->panels['header'][0] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane = new stdClass();
+    $pane->pid = 'new-25ce3a27-57dd-4b86-b658-1e20a8580594';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_microsite_guide_bar';
+    $pane->subtype = 'nas_menu_microsite_guide_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+      'preamble' => 'Brought to you by',
+      'logo' => '/sites/all/themes/custom/nas/img/canon-logo.png',
+      'css_class' => '',
+      'css_background_style' => '#270074',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '25ce3a27-57dd-4b86-b658-1e20a8580594';
+    $display->content['new-25ce3a27-57dd-4b86-b658-1e20a8580594'] = $pane;
+    $display->panels['header'][1] = 'new-25ce3a27-57dd-4b86-b658-1e20a8580594';
+    $pane = new stdClass();
     $pane->pid = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $pane->panel = 'main';
     $pane->type = 'page_messages';
