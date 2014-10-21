@@ -239,6 +239,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
         $images_mapping[$field_value['nid']] = file_create_url($image_file->uri);
       }
     }
+    watchdog('import_globals', $GLOBALS['base_url']);
   }
 
   // Convert inline images with captions.
