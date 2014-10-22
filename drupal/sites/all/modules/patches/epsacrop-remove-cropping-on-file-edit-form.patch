@@ -1,0 +1,13 @@
+diff --git a/drupal/sites/all/modules/patched/epsacrop/epsacrop.module b/drupal/sites/all/modules/patched/epsacrop/epsacrop.module
+index ea241dc..dc19408 100644
+--- a/drupal/sites/all/modules/patched/epsacrop/epsacrop.module
++++ b/drupal/sites/all/modules/patched/epsacrop/epsacrop.module
+@@ -570,6 +570,8 @@ function epsacrop_form_media_edit_alter(&$form, $form_state) {
+  * Add epsacrop to file_entity edit form.
+  */
+ function epsacrop_form_file_entity_edit_alter(&$form, $form_state) {
++  // We do not need this cropping functionality here.
++  return;
+   if (!_epsacrop_access() || !isset($form['preview']['#file']) || !$form['preview']['#file']->type == 'image') {
+     return;
+   }
