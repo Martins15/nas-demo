@@ -225,7 +225,8 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
  * hook_feeds_presave for news_import importer.
  */
 function nas_import_feeds_presave_news_import($source, $entity, $item) {
-  // Save news image to d7 field_image field.
+  // Save news field_image_ref images to d7 field files. Build a map.
+  $images_mapping = array();
   if (!empty($item['field_image_ref'])) {
     foreach ($item['field_image_ref'] as $field_value) {
       if (!isset($field_value['nid'])) {
@@ -235,9 +236,44 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_node = drupal_json_decode($result->data);
       $image_node = reset($image_node);
       if (!empty($image_node['field_photo'])) {
-        nas_import_import_image($entity, $image_node['field_photo'], 'field_image');
+        $image_file = nas_import_import_image($entity, $image_node['field_photo']);
+        $file_url = file_create_url($image_file->uri);
+        // For some reason simple file_create_url() doesn't work
+        // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
+        // via drush command if it is avaiable.
+        if (function_exists('drush_main')) {
+          $drush_context = drush_get_context('DRUSH_COMMAND_ARGS');
+          $base_url_from_drush = '';
+          foreach ($drush_context as $drush_arg) {
+            if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
+              // Remove 'nas_base_url='.
+              $base_url_from_drush = substr($drush_arg, 13);
+              break;
+            }
+          }
+          if (!empty($base_url_from_drush)) {
+            list(, $filename) = explode('://', $image_file->uri);
+            $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
+          }
+        }
+        $images_mapping[$field_value['nid']] = $file_url;
       }
     }
+  }
+
+  // Convert inline images with captions.
+  if (!empty($item['body'])) {
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
   }
 
   // Save old taxonomy terms to existed terms if match.
@@ -389,22 +425,26 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
  * @param string $d7_field_name
  *   Name of the field for drupal 7.
  */
-function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
+function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL) {
   foreach ($d6_field_array as $key => $value) {
     if (!isset($value['fid'])) {
       continue;
     }
     $file = nas_import_add_existing_file($value['filepath'], 'image');
-    $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    if (!empty($d7_field_name)) {
+      $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    }
+
+    $file_entity = file_load($file->fid);
 
     // Additionally save Alt and Title if exist.
     if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
-      $file_entity = file_load($file->fid);
       $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
       // Save Title to a new field Credit.
       $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
       file_save($file_entity);
     }
+    return $file_entity;
   }
 }
 
