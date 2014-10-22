@@ -81,7 +81,6 @@ function nas_menu_guide_bar_pane_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
-
   $title = filter_xss($conf['title'], array('span'));
   $preamble = check_plain($conf['preamble']);
   $css_class = trim(check_plain($conf['css_class']));
@@ -100,13 +99,50 @@ function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
     $pane_attr['style'] = 'background-color: ' . $css_background_style;
   }
 
+  $contextual_links = '';
+  if (module_exists('contextual') && user_access('access contextual links')) {
+    ctools_include('ajax');
+    ctools_include('modal');
+    ctools_modal_add_js();
+    // Add ajax-responder so ctools_ajax_command_reload() will work.
+    ctools_add_js('ajax-responder');
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
+    if (empty($pid)) {
+      nas_panes_save_bird_guide_pane();
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
+    }
+
+    $links = array(
+      'pane-edit' => array(
+        'title' => t('edit guide bar'),
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
+        'query' => array('reload' => 'true'),
+        'attributes' => array('class' => array('ctools-use-modal')),
+      ),
+    );
+    $pane_attr['class'][] = 'contextual-links-region';
+
+    $build = array(
+      '#prefix' => '<div class="contextual-links-wrapper">',
+      '#suffix' => '</div>',
+      '#theme' => 'links__contextual',
+      '#links' => $links,
+      '#attributes' => array('class' => array('contextual-links')),
+      '#attached' => array(
+        'library' => array(array('contextual', 'contextual-links')),
+      ),
+    );
+    $contextual_links = drupal_render($build);
+  }
+
   $block = new stdClass();
 
   $t_vars = array(
     'div_attributes' => drupal_attributes($pane_attr),
     'title' => $title,
     'preamble' => $preamble,
-    'logo' => $logo
+    'logo' => $logo,
+    'contextual_links' => $contextual_links,
   );
   $content = theme('nas_guide_bar', $t_vars);
   $block->title = t('Footer');
