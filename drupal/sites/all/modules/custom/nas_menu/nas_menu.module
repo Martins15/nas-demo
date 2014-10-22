@@ -61,6 +61,17 @@ function nas_menu_theme() {
       ),
       'template' => 'templates/nas-guide-bar',
     ),
+    'nas_guide_bar_search' => array(
+      'arguments' => array(
+        'div_attributes' => NULL,
+        'title' => NULL,
+        'preamble' => NULL,
+        'logo' => NULL,
+        'exposed_form' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'templates/nas-guide-bar-search',
+    ),
   );
 }
 
@@ -158,4 +169,11 @@ function nas_menu_cl($menu_delta, $additional_links = array()) {
   );
 
   return drupal_render($build);
+}
+
+/**
+ * Preprocess function for nas-guide-bar-search.tpl.php.
+ */
+function nas_menu_preprocess_nas_guide_bar_search(&$variables) {
+  drupal_add_js(drupal_get_path('module', 'nas_menu') . '/plugins/content_types/nas_menu_guide_bar_search/nas_menu_guide_bar_search.js');
 }
