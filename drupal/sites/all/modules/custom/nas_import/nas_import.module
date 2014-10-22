@@ -269,6 +269,11 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_id = (int) substr($image_id, 4);
       // Remove 'caption:' from beginning.
       $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
       // @TODO use captions as well.
       // https://propeople-us.atlassian.net/browse/ANW-224
       return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
