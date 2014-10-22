@@ -39,7 +39,7 @@ function nas_preprocess_node(&$vars) {
   }
 
   // Add node page path.
-  $node_path = url('node/' . $node->nid);
+  $node_path = url('node/' . $vars['node']->nid);
   $vars['node_path'] = $node_path;
 
   if ($vars['type'] == 'bird') {
@@ -77,8 +77,6 @@ function nas_preprocess_node_bird(&$vars) {
   }
   // Add node page path.
   global $base_url;
-  $node_path = $base_url. '/' . drupal_get_path_alias('node/' . $node->nid);
-  $vars['node_path'] = $node_path;
   // Add static link.
   $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
   // Add Page absolute url.
@@ -133,6 +131,7 @@ function nas_preprocess_node_bird(&$vars) {
     $vars['color_mode'] = 'light-text dark-gradient';
   }
   if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
+    $node_path = 'node/' . $node->nid;
     $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
     // Add bird illustration image.
     $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
@@ -163,7 +162,7 @@ function nas_preprocess_node_article(&$vars) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_item[0]['safe_value']);
   }
   if ($vars['type'] == 'article') {
-    $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
+    $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 }
 
