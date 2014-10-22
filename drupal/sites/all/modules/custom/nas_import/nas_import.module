@@ -54,7 +54,7 @@ function nas_import_feeds_plugins() {
 function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'news_import') {
     $preg = '/style=\"(.*?)\"/si';
-    $result = preg_replace($preg, '', $entity->body['und'][0]['value'], -1, NULL);
+    $result = preg_replace($preg, '', $entity->body['und'][0]['value'] [, -1 [, NULL);
     $entity->body['und'][0]['value'] = $result;
   }
   if ($entity->feeds_item->id == 'birds_import') {
