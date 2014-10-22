@@ -19,6 +19,7 @@ define('NAS_OLD_D6_VID_TOPIC', 13);
 define('NAS_OLD_D6_VID_MAGAZINE_CATEGORY', 41);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
+define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
 /**
  * Implements hook_ctools_plugin_api().
@@ -267,6 +268,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
 
   // Convert inline images with captions.
   if (!empty($item['body'])) {
+    // @codingStandardsIgnoreStart
     $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
       $token = trim($matches[0], '[]');
       list($image_id, $align, $caption) = explode('|', $token);
@@ -274,10 +276,16 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_id = (int) substr($image_id, 4);
       // Remove 'caption:' from beginning.
       $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
       // @TODO use captions as well.
       // https://propeople-us.atlassian.net/browse/ANW-224
       return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
     }, $item['body']);
+    // @codingStandardsIgnoreEnd
   }
 
   // Save old taxonomy terms to existed terms if match.
@@ -328,6 +336,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (!empty($item['created'])) {
     $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
   }
+  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
 }
 
 /**
