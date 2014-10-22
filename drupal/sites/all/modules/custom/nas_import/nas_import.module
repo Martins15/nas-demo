@@ -53,15 +53,13 @@ function nas_import_feeds_plugins() {
  * Implements hook_feeds_presave().
  */
 function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
-  if ($entity->feeds_item->id == 'news_import') {
-    $preg = '/style=\"(.*?)\"/si';
-    $result = preg_replace($preg, '', $entity->body['und'][0]['value']);
-    $entity->body['und'][0]['value'] = $result;
-  }
   if ($entity->feeds_item->id == 'birds_import') {
     nas_import_feeds_presave_birds_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'news_import') {
+    $preg = '/style=\"(.*?)\"/si';
+    $result = preg_replace($preg, '', $item['body']);
+    $item['body'] = $result;
     nas_import_feeds_presave_news_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'contacts_import') {
