@@ -150,7 +150,7 @@ function nas_menu_guide_var_search_get_contextual_links($subtype) {
   ctools_add_js('ajax-responder');
   $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
   if (empty($pid)) {
-    nas_panes_save_bird_guide_pane();
+    nas_panes_save_node_view_page();
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
   }
 
