@@ -68,6 +68,33 @@ function nas_pages_feature_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-3b78777b-0174-4e72-be17-d124da30f9cc';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_guide_bar_search';
+    $pane->subtype = 'nas_menu_guide_bar_search';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+      'preamble' => 'Brought to you by',
+      'logo' => 'sites/all/themes/custom/nas/img/canon-logo.png',
+      'css_class' => '',
+      'css_background_style' => '#276074',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3b78777b-0174-4e72-be17-d124da30f9cc';
+    $display->content['new-3b78777b-0174-4e72-be17-d124da30f9cc'] = $pane;
+    $display->panels['header'][0] = 'new-3b78777b-0174-4e72-be17-d124da30f9cc';
+    $pane = new stdClass();
     $pane->pid = 'new-a9afd97b-5a2f-490f-a784-91011dbf0a0e';
     $pane->panel = 'in_action_left';
     $pane->type = 'entity_field';

@@ -378,3 +378,24 @@ function nas_field__field_author__article($variables) {
 function nas_panels_default_style_render_region($vars) {
   return implode('', $vars['panes']);
 }
+
+/**
+ * Preprocess function for views exposed forms.
+ */
+function nas_preprocess_views_exposed_form(&$variables) {
+  if ($variables['form']['#id'] != 'views-exposed-form-nas-bird-guide-nas-bird-guide-fav-birds') {
+    return;
+  }
+
+  // Preprocess fulltext search field
+  $fulltext = $variables['form']['search_api_views_fulltext'];
+  $fulltext['#printed'] = FALSE;
+  $fulltext['#theme'] = 'searchfield';
+  $fulltext['#attributes']['placeholder'] = array('Search for a bird in the guide...');
+  $fulltext['#theme_wrappers'] = array_filter($fulltext['#theme_wrappers'], function ($item) {
+    return $item !== 'form_element';
+  });
+  _form_set_class($fulltext, array('bird-guide-search-input', 'radius'));
+
+  $variables['widgets']['filter-search_api_views_fulltext']->widget = drupal_render($fulltext);
+}
