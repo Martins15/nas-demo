@@ -33,61 +33,75 @@ function nas_html_head_alter(&$head_elements) {
 function nas_preprocess_node(&$vars) {
   global $base_url;
 
-  $node = $vars['node'];
   // Tell Drupal that there is separate tpl.php files for view modes.
   if (!empty($vars['view_mode'])) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
   }
 
   // Add node page path.
-  $node_path = url('node/' . $node->nid);
+  $node_path = url('node/' . $vars['node']->nid);
   $vars['node_path'] = $node_path;
 
   if ($vars['type'] == 'bird') {
-    drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
-      'group' => JS_THEME,
-      'every_page' => FALSE,
-    ));
-    drupal_add_js(path_to_theme() . '/js/nas/owl-settings.js', array(
-      'group' => JS_THEME,
-      'every_page' => FALSE,
-    ));
-    $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
-    $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
-    // Get author of illustration.
-    $get_field_bird_illustration_author = field_get_items('node', $node, 'field_bird_illustration');
-    // We need the text until fields are not yet filled.
-    $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
-    if (!empty($get_field_bird_illustration_author)) {
-      $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_credit');
-      if (isset($bird_illustration_author[0])) {
-        $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
-      }
-    }
-    // Add static link.
-    $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
-    // Add Page absolute url.
-    $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
-    // Add learn mode link.
-    $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
+    nas_preprocess_node_bird($vars);
+  }
+  if ($vars['type'] == 'article') {
+    nas_preprocess_node_article($vars);
+  }
+}
 
-    // Add Birds priority link.
-    $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
-    // Add hero inline links.
-    $vars['hero_inline_links'] = theme('item_list', array(
-      'items' => array(
-        l(t('In the Bird Guide'), ''),
-        l(t('More Priority Birds'), ''),
+/**
+ * theme_preprocess_node for bird content type.
+ */
+function nas_preprocess_node_bird(&$vars) {
+  $node = $vars['node'];
+  drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
+    'group' => JS_THEME,
+    'every_page' => FALSE,
+  ));
+  drupal_add_js(path_to_theme() . '/js/nas/owl-settings.js', array(
+    'group' => JS_THEME,
+    'every_page' => FALSE,
+  ));
+  $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
+  $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
+  // Get author of illustration.
+  $get_field_bird_illustration_author = field_get_items('node', $node, 'field_bird_illustration');
+  // We need the text until fields are not yet filled.
+  $vars['bird_illustration_author'] = t('Illustration © David Allen Sibley.');
+  if (!empty($get_field_bird_illustration_author)) {
+    $bird_illustration_author = field_view_field('file', $get_field_bird_illustration_author[0]['file'], 'field_file_credit');
+    if (isset($bird_illustration_author[0])) {
+      $vars['bird_illustration_author'] = t('Illustration ©') . '&nbsp;' . $bird_illustration_author[0]['#markup'];
+    }
+  }
+  // Add node page path.
+  global $base_url;
+  // Add static link.
+  $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
+  // Add Page absolute url.
+  $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+  // Add learn mode link.
+  $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
+
+  // Add Birds priority link.
+  $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
+  // Add hero inline links.
+  $vars['hero_inline_links'] = theme('item_list', array(
+    'items' => array(
+      l(t('In the Bird Guide'), ''),
+      l(t('More Priority Birds'), ''),
+    ),
+    'attributes' => array(
+      'class' => array(
+        'hero-inline-list',
+        'inline-list'
       ),
-      'attributes' => array(
-        'class' => array(
-          'hero-inline-list',
-          'inline-list'
-        ),
-      ),
-    ));
-    // Add hero image.
-    $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
+    ),
+  ));
+  // Add hero image.
+  $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
+  if (!empty($get_field_hero_image)) {
     $vars['hero_image'] = theme('image_style', array(
       'style_name' => 'hero_image',
       'path' => $get_field_hero_image[0]['file']->uri,
@@ -109,24 +123,46 @@ function nas_preprocess_node(&$vars) {
         ),
       ),
     ));
-    // Color mode.
-    $get_field_color_mode = field_get_items('node', $node, 'field_color_mode');
-    $vars['color_mode'] = 'light-gradient';
-    if ($get_field_color_mode[0]['value'] == 'dark') {
-      $vars['color_mode'] = 'light-text dark-gradient';
-    }
-    if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
-      $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
-      // Add bird illustration image.
-      $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
-      $vars['bird_illustration'] = l(theme('image_style', array(
-        'style_name' => 'nas_bird_teaser_illustration',
-        'path' => $get_field_bird_illustration[0]['file']->uri,
-      )), $node_path, array('html' => TRUE));
-    }
+  }
+  // Color mode.
+  $get_field_color_mode = field_get_items('node', $node, 'field_color_mode');
+  $vars['color_mode'] = 'light-gradient';
+  if ($get_field_color_mode[0]['value'] == 'dark') {
+    $vars['color_mode'] = 'light-text dark-gradient';
+  }
+  if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_teaser_small') {
+    $node_path = 'node/' . $node->nid;
+    $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
+    // Add bird illustration image.
+    $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
+    $vars['bird_illustration'] = l(theme('image_style', array(
+      'style_name' => 'nas_bird_teaser_illustration',
+      'path' => $get_field_bird_illustration[0]['file']->uri,
+    )), $node_path, array('html' => TRUE));
+  }
+}
+
+/**
+ * theme_preprocess_node for article content type.
+ */
+function nas_preprocess_node_article(&$vars) {
+  $node = $vars['node'];
+  $hero_image_items = field_get_items('node', $node, 'field_hero_image');
+  $hero_image = $hero_image_items[0]['file'];
+  $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
+  $vars['blue_text_link_url'] = $blue_text_link_url;
+  $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
+  $vars['custom_link_text'] = t('Read more');
+  $custom_link_title_item = field_get_items('node', $node, 'field_link_title');
+  if (!empty($custom_link_title_item)) {
+    $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_item[0]['safe_value']);
   }
   if ($vars['type'] == 'article') {
-    $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
+    $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 }
 

@@ -58,6 +58,14 @@ function nas_panes_theme() {
       'template' => 'bird-landing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_landing_featured'
     ),
+    'nas_in_the_news' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+      ),
+      'template' => 'nas-in-the-news',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
+    ),
     'nas_featured_social_in_article' => array(
       'variables' => array(
         'title' => '',
@@ -139,4 +147,43 @@ function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
   if ($info['type'] == 'task_handlers') {
     $plugin['contextual link'] = 'return';
   }
+}
+
+/**
+ * Get blue text link of the node (article).
+ */
+function nas_panes_get_blue_text_link($node) {
+  $custom_section_item = field_get_items('node', $node, 'field_custom_section');
+  if (!empty($custom_section_item)) {
+    $term = taxonomy_term_load($custom_section_item[0]['tid']);
+    return array(check_plain($term->name), url('<front>'));
+  }
+
+  $menu_section_item = field_get_items('node', $node, 'field_menu_section');
+  if (!empty($menu_section_item)) {
+    // Default is the first term.
+    $term = taxonomy_term_load($menu_section_item[0]['tid']);
+
+    $term_tids = array();
+    foreach ($menu_section_item as $item) {
+      $term_tids[] = $item['tid'];
+    }
+    $terms = taxonomy_term_load_multiple($term_tids);
+    $term_name_keyed = array();
+    foreach ($terms as $term) {
+      $term_name_keyed[$term->name] = $term;
+    }
+    $term_names = array_keys($term_name_keyed);
+
+    $trail = menu_get_active_trail();
+    $trail = array_reverse($trail);
+    foreach ($trail as $menu_item) {
+      if (in_array($menu_item['title'], $term_names)) {
+        $term = $term_name_keyed[$menu_item['title']];
+        break;
+      }
+    }
+    return array(check_plain($term->name), url('<front>'));
+  }
+  return array(NULL, NULL);
 }
