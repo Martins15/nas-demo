@@ -26,13 +26,18 @@
       <div class="column">
         <a class="hero-slug" href="<?php print $category_link_url; ?>"><?php print $category; ?></a>
         <h2 class="hero-title"><?php print $name; ?></h2>
-      <div class="hero-text">
-      <p class="hero-paragraph"><?php print $summary; ?> <a href="<?php print $url; ?>">Learn more »</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row hero-text-container">
+  <div class="column">
+    <div class="hero-text">
+      <p class="hero-paragraph"><?php print $summary; ?> <br/><a href="<?php print $url; ?>">Learn more »</a></p>
       <ul class="hero-inline-list inline-list">
         <li><?php print $bird_guide_link; ?></li>
         <li><?php print $category_link_more; ?></li>
       </ul>
-    </div></div>
     </div>
   </div>
 </div>

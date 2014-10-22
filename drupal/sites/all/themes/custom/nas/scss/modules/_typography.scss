@@ -24,11 +24,21 @@
 }
 
 .caption {
-  color: $color-warm-gray;
-  font-size: $size-text-tiny;
-  font-style: italic;
+  color: darken($color-warm-gray, 5%);
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
   line-height: $size-line-small;
   margin: $size-space/2 0 $column-gutter/2 0;
+
+  &.light {
+    color: $color-light-gray;
+  }
+  &.dark {
+    color: $color-dark-gray;
+  }
+  &.centered {
+    text-align: center;
+  }
 }
 
 small {

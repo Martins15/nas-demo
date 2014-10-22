@@ -67,6 +67,8 @@ function nas_node_list_callback($content_type) {
 function nas_node_nid_callback($nid) {
   $node = node_load($nid);
 
+  unset($node->data);
+
   print drupal_json(array($node));
 }
 

@@ -13,7 +13,11 @@
     mysql_pass: drupal
     mysql_db: drupal
     cache_folder: /var/www/cache
-    php_env_vars: '' # APP_ENV=dev - this varible will be set at PR_BUILDER from CI shell executor.
+    php_env_vars: 'APP_ENV=dev' # APP_ENV=dev - this varible will be set at PR_BUILDER from CI shell executor.
+    site_url: 'http://nas.192.168.56.132.xip.io/'
+    # This variable will be used for variable_get('environment'). Can be overridden by CI server.
+    # development = 'default', demo = 'demo', staging = 'staging', production = 'production'.
+    pp_environment: 'default'
 
   tasks:
 
@@ -29,15 +33,19 @@
 
   - name: Installing drupal
     sudo: yes
-    shell: "{{ php_env_vars}} drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }}"
+    shell: "{{ php_env_vars}} drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }} --uri={{ site_url }} nas_base_url={{ site_url }}"
+
+  - name: Adding environment variable to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
 
   - name: Solr - clearing index
     sudo: yes
-    shell: "{{ php_env_vars}} drush -y search-api-clear"
+    shell: "{{ php_env_vars}} drush -y search-api-clear -l {{ site_url }}"
 
   - name: Solr - reindexing
     sudo: yes
-    shell: "{{ php_env_vars}} drush -y search-api-index"
+    shell: "{{ php_env_vars}} drush -y search-api-index -l {{ site_url }}"
 
   handlers:
 #    - name: import livedb

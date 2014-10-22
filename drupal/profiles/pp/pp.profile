@@ -9,6 +9,9 @@ define('LOAD_NODE_JSON_OBJECT_URL', 'http://audubon.wearepropeople.md/export/nod
 define('EXPORT_USERS_LIST_UIDS_URL', 'http://audubon.wearepropeople.md/export/users-list/');
 define('LOAD_USER_JSON_OBJECT_URL', 'http://audubon.wearepropeople.md/export/user/');
 
+define('EXPORT_NODE_TYPE_CONTACT_LIST_NIDS_URL', 'http://audubon_roost:pr0pe0ple@audubon_roost.wearepropeople.md/export/node-list/');
+define('LOAD_NODE_TYPE_CONTACT_JSON_OBJECT_URL', 'http://audubon_roost:pr0pe0ple@audubon_roost.wearepropeople.md/export/node/');
+
 /**
  * Implements hook_form_FORM_ID_alter() for install_configure_form().
  *
@@ -69,11 +72,17 @@ function pp_import_nodes() {
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $magazine_article_node_nids = drupal_json_decode($result->data);
 
+  $content_type = 'profile';
+  $result = drupal_http_request(EXPORT_NODE_TYPE_CONTACT_LIST_NIDS_URL . $content_type);
+  $contact_node_nids = drupal_json_decode($result->data);
+
   // No need to import whole set of data for local development.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     $user_uids = array_slice($user_uids, 0, 20);
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
-    $news_node_nids = array_slice($news_node_nids, 0, 20);
+    $news_node_nids = array_slice($news_node_nids, 0, 19);
+    // To have a news node with embeded images.
+    $news_node_nids[] = 158806;
     $magazine_issue_node_nids = array(
       157656,
       152231,
@@ -115,6 +124,10 @@ function pp_import_nodes() {
     $operations[] = array('pp_import_nodes_batch', array($chunk, 'magazine_issues_import'));
   }
 
+  foreach (array_chunk($contact_node_nids, 10) as $chunk) {
+    $operations[] = array('pp_import_nodes_batch', array($chunk, 'contacts_import'));
+  }
+
   variable_set('pp_import_timer', time());
 
   $batch = array(
@@ -133,8 +146,16 @@ function pp_import_nodes() {
  * Batch operation for pp_import_nodes().
  */
 function pp_import_nodes_batch($nids, $importer_id) {
+  switch ($importer_id) {
+    case 'contacts_import':
+        $json_backend = LOAD_NODE_TYPE_CONTACT_JSON_OBJECT_URL;
+      break;
+    default:
+        $json_backend = LOAD_NODE_JSON_OBJECT_URL;
+      break;
+  }
   foreach ($nids as $nid) {
-    $config = array('NASFeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid));
+    $config = array('NASFeedsHTTPFetcher' => array('source' => $json_backend . $nid));
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
@@ -163,6 +184,9 @@ function pp_import_users_batch($uids, $importer_id) {
 function pp_content_after_import() {
   if (function_exists('nas_fpp_create_panes')) {
     if ($cache = page_manager_get_page_cache('page-birds_landing')) {
+      page_manager_save_page_cache($cache);
+    }
+    if ($cache = page_manager_get_page_cache('page-news')) {
       page_manager_save_page_cache($cache);
     }
     nas_fpp_create_panes();

@@ -20,7 +20,9 @@
     </div>
   </div>
 </div>
-
+<div class="hero-attribution row">
+  <div class="column"><span class="hero-attribution-text"><?php print $content['header_hero_attr_text']; ?></span></div>
+</div>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">
@@ -30,7 +32,7 @@
     </header>
     <div class="article-body row">
       <div class="article-text large-push-2 large-10 columns reflow-body">
-        
+
         <span data-reflow-placeholder="0"></span>
         <aside class="article-aside reflow reflow-into-body">
           <?php print $content['right']; ?>
@@ -58,16 +60,6 @@
           <?php print $content['birds']; ?>
         </section>
         <?php print $content['left']; ?>
-        <section class="clearfix article-sidebar-section popular-stories story-list small reflow reflow-into-bottom">
-          <h5>Popular Stories</h5>
-          <ul>
-            <li><a href="#">With So Many Snowies to Study, Scientists are Discovering How Little We Know About This Bird</a></li>
-            <li><a href="#">Photo of the Day: Lilac-Breasted Roller</a></li>
-            <li><a href="#">Crows Understand Caw-se and Effect</a></li>
-            <li><a href="#">Green Energy: Can We Save the Planet and Save Birds?</a></li>
-            <li><a href="#">Nature Photography: Objectivitiy, Manipulation, and Ethics</a></li>
-          </ul>
-        </section>
       </div>
     </div>
   </article>

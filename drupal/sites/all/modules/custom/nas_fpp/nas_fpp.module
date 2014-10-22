@@ -43,6 +43,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['nas_node_featured'] = array(
+    'label' => t('Featured'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['hero'] = array(
     'label' => t('Hero'),
     'custom settings' => TRUE,
@@ -65,6 +69,18 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   );
   $entity_info['file']['view modes']['hero_cover_bird_page'] = array(
     'label' => t('Hero cover bird page'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['article_teaser'] = array(
+    'label' => t('Article teaser'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['article_featured'] = array(
+    'label' => t('Article featured'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['nas_file_plain_text_fields'] = array(
+    'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
   );
 }
@@ -107,8 +123,10 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
   $vars['banner_image'] = '';
   if (isset($get_field_image[0]['uri'])) {
     $vars['banner_image'] = file_create_url($get_field_image[0]['uri']);
+    // To Do: Add mobile images presets support.
+    $vars['banner_mobile_image'] = file_create_url($get_field_image[0]['uri']);
   }
-  // To Do: Add mobile images presets support.
+
   $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');
   $vars['banner_slug'] = l($get_field_link[0]['title'], $get_field_link[0]['url'], array('attributes' => array('class' => array('banner-slug'))));
   $vars['banner_title'] = $fpp->title;
@@ -152,5 +170,39 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
   $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
   if (count($get_field_related_bird) !== 4) {
     $vars['fields'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide_random');
+  }
+
+  $vars['contextual_links'] = '';
+  if (user_access('administer site configuration')) {
+
+    $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+      ':subtype' => 'uuid:' . $fpp->uuid,
+    ))->fetchField();
+
+    ctools_include('modal');
+    ctools_include('ajax');
+    ctools_modal_add_js();
+    ctools_add_js('ajax-responder');
+    $links['edit'] = array(
+      'title' => t('Edit'),
+      'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
+      'html' => TRUE,
+      'query' => array('reload' => 'true'),
+      'attributes' => array(
+        'class' => array('ctools-use-modal'),
+        'title' => t('Edit'),
+      ),
+    );
+    $build = array(
+      '#prefix' => '<div class="contextual-links-wrapper">',
+      '#suffix' => '</div>',
+      '#theme' => 'links__contextual',
+      '#links' => $links,
+      '#attributes' => array('class' => array('contextual-links')),
+      '#attached' => array(
+        'library' => array(array('contextual', 'contextual-links')),
+      ),
+    );
+    $vars['contextual_links'] = drupal_render($build);
   }
 }

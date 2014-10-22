@@ -58,6 +58,9 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'news_import') {
     nas_import_feeds_presave_news_import($source, $entity, $item);
   }
+  if ($entity->feeds_item->id == 'contacts_import') {
+    nas_import_feeds_presave_contacts_import($source, $entity, $item);
+  }
   if ($entity->feeds_item->id == 'users_import') {
     nas_import_feeds_presave_users_import($source, $entity, $item);
   }
@@ -221,7 +224,8 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
  * hook_feeds_presave for news_import importer.
  */
 function nas_import_feeds_presave_news_import($source, $entity, $item) {
-  // Save news image to d7 field_image field.
+  // Save news field_image_ref images to d7 field files. Build a map.
+  $images_mapping = array();
   if (!empty($item['field_image_ref'])) {
     foreach ($item['field_image_ref'] as $field_value) {
       if (!isset($field_value['nid'])) {
@@ -231,9 +235,44 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_node = drupal_json_decode($result->data);
       $image_node = reset($image_node);
       if (!empty($image_node['field_photo'])) {
-        nas_import_import_image($entity, $image_node['field_photo'], 'field_image');
+        $image_file = nas_import_import_image($entity, $image_node['field_photo']);
+        $file_url = file_create_url($image_file->uri);
+        // For some reason simple file_create_url() doesn't work
+        // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
+        // via drush command if it is avaiable.
+        if (function_exists('drush_main')) {
+          $drush_context = drush_get_context('DRUSH_COMMAND_ARGS');
+          $base_url_from_drush = '';
+          foreach ($drush_context as $drush_arg) {
+            if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
+              // Remove 'nas_base_url='.
+              $base_url_from_drush = substr($drush_arg, 13);
+              break;
+            }
+          }
+          if (!empty($base_url_from_drush)) {
+            list(, $filename) = explode('://', $image_file->uri);
+            $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
+          }
+        }
+        $images_mapping[$field_value['nid']] = $file_url;
       }
     }
+  }
+
+  // Convert inline images with captions.
+  if (!empty($item['body'])) {
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
   }
 
   // Save old taxonomy terms to existed terms if match.
@@ -283,6 +322,38 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   }
   if (!empty($item['created'])) {
     $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
+  }
+}
+
+/**
+ * hook_feeds_presave for contacts_import importer.
+ */
+function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, $item) {
+  if (empty($item['field_press_contact'][0]['value']) || $item['field_press_contact'][0]['value'] !== 'yes') {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
+
+  // Join first name and last name.
+  if (!empty($item['field_profile_last_name'])) {
+    $entity->title = $item['title'] . ' ' . $item['field_profile_last_name'];
+  }
+
+  // Set office name in address field.
+  if (!empty($item['field_profile_office'])) {
+    $office_name = _nas_office_name_by_id($item['field_profile_office']);
+    $entity->field_contact_address[LANGUAGE_NONE][0] = array(
+      'value' => $office_name,
+      'format' => 'plain_text',
+    );
+  }
+
+  // Set profile bio
+  if (!empty($item['field_profile_biography'])) {
+    $entity->field_contact_bio[LANGUAGE_NONE][0] = array(
+      'value' => $item['field_profile_biography'][0]['value'],
+      'format' => 'full_html',
+    );
   }
 }
 
@@ -352,22 +423,26 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
  * @param string $d7_field_name
  *   Name of the field for drupal 7.
  */
-function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
+function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL) {
   foreach ($d6_field_array as $key => $value) {
     if (!isset($value['fid'])) {
       continue;
     }
     $file = nas_import_add_existing_file($value['filepath'], 'image');
-    $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    if (!empty($d7_field_name)) {
+      $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    }
+
+    $file_entity = file_load($file->fid);
 
     // Additionally save Alt and Title if exist.
     if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
-      $file_entity = file_load($file->fid);
       $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
       // Save Title to a new field Credit.
       $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
       file_save($file_entity);
     }
+    return $file_entity;
   }
 }
 
@@ -588,4 +663,145 @@ function nas_update_text_fields_format() {
     ->fields(array($field . '_format' => 'full_html'))
     ->execute();
   }
+}
+
+/**
+ * Return office name by id.
+ * Map is the return of nas_atrium_get_location_service() function.
+ *
+ * @param $id
+ *
+ * @return string
+ */
+function _nas_office_name_by_id($id) {
+  $map = array(
+    1685 => 'Audubon Center at Chatfield State Park',
+    1593 => 'Audubon Alaska',
+    1606 => 'Audubon Arkansas',
+    5296 => 'Lower Mississippi Flyway Programs Office',
+    1594 => 'Audubon Arizona',
+    1673 => 'Appleton-Whittell Research Ranch',
+    1702 => 'Nina Mason Pulliam Rio Salado Audubon Center',
+    1595 => 'Audubon California',
+    1615 => 'Bobelaine Audubon Sanctuary',
+    1616 => 'Kern River Preserve',
+    1617 => 'Audubon Center at Debs Park',
+    1619 => 'Paul L. Wattis Sanctuary',
+    1620 => 'Williams Sisters Ranch Sanctuary',
+    1621 => 'Starr Ranch Sanctuary',
+    1622 => 'Richardson Bay Audubon Center & Sanctuary',
+    5701 => 'Audubon Colorado - Denver Field Office',
+    30911 => 'Rocky Mountain Regional Office (Previously Wyoming and Colorado Audubon)',
+    30926 => 'Hershey Outreach Project at four mile ranch',
+    37541 => 'Audubon Rockies',
+    1607 => 'Audubon Connecticut',
+    1623 => 'Audubon Greenwich',
+    1624 => 'Sharon Audubon Center',
+    1625 => 'Guilford Salt Meadows Sanctuary',
+    1674 => 'Audubon Center at Bent of the River',
+    1675 => 'Audubon Miles Wildlife Sanctuary',
+    223 => 'Washington, DC Office',
+    1699 => 'Audubon Maryland-DC',
+    1597 => 'Audubon Florida',
+    1626 => 'Audubon Center for Birds of Prey',
+    1627 => 'Audubon Resource Center at Lettuce Lake',
+    1629 => 'Florida Coastal Islands Sanctuary',
+    1630 => 'Kissimmee Prairie Sanctuary',
+    1631 => 'Lake Okeechobee Sanctuaries',
+    1632 => 'Corkscrew Swamp Sanctuary & Blair Audubon Center',
+    1633 => 'Street Audubon Center',
+    1677 => 'Babson Park Audubon Center',
+    1683 => 'Audubon Florida - Policy Office',
+    1698 => 'Tavernier Science Center',
+    4998 => 'Audubon Florida - Everglades Conservation Office',
+    20661 => 'Audubon Florida Policy Office',
+    1634 => 'Sugar Creek Audubon Sanctuary',
+    16436 => 'Chicago Region ',
+    1694 => 'South Bend-Elkhart Audubon Society Sanctuary',
+    1636 => 'Paul J. Rainey Wildlife Sanctuary',
+    1697 => 'Audubon Louisiana ',
+    1643 => 'Pickering Creek Audubon Center',
+    1671 => 'Audubon Maryland-DC',
+    1690 => 'Patterson Park Audubon Center',
+    1608 => 'Maine Audubon',
+    1637 => 'Borestone Mountain Wildlife Sanctuary',
+    1638 => 'Fields Pond Audubon Center',
+    1639 => 'Gilsland Farm Audubon Center and Sanctuary',
+    1640 => 'Hog Island, Audubon Camp in Maine',
+    1641 => 'Scarborough Marsh Audubon Center',
+    1642 => 'Todd Wildlife Sanctuary',
+    1678 => 'East Point Sanctuary, Hamilton Sanctuary, Josephine Newman Sanctuary, Mast Landing Sanctuary',
+    1598 => 'Audubon Minnesota',
+    1599 => 'Audubon Missouri',
+    1645 => 'Wildcat Glades Conservation & Audubon Center',
+    1696 => 'Audubon Center at Riverlands',
+    5319 => 'Upper Mississippi Flyway Regional Office',
+    35566 => 'The Audubon Center at Riverlands',
+    248 => 'Mississippi River Initiative',
+    1600 => 'Audubon Mississippi - Mailing Address Only',
+    1670 => 'Pascagoula River Audubon Center',
+    1679 => 'Strawberry Plains Audubon Center',
+    216 => 'Chapter Services',
+    1609 => 'Montana Audubon',
+    1601 => 'Audubon North Carolina',
+    1657 => 'Donal C. O\'Brien, Jr. Sanctuary and Audubon Center at Pine Island',
+    1602 => 'Audubon Dakota',
+    1658 => 'Edward M. Brigham III Sanctuary',
+    1703 => 'Frederick L. Wicks Prairie Wildlife Sanctuary',
+    1610 => 'Audubon Nebraska',
+    1647 => 'Spring Creek Prairie Audubon Center',
+    4723 => 'Iain Nicolson Audubon Center at Rowe Sanctuary',
+    64 => 'Information Services Department',
+    1611 => 'Audubon New Mexico',
+    1648 => 'Randall Davey Audubon Center & Sanctuary',
+    1612 => 'Audubon New York',
+    1650 => 'Beaver Meadow Audubon Center',
+    1651 => 'Buttercup Farm Audubon Sanctuary',
+    1652 => 'Constitution Marsh Audubon Center and Sanctuary',
+    1653 => 'Kaler\'s Pond Audubon Center',
+    1654 => 'Prospect Park Audubon Center',
+    1655 => 'Ramshorn-Livingston Sanctuary',
+    1656 => 'Theodore Roosevelt Sanctuary & Audubon Center',
+    1687 => 'Project Puffin',
+    1688 => 'Montezuma Audubon Center',
+    1689 => 'Jamestown Audubon Center and Sanctuary',
+    1695 => 'Rheinstrom Hill Audubon Sanctuary and Center',
+    4223 => 'Main Office',
+    5566 => 'Seabird Restoration Program',
+    152806 => '225 Varick Street',
+    152881 => 'Theodore Roosevelt Sanctuary & Audubon Center',
+    153331 => 'NYHQ',
+    153431 => 'Audubon Adventures ',
+    1659 => 'Aullwood Audubon Center and Farm',
+    1672 => 'Audubon Ohio',
+    1701 => 'Grange Insurance Audubon Center',
+    189536 => 'Grange Insurance Audubon Center',
+    1660 => 'Ten Mile Creek Sanctuary',
+    1605 => 'Audubon Pennsylvania',
+    1661 => 'John James Audubon Center at Mill Grove',
+    1592 => 'Audubon Center & Sanctuary at Francis Beidler Forest',
+    1613 => 'Audubon South Carolina',
+    1662 => 'Silver Bluff Audubon Center and Sanctuary',
+    121516 => 'South Carolina Shorebird Project',
+    1603 => 'Audubon Texas Headquarters ',
+    1663 => 'Sabal Palm Grove Audubon Center and Sanctuary',
+    1664 => 'Texas Coastal Islands Sanctuary',
+    1665 => 'Mitchell Lake Audubon Center',
+    1691 => 'Trinity River Audubon Center',
+    1692 => 'Dogwood Canyon Audubon Center at Cedar Hill',
+    1686 => 'Lee Creek Area',
+    1700 => 'Gillmor Audubon Sanctuary and South Shore Preserve',
+    1614 => 'Audubon Vermont',
+    1682 => 'Green Mountain Audubon Center',
+    1666 => 'Adriana Hess Audubon Center',
+    1667 => 'Dungeness River Audubon Center',
+    1693 => 'Seward Park Audubon Center',
+    147531 => 'Audubon Washington',
+    1668 => 'Schlitz Audubon Center',
+    1669 => 'Hunt Hill Audubon Sanctuary',
+    30931 => 'Rockies Policy Office',
+    30936 => 'Community Naturalist Education Office',
+  );
+
+  return isset($map[$id]) ? $map[$id] : '';
 }

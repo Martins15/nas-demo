@@ -47,7 +47,7 @@ function nas_menu_theme() {
       'arguments' => array(
         'items' => NULL,
         'frontpage_link' => NULL,
-        'form' => NULL
+        'form' => NULL,
       ),
       'template' => 'templates/nas-big-header',
     ),
@@ -56,7 +56,8 @@ function nas_menu_theme() {
         'div_attributes' => NULL,
         'title' => NULL,
         'preamble' => NULL,
-        'logo' => NULL
+        'logo' => NULL,
+        'contextual_links' => NULL,
       ),
       'template' => 'templates/nas-guide-bar',
     ),

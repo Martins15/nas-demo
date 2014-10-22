@@ -4229,11 +4229,20 @@ ul.small-list li {
 }
 
 .caption, .article-text figcaption {
-  color: #838078;
-  font-size: 12px;
-  font-style: italic;
+  color: #76736c;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
   line-height: 20px;
   margin: 5px 0 12.5px 0;
+}
+.caption.light, .article-text figcaption.light {
+  color: #d4d4d4;
+}
+.caption.dark, .article-text figcaption.dark {
+  color: #262626;
+}
+.caption.centered, .article-text figcaption.centered {
+  text-align: center;
 }
 
 small {
@@ -4285,6 +4294,7 @@ small {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  height: auto;
   width: 100%;
   vertical-align: middle;
 }
@@ -4840,7 +4850,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 }
 
 .donate-bar:before {
-  background-image: url(engagement-bird-2.png);
+  background-image: url(../img/engagement-bird-2.png);
   background-size: contain;
   background-repeat: no-repeat;
   width: 32.8px;
@@ -5065,7 +5075,6 @@ table.row-borders tbody td {
     transform: rotate(-359deg);
   }
 }
-/* @todo This is ugly. Clean up. */
 .article-meta {
   margin-top: 25.5px;
 }
@@ -5167,10 +5176,6 @@ table.row-borders tbody td {
 .strip-nav.small li {
   margin: 10px 0;
   padding: 0 10px;
-}
-.strip-nav.small .contextual-links li {
-  margin: 0;
-  padding: 0;
 }
 
 /* @todo refactor like crazy for more hero variations */
@@ -5489,6 +5494,10 @@ img.hero-alt-img.current {
   }
 }
 
+.hero-caption {
+  padding-top: 5px;
+}
+
 .wordmark {
   -moz-user-select: -moz-none;
   -ms-user-select: none;
@@ -5607,12 +5616,6 @@ img.hero-alt-img.current {
 }
 .dont-miss ul {
   width: 1000px !important;
-}
-.dont-miss ul.contextual-links {
-  width: auto !important;
-}
-.dont-miss.strip-nav {
-  overflow: visible;
 }
 
 .header-btn-menu, .header-btn-search,
@@ -6757,6 +6760,9 @@ input.header-search-input,
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     min-width: 210px;
     padding: 10px 0;
+  }
+  .primary-nav-toggler.final + .primary-sub-nav {
+    right: -5px;
   }
 }
 
@@ -11085,11 +11091,8 @@ body.touch .sticky-wrapper {
 .article-sidebar-section .article-date {
   font-size: 11px;
 }
-.article-sidebar-section .tiny-6:first-of-type {
+.article-sidebar-section .tiny-6 {
   padding-left: 0;
-}
-.article-sidebar-section .tiny-6:last-of-type {
-  padding-right: 0;
 }
 .global-content > .article-sidebar-section {
   padding: 0 12.5px;
@@ -11266,11 +11269,11 @@ body.touch .sticky-wrapper {
   }
 }
 
-.bird-card-grid .pager-load-more .button.load-more:hover {
+.pager-load-more .button.load-more:hover {
   background-color: #EDECEA;
 }
-.bird-card-grid .pager-load-more.pager-load-more-empty,
-.bird-card-grid .pager-load-more .ajax-progress-throbber {
+.pager-load-more.pager-load-more-empty,
+.pager-load-more .ajax-progress-throbber {
   display: none;
 }
 
@@ -11284,4 +11287,8 @@ body.touch .sticky-wrapper {
 }
 .dont-miss .strip-nav {
   overflow: visible;
+}
+
+.editorial-card-body * {
+  display: inline;
 }

@@ -91,7 +91,7 @@ function nas_colorbox_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_mobile_detect';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['colorbox_mobile_detect'] = $strongarm;
 
   $strongarm = new stdClass();
