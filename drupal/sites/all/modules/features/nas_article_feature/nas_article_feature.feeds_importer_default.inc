@@ -141,7 +141,7 @@ function nas_article_feature_feeds_importer_default() {
           ),
         ),
         'update_existing' => '1',
-        'input_format' => 'plain_text',
+        'input_format' => 'full_html',
         'skip_hash_check' => 0,
         'bundle' => 'article',
       ),
