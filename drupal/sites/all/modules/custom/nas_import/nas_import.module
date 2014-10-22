@@ -53,8 +53,8 @@ function nas_import_feeds_plugins() {
  */
 function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'news_import') {
-    $preg = '#<(.+?)style=(:?"|\')?[^"\']+(:?"|\')?(.*?)>#si';
-    $entity->body['und'][0]['value'] = preg_replace_callback($preg, '<\\1 >', $entity->body['und'][0]['value']);
+    $preg = '/style=\"(.*?)\"/si';
+    $entity->body['und'][0]['value'] = preg_replace($preg, '', $entity->body['und'][0]['value']);
   }
   if ($entity->feeds_item->id == 'birds_import') {
     nas_import_feeds_presave_birds_import($source, $entity, $item);
