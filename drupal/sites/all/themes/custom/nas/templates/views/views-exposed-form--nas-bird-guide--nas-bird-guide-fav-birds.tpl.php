@@ -28,13 +28,12 @@
 <?php endif; ?>
 
 <div class="bird-guide-search-input">
-  <input type="search" name="search_api_views_fulltext" placeholder="Search for a bird in the guide..." class="bird-guide-search-input radius">
+  <?php print $widgets['filter-search_api_views_fulltext']->widget; ?>
 </div>
 <?php print $button; ?>
 <div class="row">
   <?php
-    // Remove fulltext search widget as it allready shown with name
-    // search_api_views_fulltext
+    // Remove fulltext search widget as it already shown
     unset($widgets['filter-search_api_views_fulltext']);
   ?>
   <?php foreach ($widgets as $id => $widget): ?>
