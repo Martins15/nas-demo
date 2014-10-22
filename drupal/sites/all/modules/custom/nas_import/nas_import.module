@@ -270,6 +270,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       // Remove 'caption:' from beginning.
       $caption = substr($caption, 8);
       // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
       return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
     }, $item['body']);
   }
