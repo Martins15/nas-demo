@@ -161,7 +161,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
   $pane->locks = array();
   $pane->uuid = 'b3b09b5b-713c-4fe4-8248-6f82f45519b3';
   $display->content['new-b3b09b5b-713c-4fe4-8248-6f82f45519b3'] = $pane;
-  $display->panels['header'][0] = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
+  $display->panels['header'][1] = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
   $pane = new stdClass();
   $pane->pid = 'new-370ccda0-f986-4da9-ae20-b4445eca00d2';
   $pane->panel = 'in_the_news';
