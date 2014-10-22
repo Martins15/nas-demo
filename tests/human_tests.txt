@@ -1,0 +1,9 @@
+Bird Guide
+
+- Contextual link to edit Top Color block (text fields for each element)
+- Contextual link to edit Featured Bird block (entity reference)
+- Submit search form (everything ajax)
+  * keyword search
+  * selectboxes
+- Show me more ajax pager
+- Contextual link to edit Birds in the News
