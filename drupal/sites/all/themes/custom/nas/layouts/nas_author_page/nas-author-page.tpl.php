@@ -13,7 +13,7 @@
       <header class="bio-header">
         <?php print $content['image']; ?>
         <h1 class="bio-name"><?php print $content['name']; ?> <?php print $content['twitter']; ?></h1>
-        <small class="bio-title"><?php print $content['title']; ?>Vice President, Content</small>
+        <small class="bio-title"><?php print $content['title']; ?></small>
       </header>
     </div>
   </div>

@@ -61,13 +61,15 @@ function nas_views_feature_views_default_views() {
   /* Display: Articles by author */
   $handler = $view->new_display('panel_pane', 'Articles by author', 'articles_by_author');
   $handler->display->display_options['display_description'] = 'For Author page';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '9';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show more articles';
+  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show more';
   $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
   $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['header'] = FALSE;
