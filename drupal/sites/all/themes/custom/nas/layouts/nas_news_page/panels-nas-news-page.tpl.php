@@ -29,9 +29,6 @@
     <div class="large-8 columns index-list">
       <?php print $content['articles_top']; ?>
       <?php print $content['donate']; ?>
-      <div class="donate-bar">
-        <div class="donate-bar-caption">Remember that Audubon depends on your support to do the conservation work that we do. </div><div href="#" class="donate-bar-button"><a href="#" class="button tomato large">Donate</a></div>
-      </div>
       <?php print $content['articles_bottom']; ?>      
     </div>
   <!-- END MAIN COLUMN -->

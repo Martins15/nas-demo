@@ -49,6 +49,12 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'context' => 'node',
           'not' => FALSE,
         ),
+        2 => array(
+          'name' => 'panelizer_mag_issue',
+          'settings' => NULL,
+          'context' => 'node',
+          'not' => FALSE,
+        ),
       ),
       'logic' => 'or',
     ),

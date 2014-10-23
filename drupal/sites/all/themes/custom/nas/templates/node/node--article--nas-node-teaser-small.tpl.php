@@ -74,8 +74,9 @@
  * language negotiation rule that was previously applied.
  *
  * Custom variables:
- * - $bird_illustration: Bird illustration with link to node page.
  * - $title_link: Title with link to node page.
+ * - $blue_text_link_url: Menu or Custom section url.
+ * - $blue_text_link_text: Menu or Custom section text.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -91,7 +92,9 @@
       <img src="<?php print $image_src; ?>" />
     </div>
     <div class="editorial-card-content short">
+      <?php if (!empty($blue_text_link_url)): ?>
       <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
+      <?php endif; ?>
       <h4 class="editorial-card-title"><?php print $title; ?></h4>
       <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
     </div>
