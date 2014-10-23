@@ -23,7 +23,7 @@ $plugin = array(
  * Check for access.
  */
 function nas_panes_panelizer_mag_issue_ctools_access_check($conf, $context) {
-  if (isset($context->data->panelizer['page_manager']->name) == 'node:article:fullscreen_image' && !empty($context->data->field_magazine_issue)) {
+  if (isset($context->data->panelizer['page_manager']->name) && $context->data->panelizer['page_manager']->name == 'node:article:fullscreen_image' && !empty($context->data->field_magazine_issue)) {
     return TRUE;
   }
 }
