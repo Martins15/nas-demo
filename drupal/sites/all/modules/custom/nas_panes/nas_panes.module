@@ -67,6 +67,14 @@ function nas_panes_theme() {
       'template' => 'nas-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
     ),
+    'nas_panes_pane_donate_button' => array(
+      'variables' => array(
+        'caption' => '',
+        'link' => '',
+      ),
+      'template' => 'nas-panes-pane-donate-button',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button'
+    ),
     'nas_featured_social_in_article' => array(
       'variables' => array(
         'title' => '',
