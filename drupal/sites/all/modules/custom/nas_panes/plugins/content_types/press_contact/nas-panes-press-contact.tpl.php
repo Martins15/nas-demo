@@ -16,7 +16,11 @@
     <p><strong><?php print $contact['name']; ?></strong><br>
       <?php if (!empty($contact['position'])): ?>
         <?php print $contact['position']; ?><br/>
-      <?php endif;?></p>
+      <?php endif;?>
+      <?php if (!empty($contact['office'])): ?>
+        <?php print $contact['office']; ?>
+      <?php endif;?>
+    </p>
       <?php if (!empty($contact['address'])): ?>
         <p><?php print $contact['address']; ?></p>
       <?php endif;?>
