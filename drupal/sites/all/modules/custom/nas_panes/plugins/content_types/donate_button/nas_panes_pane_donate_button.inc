@@ -65,8 +65,8 @@ function nas_panes_pane_donate_button_render($subtype, $conf, $args, $contexts) 
           'large',
         ),
       ),
-    ),
-  )));
+    )),
+  ));
 
   $block->content = $content;
   return $block;
