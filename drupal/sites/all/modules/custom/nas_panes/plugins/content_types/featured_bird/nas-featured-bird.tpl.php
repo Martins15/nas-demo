@@ -14,7 +14,7 @@
  * - $contextual_links: rendered contextual links.
  */
 ?>
-<div class="hero light-text dark-gradient">
+<div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">
   <div class="hero-image">
     <img src="<?php print $image_path_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
     <img src="<?php print $image_path; ?>" alt="" class="hide-for-tiny hide-for-small">
