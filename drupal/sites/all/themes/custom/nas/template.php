@@ -201,6 +201,21 @@ function nas_preprocess_site_template_small_header(&$vars) {
  * Implements hook_preprocess_site_template_big_header().
  */
 function nas_preprocess_site_template_big_header(&$vars) {
+  // To Do: 1) create some general function for handling header classes.
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $node = node_load(arg(1));
+    if ($node->panelizer['page_manager']->name == 'node:article:big_image') {
+      $class = &drupal_static('nas_header_class');
+      $class = 'transparent dark-bg';
+    }
+    if ($node->panelizer['page_manager']->name == 'node:article:fullscreen_image') {
+      $get_field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
+      if (empty($get_field_magazine_issue)) {
+        $class = &drupal_static('nas_header_class');
+        $class = 'transparent dark-bg';
+      }
+    }
+  }
   $vars['footer_logo'] = theme('image', array(
       'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
       'attributes' => array('class' => 'footer-logo'),

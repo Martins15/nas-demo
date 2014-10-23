@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="hero dark-gradient light-text expand">
+<div class="hero dark-gradient light-text">
   <div class="hero-image">
     <?php print $content['big_image']; ?>
   </div> 
@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="hero-attribution row">
-  <div class="column"><span class="hero-attribution-text"><?php print $content['header_hero_attr_text']; ?></span></div>
+  <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
 <section class="global-content">
   <article class="article">

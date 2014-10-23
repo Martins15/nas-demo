@@ -57,6 +57,9 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     nas_import_feeds_presave_birds_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'news_import') {
+    $preg = '/style=\"(.*?)\"/si';
+    $result = preg_replace($preg, '', $item['body']);
+    $item['body'] = $result;
     nas_import_feeds_presave_news_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'contacts_import') {
@@ -263,6 +266,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
 
   // Convert inline images with captions.
   if (!empty($item['body'])) {
+    // @codingStandardsIgnoreStart
     $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
       $token = trim($matches[0], '[]');
       list($image_id, $align, $caption) = explode('|', $token);
@@ -270,10 +274,16 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_id = (int) substr($image_id, 4);
       // Remove 'caption:' from beginning.
       $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
       // @TODO use captions as well.
       // https://propeople-us.atlassian.net/browse/ANW-224
       return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
     }, $item['body']);
+    // @codingStandardsIgnoreEnd
   }
 
   // Save old taxonomy terms to existed terms if match.
