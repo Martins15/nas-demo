@@ -79,7 +79,7 @@ function nas_node_nid_callback($nid) {
  *
  */
 function nas_user_list_callback() {
-  $result = db_query("SELECT u.uid
+  $result = db_query("SELECT DISTINCT u.uid
     FROM {users} u
     INNER JOIN {node} n ON n.uid = u.uid
     WHERE n.status = %d", 1);
