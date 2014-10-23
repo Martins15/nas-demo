@@ -246,7 +246,7 @@ function nas_image($variables) {
 
   $add_attributes = array('alt', 'title');
   //this styles shouldn't have width and height for responsive design
-  $remove_attr_for = array('hero_mobile', 'hero_image');
+  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image');
 
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -355,6 +355,15 @@ function nas_field__field_author__article($variables) {
   $published = date('M d, Y', $variables['element']['#object']->created);
   $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
   return $output;
+}
+
+/**
+ * Preprocess function for field_image.
+ */
+function nas_preprocess_image_style(&$vars) {
+  if ($vars['style_name'] == 'bio_image') {
+    $vars['attributes']['class'] = array('bio-image');
+  }
 }
 
 /**

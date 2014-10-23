@@ -1,0 +1,10 @@
+name = NAS Author Page
+core = 7.x
+package = NAS
+dependencies[] = ctools
+dependencies[] = nas_formatters
+dependencies[] = nas_views_feature
+dependencies[] = panelizer
+features[ctools][] = panelizer:panelizer:1
+features[features_api][] = api:2
+features[panelizer_defaults][] = node:contact:default

@@ -1,0 +1,5 @@
+name = NAS Formatters
+description = Provides custom field formatters.
+core = 7.x
+package = NAS
+dependencies[] = field
