@@ -20,3 +20,4 @@ Author page
 
 - Name, title, image, twitter, body pane [ANW-163]
 - Articles by [Author name] [ANW-189]
+- [Author name]'s Favorite Birds block [ANW-190]
