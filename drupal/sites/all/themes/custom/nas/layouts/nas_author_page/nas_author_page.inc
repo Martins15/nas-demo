@@ -22,5 +22,6 @@ $plugin = array(
     'title' => t('Author title'),
     'bio' => t('Author bio'),
     'articles' => t('Author articles'),
+    'related_birds' => t('Author Favourite Birds'),
   ),
 );
