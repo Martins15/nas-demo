@@ -37,11 +37,11 @@ function theme_twitter_icon_link($variables) {
 function nas_formatters_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   switch ($display['type']) {
     case 'twitter_icon_link':
-        $theme = 'twitter_icon_link';
+      $theme = 'twitter_icon_link';
       break;
+
     default:
-        $theme = 'twitter_icon_link';
-      break;
+      $theme = 'twitter_icon_link';
   }
 
   $elements = array();
