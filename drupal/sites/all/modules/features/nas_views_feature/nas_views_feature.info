@@ -9,6 +9,7 @@ dependencies[] = views_content
 dependencies[] = views_load_more
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
+features[views_view][] = nas_articles
 features[views_view][] = nas_bird_guide
 features[views_view][] = nas_most_viewed_articles
 features[views_view][] = nas_news
