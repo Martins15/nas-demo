@@ -16,3 +16,6 @@ Bird Guide Species
   * Form should redirect to Bird Guide page with selected filters
 - Contextual link to edit Top Color block (text fields for each element) [ANW-223]
 
+Author page
+
+- Name, title, image, twitter, body pane, articles [ANW-163]
