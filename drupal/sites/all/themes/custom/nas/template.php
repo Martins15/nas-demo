@@ -376,7 +376,7 @@ function nas_field__field_author__article($variables) {
  * Preprocess function for field_related_bird field for nodes of type contact.
  */
 function nas_preprocess_field_field_related_bird_contact(&$variables) {
-  $variables['label'] = $variables['element']['#object']->title . '\'s Favorite Birds';
+  $variables['label'] = check_plain($variables['element']['#object']->title . '\'s Favorite Birds');
 }
 
 /**
