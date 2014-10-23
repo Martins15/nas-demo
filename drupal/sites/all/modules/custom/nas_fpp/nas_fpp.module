@@ -210,12 +210,3 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
     $vars['contextual_links'] = drupal_render($build);
   }
 }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function nas_fpp_form_fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form_alter(&$form, $form_state) {
-  $form['field_image']['#access'] = FALSE;
-  dpm($form);
-
-}

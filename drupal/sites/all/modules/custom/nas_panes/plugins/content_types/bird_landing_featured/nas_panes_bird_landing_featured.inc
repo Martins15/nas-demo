@@ -43,10 +43,6 @@ function bird_landing_featured_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    // Mimic bird's hero field.
-    '#field_name' => 'field_hero_image',
-    '#entity_type' => 'node',
-    '#bundle' => 'bird',
     '#field_name' => 'featured_bird',
     '#entity_type' => 'featured_bird',
     '#bundle' => 'featured_bird',
