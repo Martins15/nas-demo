@@ -18,4 +18,5 @@ Bird Guide Species
 
 Author page
 
-- Name, title, image, twitter, body pane, articles [ANW-163]
+- Name, title, image, twitter, body pane [ANW-163]
+- Articles by [Author name] [ANW-189]
