@@ -5,6 +5,7 @@ dependencies[] = image
 features[features_api][] = api:2
 features[image][] = article_featured
 features[image][] = article_teaser
+features[image][] = bio_image
 features[image][] = bird_illustration
 features[image][] = bird_teaser_illustration
 features[image][] = default_teaser_image

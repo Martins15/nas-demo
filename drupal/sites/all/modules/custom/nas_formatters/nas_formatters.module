@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * NAS Formatters module.
+ * Defines site-specific field formatters.
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function nas_formatters_field_formatter_info() {
+  return array(
+    'twitter_small_link' => array(
+      'label' => t('Twitter small link'),
+      'field types' => array('link_field'),
+      'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_formatters_theme() {
+  return array(
+    'twitter_icon_link' => array(
+      'variables' => array('element' => NULL, 'field' => NULL),
+    ),
+  );
+}
+
+/**
+ * Formats a link with twitter icon.
+ */
+function theme_twitter_icon_link($variables) {
+  return l('<i class="icon-twitter"></i>', $variables['element']['url'], array('html' => TRUE));
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function nas_formatters_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  switch ($display['type']) {
+    case 'twitter_icon_link':
+      $theme = 'twitter_icon_link';
+      break;
+
+    default:
+      $theme = 'twitter_icon_link';
+  }
+
+  $elements = array();
+  foreach ($items as $delta => $item) {
+    $elements[$delta] = array(
+      '#theme' => $theme,
+      '#element' => $item,
+      '#field' => $instance,
+      '#display' => $display,
+    );
+  }
+  return $elements;
+}

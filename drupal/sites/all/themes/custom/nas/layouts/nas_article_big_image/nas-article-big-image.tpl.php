@@ -4,7 +4,11 @@
  * Template of Article layout with Big image.
  */
 ?>
-<?php print $content['big_image']; ?>
+<div class="hero dark-gradient">
+  <div class="hero-image">
+    <?php print $content['big_image']; ?>
+  </div>
+</div>
 <div class="hero-caption">
   <div class="row">
     <div class="caption large-10 large-centered columns">

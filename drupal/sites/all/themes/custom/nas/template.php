@@ -201,6 +201,21 @@ function nas_preprocess_site_template_small_header(&$vars) {
  * Implements hook_preprocess_site_template_big_header().
  */
 function nas_preprocess_site_template_big_header(&$vars) {
+  // To Do: 1) create some general function for handling header classes.
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $node = node_load(arg(1));
+    if ($node->panelizer['page_manager']->name == 'node:article:big_image') {
+      $class = &drupal_static('nas_header_class');
+      $class = 'transparent dark-bg';
+    }
+    if ($node->panelizer['page_manager']->name == 'node:article:fullscreen_image') {
+      $get_field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
+      if (empty($get_field_magazine_issue)) {
+        $class = &drupal_static('nas_header_class');
+        $class = 'transparent dark-bg';
+      }
+    }
+  }
   $vars['footer_logo'] = theme('image', array(
       'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
       'attributes' => array('class' => 'footer-logo'),
@@ -246,7 +261,7 @@ function nas_image($variables) {
 
   $add_attributes = array('alt', 'title');
   //this styles shouldn't have width and height for responsive design
-  $remove_attr_for = array('hero_mobile', 'hero_image');
+  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image');
 
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -358,8 +373,38 @@ function nas_field__field_author__article($variables) {
 }
 
 /**
+ * Preprocess function for field_image.
+ */
+function nas_preprocess_image_style(&$vars) {
+  if ($vars['style_name'] == 'bio_image') {
+    $vars['attributes']['class'] = array('bio-image');
+  }
+}
+
+/**
  * Override theme_panels_default_style_render_region().
  */
 function nas_panels_default_style_render_region($vars) {
   return implode('', $vars['panes']);
+}
+
+/**
+ * Preprocess function for views exposed forms.
+ */
+function nas_preprocess_views_exposed_form(&$variables) {
+  if ($variables['form']['#id'] != 'views-exposed-form-nas-bird-guide-nas-bird-guide-fav-birds') {
+    return;
+  }
+
+  // Preprocess fulltext search field
+  $fulltext = $variables['form']['search_api_views_fulltext'];
+  $fulltext['#printed'] = FALSE;
+  $fulltext['#theme'] = 'searchfield';
+  $fulltext['#attributes']['placeholder'] = array('Search for a bird in the guide...');
+  $fulltext['#theme_wrappers'] = array_filter($fulltext['#theme_wrappers'], function ($item) {
+    return $item !== 'form_element';
+  });
+  _form_set_class($fulltext, array('bird-guide-search-input', 'radius'));
+
+  $variables['widgets']['filter-search_api_views_fulltext']->widget = drupal_render($fulltext);
 }

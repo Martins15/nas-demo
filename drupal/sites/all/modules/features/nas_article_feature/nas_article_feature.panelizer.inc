@@ -751,37 +751,6 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-295789ba-2fb8-467e-9dd6-7a37a0c94704'] = $pane;
     $display->panels['author'][0] = 'new-295789ba-2fb8-467e-9dd6-7a37a0c94704';
     $pane = new stdClass();
-    $pane->pid = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
-    $pane->panel = 'big_image';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_hero_image';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'media',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'file_view_mode' => 'hero',
-      ),
-      'context' => 'panelizer',
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '980e3656-5237-45cf-8d86-7fd53daf71c0';
-    $display->content['new-980e3656-5237-45cf-8d86-7fd53daf71c0'] = $pane;
-    $display->panels['big_image'][0] = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
-    $pane = new stdClass();
     $pane->pid = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
     $pane->panel = 'big_image';
     $pane->type = 'entity_field';
@@ -809,11 +778,42 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '50c09e0e-e5c2-4f3a-957f-09b02dd86971';
     $display->content['new-50c09e0e-e5c2-4f3a-957f-09b02dd86971'] = $pane;
-    $display->panels['big_image'][1] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $display->panels['big_image'][0] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $pane = new stdClass();
+    $pane->pid = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
+    $pane->panel = 'big_image';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_hero_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'media',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'hero',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '980e3656-5237-45cf-8d86-7fd53daf71c0';
+    $display->content['new-980e3656-5237-45cf-8d86-7fd53daf71c0'] = $pane;
+    $display->panels['big_image'][1] = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
     $pane = new stdClass();
     $pane->pid = 'new-f255c51a-cf46-481a-aca9-fe3c055c35aa';
     $pane->panel = 'birds';
@@ -1041,25 +1041,6 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '8a09ea69-689d-4d06-8fff-5690529ccf19';
     $display->content['new-8a09ea69-689d-4d06-8fff-5690529ccf19'] = $pane;
     $display->panels['header_hero_attr_text'][0] = 'new-8a09ea69-689d-4d06-8fff-5690529ccf19';
-    $pane = new stdClass();
-    $pane->pid = 'new-f282f2cf-78e6-4006-b0b2-bbd54c72dd1e';
-    $pane->panel = 'left';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_most_viewed_articles-nas_most_viewed_articles';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'f282f2cf-78e6-4006-b0b2-bbd54c72dd1e';
-    $display->content['new-f282f2cf-78e6-4006-b0b2-bbd54c72dd1e'] = $pane;
-    $display->panels['left'][0] = 'new-f282f2cf-78e6-4006-b0b2-bbd54c72dd1e';
     $pane = new stdClass();
     $pane->pid = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
     $pane->panel = 'main';

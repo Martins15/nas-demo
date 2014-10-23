@@ -8,6 +8,7 @@
 define('NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY', 'page-bird_guide');
 define('NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-birds_landing');
 define('NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY', 'page-news');
+define('NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'node_view');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -118,6 +119,10 @@ function nas_panes_ajax_render_alter(&$commands) {
       nas_panes_save_news_page();
     }
 
+    if (strpos($_GET['q'], NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
+      nas_panes_save_node_view_page();
+    }
+
     $commands[] = ctools_ajax_command_reload();
   }
 }
@@ -143,6 +148,22 @@ function nas_panes_save_bird_landing_page() {
  */
 function nas_panes_save_news_page() {
   $cache = page_manager_get_page_cache(NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
+}
+
+/**
+ * Resave bird node view page (cache to database).
+ */
+function nas_panes_save_node_view_page() {
+  $cache = page_manager_get_page_cache(NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY);
+  $cache->changes = array(
+    'handlers' => TRUE,
+    'handlers/node_view_panel_context' => TRUE,
+    'handlers/node_view_panel_context/content' => TRUE,
+  );
+  $cache->changed = TRUE;
+  $cache->handler_info['node_view_panel_context']['changed'] = 2;
+
   page_manager_save_page_cache($cache);
 }
 
