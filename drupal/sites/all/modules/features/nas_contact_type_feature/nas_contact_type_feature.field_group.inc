@@ -24,8 +24,9 @@ function nas_contact_type_feature_field_group_info() {
     'weight' => '6',
     'children' => array(
       0 => 'field_contact_address',
-      1 => 'field_contact_phone',
-      2 => 'field_contact_email',
+      1 => 'field_contact_email',
+      2 => 'field_contact_phone',
+      3 => 'field_contact_office',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
@@ -53,10 +54,10 @@ function nas_contact_type_feature_field_group_info() {
     'label' => 'Press Contact Fields',
     'weight' => '5',
     'children' => array(
-      0 => 'field_contact_title',
-      1 => 'field_image',
-      2 => 'field_contact_bio',
-      3 => 'field_contact_twitter',
+      0 => 'field_contact_bio',
+      1 => 'field_contact_title',
+      2 => 'field_contact_twitter',
+      3 => 'field_image',
       4 => 'field_related_bird',
       5 => 'title',
     ),
