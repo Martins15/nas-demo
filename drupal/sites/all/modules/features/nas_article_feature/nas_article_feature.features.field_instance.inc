@@ -523,7 +523,7 @@ function nas_article_feature_field_default_field_instances() {
           'featured_bird_illustration' => 0,
           'featured_bird_mobile' => 0,
           'hero_cover_bird_page' => 0,
-          'hero_image' => 0,
+          'hero_image' => 'hero_image',
           'hero_mobile' => 0,
         ),
       ),
