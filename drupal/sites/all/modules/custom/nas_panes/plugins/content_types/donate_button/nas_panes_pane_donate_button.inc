@@ -20,6 +20,12 @@ $plugin = array(
 function nas_panes_pane_donate_button_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
+  $form['path'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Path'),
+    '#default_value' => !empty($conf['path']) ? $conf['path'] : '',
+  );
+
   $form['caption'] = array(
     '#type' => 'textarea',
     '#title' => t('Caption'),
@@ -51,13 +57,16 @@ function nas_panes_pane_donate_button_render($subtype, $conf, $args, $contexts) 
 
   $content = theme('nas_panes_pane_donate_button', array(
     'caption' => $conf['caption'],
-    'link' => l(t('Donate'), '', array('attributes' => array('class' => array(
-      'button',
-      'tomato',
-      'large',
-      )
-    ))),
-  ));
+    'link' => l(t('Donate'), $conf['path'], array(
+      'attributes' => array(
+        'class' => array(
+          'button',
+          'tomato',
+          'large',
+        ),
+      ),
+    ),
+  )));
 
   $block->content = $content;
   return $block;
