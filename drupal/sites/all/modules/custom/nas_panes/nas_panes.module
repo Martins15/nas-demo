@@ -185,7 +185,7 @@ function nas_panes_get_blue_text_link($node) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
     $term = taxonomy_term_load($custom_section_item[0]['tid']);
-    return array(check_plain($term->name), url('<front>'));
+    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
   }
 
   $menu_section_item = field_get_items('node', $node, 'field_menu_section');
@@ -212,7 +212,7 @@ function nas_panes_get_blue_text_link($node) {
         break;
       }
     }
-    return array(check_plain($term->name), url('<front>'));
+    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
   }
   return array(NULL, NULL);
 }
