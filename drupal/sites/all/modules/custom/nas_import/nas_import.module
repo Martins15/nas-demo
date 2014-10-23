@@ -60,6 +60,8 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     $preg = '/style=\"(.*?)\"/si';
     $result = preg_replace($preg, '', $item['body']);
     $item['body'] = $result;
+    // Import image.
+    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", "get_image_src", $item['body']);
     nas_import_feeds_presave_news_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'contacts_import') {
@@ -68,6 +70,16 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'users_import') {
     nas_import_feeds_presave_users_import($source, $entity, $item);
   }
+}
+
+/**
+ * Function callback to preg_replace_callback().
+ */
+function get_image_src ($matches) {
+  $full_url = $matches[2];
+  $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
+  $path = file_create_url($file->uri);
+  return '<img src="' . $path . '"/>';
 }
 
 /**
