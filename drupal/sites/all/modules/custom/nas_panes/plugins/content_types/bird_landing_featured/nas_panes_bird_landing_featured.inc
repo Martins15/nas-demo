@@ -47,6 +47,9 @@ function bird_landing_featured_form($form, &$form_state) {
     '#field_name' => 'field_hero_image',
     '#entity_type' => 'node',
     '#bundle' => 'bird',
+    '#field_name' => 'featured_bird',
+    '#entity_type' => 'featured_bird',
+    '#bundle' => 'featured_bird',
   );
 
   // The two function calls below are necessary if we want to use a media
