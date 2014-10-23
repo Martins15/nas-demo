@@ -84,6 +84,14 @@ function nas_panes_theme() {
       'template' => 'nas-panes-social-news-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
     ),
+    'nas_panes_press_contact' => array(
+      'variables' => array(
+        'title' => '',
+        'contacts' => array(),
+      ),
+      'template' => 'nas-panes-press-contact',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact'
+    ),
   );
 }
 

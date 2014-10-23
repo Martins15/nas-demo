@@ -204,11 +204,11 @@ function nas_preprocess_site_template_big_header(&$vars) {
   // To Do: 1) create some general function for handling header classes.
   if (arg(0) == 'node' && is_numeric(arg(1))) {
     $node = node_load(arg(1));
-    if ($node->panelizer['page_manager']->name == 'node:article:big_image') {
+    if (isset($node->panelizer) && $node->panelizer['page_manager']->name == 'node:article:big_image') {
       $class = &drupal_static('nas_header_class');
       $class = 'transparent dark-bg';
     }
-    if ($node->panelizer['page_manager']->name == 'node:article:fullscreen_image') {
+    if (isset($node->panelizer) && $node->panelizer['page_manager']->name == 'node:article:fullscreen_image') {
       $get_field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
       if (empty($get_field_magazine_issue)) {
         $class = &drupal_static('nas_header_class');

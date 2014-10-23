@@ -1544,7 +1544,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<section class="clearfix article-sidebar-section social-sharing no-caption hide-for-tiny hide-for-small hide-for-medium"><a class="social-sharing-icon" href="#"><i class="icon-twitter"></i></a><a class="social-sharing-icon" href="#"><i class="icon-facebook"></i></a><a class="social-sharing-icon" href="#"><i class="icon-mail"></i></a></section><section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium"><small class="article-date">Published Mar 25, 2014</small></section><section class="medium-12 clearfix article-sidebar-section contact-info"><h5>Press Contacts</h5><p><strong>David J. Ringer</strong><br>Media Relations Director<br>Main Office</p><p>225 Varick Street<br>New York, NY 10014</p><p><a href="mailto:dringer@audubon.org">dringer@audubon.org</a></p><p>(212) 979-3062</p></section>',
+      'body' => '<section class="clearfix article-sidebar-section social-sharing no-caption hide-for-tiny hide-for-small hide-for-medium">&nbsp;</section><section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium"><small class="article-date">Published Mar 25, 2014</small></section>',
       'format' => 'full_html',
       'substitute' => 1,
     );
@@ -1560,6 +1560,25 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-12cc9b54-4616-4db3-93a9-9a5f8d98f601'] = $pane;
     $display->panels['left'][0] = 'new-12cc9b54-4616-4db3-93a9-9a5f8d98f601';
     $pane = new stdClass();
+    $pane->pid = 'new-52c42c71-2517-41be-8854-63ee9b6c5099';
+    $pane->panel = 'left';
+    $pane->type = 'nas_panes_press_contact';
+    $pane->subtype = 'nas_panes_press_contact';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '52c42c71-2517-41be-8854-63ee9b6c5099';
+    $display->content['new-52c42c71-2517-41be-8854-63ee9b6c5099'] = $pane;
+    $display->panels['left'][1] = 'new-52c42c71-2517-41be-8854-63ee9b6c5099';
+    $pane = new stdClass();
     $pane->pid = 'new-b7364f99-8234-4ddf-a522-f280c5b8b406';
     $pane->panel = 'left';
     $pane->type = 'views_panes';
@@ -1573,11 +1592,11 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'b7364f99-8234-4ddf-a522-f280c5b8b406';
     $display->content['new-b7364f99-8234-4ddf-a522-f280c5b8b406'] = $pane;
-    $display->panels['left'][1] = 'new-b7364f99-8234-4ddf-a522-f280c5b8b406';
+    $display->panels['left'][2] = 'new-b7364f99-8234-4ddf-a522-f280c5b8b406';
     $pane = new stdClass();
     $pane->pid = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
     $pane->panel = 'main';
