@@ -373,7 +373,14 @@ function nas_field__field_author__article($variables) {
 }
 
 /**
- * Preprocess function for field_image.
+ * Preprocess function for field_related_bird field for nodes of type contact.
+ */
+function nas_preprocess_field_field_related_bird_contact(&$variables) {
+  $variables['label'] = $variables['element']['#object']->title . '\'s Favorite Birds';
+}
+
+/**
+ * Preprocess function for bio_image image style images.
  */
 function nas_preprocess_image_style(&$vars) {
   if ($vars['style_name'] == 'bio_image') {
