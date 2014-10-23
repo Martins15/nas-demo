@@ -18,7 +18,7 @@ define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
  * Implements hook_ctools_plugin_directory().
  */
 function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
-  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+  if ($owner == 'ctools' && !empty($plugin_type)) {
     return 'plugins/' . $plugin_type;
   }
 }
