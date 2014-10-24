@@ -12,10 +12,12 @@
  * - $image_string: sanitized caption + credits of the hero image.
  * - $illustration_path: path to the illustration image of the bird.
  * - $contextual_links: rendered contextual links.
+ * - $color: color scheme for gradient.
+ * - $color_text: color scheme for text.
  */
 ?>
 
-<div class="hero <?php print $color; ?>-gradient">
+<div class="hero <?php print $color; ?>-gradient <?php print $color_text; ?>-text">
   <div class="hero-image">
     <img src="<?php print $image_path_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
     <img src="<?php print $image_path; ?>" alt="" class="hide-for-tiny hide-for-small">

@@ -11299,3 +11299,7 @@ body.touch .sticky-wrapper {
   font-style: normal;
   line-height: 15px;
 }
+
+.manage-thumbnails-popup img, #EPSACropDialog img {
+  max-width: none !important;
+}

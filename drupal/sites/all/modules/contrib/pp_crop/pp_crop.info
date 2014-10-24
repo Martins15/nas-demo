@@ -10,9 +10,9 @@ core = 7.x
 configure = admin/config/media/pp_crop
 
 
-; Information added by Drupal.org packaging script on 2014-06-04
-version = "7.x-1.x-dev"
+; Information added by Drupal.org packaging script on 2014-10-24
+version = "7.x-1.2"
 core = "7.x"
 project = "pp_crop"
-datestamp = "1401923335"
+datestamp = "1414144729"
 
