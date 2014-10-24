@@ -21,5 +21,6 @@ $plugin = array(
     'articles_top' => t('Articles top'),
     'donate' => t('Donate'),
     'articles_bottom' => t('Articles bottom'),
+    'right_sidebar' => t('Right sidebar'),
   ),
 );
