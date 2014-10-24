@@ -102,3 +102,9 @@
   font-style: normal;
   line-height: 15px;
 }
+
+.manage-thumbnails-popup, #EPSACropDialog {
+  img {
+    max-width: none !important;
+  }
+}

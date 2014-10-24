@@ -29,9 +29,6 @@
     <div class="large-8 columns index-list">
       <?php print $content['articles_top']; ?>
       <?php print $content['donate']; ?>
-      <div class="donate-bar">
-        <div class="donate-bar-caption">Remember that Audubon depends on your support to do the conservation work that we do. </div><div href="#" class="donate-bar-button"><a href="#" class="button tomato large">Donate</a></div>
-      </div>
       <?php print $content['articles_bottom']; ?>      
     </div>
   <!-- END MAIN COLUMN -->
@@ -67,16 +64,7 @@
           <h5 class="editorial-card-title"><a href="#">Protect a Western Snowy Plover Nest</a></h5>
         </div>
       </div>
-      <div class="sidebar-section popular-stories story-list">
-        <h3 class="story-list-header">Popular Stories</h3>
-        <ul>
-          <li><a href="#">With So Many Snowies to Study, Scientists are Discovering How Little We Know About This Bird</a></li>
-          <li><a href="#">Photo of the Day: Lilac-Breasted Roller</a></li>
-          <li><a href="#">Crows Understand Caw-se and Effect</a></li>
-          <li><a href="#">Green Energy: Can We Save the Planet and Save Birds?</a></li>
-          <li><a href="#">Nature Photography: Objectivitiy, Manipulation, and Ethics</a></li>
-        </ul>
-      </div>
+      <?php print $content['right_sidebar']; ?>
     </div>
 
     <!-- END SIDEBAR -->

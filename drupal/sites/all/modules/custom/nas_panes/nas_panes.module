@@ -18,7 +18,7 @@ define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
  * Implements hook_ctools_plugin_directory().
  */
 function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
-  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+  if ($owner == 'ctools' && !empty($plugin_type)) {
     return 'plugins/' . $plugin_type;
   }
 }
@@ -37,6 +37,7 @@ function nas_panes_theme() {
         'image_path_mobile' => '',
         'image_string' => '',
         'illustration_path' => '',
+        'color' => '',
         'contextual_links' => '',
       ),
       'template' => 'nas-featured-bird',
@@ -67,6 +68,14 @@ function nas_panes_theme() {
       'template' => 'nas-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
     ),
+    'nas_panes_pane_donate_button' => array(
+      'variables' => array(
+        'caption' => '',
+        'link' => '',
+      ),
+      'template' => 'nas-panes-pane-donate-button',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button'
+    ),
     'nas_featured_social_in_article' => array(
       'variables' => array(
         'title' => '',
@@ -83,6 +92,14 @@ function nas_panes_theme() {
       ),
       'template' => 'nas-panes-social-news-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
+    ),
+    'nas_panes_press_contact' => array(
+      'variables' => array(
+        'title' => '',
+        'contacts' => array(),
+      ),
+      'template' => 'nas-panes-press-contact',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact'
     ),
   );
 }
@@ -177,7 +194,7 @@ function nas_panes_get_blue_text_link($node) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
     $term = taxonomy_term_load($custom_section_item[0]['tid']);
-    return array(check_plain($term->name), url('<front>'));
+    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
   }
 
   $menu_section_item = field_get_items('node', $node, 'field_menu_section');
@@ -204,7 +221,21 @@ function nas_panes_get_blue_text_link($node) {
         break;
       }
     }
-    return array(check_plain($term->name), url('<front>'));
+    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
   }
   return array(NULL, NULL);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nas_panes_preprocess_nas_bird_landing_featured(&$variables) {
+  $variables['color_text'] = $variables['color'] == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function nas_panes_preprocess_nas_featured_bird(&$variables) {
+  $variables['color_text'] = $variables['color'] == 'dark' ? 'light' : 'dark';
 }

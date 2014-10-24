@@ -154,9 +154,6 @@ function epsacrop_dialog($entity_name, $field_name, $bundle, $fid) {
   else {
     $styles = _epsacrop_load_styles_by_instance($entity_name, $field_name, $bundle);
   }
-  
-  // Allow other modules to alter list of styles displayed in the popup.
-  drupal_alter('epsacrop_load_styles', $styles, $entity_name, $field_name, $bundle);
 
   foreach ($styles['styles'] as $style_name) {
     $style = _epsacrop_load_style($style_name);
@@ -816,6 +813,10 @@ function _epsacrop_load_styles_by_instance($entity_type, $field_name, $bundle) {
       $styles = $instance['settings']['epsacrop'];
     }
   }
+
+  // Allow other modules to alter list of styles.
+  drupal_alter('epsacrop_load_styles', $styles, $entity_type, $field_name, $bundle);
+
   return $styles;
 }
 

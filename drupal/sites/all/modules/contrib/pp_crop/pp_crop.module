@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Image crop module.
- */
-
-/**
  * Implements hook_permission().
  */
 function pp_crop_permission() {
@@ -101,10 +96,11 @@ function pp_crop_element_info_alter(&$type) {
 
 
 /**
- * Helper function that add a link in image widget field to open a dialog with images thumbnails.
+ * Helper function that add a link in image widget field to open a dialog with
+ * images thumbnails.
  */
 function pp_crop_element_process($element, $form_state, $form) {
-  if (!isset($element['#field_name']) || !_epsacrop_access()) {
+  if (!isset($element['#field_name']) && !isset($element['#pp_crop_styles']) || !_epsacrop_access()) {
     return $element;
   }
 
@@ -115,7 +111,19 @@ function pp_crop_element_process($element, $form_state, $form) {
   }
 
   _epsacrop_include_header_html();
-  $styles = _epsacrop_load_styles_by_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
+  // If styles defined in element use them.
+  if (isset($element['#pp_crop_styles'])) {
+    $styles = array('styles' => $element['#pp_crop_styles']);
+    $hash = md5(serialize($element['#pp_crop_styles']));
+    cache_set('pp_crop:' . $hash, $element['#pp_crop_styles']);
+    $element['#field_name'] = 'pp_crop:' . $hash;
+    $element['#entity_type'] = '_pp_crop';
+    $element['#bundle'] = '_pp_crop';
+  }
+  else {
+    $styles = _epsacrop_load_styles_by_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
+  }
+
   if (count($styles) == 0) {
     return $element;
   }
@@ -326,8 +334,8 @@ function pp_crop_ajax_manage_thumbnails($settings, $fid) {
 
   $file = file_load($fid);
 
-  $field_settings = _epsacrop_load_styles_by_instance($theme_variables['entity_type'], $theme_variables['field_name'], $theme_variables['bundle']);
-  foreach ($field_settings['styles'] as $image_style) {
+  $styles = $theme_variables['styles'];
+  foreach ($styles as $image_style) {
     $thumbnail_options[$image_style] = theme('image_style', array('style_name' => $image_style, 'path' => $file->uri, 'attributes' => array('class' => 'pp-crop-thumbnail')));
   }
 
@@ -353,6 +361,10 @@ function pp_crop_epsacrop_load_styles_alter(&$styles, $entity_name, $field_name,
   if ($entity_name == 'all' && $field_name == 'all' && $bundle == 'all') {
     $wysiwyg_styles = variable_get('pp_crop_wysiwyg_settings', array());
     $styles['styles'] = array_filter($wysiwyg_styles);
+  }
+  elseif (substr($field_name, 0, 7) == 'pp_crop' && $entity_name == '_pp_crop' && $bundle == '_pp_crop') {
+    $cache = cache_get('pp_crop:' . substr($field_name, 8));
+    $styles['styles'] = $cache->data;
   }
 }
 

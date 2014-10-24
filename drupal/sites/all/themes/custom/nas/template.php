@@ -204,11 +204,11 @@ function nas_preprocess_site_template_big_header(&$vars) {
   // To Do: 1) create some general function for handling header classes.
   if (arg(0) == 'node' && is_numeric(arg(1))) {
     $node = node_load(arg(1));
-    if ($node->panelizer['page_manager']->name == 'node:article:big_image') {
+    if (isset($node->panelizer) && $node->panelizer['page_manager']->name == 'node:article:big_image') {
       $class = &drupal_static('nas_header_class');
       $class = 'transparent dark-bg';
     }
-    if ($node->panelizer['page_manager']->name == 'node:article:fullscreen_image') {
+    if (isset($node->panelizer) && $node->panelizer['page_manager']->name == 'node:article:fullscreen_image') {
       $get_field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
       if (empty($get_field_magazine_issue)) {
         $class = &drupal_static('nas_header_class');
@@ -261,7 +261,7 @@ function nas_image($variables) {
 
   $add_attributes = array('alt', 'title');
   //this styles shouldn't have width and height for responsive design
-  $remove_attr_for = array('hero_mobile', 'hero_image');
+  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image');
 
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -370,6 +370,22 @@ function nas_field__field_author__article($variables) {
   $published = date('M d, Y', $variables['element']['#object']->created);
   $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
   return $output;
+}
+
+/**
+ * Preprocess function for field_related_bird field for nodes of type contact.
+ */
+function nas_preprocess_field_field_related_bird_contact(&$variables) {
+  $variables['label'] = check_plain($variables['element']['#object']->title . '\'s Favorite Birds');
+}
+
+/**
+ * Preprocess function for bio_image image style images.
+ */
+function nas_preprocess_image_style(&$vars) {
+  if ($vars['style_name'] == 'bio_image') {
+    $vars['attributes']['class'] = array('bio-image');
+  }
 }
 
 /**
