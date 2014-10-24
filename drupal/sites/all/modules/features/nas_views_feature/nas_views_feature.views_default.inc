@@ -233,7 +233,17 @@ function nas_views_feature_views_default_views() {
 
   /* Display: Some of Our Favorite Birds */
   $handler = $view->new_display('panel_pane', 'Some of Our Favorite Birds', 'nas_bird_guide_fav_birds');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Matching Birds';
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No birds matching your search query were found ...';
+  $handler->display->display_options['empty']['area']['format'] = 'video';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;

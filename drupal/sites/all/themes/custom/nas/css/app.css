@@ -7270,6 +7270,15 @@ body.touch .primary-sub-nav-index {
     background-repeat: no-repeat;
   }
 }
+.bird-card-grid .view-empty {
+  background-color: #FBFAF6;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 25.5px;
+  text-align: center;
+}
 .bird-card-grid.no-bg {
   background-image: none !important;
 }
@@ -11298,8 +11307,4 @@ body.touch .sticky-wrapper {
   font-size: 14px;
   font-style: normal;
   line-height: 15px;
-}
-
-.manage-thumbnails-popup img, #EPSACropDialog img {
-  max-width: none !important;
 }
