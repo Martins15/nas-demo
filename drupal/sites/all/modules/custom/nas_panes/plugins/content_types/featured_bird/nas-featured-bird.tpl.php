@@ -12,6 +12,8 @@
  * - $image_string: sanitized caption + credits of the hero image.
  * - $illustration_path: path to the illustration image of the bird.
  * - $contextual_links: rendered contextual links.
+ * - $color: color scheme for gradient.
+ * - $color_text: color scheme for text.
  */
 ?>
 <div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">

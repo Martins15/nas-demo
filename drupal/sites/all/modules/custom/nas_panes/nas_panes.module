@@ -239,19 +239,3 @@ function nas_panes_preprocess_nas_bird_landing_featured(&$variables) {
 function nas_panes_preprocess_nas_featured_bird(&$variables) {
   $variables['color_text'] = $variables['color'] == 'dark' ? 'light' : 'dark';
 }
-
-/**
- * Implements hook_epsacrop_load_styes_alter().
- *
- * If we are loading 'featured_bird' styles for cropping dialog this means
- * we are using it in featured bird pane.
- * So lets limit styles to 'featured_bird' and 'featured_bird_mobile'.
- */
-function nas_panes_epsacrop_load_styles_alter(&$styles, $entity_name, $field_name, $bundle) {
-  if ($entity_name == 'featured_bird' && $field_name == 'featured_bird' && $bundle == 'featured_bird') {
-    $styles['styles'] = array_filter(array(
-      'featured_bird' => 'featured_bird',
-      'featured_bird_mobile' => 'featured_bird_mobile',
-    ));
-  }
-}
