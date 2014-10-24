@@ -43,9 +43,7 @@ function bird_landing_featured_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#field_name' => 'featured_bird',
-    '#entity_type' => 'featured_bird',
-    '#bundle' => 'featured_bird',
+    '#pp_crop_styles' => array('featured_bird', 'featured_bird_mobile'),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -71,6 +69,7 @@ function bird_landing_featured_form($form, &$form_state) {
       'light' => 'light'
     ),
     '#default_value' => !empty($conf['color']) ? $conf['color'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.'),
   );
 
   $form['summary'] = array(
