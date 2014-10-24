@@ -79,12 +79,9 @@ function get_image_src ($matches) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
-  watchdog('match1', $match1);
-  watchdog('match2', $match2);
-  watchdog('full_url', $full_url);
   $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
   $path = pp_file_create_url($file->uri);
-  return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '/>';
+  return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
 
 /**
