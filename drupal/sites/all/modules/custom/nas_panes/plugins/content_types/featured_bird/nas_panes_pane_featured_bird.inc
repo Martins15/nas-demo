@@ -61,7 +61,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $node = node_load($conf['bird']['entity_id']);
 
   $color_mode_item = field_get_items('node', $node, 'field_color_mode');
-  $color_mode = isset($color_mode_item[0]['safe_value']) ? $color_mode_item[0]['safe_value'] : 'dark';
+  $color_mode = isset($color_mode_item[0]['value']) ? $color_mode_item[0]['value'] : 'dark';
 
   $scientific_name_item = field_get_items('node', $node, 'field_bird_sci_name');
   $scientific_name = isset($scientific_name_item[0]['safe_value']) ? $scientific_name_item[0]['safe_value'] : '';
