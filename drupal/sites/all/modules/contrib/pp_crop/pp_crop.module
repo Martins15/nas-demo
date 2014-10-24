@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Image crop module.
- */
-
-/**
  * Implements hook_permission().
  */
 function pp_crop_permission() {
@@ -101,10 +96,11 @@ function pp_crop_element_info_alter(&$type) {
 
 
 /**
- * Helper function that add a link in image widget field to open a dialog with images thumbnails.
+ * Helper function that add a link in image widget field to open a dialog with
+ * images thumbnails.
  */
 function pp_crop_element_process($element, $form_state, $form) {
-  if (!isset($element['#field_name']) || !_epsacrop_access()) {
+  if (!isset($element['#field_name']) && !isset($element['#pp_crop_styles']) || !_epsacrop_access()) {
     return $element;
   }
 
@@ -115,10 +111,13 @@ function pp_crop_element_process($element, $form_state, $form) {
   }
 
   _epsacrop_include_header_html();
-  $styles = _epsacrop_load_styles_by_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
-
-  // Allow other modules to alter list of styles displayed in the popup.
-  drupal_alter('epsacrop_load_styles', $styles, $element['#entity_type'], $element['#field_name'], $element['#bundle']);
+  // If styles defined in element use them.
+  if (isset($element['#pp_crop_styles'])) {
+    $styles = array('styles' => $element['#pp_crop_styles']);
+  }
+  else {
+    $styles = _epsacrop_load_styles_by_instance($element['#entity_type'], $element['#field_name'], $element['#bundle']);
+  }
 
   if (count($styles) == 0) {
     return $element;
