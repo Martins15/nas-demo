@@ -79,6 +79,9 @@ function get_image_src ($matches) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
+  watchdog('match1', $match1);
+  watchdog('match2', $match2);
+  watchdog('full_url', $full_url);
   $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
   $path = pp_file_create_url($file->uri);
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '/>';
@@ -99,7 +102,6 @@ function pp_file_create_url($uri) {
       if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
         // Remove 'nas_base_url='.
         $base_url_from_drush = substr($drush_arg, 13);
-        watchdog('bbbb', $base_url_from_drush);
         break;
       }
     }
@@ -107,7 +109,6 @@ function pp_file_create_url($uri) {
       list(, $filename) = explode('://', $uri);
       $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
     }
-    watchdog('aaaa', $file_url);
   }
   return $file_url;
 }
