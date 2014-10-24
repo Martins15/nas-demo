@@ -99,6 +99,8 @@ function pp_file_create_url($uri) {
       if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
         // Remove 'nas_base_url='.
         $base_url_from_drush = substr($drush_arg, 13);
+    watchdog('bbbb', $file_url);
+
         break;
       }
     }
@@ -106,6 +108,7 @@ function pp_file_create_url($uri) {
       list(, $filename) = explode('://', $uri);
       $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
     }
+    watchdog('aaaa', $file_url);
   }
   return $file_url;
 }
