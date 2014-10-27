@@ -11303,3 +11303,7 @@ body.touch .sticky-wrapper {
 .manage-thumbnails-popup img, #EPSACropDialog img {
   max-width: none !important;
 }
+
+.strip-nav i[class^="icon-"], .strip-nav i[class*=" icon-"] {
+  line-height: 11px;
+}
