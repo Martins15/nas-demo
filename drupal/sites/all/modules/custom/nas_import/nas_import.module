@@ -93,12 +93,12 @@ function get_image_src($matches, $source_nid) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
+  // Using define early pattern
+  $path = $full_url;
   if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
-    $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid);
-    $path = pp_file_create_url($file->uri);
-  }
-  else {
-    $path = $full_url;
+    if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
+      $path = pp_file_create_url($file->uri);
+    }
   }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
@@ -522,7 +522,9 @@ function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status
       $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
     }
     $filepath = _nas_import_system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE, $source_nid);
-
+    if (!$filepath) {
+      return FALSE;
+    }
     $cached_directory = drupal_dirname($cached_filepath);
     file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
     file_unmanaged_copy($filepath, $cached_filepath);
