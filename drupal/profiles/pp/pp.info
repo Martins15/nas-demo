@@ -49,6 +49,7 @@ dependencies[] = fieldable_panels_panes
 dependencies[] = entityreference_autocomplete
 dependencies[] = views_load_more
 dependencies[] = better_formats
+dependencies[] = elements
 
 ; Custom modules
 dependencies[] = nas_solr_feature

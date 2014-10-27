@@ -13,6 +13,7 @@
 
 <div<?php print $div_attributes; ?>>
   <div class="row">
+    <?php print $contextual_links; ?>
     <div class="column">
       <h2 class="guide-bar-title"><?php print $title; ?></h2>
       <div class="guide-bar-attribution">

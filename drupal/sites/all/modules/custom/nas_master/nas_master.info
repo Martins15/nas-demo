@@ -28,3 +28,6 @@ dependencies[] = nas_magazine_issue_feature
 dependencies[] = nas_news_page_feature
 dependencies[] = nas_disqus
 dependencies[] = nas_max_size_upload_file
+dependencies[] = nas_solr
+dependencies[] = nas_formatters
+dependencies[] = nas_author_page

@@ -1,0 +1,23 @@
+Bird Guide
+
+- Contextual link to edit Top Color block (text fields for each element) [ANW-201]
+- Contextual link to edit Featured Bird block (entity reference)
+- Submit search form (everything ajax)
+  * keyword search
+  * selectboxes
+- Show me more ajax pager
+- Contextual link to edit Birds in the News
+
+
+Bird Guide Species
+
+- Top Color Block with search: [ANW-223]
+  * Find button should toggle search form
+  * Form should redirect to Bird Guide page with selected filters
+- Contextual link to edit Top Color block (text fields for each element) [ANW-223]
+
+Author page
+
+- Name, title, image, twitter, body pane [ANW-163]
+- Articles by [Author name] [ANW-189]
+- [Author name]'s Favorite Birds block [ANW-190]

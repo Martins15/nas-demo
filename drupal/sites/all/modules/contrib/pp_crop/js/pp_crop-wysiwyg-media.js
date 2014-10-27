@@ -4,7 +4,7 @@
    * Override InsertMedia.insert method to add triggering custom event so contrib 
    * modules can alter element variable (data that is encoded in json).
    */
-	InsertMedia.prototype.insert = function(formatted_media) {
+  InsertMedia.prototype.insert = function(formatted_media) {
     var info = {
           fid: this.mediaFile.fid,
           view_mode: formatted_media.type,
@@ -22,5 +22,5 @@
 
     // Insert placeholder markup into wysiwyg.
     Drupal.wysiwyg.instances[this.instanceId].insert(markup);
-  };
+  }
 })(jQuery);

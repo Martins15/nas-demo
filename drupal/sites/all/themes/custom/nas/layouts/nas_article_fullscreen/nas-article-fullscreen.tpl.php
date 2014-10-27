@@ -13,26 +13,25 @@
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
       <div class="columns large-10 large-centered">
         <?php print $content['header_hero']; ?>
-        <div class="article-meta clearfix hide-for-large hide-for-xlarge">
-          <?php print $content['mobile_author']; ?>
-        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="hero-attribution row">
-  <div class="column"><span class="hero-attribution-text"><?php print $content['header_hero_attr_text']; ?></span></div>
+  <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">
       <div class="large-10 large-centered columns hide-for-large hide-for-xlarge">
         <?php print $content['header']; ?>
+        <div class="article-meta clearfix hide-for-large hide-for-xlarge">
+          <?php print $content['mobile_author']; ?>
+        </div>
       </div>
     </header>
     <div class="article-body row">
       <div class="article-text large-push-2 large-10 columns reflow-body">
-
         <span data-reflow-placeholder="0"></span>
         <aside class="article-aside reflow reflow-into-body">
           <?php print $content['right']; ?>

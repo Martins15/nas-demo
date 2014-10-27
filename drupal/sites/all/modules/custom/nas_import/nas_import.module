@@ -19,6 +19,7 @@ define('NAS_OLD_D6_VID_TOPIC', 13);
 define('NAS_OLD_D6_VID_MAGAZINE_CATEGORY', 41);
 define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
+define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
 /**
  * Implements hook_ctools_plugin_api().
@@ -56,6 +57,15 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     nas_import_feeds_presave_birds_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'news_import') {
+    // Import image.
+    $nid = $item['nid'];
+    $callback = function ($match) use ($nid) {
+      get_image_src($match, $nid);
+    };
+    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", $callback, $item['body']);
+    $preg = '/style=\"(.*?)\"/si';
+    $result = preg_replace($preg, '', $item['body']);
+    $item['body'] = $result;
     nas_import_feeds_presave_news_import($source, $entity, $item);
   }
   if ($entity->feeds_item->id == 'contacts_import') {
@@ -64,6 +74,59 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   if ($entity->feeds_item->id == 'users_import') {
     nas_import_feeds_presave_users_import($source, $entity, $item);
   }
+}
+
+/**
+ * Function callback to preg_replace_callback().
+ *
+ * Handle inline images:
+ *   - keeps images hosted not on *.audubon.org origin;
+ *   - downloads images from *.audubon.org and replaces src;
+ *   - keeps images that could not be downloaded and logs where they were found.
+ *
+ * @param array $matches - parts of image tag.
+ * @param integer source_nid - nid of node from audubon.org
+ *
+ * @return string with corrected HTML markup
+ */
+function get_image_src($matches, $source_nid) {
+  $match1 = $matches[1];
+  $match2 = $matches[3];
+  $full_url = $matches[2];
+  if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
+    $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid);
+    $path = pp_file_create_url($file->uri);
+  }
+  else {
+    $path = $full_url;
+  }
+  return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
+}
+
+/**
+ *
+ */
+function pp_file_create_url($uri) {
+  $file_url = file_create_url($uri);
+  // For some reason simple file_create_url() doesn't work
+  // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
+  // via drush command if it is avaiable.
+  if (function_exists('drush_main')) {
+    $drush_context = drush_get_context('DRUSH_COMMAND_ARGS');
+    $base_url_from_drush = '';
+    foreach ($drush_context as $drush_arg) {
+      if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
+        // Remove 'nas_base_url='.
+        $base_url_from_drush = substr($drush_arg, 13);
+        break;
+      }
+    }
+    if (!empty($base_url_from_drush)) {
+      list(, $filename) = explode('://', $uri);
+      $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
+    }
+  }
+  return $file_url;
 }
 
 /**
@@ -224,7 +287,8 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
  * hook_feeds_presave for news_import importer.
  */
 function nas_import_feeds_presave_news_import($source, $entity, $item) {
-  // Save news image to d7 field_image field.
+  // Save news field_image_ref images to d7 field files. Build a map.
+  $images_mapping = array();
   if (!empty($item['field_image_ref'])) {
     foreach ($item['field_image_ref'] as $field_value) {
       if (!isset($field_value['nid'])) {
@@ -234,9 +298,33 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       $image_node = drupal_json_decode($result->data);
       $image_node = reset($image_node);
       if (!empty($image_node['field_photo'])) {
-        nas_import_import_image($entity, $image_node['field_photo'], 'field_image');
+        $image_file = nas_import_import_image($entity, $image_node['field_photo']);
+        $file_url = pp_file_create_url($image_file->uri);
+        $images_mapping[$field_value['nid']] = $file_url;
       }
     }
+  }
+
+  // Convert inline images with captions.
+  if (!empty($item['body'])) {
+    // @codingStandardsIgnoreStart
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
+      // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
+    // @codingStandardsIgnoreEnd
   }
 
   // Save old taxonomy terms to existed terms if match.
@@ -287,6 +375,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (!empty($item['created'])) {
     $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
   }
+  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
 }
 
 /**
@@ -387,36 +476,52 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
  * @param string $d7_field_name
  *   Name of the field for drupal 7.
  */
-function nas_import_import_image($entity, $d6_field_array, $d7_field_name) {
+function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL) {
   foreach ($d6_field_array as $key => $value) {
     if (!isset($value['fid'])) {
       continue;
     }
     $file = nas_import_add_existing_file($value['filepath'], 'image');
-    $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    if (!empty($d7_field_name)) {
+      $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    }
+
+    $file_entity = file_load($file->fid);
 
     // Additionally save Alt and Title if exist.
     if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
-      $file_entity = file_load($file->fid);
       $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
       // Save Title to a new field Credit.
       $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
       file_save($file_entity);
     }
+    return $file_entity;
   }
 }
 
 /**
  * Custom function for saving files.
  */
-function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT) {
+function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0) {
+  // Prepare filepath. It might be already encoded or not.
+  $remote_filepath = trim($remote_filepath, '/');
+  $path_parts = explode('/', $remote_filepath);
+  foreach ($path_parts as &$part) {
+    $part = rawurlencode(rawurldecode($part));
+  }
+  $remote_filepath = implode('/', $path_parts);
+
   $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
   if (file_exists($cached_filepath)) {
     $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
   }
   else {
-    $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($remote_filepath));
-    $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
+    $remote_fullpath = $remote_filepath;
+    // if remote_filepath is relative url add scheme and domain
+    if (strpos($remote_filepath, '://') === FALSE) {
+      $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
+    }
+    $filepath = _nas_import_system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE, $source_nid);
 
     $cached_directory = drupal_dirname($cached_filepath);
     file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
@@ -764,4 +869,75 @@ function _nas_office_name_by_id($id) {
   );
 
   return isset($map[$id]) ? $map[$id] : '';
+}
+
+/**
+ * Attempts to get a file using drupal_http_request and to store it locally.
+ *
+ * This is site-specific version of system_retrieve_file that does not set error
+ * messages if file could not be downloaded, logs it. Used on import to prevent
+ * build failure.
+ *
+ * @param string $url
+ *   The URL of the file to grab.
+ * @param string $destination
+ *   Stream wrapper URI specifying where the file should be placed. If a
+ *   directory path is provided, the file is saved into that directory under
+ *   its original name. If the path contains a filename as well, that one will
+ *   be used instead.
+ *   If this value is omitted, the site's default files scheme will be used,
+ *   usually "public://".
+ * @param bool $managed
+ *   If this is set to TRUE, the file API hooks will be invoked and the file is
+ *   registered in the database.
+ * @param int $replace
+ *   Replace behavior when the destination file already exists:
+ *   - FILE_EXISTS_REPLACE: Replace the existing file.
+ *   - FILE_EXISTS_RENAME: Append _{incrementing number} until the filename is
+ *     unique.
+ *   - FILE_EXISTS_ERROR: Do nothing and return FALSE.
+ * @param int $source_nid
+ *   Nid of audubon.org's node.
+ *
+ * @return mixed
+ *   One of these possibilities:
+ *   - If it succeeds and $managed is FALSE, the location where the file was
+ *     saved.
+ *   - If it succeeds and $managed is TRUE, a \Drupal\file\FileInterface
+ *     object which describes the file.
+ *   - If it fails, FALSE.
+ */
+function _nas_import_system_retrieve_file($url, $destination = NULL, $managed = FALSE, $replace = FILE_EXISTS_RENAME, $source_nid = 0) {
+  $parsed_url = parse_url($url);
+  if (!isset($destination)) {
+    $path = file_build_uri(drupal_basename($parsed_url['path']));
+  }
+  else {
+    if (is_dir(drupal_realpath($destination))) {
+      // Prevent URIs with triple slashes when glueing parts together.
+      $path = str_replace('///', '//', "$destination/") . drupal_basename($parsed_url['path']);
+    }
+    else {
+      $path = $destination;
+    }
+  }
+  $result = drupal_http_request($url);
+  if ($result->code != 200) {
+    drupal_set_message(t('HTTP error @errorcode occurred when trying to fetch @remote. It was found on @sourcepage', array(
+      '@errorcode' => $result->code,
+      '@remote' => $url,
+      '@sourcepage' => 'http://audubon.org/node/' . $source_nid,
+    )), 'warning');
+    watchdog('nas_import', 'Image @remote could not be downloaded. Found on @sourcepage', array(
+      '@remote' => $url,
+      '@sourcepage' => 'http://audubon.org/node/' . $source_nid,
+    ));
+    return FALSE;
+  }
+  $local = $managed ? file_save_data($result->data, $path, $replace) : file_unmanaged_save_data($result->data, $path, $replace);
+  if (!$local) {
+    drupal_set_message(t('@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path)), 'error');
+  }
+
+  return $local;
 }

@@ -13,6 +13,13 @@ function nas_article_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'date_format_article_date';
+  $strongarm->value = 'M j, Y';
+  $export['date_format_article_date'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'date_format_news';
   $strongarm->value = 'F d, Y';
   $export['date_format_news'] = $strongarm;
@@ -29,7 +36,7 @@ function nas_article_feature_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
