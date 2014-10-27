@@ -1677,31 +1677,13 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-15d5680b-c8fd-400b-a7d5-549940d4cfb3'] = $pane;
     $display->panels['main'][1] = 'new-15d5680b-c8fd-400b-a7d5-549940d4cfb3';
     $pane = new stdClass();
-    $pane->pid = 'new-a3736529-9262-4ce6-8f12-65ac64a0a20e';
+    $pane->pid = 'new-01772954-4415-44ed-9680-fb74fa80f03c';
     $pane->panel = 'right';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'nas_panes_press_releases';
+    $pane->subtype = 'nas_panes_press_releases';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => '',
-      'body' => '<aside class="medium-12 article-aside small reflow reflow-into-sidebar-bottom" data-reflow-class="full-width">
-              <div class="other-releases story-list small">
-                <h5>Other Releases</h5>
-                <ul>
-                  <li><a href="#">Large Oil Spill in Galveston Bay Threatens Tens of Thousands of Birds</a></li>
-                  <li><a href="#">Audubon Statement on EPA Proposed "Waters of the United States" Rule</a></li>
-                  <li><a href="#">Former Republican Congressman and Silver Lake Partner Join Audubon Society Board As David B. Ford Named Chairman</a></li>
-                  <li><a href="#"> Audubon Chicago Region Welcomes Dynamic New Leadership</a></li>
-                  <li><a href="#">Audubon Gala Honors Leading Conservationists with Top Environmental Awards</a></li>
-                  <li class="more"><a href="#">View all press releases »</a></li>
-                </ul>
-              </div>
-            </aside>',
-      'format' => 'full_html',
-      'substitute' => 1,
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -1710,9 +1692,9 @@ function nas_article_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'a3736529-9262-4ce6-8f12-65ac64a0a20e';
-    $display->content['new-a3736529-9262-4ce6-8f12-65ac64a0a20e'] = $pane;
-    $display->panels['right'][0] = 'new-a3736529-9262-4ce6-8f12-65ac64a0a20e';
+    $pane->uuid = '01772954-4415-44ed-9680-fb74fa80f03c';
+    $display->content['new-01772954-4415-44ed-9680-fb74fa80f03c'] = $pane;
+    $display->panels['right'][0] = 'new-01772954-4415-44ed-9680-fb74fa80f03c';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
   $panelizer->display = $display;
