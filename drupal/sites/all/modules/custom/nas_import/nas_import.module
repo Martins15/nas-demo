@@ -58,7 +58,11 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   }
   if ($entity->feeds_item->id == 'news_import') {
     // Import image.
-    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", "get_image_src", $item['body'], $item['nid']);
+    $nid = $item['nid'];
+    $callback = function ($match) use ($nid) {
+      get_image_src($match, $nid);
+    };
+    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", $callback, $item['body']);
     $preg = '/style=\"(.*?)\"/si';
     $result = preg_replace($preg, '', $item['body']);
     $item['body'] = $result;
