@@ -484,12 +484,20 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL
  * Custom function for saving files.
  */
 function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT) {
+  // Prepare filepath. It might be already encoded or not.
+  $remote_filepath = trim($remote_filepath, '/');
+  $path_parts = explode('/', $remote_filepath);
+  foreach ($path_parts as &$part) {
+    $part = rawurlencode(rawurldecode($part));
+  }
+  $remote_filepath = implode('/', $path_parts);
+
   $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
   if (file_exists($cached_filepath)) {
     $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
   }
   else {
-    $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($remote_filepath));
+    $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
     $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
 
     $cached_directory = drupal_dirname($cached_filepath);
