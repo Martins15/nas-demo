@@ -1,3 +1,6 @@
+Nav = {};
+var Nas = Nas || {};
+
 (function ($) {
   Drupal.behaviors.nasMenu = {
     attach: function (context, settings) {
@@ -52,15 +55,8 @@
       }
     }
   };
-  
-})(jQuery);
 
-Nav = {};
-var Nas = Nas || {};
-
-(function ($) {
 // @todo Figure out how this is going to work on touch
-
   Nav.handleTouch = function () {
     $(".primary-nav-toggler").removeAttr("href");
   };
@@ -121,18 +117,29 @@ var Nas = Nas || {};
   };
 
   Nav.bindTablet = function () {
-    $(".primary-nav-toggler").bind("touchend", function () {
+    $(".primary-nav-toggler").bind("touchend", function (e) {
       var $this = $(this);
 
-      Nav._toggleEffect($this);
+      if (!$this.hasClass("open")) {
+        markLinkTouched($this, 500);
+        Nav._toggleEffect($this);
+      }
+    });
 
-      $this.one("touchend", function () {
-        Nav.reset();
-        Nav.bindTablet();
-      });
+    $(".primary-nav-toggler").bind("click", function (e) {
+      if (!$(this).hasClass("open") || $(this).data("touched")) {
+          e.preventDefault();
+      }
     });
 
     Nav._bindSearch();
+
+    function markLinkTouched($link, timeout) {
+      $link.data("touched", 1);
+      setTimeout(function(){
+        $link.removeData("touched");
+      }, timeout);
+    }
   };
 
   Nav._toggleEffect = function ($this) {
