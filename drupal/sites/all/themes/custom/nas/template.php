@@ -340,6 +340,20 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
 
 /*
  * Implements theme_field().
+ *
+ * Override theming of date field of press release.
+ */
+function nas_field__field_article_date__article($variables) {
+  if (!isset($variables['element'][0]['#markup'])) {
+    return '';
+  }
+  return '<section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">'
+    . '<small class="article-date">' . check_plain($variables['element']['#title']) . ' ' . strip_tags($variables['element'][0]['#markup']) . '</small>'
+    . '</section>';
+}
+
+/*
+ * Implements theme_field().
  */
 function nas_field__field_author__article($variables) {
   $output = '';
