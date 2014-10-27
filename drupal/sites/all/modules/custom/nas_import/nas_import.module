@@ -79,8 +79,13 @@ function get_image_src ($matches) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
-  $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
-  $path = pp_file_create_url($file->uri);
+  if (strpos('://', $full_url) !== FALSE) {
+    $path = $full_url;
+  }
+  else {
+    $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
+    $path = pp_file_create_url($file->uri);
+  }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
 
@@ -498,7 +503,7 @@ function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status
   }
   else {
     $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
-    $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
+    $filepath = _nas_import_system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
 
     $cached_directory = drupal_dirname($cached_filepath);
     file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
@@ -846,4 +851,64 @@ function _nas_office_name_by_id($id) {
   );
 
   return isset($map[$id]) ? $map[$id] : '';
+}
+
+/**
+ * Attempts to get a file using drupal_http_request and to store it locally.
+ *
+ * This is version of system_retrieve_file that does not set error messages if
+ * file could not be downloaded. Used on import to prevent build failure.
+ *
+ * @param string $url
+ *   The URL of the file to grab.
+ * @param string $destination
+ *   Stream wrapper URI specifying where the file should be placed. If a
+ *   directory path is provided, the file is saved into that directory under
+ *   its original name. If the path contains a filename as well, that one will
+ *   be used instead.
+ *   If this value is omitted, the site's default files scheme will be used,
+ *   usually "public://".
+ * @param bool $managed
+ *   If this is set to TRUE, the file API hooks will be invoked and the file is
+ *   registered in the database.
+ * @param int $replace
+ *   Replace behavior when the destination file already exists:
+ *   - FILE_EXISTS_REPLACE: Replace the existing file.
+ *   - FILE_EXISTS_RENAME: Append _{incrementing number} until the filename is
+ *     unique.
+ *   - FILE_EXISTS_ERROR: Do nothing and return FALSE.
+ *
+ * @return mixed
+ *   One of these possibilities:
+ *   - If it succeeds and $managed is FALSE, the location where the file was
+ *     saved.
+ *   - If it succeeds and $managed is TRUE, a \Drupal\file\FileInterface
+ *     object which describes the file.
+ *   - If it fails, FALSE.
+ */
+function _nas_import_system_retrieve_file($url, $destination = NULL, $managed = FALSE, $replace = FILE_EXISTS_RENAME) {
+  $parsed_url = parse_url($url);
+  if (!isset($destination)) {
+    $path = file_build_uri(drupal_basename($parsed_url['path']));
+  }
+  else {
+    if (is_dir(drupal_realpath($destination))) {
+      // Prevent URIs with triple slashes when glueing parts together.
+      $path = str_replace('///', '//', "$destination/") . drupal_basename($parsed_url['path']);
+    }
+    else {
+      $path = $destination;
+    }
+  }
+  $result = drupal_http_request($url);
+  if ($result->code != 200) {
+    drupal_set_message(t('HTTP error @errorcode occurred when trying to fetch @remote.', array('@errorcode' => $result->code, '@remote' => $url)), 'warning');
+    return FALSE;
+  }
+  $local = $managed ? file_save_data($result->data, $path, $replace) : file_unmanaged_save_data($result->data, $path, $replace);
+  if (!$local) {
+    drupal_set_message(t('@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path)), 'error');
+  }
+
+  return $local;
 }
