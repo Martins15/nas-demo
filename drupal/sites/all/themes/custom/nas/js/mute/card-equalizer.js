@@ -20,9 +20,8 @@ $(function() {
           maxHeight = 0,
           minHeight = 0;
 
-      $cards.each(function() {
+      $contents.each(function() {
         var $this = $(this);
-
         cardHeights.push($this.outerHeight());
       });
 
@@ -30,8 +29,8 @@ $(function() {
       minHeight = Math.min.apply(null, cardHeights);
       delta = maxHeight - minHeight;
 
-      if(delta < 120 && delta > 0) {
-        $cards.css({"min-height": maxHeight + "px"});
+      if (delta < 120 && delta > 0) {
+        $contents.css({"min-height": maxHeight + "px"});
       }
     });
   }
