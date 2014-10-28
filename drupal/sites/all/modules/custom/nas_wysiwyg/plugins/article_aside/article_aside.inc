@@ -1,6 +1,8 @@
 <?php
+
 /**
- * @file WYSIWYG plugin.
+ * @file
+ * WYSIWYG plugin.
  */
 
 /**
