@@ -4,6 +4,7 @@
  * @file
  * define ctools content type.
  */
+
 $plugin = array(
   'single' => TRUE,
   'title' => t('Flyways Landing. Top block'),
@@ -91,17 +92,19 @@ function flyways_landing_top_form_submit(&$form, &$form_state) {
  * Run-time rendering of the body of the block (content type)
  * See ctools_plugin_examples for more advanced info
  */
-function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
+function flyways_landing_top_render($subtype, $conf, $args,а $contexts) {
   $block = new stdClass();
-
+  // @codingStandardsIgnoreStart
   // Sanitize configuration before passing to template.
   array_walk_recursive($conf, function(&$value, $key) {
     if (strpos($key, 'image') !== FALSE) {
       $value = file_create_url($value);
-    } else {
+    }
+    else {
       $value = check_plain($value);
     }
   });
+  // @codingStandardsIgnoreEnd
 
   $contextual_links = '';
   if (user_access('administer site configuration')) {

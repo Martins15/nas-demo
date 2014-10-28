@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Upload default images.
+ */
+
+/**
  * Implements hook_install().
  */
 function nas_panes_install() {
