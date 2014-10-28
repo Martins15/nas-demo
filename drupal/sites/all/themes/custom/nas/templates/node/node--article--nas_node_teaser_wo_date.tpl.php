@@ -95,7 +95,7 @@
     <div class="tiny-8 columns">
       <div class="editorial-card-content">
         <span class="editorial-card-slug">
-          <a href="<?php print $blue_text_link_url; ?>"><?php print $blue_text_link_url; ?></a>
+          <a href="<?php print $blue_text_link_url; ?>"><?php print $blue_text_link_text; ?></a>
         </span>
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
         <div class="editorial-card-body">
