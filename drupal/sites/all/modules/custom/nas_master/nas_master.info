@@ -31,3 +31,4 @@ dependencies[] = nas_max_size_upload_file
 dependencies[] = nas_solr
 dependencies[] = nas_formatters
 dependencies[] = nas_author_page
+dependencies[] = nas_editor_role
