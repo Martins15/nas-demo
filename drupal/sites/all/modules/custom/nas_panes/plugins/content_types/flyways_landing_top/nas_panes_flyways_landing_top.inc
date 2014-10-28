@@ -92,7 +92,7 @@ function flyways_landing_top_form_submit(&$form, &$form_state) {
  * Run-time rendering of the body of the block (content type)
  * See ctools_plugin_examples for more advanced info
  */
-function flyways_landing_top_render($subtype, $conf, $args,а $contexts) {
+function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   // @codingStandardsIgnoreStart
   // Sanitize configuration before passing to template.
