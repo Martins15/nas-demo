@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * 
+ */
+
+/**
+ * Implements hook_wysiwyg_include_directory().
+ */
+function nas_wysiwyg_wysiwyg_include_directory($type) {
+  switch ($type) {
+    case 'plugins':
+      return $type;
+  }
+}
+
+/**
+ * Implements hook_filter_info().
+ */
+function nas_wysiwyg_filter_info() {
+  $filters['nas_wysiwyg_article_aside_filter'] = array(
+    'title' => t('Convert NAS article aside Insert tags to markup'),
+    'description' => t('This filter will convert [article_aside_insert]...[/article_aside_insert] tags into markup.'),
+    'process callback' => 'nas_wysiwyg_article_aside_filter_process',
+    'weight' => 2,
+  );
+
+  return $filters;
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function nas_wysiwyg_element_info_alter(&$types) {
+  $types['text_format']['#pre_render'][] = 'nas_wysiwyg_article_aside_pre_render_text_format';
+}
+
+
+/**
+ * Pre render function for text_format.
+ */
+function nas_wysiwyg_article_aside_pre_render_text_format($element) {
+  // filter_process_format() copies properties to the expanded 'value' child
+  // element.
+  if (!isset($element['format'])) {
+    return $element;
+  }
+
+  $field = &$element['value'];
+  $tagmap = _nas_wysiwyg_article_aside_generate_tagMap($field['#value']);
+
+  if (isset($tagmap)) {
+    drupal_add_js(array('nas_wysiwyg_tagmap' => $tagmap), 'setting');
+  }
+  return $element;
+}
+
+/**
+ * Finds all matches and run them through nas_wysiwyg_article_aside_token_to_markup().
+ */
+function nas_wysiwyg_article_aside_filter_process($text) {
+  $text = ' ' . $text . ' ';
+  $text = preg_replace_callback("/\[article_aside_insert\].*?\[\/article_aside_insert\]/s", 'nas_wysiwyg_article_aside_token_to_markup', $text);
+  return $text;
+}
+
+/**
+ * Convert tokens to markup.
+ */
+function nas_wysiwyg_article_aside_token_to_markup($match) {
+  preg_match("/\[head\](.*?)\[\/head\]/s", $match[0], $head);
+  preg_match("/\[text\](.*?)\[\/text\]/s", $match[0], $text);
+  $block = array(
+    'head' => $head[1],
+    'text' => $text[1]
+  );
+  $text = '<aside class="article-aside"><div class="engagement-card side-note"><div class="engagement-card-content"><h4 class="engagement-card-headline">' . $block['head'] .'</h4><p class="p1">' . $block['text'] .'</p></div></div></aside>';
+  return $text;
+}
+
+/**
+ * Tagmap generator function.
+ */
+function _nas_wysiwyg_article_aside_generate_tagMap($text) {
+  static $tagmap = array();
+  preg_match_all("/\[article_aside_insert\].*?\[\/article_aside_insert\]/s", $text, $matches, PREG_SET_ORDER);
+  foreach ($matches as $match) {
+    if (empty($tagmap[$match[0]])) {
+      $markup = nas_wysiwyg_article_aside_token_to_markup($match);
+      $tagmap[$match[0]] = $markup;
+    }
+  }
+  return $tagmap;
+}

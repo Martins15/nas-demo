@@ -1,0 +1,6 @@
+name = NAS WYSIWYG
+description = "Provides plugins for wysiwyg"
+package = NAS
+core = 7.x
+
+dependencies[] = wysiwyg
