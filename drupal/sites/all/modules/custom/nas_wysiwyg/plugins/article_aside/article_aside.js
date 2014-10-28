@@ -1,22 +1,16 @@
 (function($) {
   Drupal.behaviors.nas_wysiwyg = {
     attach: function(context, settings) {
-
-      // Using setTimeout is dirty bugfix for Firefox as it doesn't react on .load() event so existing blocks
-      // do not get click behavior.
-      setTimeout(
-        function() {
-          $('iframe').each(function() {
-            // We need to attach behavior twice as when page is loaded we need to react on load() event,
-            // as iframe might not loaded yet, but when the page has been loaded already (inserting new block)
-            // we need not to use load() event.
-            nas_wysiwyg_attach_behavior(this);
-
-            $(this).load(function() {
-              nas_wysiwyg_attach_behavior(this);
-            });
-          });
-        }, 1000);
+      /** 
+       * In that case, we haven't better solution for attaching handlers
+       * for loaded wysiwyg, so we follow this logic:
+       * if you want to use plugin you have to move mouse pointer inside wysiwyg.
+       */
+      $('.cke_wysiwyg_frame').each(function() {
+        $(this).mouseenter(function() {
+          nas_wysiwyg_attach_behavior(this);
+        });
+      });
 
       /**
        * Attach click events to iframe and inserted block.
@@ -29,7 +23,7 @@
 
         // Remove active block on Delete button click.
         $(iframe).contents().find('body').once('article-aside-active').keyup(function(e) {
-          if (e.keyCode == 46) {
+          if (e.keyCode == 46 && $(iframe).contents().find('.article-aside-active').length > 0) {
             e.preventDefault();
             var isDelete = confirm(Drupal.t('You have pressed Delete button. Do you want to remove block?'));
             if (isDelete) {
