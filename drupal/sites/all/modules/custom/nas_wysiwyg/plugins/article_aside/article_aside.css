@@ -1,0 +1,21 @@
+.article-aside {
+  border: 2px dotted red;
+  cursor: default;
+  float: right;
+  margin-left: 25px;
+  width: 41.66667%;
+}
+
+.article-aside-active {
+  background-color: yellow;
+}
+
+.article-aside .engagement-card-headline {
+  border: 1px dotted red;
+  margin: 5px;
+}
+
+.article-aside .engagement-card-content .p1 {
+  border: 1px dotted red;
+  margin: 5px;
+}
