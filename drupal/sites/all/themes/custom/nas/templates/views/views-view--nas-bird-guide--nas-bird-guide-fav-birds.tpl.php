@@ -28,14 +28,17 @@
  */
 ?>
 <div class="<?php print $classes; ?>">
-  <?php print render($title_prefix); ?>
-  <?php if ($view->display[$view->current_display]->display_title): ?>
+  <?php if (!$view->row_index): ?>
     <div class="row section-header space-top">
       <div class="columns">
         <h2 class="thin"><?php print $view->display[$view->current_display]->display_title; ?></h2>
       </div>
     </div>
   <?php endif; ?>
+  <?php print render($title_prefix); ?>
+  <?php if ($title): ?>
+    <?php print $title; ?>
+  <?php endif;?>
   <?php print render($title_suffix); ?>
   <?php if ($header): ?>
     <div class="view-header">
