@@ -233,8 +233,8 @@ function nas_views_feature_views_default_views() {
     'bird' => 'bird',
   );
 
-  /* Display: Matching Birds */
-  $handler = $view->new_display('panel_pane', 'Matching Birds', 'nas_bird_guide_fav_birds');
+  /* Display: Some of Our Favorite Birds */
+  $handler = $view->new_display('panel_pane', 'Some of Our Favorite Birds', 'nas_bird_guide_fav_birds');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Matching Birds';
   $handler->display->display_options['exposed_block'] = TRUE;
