@@ -324,5 +324,34 @@ function nas_image_styles_feature_image_default_styles() {
     'effects' => array(),
   );
 
+  // Exported image style: nas_birds_landing_epsacrop_mobile.
+  $styles['nas_birds_landing_epsacrop_mobile'] = array(
+    'name' => 'nas_birds_landing_epsacrop_mobile',
+    'label' => 'nas_birds_landing_epsacrop_mobile',
+    'effects' => array(
+      2 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 640,
+          'height' => 600,
+          'anchor' => 'right-bottom',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
