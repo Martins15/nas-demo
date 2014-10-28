@@ -41,6 +41,13 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_content_after_import',
   );
+  $tasks['set_editor_pass'] = array(
+    'display_name' => st('Set editor password'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_set_editor_pass',
+  );
   return $tasks;
 }
 
@@ -226,3 +233,16 @@ function pp_import_finished() {
   // Remove all messages.
   unset($_SESSION['messages']['status']);
 }
+
+/**
+ * Set editor user password.
+ */
+function pp_set_editor_pass() {
+  // Get user.
+  $account = user_load_by_name('editor');
+
+  // Set password for user.
+  $edit['pass'] = 'propeople';
+  user_save($account, $edit);
+}
+

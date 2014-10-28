@@ -32,3 +32,5 @@ dependencies[] = nas_solr
 dependencies[] = nas_formatters
 dependencies[] = nas_author_page
 dependencies[] = nas_wysiwyg
+dependencies[] = nas_editor_role
+
