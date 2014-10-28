@@ -156,6 +156,8 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
+  $handler->display->display_options['header']['area']['format'] = 'map';
   /* Sort criterion: Indexed Node: Date created */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_default_node_index';
@@ -233,14 +235,24 @@ function nas_views_feature_views_default_views() {
 
   /* Display: Some of Our Favorite Birds */
   $handler = $view->new_display('panel_pane', 'Some of Our Favorite Birds', 'nas_bird_guide_fav_birds');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Matching Birds';
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No birds matching your search query were found';
+  $handler->display->display_options['empty']['area']['format'] = 'video';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
   $handler->display->display_options['allow']['offset'] = 0;
   $handler->display->display_options['allow']['link_to_view'] = 0;
   $handler->display->display_options['allow']['more_link'] = 0;
   $handler->display->display_options['allow']['path_override'] = 0;
-  $handler->display->display_options['allow']['title_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
   $handler->display->display_options['allow']['exposed_form'] = 0;
   $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['inherit_panels_path'] = '1';
@@ -305,11 +317,6 @@ function nas_views_feature_views_default_views() {
 
   /* Display: Most viewed articles */
   $handler = $view->new_display('panel_pane', 'Most viewed articles', 'nas_most_viewed_articles');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Popular Stories';
-
-  /* Display: Popular stories for news */
-  $handler = $view->new_display('panel_pane', 'Popular stories for news', 'nas_most_viewed_articles_news');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Popular Stories';
   $export['nas_most_viewed_articles'] = $view;

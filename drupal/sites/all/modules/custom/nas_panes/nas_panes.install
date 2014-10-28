@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Upload default images.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_panes_install() {
+  $images = array(
+    'flyway-bird-1.png',
+    'flyway-bird-2.png',
+    'flyway-bird-3.png',
+    'flyway-bird-4.png',
+    'hero-img-15.jpg',
+  );
+  foreach ($images as $filename) {
+    $filepath = drupal_get_path('module', 'nas_panes') . '/images/' . $filename;
+    nas_fpp_save_default_image($filepath);
+  }
+}
