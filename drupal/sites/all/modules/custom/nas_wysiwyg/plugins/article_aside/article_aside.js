@@ -128,7 +128,7 @@
           if (nas_wysiwyg_tagmap[macro]) {
             content = content.replace(macro, nas_wysiwyg_tagmap[macro]);
           } else {
-            debug.debug("Could not find content for " + macro);
+            console.log("Could not find content for " + macro);
           }
         }
       }

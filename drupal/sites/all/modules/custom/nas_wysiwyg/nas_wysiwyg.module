@@ -9,10 +9,7 @@
  * Implements hook_wysiwyg_include_directory().
  */
 function nas_wysiwyg_wysiwyg_include_directory($type) {
-  switch ($type) {
-    case 'plugins':
-      return $type;
-  }
+  return 'plugins';
 }
 
 /**
@@ -36,6 +33,21 @@ function nas_wysiwyg_element_info_alter(&$types) {
   $types['text_format']['#pre_render'][] = 'nas_wysiwyg_article_aside_pre_render_text_format';
 }
 
+/**
+ * Implements hook_theme().
+ */
+function nas_wysiwyg_theme() {
+  return array(
+    'nas_article_aside' => array(
+      'variables' => array(
+        'head' => '',
+        'text' => '',
+      ),
+      'template' => 'nas-article-aside',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+  );
+}
 
 /**
  * Pre render function for text_format.
@@ -71,11 +83,11 @@ function nas_wysiwyg_article_aside_filter_process($text) {
 function nas_wysiwyg_article_aside_token_to_markup($match) {
   preg_match("/\[head\](.*?)\[\/head\]/s", $match[0], $head);
   preg_match("/\[text\](.*?)\[\/text\]/s", $match[0], $text);
-  $block = array(
+  $text = theme('nas_article_aside', array(
     'head' => $head[1],
-    'text' => $text[1]
+    'text' => $text[1],
+    )
   );
-  $text = '<aside class="article-aside"><div class="engagement-card side-note"><div class="engagement-card-content"><h4 class="engagement-card-headline">' . $block['head'] .'</h4><p class="p1">' . $block['text'] .'</p></div></div></aside>';
   return $text;
 }
 
