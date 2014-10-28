@@ -32,3 +32,4 @@ dependencies[] = nas_solr
 dependencies[] = nas_formatters
 dependencies[] = nas_author_page
 dependencies[] = nas_flyways_landing_feature
+dependencies[] = nas_editor_role
