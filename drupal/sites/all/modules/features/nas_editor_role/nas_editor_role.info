@@ -18,6 +18,7 @@ dependencies[] = uuid_features
 features[features_api][] = api:2
 features[user_permission][] = access administration menu
 features[user_permission][] = access administration pages
+features[user_permission][] = access content overview
 features[user_permission][] = access contextual links
 features[user_permission][] = administer menu
 features[user_permission][] = administer taxonomy
