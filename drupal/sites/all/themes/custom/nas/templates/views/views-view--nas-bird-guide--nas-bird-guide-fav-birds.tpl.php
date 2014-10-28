@@ -31,7 +31,7 @@
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
     <?php print $title; ?>
-  <?php endif; ?>
+  <?php endif;?>
   <?php print render($title_suffix); ?>
   <?php if ($header): ?>
     <div class="view-header">
@@ -54,6 +54,11 @@
   <?php if ($rows): ?>
       <?php print $rows; ?>
   <?php elseif ($empty): ?>
+    <div class="row section-header space-top">
+      <div class="columns">
+        <h2 class="thin"><?php print $view->display[$view->current_display]->display_title; ?></h2>
+      </div>
+    </div>
     <div class="view-empty">
       <?php print $empty; ?>
     </div>
