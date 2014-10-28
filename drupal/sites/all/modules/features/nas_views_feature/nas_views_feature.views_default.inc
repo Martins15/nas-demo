@@ -157,7 +157,6 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = 'Matching Birds';
   $handler->display->display_options['header']['area']['format'] = 'map';
   /* Sort criterion: Indexed Node: Date created */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
@@ -245,7 +244,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'No birds matching your search query were found ...';
+  $handler->display->display_options['empty']['area']['content'] = 'No birds matching your search query were found';
   $handler->display->display_options['empty']['area']['format'] = 'video';
   $handler->display->display_options['allow']['use_pager'] = 0;
   $handler->display->display_options['allow']['items_per_page'] = 0;
@@ -318,11 +317,6 @@ function nas_views_feature_views_default_views() {
 
   /* Display: Most viewed articles */
   $handler = $view->new_display('panel_pane', 'Most viewed articles', 'nas_most_viewed_articles');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Popular Stories';
-
-  /* Display: Popular stories for news */
-  $handler = $view->new_display('panel_pane', 'Popular stories for news', 'nas_most_viewed_articles_news');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Popular Stories';
   $export['nas_most_viewed_articles'] = $view;
