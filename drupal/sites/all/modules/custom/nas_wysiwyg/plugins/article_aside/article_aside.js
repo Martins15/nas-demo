@@ -43,13 +43,13 @@
           // Disable any actions clicking on links inside blocks.
           $(this).find('a').once('article-aside').click(function(event) {
             return false;
-          })
+          });
 
           $(this).once('article-aside').click(function(event) {
             event.stopPropagation();
 
             // If block is placeholder do not make it active nor highlight toolbar button.
-            if ($(this).find('img.article-aside-placeholder').length == 0) {
+            if ($(this).find('img.article-aside-placeholder').length === 0) {
 
               $(this).parents('html').find('.article-aside-active').removeClass('article-aside-active');
               $(this).addClass('article-aside-active');
@@ -77,7 +77,7 @@
         $(this).parents('.cke_inner').find('.cke_button__article_aside').addClass('cke_button_off').removeClass('cke_button_on');
       }
     });
-  };
+  }
 
   Drupal.wysiwyg.plugins.article_aside = {
 
