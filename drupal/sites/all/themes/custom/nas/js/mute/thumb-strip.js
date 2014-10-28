@@ -25,7 +25,8 @@ $(function() {
       momentum: false,
       snap: 'li',
       bounce: false,
-      touch: true
+      touch: true,
+      eventPassthrough: true
     });
 
     $(this).find(".thumb-strip-prev").bind("click", function() {

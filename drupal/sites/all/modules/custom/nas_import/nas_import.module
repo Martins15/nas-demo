@@ -58,7 +58,11 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
   }
   if ($entity->feeds_item->id == 'news_import') {
     // Import image.
-    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", "get_image_src", $item['body']);
+    $nid = $item['nid'];
+    $callback = function ($match) use ($nid) {
+      get_image_src($match, $nid);
+    };
+    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", $callback, $item['body']);
     $preg = '/style=\"(.*?)\"/si';
     $result = preg_replace($preg, '', $item['body']);
     $item['body'] = $result;
@@ -74,13 +78,28 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
 
 /**
  * Function callback to preg_replace_callback().
+ *
+ * Handle inline images:
+ *   - keeps images hosted not on *.audubon.org origin;
+ *   - downloads images from *.audubon.org and replaces src;
+ *   - keeps images that could not be downloaded and logs where they were found.
+ *
+ * @param array $matches - parts of image tag.
+ * @param integer source_nid - nid of node from audubon.org
+ *
+ * @return string with corrected HTML markup
  */
-function get_image_src ($matches) {
+function get_image_src($matches, $source_nid) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
-  $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
-  $path = pp_file_create_url($file->uri);
+  // Using define early pattern
+  $path = $full_url;
+  if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
+    if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
+      $path = pp_file_create_url($file->uri);
+    }
+  }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
 
@@ -483,15 +502,29 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL
 /**
  * Custom function for saving files.
  */
-function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT) {
+function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0) {
+  // Prepare filepath. It might be already encoded or not.
+  $remote_filepath = trim($remote_filepath, '/');
+  $path_parts = explode('/', $remote_filepath);
+  foreach ($path_parts as &$part) {
+    $part = rawurlencode(rawurldecode($part));
+  }
+  $remote_filepath = implode('/', $path_parts);
+
   $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
   if (file_exists($cached_filepath)) {
     $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
   }
   else {
-    $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . str_replace('%2F', '/', rawurlencode($remote_filepath));
-    $filepath = system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE);
-
+    $remote_fullpath = $remote_filepath;
+    // if remote_filepath is relative url add scheme and domain
+    if (strpos($remote_filepath, '://') === FALSE) {
+      $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
+    }
+    $filepath = _nas_import_system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE, $source_nid);
+    if (!$filepath) {
+      return FALSE;
+    }
     $cached_directory = drupal_dirname($cached_filepath);
     file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
     file_unmanaged_copy($filepath, $cached_filepath);
@@ -838,4 +871,75 @@ function _nas_office_name_by_id($id) {
   );
 
   return isset($map[$id]) ? $map[$id] : '';
+}
+
+/**
+ * Attempts to get a file using drupal_http_request and to store it locally.
+ *
+ * This is site-specific version of system_retrieve_file that does not set error
+ * messages if file could not be downloaded, logs it. Used on import to prevent
+ * build failure.
+ *
+ * @param string $url
+ *   The URL of the file to grab.
+ * @param string $destination
+ *   Stream wrapper URI specifying where the file should be placed. If a
+ *   directory path is provided, the file is saved into that directory under
+ *   its original name. If the path contains a filename as well, that one will
+ *   be used instead.
+ *   If this value is omitted, the site's default files scheme will be used,
+ *   usually "public://".
+ * @param bool $managed
+ *   If this is set to TRUE, the file API hooks will be invoked and the file is
+ *   registered in the database.
+ * @param int $replace
+ *   Replace behavior when the destination file already exists:
+ *   - FILE_EXISTS_REPLACE: Replace the existing file.
+ *   - FILE_EXISTS_RENAME: Append _{incrementing number} until the filename is
+ *     unique.
+ *   - FILE_EXISTS_ERROR: Do nothing and return FALSE.
+ * @param int $source_nid
+ *   Nid of audubon.org's node.
+ *
+ * @return mixed
+ *   One of these possibilities:
+ *   - If it succeeds and $managed is FALSE, the location where the file was
+ *     saved.
+ *   - If it succeeds and $managed is TRUE, a \Drupal\file\FileInterface
+ *     object which describes the file.
+ *   - If it fails, FALSE.
+ */
+function _nas_import_system_retrieve_file($url, $destination = NULL, $managed = FALSE, $replace = FILE_EXISTS_RENAME, $source_nid = 0) {
+  $parsed_url = parse_url($url);
+  if (!isset($destination)) {
+    $path = file_build_uri(drupal_basename($parsed_url['path']));
+  }
+  else {
+    if (is_dir(drupal_realpath($destination))) {
+      // Prevent URIs with triple slashes when glueing parts together.
+      $path = str_replace('///', '//', "$destination/") . drupal_basename($parsed_url['path']);
+    }
+    else {
+      $path = $destination;
+    }
+  }
+  $result = drupal_http_request($url);
+  if ($result->code != 200) {
+    drupal_set_message(t('HTTP error @errorcode occurred when trying to fetch @remote. It was found on @sourcepage', array(
+      '@errorcode' => $result->code,
+      '@remote' => $url,
+      '@sourcepage' => 'http://audubon.org/node/' . $source_nid,
+    )), 'warning');
+    watchdog('nas_import', 'Image @remote could not be downloaded. Found on @sourcepage', array(
+      '@remote' => $url,
+      '@sourcepage' => 'http://audubon.org/node/' . $source_nid,
+    ));
+    return FALSE;
+  }
+  $local = $managed ? file_save_data($result->data, $path, $replace) : file_unmanaged_save_data($result->data, $path, $replace);
+  if (!$local) {
+    drupal_set_message(t('@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path)), 'error');
+  }
+
+  return $local;
 }

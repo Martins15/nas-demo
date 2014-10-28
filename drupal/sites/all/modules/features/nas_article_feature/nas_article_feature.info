@@ -56,6 +56,7 @@ features[panelizer_defaults][] = node:article:map
 features[panelizer_defaults][] = node:article:press_release
 features[taxonomy][] = internal_tagging
 features[taxonomy][] = menu_section
+features[variable][] = date_format_article_date
 features[variable][] = date_format_news
 features[variable][] = field_bundle_settings_node__article
 features[variable][] = node_options_article

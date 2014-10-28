@@ -118,3 +118,9 @@
     max-width: none !important;
   }
 }
+
+.strip-nav {
+  i[class^="icon-"], i[class*=" icon-"] {
+    line-height: 11px;
+  }
+}

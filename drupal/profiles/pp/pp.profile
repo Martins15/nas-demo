@@ -83,6 +83,8 @@ function pp_import_nodes() {
     $news_node_nids = array_slice($news_node_nids, 0, 19);
     // To have a news node with embeded images.
     $news_node_nids[] = 158806;
+    $news_node_nids[] = 156951;
+
     $magazine_issue_node_nids = array(
       157656,
       152231,
@@ -101,6 +103,8 @@ function pp_import_nodes() {
       146961,
       154856,
       189331,
+      // node with inline image that NOT FOUND
+      178166,
     );
   }
 

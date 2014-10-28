@@ -101,6 +101,14 @@ function nas_panes_theme() {
       'template' => 'nas-panes-press-contact',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact'
     ),
+    'nas_panes_press_releases' => array(
+      'variables' => array(
+        'title' => '',
+        'releases' => array(),
+      ),
+      'template' => 'nas-panes-press-releases',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_releases'
+    ),
   );
 }
 
