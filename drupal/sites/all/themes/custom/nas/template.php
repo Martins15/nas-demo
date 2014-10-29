@@ -147,9 +147,11 @@ function nas_preprocess_node_bird(&$vars) {
  */
 function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
-  $hero_image_items = field_get_items('node', $node, 'field_hero_image');
-  $hero_image = $hero_image_items[0]['file'];
-  $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+  $vars['image_src'] = FALSE;
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+  }
 
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
@@ -282,14 +284,37 @@ function nas_image($variables) {
  */
 function nas_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
+  $bundle = $element['#bundle'];
+  $entity_type = $element['#entity_type'];
+
+  // Call the preprocess functions if exist.
+  $function = 'nas_preprocess_field_' . $element['#field_name'];
+  $function_bundle = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle;
+  $function_viewmode = 'nas_preprocess_field_' . $element['#field_name'] . '__' . $element['#view_mode'];
+  $function_bundle_viewmode = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle . '__' . $element['#view_mode'];
+
+  if (function_exists($function)) {
+    $function($variables);
+  }
+  if (function_exists($function_bundle)) {
+    $function_bundle($variables);
+  }
+  if (function_exists($function_viewmode)) {
+    $function_viewmode($variables);
+  }
+  if (function_exists($function_bundle_viewmode)) {
+    $function_bundle_viewmode($variables);
+  }
+
+  $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $element['#view_mode'];
+  $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $bundle . '__' . $element['#view_mode'];
+
   if (!isset($element['#object']->panelizer['page_manager']->name)) {
     return;
   }
   // Adds additional hook sugestion to theme individualy fields for different panelizer styles.
   $panelizer_style = $element['#object']->panelizer['page_manager']->name;
-  $bundle = $element['#bundle'];
-  $e_type = $element['#entity_type'];
-  $panelizer_style = str_replace($e_type . ':' . $bundle . ':', '', $panelizer_style);
+  $panelizer_style = str_replace($entity_type . ':' . $bundle . ':', '', $panelizer_style);
   if ($panelizer_style) {
     $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
         . $bundle . '__' . $panelizer_style;
@@ -297,15 +322,6 @@ function nas_preprocess_field(&$variables, $hook) {
     if (isset($element['#pane_region'])) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
     }
-  }
-  // Call the preprocess functions if exist.
-  $function = 'nas_preprocess_field_' . $element['#field_name'];
-  $function_bundle = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle;
-  if (function_exists($function)) {
-    $function($variables);
-  }
-  if (function_exists($function_bundle)) {
-    $function_bundle($variables);
   }
 }
 
@@ -344,7 +360,7 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
  * Override theming of date field of press release.
  */
 function nas_field__field_article_date__article($variables) {
-  if (!isset($variables['element'][0]['#markup'])) {
+  if (!isset($variables['element'][0]['#markup']) || $variables['element']['#view_mode'] != '_custom_display') {
     return '';
   }
   return '<section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">'
