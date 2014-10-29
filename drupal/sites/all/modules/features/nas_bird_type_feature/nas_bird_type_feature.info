@@ -16,6 +16,7 @@ dependencies[] = media_wysiwyg
 dependencies[] = mediafield
 dependencies[] = nas_import
 dependencies[] = nas_soundmanager
+dependencies[] = nas_wysiwyg
 dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = taxonomy

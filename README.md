@@ -10,7 +10,7 @@ vagrant up && vagrant ssh
 afterwards.
 You will be logged into virtual machine.
 
-use 
+use
 ```sh
 sh reinstall.sh
 ```
@@ -21,23 +21,23 @@ sh runsniffers.sh
 ```
 for local execution of sniffers stack
 
-Virtual host for accessing ppdorg drupal installation 
+Virtual host for accessing ppdorg drupal installation
 
 ```
-http://nas.192.168.56.112.xip.io
+http://nas.192.168.56.132.xip.io
 ```
 
 Adminer for mysql administration (credentials drupal:drupal and root:root)
 
 ```
-http://192.168.56.112.xip.io/adminer.php
+http://192.168.56.132.xip.io/adminer.php
 ```
 
 
 If ```xip.io``` not working - create row with
 
 ```hosts
-192.168.56.112 nas.192.168.56.112.xip.io
+192.168.56.132 nas.192.168.56.132.xip.io
 ```
 
 in ```/etc/hosts```
