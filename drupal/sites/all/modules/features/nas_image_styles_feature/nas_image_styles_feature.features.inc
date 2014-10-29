@@ -345,7 +345,7 @@ function nas_image_styles_feature_image_default_styles() {
             'aspect_ratio' => '',
             'bgcolor' => 'black',
             'bgopacity' => 0.6,
-            'fallback' => 0,
+            'fallback' => 1,
           ),
         ),
         'weight' => 1,
