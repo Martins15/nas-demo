@@ -20,47 +20,50 @@ $plugin = array(
 function flyways_landing_middle_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
+  $form['flyway'] = array(
+    '#tree' => TRUE,
+  );
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
-    $form['flyway_' . $i] = array(
+    $form['flyway'][$i] = array(
       '#type' => 'fieldset',
       '#title' => 'Slide ' . $i,
       '#tree' => TRUE,
     );
-    $form['flyway_' . $i]['title'] = array(
+    $form['flyway'][$i]['title'] = array(
       '#type' => 'textfield',
       '#title' => 'Title',
-      '#default_value' => !empty($conf['flyway_' . $i]['title']) ? $conf['flyway_' . $i]['title'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['title']) ? $conf['flyway'][$i]['title'] : '',
     );
-    $form['flyway_' . $i]['subtitle'] = array(
+    $form['flyway'][$i]['subtitle'] = array(
       '#type' => 'textarea',
       '#title' => 'Subtitle',
-      '#default_value' => !empty($conf['flyway_' . $i]['subtitle']) ? $conf['flyway_' . $i]['subtitle'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['subtitle']) ? $conf['flyway'][$i]['subtitle'] : '',
     );
-    $form['flyway_' . $i]['summary'] = array(
+    $form['flyway'][$i]['summary'] = array(
       '#type' => 'textarea',
       '#title' => 'Summary',
-      '#default_value' => !empty($conf['flyway_' . $i]['summary']) ? $conf['flyway_' . $i]['summary'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['summary']) ? $conf['flyway'][$i]['summary'] : '',
     );
-    $form['flyway_' . $i]['bird_image'] = array(
+    $form['flyway'][$i]['bird_image'] = array(
       '#type' => 'textfield',
       '#title' => 'Bird Image',
-      '#default_value' => !empty($conf['flyway_' . $i]['bird_image']) ? $conf['flyway_' . $i]['bird_image'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['bird_image']) ? $conf['flyway'][$i]['bird_image'] : '',
     );
-    $form['flyway_' . $i]['bird_title'] = array(
+    $form['flyway'][$i]['bird_title'] = array(
       '#type' => 'textfield',
       '#title' => 'Bird Title',
-      '#default_value' => !empty($conf['flyway_' . $i]['bird_title']) ? $conf['flyway_' . $i]['bird_title'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['bird_title']) ? $conf['flyway'][$i]['bird_title'] : '',
     );
-    $form['flyway_' . $i]['flyway'] = array(
+    $form['flyway'][$i]['flyway'] = array(
       '#type' => 'textfield',
       '#title' => 'Flyway Name',
-      '#default_value' => !empty($conf['flyway_' . $i]['flyway']) ? $conf['flyway_' . $i]['flyway'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['flyway']) ? $conf['flyway'][$i]['flyway'] : '',
     );
-    $form['flyway_' . $i]['map_image'] = array(
+    $form['flyway'][$i]['map_image'] = array(
       '#type' => 'textfield',
       '#title' => 'Map',
       '#description' => 'Map image. public://map.png',
-      '#default_value' => !empty($conf['flyway_' . $i]['map_image']) ? $conf['flyway_' . $i]['map_image'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['map_image']) ? $conf['flyway'][$i]['map_image'] : '',
     );
   }
 

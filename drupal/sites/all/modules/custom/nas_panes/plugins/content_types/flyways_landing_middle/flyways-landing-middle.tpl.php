@@ -13,14 +13,14 @@
     <div id="flyway-map" class="flyway-paths">
       <?php for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++): ?>
       <div id="flyway-map-<?php print $i; ?>" class="flyway-path-map<?php if ($i == 1): ?> current<?php endif; ?>">
-        <img src="<?php print ${'flyway_' . $i}['map_image']; ?>" alt="<?php print ${'flyway_' . $i}['flyway']; ?>">
+        <img src="<?php print $flyway[$i]['map_image']; ?>" alt="<?php print $flyway[$i]['flyway']; ?>">
         <a href="#" id="flyway-point-<?php print $i; ?>" class="flyway-megamap-point"">
           <div class="portrait">
-            <img src="<?php print ${'flyway_' . $i}['bird_image']; ?>" alt="<?php print ${'flyway_' . $i}['bird_title']; ?>">
+            <img src="<?php print $flyway[$i]['bird_image']; ?>" alt="<?php print $flyway[$i]['bird_title']; ?>">
           </div>
           <div class="name">
-            <div class="bird"><?php print ${'flyway_' . $i}['bird_title']; ?></div>
-            <div class="flyway"><?php print ${'flyway_' . $i}['flyway']; ?></div>
+            <div class="bird"><?php print $flyway[$i]['bird_title']; ?></div>
+            <div class="flyway"><?php print $flyway[$i]['flyway']; ?></div>
           </div>
         </a>
         <div class="flyway-path-dots">
@@ -33,8 +33,8 @@
     </div>
   </div>
   <div class="medium-6 medium-pull-6 columns text-container">
-    <h1><?php print $flyway_1['title']; ?></h1>
-    <div class="deck"><?php print $flyway_1['subtitle']; ?></div>
-    <p><?php print $flyway_1['summary']; ?></p>
+    <h1><?php print $flyway[1]['title']; ?></h1>
+    <div class="deck"><?php print $flyway[1]['subtitle']; ?></div>
+    <p><?php print $flyway[1]['summary']; ?></p>
   </div>
 </div>

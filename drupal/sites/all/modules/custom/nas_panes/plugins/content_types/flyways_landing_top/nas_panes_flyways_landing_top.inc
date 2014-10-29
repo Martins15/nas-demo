@@ -45,31 +45,34 @@ function flyways_landing_top_form($form, &$form_state) {
     '#default_value' => !empty($conf['bottomtitle']) ? $conf['bottomtitle'] : '',
   );
 
+  $form['flyway'] = array(
+    '#tree' => TRUE,
+  );
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
-    $form['flyway_' . $i] = array(
+    $form['flyway'][$i] = array(
       '#type' => 'fieldset',
       '#title' => 'Flyway ' . $i,
       '#tree' => TRUE,
     );
-    $form['flyway_' . $i]['image'] = array(
+    $form['flyway'][$i]['image'] = array(
       '#type' => 'textfield',
       '#title' => 'Image',
-      '#default_value' => !empty($conf['flyway_' . $i]['image']) ? $conf['flyway_' . $i]['image'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['image']) ? $conf['flyway'][$i]['image'] : '',
     );
-    $form['flyway_' . $i]['coordinates'] = array(
+    $form['flyway'][$i]['coordinates'] = array(
       '#type' => 'textfield',
       '#title' => 'Coordinates',
-      '#default_value' => !empty($conf['flyway_' . $i]['coordinates']) ? $conf['flyway_' . $i]['coordinates'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['coordinates']) ? $conf['flyway'][$i]['coordinates'] : '',
     );
-    $form['flyway_' . $i]['bird'] = array(
+    $form['flyway'][$i]['bird'] = array(
       '#type' => 'textfield',
       '#title' => 'Bird name',
-      '#default_value' => !empty($conf['flyway_' . $i]['bird']) ? $conf['flyway_' . $i]['bird'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['bird']) ? $conf['flyway'][$i]['bird'] : '',
     );
-    $form['flyway_' . $i]['flyway'] = array(
+    $form['flyway'][$i]['flyway'] = array(
       '#type' => 'textfield',
       '#title' => 'Flyway',
-      '#default_value' => !empty($conf['flyway_' . $i]['flyway']) ? $conf['flyway_' . $i]['flyway'] : '',
+      '#default_value' => !empty($conf['flyway'][$i]['flyway']) ? $conf['flyway'][$i]['flyway'] : '',
     );
   }
 
