@@ -176,6 +176,45 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
     $pane->uuid = '4f0e6dbd-410f-4435-ad9d-dee8e7009437';
     $display->content['new-4f0e6dbd-410f-4435-ad9d-dee8e7009437'] = $pane;
     $display->panels['lower'][0] = 'new-4f0e6dbd-410f-4435-ad9d-dee8e7009437';
+    $pane = new stdClass();
+    $pane->pid = 'new-e95dc3c1-688b-4353-ba64-630d3df44e6a';
+    $pane->panel = 'lower';
+    $pane->type = 'flyways_landing_three_columns';
+    $pane->subtype = 'flyways_landing_three_columns';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'column' => array(
+        1 => array(
+          'title' => 'State Programs',
+          'text' => 'Audubon’s 22 state programs give us a presence at statehouses and are a powerful force for programmatic alignment throughout the flyways.',
+        ),
+        2 => array(
+          'title' => 'Centers',
+          'text' => 'Forty-seven Audubon Centers introduce more than a million visitors each years to the natural world—and inspire them to help protect it. ',
+        ),
+        3 => array(
+          'title' => 'Chapters',
+          'text' => 'Audubon’s 465 Chapters are more than our face in communities from coast to coast; they are the drivers of our on-the-ground conservation work.',
+        ),
+      ),
+      'form_build_id' => 'form-73A_zWqz86vEz8_RO_gyTDm7uz9zj53QDJreoI1S5RQ',
+      'form_token' => 'IS6jLtu0KG-5B3kcvNoToBlMKWdNH-9qdWKOJAG8QT8',
+      'form_id' => 'flyways_landing_three_columns_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'e95dc3c1-688b-4353-ba64-630d3df44e6a';
+    $display->content['new-e95dc3c1-688b-4353-ba64-630d3df44e6a'] = $pane;
+    $display->panels['lower'][1] = 'new-e95dc3c1-688b-4353-ba64-630d3df44e6a';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

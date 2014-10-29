@@ -135,15 +135,28 @@ function nas_panes_theme() {
     'nas_flyways_landing_middle' => array(
       'variables' => array(
         'flyway' => array(),
+        'contextual_links' => '',
       ),
       'template' => 'flyways-landing-middle',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_middle'
+    ),
+    'nas_flyways_landing_three_columns' => array(
+      'variables' => array(
+        'columns' => array(),
+        'contextual_links' => '',
+      ),
+      'template' => 'flyways-landing-three-columns',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns'
     ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
     $theme['variables']['nas_flyways_landing_top']['flyway'][$i] = array();
     $theme['variables']['nas_flyways_landing_middle']['flyway'][$i] = array();
+  }
+
+  for ($i = 1; $i <=3; $i++) {
+    $theme['variables']['nas_flyways_landing_three_columns']['columns'][$i] = array();
   }
 
   return $theme;
