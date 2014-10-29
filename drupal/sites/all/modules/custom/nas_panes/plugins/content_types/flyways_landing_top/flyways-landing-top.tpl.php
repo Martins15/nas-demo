@@ -4,7 +4,10 @@
  * Featured Bird template file.
  *
  * Available variables:
- * - $name: the (sanitized) name of the bird.
+ * - $hero_image: big image at the top.
+ * - $title: title.
+ * - $subtitle: subtitle under the title.
+ * - $flyway_[1-4]: array with values for the slide.
  */
 ?>
 <div class="hero dark-text flyway-megamap" style="background-image: url(<?php print $hero_image; ?>); background-color: #CDEAF2;">
