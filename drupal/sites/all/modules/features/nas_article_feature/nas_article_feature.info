@@ -11,6 +11,7 @@ dependencies[] = image
 dependencies[] = media
 dependencies[] = mediafield
 dependencies[] = nas_bird_type_feature
+dependencies[] = nas_panes
 dependencies[] = options
 dependencies[] = panelizer
 dependencies[] = strongarm

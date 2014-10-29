@@ -75,6 +75,8 @@
  *
  * Custom variables:
  * - $title_link: Title with link to node page.
+ * - $blue_text_link_url: Article's section's link url.
+ * - $blue_text_link_text: Article's section's link text.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -92,7 +94,9 @@
     </div>
     <div class="tiny-8 columns">
       <div class="editorial-card-content">
-        <span class="editorial-card-slug"><?php print render($content['field_internal_tagging']); ?></span>
+        <span class="editorial-card-slug">
+          <a href="<?php print $blue_text_link_url; ?>"><?php print $blue_text_link_text; ?></a>
+        </span>
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
         <div class="editorial-card-body">
           <?php print render($content['body']); ?>

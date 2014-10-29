@@ -112,6 +112,15 @@ function nas_panes_theme() {
       'template' => 'nas-panes-press-releases',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_releases'
     ),
+    'nas_panes_article_section' => array(
+      'variables' => array(
+        'url' => '',
+        'text' => '',
+        'link_classes' => '',
+      ),
+      'template' => 'article-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/article_section',
+    ),
     'nas_flyways_landing_top' => array(
       'variables' => array(
         'title' => '',
