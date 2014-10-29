@@ -7,43 +7,18 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Flyways Landing. Top block'),
-  'description' => t('Map on background and four birds'),
+  'title' => t('Flyways Landing. Middle block (map on the right)'),
+  'description' => t('Text on the left, map on the right'),
   'category' => 'NAS',
-  'edit form' => 'flyways_landing_top_form',
-  'render callback' => 'flyways_landing_top_render',
+  'edit form' => 'flyways_landing_middle_form',
+  'render callback' => 'flyways_landing_middle_render',
 );
 
 /**
  * An edit form for the pane's settings.
  */
-function flyways_landing_top_form($form, &$form_state) {
+function flyways_landing_middle_form($form, &$form_state) {
   $conf = $form_state['conf'];
-
-  $form['title'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Title',
-    '#default_value' => !empty($conf['title']) ? $conf['title'] : '',
-  );
-
-  $form['subtitle'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Subtitle',
-    '#default_value' => !empty($conf['subtitle']) ? $conf['subtitle'] : '',
-  );
-
-  $form['hero_image'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Hero Image',
-    '#description' => 'Path to the hero image. i.e. public://...',
-    '#default_value' => !empty($conf['hero_image']) ? $conf['hero_image'] : '',
-  );
-
-  $form['bottomtitle'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Bottom Title',
-    '#default_value' => !empty($conf['bottomtitle']) ? $conf['bottomtitle'] : '',
-  );
 
   $form['flyway'] = array(
     '#tree' => TRUE,
@@ -51,28 +26,44 @@ function flyways_landing_top_form($form, &$form_state) {
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
     $form['flyway'][$i] = array(
       '#type' => 'fieldset',
-      '#title' => 'Flyway ' . $i,
+      '#title' => 'Slide ' . $i,
       '#tree' => TRUE,
     );
-    $form['flyway'][$i]['image'] = array(
+    $form['flyway'][$i]['title'] = array(
       '#type' => 'textfield',
-      '#title' => 'Image',
-      '#default_value' => !empty($conf['flyway'][$i]['image']) ? $conf['flyway'][$i]['image'] : '',
+      '#title' => 'Title',
+      '#default_value' => !empty($conf['flyway'][$i]['title']) ? $conf['flyway'][$i]['title'] : '',
     );
-    $form['flyway'][$i]['coordinates'] = array(
-      '#type' => 'textfield',
-      '#title' => 'Coordinates',
-      '#default_value' => !empty($conf['flyway'][$i]['coordinates']) ? $conf['flyway'][$i]['coordinates'] : '',
+    $form['flyway'][$i]['subtitle'] = array(
+      '#type' => 'textarea',
+      '#title' => 'Subtitle',
+      '#default_value' => !empty($conf['flyway'][$i]['subtitle']) ? $conf['flyway'][$i]['subtitle'] : '',
     );
-    $form['flyway'][$i]['bird'] = array(
+    $form['flyway'][$i]['summary'] = array(
+      '#type' => 'textarea',
+      '#title' => 'Summary',
+      '#default_value' => !empty($conf['flyway'][$i]['summary']) ? $conf['flyway'][$i]['summary'] : '',
+    );
+    $form['flyway'][$i]['bird_image'] = array(
       '#type' => 'textfield',
-      '#title' => 'Bird name',
-      '#default_value' => !empty($conf['flyway'][$i]['bird']) ? $conf['flyway'][$i]['bird'] : '',
+      '#title' => 'Bird Image',
+      '#default_value' => !empty($conf['flyway'][$i]['bird_image']) ? $conf['flyway'][$i]['bird_image'] : '',
+    );
+    $form['flyway'][$i]['bird_title'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Bird Title',
+      '#default_value' => !empty($conf['flyway'][$i]['bird_title']) ? $conf['flyway'][$i]['bird_title'] : '',
     );
     $form['flyway'][$i]['flyway'] = array(
       '#type' => 'textfield',
-      '#title' => 'Flyway',
+      '#title' => 'Flyway Name',
       '#default_value' => !empty($conf['flyway'][$i]['flyway']) ? $conf['flyway'][$i]['flyway'] : '',
+    );
+    $form['flyway'][$i]['map_image'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Map',
+      '#description' => 'Map image. public://map.png',
+      '#default_value' => !empty($conf['flyway'][$i]['map_image']) ? $conf['flyway'][$i]['map_image'] : '',
     );
   }
 
@@ -83,7 +74,7 @@ function flyways_landing_top_form($form, &$form_state) {
  * Submit function, note anything in the formstate[conf] automatically gets saved
  * Notice, the magic that automatically does that for you.
  */
-function flyways_landing_top_form_submit(&$form, &$form_state) {
+function flyways_landing_middle_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -95,7 +86,7 @@ function flyways_landing_top_form_submit(&$form, &$form_state) {
  * Run-time rendering of the body of the block (content type)
  * See ctools_plugin_examples for more advanced info
  */
-function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
+function flyways_landing_middle_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   // @codingStandardsIgnoreStart
   // Sanitize configuration before passing to template.
@@ -117,10 +108,10 @@ function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
     ctools_add_js('ajax-responder');
     // We expect Featured Bird pane to be only on Bird Guide. If this is not
     // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_flyways_landing_top'))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_flyways_landing_middle'))->fetchField();
     if (empty($pid)) {
       nas_panes_save_flyways_landing_page();
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_flyways_landing_top'))->fetchField();
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_flyways_landing_middle'))->fetchField();
     }
     $links = array(
       'edit' => array(
@@ -146,7 +137,7 @@ function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
   $vars = $conf + array(
     'contextual_links' => $contextual_links,
   );
-  $content = theme('nas_flyways_landing_top', $vars);
+  $content = theme('nas_flyways_landing_middle', $vars);
 
   $block->content = $content;
   return $block;
