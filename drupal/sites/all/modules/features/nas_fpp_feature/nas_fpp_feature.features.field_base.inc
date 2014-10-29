@@ -153,31 +153,5 @@ function nas_fpp_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_column_count'
-  $field_bases['field_column_count'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_column_count',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        4 => '3x',
-        3 => '4x',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_integer',
-  );
-
   return $field_bases;
 }

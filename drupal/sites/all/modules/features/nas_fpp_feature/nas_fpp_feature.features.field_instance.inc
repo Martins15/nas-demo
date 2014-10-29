@@ -102,7 +102,14 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'file_directory' => '',
       'file_extensions' => 'jpg jpeg gif png',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -177,41 +184,6 @@ function nas_fpp_feature_field_default_field_instances() {
       'settings' => array(),
       'type' => 'link_field',
       'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'fieldable_panels_pane-nas_editorial_cards-field_column_count'
-  $field_instances['fieldable_panels_pane-nas_editorial_cards-field_column_count'] = array(
-    'bundle' => 'nas_editorial_cards',
-    'default_value' => array(
-      0 => array(
-        'value' => 4,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'fieldable_panels_pane',
-    'field_name' => 'field_column_count',
-    'label' => 'Column count',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 5,
     ),
   );
 
@@ -358,12 +330,16 @@ function nas_fpp_feature_field_default_field_instances() {
       'default_image' => 0,
       'epsacrop' => array(
         'styles' => array(
+          'article_featured' => 0,
+          'article_teaser' => 0,
           'default_teaser_image' => 0,
           'featured_bird' => 0,
           'featured_bird_illustration' => 0,
           'featured_bird_mobile' => 0,
+          'hero_cover_bird_page' => 0,
           'hero_image' => 0,
           'hero_mobile' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 'nas_birds_landing_epsacrop_mobile',
         ),
       ),
       'file_directory' => '',
