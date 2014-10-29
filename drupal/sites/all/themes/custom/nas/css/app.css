@@ -11303,3 +11303,17 @@ body.touch .sticky-wrapper {
 .manage-thumbnails-popup img, #EPSACropDialog img {
   max-width: none !important;
 }
+
+.strip-nav i[class^="icon-"], .strip-nav i[class*=" icon-"] {
+  line-height: 11px;
+}
+
+.bird-card-grid .view-empty {
+  background-color: transparent;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 25.5px;
+  text-align: center;
+}
