@@ -18,6 +18,10 @@ function nas_bird_type_feature_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
+      'bean_wysiwyg_filter' => array(
+        'status' => 1,
+        'weight' => 2,
+      ),
       'filter_autop' => array(
         'weight' => 0,
         'status' => 1,

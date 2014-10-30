@@ -46,6 +46,7 @@ function nas_bird_type_feature_wysiwyg_default_profiles() {
         'drupal' => array(
           'media' => 1,
           'article_aside' => 1,
+          'bean_wysiwyg' => 1,
         ),
       ),
       'toolbarLocation' => 'top',
