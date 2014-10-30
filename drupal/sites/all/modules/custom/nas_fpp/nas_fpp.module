@@ -83,6 +83,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Article featured'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['nas_wysiwyg_image'] = array(
+    'label' => t('Wysiwyg image'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['nas_file_plain_text_fields'] = array(
     'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
@@ -128,7 +132,8 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
   if (isset($get_field_image[0]['uri'])) {
     $vars['banner_image'] = file_create_url($get_field_image[0]['uri']);
     // To Do: Add mobile images presets support.
-    $vars['banner_mobile_image'] = file_create_url($get_field_image[0]['uri']);
+    $url = file_create_url($get_field_image[0]['uri']);
+    $vars['banner_mobile_image'] = image_style_url('nas_birds_landing_epsacrop_mobile', $get_field_image[0]['uri']);
   }
 
   $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');

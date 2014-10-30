@@ -85,3 +85,5 @@
         <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
       </div>
     </div>
+  </section>
+</section>

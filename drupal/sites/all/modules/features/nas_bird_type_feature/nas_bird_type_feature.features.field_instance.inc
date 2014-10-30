@@ -2351,7 +2351,7 @@ function nas_bird_type_feature_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2611,6 +2611,7 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Songs and Calls');
   t('Title Text');
   t('Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.');
+  t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.');
 
   return $field_instances;
 }

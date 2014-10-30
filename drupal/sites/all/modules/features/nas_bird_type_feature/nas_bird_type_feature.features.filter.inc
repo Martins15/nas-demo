@@ -18,6 +18,10 @@ function nas_bird_type_feature_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
+      'bean_wysiwyg_filter' => array(
+        'status' => 1,
+        'weight' => 2,
+      ),
       'filter_autop' => array(
         'weight' => 0,
         'status' => 1,
@@ -29,6 +33,16 @@ function nas_bird_type_feature_filter_default_formats() {
         'settings' => array(
           'filter_url_length' => 72,
         ),
+      ),
+      'media_filter' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'nas_wysiwyg_article_aside_filter' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
         'weight' => 10,

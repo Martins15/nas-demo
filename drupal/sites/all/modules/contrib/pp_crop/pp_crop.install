@@ -14,10 +14,10 @@
 function pp_crop_install() {
   // Get epsacrop module weight.
   $weight = db_select('system', 's')
-              ->fields('s', array('weight'))
-              ->condition('name', 'epsacrop', '=')
-              ->execute()
-              ->fetchField();
+    ->fields('s', array('weight'))
+    ->condition('name', 'epsacrop', '=')
+    ->execute()
+    ->fetchField();
   // Make pp_crop module weight higher than epsacrop weight.
   db_update('system')
     ->fields(array('weight' => $weight +1))

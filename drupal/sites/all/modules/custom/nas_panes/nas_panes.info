@@ -3,3 +3,4 @@ description = Stores and handles NAS custom panels panes
 core = 7.x
 package = NAS
 dependencies[] = panels
+dependencies[] = nas_fpp

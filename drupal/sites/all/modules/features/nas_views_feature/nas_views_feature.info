@@ -15,3 +15,4 @@ features[views_view][] = nas_most_viewed_articles
 features[views_view][] = nas_news
 features[views_view][] = nas_similar_birds
 features_exclude[dependencies][ctools] = ctools
+project path = sites/all/modules/features

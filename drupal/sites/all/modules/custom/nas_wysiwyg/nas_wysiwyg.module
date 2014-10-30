@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * @file
+ * Provides wysiwys's plugins.
+ */
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function nas_wysiwyg_wysiwyg_editor_settings_alter() {
+  drupal_add_css(drupal_get_path('module', 'nas_wysiwyg') . '/css/nas_wysiwyg.css');
+}
+
+/**
+ * Implements hook_wysiwyg_include_directory().
+ */
+function nas_wysiwyg_wysiwyg_include_directory($type) {
+  return 'plugins';
+}
+
+/**
+ * Implements hook_filter_info().
+ */
+function nas_wysiwyg_filter_info() {
+  $filters['nas_wysiwyg_article_aside_filter'] = array(
+    'title' => t('Convert NAS article aside Insert tags to markup'),
+    'description' => t('This filter will convert [article_aside_insert]...[/article_aside_insert] tags into markup.'),
+    'process callback' => 'nas_wysiwyg_article_aside_filter_process',
+    'weight' => 2,
+  );
+
+  return $filters;
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function nas_wysiwyg_element_info_alter(&$types) {
+  $types['text_format']['#pre_render'][] = 'nas_wysiwyg_article_aside_pre_render_text_format';
+}
+
+/**
+ * Preprocess function for entity.
+ */
+function nas_wysiwyg_preprocess_entity(&$vars) {
+  // preprocess_bean__[bundle] doesn't work.
+  if ($vars['elements']['#entity_type'] !== 'bean') {
+    continue;
+  }
+  $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
+  if ($vars['elements']['#bundle'] !== 'wysiwyg_image') {
+    continue;
+  }
+  $entity = $vars['elements']['#entity'];
+  $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
+  if (!empty($get_field_wysiwyg_image)) {
+    $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
+    $get_field_file_credit = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_credit');
+    $vars['figcaption'] = '';
+    if (!empty($get_field_file_caption)) {
+      $vars['figcaption'] .= $get_field_file_caption[0]['#markup'] .'&nbsp;';
+    }
+    if (!empty($get_field_file_credit)) {
+      $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
+    }
+  }
+  $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
+  $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_wysiwyg_theme() {
+  return array(
+    'nas_article_aside' => array(
+      'variables' => array(
+        'head' => '',
+        'text' => '',
+      ),
+      'template' => 'nas-article-aside',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+    'bean__wysiwyg_image' => array(
+      'variables' => array(
+        'head' => '',
+        'text' => '',
+      ),
+      'template' => 'bean--wysiwyg_image',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+  );
+}
+
+/**
+ * Pre render function for text_format.
+ */
+function nas_wysiwyg_article_aside_pre_render_text_format($element) {
+  // filter_process_format() copies properties to the expanded 'value' child
+  // element.
+  if (!isset($element['format'])) {
+    return $element;
+  }
+
+  $field = &$element['value'];
+  $tagmap = _nas_wysiwyg_article_aside_generate_tagMap($field['#value']);
+
+  if (isset($tagmap)) {
+    drupal_add_js(array('nas_wysiwyg_tagmap' => $tagmap), 'setting');
+  }
+  return $element;
+}
+
+/**
+ * Finds all matches and run them through nas_wysiwyg_article_aside_token_to_markup().
+ */
+function nas_wysiwyg_article_aside_filter_process($text) {
+  $text = ' ' . $text . ' ';
+  $text = preg_replace_callback("/\[article_aside_insert\].*?\[\/article_aside_insert\]/s", 'nas_wysiwyg_article_aside_token_to_markup', $text);
+  return $text;
+}
+
+/**
+ * Convert tokens to markup.
+ */
+function nas_wysiwyg_article_aside_token_to_markup($match) {
+  preg_match("/\[head\](.*?)\[\/head\]/s", $match[0], $head);
+  preg_match("/\[text\](.*?)\[\/text\]/s", $match[0], $text);
+  $text = theme('nas_article_aside', array(
+    'head' => $head[1],
+    'text' => $text[1],
+    )
+  );
+  return $text;
+}
+
+/**
+ * Tagmap generator function.
+ */
+function _nas_wysiwyg_article_aside_generate_tagMap($text) {
+  static $tagmap = array();
+  preg_match_all("/\[article_aside_insert\].*?\[\/article_aside_insert\]/s", $text, $matches, PREG_SET_ORDER);
+  foreach ($matches as $match) {
+    if (empty($tagmap[$match[0]])) {
+      $markup = nas_wysiwyg_article_aside_token_to_markup($match);
+      $tagmap[$match[0]] = $markup;
+    }
+  }
+  return $tagmap;
+}

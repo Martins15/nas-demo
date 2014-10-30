@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Provides css fixes for correct view of media popup in ui dialog.
+ */
+
+.bean_wysiwyg-modal-frame {
+  width: 100% !important;
+}
+.page-bean-wysiwyg-block-wysiwyg-image .media-wrapper {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.page-bean-wysiwyg-block-wysiwyg-image .media-modal-frame {
+  height: 95% !important;
+}
+.page-bean-wysiwyg-block-wysiwyg-image .ui-dialog-title {
+  height: 0;
+}
