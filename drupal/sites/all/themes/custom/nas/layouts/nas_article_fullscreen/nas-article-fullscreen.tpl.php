@@ -2,10 +2,14 @@
 /**
  * @file
  * Template of Article layout with Fullscreen image.
+ *
+ * @variables
+ *  $color_mode_text
+ *  $color_mode_gradient
  */
 ?>
 
-<div class="hero dark-gradient light-text expand">
+<div class="hero <?php print $color_mode_gradient; ?>-gradient <?php print $color_mode_text; ?>-text expand">
   <div class="hero-image">
     <?php print $content['big_image']; ?>
   </div> 

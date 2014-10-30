@@ -14,6 +14,7 @@ $plugin = array(
   'category' => t('NAS'),
   'icon' => 'nas_article_fullscreen.png',
   'theme' => 'nas_article_fullscreen',
+  'settings form' => 'nas_article_fullscreen_settings_form',
   'regions' => array(
     'header_hero' => t('Header Hero'),
     'header' => t('Header'),
@@ -29,3 +30,21 @@ $plugin = array(
     'card_set' => t('Card Set')
   ),
 );
+
+/**
+ * Layout settings form builder.
+ *
+ * @param $display
+ * @param $layout
+ * @param $layout_settings
+ */
+function nas_article_fullscreen_settings_form($display, $layout, $layout_settings) {
+  $form = array();
+  $form['color_mode'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Color mode'),
+    '#default_value' => $layout_settings['color_mode'],
+  );
+
+  return $form;
+}

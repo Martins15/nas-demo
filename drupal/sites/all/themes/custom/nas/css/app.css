@@ -11241,6 +11241,16 @@ body.touch .sticky-wrapper {
   font-size: 15px;
 }
 
+.bird-card-grid .views-empty {
+  background-color: transparent;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 25.5px;
+  text-align: center;
+}
+
 .bird-card-set .owl-carousel .owl-wrapper-outer {
   padding-top: 5px;
 }
@@ -11300,20 +11310,15 @@ body.touch .sticky-wrapper {
   line-height: 15px;
 }
 
+.hero-attribution .hero-attribution-text {
+  padding: 2px 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .manage-thumbnails-popup img, #EPSACropDialog img {
   max-width: none !important;
 }
 
 .strip-nav i[class^="icon-"], .strip-nav i[class*=" icon-"] {
   line-height: 11px;
-}
-
-.bird-card-grid .view-empty {
-  background-color: transparent;
-  color: #838078;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 17px;
-  font-style: italic;
-  line-height: 25.5px;
-  text-align: center;
 }

@@ -445,3 +445,24 @@ function nas_preprocess_views_exposed_form(&$variables) {
 
   $variables['widgets']['filter-search_api_views_fulltext']->widget = drupal_render($fulltext);
 }
+
+/**
+ * Preprocess function for nas_article_fullscreen theme.
+ */
+function template_preprocess_nas_article_fullscreen(&$variables) {
+  // Replace substitutions.
+  $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
+
+  // @Improve
+  //   Since replacement may be a field rendered value we have no access to
+  //   machine value. Thanks God human values for color_mode field are
+  //   Uppercased machine values. This does matter for particular situation.
+  $color_mode = strtolower(trim($color_mode));
+
+  // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
+  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
+
+  $variables['color_mode_gradient'] = $color_mode;
+  // Text color mode is inversion of gradient color mode
+  $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
+}
