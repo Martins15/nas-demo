@@ -6,9 +6,9 @@
  */
 
 /**
- * Implements hook_init().
+ * Implements hook_wysiwyg_editor_settings_alter().
  */
-function nas_wysiwyg_init() {
+function nas_wysiwyg_wysiwyg_editor_settings_alter() {
   drupal_add_css(drupal_get_path('module', 'nas_wysiwyg') . '/css/nas_wysiwyg.css');
 }
 
@@ -44,27 +44,29 @@ function nas_wysiwyg_element_info_alter(&$types) {
  * Preprocess function for entity.
  */
 function nas_wysiwyg_preprocess_entity(&$vars) {
-  $entity = $vars['elements']['#entity'];
   // preprocess_bean__[bundle] doesn't work.
-  if ($vars['elements']['#entity_type'] == 'bean') {
-    $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
-    if ($vars['elements']['#bundle'] == 'wysiwyg_image') {
-      $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
-      if (!empty($get_field_wysiwyg_image)) {
-        $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
-        $get_field_file_credit = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_credit');
-        $vars['figcaption'] = '';
-        if (!empty($get_field_file_caption)) {
-          $vars['figcaption'] .= $get_field_file_caption[0]['#markup'] .'&nbsp;';
-        }
-        if (!empty($get_field_file_credit)) {
-          $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
-        }
-      }
-      $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
-      $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
+  if ($vars['elements']['#entity_type'] !== 'bean') {
+    continue;
+  }
+  $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
+  if ($vars['elements']['#bundle'] !== 'wysiwyg_image') {
+    continue;
+  }
+  $entity = $vars['elements']['#entity'];
+  $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
+  if (!empty($get_field_wysiwyg_image)) {
+    $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
+    $get_field_file_credit = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_credit');
+    $vars['figcaption'] = '';
+    if (!empty($get_field_file_caption)) {
+      $vars['figcaption'] .= $get_field_file_caption[0]['#markup'] .'&nbsp;';
+    }
+    if (!empty($get_field_file_credit)) {
+      $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
     }
   }
+  $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
+  $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
 }
 
 /**
