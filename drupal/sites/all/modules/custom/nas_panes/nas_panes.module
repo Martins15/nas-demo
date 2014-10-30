@@ -140,6 +140,14 @@ function nas_panes_theme() {
       'template' => 'flyways-landing-middle',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_middle'
     ),
+    'nas_flyways_landing_bottom' => array(
+      'variables' => array(
+        'flyway' => array(),
+        'contextual_links' => '',
+      ),
+      'template' => 'flyways-landing-bottom',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_bottom'
+    ),
     'nas_flyways_landing_three_columns' => array(
       'variables' => array(
         'columns' => array(),
@@ -226,8 +234,8 @@ function nas_panes_save_news_page() {
  * Resave news page (cache to database).
  */
 function nas_panes_save_flyways_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
+//  $cache = page_manager_get_page_cache(NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY);
+//  page_manager_save_page_cache($cache);
 }
 
 /**
@@ -308,4 +316,13 @@ function nas_panes_preprocess_nas_bird_landing_featured(&$variables) {
  */
 function nas_panes_preprocess_nas_featured_bird(&$variables) {
   $variables['color_text'] = $variables['color'] == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Preprocess
+ */
+function nas_panes_preprocess_nas_flyways_landing_bottom(&$vars) {
+  foreach ($vars['flyway'] as &$flyway) {
+    $flyway['name_id'] = preg_replace('/[^a-z]/', '-', strtolower($flyway['name']));
+  }
 }
