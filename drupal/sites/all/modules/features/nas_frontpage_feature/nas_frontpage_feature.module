@@ -5,3 +5,41 @@
  */
 
 include_once 'nas_frontpage_feature.features.inc';
+
+
+// Save default image for pane
+function nas_frontpage_feature_save_default_image(){
+  $filepath =  drupal_get_path('module', 'nas_frontpage_feature') . '/images/curtain-1.jpg';
+  $filepath_array = explode('/', $filepath);
+  $filename = array_pop($filepath_array);
+  $public_uri = 'public://' . $filename;
+
+  $files = file_load_multiple(array(), array('uri' => $public_uri));
+  $file = reset($files);
+
+  if ($file) {
+    return $file->fid;
+  }
+  $filepath = file_unmanaged_copy($filepath, NULL, FILE_EXISTS_REPLACE);
+  $file = (object) array(
+    'filename' => basename($filepath),
+    'filepath' => $filepath,
+    'filemime' => file_get_mimetype($filepath),
+    'filesize' => filesize($filepath),
+    'uid' => 1,
+    'status' => FILE_STATUS_PERMANENT,
+    'timestamp' => REQUEST_TIME,
+    'uri' => $filepath,
+    'type' => 'image',
+  );
+
+  drupal_write_record('file_managed', $file);
+  $files = file_load_multiple(array(), array('uri' => $public_uri));
+  $file = reset($files);
+
+  $file->field_file_credit['und'][0]['value'] = 'Photo: Rusty Clark';
+  $file->field_file_image_title_text['und'][0]['value'] = 'Audubon Researchers in Alaska';
+  field_attach_update('file', $file);
+
+  return $file->fid;
+}
