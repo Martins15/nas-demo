@@ -9,7 +9,7 @@ include_once 'nas_frontpage_feature.features.inc';
 /**
  * Save default image for pane
  */
-function nas_frontpage_feature_save_default_image(){
+function nas_frontpage_feature_save_default_image() {
   $filepath =  drupal_get_path('module', 'nas_frontpage_feature') . '/images/curtain-1.jpg';
   $filepath_array = explode('/', $filepath);
   $filename = array_pop($filepath_array);
@@ -35,11 +35,16 @@ function nas_frontpage_feature_save_default_image(){
   );
 
   drupal_write_record('file_managed', $file);
+
   $files = file_load_multiple(array(), array('uri' => $public_uri));
   $file = reset($files);
 
-  $file->field_file_credit['und'][0]['value'] = 'Photo: Rusty Clark';
-  $file->field_file_image_title_text['und'][0]['value'] = 'Audubon Researchers in Alaska';
+  $lang = field_language('file', $file, 'field_file_credit');
+  $file->field_file_credit[$lang][0]['value'] = 'Photo: Rusty Clark';
+
+  $lang = field_language('file', $file, 'field_file_image_title_text');
+  $file->field_file_image_title_text[$lang][0]['value'] = 'Audubon Researchers in Alaska';
+
   field_attach_update('file', $file);
 
   return $file->fid;
