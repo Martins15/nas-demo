@@ -95,7 +95,9 @@ function get_image_src($matches, $source_nid) {
   $full_url = $matches[2];
   // Using define early pattern
   $path = $full_url;
+  // @codingStandardsIgnoreStart
   watchdog('full_url test', '<pre>' . print_r($full_url, 1) . '</pre>');
+  // @codingStandardsIgnoreEnd
   if (preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url) === FALSE) {
     $path = 'audubon.org' . $full_url;
   }
