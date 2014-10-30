@@ -50,6 +50,7 @@ dependencies[] = entityreference_autocomplete
 dependencies[] = views_load_more
 dependencies[] = better_formats
 dependencies[] = elements
+dependencies[] = bean_wysiwyg
 
 ; Custom modules
 dependencies[] = nas_solr_feature

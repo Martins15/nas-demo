@@ -34,5 +34,4 @@ dependencies[] = nas_author_page
 dependencies[] = nas_wysiwyg
 dependencies[] = nas_flyways_landing_feature
 dependencies[] = nas_editor_role
-
-
+dependencies[] = nas_beans_feature
