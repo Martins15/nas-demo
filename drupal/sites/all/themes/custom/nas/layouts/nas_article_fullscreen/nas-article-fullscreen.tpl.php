@@ -3,9 +3,9 @@
  * @file
  * Template of Article layout with Fullscreen image.
  *
- * @variables
- *  $color_mode_text
- *  $color_mode_gradient
+ * Available variables:
+ *  - $color_mode_text: text color mode for hero image.
+ *  - $color_mode_gradient: gradient color mode for hero image.
  */
 ?>
 
