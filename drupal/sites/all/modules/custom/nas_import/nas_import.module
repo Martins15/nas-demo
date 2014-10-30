@@ -79,8 +79,17 @@ function get_image_src ($matches) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
-  $file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT);
-  $path = pp_file_create_url($file->uri);
+  // Using define early pattern
+  $path = $full_url;
+  watchdog('full_url test','<pre>'.print_r($full_url,1).'</pre>');
+  if (preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url) === FALSE) {
+    $path = 'audubon.org' . $full_url;
+  }
+  if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
+    if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
+      $path = pp_file_create_url($file->uri);
+    }
+  }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
 
