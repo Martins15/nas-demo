@@ -79,6 +79,10 @@ function nas_view_modes_feature_strongarm() {
             'weight' => '2',
             'visible' => FALSE,
           ),
+          'nas_wysiwyg_image' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
       ),
     ),

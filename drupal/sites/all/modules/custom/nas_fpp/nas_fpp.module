@@ -83,6 +83,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Article featured'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['nas_wysiwyg_image'] = array(
+    'label' => t('Wysiwyg image'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['nas_file_plain_text_fields'] = array(
     'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
