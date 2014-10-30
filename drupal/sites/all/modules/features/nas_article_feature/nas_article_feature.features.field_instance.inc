@@ -390,6 +390,65 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-article-field_color_mode'
+  $field_instances['node-article-field_color_mode'] = array(
+    'bundle' => 'article',
+    'default_value' => array(
+      0 => array(
+        'value' => 'dark',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image. (Applies for fullscreen image layout)',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 16,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_color_mode',
+    'label' => 'Color mode',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 17,
+    ),
+  );
+
   // Exported field_instance: 'node-article-field_custom_section'
   $field_instances['node-article-field_custom_section'] = array(
     'bundle' => 'article',
@@ -1040,6 +1099,7 @@ function nas_article_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Author');
   t('Body');
+  t('Color mode');
   t('Custom Section');
   t('Date');
   t('Hero Image');
@@ -1053,6 +1113,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Similar Bird');
   t('Subtitle');
   t('To be used when building a link to the node. For example in Editorial Card.');
+  t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image. (Applies for fullscreen image layout)');
 
   return $field_instances;
 }
