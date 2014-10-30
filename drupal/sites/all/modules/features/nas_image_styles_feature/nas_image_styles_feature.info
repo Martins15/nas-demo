@@ -17,5 +17,4 @@ features[image][] = nas_bird_photo_thumbnnail
 features[image][] = nas_bird_teaser_illustration
 features[image][] = nas_birds_landing_epsacrop_mobile
 features[image][] = featured_frontpage
-features[image][] = featured_frontpage_mobile
 project path = sites/all/modules/features
