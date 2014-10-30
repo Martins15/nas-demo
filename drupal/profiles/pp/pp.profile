@@ -198,6 +198,9 @@ function pp_content_after_import() {
     if ($cache = page_manager_get_page_cache('page-birds_landing')) {
       page_manager_save_page_cache($cache);
     }
+    if ($cache = page_manager_get_page_cache('page-frontpage2')) {
+      page_manager_save_page_cache($cache);
+    }
     if ($cache = page_manager_get_page_cache('page-news')) {
       page_manager_save_page_cache($cache);
     }
