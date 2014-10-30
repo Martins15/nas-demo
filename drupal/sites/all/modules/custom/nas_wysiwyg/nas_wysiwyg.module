@@ -48,7 +48,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
   // preprocess_bean__[bundle] doesn't work.
   if ($vars['elements']['#entity_type'] == 'bean') {
     $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
-      if($vars['elements']['#bundle'] == 'wysiwyg_image') {
+    if ($vars['elements']['#bundle'] == 'wysiwyg_image') {
       $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
       if (!empty($get_field_wysiwyg_image)) {
         $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
