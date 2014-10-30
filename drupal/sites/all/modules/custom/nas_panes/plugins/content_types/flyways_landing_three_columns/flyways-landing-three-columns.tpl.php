@@ -5,7 +5,7 @@
  *
  * Available variables:
  * - $contextual_links: contextual links.
- * - $column[1-4]: array with title and text of the column.
+ * - $column[1-3]: array with title and text of the column.
  */
 ?>
 <div class="row space-top text-container contextual-links-region">
