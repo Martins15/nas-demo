@@ -449,7 +449,7 @@ function nas_preprocess_views_exposed_form(&$variables) {
 /**
  * Preprocess function for nas_article_fullscreen theme.
  */
-function template_preprocess_nas_article_fullscreen(&$variables) {
+function nas_preprocess_nas_article_fullscreen(&$variables) {
   // Replace substitutions.
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 

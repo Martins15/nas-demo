@@ -43,7 +43,8 @@ function nas_article_fullscreen_settings_form($display, $layout, $layout_setting
   $form['color_mode'] = array(
     '#type' => 'textfield',
     '#title' => t('Color mode'),
-    '#default_value' => $layout_settings['color_mode'],
+    '#default_value' => isset($layout_settings['color_mode']) ? $layout_settings['color_mode'] : '',
+    '#description' => t('You may use substitutions in this field.')
   );
 
   return $form;
