@@ -16,7 +16,15 @@ define('NAS_FPP_ED_CARD_3', 'editorial-card-7.jpg');
  * Load default image by URI, or save from module's folder if not exist.
  */
 function nas_fpp_get_default_image($filename) {
-  $default_uri = drupal_get_path('module', 'nas_fpp') . '/images/' . $filename;
+  return nas_fpp_save_default_image(drupal_get_path('module', 'nas_fpp') . '/images/' . $filename);
+}
+
+/**
+ * Save image to public folder.
+ */
+function nas_fpp_save_default_image($filepath) {
+  $filepath_array = explode('/', $filepath);
+  $filename = array_pop($filepath_array);
   $public_uri = 'public://' . $filename;
 
   $files = file_load_multiple(array(), array('uri' => $public_uri));
@@ -25,7 +33,7 @@ function nas_fpp_get_default_image($filename) {
   if ($file) {
     return $file->fid;
   }
-  $filepath = file_unmanaged_copy($default_uri, NULL, FILE_EXISTS_REPLACE);
+  $filepath = file_unmanaged_copy($filepath, NULL, FILE_EXISTS_REPLACE);
   $file = (object) array(
     'filename' => basename($filepath),
     'filepath' => $filepath,

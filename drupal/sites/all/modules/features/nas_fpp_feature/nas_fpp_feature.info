@@ -29,7 +29,6 @@ features[field_instance][] = fieldable_panels_pane-nas_editorial_cards-field_ima
 features[field_instance][] = fieldable_panels_pane-nas_editorial_cards-field_link
 features[field_instance][] = fieldable_panels_pane-nas_editorial_cards-field_links
 features[field_instance][] = fieldable_panels_pane-nas_editorial_cards-field_summary
-features[field_instance][] = fieldable_panels_pane-nas_editorial_cards-field_column_count
 features[field_instance][] = fieldable_panels_pane-nas_featured_content_cards-field_color_mode
 features[field_instance][] = fieldable_panels_pane-nas_featured_content_cards-field_image
 features[field_instance][] = fieldable_panels_pane-nas_featured_content_cards-field_link
