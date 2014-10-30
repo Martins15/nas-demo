@@ -6,8 +6,9 @@
 
 include_once 'nas_frontpage_feature.features.inc';
 
-
-// Save default image for pane
+/**
+ * Save default image for pane
+ */
 function nas_frontpage_feature_save_default_image(){
   $filepath =  drupal_get_path('module', 'nas_frontpage_feature') . '/images/curtain-1.jpg';
   $filepath_array = explode('/', $filepath);
