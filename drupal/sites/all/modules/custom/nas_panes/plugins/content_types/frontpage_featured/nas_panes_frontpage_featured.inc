@@ -116,7 +116,8 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     $image_wrapper = entity_metadata_wrapper('file', $image);
     $image_title = $image_wrapper->field_file_image_title_text->value();
     $image_credit = $image_wrapper->field_file_credit->value();
-  } else {
+  }
+  else {
     $image_path = '';
     $image_title = '';
     $image_credit = '';
