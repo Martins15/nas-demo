@@ -319,6 +319,11 @@ function nas_views_feature_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Most viewed articles', 'nas_most_viewed_articles');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Popular Stories';
+
+  /* Display: Popular stories for news */
+  $handler = $view->new_display('panel_pane', 'Popular stories for news', 'nas_most_viewed_articles_news');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Popular Stories';
   $export['nas_most_viewed_articles'] = $view;
 
   $view = new view();
