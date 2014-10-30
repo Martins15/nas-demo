@@ -38,6 +38,7 @@ features[field_instance][] = node-article-field_article_date
 features[field_instance][] = node-article-field_article_legacy
 features[field_instance][] = node-article-field_article_map
 features[field_instance][] = node-article-field_author
+features[field_instance][] = node-article-field_color_mode
 features[field_instance][] = node-article-field_custom_section
 features[field_instance][] = node-article-field_hero_image
 features[field_instance][] = node-article-field_internal_tagging
