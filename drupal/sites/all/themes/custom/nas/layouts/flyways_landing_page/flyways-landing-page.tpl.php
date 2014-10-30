@@ -11,21 +11,6 @@
 <section class="global-content with-padding">
   <?php print $content['lower']; ?>
 
-  <div class="row space-top text-container">
-    <div class="medium-4 columns">
-      <h3 class="">State Programs</h3>
-      <p>Audubon&rsquo;s 22 state programs give us a presence at statehouses and are a powerful force for programmatic alignment throughout the flyways.</p>
-    </div>
-    <div class="medium-4 columns">
-      <h3>Centers</h3>
-      <p>Forty-seven Audubon Centers introduce more than a million visitors each years to the natural world—and inspire them to help protect it. </p>
-    </div>
-    <div class="medium-4 columns">
-      <h3>Chapters</h3>
-      <p>Audubon’s 465 Chapters are more than our face in communities from coast to coast; they are the drivers of our on-the-ground conservation work. </p>
-    </div>
-  </div>
-
   <section class="category-nav strip-nav">
     <div class="row">
       <div class="columns">
