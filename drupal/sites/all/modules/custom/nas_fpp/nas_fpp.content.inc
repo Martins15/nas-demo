@@ -51,8 +51,8 @@ function nas_fpp_save_default_image($filepath, $filedata = array()) {
   $files = file_load_multiple(array(), array('uri' => $public_uri));
   $file = reset($files);
 
-  foreach ($filedata as $key => $value){
-    switch ($key){
+  foreach ($filedata as $key => $value) {
+    switch ($key) {
       case 'credit':
       case 'image_title_text':
         $lang = field_language('file', $file, 'field_file_'.$key);
