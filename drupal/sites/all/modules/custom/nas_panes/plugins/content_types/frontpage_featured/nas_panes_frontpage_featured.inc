@@ -164,8 +164,11 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     $contextual_links = drupal_render($build);
   }
 
+  // Pass image url value to theme
+  $featured_frontpage_image = &drupal_static('featured_frontpage_image');
+  $featured_frontpage_image = $image_path;
+
   $content = theme('nas_frontpage_featured', array(
-    'image_path' => $image_path,
     'image_title' => $image_title,
     'image_credit' => $image_credit,
     'summary' => $summary,

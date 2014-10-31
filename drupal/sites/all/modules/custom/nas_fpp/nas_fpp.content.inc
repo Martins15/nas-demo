@@ -56,7 +56,7 @@ function nas_fpp_save_default_image($filepath, $filedata = array()) {
       case 'credit':
       case 'image_title_text':
         $lang = field_language('file', $file, 'field_file_'.$key);
-        $file->field_file_credit[$lang][0]['value'] = $value;
+        $file->{'field_file_'.$key}[$lang][0]['value'] = $value;
         field_attach_update('file', $file);
         break;
     }
