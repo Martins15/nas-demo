@@ -72,6 +72,87 @@ function nas_flyways_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'panelizer_defaults_node_flyway';
+  $strongarm->value = array(
+    'status' => 1,
+    'view modes' => array(
+      'page_manager' => array(
+        'status' => 1,
+        'default' => 1,
+        'choice' => 0,
+      ),
+      'default' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'full' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'teaser' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'rss' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'search_index' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'search_result' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'diff_standard' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_featured' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'token' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'revision' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+    ),
+  );
+  $export['panelizer_defaults_node_flyway'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'panelizer_node:flyway_allowed_layouts';
   $strongarm->value = 'O:22:"panels_allowed_layouts":4:{s:9:"allow_new";b:1;s:11:"module_name";s:21:"panelizer_node:flyway";s:23:"allowed_layout_settings";a:24:{s:8:"flexible";b:0;s:14:"twocol_stacked";b:0;s:13:"twocol_bricks";b:0;s:6:"twocol";b:0;s:25:"threecol_33_34_33_stacked";b:0;s:17:"threecol_33_34_33";b:0;s:25:"threecol_25_50_25_stacked";b:0;s:17:"threecol_25_50_25";b:0;s:6:"onecol";b:0;s:26:"site_template_small_header";b:0;s:24:"site_template_big_header";b:0;s:9:"node_bird";b:0;s:16:"nas_three_column";b:0;s:14:"nas_one_column";b:0;s:13:"nas_news_page";b:0;s:15:"nas_author_page";b:0;s:15:"nas_article_map";b:0;s:22:"nas-article-fullscreen";b:0;s:19:"nas_article_default";b:0;s:21:"nas_article_big_image";b:0;s:20:"flyways_landing_page";b:1;s:18:"birds_landing_page";b:0;s:15:"bird_guide_page";b:0;s:10:"nas_flyway";b:1;}s:10:"form_state";N;}';
   $export['panelizer_node:flyway_allowed_layouts'] = $strongarm;

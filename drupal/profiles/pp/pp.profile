@@ -48,6 +48,15 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_set_editor_pass',
   );
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $tasks['create_test_flyway'] = array(
+      'display_name' => st('Create Flyway CT nodes for testing purposes'),
+      'display' => FALSE,
+      'type' => 'normal',
+      'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+      'function' => 'pp_create_test_flyway',
+    );
+  }
   return $tasks;
 }
 
@@ -246,3 +255,53 @@ function pp_set_editor_pass() {
   user_save($account, $edit);
 }
 
+/**
+ * Create node of type Flyway for testing purposes.
+ */
+function pp_create_test_flyway() {
+  // Create node object.
+  $node = new StdClass();
+  $node->type = 'flyway';
+  $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node->title = 'Atlantic Flyway';
+  $node->field_flyway_body[LANGUAGE_NONE] = array(
+    0 => array(
+      'value' => '<p>From the northern Atlantic Coast and through the Caribbean to South America, Audubon is working to support this avian superhighway’s 500-plus bird species and millions of individual birds. Forty percent of the Atlantic Flyway’s bird species are species of conservation need.</p>',
+      'format' => 'full_html',
+    ),
+    1 => array(
+      'value' => '<p>With only one-tenth of the U.S. landmass, this flyway is home to one-third of the nation’s people. And dense population carries with it many challenges for birds and habitat: development and sprawl, incompatible agriculture, overfishing, and climate change.</p>',
+      'format' => 'full_html',
+    ),
+  );
+  $node->field_secondary_title[LANGUAGE_NONE][0]['value'] = 'On the wing from Labrador to Tierra del Fuego';
+  $node->field_subtitle[LANGUAGE_NONE][0]['value'] = 'The Atlantic Flyway encompasses some of the hemisphere’s most productive ecosystems, inclusing forests, beaches, and coastal wetland.';
+
+  $node->field_background_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image('default_flyway_section_background.jpg');
+
+  $node->field_color_mode[LANGUAGE_NONE][0]['value'] = 'light';
+  node_save($node);
+
+  // Set default display for created flyway.
+  $panelizer_entity_name = 'node:flyway:default';
+  $panelizer_entity = array(
+    'entity_type' => 'node',
+    'entity_id' => $node->nid,
+    'revision_id' => $node->vid,
+    'name' => $panelizer_entity_name,
+    'no_blocks' => 0,
+    'css_id' => '',
+    'css' => '',
+    'pipeline' => 'standard',
+    'contexts' => array(),
+    'relationships' => array(),
+    'did' => 0,
+    'view_mode' => 'page_manager',
+    'css_class' => '',
+    'title_element' => 'H2',
+    'link_to_entity' => 1,
+    'extra' => array(),
+  );
+  drupal_write_record('panelizer_entity', $panelizer_entity);
+}
