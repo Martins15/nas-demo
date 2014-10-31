@@ -70,6 +70,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'title' => 'Links',
       'body' => '
         <h3>Pages</h3><ul>
+        <li><a href="frontpage2">Frontpage2</a></li>
         <li><a href="bird-guide">Bird Guide</a></li>
         <li><a href="birds-landing">Birds Landing page</a></li></ul>
         <li><a href="news">News page</a></li></ul>
@@ -168,10 +169,18 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->subtype = 'nas_panes_frontpage_featured';
     $pane->shown = TRUE;
     $pane->access = array();
+
+    // Filepath to fullscreen default image
+    $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/curtain-1.jpg';
+    $filedata = array(
+      'image_title_text' => 'Audubon Researchers in Alaska',
+      'credit' => 'Photo: Rusty Clark',
+      );
+
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'image' => nas_frontpage_feature_save_default_image(),
+      'image' => nas_fpp_save_default_image($filepath, $filedata),
       'title' => 'Protecting Alaska’s Frontier',
       'title_link' => '<front>',
       'blue_text' => 'Conservation',

@@ -35,7 +35,7 @@ function frontpage_featured_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_frontpage', 'featured_frontpage_mobile'),
+    '#pp_crop_styles' => array('featured_frontpage'),
   );
 
   // The two function calls below are necessary if we want to use a media
