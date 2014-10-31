@@ -471,7 +471,7 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
 /**
  * Implements hook_preprocess_panels_nas_frontpage().
  */
-function nas_preprocess_panels_nas_frontpage(&$variables){
+function nas_preprocess_panels_nas_frontpage(&$variables) {
   // Set featured frontpage backgroudimage variable
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $variables['frontpage_backgroudimage'] = $featured_frontpage_image;
