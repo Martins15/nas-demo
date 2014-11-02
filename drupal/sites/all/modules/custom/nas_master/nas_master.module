@@ -29,3 +29,24 @@ function nas_master_views_ajax_data_alter(&$commands, $view) {
     $commands[] = ajax_command_replace('.bird-card-grid .section-header h2', '<h2 class="thin">' . t('Matching Birds') . '</h2>');
   }
 }
+/*
+ * Implements hook_date_format_types().
+ */
+function nas_master_date_format_types() {
+  return array(
+    'nas_date' => t('NAS Date'),
+  );
+}
+/*
+ * Implements hook_date_formats().
+ */
+function nas_master_date_formats() {
+  $formats = array(
+    array(
+      'type' => 'nas_date',
+      'format' => 'F j, Y',
+      'locales' => array(),
+    ),
+  );
+  return $formats;
+}
