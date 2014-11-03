@@ -25,7 +25,7 @@
 <div class="flyway-slides">
   <div class="flyway-slides-container">
     <?php for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++): ?>
-    <div id="<?php print $flyway[$i]['name_id']; ?>-slide" class="flyway-slide">
+    <div id="<?php print $flyway[$i]['name_id']; ?>-slide" class="flyway-slide<?php if ($i == 1 ): ?> current<?php endif; ?>">
       <div class="row section-header">
         <div class="column">
           <h1><?php print $flyway[$i]['name']; ?></h1>
