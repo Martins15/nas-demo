@@ -103,7 +103,7 @@ function get_image_src($matches, $source_nid) {
       $path = pp_file_create_url($file->uri);
     }
   }
-  watchdog('qwqweqwr','<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>');
+  watchdog('qwqweqwr', '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>');
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
 
@@ -131,8 +131,7 @@ function pp_file_create_url($uri) {
       $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
     }
   }
-    watchdog('bububu',$file_url);
-  
+  watchdog('bububu', $file_url);
   return $file_url;
 }
 
