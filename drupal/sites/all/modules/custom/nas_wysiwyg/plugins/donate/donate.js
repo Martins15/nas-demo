@@ -1,7 +1,7 @@
 (function($) {
   Drupal.wysiwyg.plugins.donate = {
-    attach : '',
-  },
+    attach: '',
+  };
 
   donateAddPlugin = {
     requires: 'widget',

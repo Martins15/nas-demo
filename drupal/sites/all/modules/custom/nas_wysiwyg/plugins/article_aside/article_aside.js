@@ -1,7 +1,7 @@
 (function($) {
   Drupal.wysiwyg.plugins.article_aside = {
     attach : '',
-  },
+  };
 
   article_asideAddPlugin = {
     requires: 'widget',
