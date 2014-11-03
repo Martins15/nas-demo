@@ -11322,3 +11322,7 @@ body.touch .sticky-wrapper {
 .strip-nav i[class^="icon-"], .strip-nav i[class*=" icon-"] {
   line-height: 11px;
 }
+
+.donate-bar-button {
+  width: 29%;
+}

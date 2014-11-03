@@ -1,0 +1,49 @@
+.donate-bar:before {
+  background-image: url('../../../../../themes/custom/nas/img/engagement-bird-2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 113.33333px;
+  left: 0px;
+  position: absolute;
+  top: 5px;
+  width: 32.8px;
+}
+
+.donate-bar {
+  background-color: #fbfaf6;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  margin: 25px 0;
+  padding: 10px 40px;
+  position: relative;
+}
+
+@media only screen and (min-width: 1020px) {
+  .donate-bar:before {
+    content: "";
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .donate-bar {
+    font-size: 20px;
+    line-height: 25.5px; 
+  }
+}
+
+.donate-bar-caption, .donate-bar-button {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.donate-bar-caption {
+  width: 70%;
+}
+
+.donate-bar-button {
+  text-align: right;
+  width: 30%;
+}
