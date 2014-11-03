@@ -21,8 +21,10 @@ function nas_fpp_get_default_image($filename) {
 
 /**
  * Save image to public folder.
+ * $filepath path to file
+ * $filedata file properties
  */
-function nas_fpp_save_default_image($filepath) {
+function nas_fpp_save_default_image($filepath, $filedata = array()) {
   $filepath_array = explode('/', $filepath);
   $filename = array_pop($filepath_array);
   $public_uri = 'public://' . $filename;
@@ -48,6 +50,17 @@ function nas_fpp_save_default_image($filepath) {
   drupal_write_record('file_managed', $file);
   $files = file_load_multiple(array(), array('uri' => $public_uri));
   $file = reset($files);
+
+  foreach ($filedata as $key => $value) {
+    switch ($key) {
+      case 'credit':
+      case 'image_title_text':
+        $lang = field_language('file', $file, 'field_file_'.$key);
+        $file->{'field_file_'.$key}[$lang][0]['value'] = $value;
+        field_attach_update('file', $file);
+        break;
+    }
+  }
 
   return $file->fid;
 }
