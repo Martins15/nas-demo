@@ -234,8 +234,8 @@ function nas_panes_save_news_page() {
  * Resave news page (cache to database).
  */
 function nas_panes_save_flyways_landing_page() {
-//  $cache = page_manager_get_page_cache(NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY);
-//  page_manager_save_page_cache($cache);
+  $cache = page_manager_get_page_cache(NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
 }
 
 /**

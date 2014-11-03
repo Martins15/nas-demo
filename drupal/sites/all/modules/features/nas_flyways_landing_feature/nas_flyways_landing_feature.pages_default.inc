@@ -215,6 +215,85 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
     $pane->uuid = 'e95dc3c1-688b-4353-ba64-630d3df44e6a';
     $display->content['new-e95dc3c1-688b-4353-ba64-630d3df44e6a'] = $pane;
     $display->panels['lower'][1] = 'new-e95dc3c1-688b-4353-ba64-630d3df44e6a';
+    $pane = new stdClass();
+    $pane->pid = 'new-5061028a-b074-4919-94b5-19d82d199303';
+    $pane->panel = 'lower';
+    $pane->type = 'flyways_landing_bottom';
+    $pane->subtype = 'flyways_landing_bottom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'flyway' => array(
+        1 => array(
+          'name' => 'Pacific Flyway',
+          'top_right_link_title' => 'Conservation Goal',
+          'top_right_link_uri' => '<front>',
+          'text_under_top_right_link' => '58 million acres | 17 priority bird species',
+          'summary' => 'The Central Flyway extends from the grasslands of the Great Plains to the western Gulf Coast. Many of its migratory bird species winter in Central and South America; some migrate across the Western Hemisphere as far north at the Arctic Circle and others south to Patagonia in southern South America.',
+          'summary_more_link_uri' => '<front>',
+          'entity_reference' => array(
+            1 => FALSE,
+            2 => FALSE,
+            3 => FALSE,
+          ),
+        ),
+        2 => array(
+          'name' => 'Central Flyway',
+          'top_right_link_title' => 'Praesent nec',
+          'top_right_link_uri' => '<front>',
+          'text_under_top_right_link' => 'Praesent blandit laoreet nibh',
+          'summary' => 'Phasellus a est. Cras non dolor. Ut tincidunt tincidunt erat. Suspendisse non nisl sit amet velit hendrerit rutrum. Pellentesque dapibus hendrerit tortor.',
+          'summary_more_link_uri' => '<front>',
+          'entity_reference' => array(
+            1 => FALSE,
+            2 => FALSE,
+            3 => FALSE,
+          ),
+        ),
+        3 => array(
+          'name' => 'Mississippi Flyway',
+          'top_right_link_title' => 'Duis vel',
+          'top_right_link_uri' => '<front>',
+          'text_under_top_right_link' => 'Ut non enim eleifend',
+          'summary' => 'Nulla facilisi. In hac habitasse platea dictumst. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Morbi ac felis.',
+          'summary_more_link_uri' => '<front>',
+          'entity_reference' => array(
+            1 => FALSE,
+            2 => FALSE,
+            3 => FALSE,
+          ),
+        ),
+        4 => array(
+          'name' => 'Atlantic Flyway',
+          'top_right_link_title' => 'Suspendisse non',
+          'top_right_link_uri' => '<front>',
+          'text_under_top_right_link' => 'Proin faucibus arcu quis',
+          'summary' => 'Phasellus dolor. Quisque ut nisi. Aenean massa. Praesent turpis. Phasellus nec sem in justo pellentesque facilisis.',
+          'summary_more_link_uri' => '<front>',
+          'entity_reference' => array(
+            1 => FALSE,
+            2 => FALSE,
+            3 => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-FEz4c2iBNA0dp2-Al0KoNpy8I7qFpPmlpbx2V5eyv3s',
+      'form_token' => 'rX9fWenWfK96cdLtj3BtjRoSon3Jr8LswvIbwSabhWw',
+      'form_id' => 'flyways_landing_bottom_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '5061028a-b074-4919-94b5-19d82d199303';
+    $display->content['new-5061028a-b074-4919-94b5-19d82d199303'] = $pane;
+    $display->panels['lower'][2] = 'new-5061028a-b074-4919-94b5-19d82d199303';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

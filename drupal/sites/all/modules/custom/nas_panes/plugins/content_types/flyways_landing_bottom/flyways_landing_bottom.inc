@@ -62,6 +62,29 @@ function flyways_landing_bottom_form($form, &$form_state) {
       '#description' => 'you can use internal link i.e. node/5',
       '#default_value' => !empty($conf['flyway'][$i]['summary_more_link_uri']) ? $conf['flyway'][$i]['summary_more_link_uri'] : '',
     );
+
+    $form['flyway'][$i]['summary_more_link_uri'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Summary More link URI',
+      '#description' => 'you can use internal link i.e. node/5',
+      '#default_value' => !empty($conf['flyway'][$i]['summary_more_link_uri']) ? $conf['flyway'][$i]['summary_more_link_uri'] : '',
+    );
+
+    // Limit to 3 numbers of Articles.
+    $form['flyway'][$i]['entity_reference'] = array(
+      '#type' => 'fieldset',
+      '#title' => 'News articles',
+      '#tree' => TRUE,
+    );
+    for ($j = 1; $j <= 3; $j++) {
+      $form['flyway'][$i]['entity_reference'][$j] = array(
+        '#type' => 'entityreference',
+        '#title' => '',
+        '#default_value' => !empty($conf['flyway'][$i]['entity_reference'][$j]['entity_id']) ? $conf['flyway'][$i]['entity_reference'][$j]['entity_id'] : '',
+        '#era_entity_type' => 'node',
+        '#era_bundles' => array('article'),
+      );
+    }
   }
 
   return $form;
@@ -100,6 +123,45 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
   });
   // @codingStandardsIgnoreEnd
 
+  $conf_is_not_empty = function($conf) {
+    foreach ($conf['entity_reference'] as $item) {
+      if (isset($item['entity_id']) && !empty($item['entity_id'])) {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  };
+
+  for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
+    $condition = $conf['flyway'][$i]['name'];
+    $news_nodes = array();
+    if (isset($conf['flyway'][$i]) && $conf_is_not_empty($conf['flyway'][$i])) {
+      // We do not use node_load_multiple so it would be possible to set same
+      // news article twice.
+      foreach ($conf['flyway'][$i]['entity_reference'] as $value) {
+        if (!empty($value['entity_id'])) {
+          $news_nodes[] = node_load($value['entity_id']);
+        }
+      }
+    }
+    else {
+      $view_results = views_get_view_result('flyway_news', NULL, $condition);
+      foreach ($view_results as $result) {
+        $news_nodes[] = node_load($result->nid);
+      }
+    }
+
+    $teasers = array();
+    foreach ($news_nodes as $node) {
+      $build = node_view($node, 'nas_node_teaser_small');
+      $teasers[] = drupal_render($build);
+    }
+    if (empty($teasers)) {
+      $teasers = array(t('No news of flyway @flyway', array('@flyway' => $condition)));
+    }
+    $conf['flyway'][$i]['news_teasers'] = implode('', $teasers);
+  }
+
   $contextual_links = '';
   if (user_access('administer site configuration')) {
     ctools_include('modal');
@@ -108,10 +170,10 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
     ctools_add_js('ajax-responder');
     // We expect Featured Bird pane to be only on Bird Guide. If this is not
     // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_flyways_landing_bottom'))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'flyways_landing_bottom'))->fetchField();
     if (empty($pid)) {
       nas_panes_save_flyways_landing_page();
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_flyways_landing_bottom'))->fetchField();
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'flyways_landing_bottom'))->fetchField();
     }
     $links = array(
       'edit' => array(
