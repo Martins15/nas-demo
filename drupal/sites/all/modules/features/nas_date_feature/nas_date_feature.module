@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Date Feature feature.
+ */
+
+include_once 'nas_date_feature.features.inc';

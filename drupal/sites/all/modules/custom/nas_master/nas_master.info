@@ -1,6 +1,7 @@
 name = NAS master
 core = 7.x
 package = NAS
+dependencies[] = nas_date_feature
 dependencies[] = nas_bird_type_feature
 dependencies[] = nas_image_styles_feature
 dependencies[] = nas_import_feeds_feature
@@ -35,3 +36,4 @@ dependencies[] = nas_wysiwyg
 dependencies[] = nas_flyways_landing_feature
 dependencies[] = nas_editor_role
 dependencies[] = nas_beans_feature
+dependencies[] = nas_flyways_feature
