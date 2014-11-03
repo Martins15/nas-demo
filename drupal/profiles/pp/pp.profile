@@ -48,15 +48,14 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_set_editor_pass',
   );
-  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-    $tasks['create_test_flyway'] = array(
-      'display_name' => st('Create Flyway CT nodes for testing purposes'),
-      'display' => FALSE,
-      'type' => 'normal',
-      'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
-      'function' => 'pp_create_test_flyway',
-    );
-  }
+  // @todo: to be removed on release
+  $tasks['create_test_flyway'] = array(
+    'display_name' => st('Create Flyway CT nodes for testing purposes'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_create_test_flyway',
+  );
   return $tasks;
 }
 
