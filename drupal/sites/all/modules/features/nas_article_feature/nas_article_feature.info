@@ -8,6 +8,7 @@ dependencies[] = features
 dependencies[] = feeds
 dependencies[] = filter
 dependencies[] = image
+dependencies[] = list
 dependencies[] = media
 dependencies[] = mediafield
 dependencies[] = nas_bird_type_feature
