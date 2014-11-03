@@ -120,6 +120,8 @@ function pp_import_nodes() {
       189331,
       // node with inline image that NOT FOUND
       178166,
+      // node with inline image
+      189306,
     );
   }
 
