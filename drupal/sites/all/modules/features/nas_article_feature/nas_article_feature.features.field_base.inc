@@ -198,7 +198,7 @@ function nas_article_feature_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
-          'article' => 'article',
+          'flyway' => 'flyway',
         ),
       ),
       'target_type' => 'node',
