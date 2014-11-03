@@ -11,26 +11,6 @@
 <section class="global-content with-padding">
   <?php print $content['lower']; ?>
 
-  
-
-  <section class="breakout-section black-bg">
-    <div class="breakout-section-hero margin-bottom" style="background-image: url(../../img/breakout-section-6.jpg)">
-      <div class="row">
-        <div class="column">
-          <h1 class="breakout-section-headline">Hemispheric Partners</h1>
-        </div>
-      </div>
-    </div>
-    <div class="breakout-section-content">
-      <div class="row space-bottom">
-        <div class="column">
-          <div class="deck">Audubon works with 19 BirdLife International partners and others across the Americas to protect birds throughout their annual life cycles of breeding, migration, and wintering. <a href="#">Learn more »</a></div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="card-set bg-1">
     <div class="row">
       <div class="column">
