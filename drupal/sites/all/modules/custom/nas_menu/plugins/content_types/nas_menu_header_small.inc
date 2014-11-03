@@ -25,46 +25,34 @@ function nas_menu_nas_menu_header_small_content_type_render() {
 
   $block = new stdClass();
 
-  $content =
-  '<div class="row">
-    <div class="columns">
-      <a href="' . url('<front>') . '" class="current-parent wordmark">' . check_plain(variable_get('site_name')) . '</a>
-      <!-- Only visible on small and medium screens -->
-      <a href="#" class="icon-menu header-btn header-btn-menu"></a>
-      <!-- / -->
-      <div class="global-nav">
-        <div class="mobile-nav">
-          <ul class="primary-nav inline-list">';
-
+  $items = array();
   foreach ($menu_tree as $menu_item) {
-    if ($menu_item['link']['hidden'] == TRUE) {
-      continue;
-    }
-    $li_class = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-    $a_class = isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '';
-    $content .= '<li class="primary-nav-item ' . $li_class . '">
-      <a class="primary-nav-toggler' . $a_class . '" href="'
-        . url($menu_item['link']['link_path']) . '">'
-        . check_plain($menu_item['link']['link_title']) . '</a>';
+    $item = array(
+      'li_class' => isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '',
+      'a_class' => isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '',
+      'url' => url($menu_item['link']['link_path']),
+      'title' => check_plain($menu_item['link']['link_title']),
+    );
 
+    $item['#below'] = array();
     if (!empty($menu_item['below'])) {
-      $content .= '<ul class="primary-sub-nav">';
       foreach ($menu_item['below'] as $sub_menu_item) {
-        $li_class = isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '';
-        $a_class = isset($sub_menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $sub_menu_item['link']['options']['attributes']['class']) : '';
-        $content .= '<li class="primary-sub-nav-item' . $li_class . '">'
-          . '<a class="primary-sub-nav-link' . $a_class . '" href="'
-          . url($sub_menu_item['link']['link_path']) . '">'
-          . check_plain($sub_menu_item['link']['link_title']) . '</a></li>';
+        $item['#below'][] = array(
+          'li_class' => isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '',
+          'a_class' => isset($sub_menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $sub_menu_item['link']['options']['attributes']['class']) : '',
+          'url' => url($sub_menu_item['link']['link_path']),
+          'title' => check_plain($sub_menu_item['link']['link_title']),
+        );
       }
-      $content .= '</ul>';
     }
 
-    $content .= '</li>';
-
+    $items[] = $item;
   }
 
-  $content .= '</ul></div></div></div></div>';
+  $frontpage_url = url('<front>');
+  $site_name = check_plain(variable_get('site_name'));
+
+  $content = theme('nas_small_header', array('items' => $items, 'frontpage_url' => $frontpage_url, 'site_name' => $site_name));
 
   $block->content = $content;
   return $block;
