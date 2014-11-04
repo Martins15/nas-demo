@@ -101,9 +101,9 @@ function get_image_src($matches, $source_nid) {
   if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
     if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
       $path = pp_file_create_url($file->uri);
+      watchdog('file - test', $file);
     }
   }
-  watchdog('qwqweqwr', '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>');
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
 }
 
@@ -116,7 +116,6 @@ function pp_file_create_url($uri) {
   // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
   // via drush command if it is avaiable.
   if (function_exists('drush_main')) {
-    watchdog('bububu', $uri);
     $drush_context = drush_get_context('DRUSH_COMMAND_ARGS');
     $base_url_from_drush = '';
     foreach ($drush_context as $drush_arg) {
@@ -131,7 +130,6 @@ function pp_file_create_url($uri) {
       $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
     }
   }
-  watchdog('bububu', $file_url);
   return $file_url;
 }
 
