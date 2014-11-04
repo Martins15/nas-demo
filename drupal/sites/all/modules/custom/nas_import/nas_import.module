@@ -53,26 +53,31 @@ function nas_import_feeds_plugins() {
  * Implements hook_feeds_presave().
  */
 function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
-  if ($entity->feeds_item->id == 'birds_import') {
-    nas_import_feeds_presave_birds_import($source, $entity, $item);
-  }
-  if ($entity->feeds_item->id == 'news_import') {
-    // Import image.
-    $nid = $item['nid'];
-    $callback = function ($match) use ($nid) {
-      get_image_src($match, $nid);
-    };
-    $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", $callback, $item['body']);
-    $preg = '/style=\"(.*?)\"/si';
-    $result = preg_replace($preg, '', $item['body']);
-    $item['body'] = $result;
-    nas_import_feeds_presave_news_import($source, $entity, $item);
-  }
-  if ($entity->feeds_item->id == 'contacts_import') {
-    nas_import_feeds_presave_contacts_import($source, $entity, $item);
-  }
-  if ($entity->feeds_item->id == 'users_import') {
-    nas_import_feeds_presave_users_import($source, $entity, $item);
+  switch ($entity->feeds_item->id) {
+    case 'birds_import':
+      nas_import_feeds_presave_birds_import($source, $entity, $item);
+      break;
+
+    case 'news_import':
+      // Import image.
+      $nid = $item['nid'];
+      $callback = function ($match) use ($nid) {
+        get_image_src($match, $nid);
+      };
+      $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", $callback, $item['body']);
+      $preg = '/style=\"(.*?)\"/si';
+      $result = preg_replace($preg, '', $item['body']);
+      $item['body'] = $result;
+      nas_import_feeds_presave_news_import($source, $entity, $item);
+      break;
+
+    case 'contacts_import':
+      nas_import_feeds_presave_contacts_import($source, $entity, $item);
+      break;
+
+    case 'users_import':
+      nas_import_feeds_presave_users_import($source, $entity, $item);
+      break;
   }
 }
 
