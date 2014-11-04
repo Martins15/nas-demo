@@ -1579,7 +1579,10 @@ function nas_article_feature_panelizer_defaults() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'press-release-date',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();

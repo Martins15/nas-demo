@@ -29,6 +29,7 @@ dependencies[] = pathauto
 dependencies[] = module_filter
 dependencies[] = views
 dependencies[] = views_ui
+dependencies[] = panelizer_views_integration
 dependencies[] = entityreference
 dependencies[] = field_group
 dependencies[] = feeds_ex

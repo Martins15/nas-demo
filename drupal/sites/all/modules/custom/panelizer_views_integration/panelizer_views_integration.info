@@ -1,0 +1,10 @@
+name = "Panelizer views integration"
+description = "Extend panelizer integration with views."
+core = "7.x"
+package = "Views"
+dependencies[] = ctools
+dependencies[] = views
+dependencies[] = panelizer
+
+files[] = views/views_handler_field_panelizer.inc
+files[] = views/views_handler_filter_panelizer_layout.inc
