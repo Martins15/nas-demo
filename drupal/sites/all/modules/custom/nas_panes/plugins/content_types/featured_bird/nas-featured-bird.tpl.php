@@ -13,7 +13,7 @@
  * - $illustration_path: path to the illustration image of the bird.
  * - $contextual_links: rendered contextual links.
  * - $color: color scheme for gradient.
- * - $color_text: color scheme for text.
+ * - $color_classes: color classes for text.
  */
 ?>
 <div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">
@@ -24,8 +24,9 @@
   </div>
   <div class="row">
     <div class="hero-header">
-      <div class="column medium-8 large-9">
-        <a class="hero-slug" href="<?php print $url; ?>">Featured Bird</a>
+      <div class="column medium-8 large-9 contextual-links-region">
+        <?php print $contextual_links; ?>
+        <a class="hero-slug" href="<?php print $url; ?>"><?php print t('Featured Bird'); ?></a>
         <h2 class="hero-title"><?php print $name; ?></h2>
       </div>
       <div class="hero-card-column column hide-for-small hide-for-tiny medium-4 large-3">
