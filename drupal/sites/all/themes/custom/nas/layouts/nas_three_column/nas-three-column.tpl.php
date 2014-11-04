@@ -18,7 +18,7 @@
         </aside>
         <?php print $content['main']; ?>
       </div>
-      <div class="article-sidebar large-pull-10 large-2 columns">
+      <div class="article-sidebar large-pull-10 large-2 columns press-release">
         <?php print $content['left']; ?>
       </div>
     </div>
