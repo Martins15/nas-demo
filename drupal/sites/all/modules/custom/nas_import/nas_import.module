@@ -101,7 +101,6 @@ function get_image_src($matches, $source_nid) {
   if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
     if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
       $path = pp_file_create_url($file->uri);
-      watchdog('file - test', $file);
     }
   }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
