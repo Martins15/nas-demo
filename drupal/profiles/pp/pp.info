@@ -29,6 +29,7 @@ dependencies[] = pathauto
 dependencies[] = module_filter
 dependencies[] = views
 dependencies[] = views_ui
+dependencies[] = panelizer_views_integration
 dependencies[] = entityreference
 dependencies[] = field_group
 dependencies[] = feeds_ex
@@ -53,6 +54,7 @@ dependencies[] = better_formats
 dependencies[] = elements
 dependencies[] = bean_wysiwyg
 dependencies[] = scheduler
+dependencies[] = rel_to_abs
 
 ; Custom modules
 dependencies[] = nas_solr_feature

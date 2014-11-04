@@ -26,18 +26,12 @@ function nas_panes_press_releases_render($subtype, $conf, $args, $contexts) {
     }
   }
 
-  $query = db_select('node', 'n');
-  $query->fields('n', array('nid', 'title'));
-  $query->join('panelizer_entity', 'pe', 'pe.entity_id = n.nid AND pe.entity_type = :type', array(':type' => 'node'));
-  $query->condition('pe.name', 'node:article:press_release');
-  $query->orderBy('n.created', 'DESC');
-  $query->range(0, 5);
-  $results = $query->execute();
+  $results = views_get_view_result('other_press_releases');
 
   $press_releases = array();
   foreach ($results as $result) {
     $press_releases[] = array(
-      'title' => check_plain($result->title),
+      'title' => check_plain($result->node_title),
       'url' => url('node/' . $result->nid),
     );
   }
