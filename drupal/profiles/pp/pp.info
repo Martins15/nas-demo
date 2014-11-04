@@ -53,6 +53,7 @@ dependencies[] = better_formats
 dependencies[] = elements
 dependencies[] = bean_wysiwyg
 dependencies[] = scheduler
+dependencies[] = rel_to_abs
 
 ; Custom modules
 dependencies[] = nas_solr_feature
