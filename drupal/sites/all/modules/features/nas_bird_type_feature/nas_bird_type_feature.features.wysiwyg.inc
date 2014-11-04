@@ -47,6 +47,7 @@ function nas_bird_type_feature_wysiwyg_default_profiles() {
           'media' => 1,
           'article_aside' => 1,
           'bean_wysiwyg' => 1,
+          'donate' => 1,
         ),
       ),
       'toolbarLocation' => 'top',

@@ -9375,7 +9375,7 @@ body.black-bg .slide-caption {
   height: 55px;
   margin-top: -27.5px;
   background-color: rgba(0, 0, 0, 0.25);
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -9385,7 +9385,7 @@ body.black-bg .slide-caption {
 }
 .flyway-slides-paddle.next {
   right: 0;
-  background-image: url(arrow-right.png);
+  background-image: url(../img/arrow-right.png);
 }
 @media only screen and (min-width: 768px) {
   .flyway-slides-paddle {
@@ -11321,4 +11321,8 @@ body.touch .sticky-wrapper {
 
 .strip-nav i[class^="icon-"], .strip-nav i[class*=" icon-"] {
   line-height: 11px;
+}
+
+.donate-bar-button {
+  width: 29%;
 }

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Flyways feature.
+ */
+
+include_once 'nas_flyways_feature.features.inc';
