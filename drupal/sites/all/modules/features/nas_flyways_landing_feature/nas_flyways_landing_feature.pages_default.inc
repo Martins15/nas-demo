@@ -234,24 +234,9 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'summary' => 'The Central Flyway extends from the grasslands of the Great Plains to the western Gulf Coast. Many of its migratory bird species winter in Central and South America; some migrate across the Western Hemisphere as far north at the Arctic Circle and others south to Patagonia in southern South America.',
           'summary_more_link_uri' => '<front>',
           'entity_reference' => array(
-            1 => array(
-              'entity_id' => '41',
-              'entity_label' => 'Obama, Sutley support wetlands restoration',
-              'entity_type' => 'node',
-              'entity_bundle' => 'article',
-            ),
-            2 => array(
-              'entity_id' => '42',
-              'entity_label' => 'ATTENTION GULF COAST BIRDERS!',
-              'entity_type' => 'node',
-              'entity_bundle' => 'article',
-            ),
-            3 => array(
-              'entity_id' => '43',
-              'entity_label' => 'Congress Approves Migratory Bird Conservation Law',
-              'entity_type' => 'node',
-              'entity_bundle' => 'article',
-            ),
+            1 => FALSE,
+            2 => FALSE,
+            3 => FALSE,
           ),
         ),
         2 => array(
