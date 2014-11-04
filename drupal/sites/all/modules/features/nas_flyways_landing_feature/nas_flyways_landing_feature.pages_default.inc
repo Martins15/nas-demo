@@ -279,8 +279,8 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           ),
         ),
       ),
-      'form_build_id' => 'form-FEz4c2iBNA0dp2-Al0KoNpy8I7qFpPmlpbx2V5eyv3s',
-      'form_token' => 'rX9fWenWfK96cdLtj3BtjRoSon3Jr8LswvIbwSabhWw',
+      'form_build_id' => 'form-W1k6igQCx31Mm7_aFB4RJW7SyZ4wXaxiIyKYXyN_6co',
+      'form_token' => 'lLc25aO0eeGHWlSWNQ0MgmF6uYu94cJloR0IdpbFAi0',
       'form_id' => 'flyways_landing_bottom_form',
     );
     $pane->cache = array();
@@ -294,6 +294,33 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
     $pane->uuid = '5061028a-b074-4919-94b5-19d82d199303';
     $display->content['new-5061028a-b074-4919-94b5-19d82d199303'] = $pane;
     $display->panels['lower'][2] = 'new-5061028a-b074-4919-94b5-19d82d199303';
+    $pane = new stdClass();
+    $pane->pid = 'new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
+    $pane->panel = 'lower';
+    $pane->type = 'flyways_partners';
+    $pane->subtype = 'flyways_partners';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Hemispheric Partners',
+      'background_image' => 'public://breakout-section-6.jpg',
+      'summary' => 'Audubon works with 19 BirdLife International partners and others across the Americas to protect birds throughout their annual life cycles of breeding, migration, and wintering.',
+      'read_more_link' => '<front>',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'form_build_id' => 'form-vTRh2-RsUgT6rXbeRBYKrwZjlHaMM4_20yI-F1Le2ik',
+      'form_token' => 'DYB04_EhS94ifCv8j5itI_yeaG68Vl_2HsdDhBnt1v0',
+      'form_id' => 'flyways_partners_form',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
+    $display->content['new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0'] = $pane;
+    $display->panels['lower'][3] = 'new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

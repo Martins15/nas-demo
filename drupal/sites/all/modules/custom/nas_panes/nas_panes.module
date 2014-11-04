@@ -172,6 +172,16 @@ function nas_panes_theme() {
       'template' => 'flyways-landing-three-columns',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns'
     ),
+    'nas_flyways_partners' => array(
+      'variables' => array(
+        'title' => '',
+        'background_image' => '',
+        'summary' => '',
+        'read_more_link' => '',
+      ),
+      'template' => 'flyways-partners',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_partners'
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
