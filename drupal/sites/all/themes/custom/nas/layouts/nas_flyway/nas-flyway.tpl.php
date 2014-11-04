@@ -24,7 +24,7 @@
       </div>
       <div class="columns">
         <ul class="section-nav inline-list">
-          <li><a href="/birds-priority">More Priority Birds</a></li>
+          <li><?php print l(t('More Priority Birds'), 'birds-priority'); ?></li>
           <li><a class="cta" href="#">Adopt a Bird</a></li>
         </ul>
       </div>
