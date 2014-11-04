@@ -28,7 +28,7 @@ function frontpage_featured_form($form, &$form_state) {
     '#media_options' => array(
       'global' => array(
         'file_extensions' => 'png jpg jpeg gif',
-        'max_filesize' => '10 MB',
+        'max_filesize' => '20 MB',
         'file_directory' => '',
         'types' => array('image'),
       ),
@@ -111,17 +111,16 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   $image = file_load($conf['image']);
+  $image_path = '';
+  $image_title = '';
+  $image_credit = '';
   if (!empty($image)) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
     $image_wrapper = entity_metadata_wrapper('file', $image);
     $image_title = $image_wrapper->field_file_image_title_text->value();
     $image_credit = $image_wrapper->field_file_credit->value();
   }
-  else {
-    $image_path = '';
-    $image_title = '';
-    $image_credit = '';
-  }
+
   $summary = check_plain($conf['summary']);
 
   $title_link = l(t(check_plain($conf['title'])), $conf['title_link']);
