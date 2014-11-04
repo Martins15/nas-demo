@@ -42,8 +42,8 @@
   background-size: 100% 100px;
   background-position: center bottom;
 
-  &.light-text { 
-    color: $color-white; 
+  &.light-text {
+    color: $color-white;
     h1, h2, h3, h4, h5 {
       a {
         color: $color-white;
@@ -56,12 +56,12 @@
 .curtain-attribution {
   line-height: $size-line-small;
 
-  .title { 
-    font-family: $font-sans; 
+  .title {
+    font-family: $font-sans;
     font-size: $size-text-small;
   }
-  .credit { 
-    font-family: $font-serif; 
+  .credit {
+    font-family: $font-serif;
     font-size: $size-text-tiny;
     font-style: italic;
   }
@@ -125,7 +125,7 @@
   height: 50px;
   margin-left: -50px;
   display: block;
-  background-image: url(descend.png);
+  background-image: url(../img/descend.png);
   background-size: 45px 27px;
   background-repeat: no-repeat;
   background-position: center center;
