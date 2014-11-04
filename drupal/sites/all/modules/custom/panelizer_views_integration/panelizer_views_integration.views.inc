@@ -39,7 +39,7 @@ function panelizer_views_integration_views_data() {
   // nid
   $data['panelizer_entity']['entity_id'] = array(
     'title' => t('Panelized entity ID'),
-    'help' => t('Panelized entity ID.'), // The help that appears on the UI,
+    'help' => t('Panelized entity ID.'),
     // Information for displaying the nid
     'field' => array(
       'handler' => 'views_handler_field_panelizer_entity',
@@ -50,12 +50,12 @@ function panelizer_views_integration_views_data() {
   // title
   // This definition has more items in it than it needs to as an example.
   $data['panelizer_entity']['name'] = array(
-    'title' => t('Panelizer layout'), // The item it appears as on the UI,
-    'help' => t('The panelized entity layout name.'), // The help that appears on the UI,
+    'title' => t('Panelizer layout'),
+    'help' => t('The panelized entity layout name.'),
     // Information for displaying a title as a field
     'field' => array(
-      'field' => 'name', // the real field. This could be left out since it is the same.
-      'group' => t('Panelizer'), // The group it appears in on the UI. Could be left out.
+      'field' => 'name',
+      'group' => t('Panelizer'),
       'handler' => 'views_handler_field',
       'click sortable' => TRUE,
       'link_to_node default' => TRUE,

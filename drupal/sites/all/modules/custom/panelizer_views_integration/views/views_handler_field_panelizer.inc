@@ -14,11 +14,11 @@
  */
 class views_handler_field_panelizer extends views_handler_field {
 
-  function init(&$view, &$options) {
+  public function init(&$view, &$options) {
     parent::init($view, $options);
   }
 
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
     return $options;
   }
@@ -26,7 +26,7 @@ class views_handler_field_panelizer extends views_handler_field {
   /**
    * Provide link to node option
    */
-  function options_form(&$form, &$form_state) {
+  public function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
   }
 

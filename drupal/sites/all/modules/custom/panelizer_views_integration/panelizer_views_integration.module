@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Main module's file.
+ */
+
+/**
  * Implements hook_views_api().
  */
 function panelizer_views_integration_views_api() {
