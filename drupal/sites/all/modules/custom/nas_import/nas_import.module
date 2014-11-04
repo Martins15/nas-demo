@@ -67,6 +67,11 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
       $item['body'] = preg_replace_callback("#\<img(.*?) src=\"(.*?)\"(.*?)\>#", $callback, $item['body']);
       $preg = '/style=\"(.*?)\"/si';
       $result = preg_replace($preg, '', $item['body']);
+
+      // Remove leading slash in URLs.
+      $leading_slash_pattern = '/(?<=href=("|\'))[\/]/';
+      $result = preg_replace($leading_slash_pattern, '', $result);
+
       $item['body'] = $result;
       nas_import_feeds_presave_news_import($source, $entity, $item);
       break;
