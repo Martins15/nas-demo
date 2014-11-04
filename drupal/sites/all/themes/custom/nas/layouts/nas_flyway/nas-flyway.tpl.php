@@ -1,6 +1,8 @@
 <?php
 ?>
 
+<?php print $content['header']; ?>
+
 <section class="global-content with-padding">
   <div class="breakout-section fixed-height"
   <?php if (!empty($background_image)): ?>

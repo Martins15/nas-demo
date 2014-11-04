@@ -46,11 +46,11 @@ function nas_wysiwyg_element_info_alter(&$types) {
 function nas_wysiwyg_preprocess_entity(&$vars) {
   // preprocess_bean__[bundle] doesn't work.
   if ($vars['elements']['#entity_type'] !== 'bean') {
-    continue;
+    return;
   }
   $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
   if ($vars['elements']['#bundle'] !== 'wysiwyg_image') {
-    continue;
+    return;
   }
   $entity = $vars['elements']['#entity'];
   $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');

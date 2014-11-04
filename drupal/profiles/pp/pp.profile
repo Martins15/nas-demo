@@ -304,4 +304,12 @@ function pp_create_test_flyway() {
     'extra' => array(),
   );
   drupal_write_record('panelizer_entity', $panelizer_entity);
+
+  $node = node_load($node->nid, NULL, TRUE);
+  $node->panelizer['page_manager']->display_is_modified = TRUE;
+  node_save($node);
+
+  if (function_exists('nas_fpp_flyway_create_test_content') || module_load_include('inc', 'nas_fpp', 'nas_fpp.content')) {
+    nas_fpp_flyway_create_test_content($node);
+  }
 }
