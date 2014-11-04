@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Define custom permissions
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function nas_permissions_permission() {
+  return array(
+    'pane in the news edit' =>  array(
+      'title' => t('Bird Guide. In The News pane edit'),
+    ),
+    'fpp bird guide pane edit' =>  array(
+      'title' => t('Birds Landing page. The Audubon Bird Guide pane edit'),
+    ),
+    'featured article pane edit' =>  array(
+      'title' => t('News Page. Featured Article edit'),
+    ),
+    'bird landing featured pane edit' =>  array(
+      'title' => t('Bird Landing featured pane edit'),
+    ),
+    'bird guide featured pane edit' =>  array(
+      'title' => t('Bird Guide featured panes edit'),
+    ),
+    'frontpage featured pane edit' =>  array(
+      'title' => t('Frontpage featured panes edit'),
+    ),
+  );
+}
