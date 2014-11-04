@@ -124,7 +124,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
   $category_link_more = l('More ' . $category, '<front>');
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('bird landing featured pane edit')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.

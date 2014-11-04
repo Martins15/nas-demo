@@ -17,14 +17,14 @@
  */
 ?>
 <div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">
-  <div class="hero-image">
+  <div class="hero-image contextual-links-region">
+    <?php print $contextual_links; ?>
     <img src="<?php print $image_path_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
     <img src="<?php print $image_path; ?>" alt="" class="hide-for-tiny hide-for-small">
   </div>
   <div class="row">
     <div class="hero-header">
-      <div class="column medium-8 large-9 contextual-links-region">
-        <?php print $contextual_links; ?>
+      <div class="column medium-8 large-9">
         <a class="hero-slug" href="<?php print $url; ?>">Featured Bird</a>
         <h2 class="hero-title"><?php print $name; ?></h2>
       </div>

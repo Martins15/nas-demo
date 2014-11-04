@@ -14,7 +14,8 @@
  */
 ?>
 <div class="large-6 columns <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="banner <?php print $color_mode; ?>-bg bg-respond" style="background-image: url(<?php print $banner_image; ?>);" data-bg-small="<?php print $banner_mobile_image; ?>" data-bg-large="<?php print $banner_image; ?>">
+  <div class="banner <?php print $color_mode; ?>-bg bg-respond contextual-links-region" style="background-image: url(<?php print $banner_image; ?>);" data-bg-small="<?php print $banner_mobile_image; ?>" data-bg-large="<?php print $banner_image; ?>">
+    <?php print $contextual_links; ?>
     <div class="banner-text">
       <?php print $banner_slug; ?>
       <h2 class="banner-title"><?php print $banner_title; ?></h2>

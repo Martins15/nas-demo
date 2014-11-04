@@ -85,7 +85,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $illustration_path = image_style_url(NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE, $illustration->uri);
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('bird guide featured pane edit')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.

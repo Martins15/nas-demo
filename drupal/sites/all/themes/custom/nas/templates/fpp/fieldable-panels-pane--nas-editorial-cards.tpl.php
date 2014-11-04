@@ -14,7 +14,8 @@
  */
 ?>
 <div class="columns <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="editorial-card">
+  <div class="editorial-card contextual-links-region">
+    <?php print $contextual_links; ?>
     <div class="editorial-card-photo">
       <?php print render($editorial_card_photo); ?>
     </div>
