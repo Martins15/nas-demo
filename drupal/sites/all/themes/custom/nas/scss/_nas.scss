@@ -133,3 +133,16 @@
     line-height: 11px;
   }
 }
+
+.donate-bar-button {
+  width: 29%;
+}
+
+/* Make press release published style different. ANW-272 */
+.press-release .article-sidebar-section .article-date {
+  font-style: normal;
+  font-size: 14px;
+}
+.press-release .article-sidebar-section.article-meta {
+  text-align: left;
+}

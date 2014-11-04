@@ -53,8 +53,8 @@
               <?php if (!empty($item['#below'])): ?>
               <ul class="primary-sub-nav">
                 <?php foreach ($item['#below'] as $sub_item): ?>
-                <li class="primary-sub-nav-item' . $li_class . '">
-                <a class="primary-nav-toggler <?php print $sub_item['a_class']; ?>" href="<?php print $sub_item['url']; ?>"><?php print $sub_item['title']; ?></a>
+                <li class="primary-sub-nav-item <?php print $sub_item['li_class']; ?>">
+                <a class="primary-sub-nav-link <?php print $sub_item['a_class']; ?>" href="<?php print $sub_item['url']; ?>"><?php print $sub_item['title']; ?></a>
                 </li>
                 <?php endforeach; ?>
               </ul>

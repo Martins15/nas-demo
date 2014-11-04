@@ -48,15 +48,14 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_set_editor_pass',
   );
-  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-    $tasks['create_test_flyway'] = array(
-      'display_name' => st('Create Flyway CT nodes for testing purposes'),
-      'display' => FALSE,
-      'type' => 'normal',
-      'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
-      'function' => 'pp_create_test_flyway',
-    );
-  }
+  // @todo: to be removed on release
+  $tasks['create_test_flyway'] = array(
+    'display_name' => st('Create Flyway CT nodes for testing purposes'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_create_test_flyway',
+  );
   return $tasks;
 }
 
@@ -205,6 +204,9 @@ function pp_import_users_batch($uids, $importer_id) {
 function pp_content_after_import() {
   if (function_exists('nas_fpp_create_panes')) {
     if ($cache = page_manager_get_page_cache('page-birds_landing')) {
+      page_manager_save_page_cache($cache);
+    }
+    if ($cache = page_manager_get_page_cache('page-frontpage2')) {
       page_manager_save_page_cache($cache);
     }
     if ($cache = page_manager_get_page_cache('page-news')) {

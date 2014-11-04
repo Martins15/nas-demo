@@ -179,50 +179,59 @@ Drupal.wysiwyg.editor.detach.ckeditor = function (context, params, trigger) {
 
 Drupal.wysiwyg.editor.instance.ckeditor = {
   addPlugin: function(pluginName, settings, pluginSettings) {
-    CKEDITOR.plugins.add(pluginName, {
-      // Wrap Drupal plugin in a proxy pluygin.
-      init: function(editor) {
-        if (settings.css) {
-          editor.on('mode', function(ev) {
-            if (ev.editor.mode == 'wysiwyg') {
-              // Inject CSS files directly into the editing area head tag.
-              var iframe = $('#cke_contents_' + ev.editor.name + ' iframe, #' + ev.editor.id + '_contents iframe');
-              $('head', iframe.eq(0).contents()).append('<link rel="stylesheet" href="' + settings.css + '" type="text/css" >');
-            }
-          });
-        }
-        if (typeof Drupal.wysiwyg.plugins[pluginName].invoke == 'function') {
-          var pluginCommand = {
-            exec: function (editor) {
-              var data = { format: 'html', node: null, content: '' };
-              var selection = editor.getSelection();
-              if (selection) {
-                data.node = selection.getSelectedElement();
-                if (data.node) {
-                  data.node = data.node.$;
-                }
-                if (selection.getType() == CKEDITOR.SELECTION_TEXT) {
-                  data.content = selection.getSelectedText();
-                }
-                else if (data.node) {
-                  // content is supposed to contain the "outerHTML".
-                  data.content = data.node.parentNode.innerHTML;
-                }
+    if (typeof(Drupal.settings.wysiwyg.plugins.drupal[pluginName].wysiwygAddPlugin) === 'undefined') {
+      CKEDITOR.plugins.add(pluginName, {
+        // Wrap Drupal plugin in a proxy pluygin.
+        init: function(editor) {
+          if (settings.css) {
+            editor.on('mode', function(ev) {
+              if (ev.editor.mode == 'wysiwyg') {
+                // Inject CSS files directly into the editing area head tag.
+                var iframe = $('#cke_contents_' + ev.editor.name + ' iframe, #' + ev.editor.id + '_contents iframe');
+                $('head', iframe.eq(0).contents()).append('<link rel="stylesheet" href="' + settings.css + '" type="text/css" >');
               }
-              Drupal.wysiwyg.plugins[pluginName].invoke(data, pluginSettings, editor.name);
-            }
-          };
-          editor.addCommand(pluginName, pluginCommand);
-        }
-        editor.ui.addButton(pluginName, {
-          label: settings.iconTitle,
-          command: pluginName,
-          icon: settings.icon
-        });
+            });
+          }
+          if (typeof Drupal.wysiwyg.plugins[pluginName].invoke == 'function') {
+            var pluginCommand = {
+              exec: function (editor) {
+                var data = { format: 'html', node: null, content: '' };
+                var selection = editor.getSelection();
+                if (selection) {
+                  data.node = selection.getSelectedElement();
+                  if (data.node) {
+                    data.node = data.node.$;
+                  }
+                  if (selection.getType() == CKEDITOR.SELECTION_TEXT) {
+                    data.content = selection.getSelectedText();
+                  }
+                  else if (data.node) {
+                    // content is supposed to contain the "outerHTML".
+                    data.content = data.node.parentNode.innerHTML;
+                  }
+                }
+                Drupal.wysiwyg.plugins[pluginName].invoke(data, pluginSettings, editor.name);
+              }
+            };
+            editor.addCommand(pluginName, pluginCommand);
+          }
+          editor.ui.addButton(pluginName, {
+            label: settings.iconTitle,
+            command: pluginName,
+            icon: settings.icon
+          });
 
-        // @todo Add button state handling.
+          // @todo Add button state handling.
+        }
+      });
+    } else {
+      if (pluginName == 'donate') {
+        CKEDITOR.plugins.add(pluginName, donateAddPlugin);
       }
-    });
+      if (pluginName == 'article_aside') {
+        CKEDITOR.plugins.add(pluginName, article_asideAddPlugin);
+      }
+    }
   },
   prepareContent: function(content) {
     // @todo Don't know if we need this yet.

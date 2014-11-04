@@ -489,3 +489,12 @@ function nas_preprocess_nas_flyway(&$variables) {
 
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
+
+/**
+ * Implements hook_preprocess_panels_nas_frontpage().
+ */
+function nas_preprocess_panels_nas_frontpage(&$variables) {
+  // Set featured frontpage backgroudimage variable
+  $featured_frontpage_image = &drupal_static('featured_frontpage_image');
+  $variables['frontpage_backgroudimage'] = $featured_frontpage_image;
+}
