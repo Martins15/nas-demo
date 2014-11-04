@@ -85,17 +85,17 @@ function nas_preprocess_node_bird(&$vars) {
   $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
 
   // Add Birds priority link.
-  $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
+  $vars['bird_priority_link'] = l(t('Priority Birds'), 'birds-priority', array('attributes' => array('class' => array('hero-slug'))));
   // Add hero inline links.
   $vars['hero_inline_links'] = theme('item_list', array(
     'items' => array(
       l(t('In the Bird Guide'), ''),
-      l(t('More Priority Birds'), ''),
+      l(t('More Priority Birds'), 'birds-priority'),
     ),
     'attributes' => array(
       'class' => array(
         'hero-inline-list',
-        'inline-list'
+        'inline-list',
       ),
     ),
   ));
