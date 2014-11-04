@@ -5,7 +5,10 @@
  *
  * Available variables:
  * - $contextual_links: contextual links.
- * - $column[1-3]: array with title and text of the column.
+ * - $background_image: url to background image.
+ * - $title: title of the block.
+ * - $summary: summary text.
+ * - $read_more_link: url of the learn more link.
  */
 ?>
 <section class="breakout-section black-bg contextual-links-region">
