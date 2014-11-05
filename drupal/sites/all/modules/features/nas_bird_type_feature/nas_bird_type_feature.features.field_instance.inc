@@ -2783,10 +2783,11 @@ function nas_bird_type_feature_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
+        'type' => 'text_default',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'taxonomy_term',
