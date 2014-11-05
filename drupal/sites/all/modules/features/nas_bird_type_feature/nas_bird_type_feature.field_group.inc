@@ -31,6 +31,7 @@ function nas_bird_type_feature_field_group_info() {
       5 => 'field_bird_tip',
       6 => 'field_related_bird',
       7 => 'title',
+      8 => 'field_related_flyways',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
