@@ -325,11 +325,10 @@ function nas_fpp_create_panes() {
  * Create FPP panel panes.
  */
 function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0) {
-  $fpp_uuid_query = db_query(
+  $fpp_uuid = db_query(
     'SELECT uuid FROM {fieldable_panels_panes} WHERE bundle LIKE :bundle',
     array(':bundle' => $bundle)
-  )->fetchCol();
-  $fpp_uuid = $fpp_uuid_query[$position];
+  )->fetchField();
   $panels_pane = array(
     'did' => $did,
     'panel' => $region,
@@ -375,7 +374,8 @@ function nas_fpp_flyway_create_test_content($node) {
   $fpp->field_flyway_minimap[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_MINIMAP));
 
   fieldable_panels_panes_save($fpp);
-  nas_fpp_create_panels_pane($did, $fpp->bundle, 'header', 0);
+  // Put before navigation
+  nas_fpp_create_panels_pane($did, $fpp->bundle, 'header', -1);
 
   $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_flyway_hero_items'));
   $field_collection_item->setHostEntity('fieldable_panels_pane', $fpp);
@@ -402,7 +402,14 @@ function nas_fpp_flyway_create_test_content($node) {
   $field_collection_item->save();
 
   fieldable_panels_panes_save($fpp);
-
   unset($fpp);
-}
 
+  // Update Flyway navigation menu FPP.
+  $nav_fpid = db_query("SELECT fpid FROM {fieldable_panels_panes} WHERE bundle = :bundle", array(':bundle' => 'nas_fpp_flyway_nav'))->fetchField();
+  $nav_fpp = fieldable_panels_panes_load($nav_fpid);
+  watchdog('ppimport', ':s', array(':s' => $nav_fpid));
+  watchdog('ppimport', ':s', array(':s' => '<pre>' . print_r($nav_fpp, TRUE) . '</pre>'));
+  // Add one more flyway node reference.
+  $nav_fpp->field_flyways[LANGUAGE_NONE][] = array('target_id' => $node->nid);
+  fieldable_panels_panes_save($nav_fpp);
+}

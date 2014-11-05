@@ -885,6 +885,41 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-nas_fpp_flyway_nav-field_flyways'
+  $field_instances['fieldable_panels_pane-nas_fpp_flyway_nav-field_flyways'] = array(
+    'bundle' => 'nas_fpp_flyway_nav',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_flyways',
+    'label' => 'Flyways',
+    'required' => 1,
+    'settings' => array(
+      'behaviors' => array(
+        'taxonomy-index' => array(
+          'status' => TRUE,
+        ),
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => -4,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Background Image');
@@ -894,6 +929,7 @@ function nas_fpp_feature_field_default_field_instances() {
   t('Description');
   t('Flyway Minimap');
   t('Flyway hero items');
+  t('Flyways');
   t('Image');
   t('Map coordinates');
   t('Map image numbers will be placed on.');

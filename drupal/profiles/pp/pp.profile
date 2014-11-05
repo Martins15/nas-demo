@@ -261,6 +261,8 @@ function pp_set_editor_pass() {
  * Create node of type Flyway for testing purposes.
  */
 function pp_create_test_flyway() {
+  pp_create_flyway_navigation_menu_fpp();
+
   // Create node object.
   $node = new StdClass();
   $node->type = 'flyway';
@@ -314,4 +316,35 @@ function pp_create_test_flyway() {
   if (function_exists('nas_fpp_flyway_create_test_content') || module_load_include('inc', 'nas_fpp', 'nas_fpp.content')) {
     nas_fpp_flyway_create_test_content($node);
   }
+}
+
+/**
+ * Puts flyway panelizer defaults in DB. Creates FPP and adds it to panel.
+ */
+function pp_create_flyway_navigation_menu_fpp() {
+  $name = 'node:flyway:default';
+  // Move node panelizer to DB if is not there.
+  if (!$did = db_query('SELECT did FROM {panelizer_defaults} WHERE name = :name', array(':name' => $name))->fetchField()) {
+    $handler = panelizer_entity_plugin_get_handler('node');
+    $bundle = 'flyway.page_manager';
+    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
+    $cache_key = implode(':', array('panelizer', 'default', $handler->entity_type, $bundle, $name));
+    $panelizer->display = panels_edit_cache_get($cache_key)->display;
+    ctools_export_crud_save('panelizer_defaults', $panelizer);
+    // Get display id for future usage.
+    $did = db_query('SELECT did FROM {panelizer_defaults} WHERE name = :name', array(':name' => $name))->fetchField();
+  }
+
+  $nav_fpp = new stdClass();
+  $nav_fpp->reusable = 1;
+  $nav_fpp->admin_title = 'Flyway Navigation Menu';
+  $nav_fpp->category = 'NAS FPP';
+  $nav_fpp->title = 'Flyway Navigation Menu';
+  $nav_fpp->bundle = 'nas_fpp_flyway_nav';
+  fieldable_panels_panes_save($nav_fpp);
+
+  // If FPP is just created put it in default panel.
+  nas_fpp_create_panels_pane($did, $nav_fpp->bundle, 'header', 0);
+  panelizer_panels_cache_clear('default:node:flyway.page_manager:node:flyway:default', NULL);
+  drupal_static_reset('ctools_export_load_object');
 }
