@@ -61,10 +61,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'news_import':
       // Import image.
       $nid = $item['nid'];
-      $callback = function ($match) use ($nid) {
+      $callback = function ($match) {
         get_image_src($match, $nid);
       };
-      $item['body'] = preg_replace_callback("/<img (.*?) src=\"(.*?)\" (.*?) >/si", $callback, $item['body']);
+      $item['body'] = preg_replace_callback("/<img(.*?)src=\"(.*?)\"(.*?)>/si", $callback, $item['body']);
       $preg = '/style=\"(.*?)\"/si';
       $count = NULL;
       $result = preg_replace($preg, '', $item['body'], -1, $count);
