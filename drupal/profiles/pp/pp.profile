@@ -346,5 +346,7 @@ function pp_create_flyway_navigation_menu_fpp() {
   // If FPP is just created put it in default panel.
   nas_fpp_create_panels_pane($did, $nav_fpp->bundle, 'header', 0);
   panelizer_panels_cache_clear('default:node:flyway.page_manager:node:flyway:default', NULL);
+  // We have to reset static cache, because this defaults will be cloned on node
+  // creation and changes have to be there.
   drupal_static_reset('ctools_export_load_object');
 }

@@ -354,7 +354,7 @@ function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0) {
 /**
  * Creates Flyway Hero and Flyway Navigation FPPs test content.
  *
- * @param $node object Node in which panelizer panel FPP should be added
+ * @param $node object Node in which panelizer panel FPP should be added.
  */
 function nas_fpp_flyway_create_test_content($node) {
   $did = db_query('SELECT did FROM {panelizer_entity}
@@ -374,7 +374,7 @@ function nas_fpp_flyway_create_test_content($node) {
   $fpp->field_flyway_minimap[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_MINIMAP));
 
   fieldable_panels_panes_save($fpp);
-  // Put before navigation
+  // Put before navigation.
   nas_fpp_create_panels_pane($did, $fpp->bundle, 'header', -1);
 
   $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_flyway_hero_items'));
@@ -407,8 +407,6 @@ function nas_fpp_flyway_create_test_content($node) {
   // Update Flyway navigation menu FPP.
   $nav_fpid = db_query("SELECT fpid FROM {fieldable_panels_panes} WHERE bundle = :bundle", array(':bundle' => 'nas_fpp_flyway_nav'))->fetchField();
   $nav_fpp = fieldable_panels_panes_load($nav_fpid);
-  watchdog('ppimport', ':s', array(':s' => $nav_fpid));
-  watchdog('ppimport', ':s', array(':s' => '<pre>' . print_r($nav_fpp, TRUE) . '</pre>'));
   // Add one more flyway node reference.
   $nav_fpp->field_flyways[LANGUAGE_NONE][] = array('target_id' => $node->nid);
   fieldable_panels_panes_save($nav_fpp);

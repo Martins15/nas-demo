@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Template implementation to display the panel's layout.
+ */
 ?>
 
 <?php print $content['header']; ?>

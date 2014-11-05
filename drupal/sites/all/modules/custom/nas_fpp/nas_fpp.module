@@ -288,38 +288,41 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   };
 
   $vars['contextual_links'] = '';
-  if ($node && user_access('administer site configuration')) {
 
-    $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
-      ':subtype' => 'uuid:' . $fpp->uuid,
-    ))->fetchField();
-
-    ctools_include('modal');
-    ctools_include('ajax');
-    ctools_modal_add_js();
-    ctools_add_js('ajax-responder');
-    $links['edit'] = array(
-      'title' => t('Edit'),
-      'href' => 'panels/ajax/editor/edit-pane/panelizer:node:' . $node->nid . ':page_manager/' . $panel_id,
-      'html' => TRUE,
-      'query' => array('reload' => 'true'),
-      'attributes' => array(
-        'class' => array('ctools-use-modal'),
-        'title' => t('Edit'),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $vars['contextual_links'] = drupal_render($build);
+  // Early return pattern.
+  if (!$node || !user_access('administer site configuration')) {
+    return;
   }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panelizer:node:' . $node->nid . ':page_manager/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
 }
 
 /**
@@ -343,35 +346,39 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
   }
 
   $vars['contextual_links'] = '';
-  if (user_access('administer site configuration')) {
-    $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
-      ':subtype' => 'uuid:' . $fpp->uuid,
-    ))->fetchField();
 
-    ctools_include('modal');
-    ctools_include('ajax');
-    ctools_modal_add_js();
-    ctools_add_js('ajax-responder');
-    $links['edit'] = array(
-      'title' => t('Edit'),
-      'href' => 'panels/ajax/editor/edit-pane/panelizer:default:node:flyway.page_manager:node:flyway:default/' . $panel_id,
-      'html' => TRUE,
-      'query' => array('reload' => 'true'),
-      'attributes' => array(
-        'class' => array('ctools-use-modal'),
-        'title' => t('Edit'),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $vars['contextual_links'] = drupal_render($build);
+  // Early return pattern.
+  if (!user_access('administer site configuration')) {
+    return;
   }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panelizer:default:node:flyway.page_manager:node:flyway:default/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
 }
