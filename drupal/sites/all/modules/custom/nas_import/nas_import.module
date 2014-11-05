@@ -61,6 +61,7 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'news_import':
       // Import image.
       $nid = $item['nid'];
+      // @codingStandardsIgnoreStart
       $item['body'] = preg_replace_callback(
         "/<img(.*?)src=\"(.*?)\"(.*?)>/si",
         function($matches) use ($nid) {
@@ -68,7 +69,7 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
         },
         $item['body']
       );
-
+      // @codingStandardsIgnoreEnd
       $preg = '/style=\"(.*?)\"/si';
       $count = NULL;
       $result = preg_replace($preg, '', $item['body'], -1, $count);
