@@ -133,18 +133,7 @@
     </div>
   </div>
   <div class="homepage-first-row row space-top double">
-    <div class="columns large-8 medium-6">
-      <div class="editorial-card">
-        <div class="editorial-card-photo">
-          <img src="../img/editorial-card-23.jpg" alt="">
-        </div>
-        <div class="editorial-card-content short">
-          <a href="#" class="editorial-card-slug">Conservation</a>
-          <h3 class="editorial-card-title"><a href="#">A Trove of Green Heron Nests Might Just be a Treasure</a></h4>
-          <p><a href="#" class="editorial-card-link">Recent discoveries help scientists understand the elusive bird's decline</a></p>
-        </div>
-      </div>
-    </div>
+    <?php print $content['featured']; ?>
     <div class="columns large-4 medium-6">
       <div class="editorial-card">
         <div class="editorial-card-content has-fixed-banner">
@@ -270,7 +259,78 @@
         </div>
       </div>
     </div>
-    <?php print $content['bird_news']; ?>
+    <div class="row section-header">
+      <div class="columns">
+        <h2 class="thin">Birds in the News</h2>
+      </div>
+      <div class="columns">
+        <ul class="section-nav inline-list">
+          <li class="hide-for-small hide-for-tiny"><a href="#">Explore Our Bird Guide</a></li>
+          <li><a href="#">Identify a Bird</a></li>
+          <li><a class="cta" href="#">Adopt a Bird</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row bird-card-container">
+      <div class="bird-card-scroller">
+        <div class="columns tiny-3">
+          <figure class="bird-card">
+            <div class="bird-card-illustration">
+              <a href="#"><img src="../img/bird-1.png" alt=""></a>
+            </div>
+            <figcaption class="bird-card-caption">
+              <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
+              <p class="scientific-name">Campylorhynchus brunneicapillus</p>
+            </figcaption>
+            <a href="#" class="icon-sound-full bird-card-audio"></a>
+          </figure>
+          <a href="#" class="editorial-card-slug">Conservation</a>
+          <h4 class="editorial-card-title"><a href="#">Saving Western Rivers</a></h4>
+        </div>
+        <div class="columns tiny-3">
+          <figure class="bird-card">
+            <div class="bird-card-illustration">
+              <a href="#"><img src="../img/bird-2.png" alt=""></a>
+            </div>
+            <figcaption class="bird-card-caption">
+              <h4 class="common-name"><a href="#">Bullock's Oriole</a></h4>
+              <p class="scientific-name">Icterus Bullocki</p>
+            </figcaption>
+            <a href="#" class="icon-sound-full bird-card-audio"></a>
+          </figure>
+          <a href="#" class="editorial-card-slug">In the News</a>
+          <h5 class="editorial-card-title"><a href="#">Newest U.S. Stamps Feature Songbirds</a></h5>
+        </div>
+        <div class="columns tiny-3">
+          <figure class="bird-card">
+            <div class="bird-card-illustration">
+              <a href="#"><img src="../img/bird-3.png" alt=""></a>
+            </div>
+            <figcaption class="bird-card-caption">
+              <h4 class="common-name"><a href="#">Pileated Woodpecker</a></h4>
+              <p class="scientific-name">Dryocopus pileatus</p>
+            </figcaption>
+            <a href="#" class="icon-sound-full bird-card-audio"></a>
+          </figure>
+          <a href="#" class="editorial-card-slug">Birds We Love</a>
+          <h5 class="editorial-card-title"><a href="#">Common Birds in Decline</a></h5>
+        </div>
+        <div class="columns tiny-3">
+          <figure class="bird-card">
+            <div class="bird-card-illustration">
+              <a href="#"><img src="../img/bird-4.png" alt=""></a>
+            </div>
+            <figcaption class="bird-card-caption">
+              <h4 class="common-name"><a href="#">Western Scrub‑Jay</a></h4>
+              <p class="scientific-name">Aphelocoma californica</p>
+            </figcaption>
+            <a href="#" class="icon-sound-full bird-card-audio"></a>
+          </figure>
+          <a href="#" class="editorial-card-slug">Conservation</a>
+          <h5 class="editorial-card-title"><a href="#">Champlain Valley Bird Initiative</a></h5>
+        </div>
+      </div>
+    </div>
     <div class="row indicator space-bottom double">
       <div class="column">
         <p><i class="indicator-left icon-arrow-left disabled"></i>&nbsp;&nbsp;&nbsp;<i class="indicator-right icon-arrow-right"></i></p>
