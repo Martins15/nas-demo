@@ -43,6 +43,8 @@ function frontpage_in_the_news_render($subtype, $conf, $args, $contexts) {
     $block->content = theme('frontpage_in_the_news', array(
       'teasers' => $teasers,
       'title' => $block_title,
+      'bird_guide_title' => 'Explore Our Bird Guide',
+      'bird_guide_link' => url('bird-guide'),
     ));
   }
 

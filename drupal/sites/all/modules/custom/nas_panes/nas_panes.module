@@ -176,7 +176,8 @@ function nas_panes_theme() {
       'variables' => array(
         'teasers' => array(),
         'title' => '',
-        'contextual_links' => '',
+        'bird_guide_link' => '',
+        'bird_guide_title' => '',
       ),
       'template' => 'frontpage-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_in_the_news'
