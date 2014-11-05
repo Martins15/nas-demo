@@ -61,19 +61,22 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'news_import':
       // Import image.
       $nid = $item['nid'];
-      $callback = function ($match) {
-        get_image_src($match, $nid);
-      };
-      $item['body'] = preg_replace_callback("/<img(.*?)src=\"(.*?)\"(.*?)>/si", $callback, $item['body']);
+      $item['body'] = preg_replace_callback(
+        "/<img(.*?)src=\"(.*?)\"(.*?)>/si",
+        function($matches) use ($nid) {
+          return get_image_src($matches, $nid);
+        },
+        $item['body']
+      );
+
       $preg = '/style=\"(.*?)\"/si';
       $count = NULL;
       $result = preg_replace($preg, '', $item['body'], -1, $count);
-
       // Remove leading slash in URLs.
       $leading_slash_pattern = '/(?<=href=("|\'))[\/]/';
       $result = preg_replace($leading_slash_pattern, '', $result);
-
       $item['body'] = $result;
+
       nas_import_feeds_presave_news_import($source, $entity, $item);
       break;
 
@@ -104,17 +107,14 @@ function get_image_src($matches, $source_nid) {
   $match1 = $matches[1];
   $match2 = $matches[3];
   $full_url = $matches[2];
-  watchdog('matches[2]', '<pre>' . print_r($matches[2], 1) . '</pre>');
   // Using define early pattern
   $path = $full_url;
   if (!preg_match('/http:\/\//', $full_url)) {
     $path = 'http://audubon.org' . $full_url;
   }
-  watchdog('get_image_src 1', '<pre>' . print_r($path, 1) . '</pre>');
   if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
     if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
       $path = pp_file_create_url($file->uri);
-      watchdog('get_image_src 2', '<pre>' . print_r($path, 1) . '</pre>');
     }
   }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';

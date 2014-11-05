@@ -122,8 +122,6 @@ function pp_import_nodes() {
       178166,
       // node with inline image to test
       189306,
-      189296,
-      189286,
     );
   }
 
