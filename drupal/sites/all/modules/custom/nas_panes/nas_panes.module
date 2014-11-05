@@ -172,6 +172,16 @@ function nas_panes_theme() {
       'template' => 'flyways-landing-three-columns',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns'
     ),
+    'frontpage_in_the_news' => array(
+      'variables' => array(
+        'teasers' => array(),
+        'title' => '',
+        'bird_guide_link' => '',
+        'bird_guide_title' => '',
+      ),
+      'template' => 'frontpage-in-the-news',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_in_the_news'
+    ),
     'nas_flyways_partners' => array(
       'variables' => array(
         'title' => '',
@@ -362,5 +372,34 @@ function nas_panes_preprocess_nas_featured_bird(&$variables) {
 function nas_panes_preprocess_nas_flyways_landing_bottom(&$vars) {
   foreach ($vars['flyway'] as &$flyway) {
     $flyway['name_id'] = preg_replace('/[^a-z]/', '-', strtolower($flyway['name']));
+  }
+}
+
+/**
+ * Implements hook_nas_after_import().
+ *
+ * Add related bird to four articles for the frontpage.
+ */
+function nas_panes_nas_after_import() {
+  $article_results = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'article')
+    ->orderRandom()
+    ->range(0, 4)
+    ->execute()->fetchAll();
+  $bird_results = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'bird')
+    ->orderRandom()
+    ->range(0, 4)
+    ->execute()->fetchAll();
+  foreach ($article_results as $key => $result) {
+    $article = node_load($result->nid);
+    $article->field_related_bird = array(
+      LANGUAGE_NONE => array(
+        array('target_id' => $bird_results[$key]->nid),
+      ),
+    );
+    node_save($article);
   }
 }
