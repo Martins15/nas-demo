@@ -15,14 +15,51 @@ function nas_flyways_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__flyway';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_small' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_featured' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -79,39 +116,14 @@ function nas_flyways_feature_strongarm() {
       'page_manager' => array(
         'status' => 1,
         'default' => 1,
-        'choice' => 0,
+        'choice' => 1,
       ),
       'default' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
-      'full' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'teaser' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'rss' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_index' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_result' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'diff_standard' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -132,16 +144,6 @@ function nas_flyways_feature_strongarm() {
         'choice' => 0,
       ),
       'nas_node_featured' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'token' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'revision' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

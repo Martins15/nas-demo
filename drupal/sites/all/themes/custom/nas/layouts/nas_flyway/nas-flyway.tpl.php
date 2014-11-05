@@ -1,5 +1,11 @@
 <?php
+/**
+ * @file
+ * Template implementation to display the panel's layout.
+ */
 ?>
+
+<?php print $content['header']; ?>
 
 <section class="global-content with-padding">
   <div class="breakout-section fixed-height"
