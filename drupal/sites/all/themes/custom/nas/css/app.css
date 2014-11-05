@@ -11035,6 +11035,9 @@ body.touch .sticky-wrapper {
 /**
  * Styles for Birds Family page.
  */
+.birds-family-section .row {
+  margin-bottom: 25px;
+}
 .birds-family-section .common-name h1 {
   margin: 25px 0 0 0;
 }

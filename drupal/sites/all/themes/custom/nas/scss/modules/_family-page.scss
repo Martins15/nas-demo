@@ -3,6 +3,9 @@
  */
 
 .birds-family-section {
+  .row {
+    margin-bottom: $column-gutter;
+  }
   .common-name {
     h1 {
       margin: $column-gutter 0 0 0;
