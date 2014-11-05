@@ -30,6 +30,16 @@ function nas_bird_type_feature_filter_default_formats() {
           'filter_url_length' => 72,
         ),
       ),
+      'rel_to_abs' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'bean_wysiwyg_filter' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
+      ),
       'media_filter' => array(
         'weight' => 2,
         'status' => 1,

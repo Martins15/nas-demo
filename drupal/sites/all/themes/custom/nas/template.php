@@ -85,17 +85,17 @@ function nas_preprocess_node_bird(&$vars) {
   $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
 
   // Add Birds priority link.
-  $vars['bird_priority_link'] = l(t('Priority Birds'), '', array('attributes' => array('class' => array('hero-slug'))));
+  $vars['bird_priority_link'] = l(t('Priority Birds'), 'birds-priority', array('attributes' => array('class' => array('hero-slug'))));
   // Add hero inline links.
   $vars['hero_inline_links'] = theme('item_list', array(
     'items' => array(
       l(t('In the Bird Guide'), ''),
-      l(t('More Priority Birds'), ''),
+      l(t('More Priority Birds'), 'birds-priority'),
     ),
     'attributes' => array(
       'class' => array(
         'hero-inline-list',
-        'inline-list'
+        'inline-list',
       ),
     ),
   ));
@@ -147,9 +147,11 @@ function nas_preprocess_node_bird(&$vars) {
  */
 function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
-  $hero_image_items = field_get_items('node', $node, 'field_hero_image');
-  $hero_image = $hero_image_items[0]['file'];
-  $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+  $vars['image_src'] = FALSE;
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+  }
 
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
@@ -282,14 +284,37 @@ function nas_image($variables) {
  */
 function nas_preprocess_field(&$variables, $hook) {
   $element = $variables['element'];
+  $bundle = $element['#bundle'];
+  $entity_type = $element['#entity_type'];
+
+  // Call the preprocess functions if exist.
+  $function = 'nas_preprocess_field_' . $element['#field_name'];
+  $function_bundle = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle;
+  $function_viewmode = 'nas_preprocess_field_' . $element['#field_name'] . '__' . $element['#view_mode'];
+  $function_bundle_viewmode = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle . '__' . $element['#view_mode'];
+
+  if (function_exists($function)) {
+    $function($variables);
+  }
+  if (function_exists($function_bundle)) {
+    $function_bundle($variables);
+  }
+  if (function_exists($function_viewmode)) {
+    $function_viewmode($variables);
+  }
+  if (function_exists($function_bundle_viewmode)) {
+    $function_bundle_viewmode($variables);
+  }
+
+  $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $element['#view_mode'];
+  $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $bundle . '__' . $element['#view_mode'];
+
   if (!isset($element['#object']->panelizer['page_manager']->name)) {
     return;
   }
   // Adds additional hook sugestion to theme individualy fields for different panelizer styles.
   $panelizer_style = $element['#object']->panelizer['page_manager']->name;
-  $bundle = $element['#bundle'];
-  $e_type = $element['#entity_type'];
-  $panelizer_style = str_replace($e_type . ':' . $bundle . ':', '', $panelizer_style);
+  $panelizer_style = str_replace($entity_type . ':' . $bundle . ':', '', $panelizer_style);
   if ($panelizer_style) {
     $hook_sugestion = $hook . '__' . $element['#field_name'] . '__'
         . $bundle . '__' . $panelizer_style;
@@ -297,15 +322,6 @@ function nas_preprocess_field(&$variables, $hook) {
     if (isset($element['#pane_region'])) {
       $variables['theme_hook_suggestions'][] = $hook_sugestion . '__' . $element['#pane_region'] . '_region';
     }
-  }
-  // Call the preprocess functions if exist.
-  $function = 'nas_preprocess_field_' . $element['#field_name'];
-  $function_bundle = 'nas_preprocess_field_' . $element['#field_name'] . '_' . $bundle;
-  if (function_exists($function)) {
-    $function($variables);
-  }
-  if (function_exists($function_bundle)) {
-    $function_bundle($variables);
   }
 }
 
@@ -344,7 +360,7 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
  * Override theming of date field of press release.
  */
 function nas_field__field_article_date__article($variables) {
-  if (!isset($variables['element'][0]['#markup'])) {
+  if (!isset($variables['element'][0]['#markup']) || $variables['element']['#view_mode'] != '_custom_display') {
     return '';
   }
   return '<section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">'
@@ -428,4 +444,57 @@ function nas_preprocess_views_exposed_form(&$variables) {
   _form_set_class($fulltext, array('bird-guide-search-input', 'radius'));
 
   $variables['widgets']['filter-search_api_views_fulltext']->widget = drupal_render($fulltext);
+}
+
+/**
+ * Preprocess function for nas_article_fullscreen theme.
+ */
+function nas_preprocess_nas_article_fullscreen(&$variables) {
+  // Replace substitutions.
+  $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
+
+  // @Improve
+  //   Since replacement may be a field rendered value we have no access to
+  //   machine value. Thanks God human values for color_mode field are
+  //   Uppercased machine values. This does matter for particular situation.
+  $color_mode = strtolower(trim($color_mode));
+
+  // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
+  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
+
+  $variables['color_mode_gradient'] = $color_mode;
+  // Text color mode is inversion of gradient color mode
+  $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Preprocess function for nas_article_fullscreen theme.
+ */
+function nas_preprocess_nas_flyway(&$variables) {
+  // Replace substitutions.
+  $background_image_url = ctools_context_keyword_substitute($variables['settings']['background_image'], array(), $variables['display']->context);
+  $variables['background_image'] = $background_image_url;
+
+  // Replace substitutions.
+  $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
+
+  // @Improve
+  //   Since replacement may be a field rendered value we have no access to
+  //   machine value. Thanks God human values for color_mode field are
+  //   Uppercased machine values. This does matter for particular situation.
+  $color_mode = strtolower(trim($color_mode));
+
+  // Allowed values are limited to 'dark' and 'light'. Default value is 'light'.
+  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'light';
+
+  $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Implements hook_preprocess_panels_nas_frontpage().
+ */
+function nas_preprocess_panels_nas_frontpage(&$variables) {
+  // Set featured frontpage backgroudimage variable
+  $featured_frontpage_image = &drupal_static('featured_frontpage_image');
+  $variables['frontpage_backgroudimage'] = $featured_frontpage_image;
 }

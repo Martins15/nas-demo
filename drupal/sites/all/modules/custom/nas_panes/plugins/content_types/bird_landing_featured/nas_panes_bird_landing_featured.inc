@@ -118,13 +118,11 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
   $summary = check_plain($conf['summary']);
 
   $bird_guide_link = l(t('Bird Guide'), 'bird-guide');
-
-  $category = check_plain('Priority Birds');
-  $category_link_url = url('<front>');
-  $category_link_more = l('More ' . $category, '<front>');
+  $category_link = 'birds-priority';
+  $category_link_more = l(t('More Priority Birds'), $category_link);
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('bird landing featured pane edit')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.
@@ -164,9 +162,9 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     'image_path_mobile' => $hero_image_path_mobile,
     'summary' => $summary,
     'bird_guide_link' => $bird_guide_link,
-    'category' => $category,
+    'category' => t('Priority Birds'),
     'color' => !empty($conf['color']) ? $conf['color'] : 'dark',
-    'category_link_url' => $category_link_url,
+    'category_link_url' => url($category_link),
     'category_link_more' => $category_link_more,
     'contextual_links' => $contextual_links,
   ));

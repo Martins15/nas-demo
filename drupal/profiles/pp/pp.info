@@ -21,6 +21,7 @@ dependencies[] = ctools
 dependencies[] = panels
 dependencies[] = date
 dependencies[] = date_api
+dependencies[] = date_popup
 dependencies[] = disqus
 dependencies[] = panelizer
 dependencies[] = page_manager
@@ -28,6 +29,7 @@ dependencies[] = pathauto
 dependencies[] = module_filter
 dependencies[] = views
 dependencies[] = views_ui
+dependencies[] = panelizer_views_integration
 dependencies[] = entityreference
 dependencies[] = field_group
 dependencies[] = feeds_ex
@@ -50,6 +52,9 @@ dependencies[] = entityreference_autocomplete
 dependencies[] = views_load_more
 dependencies[] = better_formats
 dependencies[] = elements
+dependencies[] = bean_wysiwyg
+dependencies[] = scheduler
+dependencies[] = rel_to_abs
 
 ; Custom modules
 dependencies[] = nas_solr_feature

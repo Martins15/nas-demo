@@ -9139,7 +9139,7 @@ body.black-bg .slide-caption {
   height: 50px;
   margin-left: -50px;
   display: block;
-  background-image: url(descend.png);
+  background-image: url(../img/descend.png);
   background-size: 45px 27px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -9375,7 +9375,7 @@ body.black-bg .slide-caption {
   height: 55px;
   margin-top: -27.5px;
   background-color: rgba(0, 0, 0, 0.25);
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -9385,7 +9385,7 @@ body.black-bg .slide-caption {
 }
 .flyway-slides-paddle.next {
   right: 0;
-  background-image: url(arrow-right.png);
+  background-image: url(../img/arrow-right.png);
 }
 @media only screen and (min-width: 768px) {
   .flyway-slides-paddle {
@@ -11241,6 +11241,16 @@ body.touch .sticky-wrapper {
   font-size: 15px;
 }
 
+.bird-card-grid .view-empty {
+  background-color: transparent;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 25.5px;
+  text-align: center;
+}
+
 .bird-card-set .owl-carousel .owl-wrapper-outer {
   padding-top: 5px;
 }
@@ -11300,6 +11310,11 @@ body.touch .sticky-wrapper {
   line-height: 15px;
 }
 
+.hero-attribution .hero-attribution-text {
+  padding: 2px 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .manage-thumbnails-popup img, #EPSACropDialog img {
   max-width: none !important;
 }
@@ -11308,12 +11323,14 @@ body.touch .sticky-wrapper {
   line-height: 11px;
 }
 
-.bird-card-grid .view-empty {
-  background-color: transparent;
-  color: #838078;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 17px;
-  font-style: italic;
-  line-height: 25.5px;
-  text-align: center;
+.donate-bar-button {
+  width: 29%;
+}
+
+.press-release .article-sidebar-section .article-date {
+  font-style: normal;
+  font-size: 14px;
+}
+.press-release .article-sidebar-section.article-meta {
+  text-align: left;
 }

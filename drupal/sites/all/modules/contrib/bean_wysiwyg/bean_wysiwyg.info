@@ -1,0 +1,14 @@
+name = Bean WYSIWYG
+description = "Provide possibility to add custom html blocks (beans) in WYSIWYG."
+package = Bean
+core = 7.x
+
+dependencies[] = bean
+dependencies[] = wysiwyg
+
+; Information added by Drupal.org packaging script on 2014-02-15
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "bean_wysiwyg"
+datestamp = "1392474812"
+

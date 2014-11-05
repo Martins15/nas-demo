@@ -4,7 +4,10 @@
  * Featured Bird template file.
  *
  * Available variables:
- * - $name: the (sanitized) name of the bird.
+ * - $hero_image: big image at the top.
+ * - $title: title.
+ * - $subtitle: subtitle under the title.
+ * - $flyway[1-4]: array with values for the slide.
  */
 ?>
 <div class="hero dark-text flyway-megamap" style="background-image: url(<?php print $hero_image; ?>); background-color: #CDEAF2;">
@@ -19,13 +22,13 @@
   </div>
   <div class="flyway-megamap-points-container row">
     <?php for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++): ?>
-    <a href="#" id="flyway-point-<?php print $i; ?>" class="flyway-megamap-point" style="<?php print ${'flyway_' . $i}['coordinates']; ?>">
+    <a href="#" id="flyway-point-<?php print $i; ?>" class="flyway-megamap-point" style="<?php print $flyway[$i]['coordinates']; ?>">
       <div class="portrait">
-        <img src="<?php print ${'flyway_' . $i}['image']; ?>" alt="<?php print ${'flyway_' . $i}['bird']; ?>">
+        <img src="<?php print $flyway[$i]['image']; ?>" alt="<?php print $flyway[$i]['bird']; ?>">
       </div>
       <div class="name hide-for-small hide-for-tiny">
-        <div class="bird"><?php print ${'flyway_' . $i}['bird']; ?></div>
-        <div class="flyway"><?php print ${'flyway_' . $i}['flyway']; ?></div>
+        <div class="bird"><?php print $flyway[$i]['bird']; ?></div>
+        <div class="flyway"><?php print $flyway[$i]['flyway']; ?></div>
       </div>
     </a>
     <?php endfor; ?>

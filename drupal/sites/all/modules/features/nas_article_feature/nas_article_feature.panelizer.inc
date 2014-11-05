@@ -688,7 +688,9 @@ function nas_article_feature_panelizer_defaults() {
   $panelizer->extra = array();
   $display = new panels_display();
   $display->layout = 'nas-article-fullscreen';
-  $display->layout_settings = array();
+  $display->layout_settings = array(
+    'color_mode' => '%node:field_color_mode',
+  );
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
@@ -915,7 +917,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'classes' => 'article-slug',
+      'classes' => 'hero-slug',
       'context' => 'panelizer',
       'override_title' => 0,
       'override_title_text' => '',
@@ -1018,6 +1020,25 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '8a09ea69-689d-4d06-8fff-5690529ccf19';
     $display->content['new-8a09ea69-689d-4d06-8fff-5690529ccf19'] = $pane;
     $display->panels['header_hero_attr_text'][0] = 'new-8a09ea69-689d-4d06-8fff-5690529ccf19';
+    $pane = new stdClass();
+    $pane->pid = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
+    $pane->panel = 'left';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_most_viewed_articles-nas_most_viewed_articles';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '159b6d01-4739-42b5-9179-544ba64e25cb';
+    $display->content['new-159b6d01-4739-42b5-9179-544ba64e25cb'] = $pane;
+    $display->panels['left'][0] = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
     $pane = new stdClass();
     $pane->pid = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
     $pane->panel = 'main';
@@ -1558,7 +1579,10 @@ function nas_article_feature_panelizer_defaults() {
     $pane->style = array(
       'settings' => NULL,
     );
-    $pane->css = array();
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'press-release-date',
+    );
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
@@ -1631,28 +1655,6 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '76711ab8-f681-4c6c-94f3-17f98f65045c';
     $display->content['new-76711ab8-f681-4c6c-94f3-17f98f65045c'] = $pane;
     $display->panels['main'][0] = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
-    $pane = new stdClass();
-    $pane->pid = 'new-15d5680b-c8fd-400b-a7d5-549940d4cfb3';
-    $pane->panel = 'main';
-    $pane->type = 'block';
-    $pane->subtype = 'disqus-disqus_comments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '15d5680b-c8fd-400b-a7d5-549940d4cfb3';
-    $display->content['new-15d5680b-c8fd-400b-a7d5-549940d4cfb3'] = $pane;
-    $display->panels['main'][1] = 'new-15d5680b-c8fd-400b-a7d5-549940d4cfb3';
     $pane = new stdClass();
     $pane->pid = 'new-01772954-4415-44ed-9680-fb74fa80f03c';
     $pane->panel = 'right';

@@ -1,21 +1,37 @@
 .article-aside {
-  border: 2px dotted red;
-  cursor: default;
+  border-left: 1px solid #d4d4d4;
   float: right;
-  margin-left: 25px;
   width: 41.66667%;
 }
-
-.article-aside-active {
-  background-color: yellow;
+.article-aside img {
+  vertical-align: middle;
+  width: 100%;
 }
-
-.article-aside .engagement-card-headline {
-  border: 1px dotted red;
-  margin: 5px;
+@media only screen and (min-width: 601px) {
+.article-aside {
+  padding-left: 25px;
 }
-
-.article-aside .engagement-card-content .p1 {
-  border: 1px dotted red;
-  margin: 5px;
+.article-aside.small {
+  width: 25%;
+}
+.article-aside.half-width {
+  margin-left: 12.5px;
+  padding-left: 12.5px;
+  width: 50%;
+}
+.article-aside.full-width {
+  padding-left: 0;
+  width: 100%;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .article-aside {
+    min-width: 33.33333%;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .article-aside {
+    padding: 0;
+    width: 100%;
+  }
 }

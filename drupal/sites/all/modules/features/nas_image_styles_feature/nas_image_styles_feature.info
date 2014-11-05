@@ -15,3 +15,6 @@ features[image][] = hero_mobile
 features[image][] = nas_bird_node_full_illustration
 features[image][] = nas_bird_photo_thumbnnail
 features[image][] = nas_bird_teaser_illustration
+features[image][] = nas_birds_landing_epsacrop_mobile
+features[image][] = featured_frontpage
+project path = sites/all/modules/features

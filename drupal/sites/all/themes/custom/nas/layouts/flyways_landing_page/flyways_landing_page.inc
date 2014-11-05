@@ -16,5 +16,6 @@ $plugin = array(
   'theme' => 'flyways_landing_page',
   'regions' => array(
     'content' => t('Content'),
+    'lower' => t('Lower'),
   ),
 );

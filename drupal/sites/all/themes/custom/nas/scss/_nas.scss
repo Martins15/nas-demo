@@ -32,17 +32,19 @@
     }
   }
 }
+
 .bird-card-grid {
-  .views-empty {
-    background-color: transparent;
-    color: #838078;
-    font-family: "Source Sans Pro", Verdana, sans-serif;
-    font-size: 17px;
-    font-style: italic;
-    line-height: 25.5px;
-    text-align: center;
-  }
+  .view-empty {
+    background-color: transparent;
+    color: #838078;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 17px;
+    font-style: italic;
+    line-height: 25.5px;
+    text-align: center;
+  }
 }
+
 .bird-card-set {
   .owl-carousel {
     .owl-wrapper-outer {
@@ -113,6 +115,13 @@
   line-height: 15px;
 }
 
+.hero-attribution {
+  .hero-attribution-text {
+    padding: 2px 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
 .manage-thumbnails-popup, #EPSACropDialog {
   img {
     max-width: none !important;
@@ -123,4 +132,17 @@
   i[class^="icon-"], i[class*=" icon-"] {
     line-height: 11px;
   }
+}
+
+.donate-bar-button {
+  width: 29%;
+}
+
+/* Make press release published style different. ANW-272 */
+.press-release .article-sidebar-section .article-date {
+  font-style: normal;
+  font-size: 14px;
+}
+.press-release .article-sidebar-section.article-meta {
+  text-align: left;
 }

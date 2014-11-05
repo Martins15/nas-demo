@@ -2,10 +2,21 @@
 /**
  * @file
  * Template of Article layout with Fullscreen image.
+ *
+ * Available variables:
+ *  - $color_mode_text: text color mode for hero image.
+ *  - $color_mode_gradient: gradient color mode for hero image.
+ *
+ * @impove
+ *   These variables only available when rendering in NAS theme, so have to be
+ *   sure they are initialized or notices will be generated in panels edit
+ *   interface.
+ *
+ * @see nas_preprocess_nas_article_fullscreen()
  */
 ?>
 
-<div class="hero dark-gradient light-text expand">
+<div class="hero <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : ''; ?>-text expand">
   <div class="hero-image">
     <?php print $content['big_image']; ?>
   </div> 
@@ -17,9 +28,11 @@
     </div>
   </div>
 </div>
+<?php if (trim($content['header_hero_attr_text'])): ?>
 <div class="hero-attribution row">
   <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
+<?php endif; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

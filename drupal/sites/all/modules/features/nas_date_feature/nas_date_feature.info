@@ -1,0 +1,9 @@
+name = NAS Date Feature
+core = 7.x
+package = NAS
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = date_format_nas_date
+project path = sites/all/modules/features
