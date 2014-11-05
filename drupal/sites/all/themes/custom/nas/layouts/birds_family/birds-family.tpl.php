@@ -6,7 +6,6 @@
  */
 ?>
 
-<?php print $content['header']; ?>
 <div class="guide-bar">
     <div class="row">
       <div class="column">
@@ -17,6 +16,9 @@
   </div>
 
   <section class="global-content">
+    <div class="row">
+      <?php print $content['top']; ?>
+    </div>
     <div class="bird-card-grid">
       <a href="" class="bg-egg icon-binoculars white"></a>
       <?php print $content['main']; ?>

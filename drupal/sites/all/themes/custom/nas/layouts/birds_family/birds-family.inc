@@ -14,7 +14,7 @@ $plugin = array(
   'icon' => 'birds_family.png',
   'theme' => 'birds_family',
   'regions' => array(
-    'header' => t('Header'),
+    'top' => t('Top'),
     'main' => t('Main'),
   ),
 );
