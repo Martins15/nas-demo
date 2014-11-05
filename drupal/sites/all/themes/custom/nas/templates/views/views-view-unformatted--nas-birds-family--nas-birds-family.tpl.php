@@ -8,7 +8,7 @@
 
 <div class="row section-header space-top">
   <div class="columns">
-    <h2 class="thin"><?php print $view->display[$view->current_display]->display_title; ?></h2>
+    <h2 class="thin"><?php print $view->get_title(); ?></h2>
   </div>
 </div>
 
