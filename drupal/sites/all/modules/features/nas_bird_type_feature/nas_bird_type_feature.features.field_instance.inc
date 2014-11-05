@@ -78,6 +78,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -184,6 +190,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'preview' => array(
@@ -300,6 +312,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'preview' => array(
         'label' => 'above',
@@ -432,6 +450,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -561,6 +585,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -614,6 +644,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -685,6 +721,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 21,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -780,6 +822,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -839,6 +887,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 37,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -908,6 +962,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -967,6 +1027,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 38,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1036,6 +1102,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1100,6 +1172,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1156,6 +1234,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 19,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1225,6 +1309,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1281,6 +1371,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 18,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1350,6 +1446,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1410,6 +1512,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 25,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1493,6 +1601,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1552,6 +1666,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 4,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1617,6 +1737,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 20,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1704,6 +1830,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1762,6 +1894,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 5,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1827,6 +1965,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 22,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1910,6 +2054,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1966,6 +2116,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 1,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2037,6 +2193,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2101,6 +2263,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2160,6 +2328,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 3,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2234,6 +2408,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2293,6 +2473,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 43,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2366,6 +2552,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2423,6 +2615,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 24,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2521,6 +2719,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 6,
       ),
       'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
