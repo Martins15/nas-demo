@@ -53,6 +53,9 @@ function nas_birds_family_feature_default_page_manager_handlers() {
       'header' => NULL,
       'main' => NULL,
       'top' => NULL,
+      'title' => NULL,
+      'scientific_name' => NULL,
+      'description' => NULL,
     ),
   );
   $display->cache = array();
@@ -60,6 +63,30 @@ function nas_birds_family_feature_default_page_manager_handlers() {
   $display->uuid = '3a76d002-eb20-4c24-9898-eb8b217d1cf6';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-2576d329-1602-477a-851d-96608da45e3c';
+    $pane->panel = 'description';
+    $pane->type = 'entity_field_extra';
+    $pane->subtype = 'taxonomy_term:description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+      'context' => 'argument_term_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2576d329-1602-477a-851d-96608da45e3c';
+    $display->content['new-2576d329-1602-477a-851d-96608da45e3c'] = $pane;
+    $display->panels['description'][0] = 'new-2576d329-1602-477a-851d-96608da45e3c';
     $pane = new stdClass();
     $pane->pid = 'new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2';
     $pane->panel = 'main';
@@ -83,33 +110,8 @@ function nas_birds_family_feature_default_page_manager_handlers() {
     $display->content['new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2'] = $pane;
     $display->panels['main'][0] = 'new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2';
     $pane = new stdClass();
-    $pane->pid = 'new-76e9597d-c698-4d92-83a9-83e5484b4427';
-    $pane->panel = 'top';
-    $pane->type = 'page_title';
-    $pane->subtype = 'page_title';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'markup' => 'h1',
-      'class' => '',
-      'id' => '',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '76e9597d-c698-4d92-83a9-83e5484b4427';
-    $display->content['new-76e9597d-c698-4d92-83a9-83e5484b4427'] = $pane;
-    $display->panels['top'][0] = 'new-76e9597d-c698-4d92-83a9-83e5484b4427';
-    $pane = new stdClass();
-    $pane->pid = 'new-b583bf2a-8984-4ff9-9c82-ce5c63120bc3';
-    $pane->panel = 'top';
+    $pane->pid = 'new-92e9685e-584b-46c4-9cb3-b0f31ad65139';
+    $pane->panel = 'scientific_name';
     $pane->type = 'entity_field';
     $pane->subtype = 'taxonomy_term:field_bird_family_sci_name';
     $pane->shown = TRUE;
@@ -131,20 +133,22 @@ function nas_birds_family_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'b583bf2a-8984-4ff9-9c82-ce5c63120bc3';
-    $display->content['new-b583bf2a-8984-4ff9-9c82-ce5c63120bc3'] = $pane;
-    $display->panels['top'][1] = 'new-b583bf2a-8984-4ff9-9c82-ce5c63120bc3';
+    $pane->uuid = '92e9685e-584b-46c4-9cb3-b0f31ad65139';
+    $display->content['new-92e9685e-584b-46c4-9cb3-b0f31ad65139'] = $pane;
+    $display->panels['scientific_name'][0] = 'new-92e9685e-584b-46c4-9cb3-b0f31ad65139';
     $pane = new stdClass();
-    $pane->pid = 'new-f82b9a8f-d8d4-470a-883a-7ab49a116e58';
-    $pane->panel = 'top';
-    $pane->type = 'term_description';
-    $pane->subtype = 'term_description';
+    $pane->pid = 'new-423874c8-072a-4905-b80f-3ad6f8f3633c';
+    $pane->panel = 'title';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => 'argument_term_1',
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
       'override_title' => 0,
       'override_title_text' => '',
     );
@@ -154,11 +158,11 @@ function nas_birds_family_feature_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'f82b9a8f-d8d4-470a-883a-7ab49a116e58';
-    $display->content['new-f82b9a8f-d8d4-470a-883a-7ab49a116e58'] = $pane;
-    $display->panels['top'][2] = 'new-f82b9a8f-d8d4-470a-883a-7ab49a116e58';
+    $pane->uuid = '423874c8-072a-4905-b80f-3ad6f8f3633c';
+    $display->content['new-423874c8-072a-4905-b80f-3ad6f8f3633c'] = $pane;
+    $display->panels['title'][0] = 'new-423874c8-072a-4905-b80f-3ad6f8f3633c';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

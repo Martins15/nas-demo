@@ -15,9 +15,17 @@
     </div>
   </div>
 
-  <section class="global-content">
+  <section class="global-content birds-family-section">
     <div class="row">
-      <?php print $content['top']; ?>
+      <div class="common-name">
+        <?php print $content['title']; ?>
+      </div>
+      <div class="scientific-name">
+        <?php print $content['scientific_name']; ?>
+      </div>
+      <div class="family-description">
+        <?php print $content['description']; ?>
+      </div>
     </div>
     <div class="bird-card-grid">
       <a href="" class="bg-egg icon-binoculars white"></a>
