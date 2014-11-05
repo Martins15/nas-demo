@@ -256,7 +256,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
   }
 
   $vars['contextual_links'] = '';
-  if (!user_access('nas fpp bird guide pane edit')) {
+  if (!user_access('fpp bird guide pane edit')) {
     return;
   }
 
