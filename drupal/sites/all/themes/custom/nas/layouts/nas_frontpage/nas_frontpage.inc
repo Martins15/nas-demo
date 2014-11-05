@@ -16,6 +16,7 @@ $plugin = array(
   'theme' => 'panels_nas_frontpage',
   'regions' => array(
     'header' => t('Header'),
+    'bird_news' => t('Birds in the News'),
     'top' => t('Top'),
   ),
 );
