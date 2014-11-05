@@ -110,11 +110,11 @@ function get_image_src($matches, $source_nid) {
   if (!preg_match('/http:\/\//', $full_url)) {
     $path = 'http://audubon.org' . $full_url;
   }
-  watchdog('$path', '<pre>' . print_r($path, 1) . '</pre>');
+  watchdog('get_image_src 1', '<pre>' . print_r($path, 1) . '</pre>');
   if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
     if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
       $path = pp_file_create_url($file->uri);
-      watchdog('$path', '<pre>' . print_r($path, 1) . '</pre>');
+      watchdog('get_image_src 2', '<pre>' . print_r($path, 1) . '</pre>');
     }
   }
   return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
@@ -125,7 +125,7 @@ function get_image_src($matches, $source_nid) {
  */
 function pp_file_create_url($uri) {
   $file_url = file_create_url($uri);
-  watchdog('$file_url', '<pre>' . print_r($file_url, 1) . '</pre>');
+  watchdog('pp_file_create_url 1', '<pre>' . print_r($file_url, 1) . '</pre>');
   // For some reason simple file_create_url() doesn't work
   // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
   // via drush command if it is avaiable.
@@ -142,7 +142,7 @@ function pp_file_create_url($uri) {
     if (!empty($base_url_from_drush)) {
       list(, $filename) = explode('://', $uri);
       $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
-      watchdog('$file_url', '<pre>' . print_r($file_url, 1) . '</pre>');
+      watchdog('pp_file_create_url 2', '<pre>' . print_r($file_url, 1) . '</pre>');
     }
   }
   return $file_url;
