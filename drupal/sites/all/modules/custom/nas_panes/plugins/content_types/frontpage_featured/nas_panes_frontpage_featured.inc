@@ -127,7 +127,7 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   $blue_text_link = l(t(check_plain($conf['blue_text'])), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('frontpage featured pane edit')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.

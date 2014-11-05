@@ -17,8 +17,8 @@ function nas_editor_role_uuid_features_default_users() {
   'signature' => '',
   'signature_format' => 'map',
   'created' => 1414412105,
-  'access' => 1414499472,
-  'login' => 1414499172,
+  'access' => 1415104765,
+  'login' => 1415102387,
   'status' => 1,
   'timezone' => '',
   'language' => '',
@@ -30,7 +30,14 @@ function nas_editor_role_uuid_features_default_users() {
     2 => 'authenticated user',
     3 => 'editor',
   ),
-  'date' => '2014-10-27 14:15:05 +0200',
+  'disqus' => array(
+    'domain' => 'NAS',
+    'url' => 'http://nas.192.168.56.132.xip.io/users/editor',
+    'title' => 'editor',
+    'identifier' => 'user/2',
+    'developer' => 1,
+  ),
+  'date' => '2014-10-27 07:15:05 -0500',
 );
   return $users;
 }

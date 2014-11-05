@@ -64,6 +64,24 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'bird guide featured pane edit'.
+  $permissions['bird guide featured pane edit'] = array(
+    'name' => 'bird guide featured pane edit',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
+  // Exported permission: 'bird landing featured pane edit'.
+  $permissions['bird landing featured pane edit'] = array(
+    'name' => 'bird landing featured pane edit',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
   // Exported permission: 'create article content'.
   $permissions['create article content'] = array(
     'name' => 'create article content',
@@ -242,6 +260,42 @@ function nas_editor_role_user_default_permissions() {
       'editor' => 'editor',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'featured article pane edit'.
+  $permissions['featured article pane edit'] = array(
+    'name' => 'featured article pane edit',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
+  // Exported permission: 'fpp bird guide pane edit'.
+  $permissions['fpp bird guide pane edit'] = array(
+    'name' => 'fpp bird guide pane edit',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
+  // Exported permission: 'frontpage featured pane edit'.
+  $permissions['frontpage featured pane edit'] = array(
+    'name' => 'frontpage featured pane edit',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
+  // Exported permission: 'pane in the news edit'.
+  $permissions['pane in the news edit'] = array(
+    'name' => 'pane in the news edit',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
   );
 
   // Exported permission: 'use panels dashboard'.

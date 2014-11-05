@@ -16,8 +16,9 @@
  * - $color_classes: color classes for text.
  */
 ?>
-<div class="hero <?php print $color_classes; ?>">
-  <div class="hero-image">
+<div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">
+  <div class="hero-image contextual-links-region">
+    <?php print $contextual_links; ?>
     <img src="<?php print $image_path_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
     <img src="<?php print $image_path; ?>" alt="" class="hide-for-tiny hide-for-small">
   </div>

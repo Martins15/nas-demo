@@ -124,6 +124,41 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_editorial_cards(&$vars) {
     $vars['editorial_card_links'][] = l($link['title'], $link['url'], array('attributes' => array('class' => array('editorial-card-link'))));
   }
   $vars['editorial_card_summary'] = field_view_field('fieldable_panels_pane', $fpp, 'field_summary', array('label' => 'hidden'));
+
+  $vars['contextual_links'] = '';
+  if (!user_access('edit fieldable nas_editorial_cards')) {
+    return;
+  }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
 }
 
 /**
@@ -160,6 +195,41 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
   $vars['banner_summary'] = strip_tags($get_field_summary[0]['value']);
   $get_field_color_mode = field_get_items('fieldable_panels_pane', $fpp, 'field_color_mode');
   $vars['color_mode'] = $get_field_color_mode[0]['value'];
+
+  $vars['contextual_links'] = '';
+  if (!user_access('edit fieldable nas_featured_content_cards')) {
+    return;
+  }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
 }
 
 /**
@@ -186,36 +256,37 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
   }
 
   $vars['contextual_links'] = '';
-  if (user_access('administer site configuration')) {
-
-    $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
-      ':subtype' => 'uuid:' . $fpp->uuid,
-    ))->fetchField();
-
-    ctools_include('modal');
-    ctools_include('ajax');
-    ctools_modal_add_js();
-    ctools_add_js('ajax-responder');
-    $links['edit'] = array(
-      'title' => t('Edit'),
-      'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
-      'html' => TRUE,
-      'query' => array('reload' => 'true'),
-      'attributes' => array(
-        'class' => array('ctools-use-modal'),
-        'title' => t('Edit'),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $vars['contextual_links'] = drupal_render($build);
+  if (!user_access('fpp bird guide pane edit')) {
+    return;
   }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
 }
