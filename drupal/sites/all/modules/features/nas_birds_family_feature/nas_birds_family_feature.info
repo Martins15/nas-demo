@@ -1,0 +1,13 @@
+name = Birds family
+core = 7.x
+package = NAS
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[page_manager_handlers][] = term_view_panel_context_2
+features[views_view][] = nas_birds_family
+features_exclude[dependencies][entity] = entity
+features_exclude[dependencies][views] = views
+features_exclude[dependencies][views_content] = views_content
+features_exclude[dependencies][views_load_more] = views_load_more
