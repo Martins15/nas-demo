@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -133,16 +133,17 @@ function nas_panes_flyway_in_the_news_build_contextual_links($subtype, $nid) {
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
   ctools_add_js('ajax-responder');
+
+  $query = db_select('panelizer_entity', 'pe');
   // We need to make a join because Flyway In The News is the not unique pane.
-  $pid = db_query('SELECT pid
-    FROM {panelizer_entity} ep
-    INNER JOIN {panels_pane} pp ON ep.did = pp.did AND pp.type = :type
-    WHERE ep.entity_id = :entity_id and ep.entity_type = :entity_type',
-    array(
-      ':type' => $subtype,
-      ':entity_id' => $nid,
-      ':entity_type' => 'node',
-    ))->fetchField();
+  $query
+    ->innerJoin('panels_pane', 'pp', 'pe.did = pp.did AND pp.type = :type', array(':type' => $subtype));
+  $query
+    ->condition('pe.entity_id', $nid)
+    ->condition('pe.entity_type', 'node');
+  $query
+    ->addField('pp', 'pid');
+  $pid = $query->execute()->fetchField();
 
   $links = array(
     'edit' => array(
