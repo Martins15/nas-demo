@@ -8,16 +8,16 @@
 $plugin = array(
   'single' => TRUE,
   'title' => t('Frontpage. Featured article'),
-  'description' => t('Provides Featured article for front page'),
+  'description' => t('Provides Featured article for frontpage'),
   'category' => 'NAS',
-  'edit form' => 'nas_panes_frontpage_featured_article_custom_pane_edit_form',
-  'render callback' => 'nas_panes_frontpage_featured_article_custom_pane_render',
+  'edit form' => 'frontpage_featured_article_form',
+  'render callback' => 'frontpage_featured_article_render',
 );
 
 /**
  * An edit form for the pane's settings.
  */
-function nas_panes_frontpage_featured_article_custom_pane_edit_form($form, &$form_state) {
+function frontpage_featured_article_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
   $form['image'] = array(
@@ -39,6 +39,21 @@ function nas_panes_frontpage_featured_article_custom_pane_edit_form($form, &$for
   );
 
 
+  // The two function calls below are necessary if we want to use a media
+  // element type, because it causes ajax requests, which in turn call
+  // drupal_form_rebuild(), and without the below includes, Drupal will
+  // not be able to rebuild the form.
+
+  // Include the CTools content type plugin file, because it provides
+  // the ctools_content_configure_form_defaults() function, which is needed
+  // when rebuilding the form, because of an ajax action, like selecting
+  // a media element.
+  ctools_form_include($form_state, 'content');
+
+  // Include this plugin file as well, so that when the form is rebuilt, it
+  // can successfully retrieve the settings form.
+  ctools_form_include($form_state, 'featured_frontpage_article', 'nas_panes', 'plugins/content_types/frontpage_featured_article');
+
   $form['article'] = array(
     '#type' => 'entityreference',
     '#title' => 'Featured article',
@@ -47,10 +62,10 @@ function nas_panes_frontpage_featured_article_custom_pane_edit_form($form, &$for
     '#era_bundles' => array('article'),
   );
 
-  $form['blue_text'] = array(
+  $form['tagline_text'] = array(
     '#type' => 'textfield',
-    '#title' => t('Blue text'),
-    '#default_value' => !empty($conf['blue_text']) ? $conf['blue_text'] : '',
+    '#title' => t('Tagline'),
+    '#default_value' => !empty($conf['tagline_text']) ? $conf['tagline_text'] : '',
     '#required' => TRUE,
   );
 
@@ -62,7 +77,7 @@ function nas_panes_frontpage_featured_article_custom_pane_edit_form($form, &$for
  * Submit function, note anything in the formstate[conf] automatically gets saved
  * Notice, the magic that automatically does that for you.
  */
-function nas_panes_frontpage_featured_article_custom_pane_edit_form_submit(&$form, &$form_state) {
+function frontpage_featured_article_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -74,7 +89,7 @@ function nas_panes_frontpage_featured_article_custom_pane_edit_form_submit(&$for
  * Run-time rendering of the body of the block (content type)
  * See ctools_plugin_examples for more advanced info
  */
-function nas_panes_frontpage_featured_article_custom_pane_render($subtype, $conf, $args, $contexts) {
+function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   if (!isset($conf['article']['entity_id']) || empty($conf['article']['entity_id'])) {
@@ -95,10 +110,10 @@ function nas_panes_frontpage_featured_article_custom_pane_render($subtype, $conf
     ctools_add_js('ajax-responder');
     // We expect Front Featured Article pane to be only on Front Page. If this is not
     // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_frontpage_featured_article'))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_featured_article'))->fetchField();
     if (empty($pid)) {
       nas_panes_save_news_page();
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_frontpage_featured_article'))->fetchField();
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_featured_article'))->fetchField();
     }
     $links = array(
       'edit' => array(
@@ -124,11 +139,16 @@ function nas_panes_frontpage_featured_article_custom_pane_render($subtype, $conf
   $content = $contextual_links;
 
   //$node_featured = node_view($node, 'nas_node_featured');
-  //$content .= render($node_featured);
 
-  if (!empty($contextual_links)) {
-    $content = '<div class="contextual-links-region">' . $content . '</div>';
-  }
+  $content = theme('nas_frontpage_featured_article', array(
+    'image_path' => $image_title,
+    'conversation_link' => $conversation_link,
+    'article_title' => $article_title,
+    'article_link' => $article_link,
+    'tagline_text' => $tagline_text,
+    'contextual_links' => $contextual_links,
+  ));
+
 
   $block->content = $content;
   return $block;

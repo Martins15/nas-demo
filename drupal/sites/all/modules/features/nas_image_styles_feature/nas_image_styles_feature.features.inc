@@ -39,6 +39,30 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: frontpage_featured_article_image.
+  $styles['frontpage_featured_article_image'] = array(
+    'name' => 'frontpage_featured_article_image',
+    'label' => 'Frontpage featured article image',
+    'effects' => array(
+      2 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 640,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: article_teaser.
   $styles['article_teaser'] = array(
     'name' => 'article_teaser',
