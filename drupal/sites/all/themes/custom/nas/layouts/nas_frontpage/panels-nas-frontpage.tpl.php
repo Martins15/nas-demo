@@ -199,19 +199,6 @@
       </div>
     </div>
   </section>
-  <div class="bird-card-set bg-bone-white bg-boa">
-    <a href="#" class="bg-egg icon-binoculars white"></a>
-    <div class="bird-card-grid-bg-caption">
-      <div class="row">
-        <div class="columns large-offset-1 large-3">
-          <h2 class="thin"><a href="#">Belted Kingfisher</a></h2>
-        </div>
-        <div class="columns large-8">
-          <p>Illustration by John James Audubon circa 1840 from The Birds of America</p>
-          <p><em><a href="#">Learn more about the Belted Kingfisher »</a></em></p>
-        </div>
-      </div>
-    </div>
 
   <?php print $content['bird_news']; ?>
   <?php print $content['main']; ?>
