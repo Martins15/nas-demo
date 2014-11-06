@@ -61,7 +61,7 @@ function nas_panes_pane_featured_article_custom_pane_render($subtype, $conf, $ar
   $node = node_load($conf['article']['entity_id']);
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('featured article pane edit')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.

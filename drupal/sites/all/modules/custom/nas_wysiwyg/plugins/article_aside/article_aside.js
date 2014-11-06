@@ -27,7 +27,7 @@
         template:
           '<aside class="article-aside">' +
             '<div class="engagement-card side-note">' +
-              '<div class="engagement-card-content">' +
+              '<div class="engagement-card-content no-min-height">' +
                 '<h4 class="engagement-card-headline">This is a Sidebar Example</h4>' +
                 '<div class="engagement-card-text">Insert text here</div>' +
               '</div>' +

@@ -120,6 +120,8 @@ function pp_import_nodes() {
       189331,
       // node with inline image that NOT FOUND
       178166,
+      // node with inline image to test
+      189306,
     );
   }
 
@@ -220,6 +222,8 @@ function pp_content_after_import() {
   if (function_exists('nas_update_text_fields_format')) {
     nas_update_text_fields_format();
   }
+
+  module_invoke_all('nas_after_import');
 }
 
 function pp_import_save_timer() {

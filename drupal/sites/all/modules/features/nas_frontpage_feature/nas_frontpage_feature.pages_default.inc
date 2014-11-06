@@ -8,7 +8,6 @@
  * Implements hook_default_page_manager_pages().
  */
 function nas_frontpage_feature_default_page_manager_pages() {
-
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
@@ -154,6 +153,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'default' => NULL,
       'header' => NULL,
       'top' => NULL,
+      'bird_news' => NULL,
     ),
   );
   $display->cache = array();
@@ -161,7 +161,25 @@ function nas_frontpage_feature_default_page_manager_pages() {
   $display->uuid = '5842d9ae-5859-4fe6-909f-36ef19825c83';
   $display->content = array();
   $display->panels = array();
-
+    $pane = new stdClass();
+    $pane->pid = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
+    $pane->panel = 'bird_news';
+    $pane->type = 'frontpage_in_the_news';
+    $pane->subtype = 'frontpage_in_the_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '789c461d-cebc-4a8d-b7c7-92f402c87f26';
+    $display->content['new-789c461d-cebc-4a8d-b7c7-92f402c87f26'] = $pane;
+    $display->panels['bird_news'][0] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $pane = new stdClass();
     $pane->pid = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
     $pane->panel = 'top';
@@ -175,8 +193,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $filedata = array(
       'image_title_text' => 'Audubon Researchers in Alaska',
       'credit' => 'Photo: Rusty Clark',
-      );
-
+    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',

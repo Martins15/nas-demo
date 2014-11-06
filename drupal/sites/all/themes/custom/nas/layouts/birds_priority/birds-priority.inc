@@ -8,15 +8,13 @@
 /**
  * Implementation of hook_panels_layouts().
  */
-// Plugin definition.
 $plugin = array(
-  'title' => t('Front page'),
+  'title' => t('Birds priority'),
   'category' => t('NAS'),
-  'icon' => 'nas_frontpage.png',
-  'theme' => 'panels_nas_frontpage',
+  'icon' => 'birds_priority.png',
+  'theme' => 'birds_priority',
   'regions' => array(
     'header' => t('Header'),
-    'bird_news' => t('Birds in the News'),
-    'top' => t('Top'),
+    'main' => t('Main'),
   ),
 );
