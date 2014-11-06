@@ -82,6 +82,29 @@ function nas_flyways_feature_panelizer_defaults() {
     $display->content['new-7ea1127e-6608-476d-a9c8-76990d0266e5'] = $pane;
     $display->panels['body'][0] = 'new-7ea1127e-6608-476d-a9c8-76990d0266e5';
     $pane = new stdClass();
+    $pane->pid = 'new-689e81d5-cbc3-4de8-bba4-7656d57af0a4';
+    $pane->panel = 'bottom';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'related_birds-flyway_related_birds';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '689e81d5-cbc3-4de8-bba4-7656d57af0a4';
+    $display->content['new-689e81d5-cbc3-4de8-bba4-7656d57af0a4'] = $pane;
+    $display->panels['bottom'][0] = 'new-689e81d5-cbc3-4de8-bba4-7656d57af0a4';
+    $pane = new stdClass();
     $pane->pid = 'new-0e3052fc-1443-4df3-a496-0ac97601ddee';
     $pane->panel = 'secondary_title';
     $pane->type = 'entity_field';
