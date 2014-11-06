@@ -157,13 +157,13 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_bird'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_bird_guide_pane();
+      nas_panes_save_frontpage_page();
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_bird'))->fetchField();
     }
     $links = array(
       'edit' => array(
         'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),

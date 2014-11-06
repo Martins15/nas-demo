@@ -136,7 +136,7 @@
     <div class="columns large-8 medium-6">
       <div class="editorial-card">
         <div class="editorial-card-photo">
-          <img src="../img/editorial-card-23.jpg" alt="">
+          <img src="<?php print base_path() . path_to_theme(); ?>/img/editorial-card-23.jpg" alt="">
         </div>
         <div class="editorial-card-content short">
           <a href="#" class="editorial-card-slug">Conservation</a>
@@ -146,70 +146,12 @@
       </div>
     </div>
     <div class="columns large-4 medium-6">
-      <div class="editorial-card">
-        <div class="editorial-card-content has-fixed-banner">
-          <h3 class="close-heading">More Headlines</h3>
-          <hr>
-          <div class="editorial-card-list-item"><h5 class="editorial-card-title no-margin"><a href="#">Migratory Birds May Ferry Mosses Around the World</a></h5></div>
-          <div class="editorial-card-list-item"><h5 class="editorial-card-title no-margin"><a href="#">Find a Baby Bird Out of the Nest? Here&rsquo;s What to Do</a></h5></div>
-          <div class="editorial-card-list-item"><h5 class="editorial-card-title no-margin"><a href="#">Incubating Bird Eggs Is More Complex Than You Think</a></h5></div>
-          <div class="editorial-card-list-item"><h5 class="editorial-card-title no-margin"><a href="#">New Oregon Marine Preserves Protect Birds and Fish</a></h5></div>
-          <div class="editorial-card-list-item"><h5 class="editorial-card-title no-margin"><a href="#">Adubon Magazine Artists Win Three American Illustration Awards</a></h5></div>
-          <div class="editorial-card-list-item"><h5 class="editorial-card-title no-margin"><a href="#">More News »</a></h5></div>
-        </div>
-        <div class="editorial-card-banner fixed blue">
-          <div class="social-sharing">
-            <span class="social-sharing-caption small">Follow us </span>
-            <a class="social-sharing-icon white small" href="#"><i class="icon-twitter"></i></a>
-            <a class="social-sharing-icon white small" href="#"><i class="icon-facebook"></i></a>
-            <a class="social-sharing-icon white small" href="#"><i class="icon-youtube"></i></a>
-            <a class="social-sharing-icon white small" href="#"><i class="icon-pinterest"></i></a>
-          </div>
-        </div>
-      </div>
+      <?php print $content['more_headlines']; ?>
     </div>
   </div>
-  <div class="row space-bottom double">
-    <div class="columns large-4">
-      <div class="editorial-card collapse-minimal">
-        <div class="editorial-card-photo">
-          <a href="#"><img src="../img/editorial-card-24.jpg" alt=""></a>
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Conservation</a>
-          <h4 class="editorial-card-title"><a href="#">Drones Take Off as Wildlife Conservation Tool</a></h3>
-          <p><em><a href="" class="editorial-card-link">UAVs could revolutionize ecology</a></em></p>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-4">
-      <div class="editorial-card collapse-minimal">
-        <div class="editorial-card-photo">
-          <a href="#"><img src="../img/editorial-card-25.jpg" alt=""></a>
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Birds</a>
-          <h4 class="editorial-card-title"><a href="#">Clues to Conserving Golden Eagle Hidden in Its DNA</a></h3>
-          <p><em><a href="" class="editorial-card-link">Genome sequencing reveals new insights</a></em></p>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-4">
-      <div class="editorial-card collapse-minimal">
-        <div class="editorial-card-photo">
-          <a href="#"><img src="../img/editorial-card-26.jpg" alt=""></a>
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Get Outside</a>
-          <h4 class="editorial-card-title"><a href="#">Innovative Technology Gives Birdwatching a Boost</a></h3>
-          <p><em><a href="" class="editorial-card-link">Learn about the latest tools</a></em></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <?php print $content['editorial_cards']; ?>
   <section class="breakout-section black-bg">
-    <div class="breakout-section-hero margin-bottom" style="background-image: url(../img/breakout-section-3.jpg)">
+    <div class="breakout-section-hero margin-bottom" style="background-image: url(<?php print base_path() . path_to_theme(); ?>/img/breakout-section-3.jpg)">
       <div class="row">
         <div class="column">
           <h1 class="breakout-section-headline">Our conservation work focuses on five key strategies, supported by science, advocacy, and education.</h1>
@@ -270,143 +212,9 @@
         </div>
       </div>
     </div>
-    <?php print $content['bird_news']; ?>
-    <div class="row indicator space-bottom double">
-      <div class="column">
-        <p><i class="indicator-left icon-arrow-left disabled"></i>&nbsp;&nbsp;&nbsp;<i class="indicator-right icon-arrow-right"></i></p>
-      </div>
-    </div>
-  </div>
 
-  <div class="breakout-section no-hero" style="background-image: url(../img/breakout-section-flyway.jpg); background-color: #444444">
-    <div class="breakout-section-content light-text">
-      <div class="row space-top space-bottom double">
-        <div class="columns large-4">
-          <h5 class="close-heading">You are a part of the</h5>
-          <h1 class="thin">Pacific Flyway</h1>
-          <p><em>Each year more than a billion birds migrate along the Pacific Flyway, which stretches from the North Slope of Alaska to Central and South America.</em></p>
-          <br>
-          <div class="editorial-card dark no-border">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title blue"><a href="#">About the Flyways</a></h4>
-              <p>Audubon follows the birds to our work, organizing our conservation strategies along the four flyways of the Americas.</p>
-              <br>
-              <a href="" class="editorial-card-link"><em>Learn More</em></a>
-            </div>
-          </div>
-        </div>
-        <div class="columns large-4">
-          <div class="breakout-section-box">
-            <h4 class="editorial-card-title blue"><a href="#">Audubon Near You</a></h4>
-            <div class="editorial-card-list-item">
-              <h5 class="editorial-card-title no-margin"><a href="#">Richardson Bay Audubon Center &amp; Sanctuary <small class="serif"><em>(Tiberon,&nbsp;CA)</em></small></a></h5>
-            </div>
-            <div class="editorial-card-list-item">
-              <h5 class="editorial-card-title no-margin"><a href="#">Audubon Center at Debs Park <small class="serif"><em>(Los&nbsp;Angeles,&nbsp;CA)</em></small></a></h5>
-            </div>
-            <div class="editorial-card-list-item">
-              <h5 class="editorial-card-title no-margin"><a href="#">Bobelaine Audubon Sanctuary <small class="serif"><em>(Sacramento,&nbsp;CA)</em></small></a></h5>
-            </div>
-            <h4 class="editorial-card-title blue"><a href="#">Upcoming Events</a></h4>
-            <div class="editorial-card-list-item small">
-              <h5 class="editorial-card-title"><a href="#">Summer Camp Open House</a><br>
-              <small class="serif"><em>Saturday, April 26, 2014</em></small></h5>
-              <p>Richardson Bay Audubon Center hosts an open house for their 2014 Summer Camp program.</p>
-            </div>
-            <div class="editorial-card-list-item small">
-              <h5 class="editorial-card-title"><a href="#">Birds Along the Bay</a><br>
-              <small class="serif"><em>Saturday, May 3, 2014</em></small></h5>
-              <p>Join the Marin Audubon Society for a Saturday morning on birding along the Pacific Coast.</p>
-            </div>
-          </div>
-        </div>
-        <div class="columns large-4">
-          <div class="breakout-section-box">
-            <img src="../img/pacific-flyway-map.png" alt="">
-            <br>
-            <p class="serif"><em>The Pacific Flyway includes Alaska, Hawaii, Washington, Oregon, and California.</em></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row section-header space-top">
-    <div class="column">
-      <h2 class="thin">News from the Network</h2>
-    </div>
-    <div class="column">
-      <ul class="inline-list section-nav">
-        <li><a href="#">Find the Audubon Chapter Near You »</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row space-bottom">
-    <div class="columns large-3">
-      <div class="editorial-card feature collapse-minimal">
-        <div class="editorial-card-photo">
-          <img src="../img/feature-5.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Audubon North Carolina</a>
-          <h4 class="editorial-card-title no-margin"><a href="#">Putting Working Lands to Work for Birds and People</a></h4>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-3">
-      <div class="editorial-card feature collapse-minimal">
-        <div class="editorial-card-photo">
-          <img src="../img/feature-6.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Audubon Center at Debs Park</a>
-          <h4 class="editorial-card-title no-margin"><a href="#">Conservation Ed Internships for College Students</a></h4>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-3">
-      <div class="editorial-card feature collapse-minimal">
-        <div class="editorial-card-photo">
-          <img src="../img/feature-7.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Audubon Washington</a>
-          <h4 class="editorial-card-title no-margin"><a href="#">Songbird Survey in Eastern Washington Underway</a></h4>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-3">
-      <div class="editorial-card feature collapse-minimal">
-        <div class="editorial-card-photo">
-          <img src="../img/feature-8.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#" class="editorial-card-slug">Audubon Florida</a>
-          <h4 class="editorial-card-title no-margin"><a href="#">Everglades Birds are Talking. Are We Listening?</a></h4>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="breakout-section no-hero" style="background-image: url(../img/breakout-section-4.jpg); background-color: #444444">
-    <div class="breakout-section-content light-text">
-      <div class="row space-top space-bottom double">
-        <div class="columns large-5 text-container">
-          <h1 class="thin">Get Outside</h1>
-          <br>
-          <h2 class="thin close-heading">Birding</h2>
-          <p>Birding can be as simple as watching the pigeons fly by your window or pausing to marvel at the chirping sparrows in the trees.
-          <br><a href="#" class="sans">Start with Three Easy Steps to Birding »</a></p>
-          <h2 class="thin close-heading">Photography</h2>
-          <p>For wildlife and nature photographers, birds provide fascinating but challenging subjects to capture with even a long lens.
-          <br><a href="#" class="sans">Photo Tips from the Pros »</a></p>
-          <h2 class="thin close-heading">Healthy Yards</h2>
-          <p>Roll up your sleeves and get started. Learn how to create a natural and healthy habitat in your backyard.
-          <br><a href="#" class="sans">Selecting Bird-Friendly Plants for Your Yard »</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php print $content['bird_news']; ?>
+  <?php print $content['main']; ?>
 
   <section class="card-set bg-1">
     <div class="row">
@@ -426,7 +234,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../img/engagement-card-1.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-1.jpg" alt="">
             </div>
           </div>
         </div>
@@ -440,7 +248,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../img/engagement-card-2.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-2.jpg" alt="">
             </div>
           </div>
         </div>
@@ -454,7 +262,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="../img/engagement-card-3.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-3.jpg" alt="">
             </div>
           </div>
         </div>

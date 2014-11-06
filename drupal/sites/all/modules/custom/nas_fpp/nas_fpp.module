@@ -39,6 +39,7 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
+<<<<<<< Updated upstream
   $entity_info['fieldable_panels_pane']['bundles']['nas_fpp_flyway_hero'] = array(
     'label' => t('Flyway Hero'),
     'admin' => array(
@@ -54,6 +55,14 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
       'bundle argument' => 4,
       'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_fpp_flyway_nav',
+=======
+  $entity_info['fieldable_panels_pane']['bundles']['nas_flyway_section'] = array(
+    'label' => t('Flyway section'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_flyway_section',
+>>>>>>> Stashed changes
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
@@ -71,6 +80,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   );
   $entity_info['node']['view modes']['nas_node_featured'] = array(
     'label' => t('Featured'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['nas_node_teaser'] = array(
+    'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
   );
   $entity_info['file']['view modes']['hero'] = array(
@@ -434,6 +447,72 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
   $links['edit'] = array(
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panelizer:default:node:flyway.page_manager:node:flyway:default/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
+}
+
+/**
+ * Preprocess function for nas_featured_content_cards FPP.
+ */
+function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
+  $fpp = $vars['elements']['#fieldable_panels_pane'];
+
+  $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
+  $vars['image'] = '';
+  if (isset($get_field_image[0]['uri'])) {
+    $vars['image'] = theme('image_style', array(
+      'style_name' => 'front_flyway_image',
+      'path' => $get_field_image[0]['uri'],
+    ));
+  }
+  $get_field_hero_image = field_get_items('fieldable_panels_pane', $fpp, 'field_hero_image');
+  $vars['hero_image'] = '';
+  if (isset($get_field_hero_image[0]['file']->uri)) {
+    $vars['hero_image'] = file_create_url($get_field_hero_image[0]['file']->uri);
+  }
+  $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
+  $vars['title'] = $get_field_flyway[0]['entity']->title;
+  $get_field_flyway_description = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_description');
+  $vars['flyway_description'] = $get_field_flyway_description[0]['#markup'];
+  $get_field_flyway_includes = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_includes');
+  $vars['flyway_includes'] = $get_field_flyway_includes[0]['#markup'];
+  $get_field_about_the_flyways = field_view_field('fieldable_panels_pane', $fpp, 'field_about_the_flyways');
+  $vars['about_the_flyways'] = $get_field_about_the_flyways[0]['#markup'];
+  $vars['about_link'] = l(t('About the Flyways'), 'flyways');
+  $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
+
+  $vars['contextual_links'] = '';
+  if (!user_access('administer site configuration')) {
+    return;
+  }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $panel_id,
     'html' => TRUE,
     'query' => array('reload' => 'true'),
     'attributes' => array(

@@ -262,8 +262,8 @@ function nas_image($variables) {
   $attributes['src'] = file_create_url($variables['path']);
 
   $add_attributes = array('alt', 'title');
-  //this styles shouldn't have width and height for responsive design
-  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image');
+  //these styles shouldn't have width and height for responsive design
+  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image', 'front_flyway_image');
 
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));

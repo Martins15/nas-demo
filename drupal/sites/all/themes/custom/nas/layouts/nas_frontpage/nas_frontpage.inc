@@ -18,5 +18,8 @@ $plugin = array(
     'header' => t('Header'),
     'bird_news' => t('Birds in the News'),
     'top' => t('Top'),
+    'more_headlines' => t('More headlines'),
+    'editorial_cards' => t('Editorial Cards'),
+    'main' => t('Main'),
   ),
 );
