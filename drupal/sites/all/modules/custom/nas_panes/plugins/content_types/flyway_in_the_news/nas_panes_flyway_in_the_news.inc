@@ -73,7 +73,7 @@ function nas_panes_flyway_in_the_news_render($subtype, $conf, $args, $context) {
   $news_nodes = array();
 
   $conf_is_empty = TRUE;
-  if (!empty($conf['articles'])){
+  if (!empty($conf['articles'])) {
     foreach ($conf['articles'] as $item) {
       if (!empty($item['entity_reference']['entity_id'])) {
         $conf_is_empty = FALSE;
@@ -82,7 +82,7 @@ function nas_panes_flyway_in_the_news_render($subtype, $conf, $args, $context) {
     }
   }
 
-  if (  !$conf_is_empty) {
+  if (!$conf_is_empty) {
     foreach ($conf['articles'] as $value) {
       if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
         $news_nodes[] = $node;
