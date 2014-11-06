@@ -40,7 +40,7 @@ function nas_fpp_save_default_image($filepath, $filedata = array()) {
 
   if ($file) {
     return $file->fid;
-  }//var_dump($filepath);exit();
+  }
   $filepath = file_unmanaged_copy($filepath, NULL, FILE_EXISTS_REPLACE);
   $file = (object) array(
     'filename' => basename($filepath),
