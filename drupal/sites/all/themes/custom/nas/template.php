@@ -498,3 +498,17 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $variables['frontpage_backgroudimage'] = $featured_frontpage_image;
 }
+
+/**
+ * Implements THEME_preprocess_views_view.
+ */
+function nas_preprocess_views_view(&$vars) {
+  $view = $vars['view'];
+  // Early return pattern.
+  if ($view->name !== 'related_birds' || $view->current_display != 'flyway_related_birds') {
+    return;
+  }
+  if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
+    $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+  }
+}

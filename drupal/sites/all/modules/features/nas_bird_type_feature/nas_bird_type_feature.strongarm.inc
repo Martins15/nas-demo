@@ -34,6 +34,24 @@ function nas_bird_type_feature_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'nas_node_teaser_small' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_featured' => array(
+        'custom_settings' => TRUE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
