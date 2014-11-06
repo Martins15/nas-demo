@@ -105,6 +105,36 @@ function nas_flyways_feature_panelizer_defaults() {
     $display->content['new-689e81d5-cbc3-4de8-bba4-7656d57af0a4'] = $pane;
     $display->panels['bottom'][0] = 'new-689e81d5-cbc3-4de8-bba4-7656d57af0a4';
     $pane = new stdClass();
+    $pane->pid = 'new-1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec';
+    $pane->panel = 'bottom';
+    $pane->type = 'nas_panes_flyway_in_the_news';
+    $pane->subtype = 'nas_panes_flyway_in_the_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'form_build_id' => 'form-0kjtxKKyzUu_bei2XWjzaJ79912xmTWhCGrvet2pLlg',
+      'form_token' => 'BmPgTFJ93jE2kxKmIXO7SKY7rFBO37TygVydwnIFJo8',
+      'form_id' => 'nas_panes_flyway_in_the_news_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec';
+    $display->content['new-1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec'] = $pane;
+    $display->panels['bottom'][1] = 'new-1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec';
+    $pane = new stdClass();
     $pane->pid = 'new-0e3052fc-1443-4df3-a496-0ac97601ddee';
     $pane->panel = 'secondary_title';
     $pane->type = 'entity_field';
