@@ -38,7 +38,6 @@ function frontpage_featured_article_form($form, &$form_state) {
     '#pp_crop_styles' => array('featured_frontpage_article'),
   );
 
-
   // The two function calls below are necessary if we want to use a media
   // element type, because it causes ajax requests, which in turn call
   // drupal_form_rebuild(), and without the below includes, Drupal will
@@ -68,7 +67,6 @@ function frontpage_featured_article_form($form, &$form_state) {
     '#default_value' => !empty($conf['tagline_text']) ? $conf['tagline_text'] : '',
     '#required' => TRUE,
   );
-
 
   return $form;
 }
@@ -148,7 +146,6 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     'tagline_text' => $tagline_text,
     'contextual_links' => $contextual_links,
   ));
-
 
   $block->content = $content;
   return $block;
