@@ -4,26 +4,3 @@
  * @file
  * Empty file. All code to be plased to nas_master.install.
  */
-
-/**
- * Implements hook_date_format_types().
- */
-function nas_master_date_format_types() {
-  return array(
-    'nas_date' => t('NAS Date'),
-  );
-}
-
-/**
- * Implements hook_date_formats().
- */
-function nas_master_date_formats() {
-  $formats = array(
-    array(
-      'type' => 'nas_date',
-      'format' => 'F j, Y',
-      'locales' => array(),
-    ),
-  );
-  return $formats;
-}
