@@ -188,7 +188,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
 
-    // Filepath to fullscreen default image
+    // Filepath to fullscreen default image.
     $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/curtain-1.jpg';
     $filedata = array(
       'image_title_text' => 'Audubon Researchers in Alaska',
@@ -374,7 +374,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
 
-    // Filepath to fullscreen default image
+    // Filepath to default featured block image.
     $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/editorial-card-23.jpg';
     $pane->configuration = array(
       'override_title' => 0,
