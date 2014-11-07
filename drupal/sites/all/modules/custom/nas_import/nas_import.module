@@ -440,6 +440,7 @@ function nas_import_feeds_presave_users_import($source, $entity, $item) {
     $entity->title = $item['profile_full_name'];
   }
 }
+
 /**
  * hook_feeds_presave for magazine_issues_import importer.
  */
