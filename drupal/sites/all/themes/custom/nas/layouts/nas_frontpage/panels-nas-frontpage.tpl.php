@@ -133,18 +133,7 @@
     </div>
   </div>
   <div class="homepage-first-row row space-top double">
-    <div class="columns large-8 medium-6">
-      <div class="editorial-card">
-        <div class="editorial-card-photo">
-          <img src="<?php print base_path() . path_to_theme(); ?>/img/editorial-card-23.jpg" alt="">
-        </div>
-        <div class="editorial-card-content short">
-          <a href="#" class="editorial-card-slug">Conservation</a>
-          <h3 class="editorial-card-title"><a href="#">A Trove of Green Heron Nests Might Just be a Treasure</a></h4>
-          <p><a href="#" class="editorial-card-link">Recent discoveries help scientists understand the elusive bird's decline</a></p>
-        </div>
-      </div>
-    </div>
+    <?php print $content['featured']; ?>
     <div class="columns large-4 medium-6">
       <?php print $content['more_headlines']; ?>
     </div>
@@ -199,10 +188,8 @@
       </div>
     </div>
   </section>
-
   <?php print $content['bird_news']; ?>
   <?php print $content['main']; ?>
-
   <section class="card-set bg-1">
     <div class="row">
       <div class="column">

@@ -16,6 +16,7 @@ define('NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'panelizer:node:'
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
 define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
+define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
 
@@ -80,6 +81,18 @@ function nas_panes_theme() {
       ),
       'template' => 'frontpage-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured_article' => array(
+      'variables' => array(
+        'image_path' => '',
+        'conversation_link' => '',
+        'article_raw_link' => '',
+        'article_link' => '',
+        'tagline_text' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'frontpage-featured-article',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured_article'
     ),
     'nas_in_the_news' => array(
       'variables' => array(
