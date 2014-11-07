@@ -17,6 +17,31 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
   $form['#group_children']['panelizer'] = 'group_panelizer';
   $form['options']['#weight'] = 35;
 
+  $states = array(
+    'big_image' => array(
+      'field_hero_image',
+      'field_color_mode',
+    ),
+    'fullscreen_image' => array(
+      'field_hero_image',
+      'field_color_mode',
+      'field_magazine_issue',
+    ),
+    'map' => array(
+      'field_article_map',
+    ),
+    'press_release' => array(
+      'field_pressrelease_contact',
+    ),
+  );
+
+  // Add custom states for each fields with appropriate panelizer mode.
+  foreach ($states as $panelizer_mode => $fields) {
+    foreach ($fields as $field) {
+      $form[$field]['#states']['visible'][':input[name="panelizer[page_manager][name]"]'][]['value'] = 'node:article:' . $panelizer_mode;
+    }
+  }
+
   // Attach after build callback.
   $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
 }
