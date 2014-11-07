@@ -1,0 +1,29 @@
+/**
+ * Styles for Birds Family page.
+ */
+
+.birds-family-section {
+  .row {
+    margin-bottom: $column-gutter;
+    float: none;
+  }
+  .common-name {
+    h1 {
+      margin: $column-gutter 0 0 0;
+    }
+  }
+  .scientific-name {
+    font-size: $size-text-medium;
+    font-style: italic;
+    line-height: $size-line-pull;
+  }
+  .family-description {
+    margin-top: $column-gutter;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: $column-gutter*2;
+    -moz-column-gap: $column-gutter*2;
+    column-gap: $column-gutter*2;
+  }
+}

@@ -5,12 +5,11 @@
  * View template for Birds Family page.
  */
 ?>
-
 <div class="<?php print $classes; ?>">
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
     <?php print $title; ?>
-  <?php endif;?>
+  <?php endif; ?>
   <?php print render($title_suffix); ?>
   <?php if ($header): ?>
     <div class="view-header">
@@ -31,24 +30,21 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <?php print $rows; ?>
-  <?php elseif ($empty): ?>
-    <div class="row section-header space-top">
-      <div class="columns">
-        <h2 class="thin"><?php print $view->get_title(); ?></h2>
-      </div>
+    <div class="view-content row space-bottom double bird-card-grid-container">
+      <?php print $rows; ?>
     </div>
+  <?php elseif ($empty): ?>
     <div class="view-empty">
       <?php print $empty; ?>
     </div>
   <?php endif; ?>
 
   <?php if ($pager): ?>
-  <div class="row space-bottom">
-    <div class="column">
-      <?php print $pager; ?>
+    <div class="row space-bottom">
+      <div class="column">
+        <?php print $pager; ?>
+      </div>
     </div>
-  </div>
   <?php endif; ?>
 
   <?php if ($attachment_after): ?>
@@ -73,4 +69,4 @@
     </div>
   <?php endif; ?>
 
-</div>
+</div><?php /* class view */ ?>

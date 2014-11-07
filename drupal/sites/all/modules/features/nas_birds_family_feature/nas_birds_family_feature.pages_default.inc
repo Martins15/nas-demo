@@ -52,13 +52,41 @@ function nas_birds_family_feature_default_page_manager_handlers() {
       'default' => NULL,
       'header' => NULL,
       'main' => NULL,
+      'top' => NULL,
+      'title' => NULL,
+      'scientific_name' => NULL,
+      'description' => NULL,
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%term:name';
   $display->uuid = '3a76d002-eb20-4c24-9898-eb8b217d1cf6';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-2576d329-1602-477a-851d-96608da45e3c';
+    $pane->panel = 'description';
+    $pane->type = 'entity_field_extra';
+    $pane->subtype = 'taxonomy_term:description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+      'context' => 'argument_term_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2576d329-1602-477a-851d-96608da45e3c';
+    $display->content['new-2576d329-1602-477a-851d-96608da45e3c'] = $pane;
+    $display->panels['description'][0] = 'new-2576d329-1602-477a-851d-96608da45e3c';
     $pane = new stdClass();
     $pane->pid = 'new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2';
     $pane->panel = 'main';
@@ -81,6 +109,60 @@ function nas_birds_family_feature_default_page_manager_handlers() {
     $pane->uuid = '872520e6-862f-4f9b-bcdd-6f37e3fb63d2';
     $display->content['new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2'] = $pane;
     $display->panels['main'][0] = 'new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2';
+    $pane = new stdClass();
+    $pane->pid = 'new-92e9685e-584b-46c4-9cb3-b0f31ad65139';
+    $pane->panel = 'scientific_name';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'taxonomy_term:field_bird_family_sci_name';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_plain',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'argument_term_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '92e9685e-584b-46c4-9cb3-b0f31ad65139';
+    $display->content['new-92e9685e-584b-46c4-9cb3-b0f31ad65139'] = $pane;
+    $display->panels['scientific_name'][0] = 'new-92e9685e-584b-46c4-9cb3-b0f31ad65139';
+    $pane = new stdClass();
+    $pane->pid = 'new-423874c8-072a-4905-b80f-3ad6f8f3633c';
+    $pane->panel = 'title';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '423874c8-072a-4905-b80f-3ad6f8f3633c';
+    $display->content['new-423874c8-072a-4905-b80f-3ad6f8f3633c'] = $pane;
+    $display->panels['title'][0] = 'new-423874c8-072a-4905-b80f-3ad6f8f3633c';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

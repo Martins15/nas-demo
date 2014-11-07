@@ -262,8 +262,8 @@ function nas_image($variables) {
   $attributes['src'] = file_create_url($variables['path']);
 
   $add_attributes = array('alt', 'title');
-  //this styles shouldn't have width and height for responsive design
-  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image');
+  //these styles shouldn't have width and height for responsive design.
+  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image', 'front_flyway_image');
 
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -497,4 +497,18 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
   // Set featured frontpage backgroudimage variable
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $variables['frontpage_backgroudimage'] = $featured_frontpage_image;
+}
+
+/**
+ * Implements THEME_preprocess_views_view.
+ */
+function nas_preprocess_views_view(&$vars) {
+  $view = $vars['view'];
+  // Early return pattern.
+  if ($view->name !== 'related_birds' || $view->current_display != 'flyway_related_birds') {
+    return;
+  }
+  if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
+    $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+  }
 }
