@@ -218,6 +218,44 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->uuid = 'd36d45d4-979b-4bd8-ae90-f8172d285c25';
     $display->content['new-d36d45d4-979b-4bd8-ae90-f8172d285c25'] = $pane;
     $display->panels['top'][0] = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
+
+    $pane = new stdClass();
+    $pane->pid = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $pane->panel = 'featured';
+    $pane->type = 'frontpage_featured_article';
+    $pane->subtype = 'frontpage_featured_article';
+    $pane->shown = TRUE;
+    $pane->access = array();
+
+    // Filepath to fullscreen default image
+    $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/editorial-card-23.jpg';
+
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => nas_fpp_save_default_image($filepath),
+      // @todo Before release this must be reference to specific article from prototype
+      'article' => array(
+        'entity_id' => db_query('SELECT nid FROM {node} WHERE title = :title', array(':title' => 'African Elephants Innately Understand Pointing'))->fetchField(),
+        'entity_label' => 'African Elephants Innately Understand Pointing',
+        'entity_type' => 'node',
+        'entity_bundle' => 'article',
+      ),
+      'tagline_text' => 'Recent discoveries help scientists understand the elusive bird\'s decline',
+      'form_build_id' => 'form-CMlJjLO67-NodvSOzUKaV89UGe5tu20KCwKfiHTa-8o',
+      'form_token' => 'F-arKBiNyvuYc6MCm1buv7gNhJz0L-O9SNy3w6Bkqo0',
+      'form_id' => 'frontpage_featured_article_form',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $display->content['new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9'] = $pane;
+    $display->panels['featured'][0] = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

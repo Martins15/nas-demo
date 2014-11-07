@@ -4,23 +4,24 @@
  * Featured Frontpage template file.
  *
  * Available variables:
- * - $title_link: the (sanitized) title with link.
- * - $blue_text_link: the (sanitized) blue text above the title with link.
+ * - $conversation_link: Rendered conversation link from article.
+ * - $article_title: the (sanitized) article title.
+ * - $article_raw_link: raw article link.
+ * - $tagline_text: the (sanitized) tagline text.
  * - $image_path: path to the hero image of the bird.
- * - $image_path_mobile: path to the hero image of the bird mobile image style.
- * - $image_string: sanitized caption + credits of the hero image.
  * - $contextual_links: rendered contextual links.
  */
 ?>
   <div class="columns large-8 medium-6">
-    <div class="editorial-card">
+    <div class="editorial-card contextual-links-region">
+      <?php print $contextual_links; ?>
       <div class="editorial-card-photo">
-        <img src="../img/editorial-card-23.jpg" alt="">
+        <img src="<?php print $image_path; ?>" alt="">
       </div>
       <div class="editorial-card-content short">
-        <a href="#" class="editorial-card-slug">Conservation</a>
-        <h3 class="editorial-card-title"><a href="#">A Trove of Green Heron Nests Might Just be a Treasure</a></h4>
-        <p><a href="#" class="editorial-card-link">Recent discoveries help scientists understand the elusive bird's decline</a></p>
+        <?php print $conversation_link ?>
+        <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h4>
+        <p><a href="<?php print $article_raw_link ?>" class="editorial-card-link"><?php print $tagline_text ?></a></p>
       </div>
     </div>
   </div>

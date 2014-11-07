@@ -15,7 +15,7 @@ define('NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'node_view');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
 define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
-define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'featured_frontpage_article');
+define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 
 define('NAS_FLYWAYS_NUMBER', 4);
@@ -83,9 +83,10 @@ function nas_panes_theme() {
     'nas_frontpage_featured_article' => array(
       'variables' => array(
         'image_path' => '',
-        'summary' => '',
-        'title_link' => '',
-        'blue_text_link' => '',
+        'conversation_link' => '',
+        'article_raw_link' => '',
+        'article_link' => '',
+        'tagline_text' => '',
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured-article',

@@ -35,7 +35,7 @@ function frontpage_featured_article_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_frontpage_article'),
+    '#pp_crop_styles' => array(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -51,7 +51,7 @@ function frontpage_featured_article_form($form, &$form_state) {
 
   // Include this plugin file as well, so that when the form is rebuilt, it
   // can successfully retrieve the settings form.
-  ctools_form_include($form_state, 'featured_frontpage_article', 'nas_panes', 'plugins/content_types/frontpage_featured_article');
+  ctools_form_include($form_state, 'frontpage_featured_article', 'nas_panes', 'plugins/content_types/frontpage_featured_article');
 
   $form['article'] = array(
     '#type' => 'entityreference',
@@ -98,7 +98,22 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     return $block;
   }
 
+  $image = file_load($conf['image']);
+  $image_path = '';
+  if (!empty($image)) {
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE, $image->uri);
+  }
+
   $node = node_load($conf['article']['entity_id']);
+
+  $article_title = $node->title;
+  $article_raw_link = url('node/'.$conf['article']['entity_id']);
+  $tagline_text = $conf['tagline_text'];
+  $conversation_link = '';
+  $blue = nas_panes_get_blue_text_link($node);
+  if ($node && isset($blue[1]) && $blue[1]) {
+    $conversation_link = l('Conservation', $blue[1], array('classes' => array('editorial-card-slug'),'external' => TRUE));
+  };
 
   $contextual_links = '';
   if (user_access('featured article pane edit')) {
@@ -116,7 +131,7 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     $links = array(
       'edit' => array(
         'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_news_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
@@ -134,15 +149,11 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     $contextual_links = drupal_render($build);
   }
 
-  $content = $contextual_links;
-
-  //$node_featured = node_view($node, 'nas_node_featured');
-
   $content = theme('nas_frontpage_featured_article', array(
-    'image_path' => $image_title,
+    'image_path' => $image_path,
     'conversation_link' => $conversation_link,
     'article_title' => $article_title,
-    'article_link' => $article_link,
+    'article_raw_link' => $article_raw_link,
     'tagline_text' => $tagline_text,
     'contextual_links' => $contextual_links,
   ));
