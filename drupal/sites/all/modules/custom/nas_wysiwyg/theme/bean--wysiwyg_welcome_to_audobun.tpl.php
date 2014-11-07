@@ -1,3 +1,10 @@
+<?php
+
+/**
+ * @file
+ * Block Welcome to Adubon.
+ */
+?>
 <aside class="article-aside reflow reflow-into-body">
   <div class="welcome-card teal">
     <div class="welcome-card-illustration">

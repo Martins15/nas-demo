@@ -128,8 +128,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
       'social_link_yotube' => $social_link_yotube,
       'social_link_pi' => $social_link_pi,
       'color' => $color,
-    )
-  );
+    ));
   }
   else {
     return;
