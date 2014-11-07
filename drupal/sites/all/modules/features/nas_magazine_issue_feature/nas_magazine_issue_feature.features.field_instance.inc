@@ -10,62 +10,6 @@
 function nas_magazine_issue_feature_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-magazine_issue-body'
-  $field_instances['node-magazine_issue-body'] = array(
-    'bundle' => 'magazine_issue',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_view_mode_hero_bird' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => 31,
-    ),
-  );
-
   // Exported field_instance: 'node-magazine_issue-field_issue_cover'
   $field_instances['node-magazine_issue-field_issue_cover'] = array(
     'bundle' => 'magazine_issue',
@@ -82,7 +26,31 @@ function nas_magazine_issue_feature_field_default_field_instances() {
         'type' => 'image',
         'weight' => 1,
       ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -154,10 +122,93 @@ function nas_magazine_issue_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-magazine_issue-field_issue_date'
+  $field_instances['node-magazine_issue-field_issue_date'] = array(
+    'bundle' => 'magazine_issue',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 2,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_issue_date',
+    'label' => 'Date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'm/d/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_popup',
+      'weight' => 33,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
-  t('Body');
   t('Cover');
+  t('Date');
 
   return $field_instances;
 }
