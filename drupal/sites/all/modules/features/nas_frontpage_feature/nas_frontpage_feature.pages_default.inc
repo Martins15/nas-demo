@@ -309,7 +309,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
 
-    // Filepath to fullscreen default image
+    // Filepath to fullscreen default image.
     $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/breakout-section-4.jpg';
     $filedata = array();
 

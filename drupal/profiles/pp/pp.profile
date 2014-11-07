@@ -34,7 +34,7 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_import_nodes',
   );
-  // @todo: to be removed on release
+  // @todo: to be removed on release.
   $tasks['create_test_flyway'] = array(
     'display_name' => st('Create Flyway CT nodes for testing purposes'),
     'display' => FALSE,

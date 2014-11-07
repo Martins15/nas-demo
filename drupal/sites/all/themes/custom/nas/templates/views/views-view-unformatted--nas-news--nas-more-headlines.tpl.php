@@ -13,7 +13,7 @@
     <h3 class="close-heading"><?php print $view->display[$view->current_display]->display_title; ?></h3>
     <hr>
     <?php foreach ($rows as $id => $row): ?>
-    <div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>
+    <div<?php if ($classes_array[$id]): print ' class="' . $classes_array[$id] .'"'; endif; ?>>
       <?php print $row; ?>
     </div>
     <?php endforeach; ?>

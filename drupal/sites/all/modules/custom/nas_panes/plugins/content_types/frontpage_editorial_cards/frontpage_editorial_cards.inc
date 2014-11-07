@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Define ctools content type.
  */
 
 $plugin = array(
