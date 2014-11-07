@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Contains additional alters.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Article node form.
+ */
+function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id) {
+  // Merge panelizer tabs.
+  unset($form['panelizer']['#group']);
+  $form['panelizer']['#type'] = 'container';
+  $form['#group_children']['panelizer'] = 'group_panelizer';
+  $form['options']['#weight'] = 35;
+
+  $states = array(
+    'big_image' => array(
+      'field_hero_image',
+      'field_color_mode',
+    ),
+    'fullscreen_image' => array(
+      'field_hero_image',
+      'field_color_mode',
+      'field_magazine_issue',
+    ),
+    'map' => array(
+      'field_article_map',
+    ),
+    'press_release' => array(
+      'field_pressrelease_contact',
+    ),
+  );
+
+  // Add custom states for each fields with appropriate panelizer mode.
+  foreach ($states as $panelizer_mode => $fields) {
+    foreach ($fields as $field) {
+      $form[$field]['#states']['visible'][':input[name="panelizer[page_manager][name]"]'][]['value'] = 'node:article:' . $panelizer_mode;
+    }
+  }
+
+  // Attach after build callback.
+  $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
+}
+
+/**
+ * After build callback.
+ */
+function nas_alters_form_article_node_form_after_build($form, &$form_state) {
+  // Hide some vertical tabs.
+  $form['menu']['#access'] = FALSE;
+  $form['author']['#access'] = FALSE;
+  $form['revision_information']['#access'] = FALSE;
+  $form['path']['#access'] = FALSE;
+
+  return $form;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-nas-bird-guide-nas-bird-guide-fav-birds') {
+    $form['submit']['#value'] = '<span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">' . $form['submit']['#value'] . '</span>';
+    $form['submit']['#attributes']['class'][] = 'bird-guide-search-submit';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+    $form['field_bird_call_type_tid']['#options']['All'] = t('Type of Bird');
+    $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
+    $form['field_bird_region_tid']['#options']['All'] = t('Region');
+  }
+}
+
+/**
+ * Implements hook_views_ajax_data_alter().
+ */
+function nas_alters_views_ajax_data_alter(&$commands, $view) {
+  if ($view->current_display == 'nas_bird_guide_fav_birds') {
+    $commands[] = ajax_command_replace('.bird-card-grid .section-header h2', '<h2 class="thin">' . t('Matching Birds') . '</h2>');
+  }
+}
