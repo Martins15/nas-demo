@@ -5,7 +5,6 @@
  * View template for Birds Priority page.
  */
 ?>
-
 <div class="<?php print $classes; ?>">
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
@@ -76,4 +75,4 @@
     </div>
   <?php endif; ?>
 
-</div>
+</div><?php /* class view */ ?>
