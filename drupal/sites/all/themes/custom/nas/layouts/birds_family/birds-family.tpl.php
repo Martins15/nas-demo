@@ -16,7 +16,7 @@
 </div>
 
 <section class="global-content birds-family-section">
-  <div class="row">
+  <div class="row column">
     <div class="common-name">
       <?php print $content['title']; ?>
     </div>
