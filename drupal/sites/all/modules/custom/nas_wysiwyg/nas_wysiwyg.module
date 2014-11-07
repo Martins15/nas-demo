@@ -49,24 +49,91 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     return;
   }
   $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
-  if ($vars['elements']['#bundle'] !== 'wysiwyg_image') {
+  if ($vars['elements']['#bundle'] == 'wysiwyg_image') {
+    $entity = $vars['elements']['#entity'];
+    $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
+    if (!empty($get_field_wysiwyg_image)) {
+      $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
+      $get_field_file_credit = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_credit');
+      $vars['figcaption'] = '';
+      if (!empty($get_field_file_caption)) {
+        $vars['figcaption'] .= $get_field_file_caption[0]['#markup'] .'&nbsp;';
+      }
+      if (!empty($get_field_file_credit)) {
+        $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
+      }
+    }
+    $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
+    $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
+  }
+  elseif ($vars['elements']['#bundle'] == 'welcome_to_audubon') {
+    global $base_url;
+    $entity = $vars['elements']['#entity'];
+    // Get image.
+    $get_field_image_welcom_first = field_get_items('bean', $entity, 'field_image_welcom_first');
+    $uri = $get_field_image_welcom_first[0]['uri'];
+    $image = theme_image(array('path' => $uri, 'attributes' => array('class' => array('myclass'))));
+    //Get summary.
+    $get_field_summary = field_get_items('bean', $entity, 'field_summary_welcom_first');
+    $summary = $get_field_summary[0]['value'];
+    // Get link 'Lear more'.
+    $get_field_learn_more = field_get_items('bean', $entity, 'field_learn_more_welcom_first');
+    if (!empty($get_field_learn_more)) {
+      $link_more = l($get_field_learn_more[0]['title'], $get_field_learn_more[0]['url']);
+    }
+    // Get link in the news.
+    $get_field_in_the_news = field_get_items('bean', $entity, 'field_in_the_news_welcom_first');
+    if (!empty($get_field_in_the_news)) {
+      $path_news = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_in_the_news[0]['target_id']);
+      $link_news = l($get_field_in_the_news[0]['entity']->title, $path_news);
+    }
+    // Get link most popular.
+    $get_field_most_popular = field_get_items('bean', $entity, 'field_most_popular_welcom_first');
+    if (!empty($get_field_most_popular)) {
+      $path_most_popular = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_most_popular[0]['target_id']);
+      $link_most_popular = l($get_field_most_popular[0]['entity']->title, $path_most_popular);
+    }
+    // Get social links.
+    $get_field_social_link_fb = field_get_items('bean', $entity, 'field_social_link_facebook');
+    if (!empty($get_field_social_link_fb)) {
+      $social_link_fb = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_fb[0]['url']);
+    }
+    $get_field_social_link_tw = field_get_items('bean', $entity, 'field_social_link_twitter');
+    if (!empty($get_field_social_link_tw)) {
+      $social_link_tw = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_tw[0]['url']);
+    }
+    $get_field_social_link_yotube = field_get_items('bean', $entity, 'field_social_link_youtube');
+    if (!empty($get_field_social_link_yotube)) {
+      $social_link_yotube = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_yotube[0]['url']);
+    }
+    $get_field_social_link_pi = field_get_items('bean', $entity, 'field_social_link_pinterest');
+    if (!empty($get_field_social_link_pi)) {
+      $social_link_pi = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_pi[0]['url']);
+    }
+    // Get color.
+    $get_field_color = field_get_items('bean', $entity, 'field_background_welcom_first');
+    if (!empty($get_field_color)) {
+      $color = $get_field_color[0]['rgb'];
+    }
+    $text = theme('bean__wysiwyg_welcome_to_audobun', array(
+      'image' => $image,
+      'summary' => $summary,
+      'link_more' => $link_more,
+      'path_news' => $path_news,
+      'link_news' => $link_news,
+      'path_most_popular' => $path_most_popular,
+      'link_most_popular' => $link_most_popular,
+      'social_link_fb' => $social_link_fb,
+      'social_link_tw' => $social_link_tw,
+      'social_link_yotube' => $social_link_yotube,
+      'social_link_pi' => $social_link_pi,
+      'color' => $color,
+    )
+  );
+  }
+  else {
     return;
   }
-  $entity = $vars['elements']['#entity'];
-  $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
-  if (!empty($get_field_wysiwyg_image)) {
-    $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
-    $get_field_file_credit = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_credit');
-    $vars['figcaption'] = '';
-    if (!empty($get_field_file_caption)) {
-      $vars['figcaption'] .= $get_field_file_caption[0]['#markup'] .'&nbsp;';
-    }
-    if (!empty($get_field_file_credit)) {
-      $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
-    }
-  }
-  $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
-  $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
 }
 
 /**
@@ -88,6 +155,24 @@ function nas_wysiwyg_theme() {
         'text' => '',
       ),
       'template' => 'bean--wysiwyg_image',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+    'bean__wysiwyg_welcome_to_audobun' => array(
+      'variables' => array(
+        'image' => '',
+        'summary' => '',
+        'path_more' => '',
+        'link_more' => '',
+        'path_news' => '',
+        'link_most_popular' => '',
+        'path_most_popular' => '',
+        'social_link_fb' => '',
+        'social_link_tw' => '',
+        'social_link_yotube' => '',
+        'social_link_pi' => '',
+        'color' => '',
+      ),
+      'template' => 'bean--wysiwyg_welcome_to_audobun',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
   );

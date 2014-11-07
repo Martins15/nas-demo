@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Welcome to Audubon feature.
+ */
+
+include_once 'welcome_to_audubon.features.inc';
