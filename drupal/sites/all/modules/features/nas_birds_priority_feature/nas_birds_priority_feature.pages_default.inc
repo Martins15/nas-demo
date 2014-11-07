@@ -16,7 +16,10 @@ function nas_birds_priority_feature_default_page_manager_pages() {
   $page->admin_title = 'Birds priority';
   $page->admin_description = '';
   $page->path = 'birds-priority';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(

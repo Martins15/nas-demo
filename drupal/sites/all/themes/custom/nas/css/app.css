@@ -11037,6 +11037,7 @@ body.touch .sticky-wrapper {
  */
 .birds-family-section .row {
   margin-bottom: 25px;
+  float: none;
 }
 .birds-family-section .common-name h1 {
   margin: 25px 0 0 0;
