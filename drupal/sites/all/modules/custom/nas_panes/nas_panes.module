@@ -192,6 +192,20 @@ function nas_panes_theme() {
       'template' => 'flyways-partners',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_partners'
     ),
+    'nas_panes_pane_endorose' => array(
+      'variables' => array(
+        'path' => '',
+      ),
+      'template' => 'nas_panes_pane_endorose',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/nas_panes_endorose'
+    ),
+    'nas_panes_pane_welcome_to_audubon' => array(
+      'variables' => array(
+        'page_link' => '',
+      ),
+      'template' => 'nas_panes_welcome_to_audubon',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/nas_panes_welcome_to_audubon'
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
