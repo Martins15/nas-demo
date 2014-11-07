@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file
+ * Custom view template to display nas_panes_pane_endorose theme callback.
+ *
+ * @ingroup views_templates
+ */
+?>
+
 <div class="engagement-card">
   <div class="engagement-card-content no-min-height">
     <h3 class="engagement-card-headline">Help the Plight of the Albatross</h3>
@@ -7,6 +16,6 @@
     </div>
   </div>
   <div class="engagement-card-photo">
-    <img src="<?php print($path);?>" alt="">
+    <img src="<?php print($path); ?>" alt="">
   </div>
 </div>

@@ -25,8 +25,9 @@ $plugin = array(
 function nas_panes_first_time_visitors_ctools_access_check($conf, $context) {
   if (!isset($_COOKIE['firsttimer'])) {
     return TRUE;
-  } else {
-  	return FALSE:
+  }
+  else {
+    return FALSE;
   }
 }
 

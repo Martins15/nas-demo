@@ -19,7 +19,7 @@ $plugin = array(
  * Run-time rendering of the body of the block (content type).
  */
 function nas_panes_pane_welcome_to_audubon_render($subtype, $conf, $args, $contexts) {
-  //setcookie('firsttimer', 'yes', strtotime('+1 year'), '/');
+  setcookie('firsttimer', 'yes', strtotime('+1 year'), '/');
   if (!empty($contexts)) {
     $data = reset($contexts)->data;
     if ($data->type !== 'article') {

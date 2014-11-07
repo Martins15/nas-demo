@@ -1,3 +1,11 @@
+<?php
+/**
+ * @file
+ * Custom view template to display nas_panes_pane_welcome_to_audubon theme callback.
+ *
+ * @ingroup views_templates
+ */
+?>
 <div class="welcome-card teal">
   <div class="welcome-card-illustration">
     <img src="http://188.226.239.231/Prototypes/pages/Build/img/welcome-illustration-teal.jpg">
