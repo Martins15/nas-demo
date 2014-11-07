@@ -11,7 +11,25 @@
  * Alter the Article node form.
  */
 function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id) {
+  // Merge panelizer tabs.
   unset($form['panelizer']['#group']);
   $form['panelizer']['#type'] = 'container';
   $form['#group_children']['panelizer'] = 'group_panelizer';
+  $form['options']['#weight'] = 35;
+
+  // Attach after build callback.
+  $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
+}
+
+/**
+ * After build callback.
+ */
+function nas_alters_form_article_node_form_after_build($form, &$form_state) {
+  // Hide some vertical tabs.
+  $form['menu']['#access'] = FALSE;
+  $form['author']['#access'] = FALSE;
+  $form['revision_information']['#access'] = FALSE;
+  $form['path']['#access'] = FALSE;
+
+  return $form;
 }
