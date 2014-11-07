@@ -1264,7 +1264,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Related Flyways (field_related_flyways) */
+  /* Contextual filter: : field_related_flyways (field_related_flyways) */
   $handler->display->display_options['arguments']['field_related_flyways_target_id']['id'] = 'field_related_flyways_target_id';
   $handler->display->display_options['arguments']['field_related_flyways_target_id']['table'] = 'field_data_field_related_flyways';
   $handler->display->display_options['arguments']['field_related_flyways_target_id']['field'] = 'field_related_flyways_target_id';
