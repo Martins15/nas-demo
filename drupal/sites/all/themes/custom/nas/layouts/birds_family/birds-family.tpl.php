@@ -28,7 +28,6 @@
       </div>
     </div>
     <div class="bird-card-grid">
-      <a href="" class="bg-egg icon-binoculars white"></a>
       <?php print $content['main']; ?>
       <div class="row space-bottom"></div>
     </div>
