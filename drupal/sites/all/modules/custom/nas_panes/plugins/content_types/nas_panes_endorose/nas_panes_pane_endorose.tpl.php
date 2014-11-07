@@ -16,6 +16,6 @@
     </div>
   </div>
   <div class="engagement-card-photo">
-    <img src="<?php print($path); ?>" alt="">
+    <img src="<?php print ($path); ?>" alt="">
   </div>
 </div>
