@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Contains additional alters.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Article node form.
+ */
+function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id) {
+  unset($form['panelizer']['#group']);
+  $form['panelizer']['#type'] = 'container';
+  $form['#group_children']['panelizer'] = 'group_panelizer';
+}
