@@ -4,7 +4,8 @@
  * @file
  * Provides wysiwys's plugins.
  */
-define ('NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON', 'wordmark-black.png');
+
+define('NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON', 'wordmark-black.png');
 
 /**
  * Implements hook_wysiwyg_editor_settings_alter().
