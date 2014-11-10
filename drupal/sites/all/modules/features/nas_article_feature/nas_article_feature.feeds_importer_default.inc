@@ -96,6 +96,18 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '12',
           ),
+          'field_author_profile_ref' => array(
+            'name' => 'field_author_profile_ref',
+            'value' => 'field_author_profile_ref.[*]',
+            'debug' => 0,
+            'weight' => '13',
+          ),
+          'status' => array(
+            'name' => 'status',
+            'value' => 'status',
+            'debug' => 0,
+            'weight' => '14',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
@@ -137,6 +149,11 @@ function nas_article_feature_feeds_importer_default() {
           4 => array(
             'source' => 'field_article_intro',
             'target' => 'field_article_legacy',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'status',
+            'target' => 'status',
             'unique' => FALSE,
           ),
         ),

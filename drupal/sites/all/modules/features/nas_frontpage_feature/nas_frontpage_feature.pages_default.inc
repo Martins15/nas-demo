@@ -188,7 +188,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
 
-    // Filepath to fullscreen default image
+    // Filepath to fullscreen default image.
     $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/curtain-1.jpg';
     $filedata = array(
       'image_title_text' => 'Audubon Researchers in Alaska',
@@ -352,6 +352,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->style = array(
       'settings' => NULL,
     );
+
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -359,6 +360,47 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->uuid = '28f3662a-f98e-435c-909d-74422f241e8f';
     $display->content['new-28f3662a-f98e-435c-909d-74422f241e8f'] = $pane;
     $display->panels['main'][2] = 'new-28f3662a-f98e-435c-909d-74422f241e8f';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['frontpage2'] = $page;
+
+    $pane = new stdClass();
+    $pane->pid = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $pane->panel = 'featured';
+    $pane->type = 'frontpage_featured_article';
+    $pane->subtype = 'frontpage_featured_article';
+    $pane->shown = TRUE;
+    $pane->access = array();
+
+    // Filepath to default featured block image.
+    $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/editorial-card-23.jpg';
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => nas_fpp_save_default_image($filepath),
+      // @todo Before release this must be reference to specific article from prototype
+      'article' => array(
+        'entity_id' => db_query('SELECT nid FROM {node} WHERE title = :title', array(':title' => 'African Elephants Innately Understand Pointing'))->fetchField(),
+        'entity_label' => 'African Elephants Innately Understand Pointing',
+        'entity_type' => 'node',
+        'entity_bundle' => 'article',
+      ),
+      'tagline_text' => 'Recent discoveries help scientists understand the elusive bird\'s decline',
+      'form_build_id' => 'form-CMlJjLO67-NodvSOzUKaV89UGe5tu20KCwKfiHTa-8o',
+      'form_token' => 'F-arKBiNyvuYc6MCm1buv7gNhJz0L-O9SNy3w6Bkqo0',
+      'form_id' => 'frontpage_featured_article_form',
+    );
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $display->content['new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9'] = $pane;
+    $display->panels['featured'][0] = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

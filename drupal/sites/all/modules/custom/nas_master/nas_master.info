@@ -40,3 +40,5 @@ dependencies[] = nas_flyways_feature
 dependencies[] = nas_birds_priority_feature
 dependencies[] = nas_birds_family_feature
 dependencies[] = welcome_to_audubon
+dependencies[] = nas_alters
+dependencies[] = nas_formats

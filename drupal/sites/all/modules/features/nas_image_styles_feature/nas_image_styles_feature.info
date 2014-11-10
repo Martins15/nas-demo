@@ -10,6 +10,7 @@ features[image][] = bird_illustration
 features[image][] = bird_teaser_illustration
 features[image][] = default_teaser_image
 features[image][] = featured_frontpage
+features[image][] = frontpage_featured_article_image
 features[image][] = front_flyway_image
 features[image][] = get_outside
 features[image][] = hero_cover_bird_page
