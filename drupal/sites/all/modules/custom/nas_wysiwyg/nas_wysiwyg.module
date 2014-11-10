@@ -72,50 +72,52 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     // Get image.
     $get_field_image_welcom_first = field_get_items('bean', $entity, 'field_image_welcom_first');
     $uri = $get_field_image_welcom_first[0]['uri'];
-    $image = theme_image(array('path' => $uri, 'attributes' => array('class' => array('myclass'))));
+    $vars['image'] = $image = theme_image(array('path' => $uri));
     //Get summary.
     $get_field_summary = field_get_items('bean', $entity, 'field_summary_welcom_first');
     $summary = $get_field_summary[0]['value'];
+    // Get color.
+    $color = $color_style = NULL;
+    $get_field_color = field_get_items('bean', $entity, 'field_background_welcom_first');
+    if (!empty($get_field_color)) {
+      $color = $get_field_color[0]['rgb'];
+      $color_style = "color:$color";
+    }
     // Get link 'Lear more'.
     $get_field_learn_more = field_get_items('bean', $entity, 'field_learn_more_welcom_first');
     if (!empty($get_field_learn_more)) {
-      $link_more = l($get_field_learn_more[0]['title'], $get_field_learn_more[0]['url']);
+      $link_more = l($get_field_learn_more[0]['title'], $get_field_learn_more[0]['url'], array('attributes' => array('style' => $color_style)));
     }
     // Get link in the news.
     $get_field_in_the_news = field_get_items('bean', $entity, 'field_in_the_news_welcom_first');
     if (!empty($get_field_in_the_news)) {
       $path_news = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_in_the_news[0]['target_id']);
-      $link_news = l($get_field_in_the_news[0]['entity']->title, $path_news);
+      $link_news = l($get_field_in_the_news[0]['entity']->title, $path_news, array('attributes' => array('style' => $color_style)));
     }
     // Get link most popular.
     $get_field_most_popular = field_get_items('bean', $entity, 'field_most_popular_welcom_first');
     if (!empty($get_field_most_popular)) {
       $path_most_popular = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_most_popular[0]['target_id']);
-      $link_most_popular = l($get_field_most_popular[0]['entity']->title, $path_most_popular);
+      $link_most_popular = l($get_field_most_popular[0]['entity']->title, $path_most_popular, array('attributes' => array('style' => $color_style)));
     }
     // Get social links.
     $get_field_social_link_fb = field_get_items('bean', $entity, 'field_social_link_facebook');
     if (!empty($get_field_social_link_fb)) {
-      $social_link_fb = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_fb[0]['url']);
+      $social_link_fb = $get_field_social_link_fb[0]['url'];
     }
     $get_field_social_link_tw = field_get_items('bean', $entity, 'field_social_link_twitter');
     if (!empty($get_field_social_link_tw)) {
-      $social_link_tw = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_tw[0]['url']);
+      $social_link_tw = $get_field_social_link_tw[0]['url'];
     }
     $get_field_social_link_yotube = field_get_items('bean', $entity, 'field_social_link_youtube');
     if (!empty($get_field_social_link_yotube)) {
-      $social_link_yotube = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_yotube[0]['url']);
+      $social_link_yotube = $get_field_social_link_yotube[0]['url'];
     }
     $get_field_social_link_pi = field_get_items('bean', $entity, 'field_social_link_pinterest');
     if (!empty($get_field_social_link_pi)) {
-      $social_link_pi = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_social_link_pi[0]['url']);
+      $social_link_pi = $get_field_social_link_pi[0]['url'];
     }
-    // Get color.
-    $get_field_color = field_get_items('bean', $entity, 'field_background_welcom_first');
-    if (!empty($get_field_color)) {
-      $color = $get_field_color[0]['rgb'];
-    }
-    $text = theme('bean__wysiwyg_welcome_to_audobun', array(
+    $vars['content'] = theme('bean__welcome_to_audobun', array(
       'image' => $image,
       'summary' => $summary,
       'link_more' => $link_more,
@@ -129,6 +131,13 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
       'social_link_pi' => $social_link_pi,
       'color' => $color,
     ));
+    if (!isset($_COOKIE['firsttimer'])) {
+      //$vars['content'] = '';
+    }
+    else {
+      //$vars['content'] = '';
+      setcookie("firsttimer", TRUE, (365 * 24 * 60), '/');
+    }
   }
   else {
     return;
@@ -156,7 +165,7 @@ function nas_wysiwyg_theme() {
       'template' => 'bean--wysiwyg_image',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
-    'bean__wysiwyg_welcome_to_audobun' => array(
+    'bean__welcome_to_audobun' => array(
       'variables' => array(
         'image' => '',
         'summary' => '',
@@ -171,7 +180,7 @@ function nas_wysiwyg_theme() {
         'social_link_pi' => '',
         'color' => '',
       ),
-      'template' => 'bean--wysiwyg_welcome_to_audobun',
+      'template' => 'bean--welcome_to_audobun',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
   );

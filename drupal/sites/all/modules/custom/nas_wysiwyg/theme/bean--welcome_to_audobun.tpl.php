@@ -1,8 +1,30 @@
 <?php
-
 /**
  * @file
- * Block Welcome to Adubon.
+ * Default theme implementation for beans.
+ *
+ * Available variables:
+ * - $content: An array of comment items. Use render($content) to print them all, or
+ *   print a subset such as render($content['field_example']). Use
+ *   hide($content['field_example']) to temporarily suppress the printing of a
+ *   given element.
+ * - $title: The (sanitized) entity label.
+ * - $url: Direct url of the current entity if specified.
+ * - $page: Flag for the full page state.
+ * - $classes: String of classes that can be used to style contextually through
+ *   CSS. It can be manipulated through the variable $classes_array from
+ *   preprocess functions. By default the following classes are available, where
+ *   the parts enclosed by {} are replaced by the appropriate values:
+ *   - entity-{ENTITY_TYPE}
+ *   - {ENTITY_TYPE}-{BUNDLE}
+ *
+ * Other variables:
+ * - $classes_array: Array of html class attribute values. It is flattened
+ *   into a string within the variable $classes.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_entity()
+ * @see template_process()
  */
 ?>
 <aside class="article-aside reflow reflow-into-body">
@@ -13,7 +35,7 @@
     <div class="welcome-card-content">
       <div class="welcome-card-headline">
         Welcome to<br>
-        <img class="logo" src="../../img/wordmark-black.png" alt="">
+        <img class="logo" src="http://188.226.239.231/Prototypes/pages/Build/img/wordmark-black.png" alt="">
       </div>
       <div class="welcome-card-blurb">
         <?php print ($summary);?>
@@ -25,7 +47,7 @@
       <a href="<?php print ($path_most_popular);?>" class="editorial-card-slug">Most Popular</a>
       <h5 class="editorial-card-title"><?php print ($link_most_popular);?></h5>
     </div>
-    <div class="welcome-card-banner">
+    <div class="welcome-card-banner" style="background-color:<?php print ($color);?>">
       <div class="social-sharing">
         <span class="social-sharing-caption small">Follow us </span>
         <a class="social-sharing-icon small" href="<?php print ($social_link_fb);?>"><i class="icon-twitter"></i></a>

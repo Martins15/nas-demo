@@ -46,9 +46,7 @@
     <div class="article-body row">
       <div class="article-text large-push-2 large-10 columns reflow-body">
         <span data-reflow-placeholder="0"></span>
-        <aside class="article-aside reflow reflow-into-body">
-          <?php print $content['right']; ?>
-        </aside>
+        <?php print $content['right']; ?>
         <?php print $content['main']; ?>
       </div>
       <div class="article-sidebar large-pull-10 large-2 columns">
