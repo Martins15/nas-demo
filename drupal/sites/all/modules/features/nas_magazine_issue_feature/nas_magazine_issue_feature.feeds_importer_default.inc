@@ -66,6 +66,12 @@ function nas_magazine_issue_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '6',
           ),
+          'status' => array(
+            'name' => 'status',
+            'value' => 'status',
+            'debug' => 0,
+            'weight' => '7',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
@@ -93,6 +99,11 @@ function nas_magazine_issue_feature_feeds_importer_default() {
             'source' => 'nid',
             'target' => 'guid',
             'unique' => 1,
+          ),
+          2 => array(
+            'source' => 'status',
+            'target' => 'status',
+            'unique' => FALSE,
           ),
         ),
         'update_existing' => '1',

@@ -105,6 +105,8 @@ function pp_import_nodes() {
     // To have a news node with embeded images.
     $news_node_nids[] = 158806;
     $news_node_nids[] = 156951;
+    // News in unpublished status.
+    $news_node_nids[] = 71496;
 
     $magazine_issue_node_nids = array(
       4918,
@@ -112,6 +114,8 @@ function pp_import_nodes() {
       152231,
       133216,
       127951,
+      // Magazine issue in unpublished status.
+      5321,
     );
     $magazine_article_node_nids = array(
       159291,
