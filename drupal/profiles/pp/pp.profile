@@ -204,7 +204,8 @@ function pp_import_nodes_batch($nids, $importer_id) {
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
-    feeds_cache_clear(FALSE);
+    // Let's remove feeds cache clear.
+    // feeds_cache_clear(FALSE);
     $source->import();
   }
 }
@@ -218,7 +219,8 @@ function pp_import_users_batch($uids, $importer_id) {
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
-    feeds_cache_clear(FALSE);
+    // Let's remove feeds cache clear.
+    // feeds_cache_clear(FALSE);
     $source->import();
   }
 }
