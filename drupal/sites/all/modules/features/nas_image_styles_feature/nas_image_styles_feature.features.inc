@@ -39,30 +39,6 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
-  // Exported image style: frontpage_featured_article_image.
-  $styles['frontpage_featured_article_image'] = array(
-    'name' => 'frontpage_featured_article_image',
-    'label' => 'Frontpage featured article image',
-    'effects' => array(
-      2 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
-        'name' => 'image_scale',
-        'data' => array(
-          'width' => 640,
-          'height' => '',
-          'upscale' => 0,
-        ),
-        'weight' => 1,
-      ),
-    ),
-  );
-
   // Exported image style: article_teaser.
   $styles['article_teaser'] = array(
     'name' => 'article_teaser',
@@ -265,6 +241,30 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: frontpage_featured_article_image.
+  $styles['frontpage_featured_article_image'] = array(
+    'name' => 'frontpage_featured_article_image',
+    'label' => 'Frontpage featured article image',
+    'effects' => array(
+      2 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 640,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: get_outside.
   $styles['get_outside'] = array(
     'name' => 'get_outside',
@@ -384,6 +384,64 @@ function nas_image_styles_feature_image_default_styles() {
           'width' => 640,
           'height' => 600,
           'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: magazine_issue_cover.
+  $styles['magazine_issue_cover'] = array(
+    'name' => 'magazine_issue_cover',
+    'label' => 'magazine issue cover',
+    'effects' => array(
+      1 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 628,
+          'height' => 818,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: magazine_issue_cover_teaser.
+  $styles['magazine_issue_cover_teaser'] = array(
+    'name' => 'magazine_issue_cover_teaser',
+    'label' => 'magazine issue cover teaser',
+    'effects' => array(
+      2 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 460,
+          'height' => 620,
+          'anchor' => 'center-top',
           'jcrop_settings' => array(
             'aspect_ratio' => '',
             'bgcolor' => 'black',
