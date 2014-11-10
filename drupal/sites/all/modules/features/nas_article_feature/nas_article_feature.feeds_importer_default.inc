@@ -96,6 +96,12 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '12',
           ),
+          'field_author_profile_ref' => array(
+            'name' => 'field_author_profile_ref',
+            'value' => 'field_author_profile_ref.[*]',
+            'debug' => 0,
+            'weight' => '13',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
