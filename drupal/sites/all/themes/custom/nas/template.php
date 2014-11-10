@@ -373,7 +373,10 @@ function nas_field__field_article_date__article($variables) {
  */
 function nas_field__field_author__article($variables) {
   $output = '';
+  $published = '';
   $node = $variables['element']['#object'];
+  $node_wrapper = entity_metadata_wrapper('node', $node);
+
   foreach ($variables['items'] as $item) {
     $entities = entity_load('node', array_values($item));
     foreach ($entities as $id => $entity) {
@@ -399,11 +402,23 @@ function nas_field__field_author__article($variables) {
       $output .= '</h5></a>';
     }
   }
-  $created = $node->created;
-  if (!empty($node->field_article_date[LANGUAGE_NONE][0]['value'])) {
-    $created = strtotime($node->field_article_date[LANGUAGE_NONE][0]['value']);
+
+  // Set published date from issue magazine title.
+  $magazine_issue = $node_wrapper->field_magazine_issue->value();
+  if (!empty($magazine_issue->title)) {
+    $published = $magazine_issue->title;
   }
-  $published = date('M d, Y', $created);
+
+  // Set published date based on created date or field_article_date.
+  if (empty($published)) {
+    $created = $node->created;
+    $article_date = $node_wrapper->field_article_date->value();
+    if (!empty($article_date)) {
+      $created = strtotime($node->field_article_date[LANGUAGE_NONE][0]['value']);
+    }
+    $published = date('M d, Y', $created);
+  }
+
   $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
   return $output;
 }
