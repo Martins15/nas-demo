@@ -354,7 +354,7 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
   $vars['year'] = $str[1][1];
 }
 
-/*
+/**
  * Implements theme_field().
  *
  * Override theming of date field of press release.
@@ -368,11 +368,12 @@ function nas_field__field_article_date__article($variables) {
     . '</section>';
 }
 
-/*
+/**
  * Implements theme_field().
  */
 function nas_field__field_author__article($variables) {
   $output = '';
+  $node = $variables['element']['#object'];
   foreach ($variables['items'] as $item) {
     $entities = entity_load('node', array_values($item));
     foreach ($entities as $id => $entity) {
@@ -392,12 +393,17 @@ function nas_field__field_author__article($variables) {
         $output .= '<a href="' . $path . '">' . $image . '</a>';
       }
 
-      $output .= '<a href="' . $path . '">'
-          . '<h5 class="article-author-name">' . check_plain($entity->title)
-          . '</h5></a>';
+      $output .= '<a href="' . $path . '">';
+      $output .= '<h5 class="article-author-name">';
+      $output .= check_plain($entity->title);
+      $output .= '</h5></a>';
     }
   }
-  $published = date('M d, Y', $variables['element']['#object']->created);
+  $created = $node->created;
+  if (!empty($node->field_article_date[LANGUAGE_NONE][0]['value'])) {
+    $created = strtotime($node->field_article_date[LANGUAGE_NONE][0]['value']);
+  }
+  $published = date('M d, Y', $created);
   $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
   return $output;
 }
@@ -433,7 +439,7 @@ function nas_preprocess_views_exposed_form(&$variables) {
     return;
   }
 
-  // Preprocess fulltext search field
+  // Preprocess fulltext search field.
   $fulltext = $variables['form']['search_api_views_fulltext'];
   $fulltext['#printed'] = FALSE;
   $fulltext['#theme'] = 'searchfield';
