@@ -11,6 +11,9 @@ function nas_magazine_issue_feature_ctools_plugin_api($module = NULL, $api = NUL
   if ($module == "feeds" && $api == "feeds_importer_default") {
     return array("version" => "1");
   }
+  if ($module == "panelizer" && $api == "panelizer") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
