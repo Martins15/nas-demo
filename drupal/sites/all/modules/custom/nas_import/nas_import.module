@@ -377,15 +377,27 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       );
     }
   }
-  // Replace old uid by Contact node nid.
-  if (!empty($item['uid'])) {
-    $users_old_uids = variable_get('nas_users_import_uids');
-    $contact_nid = 1;
+
+  // Replace author by Contact node nid.
+  $contact_nid = 1;
+  if (!empty($item['field_author_profile_ref'][0]['nid'])) {
+    // If exists author relationship.
+    $source_author_id = $item['field_author_profile_ref'][0]['nid'];
+    $authors_nids_mapping = variable_get('nas_authors_nids_mapping', array());
+    if (isset($authors_nids_mapping[$source_author_id])) {
+      $contact_nid = $authors_nids_mapping[$source_author_id];
+    }
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
+  elseif (!empty($item['uid'])) {
+    // If exists user relationship.
+    $users_old_uids = variable_get('nas_users_import_uids', array());
     if (isset($users_old_uids[$item['uid']])) {
       $contact_nid = $users_old_uids[$item['uid']];
     }
     $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
   }
+
   // Save reference of Magazine Article to Magazine Issue.
   if (!empty($item['field_magazine_issue_ref'][0]['nid'])) {
     $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
