@@ -88,6 +88,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'users_import':
       nas_import_feeds_presave_users_import($source, $entity, $item);
       break;
+
+    case 'magazine_issues_import':
+      nas_import_feeds_presave_magazine_issues_import($source, $entity, $item);
+      break;
   }
 }
 
@@ -391,7 +395,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
     $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
   }
   if (!empty($item['created'])) {
-    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
+    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);
   }
   $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
 }
@@ -434,6 +438,21 @@ function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, 
 function nas_import_feeds_presave_users_import($source, $entity, $item) {
   if (!empty($item['profile_full_name'])) {
     $entity->title = $item['profile_full_name'];
+  }
+}
+
+/**
+ * hook_feeds_presave for magazine_issues_import importer.
+ */
+function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $entity, $item) {
+  if (!empty($item['field_magazine_cover'])) {
+    nas_import_import_image($entity, $item['field_magazine_cover'], 'field_issue_cover');
+  }
+  if (!empty($item['field_magazine_publication_date'][0]['value'])) {
+    $date = date_create($item['field_magazine_publication_date'][0]['value']);
+    $entity->field_issue_date[LANGUAGE_NONE][0]['value'] = date_format($date, 'Y-m-d - H:i:s');
+    $entity->field_issue_date[LANGUAGE_NONE][0]['timezone'] = $item['field_magazine_publication_date'][0]['timezone'];
+    $entity->field_issue_date[LANGUAGE_NONE][0]['timezone_db'] = $item['field_magazine_publication_date'][0]['timezone_db'];
   }
 }
 

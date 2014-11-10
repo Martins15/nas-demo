@@ -60,6 +60,12 @@ function nas_magazine_issue_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '5',
           ),
+          'field_magazine_publication_date' => array(
+            'name' => 'field_magazine_publication_date',
+            'value' => 'field_magazine_publication_date.[*]',
+            'debug' => 0,
+            'weight' => '6',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
