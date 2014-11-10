@@ -128,6 +128,8 @@ function pp_import_nodes() {
       178166,
       // Node with inline image to test.
       189306,
+      // Node with author relationship.
+      9101,
     );
   }
 
