@@ -35,7 +35,7 @@
     <div class="welcome-card-content">
       <div class="welcome-card-headline">
         Welcome to<br>
-        <img class="logo" src="http://188.226.239.231/Prototypes/pages/Build/img/wordmark-black.png" alt="">
+        <img class="logo" src="<?php print($path_to_logo);?>" alt="">
       </div>
       <div class="welcome-card-blurb">
         <?php print ($summary);?>

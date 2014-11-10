@@ -39,3 +39,4 @@ dependencies[] = nas_beans_feature
 dependencies[] = nas_flyways_feature
 dependencies[] = nas_birds_priority_feature
 dependencies[] = nas_birds_family_feature
+dependencies[] = welcome_to_audubon
