@@ -146,3 +146,15 @@
 .press-release .article-sidebar-section.article-meta {
   text-align: left;
 }
+
+.section-nav.mag-issue-nav {
+  top: -49px;  
+}
+.mag-issue-title span {
+  font-family: $font-sans;
+  font-size: $size-text-large;
+  margin-bottom: $size-space;
+}
+.mag-issue-header.section-header {
+  margin-bottom: 5px;
+}

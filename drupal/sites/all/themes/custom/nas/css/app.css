@@ -11361,3 +11361,17 @@ body.touch .sticky-wrapper {
 .press-release .article-sidebar-section.article-meta {
   text-align: left;
 }
+
+.section-nav.mag-issue-nav {
+  top: -49px;
+}
+
+.mag-issue-title span {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.mag-issue-header.section-header {
+  margin-bottom: 5px;
+}
