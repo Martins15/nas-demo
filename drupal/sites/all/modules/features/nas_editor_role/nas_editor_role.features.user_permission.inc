@@ -208,6 +208,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'taxonomy_access_fix',
   );
 
+  // Exported permission: 'administer crop styles'.
+  $permissions['administer crop styles'] = array(
+    'name' => 'administer crop styles',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'pp_crop',
+  );
+
   // Exported permission: 'administer menu-footer menu items'.
   $permissions['administer menu-footer menu items'] = array(
     'name' => 'administer menu-footer menu items',
