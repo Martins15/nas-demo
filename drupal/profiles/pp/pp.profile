@@ -89,7 +89,7 @@ function pp_import_nodes() {
   $magazine_article_node_nids = drupal_json_decode($result->data);
 
   $content_type = 'profile';
-  $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
+  $result = drupal_http_request(EXPORT_NODE_TYPE_CONTACT_LIST_NIDS_URL . $content_type);
   $contact_node_nids = drupal_json_decode($result->data);
 
   $content_type = 'author';
