@@ -107,6 +107,7 @@ function pp_import_nodes() {
     $news_node_nids[] = 156951;
 
     $magazine_issue_node_nids = array(
+      4918,
       157656,
       152231,
       133216,
