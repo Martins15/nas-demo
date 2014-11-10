@@ -890,6 +890,51 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'nas_permissions',
   );
 
+  // Exported permission: 'override article published option'.
+  $permissions['override article published option'] = array(
+    'name' => 'override article published option',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override bird published option'.
+  $permissions['override bird published option'] = array(
+    'name' => 'override bird published option',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override contact published option'.
+  $permissions['override contact published option'] = array(
+    'name' => 'override contact published option',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override flyway published option'.
+  $permissions['override flyway published option'] = array(
+    'name' => 'override flyway published option',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override magazine_issue published option'.
+  $permissions['override magazine_issue published option'] = array(
+    'name' => 'override magazine_issue published option',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'override_node_options',
+  );
+
   // Exported permission: 'pane in the news edit'.
   $permissions['pane in the news edit'] = array(
     'name' => 'pane in the news edit',
