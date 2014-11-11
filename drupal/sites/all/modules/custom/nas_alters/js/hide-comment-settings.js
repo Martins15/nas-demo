@@ -19,5 +19,5 @@
           .trigger('change');
       });
     }
-  }
+  };
 })(jQuery);
