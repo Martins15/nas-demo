@@ -7603,6 +7603,20 @@ body.touch .primary-sub-nav-index {
   height: 100%;
 }
 
+.bean-welcome-to-audubon {
+  float: right;
+  width: 41.66667% !important;
+}
+.bean-welcome-to-audubon .article-aside {
+  width: 100% !important;
+}
+.bean-welcome-to-audubon .article-aside.hidden {
+  display: none;
+}
+.bean-welcome-to-audubon .article-aside.visible {
+  display: block;
+}
+
 .article-aside {
   float: right;
   width: 41.66667%;
@@ -11199,7 +11213,7 @@ body.touch .sticky-wrapper {
   display: none;
 }
 .welcome-card-illustration img {
-  width: 100%;
+  width: 90%;
 }
 @media only screen and (min-width: 768px) {
   .welcome-card-illustration {

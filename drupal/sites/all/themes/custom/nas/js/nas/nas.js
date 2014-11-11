@@ -53,6 +53,14 @@ var Nas = Nas || {};
         $(".hero.expand img").load(Nas.expandHero);
         $(window).resize(Nas.expandHero);
       }
+      if ($(".bean-welcome-to-audubon").length > 0) {
+        if (!$.cookie('firsttimevisitors')) {
+          $.cookie('firsttimevisitors', '1');
+        } else {
+          $(".bean-welcome-to-audubon .article-aside").removeClass('visible');
+          $(".bean-welcome-to-audubon .article-aside").addClass('hidden');
+        }
+      }
     }
   };
 

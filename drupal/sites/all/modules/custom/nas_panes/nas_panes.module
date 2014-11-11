@@ -70,16 +70,25 @@ function nas_panes_theme() {
     ),
     'nas_frontpage_featured' => array(
       'variables' => array(
-        'image_path' => '',
-        'image_path_mobile' => '',
+        'image_title' => '',
+        'image_credit' => '',
         'summary' => '',
-        'title' => '',
         'title_link' => '',
-        'blue_text' => '',
         'blue_text_link' => '',
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured_mobile' => array(
+      'variables' => array(
+        'image_path' => '',
+        'summary' => '',
+        'title_link' => '',
+        'blue_text_link' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'frontpage-featured-mobile',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
     'nas_frontpage_featured_article' => array(

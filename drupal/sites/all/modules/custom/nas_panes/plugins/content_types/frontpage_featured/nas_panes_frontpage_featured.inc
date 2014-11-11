@@ -176,6 +176,16 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     'contextual_links' => $contextual_links,
   ));
 
+  // Pass mobile_content to theme
+  $mobile_content = &drupal_static('featured_frontpage_mobile_content');
+  $mobile_content = theme('nas_frontpage_featured_mobile', array(
+    'image_path' => $image_path,
+    'summary' => $summary,
+    'title_link' => $title_link,
+    'blue_text_link' => $blue_text_link,
+    'contextual_links' => $contextual_links,
+  ));
+
   $block->content = $content;
   return $block;
 }
