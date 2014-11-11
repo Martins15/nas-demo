@@ -16,6 +16,7 @@ $plugin = array(
   'default' => array('articles_count' => 5),
   'settings form' => 'nas_panes_donate_pane_rule_mag_issue_ctools_settings',
   'summary' => 'nas_panes_donate_pane_rule_mag_issue_ctools_summary',
+  'required context' => new ctools_context_required(t('Node'), 'node'),
 );
 
 /**
@@ -37,16 +38,17 @@ function nas_panes_donate_pane_rule_mag_issue_ctools_settings($form, &$form_stat
  * Check for access.
  */
 function nas_panes_donate_pane_rule_mag_issue_ctools_access_check($conf, $context) {
-  //Check count of referenced nodes.
-  $query = db_select('node', 'n');
-  $query->fields('n', array('nid', 'type'));
-  $query->leftJoin('field_data_field_magazine_issue', 'f', 'n.nid = f.entity_id');
-  $query->condition('f.field_magazine_issue_target_id', arg(1));
-  $query->condition('n.status', 1);
-  $query->condition('n.type', array('article'), '=');
-  $result = $query->execute();
-  $count = $result->rowCount();
-
+  if (isset($context->data->nid)) {
+    //Check count of referenced nodes.
+    $query = db_select('node', 'n');
+    $query->fields('n', array('nid', 'type'));
+    $query->leftJoin('field_data_field_magazine_issue', 'f', 'n.nid = f.entity_id');
+    $query->condition('f.field_magazine_issue_target_id', $context->data->nid);
+    $query->condition('n.status', 1);
+    $query->condition('n.type', array('article'), '=');
+    $query->addExpression('COUNT(n.nid)', 'count');
+    $count = $query->execute()->fetch()->count;
+  }
   if (is_numeric($count) && ($count >= $conf['articles_count'])) {
     return TRUE;
   }

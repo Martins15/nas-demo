@@ -136,6 +136,7 @@ function nas_magazine_issue_feature_panelizer_defaults() {
             'articles_count' => '5',
           ),
           'not' => FALSE,
+          'context' => 'panelizer',
         ),
       ),
     );
