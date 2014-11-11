@@ -953,9 +953,9 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'nas_permissions',
   );
 
-  // Exported permission: 'panelizer layout node settings'.
-  $permissions['panelizer layout node settings'] = array(
-    'name' => 'panelizer layout node settings',
+  // Exported permission: 'change node panelizer layout on node form'.
+  $permissions['change node panelizer layout on node form'] = array(
+    'name' => 'change node panelizer layout on node form',
     'roles' => array(
       'editor' => 'editor',
     ),

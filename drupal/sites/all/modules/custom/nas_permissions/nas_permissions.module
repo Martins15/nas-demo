@@ -28,8 +28,8 @@ function nas_permissions_permission() {
     'frontpage featured pane edit' =>  array(
       'title' => t('Frontpage featured panes edit'),
     ),
-    'panelizer layout node settings' =>  array(
-      'title' => t('Access to panelizer layout node settings'),
+    'change node panelizer layout on node form' =>  array(
+      'title' => t('Change node panelizer layout on node form'),
     ),
   );
 }
@@ -41,9 +41,11 @@ function nas_permissions_permission() {
 function nas_permissions_form_node_form_alter(&$form, &$form_state, $form_id) {
   $node_type = $form['#node']->type;
 
-  // Check node type and presence panelizer settings
-  if ($node_type != 'article' || !isset($form['panelizer'])) return;
+  // Check node type and presence panelizer settings.
+  if ($node_type != 'article' || !isset($form['panelizer'])) {
+    return;
+  }
 
-  // Alter panelizer access
-  $form['panelizer']['#access'] = user_access('panelizer layout node settings');
+  // Alter panelizer access.
+  $form['panelizer']['#access'] = user_access('change node panelizer layout on node form');
 }
