@@ -30,9 +30,6 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     'map' => array(
       'field_article_map',
     ),
-    'default' => array(
-      'field_article_map',
-    ),
     'press_release' => array(
       'field_pressrelease_contact',
     ),
