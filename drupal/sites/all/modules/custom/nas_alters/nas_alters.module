@@ -42,6 +42,9 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     }
   }
 
+  // Manage visibility comment settings vertical tab.
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/hide-comment-settings.js';
+
   // Attach after build callback.
   $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
 }
