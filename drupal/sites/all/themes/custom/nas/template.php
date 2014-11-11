@@ -517,7 +517,11 @@ function nas_preprocess_nas_flyway(&$variables) {
 function nas_preprocess_panels_nas_frontpage(&$variables) {
   // Set featured frontpage backgroudimage variable
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
-  $variables['frontpage_backgroudimage'] = $featured_frontpage_image;
+  $variables['frontpage_backgroundimage'] = $featured_frontpage_image;
+
+  // Set featured frontpage mobile content variable
+  $featured_frontpage_mobile_content = &drupal_static('featured_frontpage_mobile_content');
+  $variables['featured_frontpage_mobile_content'] = $featured_frontpage_mobile_content;
 }
 
 /**

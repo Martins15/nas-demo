@@ -5,7 +5,7 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-<section class="curtain hide-for-ie" style="background-color: #fff; background-image: url(<?php print $frontpage_backgroudimage; ?>)">
+<section class="curtain hide-for-ie" style="background-color: #fff; background-image: url(<?php print $frontpage_backgroundimage; ?>)">
   <header class="global-header transparent dark-text light-bg">
     <div class="row">
       <div class="columns">
@@ -119,19 +119,7 @@
 <?php print $content['top']; ?>
 </section>
 <section class="global-content">
-  <div class="curtain-fallback" style="background-image: url(<?php print $frontpage_backgroudimage; ?>)">
-    <div class="curtain-fallback-content">
-      <div class="columns">
-        <div class="curtain-card no-border">
-          <a href="#" class="curtain-card-slug">Conservation</a>
-          <h3 class="curtain-card-headline"><a href="#">Protecting Alaska&rsquo;s Frontier</a></h3>
-          <p>
-            Audubon&rsquo;s conservation efforts are helping to protect and revitalize the Tongass National Forest.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php print $featured_frontpage_mobile_content; ?>
   <div class="homepage-first-row row space-top double">
     <?php print $content['featured']; ?>
     <div class="columns large-4 medium-6">
