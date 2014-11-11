@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the NAS Welcome to Audubon feature.
  */
+
+include_once 'nas_welcome_to_audubon.features.inc';
