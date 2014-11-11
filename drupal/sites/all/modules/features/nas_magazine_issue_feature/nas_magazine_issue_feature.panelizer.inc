@@ -128,7 +128,17 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $pane->type = 'nas_panes_pane_donate_button';
     $pane->subtype = 'nas_panes_pane_donate_button';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'donate_pane_rule_mag_issue',
+          'settings' => array(
+            'articles_count' => '5',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
