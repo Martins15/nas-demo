@@ -506,7 +506,7 @@ function nas_preprocess_nas_flyway(&$variables) {
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'light'.
-  $color_mode = in_array($color_mode, array('dargit statusk', 'light')) ? $color_mode : 'light';
+  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'light';
 
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
