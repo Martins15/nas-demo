@@ -72,9 +72,6 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     $vars_array_data = get_welcome_to_audubon_array_data($entity);
     $vars['content'] = theme('bean__welcome_to_audobun', $vars_array_data);
   }
-  else {
-    return;
-  }
 }
 
 /**
@@ -85,32 +82,32 @@ function get_welcome_to_audubon_array_data(&$entity) {
   // Set image to logo block welcome to audobun.
   $path_to_logo = $base_url . '/' . drupal_get_path('module', 'nas_wysiwyg') . '/image/' . NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON;
   // Get image.
-  $get_field_image_welcom_first = field_get_items('bean', $entity, 'field_image_welcom_first');
-  $uri = $get_field_image_welcom_first[0]['uri'];
+  $get_field_image_welcome_first = field_get_items('bean', $entity, 'field_image_welcome_first');
+  $uri = $get_field_image_welcome_first[0]['uri'];
   $vars['image'] = $image = theme_image(array('path' => $uri));
-  //Get summary.
-  $get_field_summary = field_get_items('bean', $entity, 'field_summary_welcom_first');
+  // Get summary.
+  $get_field_summary = field_get_items('bean', $entity, 'field_summary_welcome_first');
   $summary = $get_field_summary[0]['value'];
   // Get color.
   $color = $color_style = NULL;
-  $get_field_color = field_get_items('bean', $entity, 'field_background_welcom_first');
+  $get_field_color = field_get_items('bean', $entity, 'field_background_welcome_first');
   if (!empty($get_field_color)) {
     $color = $get_field_color[0]['rgb'];
     $color_style = "color:$color";
   }
-  // Get link 'Lear more'.
-  $get_field_learn_more = field_get_items('bean', $entity, 'field_learn_more_welcom_first');
+  // Get link 'Learn more'.
+  $get_field_learn_more = field_get_items('bean', $entity, 'field_learn_more_welcome_first');
   if (!empty($get_field_learn_more)) {
     $link_more = l($get_field_learn_more[0]['title'], $get_field_learn_more[0]['url'], array('attributes' => array('style' => $color_style)));
   }
   // Get link in the news.
-  $get_field_in_the_news = field_get_items('bean', $entity, 'field_in_the_news_welcom_first');
+  $get_field_in_the_news = field_get_items('bean', $entity, 'field_in_the_news_welcome_first');
   if (!empty($get_field_in_the_news)) {
     $path_news = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_in_the_news[0]['target_id']);
     $link_news = l($get_field_in_the_news[0]['entity']->title, $path_news, array('attributes' => array('style' => $color_style)));
   }
   // Get link most popular.
-  $get_field_most_popular = field_get_items('bean', $entity, 'field_most_popular_welcom_first');
+  $get_field_most_popular = field_get_items('bean', $entity, 'field_most_popular_welcome_first');
   if (!empty($get_field_most_popular)) {
     $path_most_popular = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_most_popular[0]['target_id']);
     $link_most_popular = l($get_field_most_popular[0]['entity']->title, $path_most_popular, array('attributes' => array('style' => $color_style)));

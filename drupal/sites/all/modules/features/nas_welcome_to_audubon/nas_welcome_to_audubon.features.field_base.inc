@@ -1,22 +1,22 @@
 <?php
 /**
  * @file
- * welcome_to_audubon.features.field_base.inc
+ * nas_welcome_to_audubon.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function welcome_to_audubon_field_default_field_bases() {
+function nas_welcome_to_audubon_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_background_welcom_first'
-  $field_bases['field_background_welcom_first'] = array(
+  // Exported field_base: 'field_background_welcome_first'
+  $field_bases['field_background_welcome_first'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_background_welcom_first',
+    'field_name' => 'field_background_welcome_first',
     'foreign keys' => array(),
     'indexes' => array(
       'rgb' => array(
@@ -27,7 +27,7 @@ function welcome_to_audubon_field_default_field_bases() {
     'module' => 'color_field',
     'settings' => array(
       'palette' => '',
-      'show_buttons' => 0,
+      'show_buttons' => 1,
       'show_input' => 0,
       'show_palette' => 0,
       'show_palette_only' => 0,
@@ -36,13 +36,13 @@ function welcome_to_audubon_field_default_field_bases() {
     'type' => 'color_field_rgb',
   );
 
-  // Exported field_base: 'field_image_welcom_first'
-  $field_bases['field_image_welcom_first'] = array(
+  // Exported field_base: 'field_image_welcome_first'
+  $field_bases['field_image_welcome_first'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_image_welcom_first',
+    'field_name' => 'field_image_welcome_first',
     'foreign keys' => array(
       'fid' => array(
         'columns' => array(
@@ -66,13 +66,13 @@ function welcome_to_audubon_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_in_the_news_welcom_first'
-  $field_bases['field_in_the_news_welcom_first'] = array(
+  // Exported field_base: 'field_in_the_news_welcome_first'
+  $field_bases['field_in_the_news_welcome_first'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_in_the_news_welcom_first',
+    'field_name' => 'field_in_the_news_welcome_first',
     'foreign keys' => array(
       'node' => array(
         'columns' => array(
@@ -109,13 +109,13 @@ function welcome_to_audubon_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_learn_more_welcom_first'
-  $field_bases['field_learn_more_welcom_first'] = array(
+  // Exported field_base: 'field_learn_more_welcome_first'
+  $field_bases['field_learn_more_welcome_first'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_learn_more_welcom_first',
+    'field_name' => 'field_learn_more_welcome_first',
     'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
@@ -139,13 +139,13 @@ function welcome_to_audubon_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_most_popular_welcom_first'
-  $field_bases['field_most_popular_welcom_first'] = array(
+  // Exported field_base: 'field_most_popular_welcome_first'
+  $field_bases['field_most_popular_welcome_first'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_most_popular_welcom_first',
+    'field_name' => 'field_most_popular_welcome_first',
     'foreign keys' => array(
       'node' => array(
         'columns' => array(
@@ -302,13 +302,13 @@ function welcome_to_audubon_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_summary_welcom_first'
-  $field_bases['field_summary_welcom_first'] = array(
+  // Exported field_base: 'field_summary_welcome_first'
+  $field_bases['field_summary_welcome_first'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_summary_welcom_first',
+    'field_name' => 'field_summary_welcome_first',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(

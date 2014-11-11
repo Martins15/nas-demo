@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * welcome_to_audubon.features.field_instance.inc
+ * nas_welcome_to_audubon.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function welcome_to_audubon_field_default_field_instances() {
+function nas_welcome_to_audubon_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'bean-welcome_to_audubon-field_background_welcom_first'
-  $field_instances['bean-welcome_to_audubon-field_background_welcom_first'] = array(
+  // Exported field_instance: 'bean-welcome_to_audubon-field_background_welcome_first'
+  $field_instances['bean-welcome_to_audubon-field_background_welcome_first'] = array(
     'bundle' => 'welcome_to_audubon',
     'default_value' => array(
       0 => array(
-        'rgb' => '#fbff00',
+        'rgb' => '#26ff00',
       ),
     ),
     'deleted' => 0,
@@ -26,11 +26,11 @@ function welcome_to_audubon_field_default_field_instances() {
         'module' => 'color_field',
         'settings' => array(),
         'type' => 'color_field_default_formatter',
-        'weight' => 7,
+        'weight' => 17,
       ),
     ),
     'entity_type' => 'bean',
-    'field_name' => 'field_background_welcom_first',
+    'field_name' => 'field_background_welcome_first',
     'label' => 'Background color',
     'required' => 0,
     'settings' => array(
@@ -41,12 +41,12 @@ function welcome_to_audubon_field_default_field_instances() {
       'module' => 'color_field',
       'settings' => array(),
       'type' => 'color_field_spectrum_widget',
-      'weight' => 13,
+      'weight' => 15,
     ),
   );
 
-  // Exported field_instance: 'bean-welcome_to_audubon-field_image_welcom_first'
-  $field_instances['bean-welcome_to_audubon-field_image_welcom_first'] = array(
+  // Exported field_instance: 'bean-welcome_to_audubon-field_image_welcome_first'
+  $field_instances['bean-welcome_to_audubon-field_image_welcome_first'] = array(
     'bundle' => 'welcome_to_audubon',
     'deleted' => 0,
     'description' => '',
@@ -59,16 +59,16 @@ function welcome_to_audubon_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 12,
       ),
     ),
     'entity_type' => 'bean',
-    'field_name' => 'field_image_welcom_first',
+    'field_name' => 'field_image_welcome_first',
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'default_image' => 113,
+      'default_image' => 0,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -78,6 +78,8 @@ function welcome_to_audubon_field_default_field_instances() {
           'featured_bird_illustration' => 0,
           'featured_bird_mobile' => 0,
           'featured_frontpage' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
           'hero_cover_bird_page' => 0,
           'hero_image' => 0,
           'hero_mobile' => 0,
@@ -110,7 +112,7 @@ function welcome_to_audubon_field_default_field_instances() {
           'media_default--media_browser_1' => 0,
           'media_default--media_browser_my_files' => 0,
           'media_internet' => 0,
-          'upload' => 'upload',
+          'upload' => 0,
           'youtube' => 0,
         ),
       ),
@@ -119,8 +121,8 @@ function welcome_to_audubon_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-welcome_to_audubon-field_in_the_news_welcom_first'
-  $field_instances['bean-welcome_to_audubon-field_in_the_news_welcom_first'] = array(
+  // Exported field_instance: 'bean-welcome_to_audubon-field_in_the_news_welcome_first'
+  $field_instances['bean-welcome_to_audubon-field_in_the_news_welcome_first'] = array(
     'bundle' => 'welcome_to_audubon',
     'default_value' => NULL,
     'deleted' => 0,
@@ -130,14 +132,14 @@ function welcome_to_audubon_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => 1,
+          'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 4,
+        'weight' => 15,
       ),
     ),
     'entity_type' => 'bean',
-    'field_name' => 'field_in_the_news_welcom_first',
+    'field_name' => 'field_in_the_news_welcome_first',
     'label' => 'In the News',
     'required' => 0,
     'settings' => array(
@@ -156,15 +158,10 @@ function welcome_to_audubon_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-welcome_to_audubon-field_learn_more_welcom_first'
-  $field_instances['bean-welcome_to_audubon-field_learn_more_welcom_first'] = array(
+  // Exported field_instance: 'bean-welcome_to_audubon-field_learn_more_welcome_first'
+  $field_instances['bean-welcome_to_audubon-field_learn_more_welcome_first'] = array(
     'bundle' => 'welcome_to_audubon',
-    'default_value' => array(
-      0 => array(
-        'title' => 'Learn more »',
-        'url' => '/node',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -173,11 +170,11 @@ function welcome_to_audubon_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 3,
+        'weight' => 14,
       ),
     ),
     'entity_type' => 'bean',
-    'field_name' => 'field_learn_more_welcom_first',
+    'field_name' => 'field_learn_more_welcome_first',
     'label' => 'Learn more link',
     'required' => 0,
     'settings' => array(
@@ -209,8 +206,8 @@ function welcome_to_audubon_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-welcome_to_audubon-field_most_popular_welcom_first'
-  $field_instances['bean-welcome_to_audubon-field_most_popular_welcom_first'] = array(
+  // Exported field_instance: 'bean-welcome_to_audubon-field_most_popular_welcome_first'
+  $field_instances['bean-welcome_to_audubon-field_most_popular_welcome_first'] = array(
     'bundle' => 'welcome_to_audubon',
     'default_value' => NULL,
     'deleted' => 0,
@@ -220,14 +217,14 @@ function welcome_to_audubon_field_default_field_instances() {
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => 1,
+          'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 5,
+        'weight' => 16,
       ),
     ),
     'entity_type' => 'bean',
-    'field_name' => 'field_most_popular_welcom_first',
+    'field_name' => 'field_most_popular_welcome_first',
     'label' => 'Most Popular',
     'required' => 0,
     'settings' => array(
@@ -242,7 +239,7 @@ function welcome_to_audubon_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -438,16 +435,10 @@ function welcome_to_audubon_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-welcome_to_audubon-field_summary_welcom_first'
-  $field_instances['bean-welcome_to_audubon-field_summary_welcom_first'] = array(
+  // Exported field_instance: 'bean-welcome_to_audubon-field_summary_welcome_first'
+  $field_instances['bean-welcome_to_audubon-field_summary_welcome_first'] = array(
     'bundle' => 'welcome_to_audubon',
-    'default_value' => array(
-      0 => array(
-        'summary' => '',
-        'value' => '<em><strong>Our Mission:</strong> To conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity. </em>',
-        'format' => 'map',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -456,11 +447,11 @@ function welcome_to_audubon_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 13,
       ),
     ),
     'entity_type' => 'bean',
-    'field_name' => 'field_summary_welcom_first',
+    'field_name' => 'field_summary_welcome_first',
     'label' => 'Summary',
     'required' => 0,
     'settings' => array(
