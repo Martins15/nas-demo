@@ -26,14 +26,8 @@
 </div>
 <div class="bird-guide-search">
   <div class="row">
-    <div class="columns large-9 bird-guide-search-form">
+    <div class="columns large-12 bird-guide-search-form">
       <?php print $exposed_form; ?>
-    </div>
-    <div class="columns large-3 interactive-guide">
-      <p class="preamble">
-        <span class="small">Saw a bird?</span> <span class="large">Identify it.</span>
-      </p>
-      <a href="#" class="interactive-guide-button button blue">Our <span class="hide-for-small hide-for-tiny">Interactive </span>Guide</a>
     </div>
   </div>
 </div>
