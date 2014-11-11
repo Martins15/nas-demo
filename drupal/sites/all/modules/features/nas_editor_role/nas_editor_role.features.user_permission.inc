@@ -953,6 +953,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'nas_permissions',
   );
 
+  // Exported permission: 'panelizer layout node settings'.
+  $permissions['panelizer layout node settings'] = array(
+    'name' => 'panelizer layout node settings',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
   // Exported permission: 'schedule (un)publishing of nodes'.
   $permissions['schedule (un)publishing of nodes'] = array(
     'name' => 'schedule (un)publishing of nodes',
