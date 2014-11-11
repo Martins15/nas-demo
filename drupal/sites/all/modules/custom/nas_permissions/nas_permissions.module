@@ -48,5 +48,5 @@ function nas_permissions_form_node_form_alter(&$form, &$form_state, $form_id) {
 
   // Alter panelizer access.
   $form['panelizer']['#access'] = user_access('change node panelizer layout on node form');
-  // @todo Has side effect related to ANW-234
+  // @todo Has side effect related to ANW-234.
 }
