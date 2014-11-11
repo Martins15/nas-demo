@@ -506,7 +506,7 @@ function nas_preprocess_nas_flyway(&$variables) {
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'light'.
-  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'light';
+  $color_mode = in_array($color_mode, array('dargit statusk', 'light')) ? $color_mode : 'light';
 
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
@@ -515,11 +515,11 @@ function nas_preprocess_nas_flyway(&$variables) {
  * Implements hook_preprocess_panels_nas_frontpage().
  */
 function nas_preprocess_panels_nas_frontpage(&$variables) {
-  // Set featured frontpage backgroudimage variable
+  // Set featured frontpage backgroudimage variable.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $variables['frontpage_backgroundimage'] = $featured_frontpage_image;
 
-  // Set featured frontpage mobile content variable
+  // Set featured frontpage mobile content variable.
   $featured_frontpage_mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $variables['featured_frontpage_mobile_content'] = $featured_frontpage_mobile_content;
 }
