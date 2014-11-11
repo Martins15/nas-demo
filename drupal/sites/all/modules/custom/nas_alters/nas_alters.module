@@ -21,14 +21,21 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     'big_image' => array(
       'field_hero_image',
       'field_color_mode',
+      'disqus_status',
     ),
     'fullscreen_image' => array(
       'field_hero_image',
       'field_color_mode',
       'field_magazine_issue',
+      'disqus_status',
     ),
     'map' => array(
       'field_article_map',
+      'disqus_status',
+    ),
+    'default' => array(
+      'field_article_map',
+      'disqus_status',
     ),
     'press_release' => array(
       'field_pressrelease_contact',
@@ -41,6 +48,9 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
       $form[$field]['#states']['visible'][':input[name="panelizer[page_manager][name]"]'][]['value'] = 'node:article:' . $panelizer_mode;
     }
   }
+
+  // Manage visibility comment settings vertical tab.
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/hide-comment-settings.js';
 
   // Attach after build callback.
   $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
