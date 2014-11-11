@@ -45,7 +45,6 @@
     </header>
     <div class="article-body row">
       <div class="article-text large-push-2 large-10 columns reflow-body">
-        <span data-reflow-placeholder="0"></span>
         <?php print $content['right']; ?>
         <?php print $content['main']; ?>
       </div>
