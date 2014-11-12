@@ -721,32 +721,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->subtype = 'nas_panes_article_more_features';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'buttons' => array(
-        'return' => 'Finish',
-        'cancel' => 'Cancel',
-      ),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      91 => array(
-        1 => array(
-          'entity_reference' => FALSE,
-        ),
-        2 => array(
-          'entity_reference' => FALSE,
-        ),
-        3 => array(
-          'entity_reference' => FALSE,
-        ),
-        4 => array(
-          'entity_reference' => FALSE,
-        ),
-      ),
-      'form_build_id' => 'form-En94l1GbD2wuhxQvBt0ZuyjQ3e6DtTkHp-BZMYIF39Y',
-      'form_token' => 'Mhrjz1cbq4cca4eNkw_kDdC47kMrh8sAgxlZbNPpc-w',
-      'form_id' => 'nas_panes_article_more_features_edit_form',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
