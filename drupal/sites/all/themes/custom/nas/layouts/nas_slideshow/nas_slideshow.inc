@@ -15,8 +15,9 @@ $plugin = array(
   'icon' => 'nas_slideshow.png',
   'theme' => 'nas_slideshow',
   'regions' => array(
-    'header' => t('Header'),
-    'body' => t('Body'),
+    'title' => t('Title'),
+    'subtitle' => t('Subtitle'),
+    'slideshow' => t('Slideshow'),
     'bottom' => t('Bottom'),
   ),
 );
