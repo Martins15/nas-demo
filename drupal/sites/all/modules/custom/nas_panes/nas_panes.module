@@ -36,6 +36,16 @@ function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
  */
 function nas_panes_theme() {
   $theme = array(
+    'article_more_features' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+        'more_link' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'article-more-features',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/article_more_features',
+    ),
     'nas_featured_bird' => array(
       'variables' => array(
         'name' => '',

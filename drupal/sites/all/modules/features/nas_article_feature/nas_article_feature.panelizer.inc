@@ -706,6 +706,7 @@ function nas_article_feature_panelizer_defaults() {
       'author' => NULL,
       'birds' => NULL,
       'header_hero_attr_text' => NULL,
+      'article_more_features' => NULL,
     ),
   );
   $display->cache = array();
@@ -713,6 +714,50 @@ function nas_article_feature_panelizer_defaults() {
   $display->uuid = 'df50d13b-e5d7-4b4a-b9a7-6b4bc52df7a0';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-d97f77d4-ee68-4a3d-bb51-226fb5d17a9d';
+    $pane->panel = 'article_more_features';
+    $pane->type = 'nas_panes_article_more_features';
+    $pane->subtype = 'nas_panes_article_more_features';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      91 => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+        3 => array(
+          'entity_reference' => FALSE,
+        ),
+        4 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-En94l1GbD2wuhxQvBt0ZuyjQ3e6DtTkHp-BZMYIF39Y',
+      'form_token' => 'Mhrjz1cbq4cca4eNkw_kDdC47kMrh8sAgxlZbNPpc-w',
+      'form_id' => 'nas_panes_article_more_features_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd97f77d4-ee68-4a3d-bb51-226fb5d17a9d';
+    $display->content['new-d97f77d4-ee68-4a3d-bb51-226fb5d17a9d'] = $pane;
+    $display->panels['article_more_features'][0] = 'new-d97f77d4-ee68-4a3d-bb51-226fb5d17a9d';
     $pane = new stdClass();
     $pane->pid = 'new-295789ba-2fb8-467e-9dd6-7a37a0c94704';
     $pane->panel = 'author';

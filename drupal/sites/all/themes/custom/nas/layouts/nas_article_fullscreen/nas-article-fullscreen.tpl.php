@@ -127,4 +127,5 @@
       </div>
     </div>
   </section>
+  <?php print $content['article_more_features']; ?>
 </section>

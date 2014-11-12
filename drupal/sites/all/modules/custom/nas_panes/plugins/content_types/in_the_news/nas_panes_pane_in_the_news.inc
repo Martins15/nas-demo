@@ -30,6 +30,7 @@ function nas_panes_pane_in_the_news_custom_pane_edit_form($form, &$form_state) {
     }
     $configuration_key = $data->nid;
   }
+  dpm($form_state);
   // Limit to 3 numbers of Articles.
   for ($i = 1; $i <= 3; $i++) {
     $form[$configuration_key][$i]['entity_reference'] = array(

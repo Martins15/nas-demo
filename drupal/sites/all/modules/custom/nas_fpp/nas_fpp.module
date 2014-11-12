@@ -82,6 +82,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Featured'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['nas_node_featured_small'] = array(
+    'label' => t('Featured Small'),
+    'custom settings' => TRUE,
+  );
   $entity_info['node']['view modes']['nas_node_teaser'] = array(
     'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
