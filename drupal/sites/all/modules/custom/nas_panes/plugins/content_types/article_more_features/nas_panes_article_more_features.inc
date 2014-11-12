@@ -60,8 +60,8 @@ function nas_panes_article_more_features_edit_form_submit(&$form, &$form_state) 
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_panes_article_more_features_render($subtype, $conf, $args, $context) {
   $context_node = $context->data;
@@ -132,8 +132,13 @@ function nas_panes_article_more_features_render($subtype, $conf, $args, $context
 /**
  * Builds contextual links.
  *
- * @param $subtype - pane subtype.
- * @param $node - current article node.
+ * @param string $subtype
+ *   Pane subtype.
+ * @param object $node
+ *   Current article node.
+ *
+ * @return
+ *   Rendered contextual links.
  */
 function nas_panes_article_more_features_build_contextual_links($subtype, $node) {
   ctools_include('modal');
@@ -142,7 +147,6 @@ function nas_panes_article_more_features_build_contextual_links($subtype, $node)
   ctools_add_js('ajax-responder');
 
   $pid = nas_panes_article_more_features_lookup_pid($subtype, $node);
-  // Early return pattern.
   if (!$pid) {
     return '';
   }
@@ -186,10 +190,13 @@ function nas_panes_article_more_features_build_contextual_links($subtype, $node)
 /**
  * Retrieves pane's pid from node's panelizer.
  *
- * @param $subtype - pane id.
- * @param $node - node object.
+ * @param string $subtype
+ *   Pane's subtype.
+ * @param object $node
+ *   Panelized node object.
  *
- * @return int|string
+ * @return int
+ *   Pane's pid from panelizer's display.
  */
 function nas_panes_article_more_features_lookup_pid($subtype, $node) {
   $pid = 0;
