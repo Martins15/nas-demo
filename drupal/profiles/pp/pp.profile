@@ -27,6 +27,13 @@ function pp_form_install_configure_form_alter(&$form, $form_state) {
  */
 function pp_install_tasks(&$install_state) {
   $tasks = array();
+  $tasks['default_pressrelease_contact'] = array(
+    'display_name' => st('Provide default Press Release Contact'),
+    'display' => TRUE,
+    'type' => 'batch',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_create_default_pressrelease_contact',
+  );
   $tasks['content_import'] = array(
     'display_name' => st('Content import'),
     'display' => TRUE,
@@ -377,4 +384,25 @@ function pp_create_flyway_navigation_menu_fpp() {
   // We have to reset static cache, because this defaults will be cloned on node
   // creation and changes have to be there.
   drupal_static_reset('ctools_export_load_object');
+}
+
+/**
+ * Creates default Press Release contact node and initialize variable
+ * nas_default_pressrelease_contact used in features to provide default field
+ * value and in import process with the same purpose.
+ */
+function pp_create_default_pressrelease_contact() {
+  // Create node object.
+  $node = new StdClass();
+  $node->type = 'contact';
+  $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node->title = 'Audubon Media Relations';
+  $node->field_contact_phone[LANGUAGE_NONE][]['value'] = '212-979-3100';
+  $node->field_contact_email[LANGUAGE_NONE][]['value'] = 'media@audubon.org';
+  $node = node_submit($node);
+  node_save($node);
+
+  $value = array(array('target_id' => $node->nid));
+  variable_set('nas_default_pressrelease_contact', $value);
 }
