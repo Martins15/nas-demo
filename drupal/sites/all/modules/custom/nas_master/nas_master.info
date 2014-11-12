@@ -42,3 +42,4 @@ dependencies[] = nas_birds_family_feature
 dependencies[] = nas_welcome_to_audubon
 dependencies[] = nas_alters
 dependencies[] = nas_formats
+dependencies[] = nas_slideshow_feature
