@@ -23,8 +23,6 @@ function nas_panes_article_more_features_edit_form($form, &$form_state) {
   $form['#tree'] = TRUE;
 
   $context = reset($form_state['display']->context);
-  dpm($form_state);
-  dpm(!$context->empty && $context->data->type !== 'article' ? 'true' : 'false');
   // Not on default panel, not article.
   if (!$context->empty && $context->data->type !== 'article') {
     return $form;
@@ -77,8 +75,6 @@ function nas_panes_article_more_features_render($subtype, $conf, $args, $context
   $conf_key = $context_node->nid;
   $block_title = t('Explore More Features');
 
-  $news_nodes = array();
-
   // Check if configuration for current node is empty.
   $conf_is_empty = TRUE;
   if (!empty($conf[$conf_key])) {
@@ -90,6 +86,7 @@ function nas_panes_article_more_features_render($subtype, $conf, $args, $context
     }
   }
 
+  $news_nodes = array();
   // Manual override.
   if (!$conf_is_empty) {
     foreach ($conf[$conf_key] as $value) {
