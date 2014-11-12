@@ -20,8 +20,7 @@ $(function() {
         snap: true,
         bounce: true,
         touch: true,
-        eventPassthrough: true,
-        snapSpeed: 600
+        eventPassthrough: true
       });
 
       scroll.on("scrollEnd", function() {

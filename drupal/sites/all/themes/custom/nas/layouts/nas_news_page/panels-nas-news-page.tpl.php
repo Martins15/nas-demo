@@ -10,7 +10,7 @@
 <section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content">
   <div class="row section-header">
     <div class="columns">
-      <h1><?php print t('News'); ?></h1>
+      <?php print $content['title']; ?>
     </div>
     <div class="columns">
       <div class="section-nav hide-for-tiny hide-for-small hide-for-medium">
@@ -29,7 +29,7 @@
     <div class="large-8 columns index-list">
       <?php print $content['articles_top']; ?>
       <?php print $content['donate']; ?>
-      <?php print $content['articles_bottom']; ?>      
+      <?php print $content['articles_bottom']; ?>
     </div>
   <!-- END MAIN COLUMN -->
 

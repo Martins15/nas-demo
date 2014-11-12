@@ -27,7 +27,8 @@ $plugin = array(
     'birds' => t('Birds in this story'),
     'left' => t('Left'),
     'right' => t('Right'),
-    'card_set' => t('Card Set')
+    'card_set' => t('Card Set'),
+    'article_more_features' => t('Article More Features'),
   ),
 );
 
