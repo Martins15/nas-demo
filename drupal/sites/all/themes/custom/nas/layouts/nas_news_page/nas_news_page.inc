@@ -16,6 +16,7 @@ $plugin = array(
   'theme' => 'panels_nas_news_page',
   'regions' => array(
     'header' => t('Header'),
+    'title' => t('News page title'),
     'social' => t('Social buttons'),
     'featured' => t('Featured article'),
     'articles_top' => t('Articles top'),
