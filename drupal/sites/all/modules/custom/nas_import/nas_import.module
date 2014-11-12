@@ -1030,7 +1030,6 @@ function _nas_import_get_contact($name) {
   // Create new contact.
   $node = new stdClass();
   $node->title = $name;
-  $node->uid = 0;
   $node->status = 1;
   $node->type = $node_type;
   $node->created = REQUEST_TIME;
