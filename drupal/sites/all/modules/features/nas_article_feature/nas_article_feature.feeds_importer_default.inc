@@ -108,6 +108,12 @@ function nas_article_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '14',
           ),
+          'field_byline' => array(
+            'name' => 'field_byline',
+            'value' => 'field_byline.[*]',
+            'debug' => 0,
+            'weight' => '15',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
