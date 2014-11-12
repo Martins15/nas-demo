@@ -290,6 +290,8 @@ function pp_create_test_flyway() {
   $node->field_background_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image('default_flyway_section_background.jpg');
 
   $node->field_color_mode[LANGUAGE_NONE][0]['value'] = 'light';
+  $node->field_flyway_states[LANGUAGE_NONE][0]['tid'] = 205;
+  $node->field_flyway_states[LANGUAGE_NONE][1]['tid'] = 206;
   node_save($node);
 
   // Set default display for created flyway.

@@ -9,6 +9,20 @@
 module_load_include('inc', 'nas_fpp', 'nas_fpp.content');
 
 /**
+ * Implements hook_menu().
+ */
+function nas_fpp_menu() {
+  $items['ajax/get/fpp/%'] = array(
+    'page callback' => 'nas_fpp_ajax_get_fpp_callback',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'delivery callback' => 'ajax_deliver',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_entity_info_alter()
  */
 function nas_fpp_entity_info_alter(&$entity_info) {
@@ -502,17 +516,27 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     return;
   }
 
-  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
     ':subtype' => 'uuid:' . $fpp->uuid,
   ))->fetchField();
-
+  if (empty($pid)) {
+    $did_frontpage_query = db_query(
+      'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
+      array(':layout' => 'nas_frontpage')
+    )->fetchCol();
+    $did_frontpage = $did_frontpage_query[0];
+    nas_fpp_create_panels_pane($did_frontpage, 'nas_flyway_section', 'main', 0, $fpp->uuid, 0);
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+      ':subtype' => 'uuid:' . $fpp->uuid,
+    ))->fetchField();
+  }
   ctools_include('modal');
   ctools_include('ajax');
   ctools_modal_add_js();
   ctools_add_js('ajax-responder');
   $links['edit'] = array(
     'title' => t('Edit'),
-    'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $panel_id,
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
     'html' => TRUE,
     'query' => array('reload' => 'true'),
     'attributes' => array(
@@ -531,4 +555,53 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     ),
   );
   $vars['contextual_links'] = drupal_render($build);
+}
+
+/**
+ * AJAX callback function for ajax/get/fpp/%.
+ */
+function nas_fpp_ajax_get_fpp_callback($argument) {
+  //We use 2 functions from this plugin.
+  include(drupal_get_path('module', 'fieldable_panels_panes') . '/plugins/content_types/fieldable_panels_pane.inc');
+  //Select all nas_flyway_section FPPs.
+  $query = db_select('fieldable_panels_panes', 'fpp');
+  $query->fields('fpp', array('bundle', 'uuid'));
+  $query->condition('fpp.bundle', 'nas_flyway_section', '=');
+  $result = $query->execute()->fetchAll();
+
+  foreach ($result as $value) {
+    $subtype_name = 'uuid:' . $value->uuid;
+    $fpp = fieldable_panels_panes_load_entity($subtype_name);
+    $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
+    if(!isset($get_field_flyway[0])) {
+      continue;
+    }    
+    $entity = entity_load('node', array($get_field_flyway[0]['target_id']));
+    $entity = reset($entity);
+    $get_field_flyway_states = field_get_items('node', $entity, 'field_flyway_states');
+    $iso_codes = array();
+    foreach ($get_field_flyway_states as $tid) {
+      $term = taxonomy_term_load($tid['tid']);
+      $get_field_iso_code = field_get_items('taxonomy_term', $term, 'field_iso_code');
+      if (isset($get_field_iso_code[0])) {
+        $iso_codes[] = $get_field_iso_code[0]['value'];
+      }
+    }
+    //Finally check which FPP we have to output based on geolocation.
+    if (in_array($argument, $iso_codes) && FALSE) {
+      $html = drupal_render(fieldable_panels_panes_view($fpp, 'full'));
+    }
+  }
+  if (!isset($html)) {
+    //Geolocation does not return any data or user is out of the any flyway state
+    //so load random nas_flyway_section FPP.
+    $subtype_name = 'uuid:' . $result[array_rand($result)]->uuid;
+    $fpp_rand = fieldable_panels_panes_load_entity($subtype_name);
+    $html = drupal_render(fieldable_panels_panes_view($fpp_rand, 'full'));
+  }
+
+  $ajax_result = array('#type' => 'ajax');
+  $ajax_result['#commands'][] = ajax_command_insert('#flyway-section', $html);
+
+  return $ajax_result;
 }

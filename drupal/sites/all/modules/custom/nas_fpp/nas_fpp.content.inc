@@ -362,7 +362,7 @@ function nas_fpp_create_panes() {
   )->fetchCol();
   if (empty($fpp_query)) {
     fieldable_panels_panes_save($fpp);
-    nas_fpp_create_panels_pane($did_frontpage, $fpp->bundle, 'main');
+    nas_fpp_create_panels_pane($did_frontpage, $fpp->bundle, 'main', 0, '', 0);
   }
   unset($fpp_query);
   unset($fpp);
@@ -371,17 +371,19 @@ function nas_fpp_create_panes() {
 /**
  * Create FPP panel panes.
  */
-function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0) {
-  $fpp_uuid = db_query(
-    'SELECT uuid FROM {fieldable_panels_panes} WHERE bundle LIKE :bundle',
-    array(':bundle' => $bundle)
-  )->fetchField();
+function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0, $uuid = '', $shown = 1) {
+  if (empty($uuid)) {
+    $uuid = db_query(
+      'SELECT uuid FROM {fieldable_panels_panes} WHERE bundle LIKE :bundle',
+      array(':bundle' => $bundle)
+    )->fetchField();
+  }
   $panels_pane = array(
     'did' => $did,
     'panel' => $region,
     'type' => 'fieldable_panels_pane',
-    'subtype' => 'uuid:' . $fpp_uuid,
-    'shown' => 1,
+    'subtype' => 'uuid:' . $uuid,
+    'shown' => $shown,
     'access' => array(),
     'configuration' => array(
       'view_mode' => 'full',
