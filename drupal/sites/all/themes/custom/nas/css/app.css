@@ -8438,7 +8438,7 @@ body.black-bg .slide-img {
   width: 50px;
   height: 55px;
   background-color: rgba(0, 0, 0, 0.5);
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -8448,7 +8448,7 @@ body.black-bg .slide-img {
 }
 .slideshow-button.next {
   right: 0;
-  background-image: url(arrow-right.png);
+  background-image: url(../img/arrow-right.png);
 }
 .slideshow:hover .slideshow-button {
   opacity: 1;
@@ -8578,7 +8578,7 @@ body.black-bg .slide-caption {
   margin-top: -30px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -8588,7 +8588,7 @@ body.black-bg .slide-caption {
 }
 .conservation-slider-button.next {
   right: 0;
-  background-image: url(arrow-right.png);
+  background-image: url(../img/arrow-right.png);
 }
 @media only screen and (min-width: 480px) {
   .conservation-slider-button {
@@ -11213,7 +11213,7 @@ body.touch .sticky-wrapper {
   display: none;
 }
 .welcome-card-illustration img {
-  width: 90%;
+  width: 100%;
 }
 @media only screen and (min-width: 768px) {
   .welcome-card-illustration {
