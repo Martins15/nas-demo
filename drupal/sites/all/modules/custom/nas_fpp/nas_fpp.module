@@ -566,7 +566,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
  */
 function nas_fpp_ajax_get_fpp_callback($argument) {
   //We use 2 functions from this plugin.
-  include drupal_get_path('module', 'fieldable_panels_panes') . '/plugins/content_types/fieldable_panels_pane.inc';
+  module_load_include('inc', 'fieldable_panels_panes', 'plugins/content_types/fieldable_panels_pane');
   //Select all nas_flyway_section FPPs.
   $query = db_select('fieldable_panels_panes', 'fpp');
   $query->fields('fpp', array('bundle', 'uuid'));
@@ -592,7 +592,7 @@ function nas_fpp_ajax_get_fpp_callback($argument) {
       }
     }
     //Finally check which FPP we have to output based on geolocation.
-    if (in_array($argument, $iso_codes) && FALSE) {
+    if (in_array($argument, $iso_codes)) {
       $html = drupal_render(fieldable_panels_panes_view($fpp, 'full'));
     }
   }
