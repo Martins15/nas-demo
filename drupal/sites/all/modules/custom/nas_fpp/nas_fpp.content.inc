@@ -11,6 +11,12 @@ define('NAS_FPP_IMAGE_BANNER_2', 'banner-2.jpg');
 define('NAS_FPP_ED_CARD_1', 'editorial-card-5.jpg');
 define('NAS_FPP_ED_CARD_2', 'editorial-card-6.jpg');
 define('NAS_FPP_ED_CARD_3', 'editorial-card-7.jpg');
+define('NAS_FPP_FLYWAY_IMAGE_HERO_1', 'hero-img-13.jpg');
+define('NAS_FPP_FLYWAY_IMAGE_HERO_2', 'hero-img-14.jpg');
+define('NAS_FPP_FLYWAY_IMAGE_HERO_3', 'hero-img-8.jpg');
+define('NAS_FPP_FLYWAY_MINIMAP', 'flyway-minimap.png');
+define('NAS_FPP_FLYWAY_FRONT_MINIMAP', 'pacific-flyway-map.png');
+define('NAS_FPP_FLYWAY_FRONT_BG', 'breakout-section-flyway.jpg');
 
 /**
  * Load default image by URI, or save from module's folder if not exist.
@@ -98,6 +104,12 @@ function nas_fpp_create_panes() {
     array(':layout' => 'nas_news_page')
   )->fetchCol();
   $did_news = $did_news_query[0];
+
+  $did_frontpage_query = db_query(
+    'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
+    array(':layout' => 'nas_frontpage')
+  )->fetchCol();
+  $did_frontpage = $did_frontpage_query[0];
 
   $pane = new stdClass();
   $pane->did = $did;
@@ -315,17 +327,55 @@ function nas_fpp_create_panes() {
   }
   unset($fpp_query);
   unset($fpp);
+
+  $fpp = new stdClass();
+  $fpp->reusable = 1;
+  $fpp->admin_title = 'Atlantic Flyway';
+  $fpp->category = 'NAS FPP';
+  $fpp->title = 'Atlantic Flyway';
+  $fpp->bundle = 'nas_flyway_section';
+  $fpp->field_about_the_flyways[LANGUAGE_NONE][] = array(
+    'value' => '<p>Audubon follows the birds to our work, organizing our conservation
+     strategies along the four flyways of the Americas.</p>',
+    'format' => 'full_html',
+    'safe_value' => '<p>Audubon follows the birds to our work, organizing our conservation
+     strategies along the four flyways of the Americas.</p>',
+  );
+  $fpp->field_flyway_description[LANGUAGE_NONE][] = array(
+    'value' => '<p>Each year more than a billion birds migrate along the Pacific Flyway,
+     which stretches from the North Slope of Alaska to Central and South America.</p>',
+    'format' => 'full_html',
+    'safe_value' => '<p>Each year more than a billion birds migrate along the Pacific Flyway,
+     which stretches from the North Slope of Alaska to Central and South America.</p>',
+  );
+  $fpp->field_flyway_includes[LANGUAGE_NONE][] = array(
+    'value' => '<p>The Pacific Flyway includes Alaska, Hawaii, Washington, Oregon, and California.</p>',
+    'format' => 'full_html',
+    'safe_value' => '<p>The Pacific Flyway includes Alaska, Hawaii, Washington, Oregon, and California.</p>',
+  );
+  $fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_FRONT_MINIMAP));
+  $fpp->field_hero_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_FRONT_BG));
+  $fpp->field_flyway[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('flyway'));
+  $fpp_query = db_query(
+    'SELECT title FROM {fieldable_panels_panes} WHERE title LIKE :title',
+    array(':title' => $fpp->title)
+  )->fetchCol();
+  if (empty($fpp_query)) {
+    fieldable_panels_panes_save($fpp);
+    nas_fpp_create_panels_pane($did_frontpage, $fpp->bundle, 'main');
+  }
+  unset($fpp_query);
+  unset($fpp);
 }
 
 /**
  * Create FPP panel panes.
  */
 function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0) {
-  $fpp_uuid_query = db_query(
+  $fpp_uuid = db_query(
     'SELECT uuid FROM {fieldable_panels_panes} WHERE bundle LIKE :bundle',
     array(':bundle' => $bundle)
-  )->fetchCol();
-  $fpp_uuid = $fpp_uuid_query[$position];
+  )->fetchField();
   $panels_pane = array(
     'did' => $did,
     'panel' => $region,
@@ -346,4 +396,65 @@ function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0) {
     'locks' => array(),
   );
   drupal_write_record('panels_pane', $panels_pane);
+}
+
+/**
+ * Creates Flyway Hero and Flyway Navigation FPPs test content.
+ *
+ * @param $node object Node in which panelizer panel FPP should be added.
+ */
+function nas_fpp_flyway_create_test_content($node) {
+  $did = db_query('SELECT did FROM {panelizer_entity}
+    WHERE entity_id = :entity_id AND entity_type = :entity_type',
+    array(
+      ':entity_id' => $node->nid,
+      ':entity_type' => 'node',
+    )
+  )->fetchField();
+
+  $fpp = new stdClass();
+  $fpp->reusable = 1;
+  $fpp->admin_title = 'Atlantic Flyway Hero';
+  $fpp->category = 'NAS FPP';
+  $fpp->title = 'Atlantic Flyway Hero';
+  $fpp->bundle = 'nas_fpp_flyway_hero';
+  $fpp->field_flyway_minimap[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_MINIMAP));
+
+  fieldable_panels_panes_save($fpp);
+  // Put before navigation.
+  nas_fpp_create_panels_pane($did, $fpp->bundle, 'header', -1);
+
+  $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_flyway_hero_items'));
+  $field_collection_item->setHostEntity('fieldable_panels_pane', $fpp);
+  $field_collection_item->field_flyway_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
+  $field_collection_item->field_background_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_IMAGE_HERO_1));
+  $field_collection_item->field_map_coordinates[LANGUAGE_NONE][] = array('value' => 'top: 78px; right: 45px;');
+  $field_collection_item->field_description[LANGUAGE_NONE][] = array('value' => 'A brief bit of copy about the page being linked to would go here. Keep it short and sweet');
+  $field_collection_item->save();
+
+  $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_flyway_hero_items'));
+  $field_collection_item->setHostEntity('fieldable_panels_pane', $fpp);
+  $field_collection_item->field_flyway_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
+  $field_collection_item->field_background_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_IMAGE_HERO_2));
+  $field_collection_item->field_map_coordinates[LANGUAGE_NONE][] = array('value' => 'top: 127px; right: 87px;');
+  $field_collection_item->field_description[LANGUAGE_NONE][] = array('value' => 'A brief bit of copy about the page being linked to would go here. Keep it short and sweet');
+  $field_collection_item->save();
+
+  $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_flyway_hero_items'));
+  $field_collection_item->setHostEntity('fieldable_panels_pane', $fpp);
+  $field_collection_item->field_flyway_bird[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('bird'));
+  $field_collection_item->field_background_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_IMAGE_HERO_3));
+  $field_collection_item->field_map_coordinates[LANGUAGE_NONE][] = array('value' => 'top: 183px; right: 114px;');
+  $field_collection_item->field_description[LANGUAGE_NONE][] = array('value' => 'A brief bit of copy about the page being linked to would go here. Keep it short and sweet');
+  $field_collection_item->save();
+
+  fieldable_panels_panes_save($fpp);
+  unset($fpp);
+
+  // Update Flyway navigation menu FPP.
+  $nav_fpid = db_query("SELECT fpid FROM {fieldable_panels_panes} WHERE bundle = :bundle", array(':bundle' => 'nas_fpp_flyway_nav'))->fetchField();
+  $nav_fpp = fieldable_panels_panes_load($nav_fpid);
+  // Add one more flyway node reference.
+  $nav_fpp->field_flyways[LANGUAGE_NONE][] = array('target_id' => $node->nid);
+  fieldable_panels_panes_save($nav_fpp);
 }

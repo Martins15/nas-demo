@@ -20,6 +20,8 @@ function nas_panes_install() {
     'flyway-path-4.jpg',
     'hero-img-15.jpg',
     'breakout-section-6.jpg',
+    'breakout-section-4.jpg',
+    'curtain-1.jpg',
   );
   foreach ($images as $filename) {
     $filepath = drupal_get_path('module', 'nas_panes') . '/images/' . $filename;

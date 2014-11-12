@@ -34,6 +34,14 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_import_nodes',
   );
+  // @todo: to be removed on release.
+  $tasks['create_test_flyway'] = array(
+    'display_name' => st('Create Flyway CT nodes for testing purposes'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_create_test_flyway',
+  );
   $tasks['content_after_import'] = array(
     'display_name' => st('Content after import'),
     'display' => FALSE,
@@ -48,14 +56,7 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_set_editor_pass',
   );
-  // @todo: to be removed on release
-  $tasks['create_test_flyway'] = array(
-    'display_name' => st('Create Flyway CT nodes for testing purposes'),
-    'display' => FALSE,
-    'type' => 'normal',
-    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
-    'function' => 'pp_create_test_flyway',
-  );
+
   return $tasks;
 }
 
@@ -91,20 +92,30 @@ function pp_import_nodes() {
   $result = drupal_http_request(EXPORT_NODE_TYPE_CONTACT_LIST_NIDS_URL . $content_type);
   $contact_node_nids = drupal_json_decode($result->data);
 
+  $content_type = 'author';
+  $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
+  $author_node_nids = drupal_json_decode($result->data);
+
   // No need to import whole set of data for local development.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     $user_uids = array_slice($user_uids, 0, 20);
+    $author_node_nids = array_slice($author_node_nids, 0, 20);
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
     $news_node_nids = array_slice($news_node_nids, 0, 19);
     // To have a news node with embeded images.
     $news_node_nids[] = 158806;
     $news_node_nids[] = 156951;
+    // News in unpublished status.
+    $news_node_nids[] = 71496;
 
     $magazine_issue_node_nids = array(
+      4918,
       157656,
       152231,
       133216,
       127951,
+      // Magazine issue in unpublished status.
+      5321,
     );
     $magazine_article_node_nids = array(
       159291,
@@ -118,10 +129,12 @@ function pp_import_nodes() {
       146961,
       154856,
       189331,
-      // node with inline image that NOT FOUND
+      // Node with inline image that NOT FOUND.
       178166,
-      // node with inline image to test
+      // Node with inline image to test.
       189306,
+      // Node with author relationship.
+      9101,
     );
   }
 
@@ -130,24 +143,33 @@ function pp_import_nodes() {
 
   $operations = array();
 
+  $node_callback = 'pp_import_nodes_batch';
+  $user_callback = 'pp_import_users_batch';
   foreach (array_chunk($user_uids, 10) as $chunk) {
-    $operations[] = array('pp_import_users_batch', array($chunk, 'users_import'));
+    $operations[] = array($user_callback, array($chunk, 'users_import'));
+  }
+
+  foreach (array_chunk($author_node_nids, 10) as $chunk) {
+    $operations[] = array($node_callback, array($chunk, 'authors_import'));
   }
 
   foreach (array_chunk($bird_node_nids, 10) as $chunk) {
-    $operations[] = array('pp_import_nodes_batch', array($chunk, 'birds_import'));
+    $operations[] = array($node_callback, array($chunk, 'birds_import'));
   }
 
   foreach (array_chunk($news_node_nids, 10) as $chunk) {
-    $operations[] = array('pp_import_nodes_batch', array($chunk, 'news_import'));
+    $operations[] = array($node_callback, array($chunk, 'news_import'));
   }
 
   foreach (array_chunk($magazine_issue_node_nids, 10) as $chunk) {
-    $operations[] = array('pp_import_nodes_batch', array($chunk, 'magazine_issues_import'));
+    $operations[] = array(
+      $node_callback,
+      array($chunk, 'magazine_issues_import'),
+    );
   }
 
   foreach (array_chunk($contact_node_nids, 10) as $chunk) {
-    $operations[] = array('pp_import_nodes_batch', array($chunk, 'contacts_import'));
+    $operations[] = array($node_callback, array($chunk, 'contacts_import'));
   }
 
   variable_set('pp_import_timer', time());
@@ -170,10 +192,11 @@ function pp_import_nodes() {
 function pp_import_nodes_batch($nids, $importer_id) {
   switch ($importer_id) {
     case 'contacts_import':
-        $json_backend = LOAD_NODE_TYPE_CONTACT_JSON_OBJECT_URL;
+      $json_backend = LOAD_NODE_TYPE_CONTACT_JSON_OBJECT_URL;
       break;
+
     default:
-        $json_backend = LOAD_NODE_JSON_OBJECT_URL;
+      $json_backend = LOAD_NODE_JSON_OBJECT_URL;
       break;
   }
   foreach ($nids as $nid) {
@@ -181,7 +204,6 @@ function pp_import_nodes_batch($nids, $importer_id) {
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
-    feeds_cache_clear(FALSE);
     $source->import();
   }
 }
@@ -195,7 +217,6 @@ function pp_import_users_batch($uids, $importer_id) {
     $source = feeds_source($importer_id);
     $source->addConfig($config);
     $source->save();
-    feeds_cache_clear(FALSE);
     $source->import();
   }
 }
@@ -222,8 +243,13 @@ function pp_content_after_import() {
   if (function_exists('nas_update_text_fields_format')) {
     nas_update_text_fields_format();
   }
+
+  module_invoke_all('nas_after_import');
 }
 
+/**
+ * Save timer function.
+ */
 function pp_import_save_timer() {
   $start = variable_get('pp_import_timer', time());
   $stop = time();
@@ -263,6 +289,8 @@ function pp_set_editor_pass() {
  * Create node of type Flyway for testing purposes.
  */
 function pp_create_test_flyway() {
+  pp_create_flyway_navigation_menu_fpp();
+
   // Create node object.
   $node = new StdClass();
   $node->type = 'flyway';
@@ -308,4 +336,45 @@ function pp_create_test_flyway() {
     'extra' => array(),
   );
   drupal_write_record('panelizer_entity', $panelizer_entity);
+
+  $node = node_load($node->nid, NULL, TRUE);
+  $node->panelizer['page_manager']->display_is_modified = TRUE;
+  node_save($node);
+
+  if (function_exists('nas_fpp_flyway_create_test_content') || module_load_include('inc', 'nas_fpp', 'nas_fpp.content')) {
+    nas_fpp_flyway_create_test_content($node);
+  }
+}
+
+/**
+ * Puts flyway panelizer defaults in DB. Creates FPP and adds it to panel.
+ */
+function pp_create_flyway_navigation_menu_fpp() {
+  $name = 'node:flyway:default';
+  // Move node panelizer to DB if is not there.
+  if (!$did = db_query('SELECT did FROM {panelizer_defaults} WHERE name = :name', array(':name' => $name))->fetchField()) {
+    $handler = panelizer_entity_plugin_get_handler('node');
+    $bundle = 'flyway.page_manager';
+    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
+    $cache_key = implode(':', array('panelizer', 'default', $handler->entity_type, $bundle, $name));
+    $panelizer->display = panels_edit_cache_get($cache_key)->display;
+    ctools_export_crud_save('panelizer_defaults', $panelizer);
+    // Get display id for future usage.
+    $did = db_query('SELECT did FROM {panelizer_defaults} WHERE name = :name', array(':name' => $name))->fetchField();
+  }
+
+  $nav_fpp = new stdClass();
+  $nav_fpp->reusable = 1;
+  $nav_fpp->admin_title = 'Flyway Navigation Menu';
+  $nav_fpp->category = 'NAS FPP';
+  $nav_fpp->title = 'Flyway Navigation Menu';
+  $nav_fpp->bundle = 'nas_fpp_flyway_nav';
+  fieldable_panels_panes_save($nav_fpp);
+
+  // If FPP is just created put it in default panel.
+  nas_fpp_create_panels_pane($did, $nav_fpp->bundle, 'header', 0);
+  panelizer_panels_cache_clear('default:node:flyway.page_manager:node:flyway:default', NULL);
+  // We have to reset static cache, because this defaults will be cloned on node
+  // creation and changes have to be there.
+  drupal_static_reset('ctools_export_load_object');
 }

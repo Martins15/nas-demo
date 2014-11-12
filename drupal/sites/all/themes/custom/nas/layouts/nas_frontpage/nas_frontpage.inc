@@ -15,7 +15,11 @@ $plugin = array(
   'icon' => 'nas_frontpage.png',
   'theme' => 'panels_nas_frontpage',
   'regions' => array(
-    'header' => t('Header'),
-    'top' => t('Top'),
+    'top' => t('Top Hero Image'),
+    'featured' => t('Featured content'),
+    'bird_news' => t('Birds in the News'),
+    'more_headlines' => t('More headlines'),
+    'editorial_cards' => t('Editorial Cards'),
+    'main' => t('Main'),
   ),
 );

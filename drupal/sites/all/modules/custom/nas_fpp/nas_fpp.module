@@ -39,6 +39,33 @@ function nas_fpp_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
+  $entity_info['fieldable_panels_pane']['bundles']['nas_fpp_flyway_hero'] = array(
+    'label' => t('Flyway Hero'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_fpp_flyway_hero',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+  $entity_info['fieldable_panels_pane']['bundles']['nas_fpp_flyway_nav'] = array(
+    'label' => t('Flyway Navigation Menu'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_fpp_flyway_nav',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
+  $entity_info['fieldable_panels_pane']['bundles']['nas_flyway_section'] = array(
+    'label' => t('Flyway section'),
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/nas_flyway_section',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
   $entity_info['node']['view modes']['nas_node_teaser_small'] = array(
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
@@ -53,6 +80,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   );
   $entity_info['node']['view modes']['nas_node_featured'] = array(
     'label' => t('Featured'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['nas_node_teaser'] = array(
+    'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
   );
   $entity_info['file']['view modes']['hero'] = array(
@@ -271,6 +302,217 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
   $links['edit'] = array(
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
+}
+
+/**
+ * Preprocess function for nas_editorial_cards FPP.
+ */
+function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
+  $fpp = $vars['elements']['#fieldable_panels_pane'];
+  $vars['title'] = $fpp->title;
+  $vars['links'] = theme('item_list', array(
+    'items' => array(
+      l(t('Explore Our Bird Guide'), ''),
+      l(t('Adopt a Bird'), '', array('attributes' => array('class' => array('cta')))),
+    ),
+    'attributes' => array(
+      'class' => array(
+        'section-nav',
+        'inline-list',
+      )
+    ),
+  ));
+
+  $vars['flyway_hero_items'] = array();
+  $delta = 1;
+  if ($hero_items = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway_hero_items')) {
+    foreach ($hero_items as $hero_item) {
+      $fc = field_collection_item_load($hero_item['value']);
+      $bird = $fc->field_flyway_bird[LANGUAGE_NONE][0]['entity'];
+      $vars['flyway_hero_items'][$delta] = array(
+        'bird_url' => url('node/' . $bird->nid),
+        'bird_title' => check_plain($bird->title),
+        'map_coordinates' => $fc->field_map_coordinates[LANGUAGE_NONE][0]['safe_value'],
+        'background' => file_create_url($fc->field_background_image[LANGUAGE_NONE][0]['uri']),
+        'description' => $fc->field_description[LANGUAGE_NONE][0]['safe_value'],
+      );
+      $delta++;
+    }
+  }
+
+  $vars['minimap'] = file_create_url($fpp->field_flyway_minimap[LANGUAGE_NONE][0]['uri']);
+
+  $vars['title'] = '';
+  $node = menu_get_object();
+  if ($node && isset($node->title)) {
+    $vars['title'] = check_plain($node->title);
+  }
+
+  $vars['blue_text_link'] = '';
+  if ($node && $blue = nas_panes_get_blue_text_link($node)) {
+    $vars['blue_text_link'] = l($blue[0], $blue[1], array('classes' => array('hero-slug')));
+  };
+
+  $vars['contextual_links'] = '';
+
+  // Early return pattern.
+  if (!$node || !user_access('administer site configuration')) {
+    return;
+  }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panelizer:node:' . $node->nid . ':page_manager/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
+}
+
+/**
+ * Preprocess function for nas_editorial_cards FPP.
+ */
+function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
+  $fpp = $vars['elements']['#fieldable_panels_pane'];
+  $vars['title'] = check_plain($fpp->title);
+
+  $vars['links'] = array();
+  if ($field_items = field_get_items('fieldable_panels_pane', $fpp, 'field_flyways')) {
+    foreach ($field_items as $field_item) {
+      $node = node_load($field_item['target_id']);
+      $path = 'node/' . $node->nid;
+      $options = array();
+      if ($_GET['q'] == $path) {
+        $options['attributes'] = array('class' => array('current'));
+      }
+      $vars['links'][] = l($node->title, $path, $options);
+    }
+  }
+
+  $vars['contextual_links'] = '';
+
+  // Early return pattern.
+  if (!user_access('administer site configuration')) {
+    return;
+  }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panelizer:default:node:flyway.page_manager:node:flyway:default/' . $panel_id,
+    'html' => TRUE,
+    'query' => array('reload' => 'true'),
+    'attributes' => array(
+      'class' => array('ctools-use-modal'),
+      'title' => t('Edit'),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+  $vars['contextual_links'] = drupal_render($build);
+}
+
+/**
+ * Preprocess function for nas_featured_content_cards FPP.
+ */
+function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
+  $fpp = $vars['elements']['#fieldable_panels_pane'];
+
+  $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
+  $vars['image'] = '';
+  if (isset($get_field_image[0]['uri'])) {
+    $vars['image'] = theme('image_style', array(
+      'style_name' => 'front_flyway_image',
+      'path' => $get_field_image[0]['uri'],
+    ));
+  }
+  $get_field_hero_image = field_get_items('fieldable_panels_pane', $fpp, 'field_hero_image');
+  $vars['hero_image'] = '';
+  if (isset($get_field_hero_image[0]['file']->uri)) {
+    $vars['hero_image'] = file_create_url($get_field_hero_image[0]['file']->uri);
+  }
+  $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
+  $vars['title'] = $get_field_flyway[0]['entity']->title;
+  $get_field_flyway_description = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_description');
+  $vars['flyway_description'] = $get_field_flyway_description[0]['#markup'];
+  $get_field_flyway_includes = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_includes');
+  $vars['flyway_includes'] = $get_field_flyway_includes[0]['#markup'];
+  $get_field_about_the_flyways = field_view_field('fieldable_panels_pane', $fpp, 'field_about_the_flyways');
+  $vars['about_the_flyways'] = $get_field_about_the_flyways[0]['#markup'];
+  $vars['about_link'] = l(t('About the Flyways'), 'flyways');
+  $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
+
+  $vars['contextual_links'] = '';
+  if (!user_access('administer site configuration')) {
+    return;
+  }
+
+  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+    ':subtype' => 'uuid:' . $fpp->uuid,
+  ))->fetchField();
+
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  ctools_add_js('ajax-responder');
+  $links['edit'] = array(
+    'title' => t('Edit'),
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $panel_id,
     'html' => TRUE,
     'query' => array('reload' => 'true'),
     'attributes' => array(

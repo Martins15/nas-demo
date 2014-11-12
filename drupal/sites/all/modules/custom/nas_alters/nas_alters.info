@@ -1,0 +1,4 @@
+name = NAS Alters
+description = Contains additional alters.
+core = 7.x
+package = NAS

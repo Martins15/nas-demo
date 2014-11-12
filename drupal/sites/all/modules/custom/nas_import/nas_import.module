@@ -88,6 +88,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'users_import':
       nas_import_feeds_presave_users_import($source, $entity, $item);
       break;
+
+    case 'magazine_issues_import':
+      nas_import_feeds_presave_magazine_issues_import($source, $entity, $item);
+      break;
   }
 }
 
@@ -377,21 +381,33 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
       );
     }
   }
-  // Replace old uid by Contact node nid.
-  if (!empty($item['uid'])) {
-    $users_old_uids = variable_get('nas_users_import_uids');
-    $contact_nid = 1;
+
+  // Replace author by Contact node nid.
+  $contact_nid = 1;
+  if (!empty($item['field_author_profile_ref'][0]['nid'])) {
+    // If exists author relationship.
+    $source_author_id = $item['field_author_profile_ref'][0]['nid'];
+    $authors_nids_mapping = variable_get('nas_authors_nids_mapping', array());
+    if (isset($authors_nids_mapping[$source_author_id])) {
+      $contact_nid = $authors_nids_mapping[$source_author_id];
+    }
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
+  elseif (!empty($item['uid'])) {
+    // If exists user relationship.
+    $users_old_uids = variable_get('nas_users_import_uids', array());
     if (isset($users_old_uids[$item['uid']])) {
       $contact_nid = $users_old_uids[$item['uid']];
     }
     $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
   }
+
   // Save reference of Magazine Article to Magazine Issue.
   if (!empty($item['field_magazine_issue_ref'][0]['nid'])) {
     $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
   }
   if (!empty($item['created'])) {
-    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);;
+    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);
   }
   $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
 }
@@ -419,7 +435,7 @@ function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, 
     );
   }
 
-  // Set profile bio
+  // Set profile bio.
   if (!empty($item['field_profile_biography'])) {
     $entity->field_contact_bio[LANGUAGE_NONE][0] = array(
       'value' => $item['field_profile_biography'][0]['value'],
@@ -429,7 +445,9 @@ function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, 
 }
 
 /**
- * hook_feeds_presave for users_import importer.
+ * Implements hook_feeds_presave().
+ *
+ * For users_import importer().
  */
 function nas_import_feeds_presave_users_import($source, $entity, $item) {
   if (!empty($item['profile_full_name'])) {
@@ -438,52 +456,76 @@ function nas_import_feeds_presave_users_import($source, $entity, $item) {
 }
 
 /**
+ * hook_feeds_presave for magazine_issues_import importer.
+ */
+function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $entity, $item) {
+  if (!empty($item['field_magazine_cover'])) {
+    nas_import_import_image($entity, $item['field_magazine_cover'], 'field_issue_cover');
+  }
+  if (!empty($item['field_magazine_publication_date'][0]['value'])) {
+    $date = date_create($item['field_magazine_publication_date'][0]['value']);
+    $entity->field_issue_date[LANGUAGE_NONE][0]['value'] = date_format($date, 'Y-m-d - H:i:s');
+    $entity->field_issue_date[LANGUAGE_NONE][0]['timezone'] = $item['field_magazine_publication_date'][0]['timezone'];
+    $entity->field_issue_date[LANGUAGE_NONE][0]['timezone_db'] = $item['field_magazine_publication_date'][0]['timezone_db'];
+  }
+}
+
+/**
  * Implements hook_feeds_after_save().
  */
 function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
-  if ($entity->feeds_item->id == 'users_import') {
-    $users_old_uids = variable_get('nas_users_import_uids', '');
-    $users_old_uids[$item['uid']] = $entity->nid;
-    variable_set('nas_users_import_uids', $users_old_uids);
-  }
-  if ($entity->feeds_item->id == 'news_import') {
-    $nas_articles_nids_mapping = variable_get('nas_articles_nids_mapping', '');
-    $nas_articles_nids_mapping[$item['nid']] = $entity->nid;
-    variable_set('nas_articles_nids_mapping', $nas_articles_nids_mapping);
-    // Set Press Release display for imported articles.
-    $panelizer_entity_name = 'node:article:press_release';
-    if ($item['type'] == 'magazine_article') {
-      // Set Big Image display for imported Magazine articles.
-      $panelizer_entity_name = 'node:article:big_image';
-    }
-    $panelizer_entity = array(
-      'entity_type' => 'node',
-      'entity_id' => $entity->nid,
-      'revision_id' => $entity->nid,
-      'name' => $panelizer_entity_name,
-      'no_blocks' => 0,
-      'css_id' => '',
-      'css' => '',
-      'pipeline' => 'standard',
-      'contexts' => array(),
-      'relationships' => array(),
-      'did' => 0,
-      'view_mode' => 'page_manager',
-      'css_class' => '',
-      'title_element' => 'H2',
-      'link_to_entity' => 1,
-      'extra' => array(),
-    );
-    drupal_write_record('panelizer_entity', $panelizer_entity);
-    return;
-  }
-  if ($entity->feeds_item->id == 'magazine_issues_import') {
-    $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping', '');
-    $nas_magazine_issues_nids_mapping[$item['nid']] = $entity->nid;
-    variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
-    return;
+  switch ($entity->feeds_item->id) {
+    case 'users_import':
+      $users_old_uids = variable_get('nas_users_import_uids', array());
+      $users_old_uids[$item['uid']] = $entity->nid;
+      variable_set('nas_users_import_uids', $users_old_uids);
+      break;
+
+    case 'authors_import':
+      $authors_nids_mapping = variable_get('nas_authors_nids_mapping', array());
+      $authors_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_authors_nids_mapping', $authors_nids_mapping);
+      break;
+
+    case 'news_import':
+      $nas_articles_nids_mapping = variable_get('nas_articles_nids_mapping', array());
+      $nas_articles_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_articles_nids_mapping', $nas_articles_nids_mapping);
+      // Set Press Release display for imported articles.
+      $panelizer_entity_name = 'node:article:press_release';
+      if ($item['type'] == 'magazine_article') {
+        // Set Big Image display for imported Magazine articles.
+        $panelizer_entity_name = 'node:article:big_image';
+      }
+      $panelizer_entity = array(
+        'entity_type' => 'node',
+        'entity_id' => $entity->nid,
+        'revision_id' => $entity->nid,
+        'name' => $panelizer_entity_name,
+        'no_blocks' => 0,
+        'css_id' => '',
+        'css' => '',
+        'pipeline' => 'standard',
+        'contexts' => array(),
+        'relationships' => array(),
+        'did' => 0,
+        'view_mode' => 'page_manager',
+        'css_class' => '',
+        'title_element' => 'H2',
+        'link_to_entity' => 1,
+        'extra' => array(),
+      );
+      drupal_write_record('panelizer_entity', $panelizer_entity);
+      break;
+
+    case 'magazine_issues_import':
+      $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping', '');
+      $nas_magazine_issues_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
+      break;
   }
 }
+
 /**
  * Retrieve and save remote file.
  *
