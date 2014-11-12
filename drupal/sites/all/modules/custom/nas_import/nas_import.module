@@ -393,6 +393,11 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
     }
     $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
   }
+  elseif (!empty($item['field_byline'][0]['value'])) {
+    // Get author by value from "Byline" field.
+    $author_name = $item['field_byline'][0]['value'];
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = _nas_import_get_contact($author_name);
+  }
   elseif (!empty($item['uid'])) {
     // If exists user relationship.
     $users_old_uids = variable_get('nas_users_import_uids', array());
@@ -1002,4 +1007,37 @@ function _nas_import_system_retrieve_file($url, $destination = NULL, $managed = 
   }
 
   return $local;
+}
+
+/**
+ * Returns contact by name.
+ */
+function _nas_import_get_contact($name) {
+  $node_type = 'contact';
+
+  // Get contact by name.
+  $nid = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', $node_type)
+    ->condition('n.title', $name)
+    ->execute()
+    ->fetchField();
+
+  if ($nid) {
+    return $nid;
+  }
+
+  // Create new contact.
+  $node = new stdClass();
+  $node->title = $name;
+  $node->status = 1;
+  $node->type = $node_type;
+  $node->created = REQUEST_TIME;
+  $node->is_new = TRUE;
+  $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node = node_submit($node);
+  node_save($node);
+
+  return $node->nid;
 }
