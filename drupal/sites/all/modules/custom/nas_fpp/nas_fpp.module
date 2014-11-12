@@ -566,7 +566,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
  */
 function nas_fpp_ajax_get_fpp_callback($argument) {
   //We use 2 functions from this plugin.
-  include(drupal_get_path('module', 'fieldable_panels_panes') . '/plugins/content_types/fieldable_panels_pane.inc');
+  include drupal_get_path('module', 'fieldable_panels_panes') . '/plugins/content_types/fieldable_panels_pane.inc';
   //Select all nas_flyway_section FPPs.
   $query = db_select('fieldable_panels_panes', 'fpp');
   $query->fields('fpp', array('bundle', 'uuid'));
@@ -577,9 +577,9 @@ function nas_fpp_ajax_get_fpp_callback($argument) {
     $subtype_name = 'uuid:' . $value->uuid;
     $fpp = fieldable_panels_panes_load_entity($subtype_name);
     $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
-    if(!isset($get_field_flyway[0])) {
+    if (!isset($get_field_flyway[0])) {
       continue;
-    }    
+    }
     $entity = entity_load('node', array($get_field_flyway[0]['target_id']));
     $entity = reset($entity);
     $get_field_flyway_states = field_get_items('node', $entity, 'field_flyway_states');
