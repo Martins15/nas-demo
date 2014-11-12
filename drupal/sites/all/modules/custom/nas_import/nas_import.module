@@ -1034,9 +1034,10 @@ function _nas_import_get_contact($name) {
   $node->status = 1;
   $node->type = $node_type;
   $node->created = REQUEST_TIME;
-  $node->changed = REQUEST_TIME;
   $node->is_new = TRUE;
   $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node = node_submit($node);
   node_save($node);
 
   return $node->nid;
