@@ -11,7 +11,7 @@
   <h3 class="close-heading"><?php print $view->display[$view->current_display]->display_title; ?></h3>
   <hr>
   <?php foreach ($rows as $id => $row): ?>
-  <div<?php if ($classes_array[$id]): print ' class="' . $classes_array[$id] .'"'; endif; ?>>
+  <div<?php  print !empty($classes_array[$id]) ? ' class="' . $classes_array[$id] . '"' : ''; ?>>
     <?php print $row; ?>
   </div>
   <?php endforeach; ?>
