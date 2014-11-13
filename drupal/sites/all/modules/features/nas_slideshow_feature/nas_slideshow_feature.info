@@ -29,4 +29,5 @@ features[variable][] = menu_parent_slideshow
 features[variable][] = node_options_slideshow
 features[variable][] = node_preview_slideshow
 features[variable][] = node_submitted_slideshow
+features[variable][] = panelizer_defaults_node_slideshow
 project path = sites/all/modules/features
