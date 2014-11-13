@@ -1209,7 +1209,7 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_pressrelease_contact'
   $field_instances['node-article-field_pressrelease_contact'] = array(
     'bundle' => 'article',
-    'default_value' => NULL,
+    'default_value' => variable_get('nas_default_pressrelease_contact', NULL),
     'deleted' => 0,
     'description' => '',
     'display' => array(

@@ -496,7 +496,7 @@ function nas_import_feeds_feature_feeds_importer_default() {
         'authorize' => 0,
         'mappings' => array(
           0 => array(
-            'source' => 'nid',
+            'source' => 'uid',
             'target' => 'guid',
             'unique' => 1,
           ),
