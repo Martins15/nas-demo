@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Plugin definition file for panel's layout.
+ */
+
+/**
+ * Implementation of hook_panels_layouts().
+ */
+// Plugin definition.
+$plugin = array(
+  'title' => t('Static Page 2 columns'),
+  'category' => t('NAS'),
+  'icon' => 'nas_static_page_2col.png',
+  'theme' => 'nas_static_page_2col',
+//  'settings form' => 'nas_article_fullscreen_settings_form',
+  'regions' => array(
+    'header_hero' => t('Header Hero'),
+    'header' => t('Header'),
+    'header_hero_attr_text' => t('Hero attribution text'),
+    'big_image' => t('Fullscreen image'),
+    'local_menu' => t('Local menu'),
+    'subtitle' => t('Subtitle'),
+    'main' => t('Main'),
+    'social' => t('Social icons'),
+    'right' => t('Right'),
+    'card_set' => t('Card Set')
+  ),
+);
+
+/**
+ * Layout settings form builder.
+ *
+ * @param $display
+ * @param $layout
+ * @param $layout_settings
+ */
+//function nas_article_fullscreen_settings_form($display, $layout, $layout_settings) {
+//  $form = array();
+//  $form['color_mode'] = array(
+//    '#type' => 'textfield',
+//    '#title' => t('Color mode'),
+//    '#default_value' => isset($layout_settings['color_mode']) ? $layout_settings['color_mode'] : '',
+//    '#description' => t('You may use substitutions in this field.')
+//  );
+//
+//  return $form;
+//}

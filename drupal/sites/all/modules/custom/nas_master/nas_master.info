@@ -11,6 +11,7 @@ dependencies[] = nas_pages_feature
 dependencies[] = nas_views_feature
 dependencies[] = nas_article_feature
 dependencies[] = nas_colorbox_feature
+dependencies[] = nas_static_page_feature
 dependencies[] = nas_import
 dependencies[] = nas_soundmanager
 dependencies[] = nas_menu_feature
