@@ -20,6 +20,7 @@ $(function() {
         $slides.css("width", $("body").width() + "px");
         $scroller.css("width", $("body").width() * $slides.length + "px");
 
+        Slideshow._definePortrait($slides);
         Slideshow._resizeSlides($slides);
         Slideshow._setupIndicatorPosition($slides, $indicator);
         Slideshow._setupButtonPosition($slides, $buttons);
@@ -228,6 +229,19 @@ $(function() {
         }
         else if ($this.hasClass("restart")) {
           scroll.goToPage(0, 0, 400);
+        }
+      });
+    };
+
+    /**
+     * Define portrait images.
+     */
+    Slideshow._definePortrait = function($slides) {
+      $slides.each(function() {
+        var naturalHeight = $(this).find('.slide-img img')[0].naturalHeight;
+        var naturalWidth = $(this).find('.slide-img img')[0].naturalWidth;
+        if (naturalHeight !== undefined && naturalWidth !== undefined && naturalHeight > naturalWidth) {
+          $(this).addClass('portrait');
         }
       });
     };
