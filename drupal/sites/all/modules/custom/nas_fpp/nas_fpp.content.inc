@@ -342,6 +342,45 @@ function nas_fpp_create_panes() {
      strategies along the four flyways of the Americas.</p>',
   );
   $fpp->field_flyway_description[LANGUAGE_NONE][] = array(
+    'value' => '<p>Each year more than a billion birds migrate along the Atlantic Flyway,
+     which stretches from the North Slope of Alaska to Central and South America.</p>',
+    'format' => 'full_html',
+    'safe_value' => '<p>Each year more than a billion birds migrate along the Atlantic Flyway,
+     which stretches from the North Slope of Alaska to Central and South America.</p>',
+  );
+  $fpp->field_flyway_includes[LANGUAGE_NONE][] = array(
+    'value' => '<p>The Atlantic Flyway includes Alaska, Hawaii, Washington, Oregon, and California.</p>',
+    'format' => 'full_html',
+    'safe_value' => '<p>The Atlantic Flyway includes Alaska, Hawaii, Washington, Oregon, and California.</p>',
+  );
+  $fpp->field_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_FRONT_MINIMAP));
+  $fpp->field_hero_image[LANGUAGE_NONE][] = array('fid' => nas_fpp_get_default_image(NAS_FPP_FLYWAY_FRONT_BG));
+  $fpp->field_flyway[LANGUAGE_NONE][] = array('target_id' => nas_fpp_get_node_nid_by_type('flyway'));
+  $fpp_query = db_query(
+    'SELECT title FROM {fieldable_panels_panes} WHERE title LIKE :title',
+    array(':title' => $fpp->title)
+  )->fetchCol();
+  if (empty($fpp_query)) {
+    fieldable_panels_panes_save($fpp);
+    nas_fpp_create_panels_pane($did_frontpage, $fpp->bundle, 'main', 0, '', 0);
+  }
+  unset($fpp_query);
+  unset($fpp);
+
+  $fpp = new stdClass();
+  $fpp->reusable = 1;
+  $fpp->admin_title = 'Pacific Flyway';
+  $fpp->category = 'NAS FPP';
+  $fpp->title = 'Pacific Flyway';
+  $fpp->bundle = 'nas_flyway_section';
+  $fpp->field_about_the_flyways[LANGUAGE_NONE][] = array(
+    'value' => '<p>Audubon follows the birds to our work, organizing our conservation
+     strategies along the four flyways of the Americas.</p>',
+    'format' => 'full_html',
+    'safe_value' => '<p>Audubon follows the birds to our work, organizing our conservation
+     strategies along the four flyways of the Americas.</p>',
+  );
+  $fpp->field_flyway_description[LANGUAGE_NONE][] = array(
     'value' => '<p>Each year more than a billion birds migrate along the Pacific Flyway,
      which stretches from the North Slope of Alaska to Central and South America.</p>',
     'format' => 'full_html',
