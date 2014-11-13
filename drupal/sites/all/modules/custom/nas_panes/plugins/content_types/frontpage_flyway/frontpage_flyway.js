@@ -1,9 +1,9 @@
 (function($) {
-  function in_array(needle, haystack, strict) {
+  function in_array(needle, haystack) {
     var found = false,
-      key, strict = !!strict;
+      key;
     for (key in haystack) {
-      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+      if (haystack[key] == needle) {
         found = true;
         break;
       }
@@ -24,7 +24,7 @@
         var fpp_class_to_show = '',
           all_fpp_classes = [],
           class_to_show = '';
-        for (key in Drupal.settings.frontpage_flyway) {
+        for (var key in Drupal.settings.frontpage_flyway) {
           if (in_array(StateIsoCode, Drupal.settings.frontpage_flyway[key])) {
             fpp_class_to_show = key;
           }
