@@ -10,6 +10,7 @@
 function nas_formats_date_format_types() {
   return array(
     'nas_date' => t('NAS Date'),
+    'nas_year_only' => t('NAS Year only'),
   );
 }
 
@@ -21,6 +22,11 @@ function nas_formats_date_formats() {
     array(
       'type' => 'nas_date',
       'format' => 'F j, Y',
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'nas_year_only',
+      'format' => 'Y',
       'locales' => array(),
     ),
   );
