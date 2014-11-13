@@ -30,6 +30,7 @@ $(function() {
     Slideshow._resizeSlides = function($slides) {
       var $imgWrappers = $slides.find(".slide-img"),
         $imgs = $imgWrappers.find("img"),
+        $capSlides,
         aspectRatio = $(window).width() / $(window).height();
 
       $imgs.removeAttr("style");
@@ -73,8 +74,8 @@ $(function() {
       if($(window).width() < 768 && aspectRatio < 1) {
         var $portraitSlides = $slides.filter(".portrait").not(".title-slide, .end-slide"),
           $landscapeSlides = $slides.not(".portrait, .title-slide, .end-slide"),
-          $capSlides = $slides.filter(".title-slide, .end-slide"),
           slideshowHeight;
+        $capSlides = $slides.filter(".title-slide, .end-slide");
 
         // If there are portrait images, set the wrapper heights accordingly
         if($portraitSlides.length) {
@@ -115,8 +116,8 @@ $(function() {
       }
       // Landscape-orientation resizing rules
       else if($(window).width() < 768 && aspectRatio > 1.45) {
-        var $capSlides = $slides.filter(".title-slide, .end-slide"),
-          maxHeight = $(window).height() * 0.75 + "px";
+        var maxHeight = $(window).height() * 0.75 + "px";
+        $capSlides = $slides.filter(".title-slide, .end-slide");
 
         $slides.not(".title-slide, .end-slide").find("img").css({
           "height": maxHeight,
