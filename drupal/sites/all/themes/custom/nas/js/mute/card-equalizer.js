@@ -26,7 +26,7 @@ $(function() {
       // Fix height for Edotiral blocks.
       $cardsEd.each(function() {
         var $this = $(this);
-        cardHeights.push($this.outerHeight());
+        cardEdHeights.push($this.outerHeight());
       });
 
       maxHeightEd = Math.max.apply(null, cardEdHeights);
