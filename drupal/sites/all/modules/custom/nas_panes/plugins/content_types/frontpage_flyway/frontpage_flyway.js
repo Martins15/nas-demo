@@ -4,7 +4,7 @@
     console.log("Lookup successful:");
     console.log(locationObject);
     var StateIsoCode = locationObject.subdivisions['0'].iso_code;
-    if (StateIsoCode === undefined) {
+    if (typeof(StateIsoCode) === 'undefined') {
       StateIsoCode = 'default';
     }
     var ajax = new Drupal.ajax(false, false, {
