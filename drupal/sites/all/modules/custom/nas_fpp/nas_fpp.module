@@ -9,21 +9,6 @@
 module_load_include('inc', 'nas_fpp', 'nas_fpp.content');
 
 /**
- * Implements hook_menu().
- */
-function nas_fpp_menu() {
-  $items['ajax/get/fpp/%'] = array(
-    'page callback' => 'nas_fpp_ajax_get_fpp_callback',
-    'page arguments' => array(3),
-    'access callback' => TRUE,
-    'delivery callback' => 'ajax_deliver',
-    'theme callback' => 'ajax_base_page_theme',
-    'type' => MENU_CALLBACK,
-  );
-  return $items;
-}
-
-/**
  * Implements hook_entity_info_alter()
  */
 function nas_fpp_entity_info_alter(&$entity_info) {
@@ -560,57 +545,4 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     ),
   );
   $vars['contextual_links'] = drupal_render($build);
-}
-
-/**
- * AJAX callback function for ajax/get/fpp/%.
- */
-function nas_fpp_ajax_get_fpp_callback($argument) {
-  //We use 2 functions from this plugin.
-  module_load_include('inc', 'fieldable_panels_panes', 'plugins/content_types/fieldable_panels_pane');
-  //Select all nas_flyway_section FPPs.
-  $query = db_select('fieldable_panels_panes', 'fpp');
-  $query->fields('fpp', array('bundle', 'uuid'));
-  $query->condition('fpp.bundle', 'nas_flyway_section', '=');
-  $result = $query->execute()->fetchAll();
-
-  if ($argument == 'default' && !empty($result)) {
-    //Geolocation does not return any data or user is out of the any flyway state
-    //so load random nas_flyway_section FPP.
-    $subtype_name = 'uuid:' . $result[array_rand($result)]->uuid;
-    $fpp_rand = fieldable_panels_panes_load_entity($subtype_name);
-    $html = drupal_render(fieldable_panels_panes_view($fpp_rand, 'full'));
-    $ajax_result = array('#type' => 'ajax');
-    $ajax_result['#commands'][] = ajax_command_insert('#flyway-section', $html);
-
-    return $ajax_result;
-  }
-
-  foreach ($result as $value) {
-    $subtype_name = 'uuid:' . $value->uuid;
-    $fpp = fieldable_panels_panes_load_entity($subtype_name);
-    $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
-    if (!isset($get_field_flyway[0])) {
-      continue;
-    }
-    $entity = entity_load('node', array($get_field_flyway[0]['target_id']));
-    $entity = reset($entity);
-    $get_field_flyway_states = field_get_items('node', $entity, 'field_flyway_states');
-    $iso_codes = array();
-    foreach ($get_field_flyway_states as $tid) {
-      $term = taxonomy_term_load($tid['tid']);
-      $get_field_iso_code = field_get_items('taxonomy_term', $term, 'field_iso_code');
-      if (isset($get_field_iso_code[0])) {
-        $iso_codes[] = $get_field_iso_code[0]['value'];
-      }
-    }
-    //Finally check which FPP we have to output based on geolocation.
-    if (in_array($argument, $iso_codes)) {
-      $html = drupal_render(fieldable_panels_panes_view($fpp, 'full'));
-    }
-  }
-  $ajax_result = array('#type' => 'ajax');
-  $ajax_result['#commands'][] = ajax_command_insert('#flyway-section', $html);
-
-  return $ajax_result;
 }

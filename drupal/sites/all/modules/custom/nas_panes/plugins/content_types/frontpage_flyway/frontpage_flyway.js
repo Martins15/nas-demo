@@ -1,4 +1,16 @@
 (function($) {
+  function in_array(needle, haystack, strict) {
+    var found = false,
+      key, strict = !!strict;
+    for (key in haystack) {
+      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+        found = true;
+        break;
+      }
+    }
+    return found;
+  }
+
   Drupal.behaviors.frontpage_flyway = {
     attach: function(context, settings) {
       var onSuccess = function(location) {
@@ -9,10 +21,22 @@
         if (typeof(StateIsoCode) === 'undefined') {
           StateIsoCode = 'default';
         }
-        var ajax = new Drupal.ajax(false, false, {
-          url: "ajax/get/fpp/" + StateIsoCode
-        });
-        ajax.eventResponse(ajax, {});
+        var fpp_class_to_show = '',
+          all_fpp_classes = [],
+          class_to_show = '';
+        for (key in Drupal.settings.frontpage_flyway) {
+          if (in_array(StateIsoCode, Drupal.settings.frontpage_flyway[key])) {
+            fpp_class_to_show = key;
+          }
+          all_fpp_classes.push(key);
+        }
+        if (fpp_class_to_show !== '') {
+          class_to_show = '.' + fpp_class_to_show;
+        } else {
+          var randKey = Math.floor((Math.random() * all_fpp_classes.length));
+          class_to_show = '.' + all_fpp_classes[randKey];
+        }
+        $(class_to_show).show();
       };
 
       var onError = function(error) {

@@ -11213,7 +11213,7 @@ body.touch .sticky-wrapper {
   display: none;
 }
 .welcome-card-illustration img {
-  width: 90%;
+  width: 100%;
 }
 @media only screen and (min-width: 768px) {
   .welcome-card-illustration {
@@ -11390,6 +11390,6 @@ body.touch .sticky-wrapper {
   margin-bottom: 5px;
 }
 
-#flyway-section {
-  text-align: center;
+.flyway-section {
+  display: none;
 }
