@@ -6,32 +6,51 @@ $(function() {
       ".large-4 + .large-4 > .editorial-card" +
       ", .large-8 + .large-4 > .editorial-card" +
       ", .large-4 + .large-4 > .engagement-card" +
-      ", .tiny-4 + .tiny-4 > .engagement-card" + 
-      ", .tiny-4 + .tiny-4 > .editorial-card"; 
+      ", .tiny-4 + .tiny-4 > .engagement-card" +
+      ", .tiny-4 + .tiny-4 > .editorial-card";
 
   var $cardRows = $(".row").has(SELECTOR_STRING);
 
   function equalizeCards() {
     $cardRows.each(function() {
       var $this = $(this),
-          $cards = $this.find(".editorial-card, .engagement-card"),
-          $contents = $cards.find(".editorial-card-content, .engagement-card-content");
-          cardHeights = new Array(),
+          $cardsEd = $this.find(".editorial-card"),
+          $contentsEd = $cardsEd.find(".editorial-card-content"),
+          $cardsEng = $this.find(".engagement-card"),
+          $contentsEng = $cardsEng.find(".engagement-card-content"),
+          cardEdHeights = new Array(),
+          contentsEngHeights = new Array(),
           maxHeight = 0,
           minHeight = 0;
 
-      $contents.each(function() {
+      // Fix height for Edotiral blocks.
+      $cardsEd.each(function() {
         var $this = $(this);
         cardHeights.push($this.outerHeight());
       });
 
-      maxHeight = Math.max.apply(null, cardHeights);
-      minHeight = Math.min.apply(null, cardHeights);
-      delta = maxHeight - minHeight;
+      maxHeightEd = Math.max.apply(null, cardEdHeights);
+      minHeightEd = Math.min.apply(null, cardEdHeights);
+      deltaEd = maxHeightEd - minHeightEd;
 
-      if (delta < 120 && delta > 0) {
-        $contents.css({"min-height": maxHeight + "px"});
+      if (deltaEd < 120 && deltaEd > 0) {
+        $cardsEd.css({"min-height": maxHeightEd + "px"});
       }
+
+      // Fix height for Engagements blocks.
+      $contentsEng.each(function() {
+        var $this = $(this);
+        contentsEngHeights.push($this.outerHeight());
+      });
+
+      maxHeightEng = Math.max.apply(null, contentsEngHeights);
+      minHeightEng = Math.min.apply(null, contentsEngHeights);
+      deltaEng = maxHeightEng - minHeightEng;
+
+      if (deltaEng < 120 && deltaEng > 0) {
+        $contentsEng.css({"min-height": maxHeightEng + "px"});
+      }
+
     });
   }
 
