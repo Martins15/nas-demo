@@ -148,9 +148,18 @@ function nas_preprocess_node_bird(&$vars) {
 function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $image = theme('image', array(
+      'path' => $hero_image->uri,
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
   }
 
   if ($vars['view_mode'] == 'nas_teaser_from_network') {
