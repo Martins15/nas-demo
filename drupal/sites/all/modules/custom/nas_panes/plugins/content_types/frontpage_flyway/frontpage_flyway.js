@@ -21,5 +21,5 @@
 
       geoip2.city(onSuccess, onError);
     }
-  }
+  };
 })(jQuery);
