@@ -111,7 +111,7 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $tagline_text = $conf['tagline_text'];
   $conversation_link = '';
   $blue = nas_panes_get_blue_text_link($node);
-  if ($node && !empty($blue[0])) {
+  if ($node && !empty($blue[0]) && !empty($blue[1])) {
     $conversation_link = l($blue[0], $blue[1], array('classes' => array('editorial-card-slug'), 'html' => TRUE, 'external' => TRUE));
   };
 
