@@ -32,7 +32,6 @@ $(function() {
         $imgs = $imgWrappers.find("img"),
         $capSlides,
         aspectRatio = $(window).width() / $(window).height();
-
       $imgs.removeAttr("style");
       $imgWrappers.removeAttr("style");
 
@@ -47,7 +46,7 @@ $(function() {
       }).get();
 
       var defaultHeight = $("body").width() * 0.625;
-      maxHeight = Math.max.apply(null, slideHeights);
+      var maxHeight = Math.max.apply(null, slideHeights);
 
       if (defaultHeight > maxHeight) {
         maxHeight = defaultHeight;
@@ -70,14 +69,14 @@ $(function() {
         "width": "auto"
       });
 
-      // Mobile resizing rules
+      // Mobile resizing rules.
+      $capSlides = $slides.filter(".title-slide, .end-slide");
       if($(window).width() < 768 && aspectRatio < 1) {
         var $portraitSlides = $slides.filter(".portrait").not(".title-slide, .end-slide"),
           $landscapeSlides = $slides.not(".portrait, .title-slide, .end-slide"),
           slideshowHeight;
-        $capSlides = $slides.filter(".title-slide, .end-slide");
 
-        // If there are portrait images, set the wrapper heights accordingly
+        // If there are portrait images, set the wrapper heights accordingly.
         if($portraitSlides.length) {
           $imgWrappers.css({
             "height": maxHeight * 1.5 + "px"
@@ -116,8 +115,7 @@ $(function() {
       }
       // Landscape-orientation resizing rules
       else if($(window).width() < 768 && aspectRatio > 1.45) {
-        var maxHeight = $(window).height() * 0.75 + "px";
-        $capSlides = $slides.filter(".title-slide, .end-slide");
+        maxHeight = $(window).height() * 0.75 + "px";
 
         $slides.not(".title-slide, .end-slide").find("img").css({
           "height": maxHeight,
@@ -131,6 +129,9 @@ $(function() {
           "height": "auto"
         });
       }
+
+      // Center images that are not of high res instead of stretching them on full screen res.
+      Slideshow._naturalSize($imgs, maxHeight);
     };
 
     Slideshow.setup = function() {
@@ -243,6 +244,29 @@ $(function() {
         var naturalWidth = $(this).find('.slide-img img')[0].naturalWidth;
         if (naturalHeight !== undefined && naturalWidth !== undefined && naturalHeight > naturalWidth) {
           $(this).addClass('portrait');
+        }
+      });
+    };
+
+    /**
+     * Display images in natural size  that are not of high res and center them.
+     */
+    Slideshow._naturalSize = function($imgs, maxHeight) {
+      $imgs.each(function() {
+        var naturalHeight = $(this)[0].naturalHeight,
+          $slide_wrapper = $(this).parents('.slide-img');
+        if (naturalHeight !== undefined && naturalHeight !== 0 && naturalHeight < maxHeight) {
+          // Use maxHeight only on desktop.
+          if ($(window).width() > 768) {
+            $slide_wrapper.height(maxHeight);
+          }
+          $(this).css({
+            'width': 'auto',
+            'height': 'auto',
+            // Add appropriate margin to display image in center.
+            'margin-top': ($slide_wrapper.height() - naturalHeight) / 2 + 'px'
+          });
+
         }
       });
     };
