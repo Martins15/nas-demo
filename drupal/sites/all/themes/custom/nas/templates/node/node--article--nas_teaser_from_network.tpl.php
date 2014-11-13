@@ -87,17 +87,12 @@
  */
 ?>
 
-<div class="columns large-4">
-  <div class="editorial-card collapse-minimal">
-    <div class="editorial-card-photo">
-      <?php print $linked_image; ?>
-    </div>
-    <div class="editorial-card-content short">
-      <?php if (!empty($blue_text_link_url)): ?>
-      <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
-      <?php endif; ?>
-      <h4 class="editorial-card-title"><?php print $title; ?></h4>
-      <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
-    </div>
+<div class="editorial-card feature collapse-minimal">
+  <div class="editorial-card-photo">
+    <?php print $linked_image; ?>
+  </div>
+  <div class="editorial-card-content">
+    <?php print $blue_link; ?>
+    <h4 class="editorial-card-title no-margin"><?php print $title; ?></h4>
   </div>
 </div>
