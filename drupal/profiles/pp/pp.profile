@@ -313,8 +313,8 @@ function pp_create_test_flyway() {
   $node->field_background_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image('default_flyway_section_background.jpg');
 
   $node->field_color_mode[LANGUAGE_NONE][0]['value'] = 'light';
-  $term1 = reset(taxonomy_get_term_by_name('District of Columbia');
-  $term2 = reset(taxonomy_get_term_by_name('New York');
+  $term1 = reset(taxonomy_get_term_by_name('District of Columbia'));
+  $term2 = reset(taxonomy_get_term_by_name('New York'));
   $node->field_flyway_states[LANGUAGE_NONE][0]['tid'] = $term1->tid;
   $node->field_flyway_states[LANGUAGE_NONE][1]['tid'] = $term2->tid;
   node_save($node);
@@ -371,8 +371,8 @@ function pp_create_test_flyway() {
   $node->field_background_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image('default_flyway_section_background.jpg');
 
   $node->field_color_mode[LANGUAGE_NONE][0]['value'] = 'light';
-  $term1 = reset(taxonomy_get_term_by_name('California');
-  $term2 = reset(taxonomy_get_term_by_name('Oregon');
+  $term1 = reset(taxonomy_get_term_by_name('California'));
+  $term2 = reset(taxonomy_get_term_by_name('Oregon'));
   $node->field_flyway_states[LANGUAGE_NONE][0]['tid'] = $term1->tid;
   $node->field_flyway_states[LANGUAGE_NONE][1]['tid'] = $term2->tid;
   node_save($node);
