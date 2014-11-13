@@ -28,7 +28,7 @@
   <div class="row">
     <div class="column">
       <div class="curtain-attribution">
-        <p class="title"><?php print $image_title ?></p>
+        <p class="title"><?php print $image_caption ?></p>
         <p class="credit"><?php print $image_credit ?></p>
       </div>
     </div>
