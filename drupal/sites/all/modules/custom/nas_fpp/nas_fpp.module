@@ -17,6 +17,7 @@ function nas_fpp_menu() {
     'page arguments' => array(3),
     'access callback' => TRUE,
     'delivery callback' => 'ajax_deliver',
+    'theme callback' => 'ajax_base_page_theme',
     'type' => MENU_CALLBACK,
   );
   return $items;
@@ -573,6 +574,18 @@ function nas_fpp_ajax_get_fpp_callback($argument) {
   $query->condition('fpp.bundle', 'nas_flyway_section', '=');
   $result = $query->execute()->fetchAll();
 
+  if ($argument == 'default' && !empty($result)) {
+    //Geolocation does not return any data or user is out of the any flyway state
+    //so load random nas_flyway_section FPP.
+    $subtype_name = 'uuid:' . $result[array_rand($result)]->uuid;
+    $fpp_rand = fieldable_panels_panes_load_entity($subtype_name);
+    $html = drupal_render(fieldable_panels_panes_view($fpp_rand, 'full'));
+    $ajax_result = array('#type' => 'ajax');
+    $ajax_result['#commands'][] = ajax_command_insert('#flyway-section', $html);
+
+    return $ajax_result;
+  }
+
   foreach ($result as $value) {
     $subtype_name = 'uuid:' . $value->uuid;
     $fpp = fieldable_panels_panes_load_entity($subtype_name);
@@ -596,14 +609,6 @@ function nas_fpp_ajax_get_fpp_callback($argument) {
       $html = drupal_render(fieldable_panels_panes_view($fpp, 'full'));
     }
   }
-  if (!isset($html)) {
-    //Geolocation does not return any data or user is out of the any flyway state
-    //so load random nas_flyway_section FPP.
-    $subtype_name = 'uuid:' . $result[array_rand($result)]->uuid;
-    $fpp_rand = fieldable_panels_panes_load_entity($subtype_name);
-    $html = drupal_render(fieldable_panels_panes_view($fpp_rand, 'full'));
-  }
-
   $ajax_result = array('#type' => 'ajax');
   $ajax_result['#commands'][] = ajax_command_insert('#flyway-section', $html);
 
