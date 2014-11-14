@@ -71,18 +71,17 @@
     get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz
     when: workflow_type == "sql" and pp_environment == "default"
 
-  - name: Import remote database
-    mysql_db: name={{ mysql_db }} state=import target={{ backup_folder }}/latest_remote.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
-    when: workflow_type == "sql" and pp_environment == "default"
-
   - name: Droping drupal database
     mysql_db: name={{ mysql_db }} state=absent login_user={{ mysql_user }} login_password={{ mysql_pass }}
     when: pp_environment == "demo" or workflow_type == "profile"
 
   - name: Creating drupal database
     mysql_db: name={{ mysql_db }} state=present login_user={{ mysql_user }} login_password={{ mysql_pass }}
-    when: pp_environment == "demo" or workflow_type == "profile"
-    
+
+  - name: Import remote database
+    mysql_db: name={{ mysql_db }} state=import target={{ backup_folder }}/latest_remote.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
+    when: workflow_type == "sql" and pp_environment == "default"
+
   - name: Creating cache folder
     sudo: yes
     file: path={{ cache_folder }} state=directory recurse=yes
