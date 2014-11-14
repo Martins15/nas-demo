@@ -48,7 +48,7 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
-  if ($vars['type'] == 'magazine-issue') {
+  if ($vars['type'] == 'magazine_issue') {
     nas_preprocess_node_magazine_issue($vars);
   }
 }
