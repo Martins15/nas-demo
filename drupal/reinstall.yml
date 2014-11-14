@@ -42,7 +42,6 @@
   - name: Creating backup folder
     sudo: yes
     file: path={{ backup_folder }} state=directory recurse=yes
-    when: pp_environment == "staging" or make_backup
 
   - name: Making backup
     sudo: yes
@@ -53,6 +52,14 @@
     sudo: yes
     copy: src={{ backup_folder }}/{{ backup_name }}.sql.gz dest={{ backup_folder }}/latest.sql.gz force=yes mode=0644
     when: pp_environment == "staging" or make_backup
+
+  - name: Check if latest backup exists
+    stat: path={{ backup_folder }}/latest.sql.gz
+    register: latest_backup_exists
+
+  - name: Create latest backup from staging
+    mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
+    when: latest_backup_exists.stat.exists == false and ansible_ssh_user == "jenkins"
 
   - name: Downloading latest backup
     get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz
