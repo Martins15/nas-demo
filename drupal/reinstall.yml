@@ -3,7 +3,7 @@
 # Developed for ansible version >= 1.7
 - hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: yes
 
   vars:
     drupal_user: admin
@@ -61,11 +61,11 @@
     debug: msg="{{ latest_backup_exists }}"
 
   - name: Debug user
-    debug: msg="{{ ansible_ssh_user }}"
+    debug: msg="{{ ansible_env.SUDO_USER }}"
 
   - name: Create latest backup from staging
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
-    when: latest_backup_exists.stat.exists == false and ansible_ssh_user == "jenkins"
+    when: latest_backup_exists.stat.exists == false and ansible_env.SUDO_USER == "jenkins"
 
   - name: Downloading latest backup
     get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz
