@@ -164,9 +164,23 @@ function nas_preprocess_node_magazine_issue(&$vars) {
 function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $image = theme('image', array(
+      'path' => $hero_image->uri,
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+  }
+
+  if ($vars['view_mode'] == 'nas_teaser_from_network') {
+    nas_preprocess_node_article_news_from_network($vars);
+    return;
   }
 
   $vars['title'] = check_plain($node->title);
@@ -180,7 +194,21 @@ function nas_preprocess_node_article(&$vars) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_item[0]['safe_value']);
   }
   if ($vars['type'] == 'article') {
+    // Looks terrible.
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  }
+}
+
+/**
+ * Preprocess function for view mode 'nas_teaser_from_network' of article nodes.
+ */
+function nas_preprocess_node_article_news_from_network(&$vars) {
+  $node = $vars['node'];
+  $vars['title'] = l($node->title, 'node/' . $node->nid);
+  $vars['blue_link'] = '';
+  if (!empty($node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'])) {
+    $term = $node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'];
+    $vars['blue_link'] = l($term->name, 'taxonomy/term/' . $term->tid, array('attributes' => array('class' => array('editorial-card-slug'))));
   }
 }
 

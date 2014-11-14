@@ -28,21 +28,8 @@
     </header>
     <div class="article-body row">
       <div class="article-text large-push-2 large-10 columns reflow-body">
-        <span data-reflow-placeholder="0"></span>
         <aside class="article-aside reflow reflow-into-body">
           <?php print $content['right']; ?>
-          <div class="engagement-card">
-            <div class="engagement-card-content no-min-height">
-              <h3 class="engagement-card-headline">Help the Plight of the Albatross</h3>
-              <p>These magnificent birds die tragic deaths, becoming entangled in fishing lines.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato xlarge">Endorse New Legislation</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
-            </div>
-          </div>
         </aside>
         <?php print $content['main']; ?>
       </div>

@@ -110,7 +110,7 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts
     'title' => $title,
     'preamble' => $preamble,
     'logo' => $logo,
-    'exposed_form' => nas_menu_guide_bar_search_get_exposed_filters(),
+    'exposed_form' => nas_menu_guide_bar_search_get_exposed_filters(FALSE),
     'contextual_links' => $contextual_links,
   );
   $content = theme('nas_guide_bar_search', $t_vars);
@@ -120,7 +120,16 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts
   return $block;
 }
 
-function nas_menu_guide_bar_search_get_exposed_filters() {
+/**
+ * Guide bar search form.
+ *
+ * @param bool $auto_submit
+ *   Whether form should use auto submit.
+ *
+ * @return string
+ *   Rendered form.
+ */
+function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE) {
   $view = views_get_view('nas_bird_guide');
   $view->set_display('nas_bird_guide_fav_birds');
   $view->init_handlers();
@@ -135,6 +144,13 @@ function nas_menu_guide_bar_search_get_exposed_filters() {
     'no_redirect' => FALSE,
   );
   $form = drupal_build_form('views_exposed_form', $form_state);
+
+  // Disable autosubmit by removing ctools classes.
+  if (!$auto_submit && !empty($form['submit']['#attributes']['class'])) {
+    $auto_submit_classes = array('ctools-use-ajax', 'ctools-auto-submit-click');
+    $form['submit']['#attributes']['class'] = array_diff($form['submit']['#attributes']['class'], $auto_submit_classes);
+  }
+
   return drupal_render($form);
 }
 
