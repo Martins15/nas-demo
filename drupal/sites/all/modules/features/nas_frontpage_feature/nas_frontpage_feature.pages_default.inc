@@ -74,6 +74,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
         <li><a href="birds-landing">Birds Landing page</a></li></ul>
         <li><a href="news">News page</a></li></ul>
         <li><a href="flyways">Flyways Landing</a></li></ul>
+        <li><a href="past-magazine-issues">Past magazine issues</a></li></ul>
         <br/><br/>
 
         <h3>Articles</h3><ul>

@@ -26,6 +26,7 @@ dependencies[] = nas_frontpage_feature
 dependencies[] = nas_text_format_video
 dependencies[] = nas_contact_type_feature
 dependencies[] = nas_magazine_issue_feature
+dependencies[] = nas_past_magazine_issues
 dependencies[] = nas_news_page_feature
 dependencies[] = nas_disqus
 dependencies[] = nas_max_size_upload_file
