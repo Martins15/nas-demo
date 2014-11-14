@@ -9342,6 +9342,20 @@ body.black-bg .slide-caption {
   opacity: 1;
 }
 
+.flyway-path-description {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+.flyway-path-description.current {
+  position: relative;
+  opacity: 1;
+}
+
 .flyway-path-dots {
   margin: 15px auto;
   text-align: center;
@@ -11213,7 +11227,7 @@ body.touch .sticky-wrapper {
   display: none;
 }
 .welcome-card-illustration img {
-  width: 90%;
+  width: 100%;
 }
 @media only screen and (min-width: 768px) {
   .welcome-card-illustration {
