@@ -1,0 +1,23 @@
+.past-magazin-issue{
+  .magazine-issue{
+    .node{
+      margin: 10px auto 30px;
+      .magazin-issue-title a{
+        font-family: $font-sans;
+        font-size: $size-text-small;
+      }
+      .magazin-issue-article h4{
+        font-family: $font-sans;
+        margin-bottom: $size-space;
+      }
+    }
+    &:nth-of-type(3n-1) {
+      clear: both;
+    }
+  }
+  .magazine-issue-year{
+    h2{
+      margin-top: 10px;
+    }
+  }
+}
