@@ -57,6 +57,12 @@
     stat: path={{ backup_folder }}/latest.sql.gz
     register: latest_backup_exists
 
+  - name: Debug backup
+    debug: msg="{{ latest_backup_exists }}"
+
+  - name: Debug user
+    debug: msg="{{ ansible_ssh_user }}"
+
   - name: Create latest backup from staging
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     when: latest_backup_exists.stat.exists == false and ansible_ssh_user == "jenkins"
