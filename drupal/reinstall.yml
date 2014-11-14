@@ -57,12 +57,6 @@
     stat: path={{ backup_folder }}/latest.sql.gz
     register: latest_backup_exists
 
-  - name: Debug backup
-    debug: msg="{{ latest_backup_exists }}"
-
-  - name: Debug user
-    debug: msg="{{ ansible_env.SUDO_USER }}"
-
   - name: Create latest backup from staging
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     when: latest_backup_exists.stat.exists == false and ansible_env.SUDO_USER == "jenkins"
@@ -91,10 +85,24 @@
     shell: "{{ php_env_vars }} drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }} --uri={{ site_url }} nas_base_url={{ site_url }}"
     when: pp_environment == "demo" or workflow_type == "profile"
 
+  - name: Check if settings.php exists
+    stat: path=sites/default/settings.php
+    register: settings_exists
+
+  - name: Creating settings.php
+    sudo: yes
+    copy: src=sites/default/default.settings.php dest=sites/default/settings.php force=no mode=0644
+    when: workflow_type == "sql" and settings_exists.stat.exists == false
+
+  - name: Adding database variable to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$databases = array(\"default\" => array (\"default\" => array (\"database\" => \"{{ mysql_db }}\", \"username\" => \"{{ mysql_user }}\", \"password\" => \"{{ mysql_pass }}\", \"host\" => \"127.0.0.1\", \"port\" => \"\", \"driver\" => \"mysql\", \"prefix\" => \"\", ), ), );'
+    when: workflow_type == "sql" and settings_exists.stat.exists == false
+
   - name: Adding environment variable to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
-    when: pp_environment == "demo" or workflow_type == "profile"
+    when: pp_environment == "demo" or workflow_type == "profile" or settings_exists.stat.exists == false
 
   - name: Check if registry_rebuild is installed
     shell: "{{ php_env_vars }} drush | grep -c registry_rebuild"
