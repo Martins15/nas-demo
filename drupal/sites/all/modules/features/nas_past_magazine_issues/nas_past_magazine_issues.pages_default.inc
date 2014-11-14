@@ -43,12 +43,14 @@ function nas_past_magazine_issues_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'nas_one_column';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'header' => NULL,
+      'main' => NULL,
     ),
   );
   $display->cache = array();
@@ -57,22 +59,49 @@ function nas_past_magazine_issues_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-ef8395b8-f630-4eae-985e-fc86e728876f';
+    $pane->panel = 'header';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'ef8395b8-f630-4eae-985e-fc86e728876f';
+    $display->content['new-ef8395b8-f630-4eae-985e-fc86e728876f'] = $pane;
+    $display->panels['header'][0] = 'new-ef8395b8-f630-4eae-985e-fc86e728876f';
+    $pane = new stdClass();
     $pane->pid = 'new-5259acbb-ec7f-4831-be2a-7828be20ebb9';
-    $pane->panel = 'middle';
+    $pane->panel = 'main';
     $pane->type = 'views_panes';
     $pane->subtype = 'magazin_issues-panel_pane_1';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '5259acbb-ec7f-4831-be2a-7828be20ebb9';
     $display->content['new-5259acbb-ec7f-4831-be2a-7828be20ebb9'] = $pane;
-    $display->panels['middle'][0] = 'new-5259acbb-ec7f-4831-be2a-7828be20ebb9';
+    $display->panels['main'][0] = 'new-5259acbb-ec7f-4831-be2a-7828be20ebb9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-5259acbb-ec7f-4831-be2a-7828be20ebb9';
   $handler->conf['display'] = $display;
