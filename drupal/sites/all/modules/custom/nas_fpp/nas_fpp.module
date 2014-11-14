@@ -86,6 +86,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Featured Small'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['nas_teaser_from_network'] = array(
+    'label' => t('News from network teaser'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['nas_node_teaser'] = array(
     'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,

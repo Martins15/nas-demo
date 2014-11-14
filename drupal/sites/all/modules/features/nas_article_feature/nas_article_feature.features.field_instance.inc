@@ -19,9 +19,8 @@ function nas_article_feature_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_featured' => array(
@@ -70,6 +69,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 1,
       ),
       'nas_node_view_mode_hero_bird' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -181,6 +186,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 2,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'date',
@@ -272,6 +283,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 13,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -348,6 +365,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_wo_date' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+      'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -463,6 +486,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -544,6 +573,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -623,6 +658,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -700,6 +741,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -792,6 +839,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -910,6 +963,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -986,6 +1045,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 9,
+      ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -1097,6 +1162,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1180,6 +1251,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1209,7 +1286,7 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_pressrelease_contact'
   $field_instances['node-article-field_pressrelease_contact'] = array(
     'bundle' => 'article',
-    'default_value' => NULL,
+    'default_value' => variable_get('nas_default_pressrelease_contact', NULL),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -1263,6 +1340,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -1349,6 +1432,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1431,6 +1520,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_from_network' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',

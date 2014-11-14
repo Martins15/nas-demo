@@ -112,13 +112,13 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 
   $image = file_load($conf['image']);
   $image_path = '';
-  $image_title = '';
+  $image_caption = '';
   $image_credit = '';
   if (!empty($image)) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
     $image_wrapper = entity_metadata_wrapper('file', $image);
-    $image_title = $image_wrapper->field_file_image_title_text->value();
-    $image_credit = $image_wrapper->field_file_credit->value();
+    $image_caption = check_plain($image_wrapper->field_file_caption->value());
+    $image_credit = check_plain($image_wrapper->field_file_credit->value());
   }
 
   $summary = check_plain($conf['summary']);
@@ -166,9 +166,8 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   // Pass image url value to theme
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $featured_frontpage_image = $image_path;
-
   $content = theme('nas_frontpage_featured', array(
-    'image_title' => $image_title,
+    'image_caption' => $image_caption,
     'image_credit' => $image_credit,
     'summary' => $summary,
     'title_link' => $title_link,
