@@ -1,0 +1,4 @@
+name = NAS Magazine issues module
+description = Module with custom logic for Magazine issues content type
+core = 7.x
+package = NAS
