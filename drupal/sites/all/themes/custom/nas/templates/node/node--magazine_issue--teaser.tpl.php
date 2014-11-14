@@ -80,20 +80,15 @@
  *
  * @ingroup themeable
  */
-kpr($variables);
 ?>
-<div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="row">
-    <div class="tiny-4 columns">
-      <div class="magazin-issue-cover">
-        <?php print render($content['field_issue_cover']); ?>
-      </div>
-      <div class="magazin-issue-date">
-        <?php print render($content['field_issue_date']); ?>
-      </div>
-      <div class="magazin-issue-title">
-        <?php print $title_link; ?>
-      </div>
-    </div>
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>" <?php print $attributes; ?>>
+  <div class="magazin-issue-cover editorial-card-photo">
+    <?php print render($content['field_issue_cover']); ?>
+  </div>
+  <div class="magazin-issue-title">
+    <?php print $title_link; ?>
+  </div>
+  <div class="magazin-issue-article">
+    <h4><?php print render($magazine_issue_article); ?></h4>
   </div>
 </div>
