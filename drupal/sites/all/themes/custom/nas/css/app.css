@@ -11420,6 +11420,10 @@ body.touch .sticky-wrapper {
   margin-bottom: 5px;
 }
 
+.flyway-section {
+  display: none;
+}
+
 input[type="text"].error,
 input[type="password"].error,
 input[type="date"].error,

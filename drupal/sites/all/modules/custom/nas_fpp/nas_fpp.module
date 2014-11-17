@@ -514,17 +514,27 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     return;
   }
 
-  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
     ':subtype' => 'uuid:' . $fpp->uuid,
   ))->fetchField();
-
+  if (empty($pid)) {
+    $did_frontpage_query = db_query(
+      'SELECT did FROM {panels_display} WHERE layout LIKE :layout',
+      array(':layout' => 'nas_frontpage')
+    )->fetchCol();
+    $did_frontpage = $did_frontpage_query[0];
+    nas_fpp_create_panels_pane($did_frontpage, 'nas_flyway_section', 'main', 0, $fpp->uuid, 0);
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
+      ':subtype' => 'uuid:' . $fpp->uuid,
+    ))->fetchField();
+  }
   ctools_include('modal');
   ctools_include('ajax');
   ctools_modal_add_js();
   ctools_add_js('ajax-responder');
   $links['edit'] = array(
     'title' => t('Edit'),
-    'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $panel_id,
+    'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
     'html' => TRUE,
     'query' => array('reload' => 'true'),
     'attributes' => array(
