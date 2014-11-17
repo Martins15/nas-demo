@@ -24,7 +24,7 @@ function nas_pager_next($variables) {
   $element = $variables['element'];
   $interval = $variables['interval'];
   $parameters = $variables['parameters'];
-  $attributes = $variables['attributes'];
+  $attributes = !empty($variables['attributes']) ? $variables['attributes'] : array();
   global $pager_page_array, $pager_total;
   $output = '';
 
@@ -61,7 +61,7 @@ function nas_pager_last($variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
-  $attributes = $variables['attributes'];
+  $attributes = !empty($variables['attributes']) ? $variables['attributes'] : array();
   global $pager_page_array, $pager_total;
   $output = '';
 

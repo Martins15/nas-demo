@@ -32,6 +32,12 @@ function nas_magazine_issue_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -64,8 +70,12 @@ function nas_magazine_issue_feature_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'magazine_issue_cover',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
@@ -155,6 +165,12 @@ function nas_magazine_issue_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -183,7 +199,7 @@ function nas_magazine_issue_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
