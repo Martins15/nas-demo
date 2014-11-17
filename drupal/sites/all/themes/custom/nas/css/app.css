@@ -5702,6 +5702,19 @@ img.hero-alt-img.current {
   top: 5px;
 }
 
+header.global-header .toggle-bird-guide-search {
+  display: none;
+}
+
+body.node-type-bird header.global-header .toggle-bird-guide-search {
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+  body.node-type-bird header.global-header .toggle-bird-guide-search {
+    display: none;
+  }
+}
+
 .header-search {
   display: none;
   text-align: right;
@@ -8438,7 +8451,7 @@ body.black-bg .slide-img {
   width: 50px;
   height: 55px;
   background-color: rgba(0, 0, 0, 0.5);
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -8448,7 +8461,7 @@ body.black-bg .slide-img {
 }
 .slideshow-button.next {
   right: 0;
-  background-image: url(arrow-right.png);
+  background-image: url(../img/arrow-right.png);
 }
 .slideshow:hover .slideshow-button {
   opacity: 1;
@@ -8578,7 +8591,7 @@ body.black-bg .slide-caption {
   margin-top: -30px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -8588,7 +8601,7 @@ body.black-bg .slide-caption {
 }
 .conservation-slider-button.next {
   right: 0;
-  background-image: url(arrow-right.png);
+  background-image: url(../img/arrow-right.png);
 }
 @media only screen and (min-width: 480px) {
   .conservation-slider-button {
