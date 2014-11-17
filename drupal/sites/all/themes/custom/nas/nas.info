@@ -44,6 +44,7 @@ scripts[] = js/mute/toggler.js
 scripts[] = js/mute/inline-map.js
 scripts[] = js/mute/responsive-tables.js
 scripts[] = js/mute/bird-guide-grid.js
+scripts[] = js/mute/flyway-megamap.js
 scripts[] = js/mute/flyway-minimap.js
 scripts[] = js/mute/flyway-slides.js
 

@@ -9373,6 +9373,23 @@ body.black-bg .slide-caption {
   opacity: 1;
 }
 
+.flyway-path-description,
+.flyway-path-columns {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+.flyway-path-description.current,
+.flyway-path-columns.current {
+  position: relative;
+  opacity: 1;
+  overflow: hidden;
+}
+
 .flyway-path-dots {
   margin: 15px auto;
   text-align: center;
@@ -11423,4 +11440,21 @@ body.touch .sticky-wrapper {
 
 .flyway-section {
   display: none;
+}
+
+input[type="text"].error,
+input[type="password"].error,
+input[type="date"].error,
+input[type="datetime"].error,
+input[type="datetime-local"].error,
+input[type="month"].error,
+input[type="week"].error,
+input[type="email"].error,
+input[type="number"].error,
+input[type="search"].error,
+input[type="tel"].error,
+input[type="time"].error,
+input[type="url"].error,
+textarea.error {
+  border: 1px solid #f15936;
 }

@@ -42,3 +42,12 @@ function nas_master_update_7008() {
     module_enable($modules);
   }
 }
+
+/**
+ * Revert Article CT feature.
+ * Revert NAS Flyways Landing feature.
+ */
+function nas_master_update_7009() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_flyways_landing_feature');
+}

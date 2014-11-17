@@ -178,6 +178,14 @@ function nas_preprocess_node_article(&$vars) {
       ));
   }
 
+  // Subtitle currently presented only in flyway landing teasers.
+  if ($vars['view_mode'] == 'nas_teaser_flyway_landing') {
+    $vars['subtitle'] = '';
+    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
   if ($vars['view_mode'] == 'nas_teaser_from_network') {
     nas_preprocess_node_article_news_from_network($vars);
     return;

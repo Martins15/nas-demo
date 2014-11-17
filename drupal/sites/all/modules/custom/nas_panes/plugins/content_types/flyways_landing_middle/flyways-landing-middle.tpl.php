@@ -33,8 +33,25 @@
     </div>
   </div>
   <div class="medium-6 medium-pull-6 columns text-container">
-    <h1><?php print $flyway[1]['title']; ?></h1>
-    <div class="deck"><?php print $flyway[1]['subtitle']; ?></div>
-    <p><?php print $flyway[1]['summary']; ?></p>
+    <?php foreach ($flyway as $key => $value): ?>
+    <div id="flyway-path-description-<?php print $key; ?>" class="flyway-path-description<?php if ($key == 1): ?> current<?php endif; ?>">
+      <h1><?php print $value['title']; ?></h1>
+      <div class="deck"><?php print $value['subtitle']; ?></div>
+      <p><?php print $value['summary']; ?></p>
+    </div>
+    <?php endforeach; ?>
   </div>
+</div>
+<div class="row space-top text-container contextual-links-region">
+  <?php print $contextual_links; ?>
+  <?php foreach ($flyway as $key => $f): ?>
+    <div id="flyway-path-columns-<?php print $key; ?>" class="flyway-path-columns<?php if ($key == 1): ?> current<?php endif; ?>">
+    <?php for ($i = 1; $i <= 3; $i++): ?>
+      <div class="medium-4 columns">
+        <h3 class=""><?php print $f['columns'][$i]['title']; ?></h3>
+        <p><?php print $f['columns'][$i]['text']; ?></p>
+      </div>
+    <?php endfor; ?>
+    </div>
+  <?php endforeach; ?>
 </div>
