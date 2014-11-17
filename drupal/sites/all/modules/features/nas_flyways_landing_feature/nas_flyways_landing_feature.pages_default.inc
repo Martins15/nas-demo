@@ -251,7 +251,7 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'top_right_link_uri' => '<front>',
           'text_under_top_right_link' => '58 million acres | 17 priority bird species',
           'summary' => 'The Central Flyway extends from the grasslands of the Great Plains to the western Gulf Coast. Many of its migratory bird species winter in Central and South America; some migrate across the Western Hemisphere as far north at the Arctic Circle and others south to Patagonia in southern South America.',
-          'summary_more_link_uri' => '<front>',
+          'summary_more_link_uri' => ($nid = pp_get_flyway_node_nid_by_title('Pacific Flyway')) ? 'node/' . $nid : '<front>',
           'entity_reference' => array(
             1 => FALSE,
             2 => FALSE,
@@ -264,7 +264,7 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'top_right_link_uri' => '<front>',
           'text_under_top_right_link' => 'Praesent blandit laoreet nibh',
           'summary' => 'Phasellus a est. Cras non dolor. Ut tincidunt tincidunt erat. Suspendisse non nisl sit amet velit hendrerit rutrum. Pellentesque dapibus hendrerit tortor.',
-          'summary_more_link_uri' => '<front>',
+          'summary_more_link_uri' => ($nid = pp_get_flyway_node_nid_by_title('Central Flyway')) ? 'node/' . $nid : '<front>',
           'entity_reference' => array(
             1 => FALSE,
             2 => FALSE,
@@ -277,7 +277,7 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'top_right_link_uri' => '<front>',
           'text_under_top_right_link' => 'Ut non enim eleifend',
           'summary' => 'Nulla facilisi. In hac habitasse platea dictumst. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Morbi ac felis.',
-          'summary_more_link_uri' => '<front>',
+          'summary_more_link_uri' => ($nid = pp_get_flyway_node_nid_by_title('Mississippi Flyway')) ? 'node/' . $nid : '<front>',
           'entity_reference' => array(
             1 => FALSE,
             2 => FALSE,
@@ -290,7 +290,7 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'top_right_link_uri' => '<front>',
           'text_under_top_right_link' => 'Proin faucibus arcu quis',
           'summary' => 'Phasellus dolor. Quisque ut nisi. Aenean massa. Praesent turpis. Phasellus nec sem in justo pellentesque facilisis.',
-          'summary_more_link_uri' => '<front>',
+          'summary_more_link_uri' => ($nid = pp_get_flyway_node_nid_by_title('Atlantic Flyway')) ? 'node/' . $nid : '<front>',
           'entity_reference' => array(
             1 => FALSE,
             2 => FALSE,

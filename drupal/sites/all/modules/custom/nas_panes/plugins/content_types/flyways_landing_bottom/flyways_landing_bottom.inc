@@ -153,7 +153,7 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
 
     $teasers = array();
     foreach ($news_nodes as $node) {
-      $build = node_view($node, 'nas_node_teaser_small');
+      $build = node_view($node, 'nas_teaser_flyway_landing');
       $teasers[] = drupal_render($build);
     }
     if (empty($teasers)) {
