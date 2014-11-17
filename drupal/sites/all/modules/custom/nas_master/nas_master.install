@@ -18,7 +18,7 @@ function nas_master_install() {
 * Implements hook_update_N().
 * Changes db for activate nas_past_magazine_issues feature.
 */
-function nas_master_update_7001() {
+function nas_master_update_7004() {
   // Revert nas_magazine_issue_feature
   features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
 
