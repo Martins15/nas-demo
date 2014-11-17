@@ -48,14 +48,16 @@ function frontpage_flyway_pane_render($subtype, $conf, $args, $contexts) {
     $entity = reset($entity);
     $get_field_flyway_states = field_get_items('node', $entity, 'field_flyway_states');
     $iso_codes = array();
-    foreach ($get_field_flyway_states as $tid) {
-      $term = taxonomy_term_load($tid['tid']);
-      $get_field_iso_code = field_get_items('taxonomy_term', $term, 'field_iso_code');
-      if (isset($get_field_iso_code[0])) {
-        $iso_codes[] = $get_field_iso_code[0]['value'];
+    if (!empty($get_field_flyway_states)) {
+      foreach ($get_field_flyway_states as $tid) {
+        $term = taxonomy_term_load($tid['tid']);
+        $get_field_iso_code = field_get_items('taxonomy_term', $term, 'field_iso_code');
+        if (isset($get_field_iso_code[0])) {
+          $iso_codes[] = $get_field_iso_code[0]['value'];
+        }
       }
+      drupal_add_js(array('frontpage_flyway' => array('flyway-section-' . $i => $iso_codes)), 'setting');
     }
-    drupal_add_js(array('frontpage_flyway' => array('flyway-section-' . $i => $iso_codes)), 'setting');
     $fpp_view = fieldable_panels_panes_view($fpp, 'full');
     $block->content .= '<div class="flyway-section flyway-section-' . $i . '">' . drupal_render($fpp_view) . '</div>';
     $i++;
