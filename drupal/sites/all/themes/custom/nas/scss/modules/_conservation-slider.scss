@@ -105,7 +105,7 @@
   cursor: pointer;
   background-color: rgba($color-black, 0.5);
 
-  background-image: url(arrow-left.png);
+  background-image: url(../img/arrow-left.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px auto;
@@ -115,7 +115,7 @@
   }
   &.next {
     right: 0;
-    background-image: url(arrow-right.png);
+    background-image: url(../img/arrow-right.png);
   }
 
   @include breakpoint(small-up) {
