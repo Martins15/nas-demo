@@ -5702,6 +5702,14 @@ img.hero-alt-img.current {
   top: 5px;
 }
 
+.toggle-bird-guide-search {
+  display: none;
+}
+
+body.node-type-bird .toggle-bird-guide-search {
+  display: block;
+}
+
 .header-search {
   display: none;
   text-align: right;

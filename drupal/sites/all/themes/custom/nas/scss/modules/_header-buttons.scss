@@ -78,3 +78,13 @@
     }
   }
 }
+
+.toggle-bird-guide-search {
+  display: none;
+}
+
+body.node-type-bird {
+  .toggle-bird-guide-search {
+    display: block;
+  }
+}
