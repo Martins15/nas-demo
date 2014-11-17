@@ -13,3 +13,10 @@ function nas_master_install() {
     file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
   }
 }
+
+/**
+ * Enable nas_slideshow_feature feature.
+ */
+function nas_master_update_7002() {
+  module_enable(array('nas_slideshow_feature'));
+}
