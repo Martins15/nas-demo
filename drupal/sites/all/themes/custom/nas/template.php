@@ -567,9 +567,9 @@ function nas_preprocess_views_view(&$vars) {
 }
 
 /**
- * Implements hook_preprocess_field_field_images().
+ * Implements hook_preprocess_field_field_images_slideshow().
  */
-function nas_preprocess_field_field_images(&$variables) {
+function nas_preprocess_field_field_images_slideshow(&$variables) {
   $variables['images'] = array();
   $node = $variables['element']['#object'];
 
