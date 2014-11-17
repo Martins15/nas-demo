@@ -5702,15 +5702,15 @@ img.hero-alt-img.current {
   top: 5px;
 }
 
-.toggle-bird-guide-search {
+header.global-header .toggle-bird-guide-search {
   display: none;
 }
 
-body.node-type-bird .toggle-bird-guide-search {
+body.node-type-bird header.global-header .toggle-bird-guide-search {
   display: block;
 }
 @media only screen and (min-width: 768px) {
-  body.node-type-bird .toggle-bird-guide-search {
+  body.node-type-bird header.global-header .toggle-bird-guide-search {
     display: none;
   }
 }

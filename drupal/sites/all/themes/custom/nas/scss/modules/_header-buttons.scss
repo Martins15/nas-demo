@@ -79,15 +79,20 @@
   }
 }
 
-.toggle-bird-guide-search {
-  display: none;
+// Display toggle-bird-guide-search only on bird page.
+header.global-header {
+  .toggle-bird-guide-search {
+    display: none;
+  }
 }
 
 body.node-type-bird {
-  .toggle-bird-guide-search {
-    display: block;
-    @include breakpoint(large-up) {
-      display: none;
+  header.global-header {
+    .toggle-bird-guide-search {
+      display: block;
+      @include breakpoint(large-up) {
+        display: none;
+      }
     }
   }
 }
