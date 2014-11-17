@@ -5709,6 +5709,11 @@ img.hero-alt-img.current {
 body.node-type-bird .toggle-bird-guide-search {
   display: block;
 }
+@media only screen and (min-width: 768px) {
+  body.node-type-bird .toggle-bird-guide-search {
+    display: none;
+  }
+}
 
 .header-search {
   display: none;
