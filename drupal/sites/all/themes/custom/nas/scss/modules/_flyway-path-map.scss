@@ -44,7 +44,8 @@
   }
 }
 
-.flyway-path-description {
+.flyway-path-description,
+.flyway-path-columns {
   position: absolute;
   top: 0;
   opacity: 0;
@@ -53,6 +54,7 @@
   &.current {
     position: relative;
     opacity: 1;
+    overflow: hidden;
   }
 }
 

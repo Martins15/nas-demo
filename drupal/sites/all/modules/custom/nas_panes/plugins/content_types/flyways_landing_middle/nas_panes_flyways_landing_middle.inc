@@ -65,6 +65,23 @@ function flyways_landing_middle_form($form, &$form_state) {
       '#description' => 'Map image. public://map.png',
       '#default_value' => !empty($conf['flyway'][$i]['map_image']) ? $conf['flyway'][$i]['map_image'] : '',
     );
+    for ($j = 1; $j <= 3; $j++) {
+      $form['flyway'][$i]['columns'][$j] = array(
+        '#type' => 'fieldset',
+        '#title' => 'Slide ' . $i . ' column ' . $j,
+        '#tree' => TRUE,
+      );
+      $form['flyway'][$i]['columns'][$j]['title'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Title',
+        '#default_value' => !empty($conf['flyway'][$i]['column'][$j]['title']) ? $conf['flyway'][$i]['column'][$j]['title'] : '',
+      );
+      $form['flyway'][$i]['columns'][$j]['text'] = array(
+        '#type' => 'textarea',
+        '#title' => 'Text',
+        '#default_value' => !empty($conf['flyway'][$i]['column'][$j]['text']) ? $conf['flyway'][$i]['column'][$j]['text'] : '',
+      );
+    }
   }
 
   return $form;

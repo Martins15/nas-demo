@@ -6,9 +6,8 @@ $(function() {
         $points = $megamap.find(".flyway-megamap-point"),
         $dots = $(".flyway-path-dots"),
         $maps = $(".flyway-path-map"),
-        $descriptions = $(".flyway-path-description");
-
-    console.log($descriptions);
+        $descriptions = $(".flyway-path-description"),
+        $flywayColumnsBlocks = $(".flyway-path-columns");
 
     handleResize();
 
@@ -41,15 +40,17 @@ $(function() {
       var $this = $(this),
           mapId = $this.attr("id").replace("point", "map"),
           descriptionId = $this.attr("id").replace("point", "path-description"),
+          flywayColumnsBlockId = $this.attr("id").replace("point", "path-columns"),
           $description = $descriptions.filter("#" + descriptionId),
+          $flywayColumnsBlock = $flywayColumnsBlocks.filter("#" + flywayColumnsBlockId),
           $map = $maps.filter("#" + mapId);
-
-      console.log(descriptionId);
 
       $maps.removeClass("current");
       $map.addClass("current");
       $descriptions.removeClass("current");
       $description.addClass("current");
+      $flywayColumnsBlocks.removeClass("current");
+      $flywayColumnsBlock.addClass("current");
     }
 
     function handleDotClick(e)  {
@@ -57,14 +58,18 @@ $(function() {
 
       var $this = $(this),
           $map = $maps.filter($this.attr("href")),
-          $description = $maps.filter($this.attr("href"));
-
-      console.log($this);
+          index = ($this.index() + 1),
+          descriptionId = "#flyway-path-description-" + index,
+          $description = $descriptions.filter(descriptionId),
+          flywayColumnsBlockId = "#flyway-path-columns-" + index,
+          $flywayColumnsBlock = $flywayColumnsBlocks.filter(flywayColumnsBlockId);
 
       $maps.removeClass("current");
       $map.addClass("current");
-//      $descriptions.removeClass("current");
-//      $description.addClass("current");
+      $descriptions.removeClass("current");
+      $description.addClass("current");
+      $flywayColumnsBlocks.removeClass("current");
+      $flywayColumnsBlock.addClass("current");
     }
 
     function repositionPoints(positions) {

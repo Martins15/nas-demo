@@ -131,6 +131,22 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'bird_title' => 'Whimbel',
           'flyway' => 'Pacific Flyway',
           'map_image' => 'public://flyway-path-1.jpg',
+          'columns' => array(
+            1 => array(
+              'title' => 'State Programs',
+              'text' => 'Audubon’s 22 state programs give us a presence at statehouses and are a powerful force for programmatic alignment throughout the flyways.',
+            ),
+            2 => array(
+              'title' => 'Centers',
+              'text' => 'Forty-seven Audubon Centers introduce more than a million visitors each years to the natural world—and inspire them to help protect it.
+',
+            ),
+            3 => array(
+              'title' => 'Chapters',
+              'text' => 'Audubon’s 465 Chapters are more than our face in communities from coast to coast; they are the drivers of our on-the-ground conservation work.
+',
+            ),
+          ),
         ),
         2 => array(
           'title' => 'Vivamus elementum semper nisi',
@@ -141,6 +157,20 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'bird_title' => 'Sandhill Crane',
           'flyway' => 'Central Flyway',
           'map_image' => 'public://flyway-path-2.jpg',
+          'columns' => array(
+            1 => array(
+              'title' => '',
+              'text' => '',
+            ),
+            2 => array(
+              'title' => '',
+              'text' => '',
+            ),
+            3 => array(
+              'title' => '',
+              'text' => '',
+            ),
+          ),
         ),
         3 => array(
           'title' => 'Proin viverra ligula sit',
@@ -150,6 +180,20 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'bird_title' => 'Prothonotary',
           'flyway' => 'Mississippi Flyway',
           'map_image' => 'public://flyway-path-3.jpg',
+          'columns' => array(
+            1 => array(
+              'title' => '',
+              'text' => '',
+            ),
+            2 => array(
+              'title' => '',
+              'text' => '',
+            ),
+            3 => array(
+              'title' => '',
+              'text' => '',
+            ),
+          ),
         ),
         4 => array(
           'title' => 'Maecenas tempus tellus eget',
@@ -159,10 +203,24 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           'bird_title' => 'Black Throated Blue Warbler',
           'flyway' => 'Atlantic Flyway',
           'map_image' => 'public://flyway-path-4.jpg',
+          'columns' => array(
+            1 => array(
+              'title' => '',
+              'text' => '',
+            ),
+            2 => array(
+              'title' => '',
+              'text' => '',
+            ),
+            3 => array(
+              'title' => '',
+              'text' => '',
+            ),
+          ),
         ),
       ),
-      'form_build_id' => 'form-dU7R3poeK3GMJDBAYR_Kp_1AlRsHGQDunicwBheitew',
-      'form_token' => '_6hKQI0y6w9a46sDN-2hvVb3xJvgBmhe3HBX8cFmYYU',
+      'form_build_id' => 'form-hde6rGBaSlpKEVShT8fH3VSlRoc2bMNBkgdv9FsHYTA',
+      'form_token' => 'Q80NZjss_CIc4CwOPmrMWMfSrS0YfMT26-H30vraM6A',
       'form_id' => 'flyways_landing_middle_form',
     );
     $pane->cache = array();
@@ -176,45 +234,6 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
     $pane->uuid = '4f0e6dbd-410f-4435-ad9d-dee8e7009437';
     $display->content['new-4f0e6dbd-410f-4435-ad9d-dee8e7009437'] = $pane;
     $display->panels['lower'][0] = 'new-4f0e6dbd-410f-4435-ad9d-dee8e7009437';
-    $pane = new stdClass();
-    $pane->pid = 'new-e95dc3c1-688b-4353-ba64-630d3df44e6a';
-    $pane->panel = 'lower';
-    $pane->type = 'flyways_landing_three_columns';
-    $pane->subtype = 'flyways_landing_three_columns';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'column' => array(
-        1 => array(
-          'title' => 'State Programs',
-          'text' => 'Audubon’s 22 state programs give us a presence at statehouses and are a powerful force for programmatic alignment throughout the flyways.',
-        ),
-        2 => array(
-          'title' => 'Centers',
-          'text' => 'Forty-seven Audubon Centers introduce more than a million visitors each years to the natural world—and inspire them to help protect it. ',
-        ),
-        3 => array(
-          'title' => 'Chapters',
-          'text' => 'Audubon’s 465 Chapters are more than our face in communities from coast to coast; they are the drivers of our on-the-ground conservation work.',
-        ),
-      ),
-      'form_build_id' => 'form-73A_zWqz86vEz8_RO_gyTDm7uz9zj53QDJreoI1S5RQ',
-      'form_token' => 'IS6jLtu0KG-5B3kcvNoToBlMKWdNH-9qdWKOJAG8QT8',
-      'form_id' => 'flyways_landing_three_columns_form',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = 'e95dc3c1-688b-4353-ba64-630d3df44e6a';
-    $display->content['new-e95dc3c1-688b-4353-ba64-630d3df44e6a'] = $pane;
-    $display->panels['lower'][1] = 'new-e95dc3c1-688b-4353-ba64-630d3df44e6a';
     $pane = new stdClass();
     $pane->pid = 'new-5061028a-b074-4919-94b5-19d82d199303';
     $pane->panel = 'lower';
@@ -279,8 +298,8 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
           ),
         ),
       ),
-      'form_build_id' => 'form-W1k6igQCx31Mm7_aFB4RJW7SyZ4wXaxiIyKYXyN_6co',
-      'form_token' => 'lLc25aO0eeGHWlSWNQ0MgmF6uYu94cJloR0IdpbFAi0',
+      'form_build_id' => 'form-y5MGLfL728VWZ_VSBYPJugngHFoS7HblhINqeuU-Szo',
+      'form_token' => 'OlSuLqASv-JRCKJ6SvXAYAwLaA592GNe0MLNNanhkbU',
       'form_id' => 'flyways_landing_bottom_form',
     );
     $pane->cache = array();
@@ -289,11 +308,11 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '5061028a-b074-4919-94b5-19d82d199303';
     $display->content['new-5061028a-b074-4919-94b5-19d82d199303'] = $pane;
-    $display->panels['lower'][2] = 'new-5061028a-b074-4919-94b5-19d82d199303';
+    $display->panels['lower'][1] = 'new-5061028a-b074-4919-94b5-19d82d199303';
     $pane = new stdClass();
     $pane->pid = 'new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
     $pane->panel = 'lower';
@@ -316,11 +335,11 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
     $pane->style = array();
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
     $display->content['new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0'] = $pane;
-    $display->panels['lower'][3] = 'new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
+    $display->panels['lower'][2] = 'new-09e6f326-6168-4e5e-b736-7ffd7b1f6bc0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

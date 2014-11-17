@@ -9342,7 +9342,8 @@ body.black-bg .slide-caption {
   opacity: 1;
 }
 
-.flyway-path-description {
+.flyway-path-description,
+.flyway-path-columns {
   position: absolute;
   top: 0;
   opacity: 0;
@@ -9351,9 +9352,11 @@ body.black-bg .slide-caption {
   -webkit-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
 }
-.flyway-path-description.current {
+.flyway-path-description.current,
+.flyway-path-columns.current {
   position: relative;
   opacity: 1;
+  overflow: hidden;
 }
 
 .flyway-path-dots {

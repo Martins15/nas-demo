@@ -42,3 +42,16 @@
     <?php endforeach; ?>
   </div>
 </div>
+<div class="row space-top text-container contextual-links-region">
+  <?php print $contextual_links; ?>
+  <?php foreach ($flyway as $key => $f): ?>
+    <div id="flyway-path-columns-<?php print $key; ?>" class="flyway-path-columns<?php if ($key == 1): ?> current<?php endif; ?>">
+    <?php for ($i = 1; $i <= 3; $i++): ?>
+      <div class="medium-4 columns">
+        <h3 class=""><?php print $f['columns'][$i]['title']; ?></h3>
+        <p><?php print $f['columns'][$i]['text']; ?></p>
+      </div>
+    <?php endfor; ?>
+    </div>
+  <?php endforeach; ?>
+</div>
