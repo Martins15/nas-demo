@@ -110,7 +110,8 @@ $(function() {
         });
         $capSlides.find(".slide-img img").css({
           "height": slideshowHeight + "px",
-          "width": "auto"
+          "width": "auto",
+          "max-width": "none"
         });
       }
       // Landscape-orientation resizing rules
@@ -126,7 +127,8 @@ $(function() {
         });
         $capSlides.find(".slide-img img").css({
           "width": "100%",
-          "height": "auto"
+          "height": "auto",
+          "max-width": "none"
         });
       }
 
@@ -242,7 +244,9 @@ $(function() {
       $slides.each(function() {
         var naturalHeight = $(this).find('.slide-img img')[0].naturalHeight;
         var naturalWidth = $(this).find('.slide-img img')[0].naturalWidth;
-        if (naturalHeight !== undefined && naturalWidth !== undefined && naturalHeight > naturalWidth) {
+        if (naturalHeight !== undefined && naturalWidth !== undefined
+          && naturalHeight !== 0 && naturalWidth !== 0
+          && naturalHeight >= naturalWidth) {
           $(this).addClass('portrait');
         }
       });

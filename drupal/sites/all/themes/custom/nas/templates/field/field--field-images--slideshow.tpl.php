@@ -73,7 +73,7 @@
                     <div class="engagement-card">
                       <div class="engagement-card-content no-min-height">
                         <h3 class="engagement-card-headline">Improve Crane Habitats</h3>
-                        <p class="hide-for-tiny">Restoration efforts continue on improve winter homes for whooping cranes.</p>
+                        <p>Restoration efforts continue on improve winter homes for whooping cranes.</p>
                         <div class="engagement-card-cta">
                           <a href="#" class="button tomato large">Donate Today</a>
                         </div>
