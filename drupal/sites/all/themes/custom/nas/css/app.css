@@ -5702,6 +5702,19 @@ img.hero-alt-img.current {
   top: 5px;
 }
 
+header.global-header .toggle-bird-guide-search {
+  display: none;
+}
+
+body.node-type-bird header.global-header .toggle-bird-guide-search {
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+  body.node-type-bird header.global-header .toggle-bird-guide-search {
+    display: none;
+  }
+}
+
 .header-search {
   display: none;
   text-align: right;
@@ -11406,4 +11419,8 @@ body.touch .sticky-wrapper {
 
 .mag-issue-header.section-header {
   margin-bottom: 5px;
+}
+
+.flyway-section {
+  display: none;
 }

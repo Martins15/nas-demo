@@ -22,9 +22,17 @@ function nas_master_update_7002() {
 }
 
 /**
-* Changes db for activate nas_past_magazine_issues feature.
-*/
-function nas_master_update_7004() {
+ * Revert nas_flyways_feature & nas_frontpage_feature features.
+ */
+function nas_master_update_7005() {
+  features_revert_module('nas_flyways_feature');
+  features_revert_module('nas_frontpage_feature');
+}
+
+/**
+ * Changes db for activate nas_past_magazine_issues feature.
+ */
+function nas_master_update_7008() {
   // Revert nas_magazine_issue_feature.
   features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
 
