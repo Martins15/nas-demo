@@ -13,3 +13,19 @@ function nas_master_install() {
     file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
   }
 }
+
+/**
+* Implements hook_update_N().
+* Changes db for activate nas_past_magazine_issues feature.
+*/
+function nas_master_update_7001() {
+  // Revert nas_magazine_issue_feature
+  features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
+
+  // Enable nas_past_magazine_issues module.
+  if (!module_exists('nas_past_magazine_issues')) {
+    $modules = array('nas_past_magazine_issues');
+    module_enable($modules);
+  }
+
+}
