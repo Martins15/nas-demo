@@ -20,3 +20,11 @@ function nas_master_install() {
 function nas_master_update_7002() {
   module_enable(array('nas_slideshow_feature'));
 }
+
+/**
+ * Revert nas_flyways_feature & nas_frontpage_feature features.
+ */
+function nas_master_update_7005() {
+  features_revert_module('nas_flyways_feature');
+  features_revert_module('nas_frontpage_feature');
+}
