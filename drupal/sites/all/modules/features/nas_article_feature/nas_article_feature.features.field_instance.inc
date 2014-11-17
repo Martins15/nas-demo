@@ -74,6 +74,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -186,6 +192,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 2,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -283,6 +295,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 13,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -369,6 +387,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 10,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
       ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
@@ -486,6 +510,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -573,6 +603,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -658,6 +694,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -741,6 +783,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
       ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
@@ -839,6 +887,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
@@ -963,6 +1017,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1045,6 +1105,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 9,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
@@ -1162,6 +1228,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1250,6 +1322,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
@@ -1340,6 +1418,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
@@ -1432,6 +1516,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'nas_teaser_from_network' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1516,6 +1606,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 7,
       ),
       'nas_node_view_mode_hero_bird' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
