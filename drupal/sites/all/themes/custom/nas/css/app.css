@@ -11419,3 +11419,20 @@ body.touch .sticky-wrapper {
 .mag-issue-header.section-header {
   margin-bottom: 5px;
 }
+
+input[type="text"].error,
+input[type="password"].error,
+input[type="date"].error,
+input[type="datetime"].error,
+input[type="datetime-local"].error,
+input[type="month"].error,
+input[type="week"].error,
+input[type="email"].error,
+input[type="number"].error,
+input[type="search"].error,
+input[type="tel"].error,
+input[type="time"].error,
+input[type="url"].error,
+textarea.error {
+  border: 1px solid #f15936;
+}
