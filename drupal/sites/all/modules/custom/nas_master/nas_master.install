@@ -24,7 +24,7 @@ function nas_master_update_7002() {
 /**
  * Revert NAS Flyway Landing feature
  */
-function nas_master_update_7003() {
+function nas_master_update_7010() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_flyways_landing_feature');
 }
