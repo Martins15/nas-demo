@@ -48,6 +48,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
+  if ($vars['type'] == 'magazine_issue') {
+    nas_preprocess_node_magazine_issue($vars);
+  }
 }
 
 /**
@@ -139,6 +142,19 @@ function nas_preprocess_node_bird(&$vars) {
       'style_name' => 'nas_bird_teaser_illustration',
       'path' => $get_field_bird_illustration[0]['file']->uri,
     )), $node_path, array('html' => TRUE));
+  }
+}
+
+/**
+ * theme_preprocess_node for magazine-issue content type.
+ */
+function nas_preprocess_node_magazine_issue(&$vars) {
+  $node = $vars['node'];
+
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 }
 
@@ -563,5 +579,34 @@ function nas_preprocess_views_view(&$vars) {
   }
   if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
     $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+  }
+}
+
+/**
+ * Implements hook_preprocess_field_field_images_slideshow().
+ */
+function nas_preprocess_field_field_images_slideshow(&$variables) {
+  $variables['images'] = array();
+  $node = $variables['element']['#object'];
+
+  // Get title and subtitle to display on first and last slide.
+  $variables['title'] = $node->title;
+  $variables['subtitle'] = !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) ? check_plain($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) : '';
+
+  // Collects images and pass them to template.
+  if (!empty($variables['element']['#items'])) {
+    foreach ($variables['element']['#items'] as $delta => $image) {
+      $variables['images'][] = array(
+        'url' => file_create_url($image['uri']),
+        // Additional fields to display on each slide.
+        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? t('Photograph by @author', array('@author' => $image['field_file_credit'][LANGUAGE_NONE][0]['value'])) : '',
+        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_caption'][LANGUAGE_NONE][0]['value']) : '',
+        'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
+        'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
+        // First or last slide.
+        'first' => ($delta == 0) ? TRUE : FALSE,
+        'last' => ($delta == count($variables['element']['#items']) - 1) ? TRUE : FALSE,
+      );
+    }
   }
 }

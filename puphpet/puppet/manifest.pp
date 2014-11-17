@@ -1533,6 +1533,12 @@ package { 'scss-lint':
   require => Class['ruby::ruby193']
 }
 
+package { 'ruby-augeas':
+  ensure   => installed,
+  provider => 'gem',
+  require => Class['ruby::ruby193']
+}
+
 package { "python-mysqldb":
   ensure  => latest
 }
