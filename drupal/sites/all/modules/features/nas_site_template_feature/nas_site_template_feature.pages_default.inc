@@ -44,6 +44,7 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'settings' => array(
             'type' => array(
               'bird' => 'bird',
+              'slideshow' => 'slideshow',
             ),
           ),
           'context' => 'node',
