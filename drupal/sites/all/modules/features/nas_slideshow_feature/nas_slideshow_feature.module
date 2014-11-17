@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Slideshow feature.
+ */
+
+include_once 'nas_slideshow_feature.features.inc';
