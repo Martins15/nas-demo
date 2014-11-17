@@ -30,5 +30,11 @@ function nas_formats_date_formats() {
       'locales' => array(),
     ),
   );
+
+  // Set date format variables.
+  foreach ($formats as $format) {
+    variable_set('date_format_' . $format['type'], $format['format']);
+  }
+
   return $formats;
 }
