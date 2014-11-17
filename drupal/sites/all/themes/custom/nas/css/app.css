@@ -11402,3 +11402,7 @@ body.touch .sticky-wrapper {
 .mag-issue-header.section-header {
   margin-bottom: 5px;
 }
+
+.flyway-section {
+  display: none;
+}
