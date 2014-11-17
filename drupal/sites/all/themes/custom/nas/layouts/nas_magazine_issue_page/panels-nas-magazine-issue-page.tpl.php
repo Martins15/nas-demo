@@ -15,7 +15,7 @@
     <div class="columns">
       <ul class="section-nav inline-list mag-issue-nav">
         <li><?php print l(t('Subscriber Services'), ''); ?></li>
-        <li><?php print l(t('Past Issues'), ''); ?></li>
+        <li><?php print l(t('Past Issues'), 'past-magazine-issues'); ?></li>
       </ul>
     </div>
   </div>
@@ -26,7 +26,7 @@
       <?php print $content['featured']; ?>
       <?php print $content['articles_top']; ?>
       <?php print $content['donate']; ?>
-      <?php print $content['articles_bottom']; ?>      
+      <?php print $content['articles_bottom']; ?>
     </div>
   <!-- END MAIN COLUMN -->
 

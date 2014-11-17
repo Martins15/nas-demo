@@ -48,6 +48,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
+  if ($vars['type'] == 'magazine_issue') {
+    nas_preprocess_node_magazine_issue($vars);
+  }
 }
 
 /**
@@ -139,6 +142,19 @@ function nas_preprocess_node_bird(&$vars) {
       'style_name' => 'nas_bird_teaser_illustration',
       'path' => $get_field_bird_illustration[0]['file']->uri,
     )), $node_path, array('html' => TRUE));
+  }
+}
+
+/**
+ * theme_preprocess_node for magazine-issue content type.
+ */
+function nas_preprocess_node_magazine_issue(&$vars) {
+  $node = $vars['node'];
+
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 }
 

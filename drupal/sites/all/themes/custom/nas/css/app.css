@@ -8954,6 +8954,24 @@ body.black-bg .slide-caption {
   color: #777777;
 }
 
+.past-magazin-issue .magazin-issues-list .magazine-issue .node {
+  margin: 10px auto 30px;
+}
+.past-magazin-issue .magazin-issues-list .magazine-issue .node .magazin-issue-title a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+}
+.past-magazin-issue .magazin-issues-list .magazine-issue .node .magazin-issue-article h4 {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin-bottom: 10px;
+}
+.past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
+  clear: both;
+}
+.past-magazin-issue .magazin-issues-list .magazine-issue-year h2 {
+  margin-top: 10px;
+}
+
 .bio-header {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }

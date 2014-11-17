@@ -30,10 +30,24 @@ function nas_master_update_7005() {
 }
 
 /**
+ * Changes db for activate nas_past_magazine_issues feature.
+ */
+function nas_master_update_7008() {
+  // Revert nas_magazine_issue_feature.
+  features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
+
+  // Enable nas_past_magazine_issues module.
+  if (!module_exists('nas_past_magazine_issues')) {
+    $modules = array('nas_past_magazine_issues');
+    module_enable($modules);
+  }
+}
+
+/**
  * Revert Article CT feature.
  * Revert NAS Flyways Landing feature.
  */
-function nas_master_update_7010() {
+function nas_master_update_7009() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_flyways_landing_feature');
 }
