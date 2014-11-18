@@ -62,7 +62,7 @@ function nas_master_update_7013() {
 /**
  * Activate BOA CT feature with dependensie.
  */
-/*function nas_master_update_7015() {
+function nas_master_update_7015() {
 
   module_enable(array('book'));
 
@@ -72,8 +72,9 @@ function nas_master_update_7013() {
 
   if (!module_exists('nas_boa_feature')) {
     module_enable(array('nas_boa_feature'));
+    features_revert_module('nas_boa_feature');
   }
 
 }
 
-*/
+
