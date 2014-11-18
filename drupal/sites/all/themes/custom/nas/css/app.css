@@ -11119,6 +11119,92 @@ body.touch .sticky-wrapper {
   column-gap: 50px;
 }
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+.john-audubon-logo {
+  max-width: 63px;
+  position: absolute;
+  top: 38px;
+}
+
+.page-boa .guide-bar-title {
+  margin-left: 55px;
+}
+.page-boa .hero-title {
+  font-size: 68px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+  }
+}
+
+.boa-bird-card-set {
+  position: relative;
+  overflow: hidden;
+  padding-top: 10px;
+}
+.boa-bird-card-set.bg-boa-bejge {
+  background-color: #f5f4eb;
+}
+
+.boa-bird-card {
+  margin-bottom: 40px;
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, opacity;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, opacity;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, opacity;
+  transition-property: transform, -webkit-transform, -moz-transform, opacity;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+.boa-bird-card img {
+  border: 1px solid #d5d5d5;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+.boa-bird-card .common-name {
+  margin: 0 0 5px 10px;
+}
+.boa-bird-card .scientific-name {
+  color: #838078;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 17px;
+  margin: 0 0 0 10px;
+}
+@media only screen and (min-width: 601px) {
+  body:not(.touch) .boa-bird-card:hover {
+    -moz-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+.boa-about-this-guide p {
+  font-size: 22px;
+  line-height: 27px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-weight: 300;
+}
+
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
