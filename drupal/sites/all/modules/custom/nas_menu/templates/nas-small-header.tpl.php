@@ -43,7 +43,7 @@
     <a href="<?php print $frontpage_url; ?>" class="current-parent wordmark"><?php print $site_name; ?></a>
     <!-- Only visible on small and medium screens -->
     <a href="#" class="icon-menu header-btn header-btn-menu"></a>
-    <a href="#" class="icon-binoculars header-btn-search-alt toggle-bird-guide-search"></a>
+    <a href="#" class="icon-binoculars header-btn-search-alt toggle-bird-guide-search bird-guide-search-species-page"></a>
 
     <!-- / -->
     <div class="global-nav">
