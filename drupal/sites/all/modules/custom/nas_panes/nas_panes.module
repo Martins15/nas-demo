@@ -130,6 +130,15 @@ function nas_panes_theme() {
       'template' => 'flyway-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_in_the_news'
     ),
+    'flyway_conservation_projects' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+        'more_link' => '',
+      ),
+      'template' => 'flyway-conservation-projects',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_conservation_projects'
+    ),
     'nas_panes_pane_donate_button' => array(
       'variables' => array(
         'caption' => '',
