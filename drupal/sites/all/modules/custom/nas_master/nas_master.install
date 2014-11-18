@@ -82,3 +82,36 @@ function nas_master_update_7015() {
     features_revert_module('nas_boa_feature');
   }
 }
+
+/**
+ * Revert NAS Views feature.
+ * Insert Flyway Conservation Projects pane in panelized overriden flyway nodes.
+ */
+function nas_master_update_7016() {
+  features_revert_module('nas_views');
+
+  $nids = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'flyway'))->fetchAllKeyed(0, 0);
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $did = $node->panelizer['page_manager']->did;
+    $panels_pane = array(
+      'did' => $did,
+      'panel' => 'bottom',
+      'type' => 'nas_panes_flyway_cons_projects',
+      'subtype' => 'nas_panes_flyway_cons_projects',
+      'shown' => 1,
+      'access' => array(),
+      'configuration' => array(),
+      'cache' => array(),
+      'style' => array(
+        'settings' => NULL,
+      ),
+      'css' => array(),
+      'extras' => array(),
+      'position' => 2,
+      'locks' => array(),
+    );
+    drupal_write_record('panels_pane', $panels_pane);
+  }
+}
+
