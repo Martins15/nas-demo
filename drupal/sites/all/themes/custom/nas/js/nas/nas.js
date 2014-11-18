@@ -35,19 +35,7 @@ var Nas = Nas || {};
       });
     }
   };
-
-  Drupal.behaviors.magIssueFeatured = {
-    attach: function (context, settings) {
-      $(window).bind('load resize', function() {
-        var magIssueCoverHeight = $(".node-type-magazine-issue .sidebar-section.editorial-card-photo img").height();
-        var magIssueEdBlockHeight = $(".node-type-magazine-issue .editorial-card.collapse-minimal:eq(0)").height();
-        if (magIssueEdBlockHeight !== 0 && magIssueEdBlockHeight < magIssueCoverHeight) {
-          $(".node-type-magazine-issue .editorial-card.collapse-minimal").css("min-height", magIssueCoverHeight);
-        }
-      });
-    }
-  };
-
+  
   Drupal.behaviors.articleFullscreen = {
     attach: function (context, settings) {
       if ($(".hero.expand").length > 0) {
