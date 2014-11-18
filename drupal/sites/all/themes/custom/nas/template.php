@@ -600,6 +600,7 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
   // Get title and subtitle to display on first and last slide.
   $variables['title'] = $node->title;
   $variables['subtitle'] = !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) ? check_plain($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) : '';
+  $variables['page_link'] = url('node/' . $node->nid, array('absolute' => TRUE));
 
   // Collects images and pass them to template.
   if (!empty($variables['element']['#items'])) {
