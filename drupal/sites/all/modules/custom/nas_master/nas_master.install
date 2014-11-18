@@ -60,6 +60,13 @@ function nas_master_update_7013() {
 }
 
 /**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7014() {
+  features_revert_module('nas_site_template_feature');
+}
+
+/**
  * Activate BOA CT feature with dependensie.
  */
 function nas_master_update_7015() {
@@ -74,5 +81,4 @@ function nas_master_update_7015() {
     module_enable(array('nas_boa_feature'));
     features_revert_module('nas_boa_feature');
   }
-
 }
