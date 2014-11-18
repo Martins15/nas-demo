@@ -51,3 +51,23 @@ function nas_master_update_7009() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_flyways_landing_feature');
 }
+
+
+/**
+ * Activate BOA CT feature with dependensie.
+ */
+/*function nas_master_update_7010() {
+
+  module_enable(array('book'));
+
+  // Delete default book content type
+  node_type_delete('book');
+  variable_del('node_preview_book');
+
+  if (!module_exists('nas_boa_feature')) {
+    module_enable(array('nas_boa_feature'));
+  }
+
+}
+
+*/
