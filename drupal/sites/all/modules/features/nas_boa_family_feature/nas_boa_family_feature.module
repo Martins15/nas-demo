@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the BOA Family feature.
+ */
+
+include_once 'nas_boa_family_feature.features.inc';
