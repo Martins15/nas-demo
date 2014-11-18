@@ -243,6 +243,10 @@ function nas_panes_theme() {
       'template' => 'frontpage-editorial-cards',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_editorial_cards'
     ),
+    'magazine_issue_featured' => array(
+      'template' => 'magazine-issue-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_featured'
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -461,5 +465,44 @@ function nas_panes_nas_after_import() {
       ),
     );
     node_save($article);
+  }
+}
+
+
+/**
+ * Implementation of hook_views_pre_render().
+ */
+function nas_panes_views_pre_render(&$view) {
+  //We have to remove Featured Articles from articles listing for Magazine Issue page.
+  if ($view->name == 'nas_news' && ($view->current_display == 'mag_issue_articles_list_top' || $view->current_display == 'mag_issue_articles_list_bot')) {
+    //We dont't have any context except page arguments here.
+    /*if (arg(0) == 'node' && is_numeric(arg(1))) {
+      $magazine_issue_featured_nids = variable_get('magazine_issue_featured_nids_' . arg(1));
+      if (!empty($magazine_issue_featured_nids)) {
+        foreach ($view->result as $key => $result) {
+          if (in_array($result->nid, $magazine_issue_featured_nids)) {
+            unset($view->result[$key]);
+          }
+        }
+        $view->result = array_values($view->result);
+      }
+    }*/
+  }
+}
+
+/**
+ * Implementation of hook_views_pre_build().
+ */
+function nas_panes_views_pre_build(&$view) {
+  if ($view->name == 'nas_news' && $view->current_display == 'mag_issue_articles_list_bot') {
+    // The view normally has 9 items per page, put 2 for the first page.
+    if (!isset($_GET['page']) || $_GET['page'] <= 0) {
+      //dpm($view->items_per_page);
+      //$view->set_items_per_page(2);
+      //$view->offset = -1;
+    }
+    else {
+      //$view->offset = -1;
+    }
   }
 }
