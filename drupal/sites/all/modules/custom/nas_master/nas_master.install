@@ -94,24 +94,24 @@ function nas_master_update_7016() {
   $nodes = node_load_multiple($nids);
   foreach ($nodes as $node) {
     $did = $node->panelizer['page_manager']->did;
-    $panels_pane = array(
-      'did' => $did,
-      'panel' => 'bottom',
-      'type' => 'nas_panes_flyway_cons_projects',
-      'subtype' => 'nas_panes_flyway_cons_projects',
-      'shown' => 1,
-      'access' => array(),
-      'configuration' => array(),
-      'cache' => array(),
-      'style' => array(
-        'settings' => NULL,
-      ),
-      'css' => array(),
-      'extras' => array(),
-      'position' => 2,
-      'locks' => array(),
-    );
-    drupal_write_record('panels_pane', $panels_pane);
+    // In hook_update_N we use db_insert() instead of drupal_write_record().
+    db_insert('panels_pane')
+      ->fields(array(
+        'did' => $did,
+        'panel' => 'bottom',
+        'type' => 'nas_panes_flyway_cons_projects',
+        'subtype' => 'nas_panes_flyway_cons_projects',
+        'shown' => 1,
+        'access' => serialize(array()),
+        'configuration' => serialize(array()),
+        'cache' => serialize(array()),
+        'style' => serialize(array('settings' => NULL)),
+        'css' => serialize(array()),
+        'extras' => serialize(array()),
+        'position' => 2,
+        'locks' => serialize(array()),
+      ))
+      ->execute();
   }
 }
 
