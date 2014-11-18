@@ -226,3 +226,11 @@ body.black-bg {
     color: $color-white;
   }
 }
+
+// Fix overlapping primary tabs.
+body.node-type-slideshow {
+  #tabs {
+    position: relative;
+    z-index: 10;
+  }
+}

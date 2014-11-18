@@ -8478,6 +8478,11 @@ body.black-bg .slide-caption {
   color: #fff;
 }
 
+body.node-type-slideshow #tabs {
+  position: relative;
+  z-index: 10;
+}
+
 .conservation-slider {
   position: relative;
   -webkit-font-smoothing: subpixel-antialiased;
