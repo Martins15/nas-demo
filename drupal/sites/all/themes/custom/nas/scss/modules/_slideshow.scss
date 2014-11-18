@@ -10,7 +10,7 @@
 
   @include breakpoint(large-up) {
     &.standalone {
-      margin-top: -60px;
+      top: -60px;
     }
   }
 }
