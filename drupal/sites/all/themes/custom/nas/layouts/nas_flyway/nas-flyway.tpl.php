@@ -85,55 +85,6 @@
     </div>
   </div>
 
-  <div class="row section-header space-top">
-    <div class="column">
-      <h2 class="thin">Atlantic Flyway in the News</h2>
-    </div>
-    <div class="column">
-      <ul class="section-nav inline-list">
-        <li><a href="#">More News »</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row space-bottom">
-    <div class="columns large-4">
-      <div class="editorial-card collapse-minimal" style="min-height: 341px;">
-        <div class="editorial-card-photo">
-          <img src="../../img/editorial-card-1.jpg">
-        </div>
-        <div class="editorial-card-content short">
-          <a href="#" class="editorial-card-slug">In The News</a>
-          <h4 class="editorial-card-title">Atlantic Coast Oil Spill Imperils Thousands of Birds</h4>
-          <p><em><a href="#" class="editorial-card-link">Map of impacted areas</a></em></p>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-4">
-      <div class="editorial-card collapse-minimal" style="min-height: 341px;">
-        <div class="editorial-card-photo">
-          <img src="../../img/editorial-card-2.jpg">
-        </div>
-        <div class="editorial-card-content short">
-          <a href="#" class="editorial-card-slug">Citizen Science</a>
-          <h4 class="editorial-card-title">Get Geared Up for the Great Backyard Bird Count</h4>
-          <p><em><a href="#" class="editorial-card-link">How you can participate</a></em></p>
-        </div>
-      </div>
-    </div>
-    <div class="columns large-4">
-      <div class="editorial-card collapse-minimal" style="min-height: 341px;">
-        <div class="editorial-card-photo">
-          <img src="../../img/editorial-card-3.jpg">
-        </div>
-        <div class="editorial-card-content short">
-          <a href="#" class="editorial-card-slug">Conservation</a>
-          <h4 class="editorial-card-title">Improving the Health of Rivers in the Mid-Atlantic</h4>
-          <p><em><a href="#" class="editorial-card-link">Two dozen areas targeted</a></em></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="card-set">
     <div class="row section-header">
       <div class="column">
