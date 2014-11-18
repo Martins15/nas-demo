@@ -51,6 +51,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'magazine_issue') {
     nas_preprocess_node_magazine_issue($vars);
   }
+  if ($vars['type'] == 'project') {
+    nas_preprocess_node_project($vars);
+  }
 }
 
 /**
@@ -205,6 +208,44 @@ function nas_preprocess_node_article(&$vars) {
     // Looks terrible.
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
+}
+
+/**
+ * theme_preprocess_node for Conservation Project content type.
+ */
+function nas_preprocess_node_project(&$vars) {
+  $node = $vars['node'];
+  $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $image = theme('image', array(
+      'path' => $hero_image->uri,
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+  }
+
+  $vars['strategy_link'] = '';
+  if ($nid = $node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id']) {
+    if ($strategy = node_load($nid)) {
+      $vars['strategy_link'] = l($strategy->title, 'node/' . $nid, array('attributes' => array('class' => 'editorial-card-slug')));
+    }
+  }
+
+  // Subtitle currently presented only in flyway landing teasers.
+  if ($vars['view_mode'] == 'nas_node_teaser_small') {
+    $vars['subtitle'] = '';
+    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
 /**
