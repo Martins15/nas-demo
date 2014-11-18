@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Conservation Strategy feature.
+ */
+
+include_once 'nas_conservation_strategy_feature.features.inc';
