@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the BOA Genus feature.
+ */
+
+include_once 'nas_boa_genus_feature.features.inc';
