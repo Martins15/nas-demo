@@ -5702,15 +5702,15 @@ img.hero-alt-img.current {
   top: 5px;
 }
 
-header.global-header .toggle-bird-guide-search {
+header.global-header .bird-guide-search-species-page {
   display: none;
 }
 
-body.node-type-bird header.global-header .toggle-bird-guide-search {
+body.node-type-bird header.global-header .bird-guide-search-species-page {
   display: block;
 }
 @media only screen and (min-width: 768px) {
-  body.node-type-bird header.global-header .toggle-bird-guide-search {
+  body.node-type-bird header.global-header .bird-guide-search-species-page {
     display: none;
   }
 }
