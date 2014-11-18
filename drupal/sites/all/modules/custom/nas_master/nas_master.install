@@ -51,3 +51,10 @@ function nas_master_update_7009() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_flyways_landing_feature');
 }
+
+/**
+ * Enable Conservation Strategy and Conservation Project features.
+ */
+function nas_master_update_7013() {
+  module_enable(array('nas_conservation_strategy_feature', 'nas_conservation_project_feature'));
+}
