@@ -204,12 +204,13 @@ function nas_boa_feature_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'mediafield',
+        'module' => 'image',
         'settings' => array(
-          'file_view_mode' => 'default',
+          'image_link' => '',
+          'image_style' => '',
         ),
-        'type' => 'media',
-        'weight' => 6,
+        'type' => 'image',
+        'weight' => 9,
       ),
       'nas_node_featured' => array(
         'label' => 'above',
@@ -259,6 +260,8 @@ function nas_boa_feature_field_default_field_instances() {
     'label' => 'Plate Illustration',
     'required' => 0,
     'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -278,7 +281,12 @@ function nas_boa_feature_field_default_field_instances() {
           'nas_birds_landing_epsacrop_mobile' => 0,
         ),
       ),
-      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm',
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '20 MB',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -304,7 +312,7 @@ function nas_boa_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -402,7 +410,7 @@ function nas_boa_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'nas_node_featured' => array(
         'label' => 'above',
@@ -488,7 +496,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 9,
     ),
   );
 
@@ -561,7 +569,7 @@ function nas_boa_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 

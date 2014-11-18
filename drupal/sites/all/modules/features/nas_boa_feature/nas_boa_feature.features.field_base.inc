@@ -61,7 +61,7 @@ function nas_boa_feature_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_boa_illustration',
     'foreign keys' => array(
-      'file_managed' => array(
+      'fid' => array(
         'columns' => array(
           'fid' => 'fid',
         ),
@@ -74,10 +74,13 @@ function nas_boa_feature_field_default_field_bases() {
       ),
     ),
     'locked' => 0,
-    'module' => 'mediafield',
-    'settings' => array(),
+    'module' => 'image',
+    'settings' => array(
+      'default_image' => 0,
+      'uri_scheme' => 'public',
+    ),
     'translatable' => 0,
-    'type' => 'media',
+    'type' => 'image',
   );
 
   // Exported field_base: 'field_boa_plate'
