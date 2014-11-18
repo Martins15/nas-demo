@@ -231,7 +231,8 @@ function nas_preprocess_node_project(&$vars) {
   }
 
   $vars['strategy_link'] = '';
-  if ($nid = $node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id']) {
+  if (!empty($node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'])) {
+    $nid = $node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'];
     if ($strategy = node_load($nid)) {
       $vars['strategy_link'] = l($strategy->title, 'node/' . $nid, array('attributes' => array('class' => 'editorial-card-slug')));
     }

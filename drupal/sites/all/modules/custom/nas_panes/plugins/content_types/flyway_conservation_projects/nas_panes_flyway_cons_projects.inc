@@ -7,7 +7,7 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Flyway\'s Conservation Projects'),
+  'title' => t("Flyway's Conservation Projects"),
   'description' => t('Provides related to flyway Conservation Projects'),
   'category' => 'NAS',
   'edit form' => 'nas_panes_flyway_conservation_projects_edit_form',
