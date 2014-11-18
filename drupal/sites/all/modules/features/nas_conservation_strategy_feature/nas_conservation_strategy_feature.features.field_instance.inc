@@ -165,7 +165,7 @@ function nas_conservation_strategy_feature_field_default_field_instances() {
           'nas_birds_landing_epsacrop_mobile' => 0,
         ),
       ),
-      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm',
+      'file_extensions' => 'jpg jpeg gif png',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
