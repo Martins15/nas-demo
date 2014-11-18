@@ -36,10 +36,10 @@
                   <p><a href="#" class="title-slide-button button pea-green xlarge slideshow-control next">View Slideshow</a></p>
                   <div class="social-sharing align-left hide-for-small hide-for-medium hide-for-tiny">
                     <span class="social-sharing-caption white">Share this</span>
-                    <a href="#" class="social-sharing-icon white"><i class="icon-twitter"></i></a>
-                    <a href="#" class="social-sharing-icon white"><i class="icon-facebook"></i></a>
-                    <a href="#" class="social-sharing-icon white"><i class="icon-pinterest"></i></a>
-                    <a href="#" class="social-sharing-icon white"><i class="icon-mail"></i></a>
+                    <a href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-twitter"></i></a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-facebook"></i></a>
+                    <a href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-pinterest"></i></a>
+                    <a href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-mail"></i></a>
                   </div>
                 </div>
               </div>
@@ -63,10 +63,10 @@
                     </ul>
                     <div class="social-sharing align-left hide-for-small hide-for-medium hide-for-tiny">
                       <span class="social-sharing-caption white">Share this</span>
-                      <a href="#" class="social-sharing-icon white"><i class="icon-twitter"></i></a>
-                      <a href="#" class="social-sharing-icon white"><i class="icon-facebook"></i></a>
-                      <a href="#" class="social-sharing-icon white"><i class="icon-pinterest"></i></a>
-                      <a href="#" class="social-sharing-icon white"><i class="icon-mail"></i></a>
+                      <a href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-twitter"></i></a>
+                      <a href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-facebook"></i></a>
+                      <a href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-pinterest"></i></a>
+                      <a href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-mail"></i></a>
                     </div>
                   </div>
                   <div class="columns tiny-12 small-8 small-offset-2 medium-6 medium-offset-3 large-4 large-offset-0 end text-container">

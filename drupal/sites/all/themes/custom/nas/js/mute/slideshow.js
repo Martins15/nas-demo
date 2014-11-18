@@ -141,6 +141,10 @@ $(function() {
         $indicator = $body.find(".slideshow-indicator"),
         $controls = $body.find(".slideshow-control");
 
+      // Hide slideshow while there are calculations.
+      // This needs to avoid flickering.
+      $body.css('visibility', 'hidden');
+
       Slideshow._setSizes($body);
 
       scroll = new IScroll(".slideshow-wrapper", {
@@ -280,6 +284,13 @@ $(function() {
     });
 
     Slideshow.setup();
+
+    setTimeout(function() {
+      // Fire resize to calculate proper height.
+      Slideshow.resize();
+      // Show slideshow.
+      $(".slideshow").css('visibility', 'visible');
+    }, 500);
   }
 });
 

@@ -641,11 +641,16 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
   // Get title and subtitle to display on first and last slide.
   $variables['title'] = $node->title;
   $variables['subtitle'] = !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) ? check_plain($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) : '';
+  $variables['page_link'] = url('node/' . $node->nid, array('absolute' => TRUE));
 
   // Collects images and pass them to template.
   if (!empty($variables['element']['#items'])) {
     foreach ($variables['element']['#items'] as $delta => $image) {
-      $variables['images'][] = array(
+      $first = ($delta == 0) ? TRUE : FALSE;
+      $last = ($delta == count($variables['element']['#items']) - 1) ? TRUE : FALSE;
+
+      // Add regular slide.
+      $content_image = array(
         'url' => file_create_url($image['uri']),
         // Additional fields to display on each slide.
         'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? t('Photograph by @author', array('@author' => $image['field_file_credit'][LANGUAGE_NONE][0]['value'])) : '',
@@ -653,9 +658,20 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
         'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
         'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
         // First or last slide.
-        'first' => ($delta == 0) ? TRUE : FALSE,
-        'last' => ($delta == count($variables['element']['#items']) - 1) ? TRUE : FALSE,
+        'first' => FALSE,
+        'last' => FALSE,
       );
+      $variables['images'][] = $content_image;
+
+      // Attach first and last slide.
+      if ($first) {
+        $content_image['first'] = TRUE;
+        array_unshift($variables['images'], $content_image);
+      }
+      if ($last) {
+        $content_image['last'] = TRUE;
+        array_push($variables['images'], $content_image);
+      }
     }
   }
 }

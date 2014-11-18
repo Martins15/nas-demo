@@ -8267,7 +8267,7 @@ body.black-bg .slideshow {
 }
 @media only screen and (min-width: 768px) {
   .slideshow.standalone {
-    margin-top: -60px;
+    top: -60px;
   }
 }
 
@@ -8476,6 +8476,11 @@ body.black-bg .slideshow,
 body.black-bg .slideshow-indicator,
 body.black-bg .slide-caption {
   color: #fff;
+}
+
+body.node-type-slideshow #tabs {
+  position: relative;
+  z-index: 10;
 }
 
 .conservation-slider {

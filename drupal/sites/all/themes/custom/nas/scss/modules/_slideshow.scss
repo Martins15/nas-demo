@@ -10,7 +10,7 @@
 
   @include breakpoint(large-up) {
     &.standalone {
-      margin-top: -60px;
+      top: -60px;
     }
   }
 }
@@ -224,5 +224,13 @@ body.black-bg {
   .slideshow-indicator,
   .slide-caption {
     color: $color-white;
+  }
+}
+
+// Fix overlapping primary tabs.
+body.node-type-slideshow {
+  #tabs {
+    position: relative;
+    z-index: 10;
   }
 }
