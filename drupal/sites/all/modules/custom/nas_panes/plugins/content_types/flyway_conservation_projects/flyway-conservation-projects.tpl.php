@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Template to custom pane flyway_in_the_news.
+ * Template to custom pane flyway_cons_projects.
  *
  * Available variables:
  *  $contextual_links - contextual links.
  *  $title - pane's title.
- *  $more_link - link to flyway news listing.
- *  $teasers - array of rendered news.
+ *  $more_link - link to Conservation Landing.
+ *  $teasers - array of rendered Conservation Projects.
  */
 ?>
 

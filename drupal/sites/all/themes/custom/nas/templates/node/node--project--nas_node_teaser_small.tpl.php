@@ -75,9 +75,9 @@
  *
  * Custom variables:
  * - $title_link: Title with link to node page.
- * - $blue_text_link_url: Menu or Custom section url.
- * - $blue_text_link_text: Menu or Custom section text.
+ * - $strategy_link: Blue strategy link.
  * - $linked_image: Hero image wrapper with A tag linked to node.
+ * - $subtitle: Node's subtitle.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
