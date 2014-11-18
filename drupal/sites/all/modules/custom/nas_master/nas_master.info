@@ -44,3 +44,5 @@ dependencies[] = nas_welcome_to_audubon
 dependencies[] = nas_alters
 dependencies[] = nas_formats
 dependencies[] = nas_slideshow_feature
+dependencies[] = nas_conservation_strategy_feature
+dependencies[] = nas_conservation_project_feature
