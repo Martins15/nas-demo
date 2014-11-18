@@ -25,62 +25,62 @@
 
   <?php print $content['bottom']; ?>
 
-  <div class="card-set bg-gray">
-    <div class="row section-header space-top">
+  <div class="card-set">
+    <div class="row section-header">
       <div class="column">
-        <h2 class="thin">Important Bird Areas of the Atlantic Flyway</h2>
+        <h2 class="thin">Conservation Projects in the Atlantic Flyway</h2>
       </div>
       <div class="column">
-        <ul class="inline-list section-nav">
-          <li><a href="#">More IBAs »</a></li>
+        <ul class="section-nav inline-list">
+          <li><a href="#">More Projects »</a></li>
         </ul>
       </div>
     </div>
-    <div class="row card-set-wrapper space-bottom double">
+    <div class="row card-set-wrapper">
       <div class="clearfix card-set-scroller">
-        <div class="columns tiny-4">
-          <div class="editorial-card" style="min-height: 338px;">
+        <div class="tiny-4 columns">
+          <div class="editorial-card" style="min-height: 368px;">
             <div class="editorial-card-photo">
-              <img src="../../img/editorial-card-14.jpg">
+              <a href="#"><img src="../../img/editorial-card-10.jpg" alt=""></a>
             </div>
-            <div class="editorial-card-content short">
-              <a href="#" class="editorial-card-slug">Florida</a>
-              <h4 class="editorial-card-title">Greater Everglades Ecosystem</h4>
-              <p>Along with the title, we should include a short description of the IBA.</p>
+            <div class="editorial-card-content">
+              <a href="#" class="editorial-card-slug">Seas &amp; Shores</a>
+              <h4 class="editorial-card-title"><a href="#">Here’s the Name of a Conservation Project</a></h4>
+              <p>Along with the title, we should include a short description of the project. </p>
             </div>
           </div>
         </div>
-        <div class="columns tiny-4">
-          <div class="editorial-card" style="min-height: 338px;">
+        <div class="tiny-4 columns">
+          <div class="editorial-card" style="min-height: 368px;">
             <div class="editorial-card-photo">
-              <img src="../../img/editorial-card-2.jpg">
+              <a href="#"><img src="../../img/editorial-card-11.jpg" alt=""></a>
             </div>
-            <div class="editorial-card-content short">
-              <a href="#" class="editorial-card-slug">New York</a>
-              <h4 class="editorial-card-title">Long Island Sound</h4>
-              <p>Along with the title, we should include a short description of the IBA.</p>
+            <div class="editorial-card-content">
+              <a href="#" class="editorial-card-slug">Working Lands</a>
+              <h4 class="editorial-card-title"><a href="#">Another Example of a Conservation Project</a></h4>
+              <p>Along with the title, we should include a short description of the project. </p>
             </div>
           </div>
         </div>
-        <div class="columns tiny-4">
-          <div class="editorial-card" style="min-height: 338px;">
+        <div class="tiny-4 columns">
+          <div class="editorial-card" style="min-height: 368px;">
             <div class="editorial-card-photo">
-              <img src="../../img/editorial-card-3.jpg">
+              <a href="#"><img src="../../img/editorial-card-12.jpg" alt=""></a>
             </div>
-            <div class="editorial-card-content short">
-              <a href="#" class="editorial-card-slug">North Carolina</a>
-              <h4 class="editorial-card-title">Outer Banks</h4>
-              <p>Along with the title, we should include a short description of the IBA.</p>
+            <div class="editorial-card-content">
+              <a href="#" class="editorial-card-slug">Important Bird Areas</a>
+              <h4 class="editorial-card-title"><a href="#">And a THird Conservation Project Linked Here</a></h4>
+              <p>Along with the title, we should include a short description of the project. </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="card-set-dots">
-          <div class="dot active"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
+    </div>
+    <div class="row space-bottom double">
+      <div class="card-set-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
       </div>
     </div>
   </div>
