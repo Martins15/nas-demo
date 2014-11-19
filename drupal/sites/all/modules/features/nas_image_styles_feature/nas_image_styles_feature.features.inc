@@ -139,6 +139,13 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: conservation_strategy_icon.
+  $styles['conservation_strategy_icon'] = array(
+    'name' => 'conservation_strategy_icon',
+    'label' => 'Conservation Strategy Icon',
+    'effects' => array(),
+  );
+
   // Exported image style: default_teaser_image.
   $styles['default_teaser_image'] = array(
     'name' => 'default_teaser_image',

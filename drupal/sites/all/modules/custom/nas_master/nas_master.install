@@ -121,3 +121,12 @@ function nas_master_update_7016() {
 function nas_master_update_7017() {
   features_revert_module('nas_boa_feature');
 }
+
+/**
+ * Revert NAS Image Styles feature.
+ * Revert Conservation Project feature.
+ */
+function nas_master_update_7018() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_conservation_project_feature');
+}
