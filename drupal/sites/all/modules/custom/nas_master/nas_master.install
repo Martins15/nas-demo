@@ -123,6 +123,15 @@ function nas_master_update_7017() {
 }
 
 /**
+ * Revert NAS Image Styles feature.
+ * Revert Conservation Project feature.
+ */
+function nas_master_update_7018() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_conservation_project_feature');
+}
+
+/**
  * Revert features for Slideshow migration.
  */
 function nas_master_update_7019() {

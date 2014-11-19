@@ -8970,8 +8970,20 @@ body.node-type-slideshow #tabs {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-bottom: 10px;
 }
-.past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
-  clear: both;
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
+    clear: both;
+  }
 }
 .past-magazin-issue .magazin-issues-list .magazine-issue-year h2 {
   margin-top: 10px;
