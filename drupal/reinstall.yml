@@ -77,9 +77,19 @@
     sudo: yes
     when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER != "jenkins"
 
-  - name: Importing from local backup
-    mysql_db: name={{ mysql_db }} state=import target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
+  - name: Copy local backup to build folder
     sudo: yes
+    copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes mode=0644
+    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER == "jenkins"
+
+  - name: Importing from local backup
+    mysql_db: name={{ mysql_db }} state=import target=./latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
+    sudo: yes
+    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER == "jenkins"
+
+  - name: Remove local backup from build folder
+    sudo: yes
+    file: name=./latest.sql.gz state=absent
     when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER == "jenkins"
 
   - name: Creating cache folder
