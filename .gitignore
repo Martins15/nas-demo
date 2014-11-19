@@ -1,3 +1,6 @@
 cache/*
 .vagrant/*
 adminer/*
+backup/*
+*.sql.gz
+*.sql

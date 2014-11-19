@@ -96,6 +96,9 @@ function flyways_landing_top_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
+  $header_class = &drupal_static('nas_header_class');
+  $header_class = 'transparent light-bg dark-text';
+
   $block = new stdClass();
   // @codingStandardsIgnoreStart
   // Sanitize configuration before passing to template.

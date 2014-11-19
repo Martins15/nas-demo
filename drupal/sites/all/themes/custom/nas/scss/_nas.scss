@@ -158,3 +158,26 @@
 .mag-issue-header.section-header {
   margin-bottom: 5px;
 }
+
+.flyway-section {
+  display: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+  &.error {
+    border: 1px solid #f15936;
+  }
+}

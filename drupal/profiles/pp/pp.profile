@@ -27,6 +27,13 @@ function pp_form_install_configure_form_alter(&$form, $form_state) {
  */
 function pp_install_tasks(&$install_state) {
   $tasks = array();
+  $tasks['default_pressrelease_contact'] = array(
+    'display_name' => st('Provide default Press Release Contact'),
+    'display' => TRUE,
+    'type' => 'batch',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_create_default_pressrelease_contact',
+  );
   $tasks['content_import'] = array(
     'display_name' => st('Content import'),
     'display' => TRUE,
@@ -313,6 +320,72 @@ function pp_create_test_flyway() {
   $node->field_background_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image('default_flyway_section_background.jpg');
 
   $node->field_color_mode[LANGUAGE_NONE][0]['value'] = 'light';
+  $term1 = taxonomy_get_term_by_name('District of Columbia');
+  $term1 = reset($term1);
+  $term2 = taxonomy_get_term_by_name('New York');
+  $term2 = reset($term2);
+  $node->field_flyway_states[LANGUAGE_NONE][0]['tid'] = $term1->tid;
+  $node->field_flyway_states[LANGUAGE_NONE][1]['tid'] = $term2->tid;
+  node_save($node);
+
+  // Set default display for created flyway.
+  $panelizer_entity_name = 'node:flyway:default';
+  $panelizer_entity = array(
+    'entity_type' => 'node',
+    'entity_id' => $node->nid,
+    'revision_id' => $node->vid,
+    'name' => $panelizer_entity_name,
+    'no_blocks' => 0,
+    'css_id' => '',
+    'css' => '',
+    'pipeline' => 'standard',
+    'contexts' => array(),
+    'relationships' => array(),
+    'did' => 0,
+    'view_mode' => 'page_manager',
+    'css_class' => '',
+    'title_element' => 'H2',
+    'link_to_entity' => 1,
+    'extra' => array(),
+  );
+  drupal_write_record('panelizer_entity', $panelizer_entity);
+
+  $node = node_load($node->nid, NULL, TRUE);
+  $node->panelizer['page_manager']->display_is_modified = TRUE;
+  node_save($node);
+
+  if (function_exists('nas_fpp_flyway_create_test_content') || module_load_include('inc', 'nas_fpp', 'nas_fpp.content')) {
+    nas_fpp_flyway_create_test_content($node);
+  }
+  unset($node);
+  // Create node object.
+  $node = new StdClass();
+  $node->type = 'flyway';
+  $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node->title = 'Pacific Flyway';
+  $node->field_flyway_body[LANGUAGE_NONE] = array(
+    0 => array(
+      'value' => '<p>From the northern Pacific Coast and through the Caribbean to South America, Audubon is working to support this avian superhighway’s 500-plus bird species and millions of individual birds. Forty percent of the Pacific Flyway’s bird species are species of conservation need.</p>',
+      'format' => 'full_html',
+    ),
+    1 => array(
+      'value' => '<p>With only one-tenth of the U.S. landmass, this flyway is home to one-third of the nation’s people. And dense population carries with it many challenges for birds and habitat: development and sprawl, incompatible agriculture, overfishing, and climate change.</p>',
+      'format' => 'full_html',
+    ),
+  );
+  $node->field_secondary_title[LANGUAGE_NONE][0]['value'] = 'On the wing from Labrador to Tierra del Fuego';
+  $node->field_subtitle[LANGUAGE_NONE][0]['value'] = 'The Pacific Flyway encompasses some of the hemisphere’s most productive ecosystems, inclusing forests, beaches, and coastal wetland.';
+
+  $node->field_background_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image('default_flyway_section_background.jpg');
+
+  $node->field_color_mode[LANGUAGE_NONE][0]['value'] = 'light';
+  $term1 = taxonomy_get_term_by_name('California');
+  $term1 = reset($term1);
+  $term2 = taxonomy_get_term_by_name('Oregon');
+  $term2 =  reset($term2);
+  $node->field_flyway_states[LANGUAGE_NONE][0]['tid'] = $term1->tid;
+  $node->field_flyway_states[LANGUAGE_NONE][1]['tid'] = $term2->tid;
   node_save($node);
 
   // Set default display for created flyway.
@@ -377,4 +450,42 @@ function pp_create_flyway_navigation_menu_fpp() {
   // We have to reset static cache, because this defaults will be cloned on node
   // creation and changes have to be there.
   drupal_static_reset('ctools_export_load_object');
+}
+
+/**
+ * Creates default Press Release contact node and initialize variable
+ * nas_default_pressrelease_contact used in features to provide default field
+ * value and in import process with the same purpose.
+ */
+function pp_create_default_pressrelease_contact() {
+  // Create node object.
+  $node = new StdClass();
+  $node->type = 'contact';
+  $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node->title = 'Audubon Media Relations';
+  $node->field_contact_phone[LANGUAGE_NONE][]['value'] = '212-979-3100';
+  $node->field_contact_email[LANGUAGE_NONE][]['value'] = 'media@audubon.org';
+  $node = node_submit($node);
+  node_save($node);
+
+  $value = array(array('target_id' => $node->nid));
+  variable_set('nas_default_pressrelease_contact', $value);
+}
+
+/**
+ * Return Flyway node's nid by node's title.
+ *
+ * @param string $title
+ *   Node title.
+ *
+ * @return mixed
+ *   int if node exists.
+ *   FALSE if node doesn't exist.
+ */
+function pp_get_flyway_node_nid_by_title($title) {
+  return db_query("SELECT nid FROM {node} WHERE title = :title AND type = :type", array(
+    ':title' => $title,
+    ':type' => 'flyway',
+  ))->fetchField();
 }

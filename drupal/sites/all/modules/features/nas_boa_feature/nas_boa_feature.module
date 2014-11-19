@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the BOA feature.
+ */
+
+include_once 'nas_boa_feature.features.inc';

@@ -13,3 +13,111 @@ function nas_master_install() {
     file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
   }
 }
+
+/**
+ * Enable nas_slideshow_feature feature.
+ */
+function nas_master_update_7002() {
+  module_enable(array('nas_slideshow_feature'));
+}
+
+/**
+ * Revert nas_flyways_feature & nas_frontpage_feature features.
+ */
+function nas_master_update_7005() {
+  features_revert_module('nas_flyways_feature');
+  features_revert_module('nas_frontpage_feature');
+}
+
+/**
+ * Changes db for activate nas_past_magazine_issues feature.
+ */
+function nas_master_update_7008() {
+  // Revert nas_magazine_issue_feature.
+  features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
+
+  // Enable nas_past_magazine_issues module.
+  if (!module_exists('nas_past_magazine_issues')) {
+    $modules = array('nas_past_magazine_issues');
+    module_enable($modules);
+  }
+}
+
+/**
+ * Revert Article CT feature.
+ * Revert NAS Flyways Landing feature.
+ */
+function nas_master_update_7009() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_flyways_landing_feature');
+}
+
+/**
+ * Enable Conservation Strategy and Conservation Project features.
+ */
+function nas_master_update_7013() {
+  module_enable(array('nas_conservation_strategy_feature', 'nas_conservation_project_feature'));
+}
+
+/**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7014() {
+  features_revert_module('nas_site_template_feature');
+}
+
+/**
+ * Activate BOA CT feature with dependensie.
+ */
+function nas_master_update_7015() {
+
+  module_enable(array('book'));
+
+  // Delete default book content type.
+  node_type_delete('book');
+  variable_del('node_preview_book');
+
+  if (!module_exists('nas_boa_feature')) {
+    module_enable(array('nas_boa_feature'));
+    features_revert_module('nas_boa_feature');
+  }
+}
+
+/**
+ * Revert NAS Views feature.
+ * Insert Flyway Conservation Projects pane in panelized overriden flyway nodes.
+ */
+function nas_master_update_7016() {
+  features_revert_module('nas_views');
+
+  $nids = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'flyway'))->fetchAllKeyed(0, 0);
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $did = $node->panelizer['page_manager']->did;
+    // In hook_update_N we use db_insert() instead of drupal_write_record().
+    db_insert('panels_pane')
+      ->fields(array(
+        'did' => $did,
+        'panel' => 'bottom',
+        'type' => 'nas_panes_flyway_cons_projects',
+        'subtype' => 'nas_panes_flyway_cons_projects',
+        'shown' => 1,
+        'access' => serialize(array()),
+        'configuration' => serialize(array()),
+        'cache' => serialize(array()),
+        'style' => serialize(array('settings' => NULL)),
+        'css' => serialize(array()),
+        'extras' => serialize(array()),
+        'position' => 2,
+        'locks' => serialize(array()),
+      ))
+      ->execute();
+  }
+}
+
+/**
+ * Revert BOA CT feature.
+ */
+function nas_master_update_7017() {
+  features_revert_module('nas_boa_feature');
+}

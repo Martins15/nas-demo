@@ -77,6 +77,7 @@
  * - $title_link: Title with link to node page.
  * - $blue_text_link_url: Menu or Custom section url.
  * - $blue_text_link_text: Menu or Custom section text.
+ * - $linked_image: Hero image wrapper with A tag linked to node.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -89,7 +90,7 @@
 <div class="columns large-4">
   <div class="editorial-card collapse-minimal">
     <div class="editorial-card-photo">
-      <img src="<?php print $image_src; ?>" />
+      <?php print $linked_image; ?>
     </div>
     <div class="editorial-card-content short">
       <?php if (!empty($blue_text_link_url)): ?>

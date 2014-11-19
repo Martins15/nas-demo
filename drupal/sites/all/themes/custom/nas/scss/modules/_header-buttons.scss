@@ -78,3 +78,21 @@
     }
   }
 }
+
+// Display toggle-bird-guide-search only on bird page.
+header.global-header {
+  .bird-guide-search-species-page {
+    display: none;
+  }
+}
+
+body.node-type-bird {
+  header.global-header {
+    .bird-guide-search-species-page {
+      display: block;
+      @include breakpoint(large-up) {
+        display: none;
+      }
+    }
+  }
+}

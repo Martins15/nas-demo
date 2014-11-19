@@ -53,6 +53,7 @@ server:
         - git
         - php5-memcache
         - unzip
+        - libaugeas-dev
     dot_files:
         -
             bash_aliases: null
@@ -122,7 +123,7 @@ php:
         error_reporting: '-1'
         session.save_path: /var/lib/php/session
         max_execution_time: '300'
-        memory_limit: 256M
+        memory_limit: 512M
         post_max_size: 20M
         upload_max_filesize: 20M
     timezone: America/Chicago

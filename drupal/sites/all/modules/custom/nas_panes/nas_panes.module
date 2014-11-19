@@ -36,6 +36,16 @@ function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
  */
 function nas_panes_theme() {
   $theme = array(
+    'article_more_features' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+        'more_link' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'article-more-features',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/article_more_features',
+    ),
     'nas_featured_bird' => array(
       'variables' => array(
         'name' => '',
@@ -70,7 +80,7 @@ function nas_panes_theme() {
     ),
     'nas_frontpage_featured' => array(
       'variables' => array(
-        'image_title' => '',
+        'image_caption' => '',
         'image_credit' => '',
         'summary' => '',
         'title_link' => '',
@@ -119,6 +129,15 @@ function nas_panes_theme() {
       ),
       'template' => 'flyway-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_in_the_news'
+    ),
+    'flyway_conservation_projects' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+        'more_link' => '',
+      ),
+      'template' => 'flyway-conservation-projects',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_conservation_projects'
     ),
     'nas_panes_pane_donate_button' => array(
       'variables' => array(
