@@ -169,13 +169,14 @@ function nas_master_update_7020(&$sandbox) {
     // Get part of ids.
     $nids = array_slice($sandbox['gallery_nids'], $sandbox['progress'], $chunk);
     pp_import_nodes_batch($nids, 'media_gallery_import');
-    $sandbox['progress'] += $chunk;
+    $sandbox['progress'] += count($nids);
   }
 
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
 
   if ($sandbox['#finished'] >= 1) {
     $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count media galleries has been successfully imported.', array('@count' => $sandbox['progress']));
 
     return t('The migration was successful.');
   }
