@@ -118,7 +118,7 @@ function nas_master_update_7016() {
 /**
  * Revert features for Slideshow migration.
  */
-function nas_master_update_7017() {
+function nas_master_update_7019() {
   $features = array(
     'nas_bird_type_feature',
     'nas_image_styles_feature',
@@ -133,7 +133,7 @@ function nas_master_update_7017() {
 /**
  * Slideshow migration.
  */
-function nas_master_update_7018(&$sandbox) {
+function nas_master_update_7020(&$sandbox) {
   $chunk = 10;
   if (!isset($sandbox['progress'])) {
     // Add nids to sandbox.
