@@ -129,7 +129,7 @@ function nas_master_update_7019() {
   $features = array(
     'nas_bird_type_feature',
     'nas_image_styles_feature',
-    'nas_image_styles_feature',
+    'nas_slideshow_feature',
     'nas_import_feeds_feature',
   );
   foreach ($features as $feature) {
