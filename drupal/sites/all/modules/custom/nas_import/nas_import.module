@@ -1062,27 +1062,31 @@ function nas_import_get_image_object($field_value, $entity, $image_fields_mappin
   $file_entity = nas_import_import_image($entity, $image_node['field_photo']);
 
   // Attach other fields by mapping.
-  if (!empty($image_fields_mapping)) {
-    $changed = FALSE;
-    foreach ($image_fields_mapping as $d6_field => $d7_field) {
-      if (!empty($image_node[$d6_field][0]['value'])) {
-        $field_value = array(
-          'value' => $image_node[$d6_field][0]['value'],
-        );
+  if (empty($image_fields_mapping)) {
+    return FALSE;
+  }
 
-        // Add format for field_file_caption.
-        if ($d7_field == 'field_file_caption') {
-          $field_value['format'] = 'full_html';
-        }
-
-        $file_entity->{$d7_field}[LANGUAGE_NONE][] = $field_value;
-        $changed = TRUE;
-      }
+  $changed = FALSE;
+  foreach ($image_fields_mapping as $d6_field => $d7_field) {
+    if (empty($image_node[$d6_field][0]['value'])) {
+      continue;
     }
 
-    if ($changed) {
-      file_save($file_entity);
+    $field_value = array(
+      'value' => $image_node[$d6_field][0]['value'],
+    );
+
+    // Add format for field_file_caption.
+    if ($d7_field == 'field_file_caption') {
+      $field_value['format'] = 'full_html';
     }
+
+    $file_entity->{$d7_field}[LANGUAGE_NONE][] = $field_value;
+    $changed = TRUE;
+  }
+
+  if ($changed) {
+    file_save($file_entity);
   }
 
   return $file_entity;
