@@ -115,3 +115,9 @@ function nas_master_update_7016() {
   }
 }
 
+/**
+ * Revert BOA CT feature.
+ */
+function nas_master_update_7017() {
+  features_revert_module('nas_boa_feature');
+}
