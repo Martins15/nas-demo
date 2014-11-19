@@ -246,6 +246,13 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
+  // Add Page link url for a full view mode.
+  if ($vars['view_mode'] == 'full') {
+    global $base_url;
+    // Add Page absolute url.
+    $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+  }
+
   $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
