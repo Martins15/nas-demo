@@ -11119,11 +11119,6 @@ body.touch .sticky-wrapper {
   column-gap: 50px;
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 .john-audubon-logo {
   max-width: 63px;
   position: absolute;
@@ -11131,22 +11126,113 @@ body.touch .sticky-wrapper {
 }
 
 .page-boa .guide-bar-title {
+  line-height: 23px;
   margin-left: 55px;
 }
 .page-boa .hero-title {
   font-size: 68px;
 }
 @media only screen and (max-width: 479px) {
+  .page-boa .guide-bar-title {
+    font-size: 20px;
+  }
+  .page-boa .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+  }
+  .page-boa .john-audubon-logo {
+    max-width: 61px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
   .page-boa .hero-title {
     font-size: 34px;
     line-height: 38px;
   }
 }
+.page-boa .action-nav {
+  margin: 0;
+}
+.page-boa .action-nav .action-nav-item {
+  width: 33%;
+}
+.page-boa .action-nav .action-nav-item:first-child {
+  padding-right: 4px;
+}
+.page-boa .action-nav .action-nav-item:last-child {
+  margin-left: 0;
+  padding-left: 4px;
+  width: 34%;
+}
+.page-boa .action-nav .action-nav-item a {
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  width: 100%;
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa .action-nav {
+    box-sizing: content-box;
+    margin-left: -12.5px;
+    margin-right: -12.5px;
+    margin-top: 0;
+  }
+  .page-boa .action-nav .action-nav-item:last-child {
+    width: 32%;
+  }
+}
+.page-boa .hero-header {
+  padding-bottom: 70px;
+}
+
+.boa-ja-content-block {
+  padding-top: 35px;
+}
+.boa-ja-content-block .text-container h2 {
+  font-size: 42px;
+  line-height: 42px;
+  margin-bottom: 40px;
+}
+
+.boa-guide-bar-attribution {
+  float: left;
+}
+.boa-guide-bar-attribution ul {
+  font-size: 18px;
+  line-height: 50px;
+  list-style-image: none;
+  list-style-type: none;
+  margin: 0 0 0 30px;
+}
+.boa-guide-bar-attribution ul li {
+  display: inline-block;
+  margin-left: 30px;
+}
+.boa-guide-bar-attribution ul li a {
+  color: #fff;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .boa-guide-bar-attribution ul {
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  .boa-guide-bar-attribution ul li {
+    margin-left: 10px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .boa-guide-bar-attribution ul {
+    font-size: 15px;
+    margin-left: 20px;
+  }
+  .boa-guide-bar-attribution ul li {
+    margin-left: 10px;
+  }
+}
 
 .boa-bird-card-set {
-  position: relative;
   overflow: hidden;
   padding-top: 10px;
+  position: relative;
 }
 .boa-bird-card-set.bg-boa-bejge {
   background-color: #f5f4eb;
@@ -11194,6 +11280,13 @@ body.touch .sticky-wrapper {
   }
 }
 
+.boa-about-this-guide {
+  padding-top: 60px;
+}
+.boa-about-this-guide h2 {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
 .boa-about-this-guide p {
   font-size: 22px;
   line-height: 27px;
@@ -11201,10 +11294,6 @@ body.touch .sticky-wrapper {
   font-weight: 300;
 }
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
@@ -11543,4 +11632,9 @@ input[type="time"].error,
 input[type="url"].error,
 textarea.error {
   border: 1px solid #f15936;
+}
+
+.editorial-card.photo-only {
+  border: none;
+  box-shadow: none;
 }
