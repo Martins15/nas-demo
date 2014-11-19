@@ -115,3 +115,46 @@ function nas_master_update_7016() {
   }
 }
 
+/**
+ * Revert features for Slideshow migration.
+ */
+function nas_master_update_7017() {
+  $features = array(
+    'nas_bird_type_feature',
+    'nas_image_styles_feature',
+    'nas_image_styles_feature',
+    'nas_import_feeds_feature',
+  );
+  foreach ($features as $feature) {
+    features_revert_module($feature);
+  }
+}
+
+/**
+ * Slideshow migration.
+ */
+function nas_master_update_7018(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    // Add nids to sandbox.
+    $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'media_gallery');
+    $sandbox['gallery_nids'] = drupal_json_decode($result->data);
+    $sandbox['max'] = count($sandbox['gallery_nids']);
+    $sandbox['progress'] = 0;
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['gallery_nids'], $sandbox['progress'], $chunk);
+    pp_import_nodes_batch($nids, 'media_gallery_import');
+    $sandbox['progress'] += $chunk;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+
+    return t('The migration was successful.');
+  }
+}
