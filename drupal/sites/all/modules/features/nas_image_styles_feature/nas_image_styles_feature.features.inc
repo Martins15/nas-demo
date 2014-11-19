@@ -552,5 +552,12 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: slideshow.
+  $styles['slideshow'] = array(
+    'name' => 'slideshow',
+    'label' => 'slideshow',
+    'effects' => array(),
+  );
+
   return $styles;
 }
