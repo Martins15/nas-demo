@@ -650,7 +650,7 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
     foreach ($variables['element']['#items'] as $delta => $image) {
       // Add regular slide.
       $content_image = array(
-        'url' => file_create_url($image['uri']),
+        'url' => image_style_url('slideshow', $image['uri']),
         // Additional fields to display on each slide.
         'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_credit'][LANGUAGE_NONE][0]['value']) : '',
         'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
