@@ -32,10 +32,6 @@
 <section class="global-content with-padding">
   <div class="row">
     <div class="large-8 columns text-container">
-      <div class="page-summary bottom-line">
-        <h4 class="page-summary-title">The Bottom Line</h4>
-        <p class="page-summary-body">This project has a conservation impact on 1.8 million acres of land and improved outcomes for four priority bird species.</p>
-      </div>
       <?php print $content['body']; ?>
     </div>
     <div class="large-4 columns sidebar">
@@ -43,9 +39,9 @@
       <section class="sidebar-section">
         <div class="social-sharing align-right">
           <span class="social-sharing-caption small">Share this project</span>
-          <a href="#" class="social-sharing-icon blue small"><i class="icon-twitter"></i></a>
-          <a href="#" class="social-sharing-icon blue small"><i class="icon-facebook"></i></a>
-          <a href="#" class="social-sharing-icon blue small"><i class="icon-mail"></i></a>
+            <a target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-twitter"></i></a>
+            <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-facebook"></i></a>
+            <a href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-mail"></i></a>
         </div>
       </section>
       <div class="row">

@@ -246,13 +246,6 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
-  // Add Page link url for a full view mode.
-  if ($vars['view_mode'] == 'full') {
-    global $base_url;
-    // Add Page absolute url.
-    $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
-  }
-
   $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
@@ -700,4 +693,8 @@ function nas_preprocess_nas_conservation_project(&$vars) {
     $vars['color_mode_gradient'] = $vars['display']->context['panelizer']->data->field_color_mode[LANGUAGE_NONE][0]['value'];
   }
   $vars['color_mode_text'] = $vars['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
+
+  global $base_url;
+  // Add Page absolute url.
+  $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
 }
