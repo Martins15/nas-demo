@@ -12,8 +12,19 @@
           margin-bottom: $size-space;
         }
       }
+      &:nth-of-type(2n+1) {
+        @include breakpoint(medium-only) {
+          clear: both;
+        }
+        @include breakpoint(small-only) {
+          clear: both;
+        }
+      }
+
       &:nth-of-type(3n+1) {
-        clear: both;
+        @include breakpoint(large-up) {
+          clear: both;
+        }
       }
     }
     .magazine-issue-year {
