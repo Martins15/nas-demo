@@ -103,12 +103,17 @@ function pp_import_nodes() {
   $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
   $author_node_nids = drupal_json_decode($result->data);
 
+  $content_type = 'media_gallery';
+  $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $content_type);
+  $gallery_node_nids = drupal_json_decode($result->data);
+
   // No need to import whole set of data for local development.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     $user_uids = array_slice($user_uids, 0, 20);
     $author_node_nids = array_slice($author_node_nids, 0, 20);
     $bird_node_nids = array_slice($bird_node_nids, 0, 20);
     $news_node_nids = array_slice($news_node_nids, 0, 19);
+    $gallery_node_nids = array_slice($gallery_node_nids, 0, 20);
     // To have a news node with embeded images.
     $news_node_nids[] = 158806;
     $news_node_nids[] = 156951;
@@ -177,6 +182,10 @@ function pp_import_nodes() {
 
   foreach (array_chunk($contact_node_nids, 10) as $chunk) {
     $operations[] = array($node_callback, array($chunk, 'contacts_import'));
+  }
+
+  foreach (array_chunk($gallery_node_nids, 10) as $chunk) {
+    $operations[] = array($node_callback, array($chunk, 'media_gallery_import'));
   }
 
   variable_set('pp_import_timer', time());
