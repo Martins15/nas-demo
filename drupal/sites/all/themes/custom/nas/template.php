@@ -357,7 +357,7 @@ function nas_image($variables) {
 
   $add_attributes = array('alt', 'title');
   //these styles shouldn't have width and height for responsive design.
-  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image', 'front_flyway_image');
+  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image', 'front_flyway_image', 'conservation_strategy_icon');
 
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -531,6 +531,9 @@ function nas_preprocess_image_style(&$vars) {
   if ($vars['style_name'] == 'bio_image') {
     $vars['attributes']['class'] = array('bio-image');
   }
+  if ($vars['style_name'] == 'conservation_strategy_icon') {
+    $vars['attributes']['class'] = array('hero-icon');
+  }
 }
 
 /**
@@ -675,4 +678,15 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       }
     }
   }
+}
+
+/**
+ * Preprocess function for nas_conservation_project theme.
+ */
+function nas_preprocess_nas_conservation_project(&$vars) {
+  $vars['color_mode_gradient'] = 'dark';
+  if (!empty($vars['display']->context['panelizer']->data->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+    $vars['color_mode_gradient'] = $vars['display']->context['panelizer']->data->field_color_mode[LANGUAGE_NONE][0]['value'];
+  }
+  $vars['color_mode_text'] = $vars['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
 }
