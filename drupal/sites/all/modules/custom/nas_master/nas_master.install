@@ -146,6 +146,12 @@ function nas_master_update_7020(&$sandbox) {
     // Add nids to sandbox.
     $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'media_gallery');
     $sandbox['gallery_nids'] = drupal_json_decode($result->data);
+
+    // Limit nodes for dev environment.
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      $sandbox['gallery_nids'] = array_slice($sandbox['gallery_nids'], 0, 20);
+    }
+
     $sandbox['max'] = count($sandbox['gallery_nids']);
     $sandbox['progress'] = 0;
   }
