@@ -79,7 +79,8 @@ function flyways_landing_bottom_form($form, &$form_state) {
     for ($j = 1; $j <= 3; $j++) {
       $form['flyway'][$i]['entity_reference'][$j] = array(
         '#type' => 'entityreference',
-        '#title' => '',
+        '#title' => 'News reference',
+        '#title_display' => 'invisible',
         '#default_value' => !empty($conf['flyway'][$i]['entity_reference'][$j]['entity_id']) ? $conf['flyway'][$i]['entity_reference'][$j]['entity_id'] : '',
         '#era_entity_type' => 'node',
         '#era_bundles' => array('article'),
@@ -153,7 +154,7 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
 
     $teasers = array();
     foreach ($news_nodes as $node) {
-      $build = node_view($node, 'nas_node_teaser_small');
+      $build = node_view($node, 'nas_teaser_flyway_landing');
       $teasers[] = drupal_render($build);
     }
     if (empty($teasers)) {

@@ -51,6 +51,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'magazine_issue') {
     nas_preprocess_node_magazine_issue($vars);
   }
+  if ($vars['type'] == 'project') {
+    nas_preprocess_node_project($vars);
+  }
 }
 
 /**
@@ -178,6 +181,14 @@ function nas_preprocess_node_article(&$vars) {
       ));
   }
 
+  // Subtitle currently presented only in flyway landing teasers.
+  if ($vars['view_mode'] == 'nas_teaser_flyway_landing') {
+    $vars['subtitle'] = '';
+    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
   if ($vars['view_mode'] == 'nas_teaser_from_network') {
     nas_preprocess_node_article_news_from_network($vars);
     return;
@@ -197,6 +208,45 @@ function nas_preprocess_node_article(&$vars) {
     // Looks terrible.
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
+}
+
+/**
+ * theme_preprocess_node for Conservation Project content type.
+ */
+function nas_preprocess_node_project(&$vars) {
+  $node = $vars['node'];
+  $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $image = theme('image', array(
+      'path' => $hero_image->uri,
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+  }
+
+  $vars['strategy_link'] = '';
+  if (!empty($node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'])) {
+    $nid = $node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'];
+    if ($strategy = node_load($nid)) {
+      $vars['strategy_link'] = l($strategy->title, 'node/' . $nid, array('attributes' => array('class' => 'editorial-card-slug')));
+    }
+  }
+
+  // Subtitle currently presented only in flyway landing teasers.
+  if ($vars['view_mode'] == 'nas_node_teaser_small') {
+    $vars['subtitle'] = '';
+    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
 /**
@@ -592,11 +642,14 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
   // Get title and subtitle to display on first and last slide.
   $variables['title'] = $node->title;
   $variables['subtitle'] = !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) ? check_plain($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['value']) : '';
+  $variables['page_link'] = url('node/' . $node->nid, array('absolute' => TRUE));
 
   // Collects images and pass them to template.
   if (!empty($variables['element']['#items'])) {
+    $overlay_image = FALSE;
     foreach ($variables['element']['#items'] as $delta => $image) {
-      $variables['images'][] = array(
+      // Add regular slide.
+      $content_image = array(
         'url' => file_create_url($image['uri']),
         // Additional fields to display on each slide.
         'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? t('Photograph by @author', array('@author' => $image['field_file_credit'][LANGUAGE_NONE][0]['value'])) : '',
@@ -604,9 +657,26 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
         'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
         'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
         // First or last slide.
-        'first' => ($delta == 0) ? TRUE : FALSE,
-        'last' => ($delta == count($variables['element']['#items']) - 1) ? TRUE : FALSE,
+        'first' => FALSE,
+        'last' => FALSE,
       );
+      $variables['images'][] = $content_image;
+
+      // If it's first image.
+      if ($delta == 0) {
+        $overlay_image = $content_image;
+      }
+    }
+
+    // Attach first and last slide.
+    if (!empty($overlay_image)) {
+      $overlay_image['first'] = TRUE;
+      $overlay_image['last'] = FALSE;
+      array_unshift($variables['images'], $overlay_image);
+
+      $overlay_image['last'] = TRUE;
+      $overlay_image['first'] = FALSE;
+      array_push($variables['images'], $overlay_image);
     }
   }
 }

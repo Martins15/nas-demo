@@ -44,6 +44,20 @@
   }
 }
 
+.flyway-path-description,
+.flyway-path-columns {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  @include transition(opacity 0.5s ease-in-out);
+
+  &.current {
+    position: relative;
+    opacity: 1;
+    overflow: hidden;
+  }
+}
+
 .flyway-path-dots {
   margin: $size-space*1.5 auto;
   text-align: center;

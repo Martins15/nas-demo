@@ -61,7 +61,7 @@ global $base_url;
     <script src="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/js/ie-carousel.js"></script>
   <![endif]-->
   <!--[if IE 9]>
-    <link rel="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie9.css" />
+    <link rel="stylesheet" href="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie9.css" />
   <![endif]-->
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes;?>>

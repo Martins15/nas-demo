@@ -472,3 +472,20 @@ function pp_create_default_pressrelease_contact() {
   $value = array(array('target_id' => $node->nid));
   variable_set('nas_default_pressrelease_contact', $value);
 }
+
+/**
+ * Return Flyway node's nid by node's title.
+ *
+ * @param string $title
+ *   Node title.
+ *
+ * @return mixed
+ *   int if node exists.
+ *   FALSE if node doesn't exist.
+ */
+function pp_get_flyway_node_nid_by_title($title) {
+  return db_query("SELECT nid FROM {node} WHERE title = :title AND type = :type", array(
+    ':title' => $title,
+    ':type' => 'flyway',
+  ))->fetchField();
+}
