@@ -11,6 +11,7 @@ dependencies[] = views_load_more
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[views_view][] = articles_more_features
+features[views_view][] = flyway_conservation_projects
 features[views_view][] = magazin_issues
 features[views_view][] = nas_articles
 features[views_view][] = nas_bird_guide
