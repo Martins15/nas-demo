@@ -30,6 +30,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -91,12 +97,18 @@ function nas_slideshow_feature_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'slideshow',
         ),
         'type' => 'image',
         'weight' => 0,
       ),
       'nas_node_featured' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -214,6 +226,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -284,6 +302,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -346,6 +370,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 1,
       ),
       'nas_node_featured' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
