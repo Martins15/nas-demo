@@ -16,6 +16,11 @@ function nas_formatters_field_formatter_info() {
       'field types' => array('link_field'),
       'multiple values' => FIELD_BEHAVIOR_DEFAULT,
     ),
+    'gray_block_with_title' => array(
+      'label' => t('Gray block with title'),
+      'field types' => array('text_field'),
+      'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+    ),
   );
 }
 
@@ -25,6 +30,9 @@ function nas_formatters_field_formatter_info() {
 function nas_formatters_theme() {
   return array(
     'twitter_icon_link' => array(
+      'variables' => array('element' => NULL, 'field' => NULL),
+    ),
+    'gray_block_with_title' => array(
       'variables' => array('element' => NULL, 'field' => NULL),
     ),
   );
@@ -38,6 +46,13 @@ function theme_twitter_icon_link($variables) {
 }
 
 /**
+ * Formats a Gray text block with title.
+ */
+function theme_twitter_icon_link($variables) {
+  return l('<i class="icon-twitter"></i>', $variables['element']['url'], array('html' => TRUE));
+}
+
+/**
  * Implements hook_field_formatter_view().
  */
 function nas_formatters_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
@@ -45,9 +60,6 @@ function nas_formatters_field_formatter_view($entity_type, $entity, $field, $ins
     case 'twitter_icon_link':
       $theme = 'twitter_icon_link';
       break;
-
-    default:
-      $theme = 'twitter_icon_link';
   }
 
   $elements = array();
