@@ -649,10 +649,8 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
 
   // Collects images and pass them to template.
   if (!empty($variables['element']['#items'])) {
+    $overlay_image = FALSE;
     foreach ($variables['element']['#items'] as $delta => $image) {
-      $first = ($delta == 0) ? TRUE : FALSE;
-      $last = ($delta == count($variables['element']['#items']) - 1) ? TRUE : FALSE;
-
       // Add regular slide.
       $content_image = array(
         'url' => file_create_url($image['uri']),
@@ -667,15 +665,21 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       );
       $variables['images'][] = $content_image;
 
-      // Attach first and last slide.
-      if ($first) {
-        $content_image['first'] = TRUE;
-        array_unshift($variables['images'], $content_image);
+      // If it's first image.
+      if ($delta == 0) {
+        $overlay_image = $content_image;
       }
-      if ($last) {
-        $content_image['last'] = TRUE;
-        array_push($variables['images'], $content_image);
-      }
+    }
+
+    // Attach first and last slide.
+    if (!empty($overlay_image)) {
+      $overlay_image['first'] = TRUE;
+      $overlay_image['last'] = FALSE;
+      array_unshift($variables['images'], $overlay_image);
+
+      $overlay_image['last'] = TRUE;
+      $overlay_image['first'] = FALSE;
+      array_push($variables['images'], $overlay_image);
     }
   }
 }
