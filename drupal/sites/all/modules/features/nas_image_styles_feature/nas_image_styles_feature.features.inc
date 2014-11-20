@@ -139,6 +139,13 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: conservation_strategy_icon.
+  $styles['conservation_strategy_icon'] = array(
+    'name' => 'conservation_strategy_icon',
+    'label' => 'Conservation Strategy Icon',
+    'effects' => array(),
+  );
+
   // Exported image style: default_teaser_image.
   $styles['default_teaser_image'] = array(
     'name' => 'default_teaser_image',
@@ -548,6 +555,36 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 600,
         ),
         'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: slideshow.
+  $styles['slideshow'] = array(
+    'name' => 'slideshow',
+    'label' => 'slideshow',
+    'effects' => array(),
+  );
+
+  // Exported image style: slideshow_teaser.
+  $styles['slideshow_teaser'] = array(
+    'name' => 'slideshow_teaser',
+    'label' => 'slideshow_teaser',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 463,
+          'height' => 340,
+        ),
+        'weight' => 1,
       ),
     ),
   );

@@ -11,5 +11,6 @@ features[features_api][] = api:2
 features[feeds_importer][] = authors_import
 features[feeds_importer][] = birds_import
 features[feeds_importer][] = contacts_import
+features[feeds_importer][] = media_gallery_import
 features[feeds_importer][] = users_import
 project path = sites/all/modules/features
