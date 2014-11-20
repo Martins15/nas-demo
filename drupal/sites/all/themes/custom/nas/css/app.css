@@ -11345,6 +11345,10 @@ body.touch .sticky-wrapper {
   margin-bottom: 22px;
   position: relative;
 }
+.boa-family-block-pager.plate {
+  border-bottom: none;
+  margin: -80px 0 0;
+}
 .boa-family-block-pager .columns {
   height: 100px;
   left: 50%;
@@ -11413,6 +11417,52 @@ body.touch .sticky-wrapper {
   height: 100%;
   left: 50%;
   width: 1px;
+}
+
+.page-boa-bird {
+  background-color: #fcf9ed;
+}
+.page-boa-bird .bird-guide-container {
+  background: transparent;
+}
+.page-boa-bird .bird-guide-image:after {
+  display: none;
+}
+.page-boa-bird .bird-guide-card {
+  padding: 0 25px 0 25px;
+  position: relative;
+  z-index: 2;
+}
+.page-boa-bird .bird-guide-card .bird-guide-header {
+  padding-bottom: 20px;
+  margin-bottom: -10px;
+}
+.page-boa-bird .bird-guide-card .plate-name {
+  color: #F15936;
+  font-size: 22px;
+  margin: 16px 0 -10px;
+}
+.page-boa-bird .bird-guide-card .common-name {
+  margin-top: 0;
+}
+.page-boa-bird .boa-plate-illustration {
+  padding-bottom: 25px;
+}
+.page-boa-bird .boa-plate-illustration .see-full-plate {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+}
+.page-boa-bird .boa-plate-illustration .see-full-plate i {
+  font-size: 23px;
+}
+.page-boa-bird .boa-in-the-bird-guide h2,
+.page-boa-bird .boa-in-the-news h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.page-boa-bird .boa-in-the-bird-guide .columns,
+.page-boa-bird .boa-in-the-news .columns {
+  float: none;
 }
 
 .sidebar, .article-sidebar {
