@@ -129,6 +129,14 @@
   &.bg-boa-bejge {
     background-color: #f5f4eb;
   }
+
+  .boa-family-set-title {
+    margin: -30px 0 5px;
+    span {
+      color: #838078;
+      font-style: italic;
+    }
+  }
 }
 .boa-bird-card {
   margin-bottom: 40px;
@@ -158,6 +166,30 @@
       @include transform(translateY(-5px));
     }
   }
+
+  .photo {
+    position: relative;
+  }
+
+  .endangered-bird {
+    @include font-smoothing(off);
+    background-color: $color-tomato;
+    bottom: 6px;
+    color: $color-white;
+    font-family: $font-sans;
+    font-size: $size-text-small;
+    font-weight: 600;
+    line-height: 24px;
+    padding: 0 10px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+.page-boa-family {
+  .boa-about-this-guide {
+    margin-bottom: 100px;
+  }
 }
 .boa-about-this-guide {
   padding-top: 60px;
@@ -172,5 +204,106 @@
     line-height: 27px;
     font-family: "Source Sans Pro", Verdana, sans-serif;
     font-weight: 300;
+  }
+}
+
+.boa-family-text-block {
+  margin: 22px 0 47px;
+  overflow: hidden;
+  .family-name {
+    font-size: 75px;
+    margin-bottom: 15px;
+  }
+  .scientific-name {
+    color: #838078;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 17px;
+    margin-bottom: 7px;
+  }
+}
+
+.boa-family-block-pager {
+  border-bottom: 1px solid #d4d4d4;
+  height: 215px;
+  margin-bottom: 22px;
+  position: relative;
+
+  .columns {
+    height: 100px;
+    left: 50%;
+    margin-left: -237px;
+    position: absolute;
+    top: 55px;
+    width: 475px;
+
+    .inner {
+      height: 100px;
+      position: relative;
+        * {
+        position: absolute;
+      }
+    }
+  }
+
+  .previous {
+    background: url(../img/pager-arrows.png) no-repeat 0 0;
+    display: block;
+    height: 37px;
+    left: -4px;
+    top: 33px;
+    width: 20px;
+  }
+
+  .previous-text {
+    color: $color-tomato;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    right: 252px;
+    line-height: 24px;
+    top: 20px;
+  }
+
+  .previous-title {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 26px;
+    line-height: 28px;
+    right: 252px;
+    top: 45px;
+  }
+
+  .next-text {
+    color: $color-tomato;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    left: 252px;
+    line-height: 24px;
+    top: 20px;
+  }
+
+  .next-title {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 26px;
+    line-height: 28px;
+    left: 252px;
+    top: 45px;
+  }
+
+  .next {
+    background: url(../img/pager-arrows.png) no-repeat 0 100%;
+    display: block;
+    height: 37px;
+    right: -16px;
+    top: 33px;
+    width: 20px;
+  }
+
+  .separator {
+    background-color: #d4d4d4;
+    height: 100%;
+    left: 50%;
+    width: 1px;
   }
 }
