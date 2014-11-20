@@ -697,4 +697,7 @@ function nas_preprocess_nas_conservation_project(&$vars) {
   global $base_url;
   // Add Page absolute url.
   $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+
+  // Add Page title.
+  $vars['page_title'] = drupal_get_title();
 }
