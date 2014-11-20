@@ -64,6 +64,37 @@ function nas_conservation_project_feature_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-f9a24e2a-6c83-4117-82b4-6f910f948a41';
+    $pane->panel = 'body';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_project_bottomline';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'gray_block_with_title',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'title' => 'Bottom line custom title',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f9a24e2a-6c83-4117-82b4-6f910f948a41';
+    $display->content['new-f9a24e2a-6c83-4117-82b4-6f910f948a41'] = $pane;
+    $display->panels['body'][0] = 'new-f9a24e2a-6c83-4117-82b4-6f910f948a41';
+    $pane = new stdClass();
     $pane->pid = 'new-06613b74-232a-4293-8709-cc00cc08b7bb';
     $pane->panel = 'body';
     $pane->type = 'entity_field';
@@ -87,11 +118,11 @@ function nas_conservation_project_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '06613b74-232a-4293-8709-cc00cc08b7bb';
     $display->content['new-06613b74-232a-4293-8709-cc00cc08b7bb'] = $pane;
-    $display->panels['body'][0] = 'new-06613b74-232a-4293-8709-cc00cc08b7bb';
+    $display->panels['body'][1] = 'new-06613b74-232a-4293-8709-cc00cc08b7bb';
     $pane = new stdClass();
     $pane->pid = 'new-3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab';
     $pane->panel = 'bottom_line';

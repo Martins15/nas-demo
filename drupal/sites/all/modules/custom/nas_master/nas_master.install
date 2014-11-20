@@ -189,3 +189,10 @@ function nas_master_update_7021() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_slideshow_feature');
 }
+
+/**
+ * Revert Conservation Project feature.
+ */
+function nas_master_update_7023() {
+  features_revert_module('nas_conservation_project_feature');
+}
