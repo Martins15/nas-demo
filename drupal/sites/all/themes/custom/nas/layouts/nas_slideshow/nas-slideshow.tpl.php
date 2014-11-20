@@ -9,8 +9,8 @@
 <section class="global-content">
 
   <?php print $content['slideshow']; ?>
-
   <?php print $content['bottom']; ?>
+
   <div class="row section-header">
     <div class="column">
       <h2 class="thin">Related Features</h2>
@@ -70,66 +70,7 @@
       </div>
     </div>
   </div>
-  <div class="row section-header">
-    <div class="column">
-      <h2 class="thin">Explore More Photography</h2>
-    </div>
-    <div class="column">
-      <ul class="inline-list section-nav">
-        <li><a href="#">See More Slideshows</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row feature-set dark space-bottom">
-    <div class="columns small-6 large-3">
-      <div class="editorial-card dark feature">
-        <div class="editorial-card-photo">
-          <img src="../../img/feature-1.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#">
-            <h4 class="editorial-card-title">Why the Passenger Pigeon Went Extinct</h4>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="columns small-6 large-3">
-      <div class="editorial-card dark feature">
-        <div class="editorial-card-photo">
-          <img src="../../img/feature-2.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#">
-            <h4 class="editorial-card-title">Audubon’s Priority Birds</h4>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="columns small-6 large-3">
-      <div class="editorial-card dark feature">
-        <div class="editorial-card-photo">
-          <img src="../../img/feature-3.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#">
-            <h4 class="editorial-card-title">Mapping the Arkansas National Wildlife Refuge</h4>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="columns small-6 large-3">
-      <div class="editorial-card dark feature">
-        <div class="editorial-card-photo">
-          <img src="../../img/feature-4.jpg" alt="">
-        </div>
-        <div class="editorial-card-content">
-          <a href="#">
-            <h4 class="editorial-card-title">A Farm Bill that Will Benefit Birds—and Us</h4>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <section class="card-set bg-dark-gray">
     <div class="row">
       <div class="column">

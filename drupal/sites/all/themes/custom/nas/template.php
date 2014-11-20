@@ -54,6 +54,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'project') {
     nas_preprocess_node_project($vars);
   }
+  if ($vars['type'] == 'slideshow') {
+    nas_preprocess_node_slideshow($vars);
+  }
 }
 
 /**
@@ -693,4 +696,26 @@ function nas_preprocess_nas_conservation_project(&$vars) {
     $vars['color_mode_gradient'] = $vars['display']->context['panelizer']->data->field_color_mode[LANGUAGE_NONE][0]['value'];
   }
   $vars['color_mode_text'] = $vars['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Implements theme_preprocess_node().
+ *
+ * For slideshow content type.
+ */
+function nas_preprocess_node_slideshow(&$vars) {
+  $node = $vars['node'];
+  if ($vars['view_mode'] == 'teaser') {
+    // Add slideshow main image.
+    $vars['slideshow_image'] = '';
+    $image_items = field_get_items('node', $node, 'field_images');
+    if (!empty($image_items[0]['uri'])) {
+      $output_image = theme('image_style', array(
+          'style_name' => 'slideshow_teaser',
+          'path' => $image_items[0]['uri'],
+        ));
+
+      $vars['slideshow_image'] = l($output_image, 'node/' . $node->nid, array('html' => TRUE));
+    }
+  }
 }

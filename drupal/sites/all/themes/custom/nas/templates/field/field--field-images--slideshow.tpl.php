@@ -10,10 +10,10 @@
     <div class="column large-offset-9 large-3">
       <p><i class="ss-icon icon-chevron-left inactive slideshow-control prev"></i> <span class="indicator-current">1</span> of <span class="indicator-total"><?php print count($images); ?></span> <i class="ss-icon icon-chevron-right slideshow-control next"></i></p>
       <p class="social-sharing align-right hide-for-small hide-for-tiny">
-        <a href="#" class="social-sharing-icon white small"><i class="icon-twitter"></i></a>
-        <a href="#" class="social-sharing-icon white small"><i class="icon-facebook"></i></a>
-        <a href="#" class="social-sharing-icon white small"><i class="icon-pinterest"></i></a>
-        <a href="#" class="social-sharing-icon white small"><i class="icon-mail"></i></a>
+        <a href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-twitter"></i></a>
+        <a href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-facebook"></i></a>
+        <a href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-pinterest"></i></a>
+        <a href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-mail"></i></a>
       </p>
     </div>
   </div>
