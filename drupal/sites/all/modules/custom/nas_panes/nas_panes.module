@@ -252,6 +252,10 @@ function nas_panes_theme() {
       'template' => 'frontpage-editorial-cards',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_editorial_cards'
     ),
+    'static_page_menu' => array(
+      'template' => 'static-page-menu',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_page_menu',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
