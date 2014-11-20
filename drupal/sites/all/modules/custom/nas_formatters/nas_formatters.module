@@ -36,9 +36,7 @@ function nas_formatters_theme() {
     'gray_block_with_title' => array(
       'variables' => array(
         'element' => NULL,
-        'field' => NULL,
-        'title' => NULL,
-      ),
+       ),
       'template' => 'gray-block-with-title',
       'path' => drupal_get_path('module', 'nas_formatters') . '/templates',
     ),
@@ -56,22 +54,28 @@ function theme_twitter_icon_link($variables) {
  * Implements hook_field_formatter_view().
  */
 function nas_formatters_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $elements = array();
   switch ($display['type']) {
     case 'twitter_icon_link':
       $theme = 'twitter_icon_link';
+      foreach ($items as $delta => $item) {
+        $elements[$delta] = array(
+          '#theme' => $theme,
+          '#element' => $item,
+          '#field' => $instance,
+          '#display' => $display,
+        );
+      }
     case 'gray_block_with_title':
-      $theme = 'gray_block_with_title';
+      foreach ($items as $delta => $item) {
+        $variables['block_text'] = check_plain($item['value']);
+        $variables['title'] = $display['settings']['title'];
+        $output = theme('gray_block_with_title', $variables);
+        $elements[$delta] = array('#markup' => $output);
+      }
       break;
   }
-  $elements = array();
-  foreach ($items as $delta => $item) {
-    $elements[$delta] = array(
-      '#theme' => $theme,
-      '#element' => $item,
-      '#field' => $instance,
-      '#display' => $display,
-    );
-  }
+
   return $elements;
 }
 
@@ -96,18 +100,3 @@ function nas_formatters_field_formatter_settings_form($field, $instance, $view_m
   return $form;
 }
 
-/**
- * Implements hook_field_formatter_settings_summary().
- */
-function nas_formatters_field_formatter_settings_summary($field, $instance, $view_mode) {
-  $display = $instance['display'][$view_mode];
-  $formatter = $display['type'];
-  $settings = $display['settings'];
-  $summary = '';
-  switch ($formatter) {
-    case 'gray_block_with_title':
-      $summary = t('Title: @title', array('@title' => $settings['title'] ? $settings['title'] : 'Default'));
-      break;
-  }
-  return $summary;
-}
