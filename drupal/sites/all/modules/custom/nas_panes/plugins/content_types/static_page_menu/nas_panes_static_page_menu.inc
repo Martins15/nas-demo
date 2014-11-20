@@ -30,7 +30,11 @@ function nas_panes_static_page_menu_render($subtype, $conf, $args, $context) {
     );
     $children = menu_build_tree('menu-header-big-main-menu', $parameters);
     foreach ($children as $item) {
-      $items[] = l($item['link']['link_title'], $item['link']['link_path']);
+      $options = array();
+      if ($item['link']['link_path'] == $_GET['q']) {
+        $options['attributes']['class'][] = 'current';
+      }
+      $items[] = l($item['link']['link_title'], $item['link']['link_path'], $options);
     }
   }
 
