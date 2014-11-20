@@ -53,6 +53,29 @@ function nas_slideshow_feature_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-baa5ac3e-412d-4fd0-82ff-3de26354cece';
+    $pane->panel = 'bottom';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'slideshow_explore_more-slideshow_explore_more';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'baa5ac3e-412d-4fd0-82ff-3de26354cece';
+    $display->content['new-baa5ac3e-412d-4fd0-82ff-3de26354cece'] = $pane;
+    $display->panels['bottom'][0] = 'new-baa5ac3e-412d-4fd0-82ff-3de26354cece';
+    $pane = new stdClass();
     $pane->pid = 'new-81a52fa1-0cbd-4fe9-ba34-d5d71d6137ba';
     $pane->panel = 'slideshow';
     $pane->type = 'entity_field';

@@ -54,6 +54,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'project') {
     nas_preprocess_node_project($vars);
   }
+  if ($vars['type'] == 'slideshow') {
+    nas_preprocess_node_slideshow($vars);
+  }
 }
 
 /**
@@ -653,10 +656,10 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
     foreach ($variables['element']['#items'] as $delta => $image) {
       // Add regular slide.
       $content_image = array(
-        'url' => file_create_url($image['uri']),
+        'url' => image_style_url('slideshow', $image['uri']),
         // Additional fields to display on each slide.
-        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? t('Photograph by @author', array('@author' => $image['field_file_credit'][LANGUAGE_NONE][0]['value'])) : '',
-        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_caption'][LANGUAGE_NONE][0]['value']) : '',
+        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_credit'][LANGUAGE_NONE][0]['value']) : '',
+        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
         'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
         'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
         // First or last slide.
@@ -700,4 +703,26 @@ function nas_preprocess_nas_conservation_project(&$vars) {
 
   // Add Page title.
   $vars['page_title'] = drupal_get_title();
+}
+
+/**
+ * Implements theme_preprocess_node().
+ *
+ * For slideshow content type.
+ */
+function nas_preprocess_node_slideshow(&$vars) {
+  $node = $vars['node'];
+  if ($vars['view_mode'] == 'teaser') {
+    // Add slideshow main image.
+    $vars['slideshow_image'] = '';
+    $image_items = field_get_items('node', $node, 'field_images');
+    if (!empty($image_items[0]['uri'])) {
+      $output_image = theme('image_style', array(
+          'style_name' => 'slideshow_teaser',
+          'path' => $image_items[0]['uri'],
+        ));
+
+      $vars['slideshow_image'] = l($output_image, 'node/' . $node->nid, array('html' => TRUE));
+    }
+  }
 }
