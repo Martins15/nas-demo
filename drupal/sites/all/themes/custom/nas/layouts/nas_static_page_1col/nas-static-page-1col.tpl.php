@@ -16,9 +16,9 @@
  */
 ?>
 
-<div class="breakout-section-content hero <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text expand">
+<div class="bg-respond hero small <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text">
   <div class="hero-image">
-    <?php print $content['big_image']; ?>
+    <?php print $content['hero_image']; ?>
   </div> 
   <div class="row">
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
@@ -33,27 +33,26 @@
   <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
 <?php endif; ?>
-<section class="global-content">
-  <article class="article">
-    <header class="article-header row">
-      <div class="large-12 large-centered columns hide-for-large hide-for-xlarge">
+<?php print $content['nav_menu']; ?>
+<section class="global-content with-padding">
+  <header class="row text-container">
+    <div class="large-12 large-centered columns">
+      <div class="article-meta clearfix hide-for-large hide-for-xlarge">
         <?php print $content['header']; ?>
       </div>
-    </header>
-    <div class="article-body row">
-      <div class="large-12 columns reflow-body">
-        <div class="deck">
-          <?php print $content['subtitle']; ?>
-        </div>
-        <?php print $content['main']; ?>
-      </div>
+      <p class="deck"><?php print $content['subtitle']; ?></p>
     </div>
-  </article>
-  <section class="card-set">
+  </header>
+  <div class="row">
+    <div class="text-container columns">
+      <?php print $content['main']; ?>
+    </div>
+  </div>
+  <section class="card-set bg-1">
     <?php print $content['card_set']; ?>
     <div class="row">
       <div class="column">
-        <h1 class="card-set-heading">Here&rsquo;s how you can make a difference</h1>
+        <h1 class="card-set-heading pea-green">These birds need your help</h1>
       </div>
     </div>
     <div class="row card-set-wrapper">
@@ -68,7 +67,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-1.jpg" alt="">
             </div>
           </div>
         </div>
@@ -82,7 +81,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-2.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-2.jpg" alt="">
             </div>
           </div>
         </div>
@@ -96,14 +95,14 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-3.jpg" alt="">
+              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-3.jpg" alt="">
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="card-set-dots">
+      <div class="card-set-dots light">
         <div class="dot active"></div>
         <div class="dot"></div>
         <div class="dot"></div>

@@ -583,24 +583,27 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
 }
 
 /**
- * Preprocess function for nas_article_fullscreen theme.
+ * Preprocess function for nas_static_page_1col theme.
  */
 function nas_preprocess_nas_static_page_1col(&$variables) {
-  // Replace substitutions.
-  $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
+  $node = $variables['display']->context['panelizer']->data;
+  $variables['color_mode_gradient'] = 'dark';
+  if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+    $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+  }
+  $variables['color_mode_text'] = $variables['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
+}
 
-  // @Improve
-  //   Since replacement may be a field rendered value we have no access to
-  //   machine value. Thanks God human values for color_mode field are
-  //   Uppercased machine values. This does matter for particular situation.
-  $color_mode = strtolower(trim($color_mode));
-
-  // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
-  $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
-
-  $variables['color_mode_gradient'] = $color_mode;
-  // Text color mode is inversion of gradient color mode
-  $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
+/**
+ * Preprocess function for nas_static_page_2col theme.
+ */
+function nas_preprocess_nas_static_page_2col(&$variables) {
+  $node = $variables['display']->context['panelizer']->data;
+  $variables['color_mode_gradient'] = 'dark';
+  if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+    $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+  }
+  $variables['color_mode_text'] = $variables['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
 }
 
 /**

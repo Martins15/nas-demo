@@ -16,9 +16,9 @@
  */
 ?>
 
-<div class="breakout-section-content hero <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text expand">
+<div class="bg-respond hero small <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text expand">
   <div class="hero-image">
-    <?php print $content['big_image']; ?>
+    <?php print $content['hero_image']; ?>
   </div> 
   <div class="row">
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
@@ -30,29 +30,25 @@
 </div>
 <?php if (trim($content['header_hero_attr_text'])): ?>
 <div class="hero-attribution row">
-  <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
+  <div class="column"><span class="hero-attribution-text extra">Photo: <?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
 <?php endif; ?>
-<section class="global-content">
-  <article class="article">
-    <header class="article-header row">
-      <div class="large-12 large-centered columns hide-for-large hide-for-xlarge">
-        <?php print $content['header']; ?>
-      </div>
-    </header>
-    <div class="article-body row">
-      <div class="article-text large-12 columns reflow-body">
-        <aside class="article-aside reflow reflow-into-body">
-          <?php print $content['right']; ?>
-        </aside>
-        <div class="deck">
-          <?php print $content['subtitle']; ?>
+<?php print $content['nav_menu']; ?>
+<section class="global-content with-padding">
+  <div class="row">
+    <div class="large-8 columns text-container">
+      <header class="article-header row">
+        <div class="large-12 large-centered columns hide-for-large hide-for-xlarge">
+          <?php print $content['header']; ?>
         </div>
-        <?php print $content['main']; ?>
-      </div>
+      </header>
+      <?php print $content['main']; ?>
     </div>
-  </article>
-  <section class="card-set">
+    <div class="large-4 columns sidebar">
+      <?php print $content['right']; ?>
+    </div>
+  </div>
+  <section class="card-set bg-1">
     <?php print $content['card_set']; ?>
     <div class="row">
       <div class="column">
@@ -106,7 +102,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="card-set-dots">
+      <div class="card-set-dotslight ">
         <div class="dot active"></div>
         <div class="dot"></div>
         <div class="dot"></div>
@@ -114,8 +110,10 @@
     </div>
     <div class="row">
       <div class="card-set-social social-sharing">
-        <span class="social-sharing-caption pea-green">Spread the word. It&rsquo;s the least you can do.</span>
-        <a class="social-sharing-icon pea-green" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon pea-green" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon pea-green" href="#"><i class="icon-mail"></i></a>
+        <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
+        <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
+        <a class="social-sharing-icon white" href="#"><i class="icon-facebook"></i></a>
+        <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
       </div>
     </div>
   </section>
