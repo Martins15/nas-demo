@@ -14,7 +14,6 @@
         <a href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-facebook"></i></a>
         <a href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-pinterest"></i></a>
         <a href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon white small" target="_blank"><i class="icon-mail"></i></a>
-
       </p>
     </div>
   </div>
