@@ -2,6 +2,8 @@
  * @file Drupal behaviour 'see all' for Birds Native to This Area block.
  */
 (function ($) {
+  "use strict";
+
   Drupal.behaviors.seeall = {
     attach: function (context, settings) {
       $('.see-all', context).once('see-all', function () {
