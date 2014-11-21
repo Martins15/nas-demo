@@ -196,3 +196,13 @@ function nas_master_update_7021() {
 function nas_master_update_7023() {
   features_revert_module('nas_conservation_project_feature');
 }
+
+/**
+ * Revert features for "Related Features" block.
+ */
+function nas_master_update_7025() {
+  features_revert_module('nas_view_modes_feature');
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_slideshow_feature');
+}

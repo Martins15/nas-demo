@@ -211,6 +211,12 @@ function nas_preprocess_node_article(&$vars) {
     // Looks terrible.
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
+
+  if ($vars['view_mode'] == 'nas_node_related_features') {
+    if (!empty($vars['content']['field_menu_section'])) {
+      _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
+    }
+  }
 }
 
 /**
@@ -712,7 +718,7 @@ function nas_preprocess_nas_conservation_project(&$vars) {
  */
 function nas_preprocess_node_slideshow(&$vars) {
   $node = $vars['node'];
-  if ($vars['view_mode'] == 'teaser') {
+  if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_related_features') {
     // Add slideshow main image.
     $vars['slideshow_image'] = '';
     $image_items = field_get_items('node', $node, 'field_images');
@@ -724,5 +730,18 @@ function nas_preprocess_node_slideshow(&$vars) {
 
       $vars['slideshow_image'] = l($output_image, 'node/' . $node->nid, array('html' => TRUE));
     }
+
+    if (!empty($vars['content']['field_menu_section'])) {
+      _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
+    }
+  }
+}
+
+/**
+ * Attach "editorial-card-slug" class to taxonomy link.
+ */
+function _nas_related_features_attach_menu_section_class(&$field) {
+  foreach (element_children($field) as $key) {
+    $field[$key]['#attributes']['class'][] = 'editorial-card-slug';
   }
 }
