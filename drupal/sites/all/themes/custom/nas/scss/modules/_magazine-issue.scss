@@ -19,6 +19,9 @@
         @include breakpoint(small-only) {
           clear: both;
         }
+        @include breakpoint(tiny-only) {
+          clear: both;
+        }
       }
 
       &:nth-of-type(3n+1) {
