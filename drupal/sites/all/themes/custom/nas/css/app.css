@@ -8980,6 +8980,11 @@ body.node-type-slideshow #tabs {
     clear: both;
   }
 }
+@media only screen and (max-width: 479px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
 @media only screen and (min-width: 768px) {
   .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
     clear: both;
@@ -11649,9 +11654,4 @@ input[type="time"].error,
 input[type="url"].error,
 textarea.error {
   border: 1px solid #f15936;
-}
-
-.editorial-card.photo-only {
-  border: none;
-  box-shadow: none;
 }
