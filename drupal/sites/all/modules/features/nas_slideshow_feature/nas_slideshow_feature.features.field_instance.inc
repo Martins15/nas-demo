@@ -36,6 +36,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -112,6 +118,16 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'related_features',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
       'nas_node_teaser' => array(
@@ -236,6 +252,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -312,6 +334,13 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 1,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -359,6 +388,91 @@ function nas_slideshow_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-slideshow-field_slideshow_related_features'
+  $field_instances['node-slideshow-field_slideshow_related_features'] = array(
+    'bundle' => 'slideshow',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_slideshow_related_features',
+    'label' => 'Related features',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-slideshow-field_slideshow_subtitle'
   $field_instances['node-slideshow-field_slideshow_subtitle'] = array(
     'bundle' => 'slideshow',
@@ -384,6 +498,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
@@ -467,6 +587,7 @@ function nas_slideshow_feature_field_default_field_instances() {
   t('Images');
   t('Internal tagging');
   t('Menu Section');
+  t('Related features');
   t('Subtitle');
 
   return $field_instances;
