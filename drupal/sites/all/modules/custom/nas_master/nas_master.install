@@ -198,8 +198,18 @@ function nas_master_update_7023() {
 }
 
 /**
- * Revert Static page feature.
+ * Revert features for "Related Features" block.
  */
-function nas_master_update_7024() {
+function nas_master_update_7025() {
+  features_revert_module('nas_view_modes_feature');
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_slideshow_feature');
+}
+
+/**
+ * Enable Static page feature.
+ */
+function nas_master_update_7026() {
   module_enable(array('nas_static_page_feature'));
 }
