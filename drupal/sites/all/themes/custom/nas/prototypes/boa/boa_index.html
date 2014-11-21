@@ -480,48 +480,50 @@
     <!-- DEMO SCRIPT -->
     <script>
     (function($) {
-      function scrollToBoaSortTag(aid){
-        $('html, body').animate({scrollTop: $(aid).offset().top},'slow');
-        $(aid).removeClass('cta');
-      }
-      $('.by-family').click(function(e){
-        e.preventDefault();
-        scrollToBoaSortTag('#by-family');
-        $('#by-alphabetical').addClass('cta');
-        $('#by-state').addClass('cta');
-        $('#by-family').removeClass('cta');
-      });
-      $('.by-alphabetical').click(function(e){
-        e.preventDefault();
-        scrollToBoaSortTag('#by-alphabetical');
-        $('#by-family').addClass('cta');
-        $('#by-state').addClass('cta');
-        $('#by-alphabetical').removeClass('cta');
-      });
-      $('.by-state').click(function(e){
-        e.preventDefault();
-        scrollToBoaSortTag('#by-state');
-        $('#by-family').addClass('cta');
-        $('#by-alphabetical').addClass('cta');
-        $('#by-state').removeClass('cta');
-      });
+      $(document).ready(function() {
+        function scrollToBoaSortTag(aid){
+          $('html, body').animate({scrollTop: $(aid).offset().top},'slow');
+          $(aid).removeClass('cta');
+        }
+        $('.by-family').click(function(e){
+          e.preventDefault();
+          scrollToBoaSortTag('#by-family');
+          $('#by-alphabetical').addClass('cta');
+          $('#by-state').addClass('cta');
+          $('#by-family').removeClass('cta');
+        });
+        $('.by-alphabetical').click(function(e){
+          e.preventDefault();
+          scrollToBoaSortTag('#by-alphabetical');
+          $('#by-family').addClass('cta');
+          $('#by-state').addClass('cta');
+          $('#by-alphabetical').removeClass('cta');
+        });
+        $('.by-state').click(function(e){
+          e.preventDefault();
+          scrollToBoaSortTag('#by-state');
+          $('#by-family').addClass('cta');
+          $('#by-alphabetical').addClass('cta');
+          $('#by-state').removeClass('cta');
+        });
 
-      $(".load-more").bind("click", function(e) {
-        e.preventDefault();
-        var $this = $(this),
-            $container = $(".boa-bird-card-container"),
-            $cards = $container.contents(".columns").slice(0, 12).clone().addClass("invisible");
-        $this.addClass("active");
-        setTimeout(function() {
-          $container.append($cards);
-          $cards.removeClass("invisible");
-          $this.removeClass("active");
-        }, 1500);
-      });
+        $(".load-more").bind("click", function(e) {
+          e.preventDefault();
+          var $this = $(this),
+              $container = $(".boa-bird-card-container"),
+              $cards = $container.contents(".columns").slice(0, 12).clone().addClass("invisible");
+          $this.addClass("active");
+          setTimeout(function() {
+            $container.append($cards);
+            $cards.removeClass("invisible");
+            $this.removeClass("active");
+          }, 1500);
+        });
 
-      $(".toggle-bird-guide-search").bind("click", function() {
-        $(".toggle-bird-guide-search").toggleClass("open");
-        $(".bird-guide-search").toggleClass("show");
+        $(".toggle-bird-guide-search").bind("click", function() {
+          $(".toggle-bird-guide-search").toggleClass("open");
+          $(".bird-guide-search").toggleClass("show");
+        });
       });
     })(jQuery);
     </script>

@@ -62,7 +62,7 @@
     when: latest_backup_exists.stat.exists == false and ansible_env.SUDO_USER == "jenkins"
 
   - name: Downloading latest backup
-    get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz
+    get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz force=yes
     when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER != "jenkins"
 
   - name: Droping drupal database
@@ -142,7 +142,7 @@
 
   - name: Updating database
     sudo: yes
-    shell: "{{ php_env_vars }} drush -y updb -l {{ site_url }}"
+    shell: "{{ php_env_vars }} drush -dvy updb -l {{ site_url }}"
     when: workflow_type == "sql"
 
   - name: Solr - clearing index
