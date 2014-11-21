@@ -28,5 +28,5 @@ features[views_view][] = slideshow_explore_more
 features[views_view][] = slideshow_related_features
 features_exclude[dependencies][views] = views
 features_exclude[dependencies][views_content] = views_content
-mtime = 1416476323
+mtime = 1416560452
 project path = sites/all/modules/features

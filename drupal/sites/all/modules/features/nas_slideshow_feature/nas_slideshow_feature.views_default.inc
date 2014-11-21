@@ -203,6 +203,17 @@ function nas_slideshow_feature_views_default_views() {
   $handler->display->display_options['defaults']['empty'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Has taxonomy term ID (with depth) */
+  $handler->display->display_options['arguments']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_options']['argument'] = variable_get('nas_import_features_menu_section_tid', '4');
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['depth'] = '5';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['operator'] = 'OR';
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -221,19 +232,6 @@ function nas_slideshow_feature_views_default_views() {
     'article' => 'article',
     'slideshow' => 'slideshow',
   );
-  /* Filter criterion: Content: Menu Section (field_menu_section) */
-  $handler->display->display_options['filters']['field_menu_section_tid']['id'] = 'field_menu_section_tid';
-  $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
-  $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
-  $handler->display->display_options['filters']['field_menu_section_tid']['value'] = array(
-    4 => '4',
-    7 => '7',
-    5 => '5',
-    6 => '6',
-  );
-  $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_menu_section_tid']['vocabulary'] = 'menu_section';
-  $handler->display->display_options['filters']['field_menu_section_tid']['hierarchy'] = 1;
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
   $export['slideshow_related_features'] = $view;

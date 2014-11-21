@@ -102,6 +102,11 @@ function nas_import_create_terms() {
       }
     }
     taxonomy_term_save($term);
+
+    // Save TID for 'Features' taxonomy term.
+    if ($term->name == 'Features') {
+      variable_set('nas_import_features_menu_section_tid', (string) $term->tid);
+    }
     unset($term);
   }
 
