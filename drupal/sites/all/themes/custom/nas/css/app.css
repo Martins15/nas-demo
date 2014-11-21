@@ -8850,6 +8850,10 @@ body.node-type-slideshow #tabs {
   font-style: italic;
 }
 
+.page-content, .page-content > * {
+  margin-bottom: 25.5px;
+}
+
 .inline-map {
   position: relative;
 }
@@ -11649,9 +11653,4 @@ input[type="time"].error,
 input[type="url"].error,
 textarea.error {
   border: 1px solid #f15936;
-}
-
-.editorial-card.photo-only {
-  border: none;
-  box-shadow: none;
 }
