@@ -47,3 +47,4 @@ dependencies[] = nas_slideshow_feature
 dependencies[] = nas_conservation_strategy_feature
 dependencies[] = nas_conservation_project_feature
 dependencies[] = nas_boa_feature
+dependencies[] = nas_static_page_feature
