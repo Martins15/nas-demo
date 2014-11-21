@@ -11349,6 +11349,30 @@ body.touch .sticky-wrapper {
   border-bottom: none;
   margin: -80px 0 0;
 }
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .boa-family-block-pager.plate {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .boa-family-block-pager.plate {
+    margin-top: 0;
+  }
+  .boa-family-block-pager.plate .columns {
+    margin-left: -150px;
+    width: 300px;
+  }
+  .boa-family-block-pager.plate .next-text,
+  .boa-family-block-pager.plate .next-title {
+    font-size: 14px;
+    left: 160px;
+  }
+  .boa-family-block-pager.plate .previous-text,
+  .boa-family-block-pager.plate .previous-title {
+    font-size: 14px;
+    right: 160px;
+  }
+}
 .boa-family-block-pager .columns {
   height: 100px;
   left: 50%;
@@ -11427,6 +11451,56 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird .bird-guide-image:after {
   display: none;
+}
+.page-boa-bird .boa-previous-plate {
+  background: #276075 url(../img/arrows-boa-left.png) no-repeat center center;
+  display: block;
+  height: 60px;
+  left: 0;
+  position: absolute;
+  top: 320px;
+  width: 60px;
+  z-index: 1;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .boa-previous-plate {
+    top: 100px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird .boa-previous-plate {
+    top: 100px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird .boa-previous-plate {
+    top: 150px;
+  }
+}
+.page-boa-bird .boa-next-plate {
+  background: #276075 url(../img/arrows-boa-right.png) no-repeat center center;
+  display: block;
+  height: 60px;
+  position: absolute;
+  right: 0;
+  top: 320px;
+  width: 60px;
+  z-index: 1;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .boa-next-plate {
+    top: 100px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird .boa-next-plate {
+    top: 100px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird .boa-next-plate {
+    top: 150px;
+  }
 }
 .page-boa-bird .bird-guide-card {
   padding: 0 25px 0 25px;

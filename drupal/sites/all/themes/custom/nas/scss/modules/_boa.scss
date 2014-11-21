@@ -232,6 +232,30 @@
   &.plate {
     border-bottom: none;
     margin: -80px 0 0;
+
+    @include breakpoint(small-only) {
+      margin-top: 0;
+    }
+
+    @include breakpoint(tiny-only) {
+      margin-top: 0;
+
+      .columns {
+        margin-left: -150px;
+        width: 300px;
+      }
+
+      .next-text,
+      .next-title {
+        font-size: 14px;
+        left: 160px;
+      }
+      .previous-text,
+      .previous-title {
+        font-size: 14px;
+        right: 160px;
+      }
+    }
   }
 
   .columns {
@@ -322,6 +346,52 @@
 
   .bird-guide-image:after {
     display: none;
+  }
+
+  .boa-previous-plate {
+    background: #276075 url(../img/arrows-boa-left.png) no-repeat center center;
+    display: block;
+    height: 60px;
+    left: 0;
+    position: absolute;
+    top: 320px;
+    width: 60px;
+    z-index: 1;
+
+    @include breakpoint(tiny-only) {
+      top: 100px;
+    }
+
+    @include breakpoint(small-only) {
+      top: 100px;
+    }
+
+    @include breakpoint(medium-only) {
+      top: 150px;
+    }
+  }
+
+  .boa-next-plate {
+    background: #276075 url(../img/arrows-boa-right.png) no-repeat center center;
+    display: block;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    top: 320px;
+    width: 60px;
+    z-index: 1;
+
+    @include breakpoint(tiny-only) {
+      top: 100px;
+    }
+
+    @include breakpoint(small-only) {
+      top: 100px;
+    }
+
+    @include breakpoint(medium-only) {
+      top: 150px;
+    }
   }
 
   .bird-guide-card {
