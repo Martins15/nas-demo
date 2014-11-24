@@ -82,17 +82,15 @@
 ?>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> editorial-card dark feature clearfix"<?php print $attributes; ?>>
-  <div class="editorial-card dark feature">
-    <div class="editorial-card-photo">
-      <a href="<?php print $node_url; ?>">
-        <?php print render($content['field_hero_image']); ?>
-      </a>
-    </div>
-    <div class="editorial-card-content">
-      <?php print render($content['field_menu_section']); ?>
-      <a href="<?php print $node_url; ?>">
-        <h4 class="editorial-card-title"><?php print $title; ?></h4>
-      </a>
-    </div>
+  <div class="editorial-card-photo">
+    <a href="<?php print $node_url; ?>">
+      <?php print render($content['field_hero_image']); ?>
+    </a>
+  </div>
+  <div class="editorial-card-content">
+    <?php print render($content['field_menu_section']); ?>
+    <a href="<?php print $node_url; ?>">
+      <h4 class="editorial-card-title"><?php print $title; ?></h4>
+    </a>
   </div>
 </div>
