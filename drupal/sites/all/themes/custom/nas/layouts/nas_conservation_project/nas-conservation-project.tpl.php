@@ -32,70 +32,21 @@
 <section class="global-content with-padding">
   <div class="row">
     <div class="large-8 columns text-container">
-      <div class="page-summary bottom-line">
-        <h4 class="page-summary-title">The Bottom Line</h4>
-        <p class="page-summary-body">This project has a conservation impact on 1.8 million acres of land and improved outcomes for four priority bird species.</p>
-      </div>
       <?php print $content['body']; ?>
     </div>
     <div class="large-4 columns sidebar">
-      <?php print $content['right']; ?>
       <section class="sidebar-section">
+        <?php if (!empty($page_link)): ?>
         <div class="social-sharing align-right">
           <span class="social-sharing-caption small">Share this project</span>
-          <a href="#" class="social-sharing-icon blue small"><i class="icon-twitter"></i></a>
-          <a href="#" class="social-sharing-icon blue small"><i class="icon-facebook"></i></a>
-          <a href="#" class="social-sharing-icon blue small"><i class="icon-mail"></i></a>
+            <a target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-twitter"></i></a>
+            <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-facebook"></i></a>
+            <a href="mailto:?subject=<?php print $page_title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-mail"></i></a>
         </div>
+        <?php endif; ?>
       </section>
       <div class="row">
-        <section class="sidebar-section medium-6 large-12 columns">
-          <h3>Birds Native to This Area</h3>
-          <div class="row bird-card-set-sidebar">
-            <div class="columns tiny-6 small-4 medium-6">
-              <figure class="bird-card small">
-                <div class="bird-card-illustration">
-                  <a href="#"><img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>bird-1.png" alt=""></a>
-                </div>
-                <figcaption class="bird-card-caption">
-                  <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
-                  <p class="scientific-name">Campylorhynchus brunneicapillus</p>
-                </figcaption>
-                <a href="#" class="icon-sound-full bird-card-audio"></a>
-              </figure>
-            </div>
-            <div class="columns tiny-6 small-4 medium-6 end">
-              <figure class="bird-card small">
-                <div class="bird-card-illustration">
-                  <a href="#"><img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>bird-1.png" alt=""></a>
-                </div>
-                <figcaption class="bird-card-caption">
-                  <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
-                  <p class="scientific-name">Campylorhynchus brunneicapillus</p>
-                </figcaption>
-                <a href="#" class="icon-sound-full bird-card-audio"></a>
-              </figure>
-            </div>
-          </div>
-          <div class="row">
-            <div class="columns large-6">
-              <ul class="no-bullets small-list">
-                <li><a href="#"><small>Aleutian Terns</small></a></li>
-                <li><a href="#"><small>Arctic Terns</small></a></li>
-                <li><a href="#"><small>Blacklegged kittiwakes</small></a></li>
-              </ul>
-            </div>
-            <div class="columns large-6">
-              <ul class="no-bullets small-list">
-                <li><a href="#"><small>Bonaparte's Gulls</small></a></li>
-                <li><a href="#"><small>Northern Fulmar</small></a></li>
-                <li><a href="#"><small>Sooty Shearwater</small></a></li>
-              </ul>
-            </div>
-          </div>
-          <hr>
-          <a href="#"><small>See all »</small></a>
-        </section>
+        <?php print $content['right']; ?>
         <section class="sidebar-section medium-6 large-12 columns">
           <div class="sidebar-section editorial-card">
             <div class="editorial-card-photo">

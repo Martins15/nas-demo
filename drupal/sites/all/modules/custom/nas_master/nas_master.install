@@ -130,3 +130,86 @@ function nas_master_update_7018() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_conservation_project_feature');
 }
+
+/**
+ * Revert features for Slideshow migration.
+ */
+function nas_master_update_7019() {
+  $features = array(
+    'nas_bird_type_feature',
+    'nas_image_styles_feature',
+    'nas_slideshow_feature',
+    'nas_import_feeds_feature',
+  );
+  foreach ($features as $feature) {
+    features_revert_module($feature);
+  }
+}
+
+/**
+ * Slideshow migration.
+ */
+function nas_master_update_7020(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    // Add nids to sandbox.
+    $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'media_gallery');
+    $sandbox['gallery_nids'] = drupal_json_decode($result->data);
+
+    // Limit nodes for dev environment.
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      $sandbox['gallery_nids'] = array_slice($sandbox['gallery_nids'], 0, 20);
+    }
+
+    $sandbox['max'] = count($sandbox['gallery_nids']);
+    $sandbox['progress'] = 0;
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['gallery_nids'], $sandbox['progress'], $chunk);
+    pp_import_nodes_batch($nids, 'media_gallery_import');
+    $sandbox['progress'] += count($nids);
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count media galleries has been successfully imported.', array('@count' => $sandbox['progress']));
+
+    return t('The migration was successful.');
+  }
+}
+
+/**
+ * Revert features for Slideshow.
+ */
+function nas_master_update_7021() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_slideshow_feature');
+}
+
+/**
+ * Revert Conservation Project feature.
+ */
+function nas_master_update_7023() {
+  features_revert_module('nas_conservation_project_feature');
+}
+
+/**
+ * Revert features for "Related Features" block.
+ */
+function nas_master_update_7025() {
+  features_revert_module('nas_view_modes_feature');
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_slideshow_feature');
+}
+
+/**
+ * Enable Static page feature.
+ */
+function nas_master_update_7026() {
+  module_enable(array('nas_static_page_feature'));
+}

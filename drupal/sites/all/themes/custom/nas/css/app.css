@@ -8483,6 +8483,10 @@ body.node-type-slideshow #tabs {
   z-index: 10;
 }
 
+.see-all-show {
+  display: none;
+}
+
 .conservation-slider {
   position: relative;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -8970,8 +8974,25 @@ body.node-type-slideshow #tabs {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-bottom: 10px;
 }
-.past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
-  clear: both;
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
+    clear: both;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
+    clear: both;
+  }
 }
 .past-magazin-issue .magazin-issues-list .magazine-issue-year h2 {
   margin-top: 10px;
@@ -11122,6 +11143,181 @@ body.touch .sticky-wrapper {
   -webkit-column-gap: 50px;
   -moz-column-gap: 50px;
   column-gap: 50px;
+}
+
+.john-audubon-logo {
+  max-width: 63px;
+  position: absolute;
+  top: 38px;
+}
+
+.page-boa .guide-bar-title {
+  line-height: 23px;
+  margin-left: 55px;
+}
+.page-boa .hero-title {
+  font-size: 68px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa .guide-bar-title {
+    font-size: 20px;
+  }
+  .page-boa .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+  }
+  .page-boa .john-audubon-logo {
+    max-width: 61px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+  }
+}
+.page-boa .action-nav {
+  margin: 0;
+}
+.page-boa .action-nav .action-nav-item {
+  width: 33%;
+}
+.page-boa .action-nav .action-nav-item:first-child {
+  padding-right: 4px;
+}
+.page-boa .action-nav .action-nav-item:last-child {
+  margin-left: 0;
+  padding-left: 4px;
+  width: 34%;
+}
+.page-boa .action-nav .action-nav-item a {
+  border-radius: 0 !important;
+  font-size: 20px !important;
+  width: 100%;
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa .action-nav {
+    box-sizing: content-box;
+    margin-left: -12.5px;
+    margin-right: -12.5px;
+    margin-top: 0;
+  }
+  .page-boa .action-nav .action-nav-item:last-child {
+    width: 32%;
+  }
+}
+.page-boa .hero-header {
+  padding-bottom: 70px;
+}
+
+.boa-ja-content-block {
+  padding-top: 35px;
+}
+.boa-ja-content-block .text-container h2 {
+  font-size: 42px;
+  line-height: 42px;
+  margin-bottom: 40px;
+}
+
+.boa-guide-bar-attribution {
+  float: left;
+}
+.boa-guide-bar-attribution ul {
+  font-size: 18px;
+  line-height: 50px;
+  list-style-image: none;
+  list-style-type: none;
+  margin: 0 0 0 30px;
+}
+.boa-guide-bar-attribution ul li {
+  display: inline-block;
+  margin-left: 30px;
+}
+.boa-guide-bar-attribution ul li a {
+  color: #fff;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .boa-guide-bar-attribution ul {
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  .boa-guide-bar-attribution ul li {
+    margin-left: 10px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .boa-guide-bar-attribution ul {
+    font-size: 15px;
+    margin-left: 20px;
+  }
+  .boa-guide-bar-attribution ul li {
+    margin-left: 10px;
+  }
+}
+
+.boa-bird-card-set {
+  overflow: hidden;
+  padding-top: 10px;
+  position: relative;
+}
+.boa-bird-card-set.bg-boa-bejge {
+  background-color: #f5f4eb;
+}
+
+.boa-bird-card {
+  margin-bottom: 40px;
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -moz-transition-property: -moz-transform, -webkit-transform, -moz-transform, opacity;
+  -o-transition-property: -o-transform, -webkit-transform, -moz-transform, opacity;
+  -webkit-transition-property: -webkit-transform, -webkit-transform, -moz-transform, opacity;
+  transition-property: transform, -webkit-transform, -moz-transform, opacity;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+.boa-bird-card img {
+  border: 1px solid #d5d5d5;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+.boa-bird-card .common-name {
+  margin: 0 0 5px 10px;
+}
+.boa-bird-card .scientific-name {
+  color: #838078;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 17px;
+  margin: 0 0 0 10px;
+}
+@media only screen and (min-width: 601px) {
+  body:not(.touch) .boa-bird-card:hover {
+    -moz-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+.boa-about-this-guide {
+  padding-top: 60px;
+}
+.boa-about-this-guide h2 {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+.boa-about-this-guide p {
+  font-size: 22px;
+  line-height: 27px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-weight: 300;
 }
 
 .sidebar, .article-sidebar {

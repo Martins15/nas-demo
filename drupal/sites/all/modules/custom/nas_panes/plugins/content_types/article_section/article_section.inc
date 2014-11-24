@@ -22,9 +22,6 @@ $plugin = array(
 function nas_panes_article_section_content_type_render($subtype, $conf, $args, $context) {
   if (!empty($context)) {
     $node = $context->data;
-    if ($node->type !== 'article') {
-      return;
-    }
   }
 
   $block = new stdClass();

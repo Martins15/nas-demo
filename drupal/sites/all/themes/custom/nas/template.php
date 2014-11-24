@@ -54,6 +54,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'project') {
     nas_preprocess_node_project($vars);
   }
+  if ($vars['type'] == 'slideshow') {
+    nas_preprocess_node_slideshow($vars);
+  }
 }
 
 /**
@@ -207,6 +210,12 @@ function nas_preprocess_node_article(&$vars) {
   if ($vars['type'] == 'article') {
     // Looks terrible.
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
+  }
+
+  if ($vars['view_mode'] == 'nas_node_related_features') {
+    if (!empty($vars['content']['field_menu_section'])) {
+      _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
+    }
   }
 }
 
@@ -586,6 +595,30 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
 }
 
 /**
+ * Preprocess function for nas_static_page_1col theme.
+ */
+function nas_preprocess_nas_static_page_1col(&$variables) {
+  $node = $variables['display']->context['panelizer']->data;
+  $variables['color_mode_gradient'] = 'dark';
+  if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+    $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+  }
+  $variables['color_mode_text'] = $variables['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
+}
+
+/**
+ * Preprocess function for nas_static_page_2col theme.
+ */
+function nas_preprocess_nas_static_page_2col(&$variables) {
+  $node = $variables['display']->context['panelizer']->data;
+  $variables['color_mode_gradient'] = 'dark';
+  if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+    $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+  }
+  $variables['color_mode_text'] = $variables['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
+}
+
+/**
  * Preprocess function for nas_article_fullscreen theme.
  */
 function nas_preprocess_nas_flyway(&$variables) {
@@ -626,12 +659,34 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
  */
 function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
+  // View to be preprocessed
+  $needs_preprocess = array('related_birds', 'flyway_related_birds', 'project_birds');
   // Early return pattern.
-  if ($view->name !== 'related_birds' || $view->current_display != 'flyway_related_birds') {
+  if (!in_array($view->name, $needs_preprocess)) {
     return;
   }
   if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
     $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+  }
+  if ($view->name == 'project_birds') {
+    $vars['results'] = array();
+    foreach ($view->result as $delta => $item) {
+      $node = node_load($item->node_field_data_field_project_related_birds_nid);
+      if (!$node) {
+        continue;
+      }
+      if (count($vars['results']) < 2) {
+        $node_view = node_view($node, 'nas_node_teaser_small');
+        $vars['results'][] = drupal_render($node_view);
+      }
+      else {
+        $vars['results'][] = l('<small>' . check_plain($node->title) . '</small>', 'node/' . $node->nid, array('html' => TRUE));
+      }
+    }
+    if (count($view->result) > 8) {
+      $vars['first_column_last'] = intval((count($view->result) + 8) / 2);
+    }
+    drupal_add_js(path_to_theme() . '/js/nas/see-all.js');
   }
 }
 
@@ -653,10 +708,10 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
     foreach ($variables['element']['#items'] as $delta => $image) {
       // Add regular slide.
       $content_image = array(
-        'url' => file_create_url($image['uri']),
+        'url' => image_style_url('slideshow', $image['uri']),
         // Additional fields to display on each slide.
-        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? t('Photograph by @author', array('@author' => $image['field_file_credit'][LANGUAGE_NONE][0]['value'])) : '',
-        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_caption'][LANGUAGE_NONE][0]['value']) : '',
+        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_credit'][LANGUAGE_NONE][0]['value']) : '',
+        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
         'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
         'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
         // First or last slide.
@@ -693,4 +748,46 @@ function nas_preprocess_nas_conservation_project(&$vars) {
     $vars['color_mode_gradient'] = $vars['display']->context['panelizer']->data->field_color_mode[LANGUAGE_NONE][0]['value'];
   }
   $vars['color_mode_text'] = $vars['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
+
+  global $base_url;
+  // Add Page absolute url.
+  $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+
+  // Add Page title.
+  $vars['page_title'] = drupal_get_title();
+}
+
+/**
+ * Implements theme_preprocess_node().
+ *
+ * For slideshow content type.
+ */
+function nas_preprocess_node_slideshow(&$vars) {
+  $node = $vars['node'];
+  if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_related_features') {
+    // Add slideshow main image.
+    $vars['slideshow_image'] = '';
+    $image_items = field_get_items('node', $node, 'field_images');
+    if (!empty($image_items[0]['uri'])) {
+      $output_image = theme('image_style', array(
+          'style_name' => 'slideshow_teaser',
+          'path' => $image_items[0]['uri'],
+        ));
+
+      $vars['slideshow_image'] = l($output_image, 'node/' . $node->nid, array('html' => TRUE));
+    }
+
+    if (!empty($vars['content']['field_menu_section'])) {
+      _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
+    }
+  }
+}
+
+/**
+ * Attach "editorial-card-slug" class to taxonomy link.
+ */
+function _nas_related_features_attach_menu_section_class(&$field) {
+  foreach (element_children($field) as $key) {
+    $field[$key]['#attributes']['class'][] = 'editorial-card-slug';
+  }
 }

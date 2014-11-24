@@ -92,6 +92,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'magazine_issues_import':
       nas_import_feeds_presave_magazine_issues_import($source, $entity, $item);
       break;
+
+    case 'media_gallery_import':
+      nas_import_feeds_presave_media_gallery_import($source, $entity, $item);
+      break;
   }
 }
 
@@ -313,14 +317,8 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   $images_mapping = array();
   if (!empty($item['field_image_ref'])) {
     foreach ($item['field_image_ref'] as $field_value) {
-      if (!isset($field_value['nid'])) {
-        continue;
-      }
-      $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
-      $image_node = drupal_json_decode($result->data);
-      $image_node = reset($image_node);
-      if (!empty($image_node['field_photo'])) {
-        $image_file = nas_import_import_image($entity, $image_node['field_photo']);
+      $image_file = nas_import_get_image_object($field_value, $entity);
+      if (!empty($image_file->uri)) {
         $file_url = pp_file_create_url($image_file->uri);
         $images_mapping[$field_value['nid']] = $file_url;
       }
@@ -1043,4 +1041,72 @@ function _nas_import_get_contact($name) {
   node_save($node);
 
   return $node->nid;
+}
+
+/**
+ * Save an image as file object.
+ */
+function nas_import_get_image_object($field_value, $entity, $image_fields_mapping = array()) {
+  if (!isset($field_value['nid'])) {
+    return FALSE;
+  }
+
+  $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
+  $image_node = drupal_json_decode($result->data);
+  $image_node = reset($image_node);
+
+  if (empty($image_node['field_photo'])) {
+    return FALSE;
+  }
+
+  $file_entity = nas_import_import_image($entity, $image_node['field_photo']);
+
+  // Attach other fields by mapping.
+  if (empty($image_fields_mapping)) {
+    return FALSE;
+  }
+
+  $changed = FALSE;
+  foreach ($image_fields_mapping as $d6_field => $d7_field) {
+    if (empty($image_node[$d6_field][0]['value'])) {
+      continue;
+    }
+
+    $field_value = array(
+      'value' => $image_node[$d6_field][0]['value'],
+    );
+
+    // Add format for field_file_caption.
+    if ($d7_field == 'field_file_caption') {
+      $field_value['format'] = 'full_html';
+    }
+
+    $file_entity->{$d7_field}[LANGUAGE_NONE][] = $field_value;
+    $changed = TRUE;
+  }
+
+  if ($changed) {
+    file_save($file_entity);
+  }
+
+  return $file_entity;
+}
+
+/**
+ * Presave callback for media_gallery_import.
+ */
+function nas_import_feeds_presave_media_gallery_import($source, $entity, $item) {
+  // Save gallery field_image_ref images to d7 field files.
+  $image_fields_mapping = array(
+    'field_photo_credit' => 'field_file_credit',
+    'field_caption' => 'field_file_caption',
+  );
+  if (!empty($item['field_image_ref'])) {
+    foreach ($item['field_image_ref'] as $field_value) {
+      $image_file = nas_import_get_image_object($field_value, $entity, $image_fields_mapping);
+      if ($image_file) {
+        $entity->field_images[LANGUAGE_NONE][] = (array) $image_file;
+      }
+    }
+  }
 }

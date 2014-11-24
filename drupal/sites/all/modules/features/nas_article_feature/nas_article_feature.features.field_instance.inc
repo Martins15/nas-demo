@@ -38,6 +38,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 15,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -149,6 +155,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 3,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -271,6 +283,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 9,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -359,6 +377,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 10,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -480,6 +504,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 12,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -579,6 +609,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 14,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -659,6 +695,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 12,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -760,6 +802,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 8,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -848,6 +896,15 @@ function nas_article_feature_field_default_field_instances() {
         'module' => 'mediafield',
         'settings' => array(
           'file_view_mode' => 'article_teaser',
+        ),
+        'type' => 'media',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'related_features',
         ),
         'type' => 'media',
         'weight' => 0,
@@ -986,6 +1043,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1081,6 +1144,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 2,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
@@ -1198,6 +1267,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 1,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1293,6 +1368,13 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 1,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1384,6 +1466,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 6,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -1486,6 +1574,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 7,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1576,6 +1670,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 8,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
