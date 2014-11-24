@@ -230,40 +230,6 @@ function nas_magazine_issue_feature_panelizer_defaults() {
       'form_build_id' => 'form-FVQXOvINyquZHwyW7RuMkUjd0pVKiOgVJCHHCg26MQ0',
       'form_token' => 'yLMqXPBOST0M97-Pf9dKgeSmH-dOh1R2znxKdJIWcQ0',
       'form_id' => 'magazine_issue_other_issues_edit_form',
-      4708 => array(
-        1 => array(
-          'entity_reference' => array(
-            'entity_id' => '4715',
-            'entity_label' => 'September-October 2013',
-            'entity_type' => 'node',
-            'entity_bundle' => 'magazine_issue',
-          ),
-        ),
-        2 => array(
-          'entity_reference' => array(
-            'entity_id' => '4661',
-            'entity_label' => 'January - February 2011',
-            'entity_type' => 'node',
-            'entity_bundle' => 'magazine_issue',
-          ),
-        ),
-        3 => array(
-          'entity_reference' => array(
-            'entity_id' => '4674',
-            'entity_label' => 'November-December 2010',
-            'entity_type' => 'node',
-            'entity_bundle' => 'magazine_issue',
-          ),
-        ),
-        4 => array(
-          'entity_reference' => array(
-            'entity_id' => '4670',
-            'entity_label' => 'July-August 2008',
-            'entity_type' => 'node',
-            'entity_bundle' => 'magazine_issue',
-          ),
-        ),
-      ),
     );
     $pane->cache = array();
     $pane->style = array(
