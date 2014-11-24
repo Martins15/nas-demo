@@ -12,7 +12,7 @@
   </div>
   <div class="column">
     <ul class="inline-list section-nav">
-      <li><a href="#"><?php print t('See More Slideshows'); ?></a></li>
+      <li></li>
     </ul>
   </div>
 </div>
