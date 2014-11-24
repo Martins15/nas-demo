@@ -8963,17 +8963,6 @@ body.node-type-slideshow #tabs {
   color: #777777;
 }
 
-.past-magazin-issue .magazin-issues-list .magazine-issue .node {
-  margin: 10px auto 30px;
-}
-.past-magazin-issue .magazin-issues-list .magazine-issue .node .magazin-issue-title a {
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 15px;
-}
-.past-magazin-issue .magazin-issues-list .magazine-issue .node .magazin-issue-article h4 {
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  margin-bottom: 10px;
-}
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
     clear: both;
@@ -8996,6 +8985,23 @@ body.node-type-slideshow #tabs {
 }
 .past-magazin-issue .magazin-issues-list .magazine-issue-year h2 {
   margin-top: 10px;
+}
+
+.node-magazine-issue.node-teaser {
+  margin: 10px auto 30px;
+}
+.node-magazine-issue.node-teaser .magazin-issue-title a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+}
+.node-magazine-issue.node-teaser .magazin-issue-article h4 {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin-bottom: 10px;
+}
+
+.magazine-issue-other-issues h2 {
+  margin: 0 12.5px 10px;
+  font-size: 38px;
 }
 
 .bio-header {

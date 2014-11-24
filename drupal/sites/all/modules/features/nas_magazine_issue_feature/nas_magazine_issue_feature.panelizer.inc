@@ -53,10 +53,10 @@ function nas_magazine_issue_feature_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-96dc5080-49b7-47d6-bc41-df6b8c72eafa';
+    $pane->pid = 'new-62ceab19-77f1-4420-af9e-5dc3f26c0750';
     $pane->panel = 'articles_bottom';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-mag_issue_articles_list_bot';
+    $pane->type = 'magazine_issue_listing_bot';
+    $pane->subtype = 'magazine_issue_listing_bot';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -68,14 +68,14 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '96dc5080-49b7-47d6-bc41-df6b8c72eafa';
-    $display->content['new-96dc5080-49b7-47d6-bc41-df6b8c72eafa'] = $pane;
-    $display->panels['articles_bottom'][0] = 'new-96dc5080-49b7-47d6-bc41-df6b8c72eafa';
+    $pane->uuid = '62ceab19-77f1-4420-af9e-5dc3f26c0750';
+    $display->content['new-62ceab19-77f1-4420-af9e-5dc3f26c0750'] = $pane;
+    $display->panels['articles_bottom'][0] = 'new-62ceab19-77f1-4420-af9e-5dc3f26c0750';
     $pane = new stdClass();
-    $pane->pid = 'new-4a2877ee-dfe7-43db-b44f-a5df5a5f9aea';
+    $pane->pid = 'new-3a221fb1-dafb-49c4-b1db-e56fccfb385d';
     $pane->panel = 'articles_top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-mag_issue_articles_list_top';
+    $pane->type = 'magazine_issue_listing_top';
+    $pane->subtype = 'magazine_issue_listing_top';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -87,9 +87,9 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '4a2877ee-dfe7-43db-b44f-a5df5a5f9aea';
-    $display->content['new-4a2877ee-dfe7-43db-b44f-a5df5a5f9aea'] = $pane;
-    $display->panels['articles_top'][0] = 'new-4a2877ee-dfe7-43db-b44f-a5df5a5f9aea';
+    $pane->uuid = '3a221fb1-dafb-49c4-b1db-e56fccfb385d';
+    $display->content['new-3a221fb1-dafb-49c4-b1db-e56fccfb385d'] = $pane;
+    $display->panels['articles_top'][0] = 'new-3a221fb1-dafb-49c4-b1db-e56fccfb385d';
     $pane = new stdClass();
     $pane->pid = 'new-2892e191-b754-4846-9bb1-0a6957050d87';
     $pane->panel = 'cover';
@@ -160,6 +160,140 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $pane->uuid = '2dd29c05-cf2d-47c7-8951-ffaf07766989';
     $display->content['new-2dd29c05-cf2d-47c7-8951-ffaf07766989'] = $pane;
     $display->panels['donate'][0] = 'new-2dd29c05-cf2d-47c7-8951-ffaf07766989';
+    $pane = new stdClass();
+    $pane->pid = 'new-39c1b74a-3e10-4f10-b421-60e1cc8be186';
+    $pane->panel = 'featured';
+    $pane->type = 'magazine_issue_featured';
+    $pane->subtype = 'magazine_issue_featured';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      '' => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-aQdpXcMzum95FY8d-faoSmtqiQF_NyFuxUZJNDuOD0s',
+      'form_token' => 'G49hTdzlttmYp6mQb44vYzm-Y4K7N7C-6kdeHeLcuYs',
+      'form_id' => 'magazine_issue_featured_edit_form',
+      4708 => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '2026',
+            'entity_label' => 'Saving Sharks From Finning',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '2852',
+            'entity_label' => 'Avian News from Around the Nation',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '39c1b74a-3e10-4f10-b421-60e1cc8be186';
+    $display->content['new-39c1b74a-3e10-4f10-b421-60e1cc8be186'] = $pane;
+    $display->panels['featured'][0] = 'new-39c1b74a-3e10-4f10-b421-60e1cc8be186';
+    $pane = new stdClass();
+    $pane->pid = 'new-3e1fde05-8766-4440-a564-28cb90e1b64f';
+    $pane->panel = 'other_issues';
+    $pane->type = 'magazine_issue_other_issues';
+    $pane->subtype = 'magazine_issue_other_issues';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      '' => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+        3 => array(
+          'entity_reference' => FALSE,
+        ),
+        4 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-FVQXOvINyquZHwyW7RuMkUjd0pVKiOgVJCHHCg26MQ0',
+      'form_token' => 'yLMqXPBOST0M97-Pf9dKgeSmH-dOh1R2znxKdJIWcQ0',
+      'form_id' => 'magazine_issue_other_issues_edit_form',
+      4708 => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '4715',
+            'entity_label' => 'September-October 2013',
+            'entity_type' => 'node',
+            'entity_bundle' => 'magazine_issue',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '4661',
+            'entity_label' => 'January - February 2011',
+            'entity_type' => 'node',
+            'entity_bundle' => 'magazine_issue',
+          ),
+        ),
+        3 => array(
+          'entity_reference' => array(
+            'entity_id' => '4674',
+            'entity_label' => 'November-December 2010',
+            'entity_type' => 'node',
+            'entity_bundle' => 'magazine_issue',
+          ),
+        ),
+        4 => array(
+          'entity_reference' => array(
+            'entity_id' => '4670',
+            'entity_label' => 'July-August 2008',
+            'entity_type' => 'node',
+            'entity_bundle' => 'magazine_issue',
+          ),
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3e1fde05-8766-4440-a564-28cb90e1b64f';
+    $display->content['new-3e1fde05-8766-4440-a564-28cb90e1b64f'] = $pane;
+    $display->panels['other_issues'][0] = 'new-3e1fde05-8766-4440-a564-28cb90e1b64f';
     $pane = new stdClass();
     $pane->pid = 'new-9a7a83f0-c9be-4517-b4c3-41c7edef5ed4';
     $pane->panel = 'right_sidebar';
