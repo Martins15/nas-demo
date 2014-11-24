@@ -189,8 +189,8 @@
 }
 
 .hero-attribution {
-  font-size: $size-text-tiny;
-  font-style: italic;
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
   line-height: $size-text-small;
   color: $color-text-gray;
   background-color: #f3f3f3;
