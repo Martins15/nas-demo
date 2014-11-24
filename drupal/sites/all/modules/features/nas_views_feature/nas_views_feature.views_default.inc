@@ -1186,6 +1186,52 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['table'] = 'field_data_field_magazine_issue';
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['field'] = 'field_magazine_issue_target_id';
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['operator'] = 'not empty';
+
+  /* Display: Conservation Project Related News */
+  $handler = $view->new_display('panel_pane', 'Conservation Project Related News', 'project_related_news');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Related News';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
+  $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
+  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'nas_node_teaser_wo_date';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Conservation Project (field_conservation_project) */
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['id'] = 'field_conservation_project_target_id';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['table'] = 'field_data_field_conservation_project';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['field'] = 'field_conservation_project_target_id';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_conservation_project_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['argument_input'] = array(
+    'field_conservation_project_target_id' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Conservation Project (field_conservation_project)',
+    ),
+  );
   $export['nas_news'] = $view;
 
   $view = new view();
