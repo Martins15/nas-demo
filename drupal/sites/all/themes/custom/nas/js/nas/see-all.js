@@ -12,7 +12,7 @@
           $('.see-all-hide', $this).hide();
           $('.see-all-show', $this).show();
           return false;
-        })
+        });
       });
     }
   };
