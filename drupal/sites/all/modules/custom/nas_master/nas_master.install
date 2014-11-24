@@ -220,3 +220,12 @@ function nas_master_update_7025() {
 function nas_master_update_7026() {
   module_enable(array('nas_static_page_feature'));
 }
+
+/**
+ * Revert features for Magazine Issue page blocks.
+ */
+function nas_master_update_7027() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_magazine_issue_feature');
+}
