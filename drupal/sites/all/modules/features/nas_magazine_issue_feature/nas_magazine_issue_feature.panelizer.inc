@@ -186,24 +186,6 @@ function nas_magazine_issue_feature_panelizer_defaults() {
       'form_build_id' => 'form-aQdpXcMzum95FY8d-faoSmtqiQF_NyFuxUZJNDuOD0s',
       'form_token' => 'G49hTdzlttmYp6mQb44vYzm-Y4K7N7C-6kdeHeLcuYs',
       'form_id' => 'magazine_issue_featured_edit_form',
-      4708 => array(
-        1 => array(
-          'entity_reference' => array(
-            'entity_id' => '2026',
-            'entity_label' => 'Saving Sharks From Finning',
-            'entity_type' => 'node',
-            'entity_bundle' => 'article',
-          ),
-        ),
-        2 => array(
-          'entity_reference' => array(
-            'entity_id' => '2852',
-            'entity_label' => 'Avian News from Around the Nation',
-            'entity_type' => 'node',
-            'entity_bundle' => 'article',
-          ),
-        ),
-      ),
     );
     $pane->cache = array();
     $pane->style = array(
