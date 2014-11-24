@@ -1,0 +1,5 @@
+.page-content{
+  &, & > *{
+    margin-bottom: $size-line-base;
+  }
+}

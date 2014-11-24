@@ -198,6 +198,13 @@ function nas_master_update_7023() {
 }
 
 /**
+ * Revert nas_image_styles_feature feature.
+ */
+function nas_master_update_7024() {
+  features_revert_module('nas_image_styles_feature');
+}
+
+/**
  * Revert features for "Related Features" block.
  */
 function nas_master_update_7025() {
