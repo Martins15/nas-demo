@@ -1,17 +1,6 @@
 .past-magazin-issue {
   .magazin-issues-list {
     .magazine-issue {
-      .node {
-        margin: 10px auto 30px;
-        .magazin-issue-title a {
-          font-family: $font-sans;
-          font-size: $size-text-small;
-        }
-        .magazin-issue-article h4 {
-          font-family: $font-sans;
-          margin-bottom: $size-space;
-        }
-      }
       &:nth-of-type(2n+1) {
         @include breakpoint(medium-only) {
           clear: both;
@@ -35,5 +24,24 @@
         margin-top: 10px;
       }
     }
+  }
+}
+
+.node-magazine-issue.node-teaser {
+  margin: 10px auto 30px;
+  .magazin-issue-title a {
+    font-family: $font-sans;
+    font-size: $size-text-small;
+  }
+  .magazin-issue-article h4 {
+    font-family: $font-sans;
+    margin-bottom: $size-space;
+  }
+}
+
+.magazine-issue-other-issues {
+  h2 {
+    margin: 0 12.5px 10px;
+    font-size: 38px;
   }
 }
