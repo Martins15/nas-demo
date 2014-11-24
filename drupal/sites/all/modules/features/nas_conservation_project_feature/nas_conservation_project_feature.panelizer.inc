@@ -197,7 +197,7 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'file_view_mode' => 'hero',
+        'file_view_mode' => 'hero_project',
       ),
       'context' => 'panelizer',
       'override_title' => 0,
