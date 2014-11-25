@@ -10,26 +10,29 @@
  */
 function nas_permissions_permission() {
   return array(
-    'pane in the news edit' =>  array(
+    'pane in the news edit' => array(
       'title' => t('Bird Guide. In The News pane edit'),
     ),
-    'fpp bird guide pane edit' =>  array(
+    'fpp bird guide pane edit' => array(
       'title' => t('Birds Landing page. The Audubon Bird Guide pane edit'),
     ),
-    'featured article pane edit' =>  array(
+    'featured article pane edit' => array(
       'title' => t('News Page. Featured Article edit'),
     ),
-    'bird landing featured pane edit' =>  array(
+    'bird landing featured pane edit' => array(
       'title' => t('Bird Landing featured pane edit'),
     ),
-    'bird guide featured pane edit' =>  array(
+    'bird guide featured pane edit' => array(
       'title' => t('Bird Guide featured panes edit'),
     ),
-    'frontpage featured pane edit' =>  array(
+    'frontpage featured pane edit' => array(
       'title' => t('Frontpage featured panes edit'),
     ),
-    'change node panelizer layout on node form' =>  array(
+    'change node panelizer layout on node form' => array(
       'title' => t('Change node panelizer layout on node form'),
+    ),
+    'conservation landing top pane edit' => array(
+      'title' => t('Conservation Landing top pane edit'),
     ),
   );
 }
