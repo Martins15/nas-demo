@@ -1132,13 +1132,8 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'load_more';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '2';
+  $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '5';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
-  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
@@ -1148,6 +1143,60 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'nas_node_teaser_wo_date';
   $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date (field_article_date) */
+  $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
+  $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Magazine issue (field_magazine_issue) */
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['id'] = 'field_magazine_issue_target_id';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['table'] = 'field_data_field_magazine_issue';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['field'] = 'field_magazine_issue_target_id';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_magazine_issue_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'article' => 'article',
+  );
+  /* Filter criterion: Content: Magazine issue (field_magazine_issue) */
+  $handler->display->display_options['filters']['field_magazine_issue_target_id']['id'] = 'field_magazine_issue_target_id';
+  $handler->display->display_options['filters']['field_magazine_issue_target_id']['table'] = 'field_data_field_magazine_issue';
+  $handler->display->display_options['filters']['field_magazine_issue_target_id']['field'] = 'field_magazine_issue_target_id';
+  $handler->display->display_options['filters']['field_magazine_issue_target_id']['operator'] = 'not empty';
+
+  /* Display: Mag issue: Articles listing NIDs */
+  $handler = $view->new_display('panel_pane', 'Mag issue: Articles listing NIDs', 'mag_issue_article_nids');
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Date (field_article_date) */
