@@ -62,6 +62,7 @@ function nas_article_feature_field_group_info() {
       2 => 'field_internal_tagging',
       3 => 'field_menu_section',
       4 => 'field_related_bird',
+      5 => 'field_conservation_project',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
