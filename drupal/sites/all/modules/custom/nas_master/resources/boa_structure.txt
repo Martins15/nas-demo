@@ -1,0 +1,692 @@
+Vulturinae. Vulturine Birds, or Vultures:F1
+Cathartes, Illiger.Turkey-Vulture:F1_G1
+Californian Vulture:F1_G1a
+The Turkey-Buzzard:F1_G1b
+Black Vulture, or Carrion Crow:F1_G1c
+Falconinae. Falconine Birds:F2
+Polyborus, Vieill. Caracara:F2_G1
+The Caracara Eagle:F2_G1a
+Buteo, Bechst. Buzzard:F2_G2
+Harris's Buzzard:F2_G2a
+Common Buzzard:F2_G2b
+The Red-Tailed Buzzard:F2_G2c
+Harlan's Buzzard:F2_G2d
+Red-shouldered Buzzard:F2_G2e
+The Broad-winged Buzzard:F2_G2f
+Rough-legged Buzzard:F2_G2g
+Aquila, Briss. Eagle:F2_G3
+The Golden Eagle:F2_G3a
+Haliaetus, Savigny. Sea-Eagle:F2_G4
+Washington Sea-Eagle:F2_G4a
+White-headed or Bald Eagle:F2_G4b
+Pandion, Sav. Osprey:F2_G5
+The Fish Hawk, or Osprey:F2_G5a
+Elanus, Sav:F2_G6
+Black-Shouldered Hawk:F2_G6a
+Ictinia, Vieillot:F2_G7
+The Mississippi Kite:F2_G7a
+Nauclerus, Vig. Swallow-Tailed Hawk:F2_G8
+The Swallow-Tailed Hawk:F2_G8a
+Falco, Linn. Falcon:F2_G9
+The Iceland or Jer Falcon:F2_G9a
+The Great-Footed Hawk:F2_G9b
+Pigeon Hawk:F2_G9c
+The American Sparrow-Hawk:F2_G9d
+Astur, Cuv. Hawk:F2_G10
+The Goshawk:F2_G10a
+Cooper's Hawk:F2_G10b
+Sharp-shinned or Slate-coloured Hawk:F2_G10c
+Circus, Bechst. Harrier:F2_G11
+Marsh Hawk:F2_G11a
+Striginae. Owls:F3
+Surnia, Dumeril. Day-Owl:F3_G1
+Hawk Owl:F3_G1a
+The Snowy Owl:F3_G1b
+Little Night Owl:F3_G1c
+Little Columbian Owl:F3_G1d
+Burrowing Owl:F3_G1e
+Ulula. Night-Owl:F3_G2
+Tengmalm's Owl:F3_G2a
+The Little or Acadian Owl:F3_G2b
+Strix, Linn. Screech-Owl:F3_G3
+The Barn Owl:F3_G3a
+Syrnium, Cuv. Hooting-Owl:F3_G4
+Great Cinereous Owl:F3_G4a
+The Barred Owl:F3_G4b
+Otus, Cuv. Eared-Owl:F3_G5
+Long-Eared Owl:F3_G5a
+Short-Eared Owl:F3_G5b
+Bubo, Cuvier. Horned-Owl:F3_G6
+The Great Horned Owl:F3_G6a
+The Little Screech Owl:F3_G6b
+Caprimulginae. Goatsuckers:F4
+Caprimulgus, Linn. Goatsucker:F4_G1
+Chuck-will's-widow:F4_G1a
+Whip-poor-will:F4_G1b
+Chordeiles, Swains. Night-hawk:F4_G2
+The Night-Hawk:F4_G2a
+Cypselinae. Swifts:F5
+Choetura, Stephens. Spine-tail:F5_G1
+The Chimney Swallow, or American Swift:F5_G1a
+Hirundinae. Swallows:F6
+Hirundo, Linn. Swallow:F6_G1
+The Purple Martin:F6_G1a
+The White-bellied Swallow:F6_G1b
+The Republican or Cliff Swallow:F6_G1c
+The Barn Swallow:F6_G1d
+Violet-green Swallow:F6_G1e
+Bank Swallow or Sand Martin:F6_G1f
+Rough-winged Swallow:F6_G1g
+Muscicapinae. Flycatchers:F7
+Milvulus, Swains. Swallow-tail:F7_G1
+The Forked-tailed Flycatcher:F7_G1a
+Swallow-tailed Flycatcher:F7_G1b
+Muscicapa, Linn. Flycatcher:F7_G2
+Arkansaw Flycatcher:F7_G2a
+The Pipiry Flycatcher:F7_G2b
+The Tyrant Flycatcher.--King-bird:F7_G2c
+The Great Crested Flycatcher:F7_G2d
+Cooper's Flycatcher--Olive-sided Flycatcher:F7_G2e
+Say's Flycatcher:F7_G2f
+Rocky-mountain Flycatcher:F7_G2g
+Short-legged Pewit Flycatcher:F7_G2h
+Small Green Crested Flycatcher:F7_G2i
+The Pewee Flycatcher:F7_G2j
+The Wood Pewee:F7_G2k
+Traill's Flycatcher:F7_G2l
+Least Pewee Flycatcher:F7_G2m
+Small Headed Flycatcher:F7_G2n
+The American Redstart:F7_G2o
+Ptilogonys, Swains. Ptilogonys:F7_G3
+Townsend's Ptilogonys:F7_G3a
+Culicivora, Swains. Gnat-catcher:F7_G4
+The Blue-grey Flycatcher:F7_G4a
+Sylvicolinae. Wood-Warblers:F8
+Myiodioctes, Aud. Flycatching-Warbler:F8_G1
+The Hooded Flycatching-Warbler:F8_G1a
+The Canada Flycatcher:F8_G1b
+Bonaparte's Flycatching-Warbler:F8_G1c
+The Kentucky Flycatching-Warbler:F8_G1d
+Wilson's Flycatching-Warbler:F8_G1e
+Sylvicola, Swains. Wood-Warbler:F8_G2
+The Yellow-Crowned Wood-Warbler:F8_G2a
+Audubon's Wood-Warbler:F8_G2b
+The Black-Poll Wood-Warbler:F8_G2c
+The Yellow-Throated Wood-Warbler:F8_G2d
+The Bay-Breasted Wood-Warbler:F8_G2e
+The Chestnut-Sided Wood-Warbler:F8_G2f
+The Pine Creeping Wood-Warbler:F8_G2g
+The Hemlock Warbler:F8_G2h
+Black-Throated Green Wood-Warbler:F8_G2i
+Cape May Wood-Warbler:F8_G2j
+The Coerulean Wood-Warbler:F8_G2k
+The Blackburnian Wood-Warbler:F8_G2l
+The Yellow-Poll Wood-Warbler:F8_G2m
+Rathbone's Wood-Warbler:F8_G2n
+The Yellow Red-Poll Wood-Warbler:F8_G2o
+The Blue Yellow-Backed Wood-Warbler:F8_G2p
+Townsend's Wood-Warbler:F8_G2q
+Hermit Wood-Warbler:F8_G2r
+Black-Throated Grey Wood-Warbler:F8_G2s
+The Black-Throated Blue Wood-Warbler:F8_G2t
+The Black-and-Yellow Wood-Warbler:F8_G2u
+The Prairie Warbler:F8_G2v
+Blue-Mountain Warbler:F8_G2w
+Connecticut Wood-Warbler:F8_G2x
+Trichas, Swains. Ground-Warbler:F8_G3
+Macgillivray's Ground-Warbler:F8_G3a
+Mourning Ground-Warbler:F8_G3b
+Maryland Yellow-Throat:F8_G3c
+Delafield's Ground-Warbler:F8_G3d
+Helinaia, Aud. Swamp-Warblers:F8_G4
+Swainson's Swamp-Warbler:F8_G4a
+The Worm-Eating Swamp-Warbler:F8_G4b
+Prothonotary Swamp-Warbler:F8_G4c
+Golden-Winged Swamp-Warbler:F8_G4d
+Bachman's Swamp-Warbler:F8_G4e
+Carbonated Swamp-Warbler:F8_G4f
+Tennessee Swamp-Warbler:F8_G4g
+Blue-Winged Yellow Swamp-Warbler:F8_G4h
+Orange-Crowned Swamp-Warbler:F8_G4i
+Nashville Swamp-Warbler:F8_G4j
+Mniotilta, Vieill. Creeping-Warbler:F8_G5
+Black-and-White Creeping-Warbler:F8_G5a
+Certhianae. Creepers:F9
+Certhia, Linn. Tree-Creeper:F9_G1
+Brown Tree-Creeper:F9_G1a
+Troglodytes, Cuv. Wren :F9_G2
+Rock Wren:F9_G2a
+Great Carolina Wren:F9_G2b
+Bewick's Wren:F9_G2c
+Wood Wren:F9_G2d
+The House Wren:F9_G2e
+Winter Wren:F9_G2f
+Parkman's Wren:F9_G2g
+Marsh Wren:F9_G2h
+Short-Billed Marsh Wren:F9_G2i
+Parinae. Tits:F10
+Parus, Linn. Tit:F10_G1
+Crested Titmouse:F10_G1a
+Black-Cap Titmouse:F10_G1b
+Carolina Titmouse:F10_G1c
+Hudson's Bay Titmouse:F10_G1d
+Chestnut-Backed Titmouse:F10_G1e
+Chestnut-Crowned Titmouse:F10_G1f
+Sylvianae. Warblers:F11
+Regulus, Cuv. Kinglet:F11_G1
+Cuvier's Kinglet:F11_G1a
+American Golden-Crested Kinglet:F11_G1b
+Ruby-Crowned Kinglet:F11_G1c
+Sialia, Swains. Blue-Bird:F11_G2
+Common Blue-Bird:F11_G2a
+Western Blue-Bird:F11_G2b
+Arctic Blue-Bird:F11_G2c
+Turdinae. Thrushes:F12
+Cinclus, Bechst. Dipper:F12_G1
+American Dipper:F12_G1a
+Orpheus, Swains. Mocking-Bird:F12_G2
+Common Mocking-Bird:F12_G2a
+Mountain Mocking-Bird:F12_G2b
+Cat-Bird:F12_G2c
+Ferruginous Mocking-bird:F12_G2d
+Turdus, Linn. Thrush.:F12_G3
+American Robin or Migratory Thrush:F12_G3a
+Varied Thrush:F12_G3b
+Wood Thrush:F12_G3c
+Tawny Thrush:F12_G3d
+Hermit Thrush:F12_G3e
+Dwarf Thrush:F12_G3f
+Motacillinae. Wagtails:F13
+Seiurus, Swains. Wood-Wagtails:F13_G1
+Golden-Crowned Wagtail (Thrush).:F13_G1a
+Aquatic Wood-Wagtail (Louisiana Water Thrush):F13_G1b
+Anthus, Bechst. Pipit.:F13_G2
+American Pipit or Titlark:F13_G2a
+Alaudinae. Larks.:F14
+Alauda, Linn. Lark.:F14_G1
+Shore Lark:F14_G1a
+Fringillinae. Finches:F15
+Plectrophanes, Meyer. Lark-Bunting.:F15_G1
+Lapland Lark-Bunting:F15_G1a
+Painted Lark-Bunting:F15_G1b
+Chestnut-Collared Lark-Bunting:F15_G1c
+Snow Lark-Bunting:F15_G1d
+Emberiza, Linn. Bunting:F15_G2
+Black-Throated Bunting:F15_G2a
+Townsend's Bunting:F15_G2b
+Lark Bunting:F15_G2c
+Bay-Winged Bunting:F15_G2d
+Savannah Bunting:F15_G2e
+Clay-Coloured Bunting:F15_G2f
+Yellow-Winged Bunting:F15_G2g
+Henslow's Bunting:F15_G2h
+Field Bunting:F15_G2i
+Chipping Bunting:F15_G2j
+Canada Bunting (Tree Sparrow.):F15_G2k
+Niphaea, Aud. Snow-Bird.:F15_G3
+Common Snow-Bird:F15_G3a
+Oregon Snow-Bird:F15_G3b
+Spiza, Bonap. Painted-Bunting.:F15_G4
+Painted Bunting:F15_G4a
+Indigo Bunting:F15_G4b
+Lazuli Finch:F15_G4c
+Ammodramus, Swains. Shore-Finch.:F15_G5
+Sea-Side Finch:F15_G5a
+MacGillivray's Shore-Finch:F15_G5b
+Sharp-Tailed Finch:F15_G5c
+Swamp Sparrow:F15_G5d
+Peucaea, Aud. Pinewood-Finch:F15_G6
+Bachman's Pinewood-Finch:F15_G6a
+Lincoln's Pinewood-Finch:F15_G6b
+Linaria, Ray. Linnet.:F15_G7
+Mealy Redpoll Linnet:F15_G7a
+Lesser Redpoll Linnet:F15_G7b
+Pine Linnet:F15_G7c
+Carduelis, Cuv. Goldfinch.:F15_G8
+American Goldfinch:F15_G8a
+Black-Headed Goldfinch:F15_G8b
+Arkansaw Goldfinch:F15_G8c
+Yarrell's Goldfinch:F15_G8d
+Stanley Goldfinch:F15_G8e
+Fringilla, Linn. Finch:F15_G9
+The Fox-Coloured Finch:F15_G9a
+Townsend's Finch:F15_G9b
+Brown Song-Finch:F15_G9c
+The Song-Finch:F15_G9d
+Morton's Finch:F15_G9e
+The White-Throated Finch:F15_G9f
+The White-Crowned Finch:F15_G9g
+Black-and-Yellow-Crowned Finch:F15_G9h
+Pipilo, Vieill. Ground-Finch.:F15_G10
+Arctic Ground-Finch:F15_G10a
+The Towhe Ground-Finch:F15_G10b
+Erythrospiza, Bonap. Purple-Finch.:F15_G11
+The Purple Finch:F15_G11a
+Crimson-Fronted Purple Finch:F15_G11b
+Grey-Crowned Purple-Finch:F15_G11c
+Corythus, Cuv. Pine-Finch.:F15_G12
+Pine Grosbeak:F15_G12a
+Loxia, Linn. Crossbill.:F15_G13
+The Common Crossbill:F15_G13a
+White-Winged Crossbill:F15_G13b
+Corydalina, Aud. Lark-Finch.:F15_G14
+Prairie Lark-Finch:F15_G14a
+Pitylus, Cuvier. Cardinal Grosbeak.:F15_G15
+The Cardinal Grosbeak:F15_G15a
+Coccoborus, Swains. Song-Grosbeak.:F15_G16
+The Blue Grosbeak:F15_G16a
+The Rose-Breasted Grosbeak:F15_G16b
+Black-Headed Grosbeak:F15_G16c
+Coccothraustes, Briss. Grosbeak.:F15_G17
+Evening Grosbeak:F15_G17a
+Pyranga, Vieill. Summer Red-Bird.:F15_G18
+The Summer Red-Bird:F15_G18a
+Scarlet Tanager, or Black-Winged Red-Bird:F15_G18b
+Louisiana Tanager:F15_G18c
+Agelainae. Marsh Black-Birds:F16
+Dolichonyx, Swains. Rice-Bird:F16_G1
+The Rice-Bird. Bob-o-link:F16_G1a
+Molothrus, Swains. Cow-bird:F16_G2
+The Cow-pen-bird:F16_G2a
+Agelaius, Swains. Marsh-blackbird:F16_G3
+Yellow-headed Troopial:F16_G3a
+Red-and-white-winged Troopial, or Marsh Blackbird:F16_G3b
+Crimson-winged Troopial, or Red-and-black-shouldered Marsh Blackbird:F16_G3c
+The Red-winged Starling, or Red-shouldered Marsh Blackbird:F16_G3d
+Icterus, Briss. Hang-nest:F16_G4
+The Baltimore Oriole, or Hang-nest:F16_G4a
+Bullock's Troopial, Oriole, or Hang-nest:F16_G4b
+The Orchard Oriole, or Hang-nest:F16_G4c
+Quiscalus, Vieill. Crow-blackbird:F16_G5
+The Boat-tailed Grakle, or Great Crow Blackbird:F16_G5a
+Purple Grakle, or Common Crow-blackbird:F16_G5b
+The Rusty Grakle, or Rusty Crow Blackbird:F16_G5c
+Sturninae. Starlings:F17
+Sturnella, Vieill. Meadow Starling:F17_G1
+The Meadow Lark, or Meadow Starling:F17_G1a
+Corvinae. Crows:F18
+Corvus, Linn. Crow:F18_G1
+The Raven:F18_G1a
+The American Crow:F18_G1b
+The Fish-crow:F18_G1c
+Pica, Briss. Magpie:F18_G2
+The Common Magpie:F18_G2a
+Yellow-billed Magpie:F18_G2b
+Columbia Magpie, or Jay:F18_G2c
+Garrulus, Briss. Jay:F18_G3
+Steller's Jay:F18_G3a
+The Blue Jay:F18_G3b
+Ultramarine Jay:F18_G3c
+The Florida Jay:F18_G3d
+The Canada Jay:F18_G3e
+Nucifraga, Briss. Nutcracker:F18_G3
+Clarke's Nutcracker:F18_G3a
+Laniinae. Shrikes:F19
+Lanius, Linn. Shrike, or Butcher-bird:F19_G1
+The Great American Shrike:F19_G1a
+The Loggerhead Shrike:F19_G1b
+Vireoninae. Greenlets:F20
+Vireo, Vieill. Greenlet:F20_G1
+The Yellow-throated Vireo, or Greenlet:F20_G1a
+The Solitary Vireo, or Greenlet:F20_G1b
+The White-eyed Vireo, or Greenlet:F20_G1c
+The Warbling Vireo, or Greenlet:F20_G1d
+Bartram's Vireo, or Greenlet:F20_G1e
+The Red-Eyed Vireo, or Greenlet:F20_G1f
+Piprinae. Manakins:F21
+Icteria, Vieill. Chat:F21_G1
+The Yellow-Breasted Chat:F21_G1a
+Ampelinae. Chatterers:F22
+Bombycilla, Briss. Waxwing:F22_G1
+Black-Throated Waxwing, or Bohemian Chatterer:F22_G1a
+Cedar Waxwing, or Cedar-bird:F22_G1b
+Sittinae. Nuthatches:F23
+Sitta, Linn. Nuthatch:F23_G1
+The White-Breasted Nuthatch:F23_G1a
+The Red-Bellied Nuthatch:F23_G1b
+The Brown-headed Nuthatch:F23_G1c
+Californian Nuthatch:F23_G1d
+Trochilinae. Humming-birds:F24
+Trochilus, Linn. Humming-bird:F24_G1
+The Mango Humming-bird:F24_G1a
+Anna Humming-bird:F24_G1b
+The Ruby-throated Humming-bird:F24_G1c
+Selasphorus, Swains. Ruffed-humming-bird:F24_G2
+Ruff-necked Humming-bird:F24_G2a
+Alcedinae. Kingfishers:F25
+Alcedo, Linn. Kingfisher:F25_G1
+The Belted Kingfisher:F25_G1a
+Picinae. Woodpeckers:F26
+Picus, Linn. Woodpecker:F26_G1
+Imperial Woodpecker:F26_G1a
+The Ivory-billed Woodpecker:F26_G1b
+The Pileated Woodpecker:F26_G1c
+Lineated Woodpecker:F26_G1d
+Canadian Woodpecker:F26_G1e
+Phillips' Woodpecker:F26_G1f
+Maria's Woodpecker:F26_G1g
+Harris' Woodpecker:F26_G1h
+Hairy Woodpecker:F26_G1i
+The Downy Woodpecker:F26_G1j
+Gairdner's Woodpecker:F26_G1k
+Red-cockaded Woodpecker:F26_G1l
+Audubon's Woodpecker:F26_G1m
+Red-breasted Woodpecker:F26_G1n
+The Yellow-bellied Woodpecker:F26_G1o
+The Arctic Three-toed Woodpecker:F26_G1p
+Banded Three-toed Woodpecker:F26_G1q
+Red-bellied Woodpecker:F26_G1r
+The Red-headed Woodpecker:F26_G1s
+Lewis' Woodpecker:F26_G1t
+The Golden-winged Woodpecker:F26_G1u
+Red-shafted Woodpecker:F26_G1v
+Cuculinae. Cuckoos:F27
+Coccyzus, Vieill. American Cuckoo:F27_G1
+The Yellow-billed Cuckoo:F27_G1a
+The Black-billed Cuckoo:F27_G1b
+The Mangrove Cuckoo:F27_G1c
+Psittacinae. Parrots:F28
+Centurus, Kuhl. Parakeet:F28_G1
+The Carolina Parrot:F28_G1a
+Columbinae. Pigeons:F29
+Columba, Linn. Dove:F29_G1
+Band-tailed Dove, or Pigeon:F29_G1a
+White-headed Dove, or Pigeon:F29_G1b
+The Zenaida Dove:F29_G1c
+The Key West Pigeon, or Dove:F29_G1d
+The Ground Dove:F29_G1e
+The Blue-headed Pigeon, or Ground Dove:F29_G1f
+Ectopistes, Swains. Long-tailed Dove:F29_G3
+The Passenger Pigeon:F29_G3a
+The Carolina Turtle-dove:F29_G3b
+Pavoninae. Pavonine Birds:F30
+Meleagris, Linn. Turkey.:F30_G1
+The Wild Turkey:F30_G1a
+Perdicinae. Partridges:F31
+Orthyx, Steph. American Partridge:F31_G1
+The Common American Partridge:F31_G1a
+Californian Partridge:F31_G1b
+Plumed Partridge:F31_G1c
+Welcome Partridge:F31_G1d
+Tetraoninae. Grouse:F32
+Tetrao, Linn. Grouse.:F32_G1
+The Ruffed Grouse:F32_G1a
+The Spotted or Canada Grouse.:F32_G1b
+Dusky Grouse:F32_G1c
+The Pinnated Grouse:F32_G1d
+Pheasant-tailed Grouse.--Cock of the Plains:F32_G1e
+Sharp-Tailed Grouse:F32_G1f
+Lagopus. Ptarmigan:F32_G2
+Willow Ptarmigan.--Willow Grouse:F32_G2a
+American Ptarmigan:F32_G2b
+Rock Ptarmigan:F32_G2c
+White-tailed Ptarmigan:F32_G2d
+Rallinae. Rails.:F33
+Gallinula, Briss. Gallinule:F33_G1
+Purple Gallinule:F33_G1a
+The Common Gallinule:F33_G1b
+Fulica, Linn. Coot:F33_G2
+The American Coot:F33_G2a
+Ortygometra, Leach. Crake-Gallinule:F33_G3
+The Sora Rail:F33_G3a
+Yellow-breasted Rail:F33_G3b
+Least Water Rail:F33_G3c
+Rallus, Linn. Rail:F33_G4
+The Great Red-breasted Rail, or Fresh-Water Marsh-hen:F33_G4a
+The Clapper Rail, or Salt-Water Marsh-hen:F33_G4b
+The Virginian Rail:F33_G4c
+Aramus, Vieill. Courlan:F33_G5
+Scolopaceous Courlan:F33_G5a
+Gruinae. Cranes.:F34
+Grus, Briss. Crane:F34_G1
+The Whooping Crane:F34_G1a
+Charadriinae. Plovers:F35
+Charadrius, Linn. Plover:F35_G1
+Black-bellied Plover:F35_G1a
+American Golden Plover:F35_G1b
+The Kildeer Plover:F35_G1c
+Rocky-Mountain Plover:F35_G1d
+Wilson's Plover:F35_G1e
+American Ring Plover:F35_G1f
+The Piping Plover:F35_G1g
+APHRIZA, Aud. SURF-BIRD.:F35_G2
+Townsend's Surf-bird:F35_G2a
+Strepsilas, Illiger. Turnstone:F35_G3
+Turnstone:F35_G3a
+Haematopus. Oyster-catcher:F35_G4
+The American Oyster-catcher:F35_G4a
+Bachman's Oyster-Catcher:F35_G4b
+Townsend's Oyster-Catcher:F35_G4c
+Scolopacinae. Snipes.:F36
+Tringa, Linn. Sandpiper.:F36_G1
+Bartramian Sandpiper:F36_G1a
+Knot or Ash-coloured or Red-breasted Sandpiper:F36_G1b
+The Pectoral Sandpiper:F36_G1c
+The Purple Sandpiper:F36_G1d
+The Buff-Breasted Sandpiper:F36_G1e
+The Red-Backed Sandpiper:F36_G1f
+The Curlew Sandpiper:F36_G1g
+Long-legged Sandpiper:F36_G1h
+Schinz's Sandpiper:F36_G1i
+Semipalmated Sandpiper:F36_G1j
+Little Sandpiper:F36_G1k
+Sanderling Sandpiper:F36_G1l
+Phalaropus, Briss. Phalarope.:F36_G2
+The Red Palarope:F36_G2a
+Lobipes, Cuv. Lobefoot.:F36_G3
+Hyperborean Phalarope.:F36_G3a
+Wilson's Phalarope.:F36_G3b
+Totanus, Bechst. Tatler.:F36_G4
+Spotted Sandpiper, or Tatler:F36_G4a
+Solitary Sandpiper, or Tatler:F36_G4b
+The Yellowshank Tatler:F36_G4c
+Tell-tale Godwit.--Tell-tale Tatler:F36_G4d
+The Greenshank Tatler:F36_G4e
+The Semipalmated Snipe, or Willet.:F36_G4f
+Limosa, Briss. Godwit.:F36_G5
+The great Marbled Godwit.:F36_G5a
+The Hudsonian Godwit.:F36_G5b
+Scolopax, Linn. Snipe.:F36_G6
+Wilson's Snipe.--Common Snipe:F36_G6a
+Drummond's Snipe:F36_G6b
+Red-Breasted Snipe:F36_G6c
+Microptera, Nutt. Woodcock or Bogsucker:F36_G7
+The American Woodcock, or Bogsucker:F36_G7a
+Recurvirostra, Linn. Avocet:F36_G8
+American Advoset:F36_G8a
+Himantopus, Briss. Stilt:F36_G9
+Black-Necked Stilt:F36_G9a
+Numenius, Briss. Curlew:F36_G10
+The Long-Billed Curlew:F36_G10a
+The Hudsonian Curlew:F36_G10b
+Esquimaux Curlew:F36_G10c
+Tantaline. Ibises:F37
+Ibis, Cuv. Ibis:F37_G1
+Glossy Ibis:F37_G1a
+Scarlet Ibis:F37_G1b
+The White Ibis:F37_G1c
+Tantalus, Linn. Tantalus:F37_G2
+The Wood Ibis:F37_G2a
+Platalea, Linn. Spoonbill:F37_G3
+Roseate Spoonbill:F37_G3a
+Ardeinae. Herons:F38
+Ardea, Linn. Heron:F38_G1
+Black-Crowned Night Heron, Qua-bird:F38_G1a
+Yellow-Crowned Night Heron:F38_G1b
+American Bittern:F38_G1c
+The Least Bittern:F38_G1d
+Green Heron:F38_G1e
+The Great White Heron:F38_G1f
+The Great Blue Heron:F38_G1g
+Great American White Egret:F38_G1h
+The Reddish Egret:F38_G1i
+Blue Heron:F38_G1j
+Louisiana Heron:F38_G1k
+The Snowy Heron:F38_G1l
+Anatinae. Ducks:F39
+Phoenicopterus, Linn. Flamingo:F39_G1
+American Flamingo:F39_G1a
+Anser, Briss. Goose:F39_G2
+The Canada Goose:F39_G2a
+Hutchins' Goose:F39_G2b
+The Bernacle Goose:F39_G2c
+Brant Goose:F39_G2d
+The White-Fronted Goose:F39_G2e
+Snow Goose:F39_G2f
+Cygnus, Meyer. Swan:F39_G3
+Trumpeter Swan:F39_G3a
+American Swan:F39_G3b
+Anas, Linn. Duck:F39_G4
+The Mallard:F39_G4a
+Dusky Duck:F39_G4b
+Brewer's Duck:F39_G4c
+Gadwall Duck:F39_G4d
+American Widgeon:F39_G4e
+The Pintail Duck:F39_G4f
+The Wood Duck.--Summer Duck:F39_G4g
+American Green-Winged Teal:F39_G4h
+Blue-Winged Teal:F39_G4i
+Shoveller Duck.--Micoine:F39_G4j
+Fuligula. Sea-Duck:F39_G5
+Canvass-Back Duck:F39_G5a
+Red-headed Duck:F39_G5b
+The Scaup Duck.--Flocking Fowl:F39_G5c
+The Ring-Necked Duck:F39_G5d
+Ruddy Duck:F39_G5e
+Pied Duck:F39_G5f
+The Velvet Duck:F39_G5g
+Surf Duck:F39_G5h
+American Scoter Duck:F39_G5i
+The King Duck:F39_G5j
+The Eider Duck:F39_G5k
+Golden-Eye Duck:F39_G5l
+Western Duck:F39_G5m
+Buffel-Headed Duck:F39_G5n
+The Harlequin Duck:F39_G5o
+Long-Tailed Duck:F39_G5p
+Merginie. Mergansers:F40
+Mergus, Linn. Merganser:F40_G1
+Buff-Breasted Merganser, or Goosander:F40_G1a
+Red-Breasted Merganser:F40_G1b
+The Hooded Merganser:F40_G1c
+White Merganser.--Smew, or White Nun:F40_G1d
+Pelecaninae. Pelecans:F41
+Phalacrocorax, Briss. Cormorant:F41_G1
+The Common Cormorant:F41_G1a
+The Double-Crested Cormorant:F41_G1b
+The Florida Cormorant:F41_G1c
+Townsend's Cormorant:F41_G1d
+Violet-Green Cormorant:F41_G1e
+Plotus, Linn. Anhinga:F41_G2
+American Anhinga or Snake-Bird:F41_G2a
+Tachypetes, Vieill. Frigate-Bird.:F41_G3
+The Frigate Pelican.--Man-of-War-Bird.:F41_G3a
+Pelecanus, Linn. Pelican.:F41_G4
+American White Pelican:F41_G4a
+The Brown Pelican:F41_G4b
+Sula, Briss. Gannet.:F41_G5
+Common Gannet:F41_G5a
+The Booby Gannet:F41_G5b
+Phaeton, Linn. Tropic Bird:F41_G6
+The Tropic Bird:F41_G6a
+Larinae. Gulls:F42
+Rhynchops, Linn. Skimmer:F42_G1
+Black Skimmer or Razor-billed Shearwater:F42_G1a
+Sterna, Linn. Tern:F42_G2
+The Cayenne Tern:F42_G2a
+Marsh or Gull-billed Tern:F42_G2b
+The Sandwich Tern:F42_G2c
+The Sooty Tern:F42_G2d
+Common Tern:F42_G2e
+Havell's Tern:F42_G2f
+Trudeau's Tern:F42_G2g
+The Arctic Tern:F42_G2h
+The Roseate Tern:F42_G2i
+The Black Tern:F42_G2j
+Least Tern:F42_G2k
+The Noddy Tern:F42_G2l
+Larus, Linn. Gull.:F42_G3
+The Forked-tailed Gull:F42_G3a
+Ross' Gull:F42_G3b
+Bonaparte's Gull:F42_G3c
+Black-headed, or Laughing Gull:F42_G3d
+Franklin's Rosy Gull:F42_G3e
+The Kittiwake Gull:F42_G3f
+The Ivory Gull:F42_G3g
+The Common American Gull:F42_G3h
+The White-winged Silvery Gull:F42_G3i
+Western Gull:F42_G3j
+The Herring or Silvery Gull:F42_G3k
+Glaucous Gull or Burgomaster:F42_G3l
+The Great Black-backed Gull:F42_G3m
+Procellarinae. Fulmars:F43
+Lestris, Illiger. Jager:F43_G1
+The Pomarine Jager:F43_G1a
+Richardson's Jager:F43_G1b
+The Arctic Jager:F43_G1c
+Diomedea, Linn. Albatross:F43_G2
+Yellow-nosed Albatross:F43_G2a
+Black-footed Albatross:F43_G2b
+Dusky Albatross:F43_G2c
+Procellaria, Linn. Fulmar.:F43_G3
+Gigantic Fulmar:F43_G3a
+The Common Fulmar:F43_G3b
+Pacific Fulmar:F43_G3c
+Slender-billed Fulmar:F43_G3d
+Puffinus, Briss. Shearwater:F43_G4
+The Wandering Shearwater:F43_G4a
+The Manks Shearwater:F43_G4b
+The Dusky Shearwater:F43_G4c
+Thalassidroma, Vigors. Petrel:F43_G5
+Leach's Petrel.--Forked-tailed Petrel:F43_G5a
+Wilson's Petrel.--Mother Carey's Chicken:F43_G5b
+Least Petrel.--Mother Carey's Chicken.:F43_G5c
+Alcinae. Auks:F44
+Mormon, Illiger. Puffin:F44_G1
+The Tufted Puffin:F44_G1a
+The Large-billed Puffin:F44_G1b
+Common or Arctic Puffin:F44_G1c
+Alca, Linn. Auk:F44_G2
+Great Auk:F44_G2a
+The Razor-billed Auk:F44_G2b
+Phaleris, Temm. Phaleris:F44_G3
+Curled-crested Phaleris:F44_G3a
+Knobbed-billed Phaleris:F44_G3b
+Mergulus, Ray. Sea-dove:F44_G4
+Common Sea-dove.--Little Guillemot:F44_G4a
+Uria, Lath. Guillemot:F44_G5
+Black-throated Guillemot:F44_G5a
+Horned-billed Guillemot:F44_G5b
+The Large-billed Guillemot:F44_G5c
+The Foolish Guillemot.--Murre.:F44_G5d
+The Black Guillemot:F44_G5e
+Slender-billed Guillemot:F44_G5f
+Colymbinae. Divers and Grebes:F45
+Colymbus, Linn. Diver:F45_G1
+Great Northern Diver or Loon:F45_G1a
+Black-throated Diver:F45_G1b
+The Red-throated Diver:F45_G1c
+Podiceps, Lath. Grebe:F45_G2
+The Crested Grebe:F45_G2a
+The Red-necked Grebe:F45_G2b
+The Horned Grebe:F45_G2c
+Eared Grebe:F45_G2d
+The Pied-billed Dobchick:F45_G2e
+Not in my Synopsis:NewSpecies
+Harris' Finch:NSa
+Bell's Vireo or Greenlet:NSb
+Sprague's Missouri Lark:NSc
+Smith's Lark-bunting:NSd
+Le Conte's Sharp-tailed Bunting:NSe
+Missouri Meadow-lark:NSf
+Yellow-bellied Flycatcher:NSg
+Least Flycatcher:NSh
+Brewer's Blackbird:NSi
+Shattuck's Bunting:NSj
+Missouri Red-moustached Woodpecker:NSk
+Nuttall's Whip-poor-will:NSl
+Texan Turtle-dove:NSm
+Western Shore Lark:NSn
+Common American Scaup Duck:NSo
+Common Troupial:NSp
+Baird's Bunting:NSq

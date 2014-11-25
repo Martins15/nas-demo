@@ -1,7 +1,6 @@
 name = BOA
 core = 7.x
 package = NAS
-dependencies[] = book
 dependencies[] = ctools
 dependencies[] = entityreference
 dependencies[] = features
@@ -32,8 +31,6 @@ features[field_instance][] = node-boa-field_boa_sciname
 features[field_instance][] = node-boa-field_boa_status
 features[field_instance][] = node-boa-field_related_news
 features[node][] = boa
-features[variable][] = book_allowed_types
-features[variable][] = book_child_type
 features[variable][] = field_bundle_settings_node__boa
 features[variable][] = menu_options_boa
 features[variable][] = menu_parent_boa
