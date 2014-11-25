@@ -338,3 +338,11 @@ function nas_master_update_7029() {
 function nas_master_update_7030() {
   features_revert_module('nas_image_styles_feature');
 }
+
+/**
+ * Revert nas_bird_type_feature feature to update image file entity view mode
+ * settings.
+ */
+function nas_master_update_7031() {
+  features_revert_module('nas_bird_type_feature');
+}
