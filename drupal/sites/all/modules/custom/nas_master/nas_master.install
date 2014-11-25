@@ -363,4 +363,5 @@ function nas_master_update_7032() {
 function nas_master_update_7033() {
   features_revert_module('nas_views');
   features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_editor_role');
 }
