@@ -74,7 +74,10 @@
  * language negotiation rule that was previously applied.
  *
  * Custom variables:
- * - $slideshow_image: Slideshow image with link to node page.
+ * - $title_link: Title with link to node page.
+ * - $blue_text_link_url: Menu or Custom section url.
+ * - $blue_text_link_text: Menu or Custom section text.
+ * - $linked_image: Hero image wrapper with A tag linked to node.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -84,14 +87,13 @@
  */
 ?>
 
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> editorial-card dark feature clearfix"<?php print $attributes; ?>>
+<div class="editorial-card collapse-minimal">
   <div class="editorial-card-photo">
-    <?php print $slideshow_image; ?>
+    <?php print $linked_image; ?>
   </div>
   <div class="editorial-card-content">
-    <?php print render($content['field_menu_section']); ?>
-    <a href="<?php print $node_url; ?>">
-      <h4 class="editorial-card-title"><?php print $title; ?></h4>
-    </a>
+    <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
+    <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
+    <?php print render($content['body']); ?>
   </div>
 </div>

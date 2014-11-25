@@ -108,10 +108,10 @@ $(function() {
         $capSlides.find(".slide-img").css({
           "height": slideshowHeight + "px"
         });
+        // There is defect image. Later we can remove max-width.
         $capSlides.find(".slide-img img").css({
           "height": slideshowHeight + "px",
-          "width": "auto",
-          "max-width": "none"
+          "width": "auto"
         });
       }
       // Landscape-orientation resizing rules
@@ -125,10 +125,10 @@ $(function() {
         $capSlides.find(".slide-img").css({
           "height": $slides.parents(".slideshow-wrapper").height()
         });
+        // There is defect image. Later we can remove max-width.
         $capSlides.find(".slide-img img").css({
           "width": "100%",
-          "height": "auto",
-          "max-width": "none"
+          "height": "auto"
         });
       }
 

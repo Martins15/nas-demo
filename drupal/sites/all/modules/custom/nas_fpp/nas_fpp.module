@@ -102,6 +102,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['nas_editorial_card'] = array(
+    'label' => t('Editorial card'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['hero'] = array(
     'label' => t('Hero'),
     'custom settings' => TRUE,
