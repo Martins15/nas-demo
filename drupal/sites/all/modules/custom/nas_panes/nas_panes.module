@@ -502,12 +502,83 @@ function nas_panes_nas_after_import() {
  * Get the Next BOA node.
  */
 function nas_panes_boa_next($node) {
-  return node_load($node->nid + 1);
+  if ($node->nid == nas_panes_boa_max()) {
+    return nas_panes_boa_min();
+  }
+
+  $plate_number_items = field_get_items('node', $node, 'field_boa_plate');
+  $plate_number = 0;
+  if (!empty($plate_number_items)) {
+    $plate_number = $plate_number_items[0]['value'];
+  }
+
+  $query = db_select('field_data_field_boa_plate', 'f');
+  $query
+    ->fields('f', array('entity_id', 'field_boa_plate_value'))
+    ->condition('f.field_boa_plate_value', $plate_number, '>')
+    ->orderBy('f.field_boa_plate_value', 'ASC')
+    ->range(0, 1);
+  $result = $query->execute();
+  $row = $result->fetch();
+
+  if (empty($row)) {
+    dpm('empty');
+    return $node->nid;
+  }
+
+  return $row->entity_id;
+}
+
+/**
+ * Get entity_id with maximum plate number.
+ */
+function nas_panes_boa_max() {
+  $query = db_select('field_data_field_boa_plate', 'f');
+  $query
+    ->fields('f', array('entity_id'))
+    ->orderBy('f.field_boa_plate_value', 'DESC')
+    ->range(0, 1);
+  return $query->execute()->fetchField();
+}
+
+/**
+ * Get entity_id with minimum plate number.
+ */
+function nas_panes_boa_min() {
+  $query = db_select('field_data_field_boa_plate', 'f');
+  $query
+    ->fields('f', array('entity_id'))
+    ->orderBy('f.field_boa_plate_value', 'ASC')
+    ->range(0, 1);
+  return $query->execute()->fetchField();
 }
 
 /**
  * Get the Previous BOA node.
  */
 function nas_panes_boa_previous($node) {
-  return node_load($node->nid - 1);
+  if ($node->nid == nas_panes_boa_min()) {
+    return nas_panes_boa_max();
+  }
+
+  $plate_number_items = field_get_items('node', $node, 'field_boa_plate');
+  $plate_number = 0;
+  if (!empty($plate_number_items)) {
+    $plate_number = $plate_number_items[0]['value'];
+  }
+
+  $query = db_select('field_data_field_boa_plate', 'f');
+  $query
+    ->fields('f', array('entity_id', 'field_boa_plate_value'))
+    ->condition('f.field_boa_plate_value', $plate_number, '<')
+    ->orderBy('f.field_boa_plate_value', 'DESC')
+    ->range(0, 1);
+  $result = $query->execute();
+  $row = $result->fetch();
+
+  if (empty($row)) {
+    return $node->nid;
+  }
+
+  return $row->entity_id;
 }

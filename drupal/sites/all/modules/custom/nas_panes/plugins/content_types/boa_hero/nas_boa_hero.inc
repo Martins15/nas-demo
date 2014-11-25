@@ -30,14 +30,14 @@ function nas_boa_hero_render($subtype, $conf, $args, $context) {
   }
   $hero_image_path = image_style_url('boa_hero', $image_items[0]['uri']);
 
-  $next_node = nas_panes_boa_next($node);
-  $prev_node = nas_panes_boa_previous($node);
+  $next_nid = nas_panes_boa_next($node);
+  $prev_nid = nas_panes_boa_previous($node);
 
   $block = new stdClass();
   $block->content = theme('boa_hero', array(
     'image' => $hero_image_path,
-    'next_url' => url('node/' . $next_node->nid),
-    'prev_url' => url('node/' . $prev_node->nid),
+    'next_url' => url('node/' . $next_nid),
+    'prev_url' => url('node/' . $prev_nid),
   ));
 
   return $block;
