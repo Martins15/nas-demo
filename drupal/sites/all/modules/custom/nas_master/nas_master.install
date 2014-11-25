@@ -321,9 +321,13 @@ function _nas_master_update_7027_get_type($link) {
 }
 
 /**
+ * Delete instance of field_related_bird from Conservation Project CT.
  * Revert features for Conservation projects "Birds native to this area" pane.
  */
 function nas_master_update_7029() {
+  if ($instance = field_info_instance('node', 'field_related_bird', 'project')) {
+    field_delete_instance($instance);
+  }
   features_revert_module('nas_conservation_project_feature');
   features_revert_module('nas_views_feature');
 }
