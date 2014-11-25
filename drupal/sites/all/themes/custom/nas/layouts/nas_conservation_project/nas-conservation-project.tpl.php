@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="hero-attribution row">
-  <?php if (!empty($content['hero_attribution'])): ?>
+  <?php if (trim($content['hero_attribution'])): ?>
     <p class="column">Photo: <?php print $content['hero_attribution']; ?></p>
   <?php endif; ?>
 </div>
