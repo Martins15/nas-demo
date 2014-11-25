@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/app.css" />
     <script src="../../js/mute/jquery.min.js"></script>
     <script type="text/javascript" src="../../../../../../../misc/drupal.js"></script>
+    <script type="text/javascript" src="../../../../../../../misc/jquery.once.js"></script>
     <!--[if lt IE 10]>
       <script src="../../js/mute/respond.min.js"></script>
       <script src="../../js/mute/ie9.js"></script>
@@ -196,37 +197,33 @@
                       <a href="#" class="see-full-plate"><i class="icon-magnifier"></i> See full plate</a><br />
                       <a href="#" class="illustration-attribution">Learn more about John J Audubon</a>
                     </section>
-                    <section class="social-sharing bird-guide-section right-col small center">
-                      <span class="social-sharing-caption small">Share this plate</span>
-                      <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
+                    <section class="bird-guide-section right-col small">
+                      <span class="social-sharing-caption small">Share this plate</span>&nbsp;&nbsp;
+                      <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
                     </section>
                     <section class="bird-guide-section boa-in-the-bird-guide">
-                      <div class="columns">
-                        <h2 class="thin">In the Bird Guide</h2>                      
-                        <figure class="bird-card">
-                          <div class="bird-card-illustration">
-                            <a href="#"><img src="../../img/bird-1.png" alt=""></a>
-                          </div>
-                          <figcaption class="bird-card-caption">
-                            <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
-                            <p class="scientific-name">Campylorhynchus brunneicapillus</p>
-                          </figcaption>
-                          <a href="#" class="icon-sound-full bird-card-audio"></a>
-                        </figure>
-                      </div>
+                      <h2 class="thin">In the Bird Guide</h2>                      
+                      <figure class="bird-card">
+                        <div class="bird-card-illustration">
+                          <a href="#"><img src="../../img/bird-1.png" alt=""></a>
+                        </div>
+                        <figcaption class="bird-card-caption">
+                          <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
+                          <p class="scientific-name">Campylorhynchus brunneicapillus</p>
+                        </figcaption>
+                        <a href="#" class="icon-sound-full bird-card-audio"></a>
+                      </figure>
                     </section>
                     <section class="bird-guide-section boa-in-the-news">
-                      <div class="columns">
-                        <h2 class="thin">In the News</h2>                      
-                        <div class="editorial-card collapse-minimal">
-                          <div class="editorial-card-photo">
-                            <a href="#"><img src="../../img/editorial-card-1.jpg" alt=""></a>
-                          </div>
-                          <div class="editorial-card-content">
-                            <a href="#" class="editorial-card-slug">In the News</a>
-                            <h3 class="editorial-card-title"><a href="#">The Galveston Bay Oil Spill Imperils Thousands of Birds</a></h3>
-                            <p><em><a href="" class="editorial-card-link">Map of impacted areas</a></em></p>
-                          </div>
+                      <h2 class="thin">In the News</h2>                      
+                      <div class="editorial-card collapse-minimal">
+                        <div class="editorial-card-photo">
+                          <a href="#"><img src="../../img/editorial-card-1.jpg" alt=""></a>
+                        </div>
+                        <div class="editorial-card-content">
+                          <a href="#" class="editorial-card-slug">In the News</a>
+                          <h3 class="editorial-card-title"><a href="#">The Galveston Bay Oil Spill Imperils Thousands of Birds</a></h3>
+                          <p><em><a href="" class="editorial-card-link">Map of impacted areas</a></em></p>
                         </div>
                       </div>
                     </section>
@@ -411,8 +408,14 @@
     (function($) {
       $(document).ready(function() {
         $(".toggle-bird-guide-search").bind("click", function() {
-          $(".toggle-bird-guide-search").toggleClass("open");
-          $(".bird-guide-search").toggleClass("show");
+          if ($(this).hasClass('open')) {
+            $(".toggle-bird-guide-search").addClass("open");
+            $(".bird-guide-search").addClass("show");
+          }
+          else {
+            $(".toggle-bird-guide-search").removeClass("open");
+            $(".bird-guide-search").removeClass("show");
+          }
         });
       });
     })(jQuery);

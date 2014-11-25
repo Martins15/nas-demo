@@ -215,6 +215,25 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $display->content['new-deab0a4b-d963-4174-88a2-2f56130a5545'] = $pane;
     $display->panels['hero_image'][0] = 'new-deab0a4b-d963-4174-88a2-2f56130a5545';
     $pane = new stdClass();
+    $pane->pid = 'new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
+    $pane->panel = 'right';
+    $pane->type = 'nas_panes_project_birds';
+    $pane->subtype = 'nas_panes_project_birds';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
+    $display->content['new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d'] = $pane;
+    $display->panels['right'][0] = 'new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
+    $pane = new stdClass();
     $pane->pid = 'new-af63187e-4ad4-4f6a-a85d-4f418b6da682';
     $pane->panel = 'strategy';
     $pane->type = 'entity_field';
