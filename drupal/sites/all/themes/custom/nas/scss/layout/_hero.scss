@@ -257,10 +257,16 @@
 .hero.light-text {
   .hero-title,
   .hero-slug,
-  .hero-paragraph,
   .hero-blurb {
     color: $color-white !important;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+  }
+
+  .hero-title {
+    font-weight: 400;
+  }
+  .hero-slug {
+    font-weight: 600;
   }
 }
 

@@ -660,33 +660,13 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
 function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   // View to be preprocessed
-  $needs_preprocess = array('related_birds', 'flyway_related_birds', 'project_birds');
+  $needs_preprocess = array('related_birds', 'flyway_related_birds');
   // Early return pattern.
   if (!in_array($view->name, $needs_preprocess)) {
     return;
   }
   if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
     $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
-  }
-  if ($view->name == 'project_birds') {
-    $vars['results'] = array();
-    foreach ($view->result as $delta => $item) {
-      $node = node_load($item->node_field_data_field_project_related_birds_nid);
-      if (!$node) {
-        continue;
-      }
-      if (count($vars['results']) < 2) {
-        $node_view = node_view($node, 'nas_node_teaser_small');
-        $vars['results'][] = drupal_render($node_view);
-      }
-      else {
-        $vars['results'][] = l('<small>' . check_plain($node->title) . '</small>', 'node/' . $node->nid, array('html' => TRUE));
-      }
-    }
-    if (count($view->result) > 8) {
-      $vars['first_column_last'] = intval((count($view->result) + 8) / 2);
-    }
-    drupal_add_js(path_to_theme() . '/js/nas/see-all.js');
   }
 }
 

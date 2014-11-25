@@ -5429,10 +5429,15 @@ table.row-borders tbody td {
 
 .hero.light-text .hero-title,
 .hero.light-text .hero-slug,
-.hero.light-text .hero-paragraph,
 .hero.light-text .hero-blurb {
   color: #fff !important;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+.hero.light-text .hero-title {
+  font-weight: 400;
+}
+.hero.light-text .hero-slug {
+  font-weight: 600;
 }
 
 img.hero-alt-img {
@@ -8967,17 +8972,6 @@ body.node-type-slideshow #tabs {
   color: #777777;
 }
 
-.past-magazin-issue .magazin-issues-list .magazine-issue .node {
-  margin: 10px auto 30px;
-}
-.past-magazin-issue .magazin-issues-list .magazine-issue .node .magazin-issue-title a {
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 15px;
-}
-.past-magazin-issue .magazin-issues-list .magazine-issue .node .magazin-issue-article h4 {
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  margin-bottom: 10px;
-}
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
     clear: both;
@@ -9000,6 +8994,23 @@ body.node-type-slideshow #tabs {
 }
 .past-magazin-issue .magazin-issues-list .magazine-issue-year h2 {
   margin-top: 10px;
+}
+
+.node-magazine-issue.node-teaser {
+  margin: 10px auto 30px;
+}
+.node-magazine-issue.node-teaser .magazin-issue-title a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+}
+.node-magazine-issue.node-teaser .magazin-issue-article h4 {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin-bottom: 10px;
+}
+
+.magazine-issue-other-issues h2 {
+  margin: 0 12.5px 10px;
+  font-size: 38px;
 }
 
 .bio-header {
@@ -11160,7 +11171,8 @@ body.touch .sticky-wrapper {
   margin-left: 55px;
 }
 .page-boa .hero-title {
-  font-size: 68px;
+  font-size: 75px;
+  letter-spacing: -4px;
 }
 @media only screen and (max-width: 479px) {
   .page-boa .guide-bar-title {
@@ -11222,6 +11234,12 @@ body.touch .sticky-wrapper {
   line-height: 42px;
   margin-bottom: 40px;
 }
+.boa-ja-content-block .text-container p {
+  padding-right: 25px;
+}
+.boa-ja-content-block .large-4 {
+  padding-left: 0;
+}
 
 .boa-guide-bar-attribution {
   float: left;
@@ -11267,6 +11285,12 @@ body.touch .sticky-wrapper {
 .boa-bird-card-set.bg-boa-bejge {
   background-color: #f5f4eb;
 }
+.boa-bird-card-set .section-header {
+  margin-bottom: 15px;
+}
+.boa-bird-card-set .section-nav {
+  bottom: 12px;
+}
 .boa-bird-card-set .boa-family-set-title {
   margin: -30px 0 5px;
 }
@@ -11303,7 +11327,7 @@ body.touch .sticky-wrapper {
 }
 .boa-bird-card .scientific-name {
   color: #838078;
-  font-size: 12px;
+  font-size: 13px;
   font-style: italic;
   line-height: 17px;
   margin: 0 0 0 10px;
@@ -11324,9 +11348,10 @@ body.touch .sticky-wrapper {
   -moz-osx-font-smoothing: auto;
   background-color: #F15936;
   bottom: 6px;
+  left: 0;
   color: #fff;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   padding: 0 10px;
@@ -11335,22 +11360,27 @@ body.touch .sticky-wrapper {
   text-transform: uppercase;
 }
 
+.boa-load-more {
+  padding: 35px 0 105px;
+}
+
 .page-boa-family .boa-about-this-guide {
   margin-bottom: 100px;
 }
 
 .boa-about-this-guide {
-  padding-top: 60px;
+  padding: 60px 0 80px;
 }
 .boa-about-this-guide h2 {
   font-size: 35px;
   margin-bottom: 15px;
 }
 .boa-about-this-guide p {
-  font-size: 22px;
-  line-height: 27px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 22px;
   font-weight: 300;
+  letter-spacing: -0.25px;
+  line-height: 27px;
 }
 
 .boa-family-text-block {
@@ -11362,7 +11392,7 @@ body.touch .sticky-wrapper {
   margin-bottom: 15px;
 }
 .boa-family-text-block .scientific-name {
-  color: #838078;
+  color: #404040;
   font-size: 20px;
   font-style: italic;
   line-height: 17px;
@@ -11551,6 +11581,7 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird .boa-plate-illustration {
   padding-bottom: 25px;
+  padding-right: 10px;
 }
 .page-boa-bird .boa-plate-illustration .see-full-plate {
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -11559,14 +11590,22 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-plate-illustration .see-full-plate i {
   font-size: 23px;
 }
-.page-boa-bird .boa-in-the-bird-guide h2,
-.page-boa-bird .boa-in-the-news h2 {
+.page-boa-bird .boa-in-the-bird-guide {
+  padding-bottom: 35px;
+}
+.page-boa-bird .boa-in-the-bird-guide .bird-card {
+  margin-right: 10px;
+}
+.page-boa-bird .boa-in-the-bird-guide h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
-.page-boa-bird .boa-in-the-bird-guide .columns,
-.page-boa-bird .boa-in-the-news .columns {
-  float: none;
+.page-boa-bird .boa-in-the-news .editorial-card {
+  margin-right: 10px;
+}
+.page-boa-bird .boa-in-the-news h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 .sidebar, .article-sidebar {

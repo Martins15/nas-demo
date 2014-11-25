@@ -23,6 +23,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 120,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -140,6 +149,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 12,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -271,6 +286,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 14,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -369,6 +390,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 13,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -492,6 +519,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 5,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -596,6 +629,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_default',
         'weight' => 16,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -779,6 +818,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 8,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -881,6 +926,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 17,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -972,6 +1023,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'media',
         'weight' => 9,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -1121,6 +1178,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -1223,6 +1286,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 15,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -1346,6 +1415,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 6,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1447,6 +1522,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 7,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1537,7 +1618,11 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_pressrelease_contact'
   $field_instances['node-article-field_pressrelease_contact'] = array(
     'bundle' => 'article',
-    'default_value' => variable_get('nas_default_pressrelease_contact', NULL),
+    'default_value' => array(
+      0 => array(
+        'target_id' => 1,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -1549,6 +1634,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 10,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -1653,6 +1744,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 3,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1753,6 +1850,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',

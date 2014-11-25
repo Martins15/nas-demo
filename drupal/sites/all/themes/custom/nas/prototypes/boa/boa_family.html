@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/app.css" />
     <script src="../../js/mute/jquery.min.js"></script>
     <script type="text/javascript" src="../../../../../../../misc/drupal.js"></script>
+    <script type="text/javascript" src="../../../../../../../misc/jquery.once.js"></script>
     <!--[if lt IE 10]>
       <script src="../../js/mute/respond.min.js"></script>
       <script src="../../js/mute/ie9.js"></script>
@@ -397,8 +398,14 @@
     (function($) {
       $(document).ready(function() {
         $(".toggle-bird-guide-search").bind("click", function() {
-          $(".toggle-bird-guide-search").toggleClass("open");
-          $(".bird-guide-search").toggleClass("show");
+          if ($(this).hasClass('open')) {
+            $(".toggle-bird-guide-search").addClass("open");
+            $(".bird-guide-search").addClass("show");
+          }
+          else {
+            $(".toggle-bird-guide-search").removeClass("open");
+            $(".bird-guide-search").removeClass("show");
+          }
         });
       });
     })(jQuery);
