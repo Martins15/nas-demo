@@ -53,7 +53,7 @@
   </div>
   <!-- BEGIN BOTTOM ROW -->
   <div class="row">
-    <div class="large-8 columns index-list">
+    <div class="columns">
       <?php print $content['other_issues']; ?>
     </div>
   </div>

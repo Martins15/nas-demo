@@ -256,6 +256,14 @@ function nas_panes_theme() {
       'template' => 'static-page-menu',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_page_menu',
     ),
+    'magazine_issue_featured' => array(
+      'template' => 'magazine-issue-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_featured',
+    ),
+    'magazine_issue_other_issues' => array(
+      'template' => 'magazine-issue-other-issues',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_other_issues',
+    ),
     'project_birds' => array(
       'template' => 'project-birds',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/project_birds',
