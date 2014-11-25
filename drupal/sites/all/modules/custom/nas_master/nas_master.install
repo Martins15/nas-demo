@@ -319,3 +319,11 @@ function _nas_master_update_7027_get_type($link) {
   }
   return 'boa';
 }
+
+/**
+ * Upload image for Conservation landing page. Enable nas_conservation_landing_feature feature.
+ */
+function nas_master_update_7031() {
+  pp_create_conservation_hero_image();
+  module_enable(array('nas_conservation_landing_feature'));
+}
