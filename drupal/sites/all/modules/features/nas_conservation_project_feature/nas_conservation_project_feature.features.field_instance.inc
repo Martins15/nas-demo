@@ -36,6 +36,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -120,6 +126,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -191,6 +203,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
       ),
       'nas_node_featured_small' => array(
         'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
@@ -274,6 +292,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -317,7 +341,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -344,6 +368,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
       ),
       'nas_node_featured_small' => array(
         'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
@@ -459,6 +489,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -535,68 +571,74 @@ function nas_conservation_project_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_related_bird'
-  $field_instances['node-project-field_related_bird'] = array(
+  // Exported field_instance: 'node-project-field_project_related_birds'
+  $field_instances['node-project-field_project_related_birds'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'nas_node_featured' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
-        'label' => 'hidden',
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_teaser' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_teaser_no_section_link' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_teaser_wo_date' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
       'teaser' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_related_bird',
-    'label' => 'Related Birds',
+    'field_name' => 'field_project_related_birds',
+    'label' => 'Project Related Birds',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -610,7 +652,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -636,6 +678,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
       ),
       'nas_node_featured_small' => array(
         'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
@@ -723,7 +771,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
   t('Color mode');
   t('Conservation Strategy');
   t('Hero Image');
-  t('Related Birds');
+  t('Project Related Birds');
   t('Related Flyway');
   t('Subtitle');
 
