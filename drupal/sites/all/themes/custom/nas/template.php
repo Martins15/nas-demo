@@ -660,7 +660,7 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
 function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   // View to be preprocessed
-  $needs_preprocess = array('related_birds', 'flyway_related_birds', 'project_birds');
+  $needs_preprocess = array('related_birds', 'flyway_related_birds');
   // Early return pattern.
   if (!in_array($view->name, $needs_preprocess)) {
     return;
