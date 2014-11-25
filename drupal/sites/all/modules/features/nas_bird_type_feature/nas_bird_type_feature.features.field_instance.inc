@@ -189,7 +189,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 0,
       ),
       'nas_wysiwyg_image' => array(
