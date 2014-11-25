@@ -276,8 +276,8 @@ function nas_master_update_7028() {
           'weight' => $weight,
         );
         $family_mlid = menu_link_save($menu_link);
-
         break;
+
       case 'boag':
         // Create menu item under family.
         $menu_link = array(
@@ -290,6 +290,7 @@ function nas_master_update_7028() {
         );
         $genus_mlid = menu_link_save($menu_link);
         break;
+
       case 'boa':
         // Create menu item under genus.
         $menu_link = array(
