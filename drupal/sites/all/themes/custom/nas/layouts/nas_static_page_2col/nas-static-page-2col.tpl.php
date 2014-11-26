@@ -24,6 +24,7 @@
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
       <div class="columns large-12 large-centered">
         <?php print $content['header_hero']; ?>
+        <p class="hero-blurb"><?php print $content['subtitle']; ?></p>
       </div>
     </div>
   </div>

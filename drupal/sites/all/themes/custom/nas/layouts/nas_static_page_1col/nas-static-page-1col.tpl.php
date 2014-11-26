@@ -24,6 +24,7 @@
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
       <div class="columns large-12 large-centered">
         <?php print $content['header_hero']; ?>
+        <p class="hero-blurb"><?php print $content['subtitle']; ?></p>
       </div>
     </div>
   </div>
@@ -40,7 +41,6 @@
       <div class="article-meta clearfix hide-for-large hide-for-xlarge">
         <?php print $content['header']; ?>
       </div>
-      <p class="deck"><?php print $content['subtitle']; ?></p>
     </div>
   </header>
   <div class="row">
@@ -110,8 +110,10 @@
     </div>
     <div class="row">
       <div class="card-set-social social-sharing">
-        <span class="social-sharing-caption pea-green">Spread the word. It&rsquo;s the least you can do.</span>
-        <a class="social-sharing-icon pea-green" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon pea-green" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon pea-green" href="#"><i class="icon-mail"></i></a>
+        <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
+        <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
+        <a class="social-sharing-icon white" href="#"><i class="icon-facebook"></i></a>
+        <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
       </div>
     </div>
   </section>
