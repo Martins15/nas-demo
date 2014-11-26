@@ -19,7 +19,7 @@ function nas_boa_feature_panelizer_defaults() {
   $panelizer->panelizer_key = 'boa';
   $panelizer->no_blocks = FALSE;
   $panelizer->css_id = '';
-  $panelizer->css = '';
+  $panelizer->css = 'page-boa-bird';
   $panelizer->pipeline = 'standard';
   $panelizer->contexts = array();
   $panelizer->relationships = array();
