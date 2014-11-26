@@ -124,6 +124,29 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $display->content['new-06613b74-232a-4293-8709-cc00cc08b7bb'] = $pane;
     $display->panels['body'][1] = 'new-06613b74-232a-4293-8709-cc00cc08b7bb';
     $pane = new stdClass();
+    $pane->pid = 'new-abe63189-c8da-40a7-8b0e-583b2f5954b2';
+    $pane->panel = 'body';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_news-project_related_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'abe63189-c8da-40a7-8b0e-583b2f5954b2';
+    $display->content['new-abe63189-c8da-40a7-8b0e-583b2f5954b2'] = $pane;
+    $display->panels['body'][2] = 'new-abe63189-c8da-40a7-8b0e-583b2f5954b2';
+    $pane = new stdClass();
     $pane->pid = 'new-3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab';
     $pane->panel = 'bottom_line';
     $pane->type = 'entity_field';
