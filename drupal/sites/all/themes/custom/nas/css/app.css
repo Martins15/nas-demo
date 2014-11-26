@@ -8010,30 +8010,56 @@ body.black-bg .section-header a:hover {
 @media only screen and (max-width: 600px) {
   .bird-guide-container {
     min-height: 0;
-    padding: 300px 0 0 0;
+    padding: 0;
   }
+  .bird-guide-container > .row,
   .bird-guide-container > .row > .column {
     padding: 0;
   }
 }
-@media only screen and (min-width: 480px) {
-  .bird-guide-container {
-    padding: 400px 0 25px 0;
-  }
-}
 @media only screen and (min-width: 601px) {
   .bird-guide-container {
-    padding: 420px 0 25px 0;
+    padding: 460px 0 25px 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .bird-guide-container {
+    padding-top: 520px;
   }
 }
 @media only screen and (min-width: 960px) {
   .bird-guide-container {
-    padding-top: 600px;
+    padding-top: 640px;
   }
 }
 @media only screen and (min-width: 1080px) {
   .bird-guide-container {
-    padding-top: 640px;
+    padding-top: 680px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .bird-guide-container {
+    padding-top: 800px;
+  }
+}
+@media screen and (min-width: 1280px) and (max-height: 768px) {
+  .bird-guide-container {
+    padding-top: 600px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .bird-guide-container {
+    padding-top: 880px;
+  }
+}
+@media only screen and (min-width: 1650px) {
+  .bird-guide-container {
+    padding-top: 960px;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .bird-guide-container {
+    padding-top: 1020px;
   }
 }
 
@@ -8046,12 +8072,18 @@ body.black-bg .section-header a:hover {
   text-align: center;
 }
 .bird-guide-image img {
+  display: block;
   height: auto;
   width: 150%;
   max-width: none;
   margin-left: -25%;
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (max-width: 600px) {
+  .bird-guide-image {
+    position: static;
+  }
+}
+@media only screen and (min-width: 601px) {
   .bird-guide-image:after {
     content: "";
     position: absolute;
@@ -8062,8 +8094,6 @@ body.black-bg .section-header a:hover {
     height: 120px;
     background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 20%, #000000 100%);
   }
-}
-@media only screen and (min-width: 601px) {
   .bird-guide-image img {
     width: 100%;
     margin: 0;
@@ -8077,6 +8107,32 @@ body.black-bg .section-header a:hover {
 @media only screen and (min-width: 960px) {
   .bird-guide-image:after {
     height: 300px;
+  }
+}
+
+.bird-guide-image-link {
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #999;
+  height: 42px;
+  width: 42px;
+  padding: 10px;
+  z-index: 2;
+  background-position: center center;
+  border-radius: 100%;
+}
+.bird-guide-image-link:hover {
+  background-color: #E18400;
+}
+@media only screen and (min-width: 768px) {
+  .bird-guide-image-link {
+    display: block;
   }
 }
 
