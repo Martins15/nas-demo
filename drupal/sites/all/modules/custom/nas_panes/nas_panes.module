@@ -526,7 +526,6 @@ function nas_panes_boa_next($node) {
   $row = $result->fetch();
 
   if (empty($row)) {
-    dpm('empty');
     return $node->nid;
   }
 
