@@ -17,8 +17,8 @@ function nas_editor_role_uuid_features_default_users() {
   'signature' => '',
   'signature_format' => 'map',
   'created' => 1414412105,
-  'access' => 1415624746,
-  'login' => 1415622659,
+  'access' => 1416993177,
+  'login' => 1416992440,
   'status' => 1,
   'timezone' => '',
   'language' => '',
@@ -37,7 +37,7 @@ function nas_editor_role_uuid_features_default_users() {
     'identifier' => 'user/2',
     'developer' => 1,
   ),
-  'date' => '2014-10-27 07:15:05 -0500',
+  'date' => '2014-10-27 08:15:05 -0400',
 );
   return $users;
 }
