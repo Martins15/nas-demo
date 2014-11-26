@@ -5357,8 +5357,8 @@ table.row-borders tbody td {
 }
 
 .hero-attribution {
-  font-size: 12px;
-  font-style: italic;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
   line-height: 15px;
   color: #404040;
   background-color: #f3f3f3;
@@ -5429,10 +5429,15 @@ table.row-borders tbody td {
 
 .hero.light-text .hero-title,
 .hero.light-text .hero-slug,
-.hero.light-text .hero-paragraph,
 .hero.light-text .hero-blurb {
   color: #fff !important;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+.hero.light-text .hero-title {
+  font-weight: 400;
+}
+.hero.light-text .hero-slug {
+  font-weight: 600;
 }
 
 img.hero-alt-img {

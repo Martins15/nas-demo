@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="hero-attribution row">
-  <?php if (!empty($content['hero_attribution'])): ?>
+  <?php if (trim($content['hero_attribution'])): ?>
     <p class="column">Photo: <?php print $content['hero_attribution']; ?></p>
   <?php endif; ?>
 </div>
@@ -77,114 +77,7 @@
     </div>
   </div>
   <?php print $content['bottom']; ?>
-  <div class="row space-top">
-    <div class="large-8 columns">
-      <h2 class="thin">Related News</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-8 columns index-list">
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-index-6.jpg" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">This is Another Seas &amp; Shores Project That’s Not Featured Up Above</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-index-1.jpg" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">The River-Style List of Projects Can Extend as Long as Needed (or Paginate)</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-index-2.jpg" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">Another Conservation Project Teaser Goes Right Here</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <section class="card-set bg-gray">
-    <div class="row space-top">
-      <div class="column">
-        <h2 class="thin">Explore Other Conservation Projects</h2>
-      </div>
-    </div>
-    <div class="row card-set-wrapper">
-      <div class="clearfix card-set-scroller">
-        <div class="tiny-4 columns">
-          <div class="editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-10.jpg" alt=""></a>
-            </div>
-            <div class="editorial-card-content">
-              <a href="#" class="editorial-card-slug">Seas &amp; Shores</a>
-              <h3 class="editorial-card-title"><a href="#">Here’s the Name of a Conservation Project</a></h3>
-              <p>Along with the title, we should include a short description of the project. </p>
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-11.jpg" alt=""></a>
-            </div>
-            <div class="editorial-card-content">
-              <a href="#" class="editorial-card-slug">Seas &amp; Shores</a>
-              <h3 class="editorial-card-title"><a href="#">Another Current Seas &amp; Shores Project</a></h3>
-              <p>Along with the title, we should include a short description of the project. </p>
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-12.jpg" alt=""></a>
-            </div>
-            <div class="editorial-card-content">
-              <a href="#" class="editorial-card-slug">Seas &amp; Shores</a>
-              <h3 class="editorial-card-title"><a href="#">Another Current Seas &amp; Shores Project</a></h3>
-              <p>Along with the title, we should include a short description of the project. </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row space-bottom double">
-      <div class="card-set-dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-  </section>
+
   <section class="card-set bg-1">
     <div class="row">
       <div class="column">
