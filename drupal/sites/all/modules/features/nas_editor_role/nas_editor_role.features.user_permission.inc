@@ -1786,6 +1786,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'file_entity',
   );
 
+  // Exported permission: 'edit NAS panes'.
+  $permissions['edit NAS panes'] = array(
+    'name' => 'edit NAS panes',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
   // Exported permission: 'edit any article content'.
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
