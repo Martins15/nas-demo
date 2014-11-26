@@ -545,7 +545,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'administer nodes'.
   $permissions['administer nodes'] = array(
     'name' => 'administer nodes',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -1046,7 +1048,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'bypass node access'.
   $permissions['bypass node access'] = array(
     'name' => 'bypass node access',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -1146,54 +1150,42 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'create article content'.
   $permissions['create article content'] = array(
     'name' => 'create article content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'create bird content'.
   $permissions['create bird content'] = array(
     'name' => 'create bird content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'create boa content'.
   $permissions['create boa content'] = array(
     'name' => 'create boa content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'create boaf content'.
   $permissions['create boaf content'] = array(
     'name' => 'create boaf content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'create boag content'.
   $permissions['create boag content'] = array(
     'name' => 'create boag content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'create contact content'.
   $permissions['create contact content'] = array(
     'name' => 'create contact content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1270,18 +1262,14 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'create flyway content'.
   $permissions['create flyway content'] = array(
     'name' => 'create flyway content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'create magazine_issue content'.
   $permissions['create magazine_issue content'] = array(
     'name' => 'create magazine_issue content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1344,27 +1332,21 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'delete any boa content'.
   $permissions['delete any boa content'] = array(
     'name' => 'delete any boa content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any boaf content'.
   $permissions['delete any boaf content'] = array(
     'name' => 'delete any boaf content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any boag content'.
   $permissions['delete any boag content'] = array(
     'name' => 'delete any boag content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1807,9 +1789,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit any article content'.
   $permissions['edit any article content'] = array(
     'name' => 'edit any article content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1825,45 +1805,35 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit any bird content'.
   $permissions['edit any bird content'] = array(
     'name' => 'edit any bird content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any boa content'.
   $permissions['edit any boa content'] = array(
     'name' => 'edit any boa content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any boaf content'.
   $permissions['edit any boaf content'] = array(
     'name' => 'edit any boaf content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any boag content'.
   $permissions['edit any boag content'] = array(
     'name' => 'edit any boag content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any contact content'.
   $permissions['edit any contact content'] = array(
     'name' => 'edit any contact content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1879,9 +1849,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit any flyway content'.
   $permissions['edit any flyway content'] = array(
     'name' => 'edit any flyway content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -1897,9 +1865,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit any magazine_issue content'.
   $permissions['edit any magazine_issue content'] = array(
     'name' => 'edit any magazine_issue content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -2025,9 +1991,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit own article content'.
   $permissions['edit own article content'] = array(
     'name' => 'edit own article content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -2043,9 +2007,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit own bird content'.
   $permissions['edit own bird content'] = array(
     'name' => 'edit own bird content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -2073,9 +2035,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit own contact content'.
   $permissions['edit own contact content'] = array(
     'name' => 'edit own contact content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -2091,9 +2051,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit own flyway content'.
   $permissions['edit own flyway content'] = array(
     'name' => 'edit own flyway content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -2109,9 +2067,7 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit own magazine_issue content'.
   $permissions['edit own magazine_issue content'] = array(
     'name' => 'edit own magazine_issue content',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
+    'roles' => array(),
     'module' => 'node',
   );
 
