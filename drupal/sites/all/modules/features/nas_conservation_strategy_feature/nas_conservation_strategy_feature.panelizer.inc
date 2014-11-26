@@ -30,9 +30,16 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
   $panelizer->link_to_entity = TRUE;
   $panelizer->extra = array();
   $display = new panels_display();
-  $display->layout = 'flexible';
+  $display->layout = 'nas_conservation_strategy';
   $display->layout_settings = array();
-  $display->panel_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'hero_image' => NULL,
+      'logo_icon' => NULL,
+      'title' => NULL,
+    ),
+  );
   $display->cache = array();
   $display->title = '%node:title';
   $display->uuid = '385346af-6cbe-462d-bb5d-b80ccec4d32f';
@@ -40,7 +47,7 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-69f2dc21-e506-4a0e-b96b-ee8043534e8b';
-    $pane->panel = 'center';
+    $pane->panel = 'hero_image';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
     $pane->shown = TRUE;
@@ -55,17 +62,19 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
       'context' => 'panelizer',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '69f2dc21-e506-4a0e-b96b-ee8043534e8b';
     $display->content['new-69f2dc21-e506-4a0e-b96b-ee8043534e8b'] = $pane;
-    $display->panels['center'][0] = 'new-69f2dc21-e506-4a0e-b96b-ee8043534e8b';
+    $display->panels['hero_image'][0] = 'new-69f2dc21-e506-4a0e-b96b-ee8043534e8b';
     $pane = new stdClass();
     $pane->pid = 'new-5542a620-dc17-4519-8ffa-43e7f5f1dfd4';
-    $pane->panel = 'center';
+    $pane->panel = 'hero_image';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
     $pane->shown = TRUE;
@@ -79,7 +88,9 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
       'context' => 'panelizer',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array(
       'css_class' => 'link-wrapper',
     );
@@ -88,7 +99,7 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
     $pane->locks = array();
     $pane->uuid = '5542a620-dc17-4519-8ffa-43e7f5f1dfd4';
     $display->content['new-5542a620-dc17-4519-8ffa-43e7f5f1dfd4'] = $pane;
-    $display->panels['center'][1] = 'new-5542a620-dc17-4519-8ffa-43e7f5f1dfd4';
+    $display->panels['hero_image'][1] = 'new-5542a620-dc17-4519-8ffa-43e7f5f1dfd4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-69f2dc21-e506-4a0e-b96b-ee8043534e8b';
   $panelizer->display = $display;
