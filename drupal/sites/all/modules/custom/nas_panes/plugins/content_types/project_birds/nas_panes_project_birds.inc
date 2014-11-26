@@ -42,6 +42,7 @@ function nas_panes_project_birds_render($subtype, $conf, $args, $context) {
       $results[] = l('<small>' . check_plain($node->title) . '</small>', 'node/' . $node->nid, array('html' => TRUE));
     }
   }
+  $first_column_last = 0;
   if (count($results) > 8) {
     $first_column_last = intval((count($results) + 9) / 2);
   }
