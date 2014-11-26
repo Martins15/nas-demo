@@ -47,7 +47,7 @@ function conservation_landing_top_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE'),
+    '#pp_crop_styles' => array(NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE),
   );
 
   ctools_form_include($form_state, 'content');
