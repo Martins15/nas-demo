@@ -390,9 +390,20 @@ function nas_master_update_7037() {
   features_revert_module('nas_static_page_feature');
 }
 
+<<<<<<< HEAD
 /**
  * Revert nas_conservation_landing_feature feature.
  */
 function nas_master_update_7038() {
   features_revert_module('nas_conservation_landing_feature');
+=======
+
+/**
+ * Revert nas_conservation_project_feature feature.
+ * Revert nas_bird_type_feature feature.
+ */
+function nas_master_update_7038() {
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_bird_type_feature');
+>>>>>>> 17386e4793809d55e83a093d4fc34594fa67b1a8
 }
