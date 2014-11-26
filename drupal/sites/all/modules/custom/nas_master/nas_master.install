@@ -333,9 +333,43 @@ function nas_master_update_7029() {
 }
 
 /**
- * Upload image for Conservation landing page. Enable nas_conservation_landing_feature feature.
+ * Revert nas_image_styles_feature feature.
+ */
+function nas_master_update_7030() {
+  features_revert_module('nas_image_styles_feature');
+}
+
+/**
+ * Revert nas_bird_type_feature feature to update image file entity view mode
+ * settings.
  */
 function nas_master_update_7031() {
+  features_revert_module('nas_bird_type_feature');
+}
+
+/**
+ * Revert features for Conservation project Related news block.
+ */
+function nas_master_update_7032() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_views');
+}
+
+/**
+ * Revert features for Conservation project's 'Explore More Conservation
+ * Projects' block.
+ */
+function nas_master_update_7033() {
+  features_revert_module('nas_views');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_editor_role');
+}
+
+/**
+ * Upload image for Conservation landing page. Enable nas_conservation_landing_feature feature.
+ */
+function nas_master_update_7036() {
   pp_create_conservation_hero_image();
   module_enable(array('nas_conservation_landing_feature'));
 }

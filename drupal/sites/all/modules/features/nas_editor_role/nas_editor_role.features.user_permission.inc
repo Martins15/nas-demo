@@ -305,6 +305,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'nas_permissions',
   );
 
+  // Exported permission: 'change node panelizer layout on node form'.
+  $permissions['change node panelizer layout on node form'] = array(
+    'name' => 'change node panelizer layout on node form',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
   // Exported permission: 'create article content'.
   $permissions['create article content'] = array(
     'name' => 'create article content',
@@ -407,6 +416,60 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'create magazine_issue content'.
   $permissions['create magazine_issue content'] = array(
     'name' => 'create magazine_issue content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create project content'.
+  $permissions['create project content'] = array(
+    'name' => 'create project content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'create strategy content'.
+  $permissions['create strategy content'] = array(
+    'name' => 'create strategy content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete any project content'.
+  $permissions['delete any project content'] = array(
+    'name' => 'delete any project content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete any strategy content'.
+  $permissions['delete any strategy content'] = array(
+    'name' => 'delete any strategy content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own project content'.
+  $permissions['delete own project content'] = array(
+    'name' => 'delete own project content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own strategy content'.
+  $permissions['delete own strategy content'] = array(
+    'name' => 'delete own strategy content',
     'roles' => array(
       'editor' => 'editor',
     ),
@@ -557,6 +620,24 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit any project content'.
+  $permissions['edit any project content'] = array(
+    'name' => 'edit any project content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any strategy content'.
+  $permissions['edit any strategy content'] = array(
+    'name' => 'edit any strategy content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any video files'.
   $permissions['edit any video files'] = array(
     'name' => 'edit any video files',
@@ -686,6 +767,24 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'edit own magazine_issue content'.
   $permissions['edit own magazine_issue content'] = array(
     'name' => 'edit own magazine_issue content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own project content'.
+  $permissions['edit own project content'] = array(
+    'name' => 'edit own project content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own strategy content'.
+  $permissions['edit own strategy content'] = array(
+    'name' => 'edit own strategy content',
     'roles' => array(
       'editor' => 'editor',
     ),
@@ -845,6 +944,20 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
+  // Exported permission: 'enter project revision log entry'.
+  $permissions['enter project revision log entry'] = array(
+    'name' => 'enter project revision log entry',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'enter strategy revision log entry'.
+  $permissions['enter strategy revision log entry'] = array(
+    'name' => 'enter strategy revision log entry',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
   // Exported permission: 'epsacrop create crops'.
   $permissions['epsacrop create crops'] = array(
     'name' => 'epsacrop create crops',
@@ -944,18 +1057,93 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'override_node_options',
   );
 
+  // Exported permission: 'override project authored by option'.
+  $permissions['override project authored by option'] = array(
+    'name' => 'override project authored by option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override project authored on option'.
+  $permissions['override project authored on option'] = array(
+    'name' => 'override project authored on option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override project promote to front page option'.
+  $permissions['override project promote to front page option'] = array(
+    'name' => 'override project promote to front page option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override project published option'.
+  $permissions['override project published option'] = array(
+    'name' => 'override project published option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override project revision option'.
+  $permissions['override project revision option'] = array(
+    'name' => 'override project revision option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override project sticky option'.
+  $permissions['override project sticky option'] = array(
+    'name' => 'override project sticky option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override strategy authored by option'.
+  $permissions['override strategy authored by option'] = array(
+    'name' => 'override strategy authored by option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override strategy authored on option'.
+  $permissions['override strategy authored on option'] = array(
+    'name' => 'override strategy authored on option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override strategy promote to front page option'.
+  $permissions['override strategy promote to front page option'] = array(
+    'name' => 'override strategy promote to front page option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override strategy published option'.
+  $permissions['override strategy published option'] = array(
+    'name' => 'override strategy published option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override strategy revision option'.
+  $permissions['override strategy revision option'] = array(
+    'name' => 'override strategy revision option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override strategy sticky option'.
+  $permissions['override strategy sticky option'] = array(
+    'name' => 'override strategy sticky option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
   // Exported permission: 'pane in the news edit'.
   $permissions['pane in the news edit'] = array(
     'name' => 'pane in the news edit',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
-    'module' => 'nas_permissions',
-  );
-
-  // Exported permission: 'change node panelizer layout on node form'.
-  $permissions['change node panelizer layout on node form'] = array(
-    'name' => 'change node panelizer layout on node form',
     'roles' => array(
       'editor' => 'editor',
     ),

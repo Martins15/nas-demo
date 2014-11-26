@@ -124,6 +124,81 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $display->content['new-06613b74-232a-4293-8709-cc00cc08b7bb'] = $pane;
     $display->panels['body'][1] = 'new-06613b74-232a-4293-8709-cc00cc08b7bb';
     $pane = new stdClass();
+    $pane->pid = 'new-abe63189-c8da-40a7-8b0e-583b2f5954b2';
+    $pane->panel = 'body';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_news-project_related_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'panelizer',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'abe63189-c8da-40a7-8b0e-583b2f5954b2';
+    $display->content['new-abe63189-c8da-40a7-8b0e-583b2f5954b2'] = $pane;
+    $display->panels['body'][2] = 'new-abe63189-c8da-40a7-8b0e-583b2f5954b2';
+    $pane = new stdClass();
+    $pane->pid = 'new-e573215c-1498-458b-94bb-ccbeb9afe3a1';
+    $pane->panel = 'bottom';
+    $pane->type = 'nas_panes_other_projects';
+    $pane->subtype = 'nas_panes_other_projects';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      '' => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+        3 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-s7PCxoY_YF46EQPE1ye7QriYgxPJYeK7J46E_ZNttOs',
+      'form_token' => '2jRz0M26dO9MZFv1TZOJI3JTsdDgnJf1YH8V1NI5n-I',
+      'form_id' => 'nas_panes_other_projects_edit_form',
+      5730 => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+        3 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e573215c-1498-458b-94bb-ccbeb9afe3a1';
+    $display->content['new-e573215c-1498-458b-94bb-ccbeb9afe3a1'] = $pane;
+    $display->panels['bottom'][0] = 'new-e573215c-1498-458b-94bb-ccbeb9afe3a1';
+    $pane = new stdClass();
     $pane->pid = 'new-3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab';
     $pane->panel = 'bottom_line';
     $pane->type = 'entity_field';
@@ -197,7 +272,7 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'file_view_mode' => 'hero',
+        'file_view_mode' => 'hero_project',
       ),
       'context' => 'panelizer',
       'override_title' => 0,

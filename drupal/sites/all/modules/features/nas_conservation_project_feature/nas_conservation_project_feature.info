@@ -37,5 +37,5 @@ features[variable][] = node_options_project
 features[variable][] = node_preview_project
 features[variable][] = node_submitted_project
 features[variable][] = panelizer_defaults_node_project
-mtime = 1416841117
+mtime = 1416936410
 project path = sites/all/modules/features

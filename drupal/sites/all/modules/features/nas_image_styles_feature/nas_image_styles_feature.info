@@ -18,6 +18,7 @@ features[image][] = get_outside
 features[image][] = hero_cover_bird_page
 features[image][] = hero_image
 features[image][] = hero_mobile
+features[image][] = hero_project
 features[image][] = magazine_issue_cover
 features[image][] = magazine_issue_cover_teaser
 features[image][] = nas_bird_node_full_illustration

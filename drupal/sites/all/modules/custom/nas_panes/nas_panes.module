@@ -291,6 +291,10 @@ function nas_panes_theme() {
       'template' => 'project-birds',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/project_birds',
     ),
+    'other_projects' => array(
+      'template' => 'other-projects',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/other_projects',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
