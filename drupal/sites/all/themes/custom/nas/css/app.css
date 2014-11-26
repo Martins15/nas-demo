@@ -5131,6 +5131,9 @@ table.row-borders tbody td {
   background-image: -webkit-linear-gradient(right, #262626, rgba(38, 38, 38, 0), rgba(0, 0, 0, 0));
   background-image: linear-gradient(to left, #262626, rgba(38, 38, 38, 0), rgba(0, 0, 0, 0));
 }
+.strip-nav.without-border {
+  border: none;
+}
 .strip-nav ul {
   width: 1000px;
   margin: 0 auto;

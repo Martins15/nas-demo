@@ -9,7 +9,7 @@
  */
 ?>
 
-<section class="category-nav strip-nav">
+<section class="category-nav strip-nav without-border">
   <div class="row">
     <div class="columns">
       <ul class="inline-list" >
