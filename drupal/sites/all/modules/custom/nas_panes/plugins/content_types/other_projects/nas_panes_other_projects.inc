@@ -105,7 +105,7 @@ function nas_panes_other_projects_render($subtype, $conf, $args, $context) {
   }
 
   $contextual_links = '';
-  if (node_access('edit', $context_node) && user_access('access contextual links')) {
+  if (node_access('update', $context_node) && user_access('access contextual links')) {
     $contextual_links = nas_panes_other_projects_build_contextual_links($subtype, $context_node);
   }
   $vars['contextual_links'] = $contextual_links;
