@@ -19,10 +19,10 @@ function nas_boa_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '5',
         ),
       ),
       'display' => array(),
@@ -34,14 +34,16 @@ function nas_boa_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_boa';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'boa',
+  );
   $export['menu_options_boa'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_parent_boa';
-  $strongarm->value = 'main-menu:0';
+  $strongarm->value = 'boa:0';
   $export['menu_parent_boa'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -84,32 +86,7 @@ function nas_boa_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'full' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'teaser' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'rss' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_index' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_result' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'diff_standard' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -144,32 +121,12 @@ function nas_boa_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'nas_teaser_from_network' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'nas_teaser_flyway_landing' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'nas_node_teaser' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_editorial_card' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'token' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'revision' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

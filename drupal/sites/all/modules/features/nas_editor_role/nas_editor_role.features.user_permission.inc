@@ -305,6 +305,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'nas_permissions',
   );
 
+  // Exported permission: 'change node panelizer layout on node form'.
+  $permissions['change node panelizer layout on node form'] = array(
+    'name' => 'change node panelizer layout on node form',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'nas_permissions',
+  );
+
   // Exported permission: 'create article content'.
   $permissions['create article content'] = array(
     'name' => 'create article content',
@@ -947,15 +956,6 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'pane in the news edit'.
   $permissions['pane in the news edit'] = array(
     'name' => 'pane in the news edit',
-    'roles' => array(
-      'editor' => 'editor',
-    ),
-    'module' => 'nas_permissions',
-  );
-
-  // Exported permission: 'change node panelizer layout on node form'.
-  $permissions['change node panelizer layout on node form'] = array(
-    'name' => 'change node panelizer layout on node form',
     'roles' => array(
       'editor' => 'editor',
     ),
