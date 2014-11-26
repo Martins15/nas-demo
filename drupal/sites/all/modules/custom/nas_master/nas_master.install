@@ -381,5 +381,4 @@ function nas_master_update_7034() {
 function nas_master_update_7036() {
   pp_create_conservation_hero_image();
   module_enable(array('nas_conservation_landing_feature'));
-
 }
