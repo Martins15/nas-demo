@@ -108,7 +108,7 @@ function conservation_landing_top_render($subtype, $conf, $args, $contexts) {
   }
 
   $contextual_links = '';
-  if (user_access('conservation landing top pane edit')) {
+  if (user_access('edit NAS panes')) {
     ctools_include('modal');
     ctools_modal_add_js();
     ctools_add_js('ajax-responder');

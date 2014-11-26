@@ -31,8 +31,8 @@ function nas_permissions_permission() {
     'change node panelizer layout on node form' => array(
       'title' => t('Change node panelizer layout on node form'),
     ),
-    'conservation landing top pane edit' => array(
-      'title' => t('Conservation Landing top pane edit'),
+    'edit NAS panes' => array(
+      'title' => t('Edit NAS panes'),
     ),
   );
 }
