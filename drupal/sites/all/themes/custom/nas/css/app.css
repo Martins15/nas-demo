@@ -5131,6 +5131,9 @@ table.row-borders tbody td {
   background-image: -webkit-linear-gradient(right, #262626, rgba(38, 38, 38, 0), rgba(0, 0, 0, 0));
   background-image: linear-gradient(to left, #262626, rgba(38, 38, 38, 0), rgba(0, 0, 0, 0));
 }
+.strip-nav.without-border {
+  border: none;
+}
 .strip-nav ul {
   width: 1000px;
   margin: 0 auto;
@@ -5357,8 +5360,8 @@ table.row-borders tbody td {
 }
 
 .hero-attribution {
-  font-size: 12px;
-  font-style: italic;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
   line-height: 15px;
   color: #404040;
   background-color: #f3f3f3;
@@ -5429,10 +5432,15 @@ table.row-borders tbody td {
 
 .hero.light-text .hero-title,
 .hero.light-text .hero-slug,
-.hero.light-text .hero-paragraph,
 .hero.light-text .hero-blurb {
   color: #fff !important;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+.hero.light-text .hero-title {
+  font-weight: 400;
+}
+.hero.light-text .hero-slug {
+  font-weight: 600;
 }
 
 img.hero-alt-img {
@@ -8005,30 +8013,56 @@ body.black-bg .section-header a:hover {
 @media only screen and (max-width: 600px) {
   .bird-guide-container {
     min-height: 0;
-    padding: 300px 0 0 0;
+    padding: 0;
   }
+  .bird-guide-container > .row,
   .bird-guide-container > .row > .column {
     padding: 0;
   }
 }
-@media only screen and (min-width: 480px) {
-  .bird-guide-container {
-    padding: 400px 0 25px 0;
-  }
-}
 @media only screen and (min-width: 601px) {
   .bird-guide-container {
-    padding: 420px 0 25px 0;
+    padding: 460px 0 25px 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .bird-guide-container {
+    padding-top: 520px;
   }
 }
 @media only screen and (min-width: 960px) {
   .bird-guide-container {
-    padding-top: 600px;
+    padding-top: 640px;
   }
 }
 @media only screen and (min-width: 1080px) {
   .bird-guide-container {
-    padding-top: 640px;
+    padding-top: 680px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .bird-guide-container {
+    padding-top: 800px;
+  }
+}
+@media screen and (min-width: 1280px) and (max-height: 768px) {
+  .bird-guide-container {
+    padding-top: 600px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .bird-guide-container {
+    padding-top: 880px;
+  }
+}
+@media only screen and (min-width: 1650px) {
+  .bird-guide-container {
+    padding-top: 960px;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .bird-guide-container {
+    padding-top: 1020px;
   }
 }
 
@@ -8041,12 +8075,18 @@ body.black-bg .section-header a:hover {
   text-align: center;
 }
 .bird-guide-image img {
+  display: block;
   height: auto;
   width: 150%;
   max-width: none;
   margin-left: -25%;
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (max-width: 600px) {
+  .bird-guide-image {
+    position: static;
+  }
+}
+@media only screen and (min-width: 601px) {
   .bird-guide-image:after {
     content: "";
     position: absolute;
@@ -8057,8 +8097,6 @@ body.black-bg .section-header a:hover {
     height: 120px;
     background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 20%, #000000 100%);
   }
-}
-@media only screen and (min-width: 601px) {
   .bird-guide-image img {
     width: 100%;
     margin: 0;
@@ -8072,6 +8110,32 @@ body.black-bg .section-header a:hover {
 @media only screen and (min-width: 960px) {
   .bird-guide-image:after {
     height: 300px;
+  }
+}
+
+.bird-guide-image-link {
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #999;
+  height: 42px;
+  width: 42px;
+  padding: 10px;
+  z-index: 2;
+  background-position: center center;
+  border-radius: 100%;
+}
+.bird-guide-image-link:hover {
+  background-color: #E18400;
+}
+@media only screen and (min-width: 768px) {
+  .bird-guide-image-link {
+    display: block;
   }
 }
 
@@ -8481,6 +8545,10 @@ body.black-bg .slide-caption {
 body.node-type-slideshow #tabs {
   position: relative;
   z-index: 10;
+}
+
+.see-all-show {
+  display: none;
 }
 
 .conservation-slider {
@@ -11162,7 +11230,8 @@ body.touch .sticky-wrapper {
   margin-left: 55px;
 }
 .page-boa .hero-title {
-  font-size: 68px;
+  font-size: 75px;
+  letter-spacing: -4px;
 }
 @media only screen and (max-width: 479px) {
   .page-boa .guide-bar-title {
@@ -11224,6 +11293,12 @@ body.touch .sticky-wrapper {
   line-height: 42px;
   margin-bottom: 40px;
 }
+.boa-ja-content-block .text-container p {
+  padding-right: 25px;
+}
+.boa-ja-content-block .large-4 {
+  padding-left: 0;
+}
 
 .boa-guide-bar-attribution {
   float: left;
@@ -11269,6 +11344,12 @@ body.touch .sticky-wrapper {
 .boa-bird-card-set.bg-boa-bejge {
   background-color: #f5f4eb;
 }
+.boa-bird-card-set .section-header {
+  margin-bottom: 15px;
+}
+.boa-bird-card-set .section-nav {
+  bottom: 12px;
+}
 .boa-bird-card-set .boa-family-set-title {
   margin: -30px 0 5px;
 }
@@ -11305,7 +11386,7 @@ body.touch .sticky-wrapper {
 }
 .boa-bird-card .scientific-name {
   color: #838078;
-  font-size: 12px;
+  font-size: 13px;
   font-style: italic;
   line-height: 17px;
   margin: 0 0 0 10px;
@@ -11326,9 +11407,10 @@ body.touch .sticky-wrapper {
   -moz-osx-font-smoothing: auto;
   background-color: #F15936;
   bottom: 6px;
+  left: 0;
   color: #fff;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   padding: 0 10px;
@@ -11337,22 +11419,27 @@ body.touch .sticky-wrapper {
   text-transform: uppercase;
 }
 
+.boa-load-more {
+  padding: 35px 0 105px;
+}
+
 .page-boa-family .boa-about-this-guide {
   margin-bottom: 100px;
 }
 
 .boa-about-this-guide {
-  padding-top: 60px;
+  padding: 60px 0 80px;
 }
 .boa-about-this-guide h2 {
   font-size: 35px;
   margin-bottom: 15px;
 }
 .boa-about-this-guide p {
-  font-size: 22px;
-  line-height: 27px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 22px;
   font-weight: 300;
+  letter-spacing: -0.25px;
+  line-height: 27px;
 }
 
 .boa-family-text-block {
@@ -11364,7 +11451,7 @@ body.touch .sticky-wrapper {
   margin-bottom: 15px;
 }
 .boa-family-text-block .scientific-name {
-  color: #838078;
+  color: #404040;
   font-size: 20px;
   font-style: italic;
   line-height: 17px;
@@ -11553,6 +11640,7 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird .boa-plate-illustration {
   padding-bottom: 25px;
+  padding-right: 10px;
 }
 .page-boa-bird .boa-plate-illustration .see-full-plate {
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -11561,14 +11649,22 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-plate-illustration .see-full-plate i {
   font-size: 23px;
 }
-.page-boa-bird .boa-in-the-bird-guide h2,
-.page-boa-bird .boa-in-the-news h2 {
+.page-boa-bird .boa-in-the-bird-guide {
+  padding-bottom: 35px;
+}
+.page-boa-bird .boa-in-the-bird-guide .bird-card {
+  margin-right: 10px;
+}
+.page-boa-bird .boa-in-the-bird-guide h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
-.page-boa-bird .boa-in-the-bird-guide .columns,
-.page-boa-bird .boa-in-the-news .columns {
-  float: none;
+.page-boa-bird .boa-in-the-news .editorial-card {
+  margin-right: 10px;
+}
+.page-boa-bird .boa-in-the-news h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 .sidebar, .article-sidebar {

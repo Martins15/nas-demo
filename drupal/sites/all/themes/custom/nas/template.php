@@ -247,11 +247,10 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
-  // Subtitle currently presented only in flyway landing teasers.
   if ($vars['view_mode'] == 'nas_node_teaser_small') {
-    $vars['subtitle'] = '';
-    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    $vars['description'] = '';
+    if (!empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['description'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
     }
   }
 
@@ -659,8 +658,10 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
  */
 function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
+  // View to be preprocessed
+  $needs_preprocess = array('related_birds', 'flyway_related_birds');
   // Early return pattern.
-  if ($view->name !== 'related_birds' || $view->current_display != 'flyway_related_birds') {
+  if (!in_array($view->name, $needs_preprocess)) {
     return;
   }
   if (!empty($view->args[0]) && $node = node_load($view->args[0])) {

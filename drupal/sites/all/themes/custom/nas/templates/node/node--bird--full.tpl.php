@@ -99,7 +99,7 @@
               <?php print render($content['field_bird_sci_name']); ?>
             </p>
           </div>
-          <div class="medium-4 columns illustration hide-for-small hide-for-tiny hide-for-medium">
+          <div class="medium-4 columns illustration">
             <?php print render($content['field_bird_illustration']); ?>
           </div>
         </div>

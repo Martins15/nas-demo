@@ -14,23 +14,40 @@
 
   @include breakpoint(max-width, #{upper-bound($small-range)}) {
     min-height: 0;
-    padding: 300px 0 0 0;
-
+    padding: 0;
+ 
+    > .row ,
     > .row > .column {
       padding: 0;
     }
   }
-  @include breakpoint(small-up) {
-    padding: 400px 0 $column-gutter 0;
-  }
   @include breakpoint(medium-up) {
-    padding: 420px 0 $column-gutter 0;
+    padding: 460px 0 $column-gutter 0;
+  }
+  @include breakpoint(large-up) {
+    padding-top: 520px;
   }
   @include breakpoint(min-width, 960px) {
-    padding-top: 600px;
+    padding-top: 640px;
   }
   @include breakpoint(min-width, 1080px) {
-    padding-top: 640px;
+    padding-top: 680px;
+  }
+  @include breakpoint(min-width, 1280px) {
+    padding-top: 800px;
+  }
+  // MBA 11-inch
+  @media screen and (min-width: 1280px) and (max-height: 768px) {
+    padding-top: 600px;
+  }
+  @include breakpoint(min-width, 1440px) {
+    padding-top: 880px;
+  }
+  @include breakpoint(min-width, 1650px) {
+    padding-top: 960px;
+  }
+  @include breakpoint(min-width, 1920px) {
+    padding-top: 1020px;
   }
 }
 
@@ -43,13 +60,18 @@
   text-align: center;
 
   img {
+    display: block;
     height: auto;
     width: 150%;
     max-width: none;
     margin-left: -25%;
   }
 
-  @include breakpoint(small-up) {
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    position: static;    
+  }
+
+  @include breakpoint(medium-up) {
     &:after {
       content: "";
       position: absolute;
@@ -60,9 +82,7 @@
       height: 120px;
       background: linear-gradient(rgba($color-black, 0) 0%, rgba($color-black, 0.1) 20%, $color-black 100%);
     }
-  }
 
-  @include breakpoint(medium-up) {
     img {
       width: 100%;
       margin: 0;
@@ -79,5 +99,28 @@
     &:after {
       height: 300px;
     }
+  }
+}
+
+.bird-guide-image-link {
+  @include transition(background-color 0.15s ease-in-out);
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #999;
+  height: 42px;
+  width: 42px;
+  padding: 10px;
+  z-index: 2;
+  background-position: center center;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: $color-orange;
+  }
+
+  @include breakpoint(large-up) {
+    display: block;
   }
 }

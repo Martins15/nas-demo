@@ -319,3 +319,83 @@ function _nas_master_update_7027_get_type($link) {
   }
   return 'boa';
 }
+
+/**
+ * Delete instance of field_related_bird from Conservation Project CT.
+ * Revert features for Conservation projects "Birds native to this area" pane.
+ */
+function nas_master_update_7029() {
+  if ($instance = field_info_instance('node', 'field_related_bird', 'project')) {
+    field_delete_instance($instance);
+  }
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_views_feature');
+}
+
+/**
+ * Revert nas_image_styles_feature feature.
+ */
+function nas_master_update_7030() {
+  features_revert_module('nas_image_styles_feature');
+}
+
+/**
+ * Revert nas_bird_type_feature feature to update image file entity view mode
+ * settings.
+ */
+function nas_master_update_7031() {
+  features_revert_module('nas_bird_type_feature');
+}
+
+/**
+ * Revert features for Conservation project Related news block.
+ */
+function nas_master_update_7032() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_views');
+}
+
+/**
+ * Revert features for Conservation project's 'Explore More Conservation
+ * Projects' block.
+ */
+function nas_master_update_7033() {
+  features_revert_module('nas_views');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_editor_role');
+}
+
+/**
+ * Add new wysiwyg inline element Bottom line.
+ */
+function nas_master_update_7034() {
+  field_delete_field('field_project_bottomline');
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_conservation_project_feature');
+}
+
+/**
+ * Upload image for Conservation landing page. Enable nas_conservation_landing_feature feature.
+ */
+function nas_master_update_7036() {
+  pp_create_conservation_hero_image();
+  module_enable(array('nas_conservation_landing_feature'));
+}
+
+/**
+ * Revert nas_static_page_feature feature.
+ */
+function nas_master_update_7037() {
+  features_revert_module('nas_static_page_feature');
+}
+
+
+/**
+ * Revert nas_conservation_project_feature feature.
+ * Revert nas_bird_type_feature feature.
+ */
+function nas_master_update_7038() {
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_bird_type_feature');
+}

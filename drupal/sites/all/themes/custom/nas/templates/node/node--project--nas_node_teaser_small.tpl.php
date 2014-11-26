@@ -77,7 +77,7 @@
  * - $title_link: Title with link to node page.
  * - $strategy_link: Blue strategy link.
  * - $linked_image: Hero image wrapper with A tag linked to node.
- * - $subtitle: Node's subtitle.
+ * - $description: Project teaser description.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -87,7 +87,7 @@
  */
 ?>
 
-<div class="columns large-4">
+<div class="columns tiny-4">
   <div class="editorial-card">
     <div class="editorial-card-photo">
       <?php print $linked_image; ?>
@@ -97,7 +97,7 @@
         <?php print $strategy_link; ?>
       <?php endif; ?>
       <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
-      <p><?php print $subtitle; ?></p>
+      <p><?php print $description; ?></p>
     </div>
   </div>
 </div>

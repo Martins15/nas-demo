@@ -231,6 +231,9 @@ Drupal.wysiwyg.editor.instance.ckeditor = {
       if (pluginName == 'article_aside') {
         CKEDITOR.plugins.add(pluginName, article_asideAddPlugin);
       }
+      if (pluginName == 'bottom_line') {
+        CKEDITOR.plugins.add(pluginName, bottom_lineAddPlugin);
+      }
     }
   },
   prepareContent: function(content) {

@@ -24,6 +24,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -31,6 +37,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -113,7 +125,7 @@ function nas_boa_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -133,6 +145,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 4,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -140,6 +158,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -192,7 +216,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 5,
+      'weight' => 3,
     ),
   );
 
@@ -212,6 +236,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'image',
         'weight' => 9,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -219,6 +249,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -312,7 +348,7 @@ function nas_boa_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -335,6 +371,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'number_integer',
         'weight' => 5,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -342,6 +384,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -394,7 +442,7 @@ function nas_boa_feature_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 6,
+      'weight' => 3,
     ),
   );
 
@@ -412,6 +460,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 10,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -419,6 +473,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -496,7 +556,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -514,6 +574,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -521,6 +587,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -589,6 +661,12 @@ function nas_boa_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 7,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -596,6 +674,12 @@ function nas_boa_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -648,7 +732,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 4,
     ),
   );
 
