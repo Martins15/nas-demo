@@ -16,5 +16,6 @@ $plugin = array(
   'theme' => 'nas_conservation_landing',
   'regions' => array(
     'top' => t('Top'),
+    'menu_bar' => t('Menu bar'),
   ),
 );

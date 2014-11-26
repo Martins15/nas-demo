@@ -23,6 +23,7 @@ define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
 define('NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE', 'conservation_hero');
 
 define('NAS_FLYWAYS_NUMBER', 4);
+define('NAS_PANES_CONSERVATION_MENU_BAR_MENU', 'menu-header-big-main-menu');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -278,6 +279,13 @@ function nas_panes_theme() {
       ),
       'template' => 'conservation-landing-top',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_top',
+    ),
+    'conservation_menu_bar' => array(
+      'variables' => array(
+        'items' => NULL,
+      ),
+      'template' => 'conservation-menu-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_menu_bar',
     ),
     'project_birds' => array(
       'template' => 'project-birds',

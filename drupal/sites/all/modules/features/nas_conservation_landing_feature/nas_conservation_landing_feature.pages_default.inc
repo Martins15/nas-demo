@@ -49,6 +49,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     'style_settings' => array(
       'default' => NULL,
       'top' => NULL,
+      'menu_bar' => NULL,
     ),
   );
   $display->cache = array();
@@ -56,6 +57,32 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
   $display->uuid = 'ff8e6759-c227-4a3e-9ae5-3046d270c153';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
+    $pane->panel = 'menu_bar';
+    $pane->type = 'nas_panes_conservation_menu_bar';
+    $pane->subtype = 'nas_panes_conservation_menu_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default_menu_item' => variable_get('nas_conservation_landing_default_menu_item', '161'),
+      'form_build_id' => 'form-BApvj-OpOy_y8fu6Y5_afjTLIeTKqhqaaXEBMxLFADI',
+      'form_token' => 'A4RoZFunTt8GEf628b1WfPTdwVxJXKvpAW8ass6KmFk',
+      'form_id' => 'conservation_menu_bar_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
+    $display->content['new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d'] = $pane;
+    $display->panels['menu_bar'][0] = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
     $pane = new stdClass();
     $pane->pid = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
     $pane->panel = 'top';

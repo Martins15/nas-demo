@@ -5,23 +5,7 @@
  */
 ?>
 <?php print render($content['top']); ?>
-
-<section class="category-nav strip-nav">
-  <div class="row">
-    <div class="columns">
-      <ul class="inline-list">
-        <li><a href="#">Important Bird Areas</a></li>
-        <li><a href="#">Bird Friendly Communities</a></li>
-        <li><a href="#">Climate &amp; Energy</a></li>
-        <li><a href="#">Seas &amp; Shores</a></li>
-        <li><a href="#">Working Lands</a></li>
-        <li><a href="#">Science</a></li>
-        <li><a href="#">Advocacy</a></li>
-        <li><a href="#">Education</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+<?php print render($content['menu_bar']); ?>
 
 <section class="global-content with-padding">
 <div class="row">
