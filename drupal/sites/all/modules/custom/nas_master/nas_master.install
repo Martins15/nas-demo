@@ -390,3 +390,9 @@ function nas_master_update_7037() {
   features_revert_module('nas_static_page_feature');
 }
 
+/**
+ * Revert nas_conservation_landing_feature feature.
+ */
+function nas_master_update_7038() {
+  features_revert_module('nas_conservation_landing_feature');
+}
