@@ -118,8 +118,8 @@ function cons_landing_full_bg_area_render($subtype, $conf, $args, $contexts) {
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
   }
 
-  $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  $contextual_links = '';    
+  if (user_access('access contextual links')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.
