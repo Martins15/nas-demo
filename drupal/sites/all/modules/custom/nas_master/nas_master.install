@@ -382,3 +382,10 @@ function nas_master_update_7036() {
   pp_create_conservation_hero_image();
   module_enable(array('nas_conservation_landing_feature'));
 }
+
+/**
+ * Revert nas_conservation_project_feature feature.
+ */
+function nas_master_update_7038() {
+  features_revert_module('nas_conservation_project_feature');
+}
