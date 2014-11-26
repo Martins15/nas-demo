@@ -41,4 +41,5 @@ features[variable][] = menu_parent_boa
 features[variable][] = node_options_boa
 features[variable][] = node_preview_boa
 features[variable][] = node_submitted_boa
-mtime = 1416904450
+features[variable][] = panelizer_defaults_node_boa
+mtime = 1416979511
