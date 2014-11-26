@@ -365,3 +365,12 @@ function nas_master_update_7033() {
   features_revert_module('nas_conservation_project_feature');
   features_revert_module('nas_editor_role');
 }
+
+/**
+ * Add new wysiwyg inline element Bottom line.
+ */
+function nas_master_update_7034() {
+  field_delete_field('field_project_bottomline');
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_conservation_project_feature');
+}
