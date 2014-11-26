@@ -58,6 +58,22 @@ function nas_panes_theme() {
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
     ),
+    'boa_header' => array(
+      'variables' => array(
+        'title' => '',
+        'plate_number' => '',
+        'scientific_name' => ''
+      ),
+      'template' => 'boa-header',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_header',
+    ),
+    'boa_body' => array(
+      'variables' => array(
+        'body' => '',
+      ),
+      'template' => 'boa-body',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_body',
+    ),
     'nas_featured_bird' => array(
       'variables' => array(
         'name' => '',
