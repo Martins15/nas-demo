@@ -24,6 +24,7 @@
     <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
       <div class="columns large-12 large-centered">
         <?php print $content['header_hero']; ?>
+        <p class="hero-blurb"><?php print $content['subtitle']; ?></p>
       </div>
     </div>
   </div>
@@ -45,6 +46,18 @@
       <?php print $content['main']; ?>
     </div>
     <div class="large-4 columns sidebar">
+      <div class="engagement-card">
+        <div class="engagement-card-content no-min-height">
+          <h3 class="engagement-card-headline">Help the Plight of the Albatross</h3>
+          <p>These magnificent birds die tragic deaths, becoming entangled in fishing lines.</p>
+          <div class="engagement-card-cta">
+            <a href="#" class="button tomato xlarge">Endorse New Legislation</a>
+          </div>
+        </div>
+        <div class="engagement-card-photo">
+          <img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt="">
+        </div>
+      </div>
       <?php print $content['right']; ?>
     </div>
   </div>
