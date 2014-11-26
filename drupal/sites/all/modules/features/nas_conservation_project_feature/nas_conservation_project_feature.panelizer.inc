@@ -51,7 +51,6 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'right' => NULL,
       'body' => NULL,
       'bottom' => NULL,
-      'bottom_line' => NULL,
       'strategy' => NULL,
       'hero_attribution' => NULL,
       'strategy_icon' => NULL,
@@ -198,35 +197,6 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $pane->uuid = 'e573215c-1498-458b-94bb-ccbeb9afe3a1';
     $display->content['new-e573215c-1498-458b-94bb-ccbeb9afe3a1'] = $pane;
     $display->panels['bottom'][0] = 'new-e573215c-1498-458b-94bb-ccbeb9afe3a1';
-    $pane = new stdClass();
-    $pane->pid = 'new-3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab';
-    $pane->panel = 'bottom_line';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_project_bottomline';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab';
-    $display->content['new-3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab'] = $pane;
-    $display->panels['bottom_line'][0] = 'new-3b5a96c8-b102-4ca5-bcbc-ca3cf0ac9dab';
     $pane = new stdClass();
     $pane->pid = 'new-29434efd-ea4f-4dc5-a9e3-e0a42957d8b6';
     $pane->panel = 'hero_attribution';
