@@ -502,6 +502,25 @@ function nas_static_page_feature_panelizer_defaults() {
     $display->content['new-d17456f0-4d23-47a1-a57e-936368aba6fb'] = $pane;
     $display->panels['nav_menu'][0] = 'new-d17456f0-4d23-47a1-a57e-936368aba6fb';
     $pane = new stdClass();
+    $pane->pid = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
+    $pane->panel = 'right';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_most_viewed_articles-nas_most_viewed_articles_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'eb34ca6e-d25e-4112-960c-a20dd37ec889';
+    $display->content['new-eb34ca6e-d25e-4112-960c-a20dd37ec889'] = $pane;
+    $display->panels['right'][0] = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
+    $pane = new stdClass();
     $pane->pid = 'new-8ed97e3b-b686-4ad3-bb09-7a180121cbbb';
     $pane->panel = 'subtitle';
     $pane->type = 'entity_field';

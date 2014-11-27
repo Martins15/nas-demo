@@ -332,6 +332,10 @@ function nas_panes_theme() {
       'template' => 'conservation-strategy-top',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_top',
     ),
+    'cons_landing_full_bg_area' => array(
+      'template' => 'cons-landing-full-bg-area',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_full_bg_area',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {

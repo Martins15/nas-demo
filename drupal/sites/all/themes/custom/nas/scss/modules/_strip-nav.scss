@@ -24,6 +24,10 @@
     ));
   }
 
+  &.without-border {
+    border: none;
+  }
+
   ul {
     width: $row-width;
     margin: 0 auto;

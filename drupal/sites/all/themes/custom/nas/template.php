@@ -247,11 +247,10 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
-  // Subtitle currently presented only in flyway landing teasers.
   if ($vars['view_mode'] == 'nas_node_teaser_small') {
-    $vars['subtitle'] = '';
-    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    $vars['description'] = '';
+    if (!empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['description'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
     }
   }
 
