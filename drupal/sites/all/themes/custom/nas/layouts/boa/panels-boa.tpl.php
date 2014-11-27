@@ -72,11 +72,7 @@
                 <?php print $content['main']; ?>
               </div>
               <div class="large-4 columns">
-                <section class="bird-guide-section boa-plate-illustration center">
-                  <img src="../../img/boa_card_mini.jpg" />
-                  <a href="#" class="see-full-plate"><i class="icon-magnifier"></i> See full plate</a><br />
-                  <a href="#" class="illustration-attribution">Learn more about John J Audubon</a>
-                </section>
+                <?php print $content['sidebar']; ?>
                 <section class="social-sharing bird-guide-section right-col small center">
                   <span class="social-sharing-caption small">Share this plate</span>
                   <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>

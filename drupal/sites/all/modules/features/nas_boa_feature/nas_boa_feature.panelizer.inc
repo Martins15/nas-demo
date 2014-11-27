@@ -103,6 +103,31 @@ function nas_boa_feature_panelizer_defaults() {
     $pane->uuid = '51047d7e-d04a-4440-9ea7-172cb7306f4c';
     $display->content['new-51047d7e-d04a-4440-9ea7-172cb7306f4c'] = $pane;
     $display->panels['main'][1] = 'new-51047d7e-d04a-4440-9ea7-172cb7306f4c';
+    $pane = new stdClass();
+    $pane->pid = 'new-8edbbc20-457f-4ede-b810-d25498f39bb7';
+    $pane->panel = 'sidebar';
+    $pane->type = 'nas_boa_plate';
+    $pane->subtype = 'nas_boa_plate';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link_title' => 'Learn more about John J Audubon',
+      'link_uri' => '<front>',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8edbbc20-457f-4ede-b810-d25498f39bb7';
+    $display->content['new-8edbbc20-457f-4ede-b810-d25498f39bb7'] = $pane;
+    $display->panels['sidebar'][0] = 'new-8edbbc20-457f-4ede-b810-d25498f39bb7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;
