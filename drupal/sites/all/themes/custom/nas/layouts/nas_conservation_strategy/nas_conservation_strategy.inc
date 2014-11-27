@@ -14,8 +14,6 @@ $plugin = array(
   'icon' => 'nas_conservation_strategy.png',
   'theme' => 'nas_conservation_strategy',
   'regions' => array(
-    'hero_image' => t('Hero image'),
-    'logo_icon' => t('Conservation strategy icon'),
-    'title' => t('Title'),
+    'top' => t('Top'),
   ),
 );

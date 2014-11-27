@@ -5,27 +5,7 @@
  */
 ?>
 
-<?php print render($content['hero_image']); ?>
-<?php print render($content['logo_icon']); ?>
-<?php print render($content['title']); ?>
-<div class="hero dark-gradient light-text">
-  <div class="hero-image">
-    <img src="<?php print base_path() . path_to_theme() . '/img/hero-img-6.jpg'; ?>" alt="">
-  </div>
-  <div class="row">
-    <div class="hero-header">
-      <div class="column">
-        <img class="hero-icon" src="<?php print base_path() . path_to_theme() . '/img/conservation-icon-large-3.png'; ?>">
-        <h4 class="hero-slug">Conservation</h4>
-        <h2 class="hero-title big with-icon">Sharing Our Seas &amp; Shores</h2>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="hero-attribution row">
-  <p class="column"><span class="hero-attribution-text">Photo: Lazlo Ilyes, Flickr Creative Commons</span></p>
-</div>
+<?php print render($content['top']); ?>
 
 <section class="global-content with-padding">
   <div class="row">
@@ -52,7 +32,7 @@
         <a title="Caption for the photo here." href="<?php print base_path() . path_to_theme() . '/img/conservation-img-3.jpg'; ?>" class="lightbox cboxElement"><img src="<?php print base_path() . path_to_theme() . '/img/conservation-img-3.jpg'; ?>" alt=""></a>
         <figcaption class="caption">Caption for the photo here.</figcaption>
       </figure>
-      <br>
+      <br />
     </div>
     <div class="medium-8 columns text-container">
       <h4 class="close-heading">Shores</h4>
