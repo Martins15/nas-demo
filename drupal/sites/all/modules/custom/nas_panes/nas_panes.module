@@ -58,6 +58,16 @@ function nas_panes_theme() {
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
     ),
+    'boa_plate' => array(
+      'variables' => array(
+        'image_thumbnail' => '',
+        'image' => '',
+        'link_title' => '',
+        'link_url' => '',
+      ),
+      'template' => 'boa-plate',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
+    ),
     'boa_header' => array(
       'variables' => array(
         'title' => '',
