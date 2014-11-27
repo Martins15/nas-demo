@@ -64,6 +64,12 @@ function nas_conservation_strategy_feature_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'nas_node_related_features' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_editorial_card' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -71,7 +77,7 @@ function nas_conservation_strategy_feature_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '6',
         ),
       ),
       'display' => array(),
