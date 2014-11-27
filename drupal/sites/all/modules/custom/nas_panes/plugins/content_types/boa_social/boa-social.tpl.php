@@ -1,12 +1,11 @@
 <?php
 /**
  * @file
- * News social block template file.
+ * BOA social block template file.
  *
  * Available variables:
  * - $page_link: url node.
  * - $caption: static text.
- * - $title: title node.
  */
 ?>
 <section class="social-sharing bird-guide-section right-col small center">
