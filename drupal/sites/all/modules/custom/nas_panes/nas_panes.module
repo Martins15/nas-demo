@@ -68,6 +68,13 @@ function nas_panes_theme() {
       'template' => 'boa-plate',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
     ),
+    'boa_bird' => array(
+      'variables' => array(
+        'bird' => '',
+      ),
+      'template' => 'boa-bird',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
+    ),
     'boa_header' => array(
       'variables' => array(
         'title' => '',

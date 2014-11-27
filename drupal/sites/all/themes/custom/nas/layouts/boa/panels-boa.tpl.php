@@ -77,21 +77,6 @@
                   <span class="social-sharing-caption small">Share this plate</span>
                   <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
                 </section>
-                <section class="bird-guide-section boa-in-the-bird-guide">
-                  <div class="columns">
-                    <h2 class="thin">In the Bird Guide</h2>
-                    <figure class="bird-card">
-                      <div class="bird-card-illustration">
-                        <a href="#"><img src="../../img/bird-1.png" alt=""></a>
-                      </div>
-                      <figcaption class="bird-card-caption">
-                        <h4 class="common-name"><a href="#">Cactus Wren</a></h4>
-                        <p class="scientific-name">Campylorhynchus brunneicapillus</p>
-                      </figcaption>
-                      <a href="#" class="icon-sound-full bird-card-audio"></a>
-                    </figure>
-                  </div>
-                </section>
                 <section class="bird-guide-section boa-in-the-news">
                   <div class="columns">
                     <h2 class="thin">In the News</h2>
