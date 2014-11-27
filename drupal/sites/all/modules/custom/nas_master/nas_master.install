@@ -390,7 +390,6 @@ function nas_master_update_7037() {
   features_revert_module('nas_static_page_feature');
 }
 
-
 /**
  * Revert nas_conservation_project_feature feature.
  * Revert nas_bird_type_feature feature.
@@ -409,7 +408,6 @@ function nas_master_update_7039() {
 
 /**
  * Revert nas_boa_family_feature feature.
- * Revert nas_bird_type_feature feature.
  */
 function nas_master_update_7040() {
   features_revert_module('nas_boa_family_feature');
