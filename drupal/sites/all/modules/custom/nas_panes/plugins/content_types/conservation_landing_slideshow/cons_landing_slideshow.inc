@@ -148,6 +148,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
         $image_fid = $get_field_hero_image[0]['fid'];
       }
     }
+    $nodes_array_to_show[$nid]['hero_image'] = '';
     if (!empty($image_fid)) {
       $file = file_load($image_fid);
       $nodes_array_to_show[$nid]['hero_image'] = image_style_url('conservation_strategy_slideshow', $file->uri);
@@ -172,6 +173,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     }
     if (!empty($featured_nid) && $featured_node = node_load($featured_nid)) {
       $get_field_hero_image = field_get_items('node', $featured_node, 'field_hero_image');
+      $nodes_array_to_show[$nid]['featured_node']['hero_image'] = '';
       if (isset($get_field_hero_image[0]['fid'])) {
         $file = file_load($get_field_hero_image[0]['fid']);
         $nodes_array_to_show[$nid]['featured_node']['hero_image'] = image_style_url('conservation_slideshow_featured_project', $file->uri);
