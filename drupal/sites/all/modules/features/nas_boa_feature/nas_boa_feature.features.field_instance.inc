@@ -831,6 +831,7 @@ function nas_boa_feature_field_default_field_instances() {
   t('Plate Number');
   t('Scientific Name');
   t('State');
+  t('Used for sorting cards by state on BOA landing page');
 
   return $field_instances;
 }
