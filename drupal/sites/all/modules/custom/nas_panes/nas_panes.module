@@ -324,6 +324,13 @@ function nas_panes_theme() {
       'template' => 'cons-landing-full-bg-area',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_full_bg_area',
     ),
+    'boa_family_species' => array(
+      'variables' => array(
+        'genus' => array(),
+      ),
+      'template' => 'boa-family-species',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_family_species',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
