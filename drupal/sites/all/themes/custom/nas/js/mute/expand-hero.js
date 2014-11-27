@@ -1,7 +1,7 @@
 (function($) {
   Drupal.behaviors.expand_hero = {
     attach: function(context, settings) {
-      window.scrollTo(0, 0);
+      /*window.scrollTo(0, 0);*/
 
       var oldWidth = $(".hero.expand").width(),
           oldHeight = $(".hero.expand").height(),

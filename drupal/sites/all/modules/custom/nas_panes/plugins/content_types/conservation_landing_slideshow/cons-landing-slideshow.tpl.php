@@ -11,10 +11,10 @@
   <?php print $contextual_links; ?>
   <div class="conservation-indicator row">
     <div class="column">
-    <?php $active = true;?>
+    <?php $active = TRUE;?>
     <?php foreach ($nodes_array_to_show as $node): ?>
       <a class="conservation-indicator-icon <?php $active ? print 'active' : ''; ?>"><img src="<?php print $node['image']; ?>" alt=""></a>
-      <?php $active = false; ?>
+      <?php $active = FALSE; ?>
     <?php endforeach; ?>
     </div>
   </div>
