@@ -128,6 +128,25 @@ function nas_boa_feature_panelizer_defaults() {
     $pane->uuid = '8edbbc20-457f-4ede-b810-d25498f39bb7';
     $display->content['new-8edbbc20-457f-4ede-b810-d25498f39bb7'] = $pane;
     $display->panels['sidebar'][0] = 'new-8edbbc20-457f-4ede-b810-d25498f39bb7';
+    $pane = new stdClass();
+    $pane->pid = 'new-83f7d1d8-a877-4d0b-8787-f89c6af0ba72';
+    $pane->panel = 'sidebar';
+    $pane->type = 'nas_boa_bird';
+    $pane->subtype = 'nas_boa_bird';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '83f7d1d8-a877-4d0b-8787-f89c6af0ba72';
+    $display->content['new-83f7d1d8-a877-4d0b-8787-f89c6af0ba72'] = $pane;
+    $display->panels['sidebar'][1] = 'new-83f7d1d8-a877-4d0b-8787-f89c6af0ba72';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;
