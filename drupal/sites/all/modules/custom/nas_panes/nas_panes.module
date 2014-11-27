@@ -58,6 +58,16 @@ function nas_panes_theme() {
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
     ),
+    'boa_plate' => array(
+      'variables' => array(
+        'image_thumbnail' => '',
+        'image' => '',
+        'link_title' => '',
+        'link_url' => '',
+      ),
+      'template' => 'boa-plate',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
+    ),
     'boa_header' => array(
       'variables' => array(
         'title' => '',
@@ -319,6 +329,18 @@ function nas_panes_theme() {
     'other_projects' => array(
       'template' => 'other-projects',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/other_projects',
+    ),
+    'conservation_strategy_top' => array(
+      'variables' => array(
+        'hero_image' => NULL,
+        'icon' => NULL,
+        'title' => NULL,
+        'credit' => NULL,
+        'color_mode_gradient' => NULL,
+        'color_mode_text' => NULL,
+      ),
+      'template' => 'conservation-strategy-top',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_top',
     ),
     'cons_landing_full_bg_area' => array(
       'template' => 'cons-landing-full-bg-area',
