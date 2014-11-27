@@ -75,6 +75,14 @@ function nas_panes_theme() {
       'template' => 'boa-bird',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
     ),
+    'nas_boa_social' => array(
+      'variables' => array(
+        'caption' => '',
+        'page_link' => '',
+      ),
+      'template' => 'boa-social',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_social',
+    ),
     'boa_header' => array(
       'variables' => array(
         'title' => '',

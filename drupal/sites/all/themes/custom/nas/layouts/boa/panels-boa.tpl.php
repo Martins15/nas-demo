@@ -73,10 +73,6 @@
               </div>
               <div class="large-4 columns">
                 <?php print $content['sidebar']; ?>
-                <section class="social-sharing bird-guide-section right-col small center">
-                  <span class="social-sharing-caption small">Share this plate</span>
-                  <a class="social-sharing-icon blue small" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-pinterest"></i></a>&nbsp;<a class="social-sharing-icon blue small" href="#"><i class="icon-mail"></i></a>
-                </section>
                 <section class="bird-guide-section boa-in-the-news">
                   <div class="columns">
                     <h2 class="thin">In the News</h2>
