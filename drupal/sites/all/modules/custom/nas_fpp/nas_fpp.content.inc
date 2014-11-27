@@ -17,6 +17,7 @@ define('NAS_FPP_FLYWAY_IMAGE_HERO_3', 'hero-img-8.jpg');
 define('NAS_FPP_FLYWAY_MINIMAP', 'flyway-minimap.png');
 define('NAS_FPP_FLYWAY_FRONT_MINIMAP', 'pacific-flyway-map.png');
 define('NAS_FPP_FLYWAY_FRONT_BG', 'breakout-section-flyway.jpg');
+define('NAS_FPP_CONS_LANDING_FULL_BG_IMAGE', 'breakout-section-1.jpg');
 
 /**
  * Load default image by URI, or save from module's folder if not exist.

@@ -17,5 +17,6 @@ $plugin = array(
   'regions' => array(
     'top' => t('Top'),
     'menu_bar' => t('Menu bar'),
+    'full_bg_area' => t('Full background image area'),
   ),
 );

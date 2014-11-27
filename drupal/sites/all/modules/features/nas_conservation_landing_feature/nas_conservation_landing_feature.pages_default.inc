@@ -114,6 +114,84 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->uuid = '71994362-845f-47e4-a8a2-e15b2ceab167';
     $display->content['new-71994362-845f-47e4-a8a2-e15b2ceab167'] = $pane;
     $display->panels['top'][0] = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
+    $pane = new stdClass();
+    $pane->pid = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
+    $pane->panel = 'full_bg_area';
+    $pane->type = 'cons_landing_full_bg_area';
+    $pane->subtype = 'cons_landing_full_bg_area';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Our on-the-ground conservation work is fueled by science, advocacy, and education.',
+      'form_build_id' => 'form-551TcucEsnNpiJMq2A7DVT6u6KY5OZN1RkPrU4Fz4KA',
+      'form_token' => 'Uy5q8nJLPzB0PEfoJPh_f4JRqO0FRZnYkdVXn_pD-9Y',
+      'form_id' => 'cons_landing_full_bg_area_edit_form',
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'image' => nas_fpp_get_default_image(NAS_FPP_CONS_LANDING_FULL_BG_IMAGE),
+      'color' => 'light',
+      'wrapper' => array(
+        1 => array(
+          'top_link' => array(
+            'title' => 'Science',
+            'url' => 'science',
+          ),
+          'title' => 'Understanding the Science of Conservation and Climate',
+          'text' => array(
+            'value' => '<p>Audubon pioneered the idea of Citizen Science with the first Christmas Bird Count. Today the longest-running wildlife census in the world continues to shape and inform our approach to conservation.</p>',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Explore Our Science Initiatives',
+            'url' => '',
+          ),
+        ),
+        2 => array(
+          'top_link' => array(
+            'title' => 'Advocacy',
+            'url' => 'advocacy',
+          ),
+          'title' => 'Standing Up and Speaking Out for Birds',
+          'text' => array(
+            'value' => '<p>Audubon pioneered the idea of Citizen Science with the first Christmas Bird Count. Today the longest-running wildlife census in the world continues to shape and inform our approach to conservation.</p>',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Policy Issues & Action',
+            'url' => '',
+          ),
+        ),
+        3 => array(
+          'top_link' => array(
+            'title' => 'Education',
+            'url' => 'education',
+          ),
+          'title' => 'Shaping the Next Generation of Conservationists',
+          'text' => array(
+            'value' => '<p>A commitment to education is at the heart of the Audubon tradition. By inspiring more people in more places to value and protect the natural world, we are laying the foundation for future conservation.</p>',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Audubon’s Education Programs',
+            'url' => '',
+          ),
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f4a1249c-685e-4e65-a336-10239a7ff8c0';
+    $display->content['new-f4a1249c-685e-4e65-a336-10239a7ff8c0'] = $pane;
+    $display->panels['full_bg_area'][0] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
   $handler->conf['display'] = $display;
