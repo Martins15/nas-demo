@@ -8323,7 +8323,7 @@ body.black-bg .section-header a:hover {
 
 /* @todo Document this whole thing */
 .slideshow {
-  margin-bottom: 50px;
+  margin-bottom: -30px;
   position: relative;
 }
 body.black-bg .slideshow {
