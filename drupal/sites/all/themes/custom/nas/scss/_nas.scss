@@ -116,9 +116,11 @@
 }
 
 .hero-attribution {
-  .hero-attribution-text {
-    padding: 2px 5px;
-    background-color: rgba(0, 0, 0, 0.2);
+  @include breakpoint(medium-up) {
+    .hero-attribution-text {
+      padding: 2px 5px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
