@@ -23,7 +23,6 @@ function nas_panes_boa_family_species_render($subtype, $conf, $args, $context) {
   if ($context_node->type !== 'boaf') {
     return;
   }
-  $block_title = t('@title in the News', array('@title' => $context_node->title));
 
   $trail = menu_get_active_trail();
   // If BOA Family is not presented in menu then there are no children Genus.
@@ -80,10 +79,7 @@ function nas_panes_boa_family_species_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = '';
   if (!empty($genera)) {
-    $block->content = theme('boa_family_species', array(
-      'genera' => $genera,
-      'title' => $block_title,
-    ));
+    $block->content = theme('boa_family_species', array('genera' => $genera));
   }
 
   return $block;
