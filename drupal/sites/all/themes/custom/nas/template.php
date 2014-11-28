@@ -154,6 +154,9 @@ function nas_preprocess_node_bird(&$vars) {
   }
 }
 
+/**
+ * Implements THEME_preprocess_node for BOA content type.
+ */
 function nas_preprocess_node_boa(&$vars) {
   $node = $vars['node'];
   $node_path = 'node/' . $node->nid;
