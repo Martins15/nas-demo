@@ -441,5 +441,5 @@ function nas_master_update_7043() {
  * Revert editor permissions.
  */
 function nas_master_update_7044() {
-  features_revert_module ('nas_editor_role');
+     features_revert_module ( 'nas_editor_role');
 }
