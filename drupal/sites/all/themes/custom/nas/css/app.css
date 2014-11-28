@@ -11667,6 +11667,15 @@ body.touch .sticky-wrapper {
   margin-bottom: 10px;
 }
 
+@media only screen and (min-width: 768px) {
+  .static-page-content .text-container {
+    padding-bottom: 70px;
+  }
+}
+h2.grey {
+  color: #838078;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
