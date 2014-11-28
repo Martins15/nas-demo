@@ -1,5 +1,7 @@
-.static-page-content {
-  .text-container {
-    padding-bottom: 70px;
+@include breakpoint(large-up) {
+  .static-page-content {
+    .text-container {
+      padding-bottom: 70px;
+    }
   }
 }

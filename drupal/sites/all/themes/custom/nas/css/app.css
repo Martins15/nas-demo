@@ -11311,10 +11311,11 @@ body.touch .sticky-wrapper {
   font-weight: 300;
 }
 
-.static-page-content .text-container {
-  padding-bottom: 70px;
+@media only screen and (min-width: 768px) {
+  .static-page-content .text-container {
+    padding-bottom: 70px;
+  }
 }
-
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
