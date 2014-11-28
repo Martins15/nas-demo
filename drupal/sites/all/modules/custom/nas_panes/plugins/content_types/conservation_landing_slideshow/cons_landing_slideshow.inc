@@ -183,6 +183,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
       }
       $nodes_array_to_show[$nid]['featured_node']['title'] = l($featured_node->title, 'node/' . $featured_node->nid);
       $get_body = field_get_items('node', $featured_node, 'body');
+      $nodes_array_to_show[$nid]['featured_node']['summary'] = '';
       if (!empty($get_body[0]['value'])) {
         $nodes_array_to_show[$nid]['featured_node']['summary'] = text_summary($get_body[0]['value'], NULL, 150);
       }
