@@ -432,10 +432,16 @@ function nas_master_update_7042() {
 
 /**
  * Revert nas_image_styles_feature feature.
- *
- * Revert nas_conservation_landing_feature feature.
  */
 function nas_master_update_7043() {
+  features_revert_module('nas_image_styles_feature');
+
+}
+
+/**
+ * Revert nas_conservation_landing_feature feature.
+ */
+function nas_master_update_7044() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_conservation_landing_feature');
 }

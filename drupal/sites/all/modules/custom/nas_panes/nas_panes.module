@@ -68,6 +68,21 @@ function nas_panes_theme() {
       'template' => 'boa-plate',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
     ),
+    'boa_bird' => array(
+      'variables' => array(
+        'bird' => '',
+      ),
+      'template' => 'boa-bird',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
+    ),
+    'nas_boa_social' => array(
+      'variables' => array(
+        'caption' => '',
+        'page_link' => '',
+      ),
+      'template' => 'boa-social',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_social',
+    ),
     'boa_header' => array(
       'variables' => array(
         'title' => '',
@@ -349,6 +364,13 @@ function nas_panes_theme() {
     'cons_landing_slideshow' => array(
       'template' => 'cons-landing-slideshow',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_slideshow',
+    ),
+    'boa_family_species' => array(
+      'variables' => array(
+        'genus' => array(),
+      ),
+      'template' => 'boa-family-species',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_family_species',
     ),
   );
 
