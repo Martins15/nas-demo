@@ -11676,6 +11676,12 @@ h2.grey {
   color: #838078;
 }
 
+.pager-load-more {
+  list-style: none;
+  list-style-image: none;
+  list-style-type: none;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
