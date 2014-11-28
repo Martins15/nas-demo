@@ -319,6 +319,11 @@ function nas_css_alter(&$css) {
   unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
   unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
   unset($css[drupal_get_path('module', 'colorbox') . '/styles/plain/colorbox_style.css']);
+
+  // Disable aggregation for main styles.
+  // IE8 can't recognize breakpoints when use @import for styles.
+  // @todo should be improved. Maybe affect to performance.
+  $css['sites/all/themes/custom/nas/css/app.css']['preprocess'] = FALSE;
 }
 
 /**

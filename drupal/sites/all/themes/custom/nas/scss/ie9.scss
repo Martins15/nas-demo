@@ -1,16 +1,16 @@
 // Get some gradients into your life!
 .breakout-section.black-bg .breakout-section-hero:not(:last-child):after {
-  background-image: url(ie/black-gradient-up.png);
+  background-image: url(../img/ie/black-gradient-up.png);
   background-repeat: repeat-x;
 }
 
 .global-header.dark-bg {
-  background-image: url(ie/black-gradient-down.png);
+  background-image: url(../img/ie/black-gradient-down.png);
   background-repeat: repeat-x;
   background-size: auto 120px;
 }
 .global-header.light-bg {
-  background-image: url(ie/white-gradient-down.png);
+  background-image: url(../img/ie/white-gradient-down.png);
   background-repeat: repeat-x;
   background-size: auto 120px;
 }
