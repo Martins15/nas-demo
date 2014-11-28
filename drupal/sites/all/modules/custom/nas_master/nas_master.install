@@ -429,3 +429,10 @@ function nas_master_update_7041() {
 function nas_master_update_7042() {
   features_revert_module('nas_boa_feature');
 }
+
+/**
+ * Revert nas_image_styles_feature feature.
+ */
+function nas_master_update_7043() {
+  features_revert_module('nas_image_styles_feature');
+}

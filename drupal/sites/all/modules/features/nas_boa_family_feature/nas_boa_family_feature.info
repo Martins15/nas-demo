@@ -27,4 +27,4 @@ features[variable][] = panelizer_node:boaf_allowed_layouts
 features[variable][] = panelizer_node:boaf_allowed_layouts_default
 features[variable][] = panelizer_node:boaf_allowed_types_default
 features[variable][] = panelizer_node:boaf_default
-mtime = 1417011782
+mtime = 1417079886

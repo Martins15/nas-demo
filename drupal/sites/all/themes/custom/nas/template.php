@@ -45,6 +45,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'bird') {
     nas_preprocess_node_bird($vars);
   }
+  if ($vars['type'] == 'boa') {
+    nas_preprocess_node_boa($vars);
+  }
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
@@ -148,6 +151,34 @@ function nas_preprocess_node_bird(&$vars) {
       'style_name' => 'nas_bird_teaser_illustration',
       'path' => $get_field_bird_illustration[0]['file']->uri,
     )), $node_path, array('html' => TRUE));
+  }
+}
+
+/**
+ * Implements THEME_preprocess_node for BOA content type.
+ */
+function nas_preprocess_node_boa(&$vars) {
+  $node = $vars['node'];
+  $node_path = 'node/' . $node->nid;
+  $vars['title_link'] = l($node->title, $node_path);
+  if ($vars['view_mode'] === 'teaser') {
+    // Default illustration.
+    $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
+    if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
+      $illustration = theme('image_style', array(
+          'style_name' => 'boa_family_species',
+          'path' => $field_boa_illustration_items[0]['uri'],
+      ));
+    }
+    $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
+    $vars['conservation_status'] = '';
+    if ($status_items = field_get_items('node', $node, 'field_boa_status')) {
+      $vars['conservation_status'] = check_plain(taxonomy_term_load($status_items[0]['tid'])->name);
+    }
+    $vars['scientific_name'] = '';
+    if ($field_scientific_name_items = field_get_items('node', $node, 'field_boa_sciname')) {
+      $vars['scientific_name'] = $field_scientific_name_items[0]['safe_value'];
+    }
   }
 }
 
@@ -362,17 +393,22 @@ function nas_button($variables) {
 function nas_image($variables) {
   $attributes = $variables['attributes'];
   $attributes['src'] = file_create_url($variables['path']);
-
   $add_attributes = array('alt', 'title');
-  //these styles shouldn't have width and height for responsive design.
-  $remove_attr_for = array('hero_mobile', 'hero_image', 'bio_image', 'front_flyway_image', 'conservation_strategy_icon');
 
+  // These styles shouldn't have width and height for responsive design.
+  $remove_attr_for = array(
+    'hero_mobile',
+    'hero_image',
+    'bio_image',
+    'front_flyway_image',
+    'conservation_strategy_icon',
+    'boa_family_species',
+  );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
   }
 
   foreach ($add_attributes as $key) {
-
     if (isset($variables[$key])) {
       $attributes[$key] = $variables[$key];
     }

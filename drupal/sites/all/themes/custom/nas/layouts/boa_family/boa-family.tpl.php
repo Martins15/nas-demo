@@ -20,39 +20,6 @@
     </div>
   </div>
   <?php print $content['bottom']; ?>
-  <div class="boa-bird-card-set bg-boa-bejge">
-    <div class="row section-header space-top">
-      <div class="column">
-        <h2 class="thin boa-family-set-title">Genus I : Turkey Vulture <span>Cathartes</span></h2>
-      </div>
-    </div>
-    <div class="row boa-bird-card-container">
-      <div class="columns tiny-6 medium-4 large-3">
-        <div class="boa-bird-card">
-          <div class="photo">
-            <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>boa-bird-1.jpg" alt="" />
-            <span class="endangered-bird">ENDANGERED</span>
-          </div>
-          <h4 class="common-name"><a href="#">Vultures</a></h4>
-          <p class="scientific-name">Vulturinae</p>
-        </div>
-      </div>
-      <div class="columns tiny-6 medium-4 large-3">
-        <div class="boa-bird-card">
-          <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>boa-bird-1.jpg" alt="" />
-          <h4 class="common-name"><a href="#">Vultures</a></h4>
-          <p class="scientific-name">Vulturinae</p>
-        </div>
-      </div>
-      <div class="columns tiny-6 medium-4 large-3">
-        <div class="boa-bird-card">
-          <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>boa-bird-1.jpg" alt="" />
-          <h4 class="common-name"><a href="#">Vultures</a></h4>
-          <p class="scientific-name">Vulturinae</p>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="boa-family-block-pager">
     <div class="columns">
       <div class="inner">
