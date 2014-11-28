@@ -11316,6 +11316,10 @@ body.touch .sticky-wrapper {
     padding-bottom: 70px;
   }
 }
+h2.grey {
+  color: #838078;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
