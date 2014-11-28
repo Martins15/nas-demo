@@ -361,6 +361,10 @@ function nas_panes_theme() {
       'template' => 'cons-landing-full-bg-area',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_full_bg_area',
     ),
+    'cons_landing_slideshow' => array(
+      'template' => 'cons-landing-slideshow',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_slideshow',
+    ),
     'boa_family_species' => array(
       'variables' => array(
         'genus' => array(),

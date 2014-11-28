@@ -62,7 +62,7 @@
 .icon-close,
 .icon-menu,
 .icon-binoculars {
-  -ms-behavior: url(backgroundsize.min.htc);
+  -ms-behavior: url(../js/mute/backgroundsize.min.htc);
 }
 
 // Add some gradients
@@ -72,7 +72,7 @@
   width: 100%;
   bottom: 0;
   height: 100px;
-  background-image: url(ie/black-gradient-up.png);
+  background-image: url(../img/ie/black-gradient-up.png);
   background-repeat: repeat-x;
 }
 
@@ -220,16 +220,16 @@ aside,
   }
 }
 
-.icon-video { background-image: url(ie/icon-video.png); }
-.icon-facebook { background-image: url(ie/icon-facebook.png); }
-.icon-magnifier { background-image: url(ie/icon-magnifier.png); }
-.icon-mail { background-image: url(ie/icon-mail.png); }
-.icon-twitter { background-image: url(ie/icon-twitter.png); }
-.icon-pinterest { background-image: url(ie/icon-pinterest.png); }
-.icon-youtube { background-image: url(ie/icon-youtube.png); }
-.icon-spin-widdershins { background-image: url(ie/icon-spin-widdershins.png); }
-.icon-sound-full { background-image: url(ie/icon-sound-full.png); }
+.icon-video { background-image: url(../img/ie/icon-video.png); }
+.icon-facebook { background-image: url(../img/ie/icon-facebook.png); }
+.icon-magnifier { background-image: url(../img/ie/icon-magnifier.png); }
+.icon-mail { background-image: url(../img/ie/icon-mail.png); }
+.icon-twitter { background-image: url(../img/ie/icon-twitter.png); }
+.icon-pinterest { background-image: url(../img/ie/icon-pinterest.png); }
+.icon-youtube { background-image: url(../img/ie/icon-youtube.png); }
+.icon-spin-widdershins { background-image: url(../img/ie/icon-spin-widdershins.png); }
+.icon-sound-full { background-image: url(../img/ie/icon-sound-full.png); }
 
 .global-header.dark-text .primary-nav-search i.icon-magnifier {
-  background-image: url(ie/icon-magnifier-dark.png);
+  background-image: url(../img/ie/icon-magnifier-dark.png);
 }

@@ -207,6 +207,64 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: conservation_slideshow_featured_project.
+  $styles['conservation_slideshow_featured_project'] = array(
+    'name' => 'conservation_slideshow_featured_project',
+    'label' => 'conservation slideshow featured project',
+    'effects' => array(
+      2 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 306,
+          'height' => 306,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: conservation_slideshow_icon.
+  $styles['conservation_slideshow_icon'] = array(
+    'name' => 'conservation_slideshow_icon',
+    'label' => 'conservation slideshow icon',
+    'effects' => array(
+      3 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 100,
+          'height' => 100,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: conservation_strategy_hero.
   $styles['conservation_strategy_hero'] = array(
     'name' => 'conservation_strategy_hero',
@@ -300,6 +358,35 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'conservation_strategy_icon',
     'label' => 'Conservation Strategy Icon',
     'effects' => array(),
+  );
+
+  // Exported image style: conservation_strategy_slideshow.
+  $styles['conservation_strategy_slideshow'] = array(
+    'name' => 'conservation_strategy_slideshow',
+    'label' => 'conservation strategy slideshow',
+    'effects' => array(
+      1 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1072,
+          'height' => 972,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
   );
 
   // Exported image style: default_teaser_image.
