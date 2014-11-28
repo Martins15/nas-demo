@@ -160,7 +160,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     $get_field_image = field_get_items('node', $node, 'field_image');
     if (isset($get_field_image[0]['fid'])) {
       $file = file_load($get_field_image[0]['fid']);
-      $nodes_array_to_show[$nid]['image'] = image_style_url('conservation_strategy_icon', $file->uri);
+      $nodes_array_to_show[$nid]['image'] = image_style_url('conservation_slideshow_icon', $file->uri);
     }
     //Set link.
     if (empty($data[$nid]['learn_more_link']['title']) || empty($data[$nid]['learn_more_link']['url'])) {
