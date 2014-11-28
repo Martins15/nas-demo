@@ -135,6 +135,9 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
 
   $nodes_array_to_show = array();
   foreach ($nodes as $nid => $node) {
+    if (!isset($data[$nid])) {
+      continue;
+    }
     //Set title.
     $nodes_array_to_show[$nid]['title'] = $data[$nid]['title'];
     if (empty($data[$nid]['title'])) {
