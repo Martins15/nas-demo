@@ -14,7 +14,9 @@
     </div>
   </div>
   <div class="row view-content">
-    <?php print $rows; ?>
+    <div class="columns">
+      <?php print $rows; ?>
+    </div>
   </div>
   <div class="row">
     <?php if ($pager): ?>
