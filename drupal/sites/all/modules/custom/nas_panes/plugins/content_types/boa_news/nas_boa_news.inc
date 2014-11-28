@@ -10,7 +10,7 @@ $plugin = array(
   'description' => t('Provides "In the News" pane'),
   'category' => 'NAS',
   'edit form' => 'nas_boa_news_edit_form',
-  'render callback' => 'nas_panes_article_more_features_render',
+  'render callback' => 'nas_boa_news_render',
   'required context' => new ctools_context_required(t('Node'), 'node'),
 );
 
@@ -23,7 +23,7 @@ function nas_boa_news_edit_form($form, &$form_state) {
 
   $context = reset($form_state['display']->context);
   // Not on default panel, not article.
-  if (!$context->empty && $context->data->type !== 'article') {
+  if (!$context->empty && $context->data->type !== 'boa') {
     return $form;
   }
   $conf_key = $form_state['display']->context->empty ? 'default' : $context->data->nid;
@@ -67,38 +67,33 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
   }
   $conf_key = $context_node->nid;
 
-  $news_nodes = array();
   // Manual override.
   if (!empty($conf[$conf_key]['entity_reference']['entity_id'])) {
     $node = node_load($conf[$conf_key]['entity_reference']['entity_id']);
   }
   // Default behaviour.
   else {
-    $view_results = views_get_view_result('articles_more_features', 'default', $context_node->nid);
-    foreach ($view_results as $result) {
-      $news_nodes[] = node_load($result->nid);
+    $bird_view_results = views_get_view_result('boa_news', 'default', $context_node->nid);
+    if (empty($bird_view_results)) {
+      $bird_view_results = views_get_view_result('random_news', 'default');
     }
-  }
-
-  $teasers = array();
-  foreach ($news_nodes as $node) {
-    $build = node_view($node, 'nas_node_featured_small');
-    $teasers[] = drupal_render($build);
+    $result = reset($bird_view_results);
+    $node = node_load($result->field_related_bird_node_nid);
   }
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
-    $contextual_links = nas_panes_article_more_features_build_contextual_links($subtype, $context_node);
+  if (user_access('edit NAS panes') && user_access('access contextual links')) {
+    $contextual_links = nas_boa_news_build_contextual_links($subtype, $context_node);
   }
-  $vars['contextual_links'] = $contextual_links;
+
+  $node_build = node_view($node, 'boa_teaser');
+  $teaser = drupal_render($node_build);
 
   $block = new stdClass();
   $block->content = '';
-  if (!empty($teasers)) {
-    $block->content = theme('article_more_features', array(
-      'teasers' => $teasers,
-      'title' => $block_title,
-      'more_link' => l(t('More News »'), ''),
+  if (!empty($teaser)) {
+    $block->content = theme('boa_news', array(
+      'teaser' => $teaser,
       'contextual_links' => $contextual_links,
     ));
   }
@@ -117,34 +112,34 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
  * @return
  *   Rendered contextual links.
  */
-function nas_panes_article_more_features_build_contextual_links($subtype, $node) {
+function nas_boa_news_build_contextual_links($subtype, $node) {
   ctools_include('modal');
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
   ctools_add_js('ajax-responder');
 
-  $pid = nas_panes_article_more_features_lookup_pid($subtype, $node);
+  $pid = nas_boa_news_lookup_pid($subtype, $node);
   if (!$pid) {
     return '';
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $name = 'node:article:fullscreen_image';
+    $name = 'node:boa:default';
     $handler = panelizer_entity_plugin_get_handler('node');
-    $bundle = 'article.page_manager';
+    $bundle = 'boa.page_manager';
     $panelizer = $handler->get_default_panelizer_object($bundle, $name);
     ctools_export_crud_save('panelizer_defaults', $panelizer);
 
     // Reload node cause panel is saved.
     $cloned_node = node_load($node->nid, NULL, TRUE);
-    $pid = nas_panes_article_more_features_lookup_pid($subtype, $cloned_node);
+    $pid = nas_boa_news_lookup_pid($subtype, $cloned_node);
   }
   $page_manager = $node->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
 
   $links = array(
     'edit' => array(
-      'title' => t('Edit'),
+      'title' => t('Edit block'),
       'href' => $href,
       'query' => array('reload' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
@@ -175,7 +170,7 @@ function nas_panes_article_more_features_build_contextual_links($subtype, $node)
  * @return int
  *   Pane's pid from panelizer's display.
  */
-function nas_panes_article_more_features_lookup_pid($subtype, $node) {
+function nas_boa_news_lookup_pid($subtype, $node) {
   $pid = 0;
   // Since panelizer is already loaded we can get pane's pid from it.
   foreach ($node->panelizer['page_manager']->display->content as $_pid => $pane) {

@@ -166,6 +166,42 @@ function nas_boa_feature_panelizer_defaults() {
     $pane->uuid = '83f7d1d8-a877-4d0b-8787-f89c6af0ba72';
     $display->content['new-83f7d1d8-a877-4d0b-8787-f89c6af0ba72'] = $pane;
     $display->panels['sidebar'][2] = 'new-83f7d1d8-a877-4d0b-8787-f89c6af0ba72';
+    $pane = new stdClass();
+    $pane->pid = 'new-c7a9c99c-6042-403c-b67e-54558596e288';
+    $pane->panel = 'sidebar';
+    $pane->type = 'nas_boa_news';
+    $pane->subtype = 'nas_boa_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      '' => array(
+        'entity_reference' => FALSE,
+      ),
+      'form_build_id' => 'form-cO2G3ztVUVFX15umgqmJKe3VGpbvgm-eobv_tbkjuNw',
+      'form_token' => 'YrU7mofnkiMWiWdsSvr7K6ICy7AAGrYgqnQGtRqUlJs',
+      'form_id' => 'nas_boa_news_edit_form',
+      5729 => array(
+        'entity_reference' => FALSE,
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'c7a9c99c-6042-403c-b67e-54558596e288';
+    $display->content['new-c7a9c99c-6042-403c-b67e-54558596e288'] = $pane;
+    $display->panels['sidebar'][3] = 'new-c7a9c99c-6042-403c-b67e-54558596e288';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;

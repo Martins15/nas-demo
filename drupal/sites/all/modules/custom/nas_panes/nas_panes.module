@@ -68,6 +68,14 @@ function nas_panes_theme() {
       'template' => 'boa-plate',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
     ),
+    'boa_news' => array(
+      'variables' => array(
+        'teaser' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-news',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_news',
+    ),
     'boa_bird' => array(
       'variables' => array(
         'bird' => '',
