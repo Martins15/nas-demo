@@ -35,7 +35,7 @@
 </div>
 <?php endif; ?>
 <?php print $content['nav_menu']; ?>
-<section class="global-content with-padding">
+<section class="global-content with-padding static-page-content">
   <header class="row text-container">
     <div class="large-12 large-centered columns">
       <div class="article-meta clearfix hide-for-large hide-for-xlarge">
