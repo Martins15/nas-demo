@@ -108,6 +108,25 @@ function nas_boa_family_feature_panelizer_defaults() {
     $display->content['new-cfb303f5-0a69-424e-90bb-06a81a3261e4'] = $pane;
     $display->panels['body_column_2'][0] = 'new-cfb303f5-0a69-424e-90bb-06a81a3261e4';
     $pane = new stdClass();
+    $pane->pid = 'new-d8d9124b-d32a-47ab-9248-cda254e57ef9';
+    $pane->panel = 'bottom';
+    $pane->type = 'nas_panes_boa_family_species';
+    $pane->subtype = 'nas_panes_boa_family_species';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd8d9124b-d32a-47ab-9248-cda254e57ef9';
+    $display->content['new-d8d9124b-d32a-47ab-9248-cda254e57ef9'] = $pane;
+    $display->panels['bottom'][0] = 'new-d8d9124b-d32a-47ab-9248-cda254e57ef9';
+    $pane = new stdClass();
     $pane->pid = 'new-883a2f3e-be15-47c9-9d30-5ed14d98b25d';
     $pane->panel = 'header';
     $pane->type = 'entity_field';

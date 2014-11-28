@@ -431,9 +431,16 @@ function nas_master_update_7042() {
 }
 
 /**
- * Add State field on BOA.
+ * Revert nas_image_styles_feature feature.
  */
 function nas_master_update_7043() {
+  features_revert_module('nas_image_styles_feature');
+}
+
+/**
+ * Revert editor permissions.
+ */
+function nas_master_update_7044() {
   features_revert_module('nas_editor_role'
-    ); 
+    );
 }
