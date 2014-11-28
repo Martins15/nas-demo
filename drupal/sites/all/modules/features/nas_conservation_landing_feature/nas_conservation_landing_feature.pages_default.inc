@@ -50,6 +50,8 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'default' => NULL,
       'top' => NULL,
       'menu_bar' => NULL,
+      'full_bg_area' => NULL,
+      'slideshow' => NULL,
     ),
   );
   $display->cache = array();
@@ -114,6 +116,56 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->uuid = '71994362-845f-47e4-a8a2-e15b2ceab167';
     $display->content['new-71994362-845f-47e4-a8a2-e15b2ceab167'] = $pane;
     $display->panels['top'][0] = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
+    $pane = new stdClass();
+    $pane->pid = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
+    $pane->panel = 'slideshow';
+    $pane->type = 'cons_landing_slideshow';
+    $pane->subtype = 'cons_landing_slideshow';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'wrapper' => array(
+        4747 => array(
+          'entity_reference' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'image' => '',
+          'title' => '',
+          'summary' => array(
+            'value' => '',
+            'format' => 'full_html',
+          ),
+          'learn_more_link' => array(
+            'title' => '',
+            'url' => '',
+          ),
+          'entity_reference_project' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-t4Q3mUh1Jwv3XgUvNWH-1bLF0Plu8wcE8os4pYHaKJs',
+      'form_token' => '6LAz75yaGFOZyf12kVXPJcBMEWefwP4vecFvXJHPXBI',
+      'form_id' => 'cons_landing_slideshow_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '0d2bd504-36a8-4968-aa77-bb1d7a907547';
+    $display->content['new-0d2bd504-36a8-4968-aa77-bb1d7a907547'] = $pane;
+    $display->panels['slideshow'][0] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $pane = new stdClass();
     $pane->pid = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
     $pane->panel = 'full_bg_area';
