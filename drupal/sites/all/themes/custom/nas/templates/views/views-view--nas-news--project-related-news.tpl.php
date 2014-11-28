@@ -13,8 +13,10 @@
       <h2 class="thin"><?php print $view->get_title(); ?></h2>
     </div>
   </div>
-  <div class="row view-content large-8 columns">
-    <?php print $rows; ?>
+  <div class="row view-content">
+    <div class="columns">
+      <?php print $rows; ?>
+    </div>
   </div>
   <div class="row">
     <?php if ($pager): ?>
