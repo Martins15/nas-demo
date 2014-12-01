@@ -57,6 +57,8 @@ function nas_beans_feature_field_default_field_bases() {
         'half' => 'Half',
         'default' => 'Default',
         'full' => 'Full',
+        'half-right' => 'Half Right',
+        'one-third-left' => '1/3 Left',
       ),
       'allowed_values_function' => '',
     ),

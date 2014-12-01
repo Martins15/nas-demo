@@ -4870,6 +4870,11 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   margin: 25px 0;
   position: relative;
 }
+@media only screen and (min-width: 768px) {
+  .donate-bar.half-size {
+    width: 45%;
+  }
+}
 @media only screen and (min-width: 1020px) {
   .donate-bar:before {
     content: "";
@@ -7662,10 +7667,20 @@ body.touch .primary-sub-nav-index {
     width: 100%;
     padding-left: 0;
   }
+  .article-aside.half-right-width {
+    width: 55%;
+    float: right;
+  }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .article-aside {
     min-width: 33.33333%;
+  }
+  .article-aside.half-right-width {
+    float: none;
+    width: 25%;
+    text-align: center;
+    margin: 0 auto;
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
@@ -7673,6 +7688,10 @@ body.touch .primary-sub-nav-index {
     padding: 0;
     width: 100%;
   }
+}
+
+.one-third-left-width {
+  padding-right: 25px;
 }
 
 .comments {
