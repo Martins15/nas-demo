@@ -11,6 +11,7 @@
       if(oldHeight == 0) {
         oldHeight = oldWidth * 0.666667;
       }
+
       if($(".hero.expand").length > 0) {
         expandHero();
 
@@ -32,7 +33,11 @@
           var newHeight = windowHeight - $hero.offset().top,
               newWidth = (newHeight / oldHeight) * oldWidth,
               bleed = (newWidth - windowWidth) / -2;
-
+          console.log('newHeight ' + newHeight);
+          console.log('newWidth ' + newWidth);
+          console.log('bleed ' + bleed);
+          console.log('oldHeight ' + oldHeight);
+          console.log('oldWidth ' + oldWidth);
           $hero.css({"height": newHeight + "px"});
           $img.css({
             "left": "0px",
