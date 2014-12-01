@@ -1,11 +1,10 @@
 (function($) {
-
-  var oldWidth = 0,
-      oldHeight = 0;
-
   Drupal.behaviors.expand_hero = {
     attach: function(context, settings) {
       /*window.scrollTo(0, 0);*/
+
+      var oldWidth = 0,
+          oldHeight = 0;
 
       if($(".hero.expand").length > 0) {
 
