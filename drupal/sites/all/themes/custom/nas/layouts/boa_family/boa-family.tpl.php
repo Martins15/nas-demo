@@ -20,19 +20,6 @@
     </div>
   </div>
   <?php print $content['bottom']; ?>
-  <div class="boa-family-block-pager">
-    <div class="columns">
-      <div class="inner">
-        <a href="#" class="previous"></a>
-        <span class="previous-text">Previous Family</span>
-        <span class="previous-title">Tits</span>
-        <span class="separator"></span>
-        <span class="next-text">Next Family</span>
-        <span class="next-title">Hawks</span>
-        <a href="#" class="next"></a>
-      </div>
-    </div>
-  </div>
   <div class="row space-top boa-about-this-guide">
     <div class="columns large-12 text-container">
       <h2 class="thin">About This Guide</h2>
