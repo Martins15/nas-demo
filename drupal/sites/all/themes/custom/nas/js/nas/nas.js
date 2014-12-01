@@ -48,6 +48,19 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.articleFullscreen = {
+    attach: function (context, settings) {
+      if ($(".bean-welcome-to-audubon").length > 0) {
+        if (!$.cookie('firsttimevisitors')) {
+          $.cookie('firsttimevisitors', '1');
+        } else {
+          $(".bean-welcome-to-audubon .article-aside").removeClass('visible');
+          $(".bean-welcome-to-audubon .article-aside").addClass('hidden');
+        }
+      }
+    }
+  };
+
 // @todo Figure out how this is going to work on touch
   Nav.handleTouch = function () {
     $(".primary-nav-toggler").removeAttr("href");
