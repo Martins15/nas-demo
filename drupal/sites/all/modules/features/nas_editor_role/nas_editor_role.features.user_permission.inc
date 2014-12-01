@@ -3188,7 +3188,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'use block insert'.
   $permissions['use block insert'] = array(
     'name' => 'use block insert',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'bean_wysiwyg',
   );
 
