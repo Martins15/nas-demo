@@ -3055,49 +3055,63 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'show format selection for bean'.
   $permissions['show format selection for bean'] = array(
     'name' => 'show format selection for bean',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 
   // Exported permission: 'show format selection for field_collection_item'.
   $permissions['show format selection for field_collection_item'] = array(
     'name' => 'show format selection for field_collection_item',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 
   // Exported permission: 'show format selection for fieldable_panels_pane'.
   $permissions['show format selection for fieldable_panels_pane'] = array(
     'name' => 'show format selection for fieldable_panels_pane',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 
   // Exported permission: 'show format selection for file'.
   $permissions['show format selection for file'] = array(
     'name' => 'show format selection for file',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 
   // Exported permission: 'show format selection for node'.
   $permissions['show format selection for node'] = array(
     'name' => 'show format selection for node',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 
   // Exported permission: 'show format selection for taxonomy_term'.
   $permissions['show format selection for taxonomy_term'] = array(
     'name' => 'show format selection for taxonomy_term',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 
   // Exported permission: 'show format selection for user'.
   $permissions['show format selection for user'] = array(
     'name' => 'show format selection for user',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'better_formats',
   );
 

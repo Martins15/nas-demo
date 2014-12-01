@@ -17,7 +17,7 @@ function nas_editor_role_uuid_features_default_users() {
   'signature' => '',
   'signature_format' => 'map',
   'created' => 1414412105,
-  'access' => 1416993177,
+  'access' => 1417439098,
   'login' => 1416992440,
   'status' => 1,
   'timezone' => '',
