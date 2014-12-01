@@ -447,7 +447,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'administer menu'.
   $permissions['administer menu'] = array(
     'name' => 'administer menu',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'menu',
   );
 
