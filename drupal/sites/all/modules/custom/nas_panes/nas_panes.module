@@ -49,6 +49,16 @@ function nas_panes_theme() {
       'template' => 'article-more-features',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/article_more_features',
     ),
+    'boa_index_hero' => array(
+      'variables' => array(
+        'image_path' => '',
+        'title' => '',
+        'color' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-index-hero',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_hero',
+    ),
     'boa_hero' => array(
       'variables' => array(
         'image' => '',
@@ -482,6 +492,14 @@ function nas_panes_save_bird_guide_pane() {
  */
 function nas_panes_save_bird_landing_page() {
   $cache = page_manager_get_page_cache(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
+  page_manager_save_page_cache($cache);
+}
+
+/**
+ * Resave BOA index (cache to database).
+ */
+function nas_panes_save_boa_index_page() {
+  $cache = page_manager_get_page_cache('page-boa_index');
   page_manager_save_page_cache($cache);
 }
 
