@@ -392,6 +392,16 @@ function nas_panes_theme() {
       'template' => 'boa-family-species',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_family_species',
     ),
+    'boa_family_pager' => array(
+      'variables' => array(
+        'prev_title' => '',
+        'prev_link' => '',
+        'next_title' => '',
+        'next_link' => '',
+      ),
+      'template' => 'boa-family-pager',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_family_pager',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
