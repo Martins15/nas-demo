@@ -80,16 +80,4 @@
       </div>
     </div>
   </div>
-  <div class="boa-family-block-pager plate">
-    <div class="columns">
-      <div class="inner">
-        <a href="#" class="previous"></a>
-        <span class="previous-text">Plate 69</span>
-        <span class="previous-title">Brown Pelican</span>
-        <span class="separator"></span>
-        <span class="next-text">Plate 71</span>
-        <span class="next-title">Red Knot</span>
-        <a href="#" class="next"></a>
-      </div>
-    </div>
-  </div>
+  <?php print $content['footer']; ?>

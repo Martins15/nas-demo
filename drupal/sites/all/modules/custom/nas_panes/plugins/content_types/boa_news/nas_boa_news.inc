@@ -74,11 +74,17 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
   // Default behaviour.
   else {
     $bird_view_results = views_get_view_result('boa_news', 'default', $context_node->nid);
-    if (empty($bird_view_results)) {
-      $bird_view_results = views_get_view_result('random_news', 'default');
+
+    if (!empty($bird_view_results)) {
+      $result = reset($bird_view_results);
+      $nid = $result->field_related_bird_node_nid;
     }
-    $result = reset($bird_view_results);
-    $node = node_load($result->field_related_bird_node_nid);
+    else {
+      $bird_view_results = views_get_view_result('random_news', 'default');
+      $result = reset($bird_view_results);
+      $nid = $result->nid;
+    }
+    $node = node_load($nid);
   }
 
   $contextual_links = '';

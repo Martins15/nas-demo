@@ -19,5 +19,6 @@ $plugin = array(
     'hero' => t('Hero'),
     'main' => t('Main content'),
     'sidebar' => t('Sidebar'),
+    'footer' => t('Footer'),
   ),
 );
