@@ -445,3 +445,10 @@ function nas_master_update_7044() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_conservation_landing_feature');
 }
+
+/**
+ * Revert editor permissions.
+ */
+function nas_master_update_7044() {
+  features_revert_module( 'nas_editor_role');
+}
