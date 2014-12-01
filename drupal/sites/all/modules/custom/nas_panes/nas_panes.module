@@ -58,6 +58,18 @@ function nas_panes_theme() {
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
     ),
+    'boa_next' => array(
+      'variables' => array(
+        'next_url' => '',
+        'prev_url' => '',
+        'next_title' => '',
+        'next_plate_number' => '',
+        'prev_title' => '',
+        'prev_plate_number' => '',
+      ),
+      'template' => 'boa-next',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_next',
+    ),
     'boa_plate' => array(
       'variables' => array(
         'image_thumbnail' => '',
@@ -67,6 +79,14 @@ function nas_panes_theme() {
       ),
       'template' => 'boa-plate',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
+    ),
+    'boa_news' => array(
+      'variables' => array(
+        'teaser' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-news',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_news',
     ),
     'boa_bird' => array(
       'variables' => array(

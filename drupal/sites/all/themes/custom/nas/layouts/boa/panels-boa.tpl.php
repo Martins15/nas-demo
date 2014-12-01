@@ -73,21 +73,6 @@
               </div>
               <div class="large-4 columns">
                 <?php print $content['sidebar']; ?>
-                <section class="bird-guide-section boa-in-the-news">
-                  <div class="columns">
-                    <h2 class="thin">In the News</h2>
-                    <div class="editorial-card collapse-minimal">
-                      <div class="editorial-card-photo">
-                        <a href="#"><img src="../../img/editorial-card-1.jpg" alt=""></a>
-                      </div>
-                      <div class="editorial-card-content">
-                        <a href="#" class="editorial-card-slug">In the News</a>
-                        <h3 class="editorial-card-title"><a href="#">The Galveston Bay Oil Spill Imperils Thousands of Birds</a></h3>
-                        <p><em><a href="" class="editorial-card-link">Map of impacted areas</a></em></p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
               </div>
             </div>
           </section>
@@ -95,16 +80,4 @@
       </div>
     </div>
   </div>
-  <div class="boa-family-block-pager plate">
-    <div class="columns">
-      <div class="inner">
-        <a href="#" class="previous"></a>
-        <span class="previous-text">Plate 69</span>
-        <span class="previous-title">Brown Pelican</span>
-        <span class="separator"></span>
-        <span class="next-text">Plate 71</span>
-        <span class="next-title">Red Knot</span>
-        <a href="#" class="next"></a>
-      </div>
-    </div>
-  </div>
+  <?php print $content['footer']; ?>
