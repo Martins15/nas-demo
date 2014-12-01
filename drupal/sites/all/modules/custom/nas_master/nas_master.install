@@ -447,8 +447,9 @@ function nas_master_update_7044() {
 }
 
 /**
- * Revert editor permissions.
+ * Revert editor permissions. Enable memcache.
  */
 function nas_master_update_7045() {
   features_revert_module( 'nas_editor_role');
+  module_enable(array('memcache'));
 }
