@@ -23,9 +23,8 @@
   padding: $size-space $size-space*2;
   margin: $column-gutter 0; 
   position: relative;
-  display: inline-block;
 
-  @include breakpoint(medium-up) {
+  @include breakpoint(large-up) {
     &.half-size {
       width: 45%;
     }

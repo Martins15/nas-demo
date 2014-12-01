@@ -25,7 +25,6 @@
     vertical-align: middle;
     width: 100%;
   }
-
   // Breakpoints
   @include breakpoint(medium-up) {
     padding-left: $column-gutter;
@@ -45,10 +44,17 @@
     }
     &.half-right-width {
       width: 55%;
+      float: right;
     }
   }
   @include breakpoint(medium-only) {
     min-width: (100% / $total-columns) * 4;
+    &.half-right-width {
+      float: none;
+      width: 25%;
+      text-align: center;
+      margin: 0 auto;
+    }
   }
   @include width-range(#{lower-bound($tiny-range)}, #{upper-bound($small-range)}) {
     padding: 0;

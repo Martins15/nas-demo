@@ -4869,9 +4869,8 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   padding: 10px 20px;
   margin: 25px 0;
   position: relative;
-  display: inline-block;
 }
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 768px) {
   .donate-bar.half-size {
     width: 45%;
   }
@@ -7670,11 +7669,18 @@ body.touch .primary-sub-nav-index {
   }
   .article-aside.half-right-width {
     width: 55%;
+    float: right;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .article-aside {
     min-width: 33.33333%;
+  }
+  .article-aside.half-right-width {
+    float: none;
+    width: 25%;
+    text-align: center;
+    margin: 0 auto;
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
