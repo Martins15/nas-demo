@@ -8342,13 +8342,15 @@ body.black-bg .section-header a:hover {
 
 /* @todo Document this whole thing */
 .slideshow {
-  margin-bottom: -30px;
   position: relative;
 }
 body.black-bg .slideshow {
   color: #fff !important;
 }
 @media only screen and (min-width: 768px) {
+  .slideshow {
+    margin-bottom: -30px;
+  }
   .slideshow.standalone {
     top: -60px;
   }
