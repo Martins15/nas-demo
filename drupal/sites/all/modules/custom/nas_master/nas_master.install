@@ -449,9 +449,11 @@ function nas_master_update_7044() {
 /**
  * Revert editor permissions.
  * Revert nas_boa_family_feature feature.
+ * Enable memcache.
  */
 function nas_master_update_7045() {
   features_revert_module('nas_editor_role');
+  module_enable(array('memcache'));
   features_revert_module('nas_boa_family_feature');
   features_revert_module('nas_boa_feature');
 }

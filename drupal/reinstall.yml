@@ -115,6 +115,21 @@
     lineinfile: dest='sites/default/settings.php' line='$databases = array(\"default\" => array (\"default\" => array (\"database\" => \"{{ mysql_db }}\", \"username\" => \"{{ mysql_user }}\", \"password\" => \"{{ mysql_pass }}\", \"host\" => \"127.0.0.1\", \"port\" => \"\", \"driver\" => \"mysql\", \"prefix\" => \"\", ), ), );'
     when: workflow_type == "sql" and settings_exists.stat.exists == false
 
+  - name: Random prefix for memcache to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"memcache_key_prefix\"] = \"{{ mysql_db }}\";'
+    when: workflow_type == "sql" and settings_exists.stat.exists == false
+
+  - name: Memcache settings to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"cache_backends\"][] = \"sites/all/modules/contrib/memcache/memcache.inc\";'
+    when: workflow_type == "sql" and settings_exists.stat.exists == false
+
+  - name: Memcache settings to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"cache_default_class\"] = \"MemCacheDrupal\";'
+    when: workflow_type == "sql" and settings_exists.stat.exists == false
+
   - name: Adding environment variable to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'

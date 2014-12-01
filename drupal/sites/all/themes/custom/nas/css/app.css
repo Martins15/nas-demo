@@ -11486,6 +11486,7 @@ body.touch .sticky-wrapper {
 .boa-family-text-block .family-name {
   font-size: 75px;
   margin-bottom: 15px;
+  line-height: 78px;
 }
 .boa-family-text-block .scientific-name {
   color: #404040;
