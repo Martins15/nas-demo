@@ -7684,6 +7684,10 @@ body.touch .primary-sub-nav-index {
   }
 }
 
+.one-third-left-width {
+  padding-right: 25px;
+}
+
 .comments {
   padding: 50px 0 0 0;
 }

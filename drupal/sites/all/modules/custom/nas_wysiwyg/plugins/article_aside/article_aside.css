@@ -29,6 +29,8 @@
 }
 .one-third-left-width {
   width: 33%;
+  float: left;
+  padding-right: 25px;
 }
 .one-third-left-width img {
   vertical-align: middle;
