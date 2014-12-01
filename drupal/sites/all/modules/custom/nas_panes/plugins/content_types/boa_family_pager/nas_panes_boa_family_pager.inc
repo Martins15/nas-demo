@@ -39,7 +39,6 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
       $links[] = $link['link'];
     }
   }
-  dpm($links);
   $prev_key = $current - 1 < 0 ? count($links) - 1 : $current - 1;
   $next_key = $current + 1 < count($links) ? $current + 1 : 0;
 
