@@ -117,7 +117,7 @@
 
   - name: Random prefix for memcache to settings.php
     sudo: yes
-    lineinfile: dest='sites/default/settings.php' line='$conf['memcache_key_prefix'] = \"{{ mysql_db }}\";'
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"memcache_key_prefix\"] = \"{{ mysql_db }}\";'
     when: workflow_type == "sql" and settings_exists.stat.exists == false
 
   - name: Adding environment variable to settings.php
