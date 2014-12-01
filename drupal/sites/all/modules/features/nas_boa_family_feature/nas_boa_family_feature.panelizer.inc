@@ -146,6 +146,32 @@ function nas_boa_family_feature_panelizer_defaults() {
     $display->content['new-e279b12e-071a-4dbf-8536-6d4e4ce4757f'] = $pane;
     $display->panels['bottom'][1] = 'new-e279b12e-071a-4dbf-8536-6d4e4ce4757f';
     $pane = new stdClass();
+    $pane->pid = 'new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72';
+    $pane->panel = 'bottom';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'About this guide',
+      'title' => '',
+      'body' => '<div class="row space-top boa-about-this-guide"><div class="columns large-12 text-container"><h2 class="thin">About This Guide</h2><p>The National Audubon Society would like to thank Richard Buonanno for compiling the content for this online version of John James Audubon\'s <em>Birds of America</em>. It is from an 1840 “First Octavo Edition” of Audubon\'s complete seven volume text, and presents Audubon\'s images and original text descriptions. Bird species can be found listed alphabetically, or categorized by family. Audubon\'s drawings of some species\' anatomical features are also included in the Figures section. The list of species that have gone extinct since Audubon\'s time was provided by Mr. Buonanno, as was the list of State Birds.</p></div></div>',
+      'format' => 'full_html',
+      'substitute' => 0,
+      'name' => 'boa_about_this_guide',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72';
+    $display->content['new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72'] = $pane;
+    $display->panels['bottom'][2] = 'new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72';
+    $pane = new stdClass();
     $pane->pid = 'new-883a2f3e-be15-47c9-9d30-5ed14d98b25d';
     $pane->panel = 'header';
     $pane->type = 'entity_field';
