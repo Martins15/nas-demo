@@ -9,8 +9,6 @@
 ?>
 
 <section class="bird-guide-section boa-in-the-bird-guide">
-  <div class="columns">
-    <h2 class="thin">In the Bird Guide</h2>
-    <?php print $bird; ?>
-  </div>
+  <h2 class="thin">In the Bird Guide</h2>
+  <?php print $bird; ?>
 </section>
