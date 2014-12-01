@@ -601,7 +601,7 @@ function nas_conservation_strategy_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_strategy_articles',
-    'label' => 'Related acticles',
+    'label' => 'Related articles',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -626,7 +626,7 @@ function nas_conservation_strategy_feature_field_default_field_instances() {
   t('Header color mode');
   t('Hero Image');
   t('Icon Image');
-  t('Related acticles');
+  t('Related articles');
 
   return $field_instances;
 }
