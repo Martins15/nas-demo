@@ -11,7 +11,7 @@
  */
 ?>
 
-<div class="boa-family-block-pager">
+<div class="boa-family-block-pager family">
   <div class="columns">
     <div class="inner">
       <?php print $prev_link; ?>
