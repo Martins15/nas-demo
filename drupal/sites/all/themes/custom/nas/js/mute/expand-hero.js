@@ -11,13 +11,12 @@
       if(oldHeight == 0) {
         oldHeight = oldWidth * 0.666667;
       }
-
       if($(".hero.expand").length > 0) {
         expandHero();
 
         $(".hero.expand img").load(expandHero);
 
-        $(window).on("resize", expandHero);
+        $(window).on("resize load", expandHero);
       }
 
       // Expands the hero to window height for a dramatic effect
