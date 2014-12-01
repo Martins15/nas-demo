@@ -15,5 +15,6 @@ $plugin = array(
   'theme' => 'nas_conservation_strategy',
   'regions' => array(
     'top' => t('Top'),
+    'body' => t('Body'),
   ),
 );

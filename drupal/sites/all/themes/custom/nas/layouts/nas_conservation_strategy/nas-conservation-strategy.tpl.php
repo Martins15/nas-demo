@@ -9,38 +9,9 @@
 
 <section class="global-content with-padding">
   <div class="row">
-    <div class="column">
-      <h1 class="centered">Audubon is committed to protecting the vital habitat along America’s coasts where people and birds intersect.</h1>
-    </div>
+    <?php print render($content['body']); ?>
   </div>
-  <div class="row space-top">
-    <div class="medium-3 medium-centered large-uncentered large-6 large-push-6 columns hide-for-tiny hide-for-small">
-      <img src="<?php print base_path() . path_to_theme() . '/img/conservation-img-6.jpg'; ?>" alt="">
-    </div>
-    <div class="large-6 large-pull-6 columns text-container">
-      <p>Booming coastal development and recreational use of beaches are rapidly eroding vital habitat for birds and other wildlife. Overfishing threatens the food supply for birds—and, in the long term, for people, too.</p>
-      <div class="donate-bar">
-        <div class="donate-bar-caption">Support our conservation work by contributing today.</div><div href="#" class="donate-bar-button"><a href="#" class="button tomato large">Donate</a></div>
-      </div>
-      <p>Sea level rise jeopardizes nesting habitat on beaches and islands at the same time that it puts coastal communities at risk. Beaches are critical nesting and migratory habitat for many species, including <a href="#">Piping Plovers</a>, <a href="#">Snowy Plovers</a>, <a href="#">Least Terns</a>, and <a href="#">American Oystercatchers</a>.</p>
-      <blockquote class="pull-quote">Coastal areas have unique importance for many species of birds, offering breeding sites as well as rich sources of food for migratory stopovers.</blockquote>
-    </div>
-  </div>
-  <div class="row space-top space-bottom double">
-    <div class="medium-4 columns">
-      <figure class="article-image">
-        <a title="Caption for the photo here." href="<?php print base_path() . path_to_theme() . '/img/conservation-img-3.jpg'; ?>" class="lightbox cboxElement"><img src="<?php print base_path() . path_to_theme() . '/img/conservation-img-3.jpg'; ?>" alt=""></a>
-        <figcaption class="caption">Caption for the photo here.</figcaption>
-      </figure>
-      <br />
-    </div>
-    <div class="medium-8 columns text-container">
-      <h4 class="close-heading">Shores</h4>
-      <p>Audubon’s beach stewardship program enlists local communities to steer beachgoers away from the most important nesting sites. We also empower members and friends to become a strong voice for sound coastal management practices. By using sound science, including predictive modeling, we can begin to explore potential habitat impacts from sea level rise. </p>
-      <h4 class="close-heading">Seas</h4>
-      <p>Marine Important Bird Areas hold great promise for stabilizing declining populations of seabirds, including Ashy Storm-Petrels, Kittlitz’s Murrelets, and Roseate Terns. Expanding the IBA program to encompass and study vital ocean sites will provide a foundation for Audubon’s development and promotion of much-needed regulation of overfishing and other threats to ocean birds and wildlife.</p>
-    </div>
-  </div>
+
   <section class="card-set bg-gray">
     <div class="row space-top">
       <div class="column">

@@ -24,6 +24,16 @@
   width: 100%;
   }
 }
+.article-aside.half-right-width {
+  width: 50%;
+}
+.one-third-left-width {
+  width: 33%;
+}
+.one-third-left-width img {
+  vertical-align: middle;
+  width: 100%;
+}
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .article-aside {
     min-width: 33.33333%;

@@ -23,6 +23,14 @@
   padding: $size-space $size-space*2;
   margin: $column-gutter 0; 
   position: relative;
+  display: inline-block;
+
+  @include breakpoint(medium-up) {
+    &.half-size {
+      width: 45%;
+    }
+  }
+
   &:before {
     @extend %donate-bar-bird;
     @include breakpoint(min-width, 1020px) {

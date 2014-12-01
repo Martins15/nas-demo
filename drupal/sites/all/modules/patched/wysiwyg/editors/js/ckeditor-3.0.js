@@ -228,6 +228,9 @@ Drupal.wysiwyg.editor.instance.ckeditor = {
       if (pluginName == 'donate') {
         CKEDITOR.plugins.add(pluginName, donateAddPlugin);
       }
+      if (pluginName == 'donate_half_size') {
+        CKEDITOR.plugins.add(pluginName, donateHalfSizeAddPlugin);
+      }
       if (pluginName == 'article_aside') {
         CKEDITOR.plugins.add(pluginName, article_asideAddPlugin);
       }

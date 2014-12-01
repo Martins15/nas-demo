@@ -4869,6 +4869,12 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   padding: 10px 20px;
   margin: 25px 0;
   position: relative;
+  display: inline-block;
+}
+@media only screen and (min-width: 601px) {
+  .donate-bar.half-size {
+    width: 45%;
+  }
 }
 @media only screen and (min-width: 1020px) {
   .donate-bar:before {
@@ -7661,6 +7667,9 @@ body.touch .primary-sub-nav-index {
   .article-aside.full-width {
     width: 100%;
     padding-left: 0;
+  }
+  .article-aside.half-right-width {
+    width: 55%;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
