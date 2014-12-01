@@ -11591,6 +11591,7 @@ body.touch .sticky-wrapper {
   line-height: 28px;
   right: 252px;
   top: 45px;
+  text-align: right;
 }
 .boa-family-block-pager .next-text {
   color: #F15936;

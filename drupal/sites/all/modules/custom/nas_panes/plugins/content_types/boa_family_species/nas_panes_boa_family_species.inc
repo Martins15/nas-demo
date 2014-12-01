@@ -95,15 +95,30 @@ function nas_panes_boa_family_species_render($subtype, $conf, $args, $context) {
  *   Roman number.
  */
 function _boa_family_species_to_roman($number) {
-  $flip = array(
-    1 => 'I',
-    2 => 'II',
-    3 => 'III',
-    4 => 'IV',
-    5 => 'V',
-    6 => 'VI',
-    7 => 'VII',
+  $n = intval($number);
+  $res = '';
+
+  $roman_numbers = array(
+    'M'  => 1000,
+    'CM' => 900,
+    'D'  => 500,
+    'CD' => 400,
+    'C'  => 100,
+    'XC' => 90,
+    'L'  => 50,
+    'XL' => 40,
+    'X'  => 10,
+    'IX' => 9,
+    'V'  => 5,
+    'IV' => 4,
+    'I'  => 1,
   );
 
-  return isset($flip[$number]) ? $flip[$number] : 'N';
+  foreach ($roman_numbers as $roman => $number) {
+    $matches = intval($n / $number);
+    $res .= str_repeat($roman, $matches);
+    $n = $n % $number;
+  }
+
+  return $res;
 }
