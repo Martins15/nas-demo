@@ -88,6 +88,10 @@ function conservation_strategy_projects_render($subtype, $conf, $args, $context)
     $teasers[] = drupal_render($build);
   }
 
+  if (empty($teasers)) {
+    return;
+  }
+
   $block->content = theme('conservation_strategy_projects', array(
       'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Featured projects'),
       'teasers' => $teasers,
