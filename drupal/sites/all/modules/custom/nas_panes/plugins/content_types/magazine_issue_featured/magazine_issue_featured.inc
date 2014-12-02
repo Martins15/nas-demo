@@ -101,7 +101,7 @@ function magazine_issue_featured_render($subtype, $conf, $args, $context) {
   }
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('access contextual links') && user_access('edit NAS panes')) {
     $contextual_links = magazine_issue_featured_build_contextual_links($subtype, $context_node);
   }
   $vars['contextual_links'] = $contextual_links;

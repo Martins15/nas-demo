@@ -119,7 +119,7 @@ function cons_landing_full_bg_area_render($subtype, $conf, $args, $contexts) {
   }
 
   $contextual_links = '';
-  if (user_access('access contextual links')) {
+  if (user_access('access contextual links') && user_access('edit NAS panes')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.
@@ -128,7 +128,7 @@ function cons_landing_full_bg_area_render($subtype, $conf, $args, $contexts) {
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'cons_landing_full_bg_area'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_frontpage_page();
+      nas_panes_save_conservation_landing_page();
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'cons_landing_full_bg_area'))->fetchField();
     }
     $links = array(
