@@ -56,6 +56,7 @@ dependencies[] = bean_wysiwyg
 dependencies[] = scheduler
 dependencies[] = rel_to_abs
 dependencies[] = memcache
+dependencies[] = node_edit_protection
 
 ; Custom modules
 dependencies[] = nas_solr_feature

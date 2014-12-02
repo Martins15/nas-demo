@@ -274,11 +274,11 @@ function nas_preprocess_node_project(&$vars) {
   if (!empty($node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'])) {
     $nid = $node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'];
     if ($strategy = node_load($nid)) {
-      $vars['strategy_link'] = l($strategy->title, 'node/' . $nid, array('attributes' => array('class' => 'editorial-card-slug')));
+      $vars['strategy_link'] = l($strategy->title, 'node/' . $nid, array('attributes' => array('class' => array('editorial-card-slug'))));
     }
   }
 
-  if ($vars['view_mode'] == 'nas_node_teaser_small') {
+  if ($vars['view_mode'] == 'nas_node_teaser_small' || $vars['view_mode'] == 'nas_node_project_teaser') {
     $vars['description'] = '';
     if (!empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['description'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];

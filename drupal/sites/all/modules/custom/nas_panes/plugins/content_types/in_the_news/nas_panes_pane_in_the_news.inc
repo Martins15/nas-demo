@@ -121,7 +121,7 @@ function nas_panes_pane_in_the_news_custom_pane_render($subtype, $conf, $args, $
     $did = db_query('SELECT did FROM {panels_pane} WHERE panel = :panel',
       array(':panel' => 'bird_guide_search'))->fetchField();
     if (empty($did)) {
-      nas_panes_save_bird_landing_page();
+      nas_panes_resave_panel(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
       $did = db_query('SELECT did FROM {panels_pane} WHERE panel = :panel',
         array(':panel' => 'bird_guide_search'))->fetchField();
     }

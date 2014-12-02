@@ -24,6 +24,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -31,6 +37,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_featured_small' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
@@ -114,6 +126,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'list_default',
         'weight' => 3,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -125,6 +143,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'nas_node_related_features' => array(
         'label' => 'above',
@@ -195,6 +219,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 4,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -206,6 +236,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'nas_node_related_features' => array(
         'label' => 'above',
@@ -280,6 +316,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 7,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -291,6 +333,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'nas_node_related_features' => array(
         'label' => 'above',
@@ -360,6 +408,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'media',
         'weight' => 2,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -371,6 +425,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'nas_node_related_features' => array(
         'label' => 'above',
@@ -495,6 +555,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'nas_node_related_features' => array(
         'label' => 'above',
         'settings' => array(),
@@ -593,6 +659,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 8,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -604,6 +676,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'nas_node_related_features' => array(
         'label' => 'above',
@@ -676,6 +754,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -687,6 +771,12 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_node_project_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'nas_node_related_features' => array(
         'label' => 'above',

@@ -43,23 +43,19 @@
     sudo: yes
     file: path={{ backup_folder }} state=directory recurse=yes
 
-  - name: Making backup
+  - name: Making regular backup
     sudo: yes
-    shell: "{{ php_env_vars }} drush -y sql-dump --gzip --result-file={{ backup_folder }}/{{ backup_name }}.sql -l {{ site_url }}"
-    when: pp_environment == "staging" or make_backup
-
-  - name: Creating latest backup
-    sudo: yes
-    copy: src={{ backup_folder }}/{{ backup_name }}.sql.gz dest={{ backup_folder }}/latest.sql.gz force=yes mode=0644
+    mysql_db: name=staging state=dump target={{ backup_folder }}/{{ backup_name }}.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     when: pp_environment == "staging" or make_backup
 
   - name: Check if latest backup exists
     stat: path={{ backup_folder }}/latest.sql.gz
     register: latest_backup_exists
+    when: workflow_type == "sql"
 
-  - name: Create latest backup from staging
+  - name: Create initial backup from staging
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
-    when: latest_backup_exists.stat.exists == false and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and latest_backup_exists.stat.exists == false and ansible_env.SUDO_USER == "jenkins"
 
   - name: Downloading latest backup
     get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz force=yes
@@ -159,6 +155,11 @@
     sudo: yes
     shell: "{{ php_env_vars }} drush -dvy updb -l {{ site_url }}"
     when: workflow_type == "sql"
+
+  - name: Creating latest staging backup
+    sudo: yes
+    mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
+    when: pp_environment == "staging" or make_backup
 
   - name: Solr - clearing index
     sudo: yes

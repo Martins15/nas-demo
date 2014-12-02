@@ -12,6 +12,9 @@ function nas_master_install() {
     $destination = 'public://' . $file;
     file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
   }
+  $boa_hero_fid = nas_import_get_default_image('boa-hero.jpg');
+  variable_set('boa_index_hero', $boa_hero_fid);
+  features_revert_module('nas_boa_index_feature');
 }
 
 /**
@@ -88,7 +91,7 @@ function nas_master_update_7015() {
  * Insert Flyway Conservation Projects pane in panelized overriden flyway nodes.
  */
 function nas_master_update_7016() {
-  features_revert_module('nas_views');
+  features_revert_module('nas_views_feature');
 
   $nids = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'flyway'))->fetchAllKeyed(0, 0);
   $nodes = node_load_multiple($nids);
@@ -456,6 +459,10 @@ function nas_master_update_7045() {
   module_enable(array('memcache'));
   features_revert_module('nas_boa_family_feature');
   features_revert_module('nas_boa_feature');
+  $boa_hero_fid = nas_import_get_default_image('boa-hero.jpg');
+  variable_set('boa_index_hero', $boa_hero_fid);
+  module_enable(array('nas_boa_index_feature'));
+  features_revert_module('nas_site_template_feature');
 }
 
 /**
@@ -465,11 +472,18 @@ function nas_master_update_7046() {
   features_revert_module('nas_beans_feature');
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_conservation_strategy_feature');
+  module_enable(array('node_edit_protection'));
+  features_revert(array('nas_conservation_project_feature' => array('field_instance')));
 }
 
 /**
  * Fullscreen Article changes.
+ * [ANW-324] Flyway related birds: bird feature and views feature reverted.
+ * [ANW-327] Contact Node CT: allowed text formats limited for Bio field.
  */
 function nas_master_update_7047() {
   features_revert_module('nas_article_feature');
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_views_feature');
+  features_revert(array('nas_contact_type_feature' => array('field_instance')));
 }

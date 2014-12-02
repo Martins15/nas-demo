@@ -70,7 +70,7 @@ function nas_panes_pane_featured_article_custom_pane_render($subtype, $conf, $ar
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_article'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_news_page();
+      page_manager_save_page_cache(NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_article'))->fetchField();
     }
     $links = array(

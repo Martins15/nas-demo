@@ -108,14 +108,14 @@ function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
     ctools_add_js('ajax-responder');
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_bird_guide_pane();
+      nas_panes_resave_panel(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
     }
 
     $links = array(
       'pane-edit' => array(
         'title' => t('edit guide bar'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY . '::page_bird_guide_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),

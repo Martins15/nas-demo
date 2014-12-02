@@ -16,5 +16,6 @@ $plugin = array(
   'regions' => array(
     'top' => t('Top'),
     'body' => t('Body'),
+    'projects' => t('Projects'),
   ),
 );
