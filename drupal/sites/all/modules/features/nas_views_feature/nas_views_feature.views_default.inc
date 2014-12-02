@@ -1943,6 +1943,11 @@ function nas_views_feature_views_default_views() {
 
   /* Display: Flyway Related Birds */
   $handler = $view->new_display('panel_pane', 'Flyway Related Birds', 'flyway_related_birds');
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
