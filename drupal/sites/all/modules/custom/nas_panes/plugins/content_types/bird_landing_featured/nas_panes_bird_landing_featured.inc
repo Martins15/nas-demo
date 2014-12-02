@@ -131,7 +131,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_bird_landing_featured'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_bird_landing_page();
+      nas_panes_resave_panel(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_bird_landing_featured'))->fetchField();
     }
     $links = array(
