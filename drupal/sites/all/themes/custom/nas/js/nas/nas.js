@@ -50,21 +50,6 @@ var Nas = Nas || {};
 
   Drupal.behaviors.articleFullscreen = {
     attach: function (context, settings) {
-      if ($(".hero.expand").length > 0) {
-        settings.expandHero = settings.expandHero || {};
-        settings.expandHero.oldWidth = $(".hero.expand").width();
-        settings.expandHero.oldHeight = $(".hero.expand").height();
-
-        // Assume 2:3 aspect ratio if we can't calculate it
-        if (settings.expandHero.oldHeight === 0) {
-          settings.expandHero.oldHeight = settings.expandHero.oldWidth * 0.666667;
-        }
-        $(".hero.expand").once('hero-expand', function () {
-          Nas.expandHero();
-        });
-        $(".hero.expand img").load(Nas.expandHero);
-        $(window).resize(Nas.expandHero);
-      }
       if ($(".bean-welcome-to-audubon").length > 0) {
         if (!$.cookie('firsttimevisitors')) {
           $.cookie('firsttimevisitors', '1');
@@ -202,39 +187,5 @@ var Nas = Nas || {};
   if (StateManager.touch) {
     Nav.handleTouch();
   }
-  
-  // Expands the hero to window height for a dramatic effect
-  Nas.expandHero = function () {
-    var windowHeight = $(window).height(),
-        windowWidth = $(window).width(),
-        $hero = $(".hero.expand"),
-        $img = $hero.find("img");
-
-    // Only expand for large screens
-    if (windowWidth > 767) {
-      
-      var newHeight = windowHeight - $hero.offset().top,
-          newWidth = (newHeight / Drupal.settings.expandHero.oldHeight) * Drupal.settings.expandHero.oldWidth,
-          bleed = (newWidth - windowWidth) / -2;
-      $hero.css({"height": newHeight + "px"});
-      $img.css({
-        "left": "0px",
-        "max-width": "none",
-        "height": "auto",
-        "width": newWidth + "px"
-      });
-
-      if (newWidth > windowWidth) {
-        $img.css({
-          "left": bleed + "px"
-        });
-      }
-    }
-    // Everybody else gets a default-sized hero
-    else {
-      $hero.removeAttr("style");
-      $img.removeAttr("style");
-    }
-  };
   
 })(jQuery);

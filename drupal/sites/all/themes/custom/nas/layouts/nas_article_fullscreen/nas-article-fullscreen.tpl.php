@@ -15,7 +15,7 @@
  * @see nas_preprocess_nas_article_fullscreen()
  */
 ?>
-
+<?php print $content['magazine_bar']; ?>
 <div class="hero <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : ''; ?>-text expand">
   <div class="hero-image">
     <?php print $content['big_image']; ?>

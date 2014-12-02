@@ -467,3 +467,10 @@ function nas_master_update_7046() {
   features_revert_module('nas_conservation_strategy_feature');
   module_enable(array('node_edit_protection'));
 }
+
+/**
+ * Fullscreen Article changes.
+ */
+function nas_master_update_7047() {
+  features_revert_module('nas_article_feature');
+}
