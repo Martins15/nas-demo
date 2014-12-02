@@ -104,6 +104,7 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
   $title = check_plain($conf['title']);
   $color = check_plain($conf['color']);
 
+  $contextual_links = '';
   if (user_access('edit NAS panes')) {
     ctools_include('modal');
     ctools_modal_add_js();
