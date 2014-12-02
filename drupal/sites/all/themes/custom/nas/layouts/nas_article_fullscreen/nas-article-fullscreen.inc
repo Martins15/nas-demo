@@ -16,6 +16,7 @@ $plugin = array(
   'theme' => 'nas_article_fullscreen',
   'settings form' => 'nas_article_fullscreen_settings_form',
   'regions' => array(
+    'magazine_bar' => t('Magazine Bar'),
     'header_hero' => t('Header Hero'),
     'header' => t('Header'),
     'header_hero_attr_text' => t('Hero attribution text'),

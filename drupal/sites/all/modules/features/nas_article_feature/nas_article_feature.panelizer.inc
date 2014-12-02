@@ -794,7 +794,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->locks = array();
     $pane->uuid = '50c09e0e-e5c2-4f3a-957f-09b02dd86971';
     $display->content['new-50c09e0e-e5c2-4f3a-957f-09b02dd86971'] = $pane;
-    $display->panels['big_image'][0] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $display->panels['magazine_bar'][0] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
     $pane = new stdClass();
     $pane->pid = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
     $pane->panel = 'big_image';

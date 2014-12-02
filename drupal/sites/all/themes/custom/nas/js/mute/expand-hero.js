@@ -3,17 +3,10 @@
     attach: function(context, settings) {
       /*window.scrollTo(0, 0);*/
 
-      var oldWidth = $(".hero.expand").width(),
-          oldHeight = $(".hero.expand").height(),
-          oldAspectRatio = oldWidth / oldHeight;
+      var oldWidth = 0,
+          oldHeight = 0;
 
-      // Assume 2:3 aspect ratio if we can't calculate it
-      if(oldHeight == 0) {
-        oldHeight = oldWidth * 0.666667;
-      }
-
-      if($(".hero.expand").length > 0) {
-        expandHero();
+      if ($(".hero.expand").length > 0) {
 
         $(".hero.expand img").load(expandHero);
 
@@ -22,6 +15,19 @@
 
       // Expands the hero to window height for a dramatic effect
       function expandHero() {
+
+        if (oldWidth == 0) {
+          oldWidth = $(".hero.expand").width();
+        }
+        if (oldHeight == 0) {
+          oldHeight = $(".hero.expand").height();
+        }
+
+        // Assume 2:3 aspect ratio if we can't calculate it
+        if (oldHeight == 0) {
+          oldHeight = oldWidth * 0.666667;
+        }
+
         var windowHeight = $(window).height(),
             windowWidth = $(window).width(),
             aspectRatio = windowWidth / windowHeight,
@@ -29,7 +35,7 @@
             $img = $hero.find("img");
 
         // Only expand for large screens
-        if(windowWidth > 767) {
+        if (windowWidth > 767) {
           var newHeight = windowHeight - $hero.offset().top,
               newWidth = (newHeight / oldHeight) * oldWidth,
               bleed = (newWidth - windowWidth) / -2;
@@ -42,7 +48,7 @@
             "width": newWidth + "px"
           });
 
-          if(newWidth > windowWidth) {
+          if (newWidth > windowWidth) {
             $img.css({
               "left": bleed + "px"
             });
