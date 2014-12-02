@@ -12,6 +12,9 @@ function nas_master_install() {
     $destination = 'public://' . $file;
     file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
   }
+  $boa_hero_fid = nas_import_get_default_image('boa-hero.jpg');
+  variable_set('boa_index_hero', $boa_hero_fid);
+  features_revert_module('nas_boa_index_feature');
 }
 
 /**
@@ -456,6 +459,9 @@ function nas_master_update_7045() {
   module_enable(array('memcache'));
   features_revert_module('nas_boa_family_feature');
   features_revert_module('nas_boa_feature');
+  $boa_hero_fid = nas_import_get_default_image('boa-hero.jpg');
+  variable_set('boa_index_hero', $boa_hero_fid);
+  module_enable(array('nas_boa_index_feature'));
 }
 
 /**
