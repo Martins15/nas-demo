@@ -73,7 +73,6 @@ function boa_index_bio_form($form, &$form_state) {
   // can successfully retrieve the settings form.
   ctools_form_include($form_state, 'nas_panes_boa_index_bio', 'nas_panes', 'plugins/content_types/boa_index_bio');
 
-
   $form['name'] = array(
     '#title' => t('Name'),
     '#description' => t('Displayed in right sidebar'),
