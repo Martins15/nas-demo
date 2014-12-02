@@ -12,57 +12,8 @@
     <?php print render($content['body']); ?>
   </div>
 
-  <section class="card-set bg-gray">
-    <div class="row space-top">
-      <div class="column">
-        <h2 class="thin">Featured Seas &amp; Shores Projects</h2>
-      </div>
-    </div>
-    <div class="row card-set-wrapper">
-      <div class="clearfix card-set-scroller">
-        <div class="tiny-4 columns">
-          <div class="editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-10.jpg'; ?>" alt=""></a>
-            </div>
-            <div class="editorial-card-content">
-              <h3 class="editorial-card-title"><a href="#">Here’s the Name of a Conservation Project</a></h3>
-              <p>Along with the title, we should include a short description of the project. </p>
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-11.jpg'; ?>" alt=""></a>
-            </div>
-            <div class="editorial-card-content">
-              <h3 class="editorial-card-title"><a href="#">Another Current Seas &amp; Shores Project</a></h3>
-              <p>Along with the title, we should include a short description of the project. </p>
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-12.jpg'; ?>" alt=""></a>
-            </div>
-            <div class="editorial-card-content">
-              <h3 class="editorial-card-title"><a href="#">Another Current Seas &amp; Shores Project</a></h3>
-              <p>Along with the title, we should include a short description of the project. </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row space-bottom double">
-      <div class="card-set-dots">
-        <div class="dot"></div>
-        <div class="dot active"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-  </section>
+  <?php print render($content['projects']); ?>
+
   <div class="row section-header space-top double">
     <div class="column">
       <h2 class="thin">More On Seas &amp; Shores</h2>
