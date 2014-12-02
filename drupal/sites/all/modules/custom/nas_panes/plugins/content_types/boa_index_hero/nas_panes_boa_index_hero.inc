@@ -114,13 +114,13 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_boa_index_hero'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_boa_index_page();
+      nas_panes_resave_panel(NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_boa_index_hero'))->fetchField();
     }
     $links = array(
       'edit' => array(
         'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . 'page-boa_index' . '::page_boa_index_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY . '::page_boa_index_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),

@@ -13,6 +13,7 @@ define('NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-flyways_landing'
 define('NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'node_view');
 define('NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'panelizer:node:');
 define('NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-conservation_landing');
+define('NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY', 'page-boa_index');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -430,7 +431,6 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
-
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
@@ -438,28 +438,22 @@ function nas_panes_ajax_render_alter(&$commands) {
     // Here we save the cache to database. When we edited the pane we made
     // changes in the cache. In order the page to see the changes we need
     // to save cache data to database.
-    if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_bird_guide_pane();
-    }
+    $panel_keys = array(
+      NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
+    );
 
-    if (strpos($_GET['q'], NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_bird_landing_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_frontpage_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_news_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_node_view_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_conservation_landing_page();
+    foreach ($panel_keys as $key) {
+      if (strpos($_GET['q'], $key) !== FALSE) {
+        nas_panes_resave_panel($key);
+        break;
+      }
     }
 
     if (strpos($_GET['q'], NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
@@ -471,68 +465,17 @@ function nas_panes_ajax_render_alter(&$commands) {
       panels_save_display($cache->display);
     }
 
-    if (strpos($_GET['q'], NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_flyways_landing_page();
-    }
-
     $commands[] = ctools_ajax_command_reload();
   }
 }
 
 /**
- * Resave bird guide page (cache to database).
+ * Resave panels pane.
  */
-function nas_panes_save_bird_guide_pane() {
-  $cache = page_manager_get_page_cache(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
+function nas_panes_resave_panel($key) {
+  $cache = page_manager_get_page_cache($key);
   page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave bird landing page (cache to database).
- */
-function nas_panes_save_bird_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave BOA index (cache to database).
- */
-function nas_panes_save_boa_index_page() {
-  $cache = page_manager_get_page_cache('page-boa_index');
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave frontpage page (cache to database).
- */
-function nas_panes_save_frontpage_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave news page (cache to database).
- */
-function nas_panes_save_news_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave news page (cache to database).
- */
-function nas_panes_save_flyways_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave conservation landing page (cache to database).
- */
-function nas_panes_save_conservation_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
+  dpm($key);
 }
 
 /**
