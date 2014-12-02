@@ -47,7 +47,7 @@ function boa_index_hero_form($form, &$form_state) {
     ),
     '#default_value' => $conf['image'],
     '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_bird', 'featured_bird_mobile'),
+    '#pp_crop_styles' => array('boa_index_hero'),
   );
 
   // The two function calls below are necessary if we want to use a media
