@@ -14,6 +14,9 @@ function nas_master_install() {
   }
   $boa_hero_fid = nas_import_get_default_image('boa-hero.jpg');
   variable_set('boa_index_hero', $boa_hero_fid);
+
+  $boa_bio_fid = nas_import_get_default_image('boa-john-audubon.jpg');
+  variable_set('boa_index_bio', $boa_bio_fid);
   features_revert_module('nas_boa_index_feature');
 }
 
@@ -461,6 +464,8 @@ function nas_master_update_7045() {
   features_revert_module('nas_boa_feature');
   $boa_hero_fid = nas_import_get_default_image('boa-hero.jpg');
   variable_set('boa_index_hero', $boa_hero_fid);
+  $boa_bio_fid = nas_import_get_default_image('boa-john-audubon.jpg');
+  variable_set('boa_index_bio', $boa_bio_fid);
   module_enable(array('nas_boa_index_feature'));
   features_revert_module('nas_site_template_feature');
 }

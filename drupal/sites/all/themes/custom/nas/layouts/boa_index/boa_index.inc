@@ -17,5 +17,6 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'hero' => t('Hero'),
+    'main' => t('Main'),
   ),
 );
