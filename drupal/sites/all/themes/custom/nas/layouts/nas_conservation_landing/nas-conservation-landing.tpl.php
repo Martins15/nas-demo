@@ -8,22 +8,11 @@
 <?php print render($content['menu_bar']); ?>
 
 <section class="global-content with-padding">
-<div class="row">
-  <div class="medium-3 medium-centered large-uncentered large-6 large-push-6 columns hide-for-tiny hide-for-small">
-    <img src="<?php print base_path() . path_to_theme() . '/img/conservation-img-1.jpg'; ?>" alt="">
+  <div class="row">
+    <?php print $content['body']; ?>
   </div>
-  <div class="large-6 large-pull-6 columns text-container">
-    <h2 class="thin">We maximize our conservation results by focusing on five key strategies critical for birds</h2>
-    <p>For more than a century Audubon has protected birds and their habitat for the benefit of humanity as well as the earth’s biodiversity. Our legacy is built on science, education, advocacy, and on-the-ground conservation. We bring all of this together through our unparalleled network. This combination of expertise and on-the-ground engagement makes Audubon a truly unique and trusted force for conservation.</p>
-    <div class="donate-bar">
-      <div class="donate-bar-caption">Support our conservation work by contributing today.</div><div href="#" class="donate-bar-button"><a href="#" class="button tomato large">Donate</a></div>
-    </div>
-    <p>Audubon’s mission is more urgent today than ever before. Natural habitat and open spaces are disappearing at an alarming rate. Protections for wildlife, natural places, and clean air and water are in jeopardy. By protecting birds, we’re also safeguarding America’s great natural heritage for future gen- erations, preserving our shared quality of life and fostering a healthier environment for us all.</p>
-    <blockquote class="pull-quote">Audubon’s national and state programs, Centers, Chapters, and Important Bird Areas come together with an unparalleled wingspan for conservation.</blockquote>
-  </div>
-</div>
-<?php print $content['slideshow']; ?>
-<?php print $content['full_bg_area']; ?>
+  <?php print $content['slideshow']; ?>
+  <?php print $content['full_bg_area']; ?>
 <section class="card-set bg-1">
   <div class="row">
     <div class="column">
