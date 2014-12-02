@@ -472,7 +472,7 @@ function nas_master_update_7046() {
   features_revert_module('nas_beans_feature');
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_conservation_strategy_feature');
-  modules_enable(array('node_edit_protection'));
+  module_enable(array('node_edit_protection'));
 }
 
 /**
@@ -484,5 +484,5 @@ function nas_master_update_7047() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_views_feature');
-  feature_revert(array('nas_contact_type_feature' => array('field_instance')));
+  features_revert(array('nas_contact_type_feature' => array('field_instance')));
 }
