@@ -13,12 +13,12 @@
   </div>
   <div class="row card-set-wrapper <?php print !empty($contextual_links) ? 'contextual-links-region' : '' ?>">
     <?php print $contextual_links; ?>
-    <div class="clearfix card-set-scroller">
+    <div class="clearfix card-set-scroller conservation-strategy-projects-block">
       <?php foreach ($teasers as $teaser) : ?>
         <?php print $teaser; ?>
       <?php endforeach; ?>
   </div>
-  <div class="row space-bottom double">
+  <div class="row space-bottom">
     <div class="card-set-dots">
       <div class="dot"></div>
       <div class="dot active"></div>
