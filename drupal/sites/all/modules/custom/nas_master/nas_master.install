@@ -484,5 +484,5 @@ function nas_master_update_7047() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_views_feature');
-  features_revert(array('nas_contact_type_feature' => array('field_instance')));
+  feature_revert(array('nas_contact_type_feature' => array('field_instance')));
 }
