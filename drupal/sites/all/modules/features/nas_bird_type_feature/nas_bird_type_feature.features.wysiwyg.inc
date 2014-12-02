@@ -40,9 +40,9 @@ function nas_bird_type_feature_wysiwyg_default_profiles() {
           'Undo' => 1,
           'Link' => 1,
           'Unlink' => 1,
-          'PasteFromWord' => 1,
-          'RemoveFormat' => 1,
           'Blockquote' => 1,
+          'RemoveFormat' => 1,
+          'Format' => 1,
         ),
         'drupal' => array(
           'bean_wysiwyg' => 1,
@@ -62,8 +62,8 @@ function nas_bird_type_feature_wysiwyg_default_profiles() {
       'css_setting' => 'theme',
       'css_path' => '',
       'stylesSet' => '',
-      'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div,blockquote',
-      'advanced__active_tab' => 'edit-basic',
+      'block_formats' => 'p,address,pre,h1,h2,h3,h4,h5,h6,div,blockquote',
+      'advanced__active_tab' => 'edit-css',
       'forcePasteAsPlainText' => 0,
     ),
   );
