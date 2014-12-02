@@ -77,12 +77,20 @@ function conservation_strategy_projects_render($subtype, $conf, $args, $context)
     $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context_node, 'strategy', 'default');
   }
 
-  if (!empty($conf[$conf_key])) {
-
+  $nodes = array();
+  $view_results = views_get_view_result('conservation_strategy_projects', 'default', $context_node->nid);
+  foreach ($view_results as $result) {
+    $nodes[] = node_load($result->field_conservation_strategy_node_nid);
+  }
+  $teasers = array();
+  foreach ($nodes as $node) {
+    $build = node_view($node, 'nas_node_project_teaser');
+    $teasers[] = drupal_render($build);
   }
 
   $block->content = theme('conservation_strategy_projects', array(
       'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Featured projects'),
+      'teasers' => $teasers,
       'contextual_links' => $contextual_links,
     ));
 
