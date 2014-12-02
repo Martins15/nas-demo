@@ -88,7 +88,7 @@ function nas_master_update_7015() {
  * Insert Flyway Conservation Projects pane in panelized overriden flyway nodes.
  */
 function nas_master_update_7016() {
-  features_revert_module('nas_views');
+  features_revert_module('nas_views_feature');
 
   $nids = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'flyway'))->fetchAllKeyed(0, 0);
   $nodes = node_load_multiple($nids);
@@ -470,7 +470,10 @@ function nas_master_update_7046() {
 
 /**
  * Fullscreen Article changes.
+ * [ANW-324] Flyway related birds: bird feature and views feature reverted.
  */
 function nas_master_update_7047() {
   features_revert_module('nas_article_feature');
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_views_feature');
 }
