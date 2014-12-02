@@ -475,7 +475,6 @@ function nas_panes_ajax_render_alter(&$commands) {
 function nas_panes_resave_panel($key) {
   $cache = page_manager_get_page_cache($key);
   page_manager_save_page_cache($cache);
-  dpm($key);
 }
 
 /**
