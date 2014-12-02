@@ -48,6 +48,7 @@ scripts[] = js/mute/flyway-megamap.js
 scripts[] = js/mute/flyway-minimap.js
 scripts[] = js/mute/flyway-slides.js
 scripts[] = js/mute/expand-hero.js
+scripts[] = js/vendor/foundation/foundation.min.js
 
 ;; NAS
 scripts[] = js/nas/nas.js

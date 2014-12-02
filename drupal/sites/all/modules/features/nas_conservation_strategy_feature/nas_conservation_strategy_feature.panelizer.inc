@@ -39,6 +39,7 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
       'logo_icon' => NULL,
       'title' => NULL,
       'top' => NULL,
+      'body' => NULL,
     ),
   );
   $display->cache = array();
@@ -46,6 +47,35 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
   $display->uuid = '385346af-6cbe-462d-bb5d-b80ccec4d32f';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-3e7ac3da-8127-4384-8e81-c347045ff766';
+    $pane->panel = 'body';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:body';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'text_default',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3e7ac3da-8127-4384-8e81-c347045ff766';
+    $display->content['new-3e7ac3da-8127-4384-8e81-c347045ff766'] = $pane;
+    $display->panels['body'][0] = 'new-3e7ac3da-8127-4384-8e81-c347045ff766';
     $pane = new stdClass();
     $pane->pid = 'new-36072bc8-9de5-4fc3-97e3-f9caf26025e3';
     $pane->panel = 'top';

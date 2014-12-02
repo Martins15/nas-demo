@@ -70,6 +70,9 @@ function nas_conservation_strategy_feature_strongarm() {
       'nas_editorial_card' => array(
         'custom_settings' => TRUE,
       ),
+      'boa_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -77,7 +80,7 @@ function nas_conservation_strategy_feature_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
       ),
       'display' => array(),
