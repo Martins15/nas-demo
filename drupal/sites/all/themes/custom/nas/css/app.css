@@ -8572,6 +8572,10 @@ body.node-type-slideshow #tabs {
   display: none;
 }
 
+.conservation-strategy-projects-block .editorial-card {
+  margin-bottom: 20px;
+}
+
 .conservation-slider {
   position: relative;
   -webkit-font-smoothing: subpixel-antialiased;
