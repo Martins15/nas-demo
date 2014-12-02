@@ -34,7 +34,8 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'bird-guide',
+            'paths' => 'bird-guide
+boa',
           ),
           'context' => 'argument_string_1',
           'not' => FALSE,

@@ -7,22 +7,30 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Frontpage. Get Outside'),
-  'description' => t('Provides Get Outside block for frontpage'),
+  'title' => t('BOA index hero'),
+  'description' => t('Provides BOA Index page hero pane'),
   'category' => 'NAS',
-  'edit form' => 'nas_pane_get_outside_edit_form',
-  'render callback' => 'nas_pane_get_outside_render',
+  'edit form' => 'boa_index_hero_form',
+  'render callback' => 'boa_index_hero_render',
   'defaults' => array(
-    'num_blocks' => 3
+    'image' => 0,
+    'title' => '',
+    'color' => 'dark',
   ),
 );
 
 /**
  * An edit form for the pane's settings.
  */
-function nas_pane_get_outside_edit_form($form, &$form_state) {
+function boa_index_hero_form($form, &$form_state) {
   $conf = $form_state['conf'];
-  $form['#tree'] = TRUE;
+
+  $form['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#required' => TRUE,
+    '#default_value' => $conf['title'],
+  );
 
   $form['image'] = array(
     '#type' => 'media',
@@ -32,14 +40,14 @@ function nas_pane_get_outside_edit_form($form, &$form_state) {
     '#media_options' => array(
       'global' => array(
         'file_extensions' => 'png jpg jpeg gif',
-        'max_filesize' => '20 MB',
+        'max_filesize' => '10 MB',
         'file_directory' => '',
         'types' => array('image'),
       ),
     ),
     '#default_value' => $conf['image'],
-    '#required' => FALSE,
-    '#pp_crop_styles' => array('get_outside'),
+    '#required' => TRUE,
+    '#pp_crop_styles' => array('boa_index_hero'),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -55,43 +63,18 @@ function nas_pane_get_outside_edit_form($form, &$form_state) {
 
   // Include this plugin file as well, so that when the form is rebuilt, it
   // can successfully retrieve the settings form.
-  ctools_form_include($form_state, 'nas_pane_get_outside', 'nas_panes', 'plugins/content_types/get_outside');
+  ctools_form_include($form_state, 'nas_panes_boa_index_hero', 'nas_panes', 'plugins/content_types/boa_index_hero');
 
   $form['color'] = array(
     '#type' => 'select',
-    '#title' => t('Image color scheme'),
+    '#title' => t('Text color'),
     '#options' => array(
       'dark' => 'dark',
       'light' => 'light'
     ),
     '#default_value' => $conf['color'],
-    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.'),
+    '#description' => t('You can choose if title text should be dark or light.'),
   );
-
-  $form['wrapper'] = array(
-    '#type' => 'fieldset',
-    '#title' => '',
-    '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
-    '#prefix' => '<div class="wrapper">',
-    '#suffix' => '</div>',
-  );
-
-  for ($i = 1; $i <= $conf['num_blocks']; $i++) {
-    $form['wrapper'][$i]['title'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Title'),
-      '#size' => 50,
-      '#default_value' => !empty($conf['wrapper'][$i]['title']) ? $conf['wrapper'][$i]['title'] : '',
-    );
-    $form['wrapper'][$i]['text'] = array(
-      '#type' => 'text_format',
-      '#title' => t('Text'),
-      '#rows' => 5,
-      '#default_value' => !empty($conf['wrapper'][$i]['text']['value']) ? $conf['wrapper'][$i]['text']['value'] : '',
-      '#format' => 'full_html',
-    );
-  }
 
   return $form;
 }
@@ -100,7 +83,7 @@ function nas_pane_get_outside_edit_form($form, &$form_state) {
  * Submit function, note anything in the formstate[conf] automatically gets saved
  * Notice, the magic that automatically does that for you.
  */
-function nas_pane_get_outside_edit_form_submit(&$form, &$form_state) {
+function boa_index_hero_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -112,36 +95,32 @@ function nas_pane_get_outside_edit_form_submit(&$form, &$form_state) {
  * Run-time rendering of the body of the block (content type)
  * See ctools_plugin_examples for more advanced info
  */
-function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
+function boa_index_hero_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  if (!empty($conf['image'])) {
-    $hero_image = file_load($conf['image']);
-    $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
-  }
+  $hero_image = file_load($conf['image']);
+  $hero_image_path = image_style_url('boa_index_hero', $hero_image->uri);
 
-  $color_classes = 'light-text';
-  if ($conf['color'] == 'dark') {
-    $color_classes = 'dark-text';
-  }
+  $title = check_plain($conf['title']);
+  $color = check_plain($conf['color']);
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('edit NAS panes')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.
     ctools_add_js('ajax-responder');
-    // We expect Get outside pane to be only on Frontpage. If this is not
+    // We expect Featured Bird pane to be only on Bird Guide. If this is not
     // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_pane_get_outside'))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_boa_index_hero'))->fetchField();
     if (empty($pid)) {
-      nas_panes_resave_panel(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_pane_get_outside'))->fetchField();
+      nas_panes_resave_panel(NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY);
+      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_boa_index_hero'))->fetchField();
     }
     $links = array(
       'edit' => array(
         'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
+        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY . '::page_boa_index_panel_context::::/' . $pid,
         'query' => array('reload' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
@@ -159,12 +138,11 @@ function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
     $contextual_links = drupal_render($build);
   }
 
-  $content = theme('nas_get_outside', array(
-    'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
+  $content = theme('boa_index_hero', array(
     'image_path' => $hero_image_path,
+    'title' => $title,
+    'color' => $color,
     'contextual_links' => $contextual_links,
-    'color_classes' => $color_classes,
-    'text_array' => $conf['wrapper'],
   ));
 
   $block->content = $content;

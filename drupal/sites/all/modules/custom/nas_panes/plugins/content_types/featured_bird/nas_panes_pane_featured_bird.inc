@@ -157,7 +157,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_bird'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_bird_guide_pane();
+      nas_panes_resave_panel(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_bird'))->fetchField();
     }
     $links = array(

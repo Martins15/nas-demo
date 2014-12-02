@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the BOA Index feature.
+ */
+
+include_once 'nas_boa_index_feature.features.inc';
