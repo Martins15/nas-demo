@@ -9,6 +9,7 @@
  *  $image_path - path to John Audubon image.
  *  $summary - summary text for right sidebar.
  *  $link - url to Learn more about John J Audubon.
+ *  $contextual_links - contextual links.
  */
 ?>
 

@@ -453,7 +453,6 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
-  return;
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
