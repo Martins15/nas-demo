@@ -88,9 +88,6 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => '',
       'override_title_text' => '',
-      4747 => array(
-        'block_title' => 'Custom block title',
-      ),
       'form_build_id' => 'form-dGp9FJa3lH0QxAXMdFn_1CyKR0i_4tq4LvzOlR2CxAs',
       'form_token' => 'n3LJTTXL1pPVWcW1xIAj3m3F8_EF0F_3NuTdSV006ds',
       'form_id' => 'conservation_strategy_projects_edit_form',
