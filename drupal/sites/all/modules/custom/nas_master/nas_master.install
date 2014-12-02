@@ -466,3 +466,10 @@ function nas_master_update_7046() {
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_conservation_strategy_feature');
 }
+
+/**
+ * Fullscreen Article changes.
+ */
+function nas_master_update_7047() {
+  features_revert_module('nas_article_feature');
+}
