@@ -304,6 +304,13 @@
   }
 
   &.family {
+    .next-text,
+    .next-title,
+    .previous-text,
+    .previous-title {
+      width: 170px;
+    }
+
     @include breakpoint(small-only) {
       margin-top: 0;
     }
@@ -319,12 +326,16 @@
       .next-text,
       .next-title {
         font-size: 14px;
+        line-height: 18px;
         left: 160px;
+        width: 95px;
       }
       .previous-text,
       .previous-title {
         font-size: 14px;
+        line-height: 18px;
         right: 160px;
+        width: 95px;
       }
     }
   }
@@ -363,6 +374,7 @@
     right: 252px;
     line-height: 24px;
     top: 20px;
+    text-align: right;
   }
 
   .previous-title {

@@ -11542,6 +11542,12 @@ body.touch .sticky-wrapper {
     right: 160px;
   }
 }
+.boa-family-block-pager.family .next-text,
+.boa-family-block-pager.family .next-title,
+.boa-family-block-pager.family .previous-text,
+.boa-family-block-pager.family .previous-title {
+  width: 170px;
+}
 @media only screen and (min-width: 480px) and (max-width: 600px) {
   .boa-family-block-pager.family {
     margin-top: 0;
@@ -11558,12 +11564,16 @@ body.touch .sticky-wrapper {
   .boa-family-block-pager.family .next-text,
   .boa-family-block-pager.family .next-title {
     font-size: 14px;
+    line-height: 18px;
     left: 160px;
+    width: 95px;
   }
   .boa-family-block-pager.family .previous-text,
   .boa-family-block-pager.family .previous-title {
     font-size: 14px;
+    line-height: 18px;
     right: 160px;
+    width: 95px;
   }
 }
 .boa-family-block-pager .columns {
@@ -11597,6 +11607,7 @@ body.touch .sticky-wrapper {
   right: 252px;
   line-height: 24px;
   top: 20px;
+  text-align: right;
 }
 .boa-family-block-pager .previous-title {
   font-family: "Source Sans Pro", Verdana, sans-serif;
