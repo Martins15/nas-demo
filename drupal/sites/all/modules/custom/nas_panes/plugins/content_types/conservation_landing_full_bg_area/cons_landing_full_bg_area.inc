@@ -118,39 +118,7 @@ function cons_landing_full_bg_area_render($subtype, $conf, $args, $contexts) {
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
   }
 
-  $contextual_links = '';
-  if (user_access('access contextual links') && user_access('edit NAS panes')) {
-    ctools_include('modal');
-    ctools_modal_add_js();
-    // Add ajax-responder so ctools_ajax_command_reload() will work.
-    ctools_add_js('ajax-responder');
-    // We expect Get outside pane to be only on Frontpage. If this is not
-    // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'cons_landing_full_bg_area'))->fetchField();
-    if (empty($pid)) {
-      nas_panes_resave_panel(NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'cons_landing_full_bg_area'))->fetchField();
-    }
-    $links = array(
-      'edit' => array(
-        'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY . '::page_conservation_landing_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
-        'attributes' => array('class' => array('ctools-use-modal')),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $contextual_links = drupal_render($build);
-  }
+  $contextual_links = nas_panes_build_page_contextual_links('cons_landing_full_bg_area', NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY, 'page_conservation_landing_panel_context');
 
   $content = theme('cons_landing_full_bg_area', array(
     'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
