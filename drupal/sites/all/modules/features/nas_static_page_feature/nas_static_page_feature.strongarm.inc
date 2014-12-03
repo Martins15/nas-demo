@@ -55,6 +55,30 @@ function nas_static_page_feature_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'nas_node_featured_small' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_related_features' => array(
+        'custom_settings' => TRUE,
+      ),
+      'static_page_related_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_editorial_card' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_teaser_from_network' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'custom_settings' => FALSE,
+      ),
+      'boa_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_node_project_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
