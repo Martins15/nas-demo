@@ -285,10 +285,6 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['blue_text_link_url'] = $blue_text_link_url;
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
   $vars['custom_link_text'] = t('Read more');
-//  $custom_link_title_item = field_get_items('node', $node, 'field_link_title');
-//  if (!empty($custom_link_title_item)) {
-//    $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_item[0]['safe_value']);
-//  }
 }
 
 /**
