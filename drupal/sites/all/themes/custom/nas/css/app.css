@@ -4207,7 +4207,7 @@ ul.small-list li {
   font-style: italic;
 }
 
-.pull-quote {
+.pull-quote, .conservation-strategy-content blockquote {
   font-size: 20px;
   font-style: italic;
   line-height: 27px;
@@ -4219,7 +4219,7 @@ ul.small-list li {
     line-height: 30px;
   }
 
-  .pull-quote {
+  .pull-quote, .conservation-strategy-content blockquote {
     font-size: 25px;
     line-height: 34px;
   }
