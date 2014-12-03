@@ -18,6 +18,9 @@ function nas_master_install() {
   $boa_bio_fid = nas_import_get_default_image('boa-john-audubon.jpg');
   variable_set('boa_index_bio', $boa_bio_fid);
   features_revert_module('nas_boa_index_feature');
+
+  // Create BOA structure.
+  nas_master_update_7028();
 }
 
 /**
@@ -491,4 +494,11 @@ function nas_master_update_7047() {
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_views_feature');
   features_revert(array('nas_contact_type_feature' => array('field_instance')));
+}
+
+/**
+ * Revert BOA Index page feature.
+ */
+function nas_master_update_7048() {
+  features_revert_module('nas_boa_index_feature');
 }

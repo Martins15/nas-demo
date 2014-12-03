@@ -60,6 +60,16 @@ function nas_panes_theme() {
       'template' => 'boa-index-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_hero',
     ),
+    'boa_index_main' => array(
+      'variables' => array(
+        'title' => '',
+        'links' => '',
+        'content' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-index-main',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_main',
+    ),
     'boa_index_bio' => array(
       'variables' => array(
         'title' => '',
