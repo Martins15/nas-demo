@@ -702,7 +702,6 @@ function nas_panes_boa_previous($node) {
 }
 
 /**
-<<<<<<< Updated upstream
  * Retrieves pane's pid from node's panelizer.
  *
  * @param string $subtype
