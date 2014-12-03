@@ -117,8 +117,49 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $display->content['new-71994362-845f-47e4-a8a2-e15b2ceab167'] = $pane;
     $display->panels['top'][0] = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
     $pane = new stdClass();
+    $pane->pid = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';
+    $pane->panel = 'main';
+    $pane->type = 'cons_landing_body';
+    $pane->subtype = 'cons_landing_body';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'form_build_id' => 'form-9WKWbIhbZmbiLvotmEF32RCLmSWxRFEe5xhDlBHHg28',
+      'form_token' => '0Btgr1zb_f1_4-eo_V4f0CtMUGHSQ5sSIQCjN3Wpjkc',
+      'form_id' => 'cons_landing_body_edit_form',
+      'body' => array(
+        'value' => '<h2>We maximize our conservation results by focusing on five key strategies critical for birds</h2>
+          <p>For more than a century Audubon has protected birds and their habitat for the benefit of humanity as well as the earth’s biodiversity. Our legacy is built on science, education, advocacy, and on-the-ground conservation. We bring all of this together through our unparalleled network. This combination of expertise and on-the-ground engagement makes Audubon a truly unique and trusted force for conservation.</p>
+          <div class="donate-bar half-size">
+            <div class="donate-bar-caption">
+              <p>Support our conservation work by contributing today.</p>
+            </div>
+            <div class="donate-bar-button"><a class="button tomato large" href="/donate">Donate</a></div>
+          </div>
+          <p>Audubon’s mission is more urgent today than ever before. Natural habitat and open spaces are disappearing at an alarming rate. Protections for wildlife, natural places, and clean air and water are in jeopardy. By protecting birds, we’re also safeguarding America’s great natural heritage for future gen- erations, preserving our shared quality of life and fostering a healthier environment for us all.</p>',
+        'format' => 'full_html',
+      ),
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '39e12540-b074-4dff-8df5-fb0b23a6ecea';
+    $display->content['new-39e12540-b074-4dff-8df5-fb0b23a6ecea'] = $pane;
+    $display->panels['main'][0] = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';    
+    $pane = new stdClass();
     $pane->pid = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
-    $pane->panel = 'slideshow';
+    $pane->panel = 'main';
     $pane->type = 'cons_landing_slideshow';
     $pane->subtype = 'cons_landing_slideshow';
     $pane->shown = TRUE;
@@ -165,10 +206,10 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $display->content['new-0d2bd504-36a8-4968-aa77-bb1d7a907547'] = $pane;
-    $display->panels['slideshow'][0] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
+    $display->panels['main'][2] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $pane = new stdClass();
     $pane->pid = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
-    $pane->panel = 'full_bg_area';
+    $pane->panel = 'main';
     $pane->type = 'cons_landing_full_bg_area';
     $pane->subtype = 'cons_landing_full_bg_area';
     $pane->shown = TRUE;
@@ -243,7 +284,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = 'f4a1249c-685e-4e65-a336-10239a7ff8c0';
     $display->content['new-f4a1249c-685e-4e65-a336-10239a7ff8c0'] = $pane;
-    $display->panels['full_bg_area'][0] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
+    $display->panels['main'][1] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
   $handler->conf['display'] = $display;

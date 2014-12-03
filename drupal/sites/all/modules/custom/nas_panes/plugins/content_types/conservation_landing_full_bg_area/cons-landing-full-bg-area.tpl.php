@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Featured Bird template file.
+ * Conservation landing. Full bg area template file.
  *
  * Available variables:
  * - $image_path: path to the hero image.

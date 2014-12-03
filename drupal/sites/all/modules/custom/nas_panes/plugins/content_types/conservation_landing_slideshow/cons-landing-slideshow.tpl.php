@@ -1,10 +1,11 @@
 <?php
 /**
  * @file
- * Featured Bird template file.
+ * COnservation landing slideshow tpl file.
  *
  * Available variables:
  * - $contextual_links: rendered contextual links.
+ * - $nodes_array_to_show: array of all images, titles, links, etc.
  */
 ?>
 <section class="conservation-slider contextual-links-region">

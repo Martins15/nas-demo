@@ -12050,6 +12050,10 @@ h2.grey {
   line-height: 11px;
 }
 
+.donate-bar-caption {
+  width: 69%;
+}
+
 .donate-bar-button {
   width: 29%;
 }
@@ -12097,4 +12101,8 @@ input[type="time"].error,
 input[type="url"].error,
 textarea.error {
   border: 1px solid #f15936;
+}
+
+.text-container.thin h1, .text-container.thin h2 {
+  font-weight: 300;
 }
