@@ -60,6 +60,19 @@ function nas_panes_theme() {
       'template' => 'boa-index-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_hero',
     ),
+    'boa_index_bio' => array(
+      'variables' => array(
+        'title' => '',
+        'body' => '',
+        'image_path' => '',
+        'name' => '',
+        'summary' => '',
+        'link' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-index-bio',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_bio',
+    ),
     'boa_hero' => array(
       'variables' => array(
         'image' => '',
@@ -777,6 +790,46 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $node, $bundle, $
     'edit' => array(
       'title' => t('Edit'),
       'href' => $href,
+      'query' => array('reload' => 'true'),
+      'attributes' => array('class' => array('ctools-use-modal')),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+
+  return drupal_render($build);
+}
+
+/**
+ * Create contextual links for panels page.
+ */
+function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $context_name) {
+  if (!user_access('edit NAS panes')) {
+    return '';
+  }
+  ctools_include('modal');
+  ctools_modal_add_js();
+  // Add ajax-responder so ctools_ajax_command_reload() will work.
+  ctools_add_js('ajax-responder');
+
+  // This query means that this pane is going to be used only once on the site.
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+  if (empty($pid)) {
+    nas_panes_resave_panel($page_cache_key);
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+  }
+  $links = array(
+    'edit' => array(
+      'title' => t('Edit'),
+      'href' => 'panels/ajax/editor/edit-pane/panel_context:' . $page_cache_key . '::' . $context_name . '::::/' . $pid,
       'query' => array('reload' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
