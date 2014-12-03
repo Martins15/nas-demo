@@ -98,7 +98,7 @@ function frontpage_editorial_cards_pane_render($subtype, $conf, $args, $contexts
     // the case we will need to change this select query.
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_editorial_cards'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_frontpage_page();
+      nas_panes_resave_panel(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_editorial_cards'))->fetchField();
     }
     $links = array(

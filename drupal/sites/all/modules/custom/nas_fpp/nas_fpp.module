@@ -102,6 +102,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['boa_teaser'] = array(
+    'label' => t('Article teaser for BOA'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['nas_editorial_card'] = array(
     'label' => t('Editorial card'),
     'custom settings' => TRUE,
@@ -153,6 +157,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   $entity_info['file']['view modes']['nas_file_plain_text_fields'] = array(
     'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['nas_node_project_teaser'] = array(
+    'label' => t('Project teaser'),
+    'custom settings' => FALSE,
   );
 }
 

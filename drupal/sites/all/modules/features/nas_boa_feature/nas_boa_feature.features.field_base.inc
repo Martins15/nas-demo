@@ -162,47 +162,38 @@ function nas_boa_feature_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_related_news'
-  $field_bases['field_related_news'] = array(
+  // Exported field_base: 'field_state'
+  $field_bases['field_state'] = array(
     'active' => 1,
-    'cardinality' => -1,
+    'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_related_news',
+    'field_name' => 'field_state',
     'foreign keys' => array(
-      'node' => array(
+      'tid' => array(
         'columns' => array(
-          'target_id' => 'nid',
+          'tid' => 'tid',
         ),
-        'table' => 'node',
+        'table' => 'taxonomy_term_data',
       ),
     ),
     'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
+      'tid' => array(
+        0 => 'tid',
       ),
     ),
     'locked' => 0,
-    'module' => 'entityreference',
+    'module' => 'taxonomy',
     'settings' => array(
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'article' => 'article',
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'us_and_canada_states',
+          'parent' => 0,
         ),
       ),
-      'target_type' => 'node',
     ),
     'translatable' => 0,
-    'type' => 'entityreference',
+    'type' => 'taxonomy_term_reference',
   );
 
   return $field_bases;

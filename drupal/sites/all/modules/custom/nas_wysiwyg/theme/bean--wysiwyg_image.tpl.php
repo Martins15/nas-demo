@@ -40,6 +40,23 @@
     </figcaption>
   <?php endif; ?>
 </figure>
+<?php elseif ($width == 'half-right'): ?>
+<aside class="article-aside <?php print $width; ?>-width">
+  <div class="hide-for-tiny hide-for-small image-container">
+    <?php print render($content['field_wysiwyg_image']); ?>
+  </div>
+</aside>
+<?php elseif ($width == 'one-third-left'): ?>
+<div class="<?php print $width; ?>-width medium-4 columns">
+  <figure class="article-image">
+    <?php print render($content['field_wysiwyg_image']); ?>
+    <?php if (!empty($figcaption)): ?>
+      <figcaption class="caption article-aside-caption">
+        <?php print $figcaption; ?>
+      </figcaption>
+    <?php endif; ?>
+  </figure>
+</div>
 <?php else: ?>
 <aside class="article-aside <?php print $width; ?>-width">
   <figure class="article-image">

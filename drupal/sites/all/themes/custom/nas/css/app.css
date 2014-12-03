@@ -4207,7 +4207,7 @@ ul.small-list li {
   font-style: italic;
 }
 
-.pull-quote {
+.pull-quote, .conservation-strategy-content blockquote {
   font-size: 20px;
   font-style: italic;
   line-height: 27px;
@@ -4219,7 +4219,7 @@ ul.small-list li {
     line-height: 30px;
   }
 
-  .pull-quote {
+  .pull-quote, .conservation-strategy-content blockquote {
     font-size: 25px;
     line-height: 34px;
   }
@@ -4869,6 +4869,11 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   padding: 10px 20px;
   margin: 25px 0;
   position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .donate-bar.half-size {
+    width: 45%;
+  }
 }
 @media only screen and (min-width: 1020px) {
   .donate-bar:before {
@@ -7662,10 +7667,20 @@ body.touch .primary-sub-nav-index {
     width: 100%;
     padding-left: 0;
   }
+  .article-aside.half-right-width {
+    width: 55%;
+    float: right;
+  }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .article-aside {
     min-width: 33.33333%;
+  }
+  .article-aside.half-right-width {
+    float: none;
+    width: 25%;
+    text-align: center;
+    margin: 0 auto;
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
@@ -7673,6 +7688,10 @@ body.touch .primary-sub-nav-index {
     padding: 0;
     width: 100%;
   }
+}
+
+.one-third-left-width {
+  padding-right: 25px;
 }
 
 .comments {
@@ -8323,13 +8342,15 @@ body.black-bg .section-header a:hover {
 
 /* @todo Document this whole thing */
 .slideshow {
-  margin-bottom: 50px;
   position: relative;
 }
 body.black-bg .slideshow {
   color: #fff !important;
 }
 @media only screen and (min-width: 768px) {
+  .slideshow {
+    margin-bottom: -30px;
+  }
   .slideshow.standalone {
     top: -60px;
   }
@@ -8549,6 +8570,10 @@ body.node-type-slideshow #tabs {
 
 .see-all-show {
   display: none;
+}
+
+.conservation-strategy-projects-block .editorial-card {
+  margin-bottom: 20px;
 }
 
 .conservation-slider {
@@ -11225,21 +11250,34 @@ body.touch .sticky-wrapper {
   top: 38px;
 }
 
+.page-boa .mobile-nav {
+  position: relative;
+}
 .page-boa .guide-bar-title {
   line-height: 23px;
   margin-left: 55px;
 }
-.page-boa .hero-title {
+.page-boa .hero-header .hero-title {
   font-size: 75px;
   letter-spacing: -4px;
+  font-weight: 300;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .page-boa .guide-bar-title {
+    font-size: 19px;
+  }
 }
 @media only screen and (max-width: 479px) {
   .page-boa .guide-bar-title {
-    font-size: 20px;
+    font-size: 19px;
   }
-  .page-boa .hero-title {
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
+    letter-spacing: 0;
   }
   .page-boa .john-audubon-logo {
     max-width: 61px;
@@ -11270,11 +11308,15 @@ body.touch .sticky-wrapper {
   font-size: 20px !important;
   width: 100%;
 }
+@media only screen and (max-width: 479px) {
+  .page-boa .action-nav .action-nav-item a {
+    font-size: 16px !important;
+  }
+}
 @media only screen and (min-width: 480px) and (max-width: 600px) {
   .page-boa .action-nav {
     box-sizing: content-box;
     margin-left: -12.5px;
-    margin-right: -12.5px;
     margin-top: 0;
   }
   .page-boa .action-nav .action-nav-item:last-child {
@@ -11298,6 +11340,11 @@ body.touch .sticky-wrapper {
 }
 .boa-ja-content-block .large-4 {
   padding-left: 0;
+}
+@media only screen and (max-width: 479px) {
+  .boa-ja-content-block {
+    padding-left: 12.5px;
+  }
 }
 
 .boa-guide-bar-attribution {
@@ -11336,6 +11383,12 @@ body.touch .sticky-wrapper {
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .guide-bar .guide-bar-search.toggle-bird-guide-search {
+    margin-left: 5px;
+    padding: 12.5px 10px;
+  }
+}
 .boa-bird-card-set {
   overflow: hidden;
   padding-top: 10px;
@@ -11423,10 +11476,6 @@ body.touch .sticky-wrapper {
   padding: 35px 0 105px;
 }
 
-.page-boa-family .boa-about-this-guide {
-  margin-bottom: 100px;
-}
-
 .boa-about-this-guide {
   padding: 60px 0 80px;
 }
@@ -11449,6 +11498,7 @@ body.touch .sticky-wrapper {
 .boa-family-text-block .family-name {
   font-size: 75px;
   margin-bottom: 15px;
+  line-height: 78px;
 }
 .boa-family-text-block .scientific-name {
   color: #404040;
@@ -11492,6 +11542,30 @@ body.touch .sticky-wrapper {
     right: 160px;
   }
 }
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .boa-family-block-pager.family {
+    margin-top: 0;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .boa-family-block-pager.family {
+    margin-top: 0;
+  }
+  .boa-family-block-pager.family .columns {
+    margin-left: -150px;
+    width: 300px;
+  }
+  .boa-family-block-pager.family .next-text,
+  .boa-family-block-pager.family .next-title {
+    font-size: 14px;
+    left: 160px;
+  }
+  .boa-family-block-pager.family .previous-text,
+  .boa-family-block-pager.family .previous-title {
+    font-size: 14px;
+    right: 160px;
+  }
+}
 .boa-family-block-pager .columns {
   height: 100px;
   left: 50%;
@@ -11530,6 +11604,7 @@ body.touch .sticky-wrapper {
   line-height: 28px;
   right: 252px;
   top: 45px;
+  text-align: right;
 }
 .boa-family-block-pager .next-text {
   color: #F15936;
@@ -11665,6 +11740,21 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-in-the-news h2 {
   font-size: 28px;
   margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .static-page-content .text-container {
+    padding-bottom: 70px;
+  }
+}
+h2.grey {
+  color: #838078;
+}
+
+.pager-load-more {
+  list-style: none;
+  list-style-image: none;
+  list-style-type: none;
 }
 
 .sidebar, .article-sidebar {
@@ -11945,9 +12035,11 @@ body.touch .sticky-wrapper {
   line-height: 15px;
 }
 
-.hero-attribution .hero-attribution-text {
-  padding: 2px 5px;
-  background-color: rgba(0, 0, 0, 0.2);
+@media only screen and (min-width: 601px) {
+  .hero-attribution .hero-attribution-text {
+    padding: 2px 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }
 
 .manage-thumbnails-popup img, #EPSACropDialog img {
@@ -11956,6 +12048,10 @@ body.touch .sticky-wrapper {
 
 .strip-nav i[class^="icon-"], .strip-nav i[class*=" icon-"] {
   line-height: 11px;
+}
+
+.donate-bar-caption {
+  width: 69%;
 }
 
 .donate-bar-button {
@@ -12005,4 +12101,8 @@ input[type="time"].error,
 input[type="url"].error,
 textarea.error {
   border: 1px solid #f15936;
+}
+
+.text-container.thin h1, .text-container.thin h2 {
+  font-weight: 300;
 }

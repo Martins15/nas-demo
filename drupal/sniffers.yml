@@ -95,3 +95,6 @@
 
   - name: Website credentials
     lineinfile: dest={{ workspace_root }}/{{ artifacts_file }} line="Build site installed at {{ webroot }}"
+
+  - name: Website login path
+    lineinfile: dest={{ workspace_root }}/{{ artifacts_file }} line="You may log in at {{ webroot }}/user"

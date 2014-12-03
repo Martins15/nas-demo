@@ -63,6 +63,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
       if (!empty($get_field_file_credit)) {
         $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
       }
+      $vars['figcaption'] = strip_tags($vars['figcaption']);
     }
     $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
     $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];

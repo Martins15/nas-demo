@@ -565,3 +565,6 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * Remove the leading hash signs to disable.
  */
 # $conf['allow_authorize_operations'] = FALSE;
+$conf["memcache_key_prefix"] = "demo";
+$conf["cache_backends"][] = "sites/all/modules/contrib/memcache/memcache.inc";
+$conf["cache_default_class"] = "MemCacheDrupal";

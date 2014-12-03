@@ -8,23 +8,35 @@
   top: 38px;
 }
 .page-boa {
+  .mobile-nav {
+    position: relative;
+  }
   .guide-bar-title {
     line-height: 23px;
     margin-left: 55px;
   }
 
-  .hero-title {
+  .hero-header .hero-title {
     font-size: 75px;
-    letter-spacing: -4px
+    letter-spacing: -4px;
+    font-weight: 300;
   }
-
+  @include breakpoint(large-only) {
+    .guide-bar-title {
+      font-size: 19px;
+    }
+  }
   @include breakpoint(tiny-only) {
     .guide-bar-title {
-      font-size: 20px;
+      font-size: 19px;
     }
-    .hero-title {
-      font-size: 34px;
-      line-height: 38px;
+    .row .hero-header {
+      padding-bottom: 10px;
+      .hero-title {
+        font-size: 34px;
+        line-height: 38px;
+        letter-spacing: 0;
+      }
     }
     .john-audubon-logo {
       max-width: 61px;
@@ -59,12 +71,16 @@
         font-size: 20px !important;
         width: 100%;
       }
+      @include breakpoint(tiny-only) {
+        a {
+          font-size: 16px !important;
+        }
+      }
     }
 
     @include breakpoint(small-only) {
       box-sizing: content-box;
       margin-left: -$column-gutter/2; // column gutter calculation
-      margin-right: -$column-gutter/2;
       margin-top: 0;
 
       .action-nav-item:last-child {
@@ -93,6 +109,9 @@
 
   .large-4 {
     padding-left: 0;
+  }
+  @include breakpoint(tiny-only) {
+    padding-left: 12.5px;
   }
 }
 .boa-guide-bar-attribution {
@@ -127,6 +146,14 @@
       li {
         margin-left: 10px;
       }
+    }
+  }
+}
+@include breakpoint(large-only) {
+  .guide-bar {
+    .guide-bar-search.toggle-bird-guide-search {
+      margin-left: 5px;
+      padding: 12.5px 10px;
     }
   }
 }
@@ -207,11 +234,6 @@
 .boa-load-more {
   padding: 35px 0 105px;
 }
-.page-boa-family {
-  .boa-about-this-guide {
-    margin-bottom: 100px;
-  }
-}
 .boa-about-this-guide {
   padding: 60px 0 80px;
 
@@ -235,6 +257,7 @@
   .family-name {
     font-size: 75px;
     margin-bottom: 15px;
+    line-height: 78px;
   }
   .scientific-name {
     color: $color-text-gray;
@@ -255,6 +278,32 @@
     border-bottom: none;
     margin: -80px 0 0;
 
+    @include breakpoint(small-only) {
+      margin-top: 0;
+    }
+
+    @include breakpoint(tiny-only) {
+      margin-top: 0;
+
+      .columns {
+        margin-left: -150px;
+        width: 300px;
+      }
+
+      .next-text,
+      .next-title {
+        font-size: 14px;
+        left: 160px;
+      }
+      .previous-text,
+      .previous-title {
+        font-size: 14px;
+        right: 160px;
+      }
+    }
+  }
+
+  &.family {
     @include breakpoint(small-only) {
       margin-top: 0;
     }
@@ -322,6 +371,7 @@
     line-height: 28px;
     right: 252px;
     top: 45px;
+    text-align: right;
   }
 
   .next-text {

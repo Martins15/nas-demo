@@ -1,7 +1,6 @@
 /* @todo Document this whole thing */
 
 .slideshow {
-  margin-bottom: $column-gutter*2;
   position: relative;
 
   body.black-bg & {
@@ -9,7 +8,9 @@
   }
 
   @include breakpoint(large-up) {
+    margin-bottom: -30px;
     &.standalone {
+      // Negative margin-top doesn't work in Firefox. Use top property instead.
       top: -60px;
     }
   }

@@ -116,9 +116,11 @@
 }
 
 .hero-attribution {
-  .hero-attribution-text {
-    padding: 2px 5px;
-    background-color: rgba(0, 0, 0, 0.2);
+  @include breakpoint(medium-up) {
+    .hero-attribution-text {
+      padding: 2px 5px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
@@ -133,7 +135,9 @@
     line-height: 11px;
   }
 }
-
+.donate-bar-caption {
+  width: 69%;
+}
 .donate-bar-button {
   width: 29%;
 }
@@ -179,5 +183,11 @@ input[type="url"],
 textarea {
   &.error {
     border: 1px solid #f15936;
+  }
+}
+
+.text-container.thin {
+  h1, h2 {
+    font-weight: 300;
   }
 }

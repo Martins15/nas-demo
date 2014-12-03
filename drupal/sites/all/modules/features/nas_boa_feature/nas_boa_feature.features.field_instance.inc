@@ -216,7 +216,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 3,
+      'weight' => 8,
     ),
   );
 
@@ -641,25 +641,23 @@ function nas_boa_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 7,
     ),
   );
 
-  // Exported field_instance: 'node-boa-field_related_news'
-  $field_instances['node-boa-field_related_news'] = array(
+  // Exported field_instance: 'node-boa-field_state'
+  $field_instances['node-boa-field_state'] = array(
     'bundle' => 'boa',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Used for sorting cards by state on BOA landing page',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 7,
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 11,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -717,22 +715,18 @@ function nas_boa_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_related_news',
-    'label' => 'In the news',
+    'field_name' => 'field_state',
+    'label' => 'State',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 4,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 6,
     ),
   );
 
@@ -741,10 +735,11 @@ function nas_boa_feature_field_default_field_instances() {
   t('Bird guide reference');
   t('Body');
   t('Conservation Status');
-  t('In the news');
   t('Plate Illustration');
   t('Plate Number');
   t('Scientific Name');
+  t('State');
+  t('Used for sorting cards by state on BOA landing page');
 
   return $field_instances;
 }

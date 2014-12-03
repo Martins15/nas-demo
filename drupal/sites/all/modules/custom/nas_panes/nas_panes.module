@@ -13,6 +13,7 @@ define('NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-flyways_landing'
 define('NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'node_view');
 define('NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'panelizer:node:');
 define('NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-conservation_landing');
+define('NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY', 'page-boa_index');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -49,6 +50,29 @@ function nas_panes_theme() {
       'template' => 'article-more-features',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/article_more_features',
     ),
+    'boa_index_hero' => array(
+      'variables' => array(
+        'image_path' => '',
+        'title' => '',
+        'color' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-index-hero',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_hero',
+    ),
+    'boa_index_bio' => array(
+      'variables' => array(
+        'title' => '',
+        'body' => '',
+        'image_path' => '',
+        'name' => '',
+        'summary' => '',
+        'link' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-index-bio',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_bio',
+    ),
     'boa_hero' => array(
       'variables' => array(
         'image' => '',
@@ -57,6 +81,51 @@ function nas_panes_theme() {
       ),
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
+    ),
+    'boa_next' => array(
+      'variables' => array(
+        'next_url' => '',
+        'prev_url' => '',
+        'next_title' => '',
+        'next_plate_number' => '',
+        'prev_title' => '',
+        'prev_plate_number' => '',
+      ),
+      'template' => 'boa-next',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_next',
+    ),
+    'boa_plate' => array(
+      'variables' => array(
+        'image_thumbnail' => '',
+        'image' => '',
+        'link_title' => '',
+        'link_url' => '',
+      ),
+      'template' => 'boa-plate',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
+    ),
+    'boa_news' => array(
+      'variables' => array(
+        'teaser' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'boa-news',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_news',
+    ),
+    'boa_bird' => array(
+      'variables' => array(
+        'bird' => '',
+      ),
+      'template' => 'boa-bird',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
+    ),
+    'nas_boa_social' => array(
+      'variables' => array(
+        'caption' => '',
+        'page_link' => '',
+      ),
+      'template' => 'boa-social',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_social',
     ),
     'boa_header' => array(
       'variables' => array(
@@ -320,6 +389,70 @@ function nas_panes_theme() {
       'template' => 'other-projects',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/other_projects',
     ),
+    'conservation_strategy_top' => array(
+      'variables' => array(
+        'hero_image' => NULL,
+        'icon' => NULL,
+        'title' => NULL,
+        'credit' => NULL,
+        'color_mode_gradient' => NULL,
+        'color_mode_text' => NULL,
+      ),
+      'template' => 'conservation-strategy-top',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_top',
+    ),
+    'cons_landing_full_bg_area' => array(
+      'variables' => array(
+        'title' => NULL,
+        'image_path' => NULL,
+        'text_array' => array(),
+        'contextual_links' => NULL,
+      ),
+      'template' => 'cons-landing-full-bg-area',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_full_bg_area',
+    ),
+    'cons_landing_slideshow' => array(
+      'variables' => array(
+        'nodes_array_to_show' => array(),
+        'contextual_links' => NULL,
+      ),
+      'template' => 'cons-landing-slideshow',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_slideshow',
+    ),
+    'cons_landing_body' => array(
+      'variables' => array(
+        'body' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'cons-landing-body',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_body',
+    ),
+    'boa_family_species' => array(
+      'variables' => array(
+        'genus' => array(),
+      ),
+      'template' => 'boa-family-species',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_family_species',
+    ),
+    'boa_family_pager' => array(
+      'variables' => array(
+        'prev_title' => '',
+        'prev_link' => '',
+        'next_title' => '',
+        'next_link' => '',
+      ),
+      'template' => 'boa-family-pager',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_family_pager',
+    ),
+    'conservation_strategy_projects' => array(
+      'variables' => array(
+        'title' => NULL,
+        'teasers' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'conservation-strategy-projects',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_projects',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -338,7 +471,6 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
-
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
@@ -346,28 +478,22 @@ function nas_panes_ajax_render_alter(&$commands) {
     // Here we save the cache to database. When we edited the pane we made
     // changes in the cache. In order the page to see the changes we need
     // to save cache data to database.
-    if (strpos($_GET['q'], NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_bird_guide_pane();
-    }
+    $panel_keys = array(
+      NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
+    );
 
-    if (strpos($_GET['q'], NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_bird_landing_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_frontpage_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_news_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_node_view_page();
-    }
-
-    if (strpos($_GET['q'], NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_conservation_landing_page();
+    foreach ($panel_keys as $key) {
+      if (strpos($_GET['q'], $key) !== FALSE) {
+        nas_panes_resave_panel($key);
+        break;
+      }
     }
 
     if (strpos($_GET['q'], NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
@@ -379,59 +505,15 @@ function nas_panes_ajax_render_alter(&$commands) {
       panels_save_display($cache->display);
     }
 
-    if (strpos($_GET['q'], NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
-      nas_panes_save_flyways_landing_page();
-    }
-
     $commands[] = ctools_ajax_command_reload();
   }
 }
 
 /**
- * Resave bird guide page (cache to database).
+ * Resave panels pane.
  */
-function nas_panes_save_bird_guide_pane() {
-  $cache = page_manager_get_page_cache(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave bird landing page (cache to database).
- */
-function nas_panes_save_bird_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave frontpage page (cache to database).
- */
-function nas_panes_save_frontpage_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave news page (cache to database).
- */
-function nas_panes_save_news_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave news page (cache to database).
- */
-function nas_panes_save_flyways_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY);
-  page_manager_save_page_cache($cache);
-}
-
-/**
- * Resave conservation landing page (cache to database).
- */
-function nas_panes_save_conservation_landing_page() {
-  $cache = page_manager_get_page_cache(NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY);
+function nas_panes_resave_panel($key) {
+  $cache = page_manager_get_page_cache($key);
   page_manager_save_page_cache($cache);
 }
 
@@ -635,4 +717,133 @@ function nas_panes_boa_previous($node) {
   }
 
   return $row->entity_id;
+}
+
+/**
+ * Retrieves pane's pid from node's panelizer.
+ *
+ * @param string $subtype
+ *   Pane's subtype.
+ *
+ * @param object $node
+ *   Panelized node object.
+ *
+ * @return int
+ *   Pane's pid from panelizer's display.
+ */
+function _nas_panes_panelizer_lookup_pid($subtype, $node) {
+  $pid = 0;
+  // Since panelizer is already loaded we can get pane's pid from it.
+  foreach ($node->panelizer['page_manager']->display->content as $_pid => $pane) {
+    if ($pane->subtype == $subtype) {
+      $pid = $_pid;
+      break;
+    }
+  }
+  return $pid;
+}
+
+/**
+ * Builds contextual links.
+ *
+ * @param string $subtype
+ *   Pane subtype.
+ *
+ * @param object $node
+ *   Current article node.
+ *
+ * @param string $bundle
+ *   Node bundle.
+ *
+ * @param string $panelizer_layout
+ *   Name of the panelizer layout.
+ *
+ * @return string
+ *   Rendered contextual links.
+ */
+function _nas_panes_build_panelizer_contextual_links($subtype, $node, $bundle, $panelizer_layout) {
+  ctools_include('modal');
+  ctools_modal_add_js();
+  // Add ajax-responder so ctools_ajax_command_reload() will work.
+  ctools_add_js('ajax-responder');
+
+  $pid = _nas_panes_panelizer_lookup_pid($subtype, $node);
+  if (!$pid) {
+    return '';
+  }
+  // If $pid is UUID then we have to save panel to DB.
+  if (!is_numeric($pid)) {
+    $name = 'node:' . $bundle . ':' . $panelizer_layout;
+    $handler = panelizer_entity_plugin_get_handler('node');
+    $bundle = $bundle . '.page_manager';
+    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
+    ctools_export_crud_save('panelizer_defaults', $panelizer);
+
+    // Reload node cause panel is saved.
+    $cloned_node = node_load($node->nid, NULL, TRUE);
+    $pid = _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
+  }
+  $page_manager = $node->panelizer['page_manager'];
+  $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
+
+  $links = array(
+    'edit' => array(
+      'title' => t('Edit'),
+      'href' => $href,
+      'query' => array('reload' => 'true'),
+      'attributes' => array('class' => array('ctools-use-modal')),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+
+  return drupal_render($build);
+}
+
+/**
+ * Create contextual links for panels page.
+ */
+function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $context_name) {
+  if (!user_access('edit NAS panes')) {
+    return '';
+  }
+  ctools_include('modal');
+  ctools_modal_add_js();
+  // Add ajax-responder so ctools_ajax_command_reload() will work.
+  ctools_add_js('ajax-responder');
+
+  // This query means that this pane is going to be used only once on the site.
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+  if (empty($pid)) {
+    nas_panes_resave_panel($page_cache_key);
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+  }
+  $links = array(
+    'edit' => array(
+      'title' => t('Edit'),
+      'href' => 'panels/ajax/editor/edit-pane/panel_context:' . $page_cache_key . '::' . $context_name . '::::/' . $pid,
+      'query' => array('reload' => 'true'),
+      'attributes' => array('class' => array('ctools-use-modal')),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+
+  return drupal_render($build);
 }

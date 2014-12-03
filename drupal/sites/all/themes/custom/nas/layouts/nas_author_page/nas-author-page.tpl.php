@@ -21,7 +21,7 @@
   <div class="row space-top">
 
     <!-- BEGIN MAIN COLUMN -->
-    <div class="large-8 columns index-list">
+    <div class="large-8 columns text-container">
       <?php print $content['bio']; ?>
       <?php print $content['articles']; ?>
     </div>

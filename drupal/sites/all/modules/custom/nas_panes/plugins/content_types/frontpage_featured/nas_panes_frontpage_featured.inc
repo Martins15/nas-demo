@@ -137,7 +137,7 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_frontpage_featured'))->fetchField();
 
     if (empty($pid)) {
-      nas_panes_save_frontpage_page();
+      nas_panes_resave_panel(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_frontpage_featured'))->fetchField();
     }
 

@@ -115,7 +115,7 @@ function conservation_landing_top_render($subtype, $conf, $args, $contexts) {
 
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_cons_landing_top'))->fetchField();
     if (empty($pid)) {
-      nas_panes_save_conservation_landing_page();
+      page_manager_get_page_cache(NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY);
       $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_cons_landing_top'))->fetchField();
     }
     $links = array(
