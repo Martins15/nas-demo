@@ -8,7 +8,7 @@
 <?php print render($content['top']); ?>
 
 <section class="global-content with-padding">
-  <div class="row space-top space-bottom">
+  <div class="row space-top space-bottom conservation-strategy-content">
     <?php print render($content['body']); ?>
   </div>
 

@@ -1,0 +1,11 @@
+.conservation-strategy-projects-block {
+  .editorial-card {
+    margin-bottom: $size-space*2;
+  }
+}
+
+.conservation-strategy-content {
+  blockquote {
+    @extend .pull-quote;
+  }
+}
