@@ -492,3 +492,10 @@ function nas_master_update_7047() {
   features_revert_module('nas_views_feature');
   features_revert(array('nas_contact_type_feature' => array('field_instance')));
 }
+
+/**
+ * Revert Views feature.
+ */
+function nas_master_update_7049() {
+  features_revert_module('nas_views_feature');
+}
