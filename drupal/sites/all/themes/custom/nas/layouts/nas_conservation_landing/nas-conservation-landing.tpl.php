@@ -8,11 +8,7 @@
 <?php print render($content['menu_bar']); ?>
 
 <section class="global-content with-padding">
-  <div class="row">
-    <?php print $content['body']; ?>
-  </div>
-  <?php print $content['slideshow']; ?>
-  <?php print $content['full_bg_area']; ?>
+  <?php print $content['main']; ?>
 <section class="card-set bg-1">
   <div class="row">
     <div class="column">

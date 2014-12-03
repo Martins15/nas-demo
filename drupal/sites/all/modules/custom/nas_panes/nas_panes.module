@@ -389,14 +389,28 @@ function nas_panes_theme() {
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_top',
     ),
     'cons_landing_full_bg_area' => array(
+      'variables' => array(
+        'title' => NULL,
+        'image_path' => NULL,
+        'text_array' => array(),
+        'contextual_links' => NULL,
+      ),
       'template' => 'cons-landing-full-bg-area',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_full_bg_area',
     ),
     'cons_landing_slideshow' => array(
+      'variables' => array(
+        'nodes_array_to_show' => array(),
+        'contextual_links' => NULL,
+      ),
       'template' => 'cons-landing-slideshow',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_slideshow',
     ),
     'cons_landing_body' => array(
+      'variables' => array(
+        'body' => NULL,
+        'contextual_links' => NULL,
+      ),
       'template' => 'cons-landing-body',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_body',
     ),

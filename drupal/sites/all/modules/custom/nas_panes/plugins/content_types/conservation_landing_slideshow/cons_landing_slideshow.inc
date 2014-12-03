@@ -158,6 +158,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     }
     //Set icon.
     $get_field_image = field_get_items('node', $node, 'field_image');
+    $nodes_array_to_show[$nid]['image'] = '';
     if (isset($get_field_image[0]['fid'])) {
       $file = file_load($get_field_image[0]['fid']);
       $nodes_array_to_show[$nid]['image'] = image_style_url('conservation_slideshow_icon', $file->uri);

@@ -5,10 +5,12 @@
  *
  * Available variables:
  * - $contextual_links: rendered contextual links.
- * - $body: array of titles, links, texts.
+ * - $body: filtered html.
  */
 ?>
-<div class="columns text-container thin contextual-links-region">
-  <?php print $contextual_links; ?>
-  <?php print $body; ?>
+<div class="row">
+  <div class="columns text-container thin contextual-links-region">
+    <?php print $contextual_links; ?>
+    <?php print $body; ?>
+  </div>
 </div>

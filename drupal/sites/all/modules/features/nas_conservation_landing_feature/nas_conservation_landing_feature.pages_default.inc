@@ -118,7 +118,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $display->panels['top'][0] = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
     $pane = new stdClass();
     $pane->pid = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';
-    $pane->panel = 'body';
+    $pane->panel = 'main';
     $pane->type = 'cons_landing_body';
     $pane->subtype = 'cons_landing_body';
     $pane->shown = TRUE;
@@ -156,10 +156,10 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '39e12540-b074-4dff-8df5-fb0b23a6ecea';
     $display->content['new-39e12540-b074-4dff-8df5-fb0b23a6ecea'] = $pane;
-    $display->panels['body'][0] = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';    
+    $display->panels['main'][0] = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';    
     $pane = new stdClass();
     $pane->pid = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
-    $pane->panel = 'slideshow';
+    $pane->panel = 'main';
     $pane->type = 'cons_landing_slideshow';
     $pane->subtype = 'cons_landing_slideshow';
     $pane->shown = TRUE;
@@ -206,10 +206,10 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $display->content['new-0d2bd504-36a8-4968-aa77-bb1d7a907547'] = $pane;
-    $display->panels['slideshow'][0] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
+    $display->panels['main'][2] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $pane = new stdClass();
     $pane->pid = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
-    $pane->panel = 'full_bg_area';
+    $pane->panel = 'main';
     $pane->type = 'cons_landing_full_bg_area';
     $pane->subtype = 'cons_landing_full_bg_area';
     $pane->shown = TRUE;
@@ -284,7 +284,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = 'f4a1249c-685e-4e65-a336-10239a7ff8c0';
     $display->content['new-f4a1249c-685e-4e65-a336-10239a7ff8c0'] = $pane;
-    $display->panels['full_bg_area'][0] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
+    $display->panels['main'][1] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
   $handler->conf['display'] = $display;
