@@ -50,6 +50,7 @@ function nas_boa_index_feature_default_page_manager_pages() {
       'default' => NULL,
       'header' => NULL,
       'hero' => NULL,
+      'main' => NULL,
     ),
   );
   $display->cache = array();
@@ -70,8 +71,8 @@ function nas_boa_index_feature_default_page_manager_pages() {
       'color' => 'light',
       'override_title' => 0,
       'override_title_text' => '',
-      'form_build_id' => 'form-WYpblo4YFyopnQaQTF-hAHIF-v_SwesaiSvsJTTj8lE',
-      'form_token' => 'TS-BnLlih6NbVGsKqzmX5OGU63z3F0Ztws7akgJYGx0',
+      'form_build_id' => 'form-4DV00P-9TxmqQcDMYbCWVu4lg1HDvuMcJdLI_LqtNlQ',
+      'form_token' => 'Z4rRH3ydnv3PbAjVDTx8J5Tl5UerrdWua3_TC-ao5-Y',
       'form_id' => 'boa_index_hero_form',
     );
     $pane->cache = array();
@@ -85,6 +86,37 @@ function nas_boa_index_feature_default_page_manager_pages() {
     $pane->uuid = 'a55dffb6-ba11-423d-b660-eeda2fa69ae7';
     $display->content['new-a55dffb6-ba11-423d-b660-eeda2fa69ae7'] = $pane;
     $display->panels['hero'][0] = 'new-a55dffb6-ba11-423d-b660-eeda2fa69ae7';
+    $pane = new stdClass();
+    $pane->pid = 'new-703fc326-24f8-4aae-8898-bed944ef1ef4';
+    $pane->panel = 'main';
+    $pane->type = 'nas_panes_boa_index_bio';
+    $pane->subtype = 'nas_panes_boa_index_bio';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'The life’s work of both a lover and observer of birds and nature.',
+      'body' => '<p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more »</em></a></p>',
+      'name' => 'John James Audubon',
+      'summary' => '<p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more »</em></a></p>',
+      'link' => '<front>',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => variable_get('boa_index_bio'),
+      'form_build_id' => 'form-i9lQOPS1-C8Fr12leL6AikyWcIc71FsJYl10VahFFno',
+      'form_token' => 'cP3DvDSv-rKju3VBue0m1qSdOYKop7i7TT81cnfl62c',
+      'form_id' => 'boa_index_bio_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '703fc326-24f8-4aae-8898-bed944ef1ef4';
+    $display->content['new-703fc326-24f8-4aae-8898-bed944ef1ef4'] = $pane;
+    $display->panels['main'][0] = 'new-703fc326-24f8-4aae-8898-bed944ef1ef4';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-a55dffb6-ba11-423d-b660-eeda2fa69ae7';
   $handler->conf['display'] = $display;

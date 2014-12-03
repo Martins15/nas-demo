@@ -8,23 +8,7 @@
 </header>
 <?php print $content['hero']; ?>
 <section class="global-content with-padding">
-  <div class="row boa-ja-content-block">
-    <div class="large-8 columns text-container">
-      <h2 class="thin">The life’s work of both a lover and observer of birds and nature.</h2>
-      <p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more »</em></a></p>
-    </div>
-    <div class="large-4 columns">
-      <div class="editorial-card">
-        <div class="editorial-card-photo">
-          <a href="#"><img src="../../img/boa-john-audubon.jpg" alt="" /></a>
-        </div>
-        <div class="editorial-card-content">
-          <h3 class="editorial-card-title"><a href="#">John James Audubon</a></h3>
-          <p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more »</em></a></p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php print $content['main']; ?>
   <div class="boa-bird-card-set bg-boa-bejge">
     <div class="row section-header space-top">
       <div class="columns">
