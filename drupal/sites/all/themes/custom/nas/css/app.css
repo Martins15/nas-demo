@@ -6683,7 +6683,7 @@ input.header-search-input,
   margin-right: -2px;
 }
 @media only screen and (min-width: 768px) {
-  .primary-nav-item:not(:first-child):after {
+  .primary-nav-item:not(:first-of-type):after {
     color: #404040;
     content: "|";
     position: absolute;
@@ -6901,7 +6901,7 @@ body.touch .primary-sub-nav-index {
     padding: 0 10px;
     border-left: 1px solid #404040;
   }
-  .secondary-nav li:first-child {
+  .secondary-nav li:first-of-type {
     border-left: none;
     padding-left: 0;
   }
