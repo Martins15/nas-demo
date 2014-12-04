@@ -200,6 +200,7 @@ function nas_preprocess_node_boa(&$vars) {
         case 'field_boa_plate_value':
           $vars['sort_name'] = $vars['plate_number'];
           break;
+
         case 'name':
           $vars['sort_name'] = $vars['state_name'];
           break;
@@ -735,18 +736,6 @@ function nas_preprocess_views_view(&$vars) {
 
   $vars['equalizer'] = FALSE;
   $class = $view->display_handler->get_option('css_class');
-  $class_array = explode(' ', $class);
-  if (in_array('equalizer', $class_array)) {
-    $vars['equalizer'] = TRUE;
-  }
-}
-
-/**
- * Implements THEME_preprocess_views_view_unformatted.
- */
-function nas_preprocess_views_view_unformatted(&$vars) {
-  $vars['equalizer'] = FALSE;
-  $class = $vars['view']->display_handler->get_option('css_class');
   $class_array = explode(' ', $class);
   if (in_array('equalizer', $class_array)) {
     $vars['equalizer'] = TRUE;
