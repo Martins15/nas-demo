@@ -44,6 +44,10 @@ function nas_permissions_permission() {
 function nas_permissions_form_node_form_alter(&$form, &$form_state, $form_id) {
   $node_type = $form['#node']->type;
 
+  if ($node_type == 'static_page') {
+    unset($form['panelizer']['page_manager']['name']['#options']['']);
+    return;
+  }
   // Check node type and presence panelizer settings.
   if ($node_type != 'article' || !isset($form['panelizer'])) {
     return;
