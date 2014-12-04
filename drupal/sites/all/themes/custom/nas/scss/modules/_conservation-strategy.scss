@@ -2,6 +2,28 @@
   .editorial-card {
     margin-bottom: $size-space*2;
   }
+  .columns {
+    &:nth-of-type(4n+1) {
+      @include breakpoint(large-up) {
+        clear: both;
+      }
+    }
+    @include breakpoint(medium-only) {
+      .editorial-card {
+        min-height: inherit !important;
+      }
+    }
+    @include breakpoint(small-only) {
+      .editorial-card {
+        min-height: inherit !important;
+      }
+    }
+    @include breakpoint(tiny-only) {
+      .editorial-card {
+        min-height: inherit !important;
+      }
+    }
+  }
 }
 
 .conservation-strategy-content {
