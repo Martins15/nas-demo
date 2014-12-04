@@ -700,12 +700,29 @@ function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   // View to be preprocessed
   $needs_preprocess = array('related_birds', 'flyway_related_birds');
-  // Early return pattern.
-  if (!in_array($view->name, $needs_preprocess)) {
-    return;
+  if (in_array($view->name, $needs_preprocess)) {
+    if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
+      $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+    }
   }
-  if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
-    $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+  
+  $vars['equalizer'] = FALSE;
+  $class = $view->display_handler->get_option('css_class');
+  $class_array = explode(' ', $class);
+  if (in_array('equalizer', $class_array)) {
+    $vars['equalizer'] = TRUE;
+  }
+}
+
+/**
+ * Implements THEME_preprocess_views_view_unformatted.
+ */
+function nas_preprocess_views_view_unformatted(&$vars) {
+  $vars['equalizer'] = FALSE;
+  $class = $vars['view']->display_handler->get_option('css_class');
+  $class_array = explode(' ', $class);
+  if (in_array('equalizer', $class_array)) {
+    $vars['equalizer'] = TRUE;
   }
 }
 
