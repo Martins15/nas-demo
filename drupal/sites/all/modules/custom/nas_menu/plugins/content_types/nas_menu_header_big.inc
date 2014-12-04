@@ -5,7 +5,6 @@
  * Don't Miss header pane for site template with normal header.
  */
 
-define('NAS_MENU_MAIN_NAVIGATION', 'menu-header-big-main-menu');
 define('NAS_MENU_SECONDARY_NAVIGATION', 'menu-header-big-secondary-menu');
 define('NAS_MENU_SECONDARY_TAKE_ACTION', 'menu-header-big-donate-take-acti');
 

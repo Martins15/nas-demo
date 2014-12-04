@@ -21,7 +21,7 @@ $plugin = array(
  * Render function.
  */
 function nas_menu_nas_menu_header_small_content_type_render() {
-  $menu_tree = menu_tree_all_data(NAS_MENU_HEADER_SMALL_MENU, 2);
+  $menu_tree = menu_tree_all_data(NAS_MENU_MAIN_NAVIGATION, 2);
 
   $block = new stdClass();
 
@@ -31,7 +31,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
       'li_class' => isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '',
       'a_class' => isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '',
       'url' => url($menu_item['link']['link_path']),
-      'title' => check_plain($menu_item['link']['link_title']),
+      'title' => $menu_item['link']['link_title'],
     );
 
     $item['#below'] = array();
@@ -52,7 +52,16 @@ function nas_menu_nas_menu_header_small_content_type_render() {
   $frontpage_url = url('<front>');
   $site_name = check_plain(variable_get('site_name'));
 
-  $content = theme('nas_small_header', array('items' => $items, 'frontpage_url' => $frontpage_url, 'site_name' => $site_name));
+  $form = drupal_get_form('nas_menu_search_form');
+  $rendered_form = drupal_render($form);
+
+  $content = theme('nas_small_header', array(
+      'items' => $items,
+      'frontpage_url' => $frontpage_url,
+      'site_name' => $site_name,
+      'form' => $rendered_form,
+    )
+  );
 
   $block->content = $content;
   return $block;
