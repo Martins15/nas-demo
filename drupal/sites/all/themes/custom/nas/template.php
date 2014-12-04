@@ -298,7 +298,7 @@ function nas_preprocess_node_project(&$vars) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
     $image = theme('image', array(
-      'path' => $hero_image->uri,
+      'path' => image_style_url('article_teaser', $hero_image->uri),
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(

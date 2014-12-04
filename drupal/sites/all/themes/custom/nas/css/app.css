@@ -8575,6 +8575,24 @@ body.node-type-slideshow #tabs {
 .conservation-strategy-projects-block .editorial-card {
   margin-bottom: 20px;
 }
+.conservation-strategy-projects-block .projects-list .columns:nth-of-type(3n+1) {
+  clear: both;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .conservation-strategy-projects-block .projects-list .columns .editorial-card {
+    min-height: inherit !important;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .conservation-strategy-projects-block .projects-list .columns .editorial-card {
+    min-height: inherit !important;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .conservation-strategy-projects-block .projects-list .columns .editorial-card {
+    min-height: inherit !important;
+  }
+}
 
 .conservation-slider {
   position: relative;
