@@ -502,3 +502,10 @@ function nas_master_update_7047() {
 function nas_master_update_7048() {
   features_revert_module('nas_boa_index_feature');
 }
+
+/**
+ * Revert Views feature.
+ */
+function nas_master_update_7049() {
+  features_revert_module('nas_views_feature');
+}
