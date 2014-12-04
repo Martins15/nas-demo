@@ -102,6 +102,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['static_page_related_teaser'] = array(
+    'label' => t('Static page related teaser'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['boa_teaser'] = array(
     'label' => t('Article teaser for BOA'),
     'custom settings' => FALSE,

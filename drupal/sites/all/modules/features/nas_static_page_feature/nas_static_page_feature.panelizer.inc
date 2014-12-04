@@ -306,6 +306,7 @@ function nas_static_page_feature_panelizer_defaults() {
       'subtitle' => NULL,
       'hero_image' => NULL,
       'nav_menu' => NULL,
+      'related' => NULL,
     ),
   );
   $display->cache = array();
@@ -501,6 +502,29 @@ function nas_static_page_feature_panelizer_defaults() {
     $pane->uuid = 'd17456f0-4d23-47a1-a57e-936368aba6fb';
     $display->content['new-d17456f0-4d23-47a1-a57e-936368aba6fb'] = $pane;
     $display->panels['nav_menu'][0] = 'new-d17456f0-4d23-47a1-a57e-936368aba6fb';
+    $pane = new stdClass();
+    $pane->pid = 'new-58ad279e-4542-473b-86dd-e8ebc2135ea1';
+    $pane->panel = 'related';
+    $pane->type = 'nas_panes_static_page_related';
+    $pane->subtype = 'nas_panes_static_page_related';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '58ad279e-4542-473b-86dd-e8ebc2135ea1';
+    $display->content['new-58ad279e-4542-473b-86dd-e8ebc2135ea1'] = $pane;
+    $display->panels['related'][0] = 'new-58ad279e-4542-473b-86dd-e8ebc2135ea1';
     $pane = new stdClass();
     $pane->pid = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
     $pane->panel = 'right';

@@ -60,6 +60,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'slideshow') {
     nas_preprocess_node_slideshow($vars);
   }
+  if ($vars['type'] == 'static_page') {
+    nas_preprocess_node_static_page($vars);
+  }
 }
 
 /**
@@ -206,7 +209,7 @@ function nas_preprocess_node_article(&$vars) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
     $image = theme('image', array(
-      'path' => $hero_image->uri,
+      'path' => image_style_url('article_teaser', $hero_image->uri),
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
@@ -215,8 +218,7 @@ function nas_preprocess_node_article(&$vars) {
       ));
   }
 
-  // Subtitle currently presented only in flyway landing teasers.
-  if ($vars['view_mode'] == 'nas_teaser_flyway_landing') {
+  if (in_array($vars['view_mode'], array('nas_teaser_flyway_landing', 'static_page_related_teaser'))) {
     $vars['subtitle'] = '';
     if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
@@ -248,6 +250,41 @@ function nas_preprocess_node_article(&$vars) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
     }
   }
+}
+
+/**
+ * theme_preprocess_node for Static page content type.
+ */
+function nas_preprocess_node_static_page(&$vars) {
+  $node = $vars['node'];
+  $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+  }
+
+  if ($vars['view_mode'] == 'static_page_related_teaser') {
+    $vars['subtitle'] = '';
+    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
+  $vars['blue_text_link_url'] = $blue_text_link_url;
+  $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
+  $vars['custom_link_text'] = t('Read more');
 }
 
 /**

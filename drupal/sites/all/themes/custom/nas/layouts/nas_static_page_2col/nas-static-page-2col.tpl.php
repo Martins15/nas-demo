@@ -35,7 +35,7 @@
 </div>
 <?php endif; ?>
 <?php print $content['nav_menu']; ?>
-<section class="global-content with-padding static-page-content">
+<section class="global-content with-padding">
   <div class="row">
     <div class="large-8 columns text-container">
       <header class="article-header row">
@@ -61,6 +61,7 @@
       <?php print $content['right']; ?>
     </div>
   </div>
+  <?php print $content['related']; ?>
   <section class="card-set bg-1">
     <?php print $content['card_set']; ?>
     <div class="row">
