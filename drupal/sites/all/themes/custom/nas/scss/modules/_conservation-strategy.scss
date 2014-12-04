@@ -2,25 +2,25 @@
   .editorial-card {
     margin-bottom: $size-space*2;
   }
-  .columns {
-    &:nth-of-type(4n+1) {
-      @include breakpoint(large-up) {
+  .projects-list {
+    .columns {
+      &:nth-of-type(3n+1) {
         clear: both;
       }
-    }
-    @include breakpoint(medium-only) {
-      .editorial-card {
-        min-height: inherit !important;
+      @include breakpoint(medium-only) {
+        .editorial-card {
+          min-height: inherit !important;
+        }
       }
-    }
-    @include breakpoint(small-only) {
-      .editorial-card {
-        min-height: inherit !important;
+      @include breakpoint(small-only) {
+        .editorial-card {
+          min-height: inherit !important;
+        }
       }
-    }
-    @include breakpoint(tiny-only) {
-      .editorial-card {
-        min-height: inherit !important;
+      @include breakpoint(tiny-only) {
+        .editorial-card {
+          min-height: inherit !important;
+        }
       }
     }
   }

@@ -13,8 +13,9 @@
   </div>
   <div class="row clearfix conservation-strategy-projects-block <?php print !empty($contextual_links) ? 'contextual-links-region' : '' ?>">
     <?php print $contextual_links; ?>
-
-    <?php foreach ($teasers as $teaser) : ?>
-      <?php print $teaser; ?>
-    <?php endforeach; ?>
+    <div class="projects-list">
+      <?php foreach ($teasers as $teaser) : ?>
+        <?php print $teaser; ?>
+      <?php endforeach; ?>
+    </div>
 </section>
