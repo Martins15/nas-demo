@@ -98,6 +98,7 @@
     <div class="editorial-card-content">
       <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
       <p><?php print $description; ?></p>
+      <a href="<?php print $node_url; ?>" title="<?php print $title; ?>" class="hide-for-large hide-for-xlarge editorial-card-slug"><?php print t('Read more'); ?></a>
     </div>
   </div>
 </div>
