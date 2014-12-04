@@ -11267,6 +11267,11 @@ body.touch .sticky-wrapper {
     font-size: 19px;
   }
 }
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa .guide-bar-title {
+    font-size: 19px;
+  }
+}
 @media only screen and (max-width: 479px) {
   .page-boa .guide-bar-title {
     font-size: 19px;
@@ -11348,7 +11353,8 @@ body.touch .sticky-wrapper {
 }
 
 .boa-guide-bar-attribution {
-  float: left;
+  float: right;
+  margin-right: 12.5px;
 }
 .boa-guide-bar-attribution ul {
   font-size: 18px;

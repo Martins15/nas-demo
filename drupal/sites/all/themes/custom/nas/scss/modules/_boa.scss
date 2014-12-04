@@ -26,6 +26,11 @@
       font-size: 19px;
     }
   }
+  @include breakpoint(medium-only) {
+    .guide-bar-title {
+      font-size: 19px;
+    }
+  }
   @include breakpoint(tiny-only) {
     .guide-bar-title {
       font-size: 19px;
@@ -115,7 +120,8 @@
   }
 }
 .boa-guide-bar-attribution {
-  float: left;
+  float: right;
+  margin-right: 12.5px;
   ul {
     font-size: 18px;
     line-height: 50px;
