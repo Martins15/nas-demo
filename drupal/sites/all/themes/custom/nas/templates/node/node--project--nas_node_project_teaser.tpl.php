@@ -89,10 +89,8 @@
 <div class="columns large-4">
   <div class="editorial-card collapse-minimal">
     <div class="editorial-card-photo">
-      <?php if(!empty($image_src)) : ?>
-        <a href="<?php print $node_url; ?>" title="<?php print $title; ?>">
-          <img src="<?php print $image_src; ?>" title="<?php print $title; ?>">
-        </a>
+      <?php if (!empty($linked_image)) : ?>
+        <?php print $linked_image; ?>
       <?php endif; ?>
     </div>
     <div class="editorial-card-content">
