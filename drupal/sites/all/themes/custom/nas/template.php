@@ -164,23 +164,50 @@ function nas_preprocess_node_boa(&$vars) {
   $node = $vars['node'];
   $node_path = 'node/' . $node->nid;
   $vars['title_link'] = l($node->title, $node_path);
-  if ($vars['view_mode'] === 'teaser') {
-    // Default illustration.
-    $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
-    if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
-      $illustration = theme('image_style', array(
-          'style_name' => 'boa_family_species',
-          'path' => $field_boa_illustration_items[0]['uri'],
-      ));
-    }
-    $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
-    $vars['conservation_status'] = '';
-    if ($status_items = field_get_items('node', $node, 'field_boa_status')) {
-      $vars['conservation_status'] = check_plain(taxonomy_term_load($status_items[0]['tid'])->name);
-    }
-    $vars['scientific_name'] = '';
-    if ($field_scientific_name_items = field_get_items('node', $node, 'field_boa_sciname')) {
-      $vars['scientific_name'] = $field_scientific_name_items[0]['safe_value'];
+
+  $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
+  if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
+    $illustration = theme('image_style', array(
+        'style_name' => 'boa_family_species',
+        'path' => $field_boa_illustration_items[0]['uri'],
+    ));
+  }
+  $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
+
+  $vars += array(
+    'conservation_status' => '',
+    'scientific_name' => '',
+    'state_name' => '',
+    'plate_number' => '',
+  );
+
+  if ($status_items = field_get_items('node', $node, 'field_boa_status')) {
+    $vars['conservation_status'] = check_plain(taxonomy_term_load($status_items[0]['tid'])->name);
+  }
+  if ($field_scientific_name_items = field_get_items('node', $node, 'field_boa_sciname')) {
+    $vars['scientific_name'] = $field_scientific_name_items[0]['safe_value'];
+  }
+  if ($state_items = field_get_items('node', $node, 'field_state')) {
+    $state_term = taxonomy_term_load($state_items[0]['tid']);
+    $vars['state_name'] = check_plain($state_term->name);
+  }
+  if ($plate_items = field_get_items('node', $node, 'field_boa_plate')) {
+    $vars['plate_number'] = check_plain($plate_items[0]['value']);
+  }
+
+  // BOA index page sortings.
+  if (arg(0) == 'boa') {
+    $vars['sort_name'] = $vars['scientific_name'];
+    if (isset($_GET['sort_by'])) {
+      switch ($_GET['sort_by']) {
+        case 'field_boa_plate_value':
+          $vars['sort_name'] = $vars['plate_number'];
+          break;
+
+        case 'name':
+          $vars['sort_name'] = $vars['state_name'];
+          break;
+      }
     }
   }
 }
@@ -738,12 +765,17 @@ function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
   // View to be preprocessed
   $needs_preprocess = array('related_birds', 'flyway_related_birds');
-  // Early return pattern.
-  if (!in_array($view->name, $needs_preprocess)) {
-    return;
+  if (in_array($view->name, $needs_preprocess)) {
+    if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
+      $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+    }
   }
-  if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
-    $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+
+  $vars['equalizer'] = FALSE;
+  $class = $view->display_handler->get_option('css_class');
+  $class_array = explode(' ', $class);
+  if (in_array('equalizer', $class_array)) {
+    $vars['equalizer'] = TRUE;
   }
 }
 
