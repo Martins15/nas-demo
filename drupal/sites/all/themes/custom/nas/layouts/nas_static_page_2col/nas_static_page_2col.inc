@@ -22,6 +22,7 @@ $plugin = array(
     'header_hero_attr_text' => t('Hero attribution text'),
     'subtitle' => t('Subtitle'),
     'main' => t('Main'),
+    'related' => t('Related'),
     'social' => t('Social icons'),
     'right' => t('Right'),
     'card_set' => t('Card Set')

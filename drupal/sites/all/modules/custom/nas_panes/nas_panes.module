@@ -453,6 +453,14 @@ function nas_panes_theme() {
       'template' => 'conservation-strategy-projects',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_projects',
     ),
+    'static_page_related' => array(
+      'variables' => array(
+        'title' => NULL,
+        'teasers' => NULL,
+      ),
+      'template' => 'static-page-related',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_page_related',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
