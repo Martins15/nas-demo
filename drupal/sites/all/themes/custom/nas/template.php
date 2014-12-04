@@ -705,7 +705,7 @@ function nas_preprocess_views_view(&$vars) {
       $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
     }
   }
-  
+
   $vars['equalizer'] = FALSE;
   $class = $view->display_handler->get_option('css_class');
   $class_array = explode(' ', $class);

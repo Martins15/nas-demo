@@ -68,7 +68,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $block->content = theme('boa_index_main', array(
     'title' => check_plain($conf['title']),
     'links' => filter_xss($conf['links']),
-    'content' => views_embed_view('boa_index', 'panel_pane_1'),
+    'content' => views_embed_view('boa_index', 'boa_index'),
     'contextual_links' => $contextual_links,
   ));
   return $block;
