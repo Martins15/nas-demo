@@ -382,6 +382,9 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   if ($hero_items = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway_hero_items')) {
     foreach ($hero_items as $hero_item) {
       $fc = field_collection_item_load($hero_item['value']);
+      if (!isset($fc->field_flyway_bird[LANGUAGE_NONE][0]['entity']) && is_numeric($fc->field_flyway_bird[LANGUAGE_NONE][0]['target_id'])) {
+        $fc->field_flyway_bird[LANGUAGE_NONE][0]['entity'] = entity_load_single('node', $fc->field_flyway_bird[LANGUAGE_NONE][0]['target_id']);
+      }
       $bird = $fc->field_flyway_bird[LANGUAGE_NONE][0]['entity'];
       $vars['flyway_hero_items'][$delta] = array(
         'bird_url' => url('node/' . $bird->nid),
@@ -464,43 +467,10 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
       $vars['links'][] = l($node->title, $path, $options);
     }
   }
-
   $vars['contextual_links'] = '';
-
-  // Early return pattern.
-  if (!user_access('administer site configuration')) {
-    return;
+  if (user_access('edit NAS panes') && ($page_node = node_load(arg(1)))) {
+    $vars['contextual_links'] = _nas_panes_build_panelizer_contextual_links('uuid:' . $fpp->uuid, $page_node, 'flyway', 'default');
   }
-
-  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
-    ':subtype' => 'uuid:' . $fpp->uuid,
-  ))->fetchField();
-
-  ctools_include('modal');
-  ctools_include('ajax');
-  ctools_modal_add_js();
-  ctools_add_js('ajax-responder');
-  $links['edit'] = array(
-    'title' => t('Edit'),
-    'href' => 'panels/ajax/editor/edit-pane/panelizer:default:node:flyway.page_manager:node:flyway:default/' . $panel_id,
-    'html' => TRUE,
-    'query' => array('reload' => 'true'),
-    'attributes' => array(
-      'class' => array('ctools-use-modal'),
-      'title' => t('Edit'),
-    ),
-  );
-  $build = array(
-    '#prefix' => '<div class="contextual-links-wrapper">',
-    '#suffix' => '</div>',
-    '#theme' => 'links__contextual',
-    '#links' => $links,
-    '#attributes' => array('class' => array('contextual-links')),
-    '#attached' => array(
-      'library' => array(array('contextual', 'contextual-links')),
-    ),
-  );
-  $vars['contextual_links'] = drupal_render($build);
 }
 
 /**

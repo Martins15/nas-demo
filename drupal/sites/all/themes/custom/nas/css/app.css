@@ -7197,7 +7197,7 @@ body.touch .primary-sub-nav-index {
 }
 @media only screen and (min-width: 768px) {
   .bird-card-set.bg-boa {
-    background-image: url(card-set-bg-2.jpg);
+    background-image: url(../img/card-set-bg-2.jpg);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center top;
@@ -7213,7 +7213,7 @@ body.touch .primary-sub-nav-index {
     transition: opacity 0.5s ease-in-out;
   }
   .bird-card-set.bg-boa.show-bg {
-    background-image: url(card-set-bg-2-color.jpg);
+    background-image: url(../img/card-set-bg-2-color.jpg);
   }
   .bird-card-set.bg-boa.show-bg .row {
     opacity: 0;
@@ -10236,7 +10236,7 @@ body.node-type-slideshow #tabs {
 .focal-bird-map .map-pause:before {
   content: "";
   display: block;
-  background-image: url(icon-pause.png);
+  background-image: url(../img/icon-pause.png);
   background-size: 16px 16px;
   background-repeat: no-repeat;
   height: 30px;
@@ -10244,12 +10244,12 @@ body.node-type-slideshow #tabs {
   background-position: center center;
 }
 .focal-bird-map .map-pause.active:before {
-  background-image: url(icon-play.png);
+  background-image: url(../img/icon-play.png);
 }
 .focal-bird-map .map-binoculars:before {
   content: "";
   display: block;
-  background-image: url(binoculars-white.png);
+  background-image: url(../img/binoculars-white.png);
   background-size: 16px 16px;
   background-repeat: no-repeat;
   height: 30px;
