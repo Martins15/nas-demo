@@ -91,6 +91,6 @@
   <div class="boa-bird-card">
     <?php print $bird_illustration; ?>
     <h4 class="common-name"><?php print $title; ?></h4>
-    <p class="scientific-name"><?php print $scientific_name; ?></p>
+    <p class="scientific-name"><?php print $sort_name; ?></p>
   </div>
 </div>
