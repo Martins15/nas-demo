@@ -166,6 +166,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Project teaser'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['conservation_strategy_featured_teaser'] = array(
+    'label' => t('Conservation strategy featured teaser'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
