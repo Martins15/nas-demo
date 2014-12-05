@@ -5,6 +5,8 @@
  * Customizations of the menu.
  */
 
+define('NAS_MENU_MAIN_NAVIGATION', 'menu-header-big-main-menu');
+
 /**
  * Implements hook_menu_attribute_info().
  */
