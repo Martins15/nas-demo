@@ -28,5 +28,5 @@ features[variable][] = panelizer_defaults_node_strategy
 features[views_view][] = conservation_strategy_news
 features[views_view][] = conservation_strategy_projects
 features_exclude[dependencies][views] = views
-mtime = 1417771612
+mtime = 1417779334
 project path = sites/all/modules/features

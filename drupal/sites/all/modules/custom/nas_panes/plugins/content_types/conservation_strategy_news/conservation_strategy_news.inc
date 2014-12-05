@@ -105,8 +105,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
 
   // Get featured news.
   $featured_news = array();
-  $exclude_nodes = array();
-  $exclude_nodes_value = NULL;
+  $hide_title = FALSE;
   if (!empty($conf[$conf_key]['articles'])) {
     $nodes = array();
     foreach ($conf[$conf_key]['articles'] as $article) {
@@ -118,24 +117,31 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
     }
 
     foreach ($nodes as $node) {
-      $exclude_nodes[] = $node->nid;
       $build = node_view($node, 'conservation_strategy_featured_teaser');
       $featured_news[] = drupal_render($build);
     }
   }
 
-  if (!empty($exclude_nodes)) {
-    $exclude_nodes_value = implode(',', $exclude_nodes);
-  }
-
   // Get news list.
-  $news_list = views_embed_view('conservation_strategy_news', 'default', $conf[$conf_key]['menu_item'], $exclude_nodes_value);
+  $display_id = 'default';
+  $view = views_get_view('conservation_strategy_news');
+  $view->set_display($display_id);
+  $view->set_use_ajax(TRUE);
+  // @see nas_alters_views_pre_view() for filters.
+  $view->pre_execute();
+  $view->execute();
+  $news_list = $view->render();
+
+  if (empty($view->result) && empty($featured_news)) {
+    $hide_title = TRUE;
+  }
 
   $block->content = theme('conservation_strategy_news', array(
       'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Related News'),
       'news_list' => $news_list,
       'featured_news' => $featured_news,
       'contextual_links' => $contextual_links,
+      'hide_title' => $hide_title,
     ));
 
   return $block;
