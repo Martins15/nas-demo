@@ -4615,7 +4615,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   font-size: 14px;
 }
 .editorial-card-link:after {
-  content: "»";
+  content: "┬╗";
   margin-left: 5px;
 }
 .editorial-card-link.sans {
@@ -6201,7 +6201,7 @@ input.header-search-input,
   margin-left: 6px;
 }
 .national-strip-crumb:not(:first-child):before {
-  content: "»";
+  content: "┬╗";
   color: #d4d4d4;
   margin-right: 6px;
 }
@@ -6251,7 +6251,7 @@ input.header-search-input,
   color: #cccccc;
 }
 .national-strip-alert .link:after {
-  content: "»";
+  content: "┬╗";
   padding-left: 5px;
 }
 
@@ -10997,7 +10997,7 @@ body.touch .sticky-wrapper {
   color: #F15936;
 }
 .climate-flyway-overlay .close:before {
-  content: "×";
+  content: "├Ś";
 }
 @media only screen and (min-width: 768px) {
   .climate-flyway-overlay .close {
