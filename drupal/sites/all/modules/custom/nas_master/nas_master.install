@@ -502,3 +502,11 @@ function nas_master_update_7049() {
   features_revert_module('nas_static_page_feature');
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
 }
+
+/**
+ * Conservation strategy.
+ */
+function nas_master_update_7050() {
+  features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert_module('nas_conservation_strategy_feature');
+}
