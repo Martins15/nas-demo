@@ -18,6 +18,9 @@ function nas_master_install() {
   $boa_bio_fid = nas_import_get_default_image('boa-john-audubon.jpg');
   variable_set('boa_index_bio', $boa_bio_fid);
   features_revert_module('nas_boa_index_feature');
+
+  // Create BOA structure.
+  nas_master_update_7028();
 }
 
 /**
@@ -494,12 +497,20 @@ function nas_master_update_7047() {
 }
 
 /**
+ * Revert BOA Index page feature.
+ */
+function nas_master_update_7048() {
+  features_revert_module('nas_boa_index_feature');
+}
+
+/**
  * Revert Views feature.
  */
 function nas_master_update_7049() {
   features_revert_module('nas_views_feature');
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_static_page_feature');
+  features_revert(array('nas_boa_family_feature' => array('ctools_content')));
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
 }
 
@@ -507,7 +518,16 @@ function nas_master_update_7049() {
  * Conservation strategy.
  */
 function nas_master_update_7050() {
-  features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert(
+    array('nas_article_feature' => array('field_instance', 'strongarm'))
+  );
   features_revert_module('nas_conservation_strategy_feature');
   module_enable(array('nas_conservation'));
+}
+
+/**
+ * Revert features components.
+ */
+function nas_master_update_7051() {
+  features_revert(array('nas_article_feature' => array('panelizer')));
 }

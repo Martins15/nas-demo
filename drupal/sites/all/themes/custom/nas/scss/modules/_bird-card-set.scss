@@ -57,7 +57,7 @@
   }
   @include breakpoint(large-up) {
     &.bg-boa {
-      background-image: url(card-set-bg-2.jpg);
+      background-image: url(../img/card-set-bg-2.jpg);
       background-size: 100% auto;
       background-repeat: no-repeat;
       background-position: center top;
@@ -68,7 +68,7 @@
       }
 
       &.show-bg {
-        background-image: url(card-set-bg-2-color.jpg);
+        background-image: url(../img/card-set-bg-2-color.jpg);
 
         .row {
           opacity: 0;

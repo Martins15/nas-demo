@@ -117,7 +117,7 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   if (!empty($image)) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
     $image_wrapper = entity_metadata_wrapper('file', $image);
-    $image_caption = check_plain($image_wrapper->field_file_caption->value());
+    $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
     $image_credit = check_plain($image_wrapper->field_file_credit->value());
   }
 
