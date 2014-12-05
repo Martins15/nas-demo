@@ -48,6 +48,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'boa') {
     nas_preprocess_node_boa($vars);
   }
+  if ($vars['type'] == 'boaf') {
+    nas_preprocess_node_boaf($vars);
+  }
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
@@ -189,7 +192,7 @@ function nas_preprocess_node_boa(&$vars) {
   }
   if ($state_items = field_get_items('node', $node, 'field_state')) {
     $state_term = taxonomy_term_load($state_items[0]['tid']);
-    $vars['state_name'] = check_plain($state_term->name);
+    $vars['state_name'] = check_plain($state_term->field_iso_code[LANGUAGE_NONE][0]['safe_value']);
   }
   if ($plate_items = field_get_items('node', $node, 'field_boa_plate')) {
     $vars['plate_number'] = check_plain($plate_items[0]['value']);
@@ -203,13 +206,88 @@ function nas_preprocess_node_boa(&$vars) {
         case 'field_boa_plate_value':
           $vars['sort_name'] = $vars['plate_number'];
           break;
-
         case 'name':
           $vars['sort_name'] = $vars['state_name'];
           break;
       }
     }
   }
+}
+/**
+ * Implements THEME_preprocess_node for BOA Family content type.
+ */
+function nas_preprocess_node_boaf(&$vars) {
+  $node = $vars['node'];
+  $node_path = 'node/' . $node->nid;
+  $vars['title_link'] = l($node->title, $node_path);
+
+  // Only load all these data if rendering teaser.
+  if ($vars['view_mode'] == 'nas_node_teaser_small') {
+    // Default illustration.
+    $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
+    if ($boa = _nas_boa_family_birds($node->nid)) {
+      if ($field_boa_illustration_items = field_get_items('node', $boa, 'field_boa_illustration')) {
+        $illustration = theme('image_style', array(
+            'style_name' => 'boa_family_species',
+            'path' => $field_boa_illustration_items[0]['uri'],
+        ));
+      }
+    }
+    $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
+
+    $vars['scientific_name'] = '';
+    if ($field_scientific_name_items = field_get_items('node', $node, 'field_scientific_name')) {
+      $vars['scientific_name'] = $field_scientific_name_items[0]['safe_value'];
+    }
+  }
+}
+
+/**
+ * Helper function to group BOA by BOA families and get first BOA of BOA Family.
+ *
+ * @param $boaf_nid int
+ *   BOA Family node's nid.
+ *
+ * @return mixed
+ *   array - BOA nids groupped by BOA Family nids if $nid is omitted.
+ *   object - first BOA node of BOA Family with specific nid.
+ *   FALSE - if there is no such BOA node.
+ */
+function _nas_boa_family_birds($nid = FALSE) {
+  static $boa_family_birds = array();
+
+  if (!$boa_family_birds) {
+    $menu = menu_tree_all_data('boa');
+    foreach ($menu as $boaf_link) {
+      // Skip non node links.
+      if ($boaf_link['link']['router_path'] !== 'node/%') {
+        continue;
+      }
+      list(, $boaf_nid) = explode('/', $boaf_link['link']['link_path']);
+      // Loop thru genera links.
+      foreach ($boaf_link['below'] as $genus_link) {
+        // Skip non node links.
+        if ($boaf_link['link']['router_path'] !== 'node/%') {
+          continue;
+        }
+        // Loop thru birds links.
+        foreach ($genus_link['below'] as $bird_link) {
+          // Skip non node links.
+          if ($boaf_link['link']['router_path'] !== 'node/%') {
+            continue;
+          }
+          list(, $bird_nid) = explode('/', $bird_link['link']['link_path']);
+          $boa_family_birds[$boaf_nid][] = $bird_nid;
+        }
+      }
+    }
+  }
+
+  if ($nid) {
+    return isset($boa_family_birds[$nid][0]) ? node_load($boa_family_birds[$nid][0]) : FALSE;
+  }
+
+  return $boa_family_birds;
 }
 
 /**
