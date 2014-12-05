@@ -10,51 +10,8 @@ $plugin = array(
   'title' => t('BOA index main'),
   'description' => t('Provides BOA Index pane with list of BOA'),
   'category' => 'NAS',
-  'edit form' => 'boa_index_main_form',
   'render callback' => 'boa_index_main_render',
-  'defaults' => array(
-    'title' => 'Explore by family',
-    'links' => '<ul class="section-nav inline-list">
-        <li><a href="?sort_by=field_boa_plate_value" id="by-family" class="cta">View the plates in chronological order</a></li>
-        <li><a href="?sort_by=title" id="by-alphabetical" class="cta">Alphabetically</a></li>
-        <li><a href="?sort_by=name" id="by-state" class="cta">State Birds</a></li>
-      </ul>',
-  ),
 );
-
-/**
- * An edit form for the pane's settings.
- */
-function boa_index_main_form($form, &$form_state) {
-  $conf = $form_state['conf'];
-
-  $form['title'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Title'),
-    '#default_value' => $conf['title'],
-  );
-
-  $form['links'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Links'),
-    '#default_value' => $conf['links'],
-    '#description' => t('Sort links content'),
-  );
-
-  return $form;
-}
-
-/**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
- */
-function boa_index_main_form_submit(&$form, &$form_state) {
-  foreach (element_children($form) as $key) {
-    if (isset($form_state['values'][$key])) {
-      $form_state['conf'][$key] = $form_state['values'][$key];
-    }
-  }
-}
 
 /**
  * Run-time rendering of the body of the block (content type)
@@ -63,13 +20,64 @@ function boa_index_main_form_submit(&$form, &$form_state) {
 function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  $contextual_links = nas_panes_build_page_contextual_links('nas_panes_boa_index_main', NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY, 'page_boa_index_panel_context');
+  $links = array(
+    'by-family' => array(
+      'title' => 'Explore by family',
+      'query' => array(),
+    ),
+    'by-chronological' => array(
+      'title' => 'View the plates in chronological order',
+      'query' => array('sort_by' => 'field_boa_plate_value'),
+    ),
+    'by-alphabetical' => array(
+      'title' => 'Alphabetically',
+      'query' => array('sort_by' => 'title'),
+    ),
+    'by-state' => array(
+      'title' => 'State Birds',
+      'query' => array('sort_by' => 'name'),
+    ),
+  );
+
+  $current_link = 'by-family';
+  if (!empty($_GET['sort_by'])) {
+    $content = views_embed_view('boa_index', 'boa_index');
+    switch ($_GET['sort_by']) {
+      case 'field_boa_plate_value':
+        $current_link = 'by-chronological';
+        break;
+      case 'title':
+        $current_link = 'by-alphabetical';
+        break;
+      case 'name':
+        $current_link = 'by-state';
+        break;
+    }
+  }
+  else {
+    $content = views_embed_view('boa_index', 'boa_index_family');
+  }
+
+  $links_to_display = array();
+  foreach ($links as $id => $link) {
+    if ($id == $current_link) {
+      $title = $link['title'];
+    }
+    else {
+      $links_to_display[] = l($link['title'], 'boa', array(
+          'query' => $link['query'],
+          'fragment' => 'boa-index-plates',
+          'attributes' => array(
+            'id' => $id,
+            'class' => array('cta'),
+          )));
+    }
+  }
 
   $block->content = theme('boa_index_main', array(
-    'title' => check_plain($conf['title']),
-    'links' => filter_xss($conf['links']),
-    'content' => views_embed_view('boa_index', 'boa_index'),
-    'contextual_links' => $contextual_links,
+    'title' => $title,
+    'links' => $links_to_display,
+    'content' => $content,
   ));
   return $block;
 }

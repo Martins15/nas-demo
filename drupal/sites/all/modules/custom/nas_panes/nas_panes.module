@@ -63,9 +63,8 @@ function nas_panes_theme() {
     'boa_index_main' => array(
       'variables' => array(
         'title' => '',
-        'links' => '',
+        'links' => NULL,
         'content' => '',
-        'contextual_links' => '',
       ),
       'template' => 'boa-index-main',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_main',

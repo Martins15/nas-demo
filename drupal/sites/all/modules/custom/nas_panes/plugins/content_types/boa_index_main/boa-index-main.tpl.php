@@ -5,20 +5,22 @@
  *
  * Available variables:
  * - $title: block's title.
- * - $links: HTML of sort links.
+ * - $links: array of links.
  * - $content: content of the view.
- * - $contextual_links: rendered contextual links.
  */
 ?>
 
-<div class="boa-bird-card-set bg-boa-bejge">
-  <div class="row section-header space-top contextual-links-region">
-    <?php print $contextual_links; ?>
+<div class="boa-bird-card-set bg-boa-bejge" id="boa-index-plates">
+  <div class="row section-header space-top">
     <div class="columns">
       <h2 class="thin"><?php print $title; ?></h2>
     </div>
     <div class="columns">
-      <?php print $links; ?>
+      <ul class="section-nav inline-list">
+        <?php foreach ($links as $link): ?>
+          <li><?php print $link; ?></li>
+        <?php endforeach; ?>
+      </ul>
     </div>
   </div>
   <?php print $content; ?>
