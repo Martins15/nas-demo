@@ -513,3 +513,10 @@ function nas_master_update_7049() {
   features_revert(array('nas_boa_family_feature' => array('ctools_content')));
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
 }
+
+/**
+ * Revert features components.
+ */
+function nas_master_update_7051() {
+  features_revert(array('nas_article_feature' => array('panelizer')));
+}
