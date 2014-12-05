@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Code related to conservation strategy and projects.
+ */
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function nas_conservation_views_pre_view(&$view, &$display_id, &$args) {
+  // Set appropriate filters for conservation_strategy_news views based on panel pane settings.
+  // @todo should be improved.
+  if ($view->name == 'conservation_strategy_news' && $display_id == 'default') {
+    $node = menu_get_object('node');
+    if ($node && $node->type != 'strategy') {
+      return;
+    }
+
+    $exclude_nodes = array();
+    // Apply exposed filter for conservation_strategy.
+    _nas_conservation_views_set_filter($view, 'nid', $display_id, $node->nid);
+
+    // Get panel pane settings.
+    $pid = _nas_panes_panelizer_lookup_pid('conservation_strategy_news', $node);
+    $settings = db_query('SELECT configuration FROM {panels_pane} WHERE pid = :pid', array(':pid' => $pid))->fetchField();
+    $settings = unserialize($settings);
+
+    // Apply exposed filter for menu_section.
+    if (!empty($settings[$node->nid]['menu_item'])) {
+      _nas_conservation_views_set_filter($view, 'field_menu_section_tid', $display_id, $settings[$node->nid]['menu_item']);
+    }
+    else {
+      _nas_conservation_views_set_filter($view, 'field_menu_section_tid', $display_id, '');
+    }
+
+    if (!empty($settings[$node->nid]['articles'])) {
+      foreach ($settings[$node->nid]['articles'] as $article) {
+        if (empty($article['entity_reference'])) {
+          continue;
+        }
+        $exclude_nodes[] = $article['entity_reference']['entity_id'];
+      }
+    }
+
+    // Exclude featured nodes via contextual filter.
+    if (!empty($exclude_nodes)) {
+      $args[] = implode(',', $exclude_nodes);
+    }
+  }
+}
+
+/**
+ * Set exposed filter for views.
+ */
+function _nas_conservation_views_set_filter(&$view, $field_name, $display_id, $value) {
+  $filter = $view->get_item($display_id, 'filter', $field_name);
+  $filter['value'] = array();
+  $filter['value']['value'] = $value;
+  $view->set_item($display_id, 'filter', $field_name, $filter);
+}

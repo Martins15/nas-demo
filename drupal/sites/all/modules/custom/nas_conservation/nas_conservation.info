@@ -1,0 +1,4 @@
+name = NAS Conservation module
+description = Module with custom logic for conservation strategy and projects
+core = 7.x
+package = NAS

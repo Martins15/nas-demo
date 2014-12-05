@@ -865,13 +865,3 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
 
   return drupal_render($build);
 }
-
-/**
- * Set exposed filter for views.
- */
-function _nas_panes_views_set_filter(&$view, $field_name, $display_id, $value) {
-  $filter = $view->get_item($display_id, 'filter', $field_name);
-  $filter['value'] = array();
-  $filter['value']['value'] = $value;
-  $view->set_item($display_id, 'filter', $field_name, $filter);
-}

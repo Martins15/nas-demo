@@ -68,6 +68,7 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf[$conf_key]['menu_item']) ? $conf[$conf_key]['menu_item'] : '',
     '#options' => taxonomy_allowed_values(field_info_field('field_menu_section')),
     '#description' => t('Menu item to filter news list.'),
+    '#disabled' => TRUE,
   );
 
   return $form;
@@ -127,7 +128,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   $view = views_get_view('conservation_strategy_news');
   $view->set_display($display_id);
   $view->set_use_ajax(TRUE);
-  // @see nas_alters_views_pre_view() for filters.
+  // @see nas_conservation_views_pre_view() for filters.
   $view->pre_execute();
   $view->execute();
   $news_list = $view->render();

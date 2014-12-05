@@ -509,4 +509,5 @@ function nas_master_update_7049() {
 function nas_master_update_7050() {
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
   features_revert_module('nas_conservation_strategy_feature');
+  module_enable(array('nas_conservation'));
 }

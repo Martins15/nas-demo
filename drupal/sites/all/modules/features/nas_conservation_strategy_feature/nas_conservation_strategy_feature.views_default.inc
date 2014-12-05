@@ -27,6 +27,7 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -52,6 +53,10 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
   $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
   $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Contextual filter: Exclude nodes */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
