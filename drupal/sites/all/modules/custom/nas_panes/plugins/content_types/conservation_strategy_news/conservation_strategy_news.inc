@@ -49,6 +49,7 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
     '#title' => t('Right sidebar articles'),
     '#tree' => TRUE,
   );
+
   // Limit to 2 articles.
   for ($i = 1; $i <= 2; $i++) {
     $form[$conf_key]['articles'][$i]['entity_reference'] = array(
@@ -59,6 +60,15 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
       '#era_bundles' => array('article'),
     );
   }
+
+  $form[$conf_key]['menu_item'] = array(
+    '#type' => 'select',
+    '#title' => t('Menu item'),
+    '#required' => TRUE,
+    '#default_value' => !empty($conf[$conf_key]['menu_item']) ? $conf[$conf_key]['menu_item'] : '',
+    '#options' => taxonomy_allowed_values(field_info_field('field_menu_section')),
+    '#description' => t('Menu item to filter news list.'),
+  );
 
   return $form;
 }
@@ -95,20 +105,31 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
 
   // Get featured news.
   $featured_news = array();
+  $exclude_nodes = array();
+  $exclude_nodes_value = NULL;
   if (!empty($conf[$conf_key]['articles'])) {
     $nodes = array();
     foreach ($conf[$conf_key]['articles'] as $article) {
+      if (empty($article['entity_reference'])) {
+        continue;
+      }
+
       $nodes[] = node_load($article['entity_reference']['entity_id']);
     }
 
     foreach ($nodes as $node) {
+      $exclude_nodes[] = $node->nid;
       $build = node_view($node, 'conservation_strategy_featured_teaser');
       $featured_news[] = drupal_render($build);
     }
   }
 
+  if (!empty($exclude_nodes)) {
+    $exclude_nodes_value = implode(',', $exclude_nodes);
+  }
+
   // Get news list.
-  $news_list = views_embed_view('conservation_strategy_news', 'default', $context_node->nid);
+  $news_list = views_embed_view('conservation_strategy_news', 'default', $conf[$conf_key]['menu_item'], $exclude_nodes_value);
 
   $block->content = theme('conservation_strategy_news', array(
       'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Related News'),
