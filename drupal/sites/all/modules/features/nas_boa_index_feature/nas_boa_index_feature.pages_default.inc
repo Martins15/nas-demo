@@ -150,6 +150,31 @@ function nas_boa_index_feature_default_page_manager_pages() {
     $pane->uuid = 'f78b76e6-848a-4ca6-952f-8b484ed15b21';
     $display->content['new-f78b76e6-848a-4ca6-952f-8b484ed15b21'] = $pane;
     $display->panels['main'][1] = 'new-f78b76e6-848a-4ca6-952f-8b484ed15b21';
+    $pane = new stdClass();
+    $pane->pid = 'new-554c47df-6251-4545-bcf9-6aa2453ad8b5';
+    $pane->panel = 'main';
+    $pane->type = 'custom';
+    $pane->subtype = 'boa_about_this_guide';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'map',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '554c47df-6251-4545-bcf9-6aa2453ad8b5';
+    $display->content['new-554c47df-6251-4545-bcf9-6aa2453ad8b5'] = $pane;
+    $display->panels['main'][2] = 'new-554c47df-6251-4545-bcf9-6aa2453ad8b5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-a55dffb6-ba11-423d-b660-eeda2fa69ae7';
   $handler->conf['display'] = $display;
