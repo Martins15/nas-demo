@@ -53,10 +53,11 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
   $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
   $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
-  /* Sort criterion: Content: Title */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Contextual filter: Exclude nodes */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
@@ -112,13 +113,10 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
   $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
   $handler->display->display_options['filters']['field_menu_section_tid']['value'] = array(
-    33 => '33',
+    14 => '14',
   );
   $handler->display->display_options['filters']['field_menu_section_tid']['group'] = 2;
-  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['operator_id'] = 'field_menu_section_tid_op';
-  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['label'] = 'Menu Section (field_menu_section)';
-  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['operator'] = 'field_menu_section_tid_op';
-  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['identifier'] = 'field_menu_section_tid';
+  $handler->display->display_options['filters']['field_menu_section_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_menu_section_tid']['vocabulary'] = 'menu_section';
   $handler->display->display_options['filters']['field_menu_section_tid']['hierarchy'] = 1;
