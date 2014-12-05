@@ -461,6 +461,16 @@ function nas_panes_theme() {
       'template' => 'static-page-related',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_page_related',
     ),
+    'conservation_strategy_news' => array(
+      'variables' => array(
+        'title' => NULL,
+        'featured_news' => NULL,
+        'news_list' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'conservation-strategy-news',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_news',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {

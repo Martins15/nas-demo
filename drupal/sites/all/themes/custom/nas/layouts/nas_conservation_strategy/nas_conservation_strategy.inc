@@ -17,5 +17,6 @@ $plugin = array(
     'top' => t('Top'),
     'body' => t('Body'),
     'projects' => t('Projects'),
+    'news' => t('News'),
   ),
 );
