@@ -28,7 +28,6 @@ function magazine_issue_featured_edit_form($form, &$form_state) {
     return $form;
   }
   $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
-  dpm($form_state['display']->context);
   $form[$conf_key] = array(
     '#type' => 'fieldset',
     '#title' => t('Featured Articles'),
