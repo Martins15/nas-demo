@@ -46,9 +46,11 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
       case 'field_boa_plate_value':
         $current_link = 'by-chronological';
         break;
+
       case 'title':
         $current_link = 'by-alphabetical';
         break;
+
       case 'name':
         $current_link = 'by-state';
         break;

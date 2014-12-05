@@ -206,6 +206,7 @@ function nas_preprocess_node_boa(&$vars) {
         case 'field_boa_plate_value':
           $vars['sort_name'] = $vars['plate_number'];
           break;
+
         case 'name':
           $vars['sort_name'] = $vars['state_name'];
           break;
