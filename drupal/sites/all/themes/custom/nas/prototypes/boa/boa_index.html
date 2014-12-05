@@ -29,7 +29,6 @@
           <a href="#" class="current-parent wordmark">Audubon</a>
           <!-- Only visible on small and medium screens -->
           <a href="#" class="icon-menu header-btn header-btn-menu"></a>
-          <a href="#" class="icon-binoculars header-btn header-btn-search-alt toggle-bird-guide-search"></a>
           <!-- / -->
           <div class="global-nav">
             <div class="mobile-nav">
@@ -120,12 +119,11 @@
             <h2 class="guide-bar-title"><span class="hide-for-small hide-for-tiny"></span>John J Audubon’s Birds of America</h2>
             <div class="hide-for-small hide-for-tiny boa-guide-bar-attribution">
               <ul>
-                <li><a href="#" class="by-family">By family</a></li>
-                <li><a href="#" class="by-alphabetical">Alphabetical</a></li>
-                <li><a href="#" class="by-state">State birds</a></li>
+                <li><a href="boa_listing.html#by-family" class="by-family">By family</a></li>
+                <li><a href="boa_listing.html#by-alphabetical" class="by-alphabetical">Alphabetical</a></li>
+                <li><a href="boa_listing.html#by-state" class="by-state">State birds</a></li>
               </ul>
             </div>
-            <a class="guide-bar-search toggle-bird-guide-search" href="#"><i class="icon-binoculars white"></i><i class="icon-binoculars black"></i> Find a Bird</a>
           </div>
         </div>
       </div>
@@ -486,32 +484,6 @@
     <script>
     (function($) {
       $(document).ready(function() {
-        function scrollToBoaSortTag(aid){
-          $('html, body').animate({scrollTop: $(aid).offset().top},'slow');
-          $(aid).removeClass('cta');
-        }
-        $('.by-family').click(function(e){
-          e.preventDefault();
-          scrollToBoaSortTag('#by-family');
-          $('#by-alphabetical').addClass('cta');
-          $('#by-state').addClass('cta');
-          $('#by-family').removeClass('cta');
-        });
-        $('.by-alphabetical').click(function(e){
-          e.preventDefault();
-          scrollToBoaSortTag('#by-alphabetical');
-          $('#by-family').addClass('cta');
-          $('#by-state').addClass('cta');
-          $('#by-alphabetical').removeClass('cta');
-        });
-        $('.by-state').click(function(e){
-          e.preventDefault();
-          scrollToBoaSortTag('#by-state');
-          $('#by-family').addClass('cta');
-          $('#by-alphabetical').addClass('cta');
-          $('#by-state').removeClass('cta');
-        });
-
         $(".load-more").bind("click", function(e) {
           e.preventDefault();
           var $this = $(this),
@@ -523,17 +495,6 @@
             $cards.removeClass("invisible");
             $this.removeClass("active");
           }, 1500);
-        });
-
-        $(".toggle-bird-guide-search").bind("click", function() {
-          if ($(this).hasClass('open')) {
-            $(".toggle-bird-guide-search").addClass("open");
-            $(".bird-guide-search").addClass("show");
-          }
-          else {
-            $(".toggle-bird-guide-search").removeClass("open");
-            $(".bird-guide-search").removeClass("show");
-          }
         });
       });
     })(jQuery);
