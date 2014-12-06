@@ -11350,6 +11350,50 @@ body.touch .sticky-wrapper {
   padding-bottom: 70px;
 }
 
+.page-boa-bird .guide-bar-title,
+.node-type-boaf .guide-bar-title {
+  line-height: 23px;
+  margin-left: 55px;
+}
+.page-boa-bird .hero-header .hero-title,
+.node-type-boaf .hero-header .hero-title {
+  font-size: 75px;
+  letter-spacing: -4px;
+  font-weight: 300;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+  .page-boa-bird .row .hero-header,
+  .node-type-boaf .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa-bird .row .hero-header .hero-title,
+  .node-type-boaf .row .hero-header .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 0;
+  }
+  .page-boa-bird .john-audubon-logo,
+  .node-type-boaf .john-audubon-logo {
+    max-width: 61px;
+  }
+}
+
 .boa-ja-content-block {
   padding-top: 35px;
 }

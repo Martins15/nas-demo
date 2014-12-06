@@ -98,6 +98,45 @@
     padding-bottom: 70px;
   }
 }
+.page-boa-bird,
+.node-type-boaf {
+  .guide-bar-title {
+    line-height: 23px;
+    margin-left: 55px;
+  }
+
+  .hero-header .hero-title {
+    font-size: 75px;
+    letter-spacing: -4px;
+    font-weight: 300;
+  }
+  @include breakpoint(large-only) {
+    .guide-bar-title {
+      font-size: 19px;
+    }
+  }
+  @include breakpoint(medium-only) {
+    .guide-bar-title {
+      font-size: 19px;
+    }
+  }
+  @include breakpoint(tiny-only) {
+    .guide-bar-title {
+      font-size: 19px;
+    }
+    .row .hero-header {
+      padding-bottom: 10px;
+      .hero-title {
+        font-size: 34px;
+        line-height: 38px;
+        letter-spacing: 0;
+      }
+    }
+    .john-audubon-logo {
+      max-width: 61px;
+    }
+  }
+}
 .boa-ja-content-block {
   padding-top: 35px;
   .text-container {
