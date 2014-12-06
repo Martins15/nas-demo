@@ -162,16 +162,3 @@ function nas_menu_query_boaf_order_alter($query) {
   // Order by menu structure.
   $query->orderBy('ml.weight');
 }
-
-/**
- * Implements hook_query_TAG_alter.
- *
- * Sort query results of BOA birds by BOA structure order.
- */
-function nas_menu_query_boa_listing_order_alter($query) {
-  // Only alter if sort order is not selected.
-  if (!empty($_GET['sort_by'])) {
-    return;
-  }
-  nas_menu_query_boaf_order_alter($query);
-}
