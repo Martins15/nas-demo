@@ -510,6 +510,7 @@ function nas_master_update_7049() {
   features_revert_module('nas_views_feature');
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_static_page_feature');
-  features_revert(array('nas_boa_family_feature' => array('ctools_content')));
+  features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_boa_feature');
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
 }
