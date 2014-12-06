@@ -35,5 +35,5 @@ features[variable][] = node_submitted_strategy
 features[variable][] = panelizer_defaults_node_strategy
 features[views_view][] = conservation_strategy_news
 features[views_view][] = conservation_strategy_projects
-mtime = 1417794371
+mtime = 1417872384
 project path = sites/all/modules/features
