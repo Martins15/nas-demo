@@ -20,14 +20,17 @@ $plugin = array(
 function boa_listing_render($subtype, $conf, $args, $contexts) {
   $links = array(
     'by-family' => array(
+      'display' => 'boa_index_family',
       'title' => 'Explore by family',
       'query' => array(),
     ),
     'alphabetical' => array(
+      'display' => 'boa_index',
       'title' => 'Alphabetically',
       'query' => array('sort_by' => 'title'),
     ),
     'state' => array(
+      'display' => 'boa_listing',
       'title' => 'State Birds',
       'query' => array(),
     ),
@@ -39,24 +42,11 @@ function boa_listing_render($subtype, $conf, $args, $contexts) {
   }
   $_GET += $links[$current_link]['query'];
   $title = $links[$current_link]['title'];
-  switch ($current_link) {
-    case 'by-family':
-      $content = views_embed_view('boa_index', 'boa_index_family');
-      break;
-
-    case 'state':
-      $content = views_embed_view('boa_index', 'boa_listing');
-      break;
-
-    default:
-      $content = views_embed_view('boa_index', 'boa_index_birds');
-      break;
-  }
 
   $block = new stdClass();
   $block->content = theme('boa_listing', array(
       'title' => $title,
-      'content' => $content,
+      'content' => views_embed_view('boa_index', $links[$current_link]['display']),
     ));
   return $block;
 }
