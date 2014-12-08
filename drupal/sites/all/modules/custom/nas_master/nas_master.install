@@ -513,6 +513,13 @@ function nas_master_update_7049() {
   features_revert_module('nas_boa_family_feature');
   features_revert_module('nas_boa_feature');
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert(array('nas_bird_type_feature' => array('field_instance')));
+  features_revert(array('nas_conservation_project_feature' => array('field_instance', 'strongarm')));
+  features_revert(array('nas_conservation_strategy_feature' => array('field_instance')));
+  features_revert(array('nas_contact_type_feature' => array('field_instance')));
+  features_revert(array('nas_flyway_feature' => array('field_instance')));
+  features_revert(array('nas_welcome_to_audubon' => array('field_instance')));
+  features_revert(array('nas_fpp_feature' => array('field_base', 'field_instance')));
   features_revert_module('nas_site_template_feature');
 }
 
@@ -520,11 +527,11 @@ function nas_master_update_7049() {
  * Conservation strategy.
  */
 function nas_master_update_7050() {
-  features_revert(
-    array('nas_article_feature' => array('field_instance', 'strongarm'))
-  );
+  features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
   features_revert_module('nas_conservation_strategy_feature');
   module_enable(array('nas_conservation'));
+  pp_create_frontpage_conservation_section_image();
+  features_revert(array('nas_frontpage_feature' => array('page_manager_pages')));
 }
 
 /**
@@ -532,4 +539,5 @@ function nas_master_update_7050() {
  */
 function nas_master_update_7051() {
   features_revert(array('nas_article_feature' => array('panelizer')));
+  features_revert(array('nas_bird_type_feature' => array('filter')));
 }

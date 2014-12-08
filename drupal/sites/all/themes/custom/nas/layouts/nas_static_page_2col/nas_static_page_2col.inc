@@ -19,6 +19,7 @@ $plugin = array(
     'header_hero' => t('Header Hero'),
     'nav_menu' => t('Navigation menu'),
     'header' => t('Header'),
+    'header_no_image' => t('Header if no image presented'),
     'header_hero_attr_text' => t('Hero attribution text'),
     'subtitle' => t('Subtitle'),
     'main' => t('Main'),

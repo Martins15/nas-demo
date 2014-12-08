@@ -155,6 +155,11 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'header' => NULL,
       'top' => NULL,
       'bird_news' => NULL,
+      'featured' => NULL,
+      'more_headlines' => NULL,
+      'editorial_cards' => NULL,
+      'main' => NULL,
+      'conservation_section' => NULL,
     ),
   );
   $display->cache = array();
@@ -182,23 +187,362 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $display->content['new-789c461d-cebc-4a8d-b7c7-92f402c87f26'] = $pane;
     $display->panels['bird_news'][0] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $pane = new stdClass();
+    $pane->pid = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
+    $pane->panel = 'conservation_section';
+    $pane->type = 'frontpage_conservation_section';
+    $pane->subtype = 'frontpage_conservation_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Our conservation work focuses on five key strategies, supported by science, advocacy, and education.',
+      'image' => variable_get('nas_frontpage_conservation_section_image_fid', ''),
+      'wrapper' => array(
+        1 => array(
+          'conservation_strategy' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'top_link' => array(
+            'title' => 'Strategies',
+            'url' => '',
+          ),
+          'text' => array(
+            'value' => '<p>By protecting birds, we’re also safeguarding America’s great natural heritage for future generations, preservind our shared quality of life and fostering a healthier environment for us all.</p>
+',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Learn More About Our Strategies',
+            'url' => '',
+          ),
+        ),
+        2 => array(
+          'conservation_strategy' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'top_link' => array(
+            'title' => 'Advocacy',
+            'url' => '',
+          ),
+          'text' => array(
+            'value' => '<p>Audubon pioneered the idea of Citizen Science with the first Christmas Bird Count. Today the longest-running wildlife census in the world continues to shape and inform our approach to conservation.</p>
+',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Policy Issues & Action',
+            'url' => '',
+          ),
+        ),
+        3 => array(
+          'conservation_strategy' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'top_link' => array(
+            'title' => 'Education',
+            'url' => '',
+          ),
+          'text' => array(
+            'value' => '<p>A commitment to education is at the heart of the Audubon tradition. By inspiring more people in more places to value and protect the natural world, we are laying the foundation for future conservation.</p>
+',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Audubon’s Education Programs',
+            'url' => '',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-h66NqkxOgnuI-gR9SpJbTIDRmLUrTDNxmjYHP66hjYQ',
+      'form_token' => 'AP2QB6KiXRk9ouU9QjBUD7I0jSFZ2sphva05OgCG3Ps',
+      'form_id' => 'frontpage_conservation_section_edit_form',
+      'color_mode' => 'dark',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
+    $display->content['new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f'] = $pane;
+    $display->panels['conservation_section'][0] = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
+    $pane = new stdClass();
+    $pane->pid = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $pane->panel = 'editorial_cards';
+    $pane->type = 'frontpage_editorial_cards';
+    $pane->subtype = 'frontpage_editorial_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $display->content['new-3cafe426-4013-494d-90de-0b2e80b9bd04'] = $pane;
+    $display->panels['editorial_cards'][0] = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $pane = new stdClass();
+    $pane->pid = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $pane->panel = 'featured';
+    $pane->type = 'frontpage_featured_article';
+    $pane->subtype = 'frontpage_featured_article';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => '13',
+      'article' => array(
+        'entity_id' => '4652',
+        'entity_label' => 'African Elephants Innately Understand Pointing',
+        'entity_type' => 'node',
+        'entity_bundle' => 'article',
+      ),
+      'tagline_text' => 'Recent discoveries help scientists understand the elusive bird\'s decline',
+      'form_build_id' => 'form-CMlJjLO67-NodvSOzUKaV89UGe5tu20KCwKfiHTa-8o',
+      'form_token' => 'F-arKBiNyvuYc6MCm1buv7gNhJz0L-O9SNy3w6Bkqo0',
+      'form_id' => 'frontpage_featured_article_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $display->content['new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9'] = $pane;
+    $display->panels['featured'][0] = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $pane = new stdClass();
+    $pane->pid = 'new-e356b57e-cdcd-434d-9d60-a7821aa5bb39';
+    $pane->panel = 'main';
+    $pane->type = 'frontpage_flyway';
+    $pane->subtype = 'frontpage_flyway';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e356b57e-cdcd-434d-9d60-a7821aa5bb39';
+    $display->content['new-e356b57e-cdcd-434d-9d60-a7821aa5bb39'] = $pane;
+    $display->panels['main'][0] = 'new-e356b57e-cdcd-434d-9d60-a7821aa5bb39';
+    $pane = new stdClass();
+    $pane->pid = 'new-da1970b5-194d-4796-a6eb-7fb78652c3af';
+    $pane->panel = 'main';
+    $pane->type = 'fieldable_panels_pane';
+    $pane->subtype = 'uuid:da4f970a-d24c-402f-a151-a6b6d71e603e';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'da1970b5-194d-4796-a6eb-7fb78652c3af';
+    $display->content['new-da1970b5-194d-4796-a6eb-7fb78652c3af'] = $pane;
+    $display->panels['main'][1] = 'new-da1970b5-194d-4796-a6eb-7fb78652c3af';
+    $pane = new stdClass();
+    $pane->pid = 'new-8e11c46c-5f7e-4c3c-a0a2-128455485ab1';
+    $pane->panel = 'main';
+    $pane->type = 'fieldable_panels_pane';
+    $pane->subtype = 'uuid:eda9f889-6383-448a-826c-261fe37c4b74';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '8e11c46c-5f7e-4c3c-a0a2-128455485ab1';
+    $display->content['new-8e11c46c-5f7e-4c3c-a0a2-128455485ab1'] = $pane;
+    $display->panels['main'][2] = 'new-8e11c46c-5f7e-4c3c-a0a2-128455485ab1';
+    $pane = new stdClass();
+    $pane->pid = 'new-ca1629f4-7fbc-4f1f-88a1-6968b84e2059';
+    $pane->panel = 'main';
+    $pane->type = 'fieldable_panels_pane';
+    $pane->subtype = 'uuid:7fbf9dcc-2a0c-49e6-a3d7-b58925f4cf86';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'ca1629f4-7fbc-4f1f-88a1-6968b84e2059';
+    $display->content['new-ca1629f4-7fbc-4f1f-88a1-6968b84e2059'] = $pane;
+    $display->panels['main'][3] = 'new-ca1629f4-7fbc-4f1f-88a1-6968b84e2059';
+    $pane = new stdClass();
+    $pane->pid = 'new-e5ede68f-70e1-45d0-9441-140ecbf1793b';
+    $pane->panel = 'main';
+    $pane->type = 'fieldable_panels_pane';
+    $pane->subtype = 'uuid:d803ece8-fe0d-4395-ae96-497d8a85b3dd';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'e5ede68f-70e1-45d0-9441-140ecbf1793b';
+    $display->content['new-e5ede68f-70e1-45d0-9441-140ecbf1793b'] = $pane;
+    $display->panels['main'][4] = 'new-e5ede68f-70e1-45d0-9441-140ecbf1793b';
+    $pane = new stdClass();
+    $pane->pid = 'new-0962faf5-b44c-4e9b-91fc-054474131b51';
+    $pane->panel = 'main';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_news-frontpage_news_network';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $pane->uuid = '0962faf5-b44c-4e9b-91fc-054474131b51';
+    $display->content['new-0962faf5-b44c-4e9b-91fc-054474131b51'] = $pane;
+    $display->panels['main'][5] = 'new-0962faf5-b44c-4e9b-91fc-054474131b51';
+    $pane = new stdClass();
+    $pane->pid = 'new-28f3662a-f98e-435c-909d-74422f241e8f';
+    $pane->panel = 'main';
+    $pane->type = 'nas_pane_get_outside';
+    $pane->subtype = 'nas_pane_get_outside';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => '11',
+      'color' => 'light',
+      'num_blocks' => 3,
+      'wrapper' => array(
+        1 => array(
+          'title' => 'Birding',
+          'text' => array(
+            'value' => '<p>Birding can be as simple as watching the pigeons fly by your window or pausing to marvel at the chirping sparrows in the trees.&nbsp;<br><a href="#">Start with Three Easy Steps to Birding »</a></p>',
+            'format' => 'full_html',
+          ),
+        ),
+        2 => array(
+          'title' => 'Photography',
+          'text' => array(
+            'value' => '<p>For wildlife and nature photographers, birds provide fascinating but challenging subjects to capture with even a long lens.&nbsp;<br><a href="#">Photo Tips from the Pros »</a></p>',
+            'format' => 'full_html',
+          ),
+        ),
+        3 => array(
+          'title' => '',
+          'text' => array(
+            'value' => '',
+            'format' => 'full_html',
+          ),
+        ),
+      ),
+      'title' => 'Get Outside',
+      'title_link' => '',
+      'form_build_id' => 'form-rT9W4mKuuPxLCH_OeDL9Sl0VfoKiW3mL-zJRCzgYajc',
+      'form_token' => 'dBGkZoq-_pRZkQAu2ikMxlJKC2B-UeZiWMgeni9oDTQ',
+      'form_id' => 'nas_pane_get_outside_edit_form',
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $pane->locks = array();
+    $pane->uuid = '28f3662a-f98e-435c-909d-74422f241e8f';
+    $display->content['new-28f3662a-f98e-435c-909d-74422f241e8f'] = $pane;
+    $display->panels['main'][6] = 'new-28f3662a-f98e-435c-909d-74422f241e8f';
+    $pane = new stdClass();
+    $pane->pid = 'new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
+    $pane->panel = 'more_headlines';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_news-nas_more_headlines';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
+    $display->content['new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653'] = $pane;
+    $display->panels['more_headlines'][0] = 'new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
+    $pane = new stdClass();
     $pane->pid = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
     $pane->panel = 'top';
     $pane->type = 'nas_panes_frontpage_featured';
     $pane->subtype = 'nas_panes_frontpage_featured';
     $pane->shown = TRUE;
     $pane->access = array();
-
-    // Filepath to fullscreen default image.
-    $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/curtain-1.jpg';
-    $filedata = array(
-      'image_title_text' => 'Audubon Researchers in Alaska',
-      'credit' => 'Photo: Rusty Clark',
-    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'image' => nas_fpp_save_default_image($filepath, $filedata),
+      'image' => '12',
       'title' => 'Protecting Alaska’s Frontier',
       'title_link' => '<front>',
       'blue_text' => 'Conservation',
@@ -219,187 +563,6 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->uuid = 'd36d45d4-979b-4bd8-ae90-f8172d285c25';
     $display->content['new-d36d45d4-979b-4bd8-ae90-f8172d285c25'] = $pane;
     $display->panels['top'][0] = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
-
-    $pane = new stdClass();
-    $pane->pid = 'new-4cd0907d-68e6-483e-a098-f219e642c89e';
-    $pane->panel = 'more_headlines';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-nas_more_headlines';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '4cd0907d-68e6-483e-a098-f219e642c89e1';
-    $display->content['new-4cd0907d-68e6-483e-a098-f219e642c89e'] = $pane;
-    $display->panels['more_headlines'][0] = 'new-4cd0907d-68e6-483e-a098-f219e642c89e';
-
-    $pane = new stdClass();
-    $pane->pid = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
-    $pane->panel = 'editorial_cards';
-    $pane->type = 'frontpage_editorial_cards';
-    $pane->subtype = 'frontpage_editorial_cards';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3cafe426-4013-494d-90de-0b2e80b9bd04';
-    $display->content['new-3cafe426-4013-494d-90de-0b2e80b9bd04'] = $pane;
-    $display->panels['editorial_cards'][0] = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
-
-    $pane = new stdClass();
-    $pane->pid = 'new-e356b57e-cdcd-434d-9d60-a7821aa5bb39';
-    $pane->panel = 'main';
-    $pane->type = 'frontpage_flyway';
-    $pane->subtype = 'frontpage_flyway';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'e356b57e-cdcd-434d-9d60-a7821aa5bb39';
-    $display->content['new-e356b57e-cdcd-434d-9d60-a7821aa5bb39'] = $pane;
-    $display->panels['main'][0] = 'new-e356b57e-cdcd-434d-9d60-a7821aa5bb39';
-
-    $pane = new stdClass();
-    $pane->pid = 'new-0962faf5-b44c-4e9b-91fc-054474131b51';
-    $pane->panel = 'main';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-frontpage_news_network';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '0962faf5-b44c-4e9b-91fc-054474131b51';
-    $display->content['new-0962faf5-b44c-4e9b-91fc-054474131b51'] = $pane;
-    $display->panels['main'][1] = 'new-0962faf5-b44c-4e9b-91fc-054474131b51';
-
-    $pane = new stdClass();
-    $pane->pid = 'new-28f3662a-f98e-435c-909d-74422f241e8f';
-    $pane->panel = 'main';
-    $pane->type = 'nas_pane_get_outside';
-    $pane->subtype = 'nas_pane_get_outside';
-    $pane->shown = TRUE;
-    $pane->access = array();
-
-    // Filepath to fullscreen default image.
-    $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/breakout-section-4.jpg';
-    $filedata = array();
-
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'image' => nas_fpp_save_default_image($filepath, $filedata),
-      'color' => 'light',
-      'num_blocks' => 3,
-      'wrapper' => array(
-        1 => array(
-          'title' => 'Birding',
-          'text' => array(
-            'value' => '<p>Birding can be as simple as watching the pigeons fly by your window or pausing to marvel at the chirping sparrows in the trees.&nbsp;<br><a href="#">Start with Three Easy Steps to Birding »</a></p>',
-            'format' => 'full_html',
-          ),
-        ),
-        2 => array(
-          'title' => 'Photography',
-          'text' => array(
-            'value' => '<p>For wildlife and nature photographers, birds provide fascinating but challenging subjects to capture with even a long lens.&nbsp;<br><a href="#">Photo Tips from the Pros »</a></p>',
-            'format' => 'full_html',
-          ),
-        ),
-        3 => array(
-          'title' => 'Healthy Yards',
-          'text' => array(
-            'value' => '<p>Roll up your sleeves and get started. Learn how to create a natural and healthy habitat in your backyard.&nbsp;<br><a href="#">Selecting Bird-Friendly Plants for Your Yard »</a></p>',
-            'format' => 'full_html',
-          ),
-        ),
-      ),
-      'title' => 'Get Outside',
-      'title_link' => '',
-      'form_build_id' => 'form-DVEdDM3d3BbdFHc-4gdgdQ9Lcyg0CtRt9D0Ndd5d438',
-      'form_token' => '7LsFT_DbiXXI3XmyiBBeDc3fDsMv1m1bAAL_d7knjdc',
-      'form_id' => 'nas_pane_get_outside_edit_form',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '28f3662a-f98e-435c-909d-74422f241e8f';
-    $display->content['new-28f3662a-f98e-435c-909d-74422f241e8f'] = $pane;
-    $display->panels['main'][2] = 'new-28f3662a-f98e-435c-909d-74422f241e8f';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
-  $pages['frontpage2'] = $page;
-
-    $pane = new stdClass();
-    $pane->pid = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
-    $pane->panel = 'featured';
-    $pane->type = 'frontpage_featured_article';
-    $pane->subtype = 'frontpage_featured_article';
-    $pane->shown = TRUE;
-    $pane->access = array();
-
-    // Filepath to default featured block image.
-    $filepath =  drupal_get_path('module', 'nas_fpp') . '/images/editorial-card-23.jpg';
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'image' => nas_fpp_save_default_image($filepath),
-      // @todo Before release this must be reference to specific article from prototype
-      'article' => array(
-        'entity_id' => db_query('SELECT nid FROM {node} WHERE title = :title', array(':title' => 'African Elephants Innately Understand Pointing'))->fetchField(),
-        'entity_label' => 'African Elephants Innately Understand Pointing',
-        'entity_type' => 'node',
-        'entity_bundle' => 'article',
-      ),
-      'tagline_text' => 'Recent discoveries help scientists understand the elusive bird\'s decline',
-      'form_build_id' => 'form-CMlJjLO67-NodvSOzUKaV89UGe5tu20KCwKfiHTa-8o',
-      'form_token' => 'F-arKBiNyvuYc6MCm1buv7gNhJz0L-O9SNy3w6Bkqo0',
-      'form_id' => 'frontpage_featured_article_form',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
-    $display->content['new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9'] = $pane;
-    $display->panels['featured'][0] = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

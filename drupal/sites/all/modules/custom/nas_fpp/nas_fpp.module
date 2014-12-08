@@ -421,7 +421,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   $vars['contextual_links'] = '';
 
   // Early return pattern.
-  if (!$node || !user_access('administer site configuration')) {
+  if (!$node || !user_access('access contextual links') || !user_access('edit NAS panes')) {
     return;
   }
 
@@ -512,7 +512,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
 
   $vars['contextual_links'] = '';
-  if (!user_access('administer site configuration')) {
+  if (!user_access('access contextual links') || !user_access('edit NAS panes')) {
     return;
   }
 

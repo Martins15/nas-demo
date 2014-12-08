@@ -458,11 +458,11 @@ function nas_welcome_to_audubon_field_default_field_instances() {
       'better_formats' => array(
         'allowed_formats' => array(
           'full_html' => 'full_html',
-          'map' => 'map',
-          'plain_text' => 'plain_text',
-          'video' => 'video',
+          'map' => 0,
+          'plain_text' => 0,
+          'video' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -489,7 +489,7 @@ function nas_welcome_to_audubon_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 20,
+        'rows' => 5,
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
