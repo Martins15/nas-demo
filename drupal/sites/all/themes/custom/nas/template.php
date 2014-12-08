@@ -324,7 +324,12 @@ function nas_preprocess_node_article(&$vars) {
       ));
   }
 
-  if (in_array($vars['view_mode'], array('nas_teaser_flyway_landing', 'static_page_related_teaser'))) {
+  $subtitle_modes = array(
+    'nas_teaser_flyway_landing',
+    'static_page_related_teaser',
+    'conservation_strategy_featured_teaser',
+  );
+  if (in_array($vars['view_mode'], $subtitle_modes)) {
     $vars['subtitle'] = '';
     if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];

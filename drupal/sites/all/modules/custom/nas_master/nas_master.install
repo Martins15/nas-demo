@@ -513,4 +513,23 @@ function nas_master_update_7049() {
   features_revert_module('nas_boa_family_feature');
   features_revert_module('nas_boa_feature');
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert_module('nas_site_template_feature');
+}
+
+/**
+ * Conservation strategy.
+ */
+function nas_master_update_7050() {
+  features_revert(
+    array('nas_article_feature' => array('field_instance', 'strongarm'))
+  );
+  features_revert_module('nas_conservation_strategy_feature');
+  module_enable(array('nas_conservation'));
+}
+
+/**
+ * Revert features components.
+ */
+function nas_master_update_7051() {
+  features_revert(array('nas_article_feature' => array('panelizer')));
 }

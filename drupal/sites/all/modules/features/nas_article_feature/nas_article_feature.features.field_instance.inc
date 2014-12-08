@@ -17,6 +17,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -143,6 +149,19 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 12,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'date',
@@ -291,6 +310,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -402,6 +428,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 13,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -534,6 +567,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Can be left empty if Press Release panelizer is applied',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -653,6 +695,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image. (Applies for fullscreen image layout)',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 16,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'list',
@@ -756,6 +805,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 18,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -764,6 +822,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 18,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_node_featured' => array(
         'label' => 'above',
@@ -853,6 +917,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 8,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -965,6 +1036,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 17,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1069,6 +1149,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 9,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'mediafield',
@@ -1232,6 +1321,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'For internal use only',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1346,6 +1441,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'To be used when building a link to the node. For example in Editorial Card.',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 15,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -1478,6 +1580,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Adds magazine issue information tab on article view page',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1593,6 +1704,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 7,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -1710,6 +1828,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 10,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1825,6 +1952,15 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1940,6 +2076,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'conservation_strategy_featured_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
