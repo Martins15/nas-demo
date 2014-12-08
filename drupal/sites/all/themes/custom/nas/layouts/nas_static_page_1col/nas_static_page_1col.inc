@@ -17,6 +17,7 @@ $plugin = array(
   'regions' => array(
     'hero_image' => t('Hero image'),
     'header_hero' => t('Header Hero'),
+    'header_no_image' => t('Header if no image presented'),
     'nav_menu' => t('Navigation menu'),
     'header' => t('Header'),
     'header_hero_attr_text' => t('Hero attribution text'),
