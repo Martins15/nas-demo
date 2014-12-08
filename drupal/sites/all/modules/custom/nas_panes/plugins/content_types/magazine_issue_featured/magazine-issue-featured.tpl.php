@@ -9,7 +9,7 @@
  */
 ?>
 
-<div class="row contextual-links-region">
+<div class="row magazin-issue-featured contextual-links-region">
   <?php print $contextual_links; ?>
   <?php foreach ($teasers as $teaser): ?>
   <div class="large-6 columns">
