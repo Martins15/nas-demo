@@ -512,6 +512,13 @@ function nas_master_update_7049() {
   features_revert_module('nas_static_page_feature');
   features_revert(array('nas_boa_family_feature' => array('ctools_content')));
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert(array('nas_bird_type_feature' => array('field_instance')));
+  features_revert(array('nas_conservation_project_feature' => array('field_instance', 'strongarm')));
+  features_revert(array('nas_conservation_strategy_feature' => array('field_instance')));
+  features_revert(array('nas_contact_type_feature' => array('field_instance')));
+  features_revert(array('nas_flyway_feature' => array('field_instance')));
+  features_revert(array('nas_welcome_to_audubon' => array('field_instance')));
+  features_revert(array('nas_fpp_feature' => array('field_base', 'field_instance')));
 }
 
 /**
