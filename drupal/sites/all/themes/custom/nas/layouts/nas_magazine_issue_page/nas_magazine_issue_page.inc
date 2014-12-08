@@ -18,6 +18,7 @@ $plugin = array(
     'header' => t('Header'),
     'title' => t('Title'),
     'featured' => t('Featured'),
+    'mag_issue_nav' => t('Navigation'),
     'cover' => t('Cover'),
     'articles_top' => t('Articles top'),
     'donate' => t('Donate'),

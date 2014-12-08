@@ -381,6 +381,10 @@ function nas_panes_theme() {
       'template' => 'magazine-issue-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_featured',
     ),
+    'magazine_issue_nav' => array(
+      'template' => 'magazine-issue-nav',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_nav',
+    ),
     'magazine_issue_other_issues' => array(
       'template' => 'magazine-issue-other-issues',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_other_issues',
@@ -900,4 +904,45 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   );
 
   return drupal_render($build);
+}
+
+/**
+ * Helper function to get Magazine issue's article node nids.
+ * @param $node
+ *  Node of type 'magazine_issue'.
+ *
+ * @return array
+ *   Array of integers - nids.
+ */
+function _nas_panes_magazin_featured_articles($node) {
+  static $articles_nids = array();
+
+  if (empty($articles_nids)) {
+    $pid = _nas_panes_panelizer_lookup_pid('magazine_issue_featured', $node);
+    $conf = $node->panelizer['page_manager']->display->content[$pid]->configuration;
+    $conf_is_empty = TRUE;
+    if (!empty($conf[$node->nid])) {
+      foreach ($conf[$node->nid] as $value) {
+        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+          $conf_is_empty = FALSE;
+          break;
+        }
+      }
+    }
+    if (!$conf_is_empty) {
+      foreach ($conf[$node->nid] as $value) {
+        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+          $articles_nids[] = $value['entity_reference']['entity_id'];
+        }
+      }
+    }
+    else {
+      $view_results = views_get_view_result('magazin_issues', 'mag_issue_recent_articles', $node->nid);
+      foreach ($view_results as $result) {
+        $articles_nids[] = $result->nid;
+      }
+    }
+  }
+
+  return $articles_nids;
 }

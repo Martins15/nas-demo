@@ -13,14 +13,14 @@
       <h1 class="mag-issue-title"><?php print t('Audubon Magazine'); ?> <span><?php print $content['title']; ?></span></h1>
     </div>
     <div class="columns">
-      <ul class="section-nav inline-list mag-issue-nav">
-        <li><?php print l(t('Subscriber Services'), ''); ?></li>
-        <li><?php print l(t('Past Issues'), 'past-magazine-issues'); ?></li>
-      </ul>
+      <?php print $content['mag_issue_nav']; ?>
     </div>
   </div>
   <div class="row">
 
+    <div class="hide-for-large hide-for-xlarge">
+      <?php print $content['cover']; ?>
+    </div>
   <!-- BEGIN MAIN COLUMN -->
     <div class="large-8 columns index-list">
       <?php print $content['featured']; ?>
@@ -32,7 +32,7 @@
 
   <!-- BEGIN SIDEBAR -->
     <div class="sidebar large-4 columns">
-      <div class="sidebar-section editorial-card-photo">
+      <div class="hide-for-tiny hide-for-small hide-for-medium sidebar-section editorial-card-photo">
       <?php print $content['cover']; ?>
       </div>
       <?php print $content['right_sidebar']; ?>

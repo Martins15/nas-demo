@@ -521,6 +521,7 @@ function nas_master_update_7049() {
   features_revert(array('nas_welcome_to_audubon' => array('field_instance')));
   features_revert(array('nas_fpp_feature' => array('field_base', 'field_instance')));
   features_revert_module('nas_site_template_feature');
+  features_revert(array('nas_magazine_issue_feature' => array('panelizer_defaults')));
 }
 
 /**

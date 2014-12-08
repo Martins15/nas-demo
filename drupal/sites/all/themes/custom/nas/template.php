@@ -556,6 +556,7 @@ function nas_image($variables) {
     'front_flyway_image',
     'conservation_strategy_icon',
     'boa_family_species',
+    'magazine_issue_cover',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
