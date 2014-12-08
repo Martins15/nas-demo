@@ -512,6 +512,7 @@ function nas_master_update_7049() {
   features_revert_module('nas_static_page_feature');
   features_revert(array('nas_boa_family_feature' => array('ctools_content')));
   features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert_module('nas_site_template_feature');
 }
 
 /**
