@@ -127,55 +127,7 @@
     </div>
   </div>
   <?php print $content['editorial_cards']; ?>
-  <section class="breakout-section black-bg">
-    <div class="breakout-section-hero margin-bottom" style="background-image: url(<?php print base_path() . path_to_theme(); ?>/img/breakout-section-3.jpg)">
-      <div class="row">
-        <div class="column">
-          <h1 class="breakout-section-headline">Our conservation work focuses on five key strategies, supported by science, advocacy, and education.</h1>
-        </div>
-      </div>
-    </div>
-    <div class="breakout-section-content light-text">
-      <div class="row">
-        <div class="columns medium-4">
-          <div class="editorial-card dark no-border">
-            <div class="editorial-card-content">
-              <a href="#" class="editorial-card-slug">Strategies</a>
-              <a href="#">
-                <h4 class="editorial-card-title">Conservation Strategies Across America</h4>
-              </a>
-              <p>By protecting birds, we&rsquo;re also safeguarding America&rsquo;s great natural heritage for future generations, preservind our shared quality of life and fostering a healthier environment for us all.</p>
-              <p><a href="#" class="editorial-card-link sans">Learn More About Our Strategies</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="columns medium-4">
-          <div class="editorial-card dark no-border">
-            <div class="editorial-card-content">
-              <a href="#" class="editorial-card-slug">Advocacy</a>
-              <a href="#">
-                <h4 class="editorial-card-title">Standing Up and Speaking Out for Birds</h4>
-              </a>
-              <p>Audubon pioneered the idea of Citizen Science with the first Christmas Bird Count. Today the longest-running wildlife census in the world continues to shape and inform our approach to conservation.</p>
-              <p><a href="#" class="editorial-card-link sans">Policy Issues &amp; Action</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="columns medium-4">
-          <div class="editorial-card dark no-border">
-            <div class="editorial-card-content">
-              <a href="#" class="editorial-card-slug">Education</a>
-              <a href="#">
-                <h4 class="editorial-card-title">Shaping the Next Generation of Conservationists</h4>
-              </a>
-              <p>A commitment to education is at the heart of the Audubon tradition. By inspiring more people in more places to value and protect the natural world, we are laying the foundation for future conservation.</p>
-              <p><a href="#" class="editorial-card-link sans">Audubon’s Education Programs</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <?php print $content['conservation_section']; ?>
   <?php print $content['bird_news']; ?>
   <?php print $content['main']; ?>
   <section class="card-set bg-1">
