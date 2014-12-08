@@ -93,6 +93,9 @@ function nas_article_feature_strongarm() {
       'nas_node_project_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'conservation_strategy_featured_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
