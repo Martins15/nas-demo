@@ -159,6 +159,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'more_headlines' => NULL,
       'editorial_cards' => NULL,
       'main' => NULL,
+      'conservation_section' => NULL,
     ),
   );
   $display->cache = array();
@@ -185,6 +186,102 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->uuid = '789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $display->content['new-789c461d-cebc-4a8d-b7c7-92f402c87f26'] = $pane;
     $display->panels['bird_news'][0] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
+    $pane = new stdClass();
+    $pane->pid = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
+    $pane->panel = 'conservation_section';
+    $pane->type = 'frontpage_conservation_section';
+    $pane->subtype = 'frontpage_conservation_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Our conservation work focuses on five key strategies, supported by science, advocacy, and education.',
+      'image' => variable_get('nas_frontpage_conservation_section_image_fid', ''),
+      'wrapper' => array(
+        1 => array(
+          'conservation_strategy' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'top_link' => array(
+            'title' => 'Strategies',
+            'url' => '',
+          ),
+          'text' => array(
+            'value' => '<p>By protecting birds, we’re also safeguarding America’s great natural heritage for future generations, preservind our shared quality of life and fostering a healthier environment for us all.</p>
+',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Learn More About Our Strategies',
+            'url' => '',
+          ),
+        ),
+        2 => array(
+          'conservation_strategy' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'top_link' => array(
+            'title' => 'Advocacy',
+            'url' => '',
+          ),
+          'text' => array(
+            'value' => '<p>Audubon pioneered the idea of Citizen Science with the first Christmas Bird Count. Today the longest-running wildlife census in the world continues to shape and inform our approach to conservation.</p>
+',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Policy Issues & Action',
+            'url' => '',
+          ),
+        ),
+        3 => array(
+          'conservation_strategy' => array(
+            'entity_id' => '4747',
+            'entity_label' => 'Sharing Our Seas & Shores',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'top_link' => array(
+            'title' => 'Education',
+            'url' => '',
+          ),
+          'text' => array(
+            'value' => '<p>A commitment to education is at the heart of the Audubon tradition. By inspiring more people in more places to value and protect the natural world, we are laying the foundation for future conservation.</p>
+',
+            'format' => 'full_html',
+          ),
+          'bot_link' => array(
+            'title' => 'Audubon’s Education Programs',
+            'url' => '',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-h66NqkxOgnuI-gR9SpJbTIDRmLUrTDNxmjYHP66hjYQ',
+      'form_token' => 'AP2QB6KiXRk9ouU9QjBUD7I0jSFZ2sphva05OgCG3Ps',
+      'form_id' => 'frontpage_conservation_section_edit_form',
+      'color_mode' => 'dark',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
+    $display->content['new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f'] = $pane;
+    $display->panels['conservation_section'][0] = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
     $pane = new stdClass();
     $pane->pid = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
     $pane->panel = 'editorial_cards';
