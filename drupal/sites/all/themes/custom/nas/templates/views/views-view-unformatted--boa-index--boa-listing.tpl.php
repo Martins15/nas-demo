@@ -7,7 +7,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="boa-bird-card-set bg-boa-bejge">
+<div class="columns boa-bird-card-set bg-boa-bejge">
   <?php if (!empty($title)): ?>
   <div class="row section-header space-top">
     <div class="column">
