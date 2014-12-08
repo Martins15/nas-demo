@@ -20,6 +20,7 @@
     font-size: 75px;
     letter-spacing: -4px;
     font-weight: 300;
+    line-height: 75px;
   }
   @include breakpoint(large-only) {
     .guide-bar-title {
@@ -107,7 +108,7 @@
   }
 
   .hero-header {
-    padding-bottom: 70px;
+    padding-bottom: 60px;
   }
 }
 .boa-ja-content-block {
