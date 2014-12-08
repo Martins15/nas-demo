@@ -7690,8 +7690,10 @@ body.touch .primary-sub-nav-index {
   }
 }
 
-.one-third-left-width {
-  padding-right: 25px;
+@media only screen and (min-width: 601px) {
+  .one-third-left-width {
+    padding-right: 25px;
+  }
 }
 
 .comments {
@@ -8592,6 +8594,11 @@ body.node-type-slideshow #tabs {
   .conservation-strategy-projects-block .projects-list .columns .editorial-card {
     min-height: inherit !important;
   }
+}
+
+.conservation-strategy-content {
+  padding-left: 12.5px;
+  padding-right: 12.5px;
 }
 
 .conservation-slider {
