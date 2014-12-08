@@ -7690,8 +7690,10 @@ body.touch .primary-sub-nav-index {
   }
 }
 
-.one-third-left-width {
-  padding-right: 25px;
+@media only screen and (min-width: 601px) {
+  .one-third-left-width {
+    padding-right: 25px;
+  }
 }
 
 .comments {
@@ -8609,6 +8611,11 @@ body.node-type-slideshow #tabs {
   .conservation-strategy-projects-block .projects-list .columns .editorial-card {
     min-height: inherit !important;
   }
+}
+
+.conservation-strategy-content {
+  padding-left: 12.5px;
+  padding-right: 12.5px;
 }
 
 .conservation-slider {
@@ -11319,6 +11326,7 @@ body.touch .sticky-wrapper {
   font-size: 75px;
   letter-spacing: -4px;
   font-weight: 300;
+  line-height: 75px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1279px) {
   .page-boa .guide-bar-title {
@@ -11328,6 +11336,14 @@ body.touch .sticky-wrapper {
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .page-boa .guide-bar-title {
     font-size: 19px;
+  }
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 0;
   }
 }
 @media only screen and (max-width: 479px) {
@@ -11347,9 +11363,13 @@ body.touch .sticky-wrapper {
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .hero-title {
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
+    letter-spacing: 0;
   }
 }
 .page-boa .action-nav {
@@ -11387,7 +11407,51 @@ body.touch .sticky-wrapper {
   }
 }
 .page-boa .hero-header {
-  padding-bottom: 70px;
+  padding-bottom: 60px;
+}
+
+.page-boa-bird .guide-bar-title,
+.node-type-boaf .guide-bar-title {
+  line-height: 23px;
+  margin-left: 55px;
+}
+.page-boa-bird .hero-header .hero-title,
+.node-type-boaf .hero-header .hero-title {
+  font-size: 75px;
+  letter-spacing: -4px;
+  font-weight: 300;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+  .page-boa-bird .row .hero-header,
+  .node-type-boaf .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa-bird .row .hero-header .hero-title,
+  .node-type-boaf .row .hero-header .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 0;
+  }
+  .page-boa-bird .john-audubon-logo,
+  .node-type-boaf .john-audubon-logo {
+    max-width: 61px;
+  }
 }
 
 .boa-ja-content-block {

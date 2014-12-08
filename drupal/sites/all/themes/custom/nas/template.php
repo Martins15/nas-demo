@@ -199,7 +199,7 @@ function nas_preprocess_node_boa(&$vars) {
   }
 
   // BOA index page sortings.
-  if (arg(0) == 'boa') {
+  if (arg(0) == 'boa' && arg(1) == '') {
     $vars['sort_name'] = $vars['scientific_name'];
     if (isset($_GET['sort_by'])) {
       switch ($_GET['sort_by']) {

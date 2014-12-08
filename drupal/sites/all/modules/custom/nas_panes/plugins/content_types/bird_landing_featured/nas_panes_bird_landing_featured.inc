@@ -103,7 +103,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
 
   if (!isset($conf['bird']['entity_id']) || empty($conf['bird']['entity_id'])) {
     $block->content = '';
-    if (user_access('administer site configuration')) {
+    if (user_access('access contextual links') && user_access('edit NAS panes')) {
       $block->content = t('No featured bird selected');
     }
     return $block;

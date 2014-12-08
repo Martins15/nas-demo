@@ -69,6 +69,14 @@ function nas_panes_theme() {
       'template' => 'boa-index-main',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_main',
     ),
+    'boa_listing' => array(
+      'variables' => array(
+        'title' => '',
+        'content' => '',
+      ),
+      'template' => 'boa-listing',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_listing',
+    ),
     'boa_index_bio' => array(
       'variables' => array(
         'title' => '',
@@ -81,6 +89,13 @@ function nas_panes_theme() {
       ),
       'template' => 'boa-index-bio',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_bio',
+    ),
+    'boa_index_bar' => array(
+      'variables' => array(
+        'links' => '',
+      ),
+      'template' => 'boa-index-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_bar',
     ),
     'boa_hero' => array(
       'variables' => array(
@@ -483,6 +498,18 @@ function nas_panes_theme() {
       ),
       'template' => 'conservation-strategy-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_news',
+    ),
+    'frontpage_conservation_section' => array(
+      'variables' => array(
+        'title' => NULL,
+        'image_path' => NULL,
+        'content' => array(),
+        'contextual_links' => NULL,
+        'color_mode' => NULL,
+        'text_color' => NULL,
+      ),
+      'template' => 'frontpage-conservation-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_conservation_section',
     ),
   );
 

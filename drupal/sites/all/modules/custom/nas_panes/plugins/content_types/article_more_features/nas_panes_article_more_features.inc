@@ -110,7 +110,7 @@ function nas_panes_article_more_features_render($subtype, $conf, $args, $context
   }
 
   $contextual_links = '';
-  if (user_access('administer site configuration')) {
+  if (user_access('access contextual links') && user_access('edit NAS panes')) {
     $contextual_links = nas_panes_article_more_features_build_contextual_links($subtype, $context_node);
   }
   $vars['contextual_links'] = $contextual_links;
