@@ -112,6 +112,7 @@ function frontpage_conservation_section_edit_form_submit(&$form, &$form_state) {
 function frontpage_conservation_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
+  $hero_image_path = '';
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
@@ -125,9 +126,11 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
     $content[$delta] = array();
     if (!empty($item['conservation_strategy']['entity_id'])) {
       $node = node_load($item['conservation_strategy']['entity_id']);
-      $content[$delta]['title'] = $node->title;
-      $content[$delta]['nid'] = $node->nid;
-      $content[$delta]['node_url'] = url('node/' . $node->nid, array('absolute' => TRUE));
+      if ($node) {
+        $content[$delta]['title'] = $node->title;
+        $content[$delta]['nid'] = $node->nid;
+        $content[$delta]['node_url'] = url('node/' . $node->nid, array('absolute' => TRUE));
+      }
     }
 
     $content[$delta]['top_link'] = $item['top_link'];
