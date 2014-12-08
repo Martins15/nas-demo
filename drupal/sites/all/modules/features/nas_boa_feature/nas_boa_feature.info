@@ -52,4 +52,4 @@ features[variable][] = node_submitted_boa
 features[variable][] = panelizer_defaults_node_boa
 features[views_view][] = boa_news
 features[views_view][] = random_news
-mtime = 1417427763
+mtime = 1417450806

@@ -6,22 +6,8 @@
 ?>
 <?php print $content['header']; ?>
 </header>
-<section class="global-content with-padding">
-  <div class="row">
-    <div class="boa-family-text-block text-container">
-      <div class="large-12 columns">
-        <h1 class="thin family-name"><?php print $content['title']; ?></h1>
-        <p class="scientific-name"><?php print $content['scientific_name']; ?></p>
-      </div>
-      <div class="large-6 columns">
-        <?php print $content['body_column_1']; ?>
-      </div>
-      <div class="large-6 columns">
-        <?php print $content['body_column_2']; ?>
-      </div>
-    </div>
-  </div>
-  <?php print $content['bottom']; ?>
+<section class="global-content">
+  <?php print $content['main']; ?>
   <section class="card-set bg-1">
     <div class="row">
       <div class="column">
@@ -40,7 +26,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>engagement-card-1.jpg" alt="">
+              <img src="../../img/engagement-card-1.jpg" alt="">
             </div>
           </div>
         </div>
@@ -54,7 +40,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>engagement-card-2.jpg" alt="">
+              <img src="../../img/engagement-card-2.jpg" alt="">
             </div>
           </div>
         </div>
@@ -68,7 +54,7 @@
               </div>
             </div>
             <div class="engagement-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>engagement-card-3.jpg" alt="">
+              <img src="../../img/engagement-card-3.jpg" alt="">
             </div>
           </div>
         </div>
