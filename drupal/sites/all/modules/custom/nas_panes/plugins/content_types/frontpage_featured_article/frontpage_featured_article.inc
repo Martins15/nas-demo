@@ -92,7 +92,7 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
 
   if (!isset($conf['article']['entity_id']) || empty($conf['article']['entity_id'])) {
     $block->content = '';
-    if (user_access('administer site configuration')) {
+    if (user_access('access contextual links') && user_access('edit NAS panes')) {
       $block->content = t('No featured article selected');
     }
     return $block;
