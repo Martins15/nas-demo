@@ -45,3 +45,22 @@
     font-size: 38px;
   }
 }
+
+.editorial-card-photo-bottom {
+  display: none;
+}
+
+.magazin-issue-featured {
+  .editorial-card-photo-bottom {
+    margin-top: $column-gutter / 2;
+    @include breakpoint(tiny-only) {
+      display: block;
+    }
+    @include breakpoint(small-only) {
+      display: block;
+    }
+    @include breakpoint(medium-only) {
+      display: block;
+    }
+  }
+}

@@ -8336,8 +8336,25 @@ body.black-bg .section-header a:hover {
   right: -35px;
 }
 
-.index-list {
-  margin-bottom: 75px;
+@media only screen and (max-width: 479px) {
+  .index-list .view .pager-load-more {
+    margin-bottom: 75px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .index-list .view .pager-load-more {
+    margin-bottom: 75px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .index-list .view .pager-load-more {
+    margin-bottom: 75px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .index-list {
+    margin-bottom: 75px;
+  }
 }
 
 /* @todo Document this whole thing */
@@ -9113,6 +9130,29 @@ body.node-type-slideshow #tabs {
 .magazine-issue-other-issues h2 {
   margin: 0 12.5px 10px;
   font-size: 38px;
+}
+
+.editorial-card-photo-bottom {
+  display: none;
+}
+
+.magazin-issue-featured .editorial-card-photo-bottom {
+  margin-top: 12.5px;
+}
+@media only screen and (max-width: 479px) {
+  .magazin-issue-featured .editorial-card-photo-bottom {
+    display: block;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .magazin-issue-featured .editorial-card-photo-bottom {
+    display: block;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .magazin-issue-featured .editorial-card-photo-bottom {
+    display: block;
+  }
 }
 
 .bio-header {
