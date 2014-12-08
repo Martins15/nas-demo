@@ -85,14 +85,3 @@ function nas_alters_views_ajax_data_alter(&$commands, $view) {
     $commands[] = ajax_command_replace('.bird-card-grid .section-header h2', '<h2 class="thin">' . t('Matching Birds') . '</h2>');
   }
 }
-
-/**
- * Implements hook_query_TAG_alter.
- *
- * Filter magazine issues by date.
- */
-function nas_menu_query_magazine_issue_before_alter($query) {
-  if (!empty($_GET['before'])) {
-    $query->condition('field_issue_date_value', $_GET['before'], '<');
-  }
-}
