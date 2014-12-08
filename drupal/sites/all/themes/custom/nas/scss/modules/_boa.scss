@@ -30,6 +30,14 @@
     .guide-bar-title {
       font-size: 19px;
     }
+    .row .hero-header {
+      padding-bottom: 10px;
+      .hero-title {
+        font-size: 34px;
+        line-height: 38px;
+        letter-spacing: 0;
+      }
+    }
   }
   @include breakpoint(tiny-only) {
     .guide-bar-title {
@@ -49,9 +57,13 @@
   }
 
   @include breakpoint(small-only) {
-    .hero-title {
-      font-size: 34px;
-      line-height: 38px;
+    .row .hero-header {
+      padding-bottom: 10px;
+      .hero-title {
+        font-size: 34px;
+        line-height: 38px;
+        letter-spacing: 0;
+      }
     }
   }
 

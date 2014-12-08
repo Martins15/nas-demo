@@ -11289,6 +11289,14 @@ body.touch .sticky-wrapper {
   .page-boa .guide-bar-title {
     font-size: 19px;
   }
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 0;
+  }
 }
 @media only screen and (max-width: 479px) {
   .page-boa .guide-bar-title {
@@ -11307,9 +11315,13 @@ body.touch .sticky-wrapper {
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .hero-title {
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
+    letter-spacing: 0;
   }
 }
 .page-boa .action-nav {
