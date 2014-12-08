@@ -45,6 +45,7 @@ function nas_magazine_issue_feature_panelizer_defaults() {
       'other_issues' => NULL,
       'title' => NULL,
       'cover' => NULL,
+      'mag_issue_nav' => NULL,
     ),
   );
   $display->cache = array();
@@ -198,6 +199,25 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $pane->uuid = '39c1b74a-3e10-4f10-b421-60e1cc8be186';
     $display->content['new-39c1b74a-3e10-4f10-b421-60e1cc8be186'] = $pane;
     $display->panels['featured'][0] = 'new-39c1b74a-3e10-4f10-b421-60e1cc8be186';
+    $pane = new stdClass();
+    $pane->pid = 'new-89d4cc2c-b298-4250-8fdd-65094601358c';
+    $pane->panel = 'mag_issue_nav';
+    $pane->type = 'magazine_issue_nav';
+    $pane->subtype = 'magazine_issue_nav';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '89d4cc2c-b298-4250-8fdd-65094601358c';
+    $display->content['new-89d4cc2c-b298-4250-8fdd-65094601358c'] = $pane;
+    $display->panels['mag_issue_nav'][0] = 'new-89d4cc2c-b298-4250-8fdd-65094601358c';
     $pane = new stdClass();
     $pane->pid = 'new-3e1fde05-8766-4440-a564-28cb90e1b64f';
     $pane->panel = 'other_issues';
