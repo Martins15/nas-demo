@@ -12165,3 +12165,7 @@ textarea.error {
 .text-container.thin h1, .text-container.thin h2 {
   font-weight: 300;
 }
+
+.guide-bar-date a {
+  color: #fff;
+}
