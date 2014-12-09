@@ -38,6 +38,7 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'conservation_strategy_list_teaser';
   $handler->display->display_options['row_options']['links'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_conservation_project_target_id']['id'] = 'field_conservation_project_target_id';
