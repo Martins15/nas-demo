@@ -538,4 +538,9 @@ function nas_master_update_7050() {
 function nas_master_update_7051() {
   features_revert(array('nas_article_feature' => array('panelizer')));
   features_revert(array('nas_bird_type_feature' => array('filter')));
+  //Change weight of nas_alters module.
+  db_update('system')
+  ->fields(array('weight' => 100))
+  ->condition('name', 'nas_alters')
+  ->execute();
 }
