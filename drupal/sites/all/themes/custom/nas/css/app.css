@@ -11933,6 +11933,10 @@ h2.grey {
   list-style-type: none;
 }
 
+.search-tag {
+  background-color: #fdf7da;
+}
+
 .top-search-form {
   margin-top: 65px;
 }
