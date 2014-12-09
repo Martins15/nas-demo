@@ -77,7 +77,6 @@
  * - $title_link: Title with link to node page.
  * - $blue_text_link_url: Menu or Custom section url.
  * - $blue_text_link_text: Menu or Custom section text.
- * - $linked_image: Hero image wrapper with A tag linked to node.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -86,17 +85,20 @@
  * @ingroup themeable
  */
 ?>
-
-<div class="editorial-card collapse-minimal">
-  <div class="editorial-card-photo">
-    <?php print $linked_image; ?>
-  </div>
-  <div class="editorial-card-content">
-    <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
-    <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
-    <?php print render($content['body']); ?>
-  </div>
-  <div class="editorial-card-photo-bottom">
-    <?php print $linked_image; ?>
+<div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
+  <div class="row">
+    <div class="tiny-4 columns">
+      <div class="editorial-card-photo">
+        <?php print render($content['field_hero_image']); ?>
+      </div>
+    </div>
+    <div class="tiny-8 columns">
+      <div class="editorial-card-content">
+        <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
+        <div class="editorial-card-body">
+          <?php print render($content['body']); ?>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

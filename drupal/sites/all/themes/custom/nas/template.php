@@ -199,7 +199,7 @@ function nas_preprocess_node_boa(&$vars) {
   }
 
   // BOA index page sortings.
-  if (arg(0) == 'boa') {
+  if (arg(0) == 'boa' && arg(1) == '') {
     $vars['sort_name'] = $vars['scientific_name'];
     if (isset($_GET['sort_by'])) {
       switch ($_GET['sort_by']) {
@@ -556,6 +556,7 @@ function nas_image($variables) {
     'front_flyway_image',
     'conservation_strategy_icon',
     'boa_family_species',
+    'magazine_issue_cover',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));

@@ -82,17 +82,10 @@ function magazine_issue_featured_render($subtype, $conf, $args, $context) {
   }
 
   $articles_nodes = array();
-  $magazine_issue_featured_nids = array();
-  // Manual override.
-  if (!$conf_is_empty) {
-    foreach ($conf[$conf_key] as $value) {
-      if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
-        $magazine_issue_featured_nids[] = $value['entity_reference']['entity_id'];
-        $articles_nodes[] = $node;
-      }
-    }
+  $magazine_issue_featured_nids = _nas_panes_magazin_featured_articles($context_node);
+  foreach ($magazine_issue_featured_nids as $nid) {
+    $articles_nodes[] = node_load($nid);
   }
-  variable_set('magazine_issue_featured_nids_' . $context_node->nid, $magazine_issue_featured_nids);
 
   $teasers = array();
   foreach ($articles_nodes as $node) {

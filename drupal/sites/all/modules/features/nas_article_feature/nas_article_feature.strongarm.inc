@@ -81,11 +81,14 @@ function nas_article_feature_strongarm() {
       'nas_node_related_features' => array(
         'custom_settings' => TRUE,
       ),
-      'static_page_related_teaser' => array(
-        'custom_settings' => TRUE,
-      ),
       'nas_editorial_card' => array(
         'custom_settings' => TRUE,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'static_page_related_teaser' => array(
+        'custom_settings' => FALSE,
       ),
       'boa_teaser' => array(
         'custom_settings' => FALSE,
@@ -94,7 +97,7 @@ function nas_article_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'conservation_strategy_featured_teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(

@@ -36,7 +36,7 @@
   <?php endif; ?>
 <?php endif; ?>
 <?php print $content['nav_menu']; ?>
-<section class="global-content with-padding">
+<section class="global-content<?php if (!empty($content['hero_image'])): ?> with-padding<?php endif; ?>">
   <?php if (empty($content['hero_image']) || arg(0) == 'admin'): ?>
     <header class="article-header row">
       <div class="large-10 large-centered columns">

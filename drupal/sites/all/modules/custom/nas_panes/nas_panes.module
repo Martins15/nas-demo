@@ -69,6 +69,14 @@ function nas_panes_theme() {
       'template' => 'boa-index-main',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_main',
     ),
+    'boa_listing' => array(
+      'variables' => array(
+        'title' => '',
+        'content' => '',
+      ),
+      'template' => 'boa-listing',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_listing',
+    ),
     'boa_index_bio' => array(
       'variables' => array(
         'title' => '',
@@ -81,6 +89,13 @@ function nas_panes_theme() {
       ),
       'template' => 'boa-index-bio',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_bio',
+    ),
+    'boa_index_bar' => array(
+      'variables' => array(
+        'links' => '',
+      ),
+      'template' => 'boa-index-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_index_bar',
     ),
     'boa_hero' => array(
       'variables' => array(
@@ -365,6 +380,10 @@ function nas_panes_theme() {
     'magazine_issue_featured' => array(
       'template' => 'magazine-issue-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_featured',
+    ),
+    'magazine_issue_nav' => array(
+      'template' => 'magazine-issue-nav',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_nav',
     ),
     'magazine_issue_other_issues' => array(
       'template' => 'magazine-issue-other-issues',
@@ -812,15 +831,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $node, $bundle, $
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $name = 'node:' . $bundle . ':' . $panelizer_layout;
-    $handler = panelizer_entity_plugin_get_handler('node');
-    $bundle = $bundle . '.page_manager';
-    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-    ctools_export_crud_save('panelizer_defaults', $panelizer);
-
-    // Reload node cause panel is saved.
-    $cloned_node = node_load($node->nid, NULL, TRUE);
-    $pid = _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
+    $pid = _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout);
   }
   $page_manager = $node->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
@@ -885,4 +896,75 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   );
 
   return drupal_render($build);
+}
+
+/**
+ * Helper function to get Magazine issue's article node nids.
+ * @param $node
+ *  Node of type 'magazine_issue'.
+ *
+ * @return array
+ *   Array of integers - nids.
+ */
+function _nas_panes_magazin_featured_articles($node) {
+  static $articles_nids = array();
+
+  if (empty($articles_nids)) {
+    $pid = _nas_panes_panelizer_lookup_pid('magazine_issue_featured', $node);
+    $conf = $node->panelizer['page_manager']->display->content[$pid]->configuration;
+    $conf_is_empty = TRUE;
+    if (!empty($conf[$node->nid])) {
+      foreach ($conf[$node->nid] as $value) {
+        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+          $conf_is_empty = FALSE;
+          break;
+        }
+      }
+    }
+    if (!$conf_is_empty) {
+      foreach ($conf[$node->nid] as $value) {
+        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+          $articles_nids[] = $value['entity_reference']['entity_id'];
+        }
+      }
+    }
+    else {
+      $view_results = views_get_view_result('magazin_issues', 'mag_issue_recent_articles', $node->nid);
+      foreach ($view_results as $result) {
+        $articles_nids[] = $result->nid;
+      }
+    }
+  }
+
+  return $articles_nids;
+}
+
+/**
+ * Save panelizer changes.
+ *
+ * @param string $subtype
+ *   Panelizer subtype.
+ *
+ * @param object $node
+ *   Node object.
+ *
+ * @param string $bundle
+ *   Node bundle.
+ *
+ * @param string $panelizer_layout
+ *   Name of the panelizer layout.
+ *
+ * @return int
+ *   ID of the panelizer.
+ */
+function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) {
+  $name = 'node:' . $bundle . ':' . $panelizer_layout;
+  $handler = panelizer_entity_plugin_get_handler('node');
+  $bundle = $bundle . '.page_manager';
+  $panelizer = $handler->get_default_panelizer_object($bundle, $name);
+  ctools_export_crud_save('panelizer_defaults', $panelizer);
+
+  // Reload node cause panel is saved.
+  $cloned_node = node_load($node->nid, NULL, TRUE);
+  return _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
 }

@@ -23,6 +23,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 160,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 13,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -189,6 +198,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 12,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'date',
@@ -344,6 +359,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 14,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -461,6 +482,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 13,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -603,6 +630,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 5,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -729,6 +762,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'list_default',
         'weight' => 16,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'list',
@@ -841,6 +880,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 18,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -950,6 +995,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 8,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -1072,6 +1123,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 17,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1184,6 +1241,15 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'media',
         'weight' => 9,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'article_teaser',
+        ),
+        'type' => 'media',
+        'weight' => 6,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -1354,6 +1420,13 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 14,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1474,6 +1547,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 15,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -1616,6 +1695,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 6,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1737,6 +1822,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 7,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'default' => array(
         'label' => 'hidden',
@@ -1864,6 +1955,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 10,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1988,6 +2085,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 3,
       ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -2109,6 +2212,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'default' => array(
         'label' => 'hidden',

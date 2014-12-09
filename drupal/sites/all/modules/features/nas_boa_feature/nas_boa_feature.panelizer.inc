@@ -67,6 +67,25 @@ function nas_boa_feature_panelizer_defaults() {
     $display->content['new-0d2ada50-c95a-4546-801a-921dc6ab522d'] = $pane;
     $display->panels['footer'][0] = 'new-0d2ada50-c95a-4546-801a-921dc6ab522d';
     $pane = new stdClass();
+    $pane->pid = 'new-a0811973-ee82-4510-8d4b-3bef46514e1c';
+    $pane->panel = 'header';
+    $pane->type = 'nas_panes_boa_index_bar';
+    $pane->subtype = 'nas_panes_boa_index_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a0811973-ee82-4510-8d4b-3bef46514e1c';
+    $display->content['new-a0811973-ee82-4510-8d4b-3bef46514e1c'] = $pane;
+    $display->panels['header'][0] = 'new-a0811973-ee82-4510-8d4b-3bef46514e1c';
+    $pane = new stdClass();
     $pane->pid = 'new-f9276db5-69cb-4a1b-856b-b792c29b5cb9';
     $pane->panel = 'hero';
     $pane->type = 'nas_boa_hero';

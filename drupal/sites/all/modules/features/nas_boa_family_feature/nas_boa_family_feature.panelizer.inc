@@ -172,21 +172,13 @@ function nas_boa_family_feature_panelizer_defaults() {
     $display->content['new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72'] = $pane;
     $display->panels['bottom'][2] = 'new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72';
     $pane = new stdClass();
-    $pane->pid = 'new-883a2f3e-be15-47c9-9d30-5ed14d98b25d';
+    $pane->pid = 'new-a98d787b-8c5a-48f5-b239-4a8f8b2b2d7a';
     $pane->panel = 'header';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_scientific_name';
+    $pane->type = 'nas_panes_boa_index_bar';
+    $pane->subtype = 'nas_panes_boa_index_bar';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -195,64 +187,9 @@ function nas_boa_family_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '883a2f3e-be15-47c9-9d30-5ed14d98b25d';
-    $display->content['new-883a2f3e-be15-47c9-9d30-5ed14d98b25d'] = $pane;
-    $display->panels['header'][0] = 'new-883a2f3e-be15-47c9-9d30-5ed14d98b25d';
-    $pane = new stdClass();
-    $pane->pid = 'new-bfa23aba-d6fb-4961-a433-2fd071d95e6d';
-    $pane->panel = 'header';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_boaf_body';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'text_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = 'bfa23aba-d6fb-4961-a433-2fd071d95e6d';
-    $display->content['new-bfa23aba-d6fb-4961-a433-2fd071d95e6d'] = $pane;
-    $display->panels['header'][1] = 'new-bfa23aba-d6fb-4961-a433-2fd071d95e6d';
-    $pane = new stdClass();
-    $pane->pid = 'new-aba9b700-ec2a-43b6-aae2-8d56acc048b6';
-    $pane->panel = 'header';
-    $pane->type = 'node_links';
-    $pane->subtype = 'node_links';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => FALSE,
-      'override_title_text' => '',
-      'build_mode' => 'page_manager',
-      'identifier' => '',
-      'link' => TRUE,
-      'context' => 'panelizer',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array(
-      'css_class' => 'link-wrapper',
-    );
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = 'aba9b700-ec2a-43b6-aae2-8d56acc048b6';
-    $display->content['new-aba9b700-ec2a-43b6-aae2-8d56acc048b6'] = $pane;
-    $display->panels['header'][2] = 'new-aba9b700-ec2a-43b6-aae2-8d56acc048b6';
+    $pane->uuid = 'a98d787b-8c5a-48f5-b239-4a8f8b2b2d7a';
+    $display->content['new-a98d787b-8c5a-48f5-b239-4a8f8b2b2d7a'] = $pane;
+    $display->panels['header'][0] = 'new-a98d787b-8c5a-48f5-b239-4a8f8b2b2d7a';
     $pane = new stdClass();
     $pane->pid = 'new-46a28005-b7b7-4dd1-adc2-29b5fdbe809c';
     $pane->panel = 'scientific_name';
@@ -310,7 +247,7 @@ function nas_boa_family_feature_panelizer_defaults() {
     $display->content['new-29c1ec41-a93c-4e85-9d2e-1434fc07548d'] = $pane;
     $display->panels['title'][0] = 'new-29c1ec41-a93c-4e85-9d2e-1434fc07548d';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-883a2f3e-be15-47c9-9d30-5ed14d98b25d';
+  $display->title_pane = '0';
   $panelizer->display = $display;
   $export['node:boaf:default'] = $panelizer;
 
