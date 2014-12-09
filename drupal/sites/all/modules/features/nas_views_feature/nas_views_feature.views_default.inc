@@ -311,6 +311,12 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date (field_article_date) */
+  $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
+  $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Magazine issue (field_magazine_issue) */
   $handler->display->display_options['arguments']['field_magazine_issue_target_id']['id'] = 'field_magazine_issue_target_id';
