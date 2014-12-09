@@ -831,15 +831,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $node, $bundle, $
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $name = 'node:' . $bundle . ':' . $panelizer_layout;
-    $handler = panelizer_entity_plugin_get_handler('node');
-    $bundle = $bundle . '.page_manager';
-    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-    ctools_export_crud_save('panelizer_defaults', $panelizer);
-
-    // Reload node cause panel is saved.
-    $cloned_node = node_load($node->nid, NULL, TRUE);
-    $pid = _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
+    $pid = _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout);
   }
   $page_manager = $node->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
@@ -945,4 +937,34 @@ function _nas_panes_magazin_featured_articles($node) {
   }
 
   return $articles_nids;
+}
+
+/**
+ * Save panelizer changes.
+ *
+ * @param string $subtype
+ *   Panelizer subtype.
+ *
+ * @param object $node
+ *   Node object.
+ *
+ * @param string $bundle
+ *   Node bundle.
+ *
+ * @param string $panelizer_layout
+ *   Name of the panelizer layout.
+ *
+ * @return int
+ *   ID of the panelizer.
+ */
+function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) {
+  $name = 'node:' . $bundle . ':' . $panelizer_layout;
+  $handler = panelizer_entity_plugin_get_handler('node');
+  $bundle = $bundle . '.page_manager';
+  $panelizer = $handler->get_default_panelizer_object($bundle, $name);
+  ctools_export_crud_save('panelizer_defaults', $panelizer);
+
+  // Reload node cause panel is saved.
+  $cloned_node = node_load($node->nid, NULL, TRUE);
+  return _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
 }
