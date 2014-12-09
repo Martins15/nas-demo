@@ -1,0 +1,47 @@
+//------------------- Top Search Form ---------------//
+.top-search-form{
+  margin-top: 65px;
+}
+.top-search-form-input{
+  float: left;
+  margin-right: 2%;
+  width: 85%;
+  input{
+    font-size: 30px;
+    font-weight: 300;
+    height: 47px;
+  }
+}
+.top-search-form-submit{
+  height: 47px;
+  flex: left;
+  font-size: $size-text-large;
+  font-weight: 300;
+  width: 13%;
+}
+//------------------- Filter Block ---------------//
+.filter-list{
+  font-family: $font-sans;
+  font-size: $size-text-medium;
+  list-style-type: none;
+  margin-bottom: 35px;
+  padding-left: 30px;
+  li{
+    margin-bottom: 5px;
+  }
+  a.active{
+    color: #000;
+  }
+  &.section-nav{
+    margin: 0;
+    padding: 0;
+    span{
+      color: #89867e;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+}
+.filter-list-heading{
+  margin-bottom: 5px;
+}

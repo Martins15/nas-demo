@@ -56,6 +56,9 @@
   display: block;
   font-family: $font-sans;
   font-size: $size-text-small;
+  .editorial-card-info &{
+    display: inline-block;
+  }
 }
 
 .editorial-card-title {
@@ -107,6 +110,15 @@
 
 .editorial-card-dateline {
   color: #888;
+  .editorial-card-info &{
+    color: $color-text-gray;
+    font-family: $font-sans;
+    font-size: $size-text-small;
+    &:before{
+      content: '|';
+      margin-right: 3px;
+    }
+  }
 }
 
 .editorial-card-link {
