@@ -11846,6 +11846,7 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird .boa-in-the-bird-guide {
   padding-bottom: 35px;
+  padding-right: 10px;
 }
 .page-boa-bird .boa-in-the-bird-guide .bird-card {
   margin-right: 10px;
@@ -11853,6 +11854,9 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-in-the-bird-guide h2 {
   font-size: 28px;
   margin-bottom: 10px;
+}
+.page-boa-bird .boa-in-the-news {
+  padding-right: 10px;
 }
 .page-boa-bird .boa-in-the-news .editorial-card {
   margin-right: 10px;
