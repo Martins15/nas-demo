@@ -14,7 +14,7 @@ function nas_article_feature_panelizer_defaults() {
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
   $panelizer->name = 'node:article:big_image';
-  $panelizer->title = 'Big image';
+  $panelizer->title = 'Standard hero photo';
   $panelizer->panelizer_type = 'node';
   $panelizer->panelizer_key = 'article';
   $panelizer->no_blocks = FALSE;
@@ -671,7 +671,7 @@ function nas_article_feature_panelizer_defaults() {
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
   $panelizer->name = 'node:article:fullscreen_image';
-  $panelizer->title = 'Fullscreen Image';
+  $panelizer->title = 'Full-screen hero photo';
   $panelizer->panelizer_type = 'node';
   $panelizer->panelizer_key = 'article';
   $panelizer->no_blocks = FALSE;
@@ -1088,6 +1088,28 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = 'e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
     $display->content['new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed'] = $pane;
     $display->panels['main'][0] = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
+    $pane = new stdClass();
+    $pane->pid = 'new-5faeb12b-12b7-4ac4-bffc-f62b0feacd04';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'disqus-disqus_comments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '5faeb12b-12b7-4ac4-bffc-f62b0feacd04';
+    $display->content['new-5faeb12b-12b7-4ac4-bffc-f62b0feacd04'] = $pane;
+    $display->panels['main'][1] = 'new-5faeb12b-12b7-4ac4-bffc-f62b0feacd04';
     $pane = new stdClass();
     $pane->pid = 'new-edfa8550-a1f2-41d1-831e-96a6ee949534';
     $pane->panel = 'mobile_author';

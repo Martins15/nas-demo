@@ -2078,7 +2078,7 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_related_bird',
-    'label' => 'Similar Bird',
+    'label' => 'Birds In This Story',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2219,6 +2219,7 @@ function nas_article_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Adds magazine issue information tab on article view page');
   t('Author');
+  t('Birds In This Story');
   t('Body');
   t('Can be left empty if Press Release panelizer is applied');
   t('Color mode');
@@ -2235,7 +2236,6 @@ function nas_article_feature_field_default_field_instances() {
   t('Map');
   t('Menu Section');
   t('Press release contact');
-  t('Similar Bird');
   t('Subtitle');
   t('To be used when building a link to the node. For example in Editorial Card.');
   t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image. (Applies for fullscreen image layout)');
