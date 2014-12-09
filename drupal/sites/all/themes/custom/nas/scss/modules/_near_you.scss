@@ -1,6 +1,16 @@
 %FontSource {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
+.title-h1 {
+  font-weight: 300;
+  font-size: 52px;
+  line-height: 65px;
+}
+.content-bird {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 27px;
+}
 .blocks-events {
   padding: 50px 0 80px;
   .title-block {
@@ -41,16 +51,6 @@
       line-height: 32px;
     }
   }
-}
-.title-h1 {
-  font-weight: 300;
-  font-size: 52px;
-  line-height: 65px;
-}
-.content-bird {
-  font-weight: 300;
-  font-size: 24px;
-  line-height: 27px;
 }
 .bird-small {
   background-color: #faf9f5;
