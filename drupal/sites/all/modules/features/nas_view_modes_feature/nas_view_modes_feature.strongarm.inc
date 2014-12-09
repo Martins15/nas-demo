@@ -83,6 +83,14 @@ function nas_view_modes_feature_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'nas_file_plain_caption' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
+          'nas_file_plain_creditds' => array(
+            'weight' => '1',
+            'visible' => FALSE,
+          ),
         ),
       ),
     ),

@@ -123,7 +123,40 @@
     }
   }
 }
-
+.hero-caption {
+  &.grey-bar {
+    .caption {
+      margin: 0;
+    }
+    @include breakpoint(tiny-only) {
+      background-color: #f3f3f3;
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: $size-text-tiny + 2px;
+      line-height: $size-text-small;
+      padding-top: $size-space/2;
+      padding-bottom: $size-space/2;
+    }
+    @include breakpoint(small-only) {
+      background-color: #f3f3f3;
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: $size-text-tiny + 2px;
+      line-height: $size-text-small;
+      padding-top: $size-space/2;
+      padding-bottom: $size-space/2;
+    }
+    @include breakpoint(medium-only) {
+      background-color: #f3f3f3;
+      color: $color-text-gray;
+      font-family: $font-sans;
+      font-size: $size-text-tiny + 2px;
+      line-height: $size-text-small;
+      padding-top: $size-space/2;
+      padding-bottom: $size-space/2;
+    }
+  }
+}
 .manage-thumbnails-popup, #EPSACropDialog {
   img {
     max-width: none !important;

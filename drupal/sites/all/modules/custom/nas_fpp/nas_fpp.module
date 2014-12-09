@@ -162,6 +162,14 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['nas_file_plain_caption'] = array(
+    'label' => t('File caption text'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['file']['view modes']['nas_file_plain_creditds'] = array(
+    'label' => t('File creditds text'),
+    'custom settings' => TRUE,
+  );
   $entity_info['node']['view modes']['nas_node_project_teaser'] = array(
     'label' => t('Project teaser'),
     'custom settings' => FALSE,

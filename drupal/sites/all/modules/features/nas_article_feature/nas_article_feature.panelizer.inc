@@ -707,6 +707,8 @@ function nas_article_feature_panelizer_defaults() {
       'birds' => NULL,
       'header_hero_attr_text' => NULL,
       'article_more_features' => NULL,
+      'magazine_bar' => NULL,
+      'header_hero_caption_text' => NULL,
     ),
   );
   $display->cache = array();
@@ -763,39 +765,6 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-295789ba-2fb8-467e-9dd6-7a37a0c94704'] = $pane;
     $display->panels['author'][0] = 'new-295789ba-2fb8-467e-9dd6-7a37a0c94704';
     $pane = new stdClass();
-    $pane->pid = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
-    $pane->panel = 'big_image';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_magazine_issue';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'entityreference_label',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'view_mode' => 'teaser',
-        'links' => 0,
-        'link' => 0,
-      ),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '50c09e0e-e5c2-4f3a-957f-09b02dd86971';
-    $display->content['new-50c09e0e-e5c2-4f3a-957f-09b02dd86971'] = $pane;
-    $display->panels['magazine_bar'][0] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
-    $pane = new stdClass();
     $pane->pid = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
     $pane->panel = 'big_image';
     $pane->type = 'entity_field';
@@ -821,11 +790,11 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '980e3656-5237-45cf-8d86-7fd53daf71c0';
     $display->content['new-980e3656-5237-45cf-8d86-7fd53daf71c0'] = $pane;
-    $display->panels['big_image'][1] = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
+    $display->panels['big_image'][0] = 'new-980e3656-5237-45cf-8d86-7fd53daf71c0';
     $pane = new stdClass();
     $pane->pid = 'new-f255c51a-cf46-481a-aca9-fe3c055c35aa';
     $pane->panel = 'birds';
@@ -1023,7 +992,7 @@ function nas_article_feature_panelizer_defaults() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'file_view_mode' => 'nas_file_plain_text_fields',
+        'file_view_mode' => 'nas_file_plain_creditds',
       ),
       'context' => 'panelizer',
       'override_title' => 1,
@@ -1040,6 +1009,37 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '8a09ea69-689d-4d06-8fff-5690529ccf19';
     $display->content['new-8a09ea69-689d-4d06-8fff-5690529ccf19'] = $pane;
     $display->panels['header_hero_attr_text'][0] = 'new-8a09ea69-689d-4d06-8fff-5690529ccf19';
+    $pane = new stdClass();
+    $pane->pid = 'new-5205fd68-aa31-45f1-a078-3fd877398627';
+    $pane->panel = 'header_hero_caption_text';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_hero_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'media',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'nas_file_plain_caption',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5205fd68-aa31-45f1-a078-3fd877398627';
+    $display->content['new-5205fd68-aa31-45f1-a078-3fd877398627'] = $pane;
+    $display->panels['header_hero_caption_text'][0] = 'new-5205fd68-aa31-45f1-a078-3fd877398627';
     $pane = new stdClass();
     $pane->pid = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
     $pane->panel = 'left';
@@ -1059,6 +1059,39 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '159b6d01-4739-42b5-9179-544ba64e25cb';
     $display->content['new-159b6d01-4739-42b5-9179-544ba64e25cb'] = $pane;
     $display->panels['left'][0] = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
+    $pane = new stdClass();
+    $pane->pid = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_magazine_issue';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_label',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'view_mode' => 'teaser',
+        'links' => 0,
+        'link' => 0,
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '50c09e0e-e5c2-4f3a-957f-09b02dd86971';
+    $display->content['new-50c09e0e-e5c2-4f3a-957f-09b02dd86971'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
     $pane = new stdClass();
     $pane->pid = 'new-e35af7af-1c97-4ec1-8ead-8dd7025c90ed';
     $pane->panel = 'main';
