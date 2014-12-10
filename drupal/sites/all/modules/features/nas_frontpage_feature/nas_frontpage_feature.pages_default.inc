@@ -266,8 +266,8 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
       ),
-      'form_build_id' => 'form-h66NqkxOgnuI-gR9SpJbTIDRmLUrTDNxmjYHP66hjYQ',
-      'form_token' => 'AP2QB6KiXRk9ouU9QjBUD7I0jSFZ2sphva05OgCG3Ps',
+      'form_build_id' => 'form-ItDeYDI3lEoDPoB5rEoaJhaXkvPc4khTK3PYdEwOqlw',
+      'form_token' => 'AhEldc4iDQNLq_lqSlOAzcHWXafH1JN17z4i9Skn8G4',
       'form_id' => 'frontpage_conservation_section_edit_form',
       'color_mode' => 'dark',
     );
