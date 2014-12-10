@@ -180,11 +180,11 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   );
   $entity_info['bean']['view modes']['bean_image_colorbox'] = array(
     'label' => t('Image colorbox'),
-    'custom settings' => FALSE,
+    'custom settings' => TRUE,
   );
   $entity_info['bean']['view modes']['bean_image_without_colorbox'] = array(
     'label' => t('Image without colorbox'),
-    'custom settings' => FALSE,
+    'custom settings' => TRUE,
   );
 }
 
