@@ -5373,7 +5373,7 @@ table.row-borders tbody td {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-@media only screen and (min-width: 601px) {
+@media only screen {
   .hero-attribution {
     color: #fff;
     background-color: transparent;
@@ -12166,6 +12166,43 @@ h2.grey {
   }
 }
 
+.hero-caption.grey-bar .caption, .hero-caption.grey-bar .article-text figcaption, .article-text .hero-caption.grey-bar figcaption {
+  margin: 0;
+}
+@media only screen and (max-width: 479px) {
+  .hero-caption.grey-bar {
+    background-color: #f3f3f3;
+    color: #404040;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .hero-caption.grey-bar {
+    background-color: #f3f3f3;
+    color: #404040;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .hero-caption.grey-bar {
+    background-color: #f3f3f3;
+    color: #404040;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
 .manage-thumbnails-popup img, #EPSACropDialog img {
   max-width: none !important;
 }
@@ -12229,4 +12266,8 @@ textarea.error {
 
 .text-container.thin h1, .text-container.thin h2 {
   font-weight: 300;
+}
+
+.guide-bar-date a {
+  color: #fff;
 }

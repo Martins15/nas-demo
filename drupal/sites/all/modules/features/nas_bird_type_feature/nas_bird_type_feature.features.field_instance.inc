@@ -203,6 +203,19 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 1,
       ),
+      'nas_file_plain_caption' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_plain',
+        'weight' => 0,
+      ),
+      'nas_file_plain_credits' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'nas_file_plain_text_fields' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -362,6 +375,19 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'nas_file_plain_caption' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'nas_file_plain_credits' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'nas_file_plain_text_fields' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -512,6 +538,18 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'nas_file_plain_caption' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'nas_file_plain_credits' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'nas_file_plain_text_fields' => array(
         'label' => 'above',
         'settings' => array(),
@@ -658,6 +696,18 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 4,
+      ),
+      'nas_file_plain_caption' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'nas_file_plain_credits' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'nas_file_plain_text_fields' => array(
         'label' => 'above',

@@ -644,6 +644,8 @@ function nas_preprocess_field_field_magazine_issue_article(&$vars) {
   $vars['sec_month_part_1'] = substr($second_month, 0, 3);
   $vars['sec_month_part_2'] = substr($second_month, 3);
   $vars['year'] = $str[1][1];
+  $get_field_magazine_issue = field_get_items('node', $element['#object'], 'field_magazine_issue');
+  $vars['href'] = url('node/' . $get_field_magazine_issue[0]['target_id']);
 }
 
 /**

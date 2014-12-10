@@ -11,11 +11,30 @@
  * Alter the Article node form.
  */
 function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id) {
+  //Remove unecessary options.
+  unset($form['options']['promote']);
+  unset($form['options']['sticky']);
+  $form['options']['#weight'] = '34';
+  //Change type of elements and combine them into one tab.
+  $form['options']['#type'] = 'container';
+  $form['scheduler_settings']['#type'] = 'scheduler_settings';
+  $form['publishing_custom_tab'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Publishing & Scheduling options',
+    '#collapsible' => 'TRUE',
+    '#collapsed' => 'TRUE',
+    '#weight' => '35',
+    '#group' => 'additional_settings',
+    'scheduler_settings' => $form['scheduler_settings'],
+    'options' => $form['options'],
+  );
+  unset($form['options']);
+  unset($form['scheduler_settings']);
+
   // Merge panelizer tabs.
   unset($form['panelizer']['#group']);
   $form['panelizer']['#type'] = 'container';
   $form['#group_children']['panelizer'] = 'group_panelizer';
-  $form['options']['#weight'] = 35;
 
   $states = array(
     'big_image' => array(
@@ -47,6 +66,9 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
 
   // Attach after build callback.
   $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
+
+  // Extra submit.
+  $form['#submit'][] = 'nas_alters_form_article_node_form_submit';
 }
 
 /**
@@ -60,6 +82,16 @@ function nas_alters_form_article_node_form_after_build($form, &$form_state) {
   $form['path']['#access'] = FALSE;
 
   return $form;
+}
+
+/**
+ * Validate the Article node form.
+ */
+function nas_alters_form_article_node_form_submit($form, &$form_state) {
+  // Change layout to default if Hero image wasn't uploaded.
+  if (isset($form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid']) && $form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid'] == 0) {
+    $form_state['values']['panelizer']['page_manager']['name'] = 'node:article:default';
+  }
 }
 
 /**

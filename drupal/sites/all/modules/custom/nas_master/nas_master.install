@@ -541,6 +541,12 @@ function nas_master_update_7050() {
  * Revert features components.
  */
 function nas_master_update_7051() {
-  features_revert(array('nas_article_feature' => array('panelizer')));
-  features_revert(array('nas_bird_type_feature' => array('filter')));
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_view_modes_feature');
+  // Change weight of nas_alters module.
+  db_update('system')
+  ->fields(array('weight' => 100))
+  ->condition('name', 'nas_alters')
+  ->execute();
 }
