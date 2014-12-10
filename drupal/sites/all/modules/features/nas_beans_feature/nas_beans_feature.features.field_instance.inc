@@ -16,6 +16,24 @@ function nas_beans_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'bean_image_colorbox' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'nas_wysiwyg_image',
+        ),
+        'type' => 'media',
+        'weight' => 0,
+      ),
+      'bean_image_without_colorbox' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'nas_wysiwyg_image_without_colorbox',
+        ),
+        'type' => 'media',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'mediafield',
@@ -62,6 +80,18 @@ function nas_beans_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'bean_image_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'bean_image_without_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),

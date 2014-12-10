@@ -5,6 +5,8 @@
  * Customizations of the menu.
  */
 
+define('NAS_MENU_MAIN_NAVIGATION', 'menu-header-big-main-menu');
+
 /**
  * Implements hook_menu_attribute_info().
  */
@@ -141,4 +143,22 @@ function nas_menu_cl($menu_delta, $additional_links = array()) {
  */
 function nas_menu_preprocess_nas_guide_bar_search(&$variables) {
   drupal_add_js(drupal_get_path('module', 'nas_menu') . '/plugins/content_types/nas_menu_guide_bar_search/nas_menu_guide_bar_search.js');
+}
+
+/**
+ * Implements hook_query_TAG_alter.
+ *
+ * Sort query results by BOA structure order.
+ */
+function nas_menu_query_boaf_order_alter($query) {
+  // Remove current sorting.
+  $orderBy = &$query->getOrderBy();
+  $orderBy = array();
+  // Join to menu_links.
+  $query->innerJoin('menu_links', 'ml', 'CONCAT(:node_prefix, node.nid) = ml.link_path AND ml.menu_name = :menu_name', array(
+      ':node_prefix' => 'node/',
+      ':menu_name' => 'boa',
+    ));
+  // Order by menu structure.
+  $query->orderBy('ml.weight');
 }

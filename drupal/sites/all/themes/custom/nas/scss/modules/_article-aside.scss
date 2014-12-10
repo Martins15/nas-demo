@@ -62,5 +62,7 @@
   }
 }
 .one-third-left-width {
-  padding-right: 25px;
+  @include breakpoint(medium-up) {
+    padding-right: 25px;
+  }
 }

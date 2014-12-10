@@ -21,7 +21,7 @@ function nas_article_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Main content',
-    'weight' => '6',
+    'weight' => '0',
     'children' => array(
       0 => 'body',
       1 => 'field_article_date',
@@ -55,7 +55,7 @@ function nas_article_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '7',
+    'weight' => '2',
     'children' => array(
       0 => 'field_custom_section',
       1 => 'field_flyway',
@@ -86,8 +86,8 @@ function nas_article_feature_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Panelizer',
-    'weight' => '0',
+    'label' => 'Layout',
+    'weight' => '1',
     'children' => array(
       0 => 'field_article_map',
       1 => 'field_color_mode',
@@ -97,12 +97,13 @@ function nas_article_feature_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Layout',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => '',
         'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $export['group_panelizer|node|article|form'] = $field_group;

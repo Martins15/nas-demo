@@ -189,7 +189,7 @@ function disqus_node_load($nodes, $types) {
 
         // Apply the Disqus status to the node.
         $status = db_query("SELECT status FROM {disqus} WHERE nid = :nid", array(':nid' => $node->nid))->fetchObject();
-        $node->disqus['status'] = isset($status->status) ? (bool)$status->status : TRUE;
+        $node->disqus['status'] = isset($status->status) ? (bool)$status->status : FALSE;
 
         // Build the absolute URL without the alias for the disqus_url flag.
         $node->disqus['url'] = url("node/$node->nid", array(
@@ -314,8 +314,7 @@ function disqus_node_delete($node) {
  * Implements hook_node_insert().
  */
 function disqus_node_insert($node) {
-  // Write the value only if it's disabled (default is enabled).
-  if (isset($node->disqus_status) && $node->disqus_status == FALSE) {
+  if (isset($node->disqus_status)) {
     $data = array(
       'nid' => $node->nid,
       'status' => $node->disqus_status,
@@ -354,7 +353,7 @@ function disqus_node_update($node) {
 
   // Finish the update process.
   if (isset($node->disqus_status) && isset($node->disqus['status']) && $node->disqus_status != $node->disqus['status']) {
-    if ($node->disqus_status) {
+    if (!$node->disqus_status) {
       disqus_node_delete($node);
     }
     else {
@@ -741,7 +740,7 @@ function disqus_form_alter(&$form, $form_state, $form_id) {
         '#type' => 'checkbox',
         '#title' => t('Disqus comments'),
         '#description' => t('Users can post comments using <a href="@disqus">Disqus</a>.', array('@disqus' => 'http://disqus.com')),
-        '#default_value' => isset($node->disqus['status']) ? $node->disqus['status'] : TRUE,
+        '#default_value' => isset($node->disqus['status']) ? $node->disqus['status'] : FALSE,
         '#access' => user_access('toggle disqus comments'),
       );
     }

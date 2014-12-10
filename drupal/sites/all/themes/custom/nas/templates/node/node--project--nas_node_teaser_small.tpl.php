@@ -90,7 +90,9 @@
 <div class="columns tiny-4">
   <div class="editorial-card">
     <div class="editorial-card-photo">
-      <?php print $linked_image; ?>
+      <?php if (!empty($linked_image)) : ?>
+        <?php print $linked_image; ?>
+      <?php endif; ?>
     </div>
     <div class="editorial-card-content">
       <?php if (!empty($strategy_link)): ?>

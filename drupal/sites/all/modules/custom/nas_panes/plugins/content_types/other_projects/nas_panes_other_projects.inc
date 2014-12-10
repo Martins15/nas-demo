@@ -27,7 +27,7 @@ function nas_panes_other_projects_edit_form($form, &$form_state) {
   if (!$context->empty && $context->data->type !== 'project') {
     return $form;
   }
-  $conf_key = $form_state['display']->context->empty ? 'default' : $context->data->nid;
+  $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
   $form[$conf_key] = array(
     '#type' => 'fieldset',
     '#title' => t('Explore More Conservation Projects'),

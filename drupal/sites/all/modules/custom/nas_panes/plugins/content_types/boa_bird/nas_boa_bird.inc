@@ -29,10 +29,14 @@ function nas_boa_bird_render($subtype, $conf, $args, $context) {
     return;
   }
 
+  $block = new stdClass();
+
   $node = node_load($bird_items[0]['target_id']);
+  if (!$node->status) {
+    return $block;
+  }
   $build = node_view($node, 'teaser');
 
-  $block = new stdClass();
   $block->content = theme('boa_bird', array(
     'bird' => drupal_render($build),
   ));

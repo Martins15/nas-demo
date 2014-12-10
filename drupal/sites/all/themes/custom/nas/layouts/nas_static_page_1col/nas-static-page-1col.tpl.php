@@ -15,27 +15,37 @@
  * @see nas_preprocess_nas_article_fullscreen()
  */
 ?>
-
-<div class="bg-respond hero small <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text">
-  <div class="hero-image">
-    <?php print $content['hero_image']; ?>
-  </div> 
-  <div class="row">
-    <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
-      <div class="columns large-12 large-centered">
-        <?php print $content['header_hero']; ?>
-        <p class="hero-blurb"><?php print $content['subtitle']; ?></p>
+<?php if (!empty($content['hero_image'])): ?>
+  <div class="bg-respond hero small <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text">
+    <div class="hero-image">
+      <?php print $content['hero_image']; ?>
+    </div>
+    <div class="row">
+      <div class="hero-header hide-for-medium hide-for-small hide-for-tiny">
+        <div class="columns large-12 large-centered">
+          <?php print $content['header_hero']; ?>
+          <p class="hero-blurb"><?php print $content['subtitle']; ?></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<?php if (trim($content['header_hero_attr_text'])): ?>
-<div class="hero-attribution row">
-  <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
-</div>
+  <?php if (trim($content['header_hero_attr_text'])): ?>
+  <div class="hero-attribution row">
+    <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
+  </div>
+  <?php endif; ?>
 <?php endif; ?>
 <?php print $content['nav_menu']; ?>
-<section class="global-content with-padding static-page-content">
+<section class="global-content<?php if (!empty($content['hero_image'])): ?> with-padding<?php endif; ?> static-page-content">
+  <?php if (empty($content['hero_image']) || arg(0) == 'admin'): ?>
+  <header class="article-header row">
+    <div class="large-10 large-centered columns">
+      <?php print $content['header_no_image']; ?>
+      <p class="deck"><?php print $content['subtitle']; ?></p>
+    </div>
+  </header>
+  <?php endif; ?>
+  <?php if (!empty($content['hero_image'])): ?>
   <header class="row text-container">
     <div class="large-12 large-centered columns">
       <div class="article-meta clearfix hide-for-large hide-for-xlarge">
@@ -43,6 +53,7 @@
       </div>
     </div>
   </header>
+  <?php endif; ?>
   <div class="row">
     <div class="text-container columns">
       <?php print $content['main']; ?>

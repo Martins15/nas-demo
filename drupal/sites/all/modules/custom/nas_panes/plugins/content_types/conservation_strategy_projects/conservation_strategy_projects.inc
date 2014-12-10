@@ -30,7 +30,7 @@ function conservation_strategy_projects_edit_form($form, &$form_state) {
   $form['override_title']['#access'] = FALSE;
   $form['override_title_text']['#access'] = FALSE;
   $form['override_title_markup']['#access'] = FALSE;
-  $conf_key = $form_state['display']->context->empty ? 'default' : $context->data->nid;
+  $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
   $form[$conf_key] = array(
     '#type' => 'fieldset',
     '#title' => t('Featured Projects settings'),

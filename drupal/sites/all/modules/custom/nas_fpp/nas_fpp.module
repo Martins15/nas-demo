@@ -102,6 +102,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small (2)'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['static_page_related_teaser'] = array(
+    'label' => t('Static page related teaser'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['boa_teaser'] = array(
     'label' => t('Article teaser for BOA'),
     'custom settings' => FALSE,
@@ -154,13 +158,41 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Wysiwyg image'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['nas_wysiwyg_image_without_colorbox'] = array(
+    'label' => t('Wysiwyg image without colorbox'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['nas_file_plain_text_fields'] = array(
     'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['nas_file_plain_caption'] = array(
+    'label' => t('File caption text'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['file']['view modes']['nas_file_plain_credits'] = array(
+    'label' => t('File creditds text'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['nas_node_project_teaser'] = array(
     'label' => t('Project teaser'),
     'custom settings' => FALSE,
+  );
+  $entity_info['node']['view modes']['conservation_strategy_featured_teaser'] = array(
+    'label' => t('Conservation strategy featured teaser'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['node']['view modes']['conservation_strategy_list_teaser'] = array(
+    'label' => t('Conservation strategy list teaser'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['bean']['view modes']['bean_image_colorbox'] = array(
+    'label' => t('Image colorbox'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['bean']['view modes']['bean_image_without_colorbox'] = array(
+    'label' => t('Image without colorbox'),
+    'custom settings' => TRUE,
   );
 }
 
@@ -382,6 +414,9 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   if ($hero_items = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway_hero_items')) {
     foreach ($hero_items as $hero_item) {
       $fc = field_collection_item_load($hero_item['value']);
+      if (!isset($fc->field_flyway_bird[LANGUAGE_NONE][0]['entity']) && is_numeric($fc->field_flyway_bird[LANGUAGE_NONE][0]['target_id'])) {
+        $fc->field_flyway_bird[LANGUAGE_NONE][0]['entity'] = entity_load_single('node', $fc->field_flyway_bird[LANGUAGE_NONE][0]['target_id']);
+      }
       $bird = $fc->field_flyway_bird[LANGUAGE_NONE][0]['entity'];
       $vars['flyway_hero_items'][$delta] = array(
         'bird_url' => url('node/' . $bird->nid),
@@ -410,7 +445,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   $vars['contextual_links'] = '';
 
   // Early return pattern.
-  if (!$node || !user_access('administer site configuration')) {
+  if (!$node || !user_access('access contextual links') || !user_access('edit NAS panes')) {
     return;
   }
 
@@ -464,43 +499,10 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
       $vars['links'][] = l($node->title, $path, $options);
     }
   }
-
   $vars['contextual_links'] = '';
-
-  // Early return pattern.
-  if (!user_access('administer site configuration')) {
-    return;
+  if (user_access('edit NAS panes') && ($page_node = node_load(arg(1)))) {
+    $vars['contextual_links'] = _nas_panes_build_panelizer_contextual_links('uuid:' . $fpp->uuid, $page_node, 'flyway', 'default');
   }
-
-  $panel_id = db_query('SELECT pid FROM {panels_pane} WHERE subtype = :subtype', array(
-    ':subtype' => 'uuid:' . $fpp->uuid,
-  ))->fetchField();
-
-  ctools_include('modal');
-  ctools_include('ajax');
-  ctools_modal_add_js();
-  ctools_add_js('ajax-responder');
-  $links['edit'] = array(
-    'title' => t('Edit'),
-    'href' => 'panels/ajax/editor/edit-pane/panelizer:default:node:flyway.page_manager:node:flyway:default/' . $panel_id,
-    'html' => TRUE,
-    'query' => array('reload' => 'true'),
-    'attributes' => array(
-      'class' => array('ctools-use-modal'),
-      'title' => t('Edit'),
-    ),
-  );
-  $build = array(
-    '#prefix' => '<div class="contextual-links-wrapper">',
-    '#suffix' => '</div>',
-    '#theme' => 'links__contextual',
-    '#links' => $links,
-    '#attributes' => array('class' => array('contextual-links')),
-    '#attached' => array(
-      'library' => array(array('contextual', 'contextual-links')),
-    ),
-  );
-  $vars['contextual_links'] = drupal_render($build);
 }
 
 /**
@@ -534,7 +536,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
 
   $vars['contextual_links'] = '';
-  if (!user_access('administer site configuration')) {
+  if (!user_access('access contextual links') || !user_access('edit NAS panes')) {
     return;
   }
 

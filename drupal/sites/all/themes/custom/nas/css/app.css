@@ -5373,7 +5373,7 @@ table.row-borders tbody td {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-@media only screen and (min-width: 601px) {
+@media only screen {
   .hero-attribution {
     color: #fff;
     background-color: transparent;
@@ -6683,7 +6683,7 @@ input.header-search-input,
   margin-right: -2px;
 }
 @media only screen and (min-width: 768px) {
-  .primary-nav-item:not(:first-child):after {
+  .primary-nav-item:not(:first-of-type):after {
     color: #404040;
     content: "|";
     position: absolute;
@@ -6901,7 +6901,7 @@ body.touch .primary-sub-nav-index {
     padding: 0 10px;
     border-left: 1px solid #404040;
   }
-  .secondary-nav li:first-child {
+  .secondary-nav li:first-of-type {
     border-left: none;
     padding-left: 0;
   }
@@ -7197,7 +7197,7 @@ body.touch .primary-sub-nav-index {
 }
 @media only screen and (min-width: 768px) {
   .bird-card-set.bg-boa {
-    background-image: url(card-set-bg-2.jpg);
+    background-image: url(../img/card-set-bg-2.jpg);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center top;
@@ -7213,7 +7213,7 @@ body.touch .primary-sub-nav-index {
     transition: opacity 0.5s ease-in-out;
   }
   .bird-card-set.bg-boa.show-bg {
-    background-image: url(card-set-bg-2-color.jpg);
+    background-image: url(../img/card-set-bg-2-color.jpg);
   }
   .bird-card-set.bg-boa.show-bg .row {
     opacity: 0;
@@ -7690,8 +7690,10 @@ body.touch .primary-sub-nav-index {
   }
 }
 
-.one-third-left-width {
-  padding-right: 25px;
+@media only screen and (min-width: 601px) {
+  .one-third-left-width {
+    padding-right: 25px;
+  }
 }
 
 .comments {
@@ -8336,8 +8338,25 @@ body.black-bg .section-header a:hover {
   right: -35px;
 }
 
-.index-list {
-  margin-bottom: 75px;
+@media only screen and (max-width: 479px) {
+  .index-list .view .pager-load-more {
+    margin-bottom: 75px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .index-list .view .pager-load-more {
+    margin-bottom: 75px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .index-list .view .pager-load-more {
+    margin-bottom: 75px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .index-list {
+    margin-bottom: 75px;
+  }
 }
 
 /* @todo Document this whole thing */
@@ -8574,6 +8593,29 @@ body.node-type-slideshow #tabs {
 
 .conservation-strategy-projects-block .editorial-card {
   margin-bottom: 20px;
+}
+.conservation-strategy-projects-block .projects-list .columns:nth-of-type(3n+1) {
+  clear: both;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .conservation-strategy-projects-block .projects-list .columns .editorial-card {
+    min-height: inherit !important;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .conservation-strategy-projects-block .projects-list .columns .editorial-card {
+    min-height: inherit !important;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .conservation-strategy-projects-block .projects-list .columns .editorial-card {
+    min-height: inherit !important;
+  }
+}
+
+.conservation-strategy-content {
+  padding-left: 12.5px;
+  padding-right: 12.5px;
 }
 
 .conservation-slider {
@@ -9056,26 +9098,6 @@ body.node-type-slideshow #tabs {
   color: #777777;
 }
 
-@media only screen and (min-width: 601px) and (max-width: 767px) {
-  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
-    clear: both;
-  }
-}
-@media only screen and (min-width: 480px) and (max-width: 600px) {
-  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
-    clear: both;
-  }
-}
-@media only screen and (max-width: 479px) {
-  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(2n+1) {
-    clear: both;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .past-magazin-issue .magazin-issues-list .magazine-issue:nth-of-type(3n+1) {
-    clear: both;
-  }
-}
 .past-magazin-issue .magazin-issues-list .magazine-issue-year h2 {
   margin-top: 10px;
 }
@@ -9095,6 +9117,29 @@ body.node-type-slideshow #tabs {
 .magazine-issue-other-issues h2 {
   margin: 0 12.5px 10px;
   font-size: 38px;
+}
+
+.editorial-card-photo-bottom {
+  display: none;
+}
+
+.magazin-issue-featured .editorial-card-photo-bottom {
+  margin-top: 12.5px;
+}
+@media only screen and (max-width: 479px) {
+  .magazin-issue-featured .editorial-card-photo-bottom {
+    display: block;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .magazin-issue-featured .editorial-card-photo-bottom {
+    display: block;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .magazin-issue-featured .editorial-card-photo-bottom {
+    display: block;
+  }
 }
 
 .bio-header {
@@ -10236,7 +10281,7 @@ body.node-type-slideshow #tabs {
 .focal-bird-map .map-pause:before {
   content: "";
   display: block;
-  background-image: url(icon-pause.png);
+  background-image: url(../img/icon-pause.png);
   background-size: 16px 16px;
   background-repeat: no-repeat;
   height: 30px;
@@ -10244,12 +10289,12 @@ body.node-type-slideshow #tabs {
   background-position: center center;
 }
 .focal-bird-map .map-pause.active:before {
-  background-image: url(icon-play.png);
+  background-image: url(../img/icon-play.png);
 }
 .focal-bird-map .map-binoculars:before {
   content: "";
   display: block;
-  background-image: url(binoculars-white.png);
+  background-image: url(../img/binoculars-white.png);
   background-size: 16px 16px;
   background-repeat: no-repeat;
   height: 30px;
@@ -11261,10 +11306,24 @@ body.touch .sticky-wrapper {
   font-size: 75px;
   letter-spacing: -4px;
   font-weight: 300;
+  line-height: 75px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1279px) {
   .page-boa .guide-bar-title {
     font-size: 19px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa .guide-bar-title {
+    font-size: 19px;
+  }
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 0;
   }
 }
 @media only screen and (max-width: 479px) {
@@ -11284,9 +11343,13 @@ body.touch .sticky-wrapper {
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .hero-title {
+  .page-boa .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
+    letter-spacing: 0;
   }
 }
 .page-boa .action-nav {
@@ -11324,7 +11387,51 @@ body.touch .sticky-wrapper {
   }
 }
 .page-boa .hero-header {
-  padding-bottom: 70px;
+  padding-bottom: 60px;
+}
+
+.page-boa-bird .guide-bar-title,
+.node-type-boaf .guide-bar-title {
+  line-height: 23px;
+  margin-left: 55px;
+}
+.page-boa-bird .hero-header .hero-title,
+.node-type-boaf .hero-header .hero-title {
+  font-size: 75px;
+  letter-spacing: -4px;
+  font-weight: 300;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .guide-bar-title,
+  .node-type-boaf .guide-bar-title {
+    font-size: 19px;
+  }
+  .page-boa-bird .row .hero-header,
+  .node-type-boaf .row .hero-header {
+    padding-bottom: 10px;
+  }
+  .page-boa-bird .row .hero-header .hero-title,
+  .node-type-boaf .row .hero-header .hero-title {
+    font-size: 34px;
+    line-height: 38px;
+    letter-spacing: 0;
+  }
+  .page-boa-bird .john-audubon-logo,
+  .node-type-boaf .john-audubon-logo {
+    max-width: 61px;
+  }
 }
 
 .boa-ja-content-block {
@@ -11348,7 +11455,8 @@ body.touch .sticky-wrapper {
 }
 
 .boa-guide-bar-attribution {
-  float: left;
+  float: right;
+  margin-right: 12.5px;
 }
 .boa-guide-bar-attribution ul {
   font-size: 18px;
@@ -11473,6 +11581,7 @@ body.touch .sticky-wrapper {
 }
 
 .boa-load-more {
+  clear: both;
   padding: 35px 0 105px;
 }
 
@@ -11542,6 +11651,12 @@ body.touch .sticky-wrapper {
     right: 160px;
   }
 }
+.boa-family-block-pager.family .next-text,
+.boa-family-block-pager.family .next-title,
+.boa-family-block-pager.family .previous-text,
+.boa-family-block-pager.family .previous-title {
+  width: 170px;
+}
 @media only screen and (min-width: 480px) and (max-width: 600px) {
   .boa-family-block-pager.family {
     margin-top: 0;
@@ -11558,12 +11673,16 @@ body.touch .sticky-wrapper {
   .boa-family-block-pager.family .next-text,
   .boa-family-block-pager.family .next-title {
     font-size: 14px;
+    line-height: 18px;
     left: 160px;
+    width: 95px;
   }
   .boa-family-block-pager.family .previous-text,
   .boa-family-block-pager.family .previous-title {
     font-size: 14px;
+    line-height: 18px;
     right: 160px;
+    width: 95px;
   }
 }
 .boa-family-block-pager .columns {
@@ -11597,6 +11716,7 @@ body.touch .sticky-wrapper {
   right: 252px;
   line-height: 24px;
   top: 20px;
+  text-align: right;
 }
 .boa-family-block-pager .previous-title {
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -11726,6 +11846,7 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird .boa-in-the-bird-guide {
   padding-bottom: 35px;
+  padding-right: 10px;
 }
 .page-boa-bird .boa-in-the-bird-guide .bird-card {
   margin-right: 10px;
@@ -11733,6 +11854,9 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-in-the-bird-guide h2 {
   font-size: 28px;
   margin-bottom: 10px;
+}
+.page-boa-bird .boa-in-the-news {
+  padding-right: 10px;
 }
 .page-boa-bird .boa-in-the-news .editorial-card {
   margin-right: 10px;
@@ -12042,6 +12166,43 @@ h2.grey {
   }
 }
 
+.hero-caption.grey-bar .caption, .hero-caption.grey-bar .article-text figcaption, .article-text .hero-caption.grey-bar figcaption {
+  margin: 0;
+}
+@media only screen and (max-width: 479px) {
+  .hero-caption.grey-bar {
+    background-color: #f3f3f3;
+    color: #404040;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .hero-caption.grey-bar {
+    background-color: #f3f3f3;
+    color: #404040;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .hero-caption.grey-bar {
+    background-color: #f3f3f3;
+    color: #404040;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
 .manage-thumbnails-popup img, #EPSACropDialog img {
   max-width: none !important;
 }
@@ -12105,4 +12266,8 @@ textarea.error {
 
 .text-container.thin h1, .text-container.thin h2 {
   font-weight: 300;
+}
+
+.guide-bar-date a {
+  color: #fff;
 }

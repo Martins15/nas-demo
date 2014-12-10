@@ -1,23 +1,6 @@
 .past-magazin-issue {
   .magazin-issues-list {
     .magazine-issue {
-      &:nth-of-type(2n+1) {
-        @include breakpoint(medium-only) {
-          clear: both;
-        }
-        @include breakpoint(small-only) {
-          clear: both;
-        }
-        @include breakpoint(tiny-only) {
-          clear: both;
-        }
-      }
-
-      &:nth-of-type(3n+1) {
-        @include breakpoint(large-up) {
-          clear: both;
-        }
-      }
     }
     .magazine-issue-year {
       h2 {
@@ -43,5 +26,24 @@
   h2 {
     margin: 0 12.5px 10px;
     font-size: 38px;
+  }
+}
+
+.editorial-card-photo-bottom {
+  display: none;
+}
+
+.magazin-issue-featured {
+  .editorial-card-photo-bottom {
+    margin-top: $column-gutter / 2;
+    @include breakpoint(tiny-only) {
+      display: block;
+    }
+    @include breakpoint(small-only) {
+      display: block;
+    }
+    @include breakpoint(medium-only) {
+      display: block;
+    }
   }
 }
