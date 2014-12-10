@@ -204,7 +204,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'wrapper' => array(
         1 => array(
           'reference' => array(
-            'entity_id' => '4747',
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
@@ -225,7 +225,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
         ),
         2 => array(
           'reference' => array(
-            'entity_id' => '4747',
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
@@ -246,7 +246,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
         ),
         3 => array(
           'reference' => array(
-            'entity_id' => '4747',
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
