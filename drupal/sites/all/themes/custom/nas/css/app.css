@@ -11799,7 +11799,22 @@ body.touch .sticky-wrapper {
   line-height: 19px;
 }
 .blocks-events article .content-article .more-link {
+  display: table;
+  position: relative;
+  padding-right: 10px;
+  color: #0aa8e3;
+}
+.blocks-events article .content-article .more-link:after {
+  content: "";
   display: block;
+  right: 0px;
+  top: 50%;
+  margin-top: -3px;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: url("../img/duble-arrow.png") no-repeat center center;
+  background-size: 100%;
 }
 .blocks-events .more-events {
   border-top: 1px solid #d4d4d4;

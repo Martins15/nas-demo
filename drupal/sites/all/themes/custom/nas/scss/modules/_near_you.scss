@@ -37,7 +37,22 @@
       font-size: 14px;
       line-height: 19px;
       .more-link {
-        display: block;
+        display: table;
+        position: relative;
+        padding-right: 10px;
+        color: #0aa8e3;
+        &:after {
+          content: "";
+          display: block;
+          right: 0px;
+          top: 50%;
+          margin-top: -3px;
+          position: absolute;
+          width: 7px;
+          height: 7px;
+          background: url("../img/duble-arrow.png") no-repeat center center;
+          background-size: 100%;
+        }
       }
     }
   }
