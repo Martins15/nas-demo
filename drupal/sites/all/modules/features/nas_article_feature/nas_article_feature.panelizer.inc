@@ -992,7 +992,7 @@ function nas_article_feature_panelizer_defaults() {
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
       'formatter_settings' => array(
-        'file_view_mode' => 'nas_file_plain_creditds',
+        'file_view_mode' => 'nas_file_plain_credits',
       ),
       'context' => 'panelizer',
       'override_title' => 1,

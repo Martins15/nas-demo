@@ -23,7 +23,7 @@
     <?php endforeach; ?>
   <?php print $list_type_suffix; ?>
 <?php print $wrapper_suffix; ?>
-<?php if(count($rows) > 3): ?>
+<?php if (count($rows) > 3): ?>
   <hr class="bits-see-all-hide">
   <a class="bits-see-all bits-see-all-hide bits-see-all-controller" href="#"><small><?php print t('See all »'); ?></small></a>
 <?php endif; ?>
