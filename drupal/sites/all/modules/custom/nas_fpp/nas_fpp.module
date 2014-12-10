@@ -158,6 +158,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Wysiwyg image'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['nas_wysiwyg_image_without_colorbox'] = array(
+    'label' => t('Wysiwyg image without colorbox'),
+    'custom settings' => TRUE,
+  );
   $entity_info['file']['view modes']['nas_file_plain_text_fields'] = array(
     'label' => t('File caption and file creditds text'),
     'custom settings' => TRUE,
@@ -181,6 +185,14 @@ function nas_fpp_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['conservation_strategy_list_teaser'] = array(
     'label' => t('Conservation strategy list teaser'),
     'custom settings' => FALSE,
+  );
+  $entity_info['bean']['view modes']['bean_image_colorbox'] = array(
+    'label' => t('Image colorbox'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['bean']['view modes']['bean_image_without_colorbox'] = array(
+    'label' => t('Image without colorbox'),
+    'custom settings' => TRUE,
   );
 }
 
