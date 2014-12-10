@@ -203,8 +203,8 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'image' => variable_get('nas_frontpage_conservation_section_image_fid', ''),
       'wrapper' => array(
         1 => array(
-          'conservation_strategy' => array(
-            'entity_id' => '4747',
+          'reference' => array(
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
@@ -224,8 +224,8 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
         2 => array(
-          'conservation_strategy' => array(
-            'entity_id' => '4747',
+          'reference' => array(
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
@@ -245,8 +245,8 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
         3 => array(
-          'conservation_strategy' => array(
-            'entity_id' => '4747',
+          'reference' => array(
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
@@ -266,8 +266,8 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
       ),
-      'form_build_id' => 'form-h66NqkxOgnuI-gR9SpJbTIDRmLUrTDNxmjYHP66hjYQ',
-      'form_token' => 'AP2QB6KiXRk9ouU9QjBUD7I0jSFZ2sphva05OgCG3Ps',
+      'form_build_id' => 'form-ItDeYDI3lEoDPoB5rEoaJhaXkvPc4khTK3PYdEwOqlw',
+      'form_token' => 'AhEldc4iDQNLq_lqSlOAzcHWXafH1JN17z4i9Skn8G4',
       'form_id' => 'frontpage_conservation_section_edit_form',
       'color_mode' => 'dark',
     );
