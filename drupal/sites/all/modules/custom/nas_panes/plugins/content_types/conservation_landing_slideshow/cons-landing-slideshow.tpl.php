@@ -14,7 +14,7 @@
     <div class="column">
     <?php $active = TRUE;?>
     <?php foreach ($nodes_array_to_show as $node): ?>
-      <a class="conservation-indicator-icon <?php $active ? print 'active' : ''; ?>"><img src="<?php print $node['image']; ?>" alt=""></a>
+      <a class="conservation-indicator-icon <?php $active ? print 'active' : ''; ?>"><img src="<?php print $node['icon']; ?>" alt=""></a>
       <?php $active = FALSE; ?>
     <?php endforeach; ?>
     </div>
