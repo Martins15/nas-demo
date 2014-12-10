@@ -203,7 +203,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'image' => variable_get('nas_frontpage_conservation_section_image_fid', ''),
       'wrapper' => array(
         1 => array(
-          'conservation_strategy' => array(
+          'reference' => array(
             'entity_id' => '4747',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
@@ -224,7 +224,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
         2 => array(
-          'conservation_strategy' => array(
+          'reference' => array(
             'entity_id' => '4747',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
@@ -245,7 +245,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
         3 => array(
-          'conservation_strategy' => array(
+          'reference' => array(
             'entity_id' => '4747',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
