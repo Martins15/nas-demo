@@ -533,6 +533,8 @@ function nas_master_update_7050() {
   module_enable(array('nas_conservation'));
   pp_create_frontpage_conservation_section_image();
   features_revert(array('nas_frontpage_feature' => array('page_manager_pages')));
+  features_revert_module('/nas_beans_feature');
+  features_revert_module('nas_view_modes_feature');
 }
 
 /**
