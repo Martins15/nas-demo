@@ -550,3 +550,20 @@ function nas_master_update_7051() {
   ->condition('name', 'nas_alters')
   ->execute();
 }
+
+/**
+ * Revert features components.
+ * Delete unsed fields.
+ */
+function nas_master_update_7052() {
+  features_revert_module('nas_welcome_to_audubon');
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  field_delete_field('field_image_welcome_first');
+  field_delete_field('field_in_the_news_welcome_first');
+  field_delete_field('field_most_popular_welcome_first');
+  field_delete_field('field_image_welcome_first');
+  field_delete_field('field_social_link_facebook');
+  field_delete_field('field_social_link_pinterest');
+  field_delete_field('field_social_link_twitter');
+  field_delete_field('field_social_link_youtube');
+}
