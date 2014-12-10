@@ -19,4 +19,4 @@ features[field_base][] = field_wysiwyg_width_mode
 features[field_instance][] = bean-wysiwyg_image-field_wysiwyg_image
 features[field_instance][] = bean-wysiwyg_image-field_wysiwyg_width_mode
 features[variable][] = bean_wysiwyg_types_enabled
-mtime = 1415794288
+mtime = 1417431512

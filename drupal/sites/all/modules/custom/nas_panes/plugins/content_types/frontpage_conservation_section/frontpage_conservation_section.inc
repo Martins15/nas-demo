@@ -63,12 +63,11 @@ function frontpage_conservation_section_edit_form($form, &$form_state) {
   );
 
   for ($i = 1; $i <= 3; $i++) {
-    $form['wrapper'][$i]['conservation_strategy'] = array(
-      '#title' => t('Conservation strategy @delta', array('@delta' => $i)),
+    $form['wrapper'][$i]['reference'] = array(
+      '#title' => t('Reference @delta', array('@delta' => $i)),
       '#type' => 'entityreference',
-      '#default_value' => !empty($conf['wrapper'][$i]['conservation_strategy']['entity_id']) ? $conf['wrapper'][$i]['conservation_strategy']['entity_id'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['reference']['entity_id']) ? $conf['wrapper'][$i]['reference']['entity_id'] : '',
       '#era_entity_type' => 'node',
-      '#era_bundles' => array('strategy'),
     );
     $form['wrapper'][$i]['top_link'] = array(
       '#title' => t('Top link'),
@@ -124,8 +123,8 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
 
   foreach ($conf['wrapper'] as $delta => $item) {
     $content[$delta] = array();
-    if (!empty($item['conservation_strategy']['entity_id'])) {
-      $node = node_load($item['conservation_strategy']['entity_id']);
+    if (!empty($item['reference']['entity_id'])) {
+      $node = node_load($item['reference']['entity_id']);
       if ($node) {
         $content[$delta]['title'] = $node->title;
         $content[$delta]['nid'] = $node->nid;
