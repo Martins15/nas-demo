@@ -52,7 +52,7 @@ var Nas = Nas || {};
     attach: function (context, settings) {
       if ($(".bean-welcome-to-audubon").length > 0) {
         var hide = false,
-            _time = (new Date).getTime();
+            _time = (new Date()).getTime();
         var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
         if (firsttimecookievalue) {
           if (_time - firsttimecookievalue < 15 * 60 * 1000) {
