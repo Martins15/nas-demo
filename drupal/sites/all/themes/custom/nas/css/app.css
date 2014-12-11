@@ -4629,7 +4629,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   padding-right: 10px;
   color: #0aa8e3;
   /*&:after {
-    content: "┬╗";
+    content: "»";
     margin-left: $size-space/2;
     display: inline-block;
     width: 7px;
@@ -6233,7 +6233,7 @@ input.header-search-input,
   margin-left: 6px;
 }
 .national-strip-crumb:not(:first-child):before {
-  content: "┬╗";
+  content: "»";
   color: #d4d4d4;
   margin-right: 6px;
 }
@@ -6283,7 +6283,7 @@ input.header-search-input,
   color: #cccccc;
 }
 .national-strip-alert .link:after {
-  content: "┬╗";
+  content: "»";
   padding-left: 5px;
 }
 
@@ -11098,7 +11098,7 @@ body.touch .sticky-wrapper {
   color: #F15936;
 }
 .climate-flyway-overlay .close:before {
-  content: "├Ś";
+  content: "×";
 }
 @media only screen and (min-width: 768px) {
   .climate-flyway-overlay .close {
