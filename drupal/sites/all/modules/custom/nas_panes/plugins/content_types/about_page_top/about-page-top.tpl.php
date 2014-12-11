@@ -16,8 +16,10 @@
 ?>
 
 <div class="hero <?php print $color_mode_gradient; ?>-gradient <?php print $color_mode_text; ?>-text">
-  <img src="<?php print $hero_image_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
-  <img src="<?php print $hero_image; ?>" alt="" class="hide-for-tiny hide-for-small">
+  <div class="hero-image">
+    <img src="<?php print $hero_image_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
+    <img src="<?php print $hero_image; ?>" alt="" class="hide-for-tiny hide-for-small">
+  </div>
   <div class="row">
     <div class="hero-header contextual-links-region">
       <?php print $contextual_links; ?>

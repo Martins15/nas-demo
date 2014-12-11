@@ -60,6 +60,32 @@ function nas_about_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
+    $pane->panel = 'menu_bar';
+    $pane->type = 'about_page_menu_bar';
+    $pane->subtype = 'about_page_menu_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default_menu_item' => '157',
+      'form_build_id' => 'form-B98nakdfUVPAWt_ufXR3N8hPmcMCuG2ZnkB2jtZGsbI',
+      'form_token' => 'tpYTE5qaDNkOGf_vPvLQgMxdFeWddlCQL9sbp3UgIxE',
+      'form_id' => 'about_page_menu_bar_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3fe5e928-8578-4374-93d4-03385e1e3823';
+    $display->content['new-3fe5e928-8578-4374-93d4-03385e1e3823'] = $pane;
+    $display->panels['menu_bar'][0] = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
+    $pane = new stdClass();
     $pane->pid = 'new-979c502a-0271-40cf-b92b-e981b5fc03cd';
     $pane->panel = 'top';
     $pane->type = 'about_page_top';

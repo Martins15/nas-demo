@@ -15,7 +15,7 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'about_landing_hero',
     'label' => 'About landing hero',
     'effects' => array(
-      3 => array(
+      11 => array(
         'label' => 'EPSA Image Crop',
         'help' => '',
         'dimensions callback' => 'epsacrop_crop_dimensions',
@@ -25,7 +25,7 @@ function nas_image_styles_feature_image_default_styles() {
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 2400,
-          'height' => 1160,
+          'height' => 1316,
           'anchor' => 'center-top',
           'jcrop_settings' => array(
             'aspect_ratio' => '',
@@ -36,7 +36,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      4 => array(
+      12 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -47,7 +47,7 @@ function nas_image_styles_feature_image_default_styles() {
         'name' => 'image_scale_and_crop',
         'data' => array(
           'width' => 2400,
-          'height' => 1160,
+          'height' => 1316,
         ),
         'weight' => 2,
       ),
@@ -59,7 +59,7 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'about_landing_hero_mobile',
     'label' => 'About landing hero mobile',
     'effects' => array(
-      7 => array(
+      13 => array(
         'label' => 'EPSA Image Crop',
         'help' => '',
         'dimensions callback' => 'epsacrop_crop_dimensions',
@@ -68,8 +68,8 @@ function nas_image_styles_feature_image_default_styles() {
         'module' => 'epsacrop',
         'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 800,
-          'height' => 387,
+          'width' => 640,
+          'height' => 600,
           'anchor' => 'center-center',
           'jcrop_settings' => array(
             'aspect_ratio' => '',
@@ -80,7 +80,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      8 => array(
+      14 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -90,8 +90,8 @@ function nas_image_styles_feature_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 800,
-          'height' => 387,
+          'width' => 640,
+          'height' => 600,
         ),
         'weight' => 2,
       ),

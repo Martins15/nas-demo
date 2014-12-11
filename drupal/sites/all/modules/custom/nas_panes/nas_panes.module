@@ -26,6 +26,7 @@ define('NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE', 'conservation_hero');
 
 define('NAS_FLYWAYS_NUMBER', 4);
 define('NAS_PANES_CONSERVATION_MENU_BAR_MENU', 'menu-header-big-main-menu');
+define('NAS_PANES_ABOUT_MENU_BAR_MENU', 'menu-header-big-main-menu');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -524,6 +525,14 @@ function nas_panes_theme() {
       'template' => 'about-page-top',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_top',
     ),
+
+    'about_page_menu_bar' => array(
+      'variables' => array(
+        'items' => NULL,
+      ),
+      'template' => 'about-page-menu-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_menu_bar',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -558,7 +567,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY
+      NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
     );
 
     foreach ($panel_keys as $key) {
