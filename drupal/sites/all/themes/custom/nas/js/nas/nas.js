@@ -50,12 +50,22 @@ var Nas = Nas || {};
 
   Drupal.behaviors.articleFullscreen = {
     attach: function (context, settings) {
-      if ($(".bean-welcome-to-audubon").length > 0) {
-        if (!$.cookie('firsttimevisitors')) {
-          $.cookie('firsttimevisitors', '1');
+      if ($(".article-body .bean-welcome-to-audubon").length > 0) {
+        var hide = false,
+            _time = (new Date()).getTime();
+        var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
+        if (firsttimecookievalue) {
+          if (_time - firsttimecookievalue < 15 * 60 * 1000) {
+            $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
+          }
+          else {
+            hide = true;
+          }
         } else {
-          $(".bean-welcome-to-audubon .article-aside").removeClass('visible');
-          $(".bean-welcome-to-audubon .article-aside").addClass('hidden');
+          $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
+        }
+        if (hide) {
+          $(".bean-welcome-to-audubon").addClass('hide');
         }
       }
     }
