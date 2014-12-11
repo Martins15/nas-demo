@@ -578,6 +578,9 @@ function nas_master_update_7052() {
     'format' => 'full_html',
     'summary' => '',
   );
+  $bean->field_welcome_image[LANGUAGE_NONE][0] = array(
+    'value' => 'sites/all/themes/custom/nas/img/welcome-illustration-teal.jpg',
+  );
   $bean->save();
 
   features_revert_module('nas_welcome_to_audubon');
