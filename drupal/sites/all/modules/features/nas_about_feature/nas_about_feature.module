@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS About_feature feature.
+ */
+
+include_once 'nas_about_feature.features.inc';
