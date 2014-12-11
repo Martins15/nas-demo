@@ -550,3 +550,10 @@ function nas_master_update_7051() {
   ->condition('name', 'nas_alters')
   ->execute();
 }
+
+/**
+ * Revert nas_image_styles_feature feature.
+ */
+function nas_master_update_7053() {
+  features_revert_module('nas_image_styles_feature');
+}
