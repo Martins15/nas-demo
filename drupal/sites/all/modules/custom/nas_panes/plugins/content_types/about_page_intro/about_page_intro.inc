@@ -38,6 +38,14 @@ function about_page_intro_form($form, &$form_state) {
     '#format' => 'full_html',
   );
 
+  $form['full_width_text'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Full width text'),
+    '#rows' => 5,
+    '#default_value' => !empty($conf['full_width_text']['value']) ? $conf['full_width_text']['value'] : '',
+    '#format' => 'full_html',
+  );
+
   return $form;
 }
 
@@ -68,6 +76,7 @@ function about_page_intro_render($subtype, $conf, $args, $contexts) {
       'title' => $conf['override_title_text'],
       'left_column' => $conf['left_column']['value'],
       'right_column' => $conf['right_column']['value'],
+      'full_width_text' => $conf['full_width_text']['value'],
       'contextual_links' => $contextual_links,
     ));
 

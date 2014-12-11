@@ -20,4 +20,7 @@
   <div class="columns medium-6">
     <?php print $right_column; ?>
   </div>
+  <div class="columns">
+    <?php print $full_width_text; ?>
+  </div>
 </div>

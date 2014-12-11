@@ -537,6 +537,7 @@ function nas_panes_theme() {
         'title' => NULL,
         'left_column' => NULL,
         'right_column' => NULL,
+        'full_width_text' => NULL,
         'contextual_links' => NULL,
       ),
       'template' => 'about-page-intro',

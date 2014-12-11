@@ -70,7 +70,7 @@ function nas_about_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
-      'form_build_id' => 'form-bM_OgUsxY6eXxnhKMcvzZ6uC6AmZgNu5jiLqHEKNoHA',
+      'form_build_id' => 'form-bawJ9QWNEcS8LoyKkqtHRqneWM8QA-RqmxZVLXE0Vpc',
       'form_token' => 'VtIuaw_JNsXeRiyhn8IemPDGu_aYaeP6UxgEbmL4QO0',
       'form_id' => 'about_page_intro_form',
       'left_column' => array(
@@ -79,11 +79,16 @@ function nas_about_feature_default_page_manager_pages() {
         'format' => 'full_html',
       ),
       'right_column' => array(
-        'value' => 'A powerful combination of science, education and policy expertise combine in efforts ranging from protection and restoration of local habitats to the implementation of policies that safeguard birds, other wildlife and the resources that sustain us all—in the U.S. and Across the Americas.  ',
+        'value' => '<p>A powerful combination of science, education and policy expertise combine in efforts ranging from protection and restoration of local habitats to the implementation of policies that safeguard birds, other wildlife and the resources that sustain us all—in the U.S. and Across the Americas.</p>
+',
         'format' => 'full_html',
       ),
       'title' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the b',
       'intro_title' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
+      'full_width_text' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
