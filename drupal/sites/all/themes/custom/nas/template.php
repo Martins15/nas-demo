@@ -322,6 +322,15 @@ function nas_preprocess_node_article(&$vars) {
         'html' => TRUE,
         'attributes' => array('title' => $node->title),
       ));
+
+    $image = theme('image', array(
+        'path' => image_style_url('article_teaser_list', $hero_image->uri),
+        'alt' => $node->title,
+      ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
   }
 
   $subtitle_modes = array(
