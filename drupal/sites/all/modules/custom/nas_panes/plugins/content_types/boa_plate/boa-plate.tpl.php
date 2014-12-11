@@ -11,7 +11,7 @@
  */
 ?>
 
-<section class="bird-guide-section boa-plate-illustration center">
+<section class="bird-guide-section right-col boa-plate-illustration center">
   <img src="<?php print $image_thumbnail; ?>" />
   <a href="<?php print $image; ?>" class="see-full-plate" target="blank"><i class="icon-magnifier"></i> See full plate</a><br />
   <a href="<?php print $link_url; ?>" class="illustration-attribution"><?php print $link_title; ?></a>
