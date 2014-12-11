@@ -552,10 +552,34 @@ function nas_master_update_7051() {
 }
 
 /**
+ * Create instance of Welcome to Audubon bean.
  * Revert features components.
- * Delete unsed fields.
+ * Delete unused fields.
  */
 function nas_master_update_7052() {
+  $bean_values = array(
+    'is_new' => TRUE,
+    'description' => '',
+    'title' => '',
+    'label' => 'Welcome to Audubon',
+    'type' => 'welcome_to_audubon',
+    'delta' => 'welcome-to-audubon',
+    'view_mode' => 'default',
+    'uid' => 1,
+  );
+  $bean = new Bean($bean_values);
+  $bean->save();
+  $bean->field_learn_more_welcome_first[LANGUAGE_NONE][0] = array(
+    'url' => '',
+    'title' => 'Learn more »',
+  );
+  $bean->field_summary_welcome_first[LANGUAGE_NONE][0] = array(
+    'value' => "<p><em><strong>Our Mission:</strong> To conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth's biological diversity.</em></p>",
+    'format' => 'full_html',
+    'summary' => '',
+  );
+  $bean->save();
+
   features_revert_module('nas_welcome_to_audubon');
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
   field_delete_field('field_image_welcome_first');
