@@ -38,7 +38,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'access bean overview'.
   $permissions['access bean overview'] = array(
     'name' => 'access bean overview',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'bean',
   );
 
@@ -312,7 +314,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'administer beans'.
   $permissions['administer beans'] = array(
     'name' => 'administer beans',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'bean',
   );
 
@@ -3266,14 +3270,21 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'view any welcome_to_audubon bean'.
   $permissions['view any welcome_to_audubon bean'] = array(
     'name' => 'view any welcome_to_audubon bean',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'editor' => 'editor',
+    ),
     'module' => 'bean',
   );
 
   // Exported permission: 'view any wysiwyg_image bean'.
   $permissions['view any wysiwyg_image bean'] = array(
     'name' => 'view any wysiwyg_image bean',
-    'roles' => array(),
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
     'module' => 'bean',
   );
 

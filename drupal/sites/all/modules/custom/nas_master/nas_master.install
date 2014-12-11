@@ -558,6 +558,7 @@ function nas_master_update_7051() {
  */
 function nas_master_update_7052() {
   features_revert_module('nas_welcome_to_audubon');
+  features_revert_module('nas_editor_role');
   $bean_values = array(
     'is_new' => TRUE,
     'description' => '',
