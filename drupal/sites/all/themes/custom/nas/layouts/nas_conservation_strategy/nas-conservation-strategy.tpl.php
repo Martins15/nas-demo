@@ -8,127 +8,13 @@
 <?php print render($content['top']); ?>
 
 <section class="global-content with-padding">
-  <div class="row space-top space-bottom conservation-strategy-content text-container">
+  <div class="row space-bottom conservation-strategy-content text-container">
     <?php print render($content['body']); ?>
   </div>
 
   <?php print render($content['projects']); ?>
 
-  <div class="row section-header space-top double">
-    <div class="column">
-      <h2 class="thin">More On Seas &amp; Shores</h2>
-    </div>
-  </div>
-  <div class="row">
-
-    <!-- BEGIN SIDEBAR -->
-
-    <div class="sidebar large-push-8 large-4 columns">
-      <div class="editorial-card">
-        <div class="editorial-card-photo">
-          <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-12.jpg'; ?>" alt="">
-        </div>
-        <div class="editorial-card-content short">
-          <h4 class="editorial-card-title"><a href="#">Seas &amp; Shores Related News Item</a></h4>
-          <p>Along with the title, we should include a short description of the article.</p>
-        </div>
-      </div>
-      <div class="editorial-card">
-        <div class="editorial-card-photo">
-          <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-11.jpg'; ?>" alt="">
-        </div>
-        <div class="editorial-card-content short">
-          <h4 class="editorial-card-title"><a href="#">Another Seas &amp; Shores Related News Item</a></h4>
-          <p>Along with the title, we should include a short description of the article.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- END SIDEBAR -->
-
-    <!-- BEGIN MAIN COLUMN -->
-
-    <div class="large-8 large-pull-4 columns index-list">
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-index-6.jpg'; ?>" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">This is Another Seas &amp; Shores Project That’s Not Featured Up Above</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-index-1.jpg'; ?>" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">The River-Style List of Projects Can Extend as Long as Needed (or Paginate)</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-index-2.jpg'; ?>" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">Another Conservation Project Teaser Goes Right Here</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-index-3.jpg'; ?>" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">The River-Style List of Projects Can Extend as Long as Needed (or Paginate)</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="editorial-card index">
-        <div class="row">
-          <div class="tiny-4 columns">
-            <div class="editorial-card-photo">
-              <img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-index-7.jpg'; ?>" alt="">
-            </div>
-          </div>
-          <div class="tiny-8 columns">
-            <div class="editorial-card-content">
-              <h4 class="editorial-card-title"><a href="#">Another Conservation Project Teaser Goes Right Here</a></h4>
-              <p>Along with the title, we should include a short description of the project.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- END MAIN COLUMN -->
-
-  </div>
+  <?php print render($content['news']); ?>
 
   <section class="card-set bg-1">
     <div class="row">

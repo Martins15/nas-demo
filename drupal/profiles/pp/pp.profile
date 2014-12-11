@@ -70,6 +70,13 @@ function pp_install_tasks(&$install_state) {
     'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
     'function' => 'pp_create_conservation_hero_image',
   );
+  $tasks['frontpage_conservation_section_image'] = array(
+    'display_name' => st('Create conservation hero image'),
+    'display' => FALSE,
+    'type' => 'normal',
+    'run' => INSTALL_TASK_RUN_IF_NOT_COMPLETED,
+    'function' => 'pp_create_frontpage_conservation_section_image',
+  );
 
   return $tasks;
 }
@@ -512,12 +519,28 @@ function pp_get_flyway_node_nid_by_title($title) {
 function pp_create_conservation_hero_image() {
   $source = DRUPAL_ROOT . '/sites/all/themes/custom/nas/img/hero-img-5.jpg';
   $destination = 'public://hero-img-5.jpg';
+  pp_create_image($source, $destination, 'nas_conservation_landing_hero_image_fid');
+}
+
+/**
+ * Create frontpage conservation section image.
+ */
+function pp_create_frontpage_conservation_section_image() {
+  $source = DRUPAL_ROOT . '/sites/all/themes/custom/nas/img/breakout-section-3.jpg';
+  $destination = 'public://breakout-section-3.jpg';
+  pp_create_image($source, $destination, 'nas_frontpage_conservation_section_image_fid');
+}
+
+/**
+ * Create image.
+ */
+function pp_create_image($source, $destination, $variable_name) {
   file_unmanaged_copy($source, $destination, FILE_EXISTS_REPLACE);
   $files = file_load_multiple(array(), array('uri' => $destination));
   $file = reset($files);
 
   if ($file) {
-    variable_set('nas_conservation_landing_hero_image_fid', $file->fid);
+    variable_set($variable_name, $file->fid);
     return NULL;
   }
 
@@ -532,7 +555,6 @@ function pp_create_conservation_hero_image() {
     'type' => 'image',
   );
 
-  $file->field_file_credit[LANGUAGE_NONE][0]['value'] = 'Photo: Frank White, Flickr Creative Commons';
   $file = file_save($file);
-  variable_set('nas_conservation_landing_hero_image_fid', $file->fid);
+  variable_set($variable_name, $file->fid);
 }

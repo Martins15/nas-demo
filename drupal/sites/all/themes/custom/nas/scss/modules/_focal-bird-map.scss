@@ -328,7 +328,7 @@
     &:before {
       content: "";
       display: block;
-      background-image: url(icon-pause.png);
+      background-image: url(../img/icon-pause.png);
       background-size: 16px 16px;
       background-repeat: no-repeat;
       height: 30px;
@@ -337,14 +337,14 @@
     }
 
     &.active:before {
-      background-image: url(icon-play.png);
+      background-image: url(../img/icon-play.png);
     }
   }
 
   .map-binoculars:before {
     content: "";
     display: block;
-    background-image: url(binoculars-white.png);
+    background-image: url(../img/binoculars-white.png);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     height: 30px;

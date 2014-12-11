@@ -11,18 +11,11 @@
       <h2 class="thin"><?php print $title; ?></h2>
     </div>
   </div>
-  <div class="row card-set-wrapper <?php print !empty($contextual_links) ? 'contextual-links-region' : '' ?>">
+  <div class="row clearfix conservation-strategy-projects-block <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
     <?php print $contextual_links; ?>
-    <div class="clearfix card-set-scroller conservation-strategy-projects-block">
+    <div class="projects-list">
       <?php foreach ($teasers as $teaser) : ?>
         <?php print $teaser; ?>
       <?php endforeach; ?>
-  </div>
-  <div class="row space-bottom">
-    <div class="card-set-dots">
-      <div class="dot"></div>
-      <div class="dot active"></div>
-      <div class="dot"></div>
     </div>
-  </div>
 </section>

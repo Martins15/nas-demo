@@ -19,7 +19,7 @@
     li {
       padding: 0 $size-space;
       border-left: 1px solid $color-text-gray;
-      &:first-child {
+      &:first-of-type {
         border-left: none;
         padding-left: 0;
       }

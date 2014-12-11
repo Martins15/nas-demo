@@ -96,4 +96,7 @@
     <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
     <?php print render($content['body']); ?>
   </div>
+  <div class="editorial-card-photo-bottom">
+    <?php print $linked_image; ?>
+  </div>
 </div>

@@ -58,6 +58,30 @@ function nas_view_modes_feature_strongarm() {
       'search_result' => array(
         'custom_settings' => FALSE,
       ),
+      'hero_project' => array(
+        'custom_settings' => TRUE,
+      ),
+      'related_features' => array(
+        'custom_settings' => TRUE,
+      ),
+      'article_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'article_featured' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_wysiwyg_image' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_file_plain_text_fields' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_file_plain_caption' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_file_plain_credits' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -82,6 +106,14 @@ function nas_view_modes_feature_strongarm() {
           'nas_wysiwyg_image' => array(
             'weight' => '0',
             'visible' => TRUE,
+          ),
+          'nas_file_plain_caption' => array(
+            'weight' => '4',
+            'visible' => FALSE,
+          ),
+          'nas_file_plain_credits' => array(
+            'weight' => '4',
+            'visible' => FALSE,
           ),
         ),
       ),

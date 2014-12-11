@@ -11,7 +11,26 @@
   h1, h2, h3 {
     margin-bottom: 0;
   }
-  
+
+  &.border-bottom{
+    padding: 0;
+    .sub-heading{
+      border-bottom: 1px solid $color-light-gray;
+      padding-bottom: 10px;
+    }
+    @include breakpoint(min-width, #{lower-bound($large-range)}) {
+      .section-nav{
+        bottom: 7px;
+      }
+    }
+  }
+
+  .sub-heading{
+    color: #89867e;
+    font-family: $font-sans;
+    font-size: $size-text-medium;
+  }
+
   @include breakpoint(max-width, #{upper-bound($small-range)}) {
     h2, h3 {
       text-align: center;

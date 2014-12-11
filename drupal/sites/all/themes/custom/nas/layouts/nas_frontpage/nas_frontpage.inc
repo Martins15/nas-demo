@@ -18,6 +18,7 @@ $plugin = array(
     'top' => t('Top Hero Image'),
     'featured' => t('Featured content'),
     'bird_news' => t('Birds in the News'),
+    'conservation_section' => t('Conservation section'),
     'more_headlines' => t('More headlines'),
     'editorial_cards' => t('Editorial Cards'),
     'main' => t('Main'),

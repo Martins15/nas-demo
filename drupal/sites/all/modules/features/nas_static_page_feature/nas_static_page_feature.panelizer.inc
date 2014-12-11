@@ -44,6 +44,7 @@ function nas_static_page_feature_panelizer_defaults() {
       'subtitle' => NULL,
       'hero_image' => NULL,
       'nav_menu' => NULL,
+      'header_no_image' => NULL,
     ),
   );
   $display->cache = array();
@@ -160,6 +161,57 @@ function nas_static_page_feature_panelizer_defaults() {
     $pane->uuid = '2e7aead0-3baa-4c43-839d-a49c262a0509';
     $display->content['new-2e7aead0-3baa-4c43-839d-a49c262a0509'] = $pane;
     $display->panels['header_hero_attr_text'][0] = 'new-2e7aead0-3baa-4c43-839d-a49c262a0509';
+    $pane = new stdClass();
+    $pane->pid = 'new-4d47c42a-7dc2-4fb0-8bbc-19435faf0881';
+    $pane->panel = 'header_no_image';
+    $pane->type = 'article_section';
+    $pane->subtype = 'article_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'classes' => 'article-slug',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4d47c42a-7dc2-4fb0-8bbc-19435faf0881';
+    $display->content['new-4d47c42a-7dc2-4fb0-8bbc-19435faf0881'] = $pane;
+    $display->panels['header_no_image'][0] = 'new-4d47c42a-7dc2-4fb0-8bbc-19435faf0881';
+    $pane = new stdClass();
+    $pane->pid = 'new-d5d26d89-96bc-4bd1-960c-bdbdb514ff9e';
+    $pane->panel = 'header_no_image';
+    $pane->type = 'node_title';
+    $pane->subtype = 'node_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'markup' => 'h1',
+      'id' => '',
+      'class' => '',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'd5d26d89-96bc-4bd1-960c-bdbdb514ff9e';
+    $display->content['new-d5d26d89-96bc-4bd1-960c-bdbdb514ff9e'] = $pane;
+    $display->panels['header_no_image'][1] = 'new-d5d26d89-96bc-4bd1-960c-bdbdb514ff9e';
     $pane = new stdClass();
     $pane->pid = 'new-c18617e8-57a0-4916-a186-f6ae34d181aa';
     $pane->panel = 'hero_image';
@@ -306,6 +358,8 @@ function nas_static_page_feature_panelizer_defaults() {
       'subtitle' => NULL,
       'hero_image' => NULL,
       'nav_menu' => NULL,
+      'related' => NULL,
+      'header_no_image' => NULL,
     ),
   );
   $display->cache = array();
@@ -423,6 +477,57 @@ function nas_static_page_feature_panelizer_defaults() {
     $display->content['new-e855edaa-4ee4-483b-aee8-b9b40ca43a04'] = $pane;
     $display->panels['header_hero_attr_text'][0] = 'new-e855edaa-4ee4-483b-aee8-b9b40ca43a04';
     $pane = new stdClass();
+    $pane->pid = 'new-b671a885-cc4a-4ce5-b036-03125b3c8156';
+    $pane->panel = 'header_no_image';
+    $pane->type = 'article_section';
+    $pane->subtype = 'article_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'classes' => 'article-slug',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b671a885-cc4a-4ce5-b036-03125b3c8156';
+    $display->content['new-b671a885-cc4a-4ce5-b036-03125b3c8156'] = $pane;
+    $display->panels['header_no_image'][0] = 'new-b671a885-cc4a-4ce5-b036-03125b3c8156';
+    $pane = new stdClass();
+    $pane->pid = 'new-76f2fd00-d198-4437-af04-916e38849141';
+    $pane->panel = 'header_no_image';
+    $pane->type = 'node_title';
+    $pane->subtype = 'node_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'link' => 0,
+      'markup' => 'h1',
+      'id' => '',
+      'class' => '',
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '76f2fd00-d198-4437-af04-916e38849141';
+    $display->content['new-76f2fd00-d198-4437-af04-916e38849141'] = $pane;
+    $display->panels['header_no_image'][1] = 'new-76f2fd00-d198-4437-af04-916e38849141';
+    $pane = new stdClass();
     $pane->pid = 'new-a6afd2c8-1071-4dc3-8939-d1e01197da0c';
     $pane->panel = 'hero_image';
     $pane->type = 'entity_field';
@@ -501,6 +606,29 @@ function nas_static_page_feature_panelizer_defaults() {
     $pane->uuid = 'd17456f0-4d23-47a1-a57e-936368aba6fb';
     $display->content['new-d17456f0-4d23-47a1-a57e-936368aba6fb'] = $pane;
     $display->panels['nav_menu'][0] = 'new-d17456f0-4d23-47a1-a57e-936368aba6fb';
+    $pane = new stdClass();
+    $pane->pid = 'new-58ad279e-4542-473b-86dd-e8ebc2135ea1';
+    $pane->panel = 'related';
+    $pane->type = 'nas_panes_static_page_related';
+    $pane->subtype = 'nas_panes_static_page_related';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '58ad279e-4542-473b-86dd-e8ebc2135ea1';
+    $display->content['new-58ad279e-4542-473b-86dd-e8ebc2135ea1'] = $pane;
+    $display->panels['related'][0] = 'new-58ad279e-4542-473b-86dd-e8ebc2135ea1';
     $pane = new stdClass();
     $pane->pid = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
     $pane->panel = 'right';

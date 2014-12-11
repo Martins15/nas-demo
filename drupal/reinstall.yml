@@ -155,6 +155,16 @@
     sudo: yes
     shell: "{{ php_env_vars }} drush -dvy updb -l {{ site_url }}"
     when: workflow_type == "sql"
+    
+  - name: Enable module Stage File Proxy
+    sudo: yes
+    shell: "{{ php_env_vars }} drush -y en stage_file_proxy"
+    when: pp_environment == "demo" or pp_environment == "default"
+
+  - name: Stage File Proxy settings
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"stage_file_proxy_origin\"] = \"http://nas.wearepropeople.md/staging\";'
+    when: pp_environment == "demo" or pp_environment == "default"
 
   - name: Creating latest staging backup
     sudo: yes

@@ -4,5 +4,19 @@
 // ----------
 
 .index-list {
-  margin-bottom: $column-gutter*3;
+  .view .pager-load-more {
+    @include breakpoint(tiny-only) {
+      margin-bottom: $column-gutter*3;
+    }
+    @include breakpoint(small-only) {
+      margin-bottom: $column-gutter*3;
+    }
+    @include breakpoint(medium-only) {
+      margin-bottom: $column-gutter*3;
+    }
+  }
+
+  @include breakpoint(large-up) {
+    margin-bottom: $column-gutter*3;
+  }
 }

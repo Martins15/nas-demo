@@ -61,6 +61,19 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.bird_in_this_story_see_all = {
+    attach: function (context, settings) {
+      $('.article-related-birds', context).once('article-related-birds', function () {
+        var $this = $(this);
+        $('.bits-see-all-controller', $this).click(function () {
+          $('.bits-see-all-hide', $this).hide();
+          $('.bits-see-all-show', $this).show();
+          return false;
+        });
+      });
+    }
+  };
+
 // @todo Figure out how this is going to work on touch
   Nav.handleTouch = function () {
     $(".primary-nav-toggler").removeAttr("href");

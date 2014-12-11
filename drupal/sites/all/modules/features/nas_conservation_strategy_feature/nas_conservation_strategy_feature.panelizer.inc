@@ -41,6 +41,7 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
       'top' => NULL,
       'body' => NULL,
       'projects' => NULL,
+      'news' => NULL,
     ),
   );
   $display->cache = array();
@@ -77,6 +78,32 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
     $pane->uuid = '3e7ac3da-8127-4384-8e81-c347045ff766';
     $display->content['new-3e7ac3da-8127-4384-8e81-c347045ff766'] = $pane;
     $display->panels['body'][0] = 'new-3e7ac3da-8127-4384-8e81-c347045ff766';
+    $pane = new stdClass();
+    $pane->pid = 'new-7e144a3f-eb76-437a-a1d4-0e8d381ad89a';
+    $pane->panel = 'news';
+    $pane->type = 'conservation_strategy_news';
+    $pane->subtype = 'conservation_strategy_news';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'panelizer',
+      'override_title' => '',
+      'override_title_text' => '',
+      'form_build_id' => 'form-m4JE0V4xsBSO7FjMv8nhmMnaeTLB5lEC8pf48FhZfCM',
+      'form_token' => 'KJZKn_sNMMUjV0ccIPTMpPgtvpvBPZy5DwcKd7hsdoU',
+      'form_id' => 'conservation_strategy_news_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7e144a3f-eb76-437a-a1d4-0e8d381ad89a';
+    $display->content['new-7e144a3f-eb76-437a-a1d4-0e8d381ad89a'] = $pane;
+    $display->panels['news'][0] = 'new-7e144a3f-eb76-437a-a1d4-0e8d381ad89a';
     $pane = new stdClass();
     $pane->pid = 'new-b906dad8-cf02-49f4-a3d1-ed86ddb8b86e';
     $pane->panel = 'projects';

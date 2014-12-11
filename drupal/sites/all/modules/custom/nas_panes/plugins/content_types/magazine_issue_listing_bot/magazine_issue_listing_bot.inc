@@ -26,20 +26,12 @@ function magazine_issue_listing_bot_render($subtype, $conf, $args, $context) {
   }
 
   $articles_nodes = array();
-  $magazine_issue_featured_nids = variable_get('magazine_issue_featured_nids_' . $context_node->nid);
-  $mag_issue_article_nids = views_get_view_result('nas_news', 'mag_issue_article_nids', $context_node->nid);
+  $magazine_issue_featured_nids = _nas_panes_magazin_featured_articles($context_node);
+  $view_results = views_get_view_result('nas_news', 'mag_issue_article_nids', $context_node->nid, implode('+', $magazine_issue_featured_nids));
 
-  if (!empty($mag_issue_article_nids)) {
-    if (!empty($magazine_issue_featured_nids)) {
-      foreach ($mag_issue_article_nids as $key => $value) {
-        if (in_array($value->nid, $magazine_issue_featured_nids)) {
-          unset($mag_issue_article_nids[$key]);
-        }
-      }
-    }
-    $mag_issue_article_nids = array_values($mag_issue_article_nids);
-    $mag_issue_article_nids = array_slice($mag_issue_article_nids, 5);
-    foreach ($mag_issue_article_nids as $key => $value) {
+  if (!empty($view_results)) {
+    $view_results = array_slice($view_results, 5);
+    foreach ($view_results as $key => $value) {
       if (!empty($value->nid) && $node = node_load($value->nid)) {
         $articles_nodes[] = $node;
       }

@@ -4,6 +4,8 @@
  * Template implementation to display BOA layout.
  */
 ?>
+<?php print $content['header']; ?>
+</header>
 <section class="global-content with-padding">
   <div class="row">
     <div class="boa-family-text-block text-container">
