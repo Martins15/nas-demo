@@ -102,6 +102,42 @@ function nas_about_feature_default_page_manager_pages() {
     $display->content['new-1ab66276-74fe-4aa6-b3ac-15b0b0568961'] = $pane;
     $display->panels['main'][0] = 'new-1ab66276-74fe-4aa6-b3ac-15b0b0568961';
     $pane = new stdClass();
+    $pane->pid = 'new-71da6dad-4336-439c-bb88-0ea37c7f380a';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_success_section';
+    $pane->subtype = 'about_page_success_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Our successes include:',
+      'form_build_id' => 'form-SSXWLYecrNRNEl7xXhRIytKTceyEANONCfzIAxGa2ws',
+      'form_token' => '6GUgx8fr_5cNZe8mCAdDBZ3RoPtJZB8ZqCe4rqYRWM0',
+      'form_id' => 'about_page_success_section_form',
+      'text' => array(
+        'value' => '<ul>
+	<li>Protection of the <a href="#">Arctic National Wildlife Refuge</a> and other fragile habitats</li>
+	<li>The ongoing recovery of the imperiled <a href="#">California condor</a> and <a href="#">brown pelican</a></li>
+	<li>Adoption of <a href="#">innovative policies</a> that balance habitat protection with green energy development on millions of  acres</li>
+	<li>Continuing restoration of the <a href="#">Everglades</a> and <a href="#">Long Island Sound</a></li>
+</ul>
+',
+        'format' => 'full_html',
+      ),
+      'image' => '9776',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '71da6dad-4336-439c-bb88-0ea37c7f380a';
+    $display->content['new-71da6dad-4336-439c-bb88-0ea37c7f380a'] = $pane;
+    $display->panels['main'][1] = 'new-71da6dad-4336-439c-bb88-0ea37c7f380a';
+    $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';
     $pane->type = 'about_page_menu_bar';
