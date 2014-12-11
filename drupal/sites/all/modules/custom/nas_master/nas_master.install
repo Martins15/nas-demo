@@ -594,3 +594,10 @@ function nas_master_update_7052() {
   field_delete_field('field_social_link_twitter');
   field_delete_field('field_social_link_youtube');
 }
+
+/**
+ * Revert nas_image_styles_feature feature.
+ */
+function nas_master_update_7053() {
+  features_revert_module('nas_image_styles_feature');
+}
