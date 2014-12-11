@@ -4564,6 +4564,9 @@ small {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 15px;
 }
+.editorial-card-info .editorial-card-slug {
+  display: inline-block;
+}
 
 .editorial-card-title {
   display: block;
@@ -4609,6 +4612,15 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 
 .editorial-card-dateline {
   color: #888;
+}
+.editorial-card-info .editorial-card-dateline {
+  color: #404040;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+}
+.editorial-card-info .editorial-card-dateline:before {
+  content: '|';
+  margin-right: 3px;
 }
 
 .editorial-card-link {
@@ -7971,6 +7983,13 @@ body.touch .primary-sub-nav-index {
 .section-nav a.cta:hover {
   color: #955700;
 }
+.section-nav a.color-blue {
+  color: #0AA8E3;
+  font-size: 20px;
+}
+.section-nav a.color-blue:hover {
+  color: #07729a;
+}
 .section-nav i {
   vertical-align: middle;
 }
@@ -8000,6 +8019,23 @@ body.touch .primary-sub-nav-index {
 }
 .section-header h1, .section-header h2, .section-header h3 {
   margin-bottom: 0;
+}
+.section-header.border-bottom {
+  padding: 0;
+}
+.section-header.border-bottom .sub-heading {
+  border-bottom: 1px solid #d4d4d4;
+  padding-bottom: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .section-header.border-bottom .section-nav {
+    bottom: 7px;
+  }
+}
+.section-header .sub-heading {
+  color: #89867e;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
 }
 @media only screen and (max-width: 600px) {
   .section-header h2, .section-header h3 {
@@ -11879,6 +11915,60 @@ h2.grey {
   list-style: none;
   list-style-image: none;
   list-style-type: none;
+}
+
+.search-tag {
+  background-color: #fdf7da;
+}
+
+.top-search-form {
+  margin-top: 65px;
+}
+
+.top-search-form-input {
+  float: left;
+  margin-right: 2%;
+  width: 85%;
+}
+.top-search-form-input input {
+  font-size: 30px;
+  font-weight: 300;
+  height: 47px;
+}
+
+.top-search-form-submit {
+  height: 47px;
+  flex: left;
+  font-size: 24px;
+  font-weight: 300;
+  width: 13%;
+}
+
+.filter-list {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
+  list-style-type: none;
+  margin-bottom: 35px;
+  padding-left: 30px;
+}
+.filter-list li {
+  margin-bottom: 5px;
+}
+.filter-list a.active {
+  color: #000;
+}
+.filter-list.section-nav {
+  margin: 0;
+  padding: 0;
+}
+.filter-list.section-nav span {
+  color: #89867e;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.filter-list-heading {
+  margin-bottom: 5px;
 }
 
 .sidebar, .article-sidebar {
