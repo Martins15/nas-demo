@@ -525,13 +525,22 @@ function nas_panes_theme() {
       'template' => 'about-page-top',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_top',
     ),
-
     'about_page_menu_bar' => array(
       'variables' => array(
         'items' => NULL,
       ),
       'template' => 'about-page-menu-bar',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_menu_bar',
+    ),
+    'about_page_intro' => array(
+      'variables' => array(
+        'title' => NULL,
+        'left_column' => NULL,
+        'right_column' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'about-page-intro',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_intro',
     ),
   );
 

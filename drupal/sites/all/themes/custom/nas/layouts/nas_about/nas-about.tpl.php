@@ -8,7 +8,7 @@
 <?php print render($content['menu_bar']); ?>
 
 <section class="global-content with-padding">
-  <?php print $content['main']; ?>
+  <?php print render($content['main']); ?>
   <section class="card-set bg-1">
     <div class="row">
       <div class="column">

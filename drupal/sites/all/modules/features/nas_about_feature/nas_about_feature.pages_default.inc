@@ -52,6 +52,7 @@ function nas_about_feature_default_page_manager_pages() {
       'top' => NULL,
       'menu_bar' => NULL,
       'main' => NULL,
+      'page_intro' => NULL,
     ),
   );
   $display->cache = array();
@@ -59,6 +60,42 @@ function nas_about_feature_default_page_manager_pages() {
   $display->uuid = '87804aa5-810e-433d-89a0-e85c14f7297c';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-1ab66276-74fe-4aa6-b3ac-15b0b0568961';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_intro';
+    $pane->subtype = 'about_page_intro';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
+      'form_build_id' => 'form-bM_OgUsxY6eXxnhKMcvzZ6uC6AmZgNu5jiLqHEKNoHA',
+      'form_token' => 'VtIuaw_JNsXeRiyhn8IemPDGu_aYaeP6UxgEbmL4QO0',
+      'form_id' => 'about_page_intro_form',
+      'left_column' => array(
+        'value' => '<p>For more than a century, Audubon has built a legacy of conservation success by mobilizing the strength of its network of members, Chapters, Audubon Centers, state offices and dedicated professional staff to connect people with nature and the power to protect it.</p>
+',
+        'format' => 'full_html',
+      ),
+      'right_column' => array(
+        'value' => 'A powerful combination of science, education and policy expertise combine in efforts ranging from protection and restoration of local habitats to the implementation of policies that safeguard birds, other wildlife and the resources that sustain us all—in the U.S. and Across the Americas.  ',
+        'format' => 'full_html',
+      ),
+      'title' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the b',
+      'intro_title' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '1ab66276-74fe-4aa6-b3ac-15b0b0568961';
+    $display->content['new-1ab66276-74fe-4aa6-b3ac-15b0b0568961'] = $pane;
+    $display->panels['main'][0] = 'new-1ab66276-74fe-4aa6-b3ac-15b0b0568961';
     $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';

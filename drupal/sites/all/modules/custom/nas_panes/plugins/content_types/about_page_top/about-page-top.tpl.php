@@ -21,7 +21,7 @@
     <img src="<?php print $hero_image; ?>" alt="" class="hide-for-tiny hide-for-small">
   </div>
   <div class="row">
-    <div class="hero-header contextual-links-region">
+    <div class="hero-header <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
       <?php print $contextual_links; ?>
       <div class="column">
         <h2 class="hero-title big"><?php print $title; ?></h2>
