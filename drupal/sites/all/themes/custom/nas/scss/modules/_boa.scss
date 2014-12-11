@@ -575,7 +575,9 @@
     padding-right: 10px;
 
     .bird-card {
-      margin-right: 10px;
+      @include breakpoint(medium-up) {
+        margin-right: 10px;
+      }
     }
 
     h2 {

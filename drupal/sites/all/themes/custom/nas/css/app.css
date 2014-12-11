@@ -11904,8 +11904,10 @@ body.touch .sticky-wrapper {
   padding-bottom: 35px;
   padding-right: 10px;
 }
-.page-boa-bird .boa-in-the-bird-guide .bird-card {
-  margin-right: 10px;
+@media only screen and (min-width: 601px) {
+  .page-boa-bird .boa-in-the-bird-guide .bird-card {
+    margin-right: 10px;
+  }
 }
 .page-boa-bird .boa-in-the-bird-guide h2 {
   font-size: 28px;
