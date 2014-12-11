@@ -50,7 +50,7 @@ var Nas = Nas || {};
 
   Drupal.behaviors.articleFullscreen = {
     attach: function (context, settings) {
-      if ($(".bean-welcome-to-audubon").length > 0) {
+      if ($(".article-body .bean-welcome-to-audubon").length > 0) {
         var hide = false,
             _time = (new Date()).getTime();
         var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
@@ -65,7 +65,7 @@ var Nas = Nas || {};
           $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
         }
         if (hide) {
-          $(".bean-welcome-to-audubon .article-aside").addClass('hidden');
+          $(".bean-welcome-to-audubon").addClass('hide');
         }
       }
     }
