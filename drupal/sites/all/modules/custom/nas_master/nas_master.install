@@ -597,19 +597,19 @@ function nas_master_update_7052() {
 }
 
 /**
- * Revert nas_image_styles_feature feature.
+ * Revert nas_image_styles_feature feature. Enable redirect module.
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
+  module_enable(array('redirect'));
 }
 
 /**
  * Adjust URL aliases.
  */
 function nas_master_update_7054() {
-  module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
+  module_enable(array('nas_token', 'nas_url_aliases_feature'));
   features_revert_module('nas_url_aliases_feature');
-  cache_clear_all('schema', 'cache');
 
   // Find article nodes that already have redirects.
   $query = db_select('node', 'n');
