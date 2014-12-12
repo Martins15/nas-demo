@@ -649,7 +649,8 @@ function nas_master_update_7054() {
     'values' => array(
       'update' => array(
         'node_pathauto_bulk_update_batch_process' => 'node_pathauto_bulk_update_batch_process'
-      )
+      ),
+      'op' => t('Update'),
     )
   );
   drupal_form_submit('pathauto_bulk_update_form', $form_state);

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the URL Aliases feature.
+ */
+
+include_once 'nas_url_aliases_feature.features.inc';
