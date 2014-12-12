@@ -107,3 +107,22 @@
     padding-bottom: 10px;
   }
 }
+.aid-class {
+  .editorial-card-content {
+    @extend %card-content;
+
+    min-height: 0px;
+    @include breakpoint(large-up) {
+      min-height: 0px;
+      &.short {
+        min-height: 0px;
+      }
+    }
+    @include breakpoint(min-width, 960px) {
+      min-height: 0px;
+      &.short {
+        min-height: 0px;
+      }
+    }
+  }
+}
