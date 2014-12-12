@@ -43,6 +43,7 @@
           <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt=""></a>
         </div>
       </div>
+      <!--
       <div class="sidebar-section editorial-card">
         <div class="editorial-card-photo">
           <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>editorial-card-4.jpg" alt=""></a>
@@ -58,7 +59,7 @@
           <a href="#" class="editorial-card-slug">Action Alert</a>
           <h5 class="editorial-card-title"><a href="#">Protect a Western Snowy Plover Nest</a></h5>
         </div>
-      </div>
+      </div>-->
     </div>
 
     <!-- END SIDEBAR -->
