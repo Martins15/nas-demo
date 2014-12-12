@@ -12039,21 +12039,40 @@ body.touch .sticky-wrapper {
 }
 
 .aid-class .editorial-card-content {
-  min-height: 0px;
+  min-height: 180px;
 }
 @media only screen and (min-width: 768px) {
   .aid-class .editorial-card-content {
-    min-height: 0px;
+    min-height: 200px;
   }
   .aid-class .editorial-card-content.short {
-    min-height: 0px;
+    min-height: 170px;
   }
 }
 @media only screen and (min-width: 960px) {
   .aid-class .editorial-card-content {
+    min-height: 170px;
+  }
+  .aid-class .editorial-card-content.short {
+    min-height: 140px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .aid-class .editorial-card-content {
     min-height: 0px;
   }
   .aid-class .editorial-card-content.short {
+    min-height: 0px;
+  }
+}
+.aid-class .editorial-card-content.has-fixed-banner {
+  padding-bottom: 50px;
+}
+@media only screen and (max-width: 768px) {
+  .aid-class .editorial-card {
+    min-height: 0px !important;
+  }
+  .aid-class .editorial-card .short {
     min-height: 0px;
   }
 }

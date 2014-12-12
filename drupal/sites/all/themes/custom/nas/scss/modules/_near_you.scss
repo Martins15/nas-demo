@@ -111,16 +111,34 @@
   .editorial-card-content {
     @extend %card-content;
 
-    min-height: 0px;
+    min-height: 180px;
     @include breakpoint(large-up) {
+      min-height: 200px;
+      &.short {
+        min-height: 170px;
+      }
+    }
+    @include breakpoint(min-width, 960px) {
+      min-height: 170px;
+      &.short {
+        min-height: 140px;
+      }
+    }
+    @include breakpoint(max-width, 768px) {
       min-height: 0px;
       &.short {
         min-height: 0px;
       }
     }
-    @include breakpoint(min-width, 960px) {
-      min-height: 0px;
-      &.short {
+
+    &.has-fixed-banner {
+      padding-bottom: 50px;
+    }
+  }
+  @include breakpoint(max-width, 768px) {
+    .editorial-card {
+      min-height: 0px !important;
+      .short {
         min-height: 0px;
       }
     }
