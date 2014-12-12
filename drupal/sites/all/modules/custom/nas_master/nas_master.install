@@ -609,6 +609,7 @@ function nas_master_update_7053() {
 function nas_master_update_7054() {
   module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
   features_revert_module('nas_url_aliases_feature');
+  cache_clear_all('schema', 'cache');
 
   // Find article nodes that already have redirects.
   $query = db_select('node', 'n');
