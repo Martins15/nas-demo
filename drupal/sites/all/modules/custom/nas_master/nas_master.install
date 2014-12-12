@@ -601,7 +601,7 @@ function nas_master_update_7052() {
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
-  module_enable(array('redirect'));
+  module_enable(array('nas_about_feature', 'redirect'));
 }
 
 /**
