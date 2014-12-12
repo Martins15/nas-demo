@@ -1,0 +1,78 @@
+<?php
+
+define('NAS_TOKEN_PLACEHOLDER', 'slashplaceholder');
+
+/**
+ * Implements hook_token_info().
+ */
+function nas_token_token_info() {
+  $info['tokens']['node']['nas-article'] = array(
+    'name' => t('NAS article alias'),
+    'description' => t('Custom alias based on whether news article is Press Release, Magazine Article or general News Article'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function nas_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'node' && !empty($data['node'])) {
+    $node = $data['node'];
+
+    $original = $tokens['nas-article'];
+
+    $news_type = nas_token_get_news_type($node);
+
+    // We can't use '/' in alias as it will be replaced by pathauto.
+    // String NAS_TOKEN_PLACEHOLDER will be replaced with / in function
+    // nas_token_pathauto_alias_alter.
+    switch ($news_type) {
+      case 'press-release':
+        $pattern = 'press-release' . NAS_TOKEN_PLACEHOLDER . $node->title;
+        break;
+
+      case 'magazine-article':
+        $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
+        $magazine_node = node_load($magazine_items[0]['target_id']);
+        $pattern = 'magazine' . NAS_TOKEN_PLACEHOLDER . $magazine_node->title . NAS_TOKEN_PLACEHOLDER . $node->title;
+        break;
+
+      default:
+        $pattern = 'news' . NAS_TOKEN_PLACEHOLDER . $node->title;
+    }
+
+    $replacements[$original] = $pattern;
+  }
+
+  return $replacements;
+}
+
+/**
+ * Get the news article type.
+ *
+ * @param object $node
+ */
+function nas_token_get_news_type($node) {
+  if (!empty($node->field_magazine_issue)) {
+    return 'magazine-article';
+  }
+
+  $layout_name = db_query('SELECT name FROM {panelizer_entity} WHERE entity_id = :nid AND entity_type = :type',
+        array(':nid' => $node->nid, ':type' => 'node'))->fetchField();
+  if ($layout_name == 'node:article:press_release') {
+    return 'press-release';
+  }
+
+  return 'news';
+}
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function nas_token_pathauto_alias_alter(&$alias, array &$context) {
+  $alias = str_replace(NAS_TOKEN_PLACEHOLDER, '/', $alias);
+}

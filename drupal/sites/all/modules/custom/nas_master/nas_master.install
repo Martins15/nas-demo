@@ -602,3 +602,54 @@ function nas_master_update_7052() {
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
 }
+
+/**
+ * Adjust URL aliases.
+ */
+function nas_master_update_7054() {
+  module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
+  features_revert_module('nas_url_aliases_feature');
+
+  // Find article nodes that already have redirects.
+  $query = db_select('node', 'n');
+  $query->addField('n', 'nid');
+  $query->join('redirect', 'r', 'CONCAT(:node_path, n.nid) = r.redirect', array(':node_path' => 'node/'));
+  $query->condition('n.type', 'article');
+  $result = $query->execute()->fetchAllAssoc('nid');
+  $existing_redirects = array_keys($result);
+
+  // Find all URL aliases of article nodes.
+  $query = db_select('node', 'n');
+  $query->fields('n', array('nid'));
+  $query->join('url_alias', 'u', 'CONCAT(:node_path, n.nid) = u.source', array(':node_path' => 'node/'));
+  $query->fields('u', array('alias', 'pid'));
+  $query->condition('n.type', 'article');
+  $result = $query->execute()->fetchAllAssoc('nid');
+  $nodes_with_aliases = array_keys($result);
+
+  // Create redirects and remove aliases.
+  $nodes_create_redirects = array_diff($nodes_with_aliases, $existing_redirects);
+
+  foreach ($nodes_create_redirects as $nid) {
+    $redirect = new stdClass();
+    redirect_object_prepare($redirect);
+    $redirect->source = $result[$nid]->alias;
+    $redirect->redirect = 'node/' . $nid;
+    redirect_save($redirect);
+
+    db_delete('url_alias')
+      ->condition('pid', $result[$nid]->pid)
+      ->execute();
+  }
+
+  // Generate new aliases according to patterns.
+  module_load_include('inc', 'pathauto', 'pathauto.admin');
+  $form_state = array(
+    'values' => array(
+      'update' => array(
+        'node_pathauto_bulk_update_batch_process' => 'node_pathauto_bulk_update_batch_process'
+      )
+    )
+  );
+  drupal_form_submit('pathauto_bulk_update_form', $form_state);
+}
