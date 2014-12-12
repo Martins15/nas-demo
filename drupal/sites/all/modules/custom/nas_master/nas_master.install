@@ -594,6 +594,7 @@ function nas_master_update_7052() {
   field_delete_field('field_social_link_pinterest');
   field_delete_field('field_social_link_twitter');
   field_delete_field('field_social_link_youtube');
+  features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
 }
 
 /**
