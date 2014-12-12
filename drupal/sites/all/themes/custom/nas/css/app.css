@@ -12087,7 +12087,7 @@ body.touch .sticky-wrapper {
   padding-bottom: 1em;
 }
 .static-page-content .text-container .deck {
-  padding: 0;
+  padding-bottom: 0;
 }
 
 h2.grey {
@@ -12152,6 +12152,48 @@ h2.grey {
 
 .filter-list-heading {
   margin-bottom: 5px;
+}
+
+.our-leadership-card {
+  padding-bottom: 30px;
+}
+.our-leadership-card .photo {
+  border: 1px solid #EEE;
+}
+.our-leadership-card .photo a {
+  line-height: 0;
+  display: block;
+}
+.our-leadership-card .photo img {
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+.our-leadership-card .common-name {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.our-leadership-card .post-title {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  letter-spacing: -0.35px;
+}
+@media only screen and (max-width: 479px) {
+  .our-leadership-card .post-title {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .our-leadership-card .post-title {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .large-one-fifth {
+    width: 20%;
+  }
 }
 
 .sidebar, .article-sidebar {

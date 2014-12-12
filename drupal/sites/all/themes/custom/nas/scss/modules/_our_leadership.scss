@@ -1,0 +1,42 @@
+.our-leadership-card {
+  padding-bottom: 30px;
+
+  .photo {
+    border: 1px solid #EEEEEE;
+    a {
+      line-height: 0;
+      display: block;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      line-height: 0;
+    }
+  }
+
+  .common-name {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .post-title {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    letter-spacing: -0.35px;
+
+    @include breakpoint(tiny-only) {
+      font-size: 15px;
+      line-height: 20px;
+    }
+    @include breakpoint(small-only) {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+}
+
+.large-one-fifth {
+  @include breakpoint(large-up) {
+    width: 20%;
+  }
+}
