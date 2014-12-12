@@ -1,8 +1,9 @@
-@include breakpoint(large-up) {
-  .static-page-content {
-    .text-container {
-      padding-bottom: 70px;
-    }
+.static-page-content {
+  .deck {
+    padding-bottom: 1em;
+  }
+  .text-container .deck {
+    padding-bottom: 0;
   }
 }
 
