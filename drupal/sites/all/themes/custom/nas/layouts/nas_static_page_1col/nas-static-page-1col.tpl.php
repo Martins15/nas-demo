@@ -36,9 +36,9 @@
   <?php endif; ?>
 <?php endif; ?>
 <?php print $content['nav_menu']; ?>
-<section class="global-content<?php if (!empty($content['hero_image'])): ?> with-padding<?php endif; ?> static-page-content">
+<section class="global-content with-padding static-page-content">
   <?php if (empty($content['hero_image']) || arg(0) == 'admin'): ?>
-  <header class="article-header row">
+  <header class="row">
     <div class="large-10 large-centered columns">
       <?php print $content['header_no_image']; ?>
       <p class="deck"><?php print $content['subtitle']; ?></p>
@@ -46,10 +46,11 @@
   </header>
   <?php endif; ?>
   <?php if (!empty($content['hero_image'])): ?>
-  <header class="row text-container">
+  <header class="row hide-for-large hide-for-xlarge">
     <div class="large-12 large-centered columns">
-      <div class="article-meta clearfix hide-for-large hide-for-xlarge">
+      <div class="clearfix">
         <?php print $content['header']; ?>
+        <p class="deck"><?php print $content['subtitle']; ?></p>
       </div>
     </div>
   </header>
@@ -59,6 +60,7 @@
       <?php print $content['main']; ?>
     </div>
   </div>
+  <?php print $content['related']; ?>
   <section class="card-set bg-1">
     <?php print $content['card_set']; ?>
     <div class="row">
