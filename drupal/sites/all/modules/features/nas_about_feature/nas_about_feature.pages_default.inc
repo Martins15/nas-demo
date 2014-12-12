@@ -218,6 +218,57 @@ function nas_about_feature_default_page_manager_pages() {
     $display->content['new-c3af78aa-2745-4782-959d-1d5ed46575d0'] = $pane;
     $display->panels['main'][3] = 'new-c3af78aa-2745-4782-959d-1d5ed46575d0';
     $pane = new stdClass();
+    $pane->pid = 'new-c75f553d-16cd-4262-a843-0224a1c7d3d4';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_learn_more';
+    $pane->subtype = 'about_page_learn_more';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Learn more about our history and our work.',
+      'form_build_id' => 'form-bX8u8y5MKwoA6_PF_mReqaQbJ-mhYYXy0FQh_Hq3_s4',
+      'form_token' => 'vziU15jAL4ZWKgaPW9k8YJQWf30kQuPMhJfZHqQbpFg',
+      'form_id' => 'about_page_learn_more_form',
+      'references' => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '2218',
+            'entity_label' => 'Online Explorers: How You Can Help Scientists',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '5740',
+            'entity_label' => 'Curabitur ullamcorper ultricies nisi',
+            'entity_type' => 'node',
+            'entity_bundle' => 'static_page',
+          ),
+        ),
+        3 => array(
+          'entity_reference' => array(
+            'entity_id' => '1194',
+            'entity_label' => 'Alaska\'s Teshekpuk Lake Saved!',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'c75f553d-16cd-4262-a843-0224a1c7d3d4';
+    $display->content['new-c75f553d-16cd-4262-a843-0224a1c7d3d4'] = $pane;
+    $display->panels['main'][4] = 'new-c75f553d-16cd-4262-a843-0224a1c7d3d4';
+    $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';
     $pane->type = 'about_page_menu_bar';
