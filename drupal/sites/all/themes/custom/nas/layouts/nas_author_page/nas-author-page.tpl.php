@@ -12,6 +12,7 @@
     <div class="column">
       <header class="bio-header">
         <?php print $content['image']; ?>
+        <?php print $content['link']; ?>
         <h1 class="bio-name"><?php print $content['name']; ?> <?php print $content['twitter']; ?></h1>
         <small class="bio-title"><?php print $content['title']; ?></small>
       </header>
