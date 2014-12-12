@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Provides token for article URL aliases.
+ */
 
 define('NAS_TOKEN_PLACEHOLDER', 'slashplaceholder');
 
