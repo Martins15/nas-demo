@@ -233,9 +233,13 @@ function nas_preprocess_node_contact(&$vars) {
       $image = theme('image_style', array(
         'style_name' => 'our_leadership',
         'path' => $field_image_items[0]['uri'],
+        'alt' => $node->title,
       ));
     }
-    $vars['linked_image'] = l($image, $node_path, array('html' => TRUE));
+    $vars['linked_image'] = l($image, $node_path, array(
+      'html' => TRUE,
+      'attributes' => array('title' => check_plain($node->title)),
+    ));
 
     $vars['contact_title'] = '';
     if ($field_contact_title_items = field_get_items('node', $node, 'field_contact_title')) {
