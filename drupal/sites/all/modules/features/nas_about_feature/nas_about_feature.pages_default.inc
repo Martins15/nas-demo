@@ -138,6 +138,86 @@ function nas_about_feature_default_page_manager_pages() {
     $display->content['new-71da6dad-4336-439c-bb88-0ea37c7f380a'] = $pane;
     $display->panels['main'][1] = 'new-71da6dad-4336-439c-bb88-0ea37c7f380a';
     $pane = new stdClass();
+    $pane->pid = 'new-dccde990-55db-4524-b1fa-f5c3d995cbf6';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_text_section';
+    $pane->subtype = 'about_page_text_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'sections' => array(
+        1 => array(
+          'section_title' => 'Here is how we’re making a difference.',
+          'left_column' => array(
+            'value' => '<ul>
+            <li>Our nearly 500 local Chapters nationwide engage members in grassroots conservation action.</li>
+            <li>Audubon environmental policy, education and science experts guide lawmakers, agencies, and our grassroots in shaping effective conservation plans, actions and the policies to support them.</li>
+            <li>More than 2,500 Audubon-designated Important Bird Areas identify, prioritize and protect vital bird habitat from coast to coast--in partnership with BirdLife International, our IBA conservation efforts support species and their habitats across the Western Hemisphere.</li>
+            <li>"Citizen Scientists" collect vital data, through Audubon\'s annual Christmas Bird Count, the new Coastal Bird Survey, and other initiatives, generating groundbreaking analyses and guiding scientists and policy makers in addressing the needs of birds and other wildlife.</li>
+          </ul>',
+            'format' => 'full_html',
+          ),
+          'right_column' => array(
+            'value' => '<ul>
+            <li>Special ecosystem-wide conservation initiatives focus on protection and restoration of the nation\'s most special places from Alaska\'s Tongass to Sagebrush country and the Louisiana Coast.</li>
+            <li>Audubon Centers and sanctuaries are hubs of conservation exploration, research, and action, allowing millions to discover and defend the natural world.</li>
+            <li>Educational programs and materials combine with Audubon, the nation\'s most acclaimed conservation magazine to introduce schoolchildren, families and nature-lovers of all ages to the wonders of nature and the power of conservation at home and around the world.</li>
+          </ul>',
+            'format' => 'full_html',
+          ),
+          'full_width_text' => array(
+            'value' => '',
+            'format' => 'full_html',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-kbHmSneeo2QD1-AFg7FLg8624A6zrHGkYKi6iUB82_8',
+      'form_token' => 'svT4XQAE6-wjsZ4vxqswTeowx0GNmzZiTKs0iTbKZN0',
+      'form_id' => 'about_page_text_section_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'dccde990-55db-4524-b1fa-f5c3d995cbf6';
+    $display->content['new-dccde990-55db-4524-b1fa-f5c3d995cbf6'] = $pane;
+    $display->panels['main'][2] = 'new-dccde990-55db-4524-b1fa-f5c3d995cbf6';
+    $pane = new stdClass();
+    $pane->pid = 'new-c3af78aa-2745-4782-959d-1d5ed46575d0';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_map';
+    $pane->subtype = 'about_page_map';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Twenty-two state programs, 47 Audubon centers, and more than 450 local chapters. All working together as One Audubon.',
+      'map' => array(
+        'value' => '<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=bc9aa8183c104fa39b293cd287bc03a4&amp;extent=-109.3982,26.7687,-88.678,47.3415&amp;zoom=true&amp;scale=true"></iframe>',
+        'format' => 'map',
+      ),
+      'form_build_id' => 'form-dqELRhHcDYann_RrxLpOg-6-Wis1O1eXXz9vara8vmQ',
+      'form_token' => 'zBz0Q7A2OuWbAseD29X5E3XawePjZ2eRb5bXZ3BT_Hg',
+      'form_id' => 'about_page_map_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'c3af78aa-2745-4782-959d-1d5ed46575d0';
+    $display->content['new-c3af78aa-2745-4782-959d-1d5ed46575d0'] = $pane;
+    $display->panels['main'][3] = 'new-c3af78aa-2745-4782-959d-1d5ed46575d0';
+    $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';
     $pane->type = 'about_page_menu_bar';

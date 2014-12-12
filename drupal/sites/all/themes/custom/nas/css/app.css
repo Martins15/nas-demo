@@ -3996,7 +3996,7 @@ ul.no-bullets {
   margin-left: 0;
 }
 
-ul.item-margin li {
+ul.item-margin li, .about-text-section .text-container ul li {
   margin-bottom: 10px;
 }
 
