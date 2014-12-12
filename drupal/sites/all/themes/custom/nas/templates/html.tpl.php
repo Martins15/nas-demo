@@ -59,7 +59,7 @@ global $base_url;
   <!--[if lt IE 9]>
     <link rel="stylesheet" href="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie8.css" />
     <script src="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/js/mute/ie-carousel.js"></script>
-    <script src="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/js/nas/custom.modernizr.js"></script>
+    <script src="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/js/mute/custom.modernizr.js"></script>
   <![endif]-->
   <!--[if IE 9]>
     <link rel="stylesheet" href="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie9.css" />
