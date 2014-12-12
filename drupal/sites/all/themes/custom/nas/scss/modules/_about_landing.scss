@@ -1,0 +1,11 @@
+// ---------------
+// About Landing page
+// ---------------
+
+.about-text-section {
+  .text-container {
+    ul {
+      @extend .item-margin;
+    }
+  }
+}
