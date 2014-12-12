@@ -189,6 +189,35 @@ function nas_about_feature_default_page_manager_pages() {
     $display->content['new-dccde990-55db-4524-b1fa-f5c3d995cbf6'] = $pane;
     $display->panels['main'][2] = 'new-dccde990-55db-4524-b1fa-f5c3d995cbf6';
     $pane = new stdClass();
+    $pane->pid = 'new-c3af78aa-2745-4782-959d-1d5ed46575d0';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_map';
+    $pane->subtype = 'about_page_map';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Twenty-two state programs, 47 Audubon centers, and more than 450 local chapters. All working together as One Audubon.',
+      'map' => array(
+        'value' => '<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=bc9aa8183c104fa39b293cd287bc03a4&amp;extent=-109.3982,26.7687,-88.678,47.3415&amp;zoom=true&amp;scale=true"></iframe>',
+        'format' => 'map',
+      ),
+      'form_build_id' => 'form-dqELRhHcDYann_RrxLpOg-6-Wis1O1eXXz9vara8vmQ',
+      'form_token' => 'zBz0Q7A2OuWbAseD29X5E3XawePjZ2eRb5bXZ3BT_Hg',
+      'form_id' => 'about_page_map_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'c3af78aa-2745-4782-959d-1d5ed46575d0';
+    $display->content['new-c3af78aa-2745-4782-959d-1d5ed46575d0'] = $pane;
+    $display->panels['main'][3] = 'new-c3af78aa-2745-4782-959d-1d5ed46575d0';
+    $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';
     $pane->type = 'about_page_menu_bar';

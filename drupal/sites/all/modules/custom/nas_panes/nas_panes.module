@@ -561,6 +561,15 @@ function nas_panes_theme() {
       'template' => 'about-page-text-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_text_section',
     ),
+    'about_page_map' => array(
+      'variables' => array(
+        'title' => NULL,
+        'map' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'about-page-map',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_map',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
