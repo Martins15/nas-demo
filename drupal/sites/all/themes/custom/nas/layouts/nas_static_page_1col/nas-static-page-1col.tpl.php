@@ -60,6 +60,7 @@
       <?php print $content['main']; ?>
     </div>
   </div>
+  <?php print $content['related']; ?>
   <section class="card-set bg-1">
     <?php print $content['card_set']; ?>
     <div class="row">
