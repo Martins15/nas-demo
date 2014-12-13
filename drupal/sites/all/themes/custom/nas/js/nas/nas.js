@@ -58,7 +58,7 @@ var Nas = Nas || {};
     }
     $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
     return true;
-  }
+  };
 
   Drupal.behaviors.firstTimeVisitors = {
     attach: function (context, settings) {
