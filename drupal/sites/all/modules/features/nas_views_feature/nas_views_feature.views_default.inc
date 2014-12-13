@@ -1074,7 +1074,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
   $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
   $handler->display->display_options['filters']['field_menu_section_tid']['value'] = array(
-    35 => '35',
+    3 => '3',
   );
   $handler->display->display_options['filters']['field_menu_section_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
