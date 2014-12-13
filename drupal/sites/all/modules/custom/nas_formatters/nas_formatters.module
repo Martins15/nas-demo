@@ -67,6 +67,7 @@ function nas_formatters_field_formatter_view($entity_type, $entity, $field, $ins
         );
       }
       break;
+
     case 'gray_block_with_title':
       foreach ($items as $delta => $item) {
         $variables['block_text'] = check_plain($item['value']);
