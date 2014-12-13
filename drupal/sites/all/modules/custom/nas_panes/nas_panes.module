@@ -227,9 +227,9 @@ function nas_panes_theme() {
     'nas_frontpage_featured_article' => array(
       'variables' => array(
         'image_path' => '',
-        'conversation_link' => '',
         'article_raw_link' => '',
         'article_link' => '',
+        'subtitle' => '',
         'tagline_text' => '',
         'contextual_links' => '',
       ),
