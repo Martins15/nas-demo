@@ -673,5 +673,5 @@ function nas_master_update_7055(&$sandbox) {
 function nas_master_update_7056(&$sandbox) {
   module_load_include('inc', 'pathauto', 'pathauto.pathauto');
   node_pathauto_bulk_update_batch_process($sandbox);
-  $sandbox['#finished'] = $context['finished'];
+  $sandbox['#finished'] = $sandbox['finished'];
 }
