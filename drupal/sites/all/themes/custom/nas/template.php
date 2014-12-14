@@ -198,6 +198,7 @@ function nas_preprocess_node_boa(&$vars) {
     $vars['plate_number'] = check_plain($plate_items[0]['value']);
   }
 
+  $vars['sort_name'] = '';
   // BOA index page sortings.
   if (arg(0) == 'boa' && arg(1) == '') {
     $vars['sort_name'] = $vars['scientific_name'];
@@ -223,7 +224,7 @@ function nas_preprocess_node_boaf(&$vars) {
   $vars['title_link'] = l($node->title, $node_path);
 
   // Only load all these data if rendering teaser.
-  if ($vars['view_mode'] == 'nas_node_teaser_small') {
+  if (in_array($vars['view_mode'], array('nas_node_teaser_small', 'teaser'))) {
     // Default illustration.
     $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
     if ($boa = _nas_boa_family_birds($node->nid)) {
