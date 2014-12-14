@@ -662,7 +662,7 @@ function nas_master_update_7055(&$sandbox) {
     unset($redirect);
 
     db_delete('url_alias')
-      ->condition('pid', $result[$nid]->pid)
+      ->condition('pid', $sandbox['query_result'][$nid]->pid)
       ->execute();
   }
 }
