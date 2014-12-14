@@ -18,8 +18,7 @@ $plugin = array(
     'title' => t('Title'),
     'scientific_name' => t('Scientific name'),
     'header' => t('Header'),
-    'body_column_1' => t('Body first column'),
-    'body_column_2' => t('Body second column'),
+    'body_column_1' => t('Body'),
     'bottom' => t('Bottom'),
   ),
 );
