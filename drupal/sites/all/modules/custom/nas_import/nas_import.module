@@ -96,6 +96,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'media_gallery_import':
       nas_import_feeds_presave_media_gallery_import($source, $entity, $item);
       break;
+
+    case 'chapters_import':
+      nas_import_feeds_presave_chapters_import($source, $entity, $item);
+      break;
   }
 }
 
@@ -1109,4 +1113,31 @@ function nas_import_feeds_presave_media_gallery_import($source, $entity, $item) 
       }
     }
   }
+}
+
+/**
+ * Presave callback for chapters_import.
+ */
+function nas_import_feeds_presave_chapters_import($source, $entity, $item) {
+  $wrapper = entity_metadata_wrapper('node', $entity);
+  $wrapper->field_location_type->set('office_chapter');
+
+  if (!empty($item['field_chapter_url'][0]['url'])) {
+    $wrapper->field_location_link->set(array('url' => $item['field_chapter_url'][0]['url']));
+  }
+
+  if (!empty($item['field_chapter_code'][0]['value'])) {
+    $wrapper->field_chapter_code->set($item['field_chapter_code'][0]['value']);
+  }
+
+  $address = array(
+    'country' => 'US',
+    'administrative_area' => !empty($item['field_chapter_state'][0]['value']) ? $item['field_chapter_state'][0]['value'] : '',
+    'locality' => !empty($item['field_chapter_city'][0]['value']) ? $item['field_chapter_city'][0]['value'] : '',
+    'thoroughfare' => !empty($item['field_chapter_addr1'][0]['value']) ? $item['field_chapter_addr1'][0]['value'] : '',
+    'premise' => !empty($item['field_chapter_addr2'][0]['value']) ? $item['field_chapter_addr2'][0]['value'] : '',
+    'postal_code' => !empty($item['field_chapter_postal_code'][0]['value']) ? $item['field_chapter_postal_code'][0]['value'] : '',
+
+  );
+  $wrapper->field_location_address->set($address);
 }
