@@ -48,25 +48,23 @@ var Nas = Nas || {};
     }
   };
 
-  Drupal.behaviors.articleFullscreen = {
+  Drupal.isFirstTimeVisitor = function () {
+    var _time = (new Date()).getTime();
+    var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
+    if (firsttimecookievalue) {
+      if (_time - firsttimecookievalue >= 15 * 60 * 1000) {
+        return false;
+      }
+    }
+    $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
+    return true;
+  };
+
+  Drupal.behaviors.firstTimeVisitors = {
     attach: function (context, settings) {
-      if ($(".article-body .bean-welcome-to-audubon").length > 0) {
-        var hide = false,
-            _time = (new Date()).getTime();
-        var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
-        if (firsttimecookievalue) {
-          if (_time - firsttimecookievalue < 15 * 60 * 1000) {
-            $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
-          }
-          else {
-            hide = true;
-          }
-        } else {
-          $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
-        }
-        if (hide) {
-          $(".bean-welcome-to-audubon").addClass('hide');
-        }
+      if (!Drupal.isFirstTimeVisitor()) {
+        $(".bean-welcome-to-audubon").addClass('hide');
+        $('.hide-for-firsttime-visitors').removeClass('hide-for-firsttime-visitors');
       }
     }
   };
