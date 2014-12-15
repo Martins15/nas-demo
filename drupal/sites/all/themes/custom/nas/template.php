@@ -66,6 +66,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'static_page') {
     nas_preprocess_node_static_page($vars);
   }
+  if ($vars['type'] == 'contact') {
+    nas_preprocess_node_contact($vars);
+  }
 }
 
 /**
@@ -214,6 +217,37 @@ function nas_preprocess_node_boa(&$vars) {
     }
   }
 }
+
+/**
+ * Implements THEME_preprocess_node for Contact content type.
+ */
+function nas_preprocess_node_contact(&$vars) {
+  $node = $vars['node'];
+  $node_path = 'node/' . $node->nid;
+  $vars['title_link'] = l($node->title, $node_path);
+
+  // Only load all these data if rendering teaser.
+  if ($vars['view_mode'] == 'teaser') {
+    // Default illustration.
+    if ($field_image_items = field_get_items('node', $node, 'field_image')) {
+      $image = theme('image_style', array(
+        'style_name' => 'our_leadership',
+        'path' => $field_image_items[0]['uri'],
+        'alt' => $node->title,
+      ));
+    }
+    $vars['linked_image'] = l($image, $node_path, array(
+      'html' => TRUE,
+      'attributes' => array('title' => check_plain($node->title)),
+    ));
+
+    $vars['contact_title'] = '';
+    if ($field_contact_title_items = field_get_items('node', $node, 'field_contact_title')) {
+      $vars['contact_title'] = $field_contact_title_items[0]['safe_value'];
+    }
+  }
+}
+
 /**
  * Implements THEME_preprocess_node for BOA Family content type.
  */
@@ -567,6 +601,7 @@ function nas_image($variables) {
     'conservation_strategy_icon',
     'boa_family_species',
     'magazine_issue_cover',
+    'our_leadership',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));

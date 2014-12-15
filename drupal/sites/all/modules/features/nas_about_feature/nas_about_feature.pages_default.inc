@@ -330,6 +330,181 @@ function nas_about_feature_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['about'] = $page;
 
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
+  $page->name = 'our_leadership';
+  $page->task = 'page';
+  $page->admin_title = 'Our Leadership';
+  $page->admin_description = '';
+  $page->path = 'about/our-leadership';
+  $page->access = array();
+  $page->menu = array(
+    'type' => 'none',
+    'title' => 'Our Leadership',
+    'name' => 'menu-header-big-main-menu',
+    'weight' => '0',
+    'parent' => array(
+      'type' => 'none',
+      'title' => '',
+      'name' => 'navigation',
+      'weight' => '0',
+    ),
+  );
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_our_leadership_panel_context';
+  $handler->task = 'page';
+  $handler->subtask = 'our_leadership';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+  );
+  $display = new panels_display();
+  $display->layout = 'nas_about';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'menu_bar' => NULL,
+      'main' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '6b299144-d0f5-42b3-b784-e476e1120f11';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
+    $pane->panel = 'main';
+    $pane->type = 'our_leadership_list';
+    $pane->subtype = 'our_leadership_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'form_build_id' => 'form-efbU1KHtHkBumrmTtGB8q-m33eq1QRKPwaAClkFi2As',
+      'form_token' => 'fEM6YobHNfn17BMNbVFJA5xTtkUP26kSm35qZx_wDE4',
+      'form_id' => 'our_leadership_list_form',
+      'items' => array(
+        0 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        1 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        2 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        3 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        4 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        5 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        6 => array(
+          'entity_id' => '203',
+          'entity_label' => 'David Yarnold',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        7 => FALSE,
+        8 => FALSE,
+        9 => FALSE,
+        10 => FALSE,
+        11 => FALSE,
+        12 => FALSE,
+        13 => FALSE,
+        14 => FALSE,
+        15 => FALSE,
+        16 => FALSE,
+        17 => FALSE,
+        18 => FALSE,
+        19 => FALSE,
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd095a1cd-f1a4-49c5-a76e-451c548bd93f';
+    $display->content['new-d095a1cd-f1a4-49c5-a76e-451c548bd93f'] = $pane;
+    $display->panels['main'][0] = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
+    $pane = new stdClass();
+    $pane->pid = 'new-7b9687c6-d3a9-4b5f-a709-1e55ed0e8e69';
+    $pane->panel = 'menu_bar';
+    $pane->type = 'about_page_menu_bar';
+    $pane->subtype = 'about_page_menu_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default_menu_item' => '157',
+      'form_build_id' => 'form-60mcn_yUTMlR3LVursK55yFhHRIR4xUa2opT-p00C1A',
+      'form_token' => 'fP7n6l8eqnMVLFaY-0MBPeGhZS253zn86ic1_QwBIRo',
+      'form_id' => 'about_page_menu_bar_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7b9687c6-d3a9-4b5f-a709-1e55ed0e8e69';
+    $display->content['new-7b9687c6-d3a9-4b5f-a709-1e55ed0e8e69'] = $pane;
+    $display->panels['menu_bar'][0] = 'new-7b9687c6-d3a9-4b5f-a709-1e55ed0e8e69';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-7b9687c6-d3a9-4b5f-a709-1e55ed0e8e69';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['our_leadership'] = $page;
+
   return $pages;
 
 }
