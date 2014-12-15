@@ -1074,7 +1074,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
   $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
   $handler->display->display_options['filters']['field_menu_section_tid']['value'] = array(
-    35 => '35',
+    3 => '3',
   );
   $handler->display->display_options['filters']['field_menu_section_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
@@ -1150,6 +1150,8 @@ function nas_views_feature_views_default_views() {
 
   /* Display: More headlines */
   $handler = $view->new_display('panel_pane', 'More headlines', 'nas_more_headlines');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'hide-for-firsttime-visitors';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';

@@ -48,25 +48,23 @@ var Nas = Nas || {};
     }
   };
 
-  Drupal.behaviors.articleFullscreen = {
+  Drupal.isFirstTimeVisitor = function () {
+    var _time = (new Date()).getTime();
+    var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
+    if (firsttimecookievalue) {
+      if (_time - firsttimecookievalue >= 15 * 60 * 1000) {
+        return false;
+      }
+    }
+    $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
+    return true;
+  };
+
+  Drupal.behaviors.firstTimeVisitors = {
     attach: function (context, settings) {
-      if ($(".article-body .bean-welcome-to-audubon").length > 0) {
-        var hide = false,
-            _time = (new Date()).getTime();
-        var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
-        if (firsttimecookievalue) {
-          if (_time - firsttimecookievalue < 15 * 60 * 1000) {
-            $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
-          }
-          else {
-            hide = true;
-          }
-        } else {
-          $.cookie('firsttimevisitors', _time, { expires: 365, path: '/' });
-        }
-        if (hide) {
-          $(".bean-welcome-to-audubon").addClass('hide');
-        }
+      if (!Drupal.isFirstTimeVisitor()) {
+        $(".bean-welcome-to-audubon").addClass('hide');
+        $('.hide-for-firsttime-visitors').removeClass('hide-for-firsttime-visitors');
       }
     }
   };
@@ -210,5 +208,41 @@ var Nas = Nas || {};
   if (StateManager.touch) {
     Nav.handleTouch();
   }
-  
+
+  Drupal.behaviors.viewLoadMoreGroupHandler = {
+    attach: function (context, settings) {
+      $('.view-display-id-boa_listing').once('views-load-more-group-handler', function () {
+        $(this).bind('views_load_more.new_content', function (event, new_content) {
+          var classes = new_content.className.split(' ');
+          var view_dom_id = '';
+
+          // Look up view-dom-id-# class.
+          for (var i in classes) {
+            var classname = classes[i];
+            if (classname.match(/view-dom-id-.*/)) {
+              view_dom_id = classname;
+              break;
+            }
+          }
+          // Regroup if found.
+          if (view_dom_id) {
+            var prev_title = '',
+                prev_row = false;
+            $('.' + view_dom_id).find('.views-row-odd, .views-row-even').each(function () {
+              var current_title = $(this).find('.boa-family-set-title').text();
+              if (prev_row && current_title == prev_title) {
+                $(this).find('.boa-bird-card-container > *').appendTo(prev_row.find('.boa-bird-card-container'));
+                $(this).remove();
+              }
+              else {
+                prev_row = $(this);
+                prev_title = current_title;
+              }
+            });
+          }
+        });
+      });
+    }
+  };
+
 })(jQuery);
