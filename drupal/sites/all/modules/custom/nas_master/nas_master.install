@@ -597,6 +597,8 @@ function nas_master_update_7052() {
   features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
   features_revert_module('nas_views_feature');
   features_revert_module('nas_frontpage_feature');
+  features_revert_module('nas_author_page');
+  features_revert_module('nas_contact_type_feature');
 }
 
 /**

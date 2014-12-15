@@ -17,6 +17,7 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'image' => t('Author image'),
+    'link' => t('Link'),
     'name' => t('Author name'),
     'twitter' => t('Author twitter'),
     'title' => t('Author title'),
