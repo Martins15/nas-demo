@@ -600,6 +600,7 @@ function nas_master_update_7052() {
   features_revert_module('nas_author_page');
   features_revert_module('nas_contact_type_feature');
   features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_news_page_feature');
 }
 
 /**
