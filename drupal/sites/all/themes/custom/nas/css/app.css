@@ -9073,7 +9073,7 @@ body.node-type-slideshow #tabs {
 }
 @media only screen and (min-width: 480px) {
   .inline-map-canvas {
-    min-height: 360px;
+    min-height: 280px;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -12156,7 +12156,7 @@ h2.grey {
   padding-bottom: 30px;
 }
 .our-leadership-card .photo {
-  border: 1px solid #EEE;
+  border: 1px solid #EEEEEE;
 }
 .our-leadership-card .photo a {
   line-height: 0;
