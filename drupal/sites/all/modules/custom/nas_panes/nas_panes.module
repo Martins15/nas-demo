@@ -1135,10 +1135,8 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context_node, $context_node->type, 'default');
     }
   }
-  if (isset($context['landing_cache_key'])) {
-    if (user_access('edit NAS panes')) {
-      $contextual_links = nas_panes_build_page_contextual_links($subtype, $context['landing']['cache_key'], $context['landing']['panel_context']);
-    }
+  if (isset($context['landing'])) {
+    $contextual_links = nas_panes_build_page_contextual_links($subtype, $context['landing']['cache_key'], $context['landing']['panel_context']);
   }
   $cards_array['contextual_links'] = $contextual_links;
 
@@ -1183,9 +1181,26 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
         }
       }
     }
-    // Get Bird reference from landing pages (Bird Guide & Bird Landing).
-    if (isset($context['landing']) && ($context['landing']['panel_context'] == 'page_bird_guide_panel_context' || $context['landing']['panel_context'] == 'page_birds_landing_panel_context')) {
-      // Load nid from panes.
+  }
+  // Get Bird reference from landing pages (Bird Guide & Bird Landing).
+  if (isset($context['landing'])) {
+    if ($context['landing']['panel_context'] == 'page_bird_guide_panel_context') {
+      $featured_nid = variable_get('nas_bird_guide_featured_bird');
+    }
+    if ($context['landing']['panel_context'] == 'page_birds_landing_panel_context') {
+      $featured_nid = variable_get('nas_bird_landing_featured_bird');
+    }
+    if (isset($featured_nid) && !empty($featured_nid)) {
+      foreach ($all_nodes as $node) {
+        if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
+          foreach ($field_related_bird_items as $value) {
+            if ($value['target_id'] == $featured_nid) {
+              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+            }
+          }
+
+        }
+      }
     }
   }
   // Not Manual overrides, not Birds references were provided, or it's count less than 3.
