@@ -611,9 +611,9 @@ function nas_master_update_7053() {
 }
 
 /**
- * Add Nodequeue modeule, Engagement cards.
+ * Add Nodequeue module, Engagement cards.
  */
-function nas_master_update_7054() {
+function nas_master_update_7055() {
   features_revert_module('nas_bird_type_feature');
-  module_enable(array('nodequeue', 'nas_engagement_cards_feature'));
+  module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
 }
