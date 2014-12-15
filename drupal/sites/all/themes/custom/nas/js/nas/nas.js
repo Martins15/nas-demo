@@ -221,7 +221,7 @@ var Nas = Nas || {};
           // Look up view-dom-id-# class.
           for (var i in classes) {
             var classname = classes[i];
-            if (classname.match(/view-dom-id-(\d*)/)) {
+            if (classname.match(/view-dom-id-.*/)) {
               view_dom_id = classname;
               break;
             }
