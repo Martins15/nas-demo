@@ -622,7 +622,7 @@ meta.foundation-data-attribute-namespace {
   clear: both;
 }
 
-.hide {
+.hide, .hide-for-firsttime-visitors {
   display: none;
 }
 
@@ -3451,7 +3451,7 @@ ul.pagination li {
     clear: both;
   }
 }
-.hide {
+.hide, .hide-for-firsttime-visitors {
   display: none;
   visibility: hidden;
 }
@@ -3996,7 +3996,7 @@ ul.no-bullets {
   margin-left: 0;
 }
 
-ul.item-margin li {
+ul.item-margin li, .about-text-section .text-container ul li {
   margin-bottom: 10px;
 }
 
@@ -7661,54 +7661,53 @@ body.touch .primary-sub-nav-index {
   height: 100%;
 }
 
-.bean-welcome-to-audubon {
+.article-body .bean-welcome-to-audubon {
   float: right;
   width: 41.66667% !important;
 }
-.bean-welcome-to-audubon .article-aside {
+.article-body .bean-welcome-to-audubon .article-aside {
   width: 100% !important;
 }
-.bean-welcome-to-audubon .article-aside.hidden {
+.article-body .bean-welcome-to-audubon .article-aside.hidden {
   display: none;
 }
-.bean-welcome-to-audubon .article-aside.visible {
+.article-body .bean-welcome-to-audubon .article-aside.visible {
   display: block;
 }
-
-.article-aside {
+.article-body .article-aside {
   float: right;
   width: 41.66667%;
 }
-.article-aside img {
+.article-body .article-aside img {
   vertical-align: middle;
   width: 100%;
 }
 @media only screen and (min-width: 601px) {
-  .article-aside {
+  .article-body .article-aside {
     padding-left: 25px;
   }
-  .article-aside.small {
+  .article-body .article-aside.small {
     width: 25%;
   }
-  .article-aside.half-width {
+  .article-body .article-aside.half-width {
     margin-left: 12.5px;
     padding-left: 12.5px;
     width: 50%;
   }
-  .article-aside.full-width {
+  .article-body .article-aside.full-width {
     width: 100%;
     padding-left: 0;
   }
-  .article-aside.half-right-width {
+  .article-body .article-aside.half-right-width {
     width: 55%;
     float: right;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
-  .article-aside {
+  .article-body .article-aside {
     min-width: 33.33333%;
   }
-  .article-aside.half-right-width {
+  .article-body .article-aside.half-right-width {
     float: none;
     width: 25%;
     text-align: center;
@@ -7716,14 +7715,13 @@ body.touch .primary-sub-nav-index {
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  .article-aside {
+  .article-body .article-aside {
     padding: 0;
     width: 100%;
   }
 }
-
 @media only screen and (min-width: 601px) {
-  .one-third-left-width {
+  .article-body .one-third-left-width {
     padding-right: 25px;
   }
 }
@@ -11872,6 +11870,15 @@ body.touch .sticky-wrapper {
     top: 150px;
   }
 }
+.page-boa-bird .bird-guide-section.right-col {
+  padding-left: 30px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .bird-guide-section.right-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .page-boa-bird .bird-guide-card {
   padding: 0 25px 0 25px;
   position: relative;
@@ -11900,16 +11907,47 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-plate-illustration .see-full-plate i {
   font-size: 23px;
 }
+.page-boa-bird .boa-social-sharing {
+  padding-right: 10px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .boa-social-sharing {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird .boa-social-sharing {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird .boa-social-sharing {
+    text-align: center;
+  }
+}
 .page-boa-bird .boa-in-the-bird-guide {
   padding-bottom: 35px;
   padding-right: 10px;
 }
 .page-boa-bird .boa-in-the-bird-guide .bird-card {
-  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 768px) {
+  .page-boa-bird .boa-in-the-bird-guide .bird-card {
+    margin-right: 10px;
+  }
 }
 .page-boa-bird .boa-in-the-bird-guide h2 {
   font-size: 28px;
   margin-bottom: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+@media only screen and (min-width: 768px) {
+  .page-boa-bird .boa-in-the-bird-guide h2 {
+    text-align: left;
+  }
 }
 .page-boa-bird .boa-in-the-news {
   padding-right: 10px;
@@ -11920,6 +11958,11 @@ body.touch .sticky-wrapper {
 .page-boa-bird .boa-in-the-news h2 {
   font-size: 28px;
   margin-bottom: 10px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird .boa-in-the-news h2 {
+    text-align: center;
+  }
 }
 
 .blocks-events .more-events {
@@ -12038,11 +12081,13 @@ body.touch .sticky-wrapper {
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .static-page-content .text-container {
-    padding-bottom: 70px;
-  }
+.static-page-content .deck {
+  padding-bottom: 1em;
 }
+.static-page-content .text-container .deck {
+  padding-bottom: 0;
+}
+
 h2.grey {
   color: #838078;
 }
@@ -12105,6 +12150,48 @@ h2.grey {
 
 .filter-list-heading {
   margin-bottom: 5px;
+}
+
+.our-leadership-card {
+  padding-bottom: 30px;
+}
+.our-leadership-card .photo {
+  border: 1px solid #EEE;
+}
+.our-leadership-card .photo a {
+  line-height: 0;
+  display: block;
+}
+.our-leadership-card .photo img {
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+.our-leadership-card .common-name {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.our-leadership-card .post-title {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  letter-spacing: -0.35px;
+}
+@media only screen and (max-width: 479px) {
+  .our-leadership-card .post-title {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .our-leadership-card .post-title {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .large-one-fifth {
+    width: 20%;
+  }
 }
 
 .sidebar, .article-sidebar {

@@ -552,8 +552,60 @@ function nas_master_update_7051() {
 }
 
 /**
+ * Create instance of Welcome to Audubon bean.
+ * Revert features components.
+ * Delete unused fields.
+ */
+function nas_master_update_7052() {
+  features_revert_module('nas_welcome_to_audubon');
+  features_revert_module('nas_editor_role');
+  $bean_values = array(
+    'is_new' => TRUE,
+    'description' => '',
+    'title' => '',
+    'label' => 'Welcome to Audubon',
+    'type' => 'welcome_to_audubon',
+    'delta' => 'welcome-to-audubon',
+    'view_mode' => 'default',
+    'uid' => 1,
+  );
+  $bean = new Bean($bean_values);
+  $bean->save();
+  $bean->field_learn_more_welcome_first[LANGUAGE_NONE][0] = array(
+    'url' => '',
+    'title' => 'Learn more »',
+  );
+  $bean->field_summary_welcome_first[LANGUAGE_NONE][0] = array(
+    'value' => "<p><em><strong>Our Mission:</strong> To conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth's biological diversity.</em></p>",
+    'format' => 'full_html',
+    'summary' => '',
+  );
+  $bean->field_welcome_image[LANGUAGE_NONE][0] = array(
+    'value' => 'sites/all/themes/custom/nas/img/welcome-illustration-teal.jpg',
+  );
+  $bean->save();
+
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  field_delete_field('field_image_welcome_first');
+  field_delete_field('field_in_the_news_welcome_first');
+  field_delete_field('field_most_popular_welcome_first');
+  field_delete_field('field_image_welcome_first');
+  field_delete_field('field_social_link_facebook');
+  field_delete_field('field_social_link_pinterest');
+  field_delete_field('field_social_link_twitter');
+  field_delete_field('field_social_link_youtube');
+  features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_frontpage_feature');
+  features_revert_module('nas_author_page');
+  features_revert_module('nas_contact_type_feature');
+  features_revert_module('nas_boa_family_feature');
+}
+
+/**
  * Revert nas_image_styles_feature feature.
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
+  module_enable(array('nas_about_feature'));
 }

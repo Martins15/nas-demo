@@ -109,34 +109,7 @@ function conservation_landing_top_render($subtype, $conf, $args, $contexts) {
 
   $contextual_links = '';
   if (user_access('edit NAS panes')) {
-    ctools_include('modal');
-    ctools_modal_add_js();
-    ctools_add_js('ajax-responder');
-
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_cons_landing_top'))->fetchField();
-    if (empty($pid)) {
-      page_manager_get_page_cache(NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_cons_landing_top'))->fetchField();
-    }
-    $links = array(
-      'edit' => array(
-        'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY . '::page_conservation_landing_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
-        'attributes' => array('class' => array('ctools-use-modal')),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $contextual_links = drupal_render($build);
+    $contextual_links = nas_panes_build_page_contextual_links('nas_panes_cons_landing_top', NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY, 'page_conservation_landing_panel_context');
   }
 
   $class = &drupal_static('nas_header_class');
