@@ -27,6 +27,10 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
   if ($type == 'node' && !empty($data['node'])) {
     $node = $data['node'];
 
+    if (!isset($tokens['nas-article'])) {
+      return;
+    }
+
     $original = $tokens['nas-article'];
 
     $news_type = nas_token_get_news_type($node);

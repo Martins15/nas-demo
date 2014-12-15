@@ -666,12 +666,3 @@ function nas_master_update_7055(&$sandbox) {
       ->execute();
   }
 }
-
-/**
- * Generate new aliases according to patterns.
- */
-function nas_master_update_7056(&$sandbox) {
-  module_load_include('inc', 'pathauto', 'pathauto.pathauto');
-  node_pathauto_bulk_update_batch_process($sandbox);
-  $sandbox['#finished'] = $sandbox['finished'];
-}
