@@ -208,5 +208,41 @@ var Nas = Nas || {};
   if (StateManager.touch) {
     Nav.handleTouch();
   }
-  
+
+  Drupal.behaviors.viewLoadMoreGroupHandler = {
+    attach: function (context, settings) {
+      $('.view-display-id-boa_listing').once('views-load-more-group-handler', function () {
+        $(this).bind('views_load_more.new_content', function (event, new_content) {
+          var classes = new_content.className.split(' ');
+          var view_dom_id = '';
+
+          // Look up view-dom-id-# class.
+          for (var i in classes) {
+            var classname = classes[i];
+            if (classname.match(/view-dom-id-.*/)) {
+              view_dom_id = classname;
+              break;
+            }
+          }
+          // Regroup if found.
+          if (view_dom_id) {
+            var prev_title = '',
+                prev_row = false;
+            $('.' + view_dom_id).find('.views-row-odd, .views-row-even').each(function () {
+              var current_title = $(this).find('.boa-family-set-title').text();
+              if (prev_row && current_title == prev_title) {
+                $(this).find('.boa-bird-card-container > *').appendTo(prev_row.find('.boa-bird-card-container'));
+                $(this).remove();
+              }
+              else {
+                prev_row = $(this);
+                prev_title = current_title;
+              }
+            });
+          }
+        });
+      });
+    }
+  };
+
 })(jQuery);
