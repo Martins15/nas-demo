@@ -92,6 +92,10 @@ function nas_panes_pane_featured_bird_custom_pane_edit_form_submit(&$form, &$for
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+  // Save Bird Guide Featured nid to variables.
+  if (isset($form_state['values']['bird']['entity_id'])) {
+    variable_set('nas_bird_guide_featured_bird', $form_state['values']['bird']['entity_id']);
+  }
 }
 
 /**
