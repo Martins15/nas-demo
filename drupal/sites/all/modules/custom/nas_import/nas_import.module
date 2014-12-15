@@ -100,6 +100,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'chapters_import':
       nas_import_feeds_presave_chapters_import($source, $entity, $item);
       break;
+
+    case 'audubon_location_import':
+      nas_import_feeds_presave_audubon_location_import($source, $entity, $item);
+      break;
   }
 }
 
@@ -1140,4 +1144,30 @@ function nas_import_feeds_presave_chapters_import($source, $entity, $item) {
 
   );
   $wrapper->field_location_address->set($address);
+}
+
+/**
+ * Presave callback for audubon_location_import.
+ */
+function nas_import_feeds_presave_audubon_location_import($source, $entity, $item) {
+  $wrapper = entity_metadata_wrapper('node', $entity);
+  $wrapper->field_location_type->set('center_sanctuary');
+  $wrapper->body->set(array('value' => $item['body'], 'format' => 'full_html'));
+
+  if (!empty($item['field_location_url'][0]['url'])) {
+    $wrapper->field_location_link->set(array('url' => $item['field_location_url'][0]['url']));
+  }
+
+  if (!empty($item['location'])) {
+    $address = array(
+      'country' => drupal_strtoupper($item['location']['country']),
+      'administrative_area' => $item['location']['province'],
+      'locality' => $item['location']['city'],
+      'thoroughfare' => $item['location']['street'],
+      'premise' => $item['location']['additional'],
+      'postal_code' => $item['location']['postal_code'],
+
+    );
+    $wrapper->field_location_address->set($address);
+  }
 }
