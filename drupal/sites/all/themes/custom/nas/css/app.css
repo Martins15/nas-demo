@@ -12141,9 +12141,21 @@ h2.grey {
   margin-right: 5px;
   vertical-align: middle;
 }
+@media only screen and (max-width: 768px) {
+  .filter-list {
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+}
 
 .filter-list-heading {
   margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .index-list {
+    margin-bottom: 50px;
+  }
 }
 
 .sidebar, .article-sidebar {

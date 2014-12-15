@@ -44,7 +44,16 @@
       vertical-align: middle;
     }
   }
+  @include breakpoint(max-width, 768px) {
+    margin-left: 0px;
+    padding-left: 0px;
+  }
 }
 .filter-list-heading{
   margin-bottom: 5px;
+}
+.index-list {
+  @include breakpoint(max-width, 768px) {
+    margin-bottom: 50px;
+  }
 }
