@@ -598,9 +598,19 @@ function nas_master_update_7052() {
 }
 
 /**
- * Revert nas_image_styles_feature feature.
+ * Revert features and enable modules.
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
-  module_enable(array('nas_about_feature'));
+  module_enable(
+    array(
+      'nas_about_feature',
+      'addressfield',
+      'geofield',
+      'geocoder',
+      'geophp',
+      'nas_location_feature',
+    )
+  );
+  features_revert_module('nas_import_feeds_feature');
 }
