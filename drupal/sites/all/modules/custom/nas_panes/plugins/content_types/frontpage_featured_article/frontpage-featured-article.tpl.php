@@ -19,8 +19,10 @@
         <img src="<?php print $image_path; ?>" alt="">
       </div>
       <div class="editorial-card-content short">
-        <?php print $conversation_link ?>
-        <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h4>
+        <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h3>
+        <?php if ($subtitle): ?>
+          <p><?php print $subtitle; ?></p>
+        <?php endif; ?>
         <p><a href="<?php print $article_raw_link ?>" class="editorial-card-link"><?php print $tagline_text ?></a></p>
       </div>
     </div>

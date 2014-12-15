@@ -84,7 +84,7 @@ function get_welcome_to_audubon_array_data(&$entity) {
   $path_to_logo = $base_url . '/' . drupal_get_path('module', 'nas_wysiwyg') . '/image/' . NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON;
   // Get image.
   $block_image = field_get_items('bean', $entity, 'field_welcome_image');
-  $image = theme_image(array('path' => url($block_image[0]['value'])));
+  $image = theme('image', array('path' => url($block_image[0]['value'])));
   // Get summary.
   $get_field_summary = field_get_items('bean', $entity, 'field_summary_welcome_first');
   $summary = $get_field_summary[0]['value'];

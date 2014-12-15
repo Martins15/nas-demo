@@ -5,7 +5,7 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-<section class="curtain hide-for-ie" style="background-color: #fff; background-image: url(<?php print $frontpage_backgroundimage; ?>)">
+<section class="curtain hide-for-ie" style="background-color: #fff; background-image: url(<?php print !empty($frontpage_backgroundimage) ? $frontpage_backgroundimage : ''; ?>)">
   <header class="global-header transparent dark-text light-bg">
     <div class="row">
       <div class="columns">
@@ -119,7 +119,9 @@
 <?php print $content['top']; ?>
 </section>
 <section class="global-content">
-  <?php print $featured_frontpage_mobile_content; ?>
+  <?php if (!empty($featured_frontpage_mobile_content)): ?>
+    <?php print $featured_frontpage_mobile_content; ?>
+  <?php endif; ?>
   <div class="homepage-first-row row space-top double">
     <?php print $content['featured']; ?>
     <div class="columns large-4 medium-6">

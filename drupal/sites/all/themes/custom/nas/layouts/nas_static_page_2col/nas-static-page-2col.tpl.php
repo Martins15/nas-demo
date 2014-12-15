@@ -36,9 +36,9 @@
   <?php endif; ?>
 <?php endif; ?>
 <?php print $content['nav_menu']; ?>
-<section class="global-content<?php if (!empty($content['hero_image'])): ?> with-padding<?php endif; ?>">
+<section class="global-content with-padding static-page-content">
   <?php if (empty($content['hero_image']) || arg(0) == 'admin'): ?>
-    <header class="article-header row">
+    <header class="row">
       <div class="large-10 large-centered columns">
         <?php print $content['header_no_image']; ?>
         <p class="deck"><?php print $content['subtitle']; ?></p>
@@ -48,19 +48,12 @@
   <div class="row">
     <div class="large-8 columns text-container">
       <?php if (!empty($content['hero_image'])): ?>
-        <header class="row text-container">
-          <div class="large-12 large-centered columns">
-            <div class="article-meta clearfix hide-for-large hide-for-xlarge">
-              <?php print $content['header']; ?>
-            </div>
-          </div>
-        </header>
-      <?php endif; ?>
-      <div class="row">
-        <div class="text-container columns">
-          <?php print $content['main']; ?>
+        <div class="hide-for-large hide-for-xlarge">
+          <?php print $content['header']; ?>
         </div>
-      </div>
+        <p class="deck hide-for-large hide-for-xlarge"><?php print $content['subtitle']; ?></p>
+      <?php endif; ?>
+      <?php print $content['main']; ?>
     </div>
     <div class="large-4 columns sidebar">
       <div class="engagement-card">

@@ -20,14 +20,9 @@ function nas_author_page_strongarm() {
       'page_manager' => array(
         'status' => 1,
         'default' => 1,
-        'choice' => 0,
+        'choice' => 1,
       ),
       'default' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'full' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -37,27 +32,17 @@ function nas_author_page_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'rss' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_index' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_result' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'diff_standard' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'nas_node_teaser_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -67,12 +52,22 @@ function nas_author_page_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'token' => array(
+      'nas_node_featured_small' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
-      'revision' => array(
+      'nas_node_related_features' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_editorial_card' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

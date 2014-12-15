@@ -13,6 +13,151 @@ function nas_import_feeds_feature_feeds_importer_default() {
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'audubon_location_import';
+  $feeds_importer->config = array(
+    'name' => 'Audubon location import',
+    'description' => '',
+    'fetcher' => array(
+      'plugin_key' => 'NASFeedsHTTPFetcher',
+      'config' => array(
+        'auto_detect_feeds' => FALSE,
+        'use_pubsubhubbub' => FALSE,
+        'designated_hub' => '',
+        'request_timeout' => NULL,
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsExJsonPath',
+      'config' => array(
+        'sources' => array(
+          'title' => array(
+            'name' => 'title',
+            'value' => 'title',
+            'debug' => 0,
+            'weight' => '1',
+          ),
+          'nid' => array(
+            'name' => 'nid',
+            'value' => 'nid',
+            'debug' => 0,
+            'weight' => '2',
+          ),
+          'body' => array(
+            'name' => 'body',
+            'value' => 'body',
+            'debug' => 0,
+            'weight' => '3',
+          ),
+          'path' => array(
+            'name' => 'path',
+            'value' => 'path',
+            'debug' => 0,
+            'weight' => '4',
+          ),
+          'uid' => array(
+            'name' => 'uid',
+            'value' => 'uid',
+            'debug' => 0,
+            'weight' => '7',
+          ),
+          'type' => array(
+            'name' => 'type',
+            'value' => 'type',
+            'debug' => 0,
+            'weight' => '9',
+          ),
+          'created' => array(
+            'name' => 'created',
+            'value' => 'created',
+            'debug' => 0,
+            'weight' => '12',
+          ),
+          'status' => array(
+            'name' => 'status',
+            'value' => 'status',
+            'debug' => 0,
+            'weight' => '14',
+          ),
+          'location' => array(
+            'name' => 'location',
+            'value' => 'location',
+            'debug' => 0,
+            'weight' => '16',
+          ),
+          'locations' => array(
+            'name' => 'locations',
+            'value' => 'locations.[*]',
+            'debug' => 0,
+            'weight' => '17',
+          ),
+          'field_location_url' => array(
+            'name' => 'field_location_url',
+            'value' => 'field_location_url.[*]',
+            'debug' => 0,
+            'weight' => '18',
+          ),
+        ),
+        'context' => array(
+          'value' => '$.*',
+        ),
+        'display_errors' => 0,
+        'source_encoding' => array(
+          0 => 'auto',
+        ),
+        'debug_mode' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsNodeProcessor',
+      'config' => array(
+        'expire' => '-1',
+        'author' => 0,
+        'authorize' => 0,
+        'mappings' => array(
+          0 => array(
+            'source' => 'nid',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
+            'source' => 'title',
+            'target' => 'title',
+            'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'body',
+            'target' => 'body',
+            'unique' => FALSE,
+          ),
+          3 => array(
+            'source' => 'path',
+            'target' => 'path_alias',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'status',
+            'target' => 'status',
+            'unique' => FALSE,
+          ),
+        ),
+        'update_existing' => '1',
+        'input_format' => 'full_html',
+        'skip_hash_check' => 0,
+        'bundle' => 'location',
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '1800',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['audubon_location_import'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
   $feeds_importer->id = 'authors_import';
   $feeds_importer->config = array(
     'name' => 'Authors import',
@@ -354,6 +499,175 @@ function nas_import_feeds_feature_feeds_importer_default() {
     'process_in_background' => 0,
   );
   $export['birds_import'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'chapters_import';
+  $feeds_importer->config = array(
+    'name' => 'Chapters import',
+    'description' => '',
+    'fetcher' => array(
+      'plugin_key' => 'NASFeedsHTTPFetcher',
+      'config' => array(
+        'auto_detect_feeds' => FALSE,
+        'use_pubsubhubbub' => FALSE,
+        'designated_hub' => '',
+        'request_timeout' => NULL,
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsExJsonPath',
+      'config' => array(
+        'sources' => array(
+          'title' => array(
+            'name' => 'title',
+            'value' => 'title',
+            'debug' => 0,
+            'weight' => '1',
+          ),
+          'nid' => array(
+            'name' => 'nid',
+            'value' => 'nid',
+            'debug' => 0,
+            'weight' => '2',
+          ),
+          'body' => array(
+            'name' => 'body',
+            'value' => 'body',
+            'debug' => 0,
+            'weight' => '3',
+          ),
+          'path' => array(
+            'name' => 'path',
+            'value' => 'path',
+            'debug' => 0,
+            'weight' => '4',
+          ),
+          'uid' => array(
+            'name' => 'uid',
+            'value' => 'uid',
+            'debug' => 0,
+            'weight' => '7',
+          ),
+          'type' => array(
+            'name' => 'type',
+            'value' => 'type',
+            'debug' => 0,
+            'weight' => '9',
+          ),
+          'created' => array(
+            'name' => 'created',
+            'value' => 'created',
+            'debug' => 0,
+            'weight' => '12',
+          ),
+          'status' => array(
+            'name' => 'status',
+            'value' => 'status',
+            'debug' => 0,
+            'weight' => '14',
+          ),
+          'field_chapter_url' => array(
+            'name' => 'field_chapter_url',
+            'value' => 'field_chapter_url.[*]',
+            'debug' => 0,
+            'weight' => '15',
+          ),
+          'field_chapter_addr1' => array(
+            'name' => 'field_chapter_addr1',
+            'value' => 'field_chapter_addr1.[*]',
+            'debug' => 0,
+            'weight' => '16',
+          ),
+          'field_chapter_addr2' => array(
+            'name' => 'field_chapter_addr2',
+            'value' => 'field_chapter_addr2.[*]',
+            'debug' => 0,
+            'weight' => '17',
+          ),
+          'field_chapter_city' => array(
+            'name' => 'field_chapter_city',
+            'value' => 'field_chapter_city.[*]',
+            'debug' => 0,
+            'weight' => '18',
+          ),
+          'field_chapter_state' => array(
+            'name' => 'field_chapter_state',
+            'value' => 'field_chapter_state.[*]',
+            'debug' => 0,
+            'weight' => '19',
+          ),
+          'field_chapter_postal_code' => array(
+            'name' => 'field_chapter_postal_code',
+            'value' => 'field_chapter_postal_code.[*]',
+            'debug' => 0,
+            'weight' => '20',
+          ),
+          'field_chapter_code' => array(
+            'name' => 'field_chapter_code',
+            'value' => 'field_chapter_code.[*]',
+            'debug' => 0,
+            'weight' => '21',
+          ),
+        ),
+        'context' => array(
+          'value' => '$.*',
+        ),
+        'display_errors' => 0,
+        'source_encoding' => array(
+          0 => 'auto',
+        ),
+        'debug_mode' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsNodeProcessor',
+      'config' => array(
+        'expire' => '-1',
+        'author' => 0,
+        'authorize' => 0,
+        'mappings' => array(
+          0 => array(
+            'source' => 'nid',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
+            'source' => 'title',
+            'target' => 'title',
+            'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'body',
+            'target' => 'body',
+            'unique' => FALSE,
+          ),
+          3 => array(
+            'source' => 'path',
+            'target' => 'path_alias',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'status',
+            'target' => 'status',
+            'unique' => FALSE,
+          ),
+        ),
+        'update_existing' => '1',
+        'input_format' => 'full_html',
+        'skip_hash_check' => 0,
+        'bundle' => 'location',
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '1800',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['chapters_import'] = $feeds_importer;
 
   $feeds_importer = new stdClass();
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */

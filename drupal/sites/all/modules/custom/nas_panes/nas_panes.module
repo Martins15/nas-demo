@@ -15,6 +15,7 @@ define('NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY', 'panelizer:node:'
 define('NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-conservation_landing');
 define('NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY', 'page-boa_index');
 define('NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY', 'page-about');
+define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -227,9 +228,9 @@ function nas_panes_theme() {
     'nas_frontpage_featured_article' => array(
       'variables' => array(
         'image_path' => '',
-        'conversation_link' => '',
         'article_raw_link' => '',
         'article_link' => '',
+        'subtitle' => '',
         'tagline_text' => '',
         'contextual_links' => '',
       ),
@@ -553,6 +554,48 @@ function nas_panes_theme() {
       'template' => 'about-page-success-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_success_section',
     ),
+    'about_page_text_section' => array(
+      'variables' => array(
+        'sections' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'about-page-text-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_text_section',
+    ),
+    'about_page_map' => array(
+      'variables' => array(
+        'title' => NULL,
+        'map' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'about-page-map',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_map',
+    ),
+    'about_page_learn_more' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'contextual_links' => NULL,
+      ),
+      'template' => 'about-page-learn-more',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_learn_more',
+    ),
+    'our_leadership_list' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'contextual_links' => NULL,
+      ),
+      'template' => 'our-leadership-list',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/our_leadership_list',
+    ),
+    'link_pane' => array(
+      'variables' => array(
+        'link' => NULL,
+      ),
+      'template' => 'link-pane',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/link_pane',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -588,6 +631,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
     );
 
     foreach ($panel_keys as $key) {

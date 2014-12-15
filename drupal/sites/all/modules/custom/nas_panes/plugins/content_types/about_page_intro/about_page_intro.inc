@@ -82,4 +82,3 @@ function about_page_intro_render($subtype, $conf, $args, $contexts) {
 
   return $block;
 }
-

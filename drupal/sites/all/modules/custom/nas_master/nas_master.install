@@ -594,14 +594,91 @@ function nas_master_update_7052() {
   field_delete_field('field_social_link_pinterest');
   field_delete_field('field_social_link_twitter');
   field_delete_field('field_social_link_youtube');
+  features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_frontpage_feature');
+  features_revert_module('nas_author_page');
+  features_revert_module('nas_contact_type_feature');
+  features_revert_module('nas_boa_family_feature');
 }
 
 /**
- * Revert nas_image_styles_feature feature. Enable redirect module.
+ * Revert features and enable modules.
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
-  module_enable(array('nas_about_feature'));
+  module_enable(
+    array(
+      'nas_about_feature',
+      'addressfield',
+      'geofield',
+      'geocoder',
+      'geophp',
+      'nas_location_feature',
+    )
+  );
+  features_revert_module('nas_import_feeds_feature');
+}
+
+/**
+ * Chapters migration.
+ */
+function nas_master_update_7057(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'chapter', 'chapters_import', t('Chapters'));
+}
+
+/**
+ * Audubon locations migration.
+ */
+function nas_master_update_7058(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'audubon_location', 'audubon_location_import', t('Audubon locations'));
+}
+
+/**
+ * Run migrate operation from hook_update_N.
+ *
+ * @param array $sandbox
+ *   Batch sandbox.
+ *
+ * @param int $chunk
+ *   Count of nodes for one batch operation.
+ *
+ * @param string $d6_content_type
+ *   Name of the content type in Drupal 6.
+ *
+ * @param string $feeds_importer
+ *   Machine name of the feeds importer.
+ *
+ * @param string $human_name
+ *   Human readable name of the content type.
+ */
+function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name) {
+  if (!isset($sandbox['progress'])) {
+    // Add nids to sandbox.
+    $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $d6_content_type);
+    $sandbox['nids'] = drupal_json_decode($result->data);
+
+    // Limit nodes for dev environment.
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
+    }
+
+    $sandbox['max'] = count($sandbox['nids']);
+    $sandbox['progress'] = 0;
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    pp_import_nodes_batch($nids, $feeds_importer);
+    $sandbox['progress'] += count($nids);
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count @name has been successfully imported.', array('@count' => $sandbox['progress'], '@name' => $human_name));
+  }
 }
 
 /**
