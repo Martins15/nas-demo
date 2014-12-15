@@ -622,7 +622,7 @@ meta.foundation-data-attribute-namespace {
   clear: both;
 }
 
-.hide {
+.hide, .hide-for-firsttime-visitors {
   display: none;
 }
 
@@ -3451,7 +3451,7 @@ ul.pagination li {
     clear: both;
   }
 }
-.hide {
+.hide, .hide-for-firsttime-visitors {
   display: none;
   visibility: hidden;
 }
@@ -7661,54 +7661,53 @@ body.touch .primary-sub-nav-index {
   height: 100%;
 }
 
-.bean-welcome-to-audubon {
+.article-body .bean-welcome-to-audubon {
   float: right;
   width: 41.66667% !important;
 }
-.bean-welcome-to-audubon .article-aside {
+.article-body .bean-welcome-to-audubon .article-aside {
   width: 100% !important;
 }
-.bean-welcome-to-audubon .article-aside.hidden {
+.article-body .bean-welcome-to-audubon .article-aside.hidden {
   display: none;
 }
-.bean-welcome-to-audubon .article-aside.visible {
+.article-body .bean-welcome-to-audubon .article-aside.visible {
   display: block;
 }
-
-.article-aside {
+.article-body .article-aside {
   float: right;
   width: 41.66667%;
 }
-.article-aside img {
+.article-body .article-aside img {
   vertical-align: middle;
   width: 100%;
 }
 @media only screen and (min-width: 601px) {
-  .article-aside {
+  .article-body .article-aside {
     padding-left: 25px;
   }
-  .article-aside.small {
+  .article-body .article-aside.small {
     width: 25%;
   }
-  .article-aside.half-width {
+  .article-body .article-aside.half-width {
     margin-left: 12.5px;
     padding-left: 12.5px;
     width: 50%;
   }
-  .article-aside.full-width {
+  .article-body .article-aside.full-width {
     width: 100%;
     padding-left: 0;
   }
-  .article-aside.half-right-width {
+  .article-body .article-aside.half-right-width {
     width: 55%;
     float: right;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
-  .article-aside {
+  .article-body .article-aside {
     min-width: 33.33333%;
   }
-  .article-aside.half-right-width {
+  .article-body .article-aside.half-right-width {
     float: none;
     width: 25%;
     text-align: center;
@@ -7716,14 +7715,13 @@ body.touch .primary-sub-nav-index {
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  .article-aside {
+  .article-body .article-aside {
     padding: 0;
     width: 100%;
   }
 }
-
 @media only screen and (min-width: 601px) {
-  .one-third-left-width {
+  .article-body .one-third-left-width {
     padding-right: 25px;
   }
 }
