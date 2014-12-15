@@ -1142,7 +1142,6 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   }
   $cards_array['contextual_links'] = $contextual_links;
 
-
   $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
@@ -1166,7 +1165,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
       $nas_selected_engagement_cards_nodes = $nodes;
     }
-    
+
     $cards_array['nodes'] = $nodes;
 
     return $cards_array;
@@ -1187,7 +1186,6 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
     // Get Bird reference from landing pages (Bird Guide & Bird Landing).
     if (isset($context['landing']) && ($context['landing']['panel_context'] == 'page_bird_guide_panel_context' || $context['landing']['panel_context'] == 'page_birds_landing_panel_context')) {
       // Load nid from panes.
-      
     }
   }
   // Not Manual overrides, not Birds references were provided, or it's count less than 3.

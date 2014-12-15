@@ -504,7 +504,8 @@ function nas_preprocess_node_engagement_cards(&$vars) {
   $node = $vars['node'];
   if ($field_link_items = field_get_items('node', $node, 'field_link')) {
     $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
-      'attributes' => array('class' => array(
+      'attributes' => array(
+        'class' => array(
         'button',
         'tomato',
         'large',
