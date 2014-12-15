@@ -66,6 +66,14 @@ function engagement_cards_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info.
  */
 function engagement_cards_render($subtype, $conf, $args, $context) {
+  // We can't add node context to the pane, because it's use on landing pages too.
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $context_node = node_load(arg(1));
+  }
+  $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
+  if (isset($conf[$conf_key])) {
+    $data = $conf[$conf_key];
+  }
   // Call main function and get what we have to render.
   $cards_array = nas_panes_engagement_cards_get_cards($subtype, $conf);
   $nodes = $cards_array['nodes'];
@@ -88,6 +96,7 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
   $block->content = '';
   if (!empty($teasers) || !empty($contextual_links)) {
     $block->content = theme('engagement_cards', array(
+      'title' => $data['title'],
       'teasers' => $teasers,
       'contextual_links' => $contextual_links,
     ));
