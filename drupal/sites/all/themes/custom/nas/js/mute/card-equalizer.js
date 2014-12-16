@@ -12,7 +12,7 @@
 
       var $cardRows = $(".row").has(SELECTOR_STRING);
 
-      function equalizeCards() {
+      function equalizeCards(size) {
         $cardRows.each(function() {
           var $this = $(this),
               $cardsEd = $this.find(".editorial-card"),
@@ -24,18 +24,21 @@
               maxHeight = 0,
               minHeight = 0;
 
-          // Fix height for Edotiral blocks.
-          $cardsEd.each(function() {
-            var $this = $(this);
-            cardEdHeights.push($this.outerHeight());
-          });
+          // Do not equalize height of editorial cards on tiny and small layout
+          if (size !== 'tiny' && size !== 'small') {
+            // Fix height for Editorial blocks.
+            $cardsEd.each(function() {
+              var $this = $(this);
+              cardEdHeights.push($this.outerHeight());
+            });
 
-          maxHeightEd = Math.max.apply(null, cardEdHeights);
-          minHeightEd = Math.min.apply(null, cardEdHeights);
-          deltaEd = maxHeightEd - minHeightEd;
+            maxHeightEd = Math.max.apply(null, cardEdHeights);
+            minHeightEd = Math.min.apply(null, cardEdHeights);
+            deltaEd = maxHeightEd - minHeightEd;
 
-          if (deltaEd < 120 && deltaEd > 0) {
-            $cardsEd.css({"min-height": maxHeightEd + "px"});
+            if (deltaEd < 120 && deltaEd > 0) {
+              $cardsEd.css({"min-height": maxHeightEd + "px"});
+            }
           }
 
           // Fix height for Engagements blocks.
@@ -56,11 +59,10 @@
       }
 
       $(document).bind("respond", function(e) {
-        $(".editorial-card-content, .engagement-card-content").removeAttr("style");
-
+        $(".editorial-card, .engagement-card-content").removeAttr("style");
         // We want to wait for stuff to load and render before we get down to business
         setTimeout(function() {
-          equalizeCards();
+          equalizeCards(e.size);
         }, 50);
       });
     }
