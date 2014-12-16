@@ -23,7 +23,7 @@
   z-index: 0;
 
   @include breakpoint(tiny-up) { min-height: 280px; }
-  @include breakpoint(small-up) { min-height: 360px; }
+  @include breakpoint(small-up) { min-height: 280px; }
   @include breakpoint(large-up) { min-height: 440px; }
   @include breakpoint(min-width, 840px) { min-height: 500px; }
 

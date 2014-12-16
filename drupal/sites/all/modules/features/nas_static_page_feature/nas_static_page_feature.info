@@ -40,5 +40,5 @@ features[variable][] = panelizer_node:static_page_allowed_layouts
 features[variable][] = panelizer_node:static_page_allowed_layouts_default
 features[variable][] = panelizer_node:static_page_allowed_types_default
 features[variable][] = panelizer_node:static_page_default
-mtime = 1417708743
+mtime = 1418143783
 project path = sites/all/modules/features

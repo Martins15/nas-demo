@@ -1,0 +1,13 @@
+name = NAS About
+core = 7.x
+package = NAS
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[page_manager_pages][] = about
+features[page_manager_pages][] = our_leadership
+features[views_view][] = about_page_learn_more
+features_exclude[dependencies][views] = views
+mtime = 1418394963
+project path = sites/all/modules/features

@@ -194,6 +194,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Image without colorbox'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['about_page_related_teaser'] = array(
+    'label' => t('About page related teaser'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
