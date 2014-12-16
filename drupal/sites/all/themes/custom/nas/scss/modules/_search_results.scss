@@ -57,3 +57,20 @@
     margin-bottom: 60px;
   }
 }
+.bird-card-set-search,.global-content-search {
+  .section-header {
+    h2 {
+      @include breakpoint(max-width, 768px) {
+        text-align: left;
+      }
+    }
+    .section-nav {
+      @include breakpoint(max-width, 600px) {
+        text-align: left;
+      }
+    }
+  }
+}
+.bird-card-set-search {
+  padding-top: 0px;
+}

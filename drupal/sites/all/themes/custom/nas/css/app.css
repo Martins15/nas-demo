@@ -12158,6 +12158,21 @@ h2.grey {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .bird-card-set-search .section-header h2, .global-content-search .section-header h2 {
+    text-align: left;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .bird-card-set-search .section-header .section-nav, .global-content-search .section-header .section-nav {
+    text-align: left;
+  }
+}
+
+.bird-card-set-search {
+  padding-top: 0px;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
