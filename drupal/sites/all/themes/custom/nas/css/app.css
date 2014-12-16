@@ -12158,6 +12158,12 @@ h2.grey {
   }
 }
 
+.bird-card-set-search .section-header, .global-content-search .section-header {
+  margin-top: 23px;
+}
+.bird-card-set-search .section-header h2, .global-content-search .section-header h2 {
+  margin-bottom: 5px;
+}
 @media only screen and (max-width: 768px) {
   .bird-card-set-search .section-header h2, .global-content-search .section-header h2 {
     text-align: left;

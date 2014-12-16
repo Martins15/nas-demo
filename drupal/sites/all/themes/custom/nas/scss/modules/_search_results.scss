@@ -59,7 +59,9 @@
 }
 .bird-card-set-search,.global-content-search {
   .section-header {
+    margin-top: 23px;
     h2 {
+      margin-bottom: 5px;
       @include breakpoint(max-width, 768px) {
         text-align: left;
       }
@@ -73,4 +75,5 @@
 }
 .bird-card-set-search {
   padding-top: 0px;
+
 }
