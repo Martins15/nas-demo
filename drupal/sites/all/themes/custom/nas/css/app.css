@@ -12231,6 +12231,22 @@ h2.grey {
   }
 }
 
+.homepage-first-row .welcome-card .welcome-card-illustration {
+  display: none;
+}
+@media only screen and (max-width: 479px) {
+  .homepage-first-row .welcome-card, .homepage-first-row .editorial-card {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .homepage-first-row .welcome-card, .homepage-first-row .editorial-card {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
@@ -12342,6 +12358,9 @@ h2.grey {
   margin-bottom: 10px;
 }
 
+.welcome-card-content {
+  padding-bottom: 39px;
+}
 .welcome-card-content .editorial-card-slug {
   color: #000 !important;
 }
@@ -12381,6 +12400,11 @@ h2.grey {
   }
 }
 
+.welcome-card-banner {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
 .welcome-card-banner .social-sharing-icon {
   color: #fff !important;
 }

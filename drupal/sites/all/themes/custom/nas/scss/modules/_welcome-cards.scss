@@ -9,6 +9,7 @@
 
 .welcome-card-content {
   @extend %card-content;
+  padding-bottom: 39px;
 
   .editorial-card-slug {
     color: $color-black !important;
@@ -52,6 +53,9 @@
 
 .welcome-card-banner {
   @extend %card-banner;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 
   .social-sharing-icon {
     color: $color-white !important;
