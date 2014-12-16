@@ -123,6 +123,11 @@
     }
   }
 }
+
+.hero-attribution-fullscreen {
+  @extend .hero-attribution;
+}
+
 .hero-caption {
   &.grey-bar {
     .caption {

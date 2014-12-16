@@ -29,7 +29,7 @@
   </div>
 </div>
 <?php if (trim($content['header_hero_attr_text'])): ?>
-<div class="hero-attribution row">
+<div class="hero-attribution-fullscreen row">
   <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
 <?php endif; ?>

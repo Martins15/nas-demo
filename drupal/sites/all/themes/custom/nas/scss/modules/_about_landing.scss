@@ -7,5 +7,13 @@
     ul {
       @extend .item-margin;
     }
+    .columns {
+      @include breakpoint(small-only) {
+        margin-bottom: 0;
+      }
+      @include breakpoint(tiny-only) {
+        margin-bottom: 0;
+      }
+    }
   }
 }

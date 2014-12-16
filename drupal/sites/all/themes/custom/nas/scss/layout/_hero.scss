@@ -196,7 +196,7 @@
   background-color: #f3f3f3;
   padding-top: $size-space/2;
   padding-bottom: $size-space/2;
-  @include breakpoint(tiny-up) {
+  @include breakpoint(medium-up) {
     color: $color-white;
     background-color: transparent;
     text-align: right;
@@ -210,7 +210,29 @@
       text-align: left;
     }
   }
+}
 
+.hero-attribution-fullscreen {
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
+  line-height: $size-text-small;
+  color: $color-text-gray;
+  background-color: #f3f3f3;
+  padding-top: $size-space/2;
+  padding-bottom: $size-space/2;
+  @include breakpoint(tiny-up) {
+    color: $color-white;
+    background-color: transparent;
+    text-align: right;
+    position: relative;
+    padding-top: 0;
+    margin-bottom: $size-space;
+    margin-top: -$size-space*3;
+    z-index: 2;
+    &.align-left {
+      text-align: left;
+    }
+  }
 }
 
 .hero-blurb {
