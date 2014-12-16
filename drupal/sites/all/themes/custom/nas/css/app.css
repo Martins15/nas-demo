@@ -4628,6 +4628,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   position: relative;
   padding-right: 10px;
   color: #0aa8e3;
+  display: inline-block;
   /*&:after {
     content: "»";
     margin-left: $size-space/2;
