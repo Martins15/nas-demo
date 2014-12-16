@@ -12153,6 +12153,17 @@ h2.grey {
   margin-bottom: 5px;
 }
 
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .about-text-section .text-container .columns {
+    margin-bottom: 0;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .about-text-section .text-container .columns {
+    margin-bottom: 0;
+  }
+}
+
 .our-leadership-card {
   padding-bottom: 30px;
 }
