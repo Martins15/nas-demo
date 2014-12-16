@@ -12156,7 +12156,7 @@ h2.grey {
   padding-bottom: 30px;
 }
 .our-leadership-card .photo {
-  border: 1px solid #EEE;
+  border: 1px solid #EEEEEE;
 }
 .our-leadership-card .photo a {
   line-height: 0;
@@ -12583,4 +12583,8 @@ textarea.error {
 
 .guide-bar-date a {
   color: #fff;
+}
+
+.card-set.bg-dark-gray .card-set-heading {
+  color: #D4D4D4;
 }

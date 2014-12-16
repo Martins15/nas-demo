@@ -57,6 +57,14 @@ function engagement_cards_sidebar_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info.
  */
 function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
+  // We can't add node context to the pane, because it's use on landing pages too.
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $context_node = node_load(arg(1));
+  }
+  $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
+  if (isset($conf[$conf_key])) {
+    $data = $conf[$conf_key];
+  }
   // Call main function and get what we have to render.
   $cards_array = nas_panes_engagement_cards_get_cards($subtype, $conf, TRUE);
   $nodes = $cards_array['nodes'];
@@ -64,11 +72,11 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
 
   // Finally render selected nodes.
   $teasers = array();
-  foreach ($nodes as $node) {
-    $node_build = node_view($node);
+  // Sidebar should render only on node.
+  if (isset($nodes[0])) {
+    $node_build = node_view($nodes[0]);
     $teasers[] = drupal_render($node_build);
   }
-
   $block = new stdClass();
   $block->content = '';
   if (!empty($teasers) || !empty($contextual_links)) {

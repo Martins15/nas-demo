@@ -631,6 +631,7 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
+  return;
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
@@ -1161,7 +1162,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
     // Pass node nid selected in sidebar's pane to bottom pane.
     if ($first) {
       $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-      $nas_selected_engagement_cards_nodes = $nodes;
+      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
     }
 
     $cards_array['nodes'] = $nodes;
@@ -1252,7 +1253,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   // Pass node nid selected in sidebar's pane to bottom pane.
   if ($first) {
     $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-    $nas_selected_engagement_cards_nodes = $nodes;
+    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
   }
 
   $cards_array['nodes'] = $nodes;
