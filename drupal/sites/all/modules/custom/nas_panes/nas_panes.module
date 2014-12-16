@@ -631,7 +631,6 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
-  return;
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
@@ -974,12 +973,14 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
   ctools_add_js('ajax-responder');
-
-  // This query means that this pane is going to be used only once on the site.
-  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+  // We could get did of display being loaded.
+  if (!$display = panels_get_current_page_display()) {
+    return;
+  }
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
   if (empty($pid)) {
     nas_panes_resave_panel($page_cache_key);
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
   }
   $links = array(
     'edit' => array(
