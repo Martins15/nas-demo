@@ -611,6 +611,17 @@ function nas_panes_theme() {
       'template' => 'editorial-card-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_featured'
     ),
+    'editorial_card_package' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'linked_image' => NULL,
+        'references' => NULL,
+        'button_text' => NULL,
+        'button_url' => NULL,
+      ),
+      'template' => 'editorial-card-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package'
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -1081,7 +1092,7 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
 
   $pm_page = page_manager_get_current_page();
   // Panelizer.
-  if ($pm_page['handler']->export_module == 'panelizer') {
+  if (!empty($pm_page['handler']->export_module) && $pm_page['handler']->export_module == 'panelizer') {
     $argument = reset($pm_page['contexts']);
     list(, , $bundle) = entity_extract_ids($argument->type[2], $argument->data);
     $layout = $argument->data->panelizer['page_manager']->display->layout;
@@ -1096,14 +1107,7 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
 
   // Lookup pid.
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display']);
-  // If pid is UUID.
-  if (!is_numeric($pid)) {
-    // Get panel cache.
-    $cache = panels_edit_cache_get($cache_key);
-    // Write it to DB.
-    $display = panels_save_display($cache->display);
-    $pid = _nas_panes_display_lookup_pid($subtype, $display);
-  }
+
   $links = array(
     'edit' => array(
       'title' => t('Edit'),
