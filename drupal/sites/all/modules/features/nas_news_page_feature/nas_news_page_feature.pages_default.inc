@@ -144,6 +144,40 @@ function nas_news_page_feature_default_page_manager_handlers() {
     $display->content['new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106'] = $pane;
     $display->panels['donate'][0] = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
     $pane = new stdClass();
+    $pane->pid = 'new-1977c3db-5705-4d99-a82d-b05143714197';
+    $pane->panel = 'right_sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-8gEOHoA0l7dEmAB7pf5z8WBTbVMPL3PnMaaKPFpDBoQ',
+      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '1977c3db-5705-4d99-a82d-b05143714197';
+    $display->content['new-1977c3db-5705-4d99-a82d-b05143714197'] = $pane;
+    $display->panels['right_sidebar'][0] = 'new-1977c3db-5705-4d99-a82d-b05143714197';
+    $pane = new stdClass();
     $pane->pid = 'new-f9a34c81-ba89-4525-a5e3-7e5ab07cbbec';
     $pane->panel = 'social';
     $pane->type = 'nas_panes_pane_news_social_block';
@@ -346,7 +380,7 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $display->content['new-72b11f43-f72c-4168-ab93-e3bc3e648d5c'] = $pane;
-    $display->panels['right_sidebar'][0] = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
+    $display->panels['right_sidebar'][1] = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $pane = new stdClass();
     $pane->pid = 'new-e4bd4237-1ac2-4624-a1c9-aba5e774bbc3';
     $pane->panel = 'social';

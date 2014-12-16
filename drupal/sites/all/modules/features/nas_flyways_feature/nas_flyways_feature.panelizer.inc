@@ -45,6 +45,7 @@ function nas_flyways_feature_panelizer_defaults() {
       'subtitle' => NULL,
       'body' => NULL,
       'bottom' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -134,6 +135,49 @@ function nas_flyways_feature_panelizer_defaults() {
     $pane->uuid = '1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec';
     $display->content['new-1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec'] = $pane;
     $display->panels['bottom'][1] = 'new-1fd9bd13-abe1-4b2f-bdb2-fb97d7c748ec';
+    $pane = new stdClass();
+    $pane->pid = 'new-dd59515b-4e04-4d7d-936e-2ccc9cb4eefe';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-dlLHvBbUKSLhMq-hP_uULQ7_X1Tcbq_MlD4QMeN-cj4',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'dd59515b-4e04-4d7d-936e-2ccc9cb4eefe';
+    $display->content['new-dd59515b-4e04-4d7d-936e-2ccc9cb4eefe'] = $pane;
+    $display->panels['cards_set'][0] = 'new-dd59515b-4e04-4d7d-936e-2ccc9cb4eefe';
     $pane = new stdClass();
     $pane->pid = 'new-0e3052fc-1443-4df3-a496-0ac97601ddee';
     $pane->panel = 'secondary_title';

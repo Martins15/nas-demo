@@ -198,6 +198,49 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $display->content['new-e573215c-1498-458b-94bb-ccbeb9afe3a1'] = $pane;
     $display->panels['bottom'][0] = 'new-e573215c-1498-458b-94bb-ccbeb9afe3a1';
     $pane = new stdClass();
+    $pane->pid = 'new-18bafc70-d4a0-4648-b594-992ab7044644';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-e7_FJvNS7hGipCZnJ6V1j2FrAQg2fIlYGwrCnhwf1UM',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '18bafc70-d4a0-4648-b594-992ab7044644';
+    $display->content['new-18bafc70-d4a0-4648-b594-992ab7044644'] = $pane;
+    $display->panels['cards_set'][0] = 'new-18bafc70-d4a0-4648-b594-992ab7044644';
+    $pane = new stdClass();
     $pane->pid = 'new-29434efd-ea4f-4dc5-a9e3-e0a42957d8b6';
     $pane->panel = 'hero_attribution';
     $pane->type = 'entity_field';

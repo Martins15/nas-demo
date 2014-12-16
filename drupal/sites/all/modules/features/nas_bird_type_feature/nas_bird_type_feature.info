@@ -231,6 +231,7 @@ features[variable][] = menu_parent_bird
 features[variable][] = node_options_bird
 features[variable][] = node_preview_bird
 features[variable][] = node_submitted_bird
+features[variable][] = panelizer_defaults_node_bird
 features[wysiwyg][] = full_html
 features_exclude[dependencies][file] = file
 features_exclude[dependencies][image] = image

@@ -209,6 +209,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'editorial_cards' => NULL,
       'main' => NULL,
       'conservation_section' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -235,6 +236,49 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->uuid = '789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $display->content['new-789c461d-cebc-4a8d-b7c7-92f402c87f26'] = $pane;
     $display->panels['bird_news'][0] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
+    $pane = new stdClass();
+    $pane->pid = 'new-3f028648-0141-4594-857f-a6f1177e6172';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-Dt-ilLbFPi8WsAvqgy4P9k1bl2U2NPzri-SIldjfmrw',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3f028648-0141-4594-857f-a6f1177e6172';
+    $display->content['new-3f028648-0141-4594-857f-a6f1177e6172'] = $pane;
+    $display->panels['cards_set'][0] = 'new-3f028648-0141-4594-857f-a6f1177e6172';
     $pane = new stdClass();
     $pane->pid = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
     $pane->panel = 'conservation_section';
