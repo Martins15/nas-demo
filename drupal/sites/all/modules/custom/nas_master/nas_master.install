@@ -621,6 +621,27 @@ function nas_master_update_7053() {
 }
 
 /**
+ * Add Nodequeue module, Engagement cards.
+ */
+function nas_master_update_7055() {
+  features_revert_module('nas_bird_type_feature');
+  module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
+  features_revert(array('nas_article_feature' => array('panelizer')));
+  features_revert(array('nas_author_page' => array('panelizer')));
+  features_revert(array('nas_contact_type_feature' => array('panelizer')));
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert(array('nas_flyways_feature' => array('panelizer')));
+  features_revert(array('nas_slideshow_feature' => array('field_instance', 'panelizer', 'views_default')));
+  features_revert(array('nas_birds_guide_feature' => array('pages_default')));
+  features_revert(array('nas_birds_landing_feature' => array('pages_default')));
+  features_revert(array('nas_conservation_landing_feature' => array('pages_default')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer')));
+  features_revert(array('nas_flyways_landing_feature' => array('pages_default')));
+  features_revert(array('nas_frontpage_feature' => array('pages_default')));
+  features_revert(array('nas_news_page_feature' => array('pages_default')));
+}
+
+/**
  * Chapters migration.
  */
 function nas_master_update_7057(&$sandbox) {
@@ -679,24 +700,4 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     $sandbox['#finished'] = 1;
     watchdog('nas_master', '@count @name has been successfully imported.', array('@count' => $sandbox['progress'], '@name' => $human_name));
   }
-}
-
-/**
- * Add Nodequeue module, Engagement cards.
- */
-function nas_master_update_7055() {
-  features_revert_module('nas_bird_type_feature');
-  module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
-  features_revert(array('nas_article_feature' => array('panelizer')));
-  features_revert(array('nas_author_page' => array('panelizer')));
-  features_revert(array('nas_birds_guide_feature' => array('pages_default')));
-  features_revert(array('nas_birds_landing_feature' => array('pages_default')));
-  features_revert(array('nas_conservation_landing_feature' => array('pages_default')));
-  features_revert(array('nas_conservation_project_feature' => array('panelizer')));
-  features_revert(array('nas_conservation_strategy_feature' => array('panelizer')));
-  features_revert(array('nas_flyways_feature' => array('panelizer')));
-  features_revert(array('nas_flyways_landing_feature' => array('pages_default')));
-  features_revert(array('nas_frontpage_feature' => array('pages_default')));
-  features_revert(array('nas_news_page_feature' => array('pages_default')));
-  features_revert(array('nas_slideshow_feature' => array('field_instance', 'panelizer', 'views_default')));
 }
