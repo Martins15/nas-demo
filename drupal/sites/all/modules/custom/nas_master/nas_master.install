@@ -687,7 +687,7 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
 function nas_master_update_7054() {
   module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
   features_revert_module('nas_url_aliases_feature');
-  features_revert(array('nas_birds_guide_feature' => 'page_manager_pages'));
+  features_revert_module('nas_birds_guide_feature');
 }
 
 /**
