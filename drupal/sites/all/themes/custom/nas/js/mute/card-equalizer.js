@@ -24,8 +24,8 @@
               maxHeight = 0,
               minHeight = 0;
 
-          // Do not equalize height of editorial cards on tiny and small layout
-          if (size !== 'tiny' && size !== 'small') {
+          // Do not equalize height of editorial cards on tiny, small, medium layout
+          if (size !== 'tiny' && size !== 'small' && size !== 'medium') {
             // Fix height for Editorial blocks.
             $cardsEd.each(function() {
               var $this = $(this);
