@@ -12223,6 +12223,83 @@ h2.grey {
   margin-bottom: 5px;
 }
 
+.aid-filter {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+.aid-filter li {
+  list-style: none;
+}
+.aid-filter li .primary-nav-toggler {
+  color: #404040;
+  font-size: 20px;
+  padding-right: 25px;
+  margin-bottom: 5px;
+  display: table;
+}
+.aid-filter li .primary-nav-toggler:before {
+  display: none;
+}
+.aid-filter li .primary-nav-toggler:after {
+  top: 11px;
+  right: 0px;
+}
+.aid-filter li .primary-nav-toggler.open:after {
+  top: 5px;
+}
+.aid-filter li ul {
+  margin: 0px;
+  padding: 0px;
+}
+.aid-filter li ul li {
+  padding: 0px;
+  margin-bottom: 5px;
+  border-bottom: 0px solid transparent;
+  border-top: 0px solid transparent !important;
+}
+@media only screen and (min-width: 768px) {
+  .aid-filter li ul {
+    margin: 0px;
+    padding: 0px;
+    display: block !important;
+    position: relative;
+    box-shadow: initial;
+  }
+  .aid-filter li ul li {
+    list-style: none;
+  }
+  .aid-filter li ul li a {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .aid-filter {
+    margin-left: 20px;
+    padding-left: 30px;
+  }
+  .aid-filter li {
+    margin-bottom: 35px;
+  }
+  .aid-filter li .primary-nav-toggler {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    color: #404040;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .aid-filter li .primary-nav-toggler.open {
+    background: none !important;
+    box-shadow: none !important;
+  }
+  .aid-filter li .primary-nav-toggler.open:after {
+    display: none;
+  }
+  .aid-filter li .primary-nav-toggler ul li {
+    margin-bottom: 0px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .index-list {
     margin-bottom: 60px;
