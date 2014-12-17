@@ -25,6 +25,8 @@ define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
 define('NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE', 'conservation_hero');
 
+define('NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE', 'article_featured');
+
 define('NAS_FLYWAYS_NUMBER', 4);
 define('NAS_PANES_CONSERVATION_MENU_BAR_MENU', 'menu-header-big-main-menu');
 define('NAS_PANES_ABOUT_MENU_BAR_MENU', 'menu-header-big-main-menu');
@@ -596,6 +598,30 @@ function nas_panes_theme() {
       'template' => 'link-pane',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/link_pane',
     ),
+    'editorial_card_featured' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'linked_image' => NULL,
+        'blue_text_link_url' => NULL,
+        'blue_text_link_text' => NULL,
+        'title_link' => NULL,
+        'date' => NULL,
+        'subtitle' => NULL,
+      ),
+      'template' => 'editorial-card-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_featured'
+    ),
+    'editorial_card_package' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'linked_image' => NULL,
+        'references' => NULL,
+        'button_text' => NULL,
+        'button_url' => NULL,
+      ),
+      'template' => 'editorial-card-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package'
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -614,6 +640,9 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
+  if (!isset($_POST['nas_panes_resave_panel'])) {
+    return;
+  }
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
@@ -865,21 +894,21 @@ function nas_panes_boa_previous($node) {
 }
 
 /**
- * Retrieves pane's pid from node's panelizer.
+ * Retrieves pane's pid from panelized entity's panelizer.
  *
  * @param string $subtype
  *   Pane's subtype.
  *
- * @param object $node
- *   Panelized node object.
+ * @param object $entity
+ *   Panelized entity object.
  *
  * @return int
  *   Pane's pid from panelizer's display.
  */
-function _nas_panes_panelizer_lookup_pid($subtype, $node) {
+function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
   $pid = 0;
   // Since panelizer is already loaded we can get pane's pid from it.
-  foreach ($node->panelizer['page_manager']->display->content as $_pid => $pane) {
+  foreach ($entity->panelizer['page_manager']->display->content as $_pid => $pane) {
     if ($pane->subtype == $subtype) {
       $pid = $_pid;
       break;
@@ -894,11 +923,11 @@ function _nas_panes_panelizer_lookup_pid($subtype, $node) {
  * @param string $subtype
  *   Pane subtype.
  *
- * @param object $node
- *   Current article node.
+ * @param object $entity
+ *   Current panelized entity.
  *
  * @param string $bundle
- *   Node bundle.
+ *   Entity bundle.
  *
  * @param string $panelizer_layout
  *   Name of the panelizer layout.
@@ -906,21 +935,21 @@ function _nas_panes_panelizer_lookup_pid($subtype, $node) {
  * @return string
  *   Rendered contextual links.
  */
-function _nas_panes_build_panelizer_contextual_links($subtype, $node, $bundle, $panelizer_layout) {
+function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle, $panelizer_layout) {
   ctools_include('modal');
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
   ctools_add_js('ajax-responder');
 
-  $pid = _nas_panes_panelizer_lookup_pid($subtype, $node);
+  $pid = _nas_panes_panelizer_lookup_pid($subtype, $entity);
   if (!$pid) {
     return '';
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $pid = _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout);
+    $pid = _nas_panes_save_panelizer($subtype, $entity, $bundle, $panelizer_layout);
   }
-  $page_manager = $node->panelizer['page_manager'];
+  $page_manager = $entity->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
 
   $links = array(
@@ -1054,4 +1083,88 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
   // Reload node cause panel is saved.
   $cloned_node = node_load($node->nid, NULL, TRUE);
   return _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
+}
+
+/**
+ * Create contextual links for panels pane.
+ */
+function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts) {
+  if (!user_access('edit NAS panes')) {
+    return '';
+  }
+
+  $pm_page = page_manager_get_current_page();
+  // Panelizer.
+  if (!empty($pm_page['handler']->export_module) && $pm_page['handler']->export_module == 'panelizer') {
+    $argument = reset($pm_page['contexts']);
+    list(, , $bundle) = entity_extract_ids($argument->type[2], $argument->data);
+    $layout = $argument->data->panelizer['page_manager']->display->layout;
+    return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $layout);
+  }
+  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+
+  ctools_include('modal');
+  ctools_modal_add_js();
+  // Add ajax-responder so ctools_ajax_command_reload() will work.
+  ctools_add_js('ajax-responder');
+
+  // Lookup pid.
+  $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
+
+  $links = array(
+    'edit' => array(
+      'title' => t('Edit'),
+      'href' => 'panels/ajax/editor/edit-pane/' . $cache_key . '/' . $pid,
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
+      'attributes' => array('class' => array('ctools-use-modal')),
+    ),
+  );
+  $build = array(
+    '#prefix' => '<div class="contextual-links-wrapper">',
+    '#suffix' => '</div>',
+    '#theme' => 'links__contextual',
+    '#links' => $links,
+    '#attributes' => array('class' => array('contextual-links')),
+    '#attached' => array(
+      'library' => array(array('contextual', 'contextual-links')),
+    ),
+  );
+
+  return drupal_render($build);
+}
+
+/**
+ * Retrieves pane's pid from display object.
+ *
+ * @param string $subtype
+ *   Pane's subtype.
+ *
+ * @param object $display
+ *   Display object.
+ *
+ * @return int
+ *   Pane's pid from display.
+ */
+function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
+  $pid = 0;
+  // Get pid from loaded display.
+  foreach ($display->content as $_pid => $pane) {
+    if ($pane->subtype == $subtype && isset($pane->configuration) && $conf['form_token'] == $pane->configuration['form_token']) {
+      $pid = $_pid;
+      break;
+    }
+  }
+  return $pid;
+}
+
+/**
+ * Implements hook_form_alter.
+ */
+function nas_panes_form_alter(&$form, &$form_state) {
+  if (!empty($_GET['nas-panes-from-page'])) {
+    $form['nas_panes_resave_panel'] = array(
+      '#type' => 'hidden',
+      '#value' => TRUE,
+    );
+  }
 }

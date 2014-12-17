@@ -4674,6 +4674,10 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
     font-size: 20px;
     margin-bottom: 5px;
   }
+  .editorial-card.full-width .editorial-card-slug.small {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
   .editorial-card.full-width .editorial-card-title {
     font-size: 28px;
     line-height: 33px;
@@ -4744,6 +4748,16 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   .editorial-card.collapse-minimal .editorial-card-photo {
     display: none;
   }
+}
+
+.editorial-card-cta {
+  text-align: center;
+  padding-top: 12.5px;
+  left: 0;
+  width: 100%;
+}
+.editorial-card-cta .button {
+  font-size: 17px;
 }
 
 /* @todo refactor the hell out of this */
