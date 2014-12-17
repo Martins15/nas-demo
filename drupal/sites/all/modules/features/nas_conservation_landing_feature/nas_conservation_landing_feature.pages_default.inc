@@ -52,6 +52,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'menu_bar' => NULL,
       'full_bg_area' => NULL,
       'slideshow' => NULL,
+      'main' => NULL,
     ),
   );
   $display->cache = array();
@@ -341,17 +342,17 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
     $pane->panel = 'menu_bar';
-    $pane->type = 'nas_panes_conservation_menu_bar';
-    $pane->subtype = 'nas_panes_conservation_menu_bar';
+    $pane->type = 'menu_bar_section';
+    $pane->subtype = 'menu_bar_section';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
       'default_menu_item' => '161',
-      'form_build_id' => 'form-BApvj-OpOy_y8fu6Y5_afjTLIeTKqhqaaXEBMxLFADI',
-      'form_token' => 'A4RoZFunTt8GEf628b1WfPTdwVxJXKvpAW8ass6KmFk',
-      'form_id' => 'conservation_menu_bar_form',
+      'form_build_id' => 'form-wNQHFlRq-fvtI9BFZpbLOos-lVaaAAEVb6gif9AdLw0',
+      'form_token' => 'NXFfhytGqTfl2YLsfd6XTi8y2NXW2a2gDU2aUIwhPdA',
+      'form_id' => 'menu_bar_section_form',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -367,8 +368,8 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
     $pane->panel = 'top';
-    $pane->type = 'nas_panes_cons_landing_top';
-    $pane->subtype = 'nas_panes_cons_landing_top';
+    $pane->type = 'hero_image_section';
+    $pane->subtype = 'hero_image_section';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -378,9 +379,9 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'subtitle' => 'Protecting birds and their habitats',
       'image' => '9735',
       'color_mode' => 'dark',
-      'form_build_id' => 'form-ZLm9YWjZPXLSIgk2__nC7RHzbDHgvSofVX6S9VXjtbE',
-      'form_token' => 'tWIX3VcKeJxlzTw3EF4rErR54Iv60BIWfCJ0IsW1L5U',
-      'form_id' => 'conservation_landing_top_form',
+      'form_build_id' => 'form-bKVPXloYHAnTT0IjP2dr9pl55v4XQ9uArnctdN0tkpY',
+      'form_token' => 'rJkHSWqMzxSQ6piF2uBRiOUMdFVJz-0aG-FXV6PLlwk',
+      'form_id' => 'hero_image_section_form',
       'header_color_mode' => 'dark',
       'text_color_mode' => 'light',
     );
