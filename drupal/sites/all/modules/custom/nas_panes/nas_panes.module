@@ -640,6 +640,9 @@ function nas_panes_theme() {
  * Implements hook_ajax_render_alter().
  */
 function nas_panes_ajax_render_alter(&$commands) {
+  if (!isset($_POST['nas_panes_resave_panel'])) {
+    return;
+  }
   $copy_commands = $commands;
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
@@ -1106,13 +1109,13 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   ctools_add_js('ajax-responder');
 
   // Lookup pid.
-  $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display']);
+  $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
 
   $links = array(
     'edit' => array(
       'title' => t('Edit'),
       'href' => 'panels/ajax/editor/edit-pane/' . $cache_key . '/' . $pid,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );
@@ -1142,14 +1145,26 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
  * @return int
  *   Pane's pid from display.
  */
-function _nas_panes_display_lookup_pid($subtype, $display) {
+function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
   $pid = 0;
   // Get pid from loaded display.
   foreach ($display->content as $_pid => $pane) {
-    if ($pane->subtype == $subtype) {
+    if ($pane->subtype == $subtype && isset($pane->configuration) && $conf['form_token'] == $pane->configuration['form_token']) {
       $pid = $_pid;
       break;
     }
   }
   return $pid;
+}
+
+/**
+ * Implements hook_form_alter.
+ */
+function nas_panes_form_alter(&$form, &$form_state) {
+  if (!empty($_GET['nas-panes-from-page'])) {
+    $form['nas_panes_resave_panel'] = array(
+      '#type' => 'hidden',
+      '#value' => TRUE,
+    );
+  }
 }

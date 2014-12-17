@@ -127,8 +127,6 @@ function editorial_card_package_form_submit(&$form, &$form_state) {
 function editorial_card_package_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  dpm($conf);
-
   $linked_image = '';
   $image = file_load($conf['image']);
   if (!empty($image)) {
