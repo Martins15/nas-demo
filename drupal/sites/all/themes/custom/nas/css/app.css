@@ -12082,6 +12082,7 @@ body.touch .sticky-wrapper {
   margin-top: 0px;
   line-height: 1;
   width: 100%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .bird-guide-zip-input {
