@@ -148,7 +148,7 @@
 
   - name: Rebuilding drupal registry
     sudo: yes
-    shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }}"
+    shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }} || true && {{ php_env_vars }} drush -y rr -l {{ site_url }} || true"
     when: workflow_type == "sql"
 
   - name: Updating database
