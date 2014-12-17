@@ -617,6 +617,7 @@ function nas_master_update_7053() {
       'geocoder',
       'geophp',
       'nas_location_feature',
+      'nas_getoutside_feature',
     )
   );
   features_revert_module('nas_import_feeds_feature');
