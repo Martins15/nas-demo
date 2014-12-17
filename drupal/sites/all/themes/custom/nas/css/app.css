@@ -7706,48 +7706,54 @@ body.touch .primary-sub-nav-index {
   width: 41.66667% !important;
 }
 .article-body .bean-welcome-to-audubon .article-aside {
-  width: 100% !important;
+  padding-left: 25px;
 }
-.article-body .bean-welcome-to-audubon .article-aside.hidden {
+
+.bean-welcome-to-audubon .article-aside {
+  width: 100% !important;
+  padding-left: 0;
+}
+.bean-welcome-to-audubon .article-aside.hidden {
   display: none;
 }
-.article-body .bean-welcome-to-audubon .article-aside.visible {
+.bean-welcome-to-audubon .article-aside.visible {
   display: block;
 }
-.article-body .article-aside {
+
+.article-aside {
   float: right;
   width: 41.66667%;
 }
-.article-body .article-aside img {
+.article-aside img {
   vertical-align: middle;
   width: 100%;
 }
 @media only screen and (min-width: 601px) {
-  .article-body .article-aside {
+  .article-aside {
     padding-left: 25px;
   }
-  .article-body .article-aside.small {
+  .article-aside.small {
     width: 25%;
   }
-  .article-body .article-aside.half-width {
+  .article-aside.half-width {
     margin-left: 12.5px;
     padding-left: 12.5px;
     width: 50%;
   }
-  .article-body .article-aside.full-width {
+  .article-aside.full-width {
     width: 100%;
     padding-left: 0;
   }
-  .article-body .article-aside.half-right-width {
+  .article-aside.half-right-width {
     width: 55%;
     float: right;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
-  .article-body .article-aside {
+  .article-aside {
     min-width: 33.33333%;
   }
-  .article-body .article-aside.half-right-width {
+  .article-aside.half-right-width {
     float: none;
     width: 25%;
     text-align: center;
@@ -7755,13 +7761,14 @@ body.touch .primary-sub-nav-index {
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  .article-body .article-aside {
+  .article-aside {
     padding: 0;
     width: 100%;
   }
 }
+
 @media only screen and (min-width: 601px) {
-  .article-body .one-third-left-width {
+  .one-third-left-width {
     padding-right: 25px;
   }
 }
