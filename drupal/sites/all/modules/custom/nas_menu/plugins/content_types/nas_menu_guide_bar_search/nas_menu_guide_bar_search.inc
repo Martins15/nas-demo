@@ -174,7 +174,7 @@ function nas_menu_guide_var_search_get_contextual_links($subtype) {
     'pane-edit' => array(
       'title' => t('edit guide bar'),
       'href' => 'panels/ajax/editor/edit-pane/panel_context:node_view::node_view_panel_context::::/' . $pid,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );

@@ -149,7 +149,7 @@ function nas_panes_flyway_in_the_news_build_contextual_links($subtype, $nid) {
     'edit' => array(
       'title' => t('Edit'),
       'href' => 'panels/ajax/editor/edit-pane/panelizer:node:' . $nid . ':page_manager/' . $pid,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );
