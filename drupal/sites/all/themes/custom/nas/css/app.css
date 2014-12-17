@@ -12182,6 +12182,11 @@ h2.grey {
   font-weight: 300;
   height: 47px;
 }
+@media only screen and (max-width: 768px) {
+  .top-search-form-input input {
+    font-size: 150%;
+  }
+}
 
 .top-search-form-submit {
   height: 47px;

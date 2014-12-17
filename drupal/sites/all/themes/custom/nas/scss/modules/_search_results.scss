@@ -13,6 +13,9 @@
     font-size: 30px;
     font-weight: 300;
     height: 47px;
+    @include breakpoint(max-width, 768px) {
+      font-size: 150%;
+    }
   }
 }
 .top-search-form-submit{
