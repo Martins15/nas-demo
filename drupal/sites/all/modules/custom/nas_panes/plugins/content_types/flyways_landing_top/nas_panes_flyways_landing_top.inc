@@ -129,7 +129,7 @@ function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
       'edit' => array(
         'title' => t('Edit'),
         'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY . '::page_flyways_landing_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
+        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
     );

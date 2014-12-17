@@ -956,7 +956,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle,
     'edit' => array(
       'title' => t('Edit'),
       'href' => $href,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );
@@ -996,7 +996,7 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
     'edit' => array(
       'title' => t('Edit'),
       'href' => 'panels/ajax/editor/edit-pane/panel_context:' . $page_cache_key . '::' . $context_name . '::::/' . $pid,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );
