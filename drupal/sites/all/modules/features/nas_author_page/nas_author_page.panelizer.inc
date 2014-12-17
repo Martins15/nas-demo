@@ -43,6 +43,7 @@ function nas_author_page_panelizer_defaults() {
       'bio' => NULL,
       'articles' => NULL,
       'related_birds' => NULL,
+      'link' => NULL,
     ),
   );
   $display->cache = array();
@@ -161,38 +162,6 @@ function nas_author_page_panelizer_defaults() {
     $pane->uuid = '55071280-f5a3-491f-9388-23dc59888b6b';
     $display->content['new-55071280-f5a3-491f-9388-23dc59888b6b'] = $pane;
     $display->panels['name'][0] = 'new-55071280-f5a3-491f-9388-23dc59888b6b';
-    $pane = new stdClass();
-    $pane->pid = 'new-9844120a-bb89-4c7b-9147-0fc870f51ebc';
-    $pane->panel = 'related_birds';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_related_bird';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'above',
-      'formatter' => 'entityreference_entity_view',
-      'delta_limit' => '0',
-      'delta_offset' => '0',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(
-        'view_mode' => 'teaser',
-        'links' => 0,
-      ),
-      'context' => 'panelizer',
-      'override_title' => 1,
-      'override_title_text' => '%node:title \'s Favorite Birds',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '9844120a-bb89-4c7b-9147-0fc870f51ebc';
-    $display->content['new-9844120a-bb89-4c7b-9147-0fc870f51ebc'] = $pane;
-    $display->panels['related_birds'][0] = 'new-9844120a-bb89-4c7b-9147-0fc870f51ebc';
     $pane = new stdClass();
     $pane->pid = 'new-a4b1b640-c5cd-4249-aa8b-3f70da60c26b';
     $pane->panel = 'title';

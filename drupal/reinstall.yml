@@ -76,17 +76,17 @@
   - name: Copy local backup to build folder
     sudo: yes
     copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes mode=0644
-    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo") and ansible_env.SUDO_USER == "jenkins"
 
   - name: Importing from local backup
     mysql_db: name={{ mysql_db }} state=import target=./latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     sudo: yes
-    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo") and ansible_env.SUDO_USER == "jenkins"
 
   - name: Remove local backup from build folder
     sudo: yes
     file: name=./latest.sql.gz state=absent
-    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo") and ansible_env.SUDO_USER == "jenkins"
 
   - name: Creating cache folder
     sudo: yes
@@ -95,7 +95,7 @@
   - name: Installing drupal
     sudo: yes
     shell: "{{ php_env_vars }} drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }} --uri={{ site_url }} nas_base_url={{ site_url }}"
-    when: pp_environment == "demo" or workflow_type == "profile"
+    when: workflow_type == "profile"
 
   - name: Check if settings.php exists
     stat: path=sites/default/settings.php
@@ -148,7 +148,7 @@
 
   - name: Rebuilding drupal registry
     sudo: yes
-    shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }}"
+    shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }} || true && {{ php_env_vars }} drush -y rr -l {{ site_url }} || true"
     when: workflow_type == "sql"
 
   - name: Updating database

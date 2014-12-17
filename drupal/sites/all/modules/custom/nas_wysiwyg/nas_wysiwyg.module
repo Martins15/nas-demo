@@ -83,9 +83,8 @@ function get_welcome_to_audubon_array_data(&$entity) {
   // Set image to logo block welcome to audobun.
   $path_to_logo = $base_url . '/' . drupal_get_path('module', 'nas_wysiwyg') . '/image/' . NAS_WYSIWYG_LOGO_WELCOME_TO_ADUBON;
   // Get image.
-  $get_field_image_welcome_first = field_get_items('bean', $entity, 'field_image_welcome_first');
-  $uri = $get_field_image_welcome_first[0]['uri'];
-  $vars['image'] = $image = theme_image(array('path' => $uri));
+  $block_image = field_get_items('bean', $entity, 'field_welcome_image');
+  $image = theme('image', array('path' => url($block_image[0]['value'])));
   // Get summary.
   $get_field_summary = field_get_items('bean', $entity, 'field_summary_welcome_first');
   $summary = $get_field_summary[0]['value'];
@@ -102,33 +101,16 @@ function get_welcome_to_audubon_array_data(&$entity) {
     $link_more = l($get_field_learn_more[0]['title'], $get_field_learn_more[0]['url'], array('attributes' => array('style' => $color_style)));
   }
   // Get link in the news.
-  $get_field_in_the_news = field_get_items('bean', $entity, 'field_in_the_news_welcome_first');
-  if (!empty($get_field_in_the_news)) {
-    $path_news = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_in_the_news[0]['target_id']);
-    $link_news = l($get_field_in_the_news[0]['entity']->title, $path_news, array('attributes' => array('style' => $color_style)));
+  $view_results = views_get_view_result('random_news', 'master');
+  if (!empty($view_results)) {
+    $path_news = $base_url . '/news';
+    $link_news = l($view_results[0]->node_title, 'node/' . $view_results[0]->nid, array('attributes' => array('style' => $color_style)));
   }
   // Get link most popular.
-  $get_field_most_popular = field_get_items('bean', $entity, 'field_most_popular_welcome_first');
-  if (!empty($get_field_most_popular)) {
-    $path_most_popular = $base_url . '/' . drupal_get_path_alias('node/' . $get_field_most_popular[0]['target_id']);
-    $link_most_popular = l($get_field_most_popular[0]['entity']->title, $path_most_popular, array('attributes' => array('style' => $color_style)));
-  }
-  // Get social links.
-  $get_field_social_link_fb = field_get_items('bean', $entity, 'field_social_link_facebook');
-  if (!empty($get_field_social_link_fb)) {
-    $social_link_fb = $get_field_social_link_fb[0]['url'];
-  }
-  $get_field_social_link_tw = field_get_items('bean', $entity, 'field_social_link_twitter');
-  if (!empty($get_field_social_link_tw)) {
-    $social_link_tw = $get_field_social_link_tw[0]['url'];
-  }
-  $get_field_social_link_yotube = field_get_items('bean', $entity, 'field_social_link_youtube');
-  if (!empty($get_field_social_link_yotube)) {
-    $social_link_yotube = $get_field_social_link_yotube[0]['url'];
-  }
-  $get_field_social_link_pi = field_get_items('bean', $entity, 'field_social_link_pinterest');
-  if (!empty($get_field_social_link_pi)) {
-    $social_link_pi = $get_field_social_link_pi[0]['url'];
+  $view_results = views_get_view_result('nas_most_viewed_articles', 'nas_most_viewed_articles');
+  if (!empty($view_results)) {
+    $path_most_popular = $base_url;
+    $link_most_popular = l($view_results[0]->node_title, 'node/' . $view_results[0]->nid, array('attributes' => array('style' => $color_style)));
   }
   return array(
     'image' => $image,
@@ -139,10 +121,10 @@ function get_welcome_to_audubon_array_data(&$entity) {
     'link_news' => $link_news,
     'path_most_popular' => $path_most_popular,
     'link_most_popular' => $link_most_popular,
-    'social_link_fb' => $social_link_fb,
-    'social_link_tw' => $social_link_tw,
-    'social_link_yotube' => $social_link_yotube,
-    'social_link_pi' => $social_link_pi,
+    'social_link_fb' => 'https://www.facebook.com/NationalAudubonSociety',
+    'social_link_tw' => 'https://twitter.com/audubonsociety',
+    'social_link_yotube' => 'https://www.youtube.com/user/NationalAudubon',
+    'social_link_pi' => 'https://www.pinterest.com/audubonsociety/',
     'color' => $color,
   );
 }

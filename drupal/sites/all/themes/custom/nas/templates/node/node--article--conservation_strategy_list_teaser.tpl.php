@@ -89,7 +89,7 @@
   <div class="row">
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
-        <?php print render($content['field_hero_image']); ?>
+        <?php print $teaser_list_image; ?>
       </div>
     </div>
     <div class="tiny-8 columns">

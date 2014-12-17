@@ -8,17 +8,12 @@
 </header>
 <section class="global-content with-padding">
   <div class="row">
-    <div class="boa-family-text-block text-container">
-      <div class="large-12 columns">
+    <div class="boa-family-text-block columns text-container">
+      <div class="large-12">
         <h1 class="thin family-name"><?php print $content['title']; ?></h1>
         <p class="scientific-name"><?php print $content['scientific_name']; ?></p>
       </div>
-      <div class="large-6 columns">
-        <?php print $content['body_column_1']; ?>
-      </div>
-      <div class="large-6 columns">
-        <?php print $content['body_column_2']; ?>
-      </div>
+      <?php print $content['body_column_1']; ?>
     </div>
   </div>
   <?php print $content['bottom']; ?>

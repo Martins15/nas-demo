@@ -8,7 +8,7 @@
  */
 ?>
 
-<section class="bird-guide-section boa-in-the-bird-guide">
+<section class="bird-guide-section right-col boa-in-the-bird-guide">
   <h2 class="thin">In the Bird Guide</h2>
   <?php print $bird; ?>
 </section>

@@ -50,7 +50,6 @@ function nas_bird_type_feature_wysiwyg_default_profiles() {
         ),
         'drupal' => array(
           'bean_wysiwyg' => 1,
-          'media' => 1,
           'donate' => 1,
           'article_aside' => 1,
           'bottom_line' => 1,

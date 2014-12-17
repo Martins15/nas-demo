@@ -12,7 +12,7 @@
 function nas_formatters_field_formatter_info() {
   return array(
     'twitter_small_link' => array(
-      'label' => t('Twitter small link'),
+      'label' => t('Twitter icon link'),
       'field types' => array('link_field'),
       'multiple values' => FIELD_BEHAVIOR_DEFAULT,
     ),
@@ -56,7 +56,7 @@ function theme_twitter_icon_link($variables) {
 function nas_formatters_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $elements = array();
   switch ($display['type']) {
-    case 'twitter_icon_link':
+    case 'twitter_small_link':
       $theme = 'twitter_icon_link';
       foreach ($items as $delta => $item) {
         $elements[$delta] = array(
@@ -66,6 +66,8 @@ function nas_formatters_field_formatter_view($entity_type, $entity, $field, $ins
           '#display' => $display,
         );
       }
+      break;
+
     case 'gray_block_with_title':
       foreach ($items as $delta => $item) {
         $variables['block_text'] = check_plain($item['value']);

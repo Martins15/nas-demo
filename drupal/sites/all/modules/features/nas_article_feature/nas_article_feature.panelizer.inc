@@ -1201,28 +1201,16 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-92817a26-bf21-4fbc-a1e0-e95927555f58'] = $pane;
     $display->panels['right'][0] = 'new-92817a26-bf21-4fbc-a1e0-e95927555f58';
     $pane = new stdClass();
-    $pane->pid = 'new-07157921-a7f2-4d04-ac96-ebcee821d435';
+    $pane->pid = 'new-8e8325ca-2553-45de-8a21-0c825207a812';
     $pane->panel = 'right';
-    $pane->type = 'nas_panes_welcome_to_audubon';
-    $pane->subtype = 'nas_panes_welcome_to_audubon';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
     $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'nas_article_first_time_visitors',
-          'settings' => NULL,
-          'context' => 'panelizer',
-          'not' => FALSE,
-        ),
-        1 => array(
-          'name' => 'panelizer_mag_issue',
-          'settings' => NULL,
-          'context' => 'panelizer',
-          'not' => FALSE,
-        ),
-      ),
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
     );
-    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -1231,9 +1219,9 @@ function nas_article_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '07157921-a7f2-4d04-ac96-ebcee821d435';
-    $display->content['new-07157921-a7f2-4d04-ac96-ebcee821d435'] = $pane;
-    $display->panels['right'][1] = 'new-07157921-a7f2-4d04-ac96-ebcee821d435';
+    $pane->uuid = '8e8325ca-2553-45de-8a21-0c825207a812';
+    $display->content['new-8e8325ca-2553-45de-8a21-0c825207a812'] = $pane;
+    $display->panels['right'][1] = 'new-8e8325ca-2553-45de-8a21-0c825207a812';
     $pane = new stdClass();
     $pane->pid = 'new-a17e9fab-d87c-4be5-969d-385e55a83cb8';
     $pane->panel = 'social';

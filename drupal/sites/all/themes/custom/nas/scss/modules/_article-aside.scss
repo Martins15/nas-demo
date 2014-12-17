@@ -2,12 +2,21 @@
 // Article Aside
 // Side notes and engagement CTAs floating in article text
 // -------------
+.article-body {
+  .bean-welcome-to-audubon {
+    float: right;
+    width: 41.66667% !important;
+
+    .article-aside {
+      padding-left: 25px;
+    }
+  }
+}
+
 .bean-welcome-to-audubon {
-  float: right;
-  width: 41.66667% !important;
-  
   .article-aside {
     width: 100% !important;
+    padding-left: 0;
   }
   .article-aside.hidden {
     display: none;
@@ -16,6 +25,7 @@
     display: block;
   }
 }
+
 .article-aside {
   float: right;
   width: (100% / $total-columns) * 5;
