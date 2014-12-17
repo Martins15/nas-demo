@@ -164,7 +164,7 @@
               Twenty-two state programs, 47 centers, 450+ local chapters, and countless events.
             </div>
           </div>
-          <div class="columns large-5 interactive-guide">
+          <div class="columns large-5 interactive-guide interactive-guide-aid">
               <p class="preamble">
                   <span class="small">Explore the Audubon network.</span>
               </p>
@@ -195,7 +195,7 @@
   <!-- *************************************************************************** -->
     <section class="global-content no-padding blocks-events">
       <div class="row">
-          <div class="tiny-4 columns">
+          <div class="large-6 columns">
             <h2 class="title-block">Offies & Chapters</h2>
             <article>
              <h1 class="title-article">Aubudon California<span>(San francisco, CA)</span></h1>
@@ -226,7 +226,7 @@
              </div>
             </article>
           </div>
-          <div class="tiny-4 columns">
+          <div class="large-6 columns">
             <h2 class="title-block">Centers & Sanctuaries</h2>
             <article>
              <h1 class="title-article">Richardson Bay Audubon Center & Sanctuary<span>(San francisco, CA)</span></h1>
@@ -257,7 +257,7 @@
              </div>
             </article>
           </div>
-          <div class="tiny-4 columns">
+          <!-- div class="large-6 columns">
             <h2 class="title-block">Upcoming Events</h2>
             <article>
              <h1 class="title-article">Aubudon California<span>(San francisco, CA)</span></h1>
@@ -290,7 +290,7 @@
             <div class="more-events">
              <a class="more-link" href="#">See more events</a>
             </div>
-          </div>
+          </div -->
         </div>
       </div>
   </section>
@@ -378,9 +378,9 @@
               </ul>
           </div>
       </div>
-      <div class="row">
+      <div class="row aid-class">
           <div class="columns large-4">
-              <div class="editorial-card collapse-minimal" style="min-height: 342px;">
+              <div class="editorial-card collapse-minimal">
                   <div class="editorial-card-photo">
                       <img src="../../img/editorial-card-14.jpg">
                   </div>
@@ -392,7 +392,7 @@
               </div>
           </div>
           <div class="columns large-4">
-              <div class="editorial-card collapse-minimal" style="min-height: 342px;">
+              <div class="editorial-card collapse-minimal">
                   <div class="editorial-card-photo">
                       <img src="../../img/editorial-card-2.jpg">
                   </div>
@@ -404,7 +404,7 @@
               </div>
           </div>
           <div class="columns large-4">
-              <div class="editorial-card collapse-minimal" style="min-height: 342px;">
+              <div class="editorial-card collapse-minimal">
                   <div class="editorial-card-photo">
                       <img src="../../img/editorial-card-3.jpg">
                   </div>
@@ -596,7 +596,39 @@
           }
         });
       });
+
+        $(document).ready(function () {
+            if ($.browser.msie) {         //this is for only ie condition ( microsoft internet explore )
+                $('input[type="text"][placeholder], textarea[placeholder]').each(function () {
+                    var obj = $(this);
+
+                    if (obj.attr('placeholder') != '') {
+                        obj.addClass('IePlaceHolder');
+
+                        if ($.trim(obj.val()) == '' && obj.attr('type') != 'password') {
+                            obj.val(obj.attr('placeholder'));
+                        }
+                    }
+                });
+
+                $('.IePlaceHolder').focus(function () {
+                    var obj = $(this);
+                    if (obj.val() == obj.attr('placeholder')) {
+                        obj.val('');
+                    }
+                });
+
+                $('.IePlaceHolder').blur(function () {
+                    var obj = $(this);
+                    if ($.trim(obj.val()) == '') {
+                        obj.val(obj.attr('placeholder'));
+                    }
+                });
+            }
+        });
     })(jQuery);
+
+
     </script>
   </body>
 </html>
