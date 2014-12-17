@@ -7,17 +7,17 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('About Page. Menu Bar'),
-  'description' => t('About Page Menu Bar.'),
+  'title' => t('Menu Bar Section'),
+  'description' => t('Menu Bar Section.'),
   'category' => 'NAS',
-  'edit form' => 'about_page_menu_bar_form',
-  'render callback' => 'about_page_menu_bar_render',
+  'edit form' => 'menu_bar_section_form',
+  'render callback' => 'menu_bar_section_render',
 );
 
 /**
  * An edit form for the pane's settings.
  */
-function about_page_menu_bar_form($form, &$form_state) {
+function menu_bar_section_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $options = menu_parent_options(array(NAS_PANES_MAIN_MENU_NAME => NAS_PANES_MAIN_MENU_NAME), NULL);
 
@@ -34,7 +34,7 @@ function about_page_menu_bar_form($form, &$form_state) {
 /**
  * Submit handler for configuration.
  */
-function about_page_menu_bar_form_submit(&$form, &$form_state) {
+function menu_bar_section_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       if ($key == 'default_menu_item') {
@@ -54,7 +54,7 @@ function about_page_menu_bar_form_submit(&$form, &$form_state) {
  *
  * @see ctools_plugin_examples()
  */
-function about_page_menu_bar_render($subtype, $conf, $args, $contexts) {
+function menu_bar_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $items = array();
 
@@ -71,10 +71,9 @@ function about_page_menu_bar_render($subtype, $conf, $args, $contexts) {
     $items[] = l($item['link']['link_title'], $item['link']['link_path']);
   }
 
-  $block->content = theme('about_page_menu_bar', array(
+  $block->content = theme('menu_bar_section', array(
       'items' => $items,
     ));
 
   return $block;
 }
-

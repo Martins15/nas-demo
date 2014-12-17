@@ -19,13 +19,13 @@ $plugin = array(
  */
 function conservation_menu_bar_form($form, &$form_state) {
   $conf = $form_state['conf'];
-  $options = menu_parent_options(array(NAS_PANES_CONSERVATION_MENU_BAR_MENU => NAS_PANES_CONSERVATION_MENU_BAR_MENU), NULL);
+  $options = menu_parent_options(array(NAS_PANES_MAIN_MENU_NAME => NAS_PANES_MAIN_MENU_NAME), NULL);
 
   $form['default_menu_item'] = array(
     '#type' => 'select',
     '#title' => t('Default menu item'),
     '#options' => $options,
-    '#default_value' => NAS_PANES_CONSERVATION_MENU_BAR_MENU . ':' . $conf['default_menu_item'],
+    '#default_value' => NAS_PANES_MAIN_MENU_NAME . ':' . $conf['default_menu_item'],
   );
 
   return $form;
@@ -65,7 +65,7 @@ function conservation_menu_bar_render($subtype, $conf, $args, $contexts) {
     'conditions' => array('plid' => $conf['default_menu_item']),
   );
 
-  $menu_items = menu_build_tree(NAS_PANES_CONSERVATION_MENU_BAR_MENU, $parameters);
+  $menu_items = menu_build_tree(NAS_PANES_MAIN_MENU_NAME, $parameters);
 
   foreach ($menu_items as $item) {
     $items[] = l($item['link']['link_title'], $item['link']['link_path']);
