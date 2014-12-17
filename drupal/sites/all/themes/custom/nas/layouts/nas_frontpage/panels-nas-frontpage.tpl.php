@@ -122,7 +122,7 @@
   <?php if (!empty($featured_frontpage_mobile_content)): ?>
     <?php print $featured_frontpage_mobile_content; ?>
   <?php endif; ?>
-  <div class="homepage-first-row row space-top double">
+  <div class="homepage-first-row row space-top double" data-equalizer>
     <?php print $content['featured']; ?>
     <div class="columns large-4 medium-6">
       <?php print $content['more_headlines']; ?>

@@ -28,7 +28,7 @@
  */
 ?>
 <aside class="article-aside reflow reflow-into-body">
-  <div class="welcome-card teal">
+  <div class="welcome-card teal" data-equalizer-watch>
     <div class="welcome-card-illustration">
       <?php print ($image);?>
     </div>
