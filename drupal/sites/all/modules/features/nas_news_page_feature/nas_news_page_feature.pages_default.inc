@@ -241,7 +241,10 @@ function nas_news_page_feature_default_page_manager_pages() {
   $page->admin_title = 'News';
   $page->admin_description = '';
   $page->path = 'news';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -288,6 +291,7 @@ function nas_news_page_feature_default_page_manager_pages() {
       'social' => NULL,
       'featured' => NULL,
       'right_sidebar' => NULL,
+      'title' => NULL,
     ),
   );
   $display->cache = array();
@@ -362,6 +366,38 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->uuid = '3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
     $display->content['new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106'] = $pane;
     $display->panels['donate'][0] = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
+    $pane = new stdClass();
+    $pane->pid = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
+    $pane->panel = 'featured';
+    $pane->type = 'editorial_card_featured';
+    $pane->subtype = 'editorial_card_featured';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => '9772',
+      'title' => 'Texas Oil Spill Makes Landfall in a Key Environmentally Sensitive Area',
+      'url' => 'node/1',
+      'blue_link_text' => 'Audubon Near You',
+      'blue_link_url' => 'node/1',
+      'subtitle' => 'The Conservation Movement Loses A Hero to the Cause: It is with great sadness that we must share news of the passing of Donal O’Brien Jr on Sunday, Septemb',
+      'form_build_id' => 'form-Y-J90D03FvQXSTFuqort53ldEuLuP_WlqE6Q4sVDtbs',
+      'form_token' => 'TvetRZOuEr2ex32Rnc39gSl1bO6SrErFfdUMZ6Y4MbQ',
+      'form_id' => 'editorial_card_featured_form',
+      'date' => '2014-10-09',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6cec715f-979a-404c-880d-9c2931f7b6f9';
+    $display->content['new-6cec715f-979a-404c-880d-9c2931f7b6f9'] = $pane;
+    $display->panels['featured'][0] = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
     $pane = new stdClass();
     $pane->pid = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $pane->panel = 'right_sidebar';

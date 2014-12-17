@@ -600,6 +600,7 @@ function nas_master_update_7052() {
   features_revert_module('nas_author_page');
   features_revert_module('nas_contact_type_feature');
   features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_news_page_feature');
 }
 
 /**
@@ -607,6 +608,7 @@ function nas_master_update_7052() {
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_bird_type_feature' => array('wysiwyg')));
   module_enable(
     array(
       'nas_about_feature',
