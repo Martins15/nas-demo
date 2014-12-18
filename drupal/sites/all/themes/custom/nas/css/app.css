@@ -4629,27 +4629,13 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   padding-right: 10px;
   color: #0aa8e3;
   display: inline-block;
-  /*&:after {
-    content: "»";
-    margin-left: $size-space/2;
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: url("img/duble-arrow.png") no-repeat center center;
-    background-size: 100%;
-  }*/
 }
 .editorial-card-link:after {
-  content: "";
-  display: block;
-  right: 0px;
-  top: 50%;
-  margin-top: -3px;
-  position: absolute;
+  content: "»";
+  margin-left: 5px;
+  display: inline-block;
   width: 7px;
   height: 7px;
-  background: url("../img/duble-arrow.png") no-repeat center center;
-  background-size: 100%;
 }
 .editorial-card-link.sans {
   font-family: "Source Sans Pro", Verdana, sans-serif;
