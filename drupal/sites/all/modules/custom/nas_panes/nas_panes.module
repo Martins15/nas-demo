@@ -16,6 +16,7 @@ define('NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-conservati
 define('NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY', 'page-boa_index');
 define('NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY', 'page-about');
 define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership');
+define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -23,13 +24,11 @@ define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
 define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
-define('NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE', 'conservation_hero');
 
 define('NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE', 'article_featured');
 
 define('NAS_FLYWAYS_NUMBER', 4);
-define('NAS_PANES_CONSERVATION_MENU_BAR_MENU', 'menu-header-big-main-menu');
-define('NAS_PANES_ABOUT_MENU_BAR_MENU', 'menu-header-big-main-menu');
+define('NAS_PANES_MAIN_MENU_NAME', 'menu-header-big-main-menu');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -394,26 +393,6 @@ function nas_panes_theme() {
       'template' => 'magazine-issue-other-issues',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_other_issues',
     ),
-    'conservation_landing_top' => array(
-      'variables' => array(
-        'title' => '',
-        'subtitle' => '',
-        'credit' => '',
-        'hero_image' => '',
-        'color_mode_gradient' => '',
-        'color_mode_text' => '',
-        'contextual_links' => '',
-      ),
-      'template' => 'conservation-landing-top',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_top',
-    ),
-    'conservation_menu_bar' => array(
-      'variables' => array(
-        'items' => NULL,
-      ),
-      'template' => 'conservation-menu-bar',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_menu_bar',
-    ),
     'project_birds' => array(
       'template' => 'project-birds',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/project_birds',
@@ -516,25 +495,6 @@ function nas_panes_theme() {
       'template' => 'frontpage-conservation-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_conservation_section',
     ),
-    'about_page_top' => array(
-      'variables' => array(
-        'hero_image' => NULL,
-        'hero_image_mobile' => NULL,
-        'title' => NULL,
-        'credit' => NULL,
-        'color_mode_gradient' => NULL,
-        'color_mode_text' => NULL,
-      ),
-      'template' => 'about-page-top',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_top',
-    ),
-    'about_page_menu_bar' => array(
-      'variables' => array(
-        'items' => NULL,
-      ),
-      'template' => 'about-page-menu-bar',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_menu_bar',
-    ),
     'about_page_intro' => array(
       'variables' => array(
         'title' => NULL,
@@ -609,7 +569,7 @@ function nas_panes_theme() {
         'subtitle' => NULL,
       ),
       'template' => 'editorial-card-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_featured',
     ),
     'editorial_card_package' => array(
       'variables' => array(
@@ -620,7 +580,26 @@ function nas_panes_theme() {
         'button_url' => NULL,
       ),
       'template' => 'editorial-card-package',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package',
+    ),
+    'hero_image_section' => array(
+      'variables' => array(
+        'hero_image' => NULL,
+        'hero_image_mobile' => NULL,
+        'title' => NULL,
+        'credit' => NULL,
+        'color_mode_gradient' => NULL,
+        'color_mode_text' => NULL,
+      ),
+      'template' => 'hero-image-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/hero_image_section',
+    ),
+    'menu_bar_section' => array(
+      'variables' => array(
+        'items' => NULL,
+      ),
+      'template' => 'menu-bar-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/menu_bar_section',
     ),
   );
 
@@ -661,6 +640,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
     );
 
     foreach ($panel_keys as $key) {
