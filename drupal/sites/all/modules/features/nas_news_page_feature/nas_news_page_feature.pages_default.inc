@@ -371,7 +371,7 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->panel = 'featured';
     $pane->type = 'editorial_card_featured';
     $pane->subtype = 'editorial_card_featured';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 0,
@@ -399,6 +399,83 @@ function nas_news_page_feature_default_page_manager_pages() {
     $display->content['new-6cec715f-979a-404c-880d-9c2931f7b6f9'] = $pane;
     $display->panels['featured'][0] = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
     $pane = new stdClass();
+    $pane->pid = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $pane->panel = 'featured';
+    $pane->type = 'editorial_card_package';
+    $pane->subtype = 'editorial_card_package';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => '9799',
+      'references' => array(
+        0 => array(
+          'title' => 'A Crow Never Forgets',
+          'url' => 'http://nas.wearepropeople.md/staging/articles/birds/crow-never-forgets',
+          'blue_link_text' => 'Features',
+          'blue_link_url' => 'http://nas.wearepropeople.md/staging/taxonomy/term/4',
+        ),
+        1 => array(
+          'title' => 'Online Explorers: How You Can Help Scientists',
+          'url' => 'http://nas.wearepropeople.md/staging/articles/conservation/online-explorers-how-you-can-help-scientists',
+          'blue_link_text' => 'Press Room',
+          'blue_link_url' => 'http://nas.wearepropeople.md/staging/editorial-section/press-room',
+        ),
+      ),
+      'button_text' => 'Lorem ipsum dolor sit amet',
+      'button_url' => 'http://nas.wearepropeople.md/staging/conservation',
+      'form_build_id' => 'form-14yFeBW57mfSLG0QetcZq6cVqtPN8nCYO0FWLHfag1s',
+      'form_token' => 'rPZhL6squwAjoFU5oubvA4BzQhyb6MO8SgBhJ48yA08',
+      'form_id' => 'editorial_card_package_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $display->content['new-62a564fc-c5cc-404f-8fd3-130da8011a98'] = $pane;
+    $display->panels['featured'][1] = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $pane = new stdClass();
+    $pane->pid = 'new-2b28ca52-7485-48f7-89d3-12920e44c8ec';
+    $pane->panel = 'right_sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-HMxAy55fwFV6B-nSSPjoZ9Kd_bQU0o2R0wCo9Sfnh2w',
+      'form_token' => 'Md30nwO3KEgc2F2z2BhFVMxCPhS1Y0pSQHPwWHGlRK8',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2b28ca52-7485-48f7-89d3-12920e44c8ec';
+    $display->content['new-2b28ca52-7485-48f7-89d3-12920e44c8ec'] = $pane;
+    $display->panels['right_sidebar'][0] = 'new-2b28ca52-7485-48f7-89d3-12920e44c8ec';
+    $pane = new stdClass();
     $pane->pid = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $pane->panel = 'right_sidebar';
     $pane->type = 'views_panes';
@@ -412,7 +489,7 @@ function nas_news_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $display->content['new-72b11f43-f72c-4168-ab93-e3bc3e648d5c'] = $pane;

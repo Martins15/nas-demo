@@ -84,6 +84,10 @@ function nas_frontpage_feature_default_page_manager_pages() {
 	<li><a href="http://nas.wearepropeople.md/staging/conservation">Conservation landing</a></li>
 	<li><a href="http://nas.wearepropeople.md/staging/content/saving-seabirds-along-pacific-coast">Conservation project</a></li>
 	<li><a href="http://nas.wearepropeople.md/staging/content/sharing-our-seas-shores-0">Conservation Strategy</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/about">About Us</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/about/our-leadership">Our Leadership</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/authors/david-yarnold">Bio</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/authors/simone-scully">Author page</a></li>
 </ul>
 
 <p>&nbsp;</p>
