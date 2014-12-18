@@ -168,7 +168,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
       'edit' => array(
         'title' => t('Edit'),
         'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
+        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
     );
