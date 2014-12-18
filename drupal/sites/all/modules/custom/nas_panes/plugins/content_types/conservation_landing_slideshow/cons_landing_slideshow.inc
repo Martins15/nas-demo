@@ -186,17 +186,17 @@ function cons_landing_slideshow_add_group($form, &$form_state) {
 function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  $data = $conf['wrapper'];
   $nids = array();
-  foreach ($data as $key => $value) {
+  $data = array();
+  $nodes_array_to_show = array();
+  foreach ($conf['wrapper'] as $key => $value) {
     if (!$value['entity_reference']) {
       continue;
     }
     $nids[] = $value['entity_reference']['entity_id'];
+    $data[$value['entity_reference']['entity_id']] = $value;
   }
   $nodes = node_load_multiple($nids, array('type' => 'strategy'));
-  $nodes_array_to_show = array();
-  $data = array_combine(array_keys($nodes), $data);
   foreach ($nodes as $nid => $node) {
     //Set title.
     $nodes_array_to_show[$nid]['title'] = $data[$nid]['title'];
@@ -218,7 +218,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     }
     //Set icon.
     $nodes_array_to_show[$nid]['icon'] = '';
-    if (isset($data[$nid]['icon'])) {
+    if (isset($data[$nid]['icon']) && !empty($data[$nid]['icon'])) {
       $file = file_load($data[$nid]['icon']);
       $nodes_array_to_show[$nid]['icon'] = image_style_url('conservation_slideshow_icon', $file->uri);
     }
