@@ -209,7 +209,7 @@ function nas_slideshow_feature_views_default_views() {
   $handler->display->display_options['arguments']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
   $handler->display->display_options['arguments']['term_node_tid_depth']['default_action'] = 'default';
   $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_options']['argument'] = variable_get('nas_import_features_menu_section_tid', '4');
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_options']['argument'] = '4';
   $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['term_node_tid_depth']['summary_options']['items_per_page'] = '25';

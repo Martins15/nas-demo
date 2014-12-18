@@ -44,6 +44,7 @@ function nas_contact_type_feature_panelizer_defaults() {
       'articles' => NULL,
       'related_birds' => NULL,
       'link' => NULL,
+      'right' => NULL,
     ),
   );
   $display->cache = array();
@@ -198,6 +199,40 @@ function nas_contact_type_feature_panelizer_defaults() {
     $pane->uuid = '9844120a-bb89-4c7b-9147-0fc870f51ebc';
     $display->content['new-9844120a-bb89-4c7b-9147-0fc870f51ebc'] = $pane;
     $display->panels['related_birds'][0] = 'new-9844120a-bb89-4c7b-9147-0fc870f51ebc';
+    $pane = new stdClass();
+    $pane->pid = 'new-55c532c2-9e08-49ca-b9fa-f5096ac543fb';
+    $pane->panel = 'right';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-S9KXDoBIF9I2TBAmATeau64x80xkDUTBBjs2J3Qctmk',
+      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '55c532c2-9e08-49ca-b9fa-f5096ac543fb';
+    $display->content['new-55c532c2-9e08-49ca-b9fa-f5096ac543fb'] = $pane;
+    $display->panels['right'][0] = 'new-55c532c2-9e08-49ca-b9fa-f5096ac543fb';
     $pane = new stdClass();
     $pane->pid = 'new-a4b1b640-c5cd-4249-aa8b-3f70da60c26b';
     $pane->panel = 'title';

@@ -45,6 +45,7 @@ function nas_slideshow_feature_panelizer_defaults() {
       'main' => NULL,
       'footer' => NULL,
       'slideshow' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -98,6 +99,63 @@ function nas_slideshow_feature_panelizer_defaults() {
     $pane->uuid = 'baa5ac3e-412d-4fd0-82ff-3de26354cece';
     $display->content['new-baa5ac3e-412d-4fd0-82ff-3de26354cece'] = $pane;
     $display->panels['bottom'][1] = 'new-baa5ac3e-412d-4fd0-82ff-3de26354cece';
+    $pane = new stdClass();
+    $pane->pid = 'new-abf9ba03-fcab-4165-9570-acaafee6bf2b';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-keyethgKgYkW9MNnEq8v0OrB6eit8HBbBVKusHG4mTg',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+      5031 => array(
+        'title' => 'Abu',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'abf9ba03-fcab-4165-9570-acaafee6bf2b';
+    $display->content['new-abf9ba03-fcab-4165-9570-acaafee6bf2b'] = $pane;
+    $display->panels['cards_set'][0] = 'new-abf9ba03-fcab-4165-9570-acaafee6bf2b';
     $pane = new stdClass();
     $pane->pid = 'new-81a52fa1-0cbd-4fe9-ba34-d5d71d6137ba';
     $pane->panel = 'slideshow';

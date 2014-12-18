@@ -36,18 +36,7 @@
     <!-- BEGIN SIDEBAR -->
 
     <div class="sidebar large-4 columns">
-      <div class="sidebar-section engagement-card">
-        <div class="engagement-card-content no-min-height">
-          <h3 class="engagement-card-headline">Save the Brown Pelican</h3>
-          <p>Numerous oil spills along the Gulf Coast have threatened thousands of native birds.</p>
-          <div class="engagement-card-cta">
-            <a href="#" class="button tomato large">Endorse New Legislation</a>
-          </div>
-        </div>
-        <div class="engagement-card-photo">
-          <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt=""></a>
-        </div>
-      </div>
+      <?php print $content['right_sidebar']; ?>
       <div class="sidebar-section editorial-card">
         <div class="editorial-card-photo">
           <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>editorial-card-4.jpg" alt=""></a>
@@ -64,7 +53,6 @@
           <h5 class="editorial-card-title"><a href="#">Protect a Western Snowy Plover Nest</a></h5>
         </div>
       </div>
-      <?php print $content['right_sidebar']; ?>
     </div>
 
     <!-- END SIDEBAR -->

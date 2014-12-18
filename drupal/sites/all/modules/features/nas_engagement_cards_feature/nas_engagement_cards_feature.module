@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Engagement cards feature.
+ */
+
+include_once 'nas_engagement_cards_feature.features.inc';

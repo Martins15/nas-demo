@@ -12807,3 +12807,7 @@ textarea.error {
 .guide-bar-date a {
   color: #fff;
 }
+
+.card-set.bg-dark-gray .card-set-heading {
+  color: #D4D4D4;
+}
