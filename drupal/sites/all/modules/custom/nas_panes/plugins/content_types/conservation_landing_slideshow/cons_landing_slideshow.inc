@@ -196,6 +196,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
   }
   $nodes = node_load_multiple($nids, array('type' => 'strategy'));
   $nodes_array_to_show = array();
+  $data = array_combine(array_keys($nodes), $data);
   foreach ($nodes as $nid => $node) {
     //Set title.
     $nodes_array_to_show[$nid]['title'] = $data[$nid]['title'];
