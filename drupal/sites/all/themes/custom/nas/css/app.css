@@ -12005,7 +12005,7 @@ body.touch .sticky-wrapper {
 .title-h1 {
   font-weight: 300;
   font-size: 52px;
-  line-height: 65px;
+  line-height: 57px;
 }
 
 .content-bird {
@@ -12262,7 +12262,7 @@ h2.grey {
   top: 5px;
 }
 .aid-filter li ul {
-  margin: 0px;
+  margin: 0px 0px 20px;
   padding: 0px;
 }
 .aid-filter li ul li {
@@ -12277,7 +12277,7 @@ h2.grey {
     padding: 0px;
     display: block !important;
     position: relative;
-    box-shadow: initial;
+    box-shadow: 0 0 0 transparent;
   }
   .aid-filter li ul li {
     list-style: none;
@@ -12338,6 +12338,11 @@ h2.grey {
 
 .bird-card-set-search {
   padding-top: 0px;
+}
+
+.load-more.button I {
+  top: auto\9;
+  left: auto\9;
 }
 
 @media only screen and (min-width: 480px) and (max-width: 600px) {
