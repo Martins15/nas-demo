@@ -1366,7 +1366,7 @@ function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
  * Implements hook_form_alter.
  */
 function nas_panes_form_alter(&$form, &$form_state) {
-  if (!empty($_GET['nas-panes-from-page'])) {
+  if (!empty($_GET['nas-panes-from-page']) || !empty($_POST['nas_panes_resave_panel'])) {
     $form['nas_panes_resave_panel'] = array(
       '#type' => 'hidden',
       '#value' => TRUE,
