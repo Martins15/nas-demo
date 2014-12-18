@@ -277,7 +277,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'form_build_id' => 'form-WsCsQy4085z86lwF7OuNwPO5KaDP5xX8fFQH0GpHBWk',
       'form_token' => '7etaP-GiVOGGfijRWhVUGUZbbv4mALs5MJ8ym0WxazI',
       'form_id' => 'cons_landing_slideshow_edit_form',
-      'count' => 5,
+      'count' => 4,
       'add_group' => 'Add more',
       'nas_panes_resave_panel' => TRUE,
     );
