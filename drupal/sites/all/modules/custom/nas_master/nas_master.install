@@ -705,9 +705,19 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
 }
 
 /**
- * Add Nodequeue module, Engagement cards.
+ * Enable getoutside feature.
  */
 function nas_master_update_7059() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_about_feature' => array('page_manager_pages')));
+  features_revert(array('nas_conservation_landing_feature' => array('page_manager_pages')));
+  module_enable(array('nas_getoutside_feature'));
+}
+
+/**
+ * Add Nodequeue module, Engagement cards.
+ */
+function nas_master_update_7060() {
   module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_article_feature');

@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * About Page Menu Bar template file.
+ * Menu Bar Section template file.
  */
 ?>
 

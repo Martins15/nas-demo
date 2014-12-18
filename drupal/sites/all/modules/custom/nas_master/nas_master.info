@@ -56,3 +56,4 @@ dependencies[] = nas_conservation
 dependencies[] = nas_about_feature
 dependencies[] = nas_engagement_cards_feature
 dependencies[] = nas_location_feature
+dependencies[] = nas_getoutside_feature

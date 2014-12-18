@@ -52,6 +52,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'menu_bar' => NULL,
       'full_bg_area' => NULL,
       'slideshow' => NULL,
+      'main' => NULL,
     ),
   );
   $display->cache = array();
@@ -103,63 +104,6 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $display->content['new-524db283-0d70-47a9-a7fe-d18c12dd7523'] = $pane;
     $display->panels['cards_set'][0] = 'new-524db283-0d70-47a9-a7fe-d18c12dd7523';
     $pane = new stdClass();
-    $pane->pid = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
-    $pane->panel = 'menu_bar';
-    $pane->type = 'nas_panes_conservation_menu_bar';
-    $pane->subtype = 'nas_panes_conservation_menu_bar';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'default_menu_item' => variable_get('nas_conservation_landing_default_menu_item', '161'),
-      'form_build_id' => 'form-BApvj-OpOy_y8fu6Y5_afjTLIeTKqhqaaXEBMxLFADI',
-      'form_token' => 'A4RoZFunTt8GEf628b1WfPTdwVxJXKvpAW8ass6KmFk',
-      'form_id' => 'conservation_menu_bar_form',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
-    $display->content['new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d'] = $pane;
-    $display->panels['menu_bar'][0] = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
-    $pane = new stdClass();
-    $pane->pid = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
-    $pane->panel = 'top';
-    $pane->type = 'nas_panes_cons_landing_top';
-    $pane->subtype = 'nas_panes_cons_landing_top';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'Conservation',
-      'title' => 'Conservation',
-      'subtitle' => 'Protecting birds and their habitats',
-      'image' => variable_get('nas_conservation_landing_hero_image_fid', ''),
-      'color_mode' => 'dark',
-      'form_build_id' => 'form-ZLm9YWjZPXLSIgk2__nC7RHzbDHgvSofVX6S9VXjtbE',
-      'form_token' => 'tWIX3VcKeJxlzTw3EF4rErR54Iv60BIWfCJ0IsW1L5U',
-      'form_id' => 'conservation_landing_top_form',
-      'header_color_mode' => 'dark',
-      'text_color_mode' => 'light',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '71994362-845f-47e4-a8a2-e15b2ceab167';
-    $display->content['new-71994362-845f-47e4-a8a2-e15b2ceab167'] = $pane;
-    $display->panels['top'][0] = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
-    $pane = new stdClass();
     $pane->pid = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';
     $pane->panel = 'main';
     $pane->type = 'cons_landing_body';
@@ -169,19 +113,32 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'form_build_id' => 'form-9WKWbIhbZmbiLvotmEF32RCLmSWxRFEe5xhDlBHHg28',
-      'form_token' => '0Btgr1zb_f1_4-eo_V4f0CtMUGHSQ5sSIQCjN3Wpjkc',
+      'form_build_id' => 'form-Bn3gbp7KqbQmx5wHw3etGQtJGheoRC_LB2_oIXmUdl0',
+      'form_token' => '3EH-5xBaVqAPqJAyqU6e4uE1HNssm9DvaV9eSu3DizA',
       'form_id' => 'cons_landing_body_edit_form',
       'body' => array(
         'value' => '<h2>We maximize our conservation results by focusing on five key strategies critical for birds</h2>
-          <p>For more than a century Audubon has protected birds and their habitat for the benefit of humanity as well as the earth’s biodiversity. Our legacy is built on science, education, advocacy, and on-the-ground conservation. We bring all of this together through our unparalleled network. This combination of expertise and on-the-ground engagement makes Audubon a truly unique and trusted force for conservation.</p>
-          <div class="donate-bar half-size">
-            <div class="donate-bar-caption">
-              <p>Support our conservation work by contributing today.</p>
-            </div>
-            <div class="donate-bar-button"><a class="button tomato large" href="/donate">Donate</a></div>
-          </div>
-          <p>Audubon’s mission is more urgent today than ever before. Natural habitat and open spaces are disappearing at an alarming rate. Protections for wildlife, natural places, and clean air and water are in jeopardy. By protecting birds, we’re also safeguarding America’s great natural heritage for future gen- erations, preserving our shared quality of life and fostering a healthier environment for us all.</p>',
+
+<p>&nbsp;</p>
+
+[block_insert]5[/block_insert]
+
+<p>For more than a century Audubon has protected birds and their habitat for the benefit of humanity as well as the earth’s biodiversity. Our legacy is built on science, education, advocacy, and on-the-ground conservation. We bring all of this together through our unparalleled network. This combination of expertise and on-the-ground engagement makes Audubon a truly unique and trusted force for conservation.</p>
+
+<div class="donate-bar half-size">
+	<div class="donate-bar-caption">
+		<p>Support our conservation work by contributing today.</p>
+	</div>
+
+	<div class="donate-bar-button"><a class="button tomato large" href="/donate">Donate</a></div>
+</div>
+
+<p>Audubon’s mission is more urgent today than ever before. Natural habitat and open spaces are disappearing at an alarming rate. Protections for wildlife, natural places, and clean air and water are in jeopardy. By protecting birds, we’re also safeguarding America’s great natural heritage for future gen- erations, preserving our shared quality of life and fostering a healthier environment for us all.</p>
+
+<p>&nbsp;</p>
+
+<p><span style="font-size: 25.5555553436279px; font-style: italic; line-height: 34px;">Audubon’s national and state programs, Centers, Chapters, and Important Bird Areas come together with an unparalleled wingspan for conservation.</span></p>
+',
         'format' => 'full_html',
       ),
       'buttons' => array(
@@ -199,7 +156,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '39e12540-b074-4dff-8df5-fb0b23a6ecea';
     $display->content['new-39e12540-b074-4dff-8df5-fb0b23a6ecea'] = $pane;
-    $display->panels['main'][0] = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';    
+    $display->panels['main'][0] = 'new-39e12540-b074-4dff-8df5-fb0b23a6ecea';
     $pane = new stdClass();
     $pane->pid = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $pane->panel = 'main';
@@ -215,14 +172,111 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'wrapper' => array(
-        4747 => array(
+        5734 => array(
           'entity_reference' => array(
-            'entity_id' => '4747',
+            'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
             'entity_type' => 'node',
             'entity_bundle' => 'strategy',
           ),
-          'image' => '',
+          'image' => 0,
+          'icon' => '9769',
+          'title' => 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. ',
+          'summary' => array(
+            'value' => '<p>Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.</p>
+',
+            'format' => 'full_html',
+          ),
+          'learn_more_link' => array(
+            'title' => '',
+            'url' => '',
+          ),
+          'entity_reference_project' => array(
+            'entity_id' => '5732',
+            'entity_label' => 'Saving Seabirds Along the Pacific Coast',
+            'entity_type' => 'node',
+            'entity_bundle' => 'project',
+          ),
+        ),
+        5735 => array(
+          'entity_reference' => array(
+            'entity_id' => '5735',
+            'entity_label' => 'Saving Important Bird Areas',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'image' => '9759',
+          'icon' => '9763',
+          'title' => '',
+          'summary' => array(
+            'value' => '',
+            'format' => 'full_html',
+          ),
+          'learn_more_link' => array(
+            'title' => '',
+            'url' => '',
+          ),
+          'entity_reference_project' => array(
+            'entity_id' => '5736',
+            'entity_label' => 'Arctic Slope',
+            'entity_type' => 'node',
+            'entity_bundle' => 'project',
+          ),
+        ),
+        5737 => array(
+          'entity_reference' => array(
+            'entity_id' => '5737',
+            'entity_label' => 'Shaping a Healthy Climate & Clean Energy Future',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'image' => 0,
+          'icon' => '9766',
+          'title' => '',
+          'summary' => array(
+            'value' => '',
+            'format' => 'full_html',
+          ),
+          'learn_more_link' => array(
+            'title' => '',
+            'url' => '',
+          ),
+          'entity_reference_project' => array(
+            'entity_id' => '5730',
+            'entity_label' => 'Site It Right',
+            'entity_type' => 'node',
+            'entity_bundle' => 'project',
+          ),
+        ),
+        5739 => array(
+          'entity_reference' => array(
+            'entity_id' => '5739',
+            'entity_label' => 'Creating Bird-Friendly Communities',
+            'entity_type' => 'node',
+            'entity_bundle' => 'strategy',
+          ),
+          'image' => 0,
+          'icon' => '9768',
+          'title' => '',
+          'summary' => array(
+            'value' => '',
+            'format' => 'full_html',
+          ),
+          'learn_more_link' => array(
+            'title' => '',
+            'url' => '',
+          ),
+          'entity_reference_project' => array(
+            'entity_id' => '4748',
+            'entity_label' => 'Lights Out Chicago and Minneapolis',
+            'entity_type' => 'node',
+            'entity_bundle' => 'project',
+          ),
+        ),
+        5747 => array(
+          'entity_reference' => FALSE,
+          'image' => 0,
+          'icon' => 0,
           'title' => '',
           'summary' => array(
             'value' => '',
@@ -235,8 +289,8 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
           'entity_reference_project' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-t4Q3mUh1Jwv3XgUvNWH-1bLF0Plu8wcE8os4pYHaKJs',
-      'form_token' => '6LAz75yaGFOZyf12kVXPJcBMEWefwP4vecFvXJHPXBI',
+      'form_build_id' => 'form-KOLHmF02XmpmyPRkUNxzYCT8apmOZmtCc6E5-t0wRLM',
+      'form_token' => 'A-p7ydkrkdiWtgMKoBL9oxqcJ2Rj1AI6mwVwwy8dkM8',
       'form_id' => 'cons_landing_slideshow_edit_form',
     );
     $pane->cache = array();
@@ -245,11 +299,11 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $display->content['new-0d2bd504-36a8-4968-aa77-bb1d7a907547'] = $pane;
-    $display->panels['main'][2] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
+    $display->panels['main'][1] = 'new-0d2bd504-36a8-4968-aa77-bb1d7a907547';
     $pane = new stdClass();
     $pane->pid = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
     $pane->panel = 'main';
@@ -267,7 +321,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
         'return' => 'Finish',
         'cancel' => 'Cancel',
       ),
-      'image' => nas_fpp_get_default_image(NAS_FPP_CONS_LANDING_FULL_BG_IMAGE),
+      'image' => '9738',
       'color' => 'light',
       'wrapper' => array(
         1 => array(
@@ -323,11 +377,68 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'f4a1249c-685e-4e65-a336-10239a7ff8c0';
     $display->content['new-f4a1249c-685e-4e65-a336-10239a7ff8c0'] = $pane;
-    $display->panels['main'][1] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
+    $display->panels['main'][2] = 'new-f4a1249c-685e-4e65-a336-10239a7ff8c0';
+    $pane = new stdClass();
+    $pane->pid = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
+    $pane->panel = 'menu_bar';
+    $pane->type = 'menu_bar_section';
+    $pane->subtype = 'menu_bar_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default_menu_item' => '161',
+      'form_build_id' => 'form-wNQHFlRq-fvtI9BFZpbLOos-lVaaAAEVb6gif9AdLw0',
+      'form_token' => 'NXFfhytGqTfl2YLsfd6XTi8y2NXW2a2gDU2aUIwhPdA',
+      'form_id' => 'menu_bar_section_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
+    $display->content['new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d'] = $pane;
+    $display->panels['menu_bar'][0] = 'new-5e3f60d6-fb6a-4d81-9d62-983d430a1c2d';
+    $pane = new stdClass();
+    $pane->pid = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
+    $pane->panel = 'top';
+    $pane->type = 'hero_image_section';
+    $pane->subtype = 'hero_image_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Conservation',
+      'title' => 'Conservation',
+      'subtitle' => 'Protecting birds and their habitats',
+      'image' => '9735',
+      'color_mode' => 'dark',
+      'form_build_id' => 'form-bKVPXloYHAnTT0IjP2dr9pl55v4XQ9uArnctdN0tkpY',
+      'form_token' => 'rJkHSWqMzxSQ6piF2uBRiOUMdFVJz-0aG-FXV6PLlwk',
+      'form_id' => 'hero_image_section_form',
+      'header_color_mode' => 'dark',
+      'text_color_mode' => 'light',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '71994362-845f-47e4-a8a2-e15b2ceab167';
+    $display->content['new-71994362-845f-47e4-a8a2-e15b2ceab167'] = $pane;
+    $display->panels['top'][0] = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-71994362-845f-47e4-a8a2-e15b2ceab167';
   $handler->conf['display'] = $display;
