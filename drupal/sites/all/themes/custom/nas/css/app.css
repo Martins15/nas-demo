@@ -12255,7 +12255,7 @@ h2.grey {
   top: 5px;
 }
 .aid-filter li ul {
-  margin: 0px;
+  margin: 0px 0px 20px;
   padding: 0px;
 }
 .aid-filter li ul li {
@@ -12331,6 +12331,11 @@ h2.grey {
 
 .bird-card-set-search {
   padding-top: 0px;
+}
+
+.load-more.button I {
+  top: auto\9;
+  left: auto\9;
 }
 
 @media only screen and (min-width: 480px) and (max-width: 600px) {
