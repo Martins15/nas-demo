@@ -617,7 +617,6 @@ function nas_master_update_7053() {
       'geocoder',
       'geophp',
       'nas_location_feature',
-      'nas_getoutside_feature',
     )
   );
   features_revert_module('nas_import_feeds_feature');
@@ -682,4 +681,14 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     $sandbox['#finished'] = 1;
     watchdog('nas_master', '@count @name has been successfully imported.', array('@count' => $sandbox['progress'], '@name' => $human_name));
   }
+}
+
+/**
+ * Enable getoutside feature.
+ */
+function nas_master_update_7059() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_about_feature' => array('page_manager_pages')));
+  features_revert(array('nas_conservation_landing_feature' => array('page_manager_pages')));
+  module_enable(array('nas_getoutside_feature'));
 }
