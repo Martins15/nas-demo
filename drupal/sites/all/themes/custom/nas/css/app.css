@@ -567,6 +567,14 @@ th {
   content: "\f633";
 }
 
+.icon-zoomin:before, .lzoom_zoomin:before {
+  content: "";
+}
+
+.icon-zoomout:before, .lzoom_zoomout:before {
+  content: "";
+}
+
 /*Important: In case foundation doesn't compiled on some environments, attach compiled file*/
 meta.foundation-version {
   font-family: "/5.2.2/";
@@ -11996,6 +12004,55 @@ body.touch .sticky-wrapper {
   .page-boa-bird .boa-in-the-news h2 {
     text-align: center;
   }
+}
+
+.lzoom_zoomin,
+.lzoom_zoomout {
+  bottom: 30px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+.lzoom_zoomin:before,
+.lzoom_zoomout:before {
+  background: #fff;
+  color: #E18400;
+  display: block;
+  font-size: 32px;
+  padding: 8px 6px 8px 8px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.lzoom_zoomin {
+  right: 40px;
+}
+
+.lzoom_zoomout {
+  right: 120px;
+}
+
+.draggble {
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#cboxLoadedContent {
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .blocks-events .more-events {
