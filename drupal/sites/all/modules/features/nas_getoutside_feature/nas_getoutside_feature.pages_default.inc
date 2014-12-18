@@ -97,7 +97,7 @@ function nas_getoutside_feature_default_page_manager_pages() {
       'override_title_text' => '',
       'title' => 'Get Outside',
       'subtitle' => 'A short tagline goes here…',
-      'image' => '9775',
+      'image' => '9795',
       'header_color_mode' => 'light',
       'text_color_mode' => 'light',
       'form_build_id' => 'form-guBjnJ3qb7FWWXeYWZuvESjzOCrYo7WYFC9h0KTbYyE',
