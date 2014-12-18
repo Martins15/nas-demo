@@ -172,7 +172,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'wrapper' => array(
-        5734 => array(
+        0 => array(
           'entity_reference' => array(
             'entity_id' => '5734',
             'entity_label' => 'Sharing Our Seas & Shores',
@@ -198,7 +198,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
             'entity_bundle' => 'project',
           ),
         ),
-        5735 => array(
+        1 => array(
           'entity_reference' => array(
             'entity_id' => '5735',
             'entity_label' => 'Saving Important Bird Areas',
@@ -223,7 +223,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
             'entity_bundle' => 'project',
           ),
         ),
-        5737 => array(
+        2 => array(
           'entity_reference' => array(
             'entity_id' => '5737',
             'entity_label' => 'Shaping a Healthy Climate & Clean Energy Future',
@@ -248,7 +248,7 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
             'entity_bundle' => 'project',
           ),
         ),
-        5739 => array(
+        3 => array(
           'entity_reference' => array(
             'entity_id' => '5739',
             'entity_label' => 'Creating Bird-Friendly Communities',
@@ -273,25 +273,13 @@ function nas_conservation_landing_feature_default_page_manager_pages() {
             'entity_bundle' => 'project',
           ),
         ),
-        5747 => array(
-          'entity_reference' => FALSE,
-          'image' => 0,
-          'icon' => 0,
-          'title' => '',
-          'summary' => array(
-            'value' => '',
-            'format' => 'full_html',
-          ),
-          'learn_more_link' => array(
-            'title' => '',
-            'url' => '',
-          ),
-          'entity_reference_project' => FALSE,
-        ),
       ),
-      'form_build_id' => 'form-KOLHmF02XmpmyPRkUNxzYCT8apmOZmtCc6E5-t0wRLM',
-      'form_token' => 'A-p7ydkrkdiWtgMKoBL9oxqcJ2Rj1AI6mwVwwy8dkM8',
+      'form_build_id' => 'form-WsCsQy4085z86lwF7OuNwPO5KaDP5xX8fFQH0GpHBWk',
+      'form_token' => '7etaP-GiVOGGfijRWhVUGUZbbv4mALs5MJ8ym0WxazI',
       'form_id' => 'cons_landing_slideshow_edit_form',
+      'count' => 5,
+      'add_group' => 'Add more',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(

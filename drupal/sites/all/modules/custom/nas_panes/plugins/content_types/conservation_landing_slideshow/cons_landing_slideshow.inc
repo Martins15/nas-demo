@@ -44,26 +44,45 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
     '#prefix' => '<div class="wrapper">',
     '#suffix' => '</div>',
   );
-
-  $nodes = node_load_multiple(array(), array('type' => 'strategy'));
-
-  foreach ($nodes as $nid => $node) {
-    $form['wrapper'][$nid] = array(
+  if (empty($conf['count'])) {
+    if (empty($form_state['count'])) {
+      $count = 1;
+      $form_state['count'] = $count;
+    }
+    else {
+      $count = $form_state['count'];
+    }
+  }
+  else {
+    if (empty($form_state['count'])) {
+      $count = $conf['count'];
+      $form_state['count'] = $count;
+    }
+    else {
+      $count = $form_state['count'];
+    }
+  }
+  $form['count'] = array(
+    '#type' => 'hidden',
+    '#value' => $count,
+  );
+  for ($i = 0; $i < $form_state['count']; $i++) {
+    $form['wrapper'][$i] = array(
       '#type' => 'fieldset',
       '#title' => '',
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
-      '#prefix' => '<div class="wrapper-' . $nid .'">',
+      '#prefix' => '<div class="wrapper-' . $i .'">',
       '#suffix' => '</div>',
     );
-    $form['wrapper'][$nid]['entity_reference'] = array(
+    $form['wrapper'][$i]['entity_reference'] = array(
       '#type' => 'entityreference',
       '#title' => 'Conservation strategy',
-      '#default_value' => $nid,
+      '#default_value' => !empty($conf['wrapper'][$i]['entity_reference']) ? $conf['wrapper'][$i]['entity_reference'] : '',
       '#era_entity_type' => 'node',
       '#era_bundles' => array('strategy'),
     );
-    $form['wrapper'][$nid]['image'] = array(
+    $form['wrapper'][$i]['image'] = array(
       '#type' => 'media',
       '#tree' => TRUE,
       '#title' => t('Image'),
@@ -76,11 +95,11 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
           'types' => array('image'),
         ),
       ),
-      '#default_value' => !empty($conf['wrapper'][$nid]['image']) ? $conf['wrapper'][$nid]['image'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['image']) ? $conf['wrapper'][$i]['image'] : '',
       '#required' => FALSE,
       '#pp_crop_styles' => array('get_outside'),
     );
-    $form['wrapper'][$nid]['icon'] = array(
+    $form['wrapper'][$i]['icon'] = array(
       '#type' => 'media',
       '#tree' => TRUE,
       '#title' => t('Icon'),
@@ -93,37 +112,42 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
           'types' => array('image'),
         ),
       ),
-      '#default_value' => !empty($conf['wrapper'][$nid]['icon']) ? $conf['wrapper'][$nid]['icon'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['icon']) ? $conf['wrapper'][$i]['icon'] : '',
       '#required' => FALSE,
       '#pp_crop_styles' => array('conservation_slideshow_icon'),
     );
-    $form['wrapper'][$nid]['title'] = array(
+    $form['wrapper'][$i]['title'] = array(
       '#type' => 'textfield',
       '#title' => t('Title'),
       '#size' => 50,
-      '#default_value' => !empty($conf['wrapper'][$nid]['title']) ? $conf['wrapper'][$nid]['title'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['title']) ? $conf['wrapper'][$i]['title'] : '',
     );
-    $form['wrapper'][$nid]['summary'] = array(
+    $form['wrapper'][$i]['summary'] = array(
       '#type' => 'text_format',
       '#title' => t('Summary'),
       '#rows' => 5,
-      '#default_value' => !empty($conf['wrapper'][$nid]['summary']['value']) ? $conf['wrapper'][$nid]['summary']['value'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['summary']['value']) ? $conf['wrapper'][$i]['summary']['value'] : '',
       '#format' => 'full_html',
     );
-    $form['wrapper'][$nid]['learn_more_link'] = array(
+    $form['wrapper'][$i]['learn_more_link'] = array(
       '#title' => t('Learn more link'),
       '#type' => 'link_field',
       '#field_name' => 'learn_more_link',
-      '#default_value' => !empty($conf['wrapper'][$nid]['learn_more_link']) ? $conf['wrapper'][$nid]['learn_more_link'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['learn_more_link']) ? $conf['wrapper'][$i]['learn_more_link'] : '',
     );
-    $form['wrapper'][$nid]['entity_reference_project'] = array(
+    $form['wrapper'][$i]['entity_reference_project'] = array(
       '#type' => 'entityreference',
       '#title' => 'Featured project',
-      '#default_value' => !empty($conf['wrapper'][$nid]['entity_reference_project']) ? $conf['wrapper'][$nid]['entity_reference_project'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['entity_reference_project']) ? $conf['wrapper'][$i]['entity_reference_project'] : '',
       '#era_entity_type' => 'node',
       '#era_bundles' => array('project'),
     );
   }
+  $form['add_group'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add more'),
+    '#submit' => array('cons_landing_slideshow_add_group'),
+  );
 
   return $form;
 }
@@ -135,9 +159,24 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
 function cons_landing_slideshow_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
+      if ($key == 'wrapper') {
+        foreach ($form_state['values']['wrapper'] as $i => $val) {
+          if (!$val['entity_reference']) {
+            unset($form_state['values']['wrapper'][$i]);
+          }
+        }
+      }
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+}
+
+/**
+ * Edit form submit for add group
+ */
+function cons_landing_slideshow_add_group($form, &$form_state) {
+  $form_state['count']++;
+  $form_state['rebuild'] = TRUE;
 }
 
 /**
@@ -147,14 +186,17 @@ function cons_landing_slideshow_edit_form_submit(&$form, &$form_state) {
 function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  $nodes = node_load_multiple(array(), array('type' => 'strategy'));
   $data = $conf['wrapper'];
-
-  $nodes_array_to_show = array();
-  foreach ($nodes as $nid => $node) {
-    if (!isset($data[$nid])) {
+  $nids = array();
+  foreach ($data as $key => $value) {
+    if (!$value['entity_reference']) {
       continue;
     }
+    $nids[] = $value['entity_reference']['entity_id'];
+  }
+  $nodes = node_load_multiple($nids, array('type' => 'strategy'));
+  $nodes_array_to_show = array();
+  foreach ($nodes as $nid => $node) {
     //Set title.
     $nodes_array_to_show[$nid]['title'] = $data[$nid]['title'];
     if (empty($data[$nid]['title'])) {
