@@ -1118,7 +1118,7 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
 function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   $context = array();
   // Check if pane renders within node.
-  if (arg(0) == 'node' && is_numeric(arg(1)) && $context_node = node_load(arg(1))) {
+  if ($context_node = menu_get_object('node')) {
     $context['node'] = $context_node;
   }
   // Check if pane renders within term.

@@ -67,10 +67,10 @@ function engagement_cards_edit_form_submit(&$form, &$form_state) {
  */
 function engagement_cards_render($subtype, $conf, $args, $context) {
   // We can't add node context to the pane, because it's use on landing pages too.
-  if (arg(0) == 'node' && is_numeric(arg(1))) {
-    $context_node = node_load(arg(1));
+  $conf_key = 'default';
+  if ($context_node = menu_get_object('node')) {
+    $conf_key = $context_node->nid;
   }
-  $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
   }
