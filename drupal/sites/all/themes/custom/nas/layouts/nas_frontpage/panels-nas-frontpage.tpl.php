@@ -5,7 +5,7 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-<section class="curtain hide-for-ie" style="background-color: #fff; background-image: url(<?php print $frontpage_backgroundimage; ?>)">
+<section class="curtain hide-for-ie" style="background-color: #fff; background-image: url(<?php print !empty($frontpage_backgroundimage) ? $frontpage_backgroundimage : ''; ?>)">
   <header class="global-header transparent dark-text light-bg">
     <div class="row">
       <div class="columns">
@@ -119,8 +119,10 @@
 <?php print $content['top']; ?>
 </section>
 <section class="global-content">
-  <?php print $featured_frontpage_mobile_content; ?>
-  <div class="homepage-first-row row space-top double">
+  <?php if (!empty($featured_frontpage_mobile_content)): ?>
+    <?php print $featured_frontpage_mobile_content; ?>
+  <?php endif; ?>
+  <div class="homepage-first-row row space-top double" data-equalizer>
     <?php print $content['featured']; ?>
     <div class="columns large-4 medium-6">
       <?php print $content['more_headlines']; ?>
@@ -131,57 +133,7 @@
   <?php print $content['bird_news']; ?>
   <?php print $content['main']; ?>
   <section class="card-set bg-1">
-    <div class="row">
-      <div class="column">
-        <h1 class="card-set-heading pea-green">These birds need your help</h1>
-      </div>
-    </div>
-    <div class="row card-set-wrapper">
-      <div class="clearfix card-set-scroller">
-        <div class="tiny-4 columns">
-          <div class="engagement-card">
-            <div class="engagement-card-content">
-              <h3 class="engagement-card-headline">Save the Brown Pelican</h3>
-              <p>Numerous oil spills along the Gulf Coast have threatened thousands of native birds.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato large">Endorse New Legislation</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-1.jpg" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="engagement-card">
-            <div class="engagement-card-content">
-              <h3 class="engagement-card-headline">Join Audubon’s Volunteers Days</h3>
-              <p>Learn how you can make a real, lasting difference in your own community.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato large">Become a Volunteer</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-2.jpg" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="engagement-card">
-            <div class="engagement-card-content">
-              <h3 class="engagement-card-headline">Adopt a Bird: Sandhill Crane</h3>
-              <p>Online adoptions allow you to help Audubon protect birds and their habitats.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato large">Adopt a Bird</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . path_to_theme(); ?>/img/engagement-card-3.jpg" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <?php print $content['cards_set']; ?>
     <div class="row">
       <div class="card-set-dots light">
         <div class="dot active"></div>

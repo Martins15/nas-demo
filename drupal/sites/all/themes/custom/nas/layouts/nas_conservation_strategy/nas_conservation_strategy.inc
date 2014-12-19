@@ -18,5 +18,6 @@ $plugin = array(
     'body' => t('Body'),
     'projects' => t('Projects'),
     'news' => t('News'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

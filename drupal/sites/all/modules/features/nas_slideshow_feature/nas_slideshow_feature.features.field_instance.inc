@@ -24,6 +24,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 3,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -106,6 +112,12 @@ function nas_slideshow_feature_field_default_field_instances() {
           'image_style' => 'slideshow',
         ),
         'type' => 'image',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
       'nas_node_featured' => array(
@@ -240,6 +252,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 4,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -321,6 +339,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',
@@ -404,6 +428,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 5,
       ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -486,6 +516,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_node_featured' => array(
         'label' => 'hidden',

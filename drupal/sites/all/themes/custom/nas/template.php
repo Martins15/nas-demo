@@ -66,6 +66,12 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'static_page') {
     nas_preprocess_node_static_page($vars);
   }
+  if ($vars['type'] == 'engagement_cards') {
+    nas_preprocess_node_engagement_cards($vars);
+  }
+  if ($vars['type'] == 'contact') {
+    nas_preprocess_node_contact($vars);
+  }
 }
 
 /**
@@ -198,6 +204,7 @@ function nas_preprocess_node_boa(&$vars) {
     $vars['plate_number'] = check_plain($plate_items[0]['value']);
   }
 
+  $vars['sort_name'] = '';
   // BOA index page sortings.
   if (arg(0) == 'boa' && arg(1) == '') {
     $vars['sort_name'] = $vars['scientific_name'];
@@ -214,6 +221,37 @@ function nas_preprocess_node_boa(&$vars) {
     }
   }
 }
+
+/**
+ * Implements THEME_preprocess_node for Contact content type.
+ */
+function nas_preprocess_node_contact(&$vars) {
+  $node = $vars['node'];
+  $node_path = 'node/' . $node->nid;
+  $vars['title_link'] = l($node->title, $node_path);
+
+  // Only load all these data if rendering teaser.
+  if ($vars['view_mode'] == 'teaser') {
+    // Default illustration.
+    if ($field_image_items = field_get_items('node', $node, 'field_image')) {
+      $image = theme('image_style', array(
+        'style_name' => 'our_leadership',
+        'path' => $field_image_items[0]['uri'],
+        'alt' => $node->title,
+      ));
+    }
+    $vars['linked_image'] = l($image, $node_path, array(
+      'html' => TRUE,
+      'attributes' => array('title' => check_plain($node->title)),
+    ));
+
+    $vars['contact_title'] = '';
+    if ($field_contact_title_items = field_get_items('node', $node, 'field_contact_title')) {
+      $vars['contact_title'] = $field_contact_title_items[0]['safe_value'];
+    }
+  }
+}
+
 /**
  * Implements THEME_preprocess_node for BOA Family content type.
  */
@@ -223,7 +261,7 @@ function nas_preprocess_node_boaf(&$vars) {
   $vars['title_link'] = l($node->title, $node_path);
 
   // Only load all these data if rendering teaser.
-  if ($vars['view_mode'] == 'nas_node_teaser_small') {
+  if (in_array($vars['view_mode'], array('nas_node_teaser_small', 'teaser'))) {
     // Default illustration.
     $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
     if ($boa = _nas_boa_family_birds($node->nid)) {
@@ -336,6 +374,7 @@ function nas_preprocess_node_article(&$vars) {
   $subtitle_modes = array(
     'nas_teaser_flyway_landing',
     'static_page_related_teaser',
+    'about_page_related_teaser',
     'conservation_strategy_featured_teaser',
   );
   if (in_array($vars['view_mode'], $subtitle_modes)) {
@@ -365,6 +404,20 @@ function nas_preprocess_node_article(&$vars) {
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['by_line'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_author')) {
+      $author_node = node_load($field_items[0]['target_id']);
+      $vars['by_line'] = 'By ' . $author_node->title;
+    }
+  }
+  if ($vars['view_mode'] == 'teaser_author_page') {
+    $vars['article_date'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_article_date')) {
+      $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
+    }
+  }
+
   if ($vars['view_mode'] == 'nas_node_related_features') {
     if (!empty($vars['content']['field_menu_section'])) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
@@ -392,7 +445,7 @@ function nas_preprocess_node_static_page(&$vars) {
       ));
   }
 
-  if ($vars['view_mode'] == 'static_page_related_teaser') {
+  if ($vars['view_mode'] == 'static_page_related_teaser' || $vars['view_mode'] == 'about_page_related_teaser') {
     $vars['subtitle'] = '';
     if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
@@ -455,6 +508,24 @@ function nas_preprocess_node_article_news_from_network(&$vars) {
   if (!empty($node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'])) {
     $term = $node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'];
     $vars['blue_link'] = l($term->name, 'taxonomy/term/' . $term->tid, array('attributes' => array('class' => array('editorial-card-slug'))));
+  }
+}
+
+/**
+ * theme_preprocess_node for engagement cards content type.
+ */
+function nas_preprocess_node_engagement_cards(&$vars) {
+  $node = $vars['node'];
+  if ($field_link_items = field_get_items('node', $node, 'field_link')) {
+    $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
+      'attributes' => array(
+        'class' => array(
+        'button',
+        'tomato',
+        'large',
+        ),
+      ),
+    ));
   }
 }
 
@@ -566,6 +637,7 @@ function nas_image($variables) {
     'conservation_strategy_icon',
     'boa_family_species',
     'magazine_issue_cover',
+    'our_leadership',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));

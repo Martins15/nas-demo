@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Getoutside feature.
+ */
+
+include_once 'nas_getoutside_feature.features.inc';

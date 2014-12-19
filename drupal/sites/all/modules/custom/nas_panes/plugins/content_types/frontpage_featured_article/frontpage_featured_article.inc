@@ -90,7 +90,7 @@ function frontpage_featured_article_form_submit(&$form, &$form_state) {
 function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  if (!isset($conf['article']['entity_id']) || empty($conf['article']['entity_id'])) {
+  if (empty($conf['article']['entity_id']) || !$node = node_load($conf['article']['entity_id'])) {
     $block->content = '';
     if (user_access('access contextual links') && user_access('edit NAS panes')) {
       $block->content = t('No featured article selected');
@@ -104,16 +104,13 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE, $image->uri);
   }
 
-  $node = node_load($conf['article']['entity_id']);
-
-  $article_title = $node->title;
-  $article_raw_link = url('node/'.$conf['article']['entity_id']);
-  $tagline_text = $conf['tagline_text'];
-  $conversation_link = '';
-  $blue = nas_panes_get_blue_text_link($node);
-  if ($node && !empty($blue[0]) && !empty($blue[1])) {
-    $conversation_link = l($blue[0], $blue[1], array('classes' => array('editorial-card-slug'), 'html' => TRUE, 'external' => TRUE));
-  };
+  $article_title = filter_xss($node->title);
+  $article_raw_link = url('node/' . $node->nid);
+  $subtitle = '';
+  if ($field_items = field_get_items('node', $node, 'field_subtitle')) {
+    $subtitle = $field_items[0]['safe_value'];
+  }
+  $tagline_text = filter_xss($conf['tagline_text']);
 
   $contextual_links = '';
   if (user_access('featured article pane edit')) {
@@ -132,7 +129,7 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
       'edit' => array(
         'title' => t('Edit'),
         'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
+        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
     );
@@ -151,9 +148,9 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
 
   $content = theme('nas_frontpage_featured_article', array(
     'image_path' => $image_path,
-    'conversation_link' => $conversation_link,
     'article_title' => $article_title,
     'article_raw_link' => $article_raw_link,
+    'subtitle' => $subtitle,
     'tagline_text' => $tagline_text,
     'contextual_links' => $contextual_links,
   ));

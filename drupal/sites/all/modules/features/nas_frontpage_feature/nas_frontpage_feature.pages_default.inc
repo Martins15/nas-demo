@@ -67,31 +67,84 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Links',
       'title' => 'Links',
-      'body' => '
-        <h3>Pages</h3><ul>
-        <li><a href="frontpage2">Frontpage2</a></li>
-        <li><a href="bird-guide">Bird Guide</a></li>
-        <li><a href="birds-landing">Birds Landing page</a></li></ul>
-        <li><a href="news">News page</a></li></ul>
-        <li><a href="flyways">Flyways Landing</a></li></ul>
-        <li><a href="past-magazine-issues">Past magazine issues</a></li></ul>
-        <br/><br/>
+      'body' => '<h3>Pages</h3>
 
-        <h3>Articles</h3><ul>
-        <li><a href="newsroom/press-releases/2007/supreme-court-strips-excuses-epa-inaction-global-warming">Supreme Court Strips Excuses For Epa Inaction On Global Warming</a></li>
-        <li><a href="newsroom/press-releases/2007/its-spring-planting-time">It\'s Spring Planting Time</a></li></ul>
-        <br/><br/>
+<ul>
+	<li><a href="frontpage2">Frontpage2</a></li>
+	<li><a href="bird-guide">Bird Guide</a></li>
+	<li><a href="birds-landing">Birds Landing page</a></li>
+</ul>
 
-        <h3>Birds</h3><ul>
-        <li><a href="birds/northern-gannet">Northern Gannet</a></li>
-        <li><a href="birds/ashy-storm-petrel">Ashy Storm-Petrel</a></li></ul>
-        <br/><br/>
+<ul>
+	<li><a href="news">News page</a></li>
+	<li><a href="flyways">Flyways Landing</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/content/atlantic-flyway">Flyway</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/content/january-february-2013">Magazine issue</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/past-magazine-issues?before=2013-01-01">Past magazine issues</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/conservation">Conservation landing</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/content/saving-seabirds-along-pacific-coast">Conservation project</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/content/sharing-our-seas-shores-0">Conservation Strategy</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/about">About Us</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/about/our-leadership">Our Leadership</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/authors/david-yarnold">Bio</a></li>
+  <li><a href="http://nas.wearepropeople.md/staging/authors/simone-scully">Author page</a></li>
+</ul>
 
-        <h3>Various links</h3><ul>
-        <li><a href="admin/structure/menu/manage/menu-header-small">Header menu</a></li>
-        <li><a href="admin/structure/menu/manage/menu-footer">Footer menu</a></li>
-        <li><a href="admin/structure/menu/manage/menu-footer-copyright">Footer bottom menu</a></li>
-        <li><a href="admin/structure/pages/nojs/operation/site_template/handlers/site_template_panel_context/content">Footer text changes (edit footer pane)</a></li></ul><p>&nbsp;</p>',
+<p>&nbsp;</p>
+
+<h3>Articles</h3>
+
+<ul>
+	<li><a href="http://nas.wearepropeople.md/staging/newsroom/news-stories/2014/test-bird-all-fields">Default</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/articles/conservation/online-explorers-how-you-can-help-scientists">Full screen hero photo</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/node/4750">Standard hero photo</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/newsroom/press-releases/2008/alaskas-teshekpuk-lake-saved">Map</a>&nbsp;</li>
+	<li><a href="http://nas.wearepropeople.md/staging/newsroom/news-stories/2013/tribute-donal-c-o-brien-conservationist-ages">Press Release</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/articles/birds/crow-never-forgets">Magazine article</a></li>
+</ul>
+
+<h3 style="line-height: 19.9939994812012px;">&nbsp;</h3>
+
+<h3 style="line-height: 19.9939994812012px;">Static pages:</h3>
+
+<ul>
+	<li><a href="http://nas.wearepropeople.md/staging/content/lorem-ipsum-dolor-sit-amet-consectetuer-adipiscing-elit-aenean-commodo-ligula-eget-dolor">1 column (without hero image)</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/content/curabitur-ullamcorper-ultricies-nisi">2 column</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3 style="line-height: 19.9939994812012px;">BOA section:&nbsp;</h3>
+
+<ul>
+	<li><a href="http://nas.wearepropeople.md/staging/content/wood-thrush">Species page</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/content/colymbinae-divers-and-grebes">Family page</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/boa">Index page</a>&nbsp;</li>
+	<li><a href="http://nas.wearepropeople.md/staging/boa/alphabetical">Listing&nbsp;</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Birds</h3>
+
+<ul>
+	<li><a href="birds/northern-gannet">Northern Gannet</a></li>
+	<li><a href="birds/ashy-storm-petrel">Ashy Storm-Petrel</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Various links</h3>
+
+<ul>
+	<li><a href="admin/structure/menu/manage/menu-header-small">Header menu</a></li>
+	<li><a href="admin/structure/menu/manage/menu-footer">Footer menu</a></li>
+	<li><a href="admin/structure/menu/manage/menu-footer-copyright">Footer bottom menu</a></li>
+	<li><a href="admin/structure/pages/nojs/operation/site_template/handlers/site_template_panel_context/content">Footer text changes (edit footer pane)</a></li>
+</ul>
+
+<p>&nbsp;</p>
+',
       'format' => 'full_html',
       'substitute' => TRUE,
     );
@@ -160,6 +213,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'editorial_cards' => NULL,
       'main' => NULL,
       'conservation_section' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -187,6 +241,49 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $display->content['new-789c461d-cebc-4a8d-b7c7-92f402c87f26'] = $pane;
     $display->panels['bird_news'][0] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $pane = new stdClass();
+    $pane->pid = 'new-3f028648-0141-4594-857f-a6f1177e6172';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-Dt-ilLbFPi8WsAvqgy4P9k1bl2U2NPzri-SIldjfmrw',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3f028648-0141-4594-857f-a6f1177e6172';
+    $display->content['new-3f028648-0141-4594-857f-a6f1177e6172'] = $pane;
+    $display->panels['cards_set'][0] = 'new-3f028648-0141-4594-857f-a6f1177e6172';
+    $pane = new stdClass();
     $pane->pid = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
     $pane->panel = 'conservation_section';
     $pane->type = 'frontpage_conservation_section';
@@ -200,7 +297,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       ),
       'override_title' => 1,
       'override_title_text' => 'Our conservation work focuses on five key strategies, supported by science, advocacy, and education.',
-      'image' => variable_get('nas_frontpage_conservation_section_image_fid', ''),
+      'image' => '9770',
       'wrapper' => array(
         1 => array(
           'reference' => array(
@@ -514,6 +611,28 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $display->content['new-28f3662a-f98e-435c-909d-74422f241e8f'] = $pane;
     $display->panels['main'][6] = 'new-28f3662a-f98e-435c-909d-74422f241e8f';
     $pane = new stdClass();
+    $pane->pid = 'new-5aa1fb9f-e50e-4439-a5d3-8a6802948fa0';
+    $pane->panel = 'more_headlines';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '5aa1fb9f-e50e-4439-a5d3-8a6802948fa0';
+    $display->content['new-5aa1fb9f-e50e-4439-a5d3-8a6802948fa0'] = $pane;
+    $display->panels['more_headlines'][0] = 'new-5aa1fb9f-e50e-4439-a5d3-8a6802948fa0';
+    $pane = new stdClass();
     $pane->pid = 'new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
     $pane->panel = 'more_headlines';
     $pane->type = 'views_panes';
@@ -527,11 +646,11 @@ function nas_frontpage_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
     $display->content['new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653'] = $pane;
-    $display->panels['more_headlines'][0] = 'new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
+    $display->panels['more_headlines'][1] = 'new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
     $pane = new stdClass();
     $pane->pid = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
     $pane->panel = 'top';

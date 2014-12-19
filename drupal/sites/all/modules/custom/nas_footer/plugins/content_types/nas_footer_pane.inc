@@ -138,7 +138,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
     'pane-edit' => array(
       'title' => t('edit texts/logo'),
       'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context::::/' . $pid,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );

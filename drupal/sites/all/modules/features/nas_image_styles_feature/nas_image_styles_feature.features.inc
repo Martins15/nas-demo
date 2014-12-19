@@ -10,6 +10,50 @@
 function nas_image_styles_feature_image_default_styles() {
   $styles = array();
 
+  // Exported image style: about_page_success_section.
+  $styles['about_page_success_section'] = array(
+    'name' => 'about_page_success_section',
+    'label' => 'About page success section',
+    'effects' => array(
+      15 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 2400,
+          'height' => 1600,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 1,
+      ),
+      16 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 2400,
+          'height' => 1600,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
   // Exported image style: article_featured.
   $styles['article_featured'] = array(
     'name' => 'article_featured',
@@ -634,6 +678,94 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: hero_image_section.
+  $styles['hero_image_section'] = array(
+    'name' => 'hero_image_section',
+    'label' => 'Hero image section',
+    'effects' => array(
+      1 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 2400,
+          'height' => 1320,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 1,
+      ),
+      2 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 2400,
+          'height' => 1320,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: hero_image_section_mobile.
+  $styles['hero_image_section_mobile'] = array(
+    'name' => 'hero_image_section_mobile',
+    'label' => 'Hero image section mobile',
+    'effects' => array(
+      3 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1060,
+          'height' => 994,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 1,
+      ),
+      4 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1060,
+          'height' => 994,
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
   // Exported image style: hero_mobile.
   $styles['hero_mobile'] = array(
     'name' => 'hero_mobile',
@@ -859,6 +991,29 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 600,
         ),
         'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: our_leadership.
+  $styles['our_leadership'] = array(
+    'name' => 'our_leadership',
+    'label' => 'Our leadership',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 350,
+          'height' => 350,
+        ),
+        'weight' => 1,
       ),
     ),
   );

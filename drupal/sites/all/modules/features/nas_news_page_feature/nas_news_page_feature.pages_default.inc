@@ -144,6 +144,40 @@ function nas_news_page_feature_default_page_manager_handlers() {
     $display->content['new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106'] = $pane;
     $display->panels['donate'][0] = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
     $pane = new stdClass();
+    $pane->pid = 'new-1977c3db-5705-4d99-a82d-b05143714197';
+    $pane->panel = 'right_sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-8gEOHoA0l7dEmAB7pf5z8WBTbVMPL3PnMaaKPFpDBoQ',
+      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '1977c3db-5705-4d99-a82d-b05143714197';
+    $display->content['new-1977c3db-5705-4d99-a82d-b05143714197'] = $pane;
+    $display->panels['right_sidebar'][0] = 'new-1977c3db-5705-4d99-a82d-b05143714197';
+    $pane = new stdClass();
     $pane->pid = 'new-f9a34c81-ba89-4525-a5e3-7e5ab07cbbec';
     $pane->panel = 'social';
     $pane->type = 'nas_panes_pane_news_social_block';
@@ -207,7 +241,10 @@ function nas_news_page_feature_default_page_manager_pages() {
   $page->admin_title = 'News';
   $page->admin_description = '';
   $page->path = 'news';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -254,6 +291,7 @@ function nas_news_page_feature_default_page_manager_pages() {
       'social' => NULL,
       'featured' => NULL,
       'right_sidebar' => NULL,
+      'title' => NULL,
     ),
   );
   $display->cache = array();
@@ -262,34 +300,30 @@ function nas_news_page_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-13c91ebc-8cf8-4af2-80be-3fa20560debf';
-    $pane->panel = 'articles_bottom';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-articles_list_bot';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(),
-    );
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '13c91ebc-8cf8-4af2-80be-3fa20560debf';
-    $display->content['new-13c91ebc-8cf8-4af2-80be-3fa20560debf'] = $pane;
-    $display->panels['articles_bottom'][0] = 'new-13c91ebc-8cf8-4af2-80be-3fa20560debf';
-    $pane = new stdClass();
-    $pane->pid = 'new-9b041b58-165d-499c-9074-00d253a55132';
+    $pane->pid = 'new-91c120fd-7dfe-46ce-b716-835a9d5936e5';
     $pane->panel = 'articles_top';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-articles_list_top';
+    $pane->type = 'editorial_card_river';
+    $pane->subtype = 'editorial_card_river';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'presets' => 'author_page_listing',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'form_build_id' => 'form-ojPia3Oxt7KwUxqXW9mU_WkoBodT8s61gDDdE9C2slA',
+      'form_token' => 'x0Rq1YgQzk6Evh0GVSwAMhaBwoRGfiSv-ajddXOW9PQ',
+      'form_id' => 'editorial_card_river_edit_form',
+      'preset' => 'news_listing',
+      'donate_caption' => 'Remember that Audubon depends on your support to do the conservation work that we do. ',
+      'donate_path' => 'donate-please',
+      'context' => 'empty',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -298,24 +332,107 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '9b041b58-165d-499c-9074-00d253a55132';
-    $display->content['new-9b041b58-165d-499c-9074-00d253a55132'] = $pane;
-    $display->panels['articles_top'][0] = 'new-9b041b58-165d-499c-9074-00d253a55132';
+    $pane->uuid = '91c120fd-7dfe-46ce-b716-835a9d5936e5';
+    $display->content['new-91c120fd-7dfe-46ce-b716-835a9d5936e5'] = $pane;
+    $display->panels['articles_top'][0] = 'new-91c120fd-7dfe-46ce-b716-835a9d5936e5';
     $pane = new stdClass();
-    $pane->pid = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
-    $pane->panel = 'donate';
-    $pane->type = 'nas_panes_pane_donate_button';
-    $pane->subtype = 'nas_panes_pane_donate_button';
+    $pane->pid = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
+    $pane->panel = 'featured';
+    $pane->type = 'editorial_card_featured';
+    $pane->subtype = 'editorial_card_featured';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => '9772',
+      'title' => 'Texas Oil Spill Makes Landfall in a Key Environmentally Sensitive Area',
+      'url' => 'node/1',
+      'blue_link_text' => 'Audubon Near You',
+      'blue_link_url' => 'node/1',
+      'subtitle' => 'The Conservation Movement Loses A Hero to the Cause: It is with great sadness that we must share news of the passing of Donal O’Brien Jr on Sunday, Septemb',
+      'form_build_id' => 'form-4X-n3PaYRuOxhkwWUlh3qfB-5zzHeR69zTILe6aPTR4',
+      'form_token' => 'Rsg_QVt5oUKZUrp1AWiA1dAZMHttQv7vJU_z882Y9Q8',
+      'form_id' => 'editorial_card_featured_form',
+      'date' => '2014-10-09',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6cec715f-979a-404c-880d-9c2931f7b6f9';
+    $display->content['new-6cec715f-979a-404c-880d-9c2931f7b6f9'] = $pane;
+    $display->panels['featured'][0] = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
+    $pane = new stdClass();
+    $pane->pid = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $pane->panel = 'featured';
+    $pane->type = 'editorial_card_package';
+    $pane->subtype = 'editorial_card_package';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'caption' => 'Remember that Audubon depends on your support to do the conservation work that we do.',
-      'path' => '',
-      'form_build_id' => 'form-cDYlFtTn9mHAN4Pm8m_kCdx_6VAO9XJ6j2GPFR5hoL4',
-      'form_token' => '2Dd7o27nzpO3cBrpuz3COo9dji0h9JuoDeBWlKqQygo',
-      'form_id' => 'nas_panes_pane_donate_button_form',
+      'image' => '9799',
+      'references' => array(
+        0 => array(
+          'title' => 'A Crow Never Forgets',
+          'url' => 'http://nas.wearepropeople.md/staging/articles/birds/crow-never-forgets',
+          'blue_link_text' => 'Features',
+          'blue_link_url' => 'http://nas.wearepropeople.md/staging/taxonomy/term/4',
+        ),
+        1 => array(
+          'title' => 'Online Explorers: How You Can Help Scientists',
+          'url' => 'http://nas.wearepropeople.md/staging/articles/conservation/online-explorers-how-you-can-help-scientists',
+          'blue_link_text' => 'Press Room',
+          'blue_link_url' => 'http://nas.wearepropeople.md/staging/editorial-section/press-room',
+        ),
+      ),
+      'button_text' => 'Lorem ipsum dolor sit amet',
+      'button_url' => 'http://nas.wearepropeople.md/staging/conservation',
+      'form_build_id' => 'form-14yFeBW57mfSLG0QetcZq6cVqtPN8nCYO0FWLHfag1s',
+      'form_token' => 'rPZhL6squwAjoFU5oubvA4BzQhyb6MO8SgBhJ48yA08',
+      'form_id' => 'editorial_card_package_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $display->content['new-62a564fc-c5cc-404f-8fd3-130da8011a98'] = $pane;
+    $display->panels['featured'][1] = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $pane = new stdClass();
+    $pane->pid = 'new-2b28ca52-7485-48f7-89d3-12920e44c8ec';
+    $pane->panel = 'right_sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-HMxAy55fwFV6B-nSSPjoZ9Kd_bQU0o2R0wCo9Sfnh2w',
+      'form_token' => 'Md30nwO3KEgc2F2z2BhFVMxCPhS1Y0pSQHPwWHGlRK8',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -325,9 +442,9 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
-    $display->content['new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106'] = $pane;
-    $display->panels['donate'][0] = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
+    $pane->uuid = '2b28ca52-7485-48f7-89d3-12920e44c8ec';
+    $display->content['new-2b28ca52-7485-48f7-89d3-12920e44c8ec'] = $pane;
+    $display->panels['right_sidebar'][0] = 'new-2b28ca52-7485-48f7-89d3-12920e44c8ec';
     $pane = new stdClass();
     $pane->pid = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $pane->panel = 'right_sidebar';
@@ -342,11 +459,11 @@ function nas_news_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $display->content['new-72b11f43-f72c-4168-ab93-e3bc3e648d5c'] = $pane;
-    $display->panels['right_sidebar'][0] = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
+    $display->panels['right_sidebar'][1] = 'new-72b11f43-f72c-4168-ab93-e3bc3e648d5c';
     $pane = new stdClass();
     $pane->pid = 'new-e4bd4237-1ac2-4624-a1c9-aba5e774bbc3';
     $pane->panel = 'social';

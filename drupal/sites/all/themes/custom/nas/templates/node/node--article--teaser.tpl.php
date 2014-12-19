@@ -98,8 +98,9 @@
         <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
         <?php endif; ?>
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
+        <div class="editorial-card-by-line"><?php print $by_line; ?></div>
         <div class="editorial-card-body">
-          <span class="editorial-card-dateline"><?php print render($content['field_article_date']); ?></span> &mdash; <?php print render($content['body']); ?>
+          <?php print render($content['body']); ?>
         </div>
       </div>
     </div>

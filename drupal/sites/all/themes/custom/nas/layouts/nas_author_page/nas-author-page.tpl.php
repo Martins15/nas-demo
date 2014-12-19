@@ -12,6 +12,7 @@
     <div class="column">
       <header class="bio-header">
         <?php print $content['image']; ?>
+        <?php print $content['link']; ?>
         <h1 class="bio-name"><?php print $content['name']; ?> <?php print $content['twitter']; ?></h1>
         <small class="bio-title"><?php print $content['title']; ?></small>
       </header>
@@ -30,18 +31,8 @@
     <!-- BEGIN SIDEBAR -->
 
     <div class="sidebar large-4 columns">
-      <div class="sidebar-section engagement-card">
-        <div class="engagement-card-content no-min-height">
-          <h3 class="engagement-card-headline">Save the Brown Pelican</h3>
-          <p>Numerous oil spills along the Gulf Coast have threatened thousands of native birds.</p>
-          <div class="engagement-card-cta">
-            <a href="#" class="button tomato large">Endorse New Legislation</a>
-          </div>
-        </div>
-        <div class="engagement-card-photo">
-          <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-1.jpg" alt=""></a>
-        </div>
-      </div>
+      <?php print $content['right']; ?>
+      <!--
       <div class="sidebar-section editorial-card">
         <div class="editorial-card-photo">
           <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>editorial-card-4.jpg" alt=""></a>
@@ -57,7 +48,7 @@
           <a href="#" class="editorial-card-slug">Action Alert</a>
           <h5 class="editorial-card-title"><a href="#">Protect a Western Snowy Plover Nest</a></h5>
         </div>
-      </div>
+      </div>-->
     </div>
 
     <!-- END SIDEBAR -->

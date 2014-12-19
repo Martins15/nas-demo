@@ -59,7 +59,7 @@ function nas_boa_family_feature_panelizer_defaults() {
     $pane->configuration = array(
       'label' => 'hidden',
       'formatter' => 'text_default',
-      'delta_limit' => '1',
+      'delta_limit' => '0',
       'delta_offset' => '0',
       'delta_reversed' => 0,
       'formatter_settings' => array(),
@@ -78,35 +78,6 @@ function nas_boa_family_feature_panelizer_defaults() {
     $pane->uuid = 'f8de10ed-03c9-4fd5-8bdb-9c0d81f7e0f2';
     $display->content['new-f8de10ed-03c9-4fd5-8bdb-9c0d81f7e0f2'] = $pane;
     $display->panels['body_column_1'][0] = 'new-f8de10ed-03c9-4fd5-8bdb-9c0d81f7e0f2';
-    $pane = new stdClass();
-    $pane->pid = 'new-cfb303f5-0a69-424e-90bb-06a81a3261e4';
-    $pane->panel = 'body_column_2';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_boaf_body';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'text_default',
-      'delta_limit' => '1',
-      'delta_offset' => '1',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'cfb303f5-0a69-424e-90bb-06a81a3261e4';
-    $display->content['new-cfb303f5-0a69-424e-90bb-06a81a3261e4'] = $pane;
-    $display->panels['body_column_2'][0] = 'new-cfb303f5-0a69-424e-90bb-06a81a3261e4';
     $pane = new stdClass();
     $pane->pid = 'new-d8d9124b-d32a-47ab-9248-cda254e57ef9';
     $pane->panel = 'bottom';

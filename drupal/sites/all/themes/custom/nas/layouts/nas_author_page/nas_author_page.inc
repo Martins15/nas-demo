@@ -17,11 +17,13 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'image' => t('Author image'),
+    'link' => t('Link'),
     'name' => t('Author name'),
     'twitter' => t('Author twitter'),
     'title' => t('Author title'),
     'bio' => t('Author bio'),
     'articles' => t('Author articles'),
     'related_birds' => t('Author Favourite Birds'),
+    'right' => t('Right'),
   ),
 );

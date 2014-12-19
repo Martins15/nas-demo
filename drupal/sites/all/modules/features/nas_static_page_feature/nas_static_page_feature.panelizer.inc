@@ -45,6 +45,7 @@ function nas_static_page_feature_panelizer_defaults() {
       'hero_image' => NULL,
       'nav_menu' => NULL,
       'header_no_image' => NULL,
+      'related' => NULL,
     ),
   );
   $display->cache = array();
@@ -289,6 +290,25 @@ function nas_static_page_feature_panelizer_defaults() {
     $pane->uuid = '35b6bf09-d3dc-42c9-9a81-233fc816ffbb';
     $display->content['new-35b6bf09-d3dc-42c9-9a81-233fc816ffbb'] = $pane;
     $display->panels['nav_menu'][0] = 'new-35b6bf09-d3dc-42c9-9a81-233fc816ffbb';
+    $pane = new stdClass();
+    $pane->pid = 'new-9a9c2312-1239-4a02-a6fd-38dc24237a45';
+    $pane->panel = 'related';
+    $pane->type = 'nas_panes_static_page_related';
+    $pane->subtype = 'nas_panes_static_page_related';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '9a9c2312-1239-4a02-a6fd-38dc24237a45';
+    $display->content['new-9a9c2312-1239-4a02-a6fd-38dc24237a45'] = $pane;
+    $display->panels['related'][0] = 'new-9a9c2312-1239-4a02-a6fd-38dc24237a45';
     $pane = new stdClass();
     $pane->pid = 'new-c90250f8-d011-4822-8598-78bcbcb45f47';
     $pane->panel = 'subtitle';

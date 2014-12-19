@@ -1,0 +1,18 @@
+.homepage-first-row {
+  .welcome-card {
+    .welcome-card-illustration {
+      display: none;
+    }
+
+  }
+  .welcome-card, .editorial-card {
+    @include breakpoint(tiny-only) {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+    @include breakpoint(small-only) {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+  }
+}

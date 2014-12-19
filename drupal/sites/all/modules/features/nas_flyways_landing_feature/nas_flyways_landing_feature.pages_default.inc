@@ -50,6 +50,7 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
       'default' => NULL,
       'content' => NULL,
       'lower' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -57,6 +58,49 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
   $display->uuid = '5d1523b4-e88e-4ca0-8d51-64340a00fe03';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-b30fe347-29ad-4a77-bb8f-4fd039a3c648';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-c8cZ6cySeP9cIfVxd8YJg31po92ZKSjFnEoF1xtwCx0',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b30fe347-29ad-4a77-bb8f-4fd039a3c648';
+    $display->content['new-b30fe347-29ad-4a77-bb8f-4fd039a3c648'] = $pane;
+    $display->panels['cards_set'][0] = 'new-b30fe347-29ad-4a77-bb8f-4fd039a3c648';
     $pane = new stdClass();
     $pane->pid = 'new-1bcfcded-ab2f-4383-bfa5-768c4642a800';
     $pane->panel = 'content';

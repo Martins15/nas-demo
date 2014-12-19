@@ -23,6 +23,7 @@ $plugin = array(
     'subtitle' => t('Subtitle'),
     'body' => t('Body'),
     'bottom' => t('Bottom'),
+    'cards_set' => t('Engagement cards'),
   ),
 );
 
