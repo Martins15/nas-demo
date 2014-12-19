@@ -99,6 +99,12 @@ function nas_article_feature_strongarm() {
       'conservation_strategy_featured_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'teaser_author_page' => array(
+        'custom_settings' => TRUE,
+      ),
+      'about_page_related_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

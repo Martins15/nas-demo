@@ -28,8 +28,6 @@
   <!-- BEGIN MAIN COLUMN -->
     <div class="large-8 columns index-list">
       <?php print $content['articles_top']; ?>
-      <?php print $content['donate']; ?>
-      <?php print $content['articles_bottom']; ?>
     </div>
   <!-- END MAIN COLUMN -->
 

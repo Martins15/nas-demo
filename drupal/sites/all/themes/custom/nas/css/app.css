@@ -4610,6 +4610,14 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   height: 10px;
 }
 
+.editorial-card-by-line {
+  color: #202020;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 11pt;
+  padding-bottom: 8px;
+  line-height: 13pt;
+}
+
 .editorial-card-dateline {
   color: #888;
 }
