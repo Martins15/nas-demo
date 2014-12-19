@@ -19,9 +19,7 @@ $plugin = array(
     'title' => t('News page title'),
     'social' => t('Social buttons'),
     'featured' => t('Featured article'),
-    'articles_top' => t('Articles top'),
-    'donate' => t('Donate'),
-    'articles_bottom' => t('Articles bottom'),
+    'articles_top' => t('Articles'),
     'right_sidebar' => t('Right sidebar'),
   ),
 );
