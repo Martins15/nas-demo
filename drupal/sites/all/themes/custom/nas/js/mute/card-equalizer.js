@@ -4,6 +4,7 @@
       // Define the selector for finding card rows
       var SELECTOR_STRING = "" +
           ".large-4 + .large-4 > .editorial-card" +
+          ", .large-3 + .large-3 > .editorial-card" +
           ", .large-6 + .large-6 > .editorial-card" +
           ", .large-8 + .large-4 > .editorial-card" +
           ", .large-4 + .large-4 > .engagement-card" +
