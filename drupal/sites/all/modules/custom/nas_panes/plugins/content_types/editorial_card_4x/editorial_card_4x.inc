@@ -64,8 +64,6 @@ function editorial_card_4x_edit_form($form, &$form_state) {
         ),
       ),
       '#default_value' => !empty($conf['refs'][$i]['image']) ? $conf['refs'][$i]['image'] : 0,
-//      '#required' => $i == 1,//TRUE,
-//      '#pp_crop_styles' => array('featured_frontpage'),
     );
     $form['refs'][$i]['category'] = array(
       '#title' => 'Category/Eyebrow',
