@@ -115,6 +115,13 @@ function static_cards_two_columns_render($subtype, $conf, $args, $contexts) {
     $image_object = file_load($item['image']);
     $item['image_url'] = image_style_url('static_cards_two_columns', $image_object->uri);
     $item['image_url_mobile'] = image_style_url('static_cards_two_columns_mobile', $image_object->uri);
+
+    $item['top_link_markup'] = '';
+    if (!empty($item['top_link']['url']) && !empty($item['top_link']['title'])) {
+      $item['top_link_markup'] = l($item['top_link']['title'], $item['top_link']['url'], array('attributes' => array('class' => array('banner-slug'))));
+    }
+
+    $item['bottom_link_markup'] = l($item['bottom_link']['title'], $item['bottom_link']['url']);
   }
 
   $content = theme('static_cards_two_columns', array(

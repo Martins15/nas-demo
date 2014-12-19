@@ -107,8 +107,24 @@ function static_cards_three_columns_render($subtype, $conf, $args, $contexts) {
 
   $items = $conf['items'];
   foreach ($items as &$item) {
+    $item['bottom_link_markup'] = '';
+    $item['top_link_markup'] = '';
+    $item['title_markup'] = '';
+
     $image_object = file_load($item['image']);
-    $item['image_url'] = image_style_url('article_teaser', $image_object->uri);
+    $item['image_markup'] = l(theme('image', array('path' => image_style_url('article_teaser', $image_object->uri))), $item['image_link'], array('html' => TRUE));
+
+    if (!empty($item['top_link']['url']) && !empty($item['top_link']['title'])) {
+      $item['top_link_markup'] = l($item['top_link']['title'], $item['top_link']['url'], array('attributes' => array('class' => array('editorial-card-slug'))));;
+    }
+
+    if (!empty($item['bottom_link']['url']) && !empty($item['bottom_link']['title'])) {
+      $item['bottom_link_markup'] = l($item['bottom_link']['title'], $item['bottom_link']['url'], array('attributes' => array('class' => array('editorial-card-link'))));
+    }
+
+    if (!empty($item['title']['url']) && !empty($item['title']['title'])) {
+      $item['title_markup'] = l($item['title']['title'], $item['title']['url']);
+    }
   }
 
   $content = theme('static_cards_three_columns', array(
