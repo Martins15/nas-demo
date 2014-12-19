@@ -70,7 +70,7 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_bird_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'bird-guide/[node:title]';
   $export['pathauto_node_bird_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -126,7 +126,7 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_project_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'conservation/project/[node:title]';
   $export['pathauto_node_project_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
