@@ -4636,14 +4636,15 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   position: relative;
   padding-right: 10px;
   color: #0aa8e3;
-  display: inline-block;
+  display: table;
 }
 .editorial-card-link:after {
-  content: "»";
-  margin-left: 5px;
-  display: inline-block;
-  width: 7px;
-  height: 7px;
+  content: "\00bb";
+  display: table-cell;
+  font-size: 16px;
+  width: 10px;
+  text-align: right;
+  vertical-align: middle;
 }
 .editorial-card-link.sans {
   font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -12057,16 +12058,12 @@ body.touch .sticky-wrapper {
   color: #0aa8e3;
 }
 .blocks-events article .content-article .more-link:after {
-  content: "";
-  display: block;
-  right: 0px;
-  top: 50%;
-  margin-top: -3px;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  background: url("../img/duble-arrow.png") no-repeat center center;
-  background-size: 100%;
+  content: "\00bb";
+  display: table-cell;
+  font-size: 16px;
+  width: 10px;
+  text-align: right;
+  vertical-align: middle;
 }
 .blocks-events .more-events {
   border-top: 1px solid #d4d4d4;
