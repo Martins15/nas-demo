@@ -205,7 +205,28 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'boa_family_species',
     'label' => 'BOA Family Species',
     'effects' => array(
-      1 => array(
+      14 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 460,
+          'height' => 602,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => -10,
+      ),
+      13 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -218,7 +239,7 @@ function nas_image_styles_feature_image_default_styles() {
           'width' => 460,
           'height' => 602,
         ),
-        'weight' => 1,
+        'weight' => -9,
       ),
     ),
   );

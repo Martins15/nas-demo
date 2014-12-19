@@ -39,5 +39,5 @@ features[image][] = our_leadership
 features[image][] = related_features
 features[image][] = slideshow
 features[image][] = slideshow_teaser
-mtime = 1418901268
+mtime = 1418987732
 project path = sites/all/modules/features
