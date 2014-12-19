@@ -723,7 +723,13 @@ function nas_master_update_7062() {
   module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
   features_revert_module('nas_url_aliases_feature');
   features_revert_module('nas_birds_guide_feature');
-  features_revert_module('nas_birds_landing_feature');
+
+  // We can't just change feature nas_birds_landing_feature and revert it as
+  // content is changed and reverting will wipe all panes from the page.
+  db_update('page_manager_pages')
+    ->condition('name', 'birds_landing')
+    ->fields(array('path' => 'birds'))
+    ->execute();
 }
 
 /**
