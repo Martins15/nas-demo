@@ -41,5 +41,5 @@ features[image][] = slideshow
 features[image][] = slideshow_teaser
 features[image][] = static_cards_two_columns
 features[image][] = static_cards_two_columns_mobile
-mtime = 1418891840
+mtime = 1418901268
 project path = sites/all/modules/features
