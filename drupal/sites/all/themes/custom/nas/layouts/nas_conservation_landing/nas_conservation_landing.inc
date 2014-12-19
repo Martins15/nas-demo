@@ -18,5 +18,6 @@ $plugin = array(
     'top' => t('Top'),
     'menu_bar' => t('Menu bar'),
     'main' => t('Main'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

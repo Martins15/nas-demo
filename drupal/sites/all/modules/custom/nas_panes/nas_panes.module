@@ -16,6 +16,7 @@ define('NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY', 'page-conservati
 define('NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY', 'page-boa_index');
 define('NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY', 'page-about');
 define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership');
+define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -23,13 +24,11 @@ define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
 define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
-define('NAS_PANES_CONSERVATION_HERO_IMAGE_STYLE', 'conservation_hero');
 
 define('NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE', 'article_featured');
 
 define('NAS_FLYWAYS_NUMBER', 4);
-define('NAS_PANES_CONSERVATION_MENU_BAR_MENU', 'menu-header-big-main-menu');
-define('NAS_PANES_ABOUT_MENU_BAR_MENU', 'menu-header-big-main-menu');
+define('NAS_PANES_MAIN_MENU_NAME', 'menu-header-big-main-menu');
 
 /**
  * Implements hook_ctools_plugin_directory().
@@ -394,26 +393,6 @@ function nas_panes_theme() {
       'template' => 'magazine-issue-other-issues',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_issue_other_issues',
     ),
-    'conservation_landing_top' => array(
-      'variables' => array(
-        'title' => '',
-        'subtitle' => '',
-        'credit' => '',
-        'hero_image' => '',
-        'color_mode_gradient' => '',
-        'color_mode_text' => '',
-        'contextual_links' => '',
-      ),
-      'template' => 'conservation-landing-top',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_landing_top',
-    ),
-    'conservation_menu_bar' => array(
-      'variables' => array(
-        'items' => NULL,
-      ),
-      'template' => 'conservation-menu-bar',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_menu_bar',
-    ),
     'project_birds' => array(
       'template' => 'project-birds',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/project_birds',
@@ -515,6 +494,23 @@ function nas_panes_theme() {
       ),
       'template' => 'frontpage-conservation-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_conservation_section',
+    ),
+    'engagement_cards' => array(
+      'variables' => array(
+        'title' => NULL,
+        'contextual_links' => NULL,
+        'teasers' => array(),
+      ),
+      'template' => 'engagement-cards',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/engagement_cards',
+    ),
+    'engagement_cards_sidebar' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'teaser' => '',
+      ),
+      'template' => 'engagement-cards-sidebar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/engagement_cards',
     ),
     'about_page_top' => array(
       'variables' => array(
@@ -640,6 +636,25 @@ function nas_panes_theme() {
       'template' => 'editorial-card-river',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_river',
     ),
+    'hero_image_section' => array(
+      'variables' => array(
+        'hero_image' => NULL,
+        'hero_image_mobile' => NULL,
+        'title' => NULL,
+        'credit' => NULL,
+        'color_mode_gradient' => NULL,
+        'color_mode_text' => NULL,
+      ),
+      'template' => 'hero-image-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/hero_image_section',
+    ),
+    'menu_bar_section' => array(
+      'variables' => array(
+        'items' => NULL,
+      ),
+      'template' => 'menu-bar-section',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/menu_bar_section',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -679,6 +694,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
     );
 
     foreach ($panel_keys as $key) {
@@ -974,7 +990,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle,
     'edit' => array(
       'title' => t('Edit'),
       'href' => $href,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );
@@ -1003,18 +1019,20 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
   ctools_add_js('ajax-responder');
-
-  // This query means that this pane is going to be used only once on the site.
-  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+  // We could get did of display being loaded.
+  if (!$display = panels_get_current_page_display()) {
+    return;
+  }
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
   if (empty($pid)) {
     nas_panes_resave_panel($page_cache_key);
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $pane_type))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
   }
   $links = array(
     'edit' => array(
       'title' => t('Edit'),
       'href' => 'panels/ajax/editor/edit-pane/panel_context:' . $page_cache_key . '::' . $context_name . '::::/' . $pid,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );
@@ -1104,6 +1122,193 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
 }
 
 /**
+ * Save panelizer changes.
+ *
+ * @param object $context_node
+ *   Node object.
+ *
+ * @param array $data
+ *   Pane's conf.
+ *
+ * @return array
+ *   Array of node ojects and contextual_links.
+ */
+function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
+  $context = array();
+  // Check if pane renders within node.
+  if ($context_node = menu_get_object('node')) {
+    $context['node'] = $context_node;
+  }
+  // Check if pane renders within term.
+  if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+    $context['tid'] = arg(2);
+  }
+  // Current page is a one of landing pages.
+  $args_cache_key_pairs = array(
+    'bird-guide' => array(
+      'cache_key' => NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_bird_guide_panel_context',
+    ),
+    'birds-landing' => array(
+      'cache_key' => NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_birds_landing_panel_context',
+    ),
+    'frontpage2' => array(
+      'cache_key' => NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_frontpage2_panel_context',
+    ),
+    'news' => array(
+      'cache_key' => NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_news_panel_context',
+    ),
+    'flyways' => array(
+      'cache_key' => NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_flyways_landing_panel_context',
+    ),
+    'conservation' => array(
+      'cache_key' => NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_conservation_landing_panel_context',
+    ),
+  );
+  if (!isset($context['node']) && !isset($context['tid']) && isset($args_cache_key_pairs[arg(0)]) && !arg(1)) {
+    $context['landing'] = array(
+      'cache_key' => $args_cache_key_pairs[arg(0)]['cache_key'],
+      'panel_context' => $args_cache_key_pairs[arg(0)]['panel_context'],
+    );
+  }
+  // Build contextual links based on page context.
+  $contextual_links = '';
+  if (isset($context['node'])) {
+    if (user_access('edit NAS panes')) {
+      $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context_node, $context_node->type, 'default');
+    }
+  }
+  if (isset($context['landing'])) {
+    $contextual_links = nas_panes_build_page_contextual_links($subtype, $context['landing']['cache_key'], $context['landing']['panel_context']);
+  }
+  $cards_array['contextual_links'] = $contextual_links;
+
+  $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
+  if (isset($conf[$conf_key])) {
+    $data = $conf[$conf_key];
+  }
+
+  $nodes = array();
+  // Load all nodes from Engagement cards nodequeue.
+  $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
+
+  // Manual override.
+  foreach ($data['references'] as $value) {
+    if ($value['entity_reference'] && $node = node_load($value['entity_reference']['entity_id'])) {
+      $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+    }
+  }
+  if (!empty($nodes)) {
+    // Sort the array by key previously loaded from nodequeue.
+    ksort($nodes);
+    // Pass node nid selected in sidebar's pane to bottom pane.
+    if ($first) {
+      $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
+      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
+    }
+
+    $cards_array['nodes'] = $nodes;
+
+    return $cards_array;
+  }
+  // Check if some editorial cards has reference to bird.
+  if (isset($context_node)) {
+    if ($context_node->type == 'bird' || $context_node->type == 'article') {
+      foreach ($all_nodes as $node) {
+        if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
+          foreach ($field_related_bird_items as $value) {
+            if ($value['target_id'] == $context_node->nid) {
+              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+            }
+          }
+        }
+      }
+    }
+  }
+  // Get Bird reference from landing pages (Bird Guide & Bird Landing).
+  if (isset($context['landing'])) {
+    if ($context['landing']['panel_context'] == 'page_bird_guide_panel_context') {
+      $featured_nid = variable_get('nas_bird_guide_featured_bird');
+    }
+    if ($context['landing']['panel_context'] == 'page_birds_landing_panel_context') {
+      $featured_nid = variable_get('nas_bird_landing_featured_bird');
+    }
+    if (isset($featured_nid) && !empty($featured_nid)) {
+      foreach ($all_nodes as $node) {
+        if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
+          foreach ($field_related_bird_items as $value) {
+            if ($value['target_id'] == $featured_nid) {
+              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+            }
+          }
+
+        }
+      }
+    }
+  }
+  // Not Manual overrides, not Birds references were provided, or it's count less than 3.
+  if (empty($nodes) || count($nodes) < 3) {
+    /**
+     * We have 2 options for matching Menu section context.
+     * 1. page is a node, and it has field_menu_section.
+     * 2. page is a taxonomy term, and it has tid.
+     */
+
+    // Option 1.
+    if (isset($context_node)) {
+      if ($context_node->field_menu_section && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
+        $current_page_sections = array();
+        foreach ($field_menu_section_items as $value) {
+          $current_page_sections[] = $value['tid'];
+        }
+        foreach ($all_nodes as $node) {
+          if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
+            foreach ($field_menu_section_items as $value) {
+              if (in_array($value['tid'], $current_page_sections)) {
+                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+              }
+            }
+          }
+        }
+      }
+    }
+    // Option 2.
+    if (isset($context['tid'])) {
+      foreach ($all_nodes as $node) {
+        if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
+          foreach ($field_menu_section_items as $value) {
+            if ($value['tid'] == $context['tid']) {
+              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+            }
+          }
+        }
+      }
+    }
+  }
+  // Any matched cards weren't found, default behaviour (load 3 first from nodequeue).
+  if (empty($nodes)) {
+    $nodes = nodequeue_load_nodes(1, FALSE, 0, 3);
+  }
+
+  // Sort the array by key previously loaded from nodequeue.
+  ksort($nodes);
+  // Pass node nid selected in sidebar's pane to bottom pane.
+  if ($first) {
+    $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
+    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
+  }
+
+  $cards_array['nodes'] = $nodes;
+
+  return $cards_array;
+}
+
+/**
  * Create contextual links for panels pane.
  */
 function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts) {
@@ -1179,7 +1384,7 @@ function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
  * Implements hook_form_alter.
  */
 function nas_panes_form_alter(&$form, &$form_state) {
-  if (!empty($_GET['nas-panes-from-page'])) {
+  if (!empty($_GET['nas-panes-from-page']) || !empty($_POST['nas_panes_resave_panel'])) {
     $form['nas_panes_resave_panel'] = array(
       '#type' => 'hidden',
       '#value' => TRUE,

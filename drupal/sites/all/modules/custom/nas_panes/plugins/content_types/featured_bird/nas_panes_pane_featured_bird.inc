@@ -92,6 +92,10 @@ function nas_panes_pane_featured_bird_custom_pane_edit_form_submit(&$form, &$for
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+  // Save Bird Guide Featured nid to variables.
+  if (isset($form_state['values']['bird']['entity_id'])) {
+    variable_set('nas_bird_guide_featured_bird', $form_state['values']['bird']['entity_id']);
+  }
 }
 
 /**
@@ -164,7 +168,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
       'edit' => array(
         'title' => t('Edit'),
         'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
+        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
     );

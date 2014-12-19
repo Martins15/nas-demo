@@ -17,5 +17,6 @@ $plugin = array(
   'regions' => array(
     'content' => t('Content'),
     'lower' => t('Lower'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

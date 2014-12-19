@@ -92,6 +92,10 @@ function bird_landing_featured_form_submit(&$form, &$form_state) {
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+  // Save Bird Landing Featured nid to variables.
+  if (isset($form_state['values']['bird']['entity_id'])) {
+    variable_set('nas_bird_landing_featured_bird', $form_state['values']['bird']['entity_id']);
+  }
 }
 
 /**
@@ -138,7 +142,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
       'edit' => array(
         'title' => t('Edit'),
         'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY . '::page_birds_landing_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true'),
+        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
         'attributes' => array('class' => array('ctools-use-modal')),
       ),
     );

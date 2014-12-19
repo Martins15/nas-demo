@@ -20,5 +20,6 @@ $plugin = array(
     'bird_card_set' => t('Bird card set'),
     'cards' => t('Editorial cards'),
     'banner_set' => t('Banner set'),
+    'engagement_cards' => t('Engagement cards'),
   ),
 );
