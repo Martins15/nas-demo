@@ -609,7 +609,7 @@ function nas_panes_theme() {
         'subtitle' => NULL,
       ),
       'template' => 'editorial-card-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_featured',
     ),
     'editorial_card_package' => array(
       'variables' => array(
@@ -620,7 +620,25 @@ function nas_panes_theme() {
         'button_url' => NULL,
       ),
       'template' => 'editorial-card-package',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package',
+    ),
+    'editorial_card_4x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'references' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-4x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_4x',
+    ),
+    'editorial_card_river' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'content' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-river',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_river',
     ),
   );
 
