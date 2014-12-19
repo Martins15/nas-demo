@@ -112,7 +112,8 @@ function static_cards_three_columns_render($subtype, $conf, $args, $contexts) {
     $item['title_markup'] = '';
 
     $image_object = file_load($item['image']);
-    $item['image_markup'] = l(theme('image', array('path' => image_style_url('article_teaser', $image_object->uri))), $item['image_link'], array('html' => TRUE));
+    $image = theme('image', array('path' => image_style_url('article_teaser', $image_object->uri)));
+    $item['image_markup'] = !empty($item['image_link']) ? l($image, $item['image_link'], array('html' => TRUE)) : $image;
 
     if (!empty($item['top_link']['url']) && !empty($item['top_link']['title'])) {
       $item['top_link_markup'] = l($item['top_link']['title'], $item['top_link']['url'], array('attributes' => array('class' => array('editorial-card-slug'))));;
