@@ -77,6 +77,7 @@
  * - $title_link: Title with link to node page.
  * - $blue_text_link_url: Article's section's link url.
  * - $blue_text_link_text: Article's section's link text.
+ * - $article_date: Article publish date.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -89,7 +90,7 @@
   <div class="row">
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
-        <?php print render($content['field_hero_image']); ?>
+        <?php print $teaser_list_image; ?>
       </div>
     </div>
     <div class="tiny-8 columns">
@@ -99,7 +100,7 @@
         </span>
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
         <div class="editorial-card-body">
-          <?php print render($content['body']); ?>
+          <span class="editorial-card-dateline"><?php print $article_date; ?></span> &mdash; <?php print render($content['body']); ?>
         </div>
       </div>
     </div>

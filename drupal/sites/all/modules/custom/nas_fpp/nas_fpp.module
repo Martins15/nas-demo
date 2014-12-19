@@ -70,9 +70,9 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
   );
-  $entity_info['node']['view modes']['nas_node_teaser_wo_date'] = array(
-    'label' => t('Teaser without date'),
-    'custom settings' => TRUE,
+  $entity_info['node']['view modes']['teaser_author_page'] = array(
+    'label' => t('Teaser for Author page'),
+    'custom settings' => FALSE,
   );
   $entity_info['node']['view modes']['nas_node_teaser_no_section_link'] = array(
     'label' => t('Teaser without section link'),
