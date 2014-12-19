@@ -7,17 +7,17 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Static cards. Two columns'),
-  'description' => t('Static cards. Two columns'),
+  'title' => t('Static cards. Three columns'),
+  'description' => t('Static cards. Three columns'),
   'category' => 'Static Cards',
-  'edit form' => 'static_cards_two_columns_form',
-  'render callback' => 'static_cards_two_columns_render',
+  'edit form' => 'static_cards_three_columns_form',
+  'render callback' => 'static_cards_three_columns_render',
 );
 
 /**
  * An edit form for the pane's settings.
  */
-function static_cards_two_columns_form($form, &$form_state) {
+function static_cards_three_columns_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
   $form['items'] = array(
@@ -25,7 +25,7 @@ function static_cards_two_columns_form($form, &$form_state) {
     '#tree' => TRUE,
   );
 
-  for ($i = 0; $i < 2; $i++) {
+  for ($i = 0; $i < 3; $i++) {
     $form['items'][$i] = array(
       '#type' => 'fieldset',
       '#title' => t('Item @num', array('@num' => $i + 1)),
@@ -39,8 +39,8 @@ function static_cards_two_columns_form($form, &$form_state) {
     );
 
     $form['items'][$i]['title'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Title'),
+      '#type' => 'link_field',
+      '#title' => t('Main title'),
       '#default_value' => !empty($conf['items'][$i]['title']) ? $conf['items'][$i]['title'] : '',
     );
 
@@ -65,23 +65,18 @@ function static_cards_two_columns_form($form, &$form_state) {
       ),
       '#default_value' => !empty($conf['items'][$i]['image']) ? $conf['items'][$i]['image'] : 0,
       '#required' => TRUE,
-      '#pp_crop_styles' => array('static_cards_two_columns', 'static_cards_two_columns_mobile'),
+      '#pp_crop_styles' => array('article_teaser'),
     );
 
-    $form['items'][$i]['color_mode'] = array(
-      '#type' => 'radios',
-      '#title' => t('Color mode'),
-      '#options' => array(
-        'dark' => t('Dark'),
-        'light' => t('Light'),
-      ),
-      '#default_value' => !empty($conf['items'][$i]['color_mode']) ? $conf['items'][$i]['color_mode'] : 'dark',
-      '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to content.'),
+    $form['items'][$i]['image_link'] = array(
+      '#title' => t('Image link'),
+      '#type' => 'textfield',
+      '#default_value' => !empty($conf['items'][$i]['image_link']) ? $conf['items'][$i]['image_link'] : '',
     );
   }
 
   ctools_form_include($form_state, 'content');
-  ctools_form_include($form_state, 'static_cards_two_columns', 'nas_panes', 'plugins/content_types/static_cards_two_columns');
+  ctools_form_include($form_state, 'static_cards_three_columns', 'nas_panes', 'plugins/content_types/static_cards_three_columns');
 
   return $form;
 }
@@ -89,7 +84,7 @@ function static_cards_two_columns_form($form, &$form_state) {
 /**
  * Submit handler for configuration.
  */
-function static_cards_two_columns_form_submit(&$form, &$form_state) {
+function static_cards_three_columns_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -102,7 +97,7 @@ function static_cards_two_columns_form_submit(&$form, &$form_state) {
  *
  * @see ctools_plugin_examples()
  */
-function static_cards_two_columns_render($subtype, $conf, $args, $contexts) {
+function static_cards_three_columns_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   $contextual_links = '';
@@ -113,11 +108,10 @@ function static_cards_two_columns_render($subtype, $conf, $args, $contexts) {
   $items = $conf['items'];
   foreach ($items as &$item) {
     $image_object = file_load($item['image']);
-    $item['image_url'] = image_style_url('static_cards_two_columns', $image_object->uri);
-    $item['image_url_mobile'] = image_style_url('static_cards_two_columns_mobile', $image_object->uri);
+    $item['image_url'] = image_style_url('article_teaser', $image_object->uri);
   }
 
-  $content = theme('static_cards_two_columns', array(
+  $content = theme('static_cards_three_columns', array(
       'items' => $items,
       'contextual_links' => $contextual_links,
     ));

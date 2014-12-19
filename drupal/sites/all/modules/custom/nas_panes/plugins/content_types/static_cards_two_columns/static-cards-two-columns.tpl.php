@@ -18,7 +18,7 @@
           <h2 class="banner-title"><?php print $item['title']; ?></h2>
           <ul class="banner-links inline-list">
             <?php if (!empty($item['bottom_link']['url']) && !empty($item['bottom_link']['title'])) : ?>
-            <li><a href="<?php print $item['bottom_link']['url']; ?>"><?php print $item['bottom_link']['title']; ?></a></li>
+              <li><a href="<?php print $item['bottom_link']['url']; ?>"><?php print $item['bottom_link']['title']; ?></a></li>
             <?php endif; ?>
           </ul>
         </div>
