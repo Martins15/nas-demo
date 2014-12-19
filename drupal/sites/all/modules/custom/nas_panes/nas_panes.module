@@ -637,6 +637,14 @@ function nas_panes_theme() {
       'template' => 'menu-bar-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/menu_bar_section',
     ),
+    'static_cards_two_columns' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-two-columns',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_two_columns',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
