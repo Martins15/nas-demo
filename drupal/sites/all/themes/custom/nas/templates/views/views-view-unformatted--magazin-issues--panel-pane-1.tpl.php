@@ -9,7 +9,7 @@
 ?>
 <?php if (!empty($title)): ?>
   <div class="magazine-issue-year columns">
-    <h2><?php print $title; ?></h2>
+    <h2 id="date-<?php print strip_tags($title); ?>"><?php print $title; ?></h2>
   </div>
 <?php endif; ?>
 <div class="magazin-issues-list" data-equalizer>
