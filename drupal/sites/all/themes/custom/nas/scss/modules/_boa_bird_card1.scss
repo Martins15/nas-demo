@@ -1,6 +1,7 @@
 .lzoom_zoomin,
-.lzoom_zoomout {
-  bottom: 30px;
+.lzoom_zoomout,
+.lzoom_fullscreen {
+  bottom: -50px;
   cursor: pointer;
   position: absolute;
   z-index: 2;
@@ -11,23 +12,37 @@
   text-transform: none;
 
   &:before {
-    background: #fff;
     color: #E18400;
     display: block;
     font-size: 32px;
     padding: 8px 6px 8px 8px;
     @include border-radius(2px);
   }
+
+  .fullscreen & {
+    bottom: 50px;
+  }
 }
 
 .lzoom_zoomin {
   @extend .icon-zoomin;
-  right: 40px
+  right: 120px;
 }
 
 .lzoom_zoomout {
   @extend .icon-zoomout;
-  right: 120px;
+  right: 60px;
+}
+
+.lzoom_fullscreen {
+  @extend .icon-fullscreen;
+  right: 0;
+  &:before {
+    font-size: 24px;
+  }
+  .fullscreen &{
+    display: none;
+  }
 }
 
 .draggble {
@@ -42,4 +57,11 @@
 
 #cboxLoadedContent {
   @include user-select(none);
+  &.fullscreen {
+    background: #000;
+  }
+}
+
+#cboxClose {
+  z-index: 2;
 }

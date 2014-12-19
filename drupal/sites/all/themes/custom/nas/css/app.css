@@ -575,6 +575,10 @@ th {
   content: "";
 }
 
+.icon-fullscreen:before, .lzoom_fullscreen:before {
+  content: "";
+}
+
 /*Important: In case foundation doesn't compiled on some environments, attach compiled file*/
 meta.foundation-version {
   font-family: "/5.2.2/";
@@ -12007,8 +12011,9 @@ body.touch .sticky-wrapper {
 }
 
 .lzoom_zoomin,
-.lzoom_zoomout {
-  bottom: 30px;
+.lzoom_zoomout,
+.lzoom_fullscreen {
+  bottom: -50px;
   cursor: pointer;
   position: absolute;
   z-index: 2;
@@ -12019,8 +12024,8 @@ body.touch .sticky-wrapper {
   text-transform: none;
 }
 .lzoom_zoomin:before,
-.lzoom_zoomout:before {
-  background: #fff;
+.lzoom_zoomout:before,
+.lzoom_fullscreen:before {
   color: #E18400;
   display: block;
   font-size: 32px;
@@ -12029,13 +12034,28 @@ body.touch .sticky-wrapper {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
+.fullscreen .lzoom_zoomin, .fullscreen
+.lzoom_zoomout, .fullscreen
+.lzoom_fullscreen {
+  bottom: 50px;
+}
 
 .lzoom_zoomin {
-  right: 40px;
+  right: 120px;
 }
 
 .lzoom_zoomout {
-  right: 120px;
+  right: 60px;
+}
+
+.lzoom_fullscreen {
+  right: 0;
+}
+.lzoom_fullscreen:before {
+  font-size: 24px;
+}
+.fullscreen .lzoom_fullscreen {
+  display: none;
 }
 
 .draggble {
@@ -12053,6 +12073,13 @@ body.touch .sticky-wrapper {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+#cboxLoadedContent.fullscreen {
+  background: #000;
+}
+
+#cboxClose {
+  z-index: 2;
 }
 
 .blocks-events .more-events {
