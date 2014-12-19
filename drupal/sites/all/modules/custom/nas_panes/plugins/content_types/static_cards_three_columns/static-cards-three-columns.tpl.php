@@ -11,15 +11,19 @@
     <div class="large-4 columns">
       <div class="editorial-card">
         <div class="editorial-card-photo">
-          <a href="<?php print $item['image_link']; ?>"><img src="<?php print $item['image_url']; ?>" alt=""></a>
+          <?php print l(theme('image', array('path' => $item['image_url'])), $item['image_link'], array('html' => TRUE)); ?>
         </div>
         <div class="editorial-card-content short">
           <?php if (!empty($item['top_link']['url']) && !empty($item['top_link']['title'])) : ?>
-            <a href="<?php print $item['top_link']['url']; ?>" class="editorial-card-slug"><?php print $item['top_link']['title']; ?></a>
+            <?php print l(check_plain($item['top_link']['title']), $item['top_link']['url'], array('attributes' => array('class' => array('editorial-card-slug')))); ?>
           <?php endif; ?>
           <h4 class="editorial-card-title"><a href="<?php print $item['title']['url']; ?>"><?php print $item['title']['title']; ?></a></h4>
           <?php if (!empty($item['bottom_link']['url']) && !empty($item['bottom_link']['title'])) : ?>
-            <p><em><a href="<?php print $item['bottom_link']['url']; ?>" class="editorial-card-link"><?php print $item['bottom_link']['title']; ?></a></em></p>
+            <p>
+              <em>
+                <?php print l(check_plain($item['bottom_link']['title']), $item['bottom_link']['url'], array('attributes' => array('class' => array('editorial-card-link')))); ?>
+              </em>
+            </p>
           <?php endif; ?>
         </div>
       </div>
