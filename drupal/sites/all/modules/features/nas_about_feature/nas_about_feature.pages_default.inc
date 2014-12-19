@@ -271,8 +271,8 @@ function nas_about_feature_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';
-    $pane->type = 'about_page_menu_bar';
-    $pane->subtype = 'about_page_menu_bar';
+    $pane->type = 'menu_bar_section';
+    $pane->subtype = 'menu_bar_section';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -281,7 +281,7 @@ function nas_about_feature_default_page_manager_pages() {
       'default_menu_item' => '157',
       'form_build_id' => 'form-B98nakdfUVPAWt_ufXR3N8hPmcMCuG2ZnkB2jtZGsbI',
       'form_token' => 'tpYTE5qaDNkOGf_vPvLQgMxdFeWddlCQL9sbp3UgIxE',
-      'form_id' => 'about_page_menu_bar_form',
+      'form_id' => 'menu_bar_section_form',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -297,8 +297,8 @@ function nas_about_feature_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-979c502a-0271-40cf-b92b-e981b5fc03cd';
     $pane->panel = 'top';
-    $pane->type = 'about_page_top';
-    $pane->subtype = 'about_page_top';
+    $pane->type = 'hero_image_section';
+    $pane->subtype = 'hero_image_section';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -309,9 +309,10 @@ function nas_about_feature_default_page_manager_pages() {
       'image' => '9774',
       'header_color_mode' => 'dark',
       'text_color_mode' => 'light',
-      'form_build_id' => 'form-pDh3sYC6tP8Cc-IjRwfeE1YboIN6NfK6aaZlrOYIz4M',
-      'form_token' => 'PClCy_r5cnTCVYLacqELYSQ70rB3czmWooenpFDHzMM',
-      'form_id' => 'about_page_top_form',
+      'form_id' => 'hero_image_section_form',
+      'form_build_id' => 'form-0TVBlMV3FRZUs-ss6Y1w3ZzZnlf8MuniVktxO0FQF-w',
+      'form_token' => 'rJkHSWqMzxSQ6piF2uBRiOUMdFVJz-0aG-FXV6PLlwk',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -476,8 +477,8 @@ function nas_about_feature_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-7b9687c6-d3a9-4b5f-a709-1e55ed0e8e69';
     $pane->panel = 'menu_bar';
-    $pane->type = 'about_page_menu_bar';
-    $pane->subtype = 'about_page_menu_bar';
+    $pane->type = 'menu_bar_section';
+    $pane->subtype = 'menu_bar_section';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -486,7 +487,7 @@ function nas_about_feature_default_page_manager_pages() {
       'default_menu_item' => '157',
       'form_build_id' => 'form-60mcn_yUTMlR3LVursK55yFhHRIR4xUa2opT-p00C1A',
       'form_token' => 'fP7n6l8eqnMVLFaY-0MBPeGhZS253zn86ic1_QwBIRo',
-      'form_id' => 'about_page_menu_bar_form',
+      'form_id' => 'menu_bar_section_form',
     );
     $pane->cache = array();
     $pane->style = array(

@@ -108,6 +108,14 @@
   }
 }
 
+.editorial-card-by-line {
+  color: #202020;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 11pt;
+  padding-bottom: 8px;
+  line-height: 13pt;
+}
+
 .editorial-card-dateline {
   color: #888;
   .editorial-card-info &{
@@ -128,26 +136,12 @@
   color: #0aa8e3;
   display: inline-block;
   &:after {
-    content: "";
-    display: block;
-    right: 0px;
-    top: 50%;
-    margin-top: -3px;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background: url("../img/duble-arrow.png") no-repeat center center;
-    background-size: 100%;
-  }
-  /*&:after {
     content: "»";
     margin-left: $size-space/2;
     display: inline-block;
     width: 7px;
     height: 7px;
-    background: url("img/duble-arrow.png") no-repeat center center;
-    background-size: 100%;
-  }*/
+  }
   &.sans {
     font-family: $font-sans;
     font-size: $size-text-small;
@@ -175,6 +169,10 @@
     .editorial-card-slug {
       font-size: $size-text-medium;
       margin-bottom: $size-space/2;
+      &.small {
+        font-size: $size-text-small;
+        margin-bottom: 0;
+      }
     }
     .editorial-card-title {
       font-size: $size-text-h3;
@@ -261,5 +259,16 @@
     .editorial-card-photo {
       display: none;
     }
+  }
+}
+
+.editorial-card-cta {
+  text-align: center;
+  padding-top: $column-gutter/2;
+  left: 0;
+  width: 100%;
+
+  .button {
+    font-size: $size-text-base;
   }
 }

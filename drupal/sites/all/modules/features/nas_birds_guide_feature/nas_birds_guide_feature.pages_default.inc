@@ -206,6 +206,49 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->uuid = '370ccda0-f986-4da9-ae20-b4445eca00d2';
     $display->content['new-370ccda0-f986-4da9-ae20-b4445eca00d2'] = $pane;
     $display->panels['in_the_news'][0] = 'new-370ccda0-f986-4da9-ae20-b4445eca00d2';
+    $pane = new stdClass();
+    $pane->pid = 'new-8f1f707a-313e-4026-bfef-a8d4ee163726';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-rH2LuoGQr4c-bfyh79VBjjSKKmZ8-ONPsJc0-3isLso',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8f1f707a-313e-4026-bfef-a8d4ee163726';
+    $display->content['new-8f1f707a-313e-4026-bfef-a8d4ee163726'] = $pane;
+    $display->panels['cards_set'][0] = 'new-8f1f707a-313e-4026-bfef-a8d4ee163726';
   $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

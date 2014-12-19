@@ -22,5 +22,6 @@ $plugin = array(
     'more_headlines' => t('More headlines'),
     'editorial_cards' => t('Editorial Cards'),
     'main' => t('Main'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

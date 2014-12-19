@@ -66,6 +66,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'static_page') {
     nas_preprocess_node_static_page($vars);
   }
+  if ($vars['type'] == 'engagement_cards') {
+    nas_preprocess_node_engagement_cards($vars);
+  }
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
@@ -401,6 +404,20 @@ function nas_preprocess_node_article(&$vars) {
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['by_line'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_author')) {
+      $author_node = node_load($field_items[0]['target_id']);
+      $vars['by_line'] = 'By ' . $author_node->title;
+    }
+  }
+  if ($vars['view_mode'] == 'teaser_author_page') {
+    $vars['article_date'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_article_date')) {
+      $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
+    }
+  }
+
   if ($vars['view_mode'] == 'nas_node_related_features') {
     if (!empty($vars['content']['field_menu_section'])) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
@@ -491,6 +508,24 @@ function nas_preprocess_node_article_news_from_network(&$vars) {
   if (!empty($node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'])) {
     $term = $node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'];
     $vars['blue_link'] = l($term->name, 'taxonomy/term/' . $term->tid, array('attributes' => array('class' => array('editorial-card-slug'))));
+  }
+}
+
+/**
+ * theme_preprocess_node for engagement cards content type.
+ */
+function nas_preprocess_node_engagement_cards(&$vars) {
+  $node = $vars['node'];
+  if ($field_link_items = field_get_items('node', $node, 'field_link')) {
+    $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
+      'attributes' => array(
+        'class' => array(
+        'button',
+        'tomato',
+        'large',
+        ),
+      ),
+    ));
   }
 }
 

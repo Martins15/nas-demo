@@ -600,6 +600,7 @@ function nas_master_update_7052() {
   features_revert_module('nas_author_page');
   features_revert_module('nas_contact_type_feature');
   features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_news_page_feature');
 }
 
 /**
@@ -607,6 +608,7 @@ function nas_master_update_7052() {
  */
 function nas_master_update_7053() {
   features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_bird_type_feature' => array('wysiwyg')));
   module_enable(
     array(
       'nas_about_feature',
@@ -682,9 +684,42 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
 }
 
 /**
+ * Enable getoutside feature.
+ */
+function nas_master_update_7059() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_about_feature' => array('page_manager_pages')));
+  features_revert(array('nas_conservation_landing_feature' => array('page_manager_pages')));
+  module_enable(array('nas_getoutside_feature'));
+}
+
+/**
+ * Add Nodequeue module, Engagement cards.
+ */
+function nas_master_update_7060() {
+  module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_article_feature');
+  features_revert(array('nas_author_page' => array('panelizer')));
+  features_revert(array('nas_contact_type_feature' => array('panelizer')));
+  features_revert(array('nas_flyways_feature' => array('panelizer')));
+  features_revert(array('nas_slideshow_feature' => array('field_instance', 'panelizer', 'views_default')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer')));
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_frontpage_feature');
+  features_revert_module('nas_news_page_feature');
+  features_revert_module('nas_flyways_landing_feature');
+  features_revert_module('nas_engagement_cards_feature');
+}
+
+function nas_master_update_7061() {
+  features_revert_module('nas_views_feature');
+}
+
+/**
  * Adjust URL aliases.
  */
-function nas_master_update_7054() {
+function nas_master_update_7062() {
   module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
   features_revert_module('nas_url_aliases_feature');
   features_revert_module('nas_birds_guide_feature');
@@ -693,7 +728,7 @@ function nas_master_update_7054() {
 /**
  * Create redirects from old URL aliases and them remove aliases.
  */
-function nas_master_update_7055(&$sandbox) {
+function nas_master_update_7063(&$sandbox) {
   if (!isset($sandbox['total'])) {
     // Find nodes that already have redirects.
     $query = db_select('node', 'n');

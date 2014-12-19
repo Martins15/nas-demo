@@ -17,5 +17,6 @@ $plugin = array(
   'regions' => array(
     'slideshow' => t('Slideshow'),
     'bottom' => t('Bottom'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

@@ -147,7 +147,7 @@ function nas_boa_news_build_contextual_links($subtype, $node) {
     'edit' => array(
       'title' => t('Edit block'),
       'href' => $href,
-      'query' => array('reload' => 'true'),
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
     ),
   );

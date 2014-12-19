@@ -70,9 +70,9 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
   );
-  $entity_info['node']['view modes']['nas_node_teaser_wo_date'] = array(
-    'label' => t('Teaser without date'),
-    'custom settings' => TRUE,
+  $entity_info['node']['view modes']['teaser_author_page'] = array(
+    'label' => t('Teaser for Author page'),
+    'custom settings' => FALSE,
   );
   $entity_info['node']['view modes']['nas_node_teaser_no_section_link'] = array(
     'label' => t('Teaser without section link'),
@@ -245,7 +245,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_editorial_cards(&$vars) {
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
     'html' => TRUE,
-    'query' => array('reload' => 'true'),
+    'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
     'attributes' => array(
       'class' => array('ctools-use-modal'),
       'title' => t('Edit'),
@@ -316,7 +316,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
     'html' => TRUE,
-    'query' => array('reload' => 'true'),
+    'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
     'attributes' => array(
       'class' => array('ctools-use-modal'),
       'title' => t('Edit'),
@@ -375,7 +375,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panel_context:page-birds_landing::page_birds_landing_panel_context::::/' . $panel_id,
     'html' => TRUE,
-    'query' => array('reload' => 'true'),
+    'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
     'attributes' => array(
       'class' => array('ctools-use-modal'),
       'title' => t('Edit'),
@@ -465,7 +465,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panelizer:node:' . $node->nid . ':page_manager/' . $panel_id,
     'html' => TRUE,
-    'query' => array('reload' => 'true'),
+    'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
     'attributes' => array(
       'class' => array('ctools-use-modal'),
       'title' => t('Edit'),
@@ -566,7 +566,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     'title' => t('Edit'),
     'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
     'html' => TRUE,
-    'query' => array('reload' => 'true'),
+    'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
     'attributes' => array(
       'class' => array('ctools-use-modal'),
       'title' => t('Edit'),
