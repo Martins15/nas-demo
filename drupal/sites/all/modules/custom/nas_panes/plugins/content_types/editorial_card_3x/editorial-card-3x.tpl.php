@@ -12,6 +12,7 @@
  */
 ?>
 
+<?php if ($teasers || $contextual_links): ?>
 <div class="card-set <?php print $additional_classes; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php if ($title || $more_link): ?>
@@ -55,3 +56,4 @@
     <?php endforeach; ?>
   </div>
 </div>
+<?php endif; ?>
