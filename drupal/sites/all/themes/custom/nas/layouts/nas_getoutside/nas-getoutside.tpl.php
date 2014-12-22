@@ -9,6 +9,11 @@
 
 <section class="global-content">
   <?php print render($content['main']); ?>
+
+  <div class="bird-card-set bg-bone-white">
+    <?php print render($content['bird_guide']); ?>
+  </div>
+
   <section class="card-set bg-1">
     <div class="row">
       <div class="column">
