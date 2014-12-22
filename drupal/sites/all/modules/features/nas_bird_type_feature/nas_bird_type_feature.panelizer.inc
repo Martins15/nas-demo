@@ -249,10 +249,10 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-93301a46-a012-4c42-86ac-edda31fedea6'] = $pane;
     $display->panels['in_action_top'][0] = 'new-93301a46-a012-4c42-86ac-edda31fedea6';
     $pane = new stdClass();
-    $pane->pid = 'new-e2e501a2-d8a8-40a8-8da5-3275af01a207';
+    $pane->pid = 'new-e026676d-dc97-415f-b572-c3ba054966a4';
     $pane->panel = 'in_the_news';
-    $pane->type = 'nas_panes_pane_in_the_news';
-    $pane->subtype = 'nas_panes_pane_in_the_news';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -260,11 +260,44 @@ function nas_bird_type_feature_panelizer_defaults() {
         'return' => 'Finish',
         'cancel' => 'Cancel',
       ),
-      'override_title' => 0,
-      'override_title_text' => '',
-      'form_build_id' => 'form-GQRB7ao38qVQwbFWOPmV6OKoR-wvnrpZBjEOaHXA8Gw',
-      'form_token' => '2LNQ4mDgso0D_wgWiwX8eXmN2BUEGchCe33NBEBn0Kk',
-      'form_id' => 'nas_panes_pane_in_the_news_custom_pane_edit_form',
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => '%node:title In the News',
+      'preset' => 'bird_in_the_news',
+      'more_link_text' => 'More News »',
+      'more_link_url' => 'news',
+      'refs' => array(
+        1 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        2 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        3 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+      ),
+      'form_build_id' => 'form-SS3ZLQyf4WwH7q51qcF1ySQdgrbbzA5hQAZGfm4Ri6E',
+      'form_token' => 'Pu_VnTcDjktXfpOUXrEgITE2aSXYE7hu77P00PrCevk',
+      'form_id' => 'editorial_card_3x_edit_form',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -274,9 +307,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'e2e501a2-d8a8-40a8-8da5-3275af01a207';
-    $display->content['new-e2e501a2-d8a8-40a8-8da5-3275af01a207'] = $pane;
-    $display->panels['in_the_news'][0] = 'new-e2e501a2-d8a8-40a8-8da5-3275af01a207';
+    $pane->uuid = 'e026676d-dc97-415f-b572-c3ba054966a4';
+    $display->content['new-e026676d-dc97-415f-b572-c3ba054966a4'] = $pane;
+    $display->panels['in_the_news'][0] = 'new-e026676d-dc97-415f-b572-c3ba054966a4';
     $pane = new stdClass();
     $pane->pid = 'new-26560f62-8a80-49c9-97c4-3b286dc5b5e7';
     $pane->panel = 'main';
