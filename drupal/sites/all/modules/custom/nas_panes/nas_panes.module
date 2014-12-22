@@ -679,6 +679,15 @@ function nas_panes_theme() {
       'template' => 'static-cards-bird-guide',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_bird_guide',
     ),
+    'local_chapters_centers_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+      ),
+      'template' => 'local-chapters-centers-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
