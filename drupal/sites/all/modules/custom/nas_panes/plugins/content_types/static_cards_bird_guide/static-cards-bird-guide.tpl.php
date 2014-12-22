@@ -5,7 +5,8 @@
  */
 ?>
 
-<div class="row section-header space-top">
+<div class="row section-header space-top  <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
+  <?php print $contextual_links; ?>
   <div class="columns">
     <h2 class="thin"><?php print $title; ?></h2>
   </div>
@@ -13,8 +14,7 @@
     <?php print $links; ?>
   </div>
 </div>
-<div class="row bird-card-container <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
-  <?php print $contextual_links; ?>
+<div class="row bird-card-container">
   <div class="bird-card-scroller">
     <?php foreach ($items as $item) : ?>
       <div class="columns tiny-3">
