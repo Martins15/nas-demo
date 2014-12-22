@@ -1,7 +1,7 @@
 .lzoom_zoomin,
 .lzoom_zoomout,
 .lzoom_fullscreen {
-  bottom: -50px;
+  bottom: 0px;
   cursor: pointer;
   position: absolute;
   z-index: 2;
@@ -12,10 +12,10 @@
   text-transform: none;
 
   &:before {
-    color: #E18400;
+    color: #dd360f;
     display: block;
-    font-size: 32px;
-    padding: 8px 6px 8px 8px;
+    font-size: 24px;
+    padding: 0;
     @include border-radius(2px);
   }
 
@@ -26,22 +26,25 @@
 
 .lzoom_zoomin {
   @extend .icon-zoomin;
-  right: 120px;
+  right: 110px;
+  .fullscreen &{
+    right: 150px;
+  }
 }
 
 .lzoom_zoomout {
   @extend .icon-zoomout;
   right: 60px;
+  .fullscreen &{
+    right: 100px;
+  }
 }
 
 .lzoom_fullscreen {
   @extend .icon-fullscreen;
-  right: 0;
-  &:before {
-    font-size: 24px;
-  }
+  right: 10px;
   .fullscreen &{
-    display: none;
+    right: 50px;
   }
 }
 
@@ -65,3 +68,60 @@
 #cboxClose {
   z-index: 2;
 }
+
+.lzoom1 {
+  #colorbox.lzoom {
+    border-color: #000000;
+    #cboxTitle {
+      background-color: #000000;
+      color: #ffffff;
+      font-style: italic;
+      min-height: 40px;
+      padding-right: 125px;
+      text-align: left;
+    }
+  }
+}
+
+.lzoom2 {
+  .lzoom_zoomin,
+  .lzoom_zoomout,
+  .lzoom_fullscreen {
+    position: initial;
+    display: block;
+    margin-bottom: 12px;
+    &:before {
+      color: #ef5835;
+      font-size: 26px;
+    }
+  }
+  .lzoom_zoomin {
+    top: 80px;
+  }
+
+  .lzoom_zoomout {
+    top: 40px;
+  }
+
+  .lzoom_fullscreen {
+    top: 120px;
+  }
+
+  .controls {
+    position: absolute;
+    top: -15px;
+    left: -20px;
+    padding: 40px 8px 6px;
+    background-color: #000000;
+    @include border-radius(60px);
+    z-index: 2;
+  }
+  .fullscreen {
+    .controls {
+      top: 60px;
+      left: 60px;
+      padding-top: 18px;
+    }
+  }
+}
+

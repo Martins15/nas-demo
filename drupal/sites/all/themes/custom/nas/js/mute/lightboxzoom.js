@@ -8,24 +8,41 @@
       $('.lightboxzoom').colorbox({
         maxWidth:'80%',
         maxHeight:'80%',
+        reposition: true,
         onComplete: function() {
 
           // Define DOM elements
           var $content = $('#cboxLoadedContent'),
+              $colorbox = $('#colorbox'),
               $img = $content.find('img'),
               $draggble = $('<div class="draggble"></div>'),
+              $controls = $('<div class="controls"></div>'),
               $zoomin = $('<i class="lzoom_zoomin"></i>'),
               $zoomout = $('<i class="lzoom_zoomout"></i>'),
               $fullScreen = $('<i class="lzoom_fullscreen"></i>'),
               isMouseWheel = false,
-              originalWidth = $content.width();
+              originalWidth = $content.width(),
+              mouseWheelOb = {state: 'inactive'},
+              fullScreen_state = 'FullscreenOff';
 
+              $(window).on("resize", function(){
+                  var h = '80%',
+                      w = $colorbox.width() > $(window).width() * 0.8 ? '80%' : $colorbox.width();
+                  $.colorbox.resize({
+                      width: w,
+                      height: h
+                  });
+              });
+          $colorbox.addClass('lzoom'); // from lightboxzoom
+
+          $controls.append($zoomin, $zoomout, $fullScreen);
 
           // Add DOM elements and modify css
-          $content.append($draggble, $zoomin, $zoomout, $fullScreen);
+          $content.append($draggble, $controls);
           $content.css({
             'overflow': 'hidden'
           });
+
           $img.css({
             'height': 'auto',
             'position': 'relative',
@@ -38,53 +55,14 @@
           // Zoomin event
           $zoomin.click(function() {
             if ($img.width() < 4000) {
-              var w = 0,
-                  wb = false, // width boolean
-                  hb = false; // height boolean
-
-              if ($img.width() < $content.width()) {
-                w = $content.width() - $img.width();
-              } else {
-                w = $content.width();
-                wb = true;
-              }
-
-              if ($img.height() > $content.height()) {
-                hb = true;
-              }
-
-              $img.animate({
-                'width': $img.width() * 2,
-                'left': wb ? (parseInt($img.css('left')) * (-2) + w / 2) * (-1) : 0,
-                'top': hb ? (parseInt($img.css('top')) * (-2) + w / 2) * (-1) : 0
-              });
+              zoom('in');
             }
           });
 
           // Zoomout event
           $zoomout.click(function() {
             if ($img.width() > originalWidth) {
-              var w = 0,
-                  wb = false, // width boolean
-                  hb = false; // height boolean
-
-              if ($img.width() < $content.width()) {
-                w = $content.width() - $img.width();
-              } else {
-                w = $content.width();
-                wb = true;
-              }
-
-              if ($img.height() > $content.height()) {
-                hb = true;
-              }
-
-              $img.animate({
-                'width': $img.width() / 2,
-                'left': wb ?  (parseInt($img.css('left')) / (-2) - w / 4) * (-1) : 0,
-                'top': hb ? (parseInt($img.css('top')) / (-2) - w / 4 ) * (-1) : 0
-              });
-
+              zoom('out');
             }
           });
 
@@ -93,72 +71,55 @@
             e.preventDefault();
             e.stopImmediatePropagation();
 
-
-            if (!isMouseWheel) {
-              var w = 0,
-                  wb = false, // width boolean
-                  hb = false; // height boolean
-
-              if ($img.width() < $content.width()) {
-                w = $content.width() - $img.width();
-              } else {
-                w = $content.width();
-                wb = true;
-              }
-
-              if ($img.height() > $content.height()) {
-                hb = true;
-              }
-
+            if (mouseWheelOb.state === 'inactive') {
               if (e.deltaY === 1) {
                 if ($img.width() < 4000) {
-                  isMouseWheel = true;
-                  $img.animate({
-                    'width': $img.width() * 2,
-                    'left': wb ? (parseInt($img.css('left')) * (-2) + $content.width() / 2) * (-1) : 0,
-                    'top': hb ? (parseInt($img.css('top')) * (-2) + $content.height() / 2) * (-1) : 0
-                  },function() {isMouseWheel = false});
+                  mouseWheelOb.state = 'active' ;
+                  zoom("in", function() {mouseWheelOb.state = 'inactive'});
                 }
               } else if (e.deltaY === -1) {
                 if ($img.width() > originalWidth) {
-                  isMouseWheel = true;
-                  $img.animate({
-                    'width': $img.width() / 2,
-                    'left': wb ? (parseInt($img.css('left')) / (-2) - $content.width() / 4) * (-1) : 0,
-                    'top': hb ? (parseInt($img.css('top')) / (-2) - $content.height() / 4) * (-1) : 0
-                  },function() {isMouseWheel = false});
+                  mouseWheelOb.state = 'active' ;
+                  zoom("out", function() {mouseWheelOb.state = 'inactive'});
                 }
               }
-              console.log(e.deltaX, e.deltaY, e.deltaFactor);
-
-
             }
-
           });
 
           $fullScreen.click(function() {
-            var req = $content.get( 0 ).requestFullScreen ||
-                $content.get( 0 ).webkitRequestFullScreen ||
-                $content.get( 0 ).msRequestFullscreen ||
-                $content.get( 0 ).mozRequestFullScreen;
-            req.call($content.get( 0 ));
+            var req;
+            if (fullScreen_state === 'FullscreenOff') {
+              req = $content.get( 0 ).requestFullScreen ||
+                  $content.get( 0 ).webkitRequestFullScreen ||
+                  $content.get( 0 ).msRequestFullscreen ||
+                  $content.get( 0 ).mozRequestFullScreen;
+              req.call($content.get( 0 ));
+            } else {
+              req = document.exitFullscreen ||
+                  document.webkitExitFullscreen ||
+                  document.msExitFullscreen ||
+                  document.mozCancelFullScreen;
+              req.call(document);
+            }
 
           })
 
-          $content.bind('webkitfullscreenchange mozfullscreenchange fullscreenchange msfullscreenchange', function(e) {
+          $(document).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function(e) {
               var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen || document.MSFullscreenChange;
-              var event = state ? 'FullscreenOn' : 'FullscreenOff';
+              fullScreen_state = state ? 'FullscreenOn' : 'FullscreenOff';
 
-              if (event === 'FullscreenOn') {
+              if (fullScreen_state === 'FullscreenOn') {
                 $content.addClass('fullscreen');
                 $content.width('100%');
+                $colorbox.width('100%');
                 $content.height('100%');
               } else {
                 $content.removeClass('fullscreen');
               }
           });
 
-        //------- Draggble feature -------
+          //------- Draggble feature -------
+
           // Draggble variables
           var drag = false,
               xPos0 = 0,
@@ -196,6 +157,12 @@
           });
 
           // Draggble event for mobile TouchMove
+          $draggble.on("touchstart", function(e){
+            xPos0 = e.pageX;
+            yPos0 = e.pageY;
+          });
+
+          // Draggble event for mobile TouchMove
           $draggble.on("touchmove", function(e){
             e.preventDefault();
             xPos1 = xPos0;
@@ -206,10 +173,56 @@
             var left = xPos0 - xPos1,
               top = yPos0 - yPos1;
 
+              console.log(left);
+              console.log(top);
             $img.css('left', parseInt($img.css('left')) + left + 'px');
             $img.css('top', parseInt($img.css('top')) +  top + 'px');
           });
 
+
+
+          // Functions
+          function zoom(type, callb) {
+            var w = 0,
+                wb = false, // width boolean
+                hb = false, // height boolean
+                cssOb = {};
+
+            if ($img.width() >= $content.width()) {
+              w = $content.width();
+              wb = true;
+            }
+
+            if ($img.height() > $content.height()) {
+              hb = true;
+            }
+
+            if (type === 'in') {
+              cssOb = {
+                'width': $img.width() * 2,
+                'left': wb ? (parseInt($img.css('left')) * (-2) + w / 2) * (-1) : 0,
+                'top': hb ? (parseInt($img.css('top')) * (-2) + w / 2) * (-1) : 0
+              };
+            } else if (type === 'out') {
+              cssOb = {
+                'width': $img.width() / 2,
+                'left': wb ?  (parseInt($img.css('left')) / (-2) - w / 4) * (-1) : 0,
+                'top': hb ? (parseInt($img.css('top')) / (-2) - w / 4 ) * (-1) : 0
+              };
+            }
+
+            if (typeof callb === 'function') {
+              $img.animate(cssOb, callb);
+            } else {
+              $img.animate(cssOb);
+            }
+
+          }
+
+        },
+        onClosed: function() {
+          var $colorbox = $('#colorbox');
+          $colorbox.removeClass('lzoom');
         }
       });
     }
