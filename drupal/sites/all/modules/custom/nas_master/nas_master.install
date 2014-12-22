@@ -710,6 +710,8 @@ function nas_master_update_7060() {
   features_revert_module('nas_news_page_feature');
   features_revert_module('nas_flyways_landing_feature');
   features_revert_module('nas_engagement_cards_feature');
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_boa_feature');
 }
 
 function nas_master_update_7061() {

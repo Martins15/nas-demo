@@ -37,7 +37,7 @@ function nas_boa_feature_image_default_styles() {
     'name' => 'boa_hero',
     'label' => 'BOA Hero',
     'effects' => array(
-      1 => array(
+      11 => array(
         'label' => 'EPSA Image Crop',
         'help' => '',
         'dimensions callback' => 'epsacrop_crop_dimensions',
@@ -46,8 +46,8 @@ function nas_boa_feature_image_default_styles() {
         'module' => 'epsacrop',
         'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 900,
-          'height' => 1074,
+          'width' => 2400,
+          'height' => 2864,
           'anchor' => 'center-center',
           'jcrop_settings' => array(
             'aspect_ratio' => '',
@@ -58,7 +58,7 @@ function nas_boa_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      2 => array(
+      12 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',
@@ -68,8 +68,8 @@ function nas_boa_feature_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 900,
-          'height' => 1074,
+          'width' => 2400,
+          'height' => 2864,
         ),
         'weight' => 2,
       ),
@@ -81,21 +81,41 @@ function nas_boa_feature_image_default_styles() {
     'name' => 'boa_plate_thumbnail',
     'label' => 'BOA Plate Thumbnail',
     'effects' => array(
-      1 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
-        'name' => 'image_scale',
+      9 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 256,
-          'height' => '',
-          'upscale' => 0,
+          'width' => 545,
+          'height' => 841,
+          'anchor' => 'center-top',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
         ),
         'weight' => 1,
+      ),
+      10 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 545,
+          'height' => 841,
+        ),
+        'weight' => 2,
       ),
     ),
   );
