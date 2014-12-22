@@ -52,6 +52,7 @@ function nas_getoutside_feature_default_page_manager_pages() {
       'top' => NULL,
       'menu_bar' => NULL,
       'main' => NULL,
+      'bird_guide' => NULL,
     ),
   );
   $display->cache = array();
@@ -59,6 +60,46 @@ function nas_getoutside_feature_default_page_manager_pages() {
   $display->uuid = 'f37ccaa2-9a88-44ad-b34f-ecf9d9dce1ec';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b';
+    $pane->panel = 'bird_guide';
+    $pane->type = 'static_cards_bird_guide';
+    $pane->subtype = 'static_cards_bird_guide';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'The Audubon Bird Guide',
+      'items' => array(
+        0 => array(
+          'bird' => FALSE,
+        ),
+        1 => array(
+          'bird' => FALSE,
+        ),
+        2 => array(
+          'bird' => FALSE,
+        ),
+        3 => array(
+          'bird' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-l4MJjWwu1mp7T_QMl-LHwIGZoTMw3YWRBQ08cyH0O8Y',
+      'form_token' => 'fbgJrlKHmgWcJ2Eqs0n0WyEyOj5VjUMyKNMqkBg5deE',
+      'form_id' => 'static_cards_bird_guide_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b';
+    $display->content['new-c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b'] = $pane;
+    $display->panels['bird_guide'][0] = 'new-c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b';
     $pane = new stdClass();
     $pane->pid = 'new-12929e62-1c11-48db-85e0-0529a772b45d';
     $pane->panel = 'main';
