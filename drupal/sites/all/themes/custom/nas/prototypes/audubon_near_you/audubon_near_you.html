@@ -18,9 +18,12 @@
     <link rel="stylesheet" href="../../css/ie8.css" />
     <script src="../../js/mute/ie-carousel.js"></script>
     <![endif]-->
+    
     <!--[if IE 9]>
     <link rel="stylesheet" href="../../css/ie9.css" />
     <![endif]-->
+
+
 </head>
   <body>
   <header class="global-header standard">
@@ -594,6 +597,11 @@
             $(".toggle-bird-guide-search").removeClass("open");
             $(".bird-guide-search").removeClass("show");
           }
+        });
+      });
+      $(document).ready(function() {
+        $(function() {
+          $('input, textarea').placeholder();
         });
       });
 

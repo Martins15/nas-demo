@@ -257,3 +257,14 @@ aside,
 .global-header.dark-text .primary-nav-search i.icon-magnifier {
   background-image: url(../img/ie/icon-magnifier-dark.png);
 }
+
+.bird-guide-country select {
+    background: #ffffff;
+    padding-right: 10px;
+    height: 40px;
+    padding: 0px;
+}
+
+.bird-guide-zip-input {
+    height: 40px;
+}

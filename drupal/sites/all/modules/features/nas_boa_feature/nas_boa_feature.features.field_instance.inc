@@ -300,21 +300,38 @@ function nas_boa_feature_field_default_field_instances() {
       'default_image' => 0,
       'epsacrop' => array(
         'styles' => array(
+          'about_page_success_section' => 0,
           'article_featured' => 0,
-          'article_teaser' => 0,
+          'boa_family_species' => 'boa_family_species',
+          'boa_hero' => 'boa_hero',
+          'boa_index_bio' => 0,
+          'boa_index_hero' => 0,
+          'boa_plate_thumbnail' => 'boa_plate_thumbnail',
+          'conservation_hero' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_hero' => 0,
+          'conservation_strategy_hero_mobile' => 0,
+          'conservation_strategy_slideshow' => 0,
           'default_teaser_image' => 0,
-          'featured_bird' => 'featured_bird',
+          'engagement_card' => 0,
+          'featured_bird' => 0,
           'featured_bird_illustration' => 0,
-          'featured_bird_mobile' => 'featured_bird_mobile',
+          'featured_bird_mobile' => 0,
           'featured_frontpage' => 0,
           'front_flyway_image' => 0,
           'get_outside' => 0,
           'hero_cover_bird_page' => 0,
-          'hero_image' => 'hero_image',
-          'hero_mobile' => 'hero_mobile',
+          'hero_image' => 0,
+          'hero_image_section' => 0,
+          'hero_image_section_mobile' => 0,
+          'hero_mobile' => 0,
+          'hero_project' => 0,
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,
           'nas_birds_landing_epsacrop_mobile' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
         ),
       ),
       'file_directory' => '',
@@ -645,6 +662,97 @@ function nas_boa_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-boa-field_related_news'
+  $field_instances['node-boa-field_related_news'] = array(
+    'bundle' => 'boa',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 7,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_wo_date' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_related_news',
+    'label' => 'In the news',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-boa-field_state'
   $field_instances['node-boa-field_state'] = array(
     'bundle' => 'boa',
@@ -735,6 +843,7 @@ function nas_boa_feature_field_default_field_instances() {
   t('Bird guide reference');
   t('Body');
   t('Conservation Status');
+  t('In the news');
   t('Plate Illustration');
   t('Plate Number');
   t('Scientific Name');
