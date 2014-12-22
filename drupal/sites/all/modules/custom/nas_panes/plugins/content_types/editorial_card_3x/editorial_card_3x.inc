@@ -226,10 +226,10 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           $args = _editorial_card_3x_get_view_args($item['options']['args'], $context);
           $view = views_get_view($item['options']['view']);
           if (is_array($args)) {
-            $view->set_arguments(implode('', $args));
+            $view->set_arguments($args);
           }
           $view->set_display($item['options']['display']);
-          $view->display_handler->options['pager']['options']['items_per_page'] = $conf['count'];
+          $view->display_handler->options['pager']['options']['items_per_page'] = !empty($conf['count']) ? $conf['count'] : 3;
           $view->pre_execute();
           $view->execute();
           $view_results = $view->result;
@@ -373,7 +373,7 @@ function _editorial_card_3x_presets() {
           'type' => 'views_results',
           'options' => array(
             'view' => 'nas_news',
-            'display' => 'nas_bird_in_the_news',
+            'display' => 'nas_bird_in_the_news_default',
             'result_key' => 'nid',
             'args' => array('entity:node'),
           ),
