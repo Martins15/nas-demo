@@ -12428,6 +12428,13 @@ h2.grey {
   }
 }
 
+/**
+ * Styles for Getoutside page.
+ */
+.getoutside .bird-card-set .section-header {
+  padding-top: 25px;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }

@@ -350,11 +350,11 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
       'class' => array(
         'section-nav',
         'inline-list',
-        )
       ),
+    ),
   ));
   $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
-  if (count($get_field_related_bird) !== 4) {
+  if ($get_field_related_bird == 0) {
     $vars['fields'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide_random');
   }
 
