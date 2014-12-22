@@ -72,7 +72,7 @@ function static_cards_bird_guide_render($subtype, $conf, $args, $contexts) {
 
   $links = theme('item_list', array(
     'items' => array(
-      l(t('Explore Our Bird Guide'), 'bird-guide', array('attributes' => array('class' => array('hide-for-small', 'hide-for-tiny')))),
+      l(t('Explore Our Bird Guide'), 'bird-guide'),
       l(t('Adopt a Bird'), '', array('attributes' => array('class' => array('cta')))),
     ),
     'attributes' => array(

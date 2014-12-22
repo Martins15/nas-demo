@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="row section-header space-top  <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
+<div class="row section-header <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
   <?php print $contextual_links; ?>
   <div class="columns">
     <h2 class="thin"><?php print $title; ?></h2>

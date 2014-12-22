@@ -65,6 +65,7 @@ function nas_birds_landing_feature_default_page_manager_pages() {
       'bird_card_set' => NULL,
       'cards' => NULL,
       'banner_set' => NULL,
+      'engagement_cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -115,14 +116,33 @@ function nas_birds_landing_feature_default_page_manager_pages() {
     $display->content['new-0b287b40-eba6-4490-a5ce-5c6efd4a745c'] = $pane;
     $display->panels['banner_set'][1] = 'new-0b287b40-eba6-4490-a5ce-5c6efd4a745c';
     $pane = new stdClass();
-    $pane->pid = 'new-868f6282-0ea5-46ba-9633-bd3991d2f97c';
+    $pane->pid = 'new-73ca241d-cbd0-4e4f-a091-723d825ff779';
     $pane->panel = 'bird_card_set';
-    $pane->type = 'fieldable_panels_pane';
-    $pane->subtype = 'uuid:4b928774-249c-4bcf-b391-32a9b20985a0';
+    $pane->type = 'static_cards_bird_guide';
+    $pane->subtype = 'static_cards_bird_guide';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'view_mode' => 'full',
+      'override_title' => 1,
+      'override_title_text' => 'The Audubon Bird Guide',
+      'items' => array(
+        0 => array(
+          'bird' => FALSE,
+        ),
+        1 => array(
+          'bird' => FALSE,
+        ),
+        2 => array(
+          'bird' => FALSE,
+        ),
+        3 => array(
+          'bird' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-ZrEmTtwzcNnOP5l7M3C_d5tAML2hEGOVamIbpEBeLjA',
+      'form_token' => 'fbgJrlKHmgWcJ2Eqs0n0WyEyOj5VjUMyKNMqkBg5deE',
+      'form_id' => 'static_cards_bird_guide_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -132,9 +152,9 @@ function nas_birds_landing_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '868f6282-0ea5-46ba-9633-bd3991d2f97c';
-    $display->content['new-868f6282-0ea5-46ba-9633-bd3991d2f97c'] = $pane;
-    $display->panels['bird_card_set'][0] = 'new-868f6282-0ea5-46ba-9633-bd3991d2f97c';
+    $pane->uuid = '73ca241d-cbd0-4e4f-a091-723d825ff779';
+    $display->content['new-73ca241d-cbd0-4e4f-a091-723d825ff779'] = $pane;
+    $display->panels['bird_card_set'][0] = 'new-73ca241d-cbd0-4e4f-a091-723d825ff779';
     $pane = new stdClass();
     $pane->pid = 'new-99269575-53be-434f-8160-87738170014a';
     $pane->panel = 'cards';

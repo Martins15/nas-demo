@@ -7,7 +7,7 @@
 <?php print render($content['top']); ?>
 <?php print render($content['menu_bar']); ?>
 
-<section class="global-content">
+<section class="global-content getoutside">
   <?php print render($content['main']); ?>
 
   <div class="bird-card-set bg-bone-white">
