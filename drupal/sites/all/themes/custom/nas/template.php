@@ -404,6 +404,20 @@ function nas_preprocess_node_article(&$vars) {
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['by_line'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_author')) {
+      $author_node = node_load($field_items[0]['target_id']);
+      $vars['by_line'] = 'By ' . $author_node->title;
+    }
+  }
+  if ($vars['view_mode'] == 'teaser_author_page') {
+    $vars['article_date'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_article_date')) {
+      $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
+    }
+  }
+
   if ($vars['view_mode'] == 'nas_node_related_features') {
     if (!empty($vars['content']['field_menu_section'])) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
