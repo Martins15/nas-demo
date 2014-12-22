@@ -636,6 +636,15 @@ function nas_panes_theme() {
       'template' => 'editorial-card-river',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_river',
     ),
+    'editorial_card_3x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'teasers' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-3x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_3x',
+    ),
     'hero_image_section' => array(
       'variables' => array(
         'hero_image' => NULL,
