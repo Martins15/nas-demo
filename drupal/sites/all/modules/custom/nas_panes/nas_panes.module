@@ -618,6 +618,24 @@ function nas_panes_theme() {
       'template' => 'editorial-card-package',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_package',
     ),
+    'editorial_card_4x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'references' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-4x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_4x',
+    ),
+    'editorial_card_river' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'content' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-river',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_river',
+    ),
     'hero_image_section' => array(
       'variables' => array(
         'hero_image' => NULL,
@@ -636,6 +654,22 @@ function nas_panes_theme() {
       ),
       'template' => 'menu-bar-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/menu_bar_section',
+    ),
+    'static_cards_two_columns' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-two-columns',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_two_columns',
+    ),
+    'static_cards_three_columns' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-three-columns',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_three_columns',
     ),
   );
 

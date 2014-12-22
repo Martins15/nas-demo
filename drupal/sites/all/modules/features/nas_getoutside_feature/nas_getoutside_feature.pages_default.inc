@@ -60,6 +60,136 @@ function nas_getoutside_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-12929e62-1c11-48db-85e0-0529a772b45d';
+    $pane->panel = 'main';
+    $pane->type = 'static_cards_two_columns';
+    $pane->subtype = 'static_cards_two_columns';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'form_build_id' => 'form-_HA8LIkUPAspqDySaefjHXGGWIyDiG1McFxf7FBX0Fw',
+      'form_token' => 'jLVK_oBtEEqhbjUkUxAwCixEgvMeSLDfP5iCcMiKTSQ',
+      'form_id' => 'static_cards_two_columns_form',
+      'nas_panes_resave_panel' => TRUE,
+      'items' => array(
+        0 => array(
+          'top_link' => array(
+            'title' => 'Birding',
+            'url' => 'birds-landing',
+          ),
+          'title' => 'The Basics of Birding',
+          'bottom_link' => array(
+            'title' => 'Three Easy Steps to Get Started',
+            'url' => 'birds-landing',
+          ),
+          'image' => '9800',
+          'color_mode' => 'dark',
+        ),
+        1 => array(
+          'top_link' => array(
+            'title' => 'Photography',
+            'url' => 'birds-landing',
+          ),
+          'title' => '2013 Photo Award Winners',
+          'bottom_link' => array(
+            'title' => 'Best of the 2013 Audubon Photography Contest',
+            'url' => 'birds-landing',
+          ),
+          'image' => '9801',
+          'color_mode' => 'dark',
+        ),
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '12929e62-1c11-48db-85e0-0529a772b45d';
+    $display->content['new-12929e62-1c11-48db-85e0-0529a772b45d'] = $pane;
+    $display->panels['main'][0] = 'new-12929e62-1c11-48db-85e0-0529a772b45d';
+    $pane = new stdClass();
+    $pane->pid = 'new-28c8e0d0-6807-415a-9e00-f1b674bbe996';
+    $pane->panel = 'main';
+    $pane->type = 'static_cards_three_columns';
+    $pane->subtype = 'static_cards_three_columns';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'items' => array(
+        0 => array(
+          'top_link' => array(
+            'title' => 'Audubon at Home',
+            'url' => 'conservation',
+          ),
+          'title' => array(
+            'title' => 'Join Our Hummingbirds at Home Program',
+            'url' => 'conservation',
+          ),
+          'bottom_link' => array(
+            'title' => 'Learn how to protect them',
+            'url' => 'conservation',
+          ),
+          'image' => '9789',
+          'image_link' => 'conservation',
+        ),
+        1 => array(
+          'top_link' => array(
+            'title' => 'Travel',
+            'url' => 'about',
+          ),
+          'title' => array(
+            'title' => 'Real Wilderness Adventures in Costa Rica',
+            'url' => 'about',
+          ),
+          'bottom_link' => array(
+            'title' => 'Get off the beaten path',
+            'url' => 'about',
+          ),
+          'image' => '9778',
+          'image_link' => 'about',
+        ),
+        2 => array(
+          'top_link' => array(
+            'title' => 'Activities',
+            'url' => 'news',
+          ),
+          'title' => array(
+            'title' => 'Audubon Adventures',
+            'url' => 'news',
+          ),
+          'bottom_link' => array(
+            'title' => 'Our classroom program for grades 3-5',
+            'url' => 'news',
+          ),
+          'image' => '9777',
+          'image_link' => 'news',
+        ),
+      ),
+      'form_build_id' => 'form-8hscIibFKa43QASmTUhvFDYjmALjwUTyNQvqcR3DOek',
+      'form_token' => '1olyAzPSKoEeV0B5WtzEsZsFekDnHocUsoTvy9LQ7aY',
+      'form_id' => 'static_cards_three_columns_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '28c8e0d0-6807-415a-9e00-f1b674bbe996';
+    $display->content['new-28c8e0d0-6807-415a-9e00-f1b674bbe996'] = $pane;
+    $display->panels['main'][1] = 'new-28c8e0d0-6807-415a-9e00-f1b674bbe996';
+    $pane = new stdClass();
     $pane->pid = 'new-aa46f2f7-17c8-4819-98f7-6090dbf6023c';
     $pane->panel = 'menu_bar';
     $pane->type = 'menu_bar_section';
