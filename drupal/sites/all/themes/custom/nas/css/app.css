@@ -12085,9 +12085,10 @@ body.touch .sticky-wrapper {
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  background: #ffffff;
 }
 #cboxLoadedContent.fullscreen {
-  background: #000;
+  background: #000000;
 }
 
 #cboxClose {
@@ -12143,6 +12144,15 @@ body.touch .sticky-wrapper {
   top: 60px;
   left: 60px;
   padding-top: 18px;
+}
+
+.lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen {
+    display: block;
+  }
 }
 
 .blocks-events .more-events {

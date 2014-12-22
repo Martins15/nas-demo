@@ -60,8 +60,9 @@
 
 #cboxLoadedContent {
   @include user-select(none);
+  background: #ffffff;
   &.fullscreen {
-    background: #000;
+    background: #000000;
   }
 }
 
@@ -125,3 +126,11 @@
   }
 }
 
+.lzoom1, .lzoom2 {
+  .lzoom_fullscreen {
+    display: none;
+    @include breakpoint(large-up) {
+      display: block;
+    }
+  }
+}

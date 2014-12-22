@@ -26,12 +26,14 @@
               fullScreen_state = 'FullscreenOff';
 
               $(window).on("resize", function(){
+                if (fullScreen_state === 'FullscreenOff') {
                   var h = '80%',
                       w = $colorbox.width() > $(window).width() * 0.8 ? '80%' : $colorbox.width();
                   $.colorbox.resize({
                       width: w,
                       height: h
                   });
+                }
               });
           $colorbox.addClass('lzoom'); // from lightboxzoom
 
@@ -110,8 +112,8 @@
 
               if (fullScreen_state === 'FullscreenOn') {
                 $content.addClass('fullscreen');
+                $colorbox.width($(window).width());
                 $content.width('100%');
-                $colorbox.width('100%');
                 $content.height('100%');
               } else {
                 $content.removeClass('fullscreen');
@@ -173,8 +175,6 @@
             var left = xPos0 - xPos1,
               top = yPos0 - yPos1;
 
-              console.log(left);
-              console.log(top);
             $img.css('left', parseInt($img.css('left')) + left + 'px');
             $img.css('top', parseInt($img.css('top')) +  top + 'px');
           });
