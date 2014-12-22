@@ -6,6 +6,7 @@
  * Available variables:
  *  $contextual_links - contextual links.
  *  $additional_classes - additional html classes for wrapper.
+ *  $spacetop - flag indicating to add additional top padding.
  *  $title - pane's title.
  *  $more_link - link to flyway news listing.
  *  $teasers - array of rendered news.
