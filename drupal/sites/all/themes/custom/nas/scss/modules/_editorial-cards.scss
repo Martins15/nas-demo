@@ -85,6 +85,18 @@
   }
 }
 
+.editorial-card-no-image {
+  .editorial-card-title {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  .editorial-card-subtitle {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
 .editorial-card-list-item {
   display: block;
   padding-bottom: $size-space;

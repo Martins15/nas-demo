@@ -4589,6 +4589,15 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   }
 }
 
+.editorial-card-no-image .editorial-card-title {
+  font-size: 48px;
+  line-height: 48px;
+}
+.editorial-card-no-image .editorial-card-subtitle {
+  font-size: 14px;
+  line-height: 16px;
+}
+
 .editorial-card-list-item {
   display: block;
   padding-bottom: 10px;
