@@ -97,7 +97,7 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
       ),
       '#default_value' => !empty($conf['wrapper'][$i]['image']) ? $conf['wrapper'][$i]['image'] : '',
       '#required' => FALSE,
-      '#pp_crop_styles' => array('get_outside'),
+      '#pp_crop_styles' => array('conservation_strategy_slideshow'),
     );
     $form['wrapper'][$i]['icon'] = array(
       '#type' => 'media',
