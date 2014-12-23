@@ -265,7 +265,7 @@ aside,
   padding: 8px 5px 7px;
 }
 
-.bird-guide-zip-input {
+input.bird-guide-zip-input {
   height: 40px;
   padding: 10px 0 0 5px;
 }
@@ -275,4 +275,13 @@ aside,
 }
 .bird-card-set .inline-list {
   margin-top: 10px !important;
+}
+
+.section-nav li:before {
+  content: " | ";
+  color: rgba(131, 128, 120, 0.5);
+  margin: 0 5px 0 0;
+}
+.section-nav li.hide-for-tiny:before {
+  display: none;
 }
