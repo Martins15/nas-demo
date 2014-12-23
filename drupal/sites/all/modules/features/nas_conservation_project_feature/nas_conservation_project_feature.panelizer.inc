@@ -55,6 +55,8 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'hero_attribution' => NULL,
       'strategy_icon' => NULL,
       'hero_image' => NULL,
+      'bottom_line' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -321,6 +323,37 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $pane->uuid = 'f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
     $display->content['new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d'] = $pane;
     $display->panels['right'][0] = 'new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
+    $pane = new stdClass();
+    $pane->pid = 'new-17873042-87db-4b6f-b481-d6711c6aacc1';
+    $pane->panel = 'right';
+    $pane->type = 'local_chapters_centers_block';
+    $pane->subtype = 'local_chapters_centers_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Local Chapters & Centers',
+      'image' => '9802',
+      'image_link' => 'conservation',
+      'bottom_link' => array(
+        'title' => 'See all',
+        'url' => 'Local Chapters & Centers',
+      ),
+      'form_build_id' => 'form-CvR-0UCvTw55xb_Ar3P7dcEqR_NKafLpGLyKvQmcnwY',
+      'form_token' => 'S8XXcPkGYpja-pjOYMfbBqMCAnqhDtonhmYDWqk7rWQ',
+      'form_id' => 'local_chapters_centers_block_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '17873042-87db-4b6f-b481-d6711c6aacc1';
+    $display->content['new-17873042-87db-4b6f-b481-d6711c6aacc1'] = $pane;
+    $display->panels['right'][1] = 'new-17873042-87db-4b6f-b481-d6711c6aacc1';
     $pane = new stdClass();
     $pane->pid = 'new-af63187e-4ad4-4f6a-a85d-4f418b6da682';
     $pane->panel = 'strategy';
