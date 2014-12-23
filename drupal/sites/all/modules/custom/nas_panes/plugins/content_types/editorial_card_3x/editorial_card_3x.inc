@@ -272,7 +272,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           break;
       }
     }
-    $teasers = $content['list'];
+    $teasers = !empty($content['list']) ? $content['list'] : array();
   }
   else {
     $teasers = array();
@@ -282,6 +282,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
         continue;
       }
       $teaser = array(
+        'linked_image' => '',
         'title' => check_plain($ref['title']),
         'url' => $ref['url'],
         'category_link' => '',

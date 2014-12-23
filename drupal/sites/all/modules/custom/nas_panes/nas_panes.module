@@ -1358,7 +1358,6 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
     list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->name);
     return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $panelizer_default);
   }
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
 
   ctools_include('modal');
   ctools_modal_add_js();
@@ -1366,7 +1365,11 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   ctools_add_js('ajax-responder');
 
   // Lookup pid.
+  if (empty($pm_page['handler']->conf['display'])) {
+    $pm_page['handler']->conf['display'] = panels_load_display($pm_page['handler']->conf['did']);
+  }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
+  $cache_key = $pm_page['handler']->conf['display']->cache_key;
 
   $links = array(
     'edit' => array(

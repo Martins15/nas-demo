@@ -9,9 +9,10 @@
           ", .large-8 + .large-4 > .editorial-card" +
           ", .large-4 + .large-4 > .engagement-card" +
           ", .tiny-4 + .tiny-4 > .engagement-card" +
-          ", .tiny-4 + .tiny-4 > .editorial-card";
+          ", .tiny-4 > .editorial-card";
 
-      var $cardRows = $(".row").has(SELECTOR_STRING);
+      // Do not work with outer rows.
+      var $cardRows = $(".row").has(SELECTOR_STRING).not($(".row").has('.row'));
 
       function equalizeCards(size) {
         $cardRows.each(function() {
@@ -20,9 +21,7 @@
               $cardsEng = $this.find(".engagement-card"),
               $contentsEng = $cardsEng.find(".engagement-card-content"),
               cardEdHeights = new Array(),
-              contentsEngHeights = new Array(),
-              maxHeight = 0,
-              minHeight = 0;
+              contentsEngHeights = new Array();
 
           // Do not equalize height of editorial cards on tiny, small, medium layout
           if (size !== 'tiny' && size !== 'small' && size !== 'medium') {
