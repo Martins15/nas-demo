@@ -692,6 +692,7 @@ function nas_master_update_7059() {
   features_revert(array('nas_conservation_landing_feature' => array('page_manager_pages')));
   module_enable(array('nas_getoutside_feature'));
   features_revert(array('nas_birds_landing_feature' => array('page_manager_pages')));
+  features_revert(array('nas_location_feature' => array('views_default')));
 }
 
 /**

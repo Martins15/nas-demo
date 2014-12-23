@@ -684,8 +684,17 @@ function nas_panes_theme() {
         'contextual_links' => NULL,
         'title' => NULL,
         'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
       ),
       'template' => 'local-chapters-centers-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
+    ),
+    'local_chapters_centers_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'local-chapters-centers-block-content',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
     ),
   );
@@ -1423,4 +1432,34 @@ function nas_panes_form_alter(&$form, &$form_state) {
       '#value' => TRUE,
     );
   }
+}
+
+/**
+ * Returns Local Chapters & Centers base on state or postal code.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @param string $postal_code
+ *   Postal code.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'all') {
+  $items = array();
+  $results = views_get_view_result('local_chapters_centers_block', 'default', $state, $postal_code);
+
+  foreach ($results as $item) {
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->node_title,
+      'state' => $item->field_data_field_location_address_field_location_address_adm,
+      'city' => $item->field_data_field_location_address_field_location_address_loc,
+      'link' => l($item->node_title, 'node/' . $item->nid),
+      'subtitle' => implode(', ', array($item->field_data_field_location_address_field_location_address_loc, $item->field_data_field_location_address_field_location_address_adm)),
+    );
+  }
+
+  return $items;
 }
