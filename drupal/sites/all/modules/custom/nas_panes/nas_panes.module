@@ -1222,9 +1222,11 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
 
   // Manual override.
-  foreach ($data['references'] as $value) {
-    if ($value['entity_reference'] && $node = node_load($value['entity_reference']['entity_id'])) {
-      $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+  if (isset($data['references'])) {
+    foreach ($data['references'] as $value) {
+      if (isset($value['entity_id']) && $node = node_load($value['entity_id'])) {
+        $nodes[nodequeue_subqueue_position(1, $value['entity_id'])] = $node;
+      }
     }
   }
   if (!empty($nodes)) {
@@ -1233,7 +1235,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
     // Pass node nid selected in sidebar's pane to bottom pane.
     if ($first) {
       $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
+      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, true);
     }
 
     $cards_array['nodes'] = $nodes;
@@ -1285,7 +1287,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
 
     // Option 1.
     if (isset($context_node)) {
-      if ($context_node->field_menu_section && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
+      if (isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
         $current_page_sections = array();
         foreach ($field_menu_section_items as $value) {
           $current_page_sections[] = $value['tid'];
@@ -1324,7 +1326,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   // Pass node nid selected in sidebar's pane to bottom pane.
   if ($first) {
     $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
+    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, true);
   }
 
   $cards_array['nodes'] = $nodes;

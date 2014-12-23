@@ -72,9 +72,9 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
 
   // Finally render selected nodes.
   $teasers = array();
-  // Sidebar should render only on node.
-  if (isset($nodes[0])) {
-    $node_build = node_view($nodes[0]);
+  // Sidebar should render only one node.
+  if (!empty($nodes)) {
+    $node_build = node_view(reset($nodes));
     $teasers[] = drupal_render($node_build);
   }
   $block = new stdClass();
