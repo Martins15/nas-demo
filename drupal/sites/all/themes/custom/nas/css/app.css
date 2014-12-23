@@ -12125,7 +12125,7 @@ body.touch .sticky-wrapper {
 .lzoom2 .lzoom_zoomin,
 .lzoom2 .lzoom_zoomout,
 .lzoom2 .lzoom_fullscreen {
-  position: initial;
+  position: static;
   display: block;
   margin-bottom: 12px;
 }
@@ -12319,6 +12319,12 @@ body.touch .sticky-wrapper {
   }
   .aid-class .editorial-card .short {
     min-height: 0px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .center-and-sanctuaries {
+    margin-top: 50px;
   }
 }
 
