@@ -59,7 +59,8 @@ function nas_contact_type_feature_field_group_info() {
       2 => 'field_contact_twitter',
       3 => 'field_image',
       4 => 'field_related_bird',
-      5 => 'title',
+      5 => 'field_first_name',
+      6 => 'title',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
