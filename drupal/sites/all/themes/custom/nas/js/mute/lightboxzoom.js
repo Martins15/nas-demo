@@ -27,7 +27,7 @@
 
               $(window).on("resize", function(){
                 if (fullScreen_state === 'FullscreenOff') {
-                  var h = '80%',
+                  var h = $img.height() >= $(window).height() ? '80%' : $img.height() ;
                       w = $colorbox.width() > $(window).width() * 0.8 ? '80%' : $colorbox.width();
                   $.colorbox.resize({
                       width: w,

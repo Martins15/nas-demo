@@ -12110,7 +12110,7 @@ body.touch .sticky-wrapper {
 .lzoom2 .lzoom_zoomin,
 .lzoom2 .lzoom_zoomout,
 .lzoom2 .lzoom_fullscreen {
-  position: initial;
+  position: static;
   display: block;
   margin-bottom: 12px;
 }
