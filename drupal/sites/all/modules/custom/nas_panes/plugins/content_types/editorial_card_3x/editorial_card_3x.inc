@@ -229,6 +229,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
             $view->set_arguments($args);
           }
           $view->set_display($item['options']['display']);
+          $view->items_per_page = !empty($conf['count']) ? $conf['count'] : 3;
           $view->display_handler->options['pager']['options']['items_per_page'] = !empty($conf['count']) ? $conf['count'] : 3;
           $view->pre_execute();
           $view->execute();
@@ -241,9 +242,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           break;
 
         case 'er_field':
-          if (!$field_items = field_get_items('node', $context->data, $options['field'])) {
-            return;
-          }
+          $field_items = field_get_items('node', $context->data, $options['field']);
           foreach ($field_items as $item) {
             if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
               $build = node_view($node, 'nas_node_teaser_small');

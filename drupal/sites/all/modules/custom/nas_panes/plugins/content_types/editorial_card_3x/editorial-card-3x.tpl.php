@@ -14,7 +14,7 @@
 ?>
 
 <?php if ($teasers || $contextual_links): ?>
-<div class="card-set <?php print $additional_classes; ?> contextual-links-region">
+<div class="card-set editorial-card-3x <?php print $additional_classes; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php if ($title || $more_link): ?>
     <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?>">
@@ -39,7 +39,7 @@
         <?php print $teaser; ?>
       <?php elseif (is_array($teaser)): ?>
         <div class="columns large-4">
-          <div class="editorial-card collapse-minimal">
+          <div class="editorial-card<?php if (!$teaser['linked_image']): ?> editorial-card-no-image<?php endif; ?> collapse-minimal">
             <div class="editorial-card-photo">
               <?php print $teaser['linked_image']; ?>
             </div>
