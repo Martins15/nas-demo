@@ -17,7 +17,6 @@
         $cardRows.each(function() {
           var $this = $(this),
               $cardsEd = $this.find(".editorial-card"),
-              $contentsEd = $cardsEd.find(".editorial-card-content"),
               $cardsEng = $this.find(".engagement-card"),
               $contentsEng = $cardsEng.find(".engagement-card-content"),
               cardEdHeights = new Array(),
@@ -37,9 +36,7 @@
             minHeightEd = Math.min.apply(null, cardEdHeights);
             deltaEd = maxHeightEd - minHeightEd;
 
-            if (deltaEd < 120 && deltaEd > 0) {
-              $cardsEd.css({"min-height": maxHeightEd + "px"});
-            }
+            $cardsEd.css({"min-height": (maxHeightEd + 7) + "px"});
           }
 
           // Fix height for Engagements blocks.
