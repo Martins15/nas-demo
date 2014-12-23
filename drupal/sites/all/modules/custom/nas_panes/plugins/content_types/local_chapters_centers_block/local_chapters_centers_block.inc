@@ -76,6 +76,9 @@ function local_chapters_centers_block_form_submit(&$form, &$form_state) {
 function local_chapters_centers_block_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
+  drupal_add_js('//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js', 'external');
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block/local_chapters_centers_block.js');
+
   $contextual_links = '';
   if (user_access('edit NAS panes')) {
     $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);

@@ -1463,3 +1463,38 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 
   return $items;
 }
+
+/**
+ * Implements hook_menu().
+ */
+function nas_panes_menu() {
+  $items = array();
+
+  $items['ajax/local-chapters-centers'] = array(
+    'page callback' => 'nas_panes_local_chapters_centers_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Returns markup for Local Chapters & Centers block.
+ */
+function nas_panes_local_chapters_centers_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_local_chapters_centers($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    $locations = _nas_panes_get_local_chapters_centers();
+  }
+
+  print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
