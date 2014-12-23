@@ -4601,6 +4601,17 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .editorial-card-no-image .editorial-card-title {
+    font-size: 48px;
+    line-height: 48px;
+  }
+  .editorial-card-no-image .editorial-card-subtitle {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
 .editorial-card-list-item {
   display: block;
   padding-bottom: 10px;
@@ -4765,6 +4776,10 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 }
 .editorial-card-cta .button {
   font-size: 17px;
+}
+
+.card-set.editorial-card-3x .editorial-card {
+  margin-bottom: 37.5px;
 }
 
 /* @todo refactor the hell out of this */

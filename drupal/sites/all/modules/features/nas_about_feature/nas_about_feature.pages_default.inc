@@ -218,44 +218,86 @@ function nas_about_feature_default_page_manager_pages() {
     $display->content['new-c3af78aa-2745-4782-959d-1d5ed46575d0'] = $pane;
     $display->panels['main'][3] = 'new-c3af78aa-2745-4782-959d-1d5ed46575d0';
     $pane = new stdClass();
-    $pane->pid = 'new-c75f553d-16cd-4262-a843-0224a1c7d3d4';
+    $pane->pid = 'new-c28c850e-e09e-4212-9a9e-d513b0a07519';
     $pane->panel = 'main';
-    $pane->type = 'about_page_learn_more';
-    $pane->subtype = 'about_page_learn_more';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
       'override_title' => 1,
       'override_title_text' => 'Learn more about our history and our work.',
-      'form_build_id' => 'form-bX8u8y5MKwoA6_PF_mReqaQbJ-mhYYXy0FQh_Hq3_s4',
-      'form_token' => 'vziU15jAL4ZWKgaPW9k8YJQWf30kQuPMhJfZHqQbpFg',
-      'form_id' => 'about_page_learn_more_form',
-      'references' => array(
+      'preset' => 'about_page_learn_more',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'refs' => array(
         1 => array(
-          'entity_reference' => array(
-            'entity_id' => '2218',
-            'entity_label' => 'Online Explorers: How You Can Help Scientists',
-            'entity_type' => 'node',
-            'entity_bundle' => 'article',
-          ),
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
         ),
         2 => array(
-          'entity_reference' => array(
-            'entity_id' => '5740',
-            'entity_label' => 'Curabitur ullamcorper ultricies nisi',
-            'entity_type' => 'node',
-            'entity_bundle' => 'static_page',
-          ),
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
         ),
         3 => array(
-          'entity_reference' => array(
-            'entity_id' => '1194',
-            'entity_label' => 'Alaska\'s Teshekpuk Lake Saved!',
-            'entity_type' => 'node',
-            'entity_bundle' => 'article',
-          ),
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        4 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        5 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        6 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
         ),
       ),
+      'form_build_id' => 'form-ViomdTWTja5184nWpforiPT4Art-7UWIU__V-7qWjuk',
+      'form_token' => 'Pu_VnTcDjktXfpOUXrEgITE2aSXYE7hu77P00PrCevk',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'additional_classes' => 'bg-bone-white',
+      'nas_panes_resave_panel' => TRUE,
+      'count' => '6',
+      'update_count' => 'Update count',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -265,9 +307,9 @@ function nas_about_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 4;
     $pane->locks = array();
-    $pane->uuid = 'c75f553d-16cd-4262-a843-0224a1c7d3d4';
-    $display->content['new-c75f553d-16cd-4262-a843-0224a1c7d3d4'] = $pane;
-    $display->panels['main'][4] = 'new-c75f553d-16cd-4262-a843-0224a1c7d3d4';
+    $pane->uuid = 'c28c850e-e09e-4212-9a9e-d513b0a07519';
+    $display->content['new-c28c850e-e09e-4212-9a9e-d513b0a07519'] = $pane;
+    $display->panels['main'][4] = 'new-c28c850e-e09e-4212-9a9e-d513b0a07519';
     $pane = new stdClass();
     $pane->pid = 'new-3fe5e928-8578-4374-93d4-03385e1e3823';
     $pane->panel = 'menu_bar';
