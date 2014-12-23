@@ -82,35 +82,6 @@ function nas_bird_type_feature_panelizer_defaults() {
       'form_build_id' => 'form-dwZYY-BLjOvBMytCPEA2UEEPx_LcSWIzdZ4z3n92las',
       'form_token' => '59jacBmUGYMQRs9aBJOSEA7qJ6DhAcBiQev_QvJ-GL4',
       'form_id' => 'engagement_cards_edit_form',
-      713 => array(
-        'title' => '',
-        'references' => array(
-          1 => array(
-            'entity_reference' => array(
-              'entity_id' => '5733',
-              'entity_label' => 'Save the Brown Pelican',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-          2 => array(
-            'entity_reference' => array(
-              'entity_id' => '5735',
-              'entity_label' => 'Adopt a Bird: Sandhill Crane',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-          3 => array(
-            'entity_reference' => array(
-              'entity_id' => '5736',
-              'entity_label' => 'Test',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-        ),
-      ),
     );
     $pane->cache = array();
     $pane->style = array(

@@ -88,9 +88,11 @@
   <div class="engagement-card-content">
     <h3 class="engagement-card-headline"><?php print $title; ?></h3>
     <?php print render($content['body']); ?>
+    <?php if (isset($button)): ?>
     <div class="engagement-card-cta">
       <?php print $button; ?>
     </div>
+    <?php endif; ?>
   </div>
   <div class="engagement-card-photo">
     <?php print render($content['field_image']); ?>
