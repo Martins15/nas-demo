@@ -1235,7 +1235,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
     // Pass node nid selected in sidebar's pane to bottom pane.
     if ($first) {
       $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, true);
+      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, TRUE);
     }
 
     $cards_array['nodes'] = $nodes;
@@ -1326,7 +1326,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   // Pass node nid selected in sidebar's pane to bottom pane.
   if ($first) {
     $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, true);
+    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, TRUE);
   }
 
   $cards_array['nodes'] = $nodes;
