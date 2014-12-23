@@ -380,13 +380,57 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $display->content['new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f'] = $pane;
     $display->panels['conservation_section'][0] = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
     $pane = new stdClass();
-    $pane->pid = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $pane->pid = 'new-d5f54c09-dcf3-4685-8a76-b77ad61e780f';
     $pane->panel = 'editorial_cards';
-    $pane->type = 'frontpage_editorial_cards';
-    $pane->subtype = 'frontpage_editorial_cards';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'preset' => 'most_recent_articles',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'refs' => array(
+        1 => array(
+          'image' => '5480',
+          'category' => 'Step Inside',
+          'category_url' => 'category/step-inside',
+          'title' => 'Welcome to my Laboratory',
+          'url' => 'node/343',
+          'excerpt' => 'Short or not very short. About one line or sentence',
+          'readmore_label' => 'Step inside',
+        ),
+        2 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        3 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+      ),
+      'form_build_id' => 'form-qbTGLA8dTdowfeX06BpUlyssixGpoNKs8ZEIdGQ1ebA',
+      'form_token' => 'Pu_VnTcDjktXfpOUXrEgITE2aSXYE7hu77P00PrCevk',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -395,9 +439,9 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '3cafe426-4013-494d-90de-0b2e80b9bd04';
-    $display->content['new-3cafe426-4013-494d-90de-0b2e80b9bd04'] = $pane;
-    $display->panels['editorial_cards'][0] = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $pane->uuid = 'd5f54c09-dcf3-4685-8a76-b77ad61e780f';
+    $display->content['new-d5f54c09-dcf3-4685-8a76-b77ad61e780f'] = $pane;
+    $display->panels['editorial_cards'][0] = 'new-d5f54c09-dcf3-4685-8a76-b77ad61e780f';
     $pane = new stdClass();
     $pane->pid = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
     $pane->panel = 'featured';

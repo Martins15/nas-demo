@@ -154,6 +154,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
       'form_build_id' => 'form-ZhngCUb0ncAnvQiHV0iwPFXxprHGtwzDIfDwgyJ0YBQ',
       'form_token' => 'Zs3uoy_c8O5mX-qgV5BxRNGcN0f8YQfeneyaNzM-kI4',
       'form_id' => 'nas_panes_pane_featured_bird_custom_pane_edit_form',
+      'image' => 0,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -167,10 +168,10 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $display->content['new-b3b09b5b-713c-4fe4-8248-6f82f45519b3'] = $pane;
     $display->panels['header'][1] = 'new-b3b09b5b-713c-4fe4-8248-6f82f45519b3';
     $pane = new stdClass();
-    $pane->pid = 'new-370ccda0-f986-4da9-ae20-b4445eca00d2';
+    $pane->pid = 'new-f6ac56eb-4702-40c1-a61d-a744f37a1648';
     $pane->panel = 'in_the_news';
-    $pane->type = 'nas_panes_pane_in_the_news';
-    $pane->subtype = 'nas_panes_pane_in_the_news';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -178,22 +179,45 @@ function nas_birds_guide_feature_default_page_manager_pages() {
         'return' => 'Finish',
         'cancel' => 'Cancel',
       ),
-      'override_title' => 0,
-      'override_title_text' => '',
-      '' => array(
+      'context' => 'empty',
+      'override_title' => 1,
+      'override_title_text' => 'In the News',
+      'preset' => 'most_recent_articles',
+      'more_link_text' => 'More News »',
+      'more_link_url' => 'news',
+      'refs' => array(
         1 => array(
-          'entity_reference' => FALSE,
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
         ),
         2 => array(
-          'entity_reference' => FALSE,
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
         ),
         3 => array(
-          'entity_reference' => FALSE,
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
         ),
       ),
-      'form_build_id' => 'form-OFIinfe_qCGdW95x9kJzFM_M6b3M0yJdNZxUHhCu3Jc',
-      'form_token' => 'qoqaeGuTWjGAm--SoF2OdKrQindsybAcjJcEN0pjAV4',
-      'form_id' => 'nas_panes_pane_in_the_news_custom_pane_edit_form',
+      'form_build_id' => 'form-7NfGWlvcrdPhI9QaAwaflbxMGbFkC6eHWKxY-7Ndlmk',
+      'form_token' => 'Pu_VnTcDjktXfpOUXrEgITE2aSXYE7hu77P00PrCevk',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -203,9 +227,9 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '370ccda0-f986-4da9-ae20-b4445eca00d2';
-    $display->content['new-370ccda0-f986-4da9-ae20-b4445eca00d2'] = $pane;
-    $display->panels['in_the_news'][0] = 'new-370ccda0-f986-4da9-ae20-b4445eca00d2';
+    $pane->uuid = 'f6ac56eb-4702-40c1-a61d-a744f37a1648';
+    $display->content['new-f6ac56eb-4702-40c1-a61d-a744f37a1648'] = $pane;
+    $display->panels['in_the_news'][0] = 'new-f6ac56eb-4702-40c1-a61d-a744f37a1648';
     $pane = new stdClass();
     $pane->pid = 'new-8f1f707a-313e-4026-bfef-a8d4ee163726';
     $pane->panel = 'cards_set';

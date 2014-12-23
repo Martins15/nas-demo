@@ -636,6 +636,15 @@ function nas_panes_theme() {
       'template' => 'editorial-card-river',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_river',
     ),
+    'editorial_card_3x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'teasers' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-3x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_3x',
+    ),
     'hero_image_section' => array(
       'variables' => array(
         'hero_image' => NULL,
@@ -987,13 +996,13 @@ function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
  * @param string $bundle
  *   Entity bundle.
  *
- * @param string $panelizer_layout
+ * @param string $panelizer_default
  *   Name of the panelizer layout.
  *
  * @return string
  *   Rendered contextual links.
  */
-function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle, $panelizer_layout) {
+function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle, $panelizer_default) {
   ctools_include('modal');
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
@@ -1005,7 +1014,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle,
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $pid = _nas_panes_save_panelizer($subtype, $entity, $bundle, $panelizer_layout);
+    $pid = _nas_panes_save_panelizer($subtype, $entity, $bundle, $panelizer_default);
   }
   $page_manager = $entity->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
@@ -1346,11 +1355,9 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   // Panelizer.
   if (!empty($pm_page['handler']->export_module) && $pm_page['handler']->export_module == 'panelizer') {
     $argument = reset($pm_page['contexts']);
-    list(, , $bundle) = entity_extract_ids($argument->type[2], $argument->data);
-    $layout = $argument->data->panelizer['page_manager']->display->layout;
-    return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $layout);
+    list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->name);
+    return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $panelizer_default);
   }
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
 
   ctools_include('modal');
   ctools_modal_add_js();
@@ -1358,7 +1365,11 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   ctools_add_js('ajax-responder');
 
   // Lookup pid.
+  if (empty($pm_page['handler']->conf['display'])) {
+    $pm_page['handler']->conf['display'] = panels_load_display($pm_page['handler']->conf['did']);
+  }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
+  $cache_key = $pm_page['handler']->conf['display']->cache_key;
 
   $links = array(
     'edit' => array(
