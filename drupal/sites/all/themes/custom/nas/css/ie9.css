@@ -55,3 +55,8 @@
   margin-top: 0 !important;
   top: 300px;
 }
+
+.bird-guide-country select {
+        background: #ffffff;
+        padding-right: 10px;
+}

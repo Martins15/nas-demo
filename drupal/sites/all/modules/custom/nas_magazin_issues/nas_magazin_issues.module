@@ -47,14 +47,3 @@ function nas_magazin_issues_preprocess_node(&$variables) {
     '#options' => array('attributes' => array('title' => $r_node->title), 'html' => FALSE),
     );
 }
-
-/**
- * Implements hook_query_TAG_alter.
- *
- * Filter magazine issues by date.
- */
-function nas_magazin_issues_query_magazine_issue_before_alter($query) {
-  if (!empty($_GET['before'])) {
-    $query->condition('field_issue_date_value', $_GET['before'], '<');
-  }
-}

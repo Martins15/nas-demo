@@ -42,6 +42,7 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
       'body' => NULL,
       'projects' => NULL,
       'news' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -78,6 +79,49 @@ function nas_conservation_strategy_feature_panelizer_defaults() {
     $pane->uuid = '3e7ac3da-8127-4384-8e81-c347045ff766';
     $display->content['new-3e7ac3da-8127-4384-8e81-c347045ff766'] = $pane;
     $display->panels['body'][0] = 'new-3e7ac3da-8127-4384-8e81-c347045ff766';
+    $pane = new stdClass();
+    $pane->pid = 'new-1957fbdc-607a-45a6-92b5-ddc5535032c6';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-4-B_h2G1SHfwP87wacdvj5e6u9gWdd1MXVTCRJHKh3g',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '1957fbdc-607a-45a6-92b5-ddc5535032c6';
+    $display->content['new-1957fbdc-607a-45a6-92b5-ddc5535032c6'] = $pane;
+    $display->panels['cards_set'][0] = 'new-1957fbdc-607a-45a6-92b5-ddc5535032c6';
     $pane = new stdClass();
     $pane->pid = 'new-7e144a3f-eb76-437a-a1d4-0e8d381ad89a';
     $pane->panel = 'news';

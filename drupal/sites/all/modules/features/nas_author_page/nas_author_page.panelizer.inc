@@ -44,6 +44,7 @@ function nas_author_page_panelizer_defaults() {
       'articles' => NULL,
       'related_birds' => NULL,
       'link' => NULL,
+      'right' => NULL,
     ),
   );
   $display->cache = array();
@@ -52,16 +53,27 @@ function nas_author_page_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-265b1584-62ab-4726-ae05-4f3175d329b4';
+    $pane->pid = 'new-56c5fc39-fb05-4515-b1ca-dfccf0cc72ed';
     $pane->panel = 'articles';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_articles-articles_by_author';
+    $pane->type = 'editorial_card_river';
+    $pane->subtype = 'editorial_card_river';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => array(
-        0 => 'panelizer',
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
       ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'preset' => 'author_page_listing',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'donate_caption' => 'Remember that Audubon depends on your support to do the conservation work that we do.',
+      'donate_path' => 'donate',
+      'form_build_id' => 'form-fNtXfha9KxDISKQJYm3tDyci99inaUyleZcfs_i8qeA',
+      'form_token' => 'x0Rq1YgQzk6Evh0GVSwAMhaBwoRGfiSv-ajddXOW9PQ',
+      'form_id' => 'editorial_card_river_edit_form',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -71,9 +83,9 @@ function nas_author_page_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '265b1584-62ab-4726-ae05-4f3175d329b4';
-    $display->content['new-265b1584-62ab-4726-ae05-4f3175d329b4'] = $pane;
-    $display->panels['articles'][0] = 'new-265b1584-62ab-4726-ae05-4f3175d329b4';
+    $pane->uuid = '56c5fc39-fb05-4515-b1ca-dfccf0cc72ed';
+    $display->content['new-56c5fc39-fb05-4515-b1ca-dfccf0cc72ed'] = $pane;
+    $display->panels['articles'][0] = 'new-56c5fc39-fb05-4515-b1ca-dfccf0cc72ed';
     $pane = new stdClass();
     $pane->pid = 'new-286fc23b-7e7b-48ac-9707-b91ed1a224ef';
     $pane->panel = 'bio';
@@ -162,6 +174,40 @@ function nas_author_page_panelizer_defaults() {
     $pane->uuid = '55071280-f5a3-491f-9388-23dc59888b6b';
     $display->content['new-55071280-f5a3-491f-9388-23dc59888b6b'] = $pane;
     $display->panels['name'][0] = 'new-55071280-f5a3-491f-9388-23dc59888b6b';
+    $pane = new stdClass();
+    $pane->pid = 'new-2c89b090-19d9-4343-856a-04abfa61670f';
+    $pane->panel = 'right';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-5UD0OZ2kMdaURmtH54WLR7zh7zbiMHzYVLJJ9_tkBGA',
+      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2c89b090-19d9-4343-856a-04abfa61670f';
+    $display->content['new-2c89b090-19d9-4343-856a-04abfa61670f'] = $pane;
+    $display->panels['right'][0] = 'new-2c89b090-19d9-4343-856a-04abfa61670f';
     $pane = new stdClass();
     $pane->pid = 'new-a4b1b640-c5cd-4249-aa8b-3f70da60c26b';
     $pane->panel = 'title';

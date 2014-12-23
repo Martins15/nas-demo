@@ -1,10 +1,10 @@
-%FontSource {
+﻿%FontSource {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 .title-h1 {
   font-weight: 300;
   font-size: 52px;
-  line-height: 65px;
+  line-height: 57px;
 }
 .content-bird {
   font-weight: 300;
@@ -42,16 +42,12 @@
         padding-right: 10px;
         color: #0aa8e3;
         &:after {
-          content: "";
-          display: block;
-          right: 0px;
-          top: 50%;
-          margin-top: -3px;
-          position: absolute;
-          width: 7px;
-          height: 7px;
-          background: url("../img/duble-arrow.png") no-repeat center center;
-          background-size: 100%;
+          content: "\00bb";
+          display: table-cell;
+          font-size: 16px;
+          width: 10px;
+          text-align: right;
+          vertical-align: middle;
         }
       }
     }

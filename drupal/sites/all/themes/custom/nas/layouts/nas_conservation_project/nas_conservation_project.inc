@@ -27,5 +27,6 @@ $plugin = array(
     'bottom_line' => t('Bottom line'),
     'body' => t('Body'),
     'bottom' => t('Bottom'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

@@ -90,6 +90,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_wysiwyg_image_without_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -224,6 +230,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 1,
       ),
       'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_wysiwyg_image_without_colorbox' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -401,6 +413,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_wysiwyg_image_without_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -562,6 +580,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_wysiwyg_image_without_colorbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'preview' => array(
         'label' => 'above',
         'settings' => array(),
@@ -716,6 +740,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 3,
       ),
       'nas_wysiwyg_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_wysiwyg_image_without_colorbox' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

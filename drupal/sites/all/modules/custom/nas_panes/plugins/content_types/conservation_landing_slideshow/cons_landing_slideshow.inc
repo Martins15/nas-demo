@@ -44,26 +44,45 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
     '#prefix' => '<div class="wrapper">',
     '#suffix' => '</div>',
   );
-
-  $nodes = node_load_multiple(array(), array('type' => 'strategy'));
-
-  foreach ($nodes as $nid => $node) {
-    $form['wrapper'][$nid] = array(
+  if (empty($conf['count'])) {
+    if (empty($form_state['count'])) {
+      $count = 1;
+      $form_state['count'] = $count;
+    }
+    else {
+      $count = $form_state['count'];
+    }
+  }
+  else {
+    if (empty($form_state['count'])) {
+      $count = $conf['count'];
+      $form_state['count'] = $count;
+    }
+    else {
+      $count = $form_state['count'];
+    }
+  }
+  $form['count'] = array(
+    '#type' => 'hidden',
+    '#value' => $count,
+  );
+  for ($i = 0; $i < $form_state['count']; $i++) {
+    $form['wrapper'][$i] = array(
       '#type' => 'fieldset',
       '#title' => '',
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
-      '#prefix' => '<div class="wrapper-' . $nid .'">',
+      '#prefix' => '<div class="wrapper-' . $i .'">',
       '#suffix' => '</div>',
     );
-    $form['wrapper'][$nid]['entity_reference'] = array(
+    $form['wrapper'][$i]['entity_reference'] = array(
       '#type' => 'entityreference',
       '#title' => 'Conservation strategy',
-      '#default_value' => $nid,
+      '#default_value' => !empty($conf['wrapper'][$i]['entity_reference']) ? $conf['wrapper'][$i]['entity_reference'] : '',
       '#era_entity_type' => 'node',
       '#era_bundles' => array('strategy'),
     );
-    $form['wrapper'][$nid]['image'] = array(
+    $form['wrapper'][$i]['image'] = array(
       '#type' => 'media',
       '#tree' => TRUE,
       '#title' => t('Image'),
@@ -76,11 +95,11 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
           'types' => array('image'),
         ),
       ),
-      '#default_value' => !empty($conf['wrapper'][$nid]['image']) ? $conf['wrapper'][$nid]['image'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['image']) ? $conf['wrapper'][$i]['image'] : '',
       '#required' => FALSE,
-      '#pp_crop_styles' => array('get_outside'),
+      '#pp_crop_styles' => array('conservation_strategy_slideshow'),
     );
-    $form['wrapper'][$nid]['icon'] = array(
+    $form['wrapper'][$i]['icon'] = array(
       '#type' => 'media',
       '#tree' => TRUE,
       '#title' => t('Icon'),
@@ -93,37 +112,42 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
           'types' => array('image'),
         ),
       ),
-      '#default_value' => !empty($conf['wrapper'][$nid]['icon']) ? $conf['wrapper'][$nid]['icon'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['icon']) ? $conf['wrapper'][$i]['icon'] : '',
       '#required' => FALSE,
       '#pp_crop_styles' => array('conservation_slideshow_icon'),
     );
-    $form['wrapper'][$nid]['title'] = array(
+    $form['wrapper'][$i]['title'] = array(
       '#type' => 'textfield',
       '#title' => t('Title'),
       '#size' => 50,
-      '#default_value' => !empty($conf['wrapper'][$nid]['title']) ? $conf['wrapper'][$nid]['title'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['title']) ? $conf['wrapper'][$i]['title'] : '',
     );
-    $form['wrapper'][$nid]['summary'] = array(
+    $form['wrapper'][$i]['summary'] = array(
       '#type' => 'text_format',
       '#title' => t('Summary'),
       '#rows' => 5,
-      '#default_value' => !empty($conf['wrapper'][$nid]['summary']['value']) ? $conf['wrapper'][$nid]['summary']['value'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['summary']['value']) ? $conf['wrapper'][$i]['summary']['value'] : '',
       '#format' => 'full_html',
     );
-    $form['wrapper'][$nid]['learn_more_link'] = array(
+    $form['wrapper'][$i]['learn_more_link'] = array(
       '#title' => t('Learn more link'),
       '#type' => 'link_field',
       '#field_name' => 'learn_more_link',
-      '#default_value' => !empty($conf['wrapper'][$nid]['learn_more_link']) ? $conf['wrapper'][$nid]['learn_more_link'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['learn_more_link']) ? $conf['wrapper'][$i]['learn_more_link'] : '',
     );
-    $form['wrapper'][$nid]['entity_reference_project'] = array(
+    $form['wrapper'][$i]['entity_reference_project'] = array(
       '#type' => 'entityreference',
       '#title' => 'Featured project',
-      '#default_value' => !empty($conf['wrapper'][$nid]['entity_reference_project']) ? $conf['wrapper'][$nid]['entity_reference_project'] : '',
+      '#default_value' => !empty($conf['wrapper'][$i]['entity_reference_project']) ? $conf['wrapper'][$i]['entity_reference_project'] : '',
       '#era_entity_type' => 'node',
       '#era_bundles' => array('project'),
     );
   }
+  $form['add_group'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add more'),
+    '#submit' => array('cons_landing_slideshow_add_group'),
+  );
 
   return $form;
 }
@@ -135,9 +159,24 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
 function cons_landing_slideshow_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
+      if ($key == 'wrapper') {
+        foreach ($form_state['values']['wrapper'] as $i => $val) {
+          if (!$val['entity_reference']) {
+            unset($form_state['values']['wrapper'][$i]);
+          }
+        }
+      }
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+}
+
+/**
+ * Edit form submit for add group
+ */
+function cons_landing_slideshow_add_group($form, &$form_state) {
+  $form_state['count']++;
+  $form_state['rebuild'] = TRUE;
 }
 
 /**
@@ -147,77 +186,73 @@ function cons_landing_slideshow_edit_form_submit(&$form, &$form_state) {
 function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  $nodes = node_load_multiple(array(), array('type' => 'strategy'));
   $data = $conf['wrapper'];
-
   $nodes_array_to_show = array();
-  foreach ($nodes as $nid => $node) {
-    if (!isset($data[$nid])) {
-      continue;
-    }
+  foreach ($data as $key => $value) {
+    $node = node_load($value['entity_reference']['entity_id']);
     //Set title.
-    $nodes_array_to_show[$nid]['title'] = $data[$nid]['title'];
-    if (empty($data[$nid]['title'])) {
-      $nodes_array_to_show[$nid]['title'] = $node->title;
+    $nodes_array_to_show[$key]['title'] = $value['title'];
+    if (empty($value['title'])) {
+      $nodes_array_to_show[$key]['title'] = $node->title;
     }
     //Set image.
-    $image_fid = $data[$nid]['image'];
+    $image_fid = $value['image'];
     if (empty($image_fid)) {
       $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
       if (isset($get_field_hero_image[0]['fid'])) {
         $image_fid = $get_field_hero_image[0]['fid'];
       }
     }
-    $nodes_array_to_show[$nid]['hero_image'] = '';
+    $nodes_array_to_show[$key]['hero_image'] = '';
     if (!empty($image_fid)) {
       $file = file_load($image_fid);
-      $nodes_array_to_show[$nid]['hero_image'] = image_style_url('conservation_strategy_slideshow', $file->uri);
+      $nodes_array_to_show[$key]['hero_image'] = image_style_url('conservation_strategy_slideshow', $file->uri);
     }
     //Set icon.
-    $nodes_array_to_show[$nid]['icon'] = '';
-    if (isset($data[$nid]['icon'])) {
-      $file = file_load($data[$nid]['icon']);
-      $nodes_array_to_show[$nid]['icon'] = image_style_url('conservation_slideshow_icon', $file->uri);
+    $nodes_array_to_show[$key]['icon'] = '';
+    if (isset($value['icon']) && !empty($value['icon'])) {
+      $file = file_load($value['icon']);
+      $nodes_array_to_show[$key]['icon'] = image_style_url('conservation_slideshow_icon', $file->uri);
     }
     //Set link.
-    if (empty($data[$nid]['learn_more_link']['title']) || empty($data[$nid]['learn_more_link']['url'])) {
-      $link = l(t('Learn more »'), 'node/' . $nid);
+    if (empty($value['learn_more_link']['title']) || empty($value['learn_more_link']['url'])) {
+      $link = l(t('Learn more »'), 'node/' . $node->nid);
     }
     else {
-      $link = l(t($data[$nid]['learn_more_link']['title']), $data[$nid]['learn_more_link']['url']);
+      $link = l(t($value['learn_more_link']['title']), $value['learn_more_link']['url']);
     }
-    $nodes_array_to_show[$nid]['learn_more_link'] = $link;
+    $nodes_array_to_show[$key]['learn_more_link'] = $link;
     //Set featured project.
-    $view_results = views_get_view_result('conservation_strategy_projects', 'default', $nid);
+    $view_results = views_get_view_result('conservation_strategy_projects', 'default', $node->nid);
     if (!empty($view_results[0]->field_conservation_strategy_node_nid)) {
       $featured_nid = $view_results[0]->field_conservation_strategy_node_nid;
     }
-    if ($data[$nid]['entity_reference_project'] && !empty($data[$nid]['entity_reference_project']['entity_id'])) {
-      $featured_nid = $data[$nid]['entity_reference_project']['entity_id'];
+    if ($value['entity_reference_project'] && !empty($value['entity_reference_project']['entity_id'])) {
+      $featured_nid = $value['entity_reference_project']['entity_id'];
     }
     if (!empty($featured_nid) && $featured_node = node_load($featured_nid)) {
       $get_field_hero_image = field_get_items('node', $featured_node, 'field_hero_image');
-      $nodes_array_to_show[$nid]['featured_node']['hero_image'] = '';
+      $nodes_array_to_show[$key]['featured_node']['hero_image'] = '';
       if (isset($get_field_hero_image[0]['fid'])) {
         $file = file_load($get_field_hero_image[0]['fid']);
-        $nodes_array_to_show[$nid]['featured_node']['hero_image'] = image_style_url('conservation_slideshow_featured_project', $file->uri);
+        $nodes_array_to_show[$key]['featured_node']['hero_image'] = image_style_url('conservation_slideshow_featured_project', $file->uri);
       }
-      $nodes_array_to_show[$nid]['featured_node']['title'] = l($featured_node->title, 'node/' . $featured_node->nid);
+      $nodes_array_to_show[$key]['featured_node']['title'] = l($featured_node->title, 'node/' . $featured_node->nid);
       $get_field_project_description = field_get_items('node', $featured_node, 'field_project_description');
-      $nodes_array_to_show[$nid]['featured_node']['summary'] = '';
+      $nodes_array_to_show[$key]['featured_node']['summary'] = '';
       if (!empty($get_field_project_description[0]['value'])) {
-        $nodes_array_to_show[$nid]['featured_node']['summary'] = $get_field_project_description[0]['value'];
+        $nodes_array_to_show[$key]['featured_node']['summary'] = $get_field_project_description[0]['value'];
       }
     }
     unset($featured_nid);
     //Increase text size if Featured project is not available.
     $summary_count = 500;
-    if (!isset($nodes_array_to_show[$nid]['featured_node'])) {
+    if (!isset($nodes_array_to_show[$key]['featured_node'])) {
       $summary_count = 1000;
     }
     //Set summary.
-    $summary = $data[$nid]['summary']['value'];
-    $nodes_array_to_show[$nid]['summary'] = text_summary($summary, NULL, $summary_count);
+    $summary = $value['summary']['value'];
+    $nodes_array_to_show[$key]['summary'] = text_summary($summary, NULL, $summary_count);
   }
 
   $contextual_links = nas_panes_build_page_contextual_links('cons_landing_slideshow', NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY, 'page_conservation_landing_panel_context');
