@@ -12307,6 +12307,12 @@ body.touch .sticky-wrapper {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .center-and-sanctuaries {
+    margin-top: 50px;
+  }
+}
+
 .static-page-content .deck {
   padding-bottom: 1em;
 }
