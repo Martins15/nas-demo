@@ -716,7 +716,8 @@ function nas_master_update_7060() {
 }
 
 /**
- *
+ * Revert features related to ANW-397.
+ * Update overridden flyways nodes panelizer settings.
  */
 function nas_master_update_7061() {
   features_revert_module('nas_views_feature');
