@@ -688,6 +688,24 @@ function nas_panes_theme() {
       'template' => 'static-cards-bird-guide',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_bird_guide',
     ),
+    'local_chapters_centers_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'local-chapters-centers-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
+    ),
+    'local_chapters_centers_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'local-chapters-centers-block-content',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -1427,4 +1445,81 @@ function nas_panes_form_alter(&$form, &$form_state) {
       '#value' => TRUE,
     );
   }
+}
+
+/**
+ * Returns Local Chapters & Centers base on state or postal code.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @param string $postal_code
+ *   Postal code.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'all') {
+  $items = array();
+  $results = views_get_view_result('local_chapters_centers_block', 'default', $state, $postal_code);
+
+  foreach ($results as $item) {
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->node_title,
+      'state' => $item->field_data_field_location_address_field_location_address_adm,
+      'city' => $item->field_data_field_location_address_field_location_address_loc,
+      'link' => l($item->node_title, 'node/' . $item->nid),
+      'subtitle' => '',
+    );
+
+    // Add subtitle.
+    $subtitle = array();
+    if (!empty($item->field_data_field_location_address_field_location_address_loc)) {
+      $subtitle[] = $item->field_data_field_location_address_field_location_address_loc;
+    }
+    if (!empty($item->field_data_field_location_address_field_location_address_adm)) {
+      $subtitle[] = $item->field_data_field_location_address_field_location_address_adm;
+    }
+    if (!empty($subtitle)) {
+      $items[$item->nid]['subtitle'] = '(' . implode(', ', $subtitle) . ')';
+    }
+  }
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_panes_menu() {
+  $items = array();
+
+  $items['ajax/local-chapters-centers'] = array(
+    'page callback' => 'nas_panes_local_chapters_centers_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Returns markup for Local Chapters & Centers block.
+ */
+function nas_panes_local_chapters_centers_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_local_chapters_centers($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('local_chapters_centers_block_content', array('locations' => $locations));
 }
