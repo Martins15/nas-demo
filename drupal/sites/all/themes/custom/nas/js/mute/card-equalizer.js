@@ -64,7 +64,7 @@
         // We want to wait for stuff to load and render before we get down to business
         setTimeout(function() {
           equalizeCards(e.size);
-        }, 50);
+        }, 500);
       });
     }
   };
