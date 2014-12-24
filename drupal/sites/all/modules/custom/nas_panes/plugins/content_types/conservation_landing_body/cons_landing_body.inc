@@ -54,17 +54,18 @@ function cons_landing_body_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function cons_landing_body_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  $body = '&nbsp;';
+  if (!empty($conf['body']['value'])) {
+    $body = check_markup($conf['body']['value'], $conf['body']['format']);
+  }
+
   $block = new stdClass();
-
-  $contextual_links = nas_panes_build_page_contextual_links('cons_landing_body', NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY, 'page_conservation_landing_panel_context');
-
-  !empty($conf['body']['value']) ? $body = check_markup($conf['body']['value'], $conf['body']['format']) : $body = '&nbsp;';
-
-  $content = theme('cons_landing_body', array(
+  $block->content = theme('cons_landing_body', array(
     'contextual_links' => $contextual_links,
     'body' => $body,
   ));
 
-  $block->content = $content;
   return $block;
 }

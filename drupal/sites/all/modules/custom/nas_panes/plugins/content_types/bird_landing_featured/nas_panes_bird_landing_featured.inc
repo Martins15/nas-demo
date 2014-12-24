@@ -92,6 +92,10 @@ function bird_landing_featured_form_submit(&$form, &$form_state) {
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+  // Save Bird Landing Featured nid to variables.
+  if (isset($form_state['values']['bird']['entity_id'])) {
+    variable_set('nas_bird_landing_featured_bird', $form_state['values']['bird']['entity_id']);
+  }
 }
 
 /**

@@ -682,3 +682,89 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     watchdog('nas_master', '@count @name has been successfully imported.', array('@count' => $sandbox['progress'], '@name' => $human_name));
   }
 }
+
+/**
+ * Enable getoutside feature.
+ */
+function nas_master_update_7059() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_about_feature' => array('page_manager_pages')));
+  features_revert(array('nas_conservation_landing_feature' => array('page_manager_pages')));
+  module_enable(array('nas_getoutside_feature'));
+  features_revert(array('nas_birds_landing_feature' => array('page_manager_pages')));
+  features_revert(array('nas_location_feature' => array('views_default')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
+}
+
+/**
+ * Add Nodequeue module, Engagement cards.
+ */
+function nas_master_update_7060() {
+  module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_article_feature');
+  features_revert(array('nas_author_page' => array('panelizer')));
+  features_revert(array('nas_contact_type_feature' => array('panelizer')));
+  features_revert(array('nas_flyways_feature' => array('panelizer')));
+  features_revert(array('nas_slideshow_feature' => array('field_instance', 'panelizer', 'views_default')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer')));
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_frontpage_feature');
+  features_revert_module('nas_news_page_feature');
+  features_revert_module('nas_flyways_landing_feature');
+  features_revert_module('nas_engagement_cards_feature');
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_boa_feature');
+  // Enable autonodequeue.
+  db_insert('nodequeue_auto')
+  ->fields(array('qid' => 1, 'auto_add' => 1))
+  ->execute();
+}
+
+/**
+ * Revert features related to ANW-397.
+ * Update overridden flyways nodes panelizer settings.
+ */
+function nas_master_update_7061() {
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_static_page_feature');
+  features_revert(array('nas_birds_guide_feature' => array('page_manager_pages')));
+
+  $nids = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'flyway'))->fetchAllKeyed(0, 0);
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $did = $node->panelizer['page_manager']->did;
+    db_delete('panels_pane')
+      ->condition('did', $did)
+      ->condition('panel', 'bottom')
+      ->condition('type', 'nas_panes_flyway_in_the_news')
+      ->execute();
+    // In hook_update_N we use db_insert() instead of drupal_write_record().
+    db_insert('panels_pane')
+      ->fields(array(
+        'did' => $did,
+        'panel' => 'bottom',
+        'type' => 'editorial_card_3x',
+        'subtype' => 'editorial_card_3x',
+        'shown' => 1,
+        'access' => serialize(array()),
+        'configuration' => serialize(array(
+          'context' => 'panelizer',
+          'override_title' => 1,
+          'override_title_text' => '%node:title In the News',
+          'preset' => 'flyway_in_the_news',
+          'more_link_text' => 'More News »',
+          'more_link_url' => 'news',
+        )),
+        'cache' => serialize(array()),
+        'style' => serialize(array('settings' => NULL)),
+        'css' => serialize(array()),
+        'extras' => serialize(array()),
+        'position' => 2,
+        'locks' => serialize(array()),
+      ))
+      ->execute();
+  }
+  features_revert_module('nas_contact_type_feature');
+}

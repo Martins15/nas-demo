@@ -55,6 +55,8 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'hero_attribution' => NULL,
       'strategy_icon' => NULL,
       'hero_image' => NULL,
+      'bottom_line' => NULL,
+      'cards_set' => NULL,
     ),
   );
   $display->cache = array();
@@ -198,6 +200,49 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $display->content['new-e573215c-1498-458b-94bb-ccbeb9afe3a1'] = $pane;
     $display->panels['bottom'][0] = 'new-e573215c-1498-458b-94bb-ccbeb9afe3a1';
     $pane = new stdClass();
+    $pane->pid = 'new-18bafc70-d4a0-4648-b594-992ab7044644';
+    $pane->panel = 'cards_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-e7_FJvNS7hGipCZnJ6V1j2FrAQg2fIlYGwrCnhwf1UM',
+      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '18bafc70-d4a0-4648-b594-992ab7044644';
+    $display->content['new-18bafc70-d4a0-4648-b594-992ab7044644'] = $pane;
+    $display->panels['cards_set'][0] = 'new-18bafc70-d4a0-4648-b594-992ab7044644';
+    $pane = new stdClass();
     $pane->pid = 'new-29434efd-ea4f-4dc5-a9e3-e0a42957d8b6';
     $pane->panel = 'hero_attribution';
     $pane->type = 'entity_field';
@@ -278,6 +323,37 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $pane->uuid = 'f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
     $display->content['new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d'] = $pane;
     $display->panels['right'][0] = 'new-f1f152d2-0214-46a6-bbf2-9b3ab16aa02d';
+    $pane = new stdClass();
+    $pane->pid = 'new-17873042-87db-4b6f-b481-d6711c6aacc1';
+    $pane->panel = 'right';
+    $pane->type = 'local_chapters_centers_block';
+    $pane->subtype = 'local_chapters_centers_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => 'Local Chapters & Centers',
+      'image' => '9802',
+      'image_link' => 'conservation',
+      'bottom_link' => array(
+        'title' => 'See all',
+        'url' => 'conservation',
+      ),
+      'form_build_id' => 'form-CvR-0UCvTw55xb_Ar3P7dcEqR_NKafLpGLyKvQmcnwY',
+      'form_token' => 'S8XXcPkGYpja-pjOYMfbBqMCAnqhDtonhmYDWqk7rWQ',
+      'form_id' => 'local_chapters_centers_block_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '17873042-87db-4b6f-b481-d6711c6aacc1';
+    $display->content['new-17873042-87db-4b6f-b481-d6711c6aacc1'] = $pane;
+    $display->panels['right'][1] = 'new-17873042-87db-4b6f-b481-d6711c6aacc1';
     $pane = new stdClass();
     $pane->pid = 'new-af63187e-4ad4-4f6a-a85d-4f418b6da682';
     $pane->panel = 'strategy';

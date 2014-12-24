@@ -70,9 +70,9 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
   );
-  $entity_info['node']['view modes']['nas_node_teaser_wo_date'] = array(
-    'label' => t('Teaser without date'),
-    'custom settings' => TRUE,
+  $entity_info['node']['view modes']['teaser_author_page'] = array(
+    'label' => t('Teaser for Author page'),
+    'custom settings' => FALSE,
   );
   $entity_info['node']['view modes']['nas_node_teaser_no_section_link'] = array(
     'label' => t('Teaser without section link'),
@@ -350,11 +350,11 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
       'class' => array(
         'section-nav',
         'inline-list',
-        )
       ),
+    ),
   ));
   $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
-  if (count($get_field_related_bird) !== 4) {
+  if ($get_field_related_bird == 0) {
     $vars['fields'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide_random');
   }
 
@@ -443,7 +443,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
 
   $vars['blue_text_link'] = '';
   if ($node && $blue = nas_panes_get_blue_text_link($node)) {
-    $vars['blue_text_link'] = l($blue[0], $blue[1], array('classes' => array('hero-slug')));
+    $vars['blue_text_link'] = l($blue[0], $blue[1], array('attributes' => array('class' => array('hero-slug'))));
   };
 
   $vars['contextual_links'] = '';

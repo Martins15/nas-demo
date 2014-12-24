@@ -23,5 +23,6 @@ $plugin = array(
     'in_action_left' => t('In Action Left'),
     'in_action_right' => t('In Action Right'),
     'in_the_news' => t('In the News'),
+    'card_set' => t('Card set'),
   ),
 );

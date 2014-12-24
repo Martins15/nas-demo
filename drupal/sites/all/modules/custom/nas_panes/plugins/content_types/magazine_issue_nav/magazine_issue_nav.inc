@@ -27,8 +27,8 @@ function magazine_issue_nav_render($subtype, $conf, $args, $context) {
   $options = array();
   if ($field_items = field_get_items('node', $context_node, 'field_issue_date')) {
     // Extract date.
-    $date = date('Y-m-d', strtotime($field_items[0]['value']));
-    $options['query'] = array('before' => $date);
+    $date = date('Y', strtotime($field_items[0]['value']));
+    $options['fragment'] = 'date-' . $date;
   }
 
   $block = new stdClass();

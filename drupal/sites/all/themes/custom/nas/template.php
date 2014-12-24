@@ -66,6 +66,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'static_page') {
     nas_preprocess_node_static_page($vars);
   }
+  if ($vars['type'] == 'engagement_cards') {
+    nas_preprocess_node_engagement_cards($vars);
+  }
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
@@ -369,6 +372,7 @@ function nas_preprocess_node_article(&$vars) {
   }
 
   $subtitle_modes = array(
+    'nas_node_teaser_small',
     'nas_teaser_flyway_landing',
     'static_page_related_teaser',
     'about_page_related_teaser',
@@ -401,6 +405,20 @@ function nas_preprocess_node_article(&$vars) {
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['by_line'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_author')) {
+      $author_node = node_load($field_items[0]['target_id']);
+      $vars['by_line'] = 'By ' . $author_node->title;
+    }
+  }
+  if ($vars['view_mode'] == 'teaser_author_page') {
+    $vars['article_date'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_article_date')) {
+      $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
+    }
+  }
+
   if ($vars['view_mode'] == 'nas_node_related_features') {
     if (!empty($vars['content']['field_menu_section'])) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
@@ -428,11 +446,9 @@ function nas_preprocess_node_static_page(&$vars) {
       ));
   }
 
-  if ($vars['view_mode'] == 'static_page_related_teaser' || $vars['view_mode'] == 'about_page_related_teaser') {
-    $vars['subtitle'] = '';
-    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
-    }
+  $vars['subtitle'] = '';
+  if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
   }
 
   $vars['title'] = check_plain($node->title);
@@ -491,6 +507,24 @@ function nas_preprocess_node_article_news_from_network(&$vars) {
   if (!empty($node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'])) {
     $term = $node->field_menu_section[LANGUAGE_NONE][0]['taxonomy_term'];
     $vars['blue_link'] = l($term->name, 'taxonomy/term/' . $term->tid, array('attributes' => array('class' => array('editorial-card-slug'))));
+  }
+}
+
+/**
+ * theme_preprocess_node for engagement cards content type.
+ */
+function nas_preprocess_node_engagement_cards(&$vars) {
+  $node = $vars['node'];
+  if ($field_link_items = field_get_items('node', $node, 'field_link')) {
+    $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
+      'attributes' => array(
+        'class' => array(
+        'button',
+        'tomato',
+        'large',
+        ),
+      ),
+    ));
   }
 }
 
@@ -767,7 +801,11 @@ function nas_field__field_author__article($variables) {
  * Preprocess function for field_related_bird field for nodes of type contact.
  */
 function nas_preprocess_field_field_related_bird_contact(&$variables) {
-  $variables['label'] = check_plain($variables['element']['#object']->title . '\'s Favorite Birds');
+  $name = '';
+  if (!empty($variables['element']['#object']->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
+    $name = $variables['element']['#object']->field_first_name[LANGUAGE_NONE][0]['safe_value'] . "'s ";
+  }
+  $variables['label'] = check_plain($name . 'Favorite Birds');
 }
 
 /**

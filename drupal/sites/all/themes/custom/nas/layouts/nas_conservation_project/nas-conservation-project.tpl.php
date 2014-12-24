@@ -47,89 +47,13 @@
       </section>
       <div class="row">
         <?php print $content['right']; ?>
-        <section class="sidebar-section medium-6 large-12 columns">
-          <div class="sidebar-section editorial-card">
-            <div class="editorial-card-photo">
-              <a href="#"><img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>editorial-card-13.jpg" alt=""></a>
-            </div>
-            <div class="editorial-card-banner green"><i class="icon-map"></i> Local Chapters &amp; Centers</div>
-            <div class="editorial-card-content">
-              <ul class="no-bullets item-margin">
-                <li>
-                  <h5 class="editorial-card-title blue close-heading"><a href="#">Anchorage Audubon Society</a></h5>
-                  <small>(Anchorage, AK)</small>
-                </li>
-                <li>
-                  <h5 class="editorial-card-title blue close-heading"><a href="#">Arctic Audubon Society</a></h5>
-                  <small>(Fairbanks, AK)</small>
-                </li>
-                <li>
-                  <h5 class="editorial-card-title blue close-heading"><a href="#">Kodiak Audubon Society</a></h5>
-                  <small>(Kodiak, AK)</small>
-                </li>
-              </ul>
-              <hr />
-              <a href="#" class="editorial-card-link sans">See all</a>
-            </div>
-          </div>
-        </section>
       </div>
     </div>
   </div>
   <?php print $content['bottom']; ?>
 
   <section class="card-set bg-1">
-    <div class="row">
-      <div class="column">
-        <h1 class="card-set-heading pea-green">These birds need your help</h1>
-      </div>
-    </div>
-    <div class="row card-set-wrapper">
-      <div class="clearfix card-set-scroller">
-        <div class="tiny-4 columns">
-          <div class="engagement-card">
-            <div class="engagement-card-content">
-              <h3 class="engagement-card-headline">Save the Brown Pelican</h3>
-              <p>Numerous oil spills along the Gulf Coast have threatened thousands of native birds.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato large">Endorse New Legislation</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>engagement-card-1.jpg" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="engagement-card">
-            <div class="engagement-card-content">
-              <h3 class="engagement-card-headline">Join Audubon’s Volunteers Days</h3>
-              <p>Learn how you can make a real, lasting difference in your own community.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato large">Become a Volunteer</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>engagement-card-2.jpg" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="tiny-4 columns">
-          <div class="engagement-card">
-            <div class="engagement-card-content">
-              <h3 class="engagement-card-headline">Adopt a Bird: Sandhill Crane</h3>
-              <p>Online adoptions allow you to help Audubon protect birds and their habitats.</p>
-              <div class="engagement-card-cta">
-                <a href="#" class="button tomato large">Adopt a Bird</a>
-              </div>
-            </div>
-            <div class="engagement-card-photo">
-              <img src="<?php print base_path() . drupal_get_path('theme', 'nas') . '/img/'; ?>engagement-card-3.jpg" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <?php print $content['cards_set']; ?>
     <div class="row">
       <div class="card-set-dots light">
         <div class="dot active"></div>
