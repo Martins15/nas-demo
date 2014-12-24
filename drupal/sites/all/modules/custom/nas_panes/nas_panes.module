@@ -1212,7 +1212,10 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   }
   $cards_array['contextual_links'] = $contextual_links;
 
-  $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
+  $conf_key = 'default';
+  if (isset($context['node'])) {
+    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
+  }
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
   }
@@ -1224,8 +1227,8 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   // Manual override.
   if (isset($data['references'])) {
     foreach ($data['references'] as $value) {
-      if (isset($value['entity_id']) && $node = node_load($value['entity_id'])) {
-        $nodes[nodequeue_subqueue_position(1, $value['entity_id'])] = $node;
+      if (isset($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+        $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
       }
     }
   }
@@ -1277,8 +1280,8 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       }
     }
   }
-  // Not Manual overrides, not Birds references were provided, or it's count less than 3.
-  if (empty($nodes) || count($nodes) < 3) {
+  // Not Manual overrides, not Birds references were provided, or it's count less than 4.
+  if (empty($nodes) || count($nodes) < 4) {
     /**
      * We have 2 options for matching Menu section context.
      * 1. page is a node, and it has field_menu_section.
@@ -1316,9 +1319,12 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       }
     }
   }
-  // Any matched cards weren't found, default behaviour (load 3 first from nodequeue).
-  if (empty($nodes)) {
-    $nodes = nodequeue_load_nodes(1, FALSE, 0, 3);
+  // Default behaviour options.
+  if (count($nodes) < 4) {
+    foreach ($all_nodes as $node) {
+      $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    }
+    $nodes = array_replace($all_nodes_positioned, $nodes);
   }
 
   // Sort the array by key previously loaded from nodequeue.

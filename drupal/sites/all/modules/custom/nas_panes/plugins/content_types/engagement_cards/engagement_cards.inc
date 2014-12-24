@@ -69,7 +69,7 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
   // We can't add node context to the pane, because it's use on landing pages too.
   $conf_key = 'default';
   if ($context_node = menu_get_object('node')) {
-    $conf_key = $context_node->nid;
+    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
   }
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
@@ -84,7 +84,7 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
   if (!empty($nas_selected_engagement_cards_nodes)) {
     $nodes = array_diff_key($nodes, $nas_selected_engagement_cards_nodes);
   }
-
+  $nodes = array_slice($nodes, 0, 3, TRUE);
   // Finally render selected nodes.
   $teasers = array();
   foreach ($nodes as $node) {
