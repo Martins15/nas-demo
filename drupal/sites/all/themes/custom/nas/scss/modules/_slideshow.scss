@@ -237,7 +237,8 @@ body.node-type-slideshow {
 }
 
 .slideshow-sidebar-block {
+  min-height: inherit !important;
   .editorial-card-content {
-    min-height: inherit;
+    min-height: inherit !important;
   }
 }
