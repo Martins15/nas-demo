@@ -7727,8 +7727,8 @@ body.touch .primary-sub-nav-index {
 }
 
 .article-body .bean-welcome-to-audubon {
-  float: right;
-  width: 41.66667% !important;
+  position: absolute;
+  z-index: 1;
 }
 .article-body .bean-welcome-to-audubon .article-aside {
   padding-left: 25px;
