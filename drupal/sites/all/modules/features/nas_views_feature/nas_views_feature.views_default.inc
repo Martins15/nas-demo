@@ -1127,13 +1127,6 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
-  /* Filter criterion: Panelizer: Panelizer layout */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'panelizer_entity';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['value'] = array(
-    'node:article:press_release' => 'node:article:press_release',
-  );
   $handler->display->display_options['argument_input'] = array(
     'field_flyway_target_id' => array(
       'type' => 'context',
