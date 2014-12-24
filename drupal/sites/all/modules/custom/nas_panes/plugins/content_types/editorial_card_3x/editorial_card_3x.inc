@@ -165,6 +165,7 @@ function editorial_card_3x_edit_form($form, &$form_state) {
       '#default_value' => !empty($conf['refs'][$i]['category_url']) ? $conf['refs'][$i]['category_url'] : '',
     );
     $form['refs'][$i]['title'] = array(
+      '#prefix' => t('To display card fill Title and URL.'),
       '#title' => t('Title'),
       '#type' => 'textfield',
       '#default_value' => !empty($conf['refs'][$i]['title']) ? $conf['refs'][$i]['title'] : '',
