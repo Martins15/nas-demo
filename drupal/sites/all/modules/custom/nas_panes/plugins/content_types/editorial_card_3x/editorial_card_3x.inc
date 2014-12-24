@@ -84,7 +84,7 @@ function editorial_card_3x_edit_form($form, &$form_state) {
   );
 
   // Get default value when count is empty or when it has been update via form.
-  if (empty($form_state['storage']['count']) || !empty($form_state['values']['count']) && $form_state['storage']['count'] != $form_state['values']['count']) {
+  if (empty($form_state['storage']['count']) || (!empty($form_state['values']['count']) && $form_state['storage']['count'] != $form_state['values']['count'])) {
     // Update value when form has been submitted.
     if (!empty($form_state['values']['count'])) {
       $form_state['storage']['count'] = $form_state['values']['count'];
