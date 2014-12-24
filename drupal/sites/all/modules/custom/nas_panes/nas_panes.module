@@ -708,6 +708,16 @@ function nas_panes_theme() {
       'template' => 'local-chapters-centers-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
     ),
+    'slideshow_sidebar_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'block_title' => NULL,
+        'image' => NULL,
+        'slideshow' => NULL,
+      ),
+      'template' => 'slideshow-sidebar-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block',
+    ),
     'local_chapters_centers_block_content' => array(
       'variables' => array(
         'locations' => array(),

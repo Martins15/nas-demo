@@ -8713,6 +8713,13 @@ body.node-type-slideshow #tabs {
   z-index: 10;
 }
 
+.slideshow-sidebar-block {
+  min-height: inherit !important;
+}
+.slideshow-sidebar-block .editorial-card-content {
+  min-height: inherit !important;
+}
+
 .see-all-show {
   display: none;
 }
