@@ -91,9 +91,10 @@ function species_across_audubon_render($subtype, $conf, $args, $contexts) {
   else {
     $view_results = views_get_view_result('project_birds', 'nas_across_audubon', $context_node->nid);
     foreach ($view_results as $result) {
-      $nodes[] = node_load($result->nid);
+      $nodes[$result->nid] = node_load($result->nid);
     }
   }
+
   $nodes = array_slice($nodes, 0, 3);
   $teasers = array();
   foreach ($nodes as $node) {
