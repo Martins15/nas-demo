@@ -1387,7 +1387,13 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
     $pm_page['handler']->conf['display'] = panels_load_display($pm_page['handler']->conf['did']);
   }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  // @todo sometimes cache_key is empty. We need build it manually.
+  if (empty($pm_page['handler']->conf['display']->cache_key)) {
+    $cache_key = $pm_page['handler']->handler . ':' . $pm_page['name'] . '::' . $pm_page['handler']->name . '::::';
+  }
+  else {
+    $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  }
 
   $links = array(
     'edit' => array(
