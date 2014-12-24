@@ -1505,7 +1505,7 @@ function nas_panes_local_chapters_centers_callback() {
 
   // Display default behaviour.
   if (empty($locations)) {
-    $locations = _nas_panes_get_local_chapters_centers();
+    return;
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));

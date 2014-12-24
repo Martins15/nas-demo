@@ -16,7 +16,9 @@
     <div class="editorial-card-banner green"><i class="icon-map"></i> <?php print $title; ?></div>
 
     <div class="editorial-card-content">
-      <?php print $content; ?>
+      <div class="chapters-centers-content-layout">
+        <?php print $content; ?>
+      </div>
       <?php if (!empty($bottom_link)) : ?>
         <hr />
         <?php print $bottom_link; ?>
