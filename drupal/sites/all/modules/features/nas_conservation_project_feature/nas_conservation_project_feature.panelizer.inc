@@ -337,7 +337,7 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'image_link' => 'conservation',
       'bottom_link' => array(
         'title' => 'See all',
-        'url' => 'Local Chapters & Centers',
+        'url' => 'conservation',
       ),
       'form_build_id' => 'form-CvR-0UCvTw55xb_Ar3P7dcEqR_NKafLpGLyKvQmcnwY',
       'form_token' => 'S8XXcPkGYpja-pjOYMfbBqMCAnqhDtonhmYDWqk7rWQ',
