@@ -83,16 +83,22 @@ function editorial_card_3x_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
   );
 
-  if (empty($conf['count'])) {
-    if (empty($form_state['values']['count'])) {
-      $form_state['values']['count'] = 3;
+  // Get default value when count is empty or when it has been update via form.
+  if (empty($form_state['storage']['count']) || !empty($form_state['values']['count']) && $form_state['storage']['count'] != $form_state['values']['count']) {
+    // Update value when form has been submitted.
+    if (!empty($form_state['values']['count'])) {
+      $form_state['storage']['count'] = $form_state['values']['count'];
+    }
+    // Get from panel pane configuration.
+    elseif (!empty($conf['count'])) {
+      $form_state['storage']['count'] = $conf['count'];
+    }
+    // Default value.
+    else {
+      $form_state['storage']['count'] = 3;
     }
   }
-  else {
-    if (empty($form_state['values']['count'])) {
-      $form_state['values']['count'] = $conf['count'];
-    }
-  }
+
   $form['count'] = array(
     '#type' => 'select',
     '#title' => t('Number of items'),
@@ -104,7 +110,7 @@ function editorial_card_3x_edit_form($form, &$form_state) {
       15 => '15',
       18 => '18',
     ),
-    '#default_value' => $form_state['values']['count'],
+    '#default_value' => $form_state['storage']['count'],
   );
   $form['update_count'] = array(
     '#type' => 'button',
@@ -122,7 +128,7 @@ function editorial_card_3x_edit_form($form, &$form_state) {
     '#type' => 'container',
     '#id' => 'editorial-card-3x-refs',
   );
-  for ($i = 1; $i <= $form_state['values']['count']; $i++) {
+  for ($i = 1; $i <= $form_state['storage']['count']; $i++) {
     if (empty($conf['refs'][$i])) {
       $conf['refs'][$i] = array();
     }
@@ -314,6 +320,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
       $teasers[] = $teaser;
     }
   }
+  $teasers = array_slice($teasers, 0, $conf['count']);
 
   $title = '';
   if ($conf['override_title']) {
