@@ -235,3 +235,9 @@ body.node-type-slideshow {
     z-index: 10;
   }
 }
+
+.slideshow-sidebar-block {
+  .editorial-card-content {
+    min-height: inherit;
+  }
+}
