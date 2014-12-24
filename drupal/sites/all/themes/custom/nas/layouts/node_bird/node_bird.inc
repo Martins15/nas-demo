@@ -24,5 +24,6 @@ $plugin = array(
     'in_action_right' => t('In Action Right'),
     'in_the_news' => t('In the News'),
     'card_set' => t('Card set'),
+    'across_audubon' => t('Across Audubon'),
   ),
 );
