@@ -4640,7 +4640,10 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 }
 .editorial-card-link:after {
   content: "\00bb";
-  display: table-cell;
+  display: inline-block;
+  margin-top: -1px;
+  position: absolute;
+  height: 7px;
   font-size: 16px;
   width: 10px;
   text-align: right;
