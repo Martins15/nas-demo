@@ -13,5 +13,7 @@
   <?php foreach ($teasers as $teaser): ?>
     <?php print $teaser; ?>
   <?php endforeach; ?>
-   &nbsp;
+  <?php if (empty($teasers)): ?>
+    <p>&nbsp;</p>
+  <?php endif; ?>
 </div>
