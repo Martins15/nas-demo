@@ -92,7 +92,7 @@ function static_cards_bird_guide_render($subtype, $conf, $args, $contexts) {
   }
 
   if (empty($nids)) {
-    $view_results = views_get_view_result('nas_similar_birds', 'audubon_bird_guide_random');
+    $view_results = views_get_view_result('nas_birds_view', 'audubon_bird_guide_random');
     foreach ($view_results as $item) {
       $nids[] = $item->nid;
     }

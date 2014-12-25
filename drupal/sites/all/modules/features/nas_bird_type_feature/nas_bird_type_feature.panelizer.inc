@@ -342,10 +342,10 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-26560f62-8a80-49c9-97c4-3b286dc5b5e7'] = $pane;
     $display->panels['main'][0] = 'new-26560f62-8a80-49c9-97c4-3b286dc5b5e7';
     $pane = new stdClass();
-    $pane->pid = 'new-8a0f19e4-bf97-4952-8153-df582f39fbb4';
+    $pane->pid = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
     $pane->panel = 'similar_birds';
     $pane->type = 'views_panes';
-    $pane->subtype = 'nas_similar_birds-nas_similar_birds';
+    $pane->subtype = 'nas_birds_view-explore_similar_birds';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -361,9 +361,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '8a0f19e4-bf97-4952-8153-df582f39fbb4';
-    $display->content['new-8a0f19e4-bf97-4952-8153-df582f39fbb4'] = $pane;
-    $display->panels['similar_birds'][0] = 'new-8a0f19e4-bf97-4952-8153-df582f39fbb4';
+    $pane->uuid = '1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
+    $display->content['new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c'] = $pane;
+    $display->panels['similar_birds'][0] = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
     $pane = new stdClass();
     $pane->pid = 'new-977db9c1-e7d8-4758-b09c-c90726dda353';
     $pane->panel = 'top';
