@@ -4,6 +4,7 @@
  * Default template of Article layout.
  */
 ?>
+<?php print $content['magazine_bar']; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">
