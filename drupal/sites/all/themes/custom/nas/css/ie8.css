@@ -48,6 +48,7 @@
   margin-left: 10px;
 }
 
+.curtain,
 .wordmark,
 .hero,
 .breakout-section,
@@ -65,13 +66,21 @@
   -ms-behavior: url(../js/mute/backgroundsize.min.htc);
 }
 
-.breakout-section.black-bg .breakout-section-hero:not(:last-child):after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  height: 100px;
+.breakout-section.black-bg .breakout-section-hero:not(:last-child) {
   background-image: url(../img/ie/black-gradient-up.png);
+  background-position: center bottom;
+  background-repeat: repeat-x;
+}
+
+.global-header.light-bg {
+  background-image: url(../img/ie/white-gradient-down.png);
+  background-position: center top;
+  background-repeat: repeat-x;
+}
+
+.global-header.dark-bg {
+  background-image: url(../img/ie/black-gradient-down.png);
+  background-position: center top;
   background-repeat: repeat-x;
 }
 
@@ -79,6 +88,7 @@
   display: inline-block !important;
 }
 .guide-bar .canon-logo {
+  margin-top: -5px;
   display: inline !important;
 }
 .guide-bar .guide-bar-attribution {
@@ -90,9 +100,19 @@
 .conservation-slider-button,
 .title-slide .slide-img:after,
 .end-slide .slide-img:after,
-.flyway-slides-paddle {
+.flyway-slides-paddle,
+.curtain-card,
+.hero-attribution-text {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000) !important;
   zoom: 1;
+}
+
+.slideshow {
+  margin-bottom: 15px;
+}
+
+.slideshow-title {
+  margin-top: 60px;
 }
 
 .slide {
@@ -100,7 +120,7 @@
 }
 
 .slideshow-button {
-  top: 40% !important;
+  top: 50% !important;
   margin-top: -30px;
 }
 
@@ -173,6 +193,25 @@ aside,
   height: 800px;
   background-size: cover;
   background-position: center center !important;
+}
+.flyway-megamap .ie-gradient-top,
+.flyway-megamap .ie-gradient-bottom {
+  background-size: auto 200px;
+  background-repeat: repeat-x;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.flyway-megamap .ie-gradient-top {
+  background-image: url(../img/ie/white-gradient-down.png);
+  background-position: center top;
+  top: 0;
+}
+.flyway-megamap .ie-gradient-bottom {
+  background-image: url(../img/ie/white-gradient-up.png);
+  background-position: center bottom;
+  bottom: 0;
 }
 
 .flyway-megamap-point .portrait {

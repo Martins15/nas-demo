@@ -41,6 +41,9 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
       'field_hero_image',
       'field_color_mode',
     ),
+    'default' => array(
+      'field_magazine_issue',
+    ),
     'fullscreen_image' => array(
       'field_hero_image',
       'field_color_mode',
@@ -48,9 +51,11 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     ),
     'map' => array(
       'field_article_map',
+      'field_magazine_issue',
     ),
     'press_release' => array(
       'field_pressrelease_contact',
+      'field_magazine_issue',
     ),
   );
 

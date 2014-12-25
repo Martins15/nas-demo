@@ -4,7 +4,7 @@ $(function() {
   $(".flyway-megamap").each(function() {
     var $megamap = $(this),
         $points = $megamap.find(".flyway-megamap-point"),
-        $dots = $(".flyway-path-dots"),
+        $dots = $(".flyway-path-dots a"),
         $maps = $(".flyway-path-map"),
         $descriptions = $(".flyway-path-description"),
         $flywayColumnsBlocks = $(".flyway-path-columns");
@@ -84,7 +84,7 @@ $(function() {
     // Reposition the points on resize
     $(window).bind("resize", handleResize);
     $points.bind("click", handleFlywaySwitch);
-    $dots.find(".dot").bind("click", handleDotClick);
+    $dots.bind("click", handleDotClick);
 
   });
 });

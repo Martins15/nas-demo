@@ -15,6 +15,7 @@ $plugin = array(
   'icon' => 'nas_article_map.png',
   'theme' => 'nas_article_map',
   'regions' => array(
+    'magazine_bar' => t('Magazine Bar'),
     'header' => t('Header'),
     'map' => t('Map'),
     'mobile_author' => t('Mobile author'),
