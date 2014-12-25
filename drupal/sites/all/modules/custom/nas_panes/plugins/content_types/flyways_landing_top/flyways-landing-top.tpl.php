@@ -11,6 +11,8 @@
  */
 ?>
 <div class="hero dark-text flyway-megamap" style="background-image: url(<?php print $hero_image; ?>); background-color: #CDEAF2;">
+  <div class="ie-gradient-top"></div>
+  <div class="ie-gradient-bottom"></div>
   <div class="row">
     <div class="hero-header contextual-links-region">
       <?php print $contextual_links; ?>
