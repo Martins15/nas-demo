@@ -295,7 +295,7 @@ function nas_news_page_feature_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'News';
   $display->uuid = 'cdc43840-3cf5-4c66-a862-9fe119895805';
   $display->content = array();
   $display->panels = array();
@@ -514,6 +514,31 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->uuid = 'e4bd4237-1ac2-4624-a1c9-aba5e774bbc3';
     $display->content['new-e4bd4237-1ac2-4624-a1c9-aba5e774bbc3'] = $pane;
     $display->panels['social'][0] = 'new-e4bd4237-1ac2-4624-a1c9-aba5e774bbc3';
+    $pane = new stdClass();
+    $pane->pid = 'new-23570994-5e44-4b51-9b3f-04fe469c5f25';
+    $pane->panel = 'title';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '23570994-5e44-4b51-9b3f-04fe469c5f25';
+    $display->content['new-23570994-5e44-4b51-9b3f-04fe469c5f25'] = $pane;
+    $display->panels['title'][0] = 'new-23570994-5e44-4b51-9b3f-04fe469c5f25';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
