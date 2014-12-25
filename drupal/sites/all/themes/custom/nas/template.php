@@ -349,6 +349,7 @@ function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -453,6 +454,7 @@ function nas_preprocess_node_static_page(&$vars) {
 
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
   list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
   $vars['blue_text_link_url'] = $blue_text_link_url;
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
