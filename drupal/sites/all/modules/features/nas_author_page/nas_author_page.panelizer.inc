@@ -218,14 +218,9 @@ function nas_author_page_panelizer_defaults() {
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'slideshow' => array(
-        'entity_id' => '5011',
-        'entity_label' => '2012 Photo Awards Top 100',
-        'entity_type' => 'node',
-        'entity_bundle' => 'slideshow',
-      ),
-      'form_build_id' => 'form-GRTYVlBQqE0R_Gl3Ds70FkExcQBfIss9epBihtGTWMM',
-      'form_token' => 'Jgk8zVhlnyqDFzuv9jZKExsMYm8MQKD5cMrqOSdS-aw',
+      'slideshow' => FALSE,
+      'form_build_id' => 'form-n1YyQv0bLijALR8NPg6TesV-xZGboDYu2s7gAzX743s',
+      'form_token' => 'imae4tMJXsVu3-j5xgFyX8_dY8_Q-kiWpuLN9OjrLNQ',
       'form_id' => 'slideshow_sidebar_block_form',
     );
     $pane->cache = array();
