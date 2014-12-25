@@ -2109,3 +2109,38 @@ ul.pagination {
       clear: none; }
     .xxlarge-block-grid-12 > li:nth-of-type(12n+1) {
       clear: both; } }
+
+.-wrap-select {
+  -webkit-appearance: none !important;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  border: 1px solid #d4d4d4;
+  border-radius: 3px;
+  color: #626262;
+  padding: 0.5rem 1rem;
+  font-size: 1.0625rem;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  padding: 0;
+}
+.-wrap-select:focus {
+  background-color: #fff;
+  border-color: #aaa;
+  outline: none;
+}
+.-wrap-select select {
+  -moz-appearance: window;
+  margin-bottom: 0 !important;
+  border: 0;
+}
+.-wrap-select select option {
+  padding: 3px 6px;
+}
+.-wrap-select.ie {
+  overflow: hidden;
+}
+.-wrap-select.ie select {
+  width: 150%;
+  overflow: hidden;
+}

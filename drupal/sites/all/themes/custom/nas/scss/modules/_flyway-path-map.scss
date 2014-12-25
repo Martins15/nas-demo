@@ -4,6 +4,7 @@
   .flyway-megamap-point {
     position: absolute !important;
     top: auto;
+    bottom: 70px;
     left: 30px;
     margin-top: -180px;
     min-width: 120px;
@@ -36,11 +37,18 @@
   position: absolute;
   top: 0;
   opacity: 0;
+  z-index: 0;
+  width: 100%;
   @include transition(opacity 0.5s ease-in-out);
 
   &.current {
     position: relative;
     opacity: 1;
+    z-index: 1;
+
+    .flyway-megamap-point {
+      bottom: 55px;
+    }
   }
 }
 
@@ -61,6 +69,10 @@
 .flyway-path-dots {
   margin: $size-space*1.5 auto;
   text-align: center;
+
+  a {
+    display: inline-block;
+  }
 
   .dot {
     display: inline-block;
