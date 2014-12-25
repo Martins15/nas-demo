@@ -15,8 +15,13 @@
   background-size: auto 120px;
 }
 
+.slideshow-title {
+  margin-top: 60px;
+}
+
 .slideshow {
   top: -60px;
+  margin-bottom: 15px;
 }
 
 .slideshow-button {
@@ -54,9 +59,4 @@
 .flyway-path-map .flyway-megamap-point {
   margin-top: 0 !important;
   top: 300px;
-}
-
-.bird-guide-country select {
-        background: #ffffff;
-        padding-right: 10px;
 }

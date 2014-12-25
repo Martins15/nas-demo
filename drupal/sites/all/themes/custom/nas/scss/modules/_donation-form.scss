@@ -97,6 +97,17 @@
     width: 100%;
   }
 
+  label {
+    display: inline !important;
+    margin: 0 !important;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: inline;
+    margin: 0 0.5rem 1rem 0 !important;
+  }
+
   .donation-button-container {
     text-align: center;
   }

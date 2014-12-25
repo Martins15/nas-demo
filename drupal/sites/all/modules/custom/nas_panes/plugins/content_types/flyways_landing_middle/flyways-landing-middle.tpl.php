@@ -14,7 +14,7 @@
       <?php for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++): ?>
       <div id="flyway-map-<?php print $i; ?>" class="flyway-path-map<?php if ($i == 1): ?> current<?php endif; ?>">
         <img src="<?php print $flyway[$i]['map_image']; ?>" alt="<?php print $flyway[$i]['flyway']; ?>">
-        <a href="#" id="flyway-point-<?php print $i; ?>" class="flyway-megamap-point"">
+        <a href="#" id="flyway-point-<?php print $i; ?>" class="flyway-megamap-point">
           <div class="portrait">
             <img src="<?php print $flyway[$i]['bird_image']; ?>" alt="<?php print $flyway[$i]['bird_title']; ?>">
           </div>
@@ -25,7 +25,7 @@
         </a>
         <div class="flyway-path-dots">
           <?php for ($j = 1; $j <= NAS_FLYWAYS_NUMBER; $j++): ?>
-          <a href="#flyway-map-<?php print $j; ?>" class="dot<?php if ($j == $i): ?> active<?php endif; ?>"></a>
+          <a href="#flyway-map-<?php print $j; ?>"><span class="dot<?php if ($j == $i): ?> active<?php endif; ?>"></span></a>
           <?php endfor; ?>
         </div>
       </div>
