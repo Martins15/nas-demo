@@ -553,7 +553,7 @@ function nas_article_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
-        'title' => '',
+        'title' => 'Here’s how you can make a difference',
         'references' => array(
           1 => array(
             'entity_reference' => FALSE,
@@ -566,8 +566,8 @@ function nas_article_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-xnn6rFvJU2LQ7cHXmSX8yiZoSZpLT2q29Y9ZA4IgHCg',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_build_id' => 'form-ZGk_bK72FGAicuPYZgxL8cIanWdyXwkhWcVoigXNvGk',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
       'form_id' => 'engagement_cards_edit_form',
     );
     $pane->cache = array();
@@ -987,6 +987,23 @@ function nas_article_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
+        'title' => 'Here’s how you can make a difference',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-pKG0BU02JiQ0mKl1rdxQ0nb-QSQvtdHdxfdWc_u-rjM',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
+      'form_id' => 'engagement_cards_edit_form',
+      2225 => array(
         'title' => '',
         'references' => array(
           1 => array(
@@ -1000,9 +1017,7 @@ function nas_article_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-kp4iI21y4FykmulPrBTbptmhvJfN_9L-EqyrXjkgq6s',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
-      'form_id' => 'engagement_cards_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1438,9 +1453,17 @@ function nas_article_feature_panelizer_defaults() {
           'entity_reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-0CRKk3U3mzDuLLnEeokODgEiNqvKqTGTGzIo7X8UQZo',
-      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_build_id' => 'form-0vdqflEKmu4baWy2kFC-NZm4cAy0qcHJHeUt6j5E8vc',
+      'form_token' => 'd8yeyx1s39oPp-HhwqtUSD-Vb3CYPpd595GB5Zik7u8',
       'form_id' => 'engagement_cards_sidebar_edit_form',
+      5750 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1586,7 +1609,7 @@ function nas_article_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
-        'title' => '',
+        'title' => 'Here’s how you can make a difference',
         'references' => array(
           1 => array(
             'entity_reference' => FALSE,
@@ -1599,8 +1622,8 @@ function nas_article_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-0fT8TpawQfJmHA33ZqfP93koiONcUtScTv5MSLKZkdA',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_build_id' => 'form-frXX1XfnvduYFK_M9x_rNe0_x4t7a6FCEFsf435qz5Y',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
       'form_id' => 'engagement_cards_edit_form',
     );
     $pane->cache = array();
