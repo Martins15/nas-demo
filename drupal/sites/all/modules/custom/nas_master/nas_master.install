@@ -783,4 +783,6 @@ function nas_master_update_7062() {
 function nas_master_update_7063() {
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_views_feature');
+  features_revert_module('nas_site_template_feature');
+  features_revert_module('nas_frontpage_feature');
 }
