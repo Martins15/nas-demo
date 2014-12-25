@@ -21,7 +21,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -147,7 +147,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 5,
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -237,7 +237,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 7,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -329,7 +329,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 4,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -446,6 +446,153 @@ function nas_static_page_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-static_page-field_images'
+  $field_instances['node-static_page-field_images'] = array(
+    'bundle' => 'static_page',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'static_page_related_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_images',
+    'label' => 'Legacy images',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'epsacrop' => array(
+        'styles' => array(
+          'about_page_success_section' => 0,
+          'article_featured' => 0,
+          'boa_family_species' => 0,
+          'boa_hero' => 0,
+          'boa_index_bio' => 0,
+          'boa_index_hero' => 0,
+          'boa_plate_thumbnail' => 0,
+          'conservation_hero' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_hero' => 0,
+          'conservation_strategy_hero_mobile' => 0,
+          'conservation_strategy_slideshow' => 0,
+          'default_teaser_image' => 0,
+          'engagement_card' => 0,
+          'featured_bird' => 0,
+          'featured_bird_illustration' => 0,
+          'featured_bird_mobile' => 0,
+          'featured_frontpage' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
+          'hero_cover_bird_page' => 0,
+          'hero_image' => 0,
+          'hero_image_section' => 0,
+          'hero_image_section_mobile' => 0,
+          'hero_mobile' => 0,
+          'hero_project' => 0,
+          'local_chapters_centers' => 0,
+          'magazine_issue_cover' => 0,
+          'magazine_issue_cover_teaser' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 0,
+          'slideshow_sidebar' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
+        ),
+      ),
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 0,
+          'youtube' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-static_page-field_menu_section'
   $field_instances['node-static_page-field_menu_section'] = array(
     'bundle' => 'static_page',
@@ -457,7 +604,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 6,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -550,7 +697,7 @@ function nas_static_page_feature_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 6,
+        'weight' => 1,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -644,7 +791,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 5,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -758,6 +905,7 @@ function nas_static_page_feature_field_default_field_instances() {
   t('Color mode');
   t('Custom Section');
   t('Hero Image');
+  t('Legacy images');
   t('Menu Section');
   t('Related');
   t('Subtitle');
