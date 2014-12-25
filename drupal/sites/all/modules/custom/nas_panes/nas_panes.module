@@ -246,6 +246,15 @@ function nas_panes_theme() {
       'template' => 'nas-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
     ),
+    'species_across_audubon' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'species-across-audubon',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/species_across_audubon'
+    ),
     'flyway_in_the_news' => array(
       'variables' => array(
         'teasers' => NULL,
