@@ -775,6 +775,7 @@ function nas_master_update_7061() {
 function nas_master_update_7062() {
   features_revert_module('nas_image_styles_feature');
   features_revert(array('nas_contact_type_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
 }
 
 /**
