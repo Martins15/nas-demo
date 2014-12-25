@@ -1,7 +1,6 @@
 .curtain {
   display: none;
   position: absolute; // use this if we can't have a fixed position
-  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -129,4 +128,16 @@
   background-size: 45px 27px;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.curtain-wrapper {
+  position: static;
+
+  @include breakpoint(min-width, 768px) {
+    &.on {
+      position: fixed;
+      left: 0;
+      width: 100%;
+    }
+  }
 }

@@ -1,125 +1,77 @@
 (function($) {
+  Drupal.behaviors.curtain = {
+    attach: function (context, settings) {
+      function Curtain($curtain) {
+        var self = this,
+            $el = $curtain,
+            $body = $("body"),
+            $wrapper = $(".curtain-wrapper");
 
-$(function() {
+        // Tracking curtain movement and status
+        self.height = 0;
+        self.buffer = 200;
 
-  $(".curtain").each(function() {
-    var $curtain = $(this),
-        $body = $("body");
+        self.init = function() {
+          window.scrollTo(0, 1);
 
-    // Stuff we need for touch
-    var delta = 0,
-        dragThreshold = 0.15,
-        dragStart = null,
-        percentage = 0,
-        target,
-        previousTarget;
+          // Make sure the body's got height while everything's fixed
+          $body.css({"min-height": $body.height()});
 
-    // Get the initial touch position
-    function touchStart(e) {
-      if (dragStart !== null) { return; }
-      if (e.originalEvent.touches) { 
-        e = e.originalEvent.touches[0];
-      }
+          self.setCurtainFocus(true);
+          self.bind();
+        }
 
-      dragStart = e.clientY;
-    }
+        self.bind = function() {
+          $(window).on("scroll", self.handleScroll);
+        }
 
-    // Get the new position and animate
-    function touchMove(e) {
-      if (dragStart === null) { return; }
-      if (e.originalEvent.touches) { 
-        e = e.originalEvent.touches[0];
-      }
+        self.handleScroll = function(e) {
+          var scrollFactor = document.documentElement.scrollTop || $(document).scrollTop();
 
-      delta = dragStart - e.clientY;
-      percentage = delta / $(window).height();
-
-      if (percentage > 0) {
-        $curtain.css({
-          "-webkit-transform": "translateY(-" + percentage * 150 + "%)",
-          "-moz-transform": "translateY(-" + percentage * 150 + "%)",
-          "transform": "translateY(-" + percentage * 150 + "%)"
-        });
-      }
-
-      return false;
-    }
-
-    // If we've moved sufficiently, raise the curtain entirely
-    function touchEnd(e) {
-      dragStart = null;
-
-      $curtain.css({
-        "-webkit-transform": "",
-        "-moz-transform": "",
-        "transform": ""
-      });
-
-      if (percentage >= dragThreshold) {
-        $curtain.addClass("off");
-
-        $body.bind({
-          "touchstart": bodyStart,
-          "touchmove": bodyMove
-        });
-      }
-
-      percentage = 0;
-    }
-
-    function bodyStart(e) {
-      if (dragStart !== null) { return; }
-      if (e.originalEvent.touches) { 
-        e = e.originalEvent.touches[0];
-      }
-
-      dragStart = e.clientY;
-    }
-
-    function bodyMove(e) {
-      if (e.originalEvent.touches) { 
-        touch = e.originalEvent.touches[0];
-      }
-
-      delta = dragStart - touch.clientY;
-
-      if (window.scrollY == 0 && delta < -10) {
-        e.preventDefault();
-        $curtain.removeClass("off");
-        $body.unbind("touchstart touchmove");
-      }
-    }
-
-    // Bind curtain movement on swipe
-    $curtain.bind({
-      "touchstart": touchStart,
-      "touchmove": touchMove,
-      "touchend": touchEnd
-    });
-
-    var position = 0;
-
-    // Bind curtain movement on wheel
-    $curtain.bind("wheel mousewheel DOMMouseScroll", function(e) {
-      e.preventDefault();
-
-      if (e.deltaY < -10) {
-        $curtain.addClass("off");
-        $body.bind("wheel mousewheel DOMMouseScroll", function(e) {
-          if (e.deltaY > 10 && window.scrollY <= 0) {
-            e.preventDefault();
-            $curtain.removeClass("off");
+          // If we're scrolled down past the curtain, let the page scroll
+          if(scrollFactor > self.getTotalHeight()) {
+            self.setCurtainFocus(true);
           }
-        });
+          // And if we're not, make sure the curtain is all that scrolls
+          else {
+            self.setCurtainFocus(false);
+          }
+        }
+
+        self.setCurtainFocus = function(state) {
+          self.updateHeight();
+
+          if(state) {
+            $wrapper.attr("style", "margin-top: " + self.getTotalHeight() + "px");
+            $wrapper.removeClass("on");
+          } 
+          else {
+            $wrapper.attr("style", "margin-bottom: " + self.getTotalHeight() + "px");
+            $wrapper.addClass("on");
+          }
+        }
+
+        // Update the height of the curtain, in case it's changed
+        self.updateHeight = function() {
+          self.height = $curtain.height();
+          return self.height;
+        }
+
+        // Curtain height plus an arbitrary buffer
+        self.getTotalHeight = function() {
+          return self.height + self.buffer;
+        }
+
+        self.init();
       }
-    });
 
-    // Fallback: click the button to raise the curtain
-    $curtain.find(".curtain-arrow").bind("click", function(e) {
-      e.preventDefault();
-      $curtain.addClass("off");
-    });
-  });
-});
+      $(function() {
+        var $curtain = $(".curtain");
 
+        if($curtain.length) {
+          Curtain($curtain);
+        }
+      });
+    }
+  };
 })(jQuery);

@@ -516,3 +516,27 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
     }
   }
 }
+
+.-wrap-select {
+  @include form-select;
+  padding: 0;
+
+  select {
+    -moz-appearance: window;
+    margin-bottom: 0 !important;
+    border: 0;
+
+    option {
+      padding:3px 6px;
+    }
+  }
+
+  &.ie {
+    overflow: hidden;
+
+    select {
+      width: 150%;
+      overflow: hidden;
+    }
+  }
+}

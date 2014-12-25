@@ -30,6 +30,10 @@
 
   .bird-card-scroller {
     width: $row-width;
+
+    @include breakpoint(min-width, 1000px) {
+      @include transform(none !important);
+    }
   }
 
   .bird-card {
@@ -66,14 +70,14 @@
       .row {
         @include transition(opacity 0.5s ease-in-out);
       }
+    }
 
-      &.show-bg {
-        background-image: url(../img/card-set-bg-2-color.jpg);
+    &.show-bg {
+      background-image: url(card-set-bg-2-color.jpg);
 
-        .row {
-          opacity: 0;
-          pointer-events: none;
-        }
+      .row {
+        opacity: 0;
+        pointer-events: none;
       }
     }
   }
