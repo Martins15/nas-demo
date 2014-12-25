@@ -468,6 +468,12 @@ function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, 
  * For static_pages_import importer.
  */
 function nas_import_feeds_presave_static_pages_import(FeedsSource $source, $entity, $item) {
+  // Filter pages by domains.
+  $domain_ids = array(-1, 6, 9, 13, 15, 17, 21, 23, 25, 31);
+  if (!array_intersect(array_values($item['domains']), $domain_ids)) {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
   // Save news field_image_ref images to d7 field files. Build a map.
   $images_mapping = array();
   $image_fields_mapping = array(

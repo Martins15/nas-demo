@@ -1079,6 +1079,12 @@ function nas_import_feeds_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '22',
           ),
+          'domains' => array(
+            'name' => 'domains',
+            'value' => 'domains',
+            'debug' => 0,
+            'weight' => '23',
+          ),
         ),
         'context' => array(
           'value' => '$.*',

@@ -16,5 +16,5 @@ features[feeds_importer][] = contacts_import
 features[feeds_importer][] = media_gallery_import
 features[feeds_importer][] = static_pages_import
 features[feeds_importer][] = users_import
-mtime = 1419513340
+mtime = 1419529769
 project path = sites/all/modules/features
