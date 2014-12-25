@@ -249,11 +249,12 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           break;
 
         case 'er_field':
-          $field_items = field_get_items('node', $context->data, $options['field']);
-          foreach ($field_items as $item) {
-            if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
-              $build = node_view($node, 'nas_node_teaser_small');
-              $content[$key][] = drupal_render($build);
+          if ($field_items = field_get_items('node', $context->data, $options['field'])) {
+            foreach ($field_items as $item) {
+              if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
+                $build = node_view($node, 'nas_node_teaser_small');
+                $content[$key][] = drupal_render($build);
+              }
             }
           }
           break;

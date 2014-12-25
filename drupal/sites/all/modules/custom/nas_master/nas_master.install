@@ -786,3 +786,10 @@ function nas_master_update_7063() {
   features_revert_module('nas_site_template_feature');
   features_revert_module('nas_frontpage_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7065() {
+  features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
+}
