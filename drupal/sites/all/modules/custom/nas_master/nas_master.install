@@ -784,3 +784,10 @@ function nas_master_update_7063() {
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_views_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7065() {
+  features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
+}
