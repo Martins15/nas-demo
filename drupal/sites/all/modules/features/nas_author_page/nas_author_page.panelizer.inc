@@ -209,6 +209,37 @@ function nas_author_page_panelizer_defaults() {
     $display->content['new-2c89b090-19d9-4343-856a-04abfa61670f'] = $pane;
     $display->panels['right'][0] = 'new-2c89b090-19d9-4343-856a-04abfa61670f';
     $pane = new stdClass();
+    $pane->pid = 'new-baa656a5-8c1a-4e8b-bfcb-76d2147ea897';
+    $pane->panel = 'right';
+    $pane->type = 'slideshow_sidebar_block';
+    $pane->subtype = 'slideshow_sidebar_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'slideshow' => array(
+        'entity_id' => '5011',
+        'entity_label' => '2012 Photo Awards Top 100',
+        'entity_type' => 'node',
+        'entity_bundle' => 'slideshow',
+      ),
+      'form_build_id' => 'form-GRTYVlBQqE0R_Gl3Ds70FkExcQBfIss9epBihtGTWMM',
+      'form_token' => 'Jgk8zVhlnyqDFzuv9jZKExsMYm8MQKD5cMrqOSdS-aw',
+      'form_id' => 'slideshow_sidebar_block_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'baa656a5-8c1a-4e8b-bfcb-76d2147ea897';
+    $display->content['new-baa656a5-8c1a-4e8b-bfcb-76d2147ea897'] = $pane;
+    $display->panels['right'][1] = 'new-baa656a5-8c1a-4e8b-bfcb-76d2147ea897';
+    $pane = new stdClass();
     $pane->pid = 'new-a4b1b640-c5cd-4249-aa8b-3f70da60c26b';
     $pane->panel = 'title';
     $pane->type = 'entity_field';

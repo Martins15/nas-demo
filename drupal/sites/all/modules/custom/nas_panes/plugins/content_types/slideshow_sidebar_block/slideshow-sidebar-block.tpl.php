@@ -9,7 +9,7 @@
   <?php print $contextual_links; ?>
 
   <div class="editorial-card-photo">
-    <?php print $image; ?>
+    <img src="<?php print base_path() . drupal_get_path('theme', 'nas'); ?>/img/editorial-card-13.jpg">
   </div>
 
   <div class="editorial-card-banner gray"><i class="icon-slides"></i> <?php print $block_title; ?></div>
