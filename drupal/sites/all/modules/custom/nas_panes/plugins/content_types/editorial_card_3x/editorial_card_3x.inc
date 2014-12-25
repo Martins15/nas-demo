@@ -322,7 +322,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
       $teasers[] = $teaser;
     }
   }
-  $teasers = array_slice($teasers, 0, $conf['count']);
+  $teasers = array_slice($teasers, 0, !empty($conf['count']) ? $conf['count'] : 3);
 
   $title = '';
   if ($conf['override_title']) {

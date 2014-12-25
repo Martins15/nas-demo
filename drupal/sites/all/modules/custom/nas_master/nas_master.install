@@ -663,6 +663,10 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     // Limit nodes for dev environment.
     if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
       $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
+      // Define nid of static page that has images.
+      if ($feeds_importer == 'static_pages_import') {
+        $sandbox['nids'][] = 70161;
+      }
     }
 
     $sandbox['max'] = count($sandbox['nids']);
@@ -800,6 +804,9 @@ function nas_master_update_7064() {
 /**
  * Revert features.
  */
-function nas_master_update_7065() {
+function nas_master_update_7065(&$sandbox) {
   features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_import_feeds_feature');
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }

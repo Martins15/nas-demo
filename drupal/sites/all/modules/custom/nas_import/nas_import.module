@@ -104,6 +104,10 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
     case 'audubon_location_import':
       nas_import_feeds_presave_audubon_location_import($source, $entity, $item);
       break;
+
+    case 'static_pages_import':
+      nas_import_feeds_presave_static_pages_import($source, $entity, $item);
+      break;
   }
 }
 
@@ -461,6 +465,60 @@ function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, 
 /**
  * Implements hook_feeds_presave().
  *
+ * For static_pages_import importer.
+ */
+function nas_import_feeds_presave_static_pages_import(FeedsSource $source, $entity, $item) {
+  // Filter pages by domains.
+  $domain_ids = array(-1, 6, 9, 13, 15, 17, 21, 23, 25, 31);
+  if (!array_intersect(array_values($item['domains']), $domain_ids)) {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
+  // Save news field_image_ref images to d7 field files. Build a map.
+  $images_mapping = array();
+  $image_fields_mapping = array(
+    'field_photo_credit' => 'field_file_credit',
+    'field_caption' => 'field_file_caption',
+  );
+  if (!empty($item['field_thumbnail_ref'])) {
+    foreach ($item['field_thumbnail_ref'] as $field_value) {
+      $image_file = nas_import_get_image_object($field_value, $entity, $image_fields_mapping);
+      $entity->field_images[LANGUAGE_NONE][] = array(
+        'fid' => $image_file->fid,
+      );
+      if (!empty($image_file->uri)) {
+        $file_url = pp_file_create_url($image_file->uri);
+        $images_mapping[$field_value['nid']] = $file_url;
+      }
+    }
+  }
+
+  // Convert inline images with captions.
+  if (!empty($item['body'])) {
+    // @codingStandardsIgnoreStart
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
+      // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
+    // @codingStandardsIgnoreEnd
+  }
+}
+
+/**
+ * Implements hook_feeds_presave().
+ *
  * For users_import importer().
  */
 function nas_import_feeds_presave_users_import($source, $entity, $item) {
@@ -514,7 +572,35 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       $panelizer_entity = array(
         'entity_type' => 'node',
         'entity_id' => $entity->nid,
-        'revision_id' => $entity->nid,
+        'revision_id' => $entity->vid,
+        'name' => $panelizer_entity_name,
+        'no_blocks' => 0,
+        'css_id' => '',
+        'css' => '',
+        'pipeline' => 'standard',
+        'contexts' => array(),
+        'relationships' => array(),
+        'did' => 0,
+        'view_mode' => 'page_manager',
+        'css_class' => '',
+        'title_element' => 'H2',
+        'link_to_entity' => 1,
+        'extra' => array(),
+      );
+      drupal_write_record('panelizer_entity', $panelizer_entity);
+      break;
+
+    case 'static_pages_import':
+      dpm($entity, 'entity');
+      $nas_static_pages_nids_mapping = variable_get('nas_static_pages_nids_mapping', array());
+      $nas_static_pages_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_static_pages_nids_mapping', $nas_static_pages_nids_mapping);
+      // Set Press Release display for imported articles.
+      $panelizer_entity_name = 'node:static_page:static_page_1_column';
+      $panelizer_entity = array(
+        'entity_type' => 'node',
+        'entity_id' => $entity->nid,
+        'revision_id' => $entity->vid,
         'name' => $panelizer_entity_name,
         'no_blocks' => 0,
         'css_id' => '',
@@ -1058,6 +1144,8 @@ function nas_import_get_image_object($field_value, $entity, $image_fields_mappin
   if (!isset($field_value['nid'])) {
     return FALSE;
   }
+
+  dpm($entity->nid, 'nid with image');
 
   $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
   $image_node = drupal_json_decode($result->data);
