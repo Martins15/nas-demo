@@ -4,6 +4,7 @@
  * Template of Article layout with Map.
  */
 ?>
+<?php print $content['magazine_bar']; ?>
 <div class="hero small no-padding with-map" style="background-color: #F4F3F0;">
   <div class="hero-map" id="map-canvas">
     <?php print $content['map']; ?>
