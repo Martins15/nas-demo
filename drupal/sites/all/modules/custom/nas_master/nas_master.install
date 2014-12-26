@@ -800,6 +800,18 @@ function nas_master_update_7064() {
   features_revert(array('nas_contact_type_feature' => array('panelizer_defaults')));
   features_revert(array('nas_author_page' => array('panelizer_defaults')));
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
+  features_revert_module('nas_url_aliases_feature');
+
+  db_update('page_manager_pages')
+    ->condition('name', 'birds_landing')
+    ->fields(array('path' => 'birds'))
+    ->execute();
+
+  db_update('page_manager_pages')
+    ->condition('name', 'bird_guide')
+    ->fields(array('path' => 'birds/guide'))
+    ->execute();
 }
 
 /**
@@ -810,4 +822,42 @@ function nas_master_update_7065(&$sandbox) {
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_import_feeds_feature');
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
+}
+
+/**
+ * Update aliases.
+ */
+function nas_master_update_7066(&$sandbox) {
+  $chunk = 10;
+  module_load_include('inc', 'pathauto', 'pathauto');
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $count = db_select('node', 'n')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+    $sandbox['max'] = $count;
+  }
+
+  if (!empty($sandbox['max'])) {
+    $result = db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->range($sandbox['current'], $chunk)
+      ->execute();
+    foreach ($result as $node) {
+      $node = node_load($node->nid);
+      pathauto_create_alias('node', 'bulkupdate', 'node/' . $node->nid, array('node' => $node), $node->type, LANGUAGE_NONE);
+      $sandbox['current']++;
+    }
+
+    $sandbox['progress'] += $chunk;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+
+    return t('Aliases have been successfully updated.');
+  }
 }
