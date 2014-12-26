@@ -29,7 +29,7 @@ function nas_contact_type_feature_node_info() {
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Name'),
+      'title_label' => t('Full Name'),
       'help' => '',
     ),
   );

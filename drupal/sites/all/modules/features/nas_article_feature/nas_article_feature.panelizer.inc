@@ -476,6 +476,7 @@ function nas_article_feature_panelizer_defaults() {
       'social' => NULL,
       'author' => NULL,
       'birds' => NULL,
+      'magazine_bar' => NULL,
     ),
   );
   $display->cache = array();
@@ -553,7 +554,7 @@ function nas_article_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
-        'title' => '',
+        'title' => 'Here’s how you can make a difference',
         'references' => array(
           1 => array(
             'entity_reference' => FALSE,
@@ -566,8 +567,8 @@ function nas_article_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-xnn6rFvJU2LQ7cHXmSX8yiZoSZpLT2q29Y9ZA4IgHCg',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_build_id' => 'form-ZGk_bK72FGAicuPYZgxL8cIanWdyXwkhWcVoigXNvGk',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
       'form_id' => 'engagement_cards_edit_form',
     );
     $pane->cache = array();
@@ -683,6 +684,37 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '7d1f4825-e861-473e-8a3b-1aeb0423a561';
     $display->content['new-7d1f4825-e861-473e-8a3b-1aeb0423a561'] = $pane;
     $display->panels['left'][0] = 'new-7d1f4825-e861-473e-8a3b-1aeb0423a561';
+    $pane = new stdClass();
+    $pane->pid = 'new-292f486d-056e-4bcc-9c01-98f7581a46df';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_magazine_issue';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_label',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'link' => 0,
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '292f486d-056e-4bcc-9c01-98f7581a46df';
+    $display->content['new-292f486d-056e-4bcc-9c01-98f7581a46df'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-292f486d-056e-4bcc-9c01-98f7581a46df';
     $pane = new stdClass();
     $pane->pid = 'new-7a3b5211-9151-4e55-8275-98633290512b';
     $pane->panel = 'main';
@@ -987,6 +1019,23 @@ function nas_article_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
+        'title' => 'Here’s how you can make a difference',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-pKG0BU02JiQ0mKl1rdxQ0nb-QSQvtdHdxfdWc_u-rjM',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
+      'form_id' => 'engagement_cards_edit_form',
+      2225 => array(
         'title' => '',
         'references' => array(
           1 => array(
@@ -1000,9 +1049,7 @@ function nas_article_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-kp4iI21y4FykmulPrBTbptmhvJfN_9L-EqyrXjkgq6s',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
-      'form_id' => 'engagement_cards_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1438,9 +1485,17 @@ function nas_article_feature_panelizer_defaults() {
           'entity_reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-0CRKk3U3mzDuLLnEeokODgEiNqvKqTGTGzIo7X8UQZo',
-      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_build_id' => 'form-0vdqflEKmu4baWy2kFC-NZm4cAy0qcHJHeUt6j5E8vc',
+      'form_token' => 'd8yeyx1s39oPp-HhwqtUSD-Vb3CYPpd595GB5Zik7u8',
       'form_id' => 'engagement_cards_sidebar_edit_form',
+      5750 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1512,6 +1567,7 @@ function nas_article_feature_panelizer_defaults() {
       'author' => NULL,
       'birds' => NULL,
       'cards_set' => NULL,
+      'magazine_bar' => NULL,
     ),
   );
   $display->cache = array();
@@ -1586,7 +1642,7 @@ function nas_article_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
-        'title' => '',
+        'title' => 'Here’s how you can make a difference',
         'references' => array(
           1 => array(
             'entity_reference' => FALSE,
@@ -1599,8 +1655,8 @@ function nas_article_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-0fT8TpawQfJmHA33ZqfP93koiONcUtScTv5MSLKZkdA',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_build_id' => 'form-frXX1XfnvduYFK_M9x_rNe0_x4t7a6FCEFsf435qz5Y',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
       'form_id' => 'engagement_cards_edit_form',
     );
     $pane->cache = array();
@@ -1713,6 +1769,37 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = 'f20e9d32-4ee5-44a0-9500-32f0617c2ef9';
     $display->content['new-f20e9d32-4ee5-44a0-9500-32f0617c2ef9'] = $pane;
     $display->panels['left'][0] = 'new-f20e9d32-4ee5-44a0-9500-32f0617c2ef9';
+    $pane = new stdClass();
+    $pane->pid = 'new-0a63fd9d-4713-4802-a3ed-3839e1cc4229';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_magazine_issue';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_label',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'link' => 0,
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '0a63fd9d-4713-4802-a3ed-3839e1cc4229';
+    $display->content['new-0a63fd9d-4713-4802-a3ed-3839e1cc4229'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-0a63fd9d-4713-4802-a3ed-3839e1cc4229';
     $pane = new stdClass();
     $pane->pid = 'new-3ec4c305-f283-4e47-9100-957fcd36f14f';
     $pane->panel = 'main';
@@ -1908,6 +1995,7 @@ function nas_article_feature_panelizer_defaults() {
       'right' => NULL,
       'header' => NULL,
       'card_set' => NULL,
+      'magazine_bar' => NULL,
     ),
   );
   $display->cache = array();
@@ -2085,6 +2173,37 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '52c42c71-2517-41be-8854-63ee9b6c5099';
     $display->content['new-52c42c71-2517-41be-8854-63ee9b6c5099'] = $pane;
     $display->panels['left'][2] = 'new-52c42c71-2517-41be-8854-63ee9b6c5099';
+    $pane = new stdClass();
+    $pane->pid = 'new-7cc3583e-033c-4f76-be8c-92be0d4741b6';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_magazine_issue';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'entityreference_label',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'link' => 0,
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7cc3583e-033c-4f76-be8c-92be0d4741b6';
+    $display->content['new-7cc3583e-033c-4f76-be8c-92be0d4741b6'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-7cc3583e-033c-4f76-be8c-92be0d4741b6';
     $pane = new stdClass();
     $pane->pid = 'new-76711ab8-f681-4c6c-94f3-17f98f65045c';
     $pane->panel = 'main';

@@ -349,6 +349,7 @@ function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -372,6 +373,7 @@ function nas_preprocess_node_article(&$vars) {
   }
 
   $subtitle_modes = array(
+    'nas_node_teaser_small',
     'nas_teaser_flyway_landing',
     'static_page_related_teaser',
     'about_page_related_teaser',
@@ -445,15 +447,14 @@ function nas_preprocess_node_static_page(&$vars) {
       ));
   }
 
-  if ($vars['view_mode'] == 'static_page_related_teaser' || $vars['view_mode'] == 'about_page_related_teaser') {
-    $vars['subtitle'] = '';
-    if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-      $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
-    }
+  $vars['subtitle'] = '';
+  if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
   }
 
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
   list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
   $vars['blue_text_link_url'] = $blue_text_link_url;
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
@@ -802,7 +803,11 @@ function nas_field__field_author__article($variables) {
  * Preprocess function for field_related_bird field for nodes of type contact.
  */
 function nas_preprocess_field_field_related_bird_contact(&$variables) {
-  $variables['label'] = check_plain($variables['element']['#object']->title . '\'s Favorite Birds');
+  $name = '';
+  if (!empty($variables['element']['#object']->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
+    $name = $variables['element']['#object']->field_first_name[LANGUAGE_NONE][0]['safe_value'] . "'s ";
+  }
+  $variables['label'] = check_plain($name . 'Favorite Birds');
 }
 
 /**

@@ -663,6 +663,10 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     // Limit nodes for dev environment.
     if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
       $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
+      // Define nid of static page that has images.
+      if ($feeds_importer == 'static_pages_import') {
+        $sandbox['nids'][] = 70161;
+      }
     }
 
     $sandbox['max'] = count($sandbox['nids']);
@@ -691,6 +695,10 @@ function nas_master_update_7059() {
   features_revert(array('nas_about_feature' => array('page_manager_pages')));
   features_revert(array('nas_conservation_landing_feature' => array('page_manager_pages')));
   module_enable(array('nas_getoutside_feature'));
+  features_revert(array('nas_birds_landing_feature' => array('page_manager_pages')));
+  features_revert(array('nas_location_feature' => array('views_default')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
 }
 
 /**
@@ -710,79 +718,96 @@ function nas_master_update_7060() {
   features_revert_module('nas_news_page_feature');
   features_revert_module('nas_flyways_landing_feature');
   features_revert_module('nas_engagement_cards_feature');
-}
-
-function nas_master_update_7061() {
-  features_revert_module('nas_views_feature');
-}
-
-/**
- * Adjust URL aliases.
- */
-function nas_master_update_7062() {
-  module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
-  features_revert_module('nas_url_aliases_feature');
-  features_revert_module('nas_birds_guide_feature');
-
-  // We can't just change feature nas_birds_landing_feature and revert it as
-  // content is changed and reverting will wipe all panes from the page.
-  db_update('page_manager_pages')
-    ->condition('name', 'birds_landing')
-    ->fields(array('path' => 'birds'))
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_boa_feature');
+  // Enable autonodequeue.
+  db_insert('nodequeue_auto')
+    ->fields(array('qid' => 1, 'auto_add' => 1))
     ->execute();
 }
 
 /**
- * Create redirects from old URL aliases and them remove aliases.
+ * Revert features related to ANW-397.
+ * Update overridden flyways nodes panelizer settings.
  */
-function nas_master_update_7063(&$sandbox) {
-  if (!isset($sandbox['total'])) {
-    // Find nodes that already have redirects.
-    $query = db_select('node', 'n');
-    $query->addField('n', 'nid');
-    $query->join('redirect', 'r', 'CONCAT(:node_path, n.nid) = r.redirect', array(':node_path' => 'node/'));
-    $result = $query->execute()->fetchAllAssoc('nid');
-    $existing_redirects = array_keys($result);
+function nas_master_update_7061() {
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_static_page_feature');
+  features_revert(array('nas_birds_guide_feature' => array('page_manager_pages')));
 
-    // Find all URL aliases.
-    $query = db_select('node', 'n');
-    $query->fields('n', array('nid'));
-    $query->join('url_alias', 'u', 'CONCAT(:node_path, n.nid) = u.source', array(':node_path' => 'node/'));
-    $query->fields('u', array('alias', 'pid'));
-    $query->condition('u.alias', '', '!=');
-    $result = $query->execute()->fetchAllAssoc('nid');
-    $nodes_with_aliases = array_keys($result);
-
-    $nodes_create_redirects = array_diff($nodes_with_aliases, $existing_redirects);
-
-    $sandbox['nids'] = $nodes_create_redirects;
-    $sandbox['query_result'] = $result;
-    $sandbox['total'] = count($nodes_create_redirects);
-    $sandbox['current'] = 0;
-  }
-
-  for ($i = 0; $i < 40; $i++) {
-    $sandbox['#finished'] = $sandbox['current'] / $sandbox['total'];
-    if ($sandbox['#finished'] == 1) {
-      return;
-    }
-
-    $nid = $sandbox['nids'][$sandbox['current']];
-    $sandbox['current']++;
-
-    $redirect = new stdClass();
-    redirect_object_prepare($redirect);
-    $redirect->source = $sandbox['query_result'][$nid]->alias;
-    $redirect->redirect = 'node/' . $nid;
-    // Check if the redirect exists before saving.
-    $hash = redirect_hash($redirect);
-    if (!redirect_load_by_hash($hash)) {
-      redirect_save($redirect);
-    }
-    unset($redirect);
-
-    db_delete('url_alias')
-      ->condition('pid', $sandbox['query_result'][$nid]->pid)
+  $nids = db_query("SELECT nid FROM {node} WHERE type = :type", array(':type' => 'flyway'))->fetchAllKeyed(0, 0);
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $did = $node->panelizer['page_manager']->did;
+    db_delete('panels_pane')
+      ->condition('did', $did)
+      ->condition('panel', 'bottom')
+      ->condition('type', 'nas_panes_flyway_in_the_news')
+      ->execute();
+    // In hook_update_N we use db_insert() instead of drupal_write_record().
+    db_insert('panels_pane')
+      ->fields(array(
+        'did' => $did,
+        'panel' => 'bottom',
+        'type' => 'editorial_card_3x',
+        'subtype' => 'editorial_card_3x',
+        'shown' => 1,
+        'access' => serialize(array()),
+        'configuration' => serialize(array(
+          'context' => 'panelizer',
+          'override_title' => 1,
+          'override_title_text' => '%node:title In the News',
+          'preset' => 'flyway_in_the_news',
+          'more_link_text' => 'More News »',
+          'more_link_url' => 'news',
+        )),
+        'cache' => serialize(array()),
+        'style' => serialize(array('settings' => NULL)),
+        'css' => serialize(array()),
+        'extras' => serialize(array()),
+        'position' => 2,
+        'locks' => serialize(array()),
+      ))
       ->execute();
   }
+  features_revert_module('nas_contact_type_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7062() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_contact_type_feature' => array('panelizer_defaults')));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7063() {
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_site_template_feature');
+  features_revert_module('nas_frontpage_feature');
+  module_disable(array('nas_pages_feature'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7064() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert(array('nas_contact_type_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_author_page' => array('panelizer_defaults')));
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7065(&$sandbox) {
+  features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_import_feeds_feature');
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }

@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="row<?php if (!empty($contextual_links)): ?> contextual-links-region<?php endif; ?>" data-equalizer>
+<div class="row space-top<?php if (!empty($contextual_links)): ?> contextual-links-region<?php endif; ?>" data-equalizer>
   <?php print $contextual_links; ?>
   <div class="column">
     <h2 class="thin"><?php print $title; ?></h2>

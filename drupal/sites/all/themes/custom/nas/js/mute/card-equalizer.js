@@ -9,21 +9,19 @@
           ", .large-8 + .large-4 > .editorial-card" +
           ", .large-4 + .large-4 > .engagement-card" +
           ", .tiny-4 + .tiny-4 > .engagement-card" +
-          ", .tiny-4 + .tiny-4 > .editorial-card";
+          ", .tiny-4 > .editorial-card";
 
-      var $cardRows = $(".row").has(SELECTOR_STRING);
+      // Do not work with outer rows.
+      var $cardRows = $(".row").has(SELECTOR_STRING).not($(".row").has('.row'));
 
       function equalizeCards(size) {
         $cardRows.each(function() {
           var $this = $(this),
               $cardsEd = $this.find(".editorial-card"),
-              $contentsEd = $cardsEd.find(".editorial-card-content"),
               $cardsEng = $this.find(".engagement-card"),
               $contentsEng = $cardsEng.find(".engagement-card-content"),
               cardEdHeights = new Array(),
-              contentsEngHeights = new Array(),
-              maxHeight = 0,
-              minHeight = 0;
+              contentsEngHeights = new Array();
 
           // Do not equalize height of editorial cards on tiny, small, medium layout
           if (size !== 'tiny' && size !== 'small' && size !== 'medium') {
@@ -37,9 +35,7 @@
             minHeightEd = Math.min.apply(null, cardEdHeights);
             deltaEd = maxHeightEd - minHeightEd;
 
-            if (deltaEd < 120 && deltaEd > 0) {
-              $cardsEd.css({"min-height": maxHeightEd + "px"});
-            }
+            $cardsEd.css({"min-height": (maxHeightEd + 7) + "px"});
           }
 
           // Fix height for Engagements blocks.
@@ -64,7 +60,7 @@
         // We want to wait for stuff to load and render before we get down to business
         setTimeout(function() {
           equalizeCards(e.size);
-        }, 50);
+        }, 500);
       });
     }
   };

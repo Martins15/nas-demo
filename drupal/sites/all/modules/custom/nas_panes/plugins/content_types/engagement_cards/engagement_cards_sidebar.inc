@@ -29,9 +29,9 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
     '#type' => 'fieldset',
     '#tree' => TRUE,
   );
-  $form[$conf_key]['references']['entity_reference'] = array(
+  $form[$conf_key]['references'][1]['entity_reference'] = array(
     '#type' => 'entityreference',
-    '#default_value' => !empty($conf[$conf_key]['references']['entity_reference']['entity_id']) ? $conf[$conf_key]['references']['entity_reference']['entity_id'] : '',
+    '#default_value' => !empty($conf[$conf_key]['references'][1]['entity_reference']['entity_id']) ? $conf[$conf_key]['references'][1]['entity_reference']['entity_id'] : '',
     '#title' => t('Engagement card'),
     '#era_entity_type' => 'node',
     '#era_bundles' => array('engagement_cards'),
@@ -60,7 +60,7 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   // We can't add node context to the pane, because it's use on landing pages too.
   $conf_key = 'default';
   if ($context_node = menu_get_object('node')) {
-    $conf_key = $context_node->nid;
+    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
   }
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
@@ -72,9 +72,9 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
 
   // Finally render selected nodes.
   $teasers = array();
-  // Sidebar should render only on node.
-  if (isset($nodes[0])) {
-    $node_build = node_view($nodes[0]);
+  // Sidebar should render only one node.
+  if (!empty($nodes)) {
+    $node_build = node_view(reset($nodes));
     $teasers[] = drupal_render($node_build);
   }
   $block = new stdClass();

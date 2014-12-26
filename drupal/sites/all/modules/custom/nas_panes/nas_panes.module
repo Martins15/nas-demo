@@ -246,6 +246,15 @@ function nas_panes_theme() {
       'template' => 'nas-in-the-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
     ),
+    'species_across_audubon' => array(
+      'variables' => array(
+        'teasers' => NULL,
+        'title' => '',
+        'contextual_links' => '',
+      ),
+      'template' => 'species-across-audubon',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/species_across_audubon'
+    ),
     'flyway_in_the_news' => array(
       'variables' => array(
         'teasers' => NULL,
@@ -636,6 +645,15 @@ function nas_panes_theme() {
       'template' => 'editorial-card-river',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_river',
     ),
+    'editorial_card_3x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'teasers' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'editorial-card-3x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/editorial_card_3x',
+    ),
     'hero_image_section' => array(
       'variables' => array(
         'hero_image' => NULL,
@@ -654,6 +672,58 @@ function nas_panes_theme() {
       ),
       'template' => 'menu-bar-section',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/menu_bar_section',
+    ),
+    'static_cards_two_columns' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-two-columns',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_two_columns',
+    ),
+    'static_cards_three_columns' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-three-columns',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_three_columns',
+    ),
+    'static_cards_bird_guide' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'static-cards-bird-guide',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/static_cards_bird_guide',
+    ),
+    'local_chapters_centers_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'local-chapters-centers-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
+    ),
+    'slideshow_sidebar_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'block_title' => NULL,
+        'image' => NULL,
+        'slideshow' => NULL,
+      ),
+      'template' => 'slideshow-sidebar-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block',
+    ),
+    'local_chapters_centers_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'local-chapters-centers-block-content',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
     ),
   );
 
@@ -963,13 +1033,13 @@ function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
  * @param string $bundle
  *   Entity bundle.
  *
- * @param string $panelizer_layout
+ * @param string $panelizer_default
  *   Name of the panelizer layout.
  *
  * @return string
  *   Rendered contextual links.
  */
-function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle, $panelizer_layout) {
+function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle, $panelizer_default) {
   ctools_include('modal');
   ctools_modal_add_js();
   // Add ajax-responder so ctools_ajax_command_reload() will work.
@@ -981,7 +1051,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle,
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $pid = _nas_panes_save_panelizer($subtype, $entity, $bundle, $panelizer_layout);
+    $pid = _nas_panes_save_panelizer($subtype, $entity, $bundle, $panelizer_default);
   }
   $page_manager = $entity->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
@@ -1188,7 +1258,10 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   }
   $cards_array['contextual_links'] = $contextual_links;
 
-  $conf_key = !isset($context_node->nid) ? 'default' : $context_node->nid;
+  $conf_key = 'default';
+  if (isset($context['node'])) {
+    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
+  }
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
   }
@@ -1198,9 +1271,11 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
 
   // Manual override.
-  foreach ($data['references'] as $value) {
-    if ($value['entity_reference'] && $node = node_load($value['entity_reference']['entity_id'])) {
-      $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+  if (isset($data['references'])) {
+    foreach ($data['references'] as $value) {
+      if (isset($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+        $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+      }
     }
   }
   if (!empty($nodes)) {
@@ -1209,7 +1284,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
     // Pass node nid selected in sidebar's pane to bottom pane.
     if ($first) {
       $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
+      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, TRUE);
     }
 
     $cards_array['nodes'] = $nodes;
@@ -1251,8 +1326,8 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       }
     }
   }
-  // Not Manual overrides, not Birds references were provided, or it's count less than 3.
-  if (empty($nodes) || count($nodes) < 3) {
+  // Not Manual overrides, not Birds references were provided, or it's count less than 4.
+  if (empty($nodes) || count($nodes) < 4) {
     /**
      * We have 2 options for matching Menu section context.
      * 1. page is a node, and it has field_menu_section.
@@ -1261,7 +1336,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
 
     // Option 1.
     if (isset($context_node)) {
-      if ($context_node->field_menu_section && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
+      if (isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
         $current_page_sections = array();
         foreach ($field_menu_section_items as $value) {
           $current_page_sections[] = $value['tid'];
@@ -1290,9 +1365,12 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       }
     }
   }
-  // Any matched cards weren't found, default behaviour (load 3 first from nodequeue).
-  if (empty($nodes)) {
-    $nodes = nodequeue_load_nodes(1, FALSE, 0, 3);
+  // Default behaviour options.
+  if (count($nodes) < 4) {
+    foreach ($all_nodes as $node) {
+      $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    }
+    $nodes = array_replace($all_nodes_positioned, $nodes);
   }
 
   // Sort the array by key previously loaded from nodequeue.
@@ -1300,7 +1378,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   // Pass node nid selected in sidebar's pane to bottom pane.
   if ($first) {
     $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1);
+    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, TRUE);
   }
 
   $cards_array['nodes'] = $nodes;
@@ -1320,11 +1398,9 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   // Panelizer.
   if (!empty($pm_page['handler']->export_module) && $pm_page['handler']->export_module == 'panelizer') {
     $argument = reset($pm_page['contexts']);
-    list(, , $bundle) = entity_extract_ids($argument->type[2], $argument->data);
-    $layout = $argument->data->panelizer['page_manager']->display->layout;
-    return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $layout);
+    list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->name);
+    return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $panelizer_default);
   }
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
 
   ctools_include('modal');
   ctools_modal_add_js();
@@ -1332,7 +1408,15 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   ctools_add_js('ajax-responder');
 
   // Lookup pid.
+  if (empty($pm_page['handler']->conf['display'])) {
+    $pm_page['handler']->conf['display'] = panels_load_display($pm_page['handler']->conf['did']);
+  }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
+  // @todo sometimes cache_key is empty. We need build it manually.
+  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  if (empty($cache_key)) {
+    $cache_key = $pm_page['handler']->handler . ':' . $pm_page['name'] . '::' . $pm_page['handler']->name . '::::';
+  }
 
   $links = array(
     'edit' => array(
@@ -1390,4 +1474,81 @@ function nas_panes_form_alter(&$form, &$form_state) {
       '#value' => TRUE,
     );
   }
+}
+
+/**
+ * Returns Local Chapters & Centers base on state or postal code.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @param string $postal_code
+ *   Postal code.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'all') {
+  $items = array();
+  $results = views_get_view_result('local_chapters_centers_block', 'default', $state, $postal_code);
+
+  foreach ($results as $item) {
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->node_title,
+      'state' => $item->field_data_field_location_address_field_location_address_adm,
+      'city' => $item->field_data_field_location_address_field_location_address_loc,
+      'link' => l($item->node_title, 'node/' . $item->nid),
+      'subtitle' => '',
+    );
+
+    // Add subtitle.
+    $subtitle = array();
+    if (!empty($item->field_data_field_location_address_field_location_address_loc)) {
+      $subtitle[] = $item->field_data_field_location_address_field_location_address_loc;
+    }
+    if (!empty($item->field_data_field_location_address_field_location_address_adm)) {
+      $subtitle[] = $item->field_data_field_location_address_field_location_address_adm;
+    }
+    if (!empty($subtitle)) {
+      $items[$item->nid]['subtitle'] = '(' . implode(', ', $subtitle) . ')';
+    }
+  }
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_panes_menu() {
+  $items = array();
+
+  $items['ajax/local-chapters-centers'] = array(
+    'page callback' => 'nas_panes_local_chapters_centers_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Returns markup for Local Chapters & Centers block.
+ */
+function nas_panes_local_chapters_centers_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_local_chapters_centers($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('local_chapters_centers_block_content', array('locations' => $locations));
 }

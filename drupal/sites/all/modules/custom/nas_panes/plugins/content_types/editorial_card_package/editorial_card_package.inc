@@ -35,7 +35,7 @@ function editorial_card_package_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_frontpage'),
+    '#pp_crop_styles' => array('article_featured'),
   );
 
   // The two function calls below are necessary if we want to use a media

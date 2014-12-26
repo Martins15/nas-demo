@@ -88,7 +88,7 @@
 ?>
 
 <div class="columns large-4">
-  <div class="editorial-card collapse-minimal">
+  <div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
     <div class="editorial-card-photo">
       <?php print $linked_image; ?>
     </div>
@@ -97,6 +97,9 @@
       <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
       <?php endif; ?>
       <h4 class="editorial-card-title"><?php print $title; ?></h4>
+      <?php if (!empty($subtitle)): ?>
+        <p class="editorial-card-subtitle"><?php print $subtitle; ?></p>
+      <?php endif; ?>
       <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
     </div>
   </div>

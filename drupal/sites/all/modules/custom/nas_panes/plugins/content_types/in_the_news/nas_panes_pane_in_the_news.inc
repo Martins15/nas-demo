@@ -110,7 +110,7 @@ function nas_panes_pane_in_the_news_custom_pane_render($subtype, $conf, $args, $
 
   $contextual_links = '';
   // We display contextual link only on Bird Guide page (condition 'page').
-  if ($condition == 'page' && user_access('pane in the news edit')) {
+  if ($condition == 'page' && user_access('edit NAS panes')) {
     ctools_include('modal');
     ctools_modal_add_js();
     // Add ajax-responder so ctools_ajax_command_reload() will work.

@@ -15,6 +15,7 @@ $plugin = array(
   'icon' => 'nas_article_default.png',
   'theme' => 'nas_article_default',
   'regions' => array(
+    'magazine_bar' => t('Magazine Bar'),
     'header' => t('Header'),
     'main' => t('Main'),
     'mobile_author' => t('Mobile author'),
@@ -23,6 +24,6 @@ $plugin = array(
     'birds' => t('Birds in this story'),
     'left' => t('Left'),
     'right' => t('Right'),
-    'card_set' => t('Card Set')
+    'card_set' => t('Card Set'),
   ),
 );

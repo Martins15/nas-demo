@@ -84,13 +84,24 @@ function nas_frontpage_feature_default_page_manager_pages() {
 	<li><a href="http://nas.wearepropeople.md/staging/conservation">Conservation landing</a></li>
 	<li><a href="http://nas.wearepropeople.md/staging/content/saving-seabirds-along-pacific-coast">Conservation project</a></li>
 	<li><a href="http://nas.wearepropeople.md/staging/content/sharing-our-seas-shores-0">Conservation Strategy</a></li>
-  <li><a href="http://nas.wearepropeople.md/staging/about">About Us</a></li>
-  <li><a href="http://nas.wearepropeople.md/staging/about/our-leadership">Our Leadership</a></li>
-  <li><a href="http://nas.wearepropeople.md/staging/authors/david-yarnold">Bio</a></li>
-  <li><a href="http://nas.wearepropeople.md/staging/authors/simone-scully">Author page</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/about">About Us</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/getoutside">Get Outside landng page</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/about/our-leadership">Our Leadership</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/authors/david-yarnold">Bio</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/authors/simone-scully">Author page</a></li>
 </ul>
 
-<p>&nbsp;</p>
+<h3 style="line-height: 19.9939994812012px;">&nbsp;</h3>
+
+<h3 style="line-height: 19.9939994812012px;">HTML prototypes</h3>
+
+<ul>
+	<li><a href="http://nas.wearepropeople.md/staging/sites/all/themes/custom/nas/prototypes/audubon_near_you/audubon_near_you.html">Audubon Near You page</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/sites/all/themes/custom/nas/prototypes/search/search_results.html">Search Results page</a></li>
+	<li><a href="http://nas.wearepropeople.md/staging/sites/all/themes/custom/nas/prototypes/boa/boa_bird_card2.html">Lightbox for BOA plates (zoom &amp; pan)</a></li>
+</ul>
+
+<h3>&nbsp;</h3>
 
 <h3>Articles</h3>
 
@@ -198,6 +209,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'panels_everywhere_site_template' => 'site_template_panel_context_4',
   );
   $display = new panels_display();
   $display->layout = 'nas_frontpage';
@@ -214,6 +226,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'main' => NULL,
       'conservation_section' => NULL,
       'cards_set' => NULL,
+      'featured_top' => NULL,
     ),
   );
   $display->cache = array();
@@ -255,7 +268,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
-        'title' => '',
+        'title' => 'These birds need your help',
         'references' => array(
           1 => array(
             'entity_reference' => FALSE,
@@ -268,9 +281,10 @@ function nas_frontpage_feature_default_page_manager_pages() {
           ),
         ),
       ),
-      'form_build_id' => 'form-Dt-ilLbFPi8WsAvqgy4P9k1bl2U2NPzri-SIldjfmrw',
-      'form_token' => 'puw5b0DBEaX58JTYSpe-CCeUHkQmzeoy1k2gKfBWwrA',
+      'form_build_id' => 'form-FWpZUTP55xyACGY6ayU8CNOolDkhAhdUelOLNIVNYbY',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
       'form_id' => 'engagement_cards_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -380,13 +394,57 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $display->content['new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f'] = $pane;
     $display->panels['conservation_section'][0] = 'new-f8f90ce0-0ce6-4f7f-8738-ec06adbc0b7f';
     $pane = new stdClass();
-    $pane->pid = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $pane->pid = 'new-d5f54c09-dcf3-4685-8a76-b77ad61e780f';
     $pane->panel = 'editorial_cards';
-    $pane->type = 'frontpage_editorial_cards';
-    $pane->subtype = 'frontpage_editorial_cards';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'preset' => 'most_recent_articles',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'refs' => array(
+        1 => array(
+          'image' => '5480',
+          'category' => 'Step Inside',
+          'category_url' => 'category/step-inside',
+          'title' => 'Welcome to my Laboratory',
+          'url' => 'node/343',
+          'excerpt' => 'Short or not very short. About one line or sentence',
+          'readmore_label' => 'Step inside',
+        ),
+        2 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+        3 => array(
+          'image' => 0,
+          'category' => '',
+          'category_url' => '',
+          'title' => '',
+          'url' => '',
+          'excerpt' => '',
+          'readmore_label' => '',
+        ),
+      ),
+      'form_build_id' => 'form-qbTGLA8dTdowfeX06BpUlyssixGpoNKs8ZEIdGQ1ebA',
+      'form_token' => 'Pu_VnTcDjktXfpOUXrEgITE2aSXYE7hu77P00PrCevk',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -395,9 +453,9 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '3cafe426-4013-494d-90de-0b2e80b9bd04';
-    $display->content['new-3cafe426-4013-494d-90de-0b2e80b9bd04'] = $pane;
-    $display->panels['editorial_cards'][0] = 'new-3cafe426-4013-494d-90de-0b2e80b9bd04';
+    $pane->uuid = 'd5f54c09-dcf3-4685-8a76-b77ad61e780f';
+    $display->content['new-d5f54c09-dcf3-4685-8a76-b77ad61e780f'] = $pane;
+    $display->panels['editorial_cards'][0] = 'new-d5f54c09-dcf3-4685-8a76-b77ad61e780f';
     $pane = new stdClass();
     $pane->pid = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
     $pane->panel = 'featured';
@@ -431,6 +489,56 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->uuid = '8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
     $display->content['new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9'] = $pane;
     $display->panels['featured'][0] = 'new-8ea345b5-b2b7-4ac5-9855-b3c931ac8ec9';
+    $pane = new stdClass();
+    $pane->pid = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
+    $pane->panel = 'featured_top';
+    $pane->type = 'nas_panes_frontpage_featured';
+    $pane->subtype = 'nas_panes_frontpage_featured';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'image' => '12',
+      'title' => 'Protecting Alaska’s Frontier',
+      'title_link' => '<front>',
+      'blue_text' => 'Conservation',
+      'blue_text_link' => '<front>',
+      'summary' => 'Audubon’s conservation efforts are helping to protect and revitalize the Tongass National Forest.',
+      'form_build_id' => 'form-NVEdDM3d3BbdFHc-4gdgdQ9Lcyg0CtRt9D0Ndd5d438',
+      'form_token' => '7LsFT_SbiXXI3XmyiBBeDc3fDsMv1m1bAAL_d7knjdc',
+      'form_id' => 'frontpage_featured_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd36d45d4-979b-4bd8-ae90-f8172d285c25';
+    $display->content['new-d36d45d4-979b-4bd8-ae90-f8172d285c25'] = $pane;
+    $display->panels['featured_top'][0] = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
+    $pane = new stdClass();
+    $pane->pid = 'new-afc23321-47b9-464a-ac32-e6b8c8c5e50c';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'afc23321-47b9-464a-ac32-e6b8c8c5e50c';
+    $display->content['new-afc23321-47b9-464a-ac32-e6b8c8c5e50c'] = $pane;
+    $display->panels['header'][0] = 'new-afc23321-47b9-464a-ac32-e6b8c8c5e50c';
     $pane = new stdClass();
     $pane->pid = 'new-e356b57e-cdcd-434d-9d60-a7821aa5bb39';
     $pane->panel = 'main';
@@ -652,25 +760,13 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $display->content['new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653'] = $pane;
     $display->panels['more_headlines'][1] = 'new-f6eb187e-9f6a-4946-bedb-c5cddbbb4653';
     $pane = new stdClass();
-    $pane->pid = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
+    $pane->pid = 'new-45d2176d-f1d5-4123-927e-54a3567caf88';
     $pane->panel = 'top';
-    $pane->type = 'nas_panes_frontpage_featured';
-    $pane->subtype = 'nas_panes_frontpage_featured';
+    $pane->type = 'nas_menu_header_don_t_miss';
+    $pane->subtype = 'nas_menu_header_don_t_miss';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'image' => '12',
-      'title' => 'Protecting Alaska’s Frontier',
-      'title_link' => '<front>',
-      'blue_text' => 'Conservation',
-      'blue_text_link' => '<front>',
-      'summary' => 'Audubon’s conservation efforts are helping to protect and revitalize the Tongass National Forest.',
-      'form_build_id' => 'form-NVEdDM3d3BbdFHc-4gdgdQ9Lcyg0CtRt9D0Ndd5d438',
-      'form_token' => '7LsFT_SbiXXI3XmyiBBeDc3fDsMv1m1bAAL_d7knjdc',
-      'form_id' => 'frontpage_featured_form',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -679,9 +775,28 @@ function nas_frontpage_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'd36d45d4-979b-4bd8-ae90-f8172d285c25';
-    $display->content['new-d36d45d4-979b-4bd8-ae90-f8172d285c25'] = $pane;
-    $display->panels['top'][0] = 'new-d36d45d4-979b-4bd8-ae90-f8172d285c25';
+    $pane->uuid = '45d2176d-f1d5-4123-927e-54a3567caf88';
+    $display->content['new-45d2176d-f1d5-4123-927e-54a3567caf88'] = $pane;
+    $display->panels['top'][0] = 'new-45d2176d-f1d5-4123-927e-54a3567caf88';
+    $pane = new stdClass();
+    $pane->pid = 'new-3f5a394d-e219-4af4-ac58-983abd1a0602';
+    $pane->panel = 'top';
+    $pane->type = 'nas_menu_header_big';
+    $pane->subtype = 'nas_menu_header_big';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '3f5a394d-e219-4af4-ac58-983abd1a0602';
+    $display->content['new-3f5a394d-e219-4af4-ac58-983abd1a0602'] = $pane;
+    $display->panels['top'][1] = 'new-3f5a394d-e219-4af4-ac58-983abd1a0602';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

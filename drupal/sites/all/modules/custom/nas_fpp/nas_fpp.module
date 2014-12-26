@@ -350,12 +350,12 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_bird_guide(&$vars) {
       'class' => array(
         'section-nav',
         'inline-list',
-        )
       ),
+    ),
   ));
   $get_field_related_bird = field_get_items('fieldable_panels_pane', $fpp, 'field_related_bird');
-  if (count($get_field_related_bird) !== 4) {
-    $vars['fields'] = views_embed_view('nas_similar_birds', 'audubon_bird_guide_random');
+  if ($get_field_related_bird == 0) {
+    $vars['fields'] = views_embed_view('nas_birds_view', 'audubon_bird_guide_random');
   }
 
   $vars['contextual_links'] = '';
@@ -443,7 +443,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
 
   $vars['blue_text_link'] = '';
   if ($node && $blue = nas_panes_get_blue_text_link($node)) {
-    $vars['blue_text_link'] = l($blue[0], $blue[1], array('classes' => array('hero-slug')));
+    $vars['blue_text_link'] = l($blue[0], $blue[1], array('attributes' => array('class' => array('hero-slug'))));
   };
 
   $vars['contextual_links'] = '';

@@ -85,6 +85,20 @@
   }
 }
 
+.editorial-card-no-image {
+  @include breakpoint(large-up) {
+    .editorial-card-title {
+      font-size: 48px;
+      line-height: 48px;
+    }
+
+    .editorial-card-subtitle {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+
 .editorial-card-list-item {
   display: block;
   padding-bottom: $size-space;
@@ -134,13 +148,17 @@
   position: relative;
   padding-right: 10px;
   color: #0aa8e3;
-  display: inline-block;
+  display: table;
   &:after {
-    content: "»";
-    margin-left: $size-space/2;
+    content: "\00bb";
     display: inline-block;
-    width: 7px;
+    margin-top: -1px;
+    position: absolute;
     height: 7px;
+    font-size: 16px;
+    width: 10px;
+    text-align: right;
+    vertical-align: middle;
   }
   &.sans {
     font-family: $font-sans;
@@ -270,5 +288,11 @@
 
   .button {
     font-size: $size-text-base;
+  }
+}
+
+.card-set.editorial-card-3x {
+  .editorial-card {
+    margin-bottom: $column-gutter*3/2;
   }
 }
