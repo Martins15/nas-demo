@@ -793,7 +793,7 @@ function nas_master_update_7063() {
 }
 
 /**
- * Revert features.
+ * Revert features. Enable modules. Update aliases.
  */
 function nas_master_update_7064() {
   features_revert_module('nas_image_styles_feature');
@@ -828,7 +828,19 @@ function nas_master_update_7065(&$sandbox) {
  * Update aliases.
  */
 function nas_master_update_7066(&$sandbox) {
-  $chunk = 10;
+  _nas_master_bulk_update_aliases($sandbox, 10);
+}
+
+/**
+ * Update aliases from hook_update_N.
+ *
+ * @param array $sandbox
+ *   Batch sandbox.
+ *
+ * @param int $chunk
+ *   Count of nodes for one batch operation.
+ */
+function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
   module_load_include('inc', 'pathauto', 'pathauto');
   if (!isset($sandbox['progress'])) {
     $sandbox['progress'] = 0;
@@ -857,7 +869,6 @@ function nas_master_update_7066(&$sandbox) {
 
   if ($sandbox['#finished'] >= 1) {
     $sandbox['#finished'] = 1;
-
-    return t('Aliases have been successfully updated.');
+    watchdog('nas_master', '@count aliases has been successfully imported.', array('@count' => $sandbox['progress']));
   }
 }

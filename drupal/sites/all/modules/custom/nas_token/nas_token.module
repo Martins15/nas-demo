@@ -40,7 +40,10 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
     // nas_token_pathauto_alias_alter.
     switch ($news_type) {
       case 'press-release':
-        $pattern = 'press-release' . NAS_TOKEN_PLACEHOLDER . $node->title;
+        $pattern = array(
+          'press-release',
+          $node->title,
+        );
         break;
 
       case 'magazine-article':
@@ -64,9 +67,7 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
         );
     }
 
-    if (!empty($pattern)) {
-      $replacements[$original] = implode(NAS_TOKEN_PLACEHOLDER, $pattern);
-    }
+    $replacements[$original] = implode(NAS_TOKEN_PLACEHOLDER, $pattern);
   }
 
   return $replacements;
