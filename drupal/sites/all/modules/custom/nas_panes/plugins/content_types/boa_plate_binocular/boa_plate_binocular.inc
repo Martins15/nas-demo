@@ -120,10 +120,12 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
     $node = $nodes[$rand_key];
   }
 
-  drupal_add_js(array('boa_plate_binocular' => array(
-    'image_color' => $node['image_color'],
-    'image_desaturated' => $node['image_desaturated'],
-  )), 'setting');
+  drupal_add_js(array(
+    'boa_plate_binocular' => array(
+      'image_color' => $node['image_color'],
+      'image_desaturated' => $node['image_desaturated'],
+    ),
+  ), 'setting');
 
   $content = theme('boa_plate_binocular', array(
     'class' => $class,

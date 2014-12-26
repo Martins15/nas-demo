@@ -10,10 +10,14 @@
         $this.toggleClass("active").toggleClass("icon-close");
         $parent.toggleClass("show-bg");
         if ($parent.hasClass("show-bg")) {
-          $parent.css('background-image', 'url(' + settings.boa_plate_binocular.image_color + ')');
+          if (typeof(settings.boa_plate_binocular.image_color) !== 'undefined') {
+            $parent.css('background-image', 'url(' + settings.boa_plate_binocular.image_color + ')');
+          }
         }
         else {
-          $parent.css('background-image', 'url(' + settings.boa_plate_binocular.image_desaturated + ')');
+          if (typeof(settings.boa_plate_binocular.image_color) !== 'undefined') {
+            $parent.css('background-image', 'url(' + settings.boa_plate_binocular.image_desaturated + ')');
+          }
         }
       });
     }
