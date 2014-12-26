@@ -235,6 +235,76 @@ function nas_frontpage_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-d3722861-c649-419c-84ba-7ebe46a8a35d';
+    $pane->panel = 'bird_news';
+    $pane->type = 'boa_plate_binocular';
+    $pane->subtype = 'boa_plate_binocular';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'wrapper' => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '5232',
+            'entity_label' => 'Wood Thrush',
+            'entity_type' => 'node',
+            'entity_bundle' => 'boa',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '5233',
+            'entity_label' => 'Tawny Thrush',
+            'entity_type' => 'node',
+            'entity_bundle' => 'boa',
+          ),
+        ),
+        3 => array(
+          'entity_reference' => array(
+            'entity_id' => '5234',
+            'entity_label' => 'Hermit Thrush',
+            'entity_type' => 'node',
+            'entity_bundle' => 'boa',
+          ),
+        ),
+        4 => array(
+          'entity_reference' => array(
+            'entity_id' => '5703',
+            'entity_label' => 'Great Northern Diver or Loon',
+            'entity_type' => 'node',
+            'entity_bundle' => 'boa',
+          ),
+        ),
+        5 => array(
+          'entity_reference' => FALSE,
+        ),
+        6 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-pwIhcauIuPlVV0BYKRgWNCEBbsjupvxgg7RuEam9Rf8',
+      'form_token' => 'uF7fkmnuLbytm1bNBtjWadtjk6WoGp8kWuQ1KyCiJQU',
+      'form_id' => 'boa_plate_binocular_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd3722861-c649-419c-84ba-7ebe46a8a35d';
+    $display->content['new-d3722861-c649-419c-84ba-7ebe46a8a35d'] = $pane;
+    $display->panels['bird_news'][0] = 'new-d3722861-c649-419c-84ba-7ebe46a8a35d';
+    $pane = new stdClass();
     $pane->pid = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $pane->panel = 'bird_news';
     $pane->type = 'frontpage_in_the_news';
@@ -248,11 +318,11 @@ function nas_frontpage_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $display->content['new-789c461d-cebc-4a8d-b7c7-92f402c87f26'] = $pane;
-    $display->panels['bird_news'][0] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
+    $display->panels['bird_news'][1] = 'new-789c461d-cebc-4a8d-b7c7-92f402c87f26';
     $pane = new stdClass();
     $pane->pid = 'new-3f028648-0141-4594-857f-a6f1177e6172';
     $pane->panel = 'cards_set';
