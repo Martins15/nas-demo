@@ -91,7 +91,7 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_boa_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'birds-of-america/[node:title]';
   $export['pathauto_node_boa_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -112,7 +112,7 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_magazine_issue_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'magazine/[node:title]';
   $export['pathauto_node_magazine_issue_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
