@@ -45,15 +45,28 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
 
       case 'magazine-article':
         $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
-        $magazine_node = node_load($magazine_items[0]['target_id']);
-        $pattern = 'magazine' . NAS_TOKEN_PLACEHOLDER . $magazine_node->title . NAS_TOKEN_PLACEHOLDER . $node->title;
+        $pattern = array(
+          'magazine',
+        );
+
+        if (!empty($magazine_items[0]['target_id'])) {
+          $magazine_node = node_load($magazine_items[0]['target_id']);
+          $pattern[] = $magazine_node->title;
+        }
+
+        $pattern[] = $node->title;
         break;
 
       default:
-        $pattern = 'news' . NAS_TOKEN_PLACEHOLDER . $node->title;
+        $pattern = array(
+          'news',
+          $node->title,
+        );
     }
 
-    $replacements[$original] = $pattern;
+    if (!empty($pattern)) {
+      $replacements[$original] = implode(NAS_TOKEN_PLACEHOLDER, $pattern);
+    }
   }
 
   return $replacements;
@@ -63,6 +76,10 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
  * Get the news article type.
  *
  * @param object $node
+ *   Node object.
+ *
+ * @return string
+ *   Type of the news.
  */
 function nas_token_get_news_type($node) {
   if (!empty($node->field_magazine_issue)) {
