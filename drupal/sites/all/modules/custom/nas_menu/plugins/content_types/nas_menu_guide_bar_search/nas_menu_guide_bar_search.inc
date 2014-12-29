@@ -110,7 +110,7 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts
     'title' => $title,
     'preamble' => $preamble,
     'logo' => $logo,
-    'exposed_form' => nas_menu_guide_bar_search_get_exposed_filters(FALSE),
+    'exposed_form' => nas_menu_guide_bar_search_get_exposed_filters(FALSE, TRUE),
     'contextual_links' => $contextual_links,
   );
   $content = theme('nas_guide_bar_search', $t_vars);
@@ -126,10 +126,13 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts
  * @param bool $auto_submit
  *   Whether form should use auto submit.
  *
+ * @param bool $external_page
+ *   If search block uses on internal page.
+ *
  * @return string
  *   Rendered form.
  */
-function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE) {
+function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE, $external_page = FALSE) {
   $view = views_get_view('nas_bird_guide');
   $view->set_display('nas_bird_guide_fav_birds');
   $view->init_handlers();
@@ -149,6 +152,13 @@ function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE) {
   if (!$auto_submit && !empty($form['submit']['#attributes']['class'])) {
     $auto_submit_classes = array('ctools-use-ajax', 'ctools-auto-submit-click');
     $form['submit']['#attributes']['class'] = array_diff($form['submit']['#attributes']['class'], $auto_submit_classes);
+  }
+
+  // Hide taxonomy fields.
+  if ($external_page) {
+    $form['field_bird_call_type_tid']['#access'] = FALSE;
+    $form['field_bird_family_tid']['#access'] = FALSE;
+    $form['field_bird_region_tid']['#access'] = FALSE;
   }
 
   return drupal_render($form);
