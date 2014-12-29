@@ -34,8 +34,8 @@ function nas_site_template_feature_default_page_manager_handlers() {
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'bird-guide
-boa',
+            'paths' => 'birds/bird-guide
+birds-of-america',
           ),
           'context' => 'argument_string_1',
           'not' => FALSE,
@@ -441,8 +441,8 @@ boa',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'boa
-boa/*',
+            'paths' => 'birds-of-america
+birds-of-america/*',
           ),
           'context' => 'argument_string_1',
           'not' => FALSE,
