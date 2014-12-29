@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Contains additional alters.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function nas_search_theme() {
+  $themes = array(
+    'nas_search_page_search_form' => array(
+      'render element' => 'form',
+      'template' => 'nas_search_page_search_form',
+      'path' => drupal_get_path('module', 'nas_search') . '/templates',
+    ),
+  );
+
+  return $themes;
+}
+
+/**
+ * Search form builder.
+ */
+function nas_search_page_search_form($form, $form_state) {
+  $form['#method'] = 'GET';
+
+  $form['search'] = array(
+    '#type' => 'textfield',
+    '#name' => 'search',
+    '#theme' => 'searchfield',
+    '#attributes' => array(
+      'placeholder' => 'Search for a bird ...',
+      'class' => array('radius'),
+    ),
+    '#default_value' => !empty($_GET['search']) ? $_GET['search'] : '',
+  );
+
+  $form['submit'] = array(
+    '#type' => 'button',
+    '#value' => '<span class="hide-for-medium hide-for-large hide-for-xlarge">
+      <i class="icon-magnifier"></i>
+  </span>
+  <span class="hide-for-tiny hide-for-small">Search</span>',
+    '#id' => 'edit-submit-search-form',
+    '#attributes' => array(
+      'class' => array('top-search-form-submit', 'button', 'pea-green'),
+    ),
+  );
+
+  return $form;
+}
