@@ -811,4 +811,6 @@ function nas_master_update_7065(&$sandbox) {
   features_revert_module('nas_import_feeds_feature');
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
   module_enable(array('nas_search', 'nas_search_feature'));
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_conservation_project_feature');
 }
