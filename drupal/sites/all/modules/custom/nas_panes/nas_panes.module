@@ -718,6 +718,18 @@ function nas_panes_theme() {
       'template' => 'slideshow-sidebar-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block',
     ),
+    'boa_plate_binocular' => array(
+      'variables' => array(
+        'classes' => NULL,
+        'contextual_links' => NULL,
+        'image_desaturated' => NULL,
+        'title' => NULL,
+        'credits' => NULL,
+        'link' => NULL,
+      ),
+      'template' => 'boa-plate-binocular',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate_binocular',
+    ),
     'local_chapters_centers_block_content' => array(
       'variables' => array(
         'locations' => array(),

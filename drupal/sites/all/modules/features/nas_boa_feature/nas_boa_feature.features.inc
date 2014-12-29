@@ -76,6 +76,35 @@ function nas_boa_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: boa_plate_binocular.
+  $styles['boa_plate_binocular'] = array(
+    'name' => 'boa_plate_binocular',
+    'label' => 'BOA Plate Binocular',
+    'effects' => array(
+      6 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1497,
+          'height' => 1705,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => -10,
+      ),
+    ),
+  );
+
   // Exported image style: boa_plate_thumbnail.
   $styles['boa_plate_thumbnail'] = array(
     'name' => 'boa_plate_thumbnail',
