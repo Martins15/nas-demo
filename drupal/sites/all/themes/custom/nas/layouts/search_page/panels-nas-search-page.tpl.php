@@ -26,11 +26,13 @@
         <p class="sub-heading">Showing 1–10 of 287 results</p>
       </div>
       <div class="columns">
+        <!--
         <div class="section-nav inline-list filter-list">
           <span>Sort by:</span>
           <li><a class="color-blue active" href="#">Relevance</a></li>
           <li><a class="color-blue" href="#">Date</a></li>
         </div>
+        -->
       </div>
     </div>
   </div>
