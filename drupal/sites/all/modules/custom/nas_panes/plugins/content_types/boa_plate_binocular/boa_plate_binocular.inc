@@ -117,22 +117,22 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
 
   if (!empty($nodes)) {
     $rand_key = array_rand($nodes, 1);
-    $node = $nodes[$rand_key];
+    $chosen_node = $nodes[$rand_key];
   }
 
   drupal_add_js(array(
     'boa_plate_binocular' => array(
-      'image_color' => $node['image_color'],
-      'image_desaturated' => $node['image_desaturated'],
+      'image_color' => isset($chosen_node['image_color']) ? $chosen_node['image_color'] : '',
+      'image_desaturated' => isset($chosen_node['image_desaturated']) ? $chosen_node['image_desaturated'] : '',
     ),
   ), 'setting');
 
   $content = theme('boa_plate_binocular', array(
     'class' => $class,
-    'image_desaturated' => $node['image_desaturated'],
-    'credits' => $node['credits'],
-    'title' => l($node['node']->title, 'node/' . $node->nid),
-    'link' => $node['link'],
+    'image_desaturated' => isset($chosen_node['image_desaturated']) ? $chosen_node['image_desaturated'] : '',
+    'credits' => isset($chosen_node['credits']) ? $chosen_node['credits'] : '',
+    'title' => isset($chosen_node['node']->title) ? l($chosen_node['node']->title, 'node/' . $chosen_node->nid) : '',
+    'link' => isset($chosen_node['link']) ? $chosen_node['link'] : '',
     'contextual_links' => $contextual_links,
   ));
 
