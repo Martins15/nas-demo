@@ -98,15 +98,29 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_contact_pattern';
-  $strongarm->value = 'people/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_contact_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_engagement_cards_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_engagement_cards_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_flyway_pattern';
-  $strongarm->value = 'birds/flyways/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_flyway_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_location_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_location_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -133,21 +147,21 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_slideshow_pattern';
-  $strongarm->value = 'photos/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_slideshow_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_static_page_pattern';
-  $strongarm->value = '[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_static_page_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_strategy_pattern';
-  $strongarm->value = 'conservation/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_strategy_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
