@@ -811,7 +811,7 @@ function nas_master_update_7064() {
 
   db_update('page_manager_pages')
     ->condition('name', 'bird_guide')
-    ->fields(array('path' => 'birds/guide'))
+    ->fields(array('path' => 'birds/bird-guide'))
     ->execute();
 
   db_update('page_manager_pages')

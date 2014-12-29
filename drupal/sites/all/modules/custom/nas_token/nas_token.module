@@ -83,13 +83,11 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
  *   Type of the news.
  */
 function nas_token_get_news_type($node) {
-  if (!empty($node->field_magazine_issue)) {
+  if (!empty($node->field_magazine_issue[LANGUAGE_NONE][0])) {
     return 'magazine-article';
   }
 
-  $layout_name = db_query('SELECT name FROM {panelizer_entity} WHERE entity_id = :nid AND entity_type = :type',
-        array(':nid' => $node->nid, ':type' => 'node'))->fetchField();
-  if ($layout_name == 'node:article:press_release') {
+  if ($node->panelizer['page_manager']->name == 'node:article:press_release') {
     return 'press-release';
   }
 
