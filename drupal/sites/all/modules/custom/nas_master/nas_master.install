@@ -812,6 +812,11 @@ function nas_master_update_7064() {
     ->condition('name', 'bird_guide')
     ->fields(array('path' => 'birds/guide'))
     ->execute();
+
+  db_update('page_manager_pages')
+    ->condition('name', 'flyways_landing')
+    ->fields(array('path' => 'birds/flyways'))
+    ->execute();
 }
 
 /**
