@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: savage
- * Date: 28.12.14
- * Time: 14:14
+ * @file search form template.
  */
 
 ?>
@@ -12,4 +9,3 @@
   <?php print render($form['search']); ?>
 </div>
 <?php print render($form['submit']); ?>
-<?php //print drupal_render_children($form); ?>
