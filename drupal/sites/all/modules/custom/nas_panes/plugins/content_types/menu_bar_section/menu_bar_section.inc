@@ -58,11 +58,13 @@ function menu_bar_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $items = array();
 
+  $parent = menu_link_load($conf['default_menu_item']);
   $parameters = array(
+    'active_trail' => array($parent['plid']),
     'only_active_trail' => FALSE,
-    'min_depth' => 2,
-    'max_depth' => 2,
-    'conditions' => array('plid' => $conf['default_menu_item']),
+    'min_depth' => $parent['depth'] + 1,
+    'max_depth' => $parent['depth'] + 1,
+    'conditions' => array('plid' => $parent['mlid']),
   );
 
   $menu_items = menu_build_tree(NAS_PANES_MAIN_MENU_NAME, $parameters);

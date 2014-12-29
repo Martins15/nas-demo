@@ -802,6 +802,7 @@ function nas_master_update_7064() {
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
   module_enable(array('redirect', 'nas_token', 'nas_url_aliases_feature'));
   features_revert_module('nas_url_aliases_feature');
+  features_revert(array('nas_contact_type_feature' => array('field_group')));
 
   db_update('page_manager_pages')
     ->condition('name', 'birds_landing')

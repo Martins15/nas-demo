@@ -47,5 +47,5 @@ features[variable][] = menu_parent_contact
 features[variable][] = node_options_contact
 features[variable][] = node_preview_contact
 features[variable][] = node_submitted_contact
-mtime = 1419429086
+mtime = 1419589454
 project path = sites/all/modules/features
