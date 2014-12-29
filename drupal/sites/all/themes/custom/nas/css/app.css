@@ -7406,9 +7406,6 @@ body.touch .primary-sub-nav-index {
     -webkit-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
   }
-  .bird-card-set.show-bg {
-    background-image: url(card-set-bg-2-color.jpg);
-  }
   .bird-card-set.show-bg .row {
     opacity: 0;
     pointer-events: none;
@@ -7625,7 +7622,6 @@ body.touch .primary-sub-nav-index {
   -o-transition: background-image 0.5s ease-in-out;
   -webkit-transition: background-image 0.5s ease-in-out;
   transition: background-image 0.5s ease-in-out;
-  background-image: url(../img/grid-bg-color.jpg);
 }
 .bird-card-grid.show-bg .row {
   -moz-transition: opacity 0.5s ease-in-out;
