@@ -1,6 +1,7 @@
 <?php
 /**
- * @file search form template.
+ * @file
+ * Search form template.
  */
 
 ?>
