@@ -15,7 +15,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Frontpage';
   $page->admin_description = '';
-  $page->path = 'frontpage';
+  $page->path = 'frontpage2';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
@@ -183,7 +183,7 @@ function nas_frontpage_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'frontpage2';
   $page->admin_description = '';
-  $page->path = 'frontpage2';
+  $page->path = 'frontpage';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();

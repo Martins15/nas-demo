@@ -44,7 +44,7 @@ function frontpage_in_the_news_render($subtype, $conf, $args, $contexts) {
       'teasers' => $teasers,
       'title' => $block_title,
       'bird_guide_title' => 'Explore Our Bird Guide',
-      'bird_guide_link' => url('bird-guide'),
+      'bird_guide_link' => url('birds/bird-guide'),
     ));
   }
 
