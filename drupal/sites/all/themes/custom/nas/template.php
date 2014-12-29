@@ -479,6 +479,8 @@ function nas_preprocess_node_project(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
+
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -487,6 +489,14 @@ function nas_preprocess_node_project(&$vars) {
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
         'html' => TRUE,
         'attributes' => array('title' => $node->title),
       ));
@@ -500,7 +510,7 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
-  if ($vars['view_mode'] == 'nas_node_teaser_small' || $vars['view_mode'] == 'nas_node_project_teaser') {
+  if (in_array($vars['view_mode'], array('nas_node_teaser_small', 'nas_node_project_teaser', 'search_result'))) {
     $vars['description'] = '';
     if (!empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['description'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
