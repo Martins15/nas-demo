@@ -20,23 +20,24 @@ function nas_contact_type_feature_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
-    'label' => 'Author Fields',
+    'label' => 'Press Contact Fields',
     'weight' => '6',
     'children' => array(
       0 => 'field_contact_address',
       1 => 'field_contact_email',
-      2 => 'field_contact_phone',
-      3 => 'field_contact_office',
+      2 => 'field_contact_office',
+      3 => 'field_contact_phone',
     ),
     'format_type' => 'htab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Press Contact Fields',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-author-fields field-group-htab',
         'required_fields' => 1,
         'id' => '',
+        'classes' => 'group-author-fields field-group-htab',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $export['group_author_fields|node|contact|form'] = $field_group;
@@ -51,7 +52,7 @@ function nas_contact_type_feature_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_tabs';
   $field_group->data = array(
-    'label' => 'Press Contact Fields',
+    'label' => 'Author / Bio fields',
     'weight' => '5',
     'children' => array(
       0 => 'field_contact_bio',
@@ -64,13 +65,14 @@ function nas_contact_type_feature_field_group_info() {
     ),
     'format_type' => 'htab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Author / Bio fields',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-press-contact-fields field-group-htab',
         'required_fields' => 1,
         'id' => '',
+        'classes' => 'group-press-contact-fields field-group-htab',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $export['group_press_contact_fields|node|contact|form'] = $field_group;

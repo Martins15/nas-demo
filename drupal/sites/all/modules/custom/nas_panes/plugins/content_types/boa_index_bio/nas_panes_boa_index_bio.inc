@@ -36,8 +36,9 @@ function boa_index_bio_form($form, &$form_state) {
   $form['body'] = array(
     '#title' => t('Body'),
     '#description' => t('HTML is allowed.'),
-    '#type' => 'textarea',
+    '#type' => 'text_format',
     '#default_value' => $conf['body'],
+    '#format' => 'full_html',
   );
 
   $form['image'] = array(
@@ -82,9 +83,9 @@ function boa_index_bio_form($form, &$form_state) {
 
   $form['summary'] = array(
     '#title' => t('Sidebar Summary'),
-    '#description' => t('HTML is allowed.'),
-    '#type' => 'textarea',
+    '#type' => 'text_format',
     '#default_value' => $conf['summary'],
+    '#format' => 'full_html',
   );
 
   $form['link'] = array(
