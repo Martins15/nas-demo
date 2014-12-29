@@ -800,6 +800,7 @@ function nas_master_update_7064() {
   features_revert(array('nas_contact_type_feature' => array('panelizer_defaults')));
   features_revert(array('nas_author_page' => array('panelizer_defaults')));
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_contact_type_feature' => array('field_group')));
 }
 
 /**
