@@ -441,8 +441,8 @@ boa',
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'boa
-boa/*',
+            'paths' => 'birds-of-america
+birds-of-america/*',
           ),
           'context' => 'argument_string_1',
           'not' => FALSE,
