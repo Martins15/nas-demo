@@ -413,7 +413,7 @@ function nas_preprocess_node_article(&$vars) {
       $vars['by_line'] = 'By ' . $author_node->title;
     }
   }
-  if ($vars['view_mode'] == 'teaser_author_page') {
+  if ($vars['view_mode'] == 'teaser_author_page' || $vars['view_mode'] == 'search_result') {
     $vars['article_date'] = '';
     if ($field_items = field_get_items('node', $node, 'field_article_date')) {
       $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
@@ -434,6 +434,7 @@ function nas_preprocess_node_static_page(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -445,7 +446,17 @@ function nas_preprocess_node_static_page(&$vars) {
         'html' => TRUE,
         'attributes' => array('title' => $node->title),
       ));
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
   }
+
+  $vars['dateline'] = format_date($node->created, 'nas_date');
 
   $vars['subtitle'] = '';
   if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
@@ -608,7 +619,7 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn', 'edit-submit-nas-bird-guide');
+  $button_tag = array('edit-nas-search-btn', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';
