@@ -838,6 +838,9 @@ function nas_master_update_7065(&$sandbox) {
   module_enable(array('nas_search', 'nas_search_feature'));
   features_revert_module('nas_article_feature');
   features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_boa_feature');
+  features_revert_module('nas_flyways_feature');
   features_revert_module('nas_solr_feature');
 }
 
