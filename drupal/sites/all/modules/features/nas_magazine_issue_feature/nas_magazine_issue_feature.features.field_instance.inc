@@ -148,7 +148,7 @@ function nas_magazine_issue_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 32,
+      'weight' => 2,
     ),
   );
 
@@ -228,7 +228,7 @@ function nas_magazine_issue_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_issue_date',
-    'label' => 'Date',
+    'label' => 'Issue date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'now',
@@ -249,14 +249,14 @@ function nas_magazine_issue_feature_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 33,
+      'weight' => 3,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Cover');
-  t('Date');
+  t('Issue date');
 
   return $field_instances;
 }

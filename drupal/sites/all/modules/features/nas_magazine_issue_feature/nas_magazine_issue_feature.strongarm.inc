@@ -19,10 +19,13 @@ function nas_magazine_issue_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -52,7 +55,7 @@ function nas_magazine_issue_feature_strongarm() {
   $strongarm->name = 'node_options_magazine_issue';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'promote',
+    1 => 'revision',
   );
   $export['node_options_magazine_issue'] = $strongarm;
 
@@ -60,14 +63,14 @@ function nas_magazine_issue_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_magazine_issue';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_magazine_issue'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_magazine_issue';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_magazine_issue'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -87,42 +90,12 @@ function nas_magazine_issue_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'full' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'teaser' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
-      'rss' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_index' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_result' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'diff_standard' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'nas_node_teaser_small' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'nas_node_teaser_wo_date' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -137,17 +110,22 @@ function nas_magazine_issue_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
       'nas_node_teaser' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
-      'token' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'revision' => array(
+      'nas_editorial_card' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

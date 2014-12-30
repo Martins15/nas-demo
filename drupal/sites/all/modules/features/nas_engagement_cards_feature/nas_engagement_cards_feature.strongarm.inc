@@ -89,10 +89,13 @@ function nas_engagement_cards_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '-5',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
+        ),
+        'redirect' => array(
+          'weight' => '3',
         ),
       ),
       'display' => array(),
@@ -120,6 +123,7 @@ function nas_engagement_cards_feature_strongarm() {
   $strongarm->name = 'node_options_engagement_cards';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_engagement_cards'] = $strongarm;
 

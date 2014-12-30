@@ -135,7 +135,7 @@ function nas_flyways_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -229,7 +229,7 @@ function nas_flyways_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -309,7 +309,7 @@ function nas_flyways_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_custom_section',
-    'label' => 'Custom Section',
+    'label' => 'Editorial Section',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -405,17 +405,17 @@ function nas_flyways_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_flyway_body',
-    'label' => 'Flyway body',
+    'label' => 'Body',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'full_html' => 'full_html',
-          'map' => 0,
-          'plain_text' => 0,
-          'video' => 0,
+          'map' => '0',
+          'plain_text' => '0',
+          'video' => '0',
         ),
-        'allowed_formats_toggle' => 1,
+        'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -444,7 +444,7 @@ function nas_flyways_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 2,
+      'weight' => 6,
     ),
   );
 
@@ -453,7 +453,7 @@ function nas_flyways_feature_field_default_field_instances() {
     'bundle' => 'flyway',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Specify states that are the part of the flyway',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -744,7 +744,7 @@ function nas_flyways_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -863,7 +863,7 @@ function nas_flyways_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -930,13 +930,14 @@ function nas_flyways_feature_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Background Image');
+  t('Body');
   t('Color mode');
-  t('Custom Section');
-  t('Flyway body');
+  t('Editorial Section');
   t('ISO');
   t('ISO code of the state e.g. AL, CA, NY, FL.');
   t('Menu Section');
   t('Secondary title');
+  t('Specify states that are the part of the flyway');
   t('States');
   t('Subtitle');
   t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.');
