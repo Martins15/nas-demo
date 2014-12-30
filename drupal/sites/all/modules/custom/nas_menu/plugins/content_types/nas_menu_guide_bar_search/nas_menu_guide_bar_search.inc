@@ -145,6 +145,9 @@ function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE, $ext
     'method' => 'get',
     'rerender' => TRUE,
     'no_redirect' => FALSE,
+    'storage' => array(
+      'external_page' => $external_page,
+    ),
   );
   $form = drupal_build_form('views_exposed_form', $form_state);
 
