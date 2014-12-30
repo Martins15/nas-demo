@@ -71,7 +71,6 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => 'nas_search_get_article_section',
     'calculated' => TRUE,
   );
-  dpm($properties);
 }
 
 /**

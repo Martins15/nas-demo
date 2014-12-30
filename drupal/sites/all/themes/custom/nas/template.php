@@ -54,6 +54,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
+  if ($vars['type'] == 'flyway') {
+    nas_preprocess_node_flyway($vars);
+  }
   if ($vars['type'] == 'magazine_issue') {
     nas_preprocess_node_magazine_issue($vars);
   }
@@ -65,6 +68,9 @@ function nas_preprocess_node(&$vars) {
   }
   if ($vars['type'] == 'static_page') {
     nas_preprocess_node_static_page($vars);
+  }
+  if ($vars['type'] == 'strategy') {
+    nas_preprocess_node_strategy($vars);
   }
   if ($vars['type'] == 'engagement_cards') {
     nas_preprocess_node_engagement_cards($vars);
@@ -173,13 +179,21 @@ function nas_preprocess_node_boa(&$vars) {
   $node = $vars['node'];
   $node_path = 'node/' . $node->nid;
   $vars['title_link'] = l($node->title, $node_path);
-
+  $vars['teaser_list_image'] = '';
   $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
   if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
     $illustration = theme('image_style', array(
         'style_name' => 'boa_family_species',
         'path' => $field_boa_illustration_items[0]['uri'],
     ));
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $field_boa_illustration_items[0]['uri']),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
   }
   $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
 
@@ -428,6 +442,20 @@ function nas_preprocess_node_article(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for Flyway content type.
+ */
+function nas_preprocess_node_flyway(&$vars) {
+  $node = $vars['node'];
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  $vars['summary'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_flyway_body')) {
+    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
+  }
+}
+
+/**
  * theme_preprocess_node for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
@@ -470,6 +498,31 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['blue_text_link_url'] = $blue_text_link_url;
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
   $vars['custom_link_text'] = t('Read more');
+}
+
+/**
+ * theme_preprocess_node for Conservation strategy content type.
+ */
+function nas_preprocess_node_strategy(&$vars) {
+  $node = $vars['node'];
+  $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+  }
+
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
 /**
