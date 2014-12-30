@@ -101,18 +101,20 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
       'panel_context' => 'page_frontpage2_panel_context',
     ),
   );
-  if (isset($args_cache_key_pairs[arg(0)]) && !arg(1)) {
+  if (arg(0) == 'birds' && arg(1) == 'bird-guide' && !arg(2)) {
+    $key = 'bird-guide';
+    $class = 'bird-card-set bg-bone-white bg-boa';
+  }
+  if (arg(0) == 'frontpage2') {
+    $key = 'frontpage2';
+    $class = 'bird-card-grid';
+  }
+  if (isset($args_cache_key_pairs[$key])) {
     $context['landing'] = array(
-      'cache_key' => $args_cache_key_pairs[arg(0)]['cache_key'],
-      'panel_context' => $args_cache_key_pairs[arg(0)]['panel_context'],
+      'cache_key' => $args_cache_key_pairs[$key]['cache_key'],
+      'panel_context' => $args_cache_key_pairs[$key]['panel_context'],
     );
     $contextual_links = nas_panes_build_page_contextual_links('boa_plate_binocular', $context['landing']['cache_key'], $context['landing']['panel_context']);
-    if (arg(0) == 'frontpage2') {
-      $class = 'bird-card-set bg-bone-white bg-boa';
-    }
-    if (arg(0) == 'bird-guide') {
-      $class = 'bird-card-grid';
-    }
   }
 
   if (!empty($nodes)) {
