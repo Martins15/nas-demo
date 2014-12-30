@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the NAS Pages feature.
- */
-
-include_once 'nas_pages_feature.features.inc';
