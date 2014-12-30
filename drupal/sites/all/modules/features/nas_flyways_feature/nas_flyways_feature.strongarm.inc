@@ -41,7 +41,7 @@ function nas_flyways_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'diff_standard' => array(
         'custom_settings' => FALSE,
@@ -50,6 +50,45 @@ function nas_flyways_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_node_featured_small' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_related_features' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_editorial_card' => array(
+        'custom_settings' => TRUE,
+      ),
+      'teaser_author_page' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_teaser_from_network' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'custom_settings' => FALSE,
+      ),
+      'static_page_related_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'boa_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_node_project_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'conservation_strategy_featured_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'about_page_related_teaser' => array(
         'custom_settings' => FALSE,
       ),
     ),

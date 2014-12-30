@@ -52,6 +52,12 @@ function editorial_card_3x_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
 
+  // Do not show context selector if configuration form is called from page.
+  if (isset($_GET['nas-panes-from-page'])) {
+    $form['context']['#prefix'] = '<div style="display:none;">';
+    $form['context']['#suffix'] = '</div>';
+  }
+
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'editorial_card_3x', 'nas_panes', 'plugins/content_types/editorial_card_3x');
 

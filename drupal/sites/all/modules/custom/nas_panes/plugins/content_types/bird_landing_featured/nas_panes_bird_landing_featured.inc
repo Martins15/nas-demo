@@ -121,8 +121,8 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
 
   $summary = check_plain($conf['summary']);
 
-  $bird_guide_link = l(t('Bird Guide'), 'bird-guide');
-  $category_link = 'birds-priority';
+  $bird_guide_link = l(t('Bird Guide'), 'birds/bird-guide');
+  $category_link = 'birds/priority';
   $category_link_more = l(t('More Priority Birds'), $category_link);
 
   $contextual_links = '';

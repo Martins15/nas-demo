@@ -7406,9 +7406,6 @@ body.touch .primary-sub-nav-index {
     -webkit-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
   }
-  .bird-card-set.show-bg {
-    background-image: url(card-set-bg-2-color.jpg);
-  }
   .bird-card-set.show-bg .row {
     opacity: 0;
     pointer-events: none;
@@ -7625,7 +7622,6 @@ body.touch .primary-sub-nav-index {
   -o-transition: background-image 0.5s ease-in-out;
   -webkit-transition: background-image 0.5s ease-in-out;
   transition: background-image 0.5s ease-in-out;
-  background-image: url(../img/grid-bg-color.jpg);
 }
 .bird-card-grid.show-bg .row {
   -moz-transition: opacity 0.5s ease-in-out;
@@ -11559,98 +11555,98 @@ body.touch .sticky-wrapper {
   top: 38px;
 }
 
-.page-boa .mobile-nav {
+.page-birds-of-america .mobile-nav {
   position: relative;
 }
-.page-boa .guide-bar-title {
+.page-birds-of-america .guide-bar-title {
   line-height: 23px;
   margin-left: 55px;
 }
-.page-boa .hero-header .hero-title {
+.page-birds-of-america .hero-header .hero-title {
   font-size: 75px;
   letter-spacing: -4px;
   font-weight: 300;
   line-height: 75px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1279px) {
-  .page-boa .guide-bar-title {
+  .page-birds-of-america .guide-bar-title {
     font-size: 19px;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
-  .page-boa .guide-bar-title {
+  .page-birds-of-america .guide-bar-title {
     font-size: 19px;
   }
-  .page-boa .row .hero-header {
+  .page-birds-of-america .row .hero-header {
     padding-bottom: 10px;
   }
-  .page-boa .row .hero-header .hero-title {
+  .page-birds-of-america .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
     letter-spacing: 0;
   }
 }
 @media only screen and (max-width: 479px) {
-  .page-boa .guide-bar-title {
+  .page-birds-of-america .guide-bar-title {
     font-size: 19px;
   }
-  .page-boa .row .hero-header {
+  .page-birds-of-america .row .hero-header {
     padding-bottom: 10px;
   }
-  .page-boa .row .hero-header .hero-title {
+  .page-birds-of-america .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
     letter-spacing: 0;
   }
-  .page-boa .john-audubon-logo {
+  .page-birds-of-america .john-audubon-logo {
     max-width: 61px;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .row .hero-header {
+  .page-birds-of-america .row .hero-header {
     padding-bottom: 10px;
   }
-  .page-boa .row .hero-header .hero-title {
+  .page-birds-of-america .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
     letter-spacing: 0;
   }
 }
-.page-boa .action-nav {
+.page-birds-of-america .action-nav {
   margin: 0;
 }
-.page-boa .action-nav .action-nav-item {
+.page-birds-of-america .action-nav .action-nav-item {
   width: 33%;
 }
-.page-boa .action-nav .action-nav-item:first-child {
+.page-birds-of-america .action-nav .action-nav-item:first-child {
   padding-right: 4px;
 }
-.page-boa .action-nav .action-nav-item:last-child {
+.page-birds-of-america .action-nav .action-nav-item:last-child {
   margin-left: 0;
   padding-left: 4px;
   width: 34%;
 }
-.page-boa .action-nav .action-nav-item a {
+.page-birds-of-america .action-nav .action-nav-item a {
   border-radius: 0 !important;
   font-size: 20px !important;
   width: 100%;
 }
 @media only screen and (max-width: 479px) {
-  .page-boa .action-nav .action-nav-item a {
+  .page-birds-of-america .action-nav .action-nav-item a {
     font-size: 16px !important;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .action-nav {
+  .page-birds-of-america .action-nav {
     box-sizing: content-box;
     margin-left: -12.5px;
     margin-top: 0;
   }
-  .page-boa .action-nav .action-nav-item:last-child {
+  .page-birds-of-america .action-nav .action-nav-item:last-child {
     width: 32%;
   }
 }
-.page-boa .hero-header {
+.page-birds-of-america .hero-header {
   padding-bottom: 60px;
 }
 

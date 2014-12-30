@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Search feature.
+ */
+
+include_once 'nas_search_feature.features.inc';
