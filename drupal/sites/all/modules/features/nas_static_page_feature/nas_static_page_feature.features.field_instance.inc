@@ -136,7 +136,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
@@ -322,7 +322,7 @@ function nas_static_page_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_custom_section',
-    'label' => 'Custom Section',
+    'label' => 'Editorial Section',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -335,7 +335,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => 10,
     ),
   );
 
@@ -621,7 +621,7 @@ function nas_static_page_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 10,
+      'weight' => 6,
     ),
   );
 
@@ -717,7 +717,7 @@ function nas_static_page_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 5,
+      'weight' => 9,
     ),
   );
 
@@ -817,7 +817,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 11,
     ),
   );
 
@@ -942,7 +942,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -950,7 +950,7 @@ function nas_static_page_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Color mode');
-  t('Custom Section');
+  t('Editorial Section');
   t('Hero Image');
   t('Legacy images');
   t('Menu Section');

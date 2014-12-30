@@ -19,10 +19,13 @@ function nas_contact_type_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '4',
         ),
       ),
       'display' => array(),
@@ -50,6 +53,7 @@ function nas_contact_type_feature_strongarm() {
   $strongarm->name = 'node_options_contact';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_contact'] = $strongarm;
 

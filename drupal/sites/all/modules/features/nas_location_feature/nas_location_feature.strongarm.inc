@@ -19,10 +19,13 @@ function nas_location_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '8',
+        ),
+        'redirect' => array(
+          'weight' => '9',
         ),
       ),
       'display' => array(),
@@ -52,6 +55,7 @@ function nas_location_feature_strongarm() {
   $strongarm->name = 'node_options_location';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_location'] = $strongarm;
 
@@ -59,7 +63,7 @@ function nas_location_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_location';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_location'] = $strongarm;
 
   $strongarm = new stdClass();

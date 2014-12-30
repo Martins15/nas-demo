@@ -37,11 +37,6 @@ function nas_author_page_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'nas_node_teaser_wo_date' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'nas_node_teaser_no_section_link' => array(
         'status' => 0,
         'default' => 0,

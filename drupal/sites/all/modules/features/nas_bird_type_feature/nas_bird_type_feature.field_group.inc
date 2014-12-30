@@ -30,17 +30,16 @@ function nas_bird_type_feature_field_group_info() {
       4 => 'field_bird_sci_name',
       5 => 'field_bird_tip',
       6 => 'field_related_bird',
-      7 => 'title',
-      8 => 'field_related_flyways',
+      7 => 'field_related_flyways',
+      8 => 'title',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
         'classes' => '',
         'required_fields' => 1,
-        'id' => '',
       ),
     ),
   );
@@ -69,14 +68,13 @@ function nas_bird_type_feature_field_group_info() {
       7 => 'field_bird_size',
       8 => 'field_bird_wing_shape',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-legacy field-group-htab',
+        'classes' => '',
         'required_fields' => 1,
-        'id' => '',
       ),
     ),
   );
@@ -99,18 +97,17 @@ function nas_bird_type_feature_field_group_info() {
       1 => 'field_bird_illustration',
       2 => 'field_bird_photo',
       3 => 'field_bird_rangemap',
-      4 => 'field_color_mode',
-      5 => 'field_hero_image',
-      6 => 'field_bird_video',
+      4 => 'field_bird_video',
+      5 => 'field_color_mode',
+      6 => 'field_hero_image',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-media field-group-htab',
+        'classes' => '',
         'required_fields' => 1,
-        'id' => '',
       ),
     ),
   );
@@ -136,14 +133,13 @@ function nas_bird_type_feature_field_group_info() {
       4 => 'field_bird_habitat',
       5 => 'field_bird_region',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-sci-info field-group-htab',
+        'classes' => '',
         'required_fields' => 1,
-        'id' => '',
       ),
     ),
   );
@@ -167,11 +163,11 @@ function nas_bird_type_feature_field_group_info() {
       2 => 'group_media',
       3 => 'group_sci_info',
     ),
-    'format_type' => 'htabs',
+    'format_type' => 'tabs',
     'format_settings' => array(
       'formatter' => '',
       'instance_settings' => array(
-        'classes' => 'group-tabs field-group-htabs',
+        'classes' => '',
       ),
     ),
   );

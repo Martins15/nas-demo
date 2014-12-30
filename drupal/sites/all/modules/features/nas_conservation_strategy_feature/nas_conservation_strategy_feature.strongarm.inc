@@ -77,10 +77,13 @@ function nas_conservation_strategy_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
           'weight' => '7',
+        ),
+        'redirect' => array(
+          'weight' => '8',
         ),
       ),
       'display' => array(),
@@ -118,7 +121,7 @@ function nas_conservation_strategy_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_strategy';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_strategy'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -151,11 +154,6 @@ function nas_conservation_strategy_feature_strongarm() {
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'nas_node_teaser_wo_date' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
