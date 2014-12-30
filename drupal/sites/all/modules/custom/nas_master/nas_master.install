@@ -819,6 +819,11 @@ function nas_master_update_7064() {
     ->condition('name', 'flyways_landing')
     ->fields(array('path' => 'birds/flyways'))
     ->execute();
+
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $node = node_load(1689);
+    pathauto_create_alias('node', 'bulkupdate', 'node/' . $node->nid, array('node' => $node), $node->type, LANGUAGE_NONE);
+  }
 }
 
 /**
@@ -862,11 +867,22 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
     $sandbox['max'] = $count;
   }
 
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $sandbox['max'] = 50;
+  }
+
   if (!empty($sandbox['max'])) {
-    $result = db_select('node', 'n')
-      ->fields('n', array('nid'))
-      ->range($sandbox['current'], $chunk)
-      ->execute();
+    $query = db_select('node', 'n');
+    $query->fields('n', array('nid'));
+    $query->range($sandbox['current'], $chunk);
+
+    // Use only news for dev environment.
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      $query->condition('n.type', 'news');
+    }
+
+    $result = $query->execute();
     foreach ($result as $node) {
       $node = node_load($node->nid);
       pathauto_create_alias('node', 'bulkupdate', 'node/' . $node->nid, array('node' => $node), $node->type, LANGUAGE_NONE);
@@ -880,6 +896,6 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
 
   if ($sandbox['#finished'] >= 1) {
     $sandbox['#finished'] = 1;
-    watchdog('nas_master', '@count aliases has been successfully imported.', array('@count' => $sandbox['progress']));
+    watchdog('nas_master', '@count aliases has been successfully updated.', array('@count' => $sandbox['progress']));
   }
 }
