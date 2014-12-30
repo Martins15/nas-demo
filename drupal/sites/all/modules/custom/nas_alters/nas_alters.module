@@ -109,6 +109,10 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['field_bird_call_type_tid']['#options']['All'] = t('Type of Bird');
     $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
     $form['field_bird_region_tid']['#options']['All'] = t('Region');
+    $form['external_page'] = array(
+      '#type' => 'hidden',
+      '#value' => TRUE,
+    );
   }
 }
 
@@ -121,7 +125,10 @@ function nas_alters_views_pre_render(&$view) {
 
     if (!empty($view->exposed_input)) {
       $view->set_title(t('Matching Birds'));
-      // @todo title from external page.
+      $query = drupal_get_query_parameters();
+      if (!empty($query['external_page'])) {
+        $view->set_title(t('Search results'));
+      }
     }
   }
 }

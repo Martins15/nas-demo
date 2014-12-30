@@ -59,8 +59,10 @@
         <h2 class="thin"><?php print $view->get_title(); ?></h2>
       </div>
     </div>
-    <div class="view-empty">
-      <?php print $empty; ?>
+    <div class="row space-top view-empty">
+      <div class="columns">
+        <?php print $empty; ?>
+      </div>
     </div>
   <?php endif; ?>
 
