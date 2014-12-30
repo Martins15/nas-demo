@@ -830,11 +830,10 @@ function nas_master_update_7064() {
 /**
  * Revert features.
  */
-function nas_master_update_7065(&$sandbox) {
+function nas_master_update_7065() {
   features_revert(array('nas_news_page_feature' => array('page_manager_pages')));
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_import_feeds_feature');
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
   module_enable(array('nas_search', 'nas_search_feature'));
   features_revert_module('nas_article_feature');
   features_revert_module('nas_conservation_project_feature');
@@ -902,4 +901,11 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
     $sandbox['#finished'] = 1;
     watchdog('nas_master', '@count aliases has been successfully updated.', array('@count' => $sandbox['progress']));
   }
+}
+
+/**
+ * Import static pages.
+ */
+function nas_master_update_7067(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }
