@@ -15,7 +15,7 @@ function nas_birds_guide_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Bird Guide';
   $page->admin_description = '';
-  $page->path = 'bird-guide';
+  $page->path = 'birds/bird-guide';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();

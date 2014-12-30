@@ -133,7 +133,7 @@ function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE) {
   $view = views_get_view('nas_bird_guide');
   $view->set_display('nas_bird_guide_fav_birds');
   $view->init_handlers();
-  $view->override_url = 'bird-guide';
+  $view->override_url = 'birds/bird-guide';
   $view->display_handler->options['inherit_panels_path'] = FALSE;
   $form_state = array(
     'view' => $view,
