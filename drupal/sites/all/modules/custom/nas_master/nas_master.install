@@ -791,6 +791,21 @@ function nas_master_update_7063() {
   features_revert_module('nas_frontpage_feature');
   features_revert_module('nas_boa_feature');
   module_disable(array('nas_pages_feature'));
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_author_page');
+  features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_boa_feature');
+  features_revert_module('nas_boa_genus_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_contact_type_feature');
+  features_revert_module('nas_engagement_cards_feature');
+  features_revert_module('nas_flyways_feature');
+  features_revert_module('nas_fpp_feature');
+  features_revert_module('nas_location_feature');
+  features_revert_module('nas_magazine_issue_feature');
+  features_revert_module('nas_slideshow_feature');
+  features_revert_module('nas_static_page_feature');
 }
 
 /**
