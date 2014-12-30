@@ -15,7 +15,7 @@ function nas_getoutside_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Getoutside';
   $page->admin_description = '';
-  $page->path = 'getoutside';
+  $page->path = 'get-outside';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
