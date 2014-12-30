@@ -821,6 +821,7 @@ function nas_master_update_7064() {
     ->execute();
 
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    module_load_include('inc', 'pathauto', 'pathauto');
     $node = node_load(1689);
     pathauto_create_alias('node', 'bulkupdate', 'node/' . $node->nid, array('node' => $node), $node->type, LANGUAGE_NONE);
   }
