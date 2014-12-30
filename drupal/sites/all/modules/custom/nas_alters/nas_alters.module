@@ -109,14 +109,29 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['field_bird_call_type_tid']['#options']['All'] = t('Type of Bird');
     $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
     $form['field_bird_region_tid']['#options']['All'] = t('Region');
+
+    if (!empty($form_state['storage']['external_page'])) {
+      $form['external_page'] = array(
+        '#type' => 'hidden',
+        '#value' => TRUE,
+      );
+    }
   }
 }
 
 /**
- * Implements hook_views_ajax_data_alter().
+ * Implements hook_views_pre_view().
  */
-function nas_alters_views_ajax_data_alter(&$commands, $view) {
-  if ($view->current_display == 'nas_bird_guide_fav_birds') {
-    $commands[] = ajax_command_replace('.bird-card-grid .section-header h2', '<h2 class="thin">' . t('Matching Birds') . '</h2>');
+function nas_alters_views_pre_render(&$view) {
+  if ($view->name == 'nas_bird_guide' && $view->current_display == 'nas_bird_guide_fav_birds') {
+    $view->set_title(t('Some of Our Favorite Birds'));
+
+    if (!empty($view->exposed_input)) {
+      $view->set_title(t('Matching Birds'));
+      $query = drupal_get_query_parameters();
+      if (!empty($query['external_page'])) {
+        $view->set_title(t('Search results'));
+      }
+    }
   }
 }
