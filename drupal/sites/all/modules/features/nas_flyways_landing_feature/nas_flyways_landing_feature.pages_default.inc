@@ -15,7 +15,7 @@ function nas_flyways_landing_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Flyways Landing';
   $page->admin_description = '';
-  $page->path = 'flyways';
+  $page->path = 'birds/flyways';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();
