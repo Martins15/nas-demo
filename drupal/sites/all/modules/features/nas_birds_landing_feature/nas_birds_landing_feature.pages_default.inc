@@ -15,7 +15,7 @@ function nas_birds_landing_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Birds landing';
   $page->admin_description = '';
-  $page->path = 'birds-landing';
+  $page->path = 'birds';
   $page->access = array(
     'type' => 'none',
     'settings' => NULL,
