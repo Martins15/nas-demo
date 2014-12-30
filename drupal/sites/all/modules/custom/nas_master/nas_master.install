@@ -880,7 +880,7 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
 
     // Use only news for dev environment.
     if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-      $query->condition('n.type', 'news');
+      $query->condition('n.type', 'article');
     }
 
     $result = $query->execute();
