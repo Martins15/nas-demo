@@ -806,6 +806,7 @@ function nas_master_update_7063() {
   features_revert_module('nas_magazine_issue_feature');
   features_revert_module('nas_slideshow_feature');
   features_revert_module('nas_static_page_feature');
+  field_delete_field('field_first_name');
 }
 
 /**
