@@ -44,7 +44,7 @@ function nas_static_page_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'diff_standard' => array(
         'custom_settings' => FALSE,
@@ -77,6 +77,18 @@ function nas_static_page_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'nas_node_project_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'teaser_author_page' => array(
+        'custom_settings' => FALSE,
+      ),
+      'conservation_strategy_featured_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'conservation_strategy_list_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'about_page_related_teaser' => array(
         'custom_settings' => FALSE,
       ),
     ),

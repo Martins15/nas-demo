@@ -111,5 +111,5 @@ features[variable][] = panelizer_node:flyway_allowed_types
 features[variable][] = panelizer_node:flyway_allowed_types_default
 features[variable][] = panelizer_node:flyway_default
 features[variable][] = save_continue_flyway
-mtime = 1416402769
+mtime = 1418143783
 project path = sites/all/modules/features

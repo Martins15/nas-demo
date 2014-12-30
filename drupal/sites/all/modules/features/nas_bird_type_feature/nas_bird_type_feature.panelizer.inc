@@ -44,6 +44,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'in_action_right' => NULL,
       'in_the_news' => NULL,
       'card_set' => NULL,
+      'across_audubon' => NULL,
     ),
   );
   $display->cache = array();
@@ -51,6 +52,36 @@ function nas_bird_type_feature_panelizer_defaults() {
   $display->uuid = '1b138601-838d-40f7-b2c7-344286cc3a42';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-f8eb21bf-e505-414a-9f52-60bd70473956';
+    $pane->panel = 'across_audubon';
+    $pane->type = 'species_across_audubon';
+    $pane->subtype = 'species_across_audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'form_build_id' => 'form-GSmauLg4muEGhxgZVbn5bYLDEmFnbEWSP-XA5E5k2pI',
+      'form_token' => 'ogBRbRsemdkQHQfAoZikfMPRmiLteoPia6QZhU3lG0Y',
+      'form_id' => 'species_across_audubon_edit_form',
+      'context' => 'panelizer',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f8eb21bf-e505-414a-9f52-60bd70473956';
+    $display->content['new-f8eb21bf-e505-414a-9f52-60bd70473956'] = $pane;
+    $display->panels['across_audubon'][0] = 'new-f8eb21bf-e505-414a-9f52-60bd70473956';
     $pane = new stdClass();
     $pane->pid = 'new-449bfc00-7c71-49f9-bc11-d7e955ae9511';
     $pane->panel = 'card_set';
@@ -66,7 +97,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'default' => array(
-        'title' => '',
+        'title' => 'These birds need your help',
         'references' => array(
           1 => array(
             'entity_reference' => FALSE,
@@ -79,8 +110,8 @@ function nas_bird_type_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-dwZYY-BLjOvBMytCPEA2UEEPx_LcSWIzdZ4z3n92las',
-      'form_token' => '59jacBmUGYMQRs9aBJOSEA7qJ6DhAcBiQev_QvJ-GL4',
+      'form_build_id' => 'form-Sijy2qVMBaVydPDPzlka5gkgBkSBrfzc_SnTn8ai7os',
+      'form_token' => '_SjDeOqFYr6sfe_pSTa4MsoFMk2g4yYSdsL7P0-iSDU',
       'form_id' => 'engagement_cards_edit_form',
     );
     $pane->cache = array();
@@ -311,10 +342,10 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-26560f62-8a80-49c9-97c4-3b286dc5b5e7'] = $pane;
     $display->panels['main'][0] = 'new-26560f62-8a80-49c9-97c4-3b286dc5b5e7';
     $pane = new stdClass();
-    $pane->pid = 'new-8a0f19e4-bf97-4952-8153-df582f39fbb4';
+    $pane->pid = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
     $pane->panel = 'similar_birds';
     $pane->type = 'views_panes';
-    $pane->subtype = 'nas_similar_birds-nas_similar_birds';
+    $pane->subtype = 'nas_birds_view-explore_similar_birds';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -330,9 +361,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '8a0f19e4-bf97-4952-8153-df582f39fbb4';
-    $display->content['new-8a0f19e4-bf97-4952-8153-df582f39fbb4'] = $pane;
-    $display->panels['similar_birds'][0] = 'new-8a0f19e4-bf97-4952-8153-df582f39fbb4';
+    $pane->uuid = '1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
+    $display->content['new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c'] = $pane;
+    $display->panels['similar_birds'][0] = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
     $pane = new stdClass();
     $pane->pid = 'new-977db9c1-e7d8-4758-b09c-c90726dda353';
     $pane->panel = 'top';

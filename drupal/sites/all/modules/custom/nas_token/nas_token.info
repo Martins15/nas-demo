@@ -1,0 +1,4 @@
+name = NAS Path
+description = Provides custom token for building URL aliases
+core = 7.x
+package = NAS

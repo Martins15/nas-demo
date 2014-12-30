@@ -39,57 +39,7 @@
     <?php print $content['in_the_news']; ?>
   </div>
   <div id="across-audubon">
-    <div class="row section-header">
-      <div class="columns">
-        <h2 class="thin">Brown Thrasher Across Audubon</h2>
-      </div>
-      <div class="columns">
-        <ul class="section-nav inline-list hide-for-small hide-for-tiny">
-          <li><a href="#">More Conservation Projects »</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="row space-bottom">
-      <div class="large-4 columns">
-        <div class="editorial-card collapse-minimal">
-          <div class="editorial-card-photo">
-            <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-9.jpg'; ?>" alt=""></a>
-          </div>
-          <div class="editorial-card-content">
-            <a href="#" class="editorial-card-slug">Working Lands</a>
-            <h3 class="editorial-card-title"><a href="#">Improving Midwestern Ranch Lands</a></h3>
-            <p>Along with the title, we should include a short description of the project.</p>
-          </div>
-        </div>
-      </div>
-      <div class="large-4 columns">
-        <div class="editorial-card collapse-minimal">
-          <div class="editorial-card-photo">
-            <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-8.jpg'; ?>" alt=""></a>
-          </div>
-          <div class="editorial-card-content">
-            <a href="#" class="editorial-card-slug">Citizen Science</a>
-            <h3 class="editorial-card-title"><a href="#">Colorado’s Adobe Creek Reservoir</a></h3>
-            <p>This IBA home to populations of migrating Brown Thrashers.</p>
-          </div>
-        </div>
-      </div>
-      <div class="large-4 columns">
-        <div class="editorial-card collapse-minimal">
-          <div class="editorial-card-photo">
-            <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/editorial-card-9.jpg'; ?>" alt=""></a>
-          </div>
-          <div class="editorial-card-content">
-            <a href="#" class="editorial-card-slug">Working Lands</a>
-            <h3 class="editorial-card-title"><a href="#">Improving Midwestern Ranch Lands</a></h3>
-            <p>Along with the title, we should include a short description of the project.</p>
-          </div>
-        </div>
-      </div>
-      <ul class="section-nav inline-list hide-for-medium hide-for-large hide-for-xlarge">
-        <li><a href="#">More Conservation Projects »</a></li>
-      </ul>
-    </div>
+    <?php print $content['across_audubon']; ?>
   </div>
 </section>
 

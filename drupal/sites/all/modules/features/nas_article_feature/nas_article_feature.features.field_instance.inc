@@ -116,6 +116,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 160,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 15,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -307,6 +316,19 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 9,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 8,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -447,6 +469,13 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 11,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -576,6 +605,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 10,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
@@ -738,6 +774,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 2,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -868,6 +913,13 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 13,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 12,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -987,6 +1039,15 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 14,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
@@ -1120,6 +1181,13 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1248,6 +1316,15 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 14,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 13,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
@@ -1397,6 +1474,15 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 7,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 6,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
@@ -1567,6 +1653,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 15,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1692,6 +1784,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 12,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 11,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
@@ -1854,6 +1953,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1986,6 +2094,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 5,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 4,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
@@ -2126,6 +2241,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 8,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 7,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -2262,6 +2386,15 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 1,
+      ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -2393,6 +2526,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 1,
+      ),
+      'search_result' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
       ),
       'static_page_related_teaser' => array(
         'label' => 'hidden',

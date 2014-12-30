@@ -52,6 +52,12 @@ function editorial_card_3x_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
 
+  // Do not show context selector if configuration form is called from page.
+  if (isset($_GET['nas-panes-from-page'])) {
+    $form['context']['#prefix'] = '<div style="display:none;">';
+    $form['context']['#suffix'] = '</div>';
+  }
+
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'editorial_card_3x', 'nas_panes', 'plugins/content_types/editorial_card_3x');
 
@@ -249,11 +255,12 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           break;
 
         case 'er_field':
-          $field_items = field_get_items('node', $context->data, $options['field']);
-          foreach ($field_items as $item) {
-            if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
-              $build = node_view($node, 'nas_node_teaser_small');
-              $content[$key][] = drupal_render($build);
+          if ($field_items = field_get_items('node', $context->data, $options['field'])) {
+            foreach ($field_items as $item) {
+              if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
+                $build = node_view($node, 'nas_node_teaser_small');
+                $content[$key][] = drupal_render($build);
+              }
             }
           }
           break;
@@ -321,7 +328,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
       $teasers[] = $teaser;
     }
   }
-  $teasers = array_slice($teasers, 0, $conf['count']);
+  $teasers = array_slice($teasers, 0, !empty($conf['count']) ? $conf['count'] : 3);
 
   $title = '';
   if ($conf['override_title']) {

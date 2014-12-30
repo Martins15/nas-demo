@@ -15,7 +15,7 @@
   </div>
 </div>
 <section class="global-content">
-  <div class="bird-card-grid">
+  <!-- div opens in the boa-plate-binocular.tpl.php -->
     <?php print $content['bird_card_grid']; ?>
   </div>
   <?php print $content['in_the_news']; ?>

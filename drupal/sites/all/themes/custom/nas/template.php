@@ -54,6 +54,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'article') {
     nas_preprocess_node_article($vars);
   }
+  if ($vars['type'] == 'flyway') {
+    nas_preprocess_node_flyway($vars);
+  }
   if ($vars['type'] == 'magazine_issue') {
     nas_preprocess_node_magazine_issue($vars);
   }
@@ -65,6 +68,9 @@ function nas_preprocess_node(&$vars) {
   }
   if ($vars['type'] == 'static_page') {
     nas_preprocess_node_static_page($vars);
+  }
+  if ($vars['type'] == 'strategy') {
+    nas_preprocess_node_strategy($vars);
   }
   if ($vars['type'] == 'engagement_cards') {
     nas_preprocess_node_engagement_cards($vars);
@@ -173,13 +179,21 @@ function nas_preprocess_node_boa(&$vars) {
   $node = $vars['node'];
   $node_path = 'node/' . $node->nid;
   $vars['title_link'] = l($node->title, $node_path);
-
+  $vars['teaser_list_image'] = '';
   $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
   if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
     $illustration = theme('image_style', array(
         'style_name' => 'boa_family_species',
         'path' => $field_boa_illustration_items[0]['uri'],
     ));
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $field_boa_illustration_items[0]['uri']),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
   }
   $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
 
@@ -349,6 +363,7 @@ function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -412,7 +427,7 @@ function nas_preprocess_node_article(&$vars) {
       $vars['by_line'] = 'By ' . $author_node->title;
     }
   }
-  if ($vars['view_mode'] == 'teaser_author_page') {
+  if ($vars['view_mode'] == 'teaser_author_page' || $vars['view_mode'] == 'search_result') {
     $vars['article_date'] = '';
     if ($field_items = field_get_items('node', $node, 'field_article_date')) {
       $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
@@ -427,12 +442,27 @@ function nas_preprocess_node_article(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for Flyway content type.
+ */
+function nas_preprocess_node_flyway(&$vars) {
+  $node = $vars['node'];
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  $vars['summary'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_flyway_body')) {
+    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
+  }
+}
+
+/**
  * theme_preprocess_node for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -444,7 +474,17 @@ function nas_preprocess_node_static_page(&$vars) {
         'html' => TRUE,
         'attributes' => array('title' => $node->title),
       ));
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
   }
+
+  $vars['dateline'] = format_date($node->created, 'nas_date');
 
   $vars['subtitle'] = '';
   if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
@@ -453,10 +493,36 @@ function nas_preprocess_node_static_page(&$vars) {
 
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
   list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
   $vars['blue_text_link_url'] = $blue_text_link_url;
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
   $vars['custom_link_text'] = t('Read more');
+}
+
+/**
+ * theme_preprocess_node for Conservation strategy content type.
+ */
+function nas_preprocess_node_strategy(&$vars) {
+  $node = $vars['node'];
+  $vars['image_src'] = FALSE;
+  $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
+  if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
+    $hero_image = $hero_image_items[0]['file'];
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+  }
+
+  $vars['title'] = check_plain($node->title);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
 /**
@@ -466,6 +532,8 @@ function nas_preprocess_node_project(&$vars) {
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
+
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
     $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
@@ -474,6 +542,14 @@ function nas_preprocess_node_project(&$vars) {
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'alt' => $node->title,
+    ));
+    $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
         'html' => TRUE,
         'attributes' => array('title' => $node->title),
       ));
@@ -487,7 +563,7 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
-  if ($vars['view_mode'] == 'nas_node_teaser_small' || $vars['view_mode'] == 'nas_node_project_teaser') {
+  if (in_array($vars['view_mode'], array('nas_node_teaser_small', 'nas_node_project_teaser', 'search_result'))) {
     $vars['description'] = '';
     if (!empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['description'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
@@ -606,7 +682,7 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn', 'edit-submit-nas-bird-guide');
+  $button_tag = array('edit-nas-search-btn', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';

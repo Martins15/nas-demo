@@ -27,7 +27,8 @@ function nas_boa_feature_field_group_info() {
       1 => 'field_boa_illustration',
       2 => 'field_boa_plate',
       3 => 'field_boa_sciname',
-      4 => 'title',
+      4 => 'field_boa_plate_illustr_des',
+      5 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

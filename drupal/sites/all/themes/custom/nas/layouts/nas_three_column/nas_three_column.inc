@@ -15,6 +15,7 @@ $plugin = array(
   'icon' => 'nas_three_column.png',
   'theme' => 'nas_three_column',
   'regions' => array(
+    'magazine_bar' => t('Magazine Bar'),
     'left' => t('Left'),
     'main' => t('Main'),
     'right' => t('Right'),

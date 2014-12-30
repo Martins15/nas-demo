@@ -4,6 +4,7 @@
  * Template of NAS Three Column. Used in Press Release.
  */
 ?>
+<?php print $content['magazine_bar']; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

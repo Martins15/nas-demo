@@ -579,6 +579,41 @@ th {
   content: "\e128";
 }
 
+.-wrap-select {
+  -webkit-appearance: none !important;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  border: 1px solid #d4d4d4;
+  border-radius: 3px;
+  color: #626262;
+  padding: 0.5rem 1rem;
+  font-size: 1.0625rem;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  padding: 0;
+}
+.-wrap-select:focus {
+  background-color: #fff;
+  border-color: #aaa;
+  outline: none;
+}
+.-wrap-select select {
+  -moz-appearance: window;
+  margin-bottom: 0 !important;
+  border: 0;
+}
+.-wrap-select select option {
+  padding: 3px 6px;
+}
+.-wrap-select.ie {
+  overflow: hidden;
+}
+.-wrap-select.ie select {
+  width: 150%;
+  overflow: hidden;
+}
+
 /*Important: In case foundation doesn't compiled on some environments, attach compiled file*/
 meta.foundation-version {
   font-family: "/5.2.2/";
@@ -3463,6 +3498,46 @@ ul.pagination li {
     clear: both;
   }
 }
+.-wrap-select {
+  -webkit-appearance: none !important;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==");
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  border: 1px solid #d4d4d4;
+  border-radius: 3px;
+  color: #626262;
+  padding: 0.5rem 1rem;
+  font-size: 1.0625rem;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  padding: 0;
+}
+
+.-wrap-select:focus {
+  background-color: #fff;
+  border-color: #aaa;
+  outline: none;
+}
+
+.-wrap-select select {
+  -moz-appearance: window;
+  margin-bottom: 0 !important;
+  border: 0;
+}
+
+.-wrap-select select option {
+  padding: 3px 6px;
+}
+
+.-wrap-select.ie {
+  overflow: hidden;
+}
+
+.-wrap-select.ie select {
+  width: 150%;
+  overflow: hidden;
+}
+
 .hide, .hide-for-firsttime-visitors {
   display: none;
   visibility: hidden;
@@ -4396,6 +4471,9 @@ small {
   margin-bottom: 5px;
   font-size: 21px;
 }
+.bird-card-caption .common-name a {
+  color: #404040 !important;
+}
 .bird-card-caption .scientific-name {
   color: #838078;
   font-size: 12px;
@@ -4404,6 +4482,7 @@ small {
 }
 
 .bird-card-audio {
+  color: #0AA8E3 !important;
   display: block;
   font-size: 15px;
   line-height: 15px;
@@ -5279,11 +5358,12 @@ table.row-borders tbody td {
 }
 @media only screen and (min-width: 768px) {
   .global-header.transparent + .hero {
-    margin-top: -100px;
+    top: -100px;
+    margin-bottom: -100px;
   }
 }
 .hero.light-text a {
-  color: #fff !important;
+  color: #fff;
 }
 .hero.light-text a:hover {
   color: #d9d9d9;
@@ -5450,14 +5530,22 @@ table.row-borders tbody td {
     color: #fff;
     background-color: transparent;
     text-align: right;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     position: relative;
     padding-top: 0;
-    margin-bottom: 10px;
-    margin-top: -30px;
+    margin-bottom: -5px;
     z-index: 2;
   }
   .hero-attribution.align-left, .align-left.hero-attribution-fullscreen {
     text-align: left;
+  }
+  .hero-attribution .column, .hero-attribution-fullscreen .column {
+    position: absolute;
+    top: -30px;
+  }
+  .hero-attribution .hero-attribution-text, .hero-attribution-fullscreen .hero-attribution-text {
+    padding: 2px 5px;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -6420,6 +6508,7 @@ input.header-search-input,
 .flyway-megamap {
   height: 400px;
   background-position: center 100px;
+  background-repeat: no-repeat;
   background-size: 450px auto;
 }
 .flyway-megamap:before, .flyway-megamap:after {
@@ -7273,6 +7362,14 @@ body.touch .primary-sub-nav-index {
 .bird-card-set .bird-card-scroller {
   width: 1000px;
 }
+@media only screen and (min-width: 1000px) {
+  .bird-card-set .bird-card-scroller {
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+}
 .bird-card-set .bird-card {
   margin: 0 auto 12.5px auto;
 }
@@ -7309,10 +7406,7 @@ body.touch .primary-sub-nav-index {
     -webkit-transition: opacity 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
   }
-  .bird-card-set.bg-boa.show-bg {
-    background-image: url(../img/card-set-bg-2-color.jpg);
-  }
-  .bird-card-set.bg-boa.show-bg .row {
+  .bird-card-set.show-bg .row {
     opacity: 0;
     pointer-events: none;
   }
@@ -7528,7 +7622,6 @@ body.touch .primary-sub-nav-index {
   -o-transition: background-image 0.5s ease-in-out;
   -webkit-transition: background-image 0.5s ease-in-out;
   transition: background-image 0.5s ease-in-out;
-  background-image: url(../img/grid-bg-color.jpg);
 }
 .bird-card-grid.show-bg .row {
   -moz-transition: opacity 0.5s ease-in-out;
@@ -8958,6 +9051,11 @@ body.node-type-slideshow #tabs {
 .breakout-section.black-bg {
   background-color: #000;
 }
+@media only screen and (max-width: 767px) {
+  .breakout-section.fixed-height {
+    padding-bottom: 560px;
+  }
+}
 @media only screen and (min-width: 768px) {
   .breakout-section.fixed-height {
     height: 800px;
@@ -9350,7 +9448,6 @@ body.node-type-slideshow #tabs {
 .curtain {
   display: none;
   position: absolute;
-  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -9493,6 +9590,17 @@ body.node-type-slideshow #tabs {
   background-position: center center;
 }
 
+.curtain-wrapper {
+  position: static;
+}
+@media only screen and (min-width: 768px) {
+  .curtain-wrapper.on {
+    position: fixed;
+    left: 0;
+    width: 100%;
+  }
+}
+
 .bg-egg {
   position: absolute;
   display: none;
@@ -9617,6 +9725,15 @@ body.node-type-slideshow #tabs {
 .donation-form-body select {
   width: 100%;
 }
+.donation-form-body label {
+  display: inline !important;
+  margin: 0 !important;
+}
+.donation-form-body input[type="checkbox"],
+.donation-form-body input[type="radio"] {
+  display: inline;
+  margin: 0 0.5rem 1rem 0 !important;
+}
 .donation-form-body .donation-button-container {
   text-align: center;
 }
@@ -9635,6 +9752,7 @@ body.node-type-slideshow #tabs {
 .flyway-paths .flyway-megamap-point {
   position: absolute !important;
   top: auto;
+  bottom: 70px;
   left: 30px;
   margin-top: -180px;
   min-width: 120px;
@@ -9666,6 +9784,8 @@ body.node-type-slideshow #tabs {
   position: absolute;
   top: 0;
   opacity: 0;
+  z-index: 0;
+  width: 100%;
   -moz-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   -webkit-transition: opacity 0.5s ease-in-out;
@@ -9674,6 +9794,10 @@ body.node-type-slideshow #tabs {
 .flyway-path-map.current {
   position: relative;
   opacity: 1;
+  z-index: 1;
+}
+.flyway-path-map.current .flyway-megamap-point {
+  bottom: 55px;
 }
 
 .flyway-path-description,
@@ -9696,6 +9820,9 @@ body.node-type-slideshow #tabs {
 .flyway-path-dots {
   margin: 15px auto;
   text-align: center;
+}
+.flyway-path-dots a {
+  display: inline-block;
 }
 .flyway-path-dots .dot {
   display: inline-block;
@@ -11428,98 +11555,98 @@ body.touch .sticky-wrapper {
   top: 38px;
 }
 
-.page-boa .mobile-nav {
+.page-birds-of-america .mobile-nav {
   position: relative;
 }
-.page-boa .guide-bar-title {
+.page-birds-of-america .guide-bar-title {
   line-height: 23px;
   margin-left: 55px;
 }
-.page-boa .hero-header .hero-title {
+.page-birds-of-america .hero-header .hero-title {
   font-size: 75px;
   letter-spacing: -4px;
   font-weight: 300;
   line-height: 75px;
 }
 @media only screen and (min-width: 768px) and (max-width: 1279px) {
-  .page-boa .guide-bar-title {
+  .page-birds-of-america .guide-bar-title {
     font-size: 19px;
   }
 }
 @media only screen and (min-width: 601px) and (max-width: 767px) {
-  .page-boa .guide-bar-title {
+  .page-birds-of-america .guide-bar-title {
     font-size: 19px;
   }
-  .page-boa .row .hero-header {
+  .page-birds-of-america .row .hero-header {
     padding-bottom: 10px;
   }
-  .page-boa .row .hero-header .hero-title {
+  .page-birds-of-america .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
     letter-spacing: 0;
   }
 }
 @media only screen and (max-width: 479px) {
-  .page-boa .guide-bar-title {
+  .page-birds-of-america .guide-bar-title {
     font-size: 19px;
   }
-  .page-boa .row .hero-header {
+  .page-birds-of-america .row .hero-header {
     padding-bottom: 10px;
   }
-  .page-boa .row .hero-header .hero-title {
+  .page-birds-of-america .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
     letter-spacing: 0;
   }
-  .page-boa .john-audubon-logo {
+  .page-birds-of-america .john-audubon-logo {
     max-width: 61px;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .row .hero-header {
+  .page-birds-of-america .row .hero-header {
     padding-bottom: 10px;
   }
-  .page-boa .row .hero-header .hero-title {
+  .page-birds-of-america .row .hero-header .hero-title {
     font-size: 34px;
     line-height: 38px;
     letter-spacing: 0;
   }
 }
-.page-boa .action-nav {
+.page-birds-of-america .action-nav {
   margin: 0;
 }
-.page-boa .action-nav .action-nav-item {
+.page-birds-of-america .action-nav .action-nav-item {
   width: 33%;
 }
-.page-boa .action-nav .action-nav-item:first-child {
+.page-birds-of-america .action-nav .action-nav-item:first-child {
   padding-right: 4px;
 }
-.page-boa .action-nav .action-nav-item:last-child {
+.page-birds-of-america .action-nav .action-nav-item:last-child {
   margin-left: 0;
   padding-left: 4px;
   width: 34%;
 }
-.page-boa .action-nav .action-nav-item a {
+.page-birds-of-america .action-nav .action-nav-item a {
   border-radius: 0 !important;
   font-size: 20px !important;
   width: 100%;
 }
 @media only screen and (max-width: 479px) {
-  .page-boa .action-nav .action-nav-item a {
+  .page-birds-of-america .action-nav .action-nav-item a {
     font-size: 16px !important;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-  .page-boa .action-nav {
+  .page-birds-of-america .action-nav {
     box-sizing: content-box;
     margin-left: -12.5px;
     margin-top: 0;
   }
-  .page-boa .action-nav .action-nav-item:last-child {
+  .page-birds-of-america .action-nav .action-nav-item:last-child {
     width: 32%;
   }
 }
-.page-boa .hero-header {
+.page-birds-of-america .hero-header {
   padding-bottom: 60px;
 }
 

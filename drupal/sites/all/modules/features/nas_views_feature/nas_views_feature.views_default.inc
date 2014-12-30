@@ -62,20 +62,27 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Menu Section (field_menu_section) */
+  $handler->display->display_options['filters']['field_menu_section_tid']['id'] = 'field_menu_section_tid';
+  $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
+  $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
+  $handler->display->display_options['filters']['field_menu_section_tid']['value'] = array(
+    4 => '4',
+  );
+  $handler->display->display_options['filters']['field_menu_section_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_menu_section_tid']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_menu_section_tid']['vocabulary'] = 'menu_section';
+  $handler->display->display_options['filters']['field_menu_section_tid']['hierarchy'] = 1;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
+    'static_page' => 'static_page',
   );
-  /* Filter criterion: Panelizer: Panelizer layout */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'panelizer_entity';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['value'] = array(
-    'node:article:fullscreen_image' => 'node:article:fullscreen_image',
-  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   $export['articles_more_features'] = $view;
 
   $view = new view();
@@ -589,6 +596,129 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['inherit_panels_path'] = '1';
   $export['nas_bird_guide'] = $view;
+
+  $view = new view();
+  $view->name = 'nas_birds_view';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Birds';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
+    'bird' => 'bird',
+  );
+  $handler->display->display_options['arguments']['nid']['validate_options']['access'] = TRUE;
+  $handler->display->display_options['arguments']['nid']['validate_options']['nid_type'] = 'nids';
+  $handler->display->display_options['arguments']['nid']['break_phrase'] = TRUE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'bird' => 'bird',
+  );
+
+  /* Display: Explore Similar Birds */
+  $handler = $view->new_display('panel_pane', 'Explore Similar Birds', 'explore_similar_birds');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Explore Similar Birds';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['relationship'] = 'field_related_bird_target_id';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['id'] = 'field_related_bird_target_id';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['table'] = 'field_data_field_related_bird';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['field'] = 'field_related_bird_target_id';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['label'] = 'field_related_bird';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['required'] = TRUE;
+  $handler->display->display_options['pane_category']['name'] = 'NAS';
+  $handler->display->display_options['pane_category']['weight'] = '0';
+  $handler->display->display_options['argument_input'] = array(
+    'nid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Nid',
+    ),
+  );
+
+  /* Display: Audubon Bird Guide Random */
+  $handler = $view->new_display('panel_pane', 'Audubon Bird Guide Random', 'audubon_bird_guide_random');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'The Audubon Bird Guide';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['id'] = 'field_related_bird_target_id';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['table'] = 'field_data_field_related_bird';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['field'] = 'field_related_bird_target_id';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['label'] = 'from field_related_bird';
+  $handler->display->display_options['relationships']['field_related_bird_target_id']['required'] = TRUE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['pane_category']['name'] = 'NAS';
+  $handler->display->display_options['pane_category']['weight'] = '0';
+  $export['nas_birds_view'] = $view;
 
   $view = new view();
   $view->name = 'nas_most_viewed_articles';
@@ -1554,253 +1684,6 @@ function nas_views_feature_views_default_views() {
     'bird' => 'bird',
   );
 
-  /* Display: Explore Similar Birds */
-  $handler = $view->new_display('panel_pane', 'Explore Similar Birds', 'nas_similar_birds');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Explore Similar Birds';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Illustration */
-  $handler->display->display_options['fields']['field_bird_illustration']['id'] = 'field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['table'] = 'field_data_field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_illustration']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_class'] = 'bird-card-illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
-    'file_view_mode' => 'bird_teaser_illustration',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  /* Field: Content: Scientific Name */
-  $handler->display->display_options['fields']['field_bird_sci_name']['id'] = 'field_bird_sci_name';
-  $handler->display->display_options['fields']['field_bird_sci_name']['table'] = 'field_data_field_bird_sci_name';
-  $handler->display->display_options['fields']['field_bird_sci_name']['field'] = 'field_bird_sci_name';
-  $handler->display->display_options['fields']['field_bird_sci_name']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['field_bird_sci_name']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_sci_name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['text'] = '<p class="scientific-name">[field_bird_sci_name-value]</p>';
-  $handler->display->display_options['fields']['field_bird_sci_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['type'] = 'text_plain';
-  /* Field: Content: Audio */
-  $handler->display->display_options['fields']['field_bird_audio']['id'] = 'field_bird_audio';
-  $handler->display->display_options['fields']['field_bird_audio']['table'] = 'field_data_field_bird_audio';
-  $handler->display->display_options['fields']['field_bird_audio']['field'] = 'field_bird_audio';
-  $handler->display->display_options['fields']['field_bird_audio']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['field_bird_audio']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_audio']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_audio']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_audio']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_bird_audio']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_audio']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_bird_audio']['type'] = 'soundmanager2_inline_player';
-  $handler->display->display_options['fields']['field_bird_audio']['settings'] = array(
-    'pause' => 'pause',
-    'text' => 'file_description',
-  );
-  $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
-  $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
-  /* Field: Content: Path */
-  $handler->display->display_options['fields']['path']['id'] = 'path';
-  $handler->display->display_options['fields']['path']['table'] = 'node';
-  $handler->display->display_options['fields']['path']['field'] = 'path';
-  $handler->display->display_options['fields']['path']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['path']['label'] = '';
-  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  /* Field: Output */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Output';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
-<div class="bird-card-illustration">
-<a href="[path]">[field_bird_illustration]</a>
-</div>
-<figcaption class="bird-card-caption">
-<h4 class="common-name">[title]</h4>
-[field_bird_sci_name]
-</figcaption>
-<div class="views-field-field-bird-audio">[field_bird_audio]</div>
-</figure>
-';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
-  $handler->display->display_options['pane_category']['name'] = 'NAS';
-  $handler->display->display_options['pane_category']['weight'] = '0';
-  $handler->display->display_options['allow']['use_pager'] = 0;
-  $handler->display->display_options['allow']['items_per_page'] = 0;
-  $handler->display->display_options['allow']['offset'] = 0;
-  $handler->display->display_options['allow']['link_to_view'] = 0;
-  $handler->display->display_options['allow']['more_link'] = 0;
-  $handler->display->display_options['allow']['path_override'] = 0;
-  $handler->display->display_options['allow']['title_override'] = 0;
-  $handler->display->display_options['allow']['exposed_form'] = 0;
-  $handler->display->display_options['allow']['fields_override'] = 0;
-  $handler->display->display_options['argument_input'] = array(
-    'nid' => array(
-      'type' => 'context',
-      'context' => 'entity:node.nid',
-      'context_optional' => 0,
-      'panel' => '0',
-      'fixed' => '',
-      'label' => 'Content: Nid',
-    ),
-  );
-
-  /* Display: Audubon Bird Guide Random */
-  $handler = $view->new_display('panel_pane', 'Audubon Bird Guide Random', 'audubon_bird_guide_random');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'The Audubon Bird Guide';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['row_class'] = 'columns tiny-3';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Illustration */
-  $handler->display->display_options['fields']['field_bird_illustration']['id'] = 'field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['table'] = 'field_data_field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['field'] = 'field_bird_illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['field_bird_illustration']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_illustration']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_illustration']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_bird_illustration']['element_wrapper_class'] = 'bird-card-illustration';
-  $handler->display->display_options['fields']['field_bird_illustration']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_illustration']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_bird_illustration']['settings'] = array(
-    'file_view_mode' => 'bird_teaser_illustration',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  /* Field: Content: Scientific Name */
-  $handler->display->display_options['fields']['field_bird_sci_name']['id'] = 'field_bird_sci_name';
-  $handler->display->display_options['fields']['field_bird_sci_name']['table'] = 'field_data_field_bird_sci_name';
-  $handler->display->display_options['fields']['field_bird_sci_name']['field'] = 'field_bird_sci_name';
-  $handler->display->display_options['fields']['field_bird_sci_name']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['field_bird_sci_name']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_sci_name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['alter']['text'] = '<p class="scientific-name">[field_bird_sci_name-value]</p>';
-  $handler->display->display_options['fields']['field_bird_sci_name']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_sci_name']['type'] = 'text_plain';
-  /* Field: Content: Audio */
-  $handler->display->display_options['fields']['field_bird_audio']['id'] = 'field_bird_audio';
-  $handler->display->display_options['fields']['field_bird_audio']['table'] = 'field_data_field_bird_audio';
-  $handler->display->display_options['fields']['field_bird_audio']['field'] = 'field_bird_audio';
-  $handler->display->display_options['fields']['field_bird_audio']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['field_bird_audio']['label'] = '';
-  $handler->display->display_options['fields']['field_bird_audio']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_bird_audio']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_audio']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_bird_audio']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_bird_audio']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_bird_audio']['type'] = 'soundmanager2_inline_player';
-  $handler->display->display_options['fields']['field_bird_audio']['settings'] = array(
-    'pause' => 'pause',
-    'text' => 'file_description',
-  );
-  $handler->display->display_options['fields']['field_bird_audio']['delta_limit'] = '1';
-  $handler->display->display_options['fields']['field_bird_audio']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_bird_audio']['separator'] = '';
-  /* Field: Content: Path */
-  $handler->display->display_options['fields']['path']['id'] = 'path';
-  $handler->display->display_options['fields']['path']['table'] = 'node';
-  $handler->display->display_options['fields']['path']['field'] = 'path';
-  $handler->display->display_options['fields']['path']['relationship'] = 'field_related_bird_target_id';
-  $handler->display->display_options['fields']['path']['label'] = '';
-  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  /* Field: Output */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Output';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<figure class="bird-card">
-<div class="bird-card-illustration">
-<a href="[path]">[field_bird_illustration]</a>
-</div>
-<figcaption class="bird-card-caption">
-<h4 class="common-name">[title]</h4>
-[field_bird_sci_name]
-</figcaption>
-<div class="views-field-field-bird-audio">[field_bird_audio]</div>
-</figure>
-';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Global: Random */
-  $handler->display->display_options['sorts']['random']['id'] = 'random';
-  $handler->display->display_options['sorts']['random']['table'] = 'views';
-  $handler->display->display_options['sorts']['random']['field'] = 'random';
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  $handler->display->display_options['pane_category']['name'] = 'NAS';
-  $handler->display->display_options['pane_category']['weight'] = '0';
-  $handler->display->display_options['allow']['use_pager'] = 0;
-  $handler->display->display_options['allow']['items_per_page'] = 0;
-  $handler->display->display_options['allow']['offset'] = 0;
-  $handler->display->display_options['allow']['link_to_view'] = 0;
-  $handler->display->display_options['allow']['more_link'] = 0;
-  $handler->display->display_options['allow']['path_override'] = 0;
-  $handler->display->display_options['allow']['title_override'] = 0;
-  $handler->display->display_options['allow']['exposed_form'] = 0;
-  $handler->display->display_options['allow']['fields_override'] = 0;
-  $handler->display->display_options['argument_input'] = array(
-    'nid' => array(
-      'type' => 'context',
-      'context' => 'entity:node.nid',
-      'context_optional' => 0,
-      'panel' => '0',
-      'fixed' => '',
-      'label' => 'Content: Nid',
-    ),
-  );
-
   /* Display: Birds in This Story */
   $handler = $view->new_display('panel_pane', 'Birds in This Story', 'nas_birds_in_this_story');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -2037,6 +1920,68 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'reverse_field_project_related_birds_node';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'project' => 'project',
+  );
+
+  /* Display: Across Audubon */
+  $handler = $view->new_display('panel_pane', 'Across Audubon', 'nas_across_audubon');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_project_related_birds_target_id']['id'] = 'field_project_related_birds_target_id';
+  $handler->display->display_options['relationships']['field_project_related_birds_target_id']['table'] = 'field_data_field_project_related_birds';
+  $handler->display->display_options['relationships']['field_project_related_birds_target_id']['field'] = 'field_project_related_birds_target_id';
+  $handler->display->display_options['relationships']['field_project_related_birds_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referencing entity */
+  $handler->display->display_options['relationships']['reverse_field_project_related_birds_node']['id'] = 'reverse_field_project_related_birds_node';
+  $handler->display->display_options['relationships']['reverse_field_project_related_birds_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_project_related_birds_node']['field'] = 'reverse_field_project_related_birds_node';
+  $handler->display->display_options['relationships']['reverse_field_project_related_birds_node']['relationship'] = 'field_project_related_birds_target_id';
+  $handler->display->display_options['relationships']['reverse_field_project_related_birds_node']['required'] = TRUE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['relationship'] = 'field_project_related_birds_target_id';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['relationship'] = 'reverse_field_project_related_birds_node';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['relationship'] = 'reverse_field_project_related_birds_node';
   $handler->display->display_options['filters']['type']['value'] = array(
     'project' => 'project',
   );
