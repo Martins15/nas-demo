@@ -1044,7 +1044,7 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       $content_image = array(
         'url' => image_style_url('slideshow', $image['uri']),
         // Additional fields to display on each slide.
-        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_credit'][LANGUAGE_NONE][0]['value']) : '',
+        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? $image['field_file_credit'][LANGUAGE_NONE][0]['value'] : '',
         'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
         'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
         'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',

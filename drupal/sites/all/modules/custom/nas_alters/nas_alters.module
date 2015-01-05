@@ -6,6 +6,17 @@
  */
 
 /**
+ * Implements hook_init().
+ *
+ */
+function nas_alters_init() {
+  global $theme;
+
+  if ($theme == 'adminimal') {
+    drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
+  }
+}
+/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Alter the node forms.
@@ -201,4 +212,33 @@ function nas_alters_views_pre_render(&$view) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_file_entity_add_upload_alter(&$form, &$form_state, $form_id) {
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
+  $form['filename']['#title'] = t('File name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
+  $form['filename']['#title'] = t('File name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
+  $form['label']['#prefix'] = '<div style="display:none;">';
+  $form['label']['#suffix'] = '</div>';
+  $form['label']['#default_value'] = 'bean_block';
+  $form['title']['#prefix'] = '<div style="display:none;">';
+  $form['title']['#suffix'] = '</div>';
+  $form['view_mode']['#prefix'] = '<div style="display:none;">';
+  $form['view_mode']['#suffix'] = '</div>';
 }
