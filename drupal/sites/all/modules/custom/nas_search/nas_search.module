@@ -139,7 +139,7 @@ function nas_search_block_view_alter(&$data, $block) {
         break;
 
       case 'section':
-        $data['subject'] = t('Filter by Group');
+        $data['subject'] = t('Filter by Section');
         break;
 
       // @todo: replace when type facet will be refined.
