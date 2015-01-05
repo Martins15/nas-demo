@@ -656,6 +656,7 @@ function nas_master_update_7058(&$sandbox) {
  */
 function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name) {
   if (!isset($sandbox['progress'])) {
+    $limited = FALSE;
     // Add nids to sandbox.
     switch ($d6_content_type) {
       case 'news_import':
@@ -663,7 +664,13 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
         $article_nids = drupal_json_decode($result->data);
         $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'magazine_article');
         $magazine_article_nids = drupal_json_decode($result->data);
-        $sandbox['nids'] = array_merge($article_nids, $magazine_article_nids);
+        if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev' && !$limited) {
+          $limited = TRUE;
+          $sandbox['nids'] = array_merge(array_slice($article_nids, 0, 20), array_slice($magazine_article_nids, 0, 20));
+        }
+        else {
+          $sandbox['nids'] = array_merge($article_nids, $magazine_article_nids);
+        }
         break;
 
       case 'user':
@@ -681,8 +688,9 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
         $sandbox['nids'] = drupal_json_decode($result->data);
         break;
     }
+
     // Limit nodes for dev environment.
-    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev' && !$limited) {
       $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
       // Define nid of static page that has images.
       if ($feeds_importer == 'static_pages_import') {
@@ -697,7 +705,12 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
   if (!empty($sandbox['max'])) {
     // Get part of ids.
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
-    pp_import_nodes_batch($nids, $feeds_importer);
+    if ($d6_content_type == 'user') {
+      pp_import_users_batch($nids, $feeds_importer);
+    }
+    else {
+      pp_import_nodes_batch($nids, $feeds_importer);
+    }
     $sandbox['progress'] += count($nids);
   }
 
@@ -970,24 +983,24 @@ function nas_master_update_7069() {
 }
 
 /**
- * Migrate news.
- */
-function nas_master_update_7071(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'news', 'news_import', t('News import'));
-}
-
-/**
  * Migrate users.
  */
-function nas_master_update_7072(&$sandbox) {
+function nas_master_update_7071(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'user', 'users_import', t('Users import'));
 }
 
 /**
  * Migrate Authors.
  */
-function nas_master_update_7073(&$sandbox) {
+function nas_master_update_7072(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'author', 'authors_import', t('Authors import'));
+}
+
+/**
+ * Migrate news.
+ */
+function nas_master_update_7073(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'news', 'news_import', t('News import'));
 }
 
 /**
