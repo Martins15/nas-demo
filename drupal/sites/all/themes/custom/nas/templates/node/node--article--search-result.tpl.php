@@ -96,8 +96,12 @@
     <div class="tiny-8 columns">
       <div class="editorial-card-content">
         <div class="editorial-card-info">
-          <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
-          <span class="editorial-card-dateline"><?php print $article_date; ?></span>
+          <?php if ($blue_text_link_url): ?>
+            <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
+            <span class="editorial-card-dateline"><?php print $article_date; ?></span>
+          <?php else: ?>
+            <span class="editorial-card-dateline editorial-card-dateline-without-separator"><?php print $article_date; ?></span>
+          <?php endif; ?>
         </div>
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
         <p><?php print render($content['body']); ?></p>
