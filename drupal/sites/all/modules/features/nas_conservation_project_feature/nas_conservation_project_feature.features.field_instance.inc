@@ -238,7 +238,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 5,
     ),
   );
 
@@ -341,7 +341,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -440,7 +440,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -576,7 +576,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
@@ -703,7 +703,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 3,
     ),
   );
 
@@ -806,7 +806,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -932,7 +932,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 

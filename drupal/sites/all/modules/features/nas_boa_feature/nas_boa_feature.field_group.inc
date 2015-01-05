@@ -45,14 +45,14 @@ function nas_boa_feature_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
-  $field_group->identifier = 'group_references|node|boa|form';
-  $field_group->group_name = 'group_references';
+  $field_group->identifier = 'group_menu_sections_references|node|boa|form';
+  $field_group->group_name = 'group_menu_sections_references';
   $field_group->entity_type = 'node';
   $field_group->bundle = 'boa';
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'References',
+    'label' => 'Menu sections & references',
     'weight' => '1',
     'children' => array(
       0 => 'field_boa_bird',
@@ -65,12 +65,12 @@ function nas_boa_feature_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => 'group-references field-group-tab',
+        'classes' => 'group-menu-sections-references field-group-tab',
         'required_fields' => 1,
       ),
     ),
   );
-  $export['group_references|node|boa|form'] = $field_group;
+  $export['group_menu_sections_references|node|boa|form'] = $field_group;
 
   return $export;
 }

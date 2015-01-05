@@ -878,9 +878,7 @@ function nas_field__field_author__article($variables) {
  */
 function nas_preprocess_field_field_related_bird_contact(&$variables) {
   $name = '';
-  if (!empty($variables['element']['#object']->field_first_name[LANGUAGE_NONE][0]['safe_value'])) {
-    $name = $variables['element']['#object']->field_first_name[LANGUAGE_NONE][0]['safe_value'] . "'s ";
-  }
+  $name = strtok($variables['element']['#object']->title, ' ') . "'s ";
   $variables['label'] = check_plain($name . 'Favorite Birds');
 }
 

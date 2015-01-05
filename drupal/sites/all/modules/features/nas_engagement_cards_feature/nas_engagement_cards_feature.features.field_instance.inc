@@ -125,7 +125,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 31,
+      'weight' => 2,
     ),
   );
 
@@ -199,7 +199,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_custom_section',
-    'label' => 'Custom Section',
+    'label' => 'Editorial Section',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -212,7 +212,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 41,
+      'weight' => 7,
     ),
   );
 
@@ -353,7 +353,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 35,
+      'weight' => 4,
     ),
   );
 
@@ -455,7 +455,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 33,
+      'weight' => 3,
     ),
   );
 
@@ -539,7 +539,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 39,
+      'weight' => 6,
     ),
   );
 
@@ -627,14 +627,14 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 37,
+      'weight' => 5,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Birds');
-  t('Custom Section');
+  t('Editorial Section');
   t('Image');
   t('Link');
   t('Menu Section');
