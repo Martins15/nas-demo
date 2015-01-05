@@ -179,7 +179,7 @@ function nas_search_get_article_section($entity, array $options, $name, $entity_
  * Implements hook_block_view_alter().
  */
 function nas_search_block_view_alter(&$data, $block) {
-    if ($block->module == 'facetapi' && $data) {
+  if ($block->module == 'facetapi' && $data) {
     $facetid = $data['content']['#settings']->facet;
     switch ($facetid) {
       case 'year':
@@ -204,7 +204,6 @@ function nas_search_block_view_alter(&$data, $block) {
     $data['content'][$facetid]['#theme'] = 'nas_search_facet_block';
     $data['content'][$facetid]['#subject'] = $data['subject'];
   }
-
 }
 
 /**
@@ -213,7 +212,7 @@ function nas_search_block_view_alter(&$data, $block) {
 function nas_search_facet_items_alter(&$build, &$settings) {
   if ($settings->facet == 'month') {
     foreach ($build as $key => $item) {
-      $build[$key]['#markup'] = date('F', mktime(null, null, null, $item['#indexed_value']));
+      $build[$key]['#markup'] = date('F', mktime(NULL, NULL, NULL, $item['#indexed_value']));
     }
   }
 }
