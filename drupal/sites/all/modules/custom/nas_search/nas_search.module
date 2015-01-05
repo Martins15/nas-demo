@@ -72,6 +72,13 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => 'nas_search_get_article_year',
     'calculated' => TRUE,
   );
+  $properties['month'] = array(
+    'label' => t("Article month"),
+    'description' => t("Article month."),
+    'type' => 'integer',
+    'getter callback' => 'nas_search_get_article_month',
+    'calculated' => TRUE,
+  );
   $properties['section'] = array(
     'label' => t('Article Section'),
     'type' => 'taxonomy_term',
@@ -79,6 +86,40 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => 'nas_search_get_article_section',
     'calculated' => TRUE,
   );
+  $info['node']['properties']['type_for_search'] = array(
+    'label' => t('Type (for search)'),
+    'type' => 'string',
+    'description' => t('Content type for search'),
+    'getter callback' => '_nas_search_node_get_type_for_search',
+    'calculated' => TRUE,
+  );
+}
+
+/**
+ * Node's Type (for search) property getter callback.
+ */
+function _nas_search_node_get_type_for_search($entity, array $options, $name, $entity_type) {
+  if ($entity->type == 'article') {
+    if (!empty($entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'])) {
+      return 'Magazine Article';
+    }
+    return 'News';
+  }
+
+  $map = array(
+    'project' => 'Projects',
+    'strategy' => 'Strategies',
+    'static_page' => 'Pages',
+    'boa' => 'Birds of America',
+    'flyway' => 'Flyways',
+  );
+  if (isset($map[$entity->type])) {
+    return $map[$entity->type];
+  }
+
+  // Fallback for CT not listed in mapping.
+  $node_type = node_type_get_type($entity);
+  return $node_type->name;
 }
 
 /**
@@ -86,6 +127,13 @@ function nas_search_entity_property_info_alter(&$info) {
  */
 function nas_search_get_article_year($entity, array $options, $name, $entity_type) {
   return (int) substr($entity->field_article_date[LANGUAGE_NONE][0]['value'], 0, 4);
+}
+
+/**
+ * Article month entity property getter callback.
+ */
+function nas_search_get_article_month($entity, array $options, $name, $entity_type) {
+  return (int) substr($entity->field_article_date[LANGUAGE_NONE][0]['value'], 5, 2);
 }
 
 /**
@@ -131,19 +179,22 @@ function nas_search_get_article_section($entity, array $options, $name, $entity_
  * Implements hook_block_view_alter().
  */
 function nas_search_block_view_alter(&$data, $block) {
-  if ($block->module == 'facetapi' && $data) {
+    if ($block->module == 'facetapi' && $data) {
     $facetid = $data['content']['#settings']->facet;
     switch ($facetid) {
       case 'year':
-        $data['subject'] = t('Filter by Year');
+        $data['subject'] = t('Filter by Date');
+        break;
+
+      case 'month':
+        $data['subject'] = '';
         break;
 
       case 'section':
         $data['subject'] = t('Filter by Section');
         break;
 
-      // @todo: replace when type facet will be refined.
-      case 'type':
+      case 'type_for_search':
         $data['subject'] = t('Filter by Type');
         break;
     }
@@ -154,4 +205,15 @@ function nas_search_block_view_alter(&$data, $block) {
     $data['content'][$facetid]['#subject'] = $data['subject'];
   }
 
+}
+
+/**
+ * Implementes hook_facet_items_alter().
+ */
+function nas_search_facet_items_alter(&$build, &$settings) {
+  if ($settings->facet == 'month') {
+    foreach ($build as $key => $item) {
+      $build[$key]['#markup'] = date('F', mktime(null, null, null, $item['#indexed_value']));
+    }
+  }
 }
