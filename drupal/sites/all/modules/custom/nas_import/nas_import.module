@@ -427,7 +427,6 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (!empty($item['created'])) {
     $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);
   }
-  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
 
   if (isset($item['field_article_intro'][0]['value'])) {
     $entity->field_subtitle[LANGUAGE_NONE][0] = array('value' => strip_tags($item['field_article_intro'][0]['value']));
