@@ -656,23 +656,8 @@ function nas_master_update_7058(&$sandbox) {
  */
 function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name) {
   if (!isset($sandbox['progress'])) {
-    $limited = FALSE;
     // Add nids to sandbox.
     switch ($d6_content_type) {
-      case 'news_import':
-        $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $d6_content_type);
-        $article_nids = drupal_json_decode($result->data);
-        $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'magazine_article');
-        $magazine_article_nids = drupal_json_decode($result->data);
-        if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev' && !$limited) {
-          $limited = TRUE;
-          $sandbox['nids'] = array_merge(array_slice($article_nids, 0, 20), array_slice($magazine_article_nids, 0, 20));
-        }
-        else {
-          $sandbox['nids'] = array_merge($article_nids, $magazine_article_nids);
-        }
-        break;
-
       case 'user':
         $result = drupal_http_request(EXPORT_USERS_LIST_UIDS_URL);
         $sandbox['nids'] = drupal_json_decode($result->data);
@@ -690,7 +675,7 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     }
 
     // Limit nodes for dev environment.
-    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev' && !$limited) {
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
       $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
       // Define nid of static page that has images.
       if ($feeds_importer == 'static_pages_import') {
@@ -976,7 +961,7 @@ function nas_master_update_7069() {
   foreach ($importers as $importer) {
     $source = feeds_source($importer);
     $count = $source->itemCount();
-    $source->startClear();
+    $source->clear();
 
     watchdog('nas_master', '@count nodes of @importer has been successfully removed.', array('@count' => $count, '@importer' => $importer));
   }
@@ -1004,22 +989,29 @@ function nas_master_update_7073(&$sandbox) {
 }
 
 /**
- * Migrate Contacts.
+ * Migrate Magazine Articles.
  */
 function nas_master_update_7074(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_article', 'news_import', t('Magazine article import'));
+}
+
+/**
+ * Migrate Contacts.
+ */
+function nas_master_update_7075(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'profile', 'contacts_import', t('Contacts import'));
 }
 
 /**
  * Migrate Media Gallery.
  */
-function nas_master_update_7075(&$sandbox) {
+function nas_master_update_7076(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'media_gallery', 'media_gallery_import', t('Media Gallery import'));
 }
 
 /**
  * Migrate Static Pages.
  */
-function nas_master_update_7076(&$sandbox) {
+function nas_master_update_7077(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }
