@@ -972,6 +972,16 @@ function nas_master_update_7069() {
 }
 
 /**
+ * Revert search page feature.
+ */
+function nas_master_update_7070() {
+  module_enable(array('search_api_facetapi'));
+  features_revert_module('nas_search_feature');
+  features_revert_module('nas_solr_feature');
+  _block_rehash('nas');
+}
+
+/**
  * Migrate users.
  */
 function nas_master_update_7071(&$sandbox) {

@@ -4732,6 +4732,9 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   content: '|';
   margin-right: 3px;
 }
+.editorial-card-dateline.editorial-card-dateline-without-separator:before {
+  content: none;
+}
 
 .editorial-card-link {
   font-size: 14px;
