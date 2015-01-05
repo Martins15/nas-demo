@@ -737,6 +737,11 @@ function nas_panes_theme() {
       'template' => 'local-chapters-centers-block-content',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block',
     ),
+    'search_results_count' => array(
+      'variables' => array(),
+      'template' => 'search-results-count',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/search_results_count',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
