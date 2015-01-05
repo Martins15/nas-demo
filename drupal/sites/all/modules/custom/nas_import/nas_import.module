@@ -340,7 +340,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   // Convert inline images with captions.
   if (!empty($item['body'])) {
     // @codingStandardsIgnoreStart
-    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:([^\[\]]*)\]/x', function ($matches) use ($images_mapping) {
       $token = trim($matches[0], '[]');
       list($image_id, $align, $caption) = explode('|', $token);
       // Remove 'img:' from the beginning.
@@ -500,7 +500,7 @@ function nas_import_feeds_presave_static_pages_import(FeedsSource $source, $enti
   // Convert inline images with captions.
   if (!empty($item['body'])) {
     // @codingStandardsIgnoreStart
-    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:([^\[\]]*)\]/x', function ($matches) use ($images_mapping) {
       $token = trim($matches[0], '[]');
       list($image_id, $align, $caption) = explode('|', $token);
       // Remove 'img:' from the beginning.
