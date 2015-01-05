@@ -15,6 +15,14 @@ function nas_search_theme() {
       'template' => 'nas_search_page_search_form',
       'path' => drupal_get_path('module', 'nas_search') . '/templates',
     ),
+    'nas_search_facet_block' => array(
+      'variables' => array(
+        'subject' => NULL,
+        'items' => array(),
+      ),
+      'template' => 'nas_search_facet_block',
+      'path' => drupal_get_path('module', 'nas_search') . '/templates',
+    ),
   );
 
   return $themes;
@@ -117,4 +125,33 @@ function nas_search_get_article_section($entity, array $options, $name, $entity_
     return $term;
   }
   return NULL;
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function nas_search_block_view_alter(&$data, $block) {
+  if ($block->module == 'facetapi' && $data) {
+    $facetid = $data['content']['#settings']->facet;
+    switch ($facetid) {
+      case 'year':
+        $data['subject'] = t('Filter by Year');
+        break;
+
+      case 'section':
+        $data['subject'] = t('Filter by Group');
+        break;
+
+      // @todo: replace when type facet will be refined.
+      case 'type':
+        $data['subject'] = t('Filter by Type');
+        break;
+    }
+    foreach ($data['content'][$facetid]['#items'] as &$item) {
+      $item['class'][] = 'primary-sub-nav-item';
+    }
+    $data['content'][$facetid]['#theme'] = 'nas_search_facet_block';
+    $data['content'][$facetid]['#subject'] = $data['subject'];
+  }
+
 }
