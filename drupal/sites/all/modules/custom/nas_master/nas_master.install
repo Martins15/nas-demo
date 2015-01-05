@@ -925,3 +925,13 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
 function nas_master_update_7067(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }
+
+/**
+ * Revert search page feature.
+ */
+function nas_master_update_7070() {
+  module_enable(array('search_api_facetapi'));
+  features_revert_module('nas_search_feature');
+  features_revert_module('nas_solr_feature');
+  _block_rehash('nas');
+}
