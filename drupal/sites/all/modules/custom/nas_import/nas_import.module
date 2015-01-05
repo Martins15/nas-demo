@@ -1259,3 +1259,14 @@ function nas_import_feeds_presave_audubon_location_import($source, $entity, $ite
     $wrapper->field_location_address->set($address);
   }
 }
+
+/**
+ * Implements hook_entity_insert().
+ */
+function nas_import_entity_insert($entity, $type) {
+  if ($type == 'node' && !empty($entity->feeds_item->is_new) && $entity->type == 'article') {
+    // Generate redirect and new alias for articles.
+    module_load_include('inc', 'pathauto', 'pathauto');
+    pathauto_create_alias('node', 'bulkupdate', 'node/' . $entity->nid, array('node' => $entity), $entity->type, LANGUAGE_NONE);
+  }
+}
