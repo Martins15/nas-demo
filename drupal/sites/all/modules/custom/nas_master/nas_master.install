@@ -925,3 +925,25 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
 function nas_master_update_7067(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }
+
+/**
+ * Remove old migrated content.
+ */
+function nas_master_update_7069() {
+  features_revert_module('nas_article_feature');
+  $importers = array(
+    'news_import',
+    'users_import',
+    'authors_import',
+    'contacts_import',
+    'media_gallery_import',
+    'static_pages_import',
+  );
+  foreach ($importers as $importer) {
+    $source = feeds_source($importer);
+    $count = $source->itemCount();
+    $source->startClear();
+
+    watchdog('nas_master', '@count nodes of @importer has been successfully removed.', array('@count' => $count, '@importer' => $importer));
+  }
+}
