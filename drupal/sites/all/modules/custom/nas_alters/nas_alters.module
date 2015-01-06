@@ -239,6 +239,4 @@ function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
   $form['label']['#default_value'] = 'bean_block';
   $form['title']['#prefix'] = '<div style="display:none;">';
   $form['title']['#suffix'] = '</div>';
-  $form['view_mode']['#prefix'] = '<div style="display:none;">';
-  $form['view_mode']['#suffix'] = '</div>';
 }
