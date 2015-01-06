@@ -978,10 +978,9 @@ function nas_preprocess_nas_flyway(&$variables) {
   // Add image credit.
   $variables['image_credit'] = '';
   if (!empty($variables['display']->context['panelizer']->data)) {
-    $wrapper = entity_metadata_wrapper('node', $variables['display']->context['panelizer']->data);
-    if ($wrapper) {
-      $image = $wrapper->field_background_image->value();
-      $variables['image_credit'] = !empty($image['field_file_credit'][LANGUAGE_NONE][0]['safe_value']) ? $image['field_file_credit'][LANGUAGE_NONE][0]['safe_value'] : '';
+    $node = $variables['display']->context['panelizer']->data;
+    if (!empty($node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['safe_value'])) {
+      $variables['image_credit'] = $node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['safe_value'];
     }
   }
 
