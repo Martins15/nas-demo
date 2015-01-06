@@ -57,6 +57,8 @@ function nas_search_page_search_form($form, $form_state) {
     ),
   );
 
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_search') . '/js/search-counter.js';
+
   return $form;
 }
 

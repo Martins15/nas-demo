@@ -7,7 +7,7 @@
 
 <div class="columns">
   <h2>Articles</h2>
-  <p class="sub-heading">Showing 1–<?php print $current_rows; ?> of <?php print $total_rows; ?> results</p>
+  <p class="sub-heading">Showing 1–<span class="search-counter"><?php print $current_rows; ?></span> of <?php print $total_rows; ?> results</p>
 </div>
 <div class="columns">
   <!--
