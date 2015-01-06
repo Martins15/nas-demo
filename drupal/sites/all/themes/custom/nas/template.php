@@ -975,6 +975,16 @@ function nas_preprocess_nas_flyway(&$variables) {
   $background_image_url = ctools_context_keyword_substitute($variables['settings']['background_image'], array(), $variables['display']->context);
   $variables['background_image'] = $background_image_url;
 
+  // Add image credit.
+  $variables['image_credit'] = '';
+  if (!empty($variables['display']->context['panelizer']->data)) {
+    $wrapper = entity_metadata_wrapper('node', $variables['display']->context['panelizer']->data);
+    if ($wrapper) {
+      $image = $wrapper->field_background_image->value();
+      $variables['image_credit'] = !empty($image['field_file_credit'][LANGUAGE_NONE][0]['safe_value']) ? $image['field_file_credit'][LANGUAGE_NONE][0]['safe_value'] : '';
+    }
+  }
+
   // Replace substitutions.
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 
