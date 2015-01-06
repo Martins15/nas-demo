@@ -26,6 +26,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
   $block = new stdClass();
 
   $items = array();
+  $activated = FALSE;
   foreach ($menu_tree as $menu_item) {
     $item = array();
     $classes = array(
@@ -53,9 +54,9 @@ function nas_menu_nas_menu_header_small_content_type_render() {
         if (!empty($sub_menu_item['link']['options']['attributes']['liclass'])) {
           $child_classes['li_class'][] = $sub_menu_item['link']['options']['attributes']['liclass'];
         }
-        if ($sub_menu_item['link']['link_path'] == $_GET['q']) {
-          $child_classes['a_class'][] = 'current-parent';
-          $classes['a_class'][] = 'current-parent';
+        if (nas_menu_is_current_page($sub_menu_item['link']['link_path'])) {
+          $child_classes['a_class'][] = NAS_MENU_ACTIVE_CLASS;
+          $classes['a_class'][] = NAS_MENU_ACTIVE_CLASS;
         }
         $item['#below'][] = array(
           'li_class' => implode(' ', $child_classes['li_class']),
@@ -66,8 +67,9 @@ function nas_menu_nas_menu_header_small_content_type_render() {
       }
     }
 
-    if (($menu_item['link']['link_path'] == $_GET['q'])) {
-      $classes['a_class'][] = 'current-parent';
+    if (!in_array(NAS_MENU_ACTIVE_CLASS, $classes['a_class']) && nas_menu_is_active_page($menu_item['link']['link_path']) && !$activated) {
+      $classes['a_class'][] = NAS_MENU_ACTIVE_CLASS;
+      $activated = TRUE;
     }
     $item['url'] = url($menu_item['link']['link_path']);
     $item['title'] = $menu_item['link']['link_title'];

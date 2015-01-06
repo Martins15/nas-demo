@@ -27,6 +27,7 @@ function nas_menu_pane_big_render() {
 
   $items = array();
 
+  $activated = FALSE;
   foreach ($menu_tree as $menu_item) {
     if ($menu_item['link']['hidden'] == TRUE) {
       continue;
@@ -54,8 +55,8 @@ function nas_menu_pane_big_render() {
       $title = filter_xss($sub_menu_item['link']['link_title']);
       $path = $sub_menu_item['link']['link_path'];
 
-      if ($path == $_GET['q']) {
-        $classes['a_class'][] = 'current-parent';
+      if (nas_menu_is_current_page($path)) {
+        $classes['a_class'][] = NAS_MENU_ACTIVE_CLASS;
       }
       $subitem_link = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
       $item['below'][] = array(
@@ -70,8 +71,9 @@ function nas_menu_pane_big_render() {
     $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
     $path = $menu_item['link']['link_path'];
 
-    if (($path == $_GET['q'])) {
-      $classes['a_class'][] = 'current-parent';
+    if (!in_array(NAS_MENU_ACTIVE_CLASS, $classes['a_class']) && nas_menu_is_active_page($path) && !$activated) {
+      $classes['a_class'][] = NAS_MENU_ACTIVE_CLASS;
+      $activated = TRUE;
     }
 
     $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $classes['a_class'])));

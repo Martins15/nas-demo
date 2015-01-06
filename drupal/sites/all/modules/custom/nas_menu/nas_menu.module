@@ -6,6 +6,7 @@
  */
 
 define('NAS_MENU_MAIN_NAVIGATION', 'menu-header-big-main-menu');
+define('NAS_MENU_ACTIVE_CLASS', 'current-parent');
 
 /**
  * Implements hook_menu_attribute_info().
@@ -161,4 +162,70 @@ function nas_menu_query_boaf_order_alter($query) {
     ));
   // Order by menu structure.
   $query->orderBy('ml.weight');
+}
+
+/**
+ * Returns whether is active page.
+ */
+function nas_menu_is_active_page($path) {
+  if (nas_menu_is_current_page($path)) {
+    return TRUE;
+  }
+
+  $node = menu_get_object('node');
+  if (!empty($node->type)) {
+    return nas_menu_is_node_section($node, $path);
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns whether is current page.
+ */
+function nas_menu_is_current_page($path) {
+  return $path == $_GET['q'] || $path == drupal_get_normal_path($_GET['q']);
+}
+
+/**
+ * Check if we need highlight current section for a node.
+ */
+function nas_menu_is_node_section($node, $menu_path) {
+  module_load_include('inc', 'pathauto');
+  $uri = entity_uri('node', $node);
+  $path = drupal_get_path_alias($uri['path'], $node->langugage);
+  $pathauto_alias = pathauto_create_alias('node', 'return', $uri['path'], array('node' => $node), $node->type, $node->langugage);
+  $node->path['pathauto'] = ($path != $uri['path'] && $path == $pathauto_alias);
+
+  $path_parts = explode('/', $path);
+  if (!$node->path['pathauto']) {
+    return !empty($path_parts[0]) && $path_parts[0] == $menu_path;
+  }
+
+  if ($menu_path === nas_menu_get_section_by_type($node->type)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Returns section by node type.
+ */
+function nas_menu_get_section_by_type($type) {
+  $sections = array(
+    'article' => 'news',
+    'slideshow' => 'news',
+    'magazine_issue' => 'news',
+    'flyway' => 'birds',
+    'bird' => 'birds',
+    'boa' => 'birds',
+    'boaf' => 'birds',
+    'boag' => 'birds',
+    'project' => 'conservation',
+    'strategy' => 'conservation',
+    'contact' => 'about',
+  );
+
+  return !empty($sections[$type]) ? $sections[$type] : FALSE;
 }
