@@ -44,6 +44,11 @@
 <aside class="article-aside <?php print $width; ?>-width">
   <div class="hide-for-tiny hide-for-small image-container">
     <?php print render($content['field_wysiwyg_image']); ?>
+    <?php if (!empty($figcaption)): ?>
+    <figcaption class="article-aside-caption">
+      <?php print $figcaption; ?>
+    </figcaption>
+    <?php endif; ?>
   </div>
 </aside>
 <?php elseif ($width == 'one-third-left'): ?>

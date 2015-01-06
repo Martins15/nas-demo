@@ -56,7 +56,7 @@ function conservation_strategy_top_render($subtype, $conf, $args, $contexts) {
     $hero_image_object = file_load($hero_image_items[0]['fid']);
     $hero_image = image_style_url('conservation_strategy_hero', $hero_image_object->uri);
     $hero_image_mobile = image_style_url('conservation_strategy_hero_mobile', $hero_image_object->uri);
-    $credit = !empty($hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value']) ? check_plain($hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value']) : '';
+    $credit = !empty($hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value']) ? $hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value'] : '';
   }
 
   // Logo icon.
