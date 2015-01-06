@@ -947,3 +947,10 @@ function nas_master_update_7078() {
   features_revert_module('nas_magazine_issue_feature');
   features_revert_module('nas_static_page_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7079() {
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+}
