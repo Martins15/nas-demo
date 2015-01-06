@@ -54,10 +54,10 @@ function nas_beans_feature_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'half' => 'Half',
-        'default' => 'Default',
-        'full' => 'Full',
-        'half-right' => 'Half Right',
+        'half' => 'Half right',
+        'default' => 'Full',
+        'full' => 'Extended',
+        'half-right' => 'Half right long',
         'one-third-left' => '1/3 Left',
       ),
       'allowed_values_function' => '',

@@ -18,5 +18,6 @@ $plugin = array(
     'scientific_name' => t('Scientific name'),
     'description' => t('Description'),
     'main' => t('Main'),
+    'cards' => t('Engagement cards'),
   ),
 );

@@ -54,6 +54,49 @@ function nas_static_page_feature_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-c909974d-ea31-4d80-a63d-58a134b3ae9a';
+    $pane->panel = 'card_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-_qxqbdYmgFh75hgbgkxK9i1XIbOyg80By5m6aJAhLfY',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c909974d-ea31-4d80-a63d-58a134b3ae9a';
+    $display->content['new-c909974d-ea31-4d80-a63d-58a134b3ae9a'] = $pane;
+    $display->panels['card_set'][0] = 'new-c909974d-ea31-4d80-a63d-58a134b3ae9a';
+    $pane = new stdClass();
     $pane->pid = 'new-c927bbd8-d7c4-42c0-86fd-ce1e757a9263';
     $pane->panel = 'header';
     $pane->type = 'node_title';
@@ -434,6 +477,49 @@ function nas_static_page_feature_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-d4f9366d-7519-4b03-94cd-3bc7115bc240';
+    $pane->panel = 'card_set';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-ZfkhawFXdxg4w2DEAXocXtIUQin3cgcu912B-TIrs8I',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd4f9366d-7519-4b03-94cd-3bc7115bc240';
+    $display->content['new-d4f9366d-7519-4b03-94cd-3bc7115bc240'] = $pane;
+    $display->panels['card_set'][0] = 'new-d4f9366d-7519-4b03-94cd-3bc7115bc240';
+    $pane = new stdClass();
     $pane->pid = 'new-ada7204a-16c5-4b19-acaa-6c8dfbfc7270';
     $pane->panel = 'header';
     $pane->type = 'node_title';
@@ -738,6 +824,42 @@ function nas_static_page_feature_panelizer_defaults() {
     $display->content['new-cfcf7dcc-b95a-40ed-a57c-c9a4004c01b9'] = $pane;
     $display->panels['related'][0] = 'new-cfcf7dcc-b95a-40ed-a57c-c9a4004c01b9';
     $pane = new stdClass();
+    $pane->pid = 'new-b58b8b05-ccbb-4b16-9ee7-7b713a452d27';
+    $pane->panel = 'right';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-YFeH87rhnAJFXOUdglCUxFxF-KrMRahxbCGuMh0d-uw',
+      'form_token' => 'IH_AhYBDrVzJjskNMwprLZV2Lcf2flroRxyXXLWifvE',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b58b8b05-ccbb-4b16-9ee7-7b713a452d27';
+    $display->content['new-b58b8b05-ccbb-4b16-9ee7-7b713a452d27'] = $pane;
+    $display->panels['right'][0] = 'new-b58b8b05-ccbb-4b16-9ee7-7b713a452d27';
+    $pane = new stdClass();
     $pane->pid = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
     $pane->panel = 'right';
     $pane->type = 'views_panes';
@@ -751,11 +873,11 @@ function nas_static_page_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'eb34ca6e-d25e-4112-960c-a20dd37ec889';
     $display->content['new-eb34ca6e-d25e-4112-960c-a20dd37ec889'] = $pane;
-    $display->panels['right'][0] = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
+    $display->panels['right'][1] = 'new-eb34ca6e-d25e-4112-960c-a20dd37ec889';
     $pane = new stdClass();
     $pane->pid = 'new-8ed97e3b-b686-4ad3-bb09-7a180121cbbb';
     $pane->panel = 'subtitle';

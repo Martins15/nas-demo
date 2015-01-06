@@ -935,3 +935,15 @@ function nas_master_update_7070() {
   features_revert_module('nas_solr_feature');
   _block_rehash('nas');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7078() {
+  features_revert_module('nas_birds_family_feature');
+  features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_boa_index_feature');
+  features_revert_module('nas_getoutside_feature');
+  features_revert_module('nas_magazine_issue_feature');
+  features_revert_module('nas_static_page_feature');
+}
