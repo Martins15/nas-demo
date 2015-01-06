@@ -6,6 +6,84 @@
  */
 
 /**
+ * Implements hook_init().
+ *
+ */
+function nas_alters_init() {
+  global $theme;
+
+  if ($theme == 'adminimal') {
+    drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
+  }
+}
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the node forms.
+ */
+function nas_alters_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Remove author tab.
+  unset($form['author']);
+  // Change type of elements and combine menu & path into one tab.
+  if (isset($form['menu']) && isset($form['path'])) {
+    $form['menu']['#type'] = 'container';
+    $form['path']['#type'] = 'container';
+    $form['menu_path_custom_tab'] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Menu & URL path settings',
+      '#collapsible' => 'TRUE',
+      '#collapsed' => 'TRUE',
+      '#weight' => '-2',
+      '#group' => 'additional_settings',
+      'menu' => $form['menu'],
+      'path' => $form['path'],
+    );
+    unset($form['menu']);
+    unset($form['path']);
+  }
+  // Rename Panelizer tab to Layout and remove unnecessary label.
+  if (isset($form['panelizer'])) {
+    $form['panelizer']['#title'] = t('Layout');
+    unset($form['panelizer']['page_manager']['name']['#title']);
+  }
+  // Hide Panezizer tab if there is no choise to select.
+  if (isset($form['panelizer']['page_manager']['name']['#options']) && count($form['panelizer']['page_manager']['name']['#options']) <= 1) {
+    unset($form['panelizer']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Magazine Issue node form.
+ */
+function nas_alters_form_magazine_issue_node_form_alter(&$form, &$form_state, $form_id) {
+  // Add description to node title.
+  $form['title']['#description'] = t('e.g. November - December 2014');
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function nas_alters_element_info_alter(&$type) {
+  if (isset($type['link_field'])) {
+    $type['link_field']['#process'][] = 'nas_alters_link_field_process';
+  }
+}
+
+/**
+ * Process function for nas_alters_element_info_alter.
+ */
+function nas_alters_link_field_process(&$element, &$form_state, $complete_form) {
+  switch ($element['#field_name']) {
+    case 'field_contact_twitter':
+      $element['title']['#title'] = t('Twitter screen name (e.g. @JoeSmith)');
+      break;
+  }
+  return $element;
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Alter the Article node form.
@@ -109,14 +187,56 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['field_bird_call_type_tid']['#options']['All'] = t('Type of Bird');
     $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
     $form['field_bird_region_tid']['#options']['All'] = t('Region');
+
+    if (!empty($form_state['storage']['external_page'])) {
+      $form['external_page'] = array(
+        '#type' => 'hidden',
+        '#value' => TRUE,
+      );
+    }
   }
 }
 
 /**
- * Implements hook_views_ajax_data_alter().
+ * Implements hook_views_pre_view().
  */
-function nas_alters_views_ajax_data_alter(&$commands, $view) {
-  if ($view->current_display == 'nas_bird_guide_fav_birds') {
-    $commands[] = ajax_command_replace('.bird-card-grid .section-header h2', '<h2 class="thin">' . t('Matching Birds') . '</h2>');
+function nas_alters_views_pre_render(&$view) {
+  if ($view->name == 'nas_bird_guide' && $view->current_display == 'nas_bird_guide_fav_birds') {
+    $view->set_title(t('Some of Our Favorite Birds'));
+
+    if (!empty($view->exposed_input)) {
+      $view->set_title(t('Matching Birds'));
+      $query = drupal_get_query_parameters();
+      if (!empty($query['external_page'])) {
+        $view->set_title(t('Search results'));
+      }
+    }
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_file_entity_add_upload_alter(&$form, &$form_state, $form_id) {
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
+  $form['filename']['#title'] = t('File name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
+  $form['filename']['#title'] = t('File name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
+  $form['label']['#prefix'] = '<div style="display:none;">';
+  $form['label']['#suffix'] = '</div>';
+  $form['label']['#default_value'] = 'bean_block';
+  $form['title']['#prefix'] = '<div style="display:none;">';
+  $form['title']['#suffix'] = '</div>';
 }

@@ -231,7 +231,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 37,
     ),
   );
 
@@ -852,7 +852,7 @@ function nas_boa_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 36,
     ),
   );
 
@@ -949,7 +949,7 @@ function nas_boa_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 35,
     ),
   );
 
@@ -1040,7 +1040,7 @@ function nas_boa_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 34,
     ),
   );
 

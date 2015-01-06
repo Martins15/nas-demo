@@ -19,10 +19,13 @@ function nas_boa_genus_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '5',
         ),
       ),
       'display' => array(),
@@ -52,7 +55,7 @@ function nas_boa_genus_feature_strongarm() {
   $strongarm->name = 'node_options_boag';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'promote',
+    1 => 'revision',
   );
   $export['node_options_boag'] = $strongarm;
 
@@ -60,14 +63,14 @@ function nas_boa_genus_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_boag';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_boag'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_boag';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_boag'] = $strongarm;
 
   return $export;

@@ -184,9 +184,27 @@ function nas_magazine_issue_feature_panelizer_defaults() {
           'entity_reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-aQdpXcMzum95FY8d-faoSmtqiQF_NyFuxUZJNDuOD0s',
-      'form_token' => 'G49hTdzlttmYp6mQb44vYzm-Y4K7N7C-6kdeHeLcuYs',
+      'form_build_id' => 'form-P09SbALOneh--4A7FRjYDRP5vOXCT8n9sGVADFtXRMw',
+      'form_token' => 'W6r6r8PxnvgrsUAQbW9oPhj4BHmj09wj6V-0G2a8gd8',
       'form_id' => 'magazine_issue_featured_edit_form',
+      4708 => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '2227',
+            'entity_label' => 'Jonathan Franzen talks about his love of birds',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '2233',
+            'entity_label' => 'Why Do Birds Matter?',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+      ),
     );
     $pane->cache = array();
     $pane->style = array(

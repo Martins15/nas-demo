@@ -1209,7 +1209,7 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_custom_section',
-    'label' => 'Custom Section',
+    'label' => 'Editorial Section',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -2581,8 +2581,8 @@ function nas_article_feature_field_default_field_instances() {
   t('Can be left empty if Press Release panelizer is applied');
   t('Color mode');
   t('Conservation Project');
-  t('Custom Section');
   t('Date');
+  t('Editorial Section');
   t('Flyway');
   t('For internal use only');
   t('Hero Image');

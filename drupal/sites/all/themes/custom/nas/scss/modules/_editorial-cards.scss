@@ -141,6 +141,11 @@
       margin-right: 3px;
     }
   }
+  &.editorial-card-dateline-without-separator {
+    &:before{
+      content: none;
+    }
+  }
 }
 
 .editorial-card-link {
