@@ -401,6 +401,7 @@ function nas_article_feature_panelizer_defaults() {
         'references' => array(
           'entity_reference' => FALSE,
         ),
+        'hide_for_firsttime_visitors' => 1,
       ),
       'form_build_id' => 'form-kKUtbyiCQiAxkFu6VSIUqUM6hhO__AzaJ4FSWBX4GZ4',
       'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
@@ -813,6 +814,7 @@ function nas_article_feature_panelizer_defaults() {
         'references' => array(
           'entity_reference' => FALSE,
         ),
+        'hide_for_firsttime_visitors' => 1,
       ),
       'form_build_id' => 'form-b8nTCOI-7gvcTgC6V__C5SqqZMXZEII1yWfTJabjv2Q',
       'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
@@ -1482,11 +1484,14 @@ function nas_article_feature_panelizer_defaults() {
       'override_title_text' => '',
       'default' => array(
         'references' => array(
-          'entity_reference' => FALSE,
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
         ),
+        'hide_for_firsttime_visitors' => 1,
       ),
-      'form_build_id' => 'form-0vdqflEKmu4baWy2kFC-NZm4cAy0qcHJHeUt6j5E8vc',
-      'form_token' => 'd8yeyx1s39oPp-HhwqtUSD-Vb3CYPpd595GB5Zik7u8',
+      'form_build_id' => 'form-1ofretQrj2dNQ1awjNu2cSW-QSJOD9djmoi6rJ5XztQ',
+      'form_token' => 'mOEOI7UzQlpTqA6UHzTVJrszl_WcKHYYK3ZgQWCQg5Q',
       'form_id' => 'engagement_cards_sidebar_edit_form',
       5750 => array(
         'references' => array(
@@ -1925,6 +1930,7 @@ function nas_article_feature_panelizer_defaults() {
         'references' => array(
           'entity_reference' => FALSE,
         ),
+        'hide_for_firsttime_visitors' => 1,
       ),
       'form_build_id' => 'form-MCRV4v0DK7X5WV3sm-xdHNjS6aJKQpyzOWHMWP4WYsA',
       'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',

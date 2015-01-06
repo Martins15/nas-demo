@@ -105,9 +105,9 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
     $key = 'bird-guide';
     $class = 'bird-card-set bg-bone-white bg-boa';
   }
-  if (arg(0) == 'frontpage2') {
+  if (arg(0) == 'frontpage') {
     $key = 'frontpage2';
-    $class = 'bird-card-grid';
+    $class = 'bird-card-set bg-bone-white bg-boa';
   }
   if (isset($args_cache_key_pairs[$key])) {
     $context['landing'] = array(
