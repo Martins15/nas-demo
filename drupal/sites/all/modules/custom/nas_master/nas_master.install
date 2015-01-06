@@ -930,7 +930,7 @@ function nas_master_update_7067(&$sandbox) {
  * Revert search page feature.
  */
 function nas_master_update_7070() {
-  module_enable(array('search_api_facetapi'));
+  module_enable(array('search_api_facetapi', 'facetapi_bonus'));
   features_revert_module('nas_search_feature');
   features_revert_module('nas_solr_feature');
   _block_rehash('nas');

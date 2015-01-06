@@ -142,15 +142,15 @@ function nas_search_feature_default_page_manager_pages() {
     $display->content['new-3fc2e5a3-3fad-4d53-be7c-df323db066d2'] = $pane;
     $display->panels['search_results_count'][0] = 'new-3fc2e5a3-3fad-4d53-be7c-df323db066d2';
     $pane = new stdClass();
-    $pane->pid = 'new-8cae6ec7-e20a-4cd5-9c73-4aa1d7b560d9';
+    $pane->pid = 'new-e7cb2d81-43b2-484d-8eed-3bcc1d01da99';
     $pane->panel = 'sidebar';
     $pane->type = 'block';
-    $pane->subtype = 'facetapi-zIH8EsYFkvWKeMtTZTGLEm1GrYlAarmk';
+    $pane->subtype = 'facetapi-JMdfoReCFWmBuSOfCXlc5tefKlqaBj2I';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => 'Filter by type',
+      'override_title' => 0,
+      'override_title_text' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -160,9 +160,9 @@ function nas_search_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '8cae6ec7-e20a-4cd5-9c73-4aa1d7b560d9';
-    $display->content['new-8cae6ec7-e20a-4cd5-9c73-4aa1d7b560d9'] = $pane;
-    $display->panels['sidebar'][0] = 'new-8cae6ec7-e20a-4cd5-9c73-4aa1d7b560d9';
+    $pane->uuid = 'e7cb2d81-43b2-484d-8eed-3bcc1d01da99';
+    $display->content['new-e7cb2d81-43b2-484d-8eed-3bcc1d01da99'] = $pane;
+    $display->panels['sidebar'][0] = 'new-e7cb2d81-43b2-484d-8eed-3bcc1d01da99';
     $pane = new stdClass();
     $pane->pid = 'new-d5019591-6948-4a7c-b94c-9cb86570e3ec';
     $pane->panel = 'sidebar';
@@ -207,6 +207,28 @@ function nas_search_feature_default_page_manager_pages() {
     $pane->uuid = 'a437ed53-a03c-4aae-952d-5992cf188b9c';
     $display->content['new-a437ed53-a03c-4aae-952d-5992cf188b9c'] = $pane;
     $display->panels['sidebar'][2] = 'new-a437ed53-a03c-4aae-952d-5992cf188b9c';
+    $pane = new stdClass();
+    $pane->pid = 'new-75a062a4-2c1c-445d-bba0-a5055b74e377';
+    $pane->panel = 'sidebar';
+    $pane->type = 'block';
+    $pane->subtype = 'facetapi-Ge6lKW5oedO8kvMQ0sdRtpbKM1cZqqiO';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '75a062a4-2c1c-445d-bba0-a5055b74e377';
+    $display->content['new-75a062a4-2c1c-445d-bba0-a5055b74e377'] = $pane;
+    $display->panels['sidebar'][3] = 'new-75a062a4-2c1c-445d-bba0-a5055b74e377';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
