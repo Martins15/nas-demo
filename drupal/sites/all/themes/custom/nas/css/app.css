@@ -5561,6 +5561,7 @@ table.row-borders tbody td {
 }
 .hero-attribution.flyway-hero-attribution, .flyway-hero-attribution.hero-attribution-fullscreen {
   opacity: 0;
+  display: none;
   -moz-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   -webkit-transition: opacity 0.5s ease-in-out;
@@ -5568,6 +5569,7 @@ table.row-borders tbody td {
 }
 .hero-attribution.flyway-hero-attribution.current, .flyway-hero-attribution.current.hero-attribution-fullscreen {
   opacity: 1;
+  display: block;
 }
 
 .hero-attribution-fullscreen {
