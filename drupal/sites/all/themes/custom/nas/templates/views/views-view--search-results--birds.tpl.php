@@ -31,7 +31,7 @@
   <div class="row section-header space-top">
     <div class="columns">
       <h2><?php print $view->display[$view->current_display]->display_title; ?></h2>
-      <p class="sub-heading">Showing 1–<?php print min($view->total_rows, 8); ?> of <?php print $view->total_rows; ?> results</p>
+      <p class="sub-heading">Showing 1–<span class="search-counter"><?php print min($view->total_rows, 8); ?></span> of <?php print $view->total_rows; ?> results</p>
     </div>
   </div>
 
