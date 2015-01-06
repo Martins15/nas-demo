@@ -34,12 +34,5 @@
 
   <section class="card-set bg-1">
     <?php print $content['cards']; ?>
-    <div class="row">
-      <div class="card-set-dots light">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
   </section>
 </section>
