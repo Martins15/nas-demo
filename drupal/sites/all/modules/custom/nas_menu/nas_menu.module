@@ -77,36 +77,46 @@ function nas_menu_theme() {
   );
 }
 
-
+/**
+ * Header Search form builder.
+ */
 function nas_menu_search_form($form, &$form_state) {
   $form['search'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
       'placeholder' => array(t('Search the Audubon network')),
-      'class' => array('header-search-input', 'radius')
+      'class' => array('header-search-input', 'radius'),
     ),
     '#size' => '',
-    '#id' => 'nas-menu-search-input'
+    '#id' => 'nas-menu-search-input',
   );
   $form['nas_search_btn'] = array(
-    '#type' => 'button',
+    '#type' => 'submit',
     '#value' => '<i class="icon-magnifier"></i>',
     '#attributes' => array(
-      'class' => array('header-search-button', 'button', 'large', 'pea-green')
+      'class' => array('header-search-button', 'button', 'large', 'pea-green'),
     ),
   );
-  $search_close = l('<i class="icon-close"></i>', '<front>', array(
+
+  $options = array(
     'html' => TRUE,
     'attributes' => array(
-      'class' => array('hide-for-tiny', 'hide-for-small', 'hide-for-medium', 'header-search-close')
-    )
-      )
+      'class' => array('hide-for-tiny', 'hide-for-small', 'hide-for-medium', 'header-search-close'),
+    ),
   );
+  $search_close = l('<i class="icon-close"></i>', '<front>', $options);
   $form['search_close'] = array(
-    '#markup' => $search_close
+    '#markup' => $search_close,
   );
 
   return $form;
+}
+
+/**
+ * Header search form submit callback.
+ */
+function nas_menu_search_form_submit($form, $form_state) {
+  drupal_goto('search_results', array('query' => array('search' => $form_state['values']['search'])));
 }
 
 /**
