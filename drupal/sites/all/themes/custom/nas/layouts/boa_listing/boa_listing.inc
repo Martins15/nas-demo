@@ -17,5 +17,6 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'main' => t('Main'),
+    'cards' => t('Engagement cards'),
   ),
 );
