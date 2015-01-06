@@ -229,6 +229,13 @@
     right: 0;
     bottom: 0;
   }
+  &.flyway-hero-attribution {
+    opacity: 0;
+    @include transition(opacity 0.5s ease-in-out);
+    &.current {
+      opacity: 1;
+    }
+  }
 }
 
 .hero-attribution-fullscreen {

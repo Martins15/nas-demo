@@ -5559,6 +5559,16 @@ table.row-borders tbody td {
   right: 0;
   bottom: 0;
 }
+.hero-attribution.flyway-hero-attribution, .flyway-hero-attribution.hero-attribution-fullscreen {
+  opacity: 0;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+.hero-attribution.flyway-hero-attribution.current, .flyway-hero-attribution.current.hero-attribution-fullscreen {
+  opacity: 1;
+}
 
 .hero-attribution-fullscreen {
   font-family: "Source Sans Pro", Verdana, sans-serif;

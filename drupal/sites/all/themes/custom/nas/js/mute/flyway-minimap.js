@@ -6,6 +6,7 @@ $(function() {
         $hero = $(".hero"),
         $altImgs = $hero.find(".hero-alt-img"),
         $contents = $(".flyway-content"),
+        $credits = $(".flyway-hero-attribution"),
         $points = $minimap.find(".flyway-minimap-point");
 
     $points.bind("click", function() {
@@ -18,6 +19,9 @@ $(function() {
 
       $altImgs.removeClass("current");
       $altImgs.filter("[data-point-id='" + pointId + "']").addClass("current");
+
+      $credits.removeClass("current");
+      $credits.filter("[data-point-id='" + pointId + "']").addClass("current");
 
       $contents.css("display", "none");
       $content.removeAttr("style");
