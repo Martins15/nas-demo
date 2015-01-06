@@ -300,6 +300,42 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $display->content['new-9a7a83f0-c9be-4517-b4c3-41c7edef5ed4'] = $pane;
     $display->panels['right_sidebar'][0] = 'new-9a7a83f0-c9be-4517-b4c3-41c7edef5ed4';
     $pane = new stdClass();
+    $pane->pid = 'new-8f213c05-301d-496f-8abf-1b04754f2dd7';
+    $pane->panel = 'right_sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-tjqvIccBNV-QPeXgCEkpOAML1cyk-eeG7vktiyNCHUs',
+      'form_token' => 'IH_AhYBDrVzJjskNMwprLZV2Lcf2flroRxyXXLWifvE',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '8f213c05-301d-496f-8abf-1b04754f2dd7';
+    $display->content['new-8f213c05-301d-496f-8abf-1b04754f2dd7'] = $pane;
+    $display->panels['right_sidebar'][1] = 'new-8f213c05-301d-496f-8abf-1b04754f2dd7';
+    $pane = new stdClass();
     $pane->pid = 'new-0dcff23e-388a-4d46-beba-e90b979eb52b';
     $pane->panel = 'title';
     $pane->type = 'node_title';

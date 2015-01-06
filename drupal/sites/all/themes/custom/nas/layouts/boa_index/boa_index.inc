@@ -18,5 +18,6 @@ $plugin = array(
     'header' => t('Header'),
     'hero' => t('Hero'),
     'main' => t('Main'),
+    'cards' => t('Engagement cards'),
   ),
 );

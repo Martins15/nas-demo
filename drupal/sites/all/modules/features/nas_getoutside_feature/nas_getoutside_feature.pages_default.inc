@@ -53,6 +53,7 @@ function nas_getoutside_feature_default_page_manager_pages() {
       'menu_bar' => NULL,
       'main' => NULL,
       'bird_guide' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -100,6 +101,50 @@ function nas_getoutside_feature_default_page_manager_pages() {
     $pane->uuid = 'c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b';
     $display->content['new-c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b'] = $pane;
     $display->panels['bird_guide'][0] = 'new-c037d000-53b9-4d8c-8c44-fe6a0bfdcf1b';
+    $pane = new stdClass();
+    $pane->pid = 'new-eca9018f-2291-45d8-8ba6-423d115ae7cd';
+    $pane->panel = 'cards';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-ySk-quaMWmHSl_Fqo7AA7UU1tA8YU_pW0LiodPAR2AI',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'eca9018f-2291-45d8-8ba6-423d115ae7cd';
+    $display->content['new-eca9018f-2291-45d8-8ba6-423d115ae7cd'] = $pane;
+    $display->panels['cards'][0] = 'new-eca9018f-2291-45d8-8ba6-423d115ae7cd';
     $pane = new stdClass();
     $pane->pid = 'new-12929e62-1c11-48db-85e0-0529a772b45d';
     $pane->panel = 'main';

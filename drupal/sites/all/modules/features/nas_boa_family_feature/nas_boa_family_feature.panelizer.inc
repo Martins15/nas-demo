@@ -42,6 +42,7 @@ function nas_boa_family_feature_panelizer_defaults() {
       'scientific_name' => NULL,
       'body_column_1' => NULL,
       'body_column_2' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -142,6 +143,49 @@ function nas_boa_family_feature_panelizer_defaults() {
     $pane->uuid = '6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72';
     $display->content['new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72'] = $pane;
     $display->panels['bottom'][2] = 'new-6dd1f0de-0d5e-4a7f-b0b0-76481f8daa72';
+    $pane = new stdClass();
+    $pane->pid = 'new-7c143467-898f-4edf-ab42-2ea3ee769e53';
+    $pane->panel = 'cards';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'Here’s how you can make a difference.',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-TbAKo8oEIqkCSeVD8PIptO_XqkQGgvs5E1couZvAEYE',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7c143467-898f-4edf-ab42-2ea3ee769e53';
+    $display->content['new-7c143467-898f-4edf-ab42-2ea3ee769e53'] = $pane;
+    $display->panels['cards'][0] = 'new-7c143467-898f-4edf-ab42-2ea3ee769e53';
     $pane = new stdClass();
     $pane->pid = 'new-a98d787b-8c5a-48f5-b239-4a8f8b2b2d7a';
     $pane->panel = 'header';
