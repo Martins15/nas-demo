@@ -119,12 +119,7 @@ function nas_getoutside_feature_default_page_manager_pages() {
         'title' => 'These birds need your help',
         'references' => array(
           1 => array(
-            'entity_reference' => array(
-              'entity_id' => '6368',
-              'entity_label' => 'Join Audubon’s Volunteers Days',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
+            'entity_reference' => FALSE,
           ),
           2 => array(
             'entity_reference' => FALSE,
