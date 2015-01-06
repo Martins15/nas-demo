@@ -14,4 +14,4 @@ features[image][] = boa_index_bio
 features[image][] = boa_index_hero
 features[page_manager_pages][] = boa_index
 features[views_view][] = boa_index
-mtime = 1417810525
+mtime = 1418124975
