@@ -5551,6 +5551,26 @@ table.row-borders tbody td {
     background-color: rgba(0, 0, 0, 0.2);
   }
 }
+.hero-attribution.breakout-hero-attribution, .breakout-hero-attribution.hero-attribution-fullscreen {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.hero-attribution.flyway-hero-attribution, .flyway-hero-attribution.hero-attribution-fullscreen {
+  opacity: 0;
+  display: none;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+.hero-attribution.flyway-hero-attribution.current, .flyway-hero-attribution.current.hero-attribution-fullscreen {
+  opacity: 1;
+  display: block;
+}
 
 .hero-attribution-fullscreen {
   font-family: "Source Sans Pro", Verdana, sans-serif;
