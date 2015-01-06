@@ -1,4 +1,9 @@
-;(function($){
+/**
+ * @file
+ * Javascript enhancements for the Search results page.
+ */
+
+(function ($) {
   Drupal.behaviors.viewLoadMoreCounterHandler = {
     attach: function (context, settings) {
       $('.view-display-id-birds').once('views-load-more-counter-handler', function () {
