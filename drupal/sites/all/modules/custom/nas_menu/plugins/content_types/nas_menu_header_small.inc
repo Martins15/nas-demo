@@ -27,24 +27,52 @@ function nas_menu_nas_menu_header_small_content_type_render() {
 
   $items = array();
   foreach ($menu_tree as $menu_item) {
-    $item = array(
-      'li_class' => isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '',
-      'a_class' => isset($menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $menu_item['link']['options']['attributes']['class']) : '',
-      'url' => url($menu_item['link']['link_path']),
-      'title' => $menu_item['link']['link_title'],
+    $item = array();
+    $classes = array(
+      'li_class' => array(),
+      'a_class' => array(),
     );
 
+    if (!empty($menu_item['link']['options']['attributes']['liclass'])) {
+      $classes['li_class'][] = $menu_item['link']['options']['attributes']['liclass'];
+    }
+    if (!empty($menu_item['link']['options']['attributes']['class'])) {
+      $classes['a_class'][] = $menu_item['link']['options']['attributes']['class'];
+    }
     $item['#below'] = array();
     if (!empty($menu_item['below'])) {
       foreach ($menu_item['below'] as $sub_menu_item) {
+        $child_classes = array(
+          'li_class' => array(),
+          'a_class' => array(),
+        );
+
+        if (!empty($sub_menu_item['link']['options']['attributes']['class'])) {
+          $child_classes['a_class'][] = $sub_menu_item['link']['options']['attributes']['class'];
+        }
+        if (!empty($sub_menu_item['link']['options']['attributes']['liclass'])) {
+          $child_classes['li_class'][] = $sub_menu_item['link']['options']['attributes']['liclass'];
+        }
+        if ($sub_menu_item['link']['link_path'] == $_GET['q']) {
+          $child_classes['a_class'][] = 'current-parent';
+          $classes['a_class'][] = 'current-parent';
+        }
         $item['#below'][] = array(
-          'li_class' => isset($sub_menu_item['link']['options']['attributes']['liclass']) ? ' ' . $sub_menu_item['link']['options']['attributes']['liclass'] : '',
-          'a_class' => isset($sub_menu_item['link']['options']['attributes']['class']) ? ' ' . implode(' ', $sub_menu_item['link']['options']['attributes']['class']) : '',
+          'li_class' => implode(' ', $child_classes['li_class']),
+          'a_class' => implode(' ', $child_classes['a_class']),
           'url' => url($sub_menu_item['link']['link_path']),
           'title' => check_plain($sub_menu_item['link']['link_title']),
         );
       }
     }
+
+    if (($menu_item['link']['link_path'] == $_GET['q'])) {
+      $classes['a_class'][] = 'current-parent';
+    }
+    $item['url'] = url($menu_item['link']['link_path']);
+    $item['title'] = $menu_item['link']['link_title'];
+    $item['a_class'] = implode(' ', $classes['a_class']);
+    $item['li_class'] = implode(' ', $classes['li_class']);
 
     $items[] = $item;
   }

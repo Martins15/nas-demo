@@ -32,15 +32,18 @@ function nas_menu_pane_big_render() {
       continue;
     }
     $item = array();
-    $item['li_class'] = 'primary-nav-item';
-    $item['li_class'] .= isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-    $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
-    if ($menu_item['below']) {
-      $a_class[] = 'primary-nav-toggler';
+    $classes = array(
+      'li_class' => array('primary-nav-item'),
+      'a_class' => array(),
+    );
+
+    if (!empty($menu_item['link']['options']['attributes']['liclass'])) {
+      $classes['li_class'][] = $menu_item['link']['options']['attributes']['liclass'];
     }
-    $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
-    $path = $menu_item['link']['link_path'];
-    $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+    if (!empty($menu_item['link']['options']['attributes']['class'])) {
+      $classes['a_class'][] = $menu_item['link']['options']['attributes']['class'];
+    }
+
     $item['below'] = array();
     foreach ($menu_item['below'] as $sub_menu_item) {
       $li_class = 'primary-sub-nav-item';
@@ -50,12 +53,30 @@ function nas_menu_pane_big_render() {
 
       $title = filter_xss($sub_menu_item['link']['link_title']);
       $path = $sub_menu_item['link']['link_path'];
+
+      if ($path == $_GET['q']) {
+        $classes['a_class'][] = 'current-parent';
+      }
       $subitem_link = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
       $item['below'][] = array(
         'li_class' => $li_class,
-        'link' => $subitem_link
+        'link' => $subitem_link,
       );
     }
+
+    if ($menu_item['below']) {
+      $classes['a_class'][] = 'primary-nav-toggler';
+    }
+    $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
+    $path = $menu_item['link']['link_path'];
+
+    if (($path == $_GET['q'])) {
+      $classes['a_class'][] = 'current-parent';
+    }
+
+    $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $classes['a_class'])));
+    $item['li_class'] = implode(' ', $classes['li_class']);
+    $item['a_class'] = implode(' ', $classes['a_class']);
     $items['main'][] = $item;
   }
   $items['main_cl'] = nas_menu_cl(NAS_MENU_MAIN_NAVIGATION);
@@ -76,7 +97,7 @@ function nas_menu_pane_big_render() {
       $path = $menu_item['link']['link_path'];
       $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
       $items[$s_key][] = $item;
-      $items[$s_key. '_cl'] = nas_menu_cl($s_menu);
+      $items[$s_key . '_cl'] = nas_menu_cl($s_menu);
     }
   }
 
@@ -85,7 +106,14 @@ function nas_menu_pane_big_render() {
 
   $block = new stdClass();
   $frontpage_link = l(variable_get('site_name'), '<front>', array('attributes' => array('class' => array('current-parent', 'wordmark'))));
-  $content = theme('nas_big_header', array('items' => $items, 'frontpage_link' => $frontpage_link, 'form' => $rendered_form));
+  $content = theme(
+    'nas_big_header',
+    array(
+      'items' => $items,
+      'frontpage_link' => $frontpage_link,
+      'form' => $rendered_form,
+    )
+  );
   $block->content = $content;
   return $block;
 }
