@@ -55,13 +55,6 @@
   <section class="card-set bg-1">
     <?php print $content['cards_set']; ?>
     <div class="row">
-      <div class="card-set-dots light">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-    <div class="row">
       <div class="card-set-social social-sharing">
         <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
         <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
