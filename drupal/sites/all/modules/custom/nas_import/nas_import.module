@@ -429,8 +429,10 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   }
 
   if (isset($item['field_article_intro'][0]['value'])) {
-    $intro = substr($item['field_article_intro'][0]['value'], 0, 255);
-    $entity->field_subtitle[LANGUAGE_NONE][0] = array('value' => strip_tags($intro));
+    $intro = strip_tags($item['field_article_intro'][0]['value']);
+    $entity->field_subtitle[LANGUAGE_NONE][0] = array(
+      'value' => substr($intro, 0, 255),
+    );
   }
 }
 
