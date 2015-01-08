@@ -694,10 +694,6 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
     // Limit nodes for dev environment.
     if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
       $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
-      // Define nid of static page that has images.
-      if ($feeds_importer == 'static_pages_import') {
-        $sandbox['nids'][] = 70161;
-      }
     }
 
     $sandbox['max'] = count($sandbox['nids']);
@@ -1026,6 +1022,34 @@ function nas_master_update_7077(&$sandbox) {
  */
 function nas_master_update_7080(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'), TRUE);
+}
+
+/**
+ * Migrate magazine_issue.
+ */
+function nas_master_update_7081(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_issue', 'magazine_issues_import', t('Magazine issue import'), TRUE);
+}
+
+/**
+ * Migrate birds.
+ */
+function nas_master_update_7082(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'bird', 'birds_import', t('Bird import'), TRUE);
+}
+
+/**
+ * Migrate locations.
+ */
+function nas_master_update_7083(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'audubon_location', 'audubon_location_import', t('Locations import'), TRUE);
+}
+
+/**
+ * Migrate chapters.
+ */
+function nas_master_update_7084(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'chapter', 'chapters_import', t('Chapters'), TRUE);
 }
 
 /**
