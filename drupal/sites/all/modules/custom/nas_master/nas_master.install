@@ -975,13 +975,14 @@ function nas_master_update_7069() {
  * Revert search page feature.
  */
 function nas_master_update_7070() {
-  module_enable(array('search_api_facetapi'));
+  module_enable(array('search_api_facetapi', 'facetapi_bonus'));
   features_revert_module('nas_search_feature');
   features_revert_module('nas_solr_feature');
   _block_rehash('nas');
 }
 
 /**
+<<<<<<< HEAD
  * Migrate users.
  */
 function nas_master_update_7071(&$sandbox) {
@@ -1028,4 +1029,23 @@ function nas_master_update_7076(&$sandbox) {
  */
 function nas_master_update_7077(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7078() {
+  features_revert_module('nas_birds_family_feature');
+  features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_boa_index_feature');
+  features_revert_module('nas_getoutside_feature');
+  features_revert_module('nas_magazine_issue_feature');
+  features_revert_module('nas_static_page_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7079() {
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
 }

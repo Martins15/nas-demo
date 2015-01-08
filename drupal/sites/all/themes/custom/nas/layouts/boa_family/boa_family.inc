@@ -20,5 +20,6 @@ $plugin = array(
     'header' => t('Header'),
     'body_column_1' => t('Body'),
     'bottom' => t('Bottom'),
+    'cards' => t('Engagement cards'),
   ),
 );

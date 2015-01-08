@@ -682,7 +682,7 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
+  $button_tag = array('edit-nas-search-btn', 'edit-nas-search-btn--2', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';
@@ -975,6 +975,15 @@ function nas_preprocess_nas_flyway(&$variables) {
   $background_image_url = ctools_context_keyword_substitute($variables['settings']['background_image'], array(), $variables['display']->context);
   $variables['background_image'] = $background_image_url;
 
+  // Add image credit.
+  $variables['image_credit'] = '';
+  if (!empty($variables['display']->context['panelizer']->data)) {
+    $node = $variables['display']->context['panelizer']->data;
+    if (!empty($node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['safe_value'])) {
+      $variables['image_credit'] = $node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['safe_value'];
+    }
+  }
+
   // Replace substitutions.
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 
@@ -1044,7 +1053,7 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       $content_image = array(
         'url' => image_style_url('slideshow', $image['uri']),
         // Additional fields to display on each slide.
-        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_credit'][LANGUAGE_NONE][0]['value']) : '',
+        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? $image['field_file_credit'][LANGUAGE_NONE][0]['value'] : '',
         'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
         'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
         'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',

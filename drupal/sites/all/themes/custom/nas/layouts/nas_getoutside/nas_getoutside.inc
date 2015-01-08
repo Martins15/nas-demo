@@ -19,5 +19,6 @@ $plugin = array(
     'menu_bar' => t('Menu bar'),
     'main' => t('Main'),
     'bird_guide' => t('Bird Guide'),
+    'cards' => t('Engagement cards'),
   ),
 );
