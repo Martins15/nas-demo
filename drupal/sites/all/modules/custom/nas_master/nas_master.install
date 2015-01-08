@@ -653,8 +653,11 @@ function nas_master_update_7058(&$sandbox) {
  *
  * @param string $human_name
  *   Human readable name of the content type.
+ *
+ * @param bool $only_new
+ *   Flag to import only new content.
  */
-function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name) {
+function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name, $only_new = FALSE) {
   if (!isset($sandbox['progress'])) {
     // Add nids to sandbox.
     switch ($d6_content_type) {
@@ -672,6 +675,20 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
         $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $d6_content_type);
         $sandbox['nids'] = drupal_json_decode($result->data);
         break;
+    }
+
+    // Import only new items.
+    if ($only_new) {
+      $imported_nids = array();
+      $feeds_items = db_select('feeds_item', 'f')
+        ->fields('f', array('guid'))
+        ->condition('f.id', $feeds_importer)
+        ->execute();
+      foreach ($feeds_items as $feeds_item) {
+        $imported_nids[] = $feeds_item->guid;
+      }
+
+      $sandbox['nids'] = array_diff($sandbox['nids'], $imported_nids);
     }
 
     // Limit nodes for dev environment.
@@ -956,77 +973,59 @@ function nas_master_update_7070() {
 }
 
 /**
- * Remove old migrated content.
+ * Revert article feature.
  */
 function nas_master_update_7071() {
   features_revert_module('nas_article_feature');
-  $importers = array(
-    'news_import',
-    'users_import',
-    'authors_import',
-    'contacts_import',
-    'media_gallery_import',
-    'static_pages_import',
-  );
-
-  // Temporary remove feeds process limit.
-  $feeds_process_limit = variable_get('feeds_process_limit', FEEDS_PROCESS_LIMIT);
-  variable_set('feeds_process_limit', 10000);
-  foreach ($importers as $importer) {
-    $source = feeds_source($importer);
-    $source->importer->processor->clear($source);
-  }
-  watchdog('nas_master', 'Migrated content has been successfully removed.');
-  variable_set('feeds_process_limit', $feeds_process_limit);
 }
 
 /**
  * Migrate users.
  */
 function nas_master_update_7072(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'user', 'users_import', t('Users import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'user', 'users_import', t('Users import'), TRUE);
 }
 
 /**
  * Migrate Authors.
  */
 function nas_master_update_7073(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'author', 'authors_import', t('Authors import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'author', 'authors_import', t('Authors import'), TRUE);
 }
 
 /**
  * Migrate news.
  */
 function nas_master_update_7074(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'news', 'news_import', t('News import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'news', 'news_import', t('News import'), TRUE);
 }
 
 /**
  * Migrate Magazine Articles.
  */
 function nas_master_update_7075(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_article', 'news_import', t('Magazine article import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_article', 'news_import', t('Magazine article import'), TRUE);
 }
 
 /**
  * Migrate Contacts.
  */
 function nas_master_update_7076(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'profile', 'contacts_import', t('Contacts import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'profile', 'contacts_import', t('Contacts import'), TRUE);
 }
 
 /**
  * Migrate Media Gallery.
  */
 function nas_master_update_7077(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'media_gallery', 'media_gallery_import', t('Media Gallery import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'media_gallery', 'media_gallery_import', t('Media Gallery import'), TRUE);
 }
 
 /**
  * Migrate Static Pages.
  */
 function nas_master_update_7080(&$sandbox) {
-  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'), TRUE);
 }
 
 /**
