@@ -1053,6 +1053,53 @@ function nas_master_update_7084(&$sandbox) {
 }
 
 /**
+ * Remove default image for articles.
+ */
+function nas_master_update_7085(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $count = db_select('field_data_field_hero_image', 'f')
+      ->condition('f.bundle', 'article')
+      ->condition('f.field_hero_image_fid', 3936)
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+    $sandbox['max'] = $count;
+  }
+
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $sandbox['max'] = 50;
+  }
+
+  if (!empty($sandbox['max'])) {
+    $query = db_select('field_data_field_hero_image', 'f');
+    $query->fields('f', array('entity_id'));
+    $query->condition('f.bundle', 'article');
+    $query->condition('f.field_hero_image_fid', 3936);
+    $query->range(0, $chunk);
+
+    $result = $query->execute();
+    foreach ($result as $item) {
+      $node = node_load($item->entity_id);
+      $node->field_hero_image = array();
+      node_save($node);
+      $sandbox['current']++;
+    }
+
+    $sandbox['progress'] += $chunk;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count default images has been successfully removed.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
  * Revert features.
  */
 function nas_master_update_7078() {
