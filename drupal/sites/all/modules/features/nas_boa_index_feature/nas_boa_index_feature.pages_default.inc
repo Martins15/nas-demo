@@ -95,6 +95,7 @@ function nas_boa_index_feature_default_page_manager_pages() {
       'header' => NULL,
       'hero' => NULL,
       'main' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -102,6 +103,49 @@ function nas_boa_index_feature_default_page_manager_pages() {
   $display->uuid = '19bda75d-f963-4f29-88a9-fd7dc651e80d';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-b89f74a1-05f8-42f9-9e95-bec5d805ce34';
+    $pane->panel = 'cards';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'Here’s how you can make a difference.',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-xz3Yuas-IsXiFpgtlcfA_L5GEETD8kx59zKnSA6Vw4E',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'b89f74a1-05f8-42f9-9e95-bec5d805ce34';
+    $display->content['new-b89f74a1-05f8-42f9-9e95-bec5d805ce34'] = $pane;
+    $display->panels['cards'][0] = 'new-b89f74a1-05f8-42f9-9e95-bec5d805ce34';
     $pane = new stdClass();
     $pane->pid = 'new-5955a70f-3b56-4cc4-ae65-1807976dc8e7';
     $pane->panel = 'header';
@@ -210,6 +254,7 @@ function nas_boa_index_feature_default_page_manager_pages() {
       'header' => NULL,
       'hero' => NULL,
       'main' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -217,6 +262,49 @@ function nas_boa_index_feature_default_page_manager_pages() {
   $display->uuid = '19bda75d-f963-4f29-88a9-fd7dc651e80d';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-694b2569-a14c-4e09-a4e6-9212a725056c';
+    $pane->panel = 'cards';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'Here’s how you can make a difference.',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-uaMghibztfrLCDhuxOJNUqEmdu8pT0cfE8rmUlq74bI',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '694b2569-a14c-4e09-a4e6-9212a725056c';
+    $display->content['new-694b2569-a14c-4e09-a4e6-9212a725056c'] = $pane;
+    $display->panels['cards'][0] = 'new-694b2569-a14c-4e09-a4e6-9212a725056c';
     $pane = new stdClass();
     $pane->pid = 'new-5955a70f-3b56-4cc4-ae65-1807976dc8e7';
     $pane->panel = 'header';

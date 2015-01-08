@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Bird Friendly Communities feature.
+ */
+
+include_once 'nas_bird_friendly_feature.features.inc';

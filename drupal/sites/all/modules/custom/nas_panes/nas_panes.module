@@ -17,6 +17,8 @@ define('NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY', 'page-boa_index');
 define('NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY', 'page-about');
 define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership');
 define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
+define('NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY', 'page-birds_priority');
+define('NAS_PANES_BIRD_FRIENDLY_PAGE_MANAGER_CACHE_KEY', 'page-bird_friendly_communities');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -742,6 +744,22 @@ function nas_panes_theme() {
       'template' => 'search-results-count',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/search_results_count',
     ),
+    'audubon_near_you_search' => array(
+      'variables' => array(
+        'title' => NULL,
+        'description' => NULL,
+        'form_title' => NULL,
+        'form' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'audubon-near-you-search',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search',
+    ),
+    'audubon_near_you_search_form' => array(
+      'render element' => 'form',
+      'template' => 'audubon-near-you-search-form',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -782,6 +800,9 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BIRD_FRIENDLY_PAGE_MANAGER_CACHE_KEY,
+      'page-audubon_near_you',
     );
 
     foreach ($panel_keys as $key) {
@@ -1240,7 +1261,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       'cache_key' => NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY,
       'panel_context' => 'page_birds_landing_panel_context',
     ),
-    'frontpage2' => array(
+    'frontpage' => array(
       'cache_key' => NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
       'panel_context' => 'page_frontpage2_panel_context',
     ),
@@ -1256,8 +1277,40 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
       'cache_key' => NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY,
       'panel_context' => 'page_conservation_landing_panel_context',
     ),
+    'get-outside' => array(
+      'cache_key' => NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_getoutside_panel_context',
+    ),
+    'birds-of-america' => array(
+      'cache_key' => NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_boa_index_panel_context',
+    ),
+    'about' => array(
+      'cache_key' => NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_about_panel_context',
+    ),
+    'our-leadership' => array(
+      'cache_key' => NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_our_leadership_panel_context',
+    ),
+    'priority' => array(
+      'cache_key' => NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_birds_priority_panel_context',
+    ),
   );
-  if ((arg(0) == 'birds') && (arg(1) == 'bird-guide' || arg(1) == 'flyways') && isset($args_cache_key_pairs[arg(1)]) && !arg(2)) {
+  if (arg(0) == 'birds-of-america' && arg(1) && !arg(2)) {
+    $context['landing'] = array(
+      'cache_key' => NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
+      'panel_context' => 'page_boa_index_panel_context_2',
+    );
+  }
+  if ((arg(0) == 'about' && arg(1) == 'our-leadership') && isset($args_cache_key_pairs[arg(1)]) && !arg(2)) {
+    $context['landing'] = array(
+      'cache_key' => $args_cache_key_pairs[arg(1)]['cache_key'],
+      'panel_context' => $args_cache_key_pairs[arg(1)]['panel_context'],
+    );
+  }
+  if ((arg(0) == 'birds') && (arg(1) == 'bird-guide' || arg(1) == 'flyways' || arg(1) == 'priority') && isset($args_cache_key_pairs[arg(1)]) && !arg(2)) {
     $context['landing'] = array(
       'cache_key' => $args_cache_key_pairs[arg(1)]['cache_key'],
       'panel_context' => $args_cache_key_pairs[arg(1)]['panel_context'],
@@ -1479,7 +1532,7 @@ function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
   $pid = 0;
   // Get pid from loaded display.
   foreach ($display->content as $_pid => $pane) {
-    if ($pane->subtype == $subtype && isset($pane->configuration) && $conf['form_token'] == $pane->configuration['form_token']) {
+    if (($pane->subtype == $subtype) && isset($pane->configuration) && $conf['form_build_id'] == $pane->configuration['form_build_id']) {
       $pid = $_pid;
       break;
     }

@@ -20,5 +20,6 @@ $plugin = array(
     'main' => t('Main content'),
     'sidebar' => t('Sidebar'),
     'footer' => t('Footer'),
+    'cards' => t('Engagement cards'),
   ),
 );

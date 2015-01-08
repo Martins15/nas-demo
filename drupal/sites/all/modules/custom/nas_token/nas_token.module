@@ -54,7 +54,9 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
 
         if (!empty($magazine_items[0]['target_id'])) {
           $magazine_node = node_load($magazine_items[0]['target_id']);
-          $pattern[] = $magazine_node->title;
+          if (!empty($magazine_node->title)) {
+            $pattern[] = $magazine_node->title;
+          }
         }
 
         $pattern[] = $node->title;
