@@ -35,7 +35,7 @@ function nas_alters_theme() {
  */
 function theme_nas_button($variables) {
   $element = $variables['element'];
-  
+
   $element['#attributes']['type'] = 'submit';
   element_set_attributes($element, array('id', 'name'));
   $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
