@@ -1038,6 +1038,8 @@ function nas_master_update_7078() {
   features_revert_module('nas_getoutside_feature');
   features_revert_module('nas_magazine_issue_feature');
   features_revert_module('nas_static_page_feature');
+  field_delete_field('field_first_name');
+  features_revert_module('nas_contact_type_feature');
 }
 
 /**
@@ -1045,4 +1047,5 @@ function nas_master_update_7078() {
  */
 function nas_master_update_7079() {
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  module_enable(array('nas_audubon_near_you_feature'));
 }
