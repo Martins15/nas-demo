@@ -1100,6 +1100,55 @@ function nas_master_update_7085(&$sandbox) {
 }
 
 /**
+ * Migrate data from legacy field to subtitle.
+ */
+function nas_master_update_7086(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $count = db_select('field_data_field_article_legacy', 'f')
+      ->condition('f.bundle', 'article')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+    $sandbox['max'] = $count;
+  }
+
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $sandbox['max'] = 50;
+  }
+
+  if (!empty($sandbox['max'])) {
+    $query = db_select('field_data_field_article_legacy', 'f');
+    $query->fields('f', array('entity_id'));
+    $query->condition('f.bundle', 'article');
+    $query->range(0, $chunk);
+
+    $result = $query->execute();
+    foreach ($result as $item) {
+      $node = node_load($item->entity_id);
+      if (!empty($node->field_article_legacy[LANGUAGE_NONE][0]['value'])) {
+        $legacy = substr($node->field_article_legacy[LANGUAGE_NONE][0]['value'], 0, 255);
+        $node->field_subtitle[LANGUAGE_NONE][0] = array('value' => strip_tags($legacy));
+        $node->field_article_legacy = array();
+        node_save($node);
+      }
+      $sandbox['current']++;
+    }
+
+    $sandbox['progress'] += $chunk;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count legacy fields has been successfully migrated to subtitle.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
  * Revert features.
  */
 function nas_master_update_7078() {
