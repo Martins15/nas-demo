@@ -744,6 +744,22 @@ function nas_panes_theme() {
       'template' => 'search-results-count',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/search_results_count',
     ),
+    'audubon_near_you_search' => array(
+      'variables' => array(
+        'title' => NULL,
+        'description' => NULL,
+        'form_title' => NULL,
+        'form' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'audubon-near-you-search',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search',
+    ),
+    'audubon_near_you_search_form' => array(
+      'render element' => 'form',
+      'template' => 'audubon-near-you-search-form',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -786,6 +802,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_BIRD_FRIENDLY_PAGE_MANAGER_CACHE_KEY,
+      'page-audubon_near_you',
     );
 
     foreach ($panel_keys as $key) {

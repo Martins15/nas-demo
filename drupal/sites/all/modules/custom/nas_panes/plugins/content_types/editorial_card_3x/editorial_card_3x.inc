@@ -342,7 +342,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
   $teasers = array_slice($teasers, 0, !empty($conf['count']) ? $conf['count'] : 3);
 
   $title = '';
-  if ($conf['override_title']) {
+  if ($conf['override_title'] && !empty($teasers)) {
     $title = ctools_context_keyword_substitute($conf['override_title_text'], array(), array($context));
   }
 

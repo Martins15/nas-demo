@@ -96,17 +96,17 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
       'cache_key' => NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY,
       'panel_context' => 'page_bird_guide_panel_context',
     ),
-    'frontpage2' => array(
+    'frontpage' => array(
       'cache_key' => NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
       'panel_context' => 'page_frontpage2_panel_context',
     ),
   );
   if (arg(0) == 'birds' && arg(1) == 'bird-guide' && !arg(2)) {
     $key = 'bird-guide';
-    $class = 'bird-card-set bg-bone-white bg-boa';
+    $class = 'bird-card-grid';
   }
   if (arg(0) == 'frontpage') {
-    $key = 'frontpage2';
+    $key = 'frontpage';
     $class = 'bird-card-set bg-bone-white bg-boa';
   }
   if (isset($args_cache_key_pairs[$key])) {
