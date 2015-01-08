@@ -948,3 +948,11 @@ function nas_master_update_7078() {
   features_revert_module('nas_static_page_feature');
   field_delete_field('field_first_name');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7079() {
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  module_enable(array('nas_audubon_near_you_feature'));
+}

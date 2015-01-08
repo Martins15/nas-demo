@@ -21,6 +21,11 @@
         <?php print $content['body']; ?>
       </div>
     </div>
+    <?php if(!empty($image_credit)) : ?>
+      <div class="hero-attribution breakout-hero-attribution row">
+        <p class="column"><span class="hero-attribution-text"><?php print $image_credit; ?></span></p>
+      </div>
+    <?php endif; ?>
   </div>
 
   <?php print $content['bottom']; ?>

@@ -16,6 +16,32 @@ function nas_alters_init() {
     drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
   }
 }
+
+
+/**
+ * Implements hook_theme().
+ */
+function nas_alters_theme() {
+  return array(
+    'nas_button' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements theme_button()
+ * used to return <button> tag when needed
+ */
+function theme_nas_button($variables) {
+  $element = $variables['element'];
+
+  $element['#attributes']['type'] = 'submit';
+  element_set_attributes($element, array('id', 'name'));
+  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+  return '<button' . drupal_attributes($element['#attributes']) . '>' . $element['#value'] . '</button>';
+}
+
 /**
  * Implements hook_form_FORM_ID_alter().
  *
