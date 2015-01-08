@@ -34,6 +34,17 @@ function editorial_card_4x_edit_form($form, &$form_state) {
     '#title' => t('More link URL'),
     '#default_value' => !empty($conf['more_link_url']) ? $conf['more_link_url'] : '',
   );
+  $form['paddings'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Paddings'),
+    '#options' => array(
+      'top' => t('Top padding'),
+      'between' => t('Additional space between title and content'),
+      'bottom' => t('Bottom padding'),
+      'double-bottom' => t('Double bottom padding'),
+    ),
+    '#default_value' => !empty($conf['paddings']) ? $conf['paddings'] : _editorial_card_4x_default_paddings_conf(),
+  );
 
   $form['refs'] = array(
     '#type' => 'fieldset',
@@ -146,13 +157,39 @@ function editorial_card_4x_render($subtype, $conf, $args, $context) {
     }
   }
 
+  if (empty($conf['paddings'])) {
+    $conf['paddings'] = _editorial_card_4x_default_paddings_conf();
+  }
+  $spacebottom = '';
+  if ($conf['paddings']['double-bottom']) {
+    $spacebottom = 'space-bottom double';
+  }
+  elseif ($conf['paddings']['bottom']) {
+    $spacebottom = 'space-bottom';
+  }
+
   $block = new stdClass();
   $block->content = theme('editorial_card_4x', array(
     'references' => $references,
     'title' => $conf['override_title'] ? $conf['override_title_text'] : '',
     'more_link' => $more_link,
     'contextual_links' => $contextual_links,
+    'spacetop' => $conf['paddings']['top'],
+    'spacebetween' => $conf['paddings']['between'],
+    'spacebottom' => $spacebottom,
   ));
 
   return $block;
+}
+
+/**
+ * Helper function to provide default panes padding configuration.
+ */
+function _editorial_card_4x_default_paddings_conf() {
+  return array(
+    'top' => 'top',
+    'between' => 'between',
+    'bottom' => 'bottom',
+    'double-bottom' => 0,
+  );
 }

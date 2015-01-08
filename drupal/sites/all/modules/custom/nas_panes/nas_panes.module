@@ -18,6 +18,7 @@ define('NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY', 'page-about');
 define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership');
 define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
 define('NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY', 'page-birds_priority');
+define('NAS_PANES_BIRD_FRIENDLY_PAGE_MANAGER_CACHE_KEY', 'page-bird_friendly_communities');
 
 define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
 define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
@@ -800,6 +801,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
       NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY,
+      NAS_PANES_BIRD_FRIENDLY_PAGE_MANAGER_CACHE_KEY,
       'page-audubon_near_you',
     );
 
@@ -1530,7 +1532,7 @@ function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
   $pid = 0;
   // Get pid from loaded display.
   foreach ($display->content as $_pid => $pane) {
-    if ($pane->subtype == $subtype && isset($pane->configuration) && $conf['form_token'] == $pane->configuration['form_token']) {
+    if (($pane->subtype == $subtype) && isset($pane->configuration) && $conf['form_build_id'] == $pane->configuration['form_build_id']) {
       $pid = $_pid;
       break;
     }
