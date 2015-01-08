@@ -946,4 +946,5 @@ function nas_master_update_7078() {
   features_revert_module('nas_getoutside_feature');
   features_revert_module('nas_magazine_issue_feature');
   features_revert_module('nas_static_page_feature');
+  field_delete_field('field_first_name');
 }

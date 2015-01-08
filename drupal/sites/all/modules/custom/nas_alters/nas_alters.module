@@ -109,8 +109,7 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
   unset($form['options']);
   unset($form['scheduler_settings']);
 
-  // Merge panelizer tabs.
-  unset($form['panelizer']['#group']);
+  // Place panelizer field to the Layout group.
   $form['panelizer']['#type'] = 'container';
   $form['#group_children']['panelizer'] = 'group_panelizer';
 
