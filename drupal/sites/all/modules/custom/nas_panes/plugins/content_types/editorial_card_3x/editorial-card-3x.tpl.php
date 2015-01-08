@@ -33,7 +33,7 @@
     </div>
   <?php endif; ?>
 
-  <div class="row space-bottom double">
+  <div class="row <?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
     <?php foreach ($teasers as $teaser): ?>
       <?php if (is_string($teaser)): ?>
         <?php print $teaser; ?>
