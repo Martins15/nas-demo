@@ -49,12 +49,9 @@ function about_page_map_form_submit(&$form, &$form_state) {
  *
  * @see ctools_plugin_examples()
  */
-function about_page_map_render($subtype, $conf, $args, $contexts) {
+function about_page_map_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
-  $contextual_links = '';
-  if (user_access('edit NAS panes')) {
-    $contextual_links = nas_panes_build_page_contextual_links('about_page_map', NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY, 'page_about_panel_context');
-  }
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   $block->content = theme('about_page_map', array(
       'title' => $conf['override_title_text'],
