@@ -1532,7 +1532,7 @@ function _nas_panes_display_lookup_pid($subtype, $display, $conf) {
   $pid = 0;
   // Get pid from loaded display.
   foreach ($display->content as $_pid => $pane) {
-    if ($pane->subtype == $subtype && isset($pane->configuration) && $conf['form_token'] == $pane->configuration['form_token']) {
+    if (($pane->subtype == $subtype) && isset($pane->configuration) && $conf['form_build_id'] == $pane->configuration['form_build_id']) {
       $pid = $_pid;
       break;
     }

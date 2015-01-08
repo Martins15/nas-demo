@@ -365,6 +365,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
     'additional_classes' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
     'contextual_links' => $contextual_links,
     'spacetop' => $conf['paddings']['top'],
+    'spacebetween' => $conf['paddings']['between'],
     'spacebottom' => $spacebottom,
   ));
 
@@ -470,8 +471,8 @@ function _editorial_card_3x_presets() {
 function _editorial_card_3x_default_paddings_conf() {
   return array(
     'top' => 0,
-    'bottom' => 0,
     'between' => 0,
+    'bottom' => 0,
     'double-bottom' => 'double-bottom',
   );
 }
