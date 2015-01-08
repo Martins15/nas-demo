@@ -189,18 +189,21 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
   $data = $conf['wrapper'];
   $nodes_array_to_show = array();
   foreach ($data as $key => $value) {
-    $node = node_load($value['entity_reference']['entity_id']);
-    //Set title.
+    if (!$node = node_load($value['entity_reference']['entity_id'])) {
+      continue;
+    }
+
+    // Set title.
     $nodes_array_to_show[$key]['title'] = $value['title'];
     if (empty($value['title'])) {
       $nodes_array_to_show[$key]['title'] = $node->title;
     }
-    //Set image.
+    // Set image.
     $image_fid = $value['image'];
     if (empty($image_fid)) {
-      $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
-      if (isset($get_field_hero_image[0]['fid'])) {
-        $image_fid = $get_field_hero_image[0]['fid'];
+      $field_items = field_get_items('node', $node, 'field_hero_image');
+      if (isset($field_items[0]['fid'])) {
+        $image_fid = $field_items[0]['fid'];
       }
     }
     $nodes_array_to_show[$key]['hero_image'] = '';
@@ -208,13 +211,13 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
       $file = file_load($image_fid);
       $nodes_array_to_show[$key]['hero_image'] = image_style_url('conservation_strategy_slideshow', $file->uri);
     }
-    //Set icon.
+    // Set icon.
     $nodes_array_to_show[$key]['icon'] = '';
     if (isset($value['icon']) && !empty($value['icon'])) {
       $file = file_load($value['icon']);
       $nodes_array_to_show[$key]['icon'] = image_style_url('conservation_slideshow_icon', $file->uri);
     }
-    //Set link.
+    // Set link.
     if (empty($value['learn_more_link']['title']) || empty($value['learn_more_link']['url'])) {
       $link = l(t('Learn more »'), 'node/' . $node->nid);
     }
@@ -222,35 +225,36 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
       $link = l(t($value['learn_more_link']['title']), $value['learn_more_link']['url']);
     }
     $nodes_array_to_show[$key]['learn_more_link'] = $link;
-    //Set featured project.
-    $view_results = views_get_view_result('conservation_strategy_projects', 'default', $node->nid);
-    if (!empty($view_results[0]->field_conservation_strategy_node_nid)) {
-      $featured_nid = $view_results[0]->field_conservation_strategy_node_nid;
-    }
-    if ($value['entity_reference_project'] && !empty($value['entity_reference_project']['entity_id'])) {
+    // Set featured project.
+    $featured_nid = FALSE;
+    if (!empty($value['entity_reference_project']['entity_id'])) {
       $featured_nid = $value['entity_reference_project']['entity_id'];
     }
-    if (!empty($featured_nid) && $featured_node = node_load($featured_nid)) {
-      $get_field_hero_image = field_get_items('node', $featured_node, 'field_hero_image');
+    else {
+      $view_results = views_get_view_result('conservation_strategy_projects', 'default', $node->nid);
+      if (!empty($view_results[0]->field_conservation_strategy_node_nid)) {
+        $featured_nid = $view_results[0]->field_conservation_strategy_node_nid;
+      }
+    }
+    if ($featured_nid && $featured_node = node_load($featured_nid)) {
       $nodes_array_to_show[$key]['featured_node']['hero_image'] = '';
-      if (isset($get_field_hero_image[0]['fid'])) {
-        $file = file_load($get_field_hero_image[0]['fid']);
+      $field_items = field_get_items('node', $featured_node, 'field_hero_image');
+      if (!empty($field_items[0]['fid']) && $file = file_load($field_items[0]['fid'])) {
         $nodes_array_to_show[$key]['featured_node']['hero_image'] = image_style_url('conservation_slideshow_featured_project', $file->uri);
       }
       $nodes_array_to_show[$key]['featured_node']['title'] = l($featured_node->title, 'node/' . $featured_node->nid);
-      $get_field_project_description = field_get_items('node', $featured_node, 'field_project_description');
       $nodes_array_to_show[$key]['featured_node']['summary'] = '';
-      if (!empty($get_field_project_description[0]['value'])) {
-        $nodes_array_to_show[$key]['featured_node']['summary'] = $get_field_project_description[0]['value'];
+      $field_items = field_get_items('node', $featured_node, 'field_project_description');
+      if (!empty($field_items[0]['value'])) {
+        $nodes_array_to_show[$key]['featured_node']['summary'] = $field_items[0]['value'];
       }
     }
-    unset($featured_nid);
-    //Increase text size if Featured project is not available.
+    // Increase text size if Featured project is not available.
     $summary_count = 500;
     if (!isset($nodes_array_to_show[$key]['featured_node'])) {
       $summary_count = 1000;
     }
-    //Set summary.
+    // Set summary.
     $summary = $value['summary']['value'];
     $nodes_array_to_show[$key]['summary'] = text_summary($summary, NULL, $summary_count);
   }
