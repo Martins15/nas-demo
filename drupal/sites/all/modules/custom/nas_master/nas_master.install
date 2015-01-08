@@ -946,9 +946,19 @@ function nas_master_update_7067(&$sandbox) {
 }
 
 /**
+ * Revert search page feature.
+ */
+function nas_master_update_7070() {
+  module_enable(array('search_api_facetapi', 'facetapi_bonus'));
+  features_revert_module('nas_search_feature');
+  features_revert_module('nas_solr_feature');
+  _block_rehash('nas');
+}
+
+/**
  * Remove old migrated content.
  */
-function nas_master_update_7069() {
+function nas_master_update_7071() {
   features_revert_module('nas_article_feature');
   $importers = array(
     'news_import',
@@ -972,62 +982,51 @@ function nas_master_update_7069() {
 }
 
 /**
- * Revert search page feature.
- */
-function nas_master_update_7070() {
-  module_enable(array('search_api_facetapi', 'facetapi_bonus'));
-  features_revert_module('nas_search_feature');
-  features_revert_module('nas_solr_feature');
-  _block_rehash('nas');
-}
-
-/**
-<<<<<<< HEAD
  * Migrate users.
  */
-function nas_master_update_7071(&$sandbox) {
+function nas_master_update_7072(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'user', 'users_import', t('Users import'));
 }
 
 /**
  * Migrate Authors.
  */
-function nas_master_update_7072(&$sandbox) {
+function nas_master_update_7073(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'author', 'authors_import', t('Authors import'));
 }
 
 /**
  * Migrate news.
  */
-function nas_master_update_7073(&$sandbox) {
+function nas_master_update_7074(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'news', 'news_import', t('News import'));
 }
 
 /**
  * Migrate Magazine Articles.
  */
-function nas_master_update_7074(&$sandbox) {
+function nas_master_update_7075(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_article', 'news_import', t('Magazine article import'));
 }
 
 /**
  * Migrate Contacts.
  */
-function nas_master_update_7075(&$sandbox) {
+function nas_master_update_7076(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'profile', 'contacts_import', t('Contacts import'));
 }
 
 /**
  * Migrate Media Gallery.
  */
-function nas_master_update_7076(&$sandbox) {
+function nas_master_update_7077(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'media_gallery', 'media_gallery_import', t('Media Gallery import'));
 }
 
 /**
  * Migrate Static Pages.
  */
-function nas_master_update_7077(&$sandbox) {
+function nas_master_update_7080(&$sandbox) {
   _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'));
 }
 
