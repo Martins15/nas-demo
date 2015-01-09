@@ -1231,4 +1231,5 @@ function nas_master_update_7087(&$sandbox) {
  */
 function nas_master_update_7088() {
   module_enable(array('nas_help_page_feature'));
+  features_revert_module('nas_image_styles_feature');
 }
