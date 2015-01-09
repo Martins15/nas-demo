@@ -1,4 +1,4 @@
-name = How to Help page feature
+name = NAS How to Help Page
 core = 7.x
 package = NAS
 dependencies[] = ctools

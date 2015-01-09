@@ -75,7 +75,7 @@ function nas_help_page_feature_default_page_manager_pages() {
       ),
       'override_title' => 0,
       'override_title_text' => '',
-      'additional_classes' => '',
+      'additional_classes' => 'columns',
       'count' => '3',
       'update_count' => 'Update count',
       'refs' => array(
@@ -98,9 +98,16 @@ function nas_help_page_feature_default_page_manager_pages() {
           'excerpt' => '',
         ),
       ),
-      'form_build_id' => 'form-wkfOvPdSL9gWuv2HIjITtu-5u01UkrSH-LLg9HCFA2U',
+      'form_build_id' => 'form-RAyc0Bu-CWI0yOl4DKVs_NMjBfohQ6kc17gIqYFz5z8',
       'form_token' => 'QMjz2yDH7g2ayUMrDPUF6G5FFrTcvXIxdUUOH4XeS1c',
       'form_id' => 'donate_cards_3x_edit_form',
+      'paddings' => array(
+        'double-bottom' => 'double-bottom',
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 0,
+      ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
