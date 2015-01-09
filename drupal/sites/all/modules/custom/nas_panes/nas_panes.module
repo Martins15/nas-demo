@@ -282,6 +282,20 @@ function nas_panes_theme() {
       'template' => 'nas-panes-pane-donate-button',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button'
     ),
+    'donate_with_gradient' => array(
+      'variables' => array(),
+      'template' => 'donate-with-gradient',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_with_gradient',
+    ),
+    'donate_cards_3x' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'teasers' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'donate-cards-3x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_cards_3x',
+    ),
     'nas_featured_social_in_article' => array(
       'variables' => array(
         'title' => '',
@@ -784,30 +798,9 @@ function nas_panes_ajax_render_alter(&$commands) {
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
   if (strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
-    // Here we save the cache to database. When we edited the pane we made
-    // changes in the cache. In order the page to see the changes we need
-    // to save cache data to database.
-    $panel_keys = array(
-      NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_BIRD_LANDING_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_NODE_VIEW_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_FLYWAY_LANDING_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY,
-      NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY,
-      'page-audubon_near_you',
-    );
-
-    foreach ($panel_keys as $key) {
-      if (strpos($_GET['q'], $key) !== FALSE) {
-        nas_panes_resave_panel($key);
-        break;
-      }
+    if (preg_match('/panels\/ajax\/editor\/edit-pane\/panel_context:([^:]*):.*/', $_GET['q'], $matches)) {
+      $key = $matches[1];
+      nas_panes_resave_panel($key);
     }
 
     if (strpos($_GET['q'], NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
