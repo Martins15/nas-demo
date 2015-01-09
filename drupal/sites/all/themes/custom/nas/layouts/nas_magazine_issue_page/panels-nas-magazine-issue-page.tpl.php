@@ -36,18 +36,6 @@
       <?php print $content['cover']; ?>
       </div>
       <?php print $content['right_sidebar']; ?>
-      <div class="sidebar-section engagement-card">
-        <div class="engagement-card-content no-min-height">
-          <h3 class="engagement-card-headline">Donate Today & Get the Magazine</h3>
-          <p>An annual donation of $40 gets Audubon Magazine delivered straight to your door.</p>
-          <div class="engagement-card-cta">
-            <a href="#" class="button tomato large">Support Audubon</a>
-          </div>
-        </div>
-        <div class="engagement-card-photo">
-          <a href="#"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>engagement-card-27.jpg" alt=""></a>
-        </div>
-      </div>
     </div>
     <!-- END SIDEBAR -->
   </div>

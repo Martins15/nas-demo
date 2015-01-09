@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Audubon Near You feature.
+ */
+
+include_once 'nas_audubon_near_you_feature.features.inc';

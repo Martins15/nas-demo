@@ -14,13 +14,15 @@
     <?php print $links; ?>
   </div>
 </div>
-<div class="row bird-card-container">
-  <div class="bird-card-scroller">
-    <?php foreach ($items as $item) : ?>
-      <div class="columns tiny-3">
-        <?php print render($item); ?>
-      </div>
-    <?php endforeach; ?>
+<div class="bird-card-set">
+  <div class="row bird-card-container">
+    <div class="bird-card-scroller">
+      <?php foreach ($items as $item) : ?>
+        <div class="columns tiny-3">
+          <?php print render($item); ?>
+        </div>
+      <?php endforeach; ?>
+    </div>
   </div>
   <div class="row indicator space-bottom">
     <div class="column">

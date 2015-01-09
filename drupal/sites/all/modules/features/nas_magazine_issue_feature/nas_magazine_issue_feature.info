@@ -31,5 +31,5 @@ features[variable][] = node_options_magazine_issue
 features[variable][] = node_preview_magazine_issue
 features[variable][] = node_submitted_magazine_issue
 features[variable][] = panelizer_defaults_node_magazine_issue
-mtime = 1419955291
+mtime = 1419955335
 project path = sites/all/modules/features

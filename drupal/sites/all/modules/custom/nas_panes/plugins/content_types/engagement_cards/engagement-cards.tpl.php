@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="card-set-dots">
+  <div class="card-set-dots light">
     <div class="dot active"></div>
     <div class="dot"></div>
     <div class="dot"></div>

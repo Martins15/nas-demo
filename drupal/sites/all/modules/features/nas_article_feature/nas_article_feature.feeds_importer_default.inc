@@ -153,13 +153,13 @@ function nas_article_feature_feeds_importer_default() {
             'unique' => FALSE,
           ),
           4 => array(
-            'source' => 'field_article_intro',
-            'target' => 'field_article_legacy',
+            'source' => 'status',
+            'target' => 'status',
             'unique' => FALSE,
           ),
           5 => array(
-            'source' => 'status',
-            'target' => 'status',
+            'source' => 'field_article_intro',
+            'target' => 'field_subtitle',
             'unique' => FALSE,
           ),
         ),

@@ -49,3 +49,10 @@
     </div>
   </div>
 </div>
+<?php foreach ($flyway_hero_items as $delta => $hero_item): ?>
+  <?php if (!empty($hero_item['credit'])) : ?>
+    <div class="hero-attribution row flyway-hero-attribution<?php print $delta === 1 ? ' current' : ''; ?>" data-point-id="<?php print $delta; ?>">
+      <p class="column"><span class="hero-attribution-text"><?php print $hero_item['credit']; ?></span></p>
+    </div>
+  <?php endif; ?>
+<?php endforeach; ?>

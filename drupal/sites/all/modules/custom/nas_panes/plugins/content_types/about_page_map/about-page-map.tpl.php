@@ -5,13 +5,13 @@
  */
 ?>
 
+<?php if (!empty($title)) : ?>
 <div class="row space-top">
   <div class="column">
-    <?php if (!empty($title)) : ?>
-      <h2 class="thin centered"><?php print $title; ?></h2>
-    <?php endif; ?>
+    <h2 class="thin centered"><?php print $title; ?></h2>
   </div>
 </div>
+<?php endif; ?>
 <div class="inline-map <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
   <?php print $contextual_links; ?>
   <div class="inline-map-canvas">
