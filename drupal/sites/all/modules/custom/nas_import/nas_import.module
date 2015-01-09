@@ -340,7 +340,7 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   // Convert inline images with captions.
   if (!empty($item['body'])) {
     // @codingStandardsIgnoreStart
-    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:([^\[\]]*)\]/x', function ($matches) use ($images_mapping) {
       $token = trim($matches[0], '[]');
       list($image_id, $align, $caption) = explode('|', $token);
       // Remove 'img:' from the beginning.
@@ -427,7 +427,13 @@ function nas_import_feeds_presave_news_import($source, $entity, $item) {
   if (!empty($item['created'])) {
     $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);
   }
-  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ARTICLE_HERO);
+
+  if (isset($item['field_article_intro'][0]['value'])) {
+    $intro = strip_tags($item['field_article_intro'][0]['value']);
+    $entity->field_subtitle[LANGUAGE_NONE][0] = array(
+      'value' => substr($intro, 0, 255),
+    );
+  }
 }
 
 /**
@@ -496,7 +502,7 @@ function nas_import_feeds_presave_static_pages_import(FeedsSource $source, $enti
   // Convert inline images with captions.
   if (!empty($item['body'])) {
     // @codingStandardsIgnoreStart
-    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:.*\]/', function ($matches) use ($images_mapping) {
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:([^\[\]]*)\]/x', function ($matches) use ($images_mapping) {
       $token = trim($matches[0], '[]');
       list($image_id, $align, $caption) = explode('|', $token);
       // Remove 'img:' from the beginning.
@@ -591,12 +597,11 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       break;
 
     case 'static_pages_import':
-      dpm($entity, 'entity');
       $nas_static_pages_nids_mapping = variable_get('nas_static_pages_nids_mapping', array());
       $nas_static_pages_nids_mapping[$item['nid']] = $entity->nid;
       variable_set('nas_static_pages_nids_mapping', $nas_static_pages_nids_mapping);
       // Set Press Release display for imported articles.
-      $panelizer_entity_name = 'node:static_page:static_page_1_column';
+      $panelizer_entity_name = 'node:static_page:static_page_2_columns';
       $panelizer_entity = array(
         'entity_type' => 'node',
         'entity_id' => $entity->nid,
@@ -1145,8 +1150,6 @@ function nas_import_get_image_object($field_value, $entity, $image_fields_mappin
     return FALSE;
   }
 
-  dpm($entity->nid, 'nid with image');
-
   $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
   $image_node = drupal_json_decode($result->data);
   $image_node = reset($image_node);
@@ -1257,5 +1260,16 @@ function nas_import_feeds_presave_audubon_location_import($source, $entity, $ite
 
     );
     $wrapper->field_location_address->set($address);
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function nas_import_entity_insert($entity, $type) {
+  if ($type == 'node' && !empty($entity->feeds_item->is_new) && $entity->type == 'article') {
+    // Generate redirect and new alias for articles.
+    module_load_include('inc', 'pathauto', 'pathauto');
+    pathauto_create_alias('node', 'bulkupdate', 'node/' . $entity->nid, array('node' => $entity), $entity->type, LANGUAGE_NONE);
   }
 }

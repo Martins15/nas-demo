@@ -81,6 +81,28 @@ function nas_disqus_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'disqus_nodetypes_default';
+  $strongarm->value = array(
+    'article' => 0,
+    'bird' => 0,
+    'boaf' => 0,
+    'boa' => 0,
+    'boag' => 0,
+    'project' => 0,
+    'strategy' => 0,
+    'contact' => 0,
+    'engagement_cards' => 0,
+    'flyway' => 0,
+    'location' => 0,
+    'magazine_issue' => 0,
+    'slideshow' => 0,
+    'static_page' => 0,
+  );
+  $export['disqus_nodetypes_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'disqus_publickey';
   $strongarm->value = '6VOmNObEfHQuDWbOYajptUv7EDc57DCeYSd6YXpkOhvsG7ekadmS2180vZyan6fr';
   $export['disqus_publickey'] = $strongarm;

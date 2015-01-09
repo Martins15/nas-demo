@@ -653,20 +653,47 @@ function nas_master_update_7058(&$sandbox) {
  *
  * @param string $human_name
  *   Human readable name of the content type.
+ *
+ * @param bool $only_new
+ *   Flag to import only new content.
  */
-function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name) {
+function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name, $only_new = FALSE) {
   if (!isset($sandbox['progress'])) {
     // Add nids to sandbox.
-    $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $d6_content_type);
-    $sandbox['nids'] = drupal_json_decode($result->data);
+    switch ($d6_content_type) {
+      case 'user':
+        $result = drupal_http_request(EXPORT_USERS_LIST_UIDS_URL);
+        $sandbox['nids'] = drupal_json_decode($result->data);
+        break;
+
+      case 'profile':
+        $result = drupal_http_request(EXPORT_NODE_TYPE_CONTACT_LIST_NIDS_URL . $d6_content_type);
+        $sandbox['nids'] = drupal_json_decode($result->data);
+        break;
+
+      default:
+        $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . $d6_content_type);
+        $sandbox['nids'] = drupal_json_decode($result->data);
+        break;
+    }
+
+    // Import only new items.
+    if ($only_new) {
+      $imported_nids = array();
+      $feeds_items = db_select('feeds_item', 'f')
+        ->fields('f', array('guid'))
+        ->condition('f.id', $feeds_importer)
+        ->execute();
+      foreach ($feeds_items as $feeds_item) {
+        $imported_nids[] = $feeds_item->guid;
+      }
+
+      $sandbox['nids'] = array_diff($sandbox['nids'], $imported_nids);
+    }
 
     // Limit nodes for dev environment.
     if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
       $sandbox['nids'] = array_slice($sandbox['nids'], 0, 20);
-      // Define nid of static page that has images.
-      if ($feeds_importer == 'static_pages_import') {
-        $sandbox['nids'][] = 70161;
-      }
     }
 
     $sandbox['max'] = count($sandbox['nids']);
@@ -676,7 +703,12 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
   if (!empty($sandbox['max'])) {
     // Get part of ids.
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
-    pp_import_nodes_batch($nids, $feeds_importer);
+    if ($d6_content_type == 'user') {
+      pp_import_users_batch($nids, $feeds_importer);
+    }
+    else {
+      pp_import_nodes_batch($nids, $feeds_importer);
+    }
     $sandbox['progress'] += count($nids);
   }
 
@@ -937,6 +969,193 @@ function nas_master_update_7070() {
 }
 
 /**
+ * Revert article feature.
+ */
+function nas_master_update_7071() {
+  features_revert_module('nas_article_feature');
+  // Temporary remove feeds process limit.
+  $feeds_process_limit = variable_get('feeds_process_limit', FEEDS_PROCESS_LIMIT);
+  variable_set('feeds_process_limit', 10000);
+  $source = feeds_source('static_pages_import');
+  $source->importer->processor->clear($source);
+  watchdog('nas_master', 'Migrated content (static pages) has been successfully removed.');
+  variable_set('feeds_process_limit', $feeds_process_limit);
+}
+
+/**
+ * Migrate users.
+ */
+function nas_master_update_7072(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'user', 'users_import', t('Users import'), TRUE);
+}
+
+/**
+ * Migrate Authors.
+ */
+function nas_master_update_7073(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'author', 'authors_import', t('Authors import'), TRUE);
+}
+
+/**
+ * Migrate news.
+ */
+function nas_master_update_7074(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'news', 'news_import', t('News import'), TRUE);
+}
+
+/**
+ * Migrate Magazine Articles.
+ */
+function nas_master_update_7075(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_article', 'news_import', t('Magazine article import'), TRUE);
+}
+
+/**
+ * Migrate Contacts.
+ */
+function nas_master_update_7076(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'profile', 'contacts_import', t('Contacts import'), TRUE);
+}
+
+/**
+ * Migrate Media Gallery.
+ */
+function nas_master_update_7077(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'media_gallery', 'media_gallery_import', t('Media Gallery import'), TRUE);
+}
+
+/**
+ * Migrate Static Pages.
+ */
+function nas_master_update_7080(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'page', 'static_pages_import', t('Static pages import'), TRUE);
+}
+
+/**
+ * Migrate magazine_issue.
+ */
+function nas_master_update_7081(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'magazine_issue', 'magazine_issues_import', t('Magazine issue import'), TRUE);
+}
+
+/**
+ * Migrate birds.
+ */
+function nas_master_update_7082(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'bird', 'birds_import', t('Bird import'), TRUE);
+}
+
+/**
+ * Migrate locations.
+ */
+function nas_master_update_7083(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'audubon_location', 'audubon_location_import', t('Locations import'), TRUE);
+}
+
+/**
+ * Migrate chapters.
+ */
+function nas_master_update_7084(&$sandbox) {
+  _nas_master_migrate_operation_from_update($sandbox, 10, 'chapter', 'chapters_import', t('Chapters'), TRUE);
+}
+
+/**
+ * Remove default image for articles.
+ */
+function nas_master_update_7085(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $count = db_select('field_data_field_hero_image', 'f')
+      ->condition('f.bundle', 'article')
+      ->condition('f.field_hero_image_fid', 3936)
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+    $sandbox['max'] = $count;
+  }
+
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $sandbox['max'] = 50;
+  }
+
+  if (!empty($sandbox['max'])) {
+    $query = db_select('field_data_field_hero_image', 'f');
+    $query->fields('f', array('entity_id'));
+    $query->condition('f.bundle', 'article');
+    $query->condition('f.field_hero_image_fid', 3936);
+    $query->range(0, $chunk);
+
+    $result = $query->execute();
+    foreach ($result as $item) {
+      $node = node_load($item->entity_id);
+      $node->field_hero_image = array();
+      node_save($node);
+      $sandbox['current']++;
+    }
+
+    $sandbox['progress'] += $chunk;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count default images has been successfully removed.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
+ * Migrate data from legacy field to subtitle.
+ */
+function nas_master_update_7086(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $count = db_select('field_data_field_article_legacy', 'f')
+      ->condition('f.bundle', 'article')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+    $sandbox['max'] = $count;
+  }
+
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $sandbox['max'] = 50;
+  }
+
+  if (!empty($sandbox['max'])) {
+    $query = db_select('field_data_field_article_legacy', 'f');
+    $query->fields('f', array('entity_id'));
+    $query->condition('f.bundle', 'article');
+    $query->range(0, $chunk);
+
+    $result = $query->execute();
+    foreach ($result as $item) {
+      $node = node_load($item->entity_id);
+      if (!empty($node->field_article_legacy[LANGUAGE_NONE][0]['value'])) {
+        $legacy = substr($node->field_article_legacy[LANGUAGE_NONE][0]['value'], 0, 255);
+        $node->field_subtitle[LANGUAGE_NONE][0] = array('value' => strip_tags($legacy));
+        $node->field_article_legacy = array();
+        node_save($node);
+      }
+      $sandbox['current']++;
+    }
+
+    $sandbox['progress'] += $chunk;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count legacy fields has been successfully migrated to subtitle.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
  * Revert features.
  */
 function nas_master_update_7078() {
@@ -955,5 +1174,54 @@ function nas_master_update_7078() {
  */
 function nas_master_update_7079() {
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
-  module_enable(array('nas_audubon_near_you_feature'));
+  module_enable(array('nas_audubon_near_you_feature', 'nas_bird_friendly_feature'));
+  features_revert_module('nas_bird_friendly_feature');
+}
+
+/**
+ * Update disqus comments to articles.
+ */
+function nas_master_update_7087(&$sandbox) {
+  if (!isset($sandbox['progress'])) {
+    $chunk = 10;
+    $sandbox['progress'] = 0;
+    // Get all article nids with status 1.
+    $disqus_nids = db_select('disqus', 'd')
+      ->condition('status', TRUE)
+      ->fields('d', array('nid'))
+      ->distinct()
+      ->execute()
+      ->fetchCol();
+
+    db_truncate('disqus')->execute();
+
+    $query = db_select('node', 'n');
+    $query->condition('n.type', 'article');
+    if (!empty($disqus_nids)) {
+      $query->condition('n.nid', $disqus_nids, 'NOT IN');
+    }
+    $query->fields('n', array('nid'));
+
+    $sandbox['nids'] = $query->execute()->fetchCol();
+
+    $sandbox['max'] = count($sandbox['nids']);
+  }
+
+  if (!empty($sandbox['max'])) {
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    foreach ($nids as $nid) {
+      $data = array(
+        'nid' => $nid,
+        'status' => FALSE,
+      );
+      drupal_write_record('disqus', $data);
+    }
+    $sandbox['progress'] += count($nids);
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] == 1) {
+    watchdog('nas_master', '@count disqus records has been successfully updated.', array('@count' => $sandbox['progress']));
+  }
 }
