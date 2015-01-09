@@ -30,6 +30,18 @@ function donate_cards_3x_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
   );
 
+  $form['paddings'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Paddings'),
+    '#options' => array(
+      'top' => t('Top padding'),
+      'between' => t('Additional space between title and content'),
+      'bottom' => t('Bottom padding'),
+      'double-bottom' => t('Double bottom padding'),
+    ),
+    '#default_value' => !empty($conf['paddings']) ? $conf['paddings'] : _donate_cards_3x_default_paddings_conf(),
+  );
+
   // Get default value when count is empty or when it has been update via form.
   if (empty($form_state['storage']['count']) || (!empty($form_state['values']['count']) && $form_state['storage']['count'] != $form_state['values']['count'])) {
     // Update value when form has been submitted.
@@ -181,13 +193,39 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
     $title = ctools_context_keyword_substitute($conf['override_title_text'], array(), array($context));
   }
 
+  if (empty($conf['paddings'])) {
+    $conf['paddings'] = _donate_cards_3x_default_paddings_conf();
+  }
+  $spacebottom = '';
+  if ($conf['paddings']['double-bottom']) {
+    $spacebottom = 'space-bottom double';
+  }
+  elseif ($conf['paddings']['bottom']) {
+    $spacebottom = 'space-bottom';
+  }
+
   $block = new stdClass();
   $block->content = theme('donate_cards_3x', array(
     'teasers' => $teasers,
     'title' => $title,
     'additional_classes' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
     'contextual_links' => $contextual_links,
+    'spacetop' => $conf['paddings']['top'],
+    'spacebetween' => $conf['paddings']['between'],
+    'spacebottom' => $spacebottom,
   ));
 
   return $block;
+}
+
+/**
+ * Helper function to provide default panes padding configuration.
+ */
+function _donate_cards_3x_default_paddings_conf() {
+  return array(
+    'top' => 0,
+    'between' => 0,
+    'bottom' => 0,
+    'double-bottom' => 'double-bottom',
+  );
 }
