@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Revision feature.
+ */
+
+include_once 'nas_revision.features.inc';
