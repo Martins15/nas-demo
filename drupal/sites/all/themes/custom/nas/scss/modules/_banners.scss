@@ -14,6 +14,10 @@
   background-position: center top;
   background-size: cover;
 
+  &.donate-banner {
+    height: 285px;
+  }
+
   // Variants
   &.dark-bg {
     h2, h3, h4, p, ul {
@@ -55,6 +59,9 @@
   }
   @include breakpoint(medium-up) {
     width: 45%;
+    .donate-banner & {
+      width: 240px;
+    }
   }
   @include breakpoint(large-up) {
     top: $column-gutter/2;
@@ -97,6 +104,11 @@
   font-size: $size-text-small;
   line-height: $size-line-small;
   margin-bottom: $size-space;
+
+  &.yellow {
+    color: #ffcc00 !important;
+    margin-bottom: $size-space*3/2;
+  }
 }
 
 .banner-links {
