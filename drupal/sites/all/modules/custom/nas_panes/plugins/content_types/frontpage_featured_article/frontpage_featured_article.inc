@@ -68,6 +68,11 @@ function frontpage_featured_article_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

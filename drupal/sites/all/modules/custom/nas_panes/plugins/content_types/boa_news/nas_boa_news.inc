@@ -41,6 +41,11 @@ function nas_boa_news_edit_form($form, &$form_state) {
     '#era_bundles' => array('article'),
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

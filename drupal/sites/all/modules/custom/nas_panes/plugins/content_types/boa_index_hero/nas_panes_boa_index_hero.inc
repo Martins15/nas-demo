@@ -76,6 +76,11 @@ function boa_index_hero_form($form, &$form_state) {
     '#description' => t('You can choose if title text should be dark or light.'),
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

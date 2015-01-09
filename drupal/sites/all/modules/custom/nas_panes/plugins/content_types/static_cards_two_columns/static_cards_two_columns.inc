@@ -83,6 +83,11 @@ function static_cards_two_columns_form($form, &$form_state) {
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'static_cards_two_columns', 'nas_panes', 'plugins/content_types/static_cards_two_columns');
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 
