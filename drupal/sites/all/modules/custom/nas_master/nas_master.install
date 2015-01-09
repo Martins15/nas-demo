@@ -973,6 +973,13 @@ function nas_master_update_7070() {
  */
 function nas_master_update_7071() {
   features_revert_module('nas_article_feature');
+  // Temporary remove feeds process limit.
+  $feeds_process_limit = variable_get('feeds_process_limit', FEEDS_PROCESS_LIMIT);
+  variable_set('feeds_process_limit', 10000);
+  $source = feeds_source('static_pages_import');
+  $source->importer->processor->clear($source);
+  watchdog('nas_master', 'Migrated content (static pages) has been successfully removed.');
+  variable_set('feeds_process_limit', $feeds_process_limit);
 }
 
 /**
