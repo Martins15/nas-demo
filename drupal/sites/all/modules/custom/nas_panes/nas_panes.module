@@ -282,6 +282,16 @@ function nas_panes_theme() {
       'template' => 'nas-panes-pane-donate-button',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button'
     ),
+    'donate_with_gradient' => array(
+      'variables' => array(),
+      'template' => 'donate-with-gradient',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_with_gradient',
+    ),
+    'donate_cards_3x' => array(
+      'variables' => array(),
+      'template' => 'donate-cards-3x',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_cards_3x',
+    ),
     'nas_featured_social_in_article' => array(
       'variables' => array(
         'title' => '',
