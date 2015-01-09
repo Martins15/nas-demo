@@ -185,11 +185,11 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
           ));
         }
       }
-      if (!empty($ref['url'])) {
-        $teaser['title'] = l($ref['title'], $ref['url'], array(
-            'attributes' => array('title' => $ref['title']),
-          ));
-      }
+    }
+    if (!empty($ref['url'])) {
+      $teaser['title'] = l($ref['title'], $ref['url'], array(
+          'attributes' => array('title' => $ref['title']),
+        ));
     }
 
     $teasers[] = $teaser;
