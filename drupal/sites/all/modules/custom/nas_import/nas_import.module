@@ -601,7 +601,7 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       $nas_static_pages_nids_mapping[$item['nid']] = $entity->nid;
       variable_set('nas_static_pages_nids_mapping', $nas_static_pages_nids_mapping);
       // Set Press Release display for imported articles.
-      $panelizer_entity_name = 'node:static_page:static_page_1_column';
+      $panelizer_entity_name = 'node:static_page:static_page_2_columns';
       $panelizer_entity = array(
         'entity_type' => 'node',
         'entity_id' => $entity->nid,
