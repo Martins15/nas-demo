@@ -166,7 +166,7 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
     }
     $teaser = array(
       'linked_image' => '',
-      'title' => check_plain($ref['title']),
+      'title' => $ref['title'],
       'url' => $ref['url'],
       'excerpt' => !empty($ref['excerpt']) ? check_plain($ref['excerpt']) : '',
     );
@@ -175,11 +175,19 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
         $image = theme('image', array(
           'path' => image_style_url('article_teaser', $file->uri),
           // TODO: replace with image's alt.
-          'alt' => $teaser['title'],
+          'alt' => $ref['title'],
         ));
-        $teaser['linked_image'] = l($image, $teaser['url'], array(
+        $teaser['linked_image'] = $image;
+        if (!empty($ref['url'])) {
+          $teaser['linked_image'] = l($image, $ref['url'], array(
             'html' => TRUE,
-            'attributes' => array('title' => $teaser['title']),
+            'attributes' => array('title' => $ref['title']),
+          ));
+        }
+      }
+      if (!empty($ref['url'])) {
+        $teaser['title'] = l($ref['title'], $ref['url'], array(
+            'attributes' => array('title' => $ref['title']),
           ));
       }
     }
