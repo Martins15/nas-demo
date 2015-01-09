@@ -112,7 +112,7 @@ function donate_cards_3x_edit_form($form, &$form_state) {
       '#default_value' => !empty($conf['refs'][$i]['image']) ? $conf['refs'][$i]['image'] : 0,
     );
     $form['refs'][$i]['title'] = array(
-      '#prefix' => t('To display card fill Title and URL.'),
+      '#prefix' => t('To display card fill Title.'),
       '#title' => t('Title'),
       '#type' => 'textfield',
       '#default_value' => !empty($conf['refs'][$i]['title']) ? $conf['refs'][$i]['title'] : '',
@@ -161,7 +161,7 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
   $teasers = array();
   foreach ($conf['refs'] as $ref) {
     // Title and url are required to show card.
-    if (empty($ref['title']) || empty($ref['url'])) {
+    if (empty($ref['title'])) {
       continue;
     }
     $teaser = array(
