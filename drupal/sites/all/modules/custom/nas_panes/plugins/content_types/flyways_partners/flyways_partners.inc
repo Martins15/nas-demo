@@ -52,6 +52,11 @@ function flyways_partners_form($form, &$form_state) {
     '#default_value' => $conf['read_more_link'],
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

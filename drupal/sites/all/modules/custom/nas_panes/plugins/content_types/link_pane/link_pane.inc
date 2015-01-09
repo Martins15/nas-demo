@@ -32,6 +32,11 @@ function link_pane_form($form, &$form_state) {
     '#default_value' => !empty($conf['classes']) ? $conf['classes'] : '',
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

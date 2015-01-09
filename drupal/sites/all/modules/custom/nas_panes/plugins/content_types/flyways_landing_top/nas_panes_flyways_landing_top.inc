@@ -76,6 +76,11 @@ function flyways_landing_top_form($form, &$form_state) {
     );
   }
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

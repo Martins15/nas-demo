@@ -33,6 +33,11 @@ function nas_panes_pane_donate_button_form($form, &$form_state) {
     '#default_value' => !empty($conf['caption']) ? $conf['caption'] : '',
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

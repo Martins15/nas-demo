@@ -42,6 +42,11 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf[$conf_key]['hide_for_firsttime_visitors']) ? $conf[$conf_key]['hide_for_firsttime_visitors'] : 0,
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 
