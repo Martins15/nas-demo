@@ -794,6 +794,9 @@ function nas_panes_ajax_render_alter(&$commands) {
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
   if (strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+    // Here we save the cache to database. When we edited the pane we made
+    // changes in the cache. In order the page to see the changes we need
+    // to save cache data to database.
     if (preg_match('/panels\/ajax\/editor\/edit-pane\/panel_context:([^:]*):.*/', $_GET['q'], $matches)) {
       $key = $matches[1];
       nas_panes_resave_panel($key);
