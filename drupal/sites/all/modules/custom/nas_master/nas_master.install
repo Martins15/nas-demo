@@ -1170,3 +1170,51 @@ function nas_master_update_7079() {
   module_enable(array('nas_audubon_near_you_feature', 'nas_bird_friendly_feature'));
   features_revert_module('nas_bird_friendly_feature');
 }
+
+/**
+ * Update disqus comments to articles.
+ */
+function nas_master_update_7087(&$sandbox) {
+  if (!isset($sandbox['progress'])) {
+    $chunk = 10;
+    $sandbox['progress'] = 0;
+    // Get all article nids with status 1.
+    $disqus_nids = db_select('disqus', 'd')
+      ->condition('status', TRUE)
+      ->fields('d', array('nid'))
+      ->distinct()
+      ->execute()
+      ->fetchCol();
+
+    db_truncate('disqus')->execute();
+
+    $query = db_select('node', 'n');
+    $query->condition('n.type', 'article');
+    if (!empty($disqus_nids)) {
+      $query->condition('n.nid', $disqus_nids, 'NOT IN');
+    }
+    $query->fields('n', array('nid'));
+
+    $sandbox['nids'] = $query->execute()->fetchCol();
+
+    $sandbox['max'] = count($sandbox['nids']);
+  }
+
+  if (!empty($sandbox['max'])) {
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    foreach ($nids as $nid) {
+      $data = array(
+        'nid' => $nid,
+        'status' => FALSE,
+      );
+      drupal_write_record('disqus', $data);
+    }
+    $sandbox['progress'] += count($nids);
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] == 1) {
+    watchdog('nas_master', '@count disqus records has been successfully updated.', array('@count' => $sandbox['progress']));
+  }
+}

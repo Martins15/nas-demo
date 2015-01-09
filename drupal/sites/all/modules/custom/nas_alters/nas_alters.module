@@ -15,6 +15,33 @@ function nas_alters_init() {
   if ($theme == 'adminimal') {
     drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
   }
+  if (isset($_GET['bu']) && $_GET['bu'] == 'bu') {
+    $disqus_nids = db_select('disqus', 'd')
+      ->distinct()
+      ->condition('status', TRUE)
+      ->fields('d', array('nid'))
+      ->execute()
+      ->fetchCol();
+
+    //db_truncate('disqus')->execute();
+
+    $a = db_select('node', 'n')
+      ->condition('n.type', 'article')
+      ->condition('n.nid', $disqus_nids, 'NOT IN')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    $t = db_select('node', 'n')
+      ->condition('n.type', 'article')
+      ->condition('n.nid', $disqus_nids, 'NOT IN')
+      ->fields('n', array('nid'))
+      ->execute()
+      ->fetchCol();
+
+    $nids = array_slice($t, 0, 10);
+    exit('<pre>' . print_r($nids, 1) . '</pre>');
+  }
 }
 
 
