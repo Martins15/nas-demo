@@ -3350,7 +3350,9 @@ function nas_editor_role_user_default_permissions() {
   // Exported permission: 'view revisions'.
   $permissions['view revisions'] = array(
     'name' => 'view revisions',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 

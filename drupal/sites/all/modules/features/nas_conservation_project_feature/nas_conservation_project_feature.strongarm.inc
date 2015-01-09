@@ -212,5 +212,12 @@ function nas_conservation_project_feature_strongarm() {
   );
   $export['panelizer_defaults_node_project'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_project';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_project'] = $strongarm;
+
   return $export;
 }

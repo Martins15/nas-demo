@@ -59,6 +59,7 @@ function nas_boa_feature_field_group_info() {
       1 => 'field_boa_status',
       2 => 'field_related_news',
       3 => 'field_state',
+      4 => 'field_internal_tagging',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

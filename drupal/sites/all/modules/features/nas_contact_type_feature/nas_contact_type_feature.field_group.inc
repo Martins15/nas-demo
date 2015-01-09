@@ -82,6 +82,7 @@ function nas_contact_type_feature_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_related_bird',
+      1 => 'field_internal_tagging',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -112,8 +113,7 @@ function nas_contact_type_feature_field_group_info() {
       1 => 'field_contact_title',
       2 => 'field_contact_twitter',
       3 => 'field_image',
-      4 => 'field_first_name',
-      5 => 'title',
+      4 => 'title',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

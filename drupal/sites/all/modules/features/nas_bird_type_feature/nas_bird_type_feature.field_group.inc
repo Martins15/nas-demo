@@ -116,6 +116,33 @@ function nas_bird_type_feature_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_menu_sections_references|node|bird|form';
+  $field_group->group_name = 'group_menu_sections_references';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'bird';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_tabs';
+  $field_group->data = array(
+    'label' => 'Menu sections & references',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_internal_tagging',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-menu-sections-references field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_menu_sections_references|node|bird|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_sci_info|node|bird|form';
   $field_group->group_name = 'group_sci_info';
   $field_group->entity_type = 'node';
@@ -162,6 +189,7 @@ function nas_bird_type_feature_field_group_info() {
       1 => 'group_legacy',
       2 => 'group_media',
       3 => 'group_sci_info',
+      4 => 'group_menu_sections_references',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
