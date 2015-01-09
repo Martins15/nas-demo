@@ -143,11 +143,16 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
       '#era_bundles' => array('project'),
     );
   }
-  $form['add_group'] = array(
+  $form['wrapper']['add_group'] = array(
     '#type' => 'submit',
-    '#value' => t('Add more'),
+    '#value' => t('Add more conservation strategies'),
     '#submit' => array('cons_landing_slideshow_add_group'),
   );
+
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
 
   return $form;
 }

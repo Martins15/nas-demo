@@ -59,3 +59,4 @@ dependencies[] = nas_getoutside_feature
 dependencies[] = nas_search
 dependencies[] = nas_search_feature
 dependencies[] = nas_bird_friendly_feature
+dependencies[] = nas_help_page_feature

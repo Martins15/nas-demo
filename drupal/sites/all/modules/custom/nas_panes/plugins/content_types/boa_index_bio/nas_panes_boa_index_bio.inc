@@ -95,6 +95,11 @@ function boa_index_bio_form($form, &$form_state) {
     '#default_value' => $conf['link'],
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 
