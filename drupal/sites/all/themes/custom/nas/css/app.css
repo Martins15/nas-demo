@@ -8043,6 +8043,9 @@ body.touch .primary-sub-nav-index {
   background-position: center top;
   background-size: cover;
 }
+.banner.donate-banner {
+  height: 285px;
+}
 .banner.dark-bg h2, .banner.dark-bg h3, .banner.dark-bg h4, .banner.dark-bg p, .banner.dark-bg ul {
   color: #fff;
 }
@@ -8089,6 +8092,9 @@ body.touch .primary-sub-nav-index {
   .banner-text {
     width: 45%;
   }
+  .donate-banner .banner-text {
+    width: 240px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .banner-text {
@@ -8133,6 +8139,10 @@ body.touch .primary-sub-nav-index {
   font-size: 15px;
   line-height: 20px;
   margin-bottom: 10px;
+}
+.banner-blurb.yellow {
+  color: #ffcc00 !important;
+  margin-bottom: 15px;
 }
 
 .banner-links {
