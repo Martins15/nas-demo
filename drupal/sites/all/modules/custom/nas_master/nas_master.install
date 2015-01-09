@@ -1225,3 +1225,10 @@ function nas_master_update_7087(&$sandbox) {
     watchdog('nas_master', '@count disqus records has been successfully updated.', array('@count' => $sandbox['progress']));
   }
 }
+
+/**
+ * Enable feature.
+ */
+function nas_master_update_7088() {
+  module_enable(array('nas_help_page_feature'));
+}
