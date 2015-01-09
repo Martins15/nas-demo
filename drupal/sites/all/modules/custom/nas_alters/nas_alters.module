@@ -185,7 +185,6 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
 function nas_alters_form_article_node_form_after_build($form, &$form_state) {
   // Hide some vertical tabs.
   $form['author']['#access'] = FALSE;
-  $form['revision_information']['#access'] = FALSE;
 
   return $form;
 }

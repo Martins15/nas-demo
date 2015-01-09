@@ -1218,3 +1218,26 @@ function nas_master_update_7087(&$sandbox) {
     watchdog('nas_master', '@count disqus records has been successfully updated.', array('@count' => $sandbox['progress']));
   }
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7088() {
+  module_enable(array('nas_revision'));
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_boa_family_feature');
+  features_revert_module('nas_boa_feature');
+  features_revert_module('nas_boa_genus_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_contact_type_feature');
+  features_revert_module('nas_editor_role');
+  features_revert_module('nas_engagement_cards_feature');
+  features_revert_module('nas_flyways_feature');
+  features_revert_module('nas_location_feature');
+  features_revert_module('nas_magazine_issue_feature');
+  features_revert_module('nas_slideshow_feature');
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_revision');
+}
