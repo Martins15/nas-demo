@@ -58,6 +58,7 @@ function nas_flyways_feature_field_group_info() {
       0 => 'field_custom_section',
       1 => 'field_menu_section',
       2 => 'field_flyway_states',
+      3 => 'field_internal_tagging',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

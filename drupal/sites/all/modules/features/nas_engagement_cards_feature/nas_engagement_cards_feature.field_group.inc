@@ -56,6 +56,7 @@ function nas_engagement_cards_feature_field_group_info() {
       0 => 'field_custom_section',
       1 => 'field_menu_section',
       2 => 'field_related_bird',
+      3 => 'field_internal_tagging',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

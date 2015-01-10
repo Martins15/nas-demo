@@ -22,10 +22,10 @@ function nas_location_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
@@ -72,6 +72,13 @@ function nas_location_feature_strongarm() {
   $strongarm->name = 'node_submitted_location';
   $strongarm->value = 0;
   $export['node_submitted_location'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_location';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_location'] = $strongarm;
 
   return $export;
 }

@@ -43,5 +43,32 @@ function nas_location_feature_field_group_info() {
   );
   $export['group_main_content|node|location|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_menu_sections_references|node|location|form';
+  $field_group->group_name = 'group_menu_sections_references';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'location';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Menu sections & references',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_internal_tagging',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-menu-sections-references field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_menu_sections_references|node|location|form'] = $field_group;
+
   return $export;
 }

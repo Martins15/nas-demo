@@ -183,5 +183,12 @@ function nas_slideshow_feature_strongarm() {
   );
   $export['panelizer_defaults_node_slideshow'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_slideshow';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_slideshow'] = $strongarm;
+
   return $export;
 }

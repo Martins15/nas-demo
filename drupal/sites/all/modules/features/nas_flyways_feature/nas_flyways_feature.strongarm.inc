@@ -131,6 +131,7 @@ function nas_flyways_feature_strongarm() {
   $strongarm->name = 'node_options_flyway';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_flyway'] = $strongarm;
 
@@ -166,6 +167,11 @@ function nas_flyways_feature_strongarm() {
         'choice' => 0,
       ),
       'teaser' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'search_result' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -736,6 +742,13 @@ function nas_flyways_feature_strongarm() {
   $strongarm->name = 'save_continue_flyway';
   $strongarm->value = 'Save and add fields';
   $export['save_continue_flyway'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_flyway';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_flyway'] = $strongarm;
 
   return $export;
 }

@@ -143,6 +143,7 @@ function nas_article_feature_strongarm() {
   $strongarm->value = array(
     0 => 'status',
     1 => 'promote',
+    2 => 'revision',
   );
   $export['node_options_article'] = $strongarm;
 
@@ -178,6 +179,61 @@ function nas_article_feature_strongarm() {
         'choice' => 0,
       ),
       'teaser' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'search_result' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'teaser_author_page' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_featured' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'conservation_strategy_list_teaser' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

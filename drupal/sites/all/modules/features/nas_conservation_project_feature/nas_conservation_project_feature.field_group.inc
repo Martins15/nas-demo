@@ -58,6 +58,7 @@ function nas_conservation_project_feature_field_group_info() {
       0 => 'field_conservation_strategy',
       1 => 'field_flyway',
       2 => 'field_project_related_birds',
+      3 => 'field_internal_tagging',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
