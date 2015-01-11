@@ -1231,7 +1231,7 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
  * @return array
  *   Array of node ojects and contextual_links.
  */
-function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
+function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   $context = array();
   // Check if pane renders within node.
   if ($context_node = menu_get_object('node')) {
@@ -1324,130 +1324,91 @@ function nas_panes_engagement_cards_get_cards($subtype, $conf, $first = FALSE) {
   }
   $cards_array['contextual_links'] = $contextual_links;
 
-  $conf_key = 'default';
-  if (isset($context['node'])) {
-    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
-  }
-  if (isset($conf[$conf_key])) {
-    $data = $conf[$conf_key];
-  }
-
   $nodes = array();
   // Load all nodes from Engagement cards nodequeue.
   $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
-
-  // Manual override.
-  if (isset($data['references'])) {
-    foreach ($data['references'] as $value) {
-      if (isset($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
-        $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
-      }
-    }
+  foreach ($all_nodes as $node) {
+    $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
   }
-  if (!empty($nodes)) {
-    // Sort the array by key previously loaded from nodequeue.
-    ksort($nodes);
-    // Pass node nid selected in sidebar's pane to bottom pane.
-    if ($first) {
-      $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-      $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, TRUE);
+  // Sidebar display card logic.
+  if ($first) {
+    // Manual override.
+    if ($data['references'][1]['entity_reference'] && $node = node_load($data['references'][1]['entity_reference']['entity_id'])) {
+      $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
     }
-
-    $cards_array['nodes'] = $nodes;
-
-    return $cards_array;
-  }
-  // Check if some editorial cards has reference to bird.
-  if (isset($context_node)) {
-    if ($context_node->type == 'bird' || $context_node->type == 'article') {
-      foreach ($all_nodes as $node) {
-        if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
-          foreach ($field_related_bird_items as $value) {
-            if ($value['target_id'] == $context_node->nid) {
-              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    if (empty($nodes)) {
+      // Check if some editorial cards has reference to bird.
+      if (isset($context_node)) {
+        if ($context_node->type == 'bird') {
+          foreach ($all_nodes_positioned as $node) {
+            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
+              foreach ($field_related_bird_items as $value) {
+                if ($value['target_id'] == $context_node->nid) {
+                  $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+                }
+              }
+            }
+          }
+        }
+        if ($context_node->type == 'article') {
+          foreach ($all_nodes_positioned as $node) {
+            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
+              if ($context_node->field_related_bird && $context_node_field_related_bird_items = field_get_items('node', $context_node, 'field_related_bird')) {
+                foreach ($field_related_bird_items as $value) {
+                  foreach ($context_node_field_related_bird_items as $context_node_value) {
+                    if ($context_node_value['target_id'] == $value['target_id']) {
+                      $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
-    }
-  }
-  // Get Bird reference from landing pages (Bird Guide & Bird Landing).
-  if (isset($context['landing'])) {
-    if ($context['landing']['panel_context'] == 'page_bird_guide_panel_context') {
-      $featured_nid = variable_get('nas_bird_guide_featured_bird');
-    }
-    if ($context['landing']['panel_context'] == 'page_birds_landing_panel_context') {
-      $featured_nid = variable_get('nas_bird_landing_featured_bird');
-    }
-    if (isset($featured_nid) && !empty($featured_nid)) {
-      foreach ($all_nodes as $node) {
-        if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
-          foreach ($field_related_bird_items as $value) {
-            if ($value['target_id'] == $featured_nid) {
-              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-            }
-          }
-
-        }
-      }
-    }
-  }
-  // Not Manual overrides, not Birds references were provided, or it's count less than 4.
-  if (empty($nodes) || count($nodes) < 4) {
-    /**
-     * We have 2 options for matching Menu section context.
-     * 1. page is a node, and it has field_menu_section.
-     * 2. page is a taxonomy term, and it has tid.
-     */
-
-    // Option 1.
-    if (isset($context_node)) {
-      if (isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
-        $current_page_sections = array();
-        foreach ($field_menu_section_items as $value) {
-          $current_page_sections[] = $value['tid'];
-        }
-        foreach ($all_nodes as $node) {
-          if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
+      // Not Manual overrides, not Birds references were provided.
+      if (empty($nodes)) {
+        if (isset($context_node)) {
+          if (isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
+            $current_page_sections = array();
             foreach ($field_menu_section_items as $value) {
-              if (in_array($value['tid'], $current_page_sections)) {
-                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+              $current_page_sections[] = $value['tid'];
+            }
+            foreach ($all_nodes_positioned as $node) {
+              if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
+                foreach ($field_menu_section_items as $value) {
+                  if (in_array($value['tid'], $current_page_sections)) {
+                    $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+                  }
+                }
               }
             }
           }
         }
       }
     }
-    // Option 2.
-    if (isset($context['tid'])) {
-      foreach ($all_nodes as $node) {
-        if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
-          foreach ($field_menu_section_items as $value) {
-            if ($value['tid'] == $context['tid']) {
-              $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-            }
-          }
+    // Load card number 4 if manual override was not provided or context not matched.
+    if (empty($nodes)) {
+      $nodes[] = $all_nodes_positioned[4];
+    }
+    $cards_array['nodes'] = $nodes;
+  }
+  // Footer block display cards logic.
+  else {
+    // Manual override.
+    if (isset($data['references'])) {
+      foreach ($data['references'] as $value) {
+        if (isset($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+          $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
         }
       }
     }
-  }
-  // Default behaviour options.
-  if (count($nodes) < 4) {
-    foreach ($all_nodes as $node) {
-      $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    // Load first 3 from nodequeue if manual override was not provided.
+    if (empty($nodes)) {
+      $nodes = array_slice($all_nodes_positioned, 0, 3, TRUE);
     }
-    $nodes = array_replace($all_nodes_positioned, $nodes);
+    $cards_array['nodes'] = $nodes;
   }
-
-  // Sort the array by key previously loaded from nodequeue.
-  ksort($nodes);
-  // Pass node nid selected in sidebar's pane to bottom pane.
-  if ($first) {
-    $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-    $nas_selected_engagement_cards_nodes = array_slice($nodes, 0, 1, TRUE);
-  }
-
-  $cards_array['nodes'] = $nodes;
 
   return $cards_array;
 }
@@ -1596,7 +1557,21 @@ function nas_panes_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['admin/content/engagement-cards-nodequeue'] = array(
+    'title' => 'Engagement Cards nodequeue',
+    'access arguments' => array('administer nodes'),
+    'page callback' => 'nas_panes_engagement_cards_nodequeue_redirect',
+    'weight' => 10,
+  );
+
   return $items;
+}
+
+/**
+ * Page callback for admin/content/engagement-cards-nodequeue.
+ */
+function nas_panes_engagement_cards_nodequeue_redirect() {
+  drupal_goto('admin/structure/nodequeue/1/view/1');
 }
 
 /**

@@ -75,16 +75,10 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
     $data = $conf[$conf_key];
   }
   // Call main function and get what we have to render.
-  $cards_array = nas_panes_engagement_cards_get_cards($subtype, $conf);
+  $cards_array = nas_panes_engagement_cards_get_cards($subtype, $data);
   $nodes = $cards_array['nodes'];
   $contextual_links = $cards_array['contextual_links'];
 
-  $nas_selected_engagement_cards_nodes = &drupal_static('nas_selected_engagement_cards_nodes');
-  // Remove from set of matched cards already selected.
-  if (!empty($nas_selected_engagement_cards_nodes)) {
-    $nodes = array_diff_key($nodes, $nas_selected_engagement_cards_nodes);
-  }
-  $nodes = array_slice($nodes, 0, 3, TRUE);
   // Finally render selected nodes.
   $teasers = array();
   foreach ($nodes as $node) {
