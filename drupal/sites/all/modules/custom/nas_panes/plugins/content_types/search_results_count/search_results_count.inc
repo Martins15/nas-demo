@@ -22,6 +22,9 @@ function search_results_count_render($subtype, $conf, $args, $contexts) {
   $view = views_get_view('search_results');
   $view->set_display('other_results');
   $view->execute();
+  if (!$view->total_rows) {
+    return;
+  }
 
   $block = new stdClass();
   $block->content = theme('search_results_count', array(
