@@ -29,6 +29,7 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '8';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -88,6 +89,21 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['row_options']['view_mode'] = 'search_result';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['search_api_relevance']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['search_api_relevance']['expose']['label'] = 'Relevance';
+  /* Sort criterion: Indexed Node: Date */
+  $handler->display->display_options['sorts']['field_article_date']['id'] = 'field_article_date';
+  $handler->display->display_options['sorts']['field_article_date']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['field_article_date']['field'] = 'field_article_date';
+  $handler->display->display_options['sorts']['field_article_date']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_article_date']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_article_date']['expose']['label'] = 'Date';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Indexed Node: Content type */

@@ -95,6 +95,7 @@ function nas_solr_feature_default_search_api_index() {
         "body:value" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
+        "field_article_date" : { "type" : "date" },
         "field_bird_call_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_bird_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_bird_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
