@@ -82,6 +82,7 @@ function nas_menu_theme() {
  * Header Search form builder.
  */
 function nas_menu_search_form($form, &$form_state) {
+  $form['#action'] = url('search_results');
   $form['search'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
