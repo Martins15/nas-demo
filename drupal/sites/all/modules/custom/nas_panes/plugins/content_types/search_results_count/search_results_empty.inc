@@ -19,13 +19,10 @@ $plugin = array(
  * @see ctools_plugin_examples()
  */
 function search_results_empty_render($subtype, $conf, $args, $contexts) {
-  $birds_view = views_get_view('search_results');
-  $birds_view->set_display('birds');
-  $birds_view->execute();
   $editorial_content_view = views_get_view('search_results');
   $editorial_content_view->set_display('other_results');
   $editorial_content_view->execute();
-  if ($birds_view->total_rows || $editorial_content_view->total_rows) {
+  if ($editorial_content_view->total_rows) {
     return;
   }
 
