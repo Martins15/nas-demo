@@ -242,16 +242,6 @@ textarea {
  * CTools popup forms refinements.
  */
 #modalContent .ctools-modal-content {
-  .form-item {
-    margin: 1em 0;
-
-    label {
-      float: none;
-      margin-bottom: 5px;
-      width: auto;
-    }
-  }
-
   .description {
     color: #333;
     font-size: 13px;
@@ -295,6 +285,10 @@ textarea {
     @include button-style($bg:$color-tomato);
     float: left;
     margin-right: 1em;
+
+    &.field-add-more-submit {
+      margin-top: 1em;
+    }
   }
 
   .text-format-wrapper {
@@ -316,9 +310,195 @@ textarea {
     }
   }
 
+  a.tabledrag-handle .handle {
+    padding: 12px 10px;
+  }
+
+  .form-item-context,
   .form-item-reusable,
-  /*.dependent-options,*/
+  .form-item-category,
+  .form-item-admin-title,
+  #edit-admin-description-wrapper,
+  #edit-log-wrapper,
   .form-item-revision {
     display: none !important;
+  }
+
+  /**
+   * Tables.
+   */
+  table {
+    margin: 0 0 10px;
+    width: 100%;
+  }
+
+  table td,table th {
+    border: 0;
+    color: #000;
+    padding: 8px 10px;
+    vertical-align: middle;
+  }
+
+  tr.even,tr.odd {
+    background: #f3f4ee;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  tr.odd {
+    background: #fff;
+  }
+
+  tr.drag {
+    background: #fe7;
+  }
+
+  tr.drag-previous {
+    background: #ffb;
+  }
+
+  table th {
+    background: none repeat scroll 0 0 #E1E2DC;
+    font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 10px;
+  }
+
+  table th.active {
+    background: #0074BD;
+    color: #fff;
+  }
+
+  table th a {
+    display: block;
+  }
+
+  table th.active a {
+    padding: 0 25px 0 0;/* LTR */
+    color: #fff;
+  }
+
+  table th.active img {
+    float: right;
+    position: relative;
+    right: -20px;
+    top: 3px;/* LTR */
+  }
+
+  table td.active {
+    background: transparent;
+  }
+
+  table tr.odd td.active {
+    background: transparent;
+  }
+
+  table tr.selected td.active,table tr.selected td {
+    background: #ffc;
+    border-color: #eeb;
+  }
+
+  table.system-status-report tr {
+    border-bottom: 1px solid #ccc;
+    border-color: rgba(0,0,0,0.1);
+  }
+
+  table.system-status-report tr.ok {
+    color: #255b1e;
+    background-color: #e5ffe2;
+  }
+
+  table.system-status-report tr.info {
+    color: #040f37;
+    background-color: #bdf;
+  }
+
+  table.system-status-report tr.warning {
+    color: #840;
+    background-color: #fffbe2;
+  }
+
+  table tr.error {
+    color: #C70000;
+    background-color: #FFDDDD;
+  }
+
+  table tr.error td {
+    color: #C70000;
+  }
+
+  /* Fieldsets */
+  fieldset {
+    border: solid 1px #ddd;
+    border-top: 3px solid #0074BD;
+    padding: 12px;
+    margin: 18px 0;
+  }
+
+  fieldset legend {
+    background: white;
+    padding: 0 3px;
+    margin: 0;
+    margin-left: -3px;
+    font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  /**
+   * Form elements.
+   */
+  .form-item {
+    padding: 0 1em 0 0;
+    margin: 0 0 10px;
+  }
+
+  .filter-wrapper .form-item,div.teaser-checkbox .form-item,.form-item .form-item {
+    padding: 5px 0;
+    margin: 0;
+    border: 0;
+  }
+
+  .form-type-checkbox {
+    padding: 0;
+  }
+
+  .text-format-wrapper .form-item {
+    padding-bottom: 0;
+  }
+
+  .form-item label, .exposed-filters .form-item label {
+    font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0;
+    width: initial;
+  }
+
+  .form-item label.option {
+    font-size: 16px;
+    text-transform: none;
+    padding: 0;
+  }
+
+  .form-item label.option input {
+    vertical-align: middle;
+  }
+
+  .form-disabled input.form-autocomplete,.form-disabled input.form-text,.form-disabled input.form-file,.form-disabled textarea.form-textarea,.form-disabled select.form-select {
+    background-color: #eee;
+    color: #777;
+  }
+
+  .form-managed-file .form-file,.form-managed-file .form-submit {
+    margin: 0 1em;
+  }
+
+  input.empty {
+    color: #ccc !important;
   }
 }
