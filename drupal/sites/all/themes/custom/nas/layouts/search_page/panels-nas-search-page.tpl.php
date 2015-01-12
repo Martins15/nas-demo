@@ -18,7 +18,7 @@
 
 <?php print $content['birds_search_results']; ?>
 
-  <section class="global-content global-content-search no-padding">
+<section class="global-content global-content-search no-padding">
   <div class="row">
     <div class="section-header columns large-8 border-bottom">
       <?php print $content['search_results_count']; ?>
