@@ -1233,6 +1233,7 @@ function nas_master_update_7087(&$sandbox) {
 function nas_master_update_7088() {
   module_enable(array('nas_help_page_feature'));
   features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_solr_feature');
 }
 
 /**
@@ -1256,6 +1257,13 @@ function nas_master_update_7089() {
   features_revert_module('nas_slideshow_feature');
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_revision_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7090() {
+  features_revert_module('nas_engagement_cards_feature');
 }
 
 /**
