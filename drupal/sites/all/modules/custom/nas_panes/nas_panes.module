@@ -774,6 +774,24 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-search-form',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search',
     ),
+    'audubon_near_you_office_chapter' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
+    'audubon_near_you_center_sanctuary' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-center-sanctuary',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -1469,6 +1487,59 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
+ * Returns locations.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @param string $postal_code
+ *   Postal code.
+ *
+ * @param string $type
+ *   Type of the location.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_locations($state = 'all', $postal_code = 'all', $type = 'all') {
+  $items = array();
+  $results = views_get_view_result('locations', 'default', $state, $postal_code, $type);
+
+  foreach ($results as $item) {
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->node_title,
+      'state' => $item->field_data_field_location_address_field_location_address_adm,
+      'city' => $item->field_data_field_location_address_field_location_address_loc,
+      'node_link' => l($item->node_title, 'node/' . $item->nid),
+      'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
+      'subtitle' => '',
+      'site_link' => '',
+    );
+
+    // Add site link.
+    if (!empty($item->field_field_location_link[0]['raw']['url'])) {
+      $options = array('attributes' => array('target' => '_blank', 'class' => array('more-link')));
+      $items[$item->nid]['site_link'] = l(t('View Site'), $item->field_field_location_link[0]['raw']['url'], $options);
+    }
+
+    // Add subtitle.
+    $subtitle = array();
+    if (!empty($item->field_data_field_location_address_field_location_address_loc)) {
+      $subtitle[] = $item->field_data_field_location_address_field_location_address_loc;
+    }
+    if (!empty($item->field_data_field_location_address_field_location_address_adm)) {
+      $subtitle[] = $item->field_data_field_location_address_field_location_address_adm;
+    }
+    if (!empty($subtitle)) {
+      $items[$item->nid]['subtitle'] = '(' . implode(', ', $subtitle) . ')';
+    }
+  }
+
+  return $items;
+}
+
+/**
  * Implements hook_menu().
  */
 function nas_panes_menu() {
@@ -1476,6 +1547,12 @@ function nas_panes_menu() {
 
   $items['ajax/local-chapters-centers'] = array(
     'page callback' => 'nas_panes_local_chapters_centers_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['ajax/audubon-near-you'] = array(
+    'page callback' => 'nas_panes_audubon_near_you_elements_callback',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -1515,4 +1592,77 @@ function nas_panes_local_chapters_centers_callback() {
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
+
+/**
+ * Returns markup Audubon Near You blocks.
+ */
+function nas_panes_audubon_near_you_elements_callback() {
+  $query = drupal_get_query_parameters();
+
+  // Array of block to replace with filtered results.
+  $blocks = array(
+    'office_chapter' => array(
+      'wrapper' => 'audubon-near-you--office-chapter--wrapper',
+      'callback' => '_nas_panes_get_locations',
+      'theme' => 'audubon_near_you_office_chapter',
+      'view_args' => array(
+        $query['state'],
+        'all',
+        'office_chapter',
+      ),
+    ),
+    'center_sanctuary' => array(
+      'wrapper' => 'audubon-near-you--center-sanctuary--wrapper',
+      'callback' => '_nas_panes_get_locations',
+      'theme' => 'audubon_near_you_center_sanctuary',
+      'view_args' => array(
+        $query['state'],
+        'all',
+        'center_sanctuary',
+      ),
+    ),
+  );
+
+  $output = array();
+  $filter_active = FALSE;
+  foreach ($blocks as $block) {
+    $items = array();
+    // Get results based on callback and view args.
+    if (!empty($query['state']) && function_exists($block['callback'])) {
+      $items = call_user_func_array($block['callback'], $block['view_args']);
+    }
+
+    if (!empty($items)) {
+      $filter_active = TRUE;
+    }
+
+    // Render via theme function and add JS wrapper to replaces.
+    $template_vars = array(
+      'items' => $items,
+      'hide_empty_text' => $filter_active,
+      'filter_active' => $filter_active,
+    );
+    $output[] = array(
+      'wrapper' => $block['wrapper'],
+      'content' => theme($block['theme'], $template_vars),
+    );
+  }
+
+  print json_encode($output);
+}
+
+/**
+ * Returns whether filter is active.
+ */
+function nas_panes_location_filter_is_active() {
+  $query = drupal_get_query_parameters();
+  $state = !empty($query['state']) ? $query['state'] : 'all';
+  $zip_code = !empty($query['zip_code']) ? $query['zip_code'] : 'all';
+
+  if ($state !== 'all' || $zip_code !== 'all') {
+    return TRUE;
+  }
+
+  return FALSE;
 }

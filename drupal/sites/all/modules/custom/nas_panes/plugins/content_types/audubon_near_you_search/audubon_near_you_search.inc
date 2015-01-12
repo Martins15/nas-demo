@@ -58,6 +58,11 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
+  if (!nas_panes_location_filter_is_active()) {
+    drupal_add_js('//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js', 'external');
+    drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search/audubon_near_you_search.js');
+  }
+
   $form = drupal_get_form('audubon_near_you_search_form');
   $block->content = theme('audubon_near_you_search', array(
     'title' => check_plain($conf['override_title_text']),
@@ -74,6 +79,7 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
  * Search form.
  */
 function audubon_near_you_search_form($form, &$form_state) {
+  $query = drupal_get_query_parameters();
 
   $form['zip_code'] = array(
     '#type' => 'textfield',
@@ -81,12 +87,15 @@ function audubon_near_you_search_form($form, &$form_state) {
       'placeholder' => 'ZIP code',
       'class' => array('bird-guide-zip-input', 'radius'),
     ),
+    '#default_value' => !empty($query['zip_code']) ? $query['zip_code'] : '',
+    '#maxlength' => 16,
   );
 
   $form['state'] = array(
     '#type' => 'select',
     '#empty_option' => t('Select a State'),
     '#options' => _audubon_near_you_states(),
+    '#default_value' => !empty($query['state']) ? $query['state'] : '',
   );
 
   $form['submit'] = array(
@@ -110,7 +119,23 @@ function audubon_near_you_search_form($form, &$form_state) {
  * Submit handler for the search form.
  */
 function audubon_near_you_search_form_submit($form, &$form_state) {
-  // Todo: Custom logic of submissions goes here.
+  $query = array();
+
+  if (!empty($form_state['values']['zip_code'])) {
+    $query['zip_code'] = $form_state['values']['zip_code'];
+  }
+
+  if (!empty($form_state['values']['state'])) {
+    $query['state'] = $form_state['values']['state'];
+  }
+
+  // Redirect to Audubon Near You page with activated filters.
+  $form_state['redirect'] = array(
+    'audubon-near-you',
+    array(
+      'query' => $query,
+    ),
+  );
 }
 
 /**

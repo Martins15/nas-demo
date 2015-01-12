@@ -50,6 +50,7 @@ function nas_audubon_near_you_feature_default_page_manager_pages() {
       'default' => NULL,
       'header' => NULL,
       'main' => NULL,
+      'locations' => NULL,
     ),
   );
   $display->cache = array();
@@ -57,6 +58,25 @@ function nas_audubon_near_you_feature_default_page_manager_pages() {
   $display->uuid = '9f97a42c-9bd4-4034-b229-dde09881b4d0';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-057d981e-6b45-4b42-a5a5-27296e88829b';
+    $pane->panel = 'locations';
+    $pane->type = 'audubon_near_you_locations';
+    $pane->subtype = 'audubon_near_you_locations';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '057d981e-6b45-4b42-a5a5-27296e88829b';
+    $display->content['new-057d981e-6b45-4b42-a5a5-27296e88829b'] = $pane;
+    $display->panels['locations'][0] = 'new-057d981e-6b45-4b42-a5a5-27296e88829b';
     $pane = new stdClass();
     $pane->pid = 'new-517bdf1c-eec7-4e33-8123-a6e2ca17150b';
     $pane->panel = 'main';
@@ -77,7 +97,9 @@ function nas_audubon_near_you_feature_default_page_manager_pages() {
       'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 0;
@@ -102,7 +124,9 @@ function nas_audubon_near_you_feature_default_page_manager_pages() {
       'form_id' => 'audubon_near_you_search_settings_form',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
