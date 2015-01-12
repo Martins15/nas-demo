@@ -9,12 +9,16 @@
   <div class="large-6 columns">
     <h2 class="title-block"><?php print t('Offices & Chapters'); ?></h2>
     <?php if (empty($items)) : ?>
-      <?php if (empty($hide_empty_text)) : ?>
+      <?php if (empty($hide_empty_text) && empty($filter_active)) : ?>
         <?php print t('Enter your zip code above'); ?>
+      <?php endif; ?>
+
+      <?php if (!empty($filter_active)) : ?>
+        <?php print t('No Chapters found in this location. Enter your zip code above to look up for other location'); ?>
       <?php endif; ?>
     <?php else : ?>
       <?php foreach ($items as $item) : ?>
-        <article>
+        <article class="node-<?php print $item['nid']; ?>">
           <h1 class="title-article"><?php print $item['title']; ?><span><?php print $item['subtitle']; ?></span></h1>
           <div class="content-article">
             <?php print $item['body']; ?>

@@ -12,13 +12,14 @@
             return;
           }
 
-          // Replace default block with content filtered by state.
+          // Update content according state code.
           Drupal.near_you.update_content(stateIsoCode);
         };
 
         var onError = function(error) {
           console.log('Error:' + JSON.stringify(error));
-          Drupal.near_you.update_content('CA');
+          // Display empty text when error.
+          Drupal.near_you.update_content(null);
         };
 
         geoip2.city(onSuccess, onError);
@@ -41,6 +42,7 @@
       success: function (data) {
         for (var i = 0; i < data.length; i++) {
           var wrapper = '#' + data[i].wrapper;
+          // Replace content.
           $(wrapper).once().replaceWith(data[i].content);
           $(wrapper).once().addClass('state-code-' + stateIsoCode);
         }

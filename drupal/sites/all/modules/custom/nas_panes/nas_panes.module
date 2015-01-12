@@ -771,11 +771,21 @@ function nas_panes_theme() {
     ),
     'audubon_near_you_office_chapter' => array(
       'variables' => array(
+        'title' => NULL,
         'items' => array(),
         'hide_empty_text' => NULL,
       ),
       'template' => 'audubon-near-you-office-chapter',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_office_chapter',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
+    'audubon_near_you_center_sanctuary' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-center-sanctuary',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
   );
 
@@ -1691,32 +1701,70 @@ function nas_panes_local_chapters_centers_callback() {
  */
 function nas_panes_audubon_near_you_elements_callback() {
   $query = drupal_get_query_parameters();
+
+  // Array of block to replace with filtered results.
   $blocks = array(
     'office_chapter' => array(
       'wrapper' => 'audubon-near-you--office-chapter--wrapper',
       'callback' => '_nas_panes_get_locations',
       'theme' => 'audubon_near_you_office_chapter',
-      'args' => array(
+      'view_args' => array(
         $query['state'],
         'all',
         'office_chapter',
       ),
     ),
+    'center_sanctuary' => array(
+      'wrapper' => 'audubon-near-you--center-sanctuary--wrapper',
+      'callback' => '_nas_panes_get_locations',
+      'theme' => 'audubon_near_you_center_sanctuary',
+      'view_args' => array(
+        $query['state'],
+        'all',
+        'center_sanctuary',
+      ),
+    ),
   );
 
   $output = array();
-
+  $filter_active = FALSE;
   foreach ($blocks as $block) {
     $items = array();
+    // Get results based on callback and view args.
     if (!empty($query['state']) && function_exists($block['callback'])) {
-      $items = call_user_func_array($block['callback'], $block['args']);
+      $items = call_user_func_array($block['callback'], $block['view_args']);
     }
 
+    if (!empty($items)) {
+      $filter_active = TRUE;
+    }
+
+    // Render via theme function and add JS wrapper to replaces.
+    $template_vars = array(
+      'items' => $items,
+      'hide_empty_text' => $filter_active,
+      'filter_active' => $filter_active,
+    );
     $output[] = array(
       'wrapper' => $block['wrapper'],
-      'content' => theme($block['theme'], array('items' => $items)),
+      'content' => theme($block['theme'], $template_vars),
     );
   }
 
   print json_encode($output);
+}
+
+/**
+ * Returns whether filter is active.
+ */
+function nas_panes_location_filter_is_active() {
+  $query = drupal_get_query_parameters();
+  $state = !empty($query['state']) ? $query['state'] : 'all';
+  $zip_code = !empty($query['zip_code']) ? $query['zip_code'] : 'all';
+
+  if ($state !== 'all' || $zip_code !== 'all') {
+    return TRUE;
+  }
+
+  return FALSE;
 }

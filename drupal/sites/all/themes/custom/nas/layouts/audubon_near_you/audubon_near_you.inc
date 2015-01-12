@@ -17,7 +17,6 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'main' => t('Main content area'),
-    'left' => t('Left content area'),
-    'right' => t('Right content area'),
+    'locations' => t('Locations'),
   ),
 );

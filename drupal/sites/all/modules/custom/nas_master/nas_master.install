@@ -1257,3 +1257,11 @@ function nas_master_update_7089() {
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_revision_feature');
 }
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7092() {
+  features_revert_module('nas_audubon_near_you_feature');
+  features_revert_module('nas_location_feature');
+}

@@ -8,42 +8,9 @@
 
 <?php print $content['main']; ?>
 <div class="audubon-near-you--global-content-wrapper">
-  <!-- *************************************************************************** -->
   <section class="global-content no-padding blocks-events">
     <div class="row">
-      <?php print $content['left']; ?>
-      <?php print $content['right']; ?>
-      <div class="large-6 columns center-and-sanctuaries">
-        <h2 class="title-block">Centers & Sanctuaries</h2>
-        <article>
-          <h1 class="title-article">Richardson Bay Audubon Center & Sanctuary<span>(San francisco, CA)</span></h1>
-          <div class="content-article">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500
-            <a class="more-link" href="#">View Site</a>
-          </div>
-        </article>
-        <article>
-          <h1 class="title-article">Richardson Bay Audubon Center & Sanctuary<span>(San francisco, CA)</span></h1>
-          <div class="content-article">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500
-            <a class="more-link" href="#">View Site</a>
-          </div>
-        </article>
-        <article>
-          <h1 class="title-article">Richardson Bay Audubon Center & Sanctuary<span>(San francisco, CA)</span></h1>
-          <div class="content-article">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500
-            <a class="more-link" href="#">View Site</a>
-          </div>
-        </article>
-        <article>
-          <h1 class="title-article">Richardson Bay Audubon Center & Sanctuary<span>(San francisco, CA)</span></h1>
-          <div class="content-article">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500
-            <a class="more-link" href="#">View Site</a>
-          </div>
-        </article>
-      </div>
+      <?php print $content['locations']; ?>
     </div>
   </div>
   </section>
