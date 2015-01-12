@@ -753,6 +753,11 @@ function nas_panes_theme() {
       'template' => 'search-results-count',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/search_results_count',
     ),
+    'search_results_empty' => array(
+      'variables' => array(),
+      'template' => 'search-results-empty',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/search_results_count',
+    ),
     'audubon_near_you_search' => array(
       'variables' => array(
         'title' => NULL,
