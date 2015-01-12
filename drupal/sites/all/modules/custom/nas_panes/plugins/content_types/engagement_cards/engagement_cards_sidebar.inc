@@ -78,7 +78,7 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   // Call main function and get what we have to render.
   $cards_array = nas_panes_engagement_cards_get_cards($subtype, $data, TRUE);
   $nodes = $cards_array['nodes'];
-  $contextual_links = $cards_array['contextual_links'];
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   // Finally render selected nodes.
   $teasers = array();
