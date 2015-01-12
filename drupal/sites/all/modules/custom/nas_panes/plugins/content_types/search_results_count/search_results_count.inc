@@ -28,6 +28,7 @@ function search_results_count_render($subtype, $conf, $args, $contexts) {
 
   $block = new stdClass();
   $block->content = theme('search_results_count', array(
+      'title' => t('Articles'),
       'total_rows' => $view->total_rows,
       'current_rows' => count($view->result),
   ));

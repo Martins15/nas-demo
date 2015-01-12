@@ -6,8 +6,13 @@
 ?>
 
 <div class="columns">
-  <h2>Articles</h2>
-  <p class="sub-heading">Showing 1–<span class="search-counter"><?php print $current_rows; ?></span> of <?php print $total_rows; ?> results</p>
+  <h2><?php print $title; ?></h2>
+  <p class="sub-heading">
+    <?php print t('Showing 1–!current of @total results', array(
+        '!current' => '<span class="search-counter">' . $current_rows .'</span>',
+        '@total' => $total_rows,
+      )); ?>
+  </p>
 </div>
 <div class="columns">
   <!--

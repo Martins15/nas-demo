@@ -28,6 +28,7 @@ function search_results_empty_render($subtype, $conf, $args, $contexts) {
 
   $block = new stdClass();
   $block->content = theme('search_results_empty', array(
+    'title' => t('Articles'),
     'message' => t('No content was found to match your search. Try modifying your search criteria and try again.'),
   ));
   return $block;
