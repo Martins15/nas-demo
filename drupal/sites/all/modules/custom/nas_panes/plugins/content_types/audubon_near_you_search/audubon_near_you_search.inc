@@ -58,6 +58,9 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
+  drupal_add_js('//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js', 'external');
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search/audubon_near_you_search.js');
+
   $form = drupal_get_form('audubon_near_you_search_form');
   $block->content = theme('audubon_near_you_search', array(
     'title' => check_plain($conf['override_title_text']),
