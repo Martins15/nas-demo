@@ -8,6 +8,9 @@
  * Implements hook_ctools_plugin_api().
  */
 function nas_solr_feature_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "facetapi" && $api == "facetapi_defaults") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -54,6 +57,7 @@ function nas_solr_feature_default_search_api_index() {
         "field_bird_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_bird_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_bird_sci_name" : { "type" : "text" },
+        "month" : { "type" : "integer" },
         "promote" : { "type" : "boolean" },
         "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_language" : { "type" : "string" },
@@ -62,6 +66,7 @@ function nas_solr_feature_default_search_api_index() {
         "sticky" : { "type" : "boolean" },
         "title" : { "type" : "text", "boost" : "5.0" },
         "type" : { "type" : "string" },
+        "type_for_search" : { "type" : "string" },
         "year" : { "type" : "integer" }
       }
     },

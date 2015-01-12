@@ -56,6 +56,7 @@ function nas_birds_family_feature_default_page_manager_handlers() {
       'title' => NULL,
       'scientific_name' => NULL,
       'description' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -63,6 +64,49 @@ function nas_birds_family_feature_default_page_manager_handlers() {
   $display->uuid = '3a76d002-eb20-4c24-9898-eb8b217d1cf6';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-1309611c-a741-409c-8cd8-98f433615a7e';
+    $pane->panel = 'cards';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-Qd-vi5joTQj-p4kLjXLrBbDycWrArGXv0Lhb7XPuRpI',
+      'form_token' => 'EapDpscWtKQuIS2o2TT4IfWxvuAhaZ46PHWezKZwgXI',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '1309611c-a741-409c-8cd8-98f433615a7e';
+    $display->content['new-1309611c-a741-409c-8cd8-98f433615a7e'] = $pane;
+    $display->panels['cards'][0] = 'new-1309611c-a741-409c-8cd8-98f433615a7e';
     $pane = new stdClass();
     $pane->pid = 'new-2576d329-1602-477a-851d-96608da45e3c';
     $pane->panel = 'description';

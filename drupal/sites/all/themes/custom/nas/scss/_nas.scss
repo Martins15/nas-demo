@@ -237,3 +237,88 @@ textarea {
 .card-set.bg-dark-gray .card-set-heading {
   color: #D4D4D4;
 }
+
+/** 
+ * CTools popup forms refinements.
+ */
+#modalContent .ctools-modal-content {
+  .form-item {
+    margin: 1em 0;
+
+    label {
+      float: none;
+      margin-bottom: 5px;
+      width: auto;
+    }
+  }
+
+  .description {
+    color: #333;
+    font-size: 13px;
+  }
+
+  .form-type-checkboxes,
+  .form-type-radios {
+    .form-item,
+    input {
+      margin: 0;
+    }
+  }
+
+  .form-type-media {
+    label {
+      float: left;
+      margin-right: 1em;
+    }
+
+    .preview {
+      margin-bottom: 1em;
+      float: left;
+    }
+
+    .remove {
+      clear: left;
+    }
+  }
+
+  .resizable-textarea {
+    margin: 0;
+  }
+
+  .button {
+    margin-right: 1em;
+    float: left;
+  }
+
+  input.form-submit {
+    @include button;
+    @include button-style($bg:$color-tomato);
+    float: left;
+    margin-right: 1em;
+  }
+
+  .text-format-wrapper {
+    margin-bottom: 1em;
+
+    .form-type-textarea {
+      margin-bottom: 0;
+    }
+
+    .wysiwyg-toggle-wrapper {
+      padding-left: 1.5em;
+    }
+    .form-type-select {
+      margin:  0;
+
+      select {
+        margin: 0;
+      }
+    }
+  }
+
+  .form-item-reusable,
+  /*.dependent-options,*/
+  .form-item-revision {
+    display: none !important;
+  }
+}

@@ -12,7 +12,7 @@
 ?>
 
 <?php if ($title || $more_link): ?>
-  <div class="row section-header space-top space-bottom">
+  <div class="row section-header<?php if ($spacetop): ?> space-top<?php endif; ?><?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
     <?php if ($title): ?>
     <div class="column">
       <h2 class="thin"><?php print $title; ?></h2>
@@ -28,7 +28,7 @@
   </div>
 <?php endif; ?>
 
-<div class="row space-bottom contextual-links-region">
+<div class="row <?php print $spacebottom; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php foreach ($references as $reference): ?>
     <div class="columns large-3">

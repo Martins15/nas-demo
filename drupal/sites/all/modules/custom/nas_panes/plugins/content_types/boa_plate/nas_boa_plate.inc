@@ -36,6 +36,12 @@ function nas_panes_nas_boa_plate_content_type_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#default_value' => $conf['link_uri'],
   );
+
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 

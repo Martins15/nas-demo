@@ -14,7 +14,7 @@ function nas_boa_family_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_boaf';
-  $strongarm->value = 'edit-panelizer';
+  $strongarm->value = 'edit-submission';
   $export['additional_settings__active_tab_boaf'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -26,9 +26,12 @@ function nas_boa_family_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
+          'weight' => '2',
+        ),
+        'redirect' => array(
           'weight' => '3',
         ),
       ),
@@ -57,6 +60,7 @@ function nas_boa_family_feature_strongarm() {
   $strongarm->name = 'node_options_boaf';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_boaf'] = $strongarm;
 
@@ -64,7 +68,7 @@ function nas_boa_family_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_boaf';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_boaf'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -97,11 +101,6 @@ function nas_boa_family_feature_strongarm() {
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'nas_node_teaser_wo_date' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -179,6 +178,13 @@ function nas_boa_family_feature_strongarm() {
     'other' => 'other',
   );
   $export['panelizer_node:boaf_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_boaf';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_boaf'] = $strongarm;
 
   return $export;
 }

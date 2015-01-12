@@ -61,6 +61,9 @@ function nas_bird_type_feature_strongarm() {
         'path' => array(
           'weight' => '1',
         ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
@@ -89,6 +92,7 @@ function nas_bird_type_feature_strongarm() {
   $strongarm->name = 'node_options_bird';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_bird'] = $strongarm;
 
@@ -96,7 +100,7 @@ function nas_bird_type_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_bird';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_bird'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -128,9 +132,51 @@ function nas_bird_type_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
+      'nas_node_teaser_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_featured' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
     ),
   );
   $export['panelizer_defaults_node_bird'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_bird';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_bird'] = $strongarm;
 
   return $export;
 }

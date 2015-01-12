@@ -68,10 +68,13 @@ function nas_slideshow_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '2',
+        ),
+        'redirect' => array(
+          'weight' => '3',
         ),
       ),
       'display' => array(),
@@ -101,7 +104,7 @@ function nas_slideshow_feature_strongarm() {
   $strongarm->name = 'node_options_slideshow';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'promote',
+    1 => 'revision',
   );
   $export['node_options_slideshow'] = $strongarm;
 
@@ -116,7 +119,7 @@ function nas_slideshow_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_submitted_slideshow';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['node_submitted_slideshow'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -136,42 +139,12 @@ function nas_slideshow_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
-      'full' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'teaser' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
-      'rss' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_index' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'search_result' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'diff_standard' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
       'nas_node_teaser_small' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'nas_node_teaser_wo_date' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -186,17 +159,22 @@ function nas_slideshow_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
+      'nas_node_featured_small' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
       'nas_node_teaser' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
       ),
-      'token' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'revision' => array(
+      'nas_editorial_card' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -204,6 +182,13 @@ function nas_slideshow_feature_strongarm() {
     ),
   );
   $export['panelizer_defaults_node_slideshow'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_slideshow';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_slideshow'] = $strongarm;
 
   return $export;
 }

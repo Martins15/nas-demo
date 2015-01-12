@@ -184,9 +184,27 @@ function nas_magazine_issue_feature_panelizer_defaults() {
           'entity_reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-aQdpXcMzum95FY8d-faoSmtqiQF_NyFuxUZJNDuOD0s',
-      'form_token' => 'G49hTdzlttmYp6mQb44vYzm-Y4K7N7C-6kdeHeLcuYs',
+      'form_build_id' => 'form-P09SbALOneh--4A7FRjYDRP5vOXCT8n9sGVADFtXRMw',
+      'form_token' => 'W6r6r8PxnvgrsUAQbW9oPhj4BHmj09wj6V-0G2a8gd8',
       'form_id' => 'magazine_issue_featured_edit_form',
+      4708 => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '2227',
+            'entity_label' => 'Jonathan Franzen talks about his love of birds',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '2233',
+            'entity_label' => 'Why Do Birds Matter?',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -281,6 +299,42 @@ function nas_magazine_issue_feature_panelizer_defaults() {
     $pane->uuid = '9a7a83f0-c9be-4517-b4c3-41c7edef5ed4';
     $display->content['new-9a7a83f0-c9be-4517-b4c3-41c7edef5ed4'] = $pane;
     $display->panels['right_sidebar'][0] = 'new-9a7a83f0-c9be-4517-b4c3-41c7edef5ed4';
+    $pane = new stdClass();
+    $pane->pid = 'new-8f213c05-301d-496f-8abf-1b04754f2dd7';
+    $pane->panel = 'right_sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-tjqvIccBNV-QPeXgCEkpOAML1cyk-eeG7vktiyNCHUs',
+      'form_token' => 'IH_AhYBDrVzJjskNMwprLZV2Lcf2flroRxyXXLWifvE',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '8f213c05-301d-496f-8abf-1b04754f2dd7';
+    $display->content['new-8f213c05-301d-496f-8abf-1b04754f2dd7'] = $pane;
+    $display->panels['right_sidebar'][1] = 'new-8f213c05-301d-496f-8abf-1b04754f2dd7';
     $pane = new stdClass();
     $pane->pid = 'new-0dcff23e-388a-4d46-beba-e90b979eb52b';
     $pane->panel = 'title';

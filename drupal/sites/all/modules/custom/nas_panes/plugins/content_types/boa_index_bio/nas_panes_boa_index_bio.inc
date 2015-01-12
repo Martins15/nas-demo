@@ -95,6 +95,11 @@ function boa_index_bio_form($form, &$form_state) {
     '#default_value' => $conf['link'],
   );
 
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+
   return $form;
 }
 
@@ -125,7 +130,7 @@ function nas_boa_index_bio_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = theme('boa_index_bio', array(
     'title' => check_plain($conf['title']),
-    'body' => check_markup($conf['body'], 'full_html'),
+    'body' => check_markup($conf['body']['value'], $conf['body']['format']),
     'image_path' => $image_path,
     'name' => check_plain($conf['name']),
     'summary' => check_markup($conf['summary'], 'full_html'),

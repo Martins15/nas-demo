@@ -36,6 +36,16 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
     '#era_entity_type' => 'node',
     '#era_bundles' => array('engagement_cards'),
   );
+  $form[$conf_key]['hide_for_firsttime_visitors'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide for firsttime visitors'),
+    '#default_value' => !empty($conf[$conf_key]['hide_for_firsttime_visitors']) ? $conf[$conf_key]['hide_for_firsttime_visitors'] : 0,
+  );
+
+  // Remove default title field.
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
 
   return $form;
 }
@@ -81,6 +91,7 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   $block->content = '';
   if (!empty($teasers) || !empty($contextual_links)) {
     $block->content = theme('engagement_cards_sidebar', array(
+      'ftv_class' => !empty($data['hide_for_firsttime_visitors']) ? 'hide-for-firsttime-visitors' : '',
       'teasers' => $teasers,
       'contextual_links' => $contextual_links,
     ));

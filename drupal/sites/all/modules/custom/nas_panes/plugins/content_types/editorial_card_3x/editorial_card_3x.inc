@@ -52,6 +52,12 @@ function editorial_card_3x_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
 
+  // Do not show context selector if configuration form is called from page.
+  if (isset($_GET['nas-panes-from-page'])) {
+    $form['context']['#prefix'] = '<div style="display:none;">';
+    $form['context']['#suffix'] = '</div>';
+  }
+
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'editorial_card_3x', 'nas_panes', 'plugins/content_types/editorial_card_3x');
 
@@ -81,6 +87,17 @@ function editorial_card_3x_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Additional classes'),
     '#default_value' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
+  );
+  $form['paddings'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Paddings'),
+    '#options' => array(
+      'top' => t('Top padding'),
+      'between' => t('Additional space between title and content'),
+      'bottom' => t('Bottom padding'),
+      'double-bottom' => t('Double bottom padding'),
+    ),
+    '#default_value' => !empty($conf['paddings']) ? $conf['paddings'] : _editorial_card_3x_default_paddings_conf(),
   );
 
   // Get default value when count is empty or when it has been update via form.
@@ -249,6 +266,9 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           break;
 
         case 'er_field':
+          if (!$context->data) {
+            continue;
+          }
           if ($field_items = field_get_items('node', $context->data, $options['field'])) {
             foreach ($field_items as $item) {
               if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
@@ -325,8 +345,19 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
   $teasers = array_slice($teasers, 0, !empty($conf['count']) ? $conf['count'] : 3);
 
   $title = '';
-  if ($conf['override_title']) {
+  if ($conf['override_title'] && !empty($teasers)) {
     $title = ctools_context_keyword_substitute($conf['override_title_text'], array(), array($context));
+  }
+
+  if (empty($conf['paddings'])) {
+    $conf['paddings'] = _editorial_card_3x_default_paddings_conf();
+  }
+  $spacebottom = '';
+  if ($conf['paddings']['double-bottom']) {
+    $spacebottom = 'space-bottom double';
+  }
+  elseif ($conf['paddings']['bottom']) {
+    $spacebottom = 'space-bottom';
   }
 
   $block = new stdClass();
@@ -336,6 +367,9 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
     'more_link' => $more_link,
     'additional_classes' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
     'contextual_links' => $contextual_links,
+    'spacetop' => $conf['paddings']['top'],
+    'spacebetween' => $conf['paddings']['between'],
+    'spacebottom' => $spacebottom,
   ));
 
   return $block;
@@ -432,6 +466,18 @@ function _editorial_card_3x_presets() {
   );
 
   return $presets;
+}
+
+/**
+ * Helper function to provide default panes padding configuration.
+ */
+function _editorial_card_3x_default_paddings_conf() {
+  return array(
+    'top' => 0,
+    'between' => 0,
+    'bottom' => 0,
+    'double-bottom' => 'double-bottom',
+  );
 }
 
 /**

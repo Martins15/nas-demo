@@ -19,6 +19,7 @@ $plugin = array(
     'title' => t('News page title'),
     'search_form' => t('Search form'),
     'birds_search_results' => t('Birds search results'),
+    'search_results_count' => t('Other search results count'),
     'search_results' => t('Other search results'),
     'sidebar' => t('Sidebar'),
   ),

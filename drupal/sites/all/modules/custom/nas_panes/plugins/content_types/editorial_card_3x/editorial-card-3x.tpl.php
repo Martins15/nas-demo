@@ -17,7 +17,7 @@
 <div class="card-set editorial-card-3x <?php print $additional_classes; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php if ($title || $more_link): ?>
-    <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?>">
+    <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?><?php if (!empty($spacebetween)): ?> space-bottom<?php endif; ?>">
       <?php if ($title): ?>
       <div class="column">
         <h2 class="thin"><?php print $title; ?></h2>
@@ -33,7 +33,7 @@
     </div>
   <?php endif; ?>
 
-  <div class="row space-bottom double">
+  <div class="row <?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
     <?php foreach ($teasers as $teaser): ?>
       <?php if (is_string($teaser)): ?>
         <?php print $teaser; ?>

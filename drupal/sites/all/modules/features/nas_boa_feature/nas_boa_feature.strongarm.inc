@@ -95,7 +95,10 @@ function nas_boa_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '4',
         ),
       ),
       'display' => array(),
@@ -125,6 +128,7 @@ function nas_boa_feature_strongarm() {
   $strongarm->name = 'node_options_boa';
   $strongarm->value = array(
     0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_boa'] = $strongarm;
 
@@ -132,7 +136,7 @@ function nas_boa_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_boa';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_boa'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -165,11 +169,6 @@ function nas_boa_feature_strongarm() {
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
-        'status' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'nas_node_teaser_wo_date' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,
@@ -207,6 +206,13 @@ function nas_boa_feature_strongarm() {
     ),
   );
   $export['panelizer_defaults_node_boa'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_enable_boa';
+  $strongarm->value = 1;
+  $export['scheduler_publish_enable_boa'] = $strongarm;
 
   return $export;
 }

@@ -14,7 +14,7 @@ function nas_author_page_panelizer_defaults() {
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
   $panelizer->name = 'node:contact:default';
-  $panelizer->title = 'Default';
+  $panelizer->title = 'Author';
   $panelizer->panelizer_type = 'node';
   $panelizer->panelizer_key = 'contact';
   $panelizer->no_blocks = FALSE;
