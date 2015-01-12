@@ -13168,13 +13168,14 @@ textarea.error {
 /** 
  * CTools popup forms refinements.
  */
-#modalContent .ctools-modal-content .form-item {
-  margin: 1em 0;
-}
-#modalContent .ctools-modal-content .form-item label {
-  float: none;
-  margin-bottom: 5px;
-  width: auto;
+#modalContent .ctools-modal-content {
+  /**
+   * Tables.
+   */
+  /* Fieldsets */
+  /**
+   * Form elements.
+   */
 }
 #modalContent .ctools-modal-content .description {
   color: #333;
@@ -13248,6 +13249,9 @@ textarea.error {
 #modalContent .ctools-modal-content input.form-submit:hover, #modalContent .ctools-modal-content input.form-submit:focus {
   color: #fff;
 }
+#modalContent .ctools-modal-content input.form-submit.field-add-more-submit {
+  margin-top: 1em;
+}
 #modalContent .ctools-modal-content .text-format-wrapper {
   margin-bottom: 1em;
 }
@@ -13263,7 +13267,156 @@ textarea.error {
 #modalContent .ctools-modal-content .text-format-wrapper .form-type-select select {
   margin: 0;
 }
+#modalContent .ctools-modal-content a.tabledrag-handle .handle {
+  padding: 12px 10px;
+}
+#modalContent .ctools-modal-content .form-item-context,
 #modalContent .ctools-modal-content .form-item-reusable,
+#modalContent .ctools-modal-content .form-item-category,
+#modalContent .ctools-modal-content .form-item-admin-title,
+#modalContent .ctools-modal-content #edit-admin-description-wrapper,
+#modalContent .ctools-modal-content #edit-log-wrapper,
 #modalContent .ctools-modal-content .form-item-revision {
   display: none !important;
+}
+#modalContent .ctools-modal-content table {
+  margin: 0 0 10px;
+  width: 100%;
+}
+#modalContent .ctools-modal-content table td, #modalContent .ctools-modal-content table th {
+  border: 0;
+  color: #000;
+  padding: 8px 10px;
+  vertical-align: middle;
+}
+#modalContent .ctools-modal-content tr.even, #modalContent .ctools-modal-content tr.odd {
+  background: #f3f4ee;
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 1px;
+}
+#modalContent .ctools-modal-content tr.odd {
+  background: #fff;
+}
+#modalContent .ctools-modal-content tr.drag {
+  background: #fe7;
+}
+#modalContent .ctools-modal-content tr.drag-previous {
+  background: #ffb;
+}
+#modalContent .ctools-modal-content table th {
+  background: none repeat scroll 0 0 #E1E2DC;
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 10px;
+}
+#modalContent .ctools-modal-content table th.active {
+  background: #0074BD;
+  color: #fff;
+}
+#modalContent .ctools-modal-content table th a {
+  display: block;
+}
+#modalContent .ctools-modal-content table th.active a {
+  padding: 0 25px 0 0;
+  /* LTR */
+  color: #fff;
+}
+#modalContent .ctools-modal-content table th.active img {
+  float: right;
+  position: relative;
+  right: -20px;
+  top: 3px;
+  /* LTR */
+}
+#modalContent .ctools-modal-content table td.active {
+  background: transparent;
+}
+#modalContent .ctools-modal-content table tr.odd td.active {
+  background: transparent;
+}
+#modalContent .ctools-modal-content table tr.selected td.active, #modalContent .ctools-modal-content table tr.selected td {
+  background: #ffc;
+  border-color: #eeb;
+}
+#modalContent .ctools-modal-content table.system-status-report tr {
+  border-bottom: 1px solid #ccc;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+#modalContent .ctools-modal-content table.system-status-report tr.ok {
+  color: #255b1e;
+  background-color: #e5ffe2;
+}
+#modalContent .ctools-modal-content table.system-status-report tr.info {
+  color: #040f37;
+  background-color: #bdf;
+}
+#modalContent .ctools-modal-content table.system-status-report tr.warning {
+  color: #840;
+  background-color: #fffbe2;
+}
+#modalContent .ctools-modal-content table tr.error {
+  color: #C70000;
+  background-color: #FFDDDD;
+}
+#modalContent .ctools-modal-content table tr.error td {
+  color: #C70000;
+}
+#modalContent .ctools-modal-content fieldset {
+  border: solid 1px #ddd;
+  border-top: 3px solid #0074BD;
+  padding: 12px;
+  margin: 18px 0;
+}
+#modalContent .ctools-modal-content fieldset legend {
+  background: white;
+  padding: 0 3px;
+  margin: 0;
+  margin-left: -3px;
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+#modalContent .ctools-modal-content .form-item {
+  padding: 0 1em 0 0;
+  margin: 0 0 10px;
+}
+#modalContent .ctools-modal-content .filter-wrapper .form-item, #modalContent .ctools-modal-content div.teaser-checkbox .form-item, #modalContent .ctools-modal-content .form-item .form-item {
+  padding: 5px 0;
+  margin: 0;
+  border: 0;
+}
+#modalContent .ctools-modal-content .form-type-checkbox {
+  padding: 0;
+}
+#modalContent .ctools-modal-content .text-format-wrapper .form-item {
+  padding-bottom: 0;
+}
+#modalContent .ctools-modal-content .form-item label, #modalContent .ctools-modal-content .exposed-filters .form-item label {
+  font-family: "Open Sans", "Segoe UI", "Helvetica", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  margin: 0 0.5em 0 0;
+  padding: 0.5em 0;
+  width: initial;
+}
+#modalContent .ctools-modal-content .form-item label.option {
+  font-size: 16px;
+  text-transform: none;
+  padding: 0;
+}
+#modalContent .ctools-modal-content .form-item label.option input {
+  vertical-align: middle;
+}
+#modalContent .ctools-modal-content .form-disabled input.form-autocomplete, #modalContent .ctools-modal-content .form-disabled input.form-text, #modalContent .ctools-modal-content .form-disabled input.form-file, #modalContent .ctools-modal-content .form-disabled textarea.form-textarea, #modalContent .ctools-modal-content .form-disabled select.form-select {
+  background-color: #eee;
+  color: #777;
+}
+#modalContent .ctools-modal-content .form-managed-file .form-file, #modalContent .ctools-modal-content .form-managed-file .form-submit {
+  margin: 0 1em;
+}
+#modalContent .ctools-modal-content input.empty {
+  color: #ccc !important;
 }
