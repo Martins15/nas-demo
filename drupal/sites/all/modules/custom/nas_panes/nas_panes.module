@@ -1491,7 +1491,7 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
  *   Postal code.
  *
  * @param string $type
- *   Type of the  location.
+ *   Type of the location.
  *
  * @return array
  *   View results.
