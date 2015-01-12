@@ -270,7 +270,7 @@ function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
  */
 function nas_alters_form_nodequeue_arrange_subqueue_form_1_alter(&$form, &$form_state, $form_id) {
   $form['help_text'] = array(
-    '#markup' => '<strong>The first 3 cards</strong> will appear in order of appearance <strong>in the footer section sitewide. You can override these settings</strong> on any one particular page. If you don\'t need manual override for a particular page anymore just delete engagement cards references from autocomplete fields in the pane settings<br /><br /><strong>The 4th card</strong> from this nodequeue <strong>will appear in the right sidebar placements sitewide</strong> in case if <strong>no contextual match</strong> is found. You can override defaults using particular sidebar pain settings.',
+    '#markup' => t('<strong>The first 3 cards</strong> will appear in order of appearance <strong>in the footer section sitewide. You can override these settings</strong> on any one particular page. If you don\'t need manual override for a particular page anymore just delete engagement cards references from autocomplete fields in the pane settings<br /><br /><strong>The 4th card</strong> from this nodequeue <strong>will appear in the right sidebar placements sitewide</strong> in case if <strong>no contextual match</strong> is found. You can override defaults using particular sidebar pain settings.'),
     '#weight' => -2,
   );
 }
