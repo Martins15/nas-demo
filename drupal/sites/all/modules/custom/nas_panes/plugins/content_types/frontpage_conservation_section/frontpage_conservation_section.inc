@@ -122,10 +122,13 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
   $content = array();
 
   foreach ($conf['wrapper'] as $delta => $item) {
-    $content[$delta] = array();
+    $content[$delta] = array(
+      'title' => '',
+      'nid' => '',
+      'node_url' => '',
+    );
     if (!empty($item['reference']['entity_id'])) {
-      $node = node_load($item['reference']['entity_id']);
-      if ($node) {
+      if ($node = node_load($item['reference']['entity_id'])) {
         $content[$delta]['title'] = $node->title;
         $content[$delta]['nid'] = $node->nid;
         $content[$delta]['node_url'] = url('node/' . $node->nid, array('absolute' => TRUE));

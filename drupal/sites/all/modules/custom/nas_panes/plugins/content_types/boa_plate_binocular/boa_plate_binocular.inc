@@ -138,7 +138,7 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
     'class' => $class,
     'image_desaturated' => isset($chosen_node['image_desaturated']) ? $chosen_node['image_desaturated'] : '',
     'credits' => isset($chosen_node['credits']) ? $chosen_node['credits'] : '',
-    'title' => isset($chosen_node['node']->title) ? l($chosen_node['node']->title, 'node/' . $chosen_node->nid) : '',
+    'title' => isset($chosen_node['node']->title) ? l($chosen_node['node']->title, 'node/' . $chosen_node['node']->nid) : '',
     'link' => isset($chosen_node['link']) ? $chosen_node['link'] : '',
     'contextual_links' => $contextual_links,
   ));
