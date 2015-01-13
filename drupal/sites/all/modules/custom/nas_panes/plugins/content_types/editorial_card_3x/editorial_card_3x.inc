@@ -463,6 +463,20 @@ function _editorial_card_3x_presets() {
         ),
       ),
     ),
+    'news_near_you' => array(
+      'title' => t('News Near You'),
+      'content' => array(
+        'list' => array(
+          'type' => 'views_results',
+          'options' => array(
+            'view' => 'audubon_near_you_news',
+            'display' => 'default',
+            'result_key' => 'nid',
+            'args' => array(),
+          ),
+        ),
+      ),
+    ),
   );
 
   return $presets;
