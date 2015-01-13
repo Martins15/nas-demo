@@ -116,7 +116,9 @@
 }
 
 .hero-attribution {
+  overflow: hidden;
   @include breakpoint(medium-up) {
+    overflow: visible;
     .hero-attribution-text {
       padding: 2px 5px;
       background-color: rgba(0, 0, 0, 0.2);
