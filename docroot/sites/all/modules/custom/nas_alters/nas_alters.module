@@ -278,31 +278,20 @@ function nas_alters_form_nodequeue_arrange_subqueue_form_1_alter(&$form, &$form_
 /**
  * Implements hook_menu().
  */
-function nas_alters_menu() {
-  $items = array();
-
-  $items['admin/structure/menu/manage/boa'] = array(
-    'title' => 'BOA menu',
-    'access callback' => '_nas_alters_boa_menu_access',
-    'access arguments' => array(4),
-    'page callback' => '_nas_alters_boa_menu_page',
-    'page arguments' => array(4),
-  );
-
-  return $items;
+function nas_alters_menu_alter(&$items) {
+  $items['admin/structure/menu/manage/%menu']['page callback'] = '_nas_alters_menu_admin_page';
+  $items['admin/structure/menu/manage/%menu']['page arguments'] = array(4);
 }
 
 /**
- * Callback for BOA menu.
+ * Menu admin page callback.
  */
-function _nas_alters_boa_menu_page($machine_name) {
-  module_load_include('inc', 'bigmenu', 'bigmenu.admin');
-  return drupal_get_form('bigmenu_overview_form', menu_load($machine_name));
-}
+function _nas_alters_menu_admin_page($menu) {
+  if ($menu['menu_name'] == 'boa') {
+    module_load_include('inc', 'bigmenu', 'bigmenu.admin');
+    return drupal_get_form('bigmenu_overview_form', $menu);
+  }
 
-/**
- * Access callback for BOA menu.
- */
-function _nas_alters_boa_menu_access($machine_name) {
-  return _menu_admin_per_menu_menu_access(menu_load($machine_name));
+  module_load_include('inc', 'menu', 'menu.admin');
+  return drupal_get_form('menu_overview_form', $menu);
 }
