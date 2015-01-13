@@ -1,0 +1,352 @@
+// ----
+// Hero
+// ----
+
+/* @todo refactor like crazy for more hero variations */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  z-index: 1; // get behind the header
+
+  .row {
+    position: relative;
+  }
+
+  &.dark-gradient-bottom:before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(rgba($color-black, 0), rgba($color-black, .8));
+  }
+
+  // Pull up behind header for transparency when needed
+  .global-header.transparent + & {
+    @include breakpoint(large-up) {
+      top: -100px;
+      margin-bottom: -100px;
+    }
+  }
+
+  &.light-text a {
+    color: $color-white;
+    &:hover {
+      color: darken($color-white, 15%);
+    }
+  }
+}
+
+.hero-image {
+  overflow: hidden;
+  max-height: 100%;
+  position: relative;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    min-width: 100%;
+  }
+
+  @include breakpoint(large-up) {
+    .hero:not(.expand) & img {
+      height: 440px;
+      max-width: none;
+      width: auto;
+    }
+  }
+
+  @include breakpoint(min-width, 900px) {
+    .hero:not(.expand) & img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}
+
+.hero-map {
+  max-width: 100%;
+  overflow: hidden;
+
+  @include breakpoint(tiny-up) { height: 240px; }
+  @include breakpoint(small-up) { height: 320px; }
+  @include breakpoint(large-up) { height: 380px; }
+  @include breakpoint(min-width, 840px) { height: 450px; }
+}
+
+// Landscape mobile phones
+@media (min-width: 480px) and (max-width: 600px) and (orientation: landscape) {
+  .with-map {
+    min-height: 0 !important;
+  } 
+  .hero-map {
+    height: 180px !important;
+  }
+}
+
+// Large headlines and blurbs that stay in the header
+.hero-header {
+  width: 100%;
+  margin-top: $column-gutter;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: $column-gutter;
+
+  @include breakpoint(medium-up) {
+    padding-bottom: $column-gutter*2;
+    padding-right: $column-gutter;
+  }
+
+  &.centered {
+    text-align: center;
+  }
+}
+
+.hero-card-column {
+  @include breakpoint(medium-up) {
+    position: absolute;
+    right: 25px;
+    bottom: 50px;
+  }
+}
+
+// Mobile styles
+@include width-range(0px, #{upper-bound($small-range)}) {
+  .hero-text-container {
+    background-color: #f3f3f3;
+    padding-bottom: $column-gutter/2;
+  }
+
+  .hero-slug,
+  .hero-title {
+    color: $color-white !important;
+  }
+}
+
+// Hero content that can be positioned under the hero on mobile
+.hero-text {
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    .breakout-section-box {
+      background-color: transparent;
+      padding: $size-space 0;
+      color: $color-text-gray;
+      h1, h2, h3 {
+        color: $color-dark-gray;
+      }
+    }
+  }
+}
+
+// ---
+// Various small hero elements
+// ---
+
+.hero-slug {
+  font-family: $font-sans;
+  font-size: $size-text-large;
+  margin-bottom: $size-space;
+}
+
+.hero-title {
+  color: $color-black;
+  font-family: $font-sans;
+  font-size: $size-text-h1;
+  line-height: $size-text-h1;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin: $size-space 0 0 0;
+
+  @include breakpoint(medium-up) {
+    &.big {
+      font-size: 64px;
+    }
+  }
+}
+
+.hero-title,
+.hero-blurb {
+  &.with-icon {
+    @include breakpoint(medium-up) {
+      margin-left: 120px;
+    }
+  }
+}
+
+.hero-icon {
+  float: left;
+  display: none;
+
+  @include breakpoint(medium-up) {
+    display: block;
+    height: 100px;
+    margin-right: $size-space*2;
+  }
+}
+
+.hero-attribution {
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
+  line-height: $size-text-small;
+  color: $color-text-gray;
+  background-color: #f3f3f3;
+  padding-top: $size-space/2;
+  padding-bottom: $size-space/2;
+  @include breakpoint(medium-up) {
+    color: $color-white;
+    background-color: transparent;
+    text-align: right;
+    text-shadow: 0 1px 2px rgba($color-black, 0.4);
+    position: relative;
+    padding-top: 0;
+    margin-bottom: -5px;
+    z-index: 2;
+
+    &.align-left {
+      text-align: left;
+    }
+
+    .column {
+      position: absolute;
+      top: -30px;
+    }
+
+    .hero-attribution-text {
+      padding: 2px 5px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+  &.breakout-hero-attribution {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &.flyway-hero-attribution {
+    opacity: 0;
+    display: none;
+    @include transition(opacity 0.5s ease-in-out);
+    &.current {
+      opacity: 1;
+      display: block;
+    }
+  }
+}
+
+.hero-attribution-fullscreen {
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
+  line-height: $size-text-small;
+  color: $color-text-gray;
+  background-color: #f3f3f3;
+  padding-top: $size-space/2;
+  padding-bottom: $size-space/2;
+  @include breakpoint(tiny-up) {
+    color: $color-white;
+    background-color: transparent;
+    text-align: right;
+    position: relative;
+    padding-top: 0;
+    margin-bottom: $size-space;
+    margin-top: -$size-space*3;
+    z-index: 2;
+    &.align-left {
+      text-align: left;
+    }
+  }
+}
+
+.hero-blurb {
+  font-size: $size-text-large;
+  line-height: $size-text-large + 5px;
+  font-style: italic;
+  margin-top: $size-space*1.5;
+}
+
+.hero-paragraph {
+  color: #777;
+  font-size: $size-text-small;
+  font-style: italic;
+  line-height: $size-line-small;
+  margin-top: $column-gutter/2;
+
+  @include breakpoint(medium-up) {
+    width: 35%;
+  }
+  @include breakpoint(large-up) {
+    margin-top: $size-space*2;
+    width: 30%;
+  }
+  @include breakpoint(min-width, 880px) {
+    font-size: $size-text-base;
+    line-height: $size-line-base;
+    width: 35%;
+  }
+}
+
+.hero-inline-list {
+  color: #777;
+  font-family: $font-sans;
+  margin-top: $size-space*2;
+  li {
+    display: inline-block;
+    &:not(:first-child):before {
+      content: " | ";
+      margin: 0 3px;
+    }
+  }
+}
+
+.hero.light-text {
+  .hero-title,
+  .hero-slug,
+  .hero-blurb {
+    color: $color-white !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+  }
+
+  .hero-title {
+    font-weight: 400;
+  }
+  .hero-slug {
+    font-weight: 600;
+  }
+}
+
+img.hero-alt-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  @include transition(opacity 0.5s ease-in-out);
+
+  &.current {
+    position: static;
+    opacity: 1;
+  }
+}
+
+.hero {
+  @include breakpoint(medium-only) {
+    @include bird-card-smaller;
+  }
+  @include breakpoint(large-up) {
+    @include bird-card-smaller;
+  }
+  @include breakpoint(min-width, 900px) {
+    @include bird-card-small;
+  }
+}
+
+.hero-caption {
+  padding-top: 5px;
+}

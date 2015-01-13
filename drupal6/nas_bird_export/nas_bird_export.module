@@ -1,0 +1,104 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+* Implementation of hook_menu().
+*/
+function nas_bird_export_menu() {
+  $items = array();
+
+  $items['export/node-list/%'] = array(
+    'title' => t('Export nids of the given content type'),
+    'page callback' => 'nas_node_list_callback',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+   );
+  $items['export/node/%'] = array(
+    'title' => t('Load node object as json of the given nid'),
+    'page callback' => 'nas_node_nid_callback',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+   );
+  $items['export/users-list'] = array(
+    'title' => t('Export uids'),
+    'page callback' => 'nas_user_list_callback',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+   );
+  $items['export/user/%'] = array(
+    'title' => t('Load user object as json of the given uid'),
+    'page callback' => 'nas_user_uid_callback',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+   );
+
+   return $items;
+}
+
+/**
+ * function nas_node_list_callback().
+ *
+ * @return json with nids list of the given content type.
+ *
+ */
+function nas_node_list_callback($content_type) {
+  $result = db_query("SELECT nid FROM {node} WHERE type = '%s'", $content_type);
+  $nids = array();
+  while ($obj = db_fetch_object($result)) {
+    $nids[] = $obj->nid;
+  }
+
+  print drupal_json($nids);
+}
+
+/**
+ * function nas_node_nid_callback().
+ *
+ * @return json of the given node by nid.
+ *
+ */
+function nas_node_nid_callback($nid) {
+  $node = node_load($nid);
+
+  unset($node->data);
+
+  print drupal_json(array($node));
+}
+
+/**
+ * function nas_user_list_callback().
+ *
+ * @return json with uids list of only users who have with content.
+ *
+ */
+function nas_user_list_callback() {
+  $result = db_query("SELECT DISTINCT u.uid
+    FROM {users} u
+    INNER JOIN {node} n ON n.uid = u.uid
+    WHERE n.status = %d", 1);
+  $uids = array();
+  while ($obj = db_fetch_object($result)) {
+    $uids[] = $obj->uid;
+  }
+
+  print drupal_json($uids);
+}
+
+/**
+ * function nas_user_uid_callback().
+ *
+ * @return json of the given user by uid.
+ *
+ */
+function nas_user_uid_callback($uid) {
+  $user = user_load($uid);
+
+  print drupal_json(array($user));
+}

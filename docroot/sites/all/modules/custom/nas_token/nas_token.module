@@ -1,0 +1,104 @@
+<?php
+/**
+ * @file
+ * Provides token for article URL aliases.
+ */
+
+define('NAS_TOKEN_PLACEHOLDER', 'slashplaceholder');
+
+/**
+ * Implements hook_token_info().
+ */
+function nas_token_token_info() {
+  $info['tokens']['node']['nas-article'] = array(
+    'name' => t('NAS article alias'),
+    'description' => t('Custom alias based on whether news article is Press Release, Magazine Article or general News Article'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function nas_token_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'node' && !empty($data['node'])) {
+    $node = $data['node'];
+
+    if (!isset($tokens['nas-article'])) {
+      return;
+    }
+
+    $original = $tokens['nas-article'];
+
+    $news_type = nas_token_get_news_type($node);
+
+    // We can't use '/' in alias as it will be replaced by pathauto.
+    // String NAS_TOKEN_PLACEHOLDER will be replaced with / in function
+    // nas_token_pathauto_alias_alter.
+    switch ($news_type) {
+      case 'press-release':
+        $pattern = array(
+          'press-release',
+          $node->title,
+        );
+        break;
+
+      case 'magazine-article':
+        $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
+        $pattern = array(
+          'magazine',
+        );
+
+        if (!empty($magazine_items[0]['target_id'])) {
+          $magazine_node = node_load($magazine_items[0]['target_id']);
+          if (!empty($magazine_node->title)) {
+            $pattern[] = $magazine_node->title;
+          }
+        }
+
+        $pattern[] = $node->title;
+        break;
+
+      default:
+        $pattern = array(
+          'news',
+          $node->title,
+        );
+    }
+
+    $replacements[$original] = implode(NAS_TOKEN_PLACEHOLDER, $pattern);
+  }
+
+  return $replacements;
+}
+
+/**
+ * Get the news article type.
+ *
+ * @param object $node
+ *   Node object.
+ *
+ * @return string
+ *   Type of the news.
+ */
+function nas_token_get_news_type($node) {
+  if (!empty($node->field_magazine_issue[LANGUAGE_NONE][0])) {
+    return 'magazine-article';
+  }
+
+  if ($node->panelizer['page_manager']->name == 'node:article:press_release') {
+    return 'press-release';
+  }
+
+  return 'news';
+}
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function nas_token_pathauto_alias_alter(&$alias, array &$context) {
+  $alias = str_replace(NAS_TOKEN_PLACEHOLDER, '/', $alias);
+}

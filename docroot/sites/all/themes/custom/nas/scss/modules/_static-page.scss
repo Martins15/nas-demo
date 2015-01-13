@@ -1,0 +1,14 @@
+.static-page-content {
+  .deck {
+    padding-bottom: 1em;
+  }
+  .text-container .deck {
+    padding-bottom: 0;
+  }
+}
+
+h2 {
+  &.grey {
+    color: #838078;
+  }
+}

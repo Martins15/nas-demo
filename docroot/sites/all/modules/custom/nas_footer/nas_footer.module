@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * define ctools content type.
+ */
+
+define('NAS_FOOTER_PAGE_MANAGER_CACHE_KEY', 'site_template');
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_footer_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_footer_theme() {
+  return array(
+      'nas_footer_menu' => array(
+          'arguments' => array('menu_tree' => NULL),
+          'template' => 'templates/nas-footer-menu',
+      ),
+      'nas_footer_copyright_menu' => array(
+          'arguments' => array('menu_tree' => NULL),
+          'template' => 'templates/nas-footer-copyright-menu',
+      ),
+      'nas_footer' => array(
+          'arguments' => array(
+              'logo' => NULL,
+              'mission_title' => NULL,
+              'mission' => NULL,
+              'copyright' => NULL,
+              'footer_menu' => NULL,
+              'footer_copyright_menu' => NULL,
+              'contextual_links' => NULL
+          ),
+          'template' => 'templates/nas-footer',
+      ),
+      'nas_stay_abreast' => array(
+          'arguments' => array(
+              'headline' => NULL,
+              'caption' => NULL,
+              'form' => NULL,
+          ),
+          'template' => 'templates/nas-stay-abreast'
+      )
+  );
+}
+
+function nas_footer_mail_subscription_form($form, &$form_state) {
+  $form['email'] = array(
+      '#type' => 'textfield',
+      '#attributes' => array(
+          'placeholder' => array(t('Enter your email address')),
+          'class' => array('mailing-list-input', 'radius')
+      ),
+      '#size' => '',
+      '#id' => 'nas-mail-subscription-email'
+  );
+  $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Sign Up'),
+      '#attributes' => array(
+          'class' => array('button', 'tomato', 'large')
+      ),
+      '#id' => 'nas-mail-subscription-submit'
+  );
+  $form['#attributes']['class'] = array('mailing-list-form');
+
+  return $form;
+}
+
+/**
+ * Implements hook_ajax_render_alter().
+ */
+function nas_footer_ajax_render_alter(&$commands) {
+
+  $last_command = end($commands);
+  // Will get triggered when user submitted the form.
+  if (strpos(arg(4), NAS_FOOTER_PAGE_MANAGER_CACHE_KEY) !== FALSE && strpos(arg(6), 'form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
+    // Here we save the cache to database. When we edited the pane we made
+    // changes in the cache. In order the page to see the changes we need
+    // to save cache data to database.
+    nas_footer_save_footer_pane();
+
+    $commands[] = ctools_ajax_command_reload();
+  }
+}
+
+/**
+ * Resave bird guide page (cache to database).
+ */
+function nas_footer_save_footer_pane() {
+  $cache = page_manager_get_page_cache(NAS_FOOTER_PAGE_MANAGER_CACHE_KEY);
+  $cache->changes = array(
+    'handlers' => TRUE,
+    'handlers/site_template_panel_context' => TRUE,
+    'handlers/site_template_panel_context/content' => TRUE,
+    'handlers/site_template_panel_context_2' => TRUE,
+    'handlers/site_template_panel_context_2/content' => TRUE,
+  );
+  $cache->changed = TRUE;
+  $cache->handler_info['site_template_panel_context']['changed'] = 2;
+  $cache->handler_info['site_template_panel_context_2']['changed'] = 2;
+
+  page_manager_save_page_cache($cache);
+}

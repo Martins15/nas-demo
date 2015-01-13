@@ -1,0 +1,9 @@
+name = Max size upload file
+core = 7.x
+package = NAS
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = file_entity_max_filesize
+project path = sites/all/modules/features

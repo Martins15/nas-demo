@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Define custom permissions.
+ */
+
+/**
+ * Implementation of hook_preprocess_HOOK().
+ */
+function nas_magazin_issues_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  //Return early conditional check
+  if ($node->type != 'magazine_issue') {
+    return;
+  }
+  if ($variables['view_mode'] != 'teaser') {
+    return;
+  }
+
+  $variables['magazine_issue_article'] = array();
+
+  $query = db_select('node', 'n');
+  $query->join('field_data_field_magazine_issue', 'mi', 'mi.entity_id=n.nid');
+  $r_nid = $query
+    ->fields('n', array('nid'))
+    ->condition('entity_type', 'node')
+    ->condition('bundle', 'article')
+    ->condition('field_magazine_issue_target_id', $node->nid)
+    ->condition('status', 1)
+    ->range(0, 1)
+    ->orderRandom()
+    ->execute()
+    ->fetchField();
+
+  if (empty($r_nid)) {
+    return;
+  }
+
+  $r_node = node_load($r_nid);
+
+  $variables['magazine_issue_article'] = array(
+    '#theme' => 'link',
+    '#text' => $r_node->title,
+    '#path' => 'node/' . $r_node->nid,
+    '#options' => array('attributes' => array('title' => $r_node->title), 'html' => FALSE),
+    );
+}

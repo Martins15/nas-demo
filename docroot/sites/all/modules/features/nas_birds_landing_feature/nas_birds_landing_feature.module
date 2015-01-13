@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Birds landing feature.
+ */
+
+include_once 'nas_birds_landing_feature.features.inc';

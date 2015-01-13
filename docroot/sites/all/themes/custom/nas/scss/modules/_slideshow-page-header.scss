@@ -1,0 +1,36 @@
+.slideshow-page-header {
+  color: $color-white;
+  margin: $size-space 0;
+
+  .title {
+    display: block;
+    font-family: $font-sans;
+    font-size: $size-text-medium;
+  }
+
+  .blurb {
+    display: block;
+    font-family: $font-serif;
+    font-size: $size-text-small - 1px;
+    line-height: $size-line-small;
+    font-style: italic;
+  }
+
+  @include breakpoint(small-up) {
+  }
+
+  @include breakpoint(min-width, 900px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $color-black;
+    margin: $size-space 0;
+
+    .title,
+    .blurb {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: $size-space;
+    }
+  }
+}

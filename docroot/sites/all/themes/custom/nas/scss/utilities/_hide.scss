@@ -1,0 +1,24 @@
+// ----
+// Hide
+// Various classes for hiding things in different ways and contexts
+// ----
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+$sizes: tiny, small, medium, large, xlarge;
+
+@each $size in $sizes {
+  .hide-for-#{$size} {
+    @include breakpoint(#{$size}-only) {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
+}
+
+.hide-for-firsttime-visitors {
+  @extend .hide;
+}

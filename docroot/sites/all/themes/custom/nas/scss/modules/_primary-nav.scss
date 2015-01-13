@@ -1,0 +1,237 @@
+// ------------------
+// Primary Navigation
+// ------------------
+
+.primary-nav {
+  a {
+    text-decoration: none !important;
+    &.orange {
+      color: $color-orange;
+    }
+  }
+
+  // Breakpoints
+  @include breakpoint(large-up) {
+    position: absolute;
+    bottom: 0;
+    right: $column-gutter / 2;
+    margin-bottom: 2px;
+    font-size: 18px;
+    line-height: $size-text-medium;
+    > li > a {
+      color: $color-white;
+      padding: $size-space $size-space;
+    }
+  }
+  @include breakpoint(min-width, 880px) {
+    margin-bottom: $size-space/2 + 2px;
+  }
+
+  // Variants
+  .global-header.dark-text & {
+    > li > a {
+      color: $color-black;
+    }
+    .primary-nav-item:not(:first-child):before {
+      color: $color-light-gray;
+    }
+  }
+  .global-header.alt & {
+    margin-bottom: 0;
+    @include breakpoint(large-up) {
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.primary-nav-item {
+  position: relative;
+  margin-right: -2px;
+
+  @include breakpoint(large-up) {
+    &:not(:first-of-type):after {
+      color: $color-text-gray;
+      content: "|";
+      position: absolute;
+      top: 9px;
+      left: -1px;
+    }
+    .global-header.microsite & {
+      a:hover {
+        color: $color-bright-blue;
+      }
+      &.current a:hover {
+        color: darken($color-bright-blue, 15%);
+      }
+    }
+  }
+  @include width-range(#{lower-bound($large-range)}, 920px) {
+    font-size: $size-text-base;
+    .extra-nav-copy {
+      display: none;
+    }
+  }
+
+}
+
+.primary-nav-toggler {
+  position: relative;
+  @include transition(none);
+
+  // Breakpoints
+  @include breakpoint(max-width, 767px) {
+    @include nav-toggler-graphic();
+
+    // States
+    &.open {
+      background-color: $color-white;
+    }
+  }
+
+  @include breakpoint(large-up) {
+    &.open {
+      box-shadow: 0 0 7px rgba(#000, 0.3);
+      background-color: $color-white;
+      color: $color-black;
+      padding-right: 15px;
+      margin-right: -5px;
+      position: relative;
+      z-index: 4;
+      // crazy hack to exclude the box shadow on one side
+      &:after {
+        background-color: $color-white;
+        content: "";
+        height: 10px;
+        width: 100%;
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+      }
+    }
+    &.current,
+    &.current-parent {
+      color: $color-bright-blue !important;
+    }
+  }
+}
+
+.primary-sub-nav {
+  background-color: $color-white;
+  display: none !important; // override inline-list styles
+  line-height: $size-text-large;
+  margin-left: 0;
+
+  // States
+  &.show {
+    display: block !important;
+  }
+
+  // Breakpoints
+  @include breakpoint(max-width, 767px) {
+    font-size: 21px;
+  }
+  @include breakpoint(large-up) {
+    position: absolute;
+    z-index: 3;
+    box-shadow: 0 0 7px rgba(#000, 0.3);
+    min-width: 210px;
+    padding: $size-space 0;
+
+    .primary-nav-toggler.final + & {
+      right: -5px;
+    }
+  }
+}
+
+.primary-sub-nav-item {
+  // Breakpoints
+  @include breakpoint(max-width, 767px) {
+    border-bottom: 1px solid #f7f7f7;
+    padding-left: $size-space*1.5;
+    &:first-child {
+      border-top: 1px solid #f7f7f7;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+  @include breakpoint(large-up) {
+    display: block;
+    border-bottom: 1px solid #f3f3f3;
+    font-size: $size-text-base;
+    text-align: left;
+    padding: 0;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.primary-sub-nav-index {
+  display: none;
+  body.touch & {
+    display: block;
+  }
+}
+
+.primary-sub-nav-link {
+  color: $color-text-gray + #222 !important;
+  display: block;
+  padding: $size-space;
+  @include breakpoint(large-up) {
+    color: $color-black !important;
+    &:hover {
+      background-color: #f3f3f3;
+    }
+  }
+}
+
+.primary-nav-search {
+  display: none !important;
+  margin-left: $size-space/2;
+  
+  // Children
+  i {
+    font-size: $size-text-medium;
+    position: relative;
+    top: 2px;
+  }
+  a {
+    padding-right: 0 !important;
+  }
+
+  // Breakpoints
+  @include breakpoint(large-up) {
+    display: inline-block !important;
+  }
+}
+
+.global-header.microsite {
+
+  @include width-range(768px, 900px) {
+    .mobile-nav {
+      margin: 10px -25px 0 -25px;
+      position: relative;
+    }
+    .primary-nav {
+      position: relative;
+    }
+    .primary-nav-item a {
+      padding: 8px 37.5px; 
+    }
+  }
+
+  @include breakpoint(min-width, 901px) {
+    .primary-nav {
+      top: 10px;
+      right: 115px;
+    }
+    .primary-nav-item {
+      font-size: $size-text-base - 1px;
+
+      & + li > .button {
+        margin-left: 15px;
+      }
+    }
+  }
+}

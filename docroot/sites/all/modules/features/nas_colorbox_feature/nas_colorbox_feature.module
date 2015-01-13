@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Colorbox feature.
+ */
+
+include_once 'nas_colorbox_feature.features.inc';

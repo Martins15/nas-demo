@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the nas_past_magazine_issues feature.
+ */
+
+include_once 'nas_past_magazine_issues.features.inc';

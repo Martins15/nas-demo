@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Alter Wysiwyg editor settings for CKEditor profile.
+ */
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ *
+ * @see http://drupal.org/node/1956778
+ */
+function pp_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
+  if ($context['profile']->editor == 'ckeditor') {
+    $settings['allowedContent'] = TRUE;
+
+    // Remove "Insert paragraph here" plugin.
+    // @see http://ckeditor.com/forums/CKEditor/How-to-Remove-Insert-Paragraph-Here-Pointer
+    $settings['removePlugins'] = 'magicline';
+
+    if (!empty($settings['toolbar'])) {
+      $toolbar = array();
+      foreach ($settings['toolbar'] as $item) {
+        if ($item['name'] == 'document') {
+          array_unshift($toolbar, $item);
+        }
+        else {
+          $toolbar[] = $item;
+        }
+      }
+      $settings['toolbar'] = $toolbar;
+    }
+  }
+}
+
+/**
+ * Implements hook_wysiwyg_plugin().
+ */
+function pp_wysiwyg_wysiwyg_plugin($editor, $version) {
+  if ($editor == 'ckeditor') {
+    return array(
+      'codemirror' => array(
+         'extensions' => array('codemirror' => t('CodeMirror')),
+         'path' => wysiwyg_get_path('ckeditor_plugins') . '/codemirror',
+         'internal' => FALSE,
+         'load' => TRUE,
+      ),
+    );
+  }
+}

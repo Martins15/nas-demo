@@ -1,0 +1,83 @@
+.strip-nav {
+  background-color: $color-dark-gray;
+  font-family: $font-sans;
+  font-size: $size-text-base;
+  line-height: $size-text-base;
+  border-top: 1px solid $color-middle-gray;
+  position: relative;
+  overflow: hidden;
+
+  // Gradient on the right
+  &:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    pointer-events: none;
+    @include background-image(linear-gradient(
+      to left, 
+      rgba($color-dark-gray, 1), 
+      rgba($color-dark-gray, 0), 
+      transparent
+    ));
+  }
+
+  &.without-border {
+    border: none;
+  }
+
+  ul {
+    width: $row-width;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  li {
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 1px solid $color-text-gray;
+    margin: $size-space*1.5 0;
+    padding: 0 8px;
+    &:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    &.strip-nav-header {
+      border-left: none;
+      color: $color-pea-green;
+      padding-left: 0;
+    }
+  }
+
+  a,
+  i,
+  span {
+    vertical-align: middle;
+  }
+
+  a {
+    color: $color-white;
+    &:hover {
+      color: darken($color-white, 20%);
+    }
+  }
+
+  a.current {
+    color: $color-bright-blue;
+    &:hover {
+      color: darken($color-bright-blue, 15%);
+    }
+  }
+
+  &.small {
+    font-size: $size-text-small;
+    line-height: $size-text-small;
+    li {
+      margin: $size-space 0;
+      padding: 0 $size-space;
+    }
+  }
+}

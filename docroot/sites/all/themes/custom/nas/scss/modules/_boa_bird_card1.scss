@@ -1,0 +1,136 @@
+.lzoom_zoomin,
+.lzoom_zoomout,
+.lzoom_fullscreen {
+  bottom: 0px;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+
+  &:before {
+    color: #dd360f;
+    display: block;
+    font-size: 24px;
+    padding: 0;
+    @include border-radius(2px);
+  }
+
+  .fullscreen & {
+    bottom: 50px;
+  }
+}
+
+.lzoom_zoomin {
+  @extend .icon-zoomin;
+  right: 110px;
+  .fullscreen &{
+    right: 150px;
+  }
+}
+
+.lzoom_zoomout {
+  @extend .icon-zoomout;
+  right: 60px;
+  .fullscreen &{
+    right: 100px;
+  }
+}
+
+.lzoom_fullscreen {
+  @extend .icon-fullscreen;
+  right: 10px;
+  .fullscreen &{
+    right: 50px;
+  }
+}
+
+.draggble {
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#cboxLoadedContent {
+  @include user-select(none);
+  background: #ffffff;
+  &.fullscreen {
+    background: #000000;
+  }
+}
+
+#cboxClose {
+  z-index: 2;
+}
+
+.lzoom1 {
+  #colorbox.lzoom {
+    border-color: #000000;
+    #cboxTitle {
+      background-color: #000000;
+      color: #ffffff;
+      font-style: italic;
+      min-height: 40px;
+      padding-right: 125px;
+      text-align: left;
+    }
+  }
+}
+
+.lzoom2 {
+  .lzoom_zoomin,
+  .lzoom_zoomout,
+  .lzoom_fullscreen {
+    position: static;
+    display: block;
+    margin-bottom: 12px;
+    &:before {
+      color: #ef5835;
+      font-size: 26px;
+    }
+  }
+  .lzoom_zoomin {
+    top: 80px;
+  }
+
+  .lzoom_zoomout {
+    top: 40px;
+  }
+
+  .lzoom_fullscreen {
+    top: 120px;
+  }
+
+  .controls {
+    position: absolute;
+    top: -15px;
+    left: -20px;
+    padding: 40px 8px 6px;
+    background-color: #000000;
+    @include border-radius(60px);
+    z-index: 2;
+  }
+  .fullscreen {
+    .controls {
+      top: 60px;
+      left: 60px;
+      padding-top: 18px;
+    }
+  }
+}
+
+.lzoom1, .lzoom2 {
+  .lzoom_fullscreen {
+    display: none;
+    @include breakpoint(large-up) {
+      display: block;
+    }
+  }
+}

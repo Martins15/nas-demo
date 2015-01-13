@@ -1,0 +1,1275 @@
+<?php
+/**
+ * @file
+ * Modifications to import process.
+ */
+
+define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
+define('NAS_FILES_CACHE_DIR', '/var/www/cache');
+define('NAS_OLD_D6_VID_HABITAT', 96);
+define('NAS_OLD_D6_VID_LOLOMOTION', 101);
+define('NAS_OLD_D6_VID_COLOR', 86);
+define('NAS_OLD_D6_VID_CALL_TYPE', 76);
+define('NAS_OLD_D6_VID_CATEGORY', 81);
+define('NAS_OLD_D6_VID_SIZE', 111);
+define('NAS_OLD_D6_VID_CALL_PATTERN', 71);
+define('NAS_OLD_D6_VID_WING_SHAPE', 116);
+define('NAS_OLD_D6_VID_ARTICLE_TYPE', 37);
+define('NAS_OLD_D6_VID_TOPIC', 13);
+define('NAS_OLD_D6_VID_MAGAZINE_CATEGORY', 41);
+define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
+define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
+define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
+
+/**
+ * Implements hook_ctools_plugin_api().
+ */
+function nas_import_ctools_plugin_api($owner, $api) {
+  if ($owner == 'feeds' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_feeds_plugins().
+ */
+function nas_import_feeds_plugins() {
+  $info = array();
+  $info['NASFeedsHTTPFetcher'] = array(
+    'name' => 'NAS Feeds HTTP Fetcher',
+    'description' => 'Uses cache fr HTTPFetcher.',
+    'help' => 'Calls will check if we already have data cached on files system.',
+    'handler' => array(
+      'parent' => 'FeedsHTTPFetcher',
+      'class' => 'NASFeedsHTTPFetcher',
+      'file' => 'NASFeedsHTTPFetcher.inc',
+      'path' => drupal_get_path('module', 'nas_import'),
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
+  switch ($entity->feeds_item->id) {
+    case 'birds_import':
+      nas_import_feeds_presave_birds_import($source, $entity, $item);
+      break;
+
+    case 'news_import':
+      // Import image.
+      $nid = $item['nid'];
+      // @codingStandardsIgnoreStart
+      $item['body'] = preg_replace_callback(
+        "/<img(.*?)src=\"(.*?)\"(.*?)>/si",
+        function($matches) use ($nid) {
+          return get_image_src($matches, $nid);
+        },
+        $item['body']
+      );
+      // @codingStandardsIgnoreEnd
+      $preg = '/style=\"(.*?)\"/si';
+      $count = NULL;
+      $result = preg_replace($preg, '', $item['body'], -1, $count);
+      // Remove leading slash in URLs.
+      $leading_slash_pattern = '/(?<=href=("|\'))[\/]/';
+      $result = preg_replace($leading_slash_pattern, '', $result);
+      $item['body'] = $result;
+
+      nas_import_feeds_presave_news_import($source, $entity, $item);
+      break;
+
+    case 'contacts_import':
+      nas_import_feeds_presave_contacts_import($source, $entity, $item);
+      break;
+
+    case 'users_import':
+      nas_import_feeds_presave_users_import($source, $entity, $item);
+      break;
+
+    case 'magazine_issues_import':
+      nas_import_feeds_presave_magazine_issues_import($source, $entity, $item);
+      break;
+
+    case 'media_gallery_import':
+      nas_import_feeds_presave_media_gallery_import($source, $entity, $item);
+      break;
+
+    case 'chapters_import':
+      nas_import_feeds_presave_chapters_import($source, $entity, $item);
+      break;
+
+    case 'audubon_location_import':
+      nas_import_feeds_presave_audubon_location_import($source, $entity, $item);
+      break;
+
+    case 'static_pages_import':
+      nas_import_feeds_presave_static_pages_import($source, $entity, $item);
+      break;
+  }
+}
+
+/**
+ * Function callback to preg_replace_callback().
+ *
+ * Handle inline images:
+ *   - keeps images hosted not on *.audubon.org origin;
+ *   - downloads images from *.audubon.org and replaces src;
+ *   - keeps images that could not be downloaded and logs where they were found.
+ *
+ * @param array $matches - parts of image tag.
+ * @param integer source_nid - nid of node from audubon.org
+ *
+ * @return string with corrected HTML markup
+ */
+function get_image_src($matches, $source_nid) {
+  $match1 = $matches[1];
+  $match2 = $matches[3];
+  $full_url = $matches[2];
+  // Using define early pattern
+  $path = $full_url;
+  if (!preg_match('/http:\/\//', $full_url)) {
+    $path = 'http://audubon.org' . $full_url;
+  }
+  if (strpos($full_url, '://') === FALSE || preg_match('/http:\/\/(.*\.)?audubon.org\//', $full_url)) {
+    if ($file = nas_import_add_existing_file($full_url, 'image', $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid)) {
+      $path = pp_file_create_url($file->uri);
+    }
+  }
+  return '<img ' . $match1 . ' src="' . $path . '"' . $match2 . '>';
+}
+
+/**
+ *
+ */
+function pp_file_create_url($uri) {
+  $file_url = file_create_url($uri);
+  // For some reason simple file_create_url() doesn't work
+  // here (wrong $GLOBALS['base_url']) so we pass nas_base_url variable
+  // via drush command if it is avaiable.
+  if (function_exists('drush_main')) {
+    $drush_context = drush_get_context('DRUSH_COMMAND_ARGS');
+    $base_url_from_drush = '';
+    foreach ($drush_context as $drush_arg) {
+      if (strpos($drush_arg, 'nas_base_url') !== FALSE) {
+        // Remove 'nas_base_url='.
+        $base_url_from_drush = substr($drush_arg, 13);
+        break;
+      }
+    }
+    if (!empty($base_url_from_drush)) {
+      list(, $filename) = explode('://', $uri);
+      $file_url = trim($base_url_from_drush, '/') . '/' . variable_get('file_public_path', conf_path() . '/files') . '/' . drupal_encode_path($filename);
+    }
+  }
+  return $file_url;
+}
+
+/**
+ * hook_feeds_presave for birds_import importer.
+ */
+function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $item) {
+  // Save speices_image field data to field_bird_photo.
+  if (!empty($item['field_speices_image'])) {
+    nas_import_import_image($entity, $item['field_speices_image'], 'field_bird_photo');
+  }
+
+  // Save field_rangemaps field data to field_bird_rangemap.
+  if (!empty($item['field_rangemaps'])) {
+    nas_import_import_image($entity, $item['field_rangemaps'], 'field_bird_rangemap');
+  }
+
+  // Save field_bird_call field data to field_bird_audio.
+  if (!empty($item['field_bird_call'])) {
+    foreach ($item['field_bird_call'] as $key => $value) {
+      if (!isset($value['fid'])) {
+        continue;
+      }
+      $file = nas_import_add_existing_file($value['filepath'], 'audio');
+      $entity->field_bird_audio[LANGUAGE_NONE][$key]['fid'] = $file->fid;
+
+      // Additionally save description if exist to
+      // separate field field_audio_description.
+      if (!empty($value['data']['description'])) {
+        $file_entity = file_load($file->fid);
+        $file_entity->field_audio_description[LANGUAGE_NONE][0]['value'] = $value['data']['description'];
+        file_save($file_entity);
+      }
+    }
+  }
+  // Save old taxonomy terms to existed terms if match.
+  if (!empty($item['taxonomy'])) {
+
+    $bird_family_terms = array();
+    $bird_region_terms = array();
+    $bird_call_type_terms = array();
+    $bird_color_terms = array();
+    $bird_category_terms = array();
+    $bird_habitat2_terms = array();
+    $bird_locomotion_terms = array();
+    $bird_call_pattern_terms = array();
+    $bird_wing_shape_terms = array();
+    $bird_size_terms = array();
+
+    // Check if there are any terms we have to save.
+    foreach ($item['taxonomy'] as $key => $value) {
+      if (isset($value['name'])) {
+        $term = taxonomy_get_term_by_name($value['name']);
+        if (!empty($term)) {
+          $term = reset($term);
+          if ($term->vocabulary_machine_name == 'bird_family') {
+            $bird_family_terms[] = $term;
+          }
+          if ($term->vocabulary_machine_name == 'bird_region') {
+            $bird_region_terms[] = $term;
+          }
+        }
+        // Additionally get terms which don't exist yet.
+        if ($value['vid'] == NAS_OLD_D6_VID_COLOR) {
+          $bird_color_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_HABITAT) {
+          $bird_habitat2_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_LOLOMOTION) {
+          $bird_locomotion_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_CALL_TYPE) {
+          $bird_call_type_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_CATEGORY) {
+          $bird_category_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_SIZE) {
+          $bird_size_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_CALL_PATTERN) {
+          $bird_call_pattern_terms[] = $value['name'];
+        }
+        if ($value['vid'] == NAS_OLD_D6_VID_WING_SHAPE) {
+          $bird_wing_shape_terms[] = $value['name'];
+        }
+      }
+    }
+    // Save terms if exist.
+    if (!empty($bird_family_terms)) {
+      foreach ($bird_family_terms as $key => $term) {
+        $entity->field_bird_family[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+      }
+    }
+    if (!empty($bird_region_terms)) {
+      foreach ($bird_region_terms as $key => $term) {
+        $entity->field_bird_region[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+      }
+    }
+    // Legacy field group.
+    foreach ($bird_color_terms as $key => $term) {
+      $entity->field_bird_color[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_color')
+      );
+    }
+    foreach ($bird_call_pattern_terms as $key => $term) {
+      $entity->field_bird_call_pattern[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_call_pattern')
+      );
+    }
+    foreach ($bird_habitat2_terms as $key => $term) {
+      $entity->field_bird_habitat2[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_habitat')
+      );
+    }
+    foreach ($bird_locomotion_terms as $key => $term) {
+      $entity->field_bird_locomotion[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_locomotion')
+      );
+    }
+    foreach ($bird_call_type_terms as $key => $term) {
+      $entity->field_bird_call_type[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_call_type')
+      );
+    }
+    foreach ($bird_category_terms as $key => $term) {
+      $entity->field_bird_category[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_category')
+      );
+    }
+    foreach ($bird_size_terms as $key => $term) {
+      $entity->field_bird_size[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_size')
+      );
+    }
+    foreach ($bird_wing_shape_terms as $key => $term) {
+      $entity->field_bird_wing_shape[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'bird_wing_shape')
+      );
+    }
+  }
+  // Save field_similar_species data.
+  if (!empty($item['field_similar_species'])) {
+    // Set old NID as first id for futher access.
+    $entity->field_related_bird[LANGUAGE_NONE][0]['target_id'] = $item['nid'];
+    foreach ($item['field_similar_species'] as $key => $value) {
+      if (isset($value['nid'])) {
+        $entity->field_related_bird[LANGUAGE_NONE][$key + 1]['target_id'] = $value['nid'];
+      }
+    }
+  }
+  // Add default images for empty fields.
+  $entity->field_bird_illustration[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ILLUSTRATION);
+  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_BACK_COVER);
+}
+
+/**
+ * hook_feeds_presave for news_import importer.
+ */
+function nas_import_feeds_presave_news_import($source, $entity, $item) {
+  // Save news field_image_ref images to d7 field files. Build a map.
+  $images_mapping = array();
+  if (!empty($item['field_image_ref'])) {
+    foreach ($item['field_image_ref'] as $field_value) {
+      $image_file = nas_import_get_image_object($field_value, $entity);
+      if (!empty($image_file->uri)) {
+        $file_url = pp_file_create_url($image_file->uri);
+        $images_mapping[$field_value['nid']] = $file_url;
+      }
+    }
+  }
+
+  // Convert inline images with captions.
+  if (!empty($item['body'])) {
+    // @codingStandardsIgnoreStart
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:([^\[\]]*)\]/x', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
+      // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
+    // @codingStandardsIgnoreEnd
+  }
+
+  // Save old taxonomy terms to existed terms if match.
+  if (empty($item['taxonomy'])) {
+    return;
+  }
+  $internal_tagging_terms = array();
+  // Check if there are any terms we have to save.
+  foreach ($item['taxonomy'] as $key => $value) {
+    if (isset($value['name'])) {
+      $term = taxonomy_get_term_by_name($value['name']);
+      if (!empty($term)) {
+        $term = reset($term);
+        if ($term->vocabulary_machine_name == 'internal_tagging') {
+          $internal_tagging_terms[] = $term;
+          continue;
+        }
+      }
+      // Additionally get terms which don't exist yet.
+      if ($value['vid'] == NAS_OLD_D6_VID_ARTICLE_TYPE || $value['vid'] == NAS_OLD_D6_VID_TOPIC || $value['vid'] == NAS_OLD_D6_VID_MAGAZINE_CATEGORY) {
+        $internal_tagging_terms[] = $value['name'];
+      }
+    }
+  }
+  foreach ($internal_tagging_terms as $key => $term) {
+    if (is_object($term)) {
+      $entity->field_internal_tagging[LANGUAGE_NONE][$key]['tid'] = $term->tid;
+    }
+    else {
+      $entity->field_internal_tagging[LANGUAGE_NONE][] = array(
+        'tid' => nas_import_term_init($term, 'internal_tagging')
+      );
+    }
+  }
+
+  // Set default press release contact.
+  $entity->field_pressrelease_contact[LANGUAGE_NONE] = variable_get('nas_default_pressrelease_contact', NULL);
+
+  // Replace author by Contact node nid.
+  $contact_nid = 1;
+  if (!empty($item['field_author_profile_ref'][0]['nid'])) {
+    // If exists author relationship.
+    $source_author_id = $item['field_author_profile_ref'][0]['nid'];
+    $authors_nids_mapping = variable_get('nas_authors_nids_mapping', array());
+    if (isset($authors_nids_mapping[$source_author_id])) {
+      $contact_nid = $authors_nids_mapping[$source_author_id];
+    }
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
+  elseif (!empty($item['field_byline'][0]['value'])) {
+    // Get author by value from "Byline" field.
+    $author_name = $item['field_byline'][0]['value'];
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = _nas_import_get_contact($author_name);
+  }
+  elseif (!empty($item['uid'])) {
+    // If exists user relationship.
+    $users_old_uids = variable_get('nas_users_import_uids', array());
+    if (isset($users_old_uids[$item['uid']])) {
+      $contact_nid = $users_old_uids[$item['uid']];
+    }
+    $entity->field_author[LANGUAGE_NONE][0]['target_id'] = $contact_nid;
+  }
+
+  // Save reference of Magazine Article to Magazine Issue.
+  if (!empty($item['field_magazine_issue_ref'][0]['nid'])) {
+    $entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $item['field_magazine_issue_ref'][0]['nid'];
+  }
+  if (!empty($item['created'])) {
+    $entity->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s', $item['created']);
+  }
+
+  if (isset($item['field_article_intro'][0]['value'])) {
+    $intro = strip_tags($item['field_article_intro'][0]['value']);
+    $entity->field_subtitle[LANGUAGE_NONE][0] = array(
+      'value' => substr($intro, 0, 255),
+    );
+  }
+}
+
+/**
+ * hook_feeds_presave for contacts_import importer.
+ */
+function nas_import_feeds_presave_contacts_import(FeedsSource $source, $entity, $item) {
+  if (empty($item['field_press_contact'][0]['value']) || $item['field_press_contact'][0]['value'] !== 'yes') {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
+
+  // Join first name and last name.
+  if (!empty($item['field_profile_last_name'])) {
+    $entity->title = $item['title'] . ' ' . $item['field_profile_last_name'];
+  }
+
+  // Set office name in address field.
+  if (!empty($item['field_profile_office'])) {
+    $office_name = _nas_office_name_by_id($item['field_profile_office']);
+    $entity->field_contact_address[LANGUAGE_NONE][0] = array(
+      'value' => $office_name,
+      'format' => 'plain_text',
+    );
+  }
+
+  // Set profile bio.
+  if (!empty($item['field_profile_biography'])) {
+    $entity->field_contact_bio[LANGUAGE_NONE][0] = array(
+      'value' => $item['field_profile_biography'][0]['value'],
+      'format' => 'full_html',
+    );
+  }
+}
+
+/**
+ * Implements hook_feeds_presave().
+ *
+ * For static_pages_import importer.
+ */
+function nas_import_feeds_presave_static_pages_import(FeedsSource $source, $entity, $item) {
+  // Filter pages by domains.
+  $domain_ids = array(-1, 6, 9, 13, 15, 17, 21, 23, 25, 31);
+  if (!array_intersect(array_values($item['domains']), $domain_ids)) {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
+  // Save news field_image_ref images to d7 field files. Build a map.
+  $images_mapping = array();
+  $image_fields_mapping = array(
+    'field_photo_credit' => 'field_file_credit',
+    'field_caption' => 'field_file_caption',
+  );
+  if (!empty($item['field_thumbnail_ref'])) {
+    foreach ($item['field_thumbnail_ref'] as $field_value) {
+      $image_file = nas_import_get_image_object($field_value, $entity, $image_fields_mapping);
+      $entity->field_images[LANGUAGE_NONE][] = array(
+        'fid' => $image_file->fid,
+      );
+      if (!empty($image_file->uri)) {
+        $file_url = pp_file_create_url($image_file->uri);
+        $images_mapping[$field_value['nid']] = $file_url;
+      }
+    }
+  }
+
+  // Convert inline images with captions.
+  if (!empty($item['body'])) {
+    // @codingStandardsIgnoreStart
+    $entity->body[LANGUAGE_NONE][0]['value'] = preg_replace_callback('/\[img:([^\[\]]*)\]/x', function ($matches) use ($images_mapping) {
+      $token = trim($matches[0], '[]');
+      list($image_id, $align, $caption) = explode('|', $token);
+      // Remove 'img:' from the beginning.
+      $image_id = (int) substr($image_id, 4);
+      // Remove 'caption:' from beginning.
+      $caption = substr($caption, 8);
+      // This can be the case when image is embeded but node with image has
+      // been removed from drupal 6. We simply skip this image then.
+      if (!isset($images_mapping[$image_id])) {
+        return '';
+      }
+      // @TODO use captions as well.
+      // https://propeople-us.atlassian.net/browse/ANW-224
+      return '<img src="' . $images_mapping[$image_id] . '" style="' . $align . '" data-caption="' . $caption . '"/>';
+    }, $item['body']);
+    // @codingStandardsIgnoreEnd
+  }
+}
+
+/**
+ * Implements hook_feeds_presave().
+ *
+ * For users_import importer().
+ */
+function nas_import_feeds_presave_users_import($source, $entity, $item) {
+  if (!empty($item['profile_full_name'])) {
+    $entity->title = $item['profile_full_name'];
+  }
+}
+
+/**
+ * hook_feeds_presave for magazine_issues_import importer.
+ */
+function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $entity, $item) {
+  if (!empty($item['field_magazine_cover'])) {
+    nas_import_import_image($entity, $item['field_magazine_cover'], 'field_issue_cover');
+  }
+  if (!empty($item['field_magazine_publication_date'][0]['value'])) {
+    $date = date_create($item['field_magazine_publication_date'][0]['value']);
+    $entity->field_issue_date[LANGUAGE_NONE][0]['value'] = date_format($date, 'Y-m-d - H:i:s');
+    $entity->field_issue_date[LANGUAGE_NONE][0]['timezone'] = $item['field_magazine_publication_date'][0]['timezone'];
+    $entity->field_issue_date[LANGUAGE_NONE][0]['timezone_db'] = $item['field_magazine_publication_date'][0]['timezone_db'];
+  }
+}
+
+/**
+ * Implements hook_feeds_after_save().
+ */
+function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
+  switch ($entity->feeds_item->id) {
+    case 'users_import':
+      $users_old_uids = variable_get('nas_users_import_uids', array());
+      $users_old_uids[$item['uid']] = $entity->nid;
+      variable_set('nas_users_import_uids', $users_old_uids);
+      break;
+
+    case 'authors_import':
+      $authors_nids_mapping = variable_get('nas_authors_nids_mapping', array());
+      $authors_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_authors_nids_mapping', $authors_nids_mapping);
+      break;
+
+    case 'news_import':
+      $nas_articles_nids_mapping = variable_get('nas_articles_nids_mapping', array());
+      $nas_articles_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_articles_nids_mapping', $nas_articles_nids_mapping);
+      // Set Press Release display for imported articles.
+      $panelizer_entity_name = 'node:article:press_release';
+      if ($item['type'] == 'magazine_article') {
+        // Set Big Image display for imported Magazine articles.
+        $panelizer_entity_name = 'node:article:big_image';
+      }
+      $panelizer_entity = array(
+        'entity_type' => 'node',
+        'entity_id' => $entity->nid,
+        'revision_id' => $entity->vid,
+        'name' => $panelizer_entity_name,
+        'no_blocks' => 0,
+        'css_id' => '',
+        'css' => '',
+        'pipeline' => 'standard',
+        'contexts' => array(),
+        'relationships' => array(),
+        'did' => 0,
+        'view_mode' => 'page_manager',
+        'css_class' => '',
+        'title_element' => 'H2',
+        'link_to_entity' => 1,
+        'extra' => array(),
+      );
+      drupal_write_record('panelizer_entity', $panelizer_entity);
+      break;
+
+    case 'static_pages_import':
+      $nas_static_pages_nids_mapping = variable_get('nas_static_pages_nids_mapping', array());
+      $nas_static_pages_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_static_pages_nids_mapping', $nas_static_pages_nids_mapping);
+      // Set Press Release display for imported articles.
+      $panelizer_entity_name = 'node:static_page:static_page_2_columns';
+      $panelizer_entity = array(
+        'entity_type' => 'node',
+        'entity_id' => $entity->nid,
+        'revision_id' => $entity->vid,
+        'name' => $panelizer_entity_name,
+        'no_blocks' => 0,
+        'css_id' => '',
+        'css' => '',
+        'pipeline' => 'standard',
+        'contexts' => array(),
+        'relationships' => array(),
+        'did' => 0,
+        'view_mode' => 'page_manager',
+        'css_class' => '',
+        'title_element' => 'H2',
+        'link_to_entity' => 1,
+        'extra' => array(),
+      );
+      drupal_write_record('panelizer_entity', $panelizer_entity);
+      break;
+
+    case 'magazine_issues_import':
+      $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping', '');
+      $nas_magazine_issues_nids_mapping[$item['nid']] = $entity->nid;
+      variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
+      break;
+  }
+}
+
+/**
+ * Retrieve and save remote file.
+ *
+ * @param object $entity
+ *   I.e. node.
+ * @param array $d6_field_array
+ *   Drupal 6 field value array.
+ * @param string $d7_field_name
+ *   Name of the field for drupal 7.
+ */
+function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL) {
+  foreach ($d6_field_array as $key => $value) {
+    if (!isset($value['fid'])) {
+      continue;
+    }
+    $file = nas_import_add_existing_file($value['filepath'], 'image');
+    if (!empty($d7_field_name)) {
+      $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
+    }
+
+    $file_entity = file_load($file->fid);
+
+    // Additionally save Alt and Title if exist.
+    if (!empty($value['data']['alt']) || (!empty($value['data']['title']))) {
+      $file_entity->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = $value['data']['alt'];
+      // Save Title to a new field Credit.
+      $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
+      file_save($file_entity);
+    }
+    return $file_entity;
+  }
+}
+
+/**
+ * Custom function for saving files.
+ */
+function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0) {
+  // Prepare filepath. It might be already encoded or not.
+  $remote_filepath = trim($remote_filepath, '/');
+  $path_parts = explode('/', $remote_filepath);
+  foreach ($path_parts as &$part) {
+    $part = rawurlencode(rawurldecode($part));
+  }
+  $remote_filepath = implode('/', $path_parts);
+
+  $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
+  if (file_exists($cached_filepath)) {
+    $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
+  }
+  else {
+    $remote_fullpath = $remote_filepath;
+    // if remote_filepath is relative url add scheme and domain
+    if (strpos($remote_filepath, '://') === FALSE) {
+      $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
+    }
+    $filepath = _nas_import_system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE, $source_nid);
+    if (!$filepath) {
+      return FALSE;
+    }
+    $cached_directory = drupal_dirname($cached_filepath);
+    file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
+    file_unmanaged_copy($filepath, $cached_filepath);
+  }
+
+  $files = file_load_multiple(array(), array('uri' => $filepath));
+  $file = reset($files);
+
+  if (!$file) {
+    $file = (object) array(
+      'filename' => basename($filepath),
+      'filepath' => $filepath,
+      'filemime' => file_get_mimetype($filepath),
+      'filesize' => filesize($filepath),
+      'uid' => $uid,
+      'status' => $status,
+      'timestamp' => REQUEST_TIME,
+      'uri' => $filepath,
+      'type' => $type,
+    );
+    drupal_write_record('file_managed', $file);
+  }
+  return $file;
+}
+
+/**
+ * Fix references after all nodes have been created.
+ */
+function nas_import_modify_references() {
+  $type = 'bird';
+  $nodes = node_load_multiple(array(), array('type' => $type));
+  // First step is creating mapping of old and new nids.
+  $node_bird_mapped_nids = array();
+  foreach ($nodes as $node) {
+    $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+    if (!empty($field_related_bird)) {
+      $old_nid_of_current_node = $field_related_bird[0]['target_id'];
+      $node_bird_mapped_nids[$old_nid_of_current_node] = $node->nid;
+    }
+  }
+  // Second step is modifying of old nids to new nids based on mapping.
+  foreach ($nodes as $node) {
+    $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+    if (empty($field_related_bird)) {
+      continue;
+    }
+    // We dont need old nid anymore in the array, so remove it.
+    array_shift($field_related_bird);
+    // Lets modify old nids to new nids.
+    foreach ($field_related_bird as $key => $target_id) {
+      isset($node_bird_mapped_nids[$target_id['target_id']]) ? $new_nid = $node_bird_mapped_nids[$target_id['target_id']] : $new_nid = '';
+      if (!empty($new_nid)) {
+        $node->field_related_bird[LANGUAGE_NONE][$key]['target_id'] = $new_nid;
+      }
+    }
+    // Remove the last item due to shifted array.
+    array_pop($node->field_related_bird[LANGUAGE_NONE]);
+    // Finally update the node's field.
+    field_attach_update('node', $node);
+  }
+
+  // Modify references for field_magazine_issue.
+  $nodes = node_load_multiple(array(), array('type' => 'article'));
+  foreach ($nodes as $node) {
+    $field_magazine_issue = field_get_items('node', $node, 'field_magazine_issue');
+    if (empty($field_magazine_issue)) {
+      continue;
+    }
+    $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping');
+    // Lets modify old nids to new nids.
+    isset($nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']]) ? $new_nid = $nas_magazine_issues_nids_mapping[$field_magazine_issue[0]['target_id']] : $new_nid = '';
+    if (!empty($new_nid)) {
+      $node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'] = $new_nid;
+    }
+    // Finally update the node's field.
+    field_attach_update('node', $node);
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_import_menu() {
+  $items = array();
+  $items['nas/import'] = array(
+    'title' => 'Import content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_import_import_content_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Callback form for nas/import page.
+ */
+function nas_import_import_content_form($form, &$form_state) {
+  $form['types'] = array(
+    '#type' => 'checkboxes',
+    '#options' => array('bird' => t('Bird')),
+    '#title' => t('Content types to import'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Submit form for nas/import page.
+ */
+function nas_import_import_content_form_submit($form, &$form_state) {
+  if ($form_state['values']['types']['bird']) {
+    // Run the same import as on the installation process.
+    pp_import_nodes();
+  }
+  return $form;
+}
+
+/**
+ * Load default image by URI, or save from module's folder if not exist.
+ */
+function nas_import_get_default_image($filename) {
+  $default_uri = drupal_get_path('module', 'nas_import') . '/images/' . $filename;
+  $public_uri = 'public://' . $filename;
+
+  $files = file_load_multiple(array(), array('uri' => $public_uri));
+  $file = reset($files);
+
+  if ($file) {
+    return $file->fid;
+  }
+  $filepath = file_unmanaged_copy($default_uri, NULL, FILE_EXISTS_REPLACE);
+  $file = (object) array(
+    'filename' => basename($filepath),
+    'filepath' => $filepath,
+    'filemime' => file_get_mimetype($filepath),
+    'filesize' => filesize($filepath),
+    'uid' => 1,
+    'status' => FILE_STATUS_PERMANENT,
+    'timestamp' => REQUEST_TIME,
+    'uri' => $filepath,
+    'type' => 'image',
+  );
+  drupal_write_record('file_managed', $file);
+  $files = file_load_multiple(array(), array('uri' => $public_uri));
+  $file = reset($files);
+
+  return $file->fid;
+}
+
+/**
+ * Cached initialization for term, returns term tid if exists,
+ * creates new if no.
+ *
+ * @param string $name
+ *   Term name.
+ * @param string $vname
+ *   Vocabulary machine name.
+ *
+ * @return int
+ *   Taxonomy term tid.
+ */
+function nas_import_term_init($name, $vname) {
+  $vid = &drupal_static(__FUNCTION__ . '_vid_' . $vname);
+  if (!isset($vid)) {
+    $vocab = taxonomy_vocabulary_machine_name_load($vname);
+    $vid = $vocab->vid;
+    unset($vocab);
+  }
+  $term = &drupal_static(__FUNCTION__ . '_term_' . $name . $vid);
+  if (isset($term)) {
+    return $term;
+  }
+  $taxterm = taxonomy_get_term_by_name($name, $vname);
+  if (!empty($taxterm)) {
+    $first_term = array_shift($taxterm);
+    $term = $first_term->tid;
+
+    return $term;
+  }
+  $newterm = new stdClass();
+  $newterm->name = $name;
+  $newterm->vid = $vid;
+  taxonomy_term_save($newterm);
+  $term = $newterm->tid;
+
+  return $term;
+}
+
+/**
+ * Update procedures for setting correct text format for fields data.
+ */
+function nas_update_text_fields_format() {
+  $fields = array('body', 'field_article_legacy', 'field_bird_description');
+  foreach ($fields as $field) {
+    $query = db_update('field_data_' . $field)
+    ->fields(array($field . '_format' => 'full_html'))
+    ->execute();
+    $query = db_update('field_revision_' . $field)
+    ->fields(array($field . '_format' => 'full_html'))
+    ->execute();
+  }
+}
+
+/**
+ * Return office name by id.
+ * Map is the return of nas_atrium_get_location_service() function.
+ *
+ * @param $id
+ *
+ * @return string
+ */
+function _nas_office_name_by_id($id) {
+  $map = array(
+    1685 => 'Audubon Center at Chatfield State Park',
+    1593 => 'Audubon Alaska',
+    1606 => 'Audubon Arkansas',
+    5296 => 'Lower Mississippi Flyway Programs Office',
+    1594 => 'Audubon Arizona',
+    1673 => 'Appleton-Whittell Research Ranch',
+    1702 => 'Nina Mason Pulliam Rio Salado Audubon Center',
+    1595 => 'Audubon California',
+    1615 => 'Bobelaine Audubon Sanctuary',
+    1616 => 'Kern River Preserve',
+    1617 => 'Audubon Center at Debs Park',
+    1619 => 'Paul L. Wattis Sanctuary',
+    1620 => 'Williams Sisters Ranch Sanctuary',
+    1621 => 'Starr Ranch Sanctuary',
+    1622 => 'Richardson Bay Audubon Center & Sanctuary',
+    5701 => 'Audubon Colorado - Denver Field Office',
+    30911 => 'Rocky Mountain Regional Office (Previously Wyoming and Colorado Audubon)',
+    30926 => 'Hershey Outreach Project at four mile ranch',
+    37541 => 'Audubon Rockies',
+    1607 => 'Audubon Connecticut',
+    1623 => 'Audubon Greenwich',
+    1624 => 'Sharon Audubon Center',
+    1625 => 'Guilford Salt Meadows Sanctuary',
+    1674 => 'Audubon Center at Bent of the River',
+    1675 => 'Audubon Miles Wildlife Sanctuary',
+    223 => 'Washington, DC Office',
+    1699 => 'Audubon Maryland-DC',
+    1597 => 'Audubon Florida',
+    1626 => 'Audubon Center for Birds of Prey',
+    1627 => 'Audubon Resource Center at Lettuce Lake',
+    1629 => 'Florida Coastal Islands Sanctuary',
+    1630 => 'Kissimmee Prairie Sanctuary',
+    1631 => 'Lake Okeechobee Sanctuaries',
+    1632 => 'Corkscrew Swamp Sanctuary & Blair Audubon Center',
+    1633 => 'Street Audubon Center',
+    1677 => 'Babson Park Audubon Center',
+    1683 => 'Audubon Florida - Policy Office',
+    1698 => 'Tavernier Science Center',
+    4998 => 'Audubon Florida - Everglades Conservation Office',
+    20661 => 'Audubon Florida Policy Office',
+    1634 => 'Sugar Creek Audubon Sanctuary',
+    16436 => 'Chicago Region ',
+    1694 => 'South Bend-Elkhart Audubon Society Sanctuary',
+    1636 => 'Paul J. Rainey Wildlife Sanctuary',
+    1697 => 'Audubon Louisiana ',
+    1643 => 'Pickering Creek Audubon Center',
+    1671 => 'Audubon Maryland-DC',
+    1690 => 'Patterson Park Audubon Center',
+    1608 => 'Maine Audubon',
+    1637 => 'Borestone Mountain Wildlife Sanctuary',
+    1638 => 'Fields Pond Audubon Center',
+    1639 => 'Gilsland Farm Audubon Center and Sanctuary',
+    1640 => 'Hog Island, Audubon Camp in Maine',
+    1641 => 'Scarborough Marsh Audubon Center',
+    1642 => 'Todd Wildlife Sanctuary',
+    1678 => 'East Point Sanctuary, Hamilton Sanctuary, Josephine Newman Sanctuary, Mast Landing Sanctuary',
+    1598 => 'Audubon Minnesota',
+    1599 => 'Audubon Missouri',
+    1645 => 'Wildcat Glades Conservation & Audubon Center',
+    1696 => 'Audubon Center at Riverlands',
+    5319 => 'Upper Mississippi Flyway Regional Office',
+    35566 => 'The Audubon Center at Riverlands',
+    248 => 'Mississippi River Initiative',
+    1600 => 'Audubon Mississippi - Mailing Address Only',
+    1670 => 'Pascagoula River Audubon Center',
+    1679 => 'Strawberry Plains Audubon Center',
+    216 => 'Chapter Services',
+    1609 => 'Montana Audubon',
+    1601 => 'Audubon North Carolina',
+    1657 => 'Donal C. O\'Brien, Jr. Sanctuary and Audubon Center at Pine Island',
+    1602 => 'Audubon Dakota',
+    1658 => 'Edward M. Brigham III Sanctuary',
+    1703 => 'Frederick L. Wicks Prairie Wildlife Sanctuary',
+    1610 => 'Audubon Nebraska',
+    1647 => 'Spring Creek Prairie Audubon Center',
+    4723 => 'Iain Nicolson Audubon Center at Rowe Sanctuary',
+    64 => 'Information Services Department',
+    1611 => 'Audubon New Mexico',
+    1648 => 'Randall Davey Audubon Center & Sanctuary',
+    1612 => 'Audubon New York',
+    1650 => 'Beaver Meadow Audubon Center',
+    1651 => 'Buttercup Farm Audubon Sanctuary',
+    1652 => 'Constitution Marsh Audubon Center and Sanctuary',
+    1653 => 'Kaler\'s Pond Audubon Center',
+    1654 => 'Prospect Park Audubon Center',
+    1655 => 'Ramshorn-Livingston Sanctuary',
+    1656 => 'Theodore Roosevelt Sanctuary & Audubon Center',
+    1687 => 'Project Puffin',
+    1688 => 'Montezuma Audubon Center',
+    1689 => 'Jamestown Audubon Center and Sanctuary',
+    1695 => 'Rheinstrom Hill Audubon Sanctuary and Center',
+    4223 => 'Main Office',
+    5566 => 'Seabird Restoration Program',
+    152806 => '225 Varick Street',
+    152881 => 'Theodore Roosevelt Sanctuary & Audubon Center',
+    153331 => 'NYHQ',
+    153431 => 'Audubon Adventures ',
+    1659 => 'Aullwood Audubon Center and Farm',
+    1672 => 'Audubon Ohio',
+    1701 => 'Grange Insurance Audubon Center',
+    189536 => 'Grange Insurance Audubon Center',
+    1660 => 'Ten Mile Creek Sanctuary',
+    1605 => 'Audubon Pennsylvania',
+    1661 => 'John James Audubon Center at Mill Grove',
+    1592 => 'Audubon Center & Sanctuary at Francis Beidler Forest',
+    1613 => 'Audubon South Carolina',
+    1662 => 'Silver Bluff Audubon Center and Sanctuary',
+    121516 => 'South Carolina Shorebird Project',
+    1603 => 'Audubon Texas Headquarters ',
+    1663 => 'Sabal Palm Grove Audubon Center and Sanctuary',
+    1664 => 'Texas Coastal Islands Sanctuary',
+    1665 => 'Mitchell Lake Audubon Center',
+    1691 => 'Trinity River Audubon Center',
+    1692 => 'Dogwood Canyon Audubon Center at Cedar Hill',
+    1686 => 'Lee Creek Area',
+    1700 => 'Gillmor Audubon Sanctuary and South Shore Preserve',
+    1614 => 'Audubon Vermont',
+    1682 => 'Green Mountain Audubon Center',
+    1666 => 'Adriana Hess Audubon Center',
+    1667 => 'Dungeness River Audubon Center',
+    1693 => 'Seward Park Audubon Center',
+    147531 => 'Audubon Washington',
+    1668 => 'Schlitz Audubon Center',
+    1669 => 'Hunt Hill Audubon Sanctuary',
+    30931 => 'Rockies Policy Office',
+    30936 => 'Community Naturalist Education Office',
+  );
+
+  return isset($map[$id]) ? $map[$id] : '';
+}
+
+/**
+ * Attempts to get a file using drupal_http_request and to store it locally.
+ *
+ * This is site-specific version of system_retrieve_file that does not set error
+ * messages if file could not be downloaded, logs it. Used on import to prevent
+ * build failure.
+ *
+ * @param string $url
+ *   The URL of the file to grab.
+ * @param string $destination
+ *   Stream wrapper URI specifying where the file should be placed. If a
+ *   directory path is provided, the file is saved into that directory under
+ *   its original name. If the path contains a filename as well, that one will
+ *   be used instead.
+ *   If this value is omitted, the site's default files scheme will be used,
+ *   usually "public://".
+ * @param bool $managed
+ *   If this is set to TRUE, the file API hooks will be invoked and the file is
+ *   registered in the database.
+ * @param int $replace
+ *   Replace behavior when the destination file already exists:
+ *   - FILE_EXISTS_REPLACE: Replace the existing file.
+ *   - FILE_EXISTS_RENAME: Append _{incrementing number} until the filename is
+ *     unique.
+ *   - FILE_EXISTS_ERROR: Do nothing and return FALSE.
+ * @param int $source_nid
+ *   Nid of audubon.org's node.
+ *
+ * @return mixed
+ *   One of these possibilities:
+ *   - If it succeeds and $managed is FALSE, the location where the file was
+ *     saved.
+ *   - If it succeeds and $managed is TRUE, a \Drupal\file\FileInterface
+ *     object which describes the file.
+ *   - If it fails, FALSE.
+ */
+function _nas_import_system_retrieve_file($url, $destination = NULL, $managed = FALSE, $replace = FILE_EXISTS_RENAME, $source_nid = 0) {
+  $parsed_url = parse_url($url);
+  if (!isset($destination)) {
+    $path = file_build_uri(drupal_basename($parsed_url['path']));
+  }
+  else {
+    if (is_dir(drupal_realpath($destination))) {
+      // Prevent URIs with triple slashes when glueing parts together.
+      $path = str_replace('///', '//', "$destination/") . drupal_basename($parsed_url['path']);
+    }
+    else {
+      $path = $destination;
+    }
+  }
+  $result = drupal_http_request($url);
+  if ($result->code != 200) {
+    drupal_set_message(t('HTTP error @errorcode occurred when trying to fetch @remote. It was found on @sourcepage', array(
+      '@errorcode' => $result->code,
+      '@remote' => $url,
+      '@sourcepage' => 'http://audubon.org/node/' . $source_nid,
+    )), 'warning');
+    watchdog('nas_import', 'Image @remote could not be downloaded. Found on @sourcepage', array(
+      '@remote' => $url,
+      '@sourcepage' => 'http://audubon.org/node/' . $source_nid,
+    ));
+    return FALSE;
+  }
+  $local = $managed ? file_save_data($result->data, $path, $replace) : file_unmanaged_save_data($result->data, $path, $replace);
+  if (!$local) {
+    drupal_set_message(t('@remote could not be saved to @path.', array('@remote' => $url, '@path' => $path)), 'error');
+  }
+
+  return $local;
+}
+
+/**
+ * Returns contact by name.
+ */
+function _nas_import_get_contact($name) {
+  $node_type = 'contact';
+
+  // Get contact by name.
+  $nid = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', $node_type)
+    ->condition('n.title', $name)
+    ->execute()
+    ->fetchField();
+
+  if ($nid) {
+    return $nid;
+  }
+
+  // Create new contact.
+  $node = new stdClass();
+  $node->title = $name;
+  $node->status = 1;
+  $node->type = $node_type;
+  $node->created = REQUEST_TIME;
+  $node->is_new = TRUE;
+  $node->language = LANGUAGE_NONE;
+  node_object_prepare($node);
+  $node = node_submit($node);
+  node_save($node);
+
+  return $node->nid;
+}
+
+/**
+ * Save an image as file object.
+ */
+function nas_import_get_image_object($field_value, $entity, $image_fields_mapping = array()) {
+  if (!isset($field_value['nid'])) {
+    return FALSE;
+  }
+
+  $result = drupal_http_request(LOAD_NODE_JSON_OBJECT_URL . $field_value['nid']);
+  $image_node = drupal_json_decode($result->data);
+  $image_node = reset($image_node);
+
+  if (empty($image_node['field_photo'])) {
+    return FALSE;
+  }
+
+  $file_entity = nas_import_import_image($entity, $image_node['field_photo']);
+
+  // Attach other fields by mapping.
+  if (empty($image_fields_mapping)) {
+    return FALSE;
+  }
+
+  $changed = FALSE;
+  foreach ($image_fields_mapping as $d6_field => $d7_field) {
+    if (empty($image_node[$d6_field][0]['value'])) {
+      continue;
+    }
+
+    $field_value = array(
+      'value' => $image_node[$d6_field][0]['value'],
+    );
+
+    // Add format for field_file_caption.
+    if ($d7_field == 'field_file_caption') {
+      $field_value['format'] = 'full_html';
+    }
+
+    $file_entity->{$d7_field}[LANGUAGE_NONE][] = $field_value;
+    $changed = TRUE;
+  }
+
+  if ($changed) {
+    file_save($file_entity);
+  }
+
+  return $file_entity;
+}
+
+/**
+ * Presave callback for media_gallery_import.
+ */
+function nas_import_feeds_presave_media_gallery_import($source, $entity, $item) {
+  // Save gallery field_image_ref images to d7 field files.
+  $image_fields_mapping = array(
+    'field_photo_credit' => 'field_file_credit',
+    'field_caption' => 'field_file_caption',
+  );
+  if (!empty($item['field_image_ref'])) {
+    foreach ($item['field_image_ref'] as $field_value) {
+      $image_file = nas_import_get_image_object($field_value, $entity, $image_fields_mapping);
+      if ($image_file) {
+        $entity->field_images[LANGUAGE_NONE][] = (array) $image_file;
+      }
+    }
+  }
+}
+
+/**
+ * Presave callback for chapters_import.
+ */
+function nas_import_feeds_presave_chapters_import($source, $entity, $item) {
+  $wrapper = entity_metadata_wrapper('node', $entity);
+  $wrapper->field_location_type->set('office_chapter');
+
+  if (!empty($item['field_chapter_url'][0]['url'])) {
+    $wrapper->field_location_link->set(array('url' => $item['field_chapter_url'][0]['url']));
+  }
+
+  if (!empty($item['field_chapter_code'][0]['value'])) {
+    $wrapper->field_chapter_code->set($item['field_chapter_code'][0]['value']);
+  }
+
+  $address = array(
+    'country' => 'US',
+    'administrative_area' => !empty($item['field_chapter_state'][0]['value']) ? $item['field_chapter_state'][0]['value'] : '',
+    'locality' => !empty($item['field_chapter_city'][0]['value']) ? $item['field_chapter_city'][0]['value'] : '',
+    'thoroughfare' => !empty($item['field_chapter_addr1'][0]['value']) ? $item['field_chapter_addr1'][0]['value'] : '',
+    'premise' => !empty($item['field_chapter_addr2'][0]['value']) ? $item['field_chapter_addr2'][0]['value'] : '',
+    'postal_code' => !empty($item['field_chapter_postal_code'][0]['value']) ? $item['field_chapter_postal_code'][0]['value'] : '',
+
+  );
+  $wrapper->field_location_address->set($address);
+}
+
+/**
+ * Presave callback for audubon_location_import.
+ */
+function nas_import_feeds_presave_audubon_location_import($source, $entity, $item) {
+  $wrapper = entity_metadata_wrapper('node', $entity);
+  $wrapper->field_location_type->set('center_sanctuary');
+  $wrapper->body->set(array('value' => $item['body'], 'format' => 'full_html'));
+
+  if (!empty($item['field_location_url'][0]['url'])) {
+    $wrapper->field_location_link->set(array('url' => $item['field_location_url'][0]['url']));
+  }
+
+  if (!empty($item['location'])) {
+    $address = array(
+      'country' => drupal_strtoupper($item['location']['country']),
+      'administrative_area' => $item['location']['province'],
+      'locality' => $item['location']['city'],
+      'thoroughfare' => $item['location']['street'],
+      'premise' => $item['location']['additional'],
+      'postal_code' => $item['location']['postal_code'],
+
+    );
+    $wrapper->field_location_address->set($address);
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function nas_import_entity_insert($entity, $type) {
+  if ($type == 'node' && !empty($entity->feeds_item->is_new) && $entity->type == 'article') {
+    // Generate redirect and new alias for articles.
+    module_load_include('inc', 'pathauto', 'pathauto');
+    pathauto_create_alias('node', 'bulkupdate', 'node/' . $entity->nid, array('node' => $entity), $entity->type, LANGUAGE_NONE);
+  }
+}

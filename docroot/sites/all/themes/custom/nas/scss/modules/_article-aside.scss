@@ -1,0 +1,77 @@
+// -------------
+// Article Aside
+// Side notes and engagement CTAs floating in article text
+// -------------
+.article-body {
+  .bean-welcome-to-audubon {
+    z-index: 1;
+
+    .article-aside {
+      padding-left: 25px;
+    }
+  }
+}
+
+.bean-welcome-to-audubon {
+  .article-aside {
+    width: 100% !important;
+    padding-left: 0;
+  }
+  .article-aside.hidden {
+    display: none;
+  }
+  .article-aside.visible {
+    display: block;
+  }
+}
+
+.article-aside {
+  float: right;
+  width: (100% / $total-columns) * 5;
+
+  // Children
+  img {
+    vertical-align: middle;
+    width: 100%;
+  }
+  // Breakpoints
+  @include breakpoint(medium-up) {
+    padding-left: $column-gutter;
+
+    // Variants
+    &.small {
+      width: (100% / $total-columns) * 3;
+    }
+    &.half-width {
+      margin-left: $column-gutter/2;
+      padding-left: $column-gutter/2;
+      width: (100% / $total-columns) * 6;
+    }
+    &.full-width {
+      width: 100%;
+      padding-left: 0;
+    }
+    &.half-right-width {
+      width: 55%;
+      float: right;
+    }
+  }
+  @include breakpoint(medium-only) {
+    min-width: (100% / $total-columns) * 4;
+    &.half-right-width {
+      float: none;
+      width: 25%;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+  @include width-range(#{lower-bound($tiny-range)}, #{upper-bound($small-range)}) {
+    padding: 0;
+    width: 100%;
+  }
+}
+.one-third-left-width {
+  @include breakpoint(medium-up) {
+    padding-right: 25px;
+  }
+}

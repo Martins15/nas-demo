@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @file
+ * Import data to taxonomy vocabulary Main menu.
+ */
+
+define('NAS_VOC_MACHINE_NAME', 'menu_section');
+
+
+/**
+ * Implements hook_install().
+ */
+function nas_import_install() {
+  // Function create vocabulary.
+  nas_import_create_voc();
+
+  // Function to created term to vocabulary Main menu.
+  nas_import_create_terms();
+  // Let's disable solr cron task for next 24 hours.
+  variable_set('search_api_solr_last_optimize', REQUEST_TIME);
+  variable_set('search_cron_limit', 0);
+}
+
+/**
+ * Function create vocabulary. 
+ */
+function nas_import_create_voc() {
+  $bird_voc_main_menu = (object) array(
+    'name' => 'Menu Section',
+    'description' => 'This vocabulary to Main menu',
+    'machine_name' => NAS_VOC_MACHINE_NAME,
+  );
+  taxonomy_vocabulary_save($bird_voc_main_menu);
+}
+
+/**
+ * Function to created term to vocabulary Main menu. 
+ */
+function nas_import_create_terms() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load(NAS_VOC_MACHINE_NAME);
+  $vid = $vocabulary->vid;
+  // Array terms where @key - name term, @value - name parent term.
+  $array_with_term = array(
+    'News' => '',
+    'Birds in the News' => 'News',
+    'Inside Audubon' => 'News',
+    'Features' => '',
+    'Maps' => 'Features',
+    'Videos' => 'Features',
+    'From the Magazine' => 'Features',
+    'Birds' => '',
+    'Priority Birds' => 'Birds',
+    'Birds of North America Field Guide' => 'Birds',
+    'John James Audubon\'s Birds of America' => 'Birds',
+    'Webcams' => 'Birds',
+    'The Flyways' => 'Birds',
+    'Conservation' => '',
+    'Working Lands' => 'Conservation',
+    'IBAs' => 'Conservation',
+    'Seas & Shores' => 'Conservation',
+    'Climate & Energy' => 'Conservation',
+    'Bird Friendly Communities' => 'Conservation',
+    'Science' => 'Conservation',
+    'Christmas Bird Count' => 'Science',
+    'Hummingbirds at Home' => 'Science',
+    'Great Backyard Bird Count' => 'Science',
+    'Audubon Birds & Climate Report' => 'Science',
+    'Audubon Birds & Climate Report' => 'Conservation',
+    'Education' => 'Conservation',
+    'International' => 'Conservation',
+    'Get Outside' => '',
+    'Birding' => 'Get Outside',
+    'Photography' => 'Get Outside',
+    'Travel' => 'Get Outside',
+    'Activities' => 'Get Outside',
+    'Events' => 'Get Outside',
+    'About Us' => '',
+    'How To Help' => 'About Us',
+    'Audubon Near You' => 'About Us',
+    'History' => 'About Us',
+    'Chapter Services' => 'About Us',
+    'Reports & Financials' => 'About Us',
+    'Leadership' => 'About Us',
+    'Press Room' => 'About Us',
+    'Contact Us' => 'About Us',
+    'Magazine' => '',
+    'Issues' => 'Magazine',
+    'Audubon Near You' => '',
+  );
+
+  // Record term with hierarchical.
+  foreach ($array_with_term as $name_term => $name_parent_term) {
+    // Create object term.
+    $term = new stdClass();
+    $term->name = $name_term;
+    $term->vid = $vid;
+    if (!empty($name_parent_term)) {
+      $parent_term = taxonomy_get_term_by_name(strtolower($name_parent_term), NAS_VOC_MACHINE_NAME);
+      if (!empty($parent_term) && key($parent_term)) {
+        $term->parent = key($parent_term);
+      }
+    }
+    taxonomy_term_save($term);
+
+    // Save TID for 'Features' taxonomy term.
+    if ($term->name == 'Features') {
+      variable_set('nas_import_features_menu_section_tid', (string) $term->tid);
+    }
+    unset($term);
+  }
+
+}

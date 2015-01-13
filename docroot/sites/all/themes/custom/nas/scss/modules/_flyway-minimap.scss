@@ -1,0 +1,65 @@
+.flyway-minimap {
+  width: 200px;
+  margin: 0 auto;
+  position: relative;
+
+  img {
+    width: 200px;
+  }
+}
+
+.flyway-minimap-point {
+  position: absolute;
+  display: block;
+  width: 25px;
+  height: 25px;
+  background-color: $color-bright-blue;
+  color: $color-white !important;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 15px;
+  padding: 4px 0px;
+  text-align: center;
+  border-radius: 100%;
+  @include transition-property(background-color);
+
+  &:hover {
+    background-color: darken($color-bright-blue, 10%);
+  }
+
+  &.current {
+    width: 32px;
+    height: 32px;
+    background-color: $color-pea-green;
+    padding: 7px 0;
+    &:hover {
+      background-color: darken($color-pea-green, 10%);
+    }
+  }
+}
+
+@include breakpoint(max-width, #{upper-bound($small-range)}) {
+  .flyway-minimap {
+    text-align: center;
+    margin-bottom: $size-space;
+    img {
+      display: none;
+    }
+  }
+  .flyway-minimap-point {
+    position: static !important;
+    display: inline-block;
+    margin: 0 $size-space*1.5;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0.2);
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &.current {
+      width: 25px;
+      height: 25px;
+      padding: 4px 0px;
+    }
+  }
+}

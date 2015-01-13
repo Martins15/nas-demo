@@ -3,3 +3,10 @@ docroot/files
 docroot/sites/*/files
 docroot/sites/*/private
 
+cache/*
+.vagrant/*
+adminer/*
+backup/*
+*.sql.gz
+*.sql
+.idea

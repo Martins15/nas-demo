@@ -1,0 +1,55 @@
+.deck {
+  font-style: italic;
+}
+
+.pull-quote {
+  font-size: $size-text-pull - 3px;
+  font-style: italic;
+  line-height: $size-line-pull - 3px;
+}
+
+@include breakpoint(large-up) {
+  .deck {
+    font-size: $size-text-pull;
+    line-height: $size-line-pull;
+  }
+  .pull-quote {
+    font-size: $size-text-pull + 2px;
+    line-height: $size-line-pull + 4px;
+  }
+}
+
+.close-heading {
+  margin-bottom: 3px !important;
+}
+
+.caption {
+  color: darken($color-warm-gray, 5%);
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
+  line-height: $size-line-small;
+  margin: $size-space/2 0 $column-gutter/2 0;
+
+  &.light {
+    color: $color-light-gray;
+  }
+  &.dark {
+    color: $color-dark-gray;
+  }
+  &.centered {
+    text-align: center;
+  }
+}
+
+small {
+  font-family: $font-sans;
+  font-size: $size-text-small;
+  line-height: $size-line-small;
+}
+
+.serif {
+  font-family: $font-serif;
+}
+.sans {
+  font-family: $font-sans;
+}

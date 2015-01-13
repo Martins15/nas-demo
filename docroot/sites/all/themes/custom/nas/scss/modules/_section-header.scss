@@ -1,0 +1,57 @@
+// --------------
+// Section Header
+// Placed on the first `.row` of a section for spacing
+// Can include a Section Nav floated right
+// --------------
+
+.section-header {
+  position: relative;
+  margin: $column-gutter auto;
+
+  h1, h2, h3 {
+    margin-bottom: 0;
+  }
+
+  &.border-bottom{
+    padding: 0;
+    .sub-heading{
+      border-bottom: 1px solid $color-light-gray;
+      padding-bottom: 10px;
+    }
+    @include breakpoint(min-width, #{lower-bound($large-range)}) {
+      .section-nav{
+        bottom: 7px;
+      }
+    }
+  }
+
+  .sub-heading{
+    color: #89867e;
+    font-family: $font-sans;
+    font-size: $size-text-medium;
+  }
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    h2, h3 {
+      text-align: center;
+    }
+  }
+
+  body.black-bg & {
+    h1, h2, h3 {
+      color: $color-light-gray;
+    }
+    a {
+      color: $color-light-gray;
+      &:hover {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.section-header-slug {
+  display: block;
+  font-size: $size-text-medium;
+  font-family: $font-sans;
+}

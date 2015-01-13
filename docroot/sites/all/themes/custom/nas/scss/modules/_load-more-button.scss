@@ -1,0 +1,62 @@
+// ----------------
+// Load More Button
+// Sits at the bottom of a list index to AJAX in more articles
+// ----------------
+
+$color-load-more-bg: #EDECEA;
+$speed-animation: 0.35s;
+
+.button.load-more {
+  background-color: $color-load-more-bg;
+  color: $color-warm-gray !important;
+
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+
+  // Children
+  span {
+    padding-left: 20px;
+  }
+  &:before,
+  i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    height: 37px;
+    width: 37px;
+  }
+  &:before {
+    content: "";
+    background-color: darken($color-load-more-bg, 10%);
+  }
+  i {
+    @include transition(color 0.2s);
+    color: $color-warm-gray;
+    font-size: 24px;
+    text-align: center;
+    padding: 9px;
+  }
+
+  // States
+  &:hover i {
+    color: rgba($color-black, 0.6);
+  }
+  &.active i,
+  &.progress-disabled i {
+    @include animation(spin $speed-animation linear infinite);
+    color: rgba($color-black, 0.6);
+  }
+}
+
+@include keyframes(spin) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform(rotate(-359deg));
+  }
+}

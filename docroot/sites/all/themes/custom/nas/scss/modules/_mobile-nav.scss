@@ -1,0 +1,63 @@
+// -----------------
+// Mobile Navigation
+// Wraps primary and secondary nav, controls positioning on mobile
+// -----------------
+
+@mixin mobile-nav-styles() {
+  box-sizing: content-box;
+  display: none;
+  overflow: hidden;
+  margin-left: -$column-gutter/2;
+  margin-right: -$column-gutter/2;
+  z-index: 3;
+
+  background-color: #f3f3f3;
+
+  // States
+  &.show {
+    display: block;
+  }
+
+  // Children
+  li {
+    display: block;
+    line-height: $size-text-large;
+  }
+  a {
+    color: $color-black;
+    display: block;
+    padding: 8px 0 8px $column-gutter/2;
+  }
+  .primary-nav,
+  .secondary-nav {
+    > li {
+      border-bottom: 1px solid #dedede;
+    }
+  }
+  .primary-nav {
+    font-size: 21px;
+  }
+  .secondary-nav {
+    font-size: 21px;
+    a { color: $color-black !important; }
+  }
+}
+
+.mobile-nav {
+  @include breakpoint(max-width, 767px) {
+    @include mobile-nav-styles;
+  }
+  @include width-range(#{lower-bound($small-range)}, 767px) {
+    margin-left: -$column-gutter;
+    margin-right: -$column-gutter;
+    a {
+      padding-left: $column-gutter;
+    }
+  }
+}
+
+.global-header.microsite .mobile-nav {
+  @include breakpoint(max-width, 900px) {
+    @include mobile-nav-styles;
+  }
+}

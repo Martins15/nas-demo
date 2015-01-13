@@ -1,0 +1,22 @@
+%text-el {
+  margin-bottom: $size-line-base;
+}
+
+@mixin text-container($exclude: false) {
+  @if $exclude {
+    > :not(#{$exclude}) {
+      @extend %text-el;
+      @content;
+    }
+  }
+  @else {
+    > * {
+      @extend %text-el;
+      @content;
+    }
+  }
+}
+
+.text-container {
+  @include text-container;
+}

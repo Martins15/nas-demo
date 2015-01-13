@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Bird guide feature.
+ */
+
+include_once 'nas_birds_guide_feature.features.inc';

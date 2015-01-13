@@ -1,0 +1,84 @@
+.focal-bird-selector {
+  overflow: hidden;
+  background-color: $color-bone-white;
+
+  .section-header h2 {
+    color: $color-warm-gray;
+  }
+}
+
+.focal-bird-container {
+  overflow: hidden;
+}
+
+.focal-bird-thumb {
+  display: block;
+  color: $color-text-gray;
+  text-align: center;
+  float: left;
+  margin-bottom: $column-gutter;
+
+  .image,
+  .name {
+    margin: 0 $column-gutter/2;
+  }
+
+  @include breakpoint(tiny-only) {
+    width: 50%;
+
+    &:nth-child(odd) { 
+      padding-left: $column-gutter/2;
+    }
+    &:nth-child(even) { 
+      padding-right: $column-gutter/2;
+    }
+  }
+  @include breakpoint(small-only) {
+    width: 33.333%;
+  }
+  @include breakpoint(medium-only) {
+    width: 25%;
+  }
+  @include breakpoint(large-only) {
+    width: 20%;
+  }
+  @include breakpoint(min-width, 840px) {
+    width: 16.66666%;
+  }
+  @include breakpoint(min-width, 1000px) {
+    width: 14.285%;
+  }
+
+  &:hover {
+    color: $color-bright-blue;
+  }
+
+  .image {
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .name {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    height: 45px;
+    padding: 0 5px;
+    font-family: $font-sans;
+    font-size: 13px;
+    line-height: 18px;
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &:before {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+}

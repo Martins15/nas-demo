@@ -1,0 +1,130 @@
+<?php
+
+/**
+ * @file
+ * Code related to conservation strategy and projects.
+ */
+
+
+define('NAS_CONSERVATION_MENU_SECTION_VOCABULARY', 'menu_section');
+define('NAS_CONSERVATION_STRATEGY_DEFAULT_MENU_SECTION_NAME', 'Conservation');
+define('NAS_CONSERVATION_STRATEGY_DEFAULT_MENU_SECTION_ID', 14);
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function nas_conservation_views_pre_view(&$view, &$display_id, &$args) {
+  // Set appropriate filters for conservation_strategy_news views based on panel pane settings.
+  // @todo should be improved.
+  if ($view->name == 'conservation_strategy_news' && $display_id == 'default') {
+    $node = menu_get_object('node');
+    if (empty($node) || $node->type != 'strategy') {
+      return;
+    }
+
+    $exclude_nodes = array();
+    // Apply exposed filter for conservation_strategy.
+    _nas_conservation_views_set_filter($view, 'nid', $display_id, $node->nid);
+
+    // Get panel pane settings.
+    $pid = _nas_panes_panelizer_lookup_pid('conservation_strategy_news', $node);
+    $settings = db_query('SELECT configuration FROM {panels_pane} WHERE pid = :pid', array(':pid' => $pid))->fetchField();
+    $settings = unserialize($settings);
+
+    // Apply exposed filter for menu_section.
+    if (!empty($settings[$node->nid]['menu_item'])) {
+      _nas_conservation_views_set_filter($view, 'field_menu_section_tid', $display_id, $settings[$node->nid]['menu_item'], TRUE);
+    }
+    else {
+      _nas_conservation_views_set_filter($view, 'field_menu_section_tid', $display_id, '', TRUE);
+    }
+
+    if (!empty($settings[$node->nid]['articles'])) {
+      foreach ($settings[$node->nid]['articles'] as $article) {
+        if (empty($article['entity_reference'])) {
+          continue;
+        }
+        $exclude_nodes[] = $article['entity_reference']['entity_id'];
+      }
+    }
+
+    // Exclude featured nodes via contextual filter.
+    if (!empty($exclude_nodes)) {
+      $args[] = implode(',', $exclude_nodes);
+    }
+  }
+}
+
+/**
+ * Set exposed filter for views.
+ */
+function _nas_conservation_views_set_filter(&$view, $field_name, $display_id, $value, $clear = TRUE) {
+  $filter = $view->get_item($display_id, 'filter', $field_name);
+  if ($clear) {
+    $filter['value'] = array();
+  }
+  $filter['value']['value'] = $value;
+  $view->set_item($display_id, 'filter', $field_name, $filter);
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function nas_conservation_entity_insert($entity, $entity_type) {
+  if ($entity_type != 'node' || $entity->type != 'strategy') {
+    return;
+  }
+
+  // Generate term for Conservation Strategy.
+  $conservation_tid = NAS_CONSERVATION_STRATEGY_DEFAULT_MENU_SECTION_ID;
+  $vocabulary = taxonomy_vocabulary_machine_name_load(NAS_CONSERVATION_MENU_SECTION_VOCABULARY);
+  $conservation_term = taxonomy_get_term_by_name(NAS_CONSERVATION_STRATEGY_DEFAULT_MENU_SECTION_NAME, NAS_CONSERVATION_MENU_SECTION_VOCABULARY);
+  if (!empty($conservation_term)) {
+    $conservation_term = reset($conservation_term);
+    $conservation_tid = $conservation_term->tid;
+  }
+
+  $term = new stdClass();
+  $term->name = $entity->title;
+  $term->vid = $vocabulary->vid;
+  $term->parent = $conservation_tid;
+  taxonomy_term_save($term);
+
+  $entities[$entity->nid] =& $entity;
+  if ($handler = panelizer_entity_plugin_get_handler($entity_type)) {
+    $handler->hook_entity_load($entities);
+  }
+
+  // Update panel pane config with new term.
+  $pid = _nas_panes_panelizer_lookup_pid('conservation_strategy_news', $entity);
+  // When a node of this type is saved for the first time.
+  if (empty($pid) || !is_numeric($pid)) {
+    $pid = _nas_panes_save_panelizer('conservation_strategy_news', $entity, 'strategy', 'default');
+  }
+  $settings = db_select('panels_pane', 'p')
+    ->fields('p', array('configuration'))
+    ->condition('p.pid', $pid)
+    ->execute()
+    ->fetchField();
+
+  // Add menu_item for created node.
+  $settings = unserialize($settings);
+  $settings[$entity->nid]['menu_item'] = $term->tid;
+
+  db_update('panels_pane')
+    ->fields(array('configuration' => serialize($settings)))
+    ->condition('pid', $pid)
+    ->execute();
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function nas_conservation_module_implements_alter(&$implementations, $hook) {
+  // Move entity_insert to the end of scope.
+  if ($hook == 'entity_insert') {
+    $group = $implementations['nas_conservation'];
+    unset($implementations['nas_conservation']);
+    $implementations['nas_conservation'] = $group;
+  }
+}

@@ -1,0 +1,31 @@
+// ----------
+// Story List
+// "Other Stories" and "Popular Posts"
+// Often in sidebars or an aside
+// ----------
+
+.story-list {
+  ul {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  li {
+    font-family: $font-sans;
+    font-size: $size-text-base;
+    line-height: $size-line-base - 3px;
+    list-style-type: none;
+    margin-bottom: $size-space;
+    &.more {
+      margin-top: $column-gutter;
+    }
+  }
+
+  // Variants
+  &.small li {
+    font-size: $size-text-small;
+    line-height: $size-line-small;
+  }
+}
+.story-list-header {
+  margin-bottom: $column-gutter/2;
+}

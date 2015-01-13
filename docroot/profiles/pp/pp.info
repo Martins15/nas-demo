@@ -1,0 +1,68 @@
+name = PP
+description = Start with only a few modules enabled.
+core = 7.x
+dependencies[] = block
+dependencies[] = dblog
+
+; Core modules
+dependencies[] = image
+dependencies[] = list
+dependencies[] = number
+dependencies[] = options
+dependencies[] = file
+dependencies[] = field_ui
+dependencies[] = taxonomy
+dependencies[] = menu
+dependencies[] = contextual
+
+; Contrib modules
+dependencies[] = admin_menu_toolbar
+dependencies[] = ctools
+dependencies[] = panels
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = date_popup
+dependencies[] = disqus
+dependencies[] = panelizer
+dependencies[] = page_manager
+dependencies[] = pathauto
+dependencies[] = module_filter
+dependencies[] = views
+dependencies[] = views_ui
+dependencies[] = panelizer_views_integration
+dependencies[] = entityreference
+dependencies[] = field_group
+dependencies[] = feeds_ex
+dependencies[] = feeds_ui
+dependencies[] = features
+dependencies[] = diff
+dependencies[] = strongarm
+dependencies[] = mediafield
+dependencies[] = file_entity
+dependencies[] = media_internet
+dependencies[] = media_youtube
+dependencies[] = uuid_features
+dependencies[] = libraries
+dependencies[] = ds
+dependencies[] = soundmanager2
+dependencies[] = menu_attributes
+dependencies[] = jquery_update
+dependencies[] = fieldable_panels_panes
+dependencies[] = entityreference_autocomplete
+dependencies[] = views_load_more
+dependencies[] = better_formats
+dependencies[] = elements
+dependencies[] = bean_wysiwyg
+dependencies[] = scheduler
+dependencies[] = rel_to_abs
+dependencies[] = memcache
+dependencies[] = node_edit_protection
+
+; Custom modules
+dependencies[] = nas_solr_feature
+dependencies[] = nas_master
+dependencies[] = pp_wysiwyg
+dependencies[] = pp_crop
+
+; Development
+dependencies[] = devel

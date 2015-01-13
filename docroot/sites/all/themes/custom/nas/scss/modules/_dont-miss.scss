@@ -1,0 +1,11 @@
+.dont-miss {
+  display: none;
+  border-top: none;
+  @include breakpoint(small-up) {
+    display: block;
+  }
+
+  ul {
+    width: $row-width !important;
+  }
+}

@@ -1,0 +1,49 @@
+.past-magazin-issue {
+  .magazin-issues-list {
+    .magazine-issue {
+    }
+    .magazine-issue-year {
+      h2 {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.node-magazine-issue.node-teaser {
+  margin: 10px auto 30px;
+  .magazin-issue-title a {
+    font-family: $font-sans;
+    font-size: $size-text-small;
+  }
+  .magazin-issue-article h4 {
+    font-family: $font-sans;
+    margin-bottom: $size-space;
+  }
+}
+
+.magazine-issue-other-issues {
+  h2 {
+    margin: 0 12.5px 10px;
+    font-size: 38px;
+  }
+}
+
+.editorial-card-photo-bottom {
+  display: none;
+}
+
+.magazin-issue-featured {
+  .editorial-card-photo-bottom {
+    margin-top: $column-gutter / 2;
+    @include breakpoint(tiny-only) {
+      display: block;
+    }
+    @include breakpoint(small-only) {
+      display: block;
+    }
+    @include breakpoint(medium-only) {
+      display: block;
+    }
+  }
+}

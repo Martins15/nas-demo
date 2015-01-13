@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS FPP feature.
+ */
+
+include_once 'nas_fpp_feature.features.inc';

@@ -1,0 +1,5 @@
+name = NAS menu
+core = 7.x
+package = NAS
+dependencies[] = menu_attributes
+dependencies[] = nas_panes

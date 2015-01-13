@@ -1,0 +1,192 @@
+// ----------
+// Bird Cards
+// Cards linking to bird guide entries for species
+//
+// Example markup:
+//
+// <figure class="bird-card">
+//   <div class="bird-card-illustration">
+//     <a href="#"><img src="../img/bird-1.png" alt=""></a>
+//   </div>
+//   <figcaption class="bird-card-caption">
+//     <h4 class="common-name"><a href="#">Darwin's Finch</a></h4>
+//     <p class="scientific-name">Pelecanus occidentalis</p>
+//   </figcaption>
+//   <a href="#" class="icon-sound-full bird-card-audio"></a>
+// </figure>
+//
+// ----------
+
+.bird-card {
+  @extend %card;
+  @include transform(translateZ(0));
+  padding: $size-space $size-space 50px $size-space;
+  margin-bottom: $column-gutter;
+  max-width: 300px;
+
+  @include breakpoint(max-width, #{upper-bound($small-range)}) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include transition-property(transform, -webkit-transform, -moz-transform, opacity);
+  @include transition-duration(0.2s);
+  @include transition-timing-function(ease-in-out);
+
+  @include breakpoint(medium-up) {
+    body:not(.touch) &:hover {
+      @include transform(translateY(-5px));
+      box-shadow: 0 2px 3px rgba($color-black, 0.1);
+    }
+  }
+}
+
+.bird-card-illustration {
+  @extend %card-photo;
+  height: 220px;
+  width: 100%;
+  text-align: center;
+  overflow: visible;
+  // Hack to get vertically-aligned image
+  &:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  // Children
+  img {
+    display: inline-block;
+    height: auto;
+    max-height: 200px;
+    width: auto;
+    max-width: 95%;
+  }
+}
+
+.bird-card-caption {
+  position: absolute;
+  bottom: $size-space;
+  margin: 0 $size-space 0 0;
+  padding-top: $size-space*3;
+  @include background-image(linear-gradient(rgba($color-white, 0) 0%, rgba($color-white, 1) 50%, rgba($color-white, 1) 100%));
+  .common-name {
+    a { color: $color-text-gray !important; }
+    margin-bottom: $size-space/2;
+    font-size: $size-text-h4 - 2px;
+  }
+  .scientific-name {
+    color: $color-warm-gray;
+    font-size: $size-text-tiny;
+    line-height: $size-text-tiny + 5px;
+    font-style: italic;
+  }
+}
+
+.bird-card-audio {
+  color: $color-bright-blue !important;
+  display: block;
+  font-size: $size-text-small;
+  line-height: $size-text-small;
+  padding: $size-space 25px 25px $size-space;
+  // big weird padding for easy touch targeting
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+// Variants
+
+.bird-card.small {
+  max-width: 160px;
+  .bird-card-caption {
+    margin-bottom: 0;
+  }
+  .common-name {
+    font-family: $font-sans;
+    font-size: $size-text-small;
+    line-height: $size-line-small;
+    margin-bottom: 2px;
+  }
+  .scientific-name {
+    font-family: $font-sans;
+    font-size: $size-text-tiny - 1px;
+    line-height: $size-text-tiny + 1px;
+  }
+  .bird-card-illustration {
+    height: 120px;
+    img {
+      max-height: 100px;
+      max-width: 90%;
+    }
+  }
+
+  @include width-range(768px, 840px) {
+    .bird-card-illustration {
+      height: 100px;
+    }
+    .scientific-name {
+      font-size: $size-text-tiny - 2px;
+    }
+  }
+}
+
+// ---
+// Bird card sizes for specific containers
+// ---
+
+@mixin bird-card-smallest {
+  .bird-card {
+    height: 220px;
+    overflow: hidden;
+  }
+  .bird-card-illustration {
+    height: 160px;
+    img {
+      max-width: 80%;
+    }
+  }
+  .bird-card .common-name {
+    font-size: $size-text-small;
+    line-height: $size-line-small;
+    margin-bottom: 0;
+  }
+  .bird-card .scientific-name {
+    font-family: $font-sans;
+    font-size: $size-text-tiny - 1px;
+    line-height: $size-text-tiny + 3px;
+  }
+}
+
+@mixin bird-card-smaller {
+  .bird-card {
+    height: 260px;
+  }
+  .bird-card-illustration {
+    height: 220px;
+    img {
+      max-width: 90%;
+    }
+  }
+}
+
+@mixin bird-card-small {
+  .bird-card {
+    height: 280px;
+  }
+  .bird-card-illustration {
+    height: 230px;
+    img {
+      max-width: 95%;
+    }
+  }
+  .bird-card .common-name {
+    margin-bottom: $size-space/2;
+    font-size: $size-text-h4 - 2px;
+  }
+  .bird-card .scientific-name {
+    font-size: $size-text-tiny;
+    line-height: $size-text-tiny + 5px;
+  }
+}

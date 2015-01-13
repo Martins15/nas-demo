@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Flyways landing feature.
+ */
+
+include_once 'nas_flyways_landing_feature.features.inc';

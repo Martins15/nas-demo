@@ -1,0 +1,354 @@
+.focal-bird-map {
+  background-color: #EBEBEB;
+  position: relative;
+  overflow: hidden;
+
+  @include breakpoint(tiny-only) {
+    background-color: $color-white;
+
+    > .row > .column {
+      padding: 0;
+    }
+  }
+
+  .bird-guide-card {
+    padding-top: 0;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .map-canvas,  
+  .container {
+    height: 560px;
+
+    @include breakpoint(large-up) {
+      height: 640px;
+    }
+
+    @include breakpoint(min-width, 1281px) {
+      height: 750px;
+    }
+  }
+
+  // Map Canvas
+  .map-canvas {
+    position: absolute;
+    width: 100%;
+    background-color: #EBEBEB;
+    text-align: center;
+    overflow: visible;
+
+    .map-image {
+      position: absolute;
+      width: 320px;
+      height: 240px;
+      top: 150px;
+      left: 50%;
+      margin-left: -160px;
+      background-size: contain;
+
+      @include breakpoint(small-up) {
+        width: 440px;
+        height: 330px;
+        top: 90px;
+        margin-left: -220px;
+      }
+      @include breakpoint(medium-up) {
+        height: 80%;
+        width: 597px;
+        max-width: 9999px;
+        top: 10%;
+        margin-left: -298px;
+      }
+      @include breakpoint(large-up) {
+        height: 90%;
+        width: 768px;
+        top: 5%;
+        margin-top: 0;
+        margin-left: -384px;
+      }
+      @include breakpoint(min-width, 1281px) {
+        height: 100%;
+        width: 1000px;
+        margin-left: -500px;
+        top: 0;
+      }
+    }
+
+    &.zoom {
+      &,
+      & + .row {
+        cursor: crosshair;
+      }
+
+      .map-image {
+        width: 2320px;
+        height: 1740px;
+        max-width: 9999px;
+        margin: 0;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  // Map elements
+  .map-description {
+    font-size: $size-text-small - 1px;
+    line-height: $size-line-small - 2px;
+  }
+
+  .map-control {
+    display: block;
+    margin: $size-space/2 0;
+
+    &, a {
+      color: $color-text-gray;
+      &:hover {
+        color: $color-orange;
+      }
+    }
+  }
+
+  .map-button {
+    background-color: #DF5900;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-right: $column-gutter/2 - $size-space/2;
+    position: relative;
+    top: 11px;
+
+    @include transition(background-color 0.15s ease-in-out);
+
+    &:hover {
+      color: lighten(#DF5900, 5%);
+    }
+  }
+
+  // Map legend
+  .map-legend {
+    border-bottom: 1px solid $color-light-gray;
+    text-align: center;
+    padding: $column-gutter/2 0;
+    margin: $column-gutter/2 0 0 0;
+
+    @include breakpoint(large-up) {
+      border-top: 1px solid $color-light-gray;
+      text-align: left;
+    }
+  }
+
+  .map-legend-point {
+    display: inline-block;
+    font-size: 11px;
+    line-height: 12px;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .swatch {
+      height: 12px;
+      width: 12px;
+      border: 1px solid $color-middle-gray;
+      margin-right: 2px;
+      position: relative;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      &:not(.image):after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(rgba($color-white, 0), rgba($color-white, 1));
+      }
+    }
+
+    @include breakpoint(large-up) {
+      display: block;
+      font-size: $size-text-small - 1px;
+      line-height: $size-line-small - 2px;
+      margin: 0 0 $size-space 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .swatch {
+        height: 20px;
+        width: 20px;
+        margin-right: $column-gutter/2 + $size-space/2;
+      }
+    }
+  }
+
+  // Map Timeline
+  .map-timeline {
+    text-align: center;
+    position: relative;
+    left: -15px;
+    margin: 0;
+
+    @include breakpoint(large-up) {
+      text-align: left;
+      left: 0;
+    }
+  }
+
+  .map-timeline-point {
+    display: inline-block;
+    margin-right: $size-space/2;
+    width: 30px;
+    text-align: left;
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+
+  .map-zoom {
+    display: none;
+
+    @include breakpoint(large-up) {
+      display: block;
+    }
+
+    .active {
+      display: none;
+    }
+
+    &.active {
+      .active {
+        display: inline;
+      }
+      .inactive {
+        display: none;
+      }
+    }
+  }
+
+  .map-elements,
+  .map-header {
+    cursor: auto;
+
+    @include transition(background-color 0.4s);
+
+    &.black-bg {
+      color: $color-white;
+      background-color: rgba($color-black, 0.7);
+
+      a:not(.blue) {
+        color: $color-white;
+      }
+    }
+  }
+
+  // Contains all map controls
+  .map-elements {
+    position: absolute;
+    width: 250px;
+    padding: $size-space;
+    left: 0;
+    bottom: $size-space;
+
+    font-family: $font-sans;
+    font-size: $size-text-small;
+
+    @include breakpoint(max-width, #{upper-bound($small-range)}) {
+      width: 100%;
+    }
+
+    @include breakpoint(medium-only) {
+      width: 300px;
+    }
+
+    @include breakpoint(large-up) {
+      bottom: $column-gutter;
+      padding: $column-gutter;
+    }
+
+    .social-sharing {
+      border-top: 1px solid $color-light-gray;
+      margin-top: 10px;
+      padding-top: 5px;
+    }
+  }
+
+  // Contains sharing and high description
+  .map-header {
+    position: absolute;
+    width: 250px;
+    padding: $size-space;
+    right: 0;
+    top: 0;
+
+    font-family: $font-sans;
+
+    @include breakpoint(max-width, #{upper-bound($small-range)}) {
+      width: 100%;
+    }
+
+    @include breakpoint(large-up) {
+      top: $size-space;
+    }
+  }
+
+  .focal-bird-tag {
+    color: $color-tomato;
+    font-size: $size-text-tiny;
+    font-weight: bold;
+    line-height: $size-line-small;
+    text-transform: uppercase;
+  }
+
+  .focal-bird-name {
+    font-size: 22px;
+    line-height: 28px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid $color-light-gray;
+    padding-bottom: 4px;
+  }
+
+  // Icons
+
+  .map-pause {
+    &:before {
+      content: "";
+      display: block;
+      background-image: url(../img/icon-pause.png);
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      height: 30px;
+      width: 30px;
+      background-position: center center;
+    }
+
+    &.active:before {
+      background-image: url(../img/icon-play.png);
+    }
+  }
+
+  .map-binoculars:before {
+    content: "";
+    display: block;
+    background-image: url(../img/binoculars-white.png);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    background-position: center center;
+  }
+}

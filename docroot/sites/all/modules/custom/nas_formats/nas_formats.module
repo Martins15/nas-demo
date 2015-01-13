@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * Provides formats.
+ */
+
+/**
+ * Implements hook_date_format_types().
+ */
+function nas_formats_date_format_types() {
+  return array(
+    'nas_date' => t('NAS Date'),
+    'nas_year_only' => t('NAS Year only'),
+  );
+}
+
+/**
+ * Implements hook_date_formats().
+ */
+function nas_formats_date_formats() {
+  $formats = array(
+    array(
+      'type' => 'nas_date',
+      'format' => 'F j, Y',
+      'locales' => array(),
+    ),
+    array(
+      'type' => 'nas_year_only',
+      'format' => 'Y',
+      'locales' => array(),
+    ),
+  );
+
+  // Set date format variables.
+  foreach ($formats as $format) {
+    variable_set('date_format_' . $format['type'], $format['format']);
+  }
+
+  return $formats;
+}

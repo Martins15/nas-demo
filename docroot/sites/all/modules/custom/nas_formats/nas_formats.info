@@ -1,0 +1,4 @@
+name = NAS Formats
+description = Provides formats.
+core = 7.x
+package = NAS

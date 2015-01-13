@@ -1,0 +1,36 @@
+.manage-thumbnails-popup .dialog-close {
+  display: none;
+}
+
+#file-entity-edit .field-name-field-file-image-alt-text,
+#file-entity-add-upload .field-name-field-file-image-alt-text {
+  clear: both;
+}
+
+div.ctools-modal-content .form-type-textarea.form-item label {
+  float: none;
+  width: auto;
+}
+
+/*Engagement cards nodequeue*/
+#nodequeue-dragdrop-1 tr:nth-child(1),
+#nodequeue-dragdrop-1 tr:nth-child(2),
+#nodequeue-dragdrop-1 tr:nth-child(3) {
+  background-color: #e0ffff;
+}
+#nodequeue-dragdrop-1 tr.drag:nth-child(1),
+#nodequeue-dragdrop-1 tr.drag:nth-child(2),
+#nodequeue-dragdrop-1 tr.drag:nth-child(3),
+#nodequeue-dragdrop-1 tr.drag-previous:nth-child(1),
+#nodequeue-dragdrop-1 tr.drag-previous:nth-child(2),
+#nodequeue-dragdrop-1 tr.drag-previous:nth-child(3) {
+  background: #ffb;
+}
+#nodequeue-dragdrop-1 tr:nth-child(4) {
+  background-color: #ffcccc;
+}
+#nodequeue-dragdrop-1 tr.drag:nth-child(4),
+#nodequeue-dragdrop-1 tr.drag-previous:nth-child(4) {
+  background: #ffb;
+}
+/**/
