@@ -12,6 +12,7 @@ dependencies[] = views_load_more
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[views_view][] = articles_more_features
+features[views_view][] = audubon_near_you_news
 features[views_view][] = conservation_projects
 features[views_view][] = flyway_conservation_projects
 features[views_view][] = magazin_issues

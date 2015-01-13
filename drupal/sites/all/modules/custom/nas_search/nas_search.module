@@ -128,6 +128,9 @@ function _nas_search_node_get_type_for_search($entity, array $options, $name, $e
  * Article year entity property getter callback.
  */
 function nas_search_get_article_year($entity, array $options, $name, $entity_type) {
+  if (empty($entity->field_article_date[LANGUAGE_NONE][0]['value'])) {
+    return;
+  }
   return (int) substr($entity->field_article_date[LANGUAGE_NONE][0]['value'], 0, 4);
 }
 
@@ -135,6 +138,9 @@ function nas_search_get_article_year($entity, array $options, $name, $entity_typ
  * Article month entity property getter callback.
  */
 function nas_search_get_article_month($entity, array $options, $name, $entity_type) {
+  if (empty($entity->field_article_date[LANGUAGE_NONE][0]['value'])) {
+    return;
+  }
   return (int) substr($entity->field_article_date[LANGUAGE_NONE][0]['value'], 5, 2);
 }
 
