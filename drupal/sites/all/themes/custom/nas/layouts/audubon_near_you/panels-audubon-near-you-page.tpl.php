@@ -12,9 +12,7 @@
     <div class="row">
       <?php print $content['locations']; ?>
     </div>
-  </div>
   </section>
-  <!-- ******************************************************************* -->
   <div class="bird-card-set bg-bone-white">
     <div class="row section-header space-top">
       <div class="columns">
@@ -86,62 +84,5 @@
       </div>
     </div>
   </div>
-  <!-- ************************************************************** -->
-  <div class="bg-gray">
-    <div class="row section-header">
-      <div class="column">
-        <h2 class="thin">Birds in the News</h2>
-      </div>
-      <div class="column">
-        <ul class="section-nav inline-list hide-for-small hide-for-tiny">
-          <li><a href="#">More News »</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="row aid-class">
-      <div class="columns large-4">
-        <div class="editorial-card collapse-minimal">
-          <div class="editorial-card-photo">
-            <img src="../../img/editorial-card-14.jpg">
-          </div>
-          <div class="editorial-card-content short">
-            <a href="" class="editorial-card-slug">In The News</a>
-            <h4 class="editorial-card-title">Bird Death Toll Estimates from the BP Oil Spill</h4>
-            <p><em><a class="editorial-card-link" href="#">Map of impacted areas</a></em></p>
-          </div>
-        </div>
-      </div>
-      <div class="columns large-4">
-        <div class="editorial-card collapse-minimal">
-          <div class="editorial-card-photo">
-            <img src="../../img/editorial-card-2.jpg">
-          </div>
-          <div class="editorial-card-content short">
-            <a href="" class="editorial-card-slug">Citizen Science</a>
-            <h4 class="editorial-card-title">Latest Data from the 2014 Great Backyard Bird Count</h4>
-            <p><em><a href="#" class="editorial-card-link">Exlpore the results</a></em></p>
-          </div>
-        </div>
-      </div>
-      <div class="columns large-4">
-        <div class="editorial-card collapse-minimal">
-          <div class="editorial-card-photo">
-            <img src="../../img/editorial-card-3.jpg">
-          </div>
-          <div class="editorial-card-content short">
-            <a href="" class="editorial-card-slug">Conservation</a>
-            <h4 class="editorial-card-title">Clues to Conserving the Golden Eagle in Its DNA</h4>
-            <p><em><a href="#" class="editorial-card-link">Genome sequencing yields new insights</a></em></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row space-bottom double">
-      <div class="columns">
-        <ul class="section-nav inline-list hide-for-medium hide-for-large hide-for-xlarge">
-          <li><a href="#">More News »</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <?php print $content['news']; ?>
 </div>
