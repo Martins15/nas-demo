@@ -10,11 +10,11 @@
     <h2 class="title-block"><?php print t('Offices & Chapters'); ?></h2>
     <?php if (empty($items)) : ?>
       <?php if (empty($hide_empty_text) && empty($filter_active)) : ?>
-        <?php print t('Select your state code above'); ?>
+        <?php print t('Select your state above'); ?>
       <?php endif; ?>
 
       <?php if (!empty($filter_active)) : ?>
-        <?php print t('No Chapters found in this location. Select your state code above to look up for other location'); ?>
+        <?php print t('No Chapters found in this location. Select your state above to look up for other location'); ?>
       <?php endif; ?>
     <?php else : ?>
       <?php foreach ($items as $item) : ?>

@@ -18,6 +18,7 @@ $plugin = array(
     'header' => t('Header'),
     'main' => t('Main content area'),
     'locations' => t('Locations'),
+    'birds' => t('Birds'),
     'news' => t('News'),
   ),
 );

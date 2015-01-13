@@ -792,6 +792,23 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-center-sanctuary',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
+    'audubon_near_you_bird_guide' => array(
+      'variables' => array(
+        'links' => array(),
+        'content' => NULL,
+      ),
+      'template' => 'audubon-near-you-bird-guide',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_bird_guide',
+    ),
+    'audubon_near_you_bird_guide_content' => array(
+      'variables' => array(
+        'hide_empty_text' => NULL,
+        'filter_active' => NULL,
+        'items' => NULL,
+      ),
+      'template' => 'audubon-near-you-bird-guide-content',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_bird_guide',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -1537,6 +1554,25 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
 }
 
 /**
+ * Returns priority birds.
+ */
+function _nas_panes_get_priority_birds($state = 'all') {
+  $items = array();
+
+  $results = views_get_view_result('audubon_near_you_birds', 'default', $state);
+  foreach ($results as $item) {
+    $nids[] = $item->nid;
+  }
+
+  $nodes = node_load_multiple($nids);
+  foreach ($nodes as $node) {
+    $items[] = node_view($node, 'teaser');
+  }
+
+  return $items;
+}
+
+/**
  * Implements hook_menu().
  */
 function nas_panes_menu() {
@@ -1615,6 +1651,14 @@ function nas_panes_audubon_near_you_elements_callback() {
       'view_args' => array(
         $query['state'],
         'center_sanctuary',
+      ),
+    ),
+    'birds' => array(
+      'wrapper' => 'audubon-near-you--birds--wrapper',
+      'callback' => '_nas_panes_get_priority_birds',
+      'theme' => 'audubon_near_you_bird_guide_content',
+      'view_args' => array(
+        $query['state'],
       ),
     ),
   );
