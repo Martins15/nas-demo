@@ -52,6 +52,7 @@ function nas_audubon_near_you_feature_default_page_manager_pages() {
       'main' => NULL,
       'locations' => NULL,
       'news' => NULL,
+      'birds' => NULL,
     ),
   );
   $display->cache = array();
@@ -59,6 +60,25 @@ function nas_audubon_near_you_feature_default_page_manager_pages() {
   $display->uuid = '9f97a42c-9bd4-4034-b229-dde09881b4d0';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-3e4177b9-97fa-4ec0-b4a9-0158a6b07ebb';
+    $pane->panel = 'birds';
+    $pane->type = 'audubon_near_you_bird_guide';
+    $pane->subtype = 'audubon_near_you_bird_guide';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3e4177b9-97fa-4ec0-b4a9-0158a6b07ebb';
+    $display->content['new-3e4177b9-97fa-4ec0-b4a9-0158a6b07ebb'] = $pane;
+    $display->panels['birds'][0] = 'new-3e4177b9-97fa-4ec0-b4a9-0158a6b07ebb';
     $pane = new stdClass();
     $pane->pid = 'new-057d981e-6b45-4b42-a5a5-27296e88829b';
     $pane->panel = 'locations';

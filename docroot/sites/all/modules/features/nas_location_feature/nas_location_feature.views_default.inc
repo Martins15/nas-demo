@@ -165,16 +165,6 @@ function nas_location_feature_views_default_views() {
   $handler->display->display_options['arguments']['field_location_address_administrative_area']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_location_address_administrative_area']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_location_address_administrative_area']['limit'] = '0';
-  /* Contextual filter: Content: Address - Postal code */
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['id'] = 'field_location_address_postal_code';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['table'] = 'field_data_field_location_address';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['field'] = 'field_location_address_postal_code';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['default_action'] = 'empty';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_location_address_postal_code']['limit'] = '0';
   /* Contextual filter: Content: Type (field_location_type) */
   $handler->display->display_options['arguments']['field_location_type_value']['id'] = 'field_location_type_value';
   $handler->display->display_options['arguments']['field_location_type_value']['table'] = 'field_data_field_location_type';
