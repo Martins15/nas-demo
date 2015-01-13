@@ -1,6 +1,12 @@
+# Ignore paths that contain user-generated content.
+docroot/files
+docroot/sites/*/files
+docroot/sites/*/private
+
 cache/*
 .vagrant/*
 adminer/*
 backup/*
 *.sql.gz
 *.sql
+.idea
