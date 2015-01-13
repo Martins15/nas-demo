@@ -4863,8 +4863,20 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   font-size: 17px;
 }
 
-.card-set.editorial-card-3x .editorial-card {
-  margin-bottom: 37.5px;
+@media only screen and (max-width: 479px) {
+  .editorial-card-3x .card-set.space-bottom {
+    padding-bottom: 0;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .editorial-card-3x .card-set.space-bottom {
+    padding-bottom: 0;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .editorial-card-3x .card-set.space-bottom {
+    padding-bottom: 0;
+  }
 }
 
 /* @todo refactor the hell out of this */

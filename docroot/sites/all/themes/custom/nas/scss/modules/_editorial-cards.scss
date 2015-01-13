@@ -296,8 +296,16 @@
   }
 }
 
-.card-set.editorial-card-3x {
-  .editorial-card {
-    margin-bottom: $column-gutter*3/2;
+.editorial-card-3x {
+  .card-set.space-bottom {
+    @include breakpoint(tiny-only) {
+      padding-bottom: 0;
+    }
+    @include breakpoint(small-only) {
+      padding-bottom: 0;
+    }
+    @include breakpoint(medium-only) {
+      padding-bottom: 0;
+    }
   }
 }
