@@ -1553,7 +1553,7 @@ include solr
 class drupal::solr {
 
 exec { "copy_solr_config":
-  command => "rm -rf /usr/share/solr/default/conf/* && cp -r /var/www/drupal/sites/all/modules/contrib/search_api_solr/solr-conf/4.x/* /usr/share/solr/default/conf/",
+  command => "rm -rf /usr/share/solr/default/conf/* && cp -r /var/www/docroot/sites/all/modules/contrib/search_api_solr/solr-conf/4.x/* /usr/share/solr/default/conf/",
   returns => [0, 1, 100],
   require => Class['solr'],
 }

@@ -1,0 +1,226 @@
+<?php
+
+/**
+ * @file
+ * Contains additional alters.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function nas_search_theme() {
+  $themes = array(
+    'nas_search_page_search_form' => array(
+      'render element' => 'form',
+      'template' => 'nas_search_page_search_form',
+      'path' => drupal_get_path('module', 'nas_search') . '/templates',
+    ),
+    'nas_search_facet_block' => array(
+      'variables' => array(
+        'subject' => NULL,
+        'items' => array(),
+      ),
+      'template' => 'nas_search_facet_block',
+      'path' => drupal_get_path('module', 'nas_search') . '/templates',
+    ),
+  );
+
+  return $themes;
+}
+
+/**
+ * Search form builder.
+ */
+function nas_search_page_search_form($form, $form_state) {
+  $form['#method'] = 'GET';
+
+  $form['search'] = array(
+    '#type' => 'textfield',
+    '#name' => 'search',
+    '#theme' => 'searchfield',
+    '#attributes' => array(
+      'placeholder' => 'Search for a bird ...',
+      'class' => array('radius'),
+    ),
+    '#default_value' => !empty($_GET['search']) ? $_GET['search'] : '',
+  );
+
+  $form['submit'] = array(
+    '#type' => 'button',
+    '#value' => '<span class="hide-for-medium hide-for-large hide-for-xlarge">
+      <i class="icon-magnifier"></i>
+  </span>
+  <span class="hide-for-tiny hide-for-small">Search</span>',
+    '#id' => 'edit-submit-search-form',
+    '#attributes' => array(
+      'class' => array('top-search-form-submit', 'button', 'pea-green'),
+    ),
+  );
+
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_search') . '/js/search-counter.js';
+
+  return $form;
+}
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function nas_search_entity_property_info_alter(&$info) {
+  $properties = &$info['node']['bundles']['article']['properties'];
+  $properties['year'] = array(
+    'label' => t("Article year"),
+    'description' => t("Article year."),
+    'type' => 'integer',
+    'getter callback' => 'nas_search_get_article_year',
+    'calculated' => TRUE,
+  );
+  $properties['month'] = array(
+    'label' => t("Article month"),
+    'description' => t("Article month."),
+    'type' => 'integer',
+    'getter callback' => 'nas_search_get_article_month',
+    'calculated' => TRUE,
+  );
+  $properties['section'] = array(
+    'label' => t('Article Section'),
+    'type' => 'taxonomy_term',
+    'description' => t('Article Menu section/custom section'),
+    'getter callback' => 'nas_search_get_article_section',
+    'calculated' => TRUE,
+  );
+  $info['node']['properties']['type_for_search'] = array(
+    'label' => t('Type (for search)'),
+    'type' => 'string',
+    'description' => t('Content type for search'),
+    'getter callback' => '_nas_search_node_get_type_for_search',
+    'calculated' => TRUE,
+  );
+}
+
+/**
+ * Node's Type (for search) property getter callback.
+ */
+function _nas_search_node_get_type_for_search($entity, array $options, $name, $entity_type) {
+  if ($entity->type == 'article') {
+    if (!empty($entity->field_magazine_issue[LANGUAGE_NONE][0]['target_id'])) {
+      return 'Magazine Article';
+    }
+    return 'News';
+  }
+
+  $map = array(
+    'project' => 'Projects',
+    'strategy' => 'Strategies',
+    'static_page' => 'Pages',
+    'boa' => 'Birds of America',
+    'flyway' => 'Flyways',
+  );
+  if (isset($map[$entity->type])) {
+    return $map[$entity->type];
+  }
+
+  // Fallback for CT not listed in mapping.
+  $node_type = node_type_get_type($entity);
+  return $node_type->name;
+}
+
+/**
+ * Article year entity property getter callback.
+ */
+function nas_search_get_article_year($entity, array $options, $name, $entity_type) {
+  if (empty($entity->field_article_date[LANGUAGE_NONE][0]['value'])) {
+    return;
+  }
+  return (int) substr($entity->field_article_date[LANGUAGE_NONE][0]['value'], 0, 4);
+}
+
+/**
+ * Article month entity property getter callback.
+ */
+function nas_search_get_article_month($entity, array $options, $name, $entity_type) {
+  if (empty($entity->field_article_date[LANGUAGE_NONE][0]['value'])) {
+    return;
+  }
+  return (int) substr($entity->field_article_date[LANGUAGE_NONE][0]['value'], 5, 2);
+}
+
+/**
+ * Article section entity property getter callback.
+ */
+function nas_search_get_article_section($entity, array $options, $name, $entity_type) {
+  $custom_section_item = field_get_items('node', $entity, 'field_custom_section');
+  if (!empty($custom_section_item)) {
+    $term = taxonomy_term_load($custom_section_item[0]['tid']);
+    return $term;
+  }
+
+  $menu_section_item = field_get_items('node', $entity, 'field_menu_section');
+  if (!empty($menu_section_item)) {
+    // Default is the first term.
+    $term = taxonomy_term_load($menu_section_item[0]['tid']);
+
+    $term_tids = array();
+    foreach ($menu_section_item as $item) {
+      $term_tids[] = $item['tid'];
+    }
+    $terms = taxonomy_term_load_multiple($term_tids);
+    $term_name_keyed = array();
+    foreach ($terms as $term) {
+      $term_name_keyed[$term->name] = $term;
+    }
+    $term_names = array_keys($term_name_keyed);
+
+    $trail = menu_get_active_trail();
+    $trail = array_reverse($trail);
+    foreach ($trail as $menu_item) {
+      if (in_array($menu_item['title'], $term_names)) {
+        $term = $term_name_keyed[$menu_item['title']];
+        break;
+      }
+    }
+    return $term;
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function nas_search_block_view_alter(&$data, $block) {
+  if ($block->module == 'facetapi' && $data) {
+    $facetid = $data['content']['#settings']->facet;
+    switch ($facetid) {
+      case 'year':
+        $data['subject'] = t('Filter by Date');
+        break;
+
+      case 'month':
+        $data['subject'] = '';
+        break;
+
+      case 'section':
+        $data['subject'] = t('Filter by Section');
+        break;
+
+      case 'type_for_search':
+        $data['subject'] = t('Filter by Type');
+        break;
+    }
+    foreach ($data['content'][$facetid]['#items'] as &$item) {
+      $item['class'][] = 'primary-sub-nav-item';
+    }
+    $data['content'][$facetid]['#theme'] = 'nas_search_facet_block';
+    $data['content'][$facetid]['#subject'] = $data['subject'];
+  }
+}
+
+/**
+ * Implementes hook_facet_items_alter().
+ */
+function nas_search_facet_items_alter(&$build, &$settings) {
+  if ($settings->facet == 'month') {
+    foreach ($build as $key => $item) {
+      $build[$key]['#markup'] = date('F', mktime(NULL, NULL, NULL, $item['#indexed_value']));
+    }
+  }
+}
