@@ -72,6 +72,11 @@ function donate_with_gradient_form($form, &$form_state) {
     '#required' => TRUE,
     '#tree' => TRUE,
   );
+  $form['gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add gradient background'),
+    '#default_value' => !empty($conf['gradient']) ? $conf['gradient'] : 0,
+  );
 
   return $form;
 }
@@ -101,7 +106,6 @@ function donate_with_gradient_render($subtype, $conf, $args, $contexts) {
   if (!empty($image)) {
     $background_image = image_style_url('donate_banner_bg', $image->uri);
     $background_image_small = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE, $image->uri);
-    $background_image_small = image_style_url('donate_banner_bg', $image->uri);
   }
 
   $title = $conf['override_title'] ? check_plain($conf['override_title_text']) : 'Donate';
@@ -119,6 +123,7 @@ function donate_with_gradient_render($subtype, $conf, $args, $contexts) {
     'teaser' => check_plain($conf['teaser']),
     'button' => $conf['button'],
     'contextual_links' => $contextual_links,
+    'gradient' => !empty($conf['gradient']) ? $conf['gradient'] : 0,
   ));
 
   $block->content = $content;
