@@ -105,6 +105,9 @@ function nas_article_feature_strongarm() {
       'about_page_related_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'nas_teaser_related_news' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -115,7 +118,18 @@ function nas_article_feature_strongarm() {
           'weight' => '8',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'disqus' => array(
+          'default' => array(
+            'weight' => '1002',
+            'visible' => TRUE,
+          ),
+          'nas_teaser_related_news' => array(
+            'weight' => '2',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__article'] = $strongarm;
