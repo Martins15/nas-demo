@@ -13052,7 +13052,13 @@ h2.grey {
   line-height: 15px;
 }
 
+.hero-attribution, .hero-attribution-fullscreen {
+  overflow: hidden;
+}
 @media only screen and (min-width: 601px) {
+  .hero-attribution, .hero-attribution-fullscreen {
+    overflow: visible;
+  }
   .hero-attribution .hero-attribution-text, .hero-attribution-fullscreen .hero-attribution-text {
     padding: 2px 5px;
     background-color: rgba(0, 0, 0, 0.2);
