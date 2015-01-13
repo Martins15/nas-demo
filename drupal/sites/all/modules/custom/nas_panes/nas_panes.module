@@ -1492,18 +1492,15 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
  * @param string $state
  *   State/province. Two letters.
  *
- * @param string $postal_code
- *   Postal code.
- *
  * @param string $type
  *   Type of the location.
  *
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $postal_code = 'all', $type = 'all') {
+function _nas_panes_get_locations($state = 'all', $type = 'all') {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $postal_code, $type);
+  $results = views_get_view_result('locations', 'default', $state, $type);
 
   foreach ($results as $item) {
     $items[$item->nid] = array(
@@ -1608,7 +1605,6 @@ function nas_panes_audubon_near_you_elements_callback() {
       'theme' => 'audubon_near_you_office_chapter',
       'view_args' => array(
         $query['state'],
-        'all',
         'office_chapter',
       ),
     ),
@@ -1618,7 +1614,6 @@ function nas_panes_audubon_near_you_elements_callback() {
       'theme' => 'audubon_near_you_center_sanctuary',
       'view_args' => array(
         $query['state'],
-        'all',
         'center_sanctuary',
       ),
     ),
@@ -1657,12 +1652,5 @@ function nas_panes_audubon_near_you_elements_callback() {
  */
 function nas_panes_location_filter_is_active() {
   $query = drupal_get_query_parameters();
-  $state = !empty($query['state']) ? $query['state'] : 'all';
-  $zip_code = !empty($query['zip_code']) ? $query['zip_code'] : 'all';
-
-  if ($state !== 'all' || $zip_code !== 'all') {
-    return TRUE;
-  }
-
-  return FALSE;
+  return !empty($query['state']);
 }

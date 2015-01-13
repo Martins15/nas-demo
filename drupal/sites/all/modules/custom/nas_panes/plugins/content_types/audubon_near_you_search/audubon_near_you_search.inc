@@ -81,16 +81,6 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
 function audubon_near_you_search_form($form, &$form_state) {
   $query = drupal_get_query_parameters();
 
-  $form['zip_code'] = array(
-    '#type' => 'textfield',
-    '#attributes' => array(
-      'placeholder' => 'ZIP code',
-      'class' => array('bird-guide-zip-input', 'radius'),
-    ),
-    '#default_value' => !empty($query['zip_code']) ? $query['zip_code'] : '',
-    '#maxlength' => 16,
-  );
-
   $form['state'] = array(
     '#type' => 'select',
     '#empty_option' => t('Select a State'),
@@ -120,10 +110,6 @@ function audubon_near_you_search_form($form, &$form_state) {
  */
 function audubon_near_you_search_form_submit($form, &$form_state) {
   $query = array();
-
-  if (!empty($form_state['values']['zip_code'])) {
-    $query['zip_code'] = $form_state['values']['zip_code'];
-  }
 
   if (!empty($form_state['values']['state'])) {
     $query['state'] = $form_state['values']['state'];

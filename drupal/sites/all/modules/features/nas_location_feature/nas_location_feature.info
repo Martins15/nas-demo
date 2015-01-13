@@ -36,5 +36,5 @@ features[variable][] = scheduler_publish_enable_location
 features[views_view][] = local_chapters_centers_block
 features[views_view][] = locations
 features_exclude[dependencies][views] = views
-mtime = 1421049541
+mtime = 1421074097
 project path = sites/all/modules/features
