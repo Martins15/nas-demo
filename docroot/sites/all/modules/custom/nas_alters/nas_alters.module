@@ -274,3 +274,36 @@ function nas_alters_form_nodequeue_arrange_subqueue_form_1_alter(&$form, &$form_
     '#weight' => -2,
   );
 }
+
+/**
+ * Implements hook_menu().
+ */
+function nas_alters_menu_alter(&$items) {
+  $items['admin/structure/menu/manage/%menu']['page callback'] = '_nas_alters_menu_admin_page';
+  $items['admin/structure/menu/manage/%menu']['page arguments'] = array(4);
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function nas_alters_module_implements_alter(&$implementations, $hook) {
+  // Make sure that we trigger nas_alters_menu_alter() after bigmenu_menu_alter().
+  if ($hook == 'menu_alter') {
+    $group = $implementations['nas_alters'];
+    unset($implementations['nas_alters']);
+    $implementations['nas_alters'] = $group;
+  }
+}
+
+/**
+ * Menu admin page callback.
+ */
+function _nas_alters_menu_admin_page($menu) {
+  if ($menu['menu_name'] == 'boa') {
+    module_load_include('inc', 'bigmenu', 'bigmenu.admin');
+    return drupal_get_form('bigmenu_overview_form', $menu);
+  }
+
+  module_load_include('inc', 'menu', 'menu.admin');
+  return drupal_get_form('menu_overview_form', $menu);
+}

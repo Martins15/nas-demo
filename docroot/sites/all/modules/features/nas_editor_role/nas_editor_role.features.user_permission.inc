@@ -320,6 +320,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'bean',
   );
 
+  // Exported permission: 'administer bigmenu'.
+  $permissions['administer bigmenu'] = array(
+    'name' => 'administer bigmenu',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'bigmenu',
+  );
+
   // Exported permission: 'administer blocks'.
   $permissions['administer blocks'] = array(
     'name' => 'administer blocks',
@@ -3187,6 +3196,15 @@ function nas_editor_role_user_default_permissions() {
     'name' => 'unlock users_import feeds',
     'roles' => array(),
     'module' => 'feeds',
+  );
+
+  // Exported permission: 'use bigmenu'.
+  $permissions['use bigmenu'] = array(
+    'name' => 'use bigmenu',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'bigmenu',
   );
 
   // Exported permission: 'use block insert'.
