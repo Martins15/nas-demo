@@ -1302,5 +1302,5 @@ function nas_master_update_7096() {
  * Revert features.
  */
 function nas_master_update_7098() {
-  features_revert(array('nas_search_feature' => array('views_default')));
+  features_revert(array('nas_search_feature' => array('views_view')));
 }
