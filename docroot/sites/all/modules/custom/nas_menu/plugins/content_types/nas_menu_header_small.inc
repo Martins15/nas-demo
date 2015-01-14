@@ -81,6 +81,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
 
   $frontpage_url = url('<front>');
   $site_name = check_plain(variable_get('site_name'));
+  $searchpage_url = url('search_results');
 
   $form = drupal_get_form('nas_menu_search_form');
   $rendered_form = drupal_render($form);
@@ -90,6 +91,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
       'frontpage_url' => $frontpage_url,
       'site_name' => $site_name,
       'form' => $rendered_form,
+      'searchpage_url' => $searchpage_url,
     )
   );
 

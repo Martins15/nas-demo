@@ -1698,3 +1698,23 @@ function nas_panes_location_filter_is_active() {
   $query = drupal_get_query_parameters();
   return !empty($query['state']);
 }
+
+/**
+ * Preprocess function for editorial_card_3x theme function.
+ */
+function nas_panes_preprocess_editorial_card_3x(&$vars) {
+  if (empty($vars['chunks'])) {
+    $vars['chunks'] = array();
+    if (!empty($vars['teasers'])) {
+      $vars['chunks'] = array_chunk($vars['teasers'], 3);
+    }
+  }
+}
+
+/**
+ * Preprocess function for donate_cards_3x theme function.
+ */
+function nas_panes_preprocess_donate_cards_3x(&$vars) {
+  nas_panes_preprocess_editorial_card_3x($vars);
+}
+

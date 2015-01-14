@@ -1,0 +1,8 @@
+name = NAS Revision
+description = Provides VBO page
+core = 7.x
+package = NAS
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features_exclude[dependencies][ctools] = ctools
+mtime = 1421230260

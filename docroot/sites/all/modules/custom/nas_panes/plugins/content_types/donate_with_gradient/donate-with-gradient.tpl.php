@@ -16,6 +16,9 @@
 
 <div class="banner dark-bg bg-respond donate-banner contextual-links-region" style="background-image: url(<?php print $background_image; ?>);" data-bg-small="<?php print $background_image_small; ?>" data-bg-large="<?php print $background_image; ?>">
   <?php print $contextual_links; ?>
+  <?php if ($gradient): ?>
+    <div class="banner-gradient-overlay"></div>
+  <?php endif; ?>
   <div class="banner-text">
     <h2 class="banner-title"><?php print $title; ?></h2>
     <p class="banner-blurb"><?php print $subtitle; ?></p>

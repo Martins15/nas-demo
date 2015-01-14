@@ -403,7 +403,7 @@ function nas_conservation_project_feature_panelizer_defaults() {
         'image_link' => '',
         'file_view_mode' => 'hero',
       ),
-      'context' => 'relationship_entity_from_field:field_conservation_strategy-node-node_1',
+      'context' => 'panelizer',
       'override_title' => 0,
       'override_title_text' => '',
     );

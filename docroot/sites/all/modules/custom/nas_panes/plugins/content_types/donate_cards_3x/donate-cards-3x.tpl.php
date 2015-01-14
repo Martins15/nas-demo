@@ -13,7 +13,7 @@
 ?>
 
 <?php if ($teasers || $contextual_links): ?>
-<div class="card-set editorial-card-3x <?php print $additional_classes; ?> contextual-links-region">
+<div class="editorial-card-3x <?php print $additional_classes; ?> <?php print !empty($spacebottom) ? $spacebottom : ''; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php if ($title): ?>
     <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?><?php if (!empty($spacebetween)): ?> space-bottom<?php endif; ?>">
@@ -25,7 +25,8 @@
     </div>
   <?php endif; ?>
 
-  <div class="row <?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
+  <?php foreach ($chunks as $teasers): ?>
+    <div class="row card-set space-bottom">
     <?php foreach ($teasers as $teaser): ?>
       <?php if (is_string($teaser)): ?>
         <?php print $teaser; ?>
@@ -45,6 +46,7 @@
         </div>
       <?php endif; ?>
     <?php endforeach; ?>
-  </div>
+    </div>
+  <?php endforeach; ?>
 </div>
 <?php endif; ?>

@@ -108,12 +108,14 @@ function nas_menu_pane_big_render() {
 
   $block = new stdClass();
   $frontpage_link = l(variable_get('site_name'), '<front>', array('attributes' => array('class' => array('current-parent', 'wordmark'))));
+  $searchpage_url = url('search_results');
   $content = theme(
     'nas_big_header',
     array(
       'items' => $items,
       'frontpage_link' => $frontpage_link,
       'form' => $rendered_form,
+      'searchpage_url' => $searchpage_url,
     )
   );
   $block->content = $content;

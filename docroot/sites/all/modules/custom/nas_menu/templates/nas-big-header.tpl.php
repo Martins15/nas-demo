@@ -62,7 +62,7 @@
             </li>
           <?php endforeach; ?>
           <li class="primary-nav-item primary-nav-search">
-              <a href="/" class=""><i class="icon-magnifier"></i></a>
+              <a href="<?php print $searchpage_url; ?>" class=""><i class="icon-magnifier"></i></a>
           </li>
         </ul>
         <ul class="secondary-nav inline-list<?php print $cl_class; ?>">
