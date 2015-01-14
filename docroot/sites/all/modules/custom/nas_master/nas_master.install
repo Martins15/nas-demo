@@ -1323,6 +1323,14 @@ function nas_master_update_7096() {
 /**
  * Revert features.
  */
+function nas_master_update_7098() {
+  features_revert(array('nas_search_feature' => array('views_view')));
+}
+
+/**
+ * Revert features.
+ */
+
 function nas_master_update_7099() {
   features_revert_module('nas_beans_feature');
   features_revert(array('nas_bird_type_feature' => array('filter')));
