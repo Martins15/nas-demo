@@ -53,7 +53,7 @@ function nas_panes_project_birds_render($subtype, $conf, $args, $context) {
   if (!empty($results)) {
     $block->content = theme('project_birds', array(
       'teasers' => $results,
-      'title' => t('Birds Native to This Area'),
+      'title' => t('Priority Birds'),
       'first_column_last' => $first_column_last,
     ));
   }
