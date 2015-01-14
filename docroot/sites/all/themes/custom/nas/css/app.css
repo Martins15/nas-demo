@@ -4863,6 +4863,18 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   font-size: 17px;
 }
 
+.editorial-card-3x.space-top {
+  padding-top: 25px;
+}
+.editorial-card-3x.space-top.double {
+  padding-top: 50px;
+}
+.editorial-card-3x.space-bottom {
+  padding-bottom: 25px;
+}
+.editorial-card-3x.space-bottom.double {
+  padding-bottom: 50px;
+}
 @media only screen and (max-width: 479px) {
   .editorial-card-3x .card-set.space-bottom {
     padding-bottom: 0;

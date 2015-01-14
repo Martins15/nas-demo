@@ -297,6 +297,19 @@
 }
 
 .editorial-card-3x {
+  &.space-top {
+    padding-top: $column-gutter;
+    &.double {
+      padding-top: $column-gutter*2;
+    }
+  }
+  &.space-bottom {
+    padding-bottom: $column-gutter;
+    &.double {
+      padding-bottom: $column-gutter*2;
+    }
+  }
+
   .card-set.space-bottom {
     @include breakpoint(tiny-only) {
       padding-bottom: 0;
