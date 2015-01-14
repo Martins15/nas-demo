@@ -75,7 +75,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
   }
   elseif ($vars['elements']['#bundle'] == 'slideshow') {
     $entity = $vars['elements']['#entity'];
-     // Get Title.
+    // Get Title.
     $get_title = field_get_items('bean', $entity, 'field_wysiwyg_slideshow_title');
     $vars['title'] = !empty($get_title[0]['value']) ? $get_title[0]['value'] : '';
     // Get images.
