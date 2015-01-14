@@ -1,0 +1,309 @@
+<?php
+
+/**
+ * @file
+ * Contains additional alters.
+ */
+
+/**
+ * Implements hook_init().
+ *
+ */
+function nas_alters_init() {
+  global $theme;
+
+  if ($theme == 'adminimal') {
+    drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
+  }
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function nas_alters_theme() {
+  return array(
+    'nas_button' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements theme_button()
+ * used to return <button> tag when needed
+ */
+function theme_nas_button($variables) {
+  $element = $variables['element'];
+
+  $element['#attributes']['type'] = 'submit';
+  element_set_attributes($element, array('id', 'name'));
+  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+  return '<button' . drupal_attributes($element['#attributes']) . '>' . $element['#value'] . '</button>';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the node forms.
+ */
+function nas_alters_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Remove author tab.
+  unset($form['author']);
+  // Change type of elements and combine menu & path into one tab.
+  if (isset($form['menu']) && isset($form['path'])) {
+    $form['menu']['#type'] = 'container';
+    $form['path']['#type'] = 'container';
+    $form['menu_path_custom_tab'] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Menu & URL path settings',
+      '#collapsible' => 'TRUE',
+      '#collapsed' => 'TRUE',
+      '#weight' => '-2',
+      '#group' => 'additional_settings',
+      'menu' => $form['menu'],
+      'path' => $form['path'],
+    );
+    unset($form['menu']);
+    unset($form['path']);
+  }
+  // Rename Panelizer tab to Layout and remove unnecessary label.
+  if (isset($form['panelizer'])) {
+    $form['panelizer']['#title'] = t('Layout');
+    unset($form['panelizer']['page_manager']['name']['#title']);
+  }
+  // Hide Panezizer tab if there is no choise to select.
+  if (isset($form['panelizer']['page_manager']['name']['#options']) && count($form['panelizer']['page_manager']['name']['#options']) <= 1) {
+    unset($form['panelizer']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Magazine Issue node form.
+ */
+function nas_alters_form_magazine_issue_node_form_alter(&$form, &$form_state, $form_id) {
+  // Add description to node title.
+  $form['title']['#description'] = t('e.g. November - December 2014');
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function nas_alters_element_info_alter(&$type) {
+  if (isset($type['link_field'])) {
+    $type['link_field']['#process'][] = 'nas_alters_link_field_process';
+  }
+}
+
+/**
+ * Process function for nas_alters_element_info_alter.
+ */
+function nas_alters_link_field_process(&$element, &$form_state, $complete_form) {
+  switch ($element['#field_name']) {
+    case 'field_contact_twitter':
+      $element['title']['#title'] = t('Twitter screen name (e.g. @JoeSmith)');
+      break;
+  }
+  return $element;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Article node form.
+ */
+function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id) {
+  //Remove unecessary options.
+  unset($form['options']['promote']);
+  unset($form['options']['sticky']);
+  $form['options']['#weight'] = '34';
+  //Change type of elements and combine them into one tab.
+  $form['options']['#type'] = 'container';
+  $form['scheduler_settings']['#type'] = 'scheduler_settings';
+  $form['publishing_custom_tab'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Publishing & Scheduling options',
+    '#collapsible' => 'TRUE',
+    '#collapsed' => 'TRUE',
+    '#weight' => '35',
+    '#group' => 'additional_settings',
+    'scheduler_settings' => $form['scheduler_settings'],
+    'options' => $form['options'],
+  );
+  unset($form['options']);
+  unset($form['scheduler_settings']);
+
+  // Place panelizer field to the Layout group.
+  $form['panelizer']['#type'] = 'container';
+  $form['#group_children']['panelizer'] = 'group_panelizer';
+
+  $states = array(
+    'big_image' => array(
+      'field_hero_image',
+      'field_color_mode',
+    ),
+    'default' => array(
+      'field_magazine_issue',
+    ),
+    'fullscreen_image' => array(
+      'field_hero_image',
+      'field_color_mode',
+      'field_magazine_issue',
+    ),
+    'map' => array(
+      'field_article_map',
+      'field_magazine_issue',
+    ),
+    'press_release' => array(
+      'field_pressrelease_contact',
+      'field_magazine_issue',
+    ),
+  );
+
+  // Add custom states for each fields with appropriate panelizer mode.
+  foreach ($states as $panelizer_mode => $fields) {
+    foreach ($fields as $field) {
+      $form[$field]['#states']['visible'][':input[name="panelizer[page_manager][name]"]'][]['value'] = 'node:article:' . $panelizer_mode;
+    }
+  }
+
+  // Manage visibility comment settings vertical tab.
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/hide-comment-settings.js';
+
+  // Attach after build callback.
+  $form['#after_build'][] = 'nas_alters_form_article_node_form_after_build';
+
+  // Extra submit.
+  $form['#submit'][] = 'nas_alters_form_article_node_form_submit';
+}
+
+/**
+ * After build callback.
+ */
+function nas_alters_form_article_node_form_after_build($form, &$form_state) {
+  // Hide some vertical tabs.
+  $form['author']['#access'] = FALSE;
+
+  return $form;
+}
+
+/**
+ * Validate the Article node form.
+ */
+function nas_alters_form_article_node_form_submit($form, &$form_state) {
+  // Change layout to default if Hero image wasn't uploaded.
+  if (isset($form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid']) && $form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid'] == 0) {
+    $form_state['values']['panelizer']['page_manager']['name'] = 'node:article:default';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-nas-bird-guide-nas-bird-guide-fav-birds') {
+    $form['submit']['#value'] = '<span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">' . $form['submit']['#value'] . '</span>';
+    $form['submit']['#attributes']['class'][] = 'bird-guide-search-submit';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+    $form['field_bird_call_type_tid']['#options']['All'] = t('Type of Bird');
+    $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
+    $form['field_bird_region_tid']['#options']['All'] = t('Region');
+
+    if (!empty($form_state['storage']['external_page'])) {
+      $form['external_page'] = array(
+        '#type' => 'hidden',
+        '#value' => TRUE,
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function nas_alters_views_pre_render(&$view) {
+  if ($view->name == 'nas_bird_guide' && $view->current_display == 'nas_bird_guide_fav_birds') {
+    $view->set_title(t('Some of Our Favorite Birds'));
+
+    if (!empty($view->exposed_input)) {
+      $view->set_title(t('Matching Birds'));
+      $query = drupal_get_query_parameters();
+      if (!empty($query['external_page'])) {
+        $view->set_title(t('Search results'));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_file_entity_add_upload_alter(&$form, &$form_state, $form_id) {
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
+  $form['filename']['#title'] = t('File name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
+  $form['filename']['#title'] = t('File name');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
+  $form['label']['#prefix'] = '<div style="display:none;">';
+  $form['label']['#suffix'] = '</div>';
+  $form['label']['#default_value'] = 'bean_block';
+  $form['title']['#prefix'] = '<div style="display:none;">';
+  $form['title']['#suffix'] = '</div>';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_nodequeue_arrange_subqueue_form_1_alter(&$form, &$form_state, $form_id) {
+  $form['help_text'] = array(
+    '#markup' => t('<strong>The first 3 cards</strong> will appear in order of appearance <strong>in the footer section sitewide. You can override these settings</strong> on any one particular page. If you don\'t need manual override for a particular page anymore just delete engagement cards references from autocomplete fields in the pane settings<br /><br /><strong>The 4th card</strong> from this nodequeue <strong>will appear in the right sidebar placements sitewide</strong> in case if <strong>no contextual match</strong> is found. You can override defaults using particular sidebar pain settings.'),
+    '#weight' => -2,
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_alters_menu_alter(&$items) {
+  $items['admin/structure/menu/manage/%menu']['page callback'] = '_nas_alters_menu_admin_page';
+  $items['admin/structure/menu/manage/%menu']['page arguments'] = array(4);
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function nas_alters_module_implements_alter(&$implementations, $hook) {
+  // Make sure that we trigger nas_alters_menu_alter() after bigmenu_menu_alter().
+  if ($hook == 'menu_alter') {
+    $group = $implementations['nas_alters'];
+    unset($implementations['nas_alters']);
+    $implementations['nas_alters'] = $group;
+  }
+}
+
+/**
+ * Menu admin page callback.
+ */
+function _nas_alters_menu_admin_page($menu) {
+  if ($menu['menu_name'] == 'boa') {
+    module_load_include('inc', 'bigmenu', 'bigmenu.admin');
+    return drupal_get_form('bigmenu_overview_form', $menu);
+  }
+
+  module_load_include('inc', 'menu', 'menu.admin');
+  return drupal_get_form('menu_overview_form', $menu);
+}
