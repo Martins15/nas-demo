@@ -8612,17 +8612,15 @@ body.black-bg .section-header a:hover {
 
 /* @todo Document this whole thing */
 .slideshow {
+  margin-bottom: 50px;
   position: relative;
 }
 body.black-bg .slideshow {
   color: #fff !important;
 }
 @media only screen and (min-width: 768px) {
-  .slideshow {
-    margin-bottom: -30px;
-  }
   .slideshow.standalone {
-    top: -60px;
+    margin-top: -60px;
   }
 }
 
@@ -8831,18 +8829,6 @@ body.black-bg .slideshow,
 body.black-bg .slideshow-indicator,
 body.black-bg .slide-caption {
   color: #fff;
-}
-
-body.node-type-slideshow #tabs {
-  position: relative;
-  z-index: 10;
-}
-
-.slideshow-sidebar-block {
-  min-height: inherit !important;
-}
-.slideshow-sidebar-block .editorial-card-content {
-  min-height: inherit !important;
 }
 
 .see-all-show {

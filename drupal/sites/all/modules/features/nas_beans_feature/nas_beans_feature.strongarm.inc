@@ -15,6 +15,7 @@ function nas_beans_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'bean_wysiwyg_types_enabled';
   $strongarm->value = array(
+    'slideshow' => 'slideshow',
     'wysiwyg_image' => 'wysiwyg_image',
     'welcome_to_audubon' => 'welcome_to_audubon',
   );

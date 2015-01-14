@@ -27,13 +27,7 @@
       </div> 
     </header>
     <div class="article-body row">
-      <div class="article-text large-push-2 large-10 columns reflow-body">
-        <aside class="article-aside reflow reflow-into-body">
-          <?php print $content['right']; ?>
-        </aside>
-        <?php print $content['main']; ?>
-      </div>
-      <div class="article-sidebar large-pull-10 large-2 columns">
+      <div class="article-sidebar large-2 columns">
         <?php print $content['social']; ?>
         <section class="clearfix article-sidebar-section article-meta hide-for-tiny hide-for-small hide-for-medium">
           <?php print $content['author']; ?>
@@ -42,6 +36,12 @@
           <?php print $content['birds']; ?>
         </section>
         <?php print $content['left']; ?>
+      </div>
+      <div class="article-text large-10 columns reflow-body">
+        <aside class="article-aside reflow reflow-into-body">
+          <?php print $content['right']; ?>
+        </aside>
+        <?php print $content['main']; ?>
       </div>
     </div>
   </article>
