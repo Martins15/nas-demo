@@ -70,7 +70,7 @@
             <a class="orange" href="#">Donate</a>
           </li>
           <li class="primary-nav-item">
-            <a href="/" class="primary-nav-search"><i class="icon-magnifier"></i></a>
+            <a href="<?php print $searchpage_url; ?>" class="primary-nav-search"><i class="icon-magnifier"></i></a>
           </li>
         </ul>
       </div>
