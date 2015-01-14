@@ -6833,6 +6833,11 @@ input.header-search-input,
     padding-left: 25px;
   }
 }
+@media only screen and (min-width: 768px) {
+  .mobile-nav {
+    float: right;
+  }
+}
 
 @media only screen and (max-width: 900px) {
   .global-header.microsite .mobile-nav {

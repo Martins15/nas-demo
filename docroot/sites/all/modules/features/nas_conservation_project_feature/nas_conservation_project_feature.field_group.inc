@@ -59,6 +59,7 @@ function nas_conservation_project_feature_field_group_info() {
       1 => 'field_flyway',
       2 => 'field_project_related_birds',
       3 => 'field_internal_tagging',
+      4 => 'field_image',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
