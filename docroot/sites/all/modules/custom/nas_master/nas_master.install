@@ -1275,16 +1275,16 @@ function nas_master_update_7092() {
 }
 
 /**
- * Enable module.
- */
-function nas_master_update_7093() {
-  module_enable(array('bigmenu'));
-}
-
-/**
  * Revert features.
  */
 function nas_master_update_7094() {
   module_enable(array('nas_content_administration_page_feature'));
   features_revert_module('nas_content_administration_page_feature');
+}
+
+/**
+ * Enable module.
+ */
+function nas_master_update_7097() {
+  module_enable(array('bigmenu'));
 }
