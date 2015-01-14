@@ -284,6 +284,18 @@ function nas_alters_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_module_implements_alter().
+ */
+function nas_alters_module_implements_alter(&$implementations, $hook) {
+  // Make sure that we trigger nas_alters_menu_alter() after bigmenu_menu_alter().
+  if ($hook == 'menu_alter') {
+    $group = $implementations['nas_alters'];
+    unset($implementations['nas_alters']);
+    $implementations['nas_alters'] = $group;
+  }
+}
+
+/**
  * Menu admin page callback.
  */
 function _nas_alters_menu_admin_page($menu) {
