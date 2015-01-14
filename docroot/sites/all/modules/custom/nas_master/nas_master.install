@@ -1298,6 +1298,7 @@ function nas_master_update_7094() {
 function nas_master_update_7095() {
   module_disable(array('nas_revision_feature'));
   features_revert_module('nas_content_administration_page_feature');
+  features_revert_module('nas_views_feature');
 }
 
 /**
