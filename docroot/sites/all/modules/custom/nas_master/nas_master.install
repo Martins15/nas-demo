@@ -1282,6 +1282,9 @@ function nas_master_update_7092() {
   features_revert_module('nas_audubon_near_you_feature');
   features_revert_module('nas_location_feature');
   features_revert_module('nas_views_feature');
+  features_revert_module('nas_beans_feature');
+  features_revert(array('nas_bird_type_feature' => array('filter')));
+  features_revert_module('nas_image_styles_feature');
 }
 
 /**
@@ -1315,6 +1318,23 @@ function nas_master_update_7097() {
 function nas_master_update_7096() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_views_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7098() {
+  features_revert(array('nas_search_feature' => array('views_view')));
+}
+
+/**
+ * Revert features.
+ */
+
+function nas_master_update_7099() {
+  features_revert_module('nas_beans_feature');
+  features_revert(array('nas_bird_type_feature' => array('filter')));
+  features_revert_module('nas_image_styles_feature');
 }
 
 /**

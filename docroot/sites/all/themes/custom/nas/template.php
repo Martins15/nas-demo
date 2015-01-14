@@ -713,6 +713,7 @@ function nas_image($variables) {
     'boa_family_species',
     'magazine_issue_cover',
     'our_leadership',
+    'wysiwyg_slide',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
