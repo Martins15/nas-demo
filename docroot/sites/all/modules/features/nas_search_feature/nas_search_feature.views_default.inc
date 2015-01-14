@@ -74,7 +74,7 @@ function nas_search_feature_views_default_views() {
   /* Display: Birds */
   $handler = $view->new_display('panel_pane', 'Birds', 'birds');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
-  $handler->display->display_options['css_class'] = 'bird-card-set bird-card-set-search';
+  $handler->display->display_options['css_class'] = 'bird-card-set-search';
   $handler->display->display_options['exposed_block'] = TRUE;
 
   /* Display: Other content */
