@@ -1301,10 +1301,11 @@ function nas_master_update_7095() {
 }
 
 /**
- * Enable module.
+ * Enable module. Revert features.
  */
 function nas_master_update_7097() {
   module_enable(array('bigmenu'));
+  features_revert_module('nas_editor_role');
 }
 
 /**
