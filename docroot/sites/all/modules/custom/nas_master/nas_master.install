@@ -1316,3 +1316,10 @@ function nas_master_update_7096() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_views_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7100() {
+  features_revert_module('nas_conservation_project_feature');
+}
