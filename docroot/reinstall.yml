@@ -175,6 +175,11 @@
     shell: "{{ php_env_vars }} drush -y search-api-index -l {{ site_url }}"
     when: pp_environment == "demo" or pp_environment == "staging"
 
+  - name: Error messages to display settings
+    sudo: yes
+    shell: "{{ php_env_vars }} drush vset error_level 2"
+    when: pp_environment == "default"
+
   handlers:
 #    - name: import livedb
 #      mysql_db: name=livedrupal state=import target=livedb.sql.gz
