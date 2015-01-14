@@ -1320,6 +1320,13 @@ function nas_master_update_7096() {
 /**
  * Revert features.
  */
+function nas_master_update_7098() {
+  features_revert(array('nas_search_feature' => array('views_view')));
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7100() {
   features_revert_module('nas_conservation_project_feature');
 }
