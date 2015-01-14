@@ -1,4 +1,4 @@
-name = NAS Revision
+name = NAS Content Administration page
 description = Provides VBO page
 core = 7.x
 package = NAS

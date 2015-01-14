@@ -1241,7 +1241,6 @@ function nas_master_update_7088() {
  * Revert features.
  */
 function nas_master_update_7089() {
-  module_enable(array('nas_revision_feature'));
   features_revert_module('nas_article_feature');
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_boa_family_feature');
@@ -1257,7 +1256,6 @@ function nas_master_update_7089() {
   features_revert_module('nas_magazine_issue_feature');
   features_revert_module('nas_slideshow_feature');
   features_revert_module('nas_static_page_feature');
-  features_revert_module('nas_revision_feature');
 }
 
 /**
@@ -1281,4 +1279,12 @@ function nas_master_update_7092() {
  */
 function nas_master_update_7093() {
   module_enable(array('bigmenu'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7094() {
+  module_enable(array('nas_content_administration_page_feature'));
+  features_revert_module('nas_content_administration_page_feature');
 }
