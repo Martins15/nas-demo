@@ -198,11 +198,11 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Content: Date (field_article_date) */
+  $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
+  $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
   /* Contextual filter: Content: Has taxonomy term ID (with depth) */
   $handler->display->display_options['arguments']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
   $handler->display->display_options['arguments']['term_node_tid_depth']['table'] = 'node';
