@@ -45,11 +45,6 @@ function nas_bird_type_feature_filter_default_formats() {
         'status' => 1,
         'settings' => array(),
       ),
-      'filter_htmlcorrector' => array(
-        'weight' => 10,
-        'status' => 1,
-        'settings' => array(),
-      ),
     ),
   );
 

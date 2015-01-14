@@ -204,8 +204,8 @@ function nas_menu_is_current_page($path) {
 function nas_menu_is_node_section($node, $menu_path) {
   module_load_include('inc', 'pathauto');
   $uri = entity_uri('node', $node);
-  $path = drupal_get_path_alias($uri['path'], $node->langugage);
-  $pathauto_alias = pathauto_create_alias('node', 'return', $uri['path'], array('node' => $node), $node->type, $node->langugage);
+  $path = drupal_get_path_alias($uri['path'], $node->language);
+  $pathauto_alias = pathauto_create_alias('node', 'return', $uri['path'], array('node' => $node), $node->type, $node->language);
   $node->path['pathauto'] = ($path != $uri['path'] && $path == $pathauto_alias);
 
   $path_parts = explode('/', $path);

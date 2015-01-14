@@ -12,5 +12,5 @@ features[features_api][] = api:2
 features[page_manager_pages][] = search_page
 features[views_view][] = search_results
 features_exclude[dependencies][ctools] = ctools
-mtime = 1421077203
+mtime = 1421157856
 project path = sites/all/modules/features

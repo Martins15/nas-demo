@@ -127,7 +127,7 @@ function nas_content_administration_page_feature_views_default_views() {
       'label' => '',
     ),
     'action::node_assign_owner_action' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -155,21 +155,21 @@ function nas_content_administration_page_feature_views_default_views() {
       'label' => '',
     ),
     'action::node_make_sticky_action' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::node_make_unsticky_action' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::views_bulk_operations_modify_action' => array(
-      'selected' => 1,
+      'selected' => 0,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
