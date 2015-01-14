@@ -79,9 +79,9 @@ function bigmenu_menu() {
  * TODO - should be an admin toggle for this setting
  */
 function bigmenu_menu_alter(&$items) {
-  /*$items['admin/structure/menu/manage/%menu']['page arguments'] = array('bigmenu_overview_form', 4);
+  $items['admin/structure/menu/manage/%menu']['page arguments'] = array('bigmenu_overview_form', 4);
   $items['admin/structure/menu/manage/%menu']['file'] = 'bigmenu.admin.inc';
-  $items['admin/structure/menu/manage/%menu']['file path'] = drupal_get_path('module', 'bigmenu');*/
+  $items['admin/structure/menu/manage/%menu']['file path'] = drupal_get_path('module', 'bigmenu');
 }
 
 /**
