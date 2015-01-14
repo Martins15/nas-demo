@@ -4863,8 +4863,32 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   font-size: 17px;
 }
 
-.card-set.editorial-card-3x .editorial-card {
-  margin-bottom: 37.5px;
+.editorial-card-3x.space-top {
+  padding-top: 25px;
+}
+.editorial-card-3x.space-top.double {
+  padding-top: 50px;
+}
+.editorial-card-3x.space-bottom {
+  padding-bottom: 25px;
+}
+.editorial-card-3x.space-bottom.double {
+  padding-bottom: 50px;
+}
+@media only screen and (max-width: 479px) {
+  .editorial-card-3x .card-set.space-bottom {
+    padding-bottom: 0;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .editorial-card-3x .card-set.space-bottom {
+    padding-bottom: 0;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .editorial-card-3x .card-set.space-bottom {
+    padding-bottom: 0;
+  }
 }
 
 /* @todo refactor the hell out of this */
@@ -8073,6 +8097,26 @@ body.touch .primary-sub-nav-index {
   .banner {
     height: 440px;
     margin: 0 -25px 25px -25px;
+  }
+}
+
+.banner-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0.2));
+}
+.light-bg .banner-gradient-overlay {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 40%, rgba(255, 255, 255, 0.2));
+}
+@media only screen and (min-width: 601px) {
+  .banner-gradient-overlay {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0) 85%);
+  }
+  .light-bg .banner-gradient-overlay {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 40%, rgba(255, 255, 255, 0) 85%);
   }
 }
 
