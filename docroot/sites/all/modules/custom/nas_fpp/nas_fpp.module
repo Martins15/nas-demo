@@ -74,6 +74,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser for Author page'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['nas_teaser_related_news'] = array(
+    'label' => t('Teaser for related news'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['search_result'] = array(
     'label' => t('Teaser for search results'),
     'custom settings' => FALSE,

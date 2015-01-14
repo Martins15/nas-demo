@@ -1270,6 +1270,14 @@ function nas_master_update_7090() {
 /**
  * Revert features.
  */
+function nas_master_update_7091() {
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_views_feature');
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7092() {
   features_revert_module('nas_audubon_near_you_feature');
   features_revert_module('nas_location_feature');
@@ -1290,4 +1298,12 @@ function nas_master_update_7094() {
 function nas_master_update_7095() {
   module_disable(array('nas_revision_feature'));
   features_revert_module('nas_content_administration_page_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7096() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_views_feature');
 }
