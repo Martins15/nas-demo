@@ -73,6 +73,33 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     $vars_array_data = get_welcome_to_audubon_array_data($entity);
     $vars['content'] = theme('bean__welcome_to_audobun', $vars_array_data);
   }
+  elseif ($vars['elements']['#bundle'] == 'slideshow') {
+    $entity = $vars['elements']['#entity'];
+    // Get Title.
+    $get_title = field_get_items('bean', $entity, 'field_wysiwyg_slideshow_title');
+    $vars['title'] = !empty($get_title[0]['value']) ? $get_title[0]['value'] : '';
+    // Get images.
+    $get_images = field_get_items('bean', $entity, 'field_wysiwyg_images');
+    $slides = array();
+    $count = 0;
+    if (!empty($get_images)) {
+      foreach ($get_images as $key => $image) {
+        $file = file_load($image['fid']);
+        $slides[$key]['image'] = theme('image_style', array(
+          'style_name' => 'wysiwyg_slide',
+          'path' => $file->uri,
+        ));
+        $get_caption = field_get_items('file', $file, 'field_file_caption');
+        $slides[$key]['caption'] = !empty($get_caption[0]['value']) ? $get_caption[0]['value'] : '';
+        $get_credit = field_get_items('file', $file, 'field_file_credit');
+        if (!empty($get_credit)) {
+          $slides[$key]['caption'] .= '(' . $get_credit[0]['value'] . ')';
+        }
+      }
+      $vars['slides'] = $slides;
+      $vars['count'] = count($get_images);
+    }
+  }
 }
 
 /**
@@ -167,6 +194,15 @@ function nas_wysiwyg_theme() {
         'color' => '',
       ),
       'template' => 'bean--welcome_to_audobun',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+    'bean__slideshow' => array(
+      'variables' => array(
+        'title' => '',
+        'slides' => array(),
+        'count' => array(),
+      ),
+      'template' => 'bean--slideshow',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
   );

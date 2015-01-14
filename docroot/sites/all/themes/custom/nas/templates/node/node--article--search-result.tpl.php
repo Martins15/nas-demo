@@ -88,12 +88,14 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="row">
+    <?php if ($teaser_list_image): ?>
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
         <?php print $teaser_list_image; ?>
       </div>
     </div>
-    <div class="tiny-8 columns">
+    <?php endif; ?>
+    <div class="<?php print $teaser_list_image ? 'tiny-8' : 'tiny-12'; ?> columns">
       <div class="editorial-card-content">
         <div class="editorial-card-info">
           <?php if ($blue_text_link_url): ?>
