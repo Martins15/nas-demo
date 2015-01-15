@@ -123,49 +123,17 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
     $image_wrapper = entity_metadata_wrapper('file', $image);
     $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
-    $image_credit = $image_wrapper->field_file_credit->value()['value'];
+    $image_credit = check_plain($image_wrapper->field_file_credit->value());
   }
 
   $summary = check_plain($conf['summary']);
 
-  $title_link = l(t(check_plain($conf['title'])), $conf['title_link']);
-  $blue_text_link = l(t(check_plain($conf['blue_text'])), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
+  $title_link = l(t($conf['title']), $conf['title_link']);
+  $blue_text_link = l(t($conf['blue_text']), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
 
   $contextual_links = '';
   if (user_access('frontpage featured pane edit')) {
-    ctools_include('modal');
-    ctools_modal_add_js();
-    // Add ajax-responder so ctools_ajax_command_reload() will work.
-    ctools_add_js('ajax-responder');
-    // We expect Featured Bird pane to be only on Bird Guide. If this is not
-    // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_frontpage_featured'))->fetchField();
-
-    if (empty($pid)) {
-      nas_panes_resave_panel(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_frontpage_featured'))->fetchField();
-    }
-
-    $links = array(
-      'edit' => array(
-        'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-        'attributes' => array('class' => array('ctools-use-modal')),
-      ),
-    );
-
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $contextual_links = drupal_render($build);
+    $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
   }
 
   // Pass image url value to theme
