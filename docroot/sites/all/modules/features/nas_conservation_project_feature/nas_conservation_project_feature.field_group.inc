@@ -13,6 +13,34 @@ function nas_conservation_project_feature_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_editorial_card|node|project|form';
+  $field_group->group_name = 'group_editorial_card';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'project';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Editorial card fields',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_editorial_card_title',
+      1 => 'field_editorial_card_subtitle',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_editorial_card|node|project|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_main_content|node|project|form';
   $field_group->group_name = 'group_main_content';
   $field_group->entity_type = 'node';
@@ -28,7 +56,8 @@ function nas_conservation_project_feature_field_group_info() {
       2 => 'field_hero_image',
       3 => 'field_subtitle',
       4 => 'field_project_description',
-      5 => 'title',
+      5 => 'field_editorial_card_image',
+      6 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
