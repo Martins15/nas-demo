@@ -155,9 +155,7 @@ function nas_article_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_article';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'promote',
-    2 => 'revision',
+    0 => 'revision',
   );
   $export['node_options_article'] = $strongarm;
 
@@ -208,6 +206,11 @@ function nas_article_feature_strongarm() {
         'choice' => 0,
       ),
       'teaser_author_page' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_teaser_related_news' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

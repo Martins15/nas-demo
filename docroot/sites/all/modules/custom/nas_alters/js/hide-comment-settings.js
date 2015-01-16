@@ -9,11 +9,13 @@
             var vertical_tabs = $('#edit-comment-settings').parents('.vertical-tabs');
             // Hide comment settings vertical tab if press release layout
             // selected.
-            if (page_manager_el.val() == 'node:article:press_release') {
-              $('.vertical-tabs-list .vertical-tab-button:eq('+index+')', vertical_tabs).hide();
+            if (page_manager_el.val() == 'node:article:press_release') {console.log('abu');
+              $('#edit-disqus-status', vertical_tabs).attr('disabled', true);
+              $('#edit-disqus-status', vertical_tabs).attr('checked', false);
             }
             else {
-              $('.vertical-tabs-list .vertical-tab-button:eq('+index+')', vertical_tabs).show();
+              $('#edit-disqus-status', vertical_tabs).attr('disabled', false);
+              $('#edit-disqus-status', vertical_tabs).attr('checked', true);
             }
           })
           .trigger('change');
