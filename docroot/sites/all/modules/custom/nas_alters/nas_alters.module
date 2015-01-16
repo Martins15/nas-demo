@@ -180,7 +180,7 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
 
   // Move redirect field to "Menu & URL path settings" tab.
   $form['menu_path_custom_tab']['field_article_redirect'] = $form['field_article_redirect'];
-  $form['menu_path_custom_tab']['field_article_redirect']['#weight'] = -10;
+  $form['menu_path_custom_tab']['field_article_redirect']['#weight'] = 40;
   unset($form['field_article_redirect']);
 
   // Manage visibility comment settings vertical tab.
