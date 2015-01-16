@@ -66,7 +66,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
       $title = $link['title'];
     }
     else {
-      $links_to_display[] = l($link['title'], 'boa', array(
+      $links_to_display[] = l($link['title'], 'birds-of-america', array(
           'query' => $link['query'],
           'fragment' => 'boa-index-plates',
           'attributes' => array(

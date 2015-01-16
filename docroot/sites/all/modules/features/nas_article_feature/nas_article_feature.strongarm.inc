@@ -115,7 +115,10 @@ function nas_article_feature_strongarm() {
           'weight' => '5',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '4',
+        ),
+        'redirect' => array(
+          'weight' => '5',
         ),
       ),
       'display' => array(
