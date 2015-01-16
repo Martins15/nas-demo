@@ -46,6 +46,7 @@ function nas_slideshow_feature_panelizer_defaults() {
       'footer' => NULL,
       'slideshow' => NULL,
       'cards_set' => NULL,
+      'slide_card' => NULL,
     ),
   );
   $display->cache = array();
@@ -188,6 +189,41 @@ function nas_slideshow_feature_panelizer_defaults() {
     $pane->uuid = '81a52fa1-0cbd-4fe9-ba34-d5d71d6137ba';
     $display->content['new-81a52fa1-0cbd-4fe9-ba34-d5d71d6137ba'] = $pane;
     $display->panels['slideshow'][0] = 'new-81a52fa1-0cbd-4fe9-ba34-d5d71d6137ba';
+    $pane = new stdClass();
+    $pane->pid = 'new-a368d2bb-c703-4370-a9b3-b536c216d4d9';
+    $pane->panel = 'slide_card';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'default' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+      ),
+      'form_build_id' => 'form-V344bZ_sQ-37PnVyNfhV3IMHAqKCkgrfEsYeBDHC3M0',
+      'form_token' => 'PeOsNWIs0JQvy7iY5zSZvxNz6nYbSZ6ymq5SrBoyPMA',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'a368d2bb-c703-4370-a9b3-b536c216d4d9';
+    $display->content['new-a368d2bb-c703-4370-a9b3-b536c216d4d9'] = $pane;
+    $display->panels['slide_card'][0] = 'new-a368d2bb-c703-4370-a9b3-b536c216d4d9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;

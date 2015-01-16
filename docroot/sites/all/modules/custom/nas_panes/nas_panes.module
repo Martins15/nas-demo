@@ -1292,7 +1292,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   if ($first) {
     // Manual override.
     if ($data['references'][1]['entity_reference'] && $node = node_load($data['references'][1]['entity_reference']['entity_id'])) {
-      $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+      $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
     }
     if (empty($nodes)) {
       // Check if some editorial cards has reference to bird.
