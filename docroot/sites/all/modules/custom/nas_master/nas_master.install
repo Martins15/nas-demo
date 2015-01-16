@@ -1351,13 +1351,6 @@ function nas_master_update_7101() {
 }
 
 /**
- * Enable and revert features.
- */
-function nas_master_update_7102() {
-  
-}
-
-/**
  * Revert features.
  */
 function nas_master_update_7103() {
