@@ -9,7 +9,7 @@
             var vertical_tabs = $('#edit-comment-settings').parents('.vertical-tabs');
             // Hide comment settings vertical tab if press release layout
             // selected.
-            if (page_manager_el.val() == 'node:article:press_release') {console.log('abu');
+            if (page_manager_el.val() == 'node:article:press_release') {
               $('#edit-disqus-status', vertical_tabs).attr('disabled', true);
               $('#edit-disqus-status', vertical_tabs).attr('checked', false);
             }
