@@ -13,6 +13,35 @@ function nas_article_feature_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_editorial_card|node|article|form';
+  $field_group->group_name = 'group_editorial_card';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Editorial card fields',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_editorial_card_title',
+      1 => 'field_editorial_card_subtitle',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'label' => 'Editorial card fields',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $export['group_editorial_card|node|article|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_main_content|node|article|form';
   $field_group->group_name = 'group_main_content';
   $field_group->entity_type = 'node';
@@ -94,6 +123,7 @@ function nas_article_feature_field_group_info() {
       2 => 'field_hero_image',
       3 => 'field_magazine_issue',
       4 => 'field_pressrelease_contact',
+      5 => 'field_editorial_card_image',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
