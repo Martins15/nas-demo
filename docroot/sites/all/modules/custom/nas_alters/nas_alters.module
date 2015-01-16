@@ -76,6 +76,10 @@ function nas_alters_form_node_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form['panelizer']['page_manager']['name']['#options']) && count($form['panelizer']['page_manager']['name']['#options']) <= 1) {
     unset($form['panelizer']);
   }
+  // Increase size of Menu Section selectbox to match count of options.
+  if (isset($form['field_menu_section']) && $count = count($form['field_menu_section']['und']['#options'])) {
+    $form['field_menu_section']['und']['#size'] = $count;
+  }
 }
 
 /**
