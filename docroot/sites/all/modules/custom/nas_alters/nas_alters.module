@@ -7,7 +7,6 @@
 
 /**
  * Implements hook_init().
- *
  */
 function nas_alters_init() {
   global $theme;
@@ -15,8 +14,14 @@ function nas_alters_init() {
   if ($theme == 'adminimal') {
     drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
   }
-}
 
+  // Redirect articles only when field_article_redirect is filled and is full node page.
+  if (_nas_alters_is_article_full_view_mode_page() && $node = menu_get_object('node')) {
+    if ($node->type == 'article' && !empty($node->field_article_redirect[LANGUAGE_NONE][0]['url'])) {
+      drupal_goto($node->field_article_redirect[LANGUAGE_NONE][0]['url'], array(), 301);
+    }
+  }
+}
 
 /**
  * Implements hook_theme().
@@ -173,6 +178,11 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     }
   }
 
+  // Move redirect field to "Menu & URL path settings" tab.
+  $form['menu_path_custom_tab']['field_article_redirect'] = $form['field_article_redirect'];
+  $form['menu_path_custom_tab']['field_article_redirect']['#weight'] = 40;
+  unset($form['field_article_redirect']);
+
   // Manage visibility comment settings vertical tab.
   $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/hide-comment-settings.js';
 
@@ -310,4 +320,12 @@ function _nas_alters_menu_admin_page($menu) {
 
   module_load_include('inc', 'menu', 'menu.admin');
   return drupal_get_form('menu_overview_form', $menu);
+}
+
+/**
+ * Returns whether is article full view mode page.
+ */
+function _nas_alters_is_article_full_view_mode_page() {
+  $args = arg();
+  return $args[0] == 'node' && is_numeric($args[1]) && empty($args[2]);
 }
