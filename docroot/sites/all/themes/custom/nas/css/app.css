@@ -13236,6 +13236,13 @@ textarea.error {
   float: left;
   margin-right: 1em;
 }
+#modalContent .ctools-modal-content .form-type-media label.media-filename {
+  font-size: 10px;
+  line-height: 12px;
+  margin: 0;
+  padding: 2px;
+  width: 100%;
+}
 #modalContent .ctools-modal-content .form-type-media .preview {
   margin-bottom: 1em;
   float: left;
@@ -13243,8 +13250,14 @@ textarea.error {
 #modalContent .ctools-modal-content .form-type-media .remove {
   clear: left;
 }
+#modalContent .ctools-modal-content .clearfix {
+  clear: both;
+}
 #modalContent .ctools-modal-content .resizable-textarea {
   margin: 0;
+}
+#modalContent .ctools-modal-content .sticky-header {
+  display: none;
 }
 #modalContent .ctools-modal-content .button {
   margin-right: 1em;
@@ -13299,6 +13312,9 @@ textarea.error {
 }
 #modalContent .ctools-modal-content .text-format-wrapper {
   margin-bottom: 1em;
+}
+#modalContent .ctools-modal-content .text-format-wrapper label {
+  float: none;
 }
 #modalContent .ctools-modal-content .text-format-wrapper .form-type-textarea {
   margin-bottom: 0;
@@ -13464,4 +13480,16 @@ textarea.error {
 }
 #modalContent .ctools-modal-content input.empty {
   color: #ccc !important;
+}
+#modalContent .ctools-modal-content .form-item label.option.hidden-options,
+#modalContent .ctools-modal-content .form-item label.option.expanded-options {
+  height: auto;
+  padding-right: 18px;
+}
+#modalContent .ctools-modal-content .-wrap-select.ie {
+  float: left;
+}
+#modalContent .ctools-modal-content .-wrap-select.ie select {
+  background: none;
+  width: 100%;
 }
