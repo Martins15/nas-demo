@@ -95,6 +95,9 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
       'teasers' => $teasers,
       'contextual_links' => $contextual_links,
     ));
+    // Pass rendered Engagement Card to static variable, so we could print it anywhere (uses in Slideshow CT).
+    $nas_engagement_cards_sidebar_rendered_card = &drupal_static('nas_engagement_cards_sidebar_rendered_card');
+    $nas_engagement_cards_sidebar_rendered_card = $block->content;
   }
 
   return $block;
