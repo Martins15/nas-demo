@@ -261,6 +261,14 @@ textarea {
     label {
       float: left;
       margin-right: 1em;
+
+      &.media-filename {
+        font-size: 10px;
+        line-height: 12px;
+        margin: 0;
+        padding: 2px;
+        width: 100%;
+      }
     }
 
     .preview {
@@ -273,8 +281,16 @@ textarea {
     }
   }
 
+  .clearfix {
+    clear: both;
+  }
+
   .resizable-textarea {
     margin: 0;
+  }
+
+  .sticky-header {
+    display: none;
   }
 
   .button {
@@ -295,6 +311,10 @@ textarea {
 
   .text-format-wrapper {
     margin-bottom: 1em;
+
+    label {
+      float: none;
+    }
 
     .form-type-textarea {
       margin-bottom: 0;
@@ -502,5 +522,22 @@ textarea {
 
   input.empty {
     color: #ccc !important;
+  }
+
+  .form-item label.option.hidden-options,
+  .form-item label.option.expanded-options {
+    height: auto;
+    padding-right: 18px;
+  }
+
+  .-wrap-select {
+    &.ie {
+      float: left;
+
+      select {
+        background: none;
+        width: 100%;
+      }
+    }
   }
 }
