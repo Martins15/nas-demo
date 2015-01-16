@@ -1349,3 +1349,13 @@ function nas_master_update_7100() {
 function nas_master_update_7101() {
   features_revert_module('nas_article_feature');
 }
+
+/**
+ * Enable and revert features.
+ */
+function nas_master_update_7102() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_slideshow_feature');
+  features_revert_module('nas_static_page_feature');
+}
