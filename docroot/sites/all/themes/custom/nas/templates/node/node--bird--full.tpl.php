@@ -164,7 +164,9 @@
                 <a class="social-sharing-icon blue small" target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>"><i class="icon-pinterest"></i></a>&nbsp;
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
-              <section class="bird-guide-section right-col small center"></section>
+              <section class="bird-guide-section right-col small center">
+                <?php print $donate_link; ?>
+              </section>
             </div>
             <?php if (!empty($content['field_bird_tip'])): ?>
             <section id="bird-dyk" class="bird-guide-section right-col small sans">
