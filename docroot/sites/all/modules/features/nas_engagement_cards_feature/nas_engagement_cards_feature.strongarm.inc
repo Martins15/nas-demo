@@ -125,7 +125,7 @@ function nas_engagement_cards_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_engagement_cards';
   $strongarm->value = array(
-    0 => 'status',
+    0 => 'revision',
   );
   $export['node_options_engagement_cards'] = $strongarm;
 

@@ -73,8 +73,18 @@ function nas_disqus_strongarm() {
   $strongarm->value = array(
     'article' => 'article',
     'bird' => 0,
+    'boaf' => 0,
+    'boa' => 0,
+    'boag' => 0,
+    'project' => 0,
+    'strategy' => 0,
     'contact' => 0,
+    'engagement_cards' => 0,
+    'flyway' => 0,
+    'location' => 0,
     'magazine_issue' => 0,
+    'slideshow' => 0,
+    'static_page' => 0,
   );
   $export['disqus_nodetypes'] = $strongarm;
 
@@ -83,7 +93,7 @@ function nas_disqus_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'disqus_nodetypes_default';
   $strongarm->value = array(
-    'article' => 0,
+    'article' => 'article',
     'bird' => 0,
     'boaf' => 0,
     'boa' => 0,
