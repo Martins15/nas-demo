@@ -4611,6 +4611,10 @@ small {
   }
 }
 
+.engagement-card-sidebar-section {
+  float: left;
+}
+
 /* @todo Add a markup example */
 .editorial-card-banner.fixed {
   position: absolute;
