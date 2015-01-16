@@ -35,5 +35,7 @@ var StateManager = {
 }
 
 jQuery(function() {
-  StateManager.init();
+  jQuery(window).load(function() {
+    StateManager.init();
+  });
 });

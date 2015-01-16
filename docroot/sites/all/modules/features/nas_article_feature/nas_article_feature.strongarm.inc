@@ -115,7 +115,10 @@ function nas_article_feature_strongarm() {
           'weight' => '5',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '5',
+        ),
+        'redirect' => array(
+          'weight' => '6',
         ),
       ),
       'display' => array(
@@ -155,9 +158,7 @@ function nas_article_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_article';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'promote',
-    2 => 'revision',
+    0 => 'revision',
   );
   $export['node_options_article'] = $strongarm;
 
@@ -208,6 +209,11 @@ function nas_article_feature_strongarm() {
         'choice' => 0,
       ),
       'teaser_author_page' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_teaser_related_news' => array(
         'status' => 0,
         'default' => 0,
         'choice' => 0,

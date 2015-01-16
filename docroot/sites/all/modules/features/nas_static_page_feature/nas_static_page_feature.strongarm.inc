@@ -98,10 +98,10 @@ function nas_static_page_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
       ),
       'display' => array(),
@@ -130,8 +130,7 @@ function nas_static_page_feature_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_static_page';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'revision',
+    0 => 'revision',
   );
   $export['node_options_static_page'] = $strongarm;
 

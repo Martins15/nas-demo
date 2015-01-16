@@ -10,10 +10,12 @@
             // Hide comment settings vertical tab if press release layout
             // selected.
             if (page_manager_el.val() == 'node:article:press_release') {
-              $('.vertical-tabs-list .vertical-tab-button:eq('+index+')', vertical_tabs).hide();
+              $('#edit-disqus-status', vertical_tabs).attr('disabled', true);
+              $('#edit-disqus-status', vertical_tabs).attr('checked', false);
             }
             else {
-              $('.vertical-tabs-list .vertical-tab-button:eq('+index+')', vertical_tabs).show();
+              $('#edit-disqus-status', vertical_tabs).attr('disabled', false);
+              $('#edit-disqus-status', vertical_tabs).attr('checked', true);
             }
           })
           .trigger('change');

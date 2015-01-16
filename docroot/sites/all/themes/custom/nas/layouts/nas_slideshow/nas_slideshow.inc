@@ -18,5 +18,6 @@ $plugin = array(
     'slideshow' => t('Slideshow'),
     'bottom' => t('Bottom'),
     'cards_set' => t('Engagement cards'),
+    'slide_card' => t('Slide card'),
   ),
 );
