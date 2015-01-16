@@ -1383,7 +1383,7 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   // Panelizer.
   if (!empty($pm_page['handler']->export_module) && $pm_page['handler']->export_module == 'panelizer') {
     $argument = reset($pm_page['contexts']);
-    list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->name);
+    list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->display->cache_key);
     return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $panelizer_default);
   }
 
