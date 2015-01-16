@@ -111,7 +111,7 @@
 
   - name: Random prefix for memcache to settings.php
     sudo: yes
-    lineinfile: dest='sites/default/settings.php' line='$conf[\"memcache_key_prefix\"] = \"{{ pp_environment }}\";'
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"memcache_key_prefix\"] = \"{{ mysql_db }}\";'
 
   - name: Memcache settings to settings.php
     sudo: yes
