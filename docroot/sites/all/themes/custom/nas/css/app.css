@@ -7940,6 +7940,9 @@ body.touch .primary-sub-nav-index {
   }
 }
 
+.one-third-left-width {
+  width: 33% !important;
+}
 @media only screen and (min-width: 601px) {
   .one-third-left-width {
     padding-right: 25px;
