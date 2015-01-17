@@ -13104,6 +13104,11 @@ h2.grey {
   }
 }
 
+.hero-attribution-fullscreen .column {
+  position: inherit;
+  top: 0;
+}
+
 .hero-caption.grey-bar .caption, .hero-caption.grey-bar .article-text figcaption, .article-text .hero-caption.grey-bar figcaption {
   margin: 0;
 }
