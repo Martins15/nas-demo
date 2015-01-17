@@ -329,3 +329,16 @@ function _nas_alters_is_article_full_view_mode_page() {
   $args = arg();
   return $args[0] == 'node' && is_numeric($args[1]) && empty($args[2]);
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function nas_alters_form_alter(&$form, &$form_state, $form_id) {
+  $query = drupal_get_query_parameters();
+  if (!empty($query['nas-panes-from-page']) || !empty($query['nas_panes_resave_panel'])) {
+    // Hide "Override title" field and add label to title field.
+    $form['override_title']['#default_value'] = 1;
+    $form['override_title']['#access'] = FALSE;
+    $form['override_title_text']['#title'] = t('Title');
+  }
+}
