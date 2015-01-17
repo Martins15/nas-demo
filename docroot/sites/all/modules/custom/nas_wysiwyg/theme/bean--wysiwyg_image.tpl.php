@@ -42,15 +42,13 @@
 </figure>
 <?php elseif ($width == 'half-right'): ?>
 <aside class="article-aside <?php print $width; ?>-width">
-  <figure class="article-image">
-    <div class="hide-for-tiny hide-for-small image-container">
-      <?php print render($content['field_wysiwyg_image']); ?>
-      <?php if (!empty($figcaption)): ?>
-      <figcaption class="caption article-aside-caption">
-        <?php print $figcaption; ?>
-      </figcaption>
-      <?php endif; ?>
-    </div>
+  <figure class="article-image hide-for-tiny hide-for-small image-container">
+    <?php print render($content['field_wysiwyg_image']); ?>
+    <?php if (!empty($figcaption)): ?>
+    <figcaption class="caption article-aside-caption">
+      <?php print $figcaption; ?>
+    </figcaption>
+    <?php endif; ?>
   </figure>
 </aside>
 <?php elseif ($width == 'one-third-left'): ?>
