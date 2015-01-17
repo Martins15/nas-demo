@@ -31,6 +31,11 @@
  * @see template_process()
  */
 ?>
+<?php
+/**
+ * Don't use dev inside bean block markup. For some reason WYSIWYG may remove last div.
+ */
+?>
 <?php if ($width == 'default'): ?>
 <figure class="article-image">
   <?php print render($content['field_wysiwyg_image']); ?>
