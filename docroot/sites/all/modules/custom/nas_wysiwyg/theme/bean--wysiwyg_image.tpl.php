@@ -46,7 +46,7 @@
     <div class="hide-for-tiny hide-for-small image-container">
       <?php print render($content['field_wysiwyg_image']); ?>
       <?php if (!empty($figcaption)): ?>
-      <figcaption class="article-aside-caption">
+      <figcaption class="caption article-aside-caption">
         <?php print $figcaption; ?>
       </figcaption>
       <?php endif; ?>
@@ -69,7 +69,7 @@
   <figure class="article-image">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
-    <figcaption class="article-aside-caption">
+    <figcaption class="caption article-aside-caption">
       <?php print $figcaption; ?>
     </figcaption>
     <?php endif; ?>
