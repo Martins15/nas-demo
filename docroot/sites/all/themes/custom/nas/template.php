@@ -511,7 +511,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
   }
   elseif ($vars['type'] !== 'project' && !empty($node->body[LANGUAGE_NONE][0]['value'])) {
-    $vars['subtitle'] = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150) ;
+    $vars['subtitle'] = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150);
   }
   elseif ($vars['type'] === 'project' && !empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
     $vars['subtitle'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
@@ -558,7 +558,7 @@ function nas_preprocess_node_flyway(&$vars) {
  * theme_preprocess_node for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
-  if (in_array($vars['view_mode'], array('editorial_card_3x', 'search_result'))) {
+  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'search_result'))) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
