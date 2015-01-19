@@ -361,6 +361,34 @@ function nas_preprocess_node_magazine_issue(&$vars) {
  */
 function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['by_line'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_author')) {
+      $author_node = node_load($field_items[0]['target_id']);
+      $vars['by_line'] = 'By ' . $author_node->title;
+    }
+  }
+
+  if ($vars['view_mode'] == 'teaser_author_page' || $vars['view_mode'] == 'search_result') {
+    $vars['article_date'] = '';
+    if ($field_items = field_get_items('node', $node, 'field_article_date')) {
+      $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
+    }
+  }
+
+  $editorial_cards_view_modes = array(
+    'editorial_card_3x',
+    'editorial_card_4x',
+    'nas_teaser_related_news',
+    'teaser',
+    'teaser_author_page',
+    'search_result',
+  );
+  if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
@@ -420,24 +448,95 @@ function nas_preprocess_node_article(&$vars) {
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
 
-  if ($vars['view_mode'] == 'teaser') {
-    $vars['by_line'] = '';
-    if ($field_items = field_get_items('node', $node, 'field_author')) {
-      $author_node = node_load($field_items[0]['target_id']);
-      $vars['by_line'] = 'By ' . $author_node->title;
-    }
-  }
-  if ($vars['view_mode'] == 'teaser_author_page' || $vars['view_mode'] == 'search_result') {
-    $vars['article_date'] = '';
-    if ($field_items = field_get_items('node', $node, 'field_article_date')) {
-      $vars['article_date'] = format_date(strtotime($field_items[0]['value']), 'nas_date');
-    }
-  }
-
   if ($vars['view_mode'] == 'nas_node_related_features') {
     if (!empty($vars['content']['field_menu_section'])) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
     }
+  }
+}
+
+/**
+ * Preprocess function for editorial card teasers view modes.
+ */
+function nas_preprocess_nodes_editorial_cards(&$vars) {
+  $node = $vars['node'];
+  $vars['linked_image'] = '';
+  $vars['teaser_list_image'] = '';
+  $image_uri = FALSE;
+  if ($image_items = field_get_items('node', $node, 'field_editorial_card_image')) {
+    $image_uri = $image_items[0]['uri'];
+  }
+  elseif ($vars['type'] === 'slideshow' && $image_items = field_get_items('node', $node, 'field_images')) {
+    $image_uri = $image_items[0]['uri'];
+  }
+  if ($image_uri) {
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser', $image_uri),
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
+    $editorial_listings_view_modes = array(
+      'nas_teaser_related_news',
+      'teaser',
+      'teaser_author_page',
+      'search_result',
+    );
+    if (in_array($vars['view_mode'], $editorial_listings_view_modes)) {
+      $image = theme('image', array(
+        'path' => image_style_url('article_teaser_list', $image_uri),
+        'alt' => $node->title,
+      ));
+      $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
+          'html' => TRUE,
+          'attributes' => array('title' => $node->title),
+        ));
+    }
+  }
+
+  $title = $node->title;
+  if (!empty($node->field_editorial_card_title[LANGUAGE_NONE][0]['value'])) {
+    $title = $node->field_editorial_card_title[LANGUAGE_NONE][0]['value'];
+  }
+  $vars['title'] = check_plain($title);
+  $vars['title_link'] = l($title, 'node/' . $node->nid);
+
+  $vars['subtitle'] = '';
+  if (!empty($node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $vars['subtitle'] = $node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  }
+  elseif ($vars['type'] !== 'project' && !empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  }
+  elseif ($vars['type'] !== 'project' && !empty($node->body[LANGUAGE_NONE][0]['value'])) {
+    $vars['subtitle'] = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150) ;
+  }
+  elseif ($vars['type'] === 'project' && !empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
+    $vars['subtitle'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
+  }
+
+  $vars['url'] = url('node/' . $node->nid);
+
+  if ($vars['type'] == 'project') {
+    $vars['strategy_link'] = '';
+    if (!empty($node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'])) {
+      $nid = $node->field_conservation_strategy[LANGUAGE_NONE][0]['target_id'];
+      if ($strategy = node_load($nid)) {
+        $vars['strategy_link'] = l($strategy->title, 'node/' . $nid, array('attributes' => array('class' => array('editorial-card-slug'))));
+      }
+    }
+  }
+  else {
+    list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
+    $vars['blue_text_link_url'] = $blue_text_link_url;
+    $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
+  }
+
+  $vars['custom_link_text'] = t('Read more');
+  if ($custom_link_title_items = field_get_items('node', $node, 'field_link_title')) {
+    $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_items[0]['safe_value']);
   }
 }
 
@@ -459,6 +558,10 @@ function nas_preprocess_node_flyway(&$vars) {
  * theme_preprocess_node for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
+  if (in_array($vars['view_mode'], array('editorial_card_3x', 'search_result'))) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
@@ -529,6 +632,11 @@ function nas_preprocess_node_strategy(&$vars) {
  * theme_preprocess_node for Conservation Project content type.
  */
 function nas_preprocess_node_project(&$vars) {
+  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'search_result'))) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
   $node = $vars['node'];
   $vars['image_src'] = FALSE;
   $vars['linked_image'] = '';
@@ -1107,6 +1215,11 @@ function nas_preprocess_nas_conservation_project(&$vars) {
  * For slideshow content type.
  */
 function nas_preprocess_node_slideshow(&$vars) {
+  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x'))) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
   $node = $vars['node'];
   if ($vars['view_mode'] == 'teaser' || $vars['view_mode'] == 'nas_node_related_features') {
     // Add slideshow main image.
