@@ -55,46 +55,14 @@ function editorial_card_4x_edit_form($form, &$form_state) {
   // Limit to 4 numbers of references.
   for ($i = 1; $i <= 4; $i++) {
     $form['refs'][$i] = array(
-      '#type' => 'fieldset',
+      '#tree' => TRUE,
+    );
+    $form['refs'][$i]['reference'] = array(
+      '#type' => 'entityreference',
       '#title' => t('Reference %number', array('%number' => $i)),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-      '#tree' => TRUE,
-    );
-    $form['refs'][$i]['image'] = array(
-      '#type' => 'media',
-      '#tree' => TRUE,
-      '#title' => t('Image'),
-      '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
-      '#media_options' => array(
-        'global' => array(
-          'file_extensions' => 'png jpg jpeg gif',
-          'max_filesize' => '20 MB',
-          'file_directory' => '',
-          'types' => array('image'),
-        ),
-      ),
-      '#default_value' => !empty($conf['refs'][$i]['image']) ? $conf['refs'][$i]['image'] : 0,
-    );
-    $form['refs'][$i]['category'] = array(
-      '#title' => 'Category/Eyebrow',
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['category']) ? $conf['refs'][$i]['category'] : '',
-    );
-    $form['refs'][$i]['category_url'] = array(
-      '#title' => 'Category/Eyebrow URL',
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['category_url']) ? $conf['refs'][$i]['category_url'] : '',
-    );
-    $form['refs'][$i]['title'] = array(
-      '#title' => t('Title'),
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['title']) ? $conf['refs'][$i]['title'] : '',
-    );
-    $form['refs'][$i]['url'] = array(
-      '#title' => 'URL',
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['url']) ? $conf['refs'][$i]['url'] : '',
+      '#default_value' => !empty($conf['refs'][$i]['reference']['entity_id']) ? $conf['refs'][$i]['reference']['entity_id'] : 0,
+      '#era_entity_type' => 'node',
+      '#era_bundles' => array('article', 'project', 'static_page', 'slideshow'),
     );
   }
 
@@ -125,36 +93,14 @@ function editorial_card_4x_render($subtype, $conf, $args, $context) {
     $more_link = l($conf['more_link_text'], $conf['more_link_url']);
   }
 
-  $references = array();
+  $teasers = array();
   foreach ($conf['refs'] as $ref) {
-    if (empty($ref['url'])) {
+    if (empty($ref['reference']['entity_id']) || !$node = node_load($ref['reference']['entity_id'])) {
       continue;
     }
-    $reference = array(
-      'category' => '',
-      'title_link' => '',
-      'image_link' => '',
-    );
-    if (!empty($ref['category']) && !empty($ref['category_url'])) {
-      $reference['category'] = l($ref['category'], $ref['category_url'], array(
-        'attributes' => array(
-          'class' => array('editorial-card-slug'),
-        )));
-    }
-    if (!empty($ref['image'])) {
-      $file = file_load($ref['image']);
-      $image = theme('image_style', array(
-          'style_name' => 'article_teaser',
-          'path' => $file->uri,
-        ));
-      $reference['image_link'] = l($image, $ref['url'], array('html' => TRUE));
-    }
-    if (!empty($ref['title'])) {
-      $reference['title_link'] = l($ref['title'], $ref['url']);
-    }
-    if (array_filter($reference)) {
-      $references[] = $reference;
-    }
+    $build = node_view($node, 'editorial_card_4x');
+    $teaser = drupal_render($build);
+    $teasers[] = $teaser;
   }
 
   if (empty($conf['paddings'])) {
@@ -170,7 +116,7 @@ function editorial_card_4x_render($subtype, $conf, $args, $context) {
 
   $block = new stdClass();
   $block->content = theme('editorial_card_4x', array(
-    'references' => $references,
+    'teasers' => $teasers,
     'title' => $conf['override_title'] ? $conf['override_title_text'] : '',
     'more_link' => $more_link,
     'contextual_links' => $contextual_links,
