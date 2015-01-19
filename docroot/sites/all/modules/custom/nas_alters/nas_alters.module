@@ -152,6 +152,7 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     'big_image' => array(
       'field_hero_image',
       'field_color_mode',
+      'field_magazine_issue',
     ),
     'default' => array(
       'field_magazine_issue',
