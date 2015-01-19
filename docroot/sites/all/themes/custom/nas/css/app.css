@@ -7940,6 +7940,9 @@ body.touch .primary-sub-nav-index {
   }
 }
 
+.one-third-left-width {
+  width: 33% !important;
+}
 @media only screen and (min-width: 601px) {
   .one-third-left-width {
     padding-right: 25px;
@@ -13102,6 +13105,11 @@ h2.grey {
     padding: 2px 5px;
     background-color: rgba(0, 0, 0, 0.2);
   }
+}
+
+.hero-attribution-fullscreen .column {
+  position: inherit;
+  top: 0;
 }
 
 .hero-caption.grey-bar .caption, .hero-caption.grey-bar .article-text figcaption, .article-text .hero-caption.grey-bar figcaption {
