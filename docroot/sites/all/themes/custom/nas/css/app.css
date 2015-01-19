@@ -13505,3 +13505,12 @@ textarea.error {
   background: none;
   width: 100%;
 }
+
+.slideshow-sidebar-block {
+  float: left;
+}
+
+body.node-type-slideshow #tabs {
+  position: relative;
+  z-index: 10;
+}

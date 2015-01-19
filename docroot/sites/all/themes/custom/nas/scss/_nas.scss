@@ -545,3 +545,14 @@ textarea {
     }
   }
 }
+
+.slideshow-sidebar-block {
+  float: left;
+}
+
+body.node-type-slideshow {
+  #tabs {
+    position: relative;
+    z-index: 10;
+  }
+}
