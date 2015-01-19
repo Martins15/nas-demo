@@ -22,6 +22,7 @@ $plugin = array(
  */
 function audubon_near_you_search_settings_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['description'] = array(
     '#type' => 'textfield',

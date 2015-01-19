@@ -21,6 +21,7 @@ $plugin = array(
 function magazine_issue_other_issues_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $context = reset($form_state['display']->context);
   // Not on default panel, not magazine_issue.
@@ -43,11 +44,6 @@ function magazine_issue_other_issues_edit_form($form, &$form_state) {
       '#era_bundles' => array('magazine_issue'),
     );
   }
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

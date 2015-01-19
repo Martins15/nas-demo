@@ -19,6 +19,7 @@ $plugin = array(
  */
 function flyways_landing_bottom_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['flyway'] = array(
     '#tree' => TRUE,
@@ -87,11 +88,6 @@ function flyways_landing_bottom_form($form, &$form_state) {
       );
     }
   }
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

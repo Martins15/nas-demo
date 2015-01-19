@@ -19,6 +19,7 @@ $plugin = array(
  */
 function menu_bar_section_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
   $options = menu_parent_options(array(NAS_PANES_MAIN_MENU_NAME => NAS_PANES_MAIN_MENU_NAME), NULL);
 
   $form['default_menu_item'] = array(
@@ -27,11 +28,6 @@ function menu_bar_section_form($form, &$form_state) {
     '#options' => $options,
     '#default_value' => NAS_PANES_MAIN_MENU_NAME . ':' . $conf['default_menu_item'],
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

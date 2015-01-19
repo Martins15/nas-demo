@@ -1718,3 +1718,11 @@ function nas_panes_preprocess_donate_cards_3x(&$vars) {
   nas_panes_preprocess_editorial_card_3x($vars);
 }
 
+/**
+ * Hide title field.
+ */
+function _nas_panes_hide_pane_title_field(&$form) {
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+}

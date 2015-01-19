@@ -22,6 +22,7 @@ $plugin = array(
 function species_across_audubon_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $conf_key = 'default';
   if (isset($form_state['display']->context['panelizer'])) {
@@ -37,11 +38,6 @@ function species_across_audubon_edit_form($form, &$form_state) {
       '#era_bundles' => array('project'),
     );
   }
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }
