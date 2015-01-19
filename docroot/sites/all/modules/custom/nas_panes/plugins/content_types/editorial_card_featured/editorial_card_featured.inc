@@ -19,6 +19,7 @@ $plugin = array(
  */
 function editorial_card_featured_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['image'] = array(
     '#type' => 'media',
@@ -94,11 +95,6 @@ function editorial_card_featured_form($form, &$form_state) {
     '#date_format' => 'm/d/Y',
     '#default_value' => !empty($conf['date']) ? $conf['date'] : '',
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

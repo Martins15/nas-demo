@@ -21,6 +21,7 @@ $plugin = array(
 function frontpage_editorial_cards_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   // Limit to 3 numbers of Articles.
   for ($i = 1; $i <= 3; $i++) {
@@ -32,11 +33,6 @@ function frontpage_editorial_cards_edit_form($form, &$form_state) {
       '#era_bundles' => array('article'),
     );
   }
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

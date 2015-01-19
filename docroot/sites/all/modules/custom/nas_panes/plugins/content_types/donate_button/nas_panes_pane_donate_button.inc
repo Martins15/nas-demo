@@ -19,6 +19,7 @@ $plugin = array(
  */
 function nas_panes_pane_donate_button_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['path'] = array(
     '#type' => 'textarea',
@@ -32,11 +33,6 @@ function nas_panes_pane_donate_button_form($form, &$form_state) {
     '#required' => TRUE,
     '#default_value' => !empty($conf['caption']) ? $conf['caption'] : '',
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

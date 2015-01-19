@@ -26,6 +26,7 @@ $plugin = array(
  */
 function boa_index_bio_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['title'] = array(
     '#title' => t('Title'),
@@ -94,11 +95,6 @@ function boa_index_bio_form($form, &$form_state) {
     '#type' => 'textfield',
     '#default_value' => $conf['link'],
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

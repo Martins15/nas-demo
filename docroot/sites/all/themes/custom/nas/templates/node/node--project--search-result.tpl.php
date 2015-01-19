@@ -98,7 +98,7 @@
     <div class="<?php print $teaser_list_image ? 'tiny-8' : 'tiny-12'; ?> columns">
       <div class="editorial-card-content">
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
-        <p><?php print render($content['field_project_description']); ?></p>
+        <p><?php print $subtitle; ?></p>
       </div>
     </div>
   </div>

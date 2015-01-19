@@ -75,9 +75,9 @@
  *
  * Custom variables:
  * - $title_link: Title with link to node page.
- * - $blue_text_link_url: Article's section's link url.
- * - $blue_text_link_text: Article's section's link text.
- * - $article_date: Article publish date.
+ * - $strategy_link: Blue strategy link.
+ * - $linked_image: Hero image wrapper with A tag linked to node.
+ * - $description: Project teaser description.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -86,25 +86,21 @@
  * @ingroup themeable
  */
 ?>
-<div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="row">
-    <?php if ($teaser_list_image): ?>
-    <div class="tiny-4 columns">
-      <div class="editorial-card-photo">
-        <?php print $teaser_list_image; ?>
-      </div>
+
+<div class="columns large-4">
+  <div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
+    <div class="editorial-card-photo">
+      <?php if (!empty($linked_image)) : ?>
+        <?php print $linked_image; ?>
+      <?php endif; ?>
     </div>
-    <?php endif; ?>
-    <div class="tiny-<?php print $teaser_list_image ? '8' : 12; ?> columns">
-      <div class="editorial-card-content">
-        <span class="editorial-card-slug">
-          <a href="<?php print $blue_text_link_url; ?>"><?php print $blue_text_link_text; ?></a>
-        </span>
-        <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
-        <div class="editorial-card-body">
-          <span class="editorial-card-dateline"><?php print $article_date; ?></span> &mdash; <?php print $subtitle; ?>
-        </div>
-      </div>
+    <div class="editorial-card-content">
+      <?php if (!empty($strategy_link)): ?>
+        <?php print $strategy_link; ?>
+      <?php endif; ?>
+      <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
+      <p><?php print $subtitle; ?></p>
+      <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
     </div>
   </div>
 </div>

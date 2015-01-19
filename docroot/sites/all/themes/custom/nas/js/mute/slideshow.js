@@ -31,8 +31,6 @@
             $imgs = $imgWrappers.find("img"),
             aspectRatio = $(window).width() / $(window).height();
 
-        console.log(aspectRatio);
-
         $imgs.removeAttr("style");
         $imgWrappers.removeAttr("style");
 
@@ -41,7 +39,7 @@
           "width": $("body").width() + "px"
         });
 
-        // Get the max height of all landscape 
+        // Get the max height of all landscape
         var slideHeights = $slides.not(".portrait").map(function() {
           return $(this).find(".slide-img img").height();
         }).get();
@@ -239,6 +237,9 @@
       });
 
       Slideshow.setup();
+      setTimeout(function() {
+        Slideshow.resize();
+      }, 3000);
     }
   }
 };

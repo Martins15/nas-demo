@@ -19,6 +19,7 @@ $plugin = array(
  */
 function frontpage_featured_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['image'] = array(
     '#type' => 'media',
@@ -87,11 +88,6 @@ function frontpage_featured_form($form, &$form_state) {
     '#required' => TRUE,
     '#default_value' => !empty($conf['summary']) ? $conf['summary'] : '',
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }
