@@ -8840,11 +8840,18 @@ body.black-bg .slide-img {
 
 .slide-caption {
   color: #888;
-  font-size: 15px;
+  font-size: 14px;
   font-style: italic;
   line-height: 20px;
   text-align: left;
   margin-top: 10px;
+}
+.slide-caption p {
+  margin-bottom: 25.5px;
+}
+.slide-caption p:last-child {
+  margin-bottom: 0;
+  display: inline !important;
 }
 
 .slideshow-button {
