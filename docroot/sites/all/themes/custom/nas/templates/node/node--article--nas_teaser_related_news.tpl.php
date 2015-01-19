@@ -88,16 +88,18 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="row">
+    <?php if ($teaser_list_image): ?>
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
         <?php print $teaser_list_image; ?>
       </div>
     </div>
-    <div class="tiny-8 columns">
+    <?php endif; ?>
+    <div class="tiny-<?php print $teaser_list_image ? '8' : '12'; ?> columns">
       <div class="editorial-card-content">
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
         <div class="editorial-card-body">
-          <?php print render($content['body']); ?>
+          <p><?php print $subtitle; ?></p>
         </div>
       </div>
     </div>

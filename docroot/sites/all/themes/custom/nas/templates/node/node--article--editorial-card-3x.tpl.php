@@ -75,9 +75,9 @@
  *
  * Custom variables:
  * - $title_link: Title with link to node page.
- * - $blue_text_link_url: Article's section's link url.
- * - $blue_text_link_text: Article's section's link text.
- * - $article_date: Article publish date.
+ * - $blue_text_link_url: Menu or Custom section url.
+ * - $blue_text_link_text: Menu or Custom section text.
+ * - $linked_image: Hero image wrapper with A tag linked to node.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -86,25 +86,21 @@
  * @ingroup themeable
  */
 ?>
-<div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
-  <div class="row">
-    <?php if ($teaser_list_image): ?>
-    <div class="tiny-4 columns">
-      <div class="editorial-card-photo">
-        <?php print $teaser_list_image; ?>
-      </div>
+
+<div class="columns large-4">
+  <div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
+    <div class="editorial-card-photo">
+      <?php print $linked_image; ?>
     </div>
-    <?php endif; ?>
-    <div class="tiny-<?php print $teaser_list_image ? '8' : 12; ?> columns">
-      <div class="editorial-card-content">
-        <span class="editorial-card-slug">
-          <a href="<?php print $blue_text_link_url; ?>"><?php print $blue_text_link_text; ?></a>
-        </span>
-        <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
-        <div class="editorial-card-body">
-          <span class="editorial-card-dateline"><?php print $article_date; ?></span> &mdash; <?php print $subtitle; ?>
-        </div>
-      </div>
+    <div class="editorial-card-content short">
+      <?php if (!empty($blue_text_link_url)): ?>
+      <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
+      <?php endif; ?>
+      <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
+      <?php if (!empty($subtitle)): ?>
+        <p class="editorial-card-subtitle"><?php print $subtitle; ?></p>
+      <?php endif; ?>
+      <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
     </div>
   </div>
 </div>
