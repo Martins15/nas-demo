@@ -101,7 +101,7 @@
           <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
         </div>
         <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
-        <p><?php print render($content['body']); ?></p>
+        <p><?php print $subtitle; ?></p>
       </div>
     </div>
   </div>

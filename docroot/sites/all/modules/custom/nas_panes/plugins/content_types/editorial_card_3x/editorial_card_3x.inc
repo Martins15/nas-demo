@@ -36,8 +36,8 @@ function editorial_card_3x_admin_info($subtype, $conf, $context = NULL) {
   if ($conf['preset'] == 'manual_override') {
     $items = array();
     foreach ($conf['refs'] as $ref) {
-      if (!empty($ref['title'])) {
-        $items[] = $ref['title'];
+      if (!empty($ref['reference']['entity_label'])) {
+        $items[] = $ref['reference']['entity_label'];
       }
     }
     $block->content = theme('item_list', array('items' => $items));
@@ -118,14 +118,14 @@ function editorial_card_3x_edit_form($form, &$form_state) {
 
   $form['count'] = array(
     '#type' => 'select',
-    '#title' => t('Number of items'),
+    '#title' => t('Number of rows'),
     '#options' => array(
-      3 => '3',
-      6 => '6',
-      9 => '9',
-      12 => '12',
-      15 => '15',
-      18 => '18',
+      3 => '1',
+      6 => '2',
+      9 => '3',
+      12 => '4',
+      15 => '5',
+      18 => '6',
     ),
     '#default_value' => $form_state['storage']['count'],
   );
@@ -144,64 +144,23 @@ function editorial_card_3x_edit_form($form, &$form_state) {
   $form['refs'] = array(
     '#type' => 'container',
     '#id' => 'editorial-card-3x-refs',
+    '#attributes' => array(
+      'style' => 'clear:both;',
+    ),
   );
   for ($i = 1; $i <= $form_state['storage']['count']; $i++) {
     if (empty($conf['refs'][$i])) {
       $conf['refs'][$i] = array();
     }
     $form['refs'][$i] = array(
-      '#type' => 'fieldset',
+      '#tree' => TRUE,
+    );
+    $form['refs'][$i]['reference'] = array(
+      '#type' => 'entityreference',
       '#title' => t('Reference %number', array('%number' => $i)),
-      '#collapsible' => TRUE,
-      '#collapsed' => !array_filter($conf['refs'][$i]),
-      '#tree' => TRUE,
-    );
-    $form['refs'][$i]['image'] = array(
-      '#type' => 'media',
-      '#tree' => TRUE,
-      '#title' => t('Image'),
-      '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
-      '#media_options' => array(
-        'global' => array(
-          'file_extensions' => 'png jpg jpeg gif',
-          'max_filesize' => '20 MB',
-          'file_directory' => '',
-          'types' => array('image'),
-        ),
-      ),
-      '#default_value' => !empty($conf['refs'][$i]['image']) ? $conf['refs'][$i]['image'] : 0,
-    );
-    $form['refs'][$i]['category'] = array(
-      '#title' => 'Category/Eyebrow',
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['category']) ? $conf['refs'][$i]['category'] : '',
-    );
-    $form['refs'][$i]['category_url'] = array(
-      '#title' => 'Category/Eyebrow URL',
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['category_url']) ? $conf['refs'][$i]['category_url'] : '',
-    );
-    $form['refs'][$i]['title'] = array(
-      '#prefix' => t('To display card fill Title and URL.'),
-      '#title' => t('Title'),
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['title']) ? $conf['refs'][$i]['title'] : '',
-    );
-    $form['refs'][$i]['url'] = array(
-      '#title' => 'URL',
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['url']) ? $conf['refs'][$i]['url'] : '',
-    );
-    $form['refs'][$i]['excerpt'] = array(
-      '#title' => t('Excerpt'),
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['excerpt']) ? $conf['refs'][$i]['excerpt'] : '',
-    );
-    $form['refs'][$i]['readmore_label'] = array(
-      '#title' => t('Read more link label'),
-      '#description' => t('"Read more »" by default'),
-      '#type' => 'textfield',
-      '#default_value' => !empty($conf['refs'][$i]['readmore_label']) ? $conf['refs'][$i]['readmore_label'] : '',
+      '#default_value' => !empty($conf['refs'][$i]['reference']['entity_id']) ? $conf['refs'][$i]['reference']['entity_id'] : 0,
+      '#era_entity_type' => 'node',
+      '#era_bundles' => array('article', 'project', 'static_page', 'slideshow'),
     );
   }
 
@@ -260,7 +219,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           $view_results = $view->result;
           foreach ($view_results as $result) {
             $node = node_load($result->{$options['result_key']});
-            $node_view = node_view($node, 'nas_node_teaser_small');
+            $node_view = node_view($node, 'editorial_card_3x');
             $content[$key][] = drupal_render($node_view);
           }
           break;
@@ -272,7 +231,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           if ($field_items = field_get_items('node', $context->data, $options['field'])) {
             foreach ($field_items as $item) {
               if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
-                $build = node_view($node, 'nas_node_teaser_small');
+                $build = node_view($node, 'editorial_card_3x');
                 $content[$key][] = drupal_render($build);
               }
             }
@@ -305,39 +264,13 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
   else {
     $teasers = array();
     foreach ($conf['refs'] as $ref) {
-      // Title and url are required to show card.
-      if (empty($ref['title']) || empty($ref['url'])) {
+      if (!empty($ref['reference']['entity_id']) && $node = node_load($ref['reference']['entity_id'])) {
+        $build = node_view($node, 'editorial_card_3x');
+        $teaser = drupal_render($build);
+      }
+      else {
         continue;
       }
-      $teaser = array(
-        'linked_image' => '',
-        'title' => check_plain($ref['title']),
-        'url' => $ref['url'],
-        'category_link' => '',
-        'excerpt' => !empty($ref['excerpt']) ? check_plain($ref['excerpt']) : '',
-      );
-      if (!empty($ref['image'])) {
-        if ($file = file_load($ref['image'])) {
-          $image = theme('image', array(
-            'path' => image_style_url('article_teaser', $file->uri),
-            // TODO: replace with image's alt.
-            'alt' => $teaser['title'],
-          ));
-          $teaser['linked_image'] = l($image, $teaser['url'], array(
-              'html' => TRUE,
-              'attributes' => array('title' => $teaser['title']),
-            ));
-        }
-      }
-      if (!empty($ref['category']) && !empty($ref['category_url'])) {
-        $teaser['category_link'] = l($ref['category'], $ref['category_url'], array(
-          'attributes' => array('class' => array('editorial-card-slug')),
-        ));
-      }
-      $readmore_label = !empty($ref['readmore_label']) ? $ref['readmore_label'] : 'Read more';
-      $teaser['readmore_link'] = l($readmore_label, $ref['url'], array(
-        'attributes' => array('class' => array('editorial-card-link')),
-      ));
 
       $teasers[] = $teaser;
     }
