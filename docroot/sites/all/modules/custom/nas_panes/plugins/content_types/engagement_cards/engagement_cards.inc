@@ -20,6 +20,7 @@ $plugin = array(
 function engagement_cards_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $conf_key = 'default';
   if (isset($form_state['display']->context['panelizer'])) {

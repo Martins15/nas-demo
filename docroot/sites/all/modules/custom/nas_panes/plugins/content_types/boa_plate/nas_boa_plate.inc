@@ -23,6 +23,7 @@ $plugin = array(
  */
 function nas_panes_nas_boa_plate_content_type_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['link_title'] = array(
     '#title' => t('Learn about link text'),
@@ -36,11 +37,6 @@ function nas_panes_nas_boa_plate_content_type_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#default_value' => $conf['link_uri'],
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

@@ -25,6 +25,7 @@ $plugin = array(
 function cons_landing_body_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $form['body'] = array(
     '#type' => 'text_format',
@@ -33,11 +34,6 @@ function cons_landing_body_edit_form($form, &$form_state) {
     '#default_value' => $conf['body']['value'],
     '#format' => 'full_html',
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

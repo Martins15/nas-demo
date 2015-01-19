@@ -45,17 +45,13 @@ function nas_panes_article_section_content_type_render($subtype, $conf, $args, $
  */
 function nas_panes_article_section_content_type_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['classes'] = array(
     '#title' => t('Link classes'),
     '#type' => 'textfield',
     '#default_value' => $conf['classes'],
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

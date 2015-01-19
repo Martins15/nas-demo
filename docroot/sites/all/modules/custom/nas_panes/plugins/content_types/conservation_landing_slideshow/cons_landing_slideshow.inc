@@ -20,6 +20,7 @@ $plugin = array(
 function cons_landing_slideshow_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   // The two function calls below are necessary if we want to use a media
   // element type, because it causes ajax requests, which in turn call
@@ -148,11 +149,6 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
     '#value' => t('Add more conservation strategies'),
     '#submit' => array('cons_landing_slideshow_add_group'),
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

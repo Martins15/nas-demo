@@ -20,6 +20,7 @@ $plugin = array(
 function engagement_cards_sidebar_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $conf_key = 'default';
   if (isset($form_state['display']->context['panelizer'])) {
@@ -41,11 +42,6 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
     '#title' => t('Hide for firsttime visitors'),
     '#default_value' => !empty($conf[$conf_key]['hide_for_firsttime_visitors']) ? $conf[$conf_key]['hide_for_firsttime_visitors'] : 0,
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

@@ -20,6 +20,7 @@ $plugin = array(
 function boa_plate_binocular_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $form['wrapper'] = array(
     '#type' => 'fieldset',
@@ -34,11 +35,6 @@ function boa_plate_binocular_edit_form($form, &$form_state) {
       '#era_bundles' => array('boa'),
     );
   }
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }
