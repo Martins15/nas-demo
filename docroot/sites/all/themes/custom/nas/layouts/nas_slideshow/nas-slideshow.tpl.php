@@ -23,3 +23,6 @@
     </div>
   </section>
 </section>
+<?php if (arg(0) !== 'node'): ?>
+<?php print $content['slide_card']; ?>
+<?php endif;?>

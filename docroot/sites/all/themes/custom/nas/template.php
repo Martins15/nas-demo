@@ -170,6 +170,18 @@ function nas_preprocess_node_bird(&$vars) {
       'path' => $get_field_bird_illustration[0]['file']->uri,
     )), $node_path, array('html' => TRUE));
   }
+
+  $donate_url = 'https://secure.audubon.org/site/Donation2?df_id=4900&4900.donation=form1&autologin=true&s_src=AUDHP&s_subsrc=BTN?';
+  $vars['donate_link'] = l(
+    t('Help this bird. Donate today'),
+    $donate_url,
+    array(
+      'attributes' => array(
+        'class' => array('button', 'large'),
+        'target' => '_blank',
+      ),
+    )
+  );
 }
 
 /**

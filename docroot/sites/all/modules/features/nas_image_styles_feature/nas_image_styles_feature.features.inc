@@ -844,7 +844,7 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'hero_project',
     'label' => 'Conservation project hero image ',
     'effects' => array(
-      2 => array(
+      1 => array(
         'label' => 'EPSA Image Crop',
         'help' => '',
         'dimensions callback' => 'epsacrop_crop_dimensions',
@@ -860,12 +860,12 @@ function nas_image_styles_feature_image_default_styles() {
             'aspect_ratio' => '',
             'bgcolor' => 'black',
             'bgopacity' => 0.6,
-            'fallback' => 0,
+            'fallback' => 1,
           ),
         ),
         'weight' => -10,
       ),
-      1 => array(
+      2 => array(
         'label' => 'Scale and crop',
         'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
         'effect callback' => 'image_scale_and_crop_effect',

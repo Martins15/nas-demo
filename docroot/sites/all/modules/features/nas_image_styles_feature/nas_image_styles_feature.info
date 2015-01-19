@@ -45,5 +45,5 @@ features[image][] = slideshow_teaser
 features[image][] = static_cards_two_columns
 features[image][] = static_cards_two_columns_mobile
 features[image][] = wysiwyg_slide
-mtime = 1420974458
+mtime = 1421239122
 project path = sites/all/modules/features

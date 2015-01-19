@@ -70,18 +70,10 @@
                     </div>
                   </div>
                   <div class="columns tiny-12 small-8 small-offset-2 medium-6 medium-offset-3 large-4 large-offset-0 end text-container">
-                    <div class="engagement-card">
-                      <div class="engagement-card-content no-min-height">
-                        <h3 class="engagement-card-headline">Improve Crane Habitats</h3>
-                        <p>Restoration efforts continue on improve winter homes for whooping cranes.</p>
-                        <div class="engagement-card-cta">
-                          <a href="#" class="button tomato large">Donate Today</a>
-                        </div>
-                      </div>
-                      <div class="engagement-card-photo hide-for-small hide-for-tiny hide-for-medium">
-                        <img src="<?php print base_path() . path_to_theme() . '/img/engagement-card-3.jpg'; ?>" alt="">
-                      </div>
-                    </div>
+                    <?php 
+                      $nas_engagement_cards_sidebar_rendered_card = &drupal_static('nas_engagement_cards_sidebar_rendered_card');
+                      print $nas_engagement_cards_sidebar_rendered_card;
+                    ?>
                   </div>
                 </div>
               </div>
