@@ -239,7 +239,7 @@
       Slideshow.setup();
       setTimeout(function() {
         Slideshow.resize();
-      }, 1000);
+      }, 3000);
     }
   }
 };
