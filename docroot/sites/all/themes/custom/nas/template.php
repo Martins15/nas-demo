@@ -165,10 +165,14 @@ function nas_preprocess_node_bird(&$vars) {
     $vars['title_link'] = l($node->title, $node_path, array('html' => TRUE));
     // Add bird illustration image.
     $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
-    $vars['bird_illustration'] = l(theme('image_style', array(
-      'style_name' => 'nas_bird_teaser_illustration',
-      'path' => $get_field_bird_illustration[0]['file']->uri,
-    )), $node_path, array('html' => TRUE));
+    $image = '';
+    if (!empty($get_field_bird_illustration[0]['file']->uri)) {
+      $image = theme('image_style', array(
+        'style_name' => 'nas_bird_teaser_illustration',
+        'path' => $get_field_bird_illustration[0]['file']->uri,
+      ));
+    }
+    $vars['bird_illustration'] = l($image, $node_path, array('html' => TRUE));
   }
 
   $donate_url = 'https://secure.audubon.org/site/Donation2?df_id=4900&4900.donation=form1&autologin=true&s_src=AUDHP&s_subsrc=BTN?';
