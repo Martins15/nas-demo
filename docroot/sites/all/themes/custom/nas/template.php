@@ -523,6 +523,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   if (!empty($node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
     $vars['subtitle'] = $node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'];
   }
+  elseif ($vars['type'] == 'slideshow' && !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $vars['subtitle'] = $node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  }
   elseif ($vars['type'] !== 'project' && !empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
     $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
   }
