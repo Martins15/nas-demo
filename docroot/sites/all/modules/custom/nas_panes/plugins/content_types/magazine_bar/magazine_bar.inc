@@ -20,7 +20,8 @@ $plugin = array(
 function magazine_bar_render($subtype, $conf, $args, $context) {
   $node = $context->data;
 
-  if ($node->type !== 'article'
+  if (empty($node)
+    || $node->type !== 'article'
     || empty($node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'])
     || empty($node->panelizer['page_manager']->name)
     || $node->panelizer['page_manager']->name !== 'node:article:big_image') {
