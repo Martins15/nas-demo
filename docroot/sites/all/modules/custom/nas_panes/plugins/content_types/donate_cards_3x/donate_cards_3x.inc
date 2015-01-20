@@ -197,7 +197,7 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
   $teasers = array_slice($teasers, 0, !empty($conf['count']) ? $conf['count'] : 3);
 
   $title = '';
-  if ($conf['override_title'] && !empty($teasers)) {
+  if (!empty($conf['override_title_text']) && !empty($teasers)) {
     $title = ctools_context_keyword_substitute($conf['override_title_text'], array(), array($context));
   }
 
@@ -215,7 +215,7 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = theme('donate_cards_3x', array(
     'teasers' => $teasers,
-    'title' => $title,
+    'title' => check_plain($title),
     'additional_classes' => !empty($conf['additional_classes']) ? $conf['additional_classes'] : '',
     'contextual_links' => $contextual_links,
     'spacetop' => $conf['paddings']['top'],

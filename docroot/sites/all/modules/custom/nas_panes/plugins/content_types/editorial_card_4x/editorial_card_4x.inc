@@ -117,7 +117,7 @@ function editorial_card_4x_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = theme('editorial_card_4x', array(
     'teasers' => $teasers,
-    'title' => $conf['override_title'] ? $conf['override_title_text'] : '',
+    'title' => check_plain($conf['override_title_text']),
     'more_link' => $more_link,
     'contextual_links' => $contextual_links,
     'spacetop' => $conf['paddings']['top'],

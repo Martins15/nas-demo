@@ -147,7 +147,7 @@ function editorial_card_river_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = theme('editorial_card_river', array(
     'content' => implode(' ', $content),
-    'title' => $conf['override_title'] ? $conf['override_title_text'] : '',
+    'title' => !empty($conf['override_title_text']) ? check_plain($conf['override_title_text']) : '',
     'more_link' => $more_link,
     'contextual_links' => $contextual_links,
   ));
