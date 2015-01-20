@@ -1,0 +1,15 @@
+name = NAS Text Format
+core = 7.x
+package = NAS
+dependencies[] = bean_wysiwyg
+dependencies[] = features
+dependencies[] = filter
+dependencies[] = media_wysiwyg
+dependencies[] = nas_wysiwyg
+dependencies[] = rel_to_abs
+dependencies[] = wysiwyg
+features[features_api][] = api:2
+features[filter][] = full_html
+features[filter][] = html
+features[wysiwyg][] = full_html
+project path = sites/all/modules/features
