@@ -1252,7 +1252,10 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
   $handler = panelizer_entity_plugin_get_handler('node');
   $bundle = $bundle . '.page_manager';
   $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-  ctools_export_crud_save('panelizer_defaults', $panelizer);
+
+  if (!empty($panelizer)) {
+    ctools_export_crud_save('panelizer_defaults', $panelizer);
+  }
 
   // Reload node cause panel is saved.
   $cloned_node = node_load($node->nid, NULL, TRUE);
