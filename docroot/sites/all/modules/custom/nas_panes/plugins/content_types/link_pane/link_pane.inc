@@ -19,6 +19,7 @@ $plugin = array(
  */
 function link_pane_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['url'] = array(
     '#type' => 'textfield',
@@ -31,11 +32,6 @@ function link_pane_form($form, &$form_state) {
     '#title' => t('Classes'),
     '#default_value' => !empty($conf['classes']) ? $conf['classes'] : '',
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

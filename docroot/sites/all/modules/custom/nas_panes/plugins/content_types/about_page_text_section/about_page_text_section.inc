@@ -19,6 +19,7 @@ $plugin = array(
  */
 function about_page_text_section_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   // In future we will use multiple text sections.
   $count = 1;

@@ -51,5 +51,5 @@ features[variable][] = node_preview_project
 features[variable][] = node_submitted_project
 features[variable][] = panelizer_defaults_node_project
 features[variable][] = scheduler_publish_enable_project
-mtime = 1421310802
+mtime = 1421406030
 project path = sites/all/modules/features

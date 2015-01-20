@@ -20,6 +20,7 @@ $plugin = array(
  */
 function conservation_strategy_news_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $context = reset($form_state['display']->context);
   // Not on default panel, not article.
@@ -27,9 +28,6 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
     return $form;
   }
 
-  $form['override_title']['#access'] = FALSE;
-  $form['override_title_text']['#access'] = FALSE;
-  $form['override_title_markup']['#access'] = FALSE;
   $conf_key = $form_state['display']->context->empty ? 'default' : $context->data->nid;
   $form[$conf_key] = array(
     '#type' => 'fieldset',

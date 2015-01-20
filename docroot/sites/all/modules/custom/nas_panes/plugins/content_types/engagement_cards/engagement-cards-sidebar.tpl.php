@@ -8,7 +8,7 @@
  *  $teaser - rendered node.
  */
 ?>
-<div class="sidebar-section <?php print $ftv_class; ?> contextual-links-region">
+<div class="sidebar-section engagement-card-sidebar-section <?php print $ftv_class; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php foreach ($teasers as $teaser): ?>
     <?php print $teaser; ?>

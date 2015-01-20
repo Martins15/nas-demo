@@ -4611,6 +4611,10 @@ small {
   }
 }
 
+.engagement-card-sidebar-section {
+  float: left;
+}
+
 /* @todo Add a markup example */
 .editorial-card-banner.fixed {
   position: absolute;
@@ -7936,6 +7940,9 @@ body.touch .primary-sub-nav-index {
   }
 }
 
+.one-third-left-width {
+  width: 33% !important;
+}
 @media only screen and (min-width: 601px) {
   .one-third-left-width {
     padding-right: 25px;
@@ -8833,11 +8840,18 @@ body.black-bg .slide-img {
 
 .slide-caption {
   color: #888;
-  font-size: 15px;
+  font-size: 14px;
   font-style: italic;
   line-height: 20px;
   text-align: left;
   margin-top: 10px;
+}
+.slide-caption p {
+  margin-bottom: 25.5px;
+}
+.slide-caption p:last-child {
+  margin-bottom: 0;
+  display: inline !important;
 }
 
 .slideshow-button {
@@ -13100,6 +13114,11 @@ h2.grey {
   }
 }
 
+.hero-attribution-fullscreen .column {
+  position: inherit;
+  top: 0;
+}
+
 .hero-caption.grey-bar .caption, .hero-caption.grey-bar .article-text figcaption, .article-text .hero-caption.grey-bar figcaption {
   margin: 0;
 }
@@ -13492,4 +13511,36 @@ textarea.error {
 #modalContent .ctools-modal-content .-wrap-select.ie select {
   background: none;
   width: 100%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form .form-item {
+  width: 49%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 49%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter .form-item {
+  width: 100%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter label {
+  float: none;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter #edit-filter-menu-section {
+  height: auto !important;
+  background-image: none;
+}
+
+.slideshow-sidebar-block {
+  float: left;
+}
+
+body.node-type-slideshow #tabs {
+  position: relative;
+  z-index: 10;
+}
+
+.editorial-card-river-content-wrapper .view .contextual-links-wrapper {
+  display: none !important;
 }

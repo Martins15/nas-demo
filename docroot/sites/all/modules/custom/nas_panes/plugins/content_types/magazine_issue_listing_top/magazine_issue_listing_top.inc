@@ -40,7 +40,7 @@ function magazine_issue_listing_top_render($subtype, $conf, $args, $context) {
 
   $teasers = '';
   foreach ($articles_nodes as $node) {
-    $build = node_view($node, 'nas_node_teaser_wo_date');
+    $build = node_view($node, 'teaser');
     $teasers .= drupal_render($build);
   }
 

@@ -1370,3 +1370,34 @@ function nas_master_update_7103() {
   features_revert_module('nas_slideshow_feature');
   features_revert_module('nas_static_page_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7104() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_slideshow_feature');
+  features_revert_module('nas_static_page_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7105() {
+  features_revert_module('nas_image_styles_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7107() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_site_template_feature');
+  features_revert_module('nas_bird_type_feature');
+  module_enable(array('nas_text_format_feature'));
+  features_revert_module('nas_text_format_feature');
+  features_revert_module('nas_editor_role');
+  features_revert_module('nas_news_page_feature');
+}

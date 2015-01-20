@@ -91,6 +91,15 @@ function nas_static_page_feature_strongarm() {
       'about_page_related_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'editorial_card_3x' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_teaser_related_news' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_card_4x' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

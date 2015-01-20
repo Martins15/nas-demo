@@ -88,6 +88,15 @@ function nas_conservation_project_feature_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'editorial_card_3x' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_teaser_related_news' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_card_4x' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

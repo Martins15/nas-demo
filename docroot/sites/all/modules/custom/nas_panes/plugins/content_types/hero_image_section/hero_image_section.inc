@@ -19,6 +19,7 @@ $plugin = array(
  */
 function hero_image_section_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['title'] = array(
     '#type' => 'textfield',
@@ -74,11 +75,6 @@ function hero_image_section_form($form, &$form_state) {
     '#default_value' => !empty($conf['text_color_mode']) ? $conf['text_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.'),
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

@@ -274,9 +274,10 @@ function nas_bird_type_feature_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'full_html' => 'full_html',
+          'full_html' => 0,
+          'html' => 'html',
           'map' => 0,
-          'plain_text' => 'plain_text',
+          'plain_text' => 0,
           'video' => 0,
         ),
         'allowed_formats_toggle' => 1,
@@ -285,6 +286,9 @@ function nas_bird_type_feature_field_default_field_instances() {
           'formats' => array(
             'full_html' => array(
               'weight' => -49,
+            ),
+            'html' => array(
+              'weight' => 0,
             ),
             'map' => array(
               'weight' => -48,

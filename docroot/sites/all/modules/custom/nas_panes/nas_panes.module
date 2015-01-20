@@ -809,6 +809,18 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-bird-guide-content',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_bird_guide',
     ),
+    'magazine_bar' => array(
+      'variables' => array(
+        'link' => NULL,
+        'first_month_part_1' => NULL,
+        'first_month_part_2' => NULL,
+        'sec_month_part_1' => NULL,
+        'sec_month_part_2' => NULL,
+        'year' => NULL,
+      ),
+      'template' => 'magazine-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_bar',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -1252,7 +1264,10 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
   $handler = panelizer_entity_plugin_get_handler('node');
   $bundle = $bundle . '.page_manager';
   $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-  ctools_export_crud_save('panelizer_defaults', $panelizer);
+
+  if (!empty($panelizer)) {
+    ctools_export_crud_save('panelizer_defaults', $panelizer);
+  }
 
   // Reload node cause panel is saved.
   $cloned_node = node_load($node->nid, NULL, TRUE);
@@ -1291,7 +1306,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   // Sidebar display card logic.
   if ($first) {
     // Manual override.
-    if (isset($data['references'][1]['entity_reference']) && $node = node_load($data['references'][1]['entity_reference']['entity_id'])) {
+    if (!empty($data['references'][1]['entity_reference']['entity_id']) && $node = node_load($data['references'][1]['entity_reference']['entity_id'])) {
       $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
     }
     if (empty($nodes)) {
@@ -1383,7 +1398,7 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   // Panelizer.
   if (!empty($pm_page['handler']->export_module) && $pm_page['handler']->export_module == 'panelizer') {
     $argument = reset($pm_page['contexts']);
-    list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->name);
+    list(, $bundle, $panelizer_default) = explode(':', $argument->data->panelizer['page_manager']->display->cache_key);
     return _nas_panes_build_panelizer_contextual_links($subtype, $argument->data, $bundle, $panelizer_default);
   }
 
@@ -1718,3 +1733,25 @@ function nas_panes_preprocess_donate_cards_3x(&$vars) {
   nas_panes_preprocess_editorial_card_3x($vars);
 }
 
+/**
+ * Hide title field.
+ */
+function _nas_panes_hide_pane_title_field(&$form) {
+  unset($form['override_title']);
+  unset($form['override_title_text']);
+  unset($form['override_title_markup']);
+}
+
+/**
+ * Returns options for menu section.
+ */
+function _nas_panes_get_menu_section_options() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  $options = array();
+  foreach ($tree as $item) {
+    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
+  }
+
+  return $options;
+}

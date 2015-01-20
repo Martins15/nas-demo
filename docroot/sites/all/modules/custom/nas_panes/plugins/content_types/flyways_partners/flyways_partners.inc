@@ -25,6 +25,7 @@ $plugin = array(
  */
 function flyways_partners_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['title'] = array(
     '#type' => 'textfield',
@@ -51,11 +52,6 @@ function flyways_partners_form($form, &$form_state) {
     '#description' => 'Link can be drupal internal i.e. node/5',
     '#default_value' => $conf['read_more_link'],
   );
-
-  // Remove default title field.
-  unset($form['override_title']);
-  unset($form['override_title_text']);
-  unset($form['override_title_markup']);
 
   return $form;
 }

@@ -23,8 +23,8 @@ function nas_article_feature_field_group_info() {
     'label' => 'Editorial card fields',
     'weight' => '3',
     'children' => array(
-      0 => 'field_editorial_card_title',
-      1 => 'field_editorial_card_subtitle',
+      0 => 'field_editorial_card_subtitle',
+      1 => 'field_editorial_card_title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -89,9 +89,10 @@ function nas_article_feature_field_group_info() {
       0 => 'field_custom_section',
       1 => 'field_flyway',
       2 => 'field_internal_tagging',
-      3 => 'field_menu_section',
-      4 => 'field_related_bird',
-      5 => 'field_conservation_project',
+      3 => 'field_magazine_issue',
+      4 => 'field_menu_section',
+      5 => 'field_related_bird',
+      6 => 'field_conservation_project',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -121,9 +122,8 @@ function nas_article_feature_field_group_info() {
       0 => 'field_article_map',
       1 => 'field_color_mode',
       2 => 'field_hero_image',
-      3 => 'field_magazine_issue',
-      4 => 'field_pressrelease_contact',
-      5 => 'field_editorial_card_image',
+      3 => 'field_pressrelease_contact',
+      4 => 'field_editorial_card_image',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

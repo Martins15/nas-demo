@@ -31,6 +31,11 @@
  * @see template_process()
  */
 ?>
+<?php
+/**
+ * Don't use div inside bean block markup. For some reason WYSIWYG may remove last div.
+ */
+?>
 <?php if ($width == 'default'): ?>
 <figure class="article-image">
   <?php print render($content['field_wysiwyg_image']); ?>
@@ -42,14 +47,14 @@
 </figure>
 <?php elseif ($width == 'half-right'): ?>
 <aside class="article-aside <?php print $width; ?>-width">
-  <div class="hide-for-tiny hide-for-small image-container">
+  <figure class="article-image hide-for-tiny hide-for-small image-container">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
-    <figcaption class="article-aside-caption">
+    <figcaption class="caption article-aside-caption">
       <?php print $figcaption; ?>
     </figcaption>
     <?php endif; ?>
-  </div>
+  </figure>
 </aside>
 <?php elseif ($width == 'one-third-left'): ?>
 <div class="<?php print $width; ?>-width medium-4 columns">
@@ -67,7 +72,7 @@
   <figure class="article-image">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
-    <figcaption class="article-aside-caption">
+    <figcaption class="caption article-aside-caption">
       <?php print $figcaption; ?>
     </figcaption>
     <?php endif; ?>
