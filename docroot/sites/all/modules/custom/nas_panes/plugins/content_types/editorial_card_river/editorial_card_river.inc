@@ -93,7 +93,7 @@ function editorial_card_river_edit_form($form, &$form_state) {
     '#options' => $menu_section_options,
     '#multiple' => TRUE,
     '#description' => t("If you'd like all articles tagged with a parent term and all its child terms to be shown in this listing you should only select this parent term. In case you want this listing to show articles tagged with a child term(s) please select one or more child terms with Ctrl+Mouse click"),
-    '#size' => count($menu_section_options),
+    '#size' => count($menu_section_options) / 2,
     '#default_value' => !empty($conf['filter']['menu_section']) ? $conf['filter']['menu_section'] : '',
     '#states' => $filter_state,
   );
