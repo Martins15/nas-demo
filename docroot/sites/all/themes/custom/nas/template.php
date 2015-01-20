@@ -914,17 +914,8 @@ function nas_preprocess_panels_pane(&$vars) {
  */
 function nas_preprocess_field_field_magazine_issue_article(&$vars) {
   $element = $vars['element'];
-  // Prepare markup for supporting responsive features.
-  $str = $element[0]['#markup'];
-  $str = explode('-', $str);
-  $first_month = $str[0];
-  $str[1] = explode(' ', $str[1]);
-  $second_month = $str[1][0];
-  $vars['first_month_part_1'] = substr($first_month, 0, 3);
-  $vars['first_month_part_2'] = substr($first_month, 3);
-  $vars['sec_month_part_1'] = substr($second_month, 0, 3);
-  $vars['sec_month_part_2'] = substr($second_month, 3);
-  $vars['year'] = $str[1][1];
+  $date = nas_extract_magazine_date($element[0]['#markup']);
+  $vars += $date;
   $get_field_magazine_issue = field_get_items('node', $element['#object'], 'field_magazine_issue');
   $vars['href'] = url('node/' . $get_field_magazine_issue[0]['target_id']);
 }
@@ -1263,4 +1254,24 @@ function _nas_related_features_attach_menu_section_class(&$field) {
   foreach (element_children($field) as $key) {
     $field[$key]['#attributes']['class'][] = 'editorial-card-slug';
   }
+}
+
+/**
+ * Returns parsed date.
+ */
+function nas_extract_magazine_date($string) {
+  // @todo should be improved.
+  $data = array();
+  $str = $string;
+  $str = explode('-', trim($str));
+  $first_month = $str[0];
+  $str[1] = explode(' ', trim($str[1]));
+  $second_month = $str[1][0];
+  $data['first_month_part_1'] = substr($first_month, 0, 3);
+  $data['first_month_part_2'] = substr($first_month, 3);
+  $data['sec_month_part_1'] = substr($second_month, 0, 3);
+  $data['sec_month_part_2'] = substr($second_month, 3);
+  $data['year'] = $str[1][1];
+
+  return $data;
 }

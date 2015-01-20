@@ -809,6 +809,18 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-bird-guide-content',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_bird_guide',
     ),
+    'magazine_bar' => array(
+      'variables' => array(
+        'link' => NULL,
+        'first_month_part_1' => NULL,
+        'first_month_part_2' => NULL,
+        'sec_month_part_1' => NULL,
+        'sec_month_part_2' => NULL,
+        'year' => NULL,
+      ),
+      'template' => 'magazine-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_bar',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
