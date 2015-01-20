@@ -544,6 +544,28 @@ textarea {
       }
     }
   }
+
+  #editorial-card-river-edit-form {
+    .form-item {
+      width: 49%;
+    }
+    #edit-filter {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      width: 49%;
+      .form-item {
+        width: 100%;
+      }
+      label {
+        float: none;
+      }
+      #edit-filter-menu-section {
+        height: auto !important;
+        background-image: none;
+      }
+    }
+  }
 }
 
 .slideshow-sidebar-block {
@@ -554,5 +576,13 @@ body.node-type-slideshow {
   #tabs {
     position: relative;
     z-index: 10;
+  }
+}
+
+.editorial-card-river-content-wrapper {
+  .view {
+    .contextual-links-wrapper {
+      display: none !important;
+    }
   }
 }

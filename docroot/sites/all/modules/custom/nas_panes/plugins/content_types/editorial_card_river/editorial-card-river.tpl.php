@@ -28,7 +28,7 @@
   </div>
 <?php endif; ?>
 
-<div class="row space-bottom contextual-links-region">
+<div class="row space-bottom contextual-links-region editorial-card-river-content-wrapper">
   <?php print $contextual_links; ?>
   <?php print $content; ?>
 </div>
