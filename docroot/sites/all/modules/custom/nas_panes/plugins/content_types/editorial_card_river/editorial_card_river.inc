@@ -98,10 +98,10 @@ function editorial_card_river_edit_form($form, &$form_state) {
     '#states' => $filter_state,
   );
 
-  $form['filter']['reference'] = array(
+  $form['filter']['editorial_section'] = array(
     '#type' => 'entityreference',
     '#title' => t('Editorial section'),
-    '#default_value' => !empty($conf['filter']['reference']['entity_id']) ? $conf['filter']['reference']['entity_id'] : 0,
+    '#default_value' => !empty($conf['filter']['editorial_section']) ? array_keys($conf['filter']['editorial_section']) : array(),
     '#era_entity_type' => 'taxonomy_term',
     '#era_bundles' => array('section'),
     '#era_cardinality' => -1,
@@ -159,8 +159,9 @@ function editorial_card_river_render($subtype, $conf, $args, $context) {
   foreach ($preset['content'] as $key => $item) {
     switch ($item['type']) {
       case 'view':
-        $args = _editorial_card_river_get_view_args($item['options']['args'], $context, $conf);
-        $content[$key] = views_embed_view($item['options']['view'], $item['options']['display'], implode('', $args));
+        $args = array($item['options']['view'], $item['options']['display']);
+        _editorial_card_river_get_view_args($args, $item['options']['args'], $context, $conf);
+        $content[$key] = call_user_func_array('views_embed_view', $args);
         break;
 
       case 'donate':
@@ -212,7 +213,10 @@ function _editorial_card_river_presets() {
           'options' => array(
             'view' => 'nas_news',
             'display' => 'articles_list_top',
-            'args' => array('menu_section'),
+            'args' => array(
+              'menu_section',
+              'editorial_section',
+            ),
           ),
         ),
         'donate' => array(
@@ -223,7 +227,10 @@ function _editorial_card_river_presets() {
           'options' => array(
             'view' => 'nas_news',
             'display' => 'articles_list_bot',
-            'args' => array('menu_section'),
+            'args' => array(
+              'menu_section',
+              'editorial_section',
+            ),
           ),
         ),
       ),
@@ -250,6 +257,9 @@ function _editorial_card_river_presets() {
 /**
  * Helper function to get arguments to embedded view from existing contexts.
  *
+ * @param array $args
+ *   Arguments.
+ *
  * @param array $settings
  *   Array of required context types.
  *
@@ -262,14 +272,39 @@ function _editorial_card_river_presets() {
  * @return array
  *   Array of args to be passed into view.
  */
-function _editorial_card_river_get_view_args($settings, $context, $conf = array()) {
-  $args = array();
+function _editorial_card_river_get_view_args(&$args, $settings, $context, $conf = array()) {
   foreach ($settings as $require_context) {
-    if ($require_context == 'menu_section' && !empty($conf['filter'][$require_context])) {
-      $args[] = implode('+', $conf['filter'][$require_context]);
-    }
-    elseif (is_array($context->type) && in_array($require_context, $context->type)) {
-      $args[] = $context->argument;
+    $arg_key = count($args);
+    switch ($require_context) {
+      case 'menu_section':
+        // Apply filter or add default value.
+        $args[$arg_key] = 'all';
+        if (!empty($conf['filter'][$require_context])) {
+          $args[$arg_key] = implode('+', $conf['filter'][$require_context]);
+        }
+        break;
+
+      case 'editorial_section':
+        $args[$arg_key] = 'all';
+        if (!empty($conf['filter'][$require_context])) {
+          // Apply filter or add default value.
+          $editorial_filter = array();
+          foreach ($conf['filter'][$require_context] as $reference) {
+            if (!empty($reference['entity_id'])) {
+              $editorial_filter[] = $reference['entity_id'];
+            }
+          }
+          if (!empty($editorial_filter)) {
+            $args[$arg_key] = implode('+', $editorial_filter);
+          }
+        }
+        break;
+
+      default:
+        if (is_array($context->type) && in_array($require_context, $context->type)) {
+          $args[] = $context->argument;
+        }
+        break;
     }
   }
 
