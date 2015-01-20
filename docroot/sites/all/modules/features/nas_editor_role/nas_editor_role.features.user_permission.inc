@@ -3267,6 +3267,15 @@ function nas_editor_role_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'use text format html'.
+  $permissions['use text format html'] = array(
+    'name' => 'use text format html',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'filter',
+  );
+
   // Exported permission: 'use text format map'.
   $permissions['use text format map'] = array(
     'name' => 'use text format map',

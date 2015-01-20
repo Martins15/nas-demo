@@ -1385,7 +1385,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 17,
+      'weight' => 22,
     ),
   );
 
@@ -1543,7 +1543,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 14,
+      'weight' => 20,
     ),
   );
 
@@ -2203,7 +2203,7 @@ function nas_article_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 18,
     ),
   );
 
@@ -2585,7 +2585,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 16,
+      'weight' => 21,
     ),
   );
 
@@ -2932,7 +2932,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 5,
+      'weight' => 16,
     ),
   );
 
@@ -3091,7 +3091,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'options_select',
-      'weight' => 13,
+      'weight' => 19,
     ),
   );
 
@@ -3433,7 +3433,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 11,
+      'weight' => 17,
     ),
   );
 

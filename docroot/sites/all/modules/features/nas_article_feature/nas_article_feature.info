@@ -102,5 +102,5 @@ features[variable][] = scheduler_unpublish_required_article
 features[variable][] = scheduler_unpublish_revision_article
 features[variable][] = scheduler_use_vertical_tabs_article
 features[views_view][] = other_press_releases
-mtime = 1421405974
+mtime = 1421688833
 project path = sites/all/modules/features

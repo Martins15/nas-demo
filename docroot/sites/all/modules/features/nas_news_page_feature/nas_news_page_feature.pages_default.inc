@@ -316,13 +316,19 @@ function nas_news_page_feature_default_page_manager_pages() {
       'presets' => 'author_page_listing',
       'more_link_text' => '',
       'more_link_url' => '',
-      'form_build_id' => 'form-ojPia3Oxt7KwUxqXW9mU_WkoBodT8s61gDDdE9C2slA',
-      'form_token' => 'x0Rq1YgQzk6Evh0GVSwAMhaBwoRGfiSv-ajddXOW9PQ',
+      'form_build_id' => 'form-rW7N4GqLffa-AkFVx6b3RPRVl7n_Id89jbgvDO5GG08',
+      'form_token' => '-YVwY5c_7JWzbmkxnwWw3ZNxpCzbMW1Sj38dPivzLag',
       'form_id' => 'editorial_card_river_edit_form',
       'preset' => 'news_listing',
       'donate_caption' => 'Remember that Audubon depends on your support to do the conservation work that we do. ',
       'donate_path' => 'donate-please',
       'context' => 'empty',
+      'filter' => array(
+        'menu_section' => array(
+          1 => '1',
+        ),
+        'editorial_section' => array(),
+      ),
     );
     $pane->cache = array();
     $pane->style = array(

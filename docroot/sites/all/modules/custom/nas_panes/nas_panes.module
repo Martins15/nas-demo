@@ -809,6 +809,18 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-bird-guide-content',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_bird_guide',
     ),
+    'magazine_bar' => array(
+      'variables' => array(
+        'link' => NULL,
+        'first_month_part_1' => NULL,
+        'first_month_part_2' => NULL,
+        'sec_month_part_1' => NULL,
+        'sec_month_part_2' => NULL,
+        'year' => NULL,
+      ),
+      'template' => 'magazine-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_bar',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -1252,7 +1264,10 @@ function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) 
   $handler = panelizer_entity_plugin_get_handler('node');
   $bundle = $bundle . '.page_manager';
   $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-  ctools_export_crud_save('panelizer_defaults', $panelizer);
+
+  if (!empty($panelizer)) {
+    ctools_export_crud_save('panelizer_defaults', $panelizer);
+  }
 
   // Reload node cause panel is saved.
   $cloned_node = node_load($node->nid, NULL, TRUE);
@@ -1725,4 +1740,18 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+}
+
+/**
+ * Returns options for menu section.
+ */
+function _nas_panes_get_menu_section_options() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  $options = array();
+  foreach ($tree as $item) {
+    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
+  }
+
+  return $options;
 }

@@ -153,21 +153,16 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
       'field_hero_image',
       'field_color_mode',
     ),
-    'default' => array(
-      'field_magazine_issue',
-    ),
+    'default' => array(),
     'fullscreen_image' => array(
       'field_hero_image',
       'field_color_mode',
-      'field_magazine_issue',
     ),
     'map' => array(
       'field_article_map',
-      'field_magazine_issue',
     ),
     'press_release' => array(
       'field_pressrelease_contact',
-      'field_magazine_issue',
     ),
   );
 
@@ -266,6 +261,9 @@ function nas_alters_form_file_entity_add_upload_alter(&$form, &$form_state, $for
 function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
   drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/file-entity-alt-title.js');
   $form['filename']['#title'] = t('File name');
+  if (isset($form['field_file_caption'][LANGUAGE_NONE][0]['#format'])) {
+    $form['field_file_caption'][LANGUAGE_NONE][0]['#format'] = 'html';
+  }
 }
 
 /**
