@@ -12388,6 +12388,9 @@ body.touch .sticky-wrapper {
 .lzoom2 #colorbox.lzoom #cboxTitle, .node-type-boa #colorbox.lzoom #cboxTitle {
   display: none !important;
 }
+.lzoom2 #colorbox.lzoom #cboxContent, .node-type-boa #colorbox.lzoom #cboxContent {
+  background: none;
+}
 
 .lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
   display: none;

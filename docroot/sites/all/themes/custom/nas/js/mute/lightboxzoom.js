@@ -32,11 +32,9 @@
 
               $(window).on("resize", function(){
                 if (fullScreen_state === 'FullscreenOff') {
-                  var h = $img.height() >= $(window).height() ? colorboxMaxHeight : $img.height() ;
-                      w = $colorbox.width() > $(window).width() * 0.8 ? colorboxMaxWidth : $colorbox.width();
                   $.colorbox.resize({
-                      width: w,
-                      height: h
+                    width: colorboxMaxWidth,
+                    height: colorboxMaxHeight
                   });
                 }
               });
