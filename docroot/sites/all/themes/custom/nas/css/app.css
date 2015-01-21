@@ -12340,29 +12340,33 @@ body.touch .sticky-wrapper {
   text-align: left;
 }
 
-.lzoom2 .lzoom_zoomin,
+.lzoom2 .lzoom_zoomin, .node-type-boa .lzoom_zoomin,
 .lzoom2 .lzoom_zoomout,
-.lzoom2 .lzoom_fullscreen {
+.node-type-boa .lzoom_zoomout,
+.lzoom2 .lzoom_fullscreen,
+.node-type-boa .lzoom_fullscreen {
   position: static;
   display: block;
   margin-bottom: 12px;
 }
-.lzoom2 .lzoom_zoomin:before,
+.lzoom2 .lzoom_zoomin:before, .node-type-boa .lzoom_zoomin:before,
 .lzoom2 .lzoom_zoomout:before,
-.lzoom2 .lzoom_fullscreen:before {
+.node-type-boa .lzoom_zoomout:before,
+.lzoom2 .lzoom_fullscreen:before,
+.node-type-boa .lzoom_fullscreen:before {
   color: #ef5835;
   font-size: 26px;
 }
-.lzoom2 .lzoom_zoomin {
+.lzoom2 .lzoom_zoomin, .node-type-boa .lzoom_zoomin {
   top: 80px;
 }
-.lzoom2 .lzoom_zoomout {
+.lzoom2 .lzoom_zoomout, .node-type-boa .lzoom_zoomout {
   top: 40px;
 }
-.lzoom2 .lzoom_fullscreen {
+.lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
   top: 120px;
 }
-.lzoom2 .controls {
+.lzoom2 .controls, .node-type-boa .controls {
   position: absolute;
   top: -15px;
   left: -20px;
@@ -12373,17 +12377,26 @@ body.touch .sticky-wrapper {
   border-radius: 60px;
   z-index: 2;
 }
-.lzoom2 .fullscreen .controls {
+.lzoom2 .fullscreen .controls, .node-type-boa .fullscreen .controls {
   top: 60px;
   left: 60px;
   padding-top: 18px;
 }
+.lzoom2 #colorbox.lzoom, .node-type-boa #colorbox.lzoom {
+  border: none;
+}
+.lzoom2 #colorbox.lzoom #cboxTitle, .node-type-boa #colorbox.lzoom #cboxTitle {
+  display: none !important;
+}
+.lzoom2 #colorbox.lzoom #cboxContent, .node-type-boa #colorbox.lzoom #cboxContent {
+  background: none;
+}
 
-.lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen {
+.lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
   display: none;
 }
 @media only screen and (min-width: 768px) {
-  .lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen {
+  .lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
     display: block;
   }
 }

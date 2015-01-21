@@ -124,9 +124,18 @@
       padding-top: 18px;
     }
   }
+  #colorbox.lzoom {
+    border: none;
+    #cboxTitle {
+      display: none !important;
+    }
+    #cboxContent {
+      background: none;
+    }
+  }
 }
 
-.lzoom1, .lzoom2 {
+.lzoom1, .lzoom2, .node-type-boa {
   .lzoom_fullscreen {
     display: none;
     @include breakpoint(large-up) {
