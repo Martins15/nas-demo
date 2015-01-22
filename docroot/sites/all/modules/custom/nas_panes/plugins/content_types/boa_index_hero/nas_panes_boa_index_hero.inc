@@ -41,14 +41,13 @@ function boa_index_hero_form($form, &$form_state) {
     '#media_options' => array(
       'global' => array(
         'file_extensions' => 'png jpg jpeg gif',
-        'max_filesize' => '10 MB',
+        'max_filesize' => '20 MB',
         'file_directory' => '',
         'types' => array('image'),
       ),
     ),
     '#default_value' => $conf['image'],
     '#required' => TRUE,
-    '#pp_crop_styles' => array('boa_index_hero'),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -100,7 +99,7 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   $hero_image = file_load($conf['image']);
-  $hero_image_path = image_style_url('boa_index_hero', $hero_image->uri);
+  $hero_image_path = image_style_url('hero_image', $hero_image->uri);
 
   $title = check_plain($conf['title']);
   $color = check_plain($conf['color']);
