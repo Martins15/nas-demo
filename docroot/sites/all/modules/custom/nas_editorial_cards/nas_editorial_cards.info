@@ -1,0 +1,4 @@
+name = NAS Editorial cards
+description = Contains Editorial cards related logic.
+core = 7.x
+package = NAS

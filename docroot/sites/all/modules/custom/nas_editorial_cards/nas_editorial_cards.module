@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Contains Editorial cards related logic.
+ */
+
+/**
+ * Helper function to get editorial card title.
+ *
+ * @param object $node
+ *  Node object
+ *
+ * @return string
+ *  Unsanitized title string.
+ */
+function _nas_editorial_cards_get_title($node) {
+  $title = $node->title;
+  if (!empty($node->field_editorial_card_title[LANGUAGE_NONE][0]['value'])) {
+    $title = $node->field_editorial_card_title[LANGUAGE_NONE][0]['value'];
+  }
+  return $title;
+}
+
+/**
+ * Helper function to get editorial card subtitle.
+ *
+ * @param object $node
+ *  Node object
+ *
+ * @return string
+ *  Unsanitized title string.
+ */
+function _nas_editorial_cards_get_subtitle($node) {
+  $subtitle = '';
+  if (!empty($node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $subtitle = $node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  }
+  elseif ($node->type == 'slideshow' && !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $subtitle = $node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  }
+  elseif ($node->type !== 'project' && !empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
+    $subtitle = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  }
+  elseif ($node->type !== 'project' && !empty($node->body[LANGUAGE_NONE][0]['value'])) {
+    $subtitle = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150);
+  }
+  elseif ($node->type === 'project' && !empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
+    $subtitle = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
+  }
+
+  return $subtitle;
+}
