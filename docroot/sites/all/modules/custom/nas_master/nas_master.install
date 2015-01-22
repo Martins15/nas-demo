@@ -1399,7 +1399,6 @@ function nas_master_update_7106() {
   features_revert_module('nas_engagement_cards_feature');
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_view_modes_feature');
-  
 }
 
 /**
