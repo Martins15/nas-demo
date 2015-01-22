@@ -51,3 +51,70 @@ function _nas_editorial_cards_get_subtitle($node) {
 
   return $subtitle;
 }
+
+/**
+ * Implements hook_token_info().
+ */
+function nas_editorial_cards_token_info() {
+  $info['tokens']['node']['editorial_card_title'] = array(
+    'name' => t('Editorial card title value'),
+    'description' => t('Returns Editorial card title'),
+  );
+  $info['tokens']['node']['editorial_card_subtitle'] = array(
+    'name' => t('Editorial card subtitle value'),
+    'description' => t('Returns Editorial card subtitle'),
+  );
+  $info['tokens']['node']['editorial_card_image'] = array(
+    'name' => t('Editorial card image value'),
+    'description' => t('Returns Editorial card image with fallback to slideshow images'),
+    'type' => 'image-field',
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function nas_editorial_cards_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $sanitize = !empty($options['sanitize']);
+
+  $replacements = array();
+
+  if ($type == 'node' && !empty($data['node'])) {
+    $node = $data['node'];
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'editorial_card_title':
+          $title = _nas_editorial_cards_get_title($node);
+          $replacements[$original] = $sanitize ? check_plain($title) : $title;
+          break;
+
+        case 'editorial_card_subtitle':
+          $replacements[$original] = _nas_editorial_cards_get_subtitle($node);
+          break;
+
+        default:
+          $pseudo_image_fields = array('editorial_card_image');
+          foreach ($pseudo_image_fields as $pseudo_image_field) {
+            $field_object = FALSE;
+
+            switch ($pseudo_image_field) {
+              case 'editorial_card_image':
+                $field_object = field_get_items('node', $node, 'field_editorial_card_image');
+                if (!$field_object && $node->type === 'slideshow') {
+                  $field_object = field_get_items('node', $node, 'field_images');
+                }
+                break;
+            }
+
+            if ($field_object && $image_field_tokens = token_find_with_prefix($tokens, $pseudo_image_field)) {
+              $replacements += token_generate('image-field', $image_field_tokens, array('image-field' => $field_object), $options);
+            }
+          }
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}
