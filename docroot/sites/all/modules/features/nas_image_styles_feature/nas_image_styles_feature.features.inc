@@ -288,6 +288,13 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: boa_lightbox.
+  $styles['boa_lightbox'] = array(
+    'name' => 'boa_lightbox',
+    'label' => 'BOA lightbox',
+    'effects' => array(),
+  );
+
   // Exported image style: conservation_hero.
   $styles['conservation_hero'] = array(
     'name' => 'conservation_hero',
