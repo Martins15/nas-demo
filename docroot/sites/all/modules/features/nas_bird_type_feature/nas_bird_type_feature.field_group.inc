@@ -21,7 +21,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Basic Info',
-    'weight' => '1',
+    'weight' => '0',
     'children' => array(
       0 => 'body',
       1 => 'field_bird_nesting',
@@ -56,7 +56,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Legacy',
-    'weight' => '4',
+    'weight' => '3',
     'children' => array(
       0 => 'field_bird_call_pattern',
       1 => 'field_bird_call_type',
@@ -67,7 +67,6 @@ function nas_bird_type_feature_field_group_info() {
       6 => 'field_bird_sec_species_name',
       7 => 'field_bird_size',
       8 => 'field_bird_wing_shape',
-      9 => 'group_menu_sections_references',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -92,7 +91,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Media',
-    'weight' => '3',
+    'weight' => '2',
     'children' => array(
       0 => 'field_bird_audio',
       1 => 'field_bird_illustration',
@@ -122,10 +121,10 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'bird';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_legacy';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '39',
+    'weight' => '4',
     'children' => array(
       0 => 'field_internal_tagging',
     ),
@@ -152,7 +151,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Scientific Info',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
       0 => 'field_bird_calls',
       1 => 'field_bird_description',
