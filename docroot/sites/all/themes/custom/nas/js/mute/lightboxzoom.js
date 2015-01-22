@@ -28,6 +28,11 @@
         innerHeight: colorboxMaxHeight[StateManager.state],
         reposition: true,
         onComplete: function() {
+          // Update size in case when colorbox defined in another layout.
+          $.colorbox.resize({
+            width: colorboxMaxWidth[StateManager.state],
+            height: colorboxMaxHeight[StateManager.state]
+          });
 
           // Define DOM elements
           var $content = $('#cboxLoadedContent'),
@@ -45,6 +50,7 @@
 
           $(window).on('resize', function(){
             if (fullScreen_state === 'FullscreenOff') {
+              // Update size according to layout state.
               $.colorbox.resize({
                 width: colorboxMaxWidth[StateManager.state],
                 height: colorboxMaxHeight[StateManager.state]
