@@ -158,7 +158,7 @@ function nas_metatags_feature_metatag_export_default() {
         'value' => '[node:editorial_card_subtitle]',
       ),
       'og:image' => array(
-        'value' => '[node:editorial_card_image:article_teaser]',
+        'value' => '[node:editorial_card_image:hero_mobile]',
       ),
       'article:published_time' => array(
         'value' => '[node:field_article_date]',
@@ -180,7 +180,7 @@ function nas_metatags_feature_metatag_export_default() {
         'value' => '[node:editorial_card_subtitle]',
       ),
       'og:image' => array(
-        'value' => '[node:editorial_card_image:article_teaser]',
+        'value' => '[node:editorial_card_image:hero_mobile]',
       ),
     ),
   );
@@ -199,7 +199,7 @@ function nas_metatags_feature_metatag_export_default() {
         'value' => '[node:editorial_card_subtitle]',
       ),
       'og:image' => array(
-        'value' => '[node:editorial_card_image:article_teaser]',
+        'value' => '[node:editorial_card_image:hero_mobile]',
       ),
     ),
   );
@@ -218,7 +218,7 @@ function nas_metatags_feature_metatag_export_default() {
         'value' => '[node:editorial_card_subtitle]',
       ),
       'og:image' => array(
-        'value' => '[node:editorial_card_image:article_teaser]',
+        'value' => '[node:editorial_card_image:hero_mobile]',
       ),
     ),
   );
