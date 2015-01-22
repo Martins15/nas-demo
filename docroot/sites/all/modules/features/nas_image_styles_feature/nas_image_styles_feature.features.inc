@@ -398,94 +398,6 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
-  // Exported image style: conservation_strategy_hero.
-  $styles['conservation_strategy_hero'] = array(
-    'name' => 'conservation_strategy_hero',
-    'label' => 'Conservation Strategy hero',
-    'effects' => array(
-      5 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => 1160,
-          'anchor' => 'center-top',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => 1,
-      ),
-      6 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => 1160,
-        ),
-        'weight' => 2,
-      ),
-    ),
-  );
-
-  // Exported image style: conservation_strategy_hero_mobile.
-  $styles['conservation_strategy_hero_mobile'] = array(
-    'name' => 'conservation_strategy_hero_mobile',
-    'label' => 'Conservation Strategy hero mobile',
-    'effects' => array(
-      8 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 800,
-          'height' => 387,
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => 1,
-      ),
-      9 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 800,
-          'height' => 387,
-        ),
-        'weight' => 2,
-      ),
-    ),
-  );
-
   // Exported image style: conservation_strategy_icon.
   $styles['conservation_strategy_icon'] = array(
     'name' => 'conservation_strategy_icon',
@@ -734,129 +646,21 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'hero_image',
     'label' => 'Hero image',
     'effects' => array(
-      1 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
+      6 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
         'data' => array(
           'width' => 2400,
-          'height' => 1160,
-          'anchor' => 'center-top',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
+          'height' => 1800,
+          'upscale' => 0,
         ),
         'weight' => 1,
-      ),
-      4 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => 1160,
-        ),
-        'weight' => 2,
-      ),
-    ),
-  );
-
-  // Exported image style: hero_image_section.
-  $styles['hero_image_section'] = array(
-    'name' => 'hero_image_section',
-    'label' => 'Hero image section',
-    'effects' => array(
-      1 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => 1320,
-          'anchor' => 'center-top',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => 1,
-      ),
-      2 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => 1320,
-        ),
-        'weight' => 2,
-      ),
-    ),
-  );
-
-  // Exported image style: hero_image_section_mobile.
-  $styles['hero_image_section_mobile'] = array(
-    'name' => 'hero_image_section_mobile',
-    'label' => 'Hero image section mobile',
-    'effects' => array(
-      3 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 1060,
-          'height' => 994,
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => 1,
-      ),
-      4 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 1060,
-          'height' => 994,
-        ),
-        'weight' => 2,
       ),
     ),
   );
@@ -866,70 +670,21 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'hero_mobile',
     'label' => 'Hero mobile',
     'effects' => array(
-      1 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 640,
-          'height' => 600,
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 0,
-          ),
-        ),
-        'weight' => 1,
-      ),
-    ),
-  );
-
-  // Exported image style: hero_project.
-  $styles['hero_project'] = array(
-    'name' => 'hero_project',
-    'label' => 'Conservation project hero image ',
-    'effects' => array(
-      1 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => 1235,
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => -10,
-      ),
-      2 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
+      11 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
         'module' => 'image',
-        'name' => 'image_scale_and_crop',
+        'name' => 'image_scale',
         'data' => array(
-          'width' => 2400,
-          'height' => 1235,
+          'width' => 1060,
+          'height' => 994,
+          'upscale' => 0,
         ),
-        'weight' => -9,
+        'weight' => 2,
       ),
     ),
   );
@@ -1394,41 +1149,21 @@ function nas_image_styles_feature_image_default_styles() {
     'name' => 'wysiwyg_slide',
     'label' => 'Wysiwyg slide',
     'effects' => array(
-      1 => array(
-        'label' => 'EPSA Image Crop',
-        'help' => '',
-        'dimensions callback' => 'epsacrop_crop_dimensions',
-        'effect callback' => 'epsacrop_crop_image',
-        'form callback' => 'epsacrop_crop_image_form',
-        'module' => 'epsacrop',
-        'name' => 'epsacrop_crop',
+      3 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
         'data' => array(
-          'width' => 900,
-          'height' => 600,
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
+          'width' => 2400,
+          'height' => '',
+          'upscale' => 0,
         ),
         'weight' => 1,
-      ),
-      2 => array(
-        'label' => 'Scale and crop',
-        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
-        'data' => array(
-          'width' => 900,
-          'height' => 600,
-        ),
-        'weight' => 2,
       ),
     ),
   );

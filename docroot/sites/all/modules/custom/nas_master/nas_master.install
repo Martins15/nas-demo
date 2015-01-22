@@ -1391,6 +1391,20 @@ function nas_master_update_7105() {
 /**
  * Revert features.
  */
+function nas_master_update_7106() {
+  features_revert_module('nas_beans_feature');
+  features_revert_module('nas_boa_feature');
+  features_revert_module('nas_boa_index_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_engagement_cards_feature');
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_view_modes_feature');
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7107() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_views_feature');

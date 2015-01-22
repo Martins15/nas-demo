@@ -134,10 +134,6 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Hero'),
     'custom settings' => TRUE,
   );
-  $entity_info['file']['view modes']['hero_project'] = array(
-    'label' => t('Conservation project Hero image'),
-    'custom settings' => TRUE,
-  );
   $entity_info['file']['view modes']['hero_mobile'] = array(
     'label' => t('Hero mobile'),
     'custom settings' => TRUE,
