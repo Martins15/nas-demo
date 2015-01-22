@@ -9,8 +9,8 @@
  *  $prev_url - url to prvious BOA.
  */
 ?>
-<?php if (!empty($original_image_path)) : ?>
-  <a class="bird-guide-image-link lightboxzoom icon-binoculars white cboxElement" href="<?php print $original_image_path; ?>"></a>
+<?php if (!empty($lightbox_image_path)) : ?>
+  <a class="bird-guide-image-link lightboxzoom icon-binoculars white cboxElement" href="<?php print $lightbox_image_path; ?>"></a>
 <?php endif; ?>
 
 <div class="bird-guide-image">

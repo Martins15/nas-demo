@@ -13,7 +13,7 @@
 
 <section class="bird-guide-section right-col boa-plate-illustration center">
   <img src="<?php print $image_thumbnail; ?>" /><div class="clearfix"></div>
-  <a href="<?php print $image; ?>" class="see-full-plate lightboxzoom" ><i class="icon-magnifier"></i> <?php print t('See full plate'); ?></a><div class="clearfix"></div>
-  <a href="<?php print $image; ?>" class="illustration-attribution" target="blank"><?php print t('Download high-resolution file'); ?></a><div class="clearfix"></div>
+  <a href="<?php print $lightbox_image_path; ?>" class="see-full-plate lightboxzoom" ><i class="icon-magnifier"></i> <?php print t('See full plate'); ?></a><div class="clearfix"></div>
+  <a href="<?php print $original_image_path; ?>" class="illustration-attribution" target="blank"><?php print t('Download high-resolution file'); ?></a><div class="clearfix"></div>
   <a href="<?php print $link_url; ?>" class="illustration-attribution"><?php print $link_title; ?></a>
 </section>
