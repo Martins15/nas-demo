@@ -62,16 +62,18 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
   }
   $image_items = field_get_items('node', $node, 'field_boa_illustration');
 
-  if (empty($image_items)) {
+  if (empty($image_items[0]['uri'])) {
     return;
   }
   $image_thumbnail_path = image_style_url('boa_plate_thumbnail', $image_items[0]['uri']);
-  $image_path = file_create_url($image_items[0]['uri']);
+  $original_image_path = file_create_url($image_items[0]['uri']);
+  $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
 
   $block = new stdClass();
   $block->content = theme('boa_plate', array(
     'image_thumbnail' => $image_thumbnail_path,
-    'image' => $image_path,
+    'lightbox_image_path' => $lightbox_image_path,
+    'original_image_path' => $original_image_path,
     'link_title' => check_plain($conf['link_title']),
     'link_url' => url($conf['link_uri']),
   ));

@@ -25,17 +25,22 @@ function nas_boa_hero_render($subtype, $conf, $args, $context) {
   }
   $image_items = field_get_items('node', $node, 'field_boa_illustration');
 
-  if (empty($image_items)) {
+  if (empty($image_items[0]['uri'])) {
     return;
   }
+
+  drupal_add_js(drupal_get_path('theme', 'nas') . '/js/mute/lightboxzoom.js');
   $hero_image_path = image_style_url('boa_hero', $image_items[0]['uri']);
+  $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
 
   $next_nid = nas_panes_boa_next($node);
   $prev_nid = nas_panes_boa_previous($node);
 
   $block = new stdClass();
   $block->content = theme('boa_hero', array(
-    'image' => $hero_image_path,
+    'image_path' => $hero_image_path,
+    'lightbox_image_path' => $lightbox_image_path,
+    'original_image_path' => file_create_url($image_items[0]['uri']),
     'next_url' => url('node/' . $next_nid),
     'prev_url' => url('node/' . $prev_nid),
   ));

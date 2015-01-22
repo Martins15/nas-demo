@@ -59,10 +59,10 @@ function nas_bird_type_feature_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '1',
+          'weight' => '5',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '6',
         ),
       ),
       'display' => array(),
