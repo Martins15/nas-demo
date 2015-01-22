@@ -105,6 +105,7 @@ function nas_panes_theme() {
     'boa_hero' => array(
       'variables' => array(
         'image_path' => NULL,
+        'lightbox_image_path' => NULL,
         'original_image_path' => NULL,
         'next_url' => NULL,
         'prev_url' => NULL,
@@ -126,10 +127,11 @@ function nas_panes_theme() {
     ),
     'boa_plate' => array(
       'variables' => array(
-        'image_thumbnail' => '',
-        'image' => '',
-        'link_title' => '',
-        'link_url' => '',
+        'image_thumbnail' => NULL,
+        'lightbox_image_path' => NULL,
+        'original_image_path' => NULL,
+        'link_title' => NULL,
+        'link_url' => NULL,
       ),
       'template' => 'boa-plate',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
