@@ -51,7 +51,6 @@ function nas_panes_pane_featured_bird_custom_pane_edit_form($form, &$form_state)
     ),
     '#default_value' => $conf['image'],
     '#required' => FALSE,
-    '#pp_crop_styles' => array('featured_bird', 'featured_bird_mobile'),
   );
 
   // The two function calls below are necessary if we want to use a media
