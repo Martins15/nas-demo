@@ -1,0 +1,15 @@
+name = NAS Metatags Feature
+core = 7.x
+package = NAS
+dependencies[] = metatag
+features[features_api][] = api:2
+features[metatag][] = global
+features[metatag][] = global:403
+features[metatag][] = global:404
+features[metatag][] = global:frontpage
+features[metatag][] = node
+features[metatag][] = node:article
+features[metatag][] = node:slideshow
+features[metatag][] = taxonomy_term
+features[metatag][] = user
+project path = sites/all/modules/features

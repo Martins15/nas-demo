@@ -1401,3 +1401,11 @@ function nas_master_update_7107() {
   features_revert_module('nas_editor_role');
   features_revert_module('nas_news_page_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7108() {
+  module_enable(array('metatag', 'metatag_opengraph'));
+  module_enable(array('nas_metatags_feature'));
+}
