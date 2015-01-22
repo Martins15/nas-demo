@@ -1413,4 +1413,5 @@ function nas_master_update_7107() {
   features_revert_module('nas_text_format_feature');
   features_revert_module('nas_editor_role');
   features_revert_module('nas_news_page_feature');
+  features_revert_module('nas_image_styles_feature');
 }
