@@ -238,5 +238,5 @@ features_exclude[dependencies][image] = image
 features_exclude[dependencies][video_embed_field] = video_embed_field
 features_exclude[dependencies][nas_master] = nas_master
 features_exclude[field_base][field_description] = field_description
-mtime = 1421744914
+mtime = 1421745049
 project path = sites/all/modules/features
