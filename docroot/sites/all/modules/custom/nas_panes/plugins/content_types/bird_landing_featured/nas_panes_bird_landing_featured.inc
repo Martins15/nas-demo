@@ -44,7 +44,6 @@ function bird_landing_featured_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_bird', 'featured_bird_mobile'),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -117,8 +116,8 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
   $node = node_load($conf['bird']['entity_id']);
 
   $hero_image = file_load($conf['image']);
-  $hero_image_path = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE, $hero_image->uri);
-  $hero_image_path_mobile = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE, $hero_image->uri);
+  $hero_image_path = image_style_url('hero_image', $hero_image->uri);
+  $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
 
   $summary = check_plain($conf['summary']);
 

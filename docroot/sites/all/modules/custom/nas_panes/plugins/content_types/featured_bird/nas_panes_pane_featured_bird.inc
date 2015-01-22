@@ -126,8 +126,8 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   }
   if (isset($image_fid)) {
     $hero_image = file_load($image_fid);
-    $hero_image_path = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE, $hero_image->uri);
-    $hero_image_path_mobile = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE, $hero_image->uri);
+    $hero_image_path = image_style_url('hero_image', $hero_image->uri);
+    $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
   }
 
   $color_classes = 'light-text dark-gradient';
