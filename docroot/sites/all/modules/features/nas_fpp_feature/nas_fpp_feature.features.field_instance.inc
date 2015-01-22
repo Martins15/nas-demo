@@ -592,7 +592,6 @@ function nas_fpp_feature_field_default_field_instances() {
           'boa_family_species' => 0,
           'boa_hero' => 0,
           'boa_index_bio' => 0,
-          'boa_index_hero' => 0,
           'boa_plate_binocular' => 0,
           'boa_plate_thumbnail' => 0,
           'conservation_slideshow_featured_project' => 0,
