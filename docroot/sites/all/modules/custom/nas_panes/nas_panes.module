@@ -102,9 +102,10 @@ function nas_panes_theme() {
     ),
     'boa_hero' => array(
       'variables' => array(
-        'image' => '',
-        'next_url' => '',
-        'prev_url' => '',
+        'image_path' => NULL,
+        'original_image_path' => NULL,
+        'next_url' => NULL,
+        'prev_url' => NULL,
       ),
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
@@ -1738,4 +1739,18 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+}
+
+/**
+ * Returns options for menu section.
+ */
+function _nas_panes_get_menu_section_options() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  $options = array();
+  foreach ($tree as $item) {
+    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
+  }
+
+  return $options;
 }

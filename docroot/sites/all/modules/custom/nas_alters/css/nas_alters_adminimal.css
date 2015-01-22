@@ -34,3 +34,26 @@ div.ctools-modal-content .form-type-textarea.form-item label {
   background: #ffb;
 }
 /**/
+
+#modal-content #editorial-card-river-edit-form .form-item {
+  width: 49%;
+}
+
+#modal-content #editorial-card-river-edit-form #edit-filter {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 49%;
+}
+
+#modal-content #editorial-card-river-edit-form #edit-filter .form-item {
+  width: 100%;
+}
+
+#file-entity-edit .form-item label {
+  float: none;
+}
+
+#file-entity-edit .form-item .form-textarea-wrapper {
+  margin: 0;
+}

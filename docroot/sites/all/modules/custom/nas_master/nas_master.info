@@ -62,3 +62,4 @@ dependencies[] = nas_bird_friendly_feature
 dependencies[] = nas_help_page_feature
 dependencies[] = nas_audubon_near_you_feature
 dependencies[] = bigmenu
+dependencies[] = nas_text_format_feature

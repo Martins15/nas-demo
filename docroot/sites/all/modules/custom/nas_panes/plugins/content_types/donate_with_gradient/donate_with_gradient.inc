@@ -108,7 +108,7 @@ function donate_with_gradient_render($subtype, $conf, $args, $contexts) {
     $background_image_small = image_style_url('hero_mobile', $image->uri);
   }
 
-  $title = $conf['override_title'] ? check_plain($conf['override_title_text']) : 'Donate';
+  $title = !empty($conf['override_title_text']) ? $conf['override_title_text'] : 'Donate';
 
   $conf['button']['url'] = url($conf['button']['url']);
   $conf['button']['title'] = check_plain($conf['button']['title']);
@@ -118,7 +118,7 @@ function donate_with_gradient_render($subtype, $conf, $args, $contexts) {
   $content = theme('donate_with_gradient', array(
     'background_image' => $background_image,
     'background_image_small' => $background_image_small,
-    'title' => $title,
+    'title' => check_plain($title),
     'subtitle' => check_plain($conf['subtitle']),
     'teaser' => check_plain($conf['teaser']),
     'button' => $conf['button'],
