@@ -1416,3 +1416,19 @@ function nas_master_update_7107() {
   features_revert_module('nas_news_page_feature');
   features_revert_module('nas_image_styles_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7110() {
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_beans_feature');
+  features_revert_module('nas_boa_feature');
+  features_revert_module('nas_boa_index_feature');
+  features_revert_module('nas_conservation_project_feature');
+  features_revert_module('nas_conservation_strategy_feature');
+  features_revert_module('nas_engagement_cards_feature');
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_view_modes_feature');
+}
