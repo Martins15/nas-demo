@@ -18,7 +18,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'bird';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_tabs';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Basic Info',
     'weight' => '1',
@@ -53,7 +53,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'bird';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_tabs';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Legacy',
     'weight' => '4',
@@ -67,6 +67,7 @@ function nas_bird_type_feature_field_group_info() {
       6 => 'field_bird_sec_species_name',
       7 => 'field_bird_size',
       8 => 'field_bird_wing_shape',
+      9 => 'group_menu_sections_references',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -88,7 +89,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'bird';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_tabs';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Media',
     'weight' => '3',
@@ -121,10 +122,10 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'bird';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_tabs';
+  $field_group->parent_name = 'group_legacy';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '5',
+    'weight' => '39',
     'children' => array(
       0 => 'field_internal_tagging',
     ),
@@ -148,7 +149,7 @@ function nas_bird_type_feature_field_group_info() {
   $field_group->entity_type = 'node';
   $field_group->bundle = 'bird';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_tabs';
+  $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Scientific Info',
     'weight' => '2',
