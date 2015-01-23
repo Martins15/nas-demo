@@ -326,7 +326,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'override_title_text' => '',
       'identifier' => '',
       'link' => 0,
-      'leave_node_title' => 0,
+      'leave_node_title' => 1,
       'build_mode' => 'full',
       'context' => 'panelizer',
     );
