@@ -13048,6 +13048,10 @@ h2.grey {
   font-size: 15px;
 }
 
+.bird-guide-body .field-name-field-bird-audio {
+  padding-top: 10px;
+}
+
 .bird-card-grid .view-empty {
   background-color: transparent;
   color: #838078;

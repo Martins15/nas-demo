@@ -13,13 +13,13 @@ $(function() {
   function respondSmall() {
     $("#in-the-news").after($("#in-action"));
     $("#bird-map").after($("#bird-cta"));
-    $("#bird-map").after($("#bird-dyk"));
+    $("#bird-map").after($("#bird-migration"));
   }
 
   function respondLarge() {
     $("#in-action").after($("#in-the-news"));
     $("#bird-map").before($("#bird-cta"));
-    $("#bird-map").before($("#bird-dyk"));
+    $("#bird-map").before($("bird-migration"));
   }
 });
 
