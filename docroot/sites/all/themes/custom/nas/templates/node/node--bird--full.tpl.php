@@ -119,11 +119,10 @@
                 <tbody>
                     <?php print render($content['field_bird_conserv_status']); ?>
                     <?php print render($content['field_bird_family']); ?>
-                    <?php print render($content['field_bird_description']); ?>
                     <?php print render($content['field_bird_habitat']); ?>
                 </tbody>
               </table>
-              <?php print render($content['body']); ?>
+              <div><?php print render($content['field_bird_description']); ?></div>
             </section>
             <section class="bird-guide-section left-col">
               <h5><i class="icon-camera"></i> <?php print t('Photo Gallery'); ?></h5>
@@ -138,15 +137,16 @@
             <section class="bird-guide-section left-col sans">
               <div class="row">
                 <div class="large-6 columns">
-                  <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
-                    <?php print render($content['field_bird_calls']); ?>
-                  <br>
-                    <?php print render($content['field_bird_audio']); ?>
+                  <?php print render($content['field_bird_feeding']); ?>
+                  <br />
+                  <?php print render($content['field_bird_eggs']); ?>
+                  <br />
+                  <?php print render($content['field_bird_young']); ?>
                 </div>
                 <div class="large-6 columns">
+                  <?php print render($content['field_bird_diet']); ?>
+                  <br />
                   <?php print render($content['field_bird_nesting']); ?>
-                  <br>
-                  <?php print render($content['field_bird_range']); ?>
                 </div>
               </div>
             </section>
@@ -157,12 +157,19 @@
                 <?php if (isset($bird_illustration_author)): ?>
                   <?php print $bird_illustration_author; ?>
                 <?php endif; ?>
-                <br>
+                <br />
                 <?php if (isset($learn_more_link)): ?>
                   <?php print $learn_more_link; ?>
                 <?php endif; ?>
               </p>
             </section>
+
+            <?php if (!empty($content['field_bird_migration'])): ?>
+              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-large hide-for-xlarge">
+                <?php print render($content['field_bird_migration']); ?>
+              </section>
+            <?php endif; ?>
+
             <div id="bird-cta">
               <section class="social-sharing bird-guide-section right-col small center">
                 <span class="social-sharing-caption small"><?php print t('Share this bird'); ?></span>
@@ -175,14 +182,24 @@
                 <?php print $donate_link; ?>
               </section>
             </div>
-            <?php if (!empty($content['field_bird_tip'])): ?>
-            <section id="bird-dyk" class="bird-guide-section right-col small sans">
-              <?php print render($content['field_bird_tip']); ?>
-            </section>
+
+            <?php if (!empty($content['field_bird_migration'])): ?>
+              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-medium hide-for-small hide-for-tiny">
+                <?php print render($content['field_bird_migration']); ?>
+              </section>
             <?php endif; ?>
+
             <section id="bird-map" class="bird-guide-section right-col">
               <?php print render($content['field_bird_rangemap']); ?>
             </section>
+
+            <section id="bird-songs-calls" class="bird-guide-section right-col small sans">
+              <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
+              <?php print render($content['field_bird_calls']); ?>
+              <br />
+              <?php print render($content['field_bird_audio']); ?>
+            </section>
+
           </div>
         </div>
       </section>
