@@ -165,7 +165,7 @@
             </section>
 
             <?php if (!empty($content['field_bird_migration'])): ?>
-              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-medium hide-for-large hide-for-xlarge">
+              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-large hide-for-xlarge">
                 <?php print render($content['field_bird_migration']); ?>
               </section>
             <?php endif; ?>
@@ -184,7 +184,7 @@
             </div>
 
             <?php if (!empty($content['field_bird_migration'])): ?>
-              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-small hide-for-tiny">
+              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-medium hide-for-small hide-for-tiny">
                 <?php print render($content['field_bird_migration']); ?>
               </section>
             <?php endif; ?>
