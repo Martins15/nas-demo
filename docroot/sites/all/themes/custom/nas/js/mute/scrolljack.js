@@ -26,8 +26,34 @@
           }
         }
 
+        function stickyContainer() {
+          var $hero_credit = $('.bird-hero-attribution'),
+              $bird_guide_card = $('.bird-guide-card');
+
+          if (typeof $bird_guide_card.visible != "undefined") {
+            // Add sticky class when container is not visible.
+            if ($bird_guide_card.visible(true) === true) {
+              $hero_credit.removeClass('sticky');
+              $hero_credit.css({
+                width: 'auto'
+              });
+            }
+            else {
+              // 2 - container border.
+              $hero_credit.width($bird_guide_card.innerWidth() + 2);
+              $hero_credit.addClass('sticky');
+            }
+          }
+        }
+
+
+        $(window).on('resize', function(){
+          stickyContainer();
+        });
+
         $(document).bind("respond", function(e) {
           $(window).unmousewheel();
+          stickyContainer();
 
           if(e.size == "tiny" || e.size == "small") {
             $(".bird-guide-container").css("padding-top", "");
@@ -40,6 +66,7 @@
                   cardPadding = parseInt($container.css("padding-top")),
                   delta = e.deltaY;
 
+              stickyContainer();
               if(cardPadding <= MAXSCROLL && delta < 0) {
                 scroll(e, $container, cardPadding, delta);
               }

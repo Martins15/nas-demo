@@ -85,6 +85,12 @@ function nas_preprocess_node(&$vars) {
  */
 function nas_preprocess_node_bird(&$vars) {
   $node = $vars['node'];
+  if ($vars['view_mode'] == 'full') {
+    drupal_add_js(path_to_theme() . '/js/vendor/jquery.visible/jquery.visible.min.js', array(
+      'group' => JS_THEME,
+      'every_page' => FALSE,
+    ));
+  }
   drupal_add_js(path_to_theme() . '/js/vendor/owl-carousel/owl.carousel.min.js', array(
     'group' => JS_THEME,
     'every_page' => FALSE,

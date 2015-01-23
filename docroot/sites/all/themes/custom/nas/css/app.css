@@ -13129,6 +13129,21 @@ h2.grey {
     background-color: rgba(0, 0, 0, 0.2);
   }
 }
+@media only screen and (min-width: 601px) {
+  .hero-attribution.bird-hero-attribution, .bird-hero-attribution.hero-attribution-fullscreen {
+    width: auto;
+  }
+  .hero-attribution.bird-hero-attribution.sticky, .bird-hero-attribution.sticky.hero-attribution-fullscreen {
+    position: fixed;
+    bottom: 15px;
+  }
+  .hero-attribution.bird-hero-attribution.sticky .column, .bird-hero-attribution.sticky.hero-attribution-fullscreen .column {
+    top: 0;
+  }
+  .hero-attribution.bird-hero-attribution .column, .bird-hero-attribution.hero-attribution-fullscreen .column {
+    position: relative !important;
+  }
+}
 
 .hero-attribution-fullscreen .column {
   position: inherit;

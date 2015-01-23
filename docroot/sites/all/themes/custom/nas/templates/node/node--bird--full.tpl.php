@@ -89,7 +89,7 @@
   <div class="column">
 
     <?php if (!empty($hero_image_credit)) : ?>
-      <div class="hero-attribution">
+      <div class="hero-attribution bird-hero-attribution">
         <p class="column"><span class="hero-attribution-text"><?php print $hero_image_credit; ?></span></p>
       </div>
     <?php endif; ?>
