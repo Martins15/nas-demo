@@ -124,6 +124,22 @@
       background-color: rgba(0, 0, 0, 0.2);
     }
   }
+
+  &.bird-hero-attribution {
+    @include breakpoint(medium-up) {
+      &.sticky {
+        position: fixed;
+        bottom: 15px;
+        .column {
+          top: 0;
+        }
+      }
+      width: auto;
+      .column {
+        position: relative !important;
+      }
+    }
+  }
 }
 
 .hero-attribution-fullscreen {

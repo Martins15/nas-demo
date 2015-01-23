@@ -87,6 +87,13 @@
 ?>
 <div class="row">
   <div class="column">
+
+    <?php if (!empty($hero_image_credit)) : ?>
+      <div class="hero-attribution bird-hero-attribution">
+        <p class="column"><span class="hero-attribution-text"><?php print $hero_image_credit; ?></span></p>
+      </div>
+    <?php endif; ?>
+
     <div id="node-<?php print $node->nid; ?>" class="bird-guide-card <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
       <?php if ($bird_priority): ?>
       <div class="bird-guide-tag"><?php print t('Priority Bird'); ?></div>
