@@ -138,14 +138,14 @@
               <div class="row">
                 <div class="large-6 columns">
                   <?php print render($content['field_bird_feeding']); ?>
-                  </br>
+                  <br />
                   <?php print render($content['field_bird_eggs']); ?>
-                  </br>
+                  <br />
                   <?php print render($content['field_bird_young']); ?>
                 </div>
                 <div class="large-6 columns">
                   <?php print render($content['field_bird_diet']); ?>
-                  </br>
+                  <br />
                   <?php print render($content['field_bird_nesting']); ?>
                 </div>
               </div>
@@ -157,7 +157,7 @@
                 <?php if (isset($bird_illustration_author)): ?>
                   <?php print $bird_illustration_author; ?>
                 <?php endif; ?>
-                </br>
+                <br />
                 <?php if (isset($learn_more_link)): ?>
                   <?php print $learn_more_link; ?>
                 <?php endif; ?>
@@ -190,7 +190,7 @@
             <section id="bird-songs-calls" class="bird-guide-section right-col small sans">
               <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
               <?php print render($content['field_bird_calls']); ?>
-              </br>
+              <br />
               <?php print render($content['field_bird_audio']); ?>
             </section>
 
