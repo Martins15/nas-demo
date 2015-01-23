@@ -39,7 +39,7 @@
 <section class="global-content with-padding static-page-content">
   <?php if (empty($content['hero_image']) || arg(0) == 'admin'): ?>
     <header class="row">
-      <div class="large-10 large-centered columns">
+      <div class="large-pull-1 large-10 large-centered columns">
         <?php print $content['header_no_image']; ?>
         <p class="deck"><?php print $content['subtitle']; ?></p>
       </div>

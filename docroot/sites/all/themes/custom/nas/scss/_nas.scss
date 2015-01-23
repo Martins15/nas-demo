@@ -612,3 +612,7 @@ body.node-type-slideshow {
 .node-type-boa {
   @extend .lzoom2;
 }
+
+.global-header li a.active {
+  color: #aaa;
+}
