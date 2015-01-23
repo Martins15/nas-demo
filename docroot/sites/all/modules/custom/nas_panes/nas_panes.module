@@ -19,8 +19,6 @@ define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership')
 define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
 define('NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY', 'page-birds_priority');
 
-define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
-define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
 define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
 define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
