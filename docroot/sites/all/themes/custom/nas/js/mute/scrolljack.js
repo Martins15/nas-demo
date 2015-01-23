@@ -61,6 +61,10 @@
           if(e.size == "medium" || e.size == "large") {
             MAXSCROLL = parseInt($(".bird-guide-container").css("padding-top"));
 
+            $(window).scroll(function(e) {
+              stickyContainer();
+            });
+
             $(window).mousewheel(function(e) {
               var $container = $(".bird-guide-container"),
                   cardPadding = parseInt($container.css("padding-top")),
