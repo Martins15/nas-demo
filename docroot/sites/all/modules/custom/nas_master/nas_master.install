@@ -1423,6 +1423,7 @@ function nas_master_update_7107() {
 function nas_master_update_7109() {
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_views_feature');
+  module_enable(array('imagemagick', 'imagemagick_advanced'));
 }
 
 /**
