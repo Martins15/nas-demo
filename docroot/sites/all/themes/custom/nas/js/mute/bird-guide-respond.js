@@ -12,14 +12,10 @@ $(function() {
 
   function respondSmall() {
     $("#in-the-news").after($("#in-action"));
-    $("#bird-map").after($("#bird-cta"));
-    $("#bird-map").after($("#bird-dyk"));
   }
 
   function respondLarge() {
     $("#in-action").after($("#in-the-news"));
-    $("#bird-map").before($("#bird-cta"));
-    $("#bird-map").before($("#bird-dyk"));
   }
 });
 

@@ -326,7 +326,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'override_title_text' => '',
       'identifier' => '',
       'link' => 0,
-      'leave_node_title' => 0,
+      'leave_node_title' => 1,
       'build_mode' => 'full',
       'context' => 'panelizer',
     );
@@ -365,25 +365,13 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c'] = $pane;
     $display->panels['similar_birds'][0] = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
     $pane = new stdClass();
-    $pane->pid = 'new-977db9c1-e7d8-4758-b09c-c90726dda353';
+    $pane->pid = 'new-70f5b69d-dff0-4106-a0de-f593dd071a0f';
     $pane->panel = 'top';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_hero_image';
+    $pane->type = 'bird_hero_image';
+    $pane->subtype = 'bird_hero_image';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'media',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(
-        'file_view_mode' => 'hero_cover_bird_page',
-      ),
-      'context' => 'panelizer',
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -392,9 +380,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '977db9c1-e7d8-4758-b09c-c90726dda353';
-    $display->content['new-977db9c1-e7d8-4758-b09c-c90726dda353'] = $pane;
-    $display->panels['top'][0] = 'new-977db9c1-e7d8-4758-b09c-c90726dda353';
+    $pane->uuid = '70f5b69d-dff0-4106-a0de-f593dd071a0f';
+    $display->content['new-70f5b69d-dff0-4106-a0de-f593dd071a0f'] = $pane;
+    $display->panels['top'][0] = 'new-70f5b69d-dff0-4106-a0de-f593dd071a0f';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $panelizer->display = $display;

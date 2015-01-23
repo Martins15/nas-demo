@@ -33,6 +33,12 @@
   }
 }
 
+.bird-guide-body {
+  .field-name-field-bird-audio {
+    padding-top: 10px;
+  }
+}
+
 .bird-card-grid {
   .view-empty {
     background-color: transparent;
@@ -122,6 +128,22 @@
     .hero-attribution-text {
       padding: 2px 5px;
       background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &.bird-hero-attribution {
+    @include breakpoint(medium-up) {
+      &.sticky {
+        position: fixed;
+        bottom: 15px;
+        .column {
+          top: 0;
+        }
+      }
+      width: auto;
+      .column {
+        position: relative !important;
+      }
     }
   }
 }
@@ -589,4 +611,8 @@ body.node-type-slideshow {
 
 .node-type-boa {
   @extend .lzoom2;
+}
+
+.global-header li a.active {
+  color: #aaa;
 }

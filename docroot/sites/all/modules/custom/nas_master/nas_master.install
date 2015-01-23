@@ -1420,6 +1420,16 @@ function nas_master_update_7107() {
 /**
  * Revert features.
  */
+function nas_master_update_7109() {
+  features_revert_module('nas_bird_type_feature');
+  features_revert_module('nas_views_feature');
+  module_enable(array('imagemagick', 'imagemagick_advanced'));
+  features_revert_module('nas_overrides_feature');
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7110() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_article_feature');

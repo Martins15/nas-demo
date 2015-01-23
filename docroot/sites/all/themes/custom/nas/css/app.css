@@ -13048,6 +13048,10 @@ h2.grey {
   font-size: 15px;
 }
 
+.bird-guide-body .field-name-field-bird-audio {
+  padding-top: 10px;
+}
+
 .bird-card-grid .view-empty {
   background-color: transparent;
   color: #838078;
@@ -13127,6 +13131,21 @@ h2.grey {
   .hero-attribution .hero-attribution-text, .hero-attribution-fullscreen .hero-attribution-text {
     padding: 2px 5px;
     background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+@media only screen and (min-width: 601px) {
+  .hero-attribution.bird-hero-attribution, .bird-hero-attribution.hero-attribution-fullscreen {
+    width: auto;
+  }
+  .hero-attribution.bird-hero-attribution.sticky, .bird-hero-attribution.sticky.hero-attribution-fullscreen {
+    position: fixed;
+    bottom: 15px;
+  }
+  .hero-attribution.bird-hero-attribution.sticky .column, .bird-hero-attribution.sticky.hero-attribution-fullscreen .column {
+    top: 0;
+  }
+  .hero-attribution.bird-hero-attribution .column, .bird-hero-attribution.hero-attribution-fullscreen .column {
+    position: relative !important;
   }
 }
 
@@ -13559,4 +13578,8 @@ body.node-type-slideshow #tabs {
 
 .editorial-card-river-content-wrapper .view .contextual-links-wrapper {
   display: none !important;
+}
+
+.global-header li a.active {
+  color: #aaa;
 }
