@@ -1421,6 +1421,13 @@ function nas_master_update_7107() {
 /**
  * Revert features.
  */
+function nas_master_update_7109() {
+  features_revert_module('nas_bird_type_feature');
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7110() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_article_feature');
