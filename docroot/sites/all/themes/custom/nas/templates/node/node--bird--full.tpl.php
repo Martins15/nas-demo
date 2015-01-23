@@ -164,6 +164,12 @@
               </p>
             </section>
 
+            <?php if (!empty($content['field_bird_migration'])): ?>
+              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-medium hide-for-large hide-for-xlarge">
+                <?php print render($content['field_bird_migration']); ?>
+              </section>
+            <?php endif; ?>
+
             <div id="bird-cta">
               <section class="social-sharing bird-guide-section right-col small center">
                 <span class="social-sharing-caption small"><?php print t('Share this bird'); ?></span>
@@ -178,7 +184,7 @@
             </div>
 
             <?php if (!empty($content['field_bird_migration'])): ?>
-              <section id="bird-migration" class="bird-guide-section right-col small sans">
+              <section id="bird-migration" class="bird-guide-section right-col small sans hide-for-small hide-for-tiny">
                 <?php print render($content['field_bird_migration']); ?>
               </section>
             <?php endif; ?>
