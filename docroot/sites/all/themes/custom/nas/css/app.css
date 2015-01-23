@@ -13560,3 +13560,7 @@ body.node-type-slideshow #tabs {
 .editorial-card-river-content-wrapper .view .contextual-links-wrapper {
   display: none !important;
 }
+
+.global-header li a.active {
+  color: #aaa;
+}
