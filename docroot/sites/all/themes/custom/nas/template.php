@@ -153,6 +153,11 @@ function nas_preprocess_node_bird(&$vars) {
         ),
       ),
     ));
+
+    $vars['hero_image_credit'] = '';
+    if (!empty($get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'])) {
+      $vars['hero_image_credit'] = check_plain($get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value']);
+    }
   }
   // Color mode.
   $get_field_color_mode = field_get_items('node', $node, 'field_color_mode');
