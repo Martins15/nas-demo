@@ -1335,10 +1335,12 @@ function nas_import_media_asset_set_target($source, $entity, $target, $value) {
       case 'JPEG':
         $mime = 'image/jpeg';
       break;
+
       case 'png':
       case 'PNG':
         $mime = 'image/png';
       break;
+
       case 'gif':
       case 'GIF':
         $mime = 'image/gif';
