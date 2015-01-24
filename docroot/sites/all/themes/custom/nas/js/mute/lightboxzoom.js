@@ -5,16 +5,34 @@
 (function($) {
   Drupal.behaviors.boa_expand_hero = {
     attach: function(context, settings) {
-      var colorboxMaxWidth = "95%",
-          colorboxMaxHeight = "90%",
-          maxZoomLevel = 5000;
+      var colorboxMaxWidth = {
+            tiny: "85%",
+            small: "90%",
+            medium: "90%",
+            large: "95%"
+          },
+          colorboxMaxHeight = {
+            tiny: "90%",
+            small: "90%",
+            medium: "90%",
+            large: "90%"
+          },
+          maxZoomLevel = 5000,
+          layout = '';
+
+      StateManager.handleResize();
       $('.lightboxzoom').colorbox({
-        maxWidth: colorboxMaxWidth,
-        maxHeight: colorboxMaxHeight,
-        innerWidth: colorboxMaxWidth,
-        innerHeight: colorboxMaxHeight,
+        maxWidth: colorboxMaxWidth[StateManager.state],
+        maxHeight: colorboxMaxHeight[StateManager.state],
+        innerWidth: colorboxMaxWidth[StateManager.state],
+        innerHeight: colorboxMaxHeight[StateManager.state],
         reposition: true,
         onComplete: function() {
+          // Update size in case when colorbox defined in another layout.
+          $.colorbox.resize({
+            width: colorboxMaxWidth[StateManager.state],
+            height: colorboxMaxHeight[StateManager.state]
+          });
 
           // Define DOM elements
           var $content = $('#cboxLoadedContent'),
@@ -30,14 +48,16 @@
               mouseWheelOb = {state: 'inactive'},
               fullScreen_state = 'FullscreenOff';
 
-              $(window).on("resize", function(){
-                if (fullScreen_state === 'FullscreenOff') {
-                  $.colorbox.resize({
-                    width: colorboxMaxWidth,
-                    height: colorboxMaxHeight
-                  });
-                }
+          $(window).on('resize', function(){
+            if (fullScreen_state === 'FullscreenOff') {
+              // Update size according to layout state.
+              $.colorbox.resize({
+                width: colorboxMaxWidth[StateManager.state],
+                height: colorboxMaxHeight[StateManager.state]
               });
+            }
+          });
+
           $colorbox.addClass('lzoom'); // from lightboxzoom
 
           $controls.append($zoomin, $zoomout, $fullScreen);

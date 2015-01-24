@@ -54,6 +54,8 @@ server:
         - php5-memcache
         - unzip
         - libaugeas-dev
+        - imagemagick
+        - php5-imagick
     dot_files:
         -
             bash_aliases: null

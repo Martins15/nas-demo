@@ -41,14 +41,13 @@ function hero_image_section_form($form, &$form_state) {
     '#media_options' => array(
       'global' => array(
         'file_extensions' => 'png jpg jpeg gif',
-        'max_filesize' => '10 MB',
+        'max_filesize' => '20 MB',
         'file_directory' => '',
         'types' => array('image'),
       ),
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('hero_image_section', 'hero_image_section_mobile'),
   );
 
   ctools_form_include($form_state, 'content');
@@ -103,8 +102,8 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
 
   if (!empty($conf['image'])) {
     $hero_image_object = file_load($conf['image']);
-    $hero_image = image_style_url('hero_image_section', $hero_image_object->uri);
-    $hero_image_mobile = image_style_url('hero_image_section_mobile', $hero_image_object->uri);
+    $hero_image = image_style_url('hero_image', $hero_image_object->uri);
+    $hero_image_mobile = image_style_url('hero_mobile', $hero_image_object->uri);
     if (!empty($hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value'])) {
       $credit = $hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value'];
     }
