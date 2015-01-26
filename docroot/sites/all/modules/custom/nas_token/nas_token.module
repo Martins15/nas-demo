@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @file
  * Provides token for article URL aliases.
  */
-
 define('NAS_TOKEN_PLACEHOLDER', 'slashplaceholder');
 
 /**
@@ -13,6 +13,11 @@ function nas_token_token_info() {
   $info['tokens']['node']['nas-article'] = array(
     'name' => t('NAS article alias'),
     'description' => t('Custom alias based on whether news article is Press Release, Magazine Article or general News Article'),
+  );
+
+  $info['tokens']['node']['nas-static-menu-section'] = array(
+    'name' => t('NAS top menu section'),
+    'description' => t('Custom alias based on top menu section of the selected section. Used for Static Pages.'),
   );
 
   return $info;
@@ -26,53 +31,97 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
 
   if ($type == 'node' && !empty($data['node'])) {
     $node = $data['node'];
+    foreach ($tokens as $token => $value) {
+      $tokenized_value = '';
+      switch ($token) {
+        case 'nas-article':
+          $tokenized_value = _nas_token_article($node);
+          break;
+        case 'nas-static-menu-section':
+          $tokenized_value = _nas_token_menu_section($node);
+          break;
+      }
 
-    if (!isset($tokens['nas-article'])) {
-      return;
+      if (!empty($tokenized_value)) {
+        $replacements[$value] = $tokenized_value;
+      }
     }
-
-    $original = $tokens['nas-article'];
-
-    $news_type = nas_token_get_news_type($node);
-
-    // We can't use '/' in alias as it will be replaced by pathauto.
-    // String NAS_TOKEN_PLACEHOLDER will be replaced with / in function
-    // nas_token_pathauto_alias_alter.
-    switch ($news_type) {
-      case 'press-release':
-        $pattern = array(
-          'press-release',
-          $node->title,
-        );
-        break;
-
-      case 'magazine-article':
-        $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
-        $pattern = array(
-          'magazine',
-        );
-
-        if (!empty($magazine_items[0]['target_id'])) {
-          $magazine_node = node_load($magazine_items[0]['target_id']);
-          if (!empty($magazine_node->title)) {
-            $pattern[] = $magazine_node->title;
-          }
-        }
-
-        $pattern[] = $node->title;
-        break;
-
-      default:
-        $pattern = array(
-          'news',
-          $node->title,
-        );
-    }
-
-    $replacements[$original] = implode(NAS_TOKEN_PLACEHOLDER, $pattern);
   }
 
   return $replacements;
+}
+
+/**
+ * Build a token for [nas-article].
+ */
+function _nas_token_article($node) {
+  $news_type = nas_token_get_news_type($node);
+
+  // We can't use '/' in alias as it will be replaced by pathauto.
+  // String NAS_TOKEN_PLACEHOLDER will be replaced with / in function
+  // nas_token_pathauto_alias_alter.
+  switch ($news_type) {
+    case 'press-release':
+      $pattern = array(
+        'press-release',
+        $node->title,
+      );
+      break;
+
+    case 'magazine-article':
+      $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
+      $pattern = array(
+        'magazine',
+      );
+
+      if (!empty($magazine_items[0]['target_id'])) {
+        $magazine_node = node_load($magazine_items[0]['target_id']);
+        if (!empty($magazine_node->title)) {
+          $pattern[] = $magazine_node->title;
+        }
+      }
+
+      $pattern[] = $node->title;
+      break;
+
+    default:
+      $pattern = array(
+        'news',
+        $node->title,
+      );
+  }
+
+  return implode(NAS_TOKEN_PLACEHOLDER, $pattern);
+}
+
+/**
+ * Token value for [nas-static-menu-section]
+ */
+function _nas_token_menu_section($node) {
+  $menu_section = field_get_items('node', $node, 'field_menu_section');
+  if (empty($menu_section)) {
+    return;
+  }
+
+  $tid = $menu_section[0]['tid'];
+
+  $parents = taxonomy_get_parents_all($tid);
+  $term = array_pop($parents);
+  $menu_items = menu_load_links('menu-header-big-main-menu');
+
+  $path = '';
+  foreach ($menu_items as $menu_item) {
+    if (strip_tags($menu_item['link_title']) == strip_tags($term->name)) {
+      $path = $menu_item['link_path'];
+      break;
+    }
+  }
+  if (empty($path)) {
+    watchdog('_nas_token_menu_section', 'Error generating URL alias for token [nas-static-menu-section]');
+    return;
+  }
+
+  return drupal_get_path_alias($path);
 }
 
 /**
