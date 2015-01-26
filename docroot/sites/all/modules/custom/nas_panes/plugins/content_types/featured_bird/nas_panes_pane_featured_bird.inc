@@ -51,7 +51,6 @@ function nas_panes_pane_featured_bird_custom_pane_edit_form($form, &$form_state)
     ),
     '#default_value' => $conf['image'],
     '#required' => FALSE,
-    '#pp_crop_styles' => array('featured_bird', 'featured_bird_mobile'),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -124,10 +123,17 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   if (!empty($conf['image'])) {
     $image_fid = $conf['image'];
   }
-  if (isset($image_fid)) {
-    $hero_image = file_load($image_fid);
-    $hero_image_path = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE, $hero_image->uri);
-    $hero_image_path_mobile = image_style_url(NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE, $hero_image->uri);
+  $image_caption = '';
+  $image_credit = '';
+  $hero_image_path = '';
+  $hero_image_path_mobile = '';
+  if (isset($image_fid) && $hero_image = file_load($image_fid)) {
+    $hero_image_path = image_style_url('hero_image', $hero_image->uri);
+    $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
+    $image_caption_item = field_get_items('file', $hero_image, 'field_file_caption');
+    $image_caption = isset($image_caption_item[0]['safe_value']) ? $image_caption_item[0]['safe_value'] : '';
+    $image_credit_item = field_get_items('file', $hero_image, 'field_file_credit');
+    $image_credit = isset($image_credit_item[0]['safe_value']) ? $image_credit_item[0]['safe_value'] : '';
   }
 
   $color_classes = 'light-text dark-gradient';
@@ -138,11 +144,6 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $scientific_name_item = field_get_items('node', $node, 'field_bird_sci_name');
   $scientific_name = isset($scientific_name_item[0]['safe_value']) ? $scientific_name_item[0]['safe_value'] : '';
 
-  $image_caption_item = field_get_items('file', $hero_image, 'field_file_caption');
-  $image_caption = isset($image_caption_item[0]['safe_value']) ? $image_caption_item[0]['safe_value'] : '';
-  $image_credit_item = field_get_items('file', $hero_image, 'field_file_credit');
-  $image_credit = isset($image_credit_item[0]['safe_value']) ? $image_credit_item[0]['safe_value'] : '';
-
   $image_string = trim(implode(' ', array($image_caption, $image_credit)));
   if (empty($image_string)) {
     $image_string = t('Please edit Caption and Credits of hero image of the selected bird.');
@@ -152,39 +153,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $illustration = file_load($illustration_item[0]['fid']);
   $illustration_path = image_style_url(NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE, $illustration->uri);
 
-  $contextual_links = '';
-  if (user_access('bird guide featured pane edit')) {
-    ctools_include('modal');
-    ctools_modal_add_js();
-    // Add ajax-responder so ctools_ajax_command_reload() will work.
-    ctools_add_js('ajax-responder');
-    // We expect Featured Bird pane to be only on Bird Guide. If this is not
-    // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_bird'))->fetchField();
-    if (empty($pid)) {
-      nas_panes_resave_panel(NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_panes_pane_featured_bird'))->fetchField();
-    }
-    $links = array(
-      'edit' => array(
-        'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:page-bird_guide::page_bird_guide_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-        'attributes' => array('class' => array('ctools-use-modal')),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $contextual_links = drupal_render($build);
-  }
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = theme('nas_featured_bird', array(
     'name' => check_plain($node->title),

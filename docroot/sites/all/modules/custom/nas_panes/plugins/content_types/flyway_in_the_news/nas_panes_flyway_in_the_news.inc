@@ -104,8 +104,8 @@ function nas_panes_flyway_in_the_news_render($subtype, $conf, $args, $context) {
   }
 
   $contextual_links = '';
-  if (user_access('access contextual links') && user_access('edit NAS panes')) {
-    $contextual_links = nas_panes_flyway_in_the_news_build_contextual_links($subtype, $context_node->nid);
+  if (user_access('edit NAS panes')) {
+    $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
   }
   $vars['contextual_links'] = $contextual_links;
 
@@ -121,49 +121,4 @@ function nas_panes_flyway_in_the_news_render($subtype, $conf, $args, $context) {
   }
 
   return $block;
-}
-
-/**
- * Builds contextual links.
- *
- * @param $subtype - pane subtype.
- * @param $nid - current flyway node nid.
- */
-function nas_panes_flyway_in_the_news_build_contextual_links($subtype, $nid) {
-  ctools_include('modal');
-  ctools_modal_add_js();
-  // Add ajax-responder so ctools_ajax_command_reload() will work.
-  ctools_add_js('ajax-responder');
-
-  $query = db_select('panelizer_entity', 'pe');
-  // We need to make a join because Flyway In The News is the not unique pane.
-  $query
-    ->innerJoin('panels_pane', 'pp', 'pe.did = pp.did AND pp.type = :type', array(':type' => $subtype));
-  $query
-    ->condition('pe.entity_id', $nid)
-    ->condition('pe.entity_type', 'node');
-  $query
-    ->addField('pp', 'pid');
-  $pid = $query->execute()->fetchField();
-
-  $links = array(
-    'edit' => array(
-      'title' => t('Edit'),
-      'href' => 'panels/ajax/editor/edit-pane/panelizer:node:' . $nid . ':page_manager/' . $pid,
-      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-      'attributes' => array('class' => array('ctools-use-modal')),
-    ),
-  );
-  $build = array(
-    '#prefix' => '<div class="contextual-links-wrapper">',
-    '#suffix' => '</div>',
-    '#theme' => 'links__contextual',
-    '#links' => $links,
-    '#attributes' => array('class' => array('contextual-links')),
-    '#attached' => array(
-      'library' => array(array('contextual', 'contextual-links')),
-    ),
-  );
-
-  return drupal_render($build);
 }

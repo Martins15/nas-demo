@@ -39,6 +39,7 @@
       <h3><?php print $title; ?></h3>
     </div>
   </div>
+  <?php if ($count > 1): ?>
   <div class="slideshow-indicator row">
     <div class="column large-offset-9 large-3">
       <p><i class="ss-icon icon-chevron-left inactive slideshow-control prev"></i> <span class="indicator-current">1</span> of <span class="indicator-total"><?php print $count; ?></span> <i class="ss-icon icon-chevron-right slideshow-control next"></i></p>
@@ -46,6 +47,7 @@
   </div>
   <a href="#" class="slideshow-button slideshow-control prev hide-for-tiny hide-for-small"></a>
   <a href="#" class="slideshow-button slideshow-control next hide-for-tiny hide-for-small"></a>
+  <?php endif;?>
   <div class="slideshow-wrapper">
     <div class="slideshow-scroller">
     <?php foreach ($slides as $slide): ?>

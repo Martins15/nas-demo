@@ -19,8 +19,13 @@
 <div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">
   <div class="hero-image contextual-links-region">
     <?php print $contextual_links; ?>
-    <img src="<?php print $image_path_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
-    <img src="<?php print $image_path; ?>" alt="" class="hide-for-tiny hide-for-small">
+    <?php if(!empty($image_path_mobile) && !empty($image_path)) : ?>
+      <img src="<?php print $image_path_mobile; ?>" alt="" class="hide-for-medium hide-for-large hide-for-xlarge">
+      <img src="<?php print $image_path; ?>" alt="" class="hide-for-tiny hide-for-small">
+    <?php else : ?>
+      <div class="featured-bird-placeholder <?php print $color_text; ?>">
+      </div>
+    <?php endif; ?>
   </div>
   <div class="row">
     <div class="hero-header">

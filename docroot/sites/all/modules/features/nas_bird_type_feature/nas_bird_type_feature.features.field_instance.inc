@@ -72,12 +72,6 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'hero_project' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'nas_file_plain_text_fields' => array(
         'label' => 'above',
         'settings' => array(),
@@ -192,12 +186,6 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'hero_mobile' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'hero_project' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -379,12 +367,6 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'hero_project' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'nas_bird_teaser_illustration' => array(
         'label' => 'above',
         'settings' => array(),
@@ -548,12 +530,6 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'hero_project' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'nas_bird_teaser_illustration' => array(
         'label' => 'above',
         'settings' => array(),
@@ -708,12 +684,6 @@ function nas_bird_type_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'hero_mobile' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'hero_project' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1846,7 +1816,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1958,7 +1928,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -2161,7 +2131,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -2664,7 +2634,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -3646,7 +3616,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => -1,
+      'weight' => 39,
     ),
   );
 
@@ -3967,7 +3937,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -4165,12 +4135,10 @@ function nas_bird_type_feature_field_default_field_instances() {
           'article_featured' => 0,
           'article_teaser' => 0,
           'default_teaser_image' => 0,
-          'featured_bird' => 'featured_bird',
           'featured_bird_illustration' => 0,
-          'featured_bird_mobile' => 'featured_bird_mobile',
           'hero_cover_bird_page' => 0,
-          'hero_image' => 'hero_image',
-          'hero_mobile' => 'hero_mobile',
+          'hero_image' => 0,
+          'hero_mobile' => 0,
         ),
       ),
       'file_extensions' => 'jpg jpeg gif png',
