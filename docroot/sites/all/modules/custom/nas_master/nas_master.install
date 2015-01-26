@@ -1452,3 +1452,28 @@ function nas_master_update_7110() {
 function nas_master_update_7111() {
   features_revert_module('nas_views_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7112() {
+  module_enable(array('metatag', 'metatag_opengraph', 'imagecache_token', 'nas_editorial_cards'));
+  module_enable(array('nas_metatags_feature'));
+  features_revert_module('nas_news_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7113() {
+  features_revert_module('nas_article_feature');
+  features_revert_module('nas_image_styles_feature');
+  features_revert_module('nas_view_modes_feature');
+}
+
+/**
+ * Set URL alias for Static Pages.
+ */
+function nas_master_update_7114() {
+  features_revert_module('nas_url_aliases_feature');
+}

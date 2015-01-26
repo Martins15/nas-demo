@@ -407,6 +407,8 @@ function nas_preprocess_node_article(&$vars) {
     'editorial_card_3x',
     'editorial_card_4x',
     'nas_teaser_related_news',
+    'nas_editorial_card',
+    'nas_node_teaser_no_section_link',
     'teaser',
     'teaser_author_page',
     'search_result',
@@ -507,6 +509,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
       ));
     $editorial_listings_view_modes = array(
       'nas_teaser_related_news',
+      'nas_node_teaser_no_section_link',
       'teaser',
       'teaser_author_page',
       'search_result',
@@ -523,29 +526,11 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     }
   }
 
-  $title = $node->title;
-  if (!empty($node->field_editorial_card_title[LANGUAGE_NONE][0]['value'])) {
-    $title = $node->field_editorial_card_title[LANGUAGE_NONE][0]['value'];
-  }
+  $title = _nas_editorial_cards_get_title($node);
   $vars['title'] = check_plain($title);
   $vars['title_link'] = l($title, 'node/' . $node->nid);
 
-  $vars['subtitle'] = '';
-  if (!empty($node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-    $vars['subtitle'] = $node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'];
-  }
-  elseif ($vars['type'] == 'slideshow' && !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-    $vars['subtitle'] = $node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'];
-  }
-  elseif ($vars['type'] !== 'project' && !empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-    $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
-  }
-  elseif ($vars['type'] !== 'project' && !empty($node->body[LANGUAGE_NONE][0]['value'])) {
-    $vars['subtitle'] = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150);
-  }
-  elseif ($vars['type'] === 'project' && !empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
-    $vars['subtitle'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
-  }
+  $vars['subtitle'] = _nas_editorial_cards_get_subtitle($node);
 
   $vars['url'] = url('node/' . $node->nid);
 
