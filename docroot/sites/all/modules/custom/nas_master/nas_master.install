@@ -1425,6 +1425,9 @@ function nas_master_update_7109() {
   features_revert_module('nas_views_feature');
   module_enable(array('imagemagick', 'imagemagick_advanced'));
   features_revert_module('nas_overrides_feature');
+  features_revert(array('nas_import_feeds_feature' => array('feeds_importer_default')));
+  features_revert(array('nas_article_feature' => array('feeds_importer_default')));
+  features_revert(array('nas_magazine_issue_feature' => array('feeds_importer_default')));
 }
 
 /**
