@@ -1457,6 +1457,8 @@ function nas_master_update_7111() {
  * Revert features.
  */
 function nas_master_update_7112() {
+  module_enable(array('metatag', 'metatag_opengraph', 'imagecache_token', 'nas_editorial_cards'));
+  module_enable(array('nas_metatags_feature'));
   features_revert_module('nas_news_feature');
 }
 
