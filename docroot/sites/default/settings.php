@@ -565,11 +565,17 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * Remove the leading hash signs to disable.
  */
 # $conf['allow_authorize_operations'] = FALSE;
-#$conf["memcache_key_prefix"] = "demo";
-#$conf["cache_backends"][] = "sites/all/modules/contrib/memcache/memcache.inc";
-#$conf["cache_default_class"] = "MemCacheDrupal";
 
 // Acquia cloud settings.
 if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/national/national-settings.inc';
 }
+
+// Enable memcache and varnish.
+// See https://docs.acquia.com/cloud/performance/memcached.
+// See https://docs.acquia.com/cloud/performance/varnish
+$conf['cache_backends'][] = 'includes/cache-install.inc';
+$conf["cache_backends"][] = "sites/all/modules/contrib/memcache/memcache.inc";
+$conf['cache_default_class'] = 'MemCacheDrupal';
+$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
+$conf['cache_class_cache_page'] = 'DrupalFakeCache';
