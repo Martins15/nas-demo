@@ -115,6 +115,10 @@ function nas_view_modes_feature_strongarm() {
             'weight' => '4',
             'visible' => FALSE,
           ),
+          'nas_article_inline_hero' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
       ),
     ),
