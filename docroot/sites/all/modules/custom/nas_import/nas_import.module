@@ -1297,7 +1297,7 @@ function nas_import_media_asset_set_target($source, $entity, $target, $value) {
   if (empty($value)) {
     return;
   }
-  $path_parts = pathinfo($value);
+  $path_parts = pathinfo($value[0]);
   $fid = db_select('file_managed', 'fm')
     ->fields('fm', array('fid'))
     ->condition('filename', $path_parts['basename'])
