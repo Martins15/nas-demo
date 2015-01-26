@@ -13583,3 +13583,9 @@ body.node-type-slideshow #tabs {
 .global-header li a.active {
   color: #aaa;
 }
+
+@media only screen and (min-width: 480px) {
+  .featured-bird-placeholder {
+    min-height: 400px;
+  }
+}

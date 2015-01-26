@@ -616,3 +616,9 @@ body.node-type-slideshow {
 .global-header li a.active {
   color: #aaa;
 }
+
+.featured-bird-placeholder {
+  @include breakpoint(small-up) {
+    min-height: 400px;
+  }
+}
