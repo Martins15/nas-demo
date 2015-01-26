@@ -87,14 +87,14 @@
  */
 ?>
 
-<div class="editorial-card collapse-minimal">
+<div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
   <div class="editorial-card-photo">
     <?php print $linked_image; ?>
   </div>
   <div class="editorial-card-content">
     <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
     <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
-    <?php print render($content['body']); ?>
+    <?php print $subtitle; ?>
   </div>
   <div class="editorial-card-photo-bottom">
     <?php print $linked_image; ?>
