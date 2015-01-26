@@ -19,7 +19,7 @@ function nas_news_page_feature_default_page_manager_handlers() {
   $handler->handler = 'panel_context';
   $handler->weight = -99;
   $handler->conf = array(
-    'title' => 'News pages',
+    'title' => 'Tags pages',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -68,70 +68,17 @@ function nas_news_page_feature_default_page_manager_handlers() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-0cf76923-7e0a-4cbe-931d-22f1388d047b';
-    $pane->panel = 'articles_bottom';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-articles_list_bot_term';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '0cf76923-7e0a-4cbe-931d-22f1388d047b';
-    $display->content['new-0cf76923-7e0a-4cbe-931d-22f1388d047b'] = $pane;
-    $display->panels['articles_bottom'][0] = 'new-0cf76923-7e0a-4cbe-931d-22f1388d047b';
-    $pane = new stdClass();
-    $pane->pid = 'new-99d8195b-7635-4953-896c-8290cbd4b524';
+    $pane->pid = 'new-75e2f32e-fc99-43be-9f45-b5a4fbf4e1c4';
     $pane->panel = 'articles_top';
     $pane->type = 'views_panes';
-    $pane->subtype = 'nas_news-articles_list_top_term';
+    $pane->subtype = 'nas_news-articles_term_10';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '99d8195b-7635-4953-896c-8290cbd4b524';
-    $display->content['new-99d8195b-7635-4953-896c-8290cbd4b524'] = $pane;
-    $display->panels['articles_top'][0] = 'new-99d8195b-7635-4953-896c-8290cbd4b524';
-    $pane = new stdClass();
-    $pane->pid = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
-    $pane->panel = 'donate';
-    $pane->type = 'nas_panes_pane_donate_button';
-    $pane->subtype = 'nas_panes_pane_donate_button';
-    $pane->shown = TRUE;
-    $pane->access = array(
-      'plugins' => array(
-        0 => array(
-          'name' => 'donate_pane_rule',
-          'settings' => array(
-            'articles_count' => '6',
-          ),
-          'context' => 'argument_term_1',
-          'not' => FALSE,
-        ),
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_term_1',
       ),
     );
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'caption' => 'Remember that Audubon depends on your support to do the conservation work that we do.',
-      'path' => '',
-      'form_build_id' => 'form-cDYlFtTn9mHAN4Pm8m_kCdx_6VAO9XJ6j2GPFR5hoL4',
-      'form_token' => '2Dd7o27nzpO3cBrpuz3COo9dji0h9JuoDeBWlKqQygo',
-      'form_id' => 'nas_panes_pane_donate_button_form',
-    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -140,9 +87,9 @@ function nas_news_page_feature_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
-    $display->content['new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106'] = $pane;
-    $display->panels['donate'][0] = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
+    $pane->uuid = '75e2f32e-fc99-43be-9f45-b5a4fbf4e1c4';
+    $display->content['new-75e2f32e-fc99-43be-9f45-b5a4fbf4e1c4'] = $pane;
+    $display->panels['articles_top'][0] = 'new-75e2f32e-fc99-43be-9f45-b5a4fbf4e1c4';
     $pane = new stdClass();
     $pane->pid = 'new-1977c3db-5705-4d99-a82d-b05143714197';
     $pane->panel = 'right_sidebar';
@@ -159,12 +106,16 @@ function nas_news_page_feature_default_page_manager_handlers() {
       'override_title_text' => '',
       'default' => array(
         'references' => array(
-          'entity_reference' => FALSE,
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
         ),
+        'hide_for_firsttime_visitors' => 0,
       ),
-      'form_build_id' => 'form-8gEOHoA0l7dEmAB7pf5z8WBTbVMPL3PnMaaKPFpDBoQ',
-      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
+      'form_build_id' => 'form-szfd3kZbu2sjCjQXRsZWTcaoMqrKeItkfBrTO6Gny9U',
+      'form_token' => 'g6cLcTdDc4raty3k2quKqhD_5AiKP8E5_T_QNVBBuoY',
       'form_id' => 'engagement_cards_sidebar_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -222,7 +173,7 @@ function nas_news_page_feature_default_page_manager_handlers() {
     $display->content['new-3443e1ba-9100-482e-8d3c-4f0c879214c3'] = $pane;
     $display->panels['title'][0] = 'new-3443e1ba-9100-482e-8d3c-4f0c879214c3';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3dfcbe44-46bf-4a7e-aa50-3a8f6c805106';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['term_view_panel_context'] = $handler;
 
