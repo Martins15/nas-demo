@@ -396,6 +396,7 @@ function nas_preprocess_node_article(&$vars) {
     'editorial_card_3x',
     'editorial_card_4x',
     'nas_teaser_related_news',
+    'nas_node_teaser_no_section_link',
     'teaser',
     'teaser_author_page',
     'search_result',
@@ -496,6 +497,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
       ));
     $editorial_listings_view_modes = array(
       'nas_teaser_related_news',
+      'nas_node_teaser_no_section_link',
       'teaser',
       'teaser_author_page',
       'search_result',
