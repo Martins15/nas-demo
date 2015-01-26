@@ -1456,16 +1456,17 @@ function nas_master_update_7111() {
 /**
  * Revert features.
  */
+function nas_master_update_7112() {
+  module_enable(array('metatag', 'metatag_opengraph', 'imagecache_token', 'nas_editorial_cards'));
+  module_enable(array('nas_metatags_feature'));
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7113() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_view_modes_feature');
 }
 
-/**
- * Revert features.
- */
-function nas_master_update_7108() {
-  module_enable(array('metatag', 'metatag_opengraph', 'imagecache_token', 'nas_editorial_cards'));
-  module_enable(array('nas_metatags_feature'));
-}
