@@ -1456,6 +1456,13 @@ function nas_master_update_7111() {
 /**
  * Revert features.
  */
+function nas_master_update_7112() {
+  features_revert_module('nas_news_feature');
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7113() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_image_styles_feature');
