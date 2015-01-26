@@ -1461,3 +1461,10 @@ function nas_master_update_7113() {
   features_revert_module('nas_image_styles_feature');
   features_revert_module('nas_view_modes_feature');
 }
+
+/**
+ * Set URL alias for Static Pages.
+ */
+function nas_master_update_7114() {
+  features_revert_module('nas_url_aliases_feature');
+}
