@@ -4,6 +4,7 @@
  * @file
  * Provides token for article URL aliases.
  */
+
 define('NAS_TOKEN_PLACEHOLDER', 'slashplaceholder');
 
 /**
@@ -37,6 +38,7 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
         case 'nas-article':
           $tokenized_value = _nas_token_article($node);
           break;
+
         case 'nas-static-menu-section':
           $tokenized_value = _nas_token_menu_section($node);
           break;
