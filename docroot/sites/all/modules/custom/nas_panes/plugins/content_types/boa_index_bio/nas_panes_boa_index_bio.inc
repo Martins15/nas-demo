@@ -129,7 +129,7 @@ function nas_boa_index_bio_render($subtype, $conf, $args, $context) {
     'body' => check_markup($conf['body']['value'], $conf['body']['format']),
     'image_path' => $image_path,
     'name' => check_plain($conf['name']),
-    'summary' => check_markup($conf['summary'], 'full_html'),
+    'summary' => check_markup($conf['summary']['value'], $conf['body']['format']),
     'link' => url($conf['link']),
     'contextual_links' => $contextual_links,
   ));

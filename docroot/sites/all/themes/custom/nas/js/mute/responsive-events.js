@@ -25,14 +25,15 @@ var StateManager = {
   },
 
   init: function() {
-    this.handleResize();
-    jQuery(window).bind("resize", this.handleResize);
+    var self = this;
+    self.handleResize();
+    jQuery(window).bind("resize", function(){ self.handleResize(); });
     if(StateManager.touch) {
       console.log("got touch!");
       jQuery("body").addClass("touch");
     }
   }
-}
+};
 
 jQuery(function() {
   jQuery(window).load(function() {

@@ -3,13 +3,36 @@
 // But it can be easily changed for over cases.
 
 (function($) {
-  Drupal.behaviors.expand_hero = {
+  Drupal.behaviors.boa_expand_hero = {
     attach: function(context, settings) {
+      var colorboxMaxWidth = {
+            tiny: "85%",
+            small: "90%",
+            medium: "90%",
+            large: "95%"
+          },
+          colorboxMaxHeight = {
+            tiny: "90%",
+            small: "90%",
+            medium: "90%",
+            large: "90%"
+          },
+          maxZoomLevel = 5000,
+          layout = '';
+
+      StateManager.handleResize();
       $('.lightboxzoom').colorbox({
-        maxWidth:'80%',
-        maxHeight:'80%',
+        maxWidth: colorboxMaxWidth[StateManager.state],
+        maxHeight: colorboxMaxHeight[StateManager.state],
+        innerWidth: colorboxMaxWidth[StateManager.state],
+        innerHeight: colorboxMaxHeight[StateManager.state],
         reposition: true,
         onComplete: function() {
+          // Update size in case when colorbox defined in another layout.
+          $.colorbox.resize({
+            width: colorboxMaxWidth[StateManager.state],
+            height: colorboxMaxHeight[StateManager.state]
+          });
 
           // Define DOM elements
           var $content = $('#cboxLoadedContent'),
@@ -25,16 +48,16 @@
               mouseWheelOb = {state: 'inactive'},
               fullScreen_state = 'FullscreenOff';
 
-              $(window).on("resize", function(){
-                if (fullScreen_state === 'FullscreenOff') {
-                  var h = $img.height() >= $(window).height() ? '80%' : $img.height() ;
-                      w = $colorbox.width() > $(window).width() * 0.8 ? '80%' : $colorbox.width();
-                  $.colorbox.resize({
-                      width: w,
-                      height: h
-                  });
-                }
+          $(window).on('resize', function(){
+            if (fullScreen_state === 'FullscreenOff') {
+              // Update size according to layout state.
+              $.colorbox.resize({
+                width: colorboxMaxWidth[StateManager.state],
+                height: colorboxMaxHeight[StateManager.state]
               });
+            }
+          });
+
           $colorbox.addClass('lzoom'); // from lightboxzoom
 
           $controls.append($zoomin, $zoomout, $fullScreen);
@@ -50,13 +73,14 @@
             'position': 'relative',
             'left': 0,
             'top': 0,
-            'max-width': 'none'
+            'max-width': 'none',
+            'width': $colorbox.width()
           });
 
 
           // Zoomin event
           $zoomin.click(function() {
-            if ($img.width() < 4000) {
+            if ($img.width() < maxZoomLevel) {
               zoom('in');
             }
           });
@@ -75,7 +99,7 @@
 
             if (mouseWheelOb.state === 'inactive') {
               if (e.deltaY === 1) {
-                if ($img.width() < 4000) {
+                if ($img.width() < maxZoomLevel) {
                   mouseWheelOb.state = 'active' ;
                   zoom("in", function() {mouseWheelOb.state = 'inactive'});
                 }
@@ -104,7 +128,7 @@
               req.call(document);
             }
 
-          })
+          });
 
           $(document).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function(e) {
               var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen || document.MSFullscreenChange;
@@ -209,6 +233,15 @@
                 'left': wb ?  (parseInt($img.css('left')) / (-2) - w / 4) * (-1) : 0,
                 'top': hb ? (parseInt($img.css('top')) / (-2) - w / 4 ) * (-1) : 0
               };
+
+              // Set default place.
+              if (cssOb.width < originalWidth) {
+                cssOb = {
+                  'width': originalWidth,
+                  'left': 0,
+                  'top': 0
+                };
+              }
             }
 
             if (typeof callb === 'function') {

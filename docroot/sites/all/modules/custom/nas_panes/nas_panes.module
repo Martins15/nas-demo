@@ -19,8 +19,6 @@ define('NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY', 'page-our_leadership')
 define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
 define('NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY', 'page-birds_priority');
 
-define('NAS_FEATURED_BIRD_IMAGE_STYLE', 'featured_bird');
-define('NAS_FEATURED_BIRD_IMAGE_STYLE_MOBILE', 'featured_bird_mobile');
 define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
 define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
@@ -104,9 +102,11 @@ function nas_panes_theme() {
     ),
     'boa_hero' => array(
       'variables' => array(
-        'image' => '',
-        'next_url' => '',
-        'prev_url' => '',
+        'image_path' => NULL,
+        'lightbox_image_path' => NULL,
+        'original_image_path' => NULL,
+        'next_url' => NULL,
+        'prev_url' => NULL,
       ),
       'template' => 'boa-hero',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_hero',
@@ -125,10 +125,11 @@ function nas_panes_theme() {
     ),
     'boa_plate' => array(
       'variables' => array(
-        'image_thumbnail' => '',
-        'image' => '',
-        'link_title' => '',
-        'link_url' => '',
+        'image_thumbnail' => NULL,
+        'lightbox_image_path' => NULL,
+        'original_image_path' => NULL,
+        'link_title' => NULL,
+        'link_url' => NULL,
       ),
       'template' => 'boa-plate',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate',
@@ -820,6 +821,14 @@ function nas_panes_theme() {
       ),
       'template' => 'magazine-bar',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/magazine_bar',
+    ),
+    'bird_hero_image' => array(
+      'variables' => array(
+        'image_path' => NULL,
+        'image_caption' => NULL,
+      ),
+      'template' => 'bird-hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_hero_image',
     ),
   );
 
@@ -1740,4 +1749,18 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+}
+
+/**
+ * Returns options for menu section.
+ */
+function _nas_panes_get_menu_section_options() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  $options = array();
+  foreach ($tree as $item) {
+    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
+  }
+
+  return $options;
 }

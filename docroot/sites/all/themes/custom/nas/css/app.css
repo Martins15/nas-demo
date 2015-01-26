@@ -12340,29 +12340,33 @@ body.touch .sticky-wrapper {
   text-align: left;
 }
 
-.lzoom2 .lzoom_zoomin,
+.lzoom2 .lzoom_zoomin, .node-type-boa .lzoom_zoomin,
 .lzoom2 .lzoom_zoomout,
-.lzoom2 .lzoom_fullscreen {
+.node-type-boa .lzoom_zoomout,
+.lzoom2 .lzoom_fullscreen,
+.node-type-boa .lzoom_fullscreen {
   position: static;
   display: block;
   margin-bottom: 12px;
 }
-.lzoom2 .lzoom_zoomin:before,
+.lzoom2 .lzoom_zoomin:before, .node-type-boa .lzoom_zoomin:before,
 .lzoom2 .lzoom_zoomout:before,
-.lzoom2 .lzoom_fullscreen:before {
+.node-type-boa .lzoom_zoomout:before,
+.lzoom2 .lzoom_fullscreen:before,
+.node-type-boa .lzoom_fullscreen:before {
   color: #ef5835;
   font-size: 26px;
 }
-.lzoom2 .lzoom_zoomin {
+.lzoom2 .lzoom_zoomin, .node-type-boa .lzoom_zoomin {
   top: 80px;
 }
-.lzoom2 .lzoom_zoomout {
+.lzoom2 .lzoom_zoomout, .node-type-boa .lzoom_zoomout {
   top: 40px;
 }
-.lzoom2 .lzoom_fullscreen {
+.lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
   top: 120px;
 }
-.lzoom2 .controls {
+.lzoom2 .controls, .node-type-boa .controls {
   position: absolute;
   top: -15px;
   left: -20px;
@@ -12373,17 +12377,29 @@ body.touch .sticky-wrapper {
   border-radius: 60px;
   z-index: 2;
 }
-.lzoom2 .fullscreen .controls {
+.lzoom2 .fullscreen .controls, .node-type-boa .fullscreen .controls {
   top: 60px;
   left: 60px;
   padding-top: 18px;
 }
+.lzoom2 #colorbox.lzoom, .node-type-boa #colorbox.lzoom {
+  border: none;
+}
+.lzoom2 #colorbox.lzoom #cboxTitle, .node-type-boa #colorbox.lzoom #cboxTitle {
+  display: none !important;
+}
+.lzoom2 #colorbox.lzoom #cboxContent, .node-type-boa #colorbox.lzoom #cboxContent {
+  background: none;
+}
+.lzoom2 #cboxClose, .node-type-boa #cboxClose {
+  background-image: url(../img/icon-close-small.png) !important;
+}
 
-.lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen {
+.lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
   display: none;
 }
 @media only screen and (min-width: 768px) {
-  .lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen {
+  .lzoom1 .lzoom_fullscreen, .lzoom2 .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen, .node-type-boa .lzoom_fullscreen {
     display: block;
   }
 }
@@ -13032,6 +13048,10 @@ h2.grey {
   font-size: 15px;
 }
 
+.bird-guide-body .field-name-field-bird-audio {
+  padding-top: 10px;
+}
+
 .bird-card-grid .view-empty {
   background-color: transparent;
   color: #838078;
@@ -13111,6 +13131,21 @@ h2.grey {
   .hero-attribution .hero-attribution-text, .hero-attribution-fullscreen .hero-attribution-text {
     padding: 2px 5px;
     background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+@media only screen and (min-width: 601px) {
+  .hero-attribution.bird-hero-attribution, .bird-hero-attribution.hero-attribution-fullscreen {
+    width: auto;
+  }
+  .hero-attribution.bird-hero-attribution.sticky, .bird-hero-attribution.sticky.hero-attribution-fullscreen {
+    position: fixed;
+    bottom: 15px;
+  }
+  .hero-attribution.bird-hero-attribution.sticky .column, .bird-hero-attribution.sticky.hero-attribution-fullscreen .column {
+    top: 0;
+  }
+  .hero-attribution.bird-hero-attribution .column, .bird-hero-attribution.hero-attribution-fullscreen .column {
+    position: relative !important;
   }
 }
 
@@ -13512,6 +13547,25 @@ textarea.error {
   background: none;
   width: 100%;
 }
+#modalContent .ctools-modal-content #editorial-card-river-edit-form .form-item {
+  width: 49%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 49%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter .form-item {
+  width: 100%;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter label {
+  float: none;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter #edit-filter-menu-section {
+  height: auto !important;
+  background-image: none;
+}
 
 .slideshow-sidebar-block {
   float: left;
@@ -13520,4 +13574,18 @@ textarea.error {
 body.node-type-slideshow #tabs {
   position: relative;
   z-index: 10;
+}
+
+.editorial-card-river-content-wrapper .view .contextual-links-wrapper {
+  display: none !important;
+}
+
+.global-header li a.active {
+  color: #aaa;
+}
+
+@media only screen and (min-width: 480px) {
+  .featured-bird-placeholder {
+    min-height: 400px;
+  }
 }
