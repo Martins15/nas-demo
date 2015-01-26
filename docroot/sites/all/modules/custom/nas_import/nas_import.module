@@ -1273,3 +1273,89 @@ function nas_import_entity_insert($entity, $type) {
     pathauto_create_alias('node', 'bulkupdate', 'node/' . $entity->nid, array('node' => $entity), $entity->type, LANGUAGE_NONE);
   }
 }
+
+/**
+ * Implements hook_feeds_processor_alter().
+ */
+function nas_import_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_name) {
+  foreach (field_info_instances($entity_type, $bundle_name) as $name => $instance) {
+    $info = field_info_field($name);
+    if ($info['type'] === 'media') {
+      $targets[$name] = array(
+        'name' => check_plain($instance['label']),
+        'callback' => 'nas_import_media_asset_set_target',
+        'description' => t('The @label field of the node.', array('@label' => $instance['label'])),
+      );
+    }
+  }
+}
+
+/**
+ * Feeds callback function().
+ */
+function nas_import_media_asset_set_target($source, $entity, $target, $value) {
+  if (empty($value)) {
+    return;
+  }
+  $path_parts = pathinfo($value[0]);
+  $fid = db_select('file_managed', 'fm')
+    ->fields('fm', array('fid'))
+    ->condition('filename', $path_parts['basename'])
+    ->execute()
+    ->fetchColumn();
+  if ($fid) {
+    if (!$file = file_load($fid)) {
+      $file = NULL;
+    }
+  }
+  if (!isset($file)) {
+    $uri = 'public://' . $path_parts['basename'];
+    if (!file_exists($uri)) {
+      $image_url = $value;
+      $image = drupal_http_request($image_url);
+      if (!$image->code == 200) {
+        $source->log('import', 'Failed downloading file from !url (!code)', array('!url' => $image_url, '!code' => $image->code));
+        return;
+      }
+      if (!file_unmanaged_save_data($image->data, $uri, FILE_EXISTS_REPLACE)) {
+        $source->log('import', 'Could not save downloaded image to !uri', array('!uri' => $uri));
+        return;
+      }
+      $source->log('import', 'Successfully downloaded and saved image from !url', array('!url' => $image_url));
+    }
+
+    // Some mime type handling.
+    $mime = '';
+    switch ($path_parts['extension']) {
+      case 'jpe':
+      case 'jpg':
+      case 'jpeg':
+      case 'JPE':
+      case 'JPG':
+      case 'JPEG':
+        $mime = 'image/jpeg';
+        break;
+
+      case 'png':
+      case 'PNG':
+        $mime = 'image/png';
+        break;
+
+      case 'gif':
+      case 'GIF':
+        $mime = 'image/gif';
+        break;
+    }
+
+    $file = (object) array(
+      'uid' => 1,
+      'filename' => $path_parts['basename'],
+      'uri' => $uri,
+      'filemime' => $mime,
+      'status' => 1,
+      'type' => 'image',
+    );
+    file_save($file);
+  }
+  $entity->{$target} = array(LANGUAGE_NONE => array((array) $file));
+}
