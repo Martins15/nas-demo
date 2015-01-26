@@ -571,7 +571,7 @@ if (file_exists('/var/www/site-php')) {
   require '/var/www/site-php/national/national-settings.inc';
 }
 
-// Enable memcache.
+// Enable memcache. See https://docs.acquia.com/cloud/performance/memcached.
 $conf["cache_backends"][] = "sites/all/modules/contrib/memcache/memcache.inc";
 $conf['cache_default_class'] = 'MemCacheDrupal';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
