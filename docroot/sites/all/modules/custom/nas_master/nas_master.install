@@ -1484,3 +1484,10 @@ function nas_master_update_7114() {
 function nas_master_update_7115() {
   module_enable(array('webform'));
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7117() {
+  features_revert_module('nas_fpp_feature');
+}

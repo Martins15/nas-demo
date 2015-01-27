@@ -592,10 +592,14 @@ function nas_fpp_feature_field_default_field_instances() {
           'boa_family_species' => 0,
           'boa_hero' => 0,
           'boa_index_bio' => 0,
+          'boa_index_hero' => 0,
           'boa_plate_binocular' => 0,
           'boa_plate_thumbnail' => 0,
+          'conservation_hero' => 0,
           'conservation_slideshow_featured_project' => 0,
           'conservation_slideshow_icon' => 0,
+          'conservation_strategy_hero' => 0,
+          'conservation_strategy_hero_mobile' => 0,
           'conservation_strategy_slideshow' => 0,
           'default_teaser_image' => 0,
           'engagement_card' => 0,
@@ -607,7 +611,10 @@ function nas_fpp_feature_field_default_field_instances() {
           'get_outside' => 0,
           'hero_cover_bird_page' => 0,
           'hero_image' => 0,
+          'hero_image_section' => 0,
+          'hero_image_section_mobile' => 0,
           'hero_mobile' => 0,
+          'hero_project' => 0,
           'local_chapters_centers' => 0,
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,
@@ -1287,6 +1294,54 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-nas_fpp_flyway_hero-field_flyway_subtitle'
+  $field_instances['fieldable_panels_pane-nas_fpp_flyway_hero-field_flyway_subtitle'] = array(
+    'bundle' => 'nas_fpp_flyway_hero',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_flyway_subtitle',
+    'label' => 'Subtitle',
+    'required' => 0,
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'rel_remove' => 'default',
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => -2,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-nas_fpp_flyway_nav-field_flyways'
   $field_instances['fieldable_panels_pane-nas_fpp_flyway_nav-field_flyways'] = array(
     'bundle' => 'nas_fpp_flyway_nav',
@@ -1341,6 +1396,7 @@ function nas_fpp_feature_field_default_field_instances() {
   t('Map image numbers will be placed on.');
   t('Referenced Bird');
   t('Similar Bird');
+  t('Subtitle');
   t('Summary');
   t('Top link');
   t('Value of this field to be used to place point on map. Usage example: <em>top: 78px; right: 45px;</em>.');
