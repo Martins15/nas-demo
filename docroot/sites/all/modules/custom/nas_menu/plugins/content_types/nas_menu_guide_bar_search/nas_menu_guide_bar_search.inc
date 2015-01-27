@@ -12,14 +12,7 @@ $plugin = array(
   'category' => 'NAS Header/Footer',
   'edit form' => 'nas_menu_guide_bar_search_pane_edit_form',
   'render callback' => 'nas_menu_guide_bar_search_pane_render',
-  'defaults' => array(
-    'title' => '',
-    'preamble' => '',
-    'logo' => '',
-    'css_class' => '',
-    'css_background_style' => '',
-  ),
-  'all contexts' => TRUE,
+  'required context' => new ctools_context_required(t('Node'), 'node'),
 );
 
 /**
@@ -28,48 +21,62 @@ $plugin = array(
 function nas_menu_guide_bar_search_pane_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
-  $form['title'] = array(
+  $context = reset($form_state['display']->context);
+  $conf_key = empty($context->data->nid) ? 'default' : $context->data->nid;
+
+  $form[$conf_key] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Related News settings'),
+    '#tree' => TRUE,
+  );
+
+  $form[$conf_key]['title'] = array(
     '#type' => 'textfield',
     '#title' => t('Guide Bar Title'),
     '#description' => t('span tag is allowed'),
-    '#default_value' => $conf['title'],
+    '#default_value' => !empty($conf[$conf_key]['title']) ? $conf[$conf_key]['title'] : $conf['default']['title'],
   );
 
-  $form['preamble'] = array(
+  $form[$conf_key]['link'] = array(
+    '#title' => t('Link'),
+    '#type' => 'textfield',
+    '#default_value' => !empty($conf[$conf_key]['link']) ? $conf[$conf_key]['link'] : $conf['default']['link'],
+  );
+
+  $form[$conf_key]['preamble'] = array(
     '#type' => 'textfield',
     '#title' => t('Preamble'),
-    '#default_value' => $conf['preamble'],
+    '#default_value' => !empty($conf[$conf_key]['preamble']) ? $conf[$conf_key]['preamble'] : $conf['default']['preamble'],
   );
 
-  $form['logo'] = array(
+  $form[$conf_key]['logo'] = array(
     '#type' => 'textfield',
     '#title' => t('Path to logo'),
-    '#default_value' => $conf['logo'],
+    '#default_value' => !empty($conf[$conf_key]['logo']) ? $conf[$conf_key]['logo'] : $conf['default']['logo'],
   );
 
-  $form['css_class'] = array(
+  $form[$conf_key]['css_class'] = array(
     '#type' => 'textfield',
     '#title' => t('CSS class'),
     '#description' => t('Separate multiple classes by space'),
-    '#default_value' => $conf['css_class'],
+    '#default_value' => !empty($conf[$conf_key]['css_class']) ? $conf[$conf_key]['css_class'] : $conf['default']['css_class'],
   );
 
-  $form['css_background_style'] = array(
+  $form[$conf_key]['css_background_style'] = array(
     '#type' => 'textfield',
     '#title' => t('CSS background color'),
     '#description' => t('Input any valid CSS style background color attribute(Ex: #276074, red)'),
-    '#default_value' => $conf['css_background_style'],
+    '#default_value' => !empty($conf[$conf_key]['css_background_style']) ? $conf[$conf_key]['css_background_style'] : $conf['default']['css_background_style'],
   );
 
   return $form;
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_menu_guide_bar_search_pane_edit_form_submit(&$form, &$form_state) {
-  foreach (array_keys($form_state['plugin']['defaults']) as $key) {
+  foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
@@ -77,17 +84,25 @@ function nas_menu_guide_bar_search_pane_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Render callback.
  */
-function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts) {
-  $title = filter_xss($conf['title'], array('span'));
-  $preamble = check_plain($conf['preamble']);
-  $css_class = trim(check_plain($conf['css_class']));
-  $css_background_style = check_plain($conf['css_background_style']);
-  $logo_path = check_plain($conf['logo']);
-  if ($logo_path) {
-    $logo = theme_image(array('path' => file_create_url($logo_path), 'alt' => '', 'attributes' => array('class' => array('canon-logo'))));
+function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context) {
+  $conf_key = !empty($context->data->nid) ? $context->data->nid : 'default';
+  $block_conf = !empty($conf[$conf_key]) ? $conf[$conf_key] : $conf['default'];
+
+  $title = !empty($block_conf['title']) ? filter_xss($block_conf['title'], array('span')) : '';
+  $preamble = !empty($block_conf['preamble']) ? check_plain($block_conf['preamble']) : '';
+  $css_class = !empty($block_conf['css_class']) ? trim(check_plain($block_conf['css_class'])) : '';
+  $css_background_style = !empty($block_conf['css_background_style']) ? check_plain($block_conf['css_background_style']) : '';
+  $logo_path = !empty($block_conf['logo']) ? check_plain($block_conf['logo']) : '';
+  $link = !empty($block_conf['link']) ? url($block_conf['link']) : '';
+  $logo = '';
+  if (!empty($logo_path)) {
+    $logo = theme_image(array(
+        'path' => file_create_url($logo_path),
+        'alt' => '',
+        'attributes' => array('class' => array('canon-logo')),
+      ));
   }
 
   $pane_attr = array('class' => array('guide-bar'));
@@ -99,7 +114,17 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts
     $pane_attr['style'] = 'background-color: ' . $css_background_style;
   }
 
-  if ($contextual_links = nas_menu_guide_var_search_get_contextual_links($subtype)) {
+  $contextual_links = '';
+  if (user_access('edit NAS panes')) {
+    if ($conf_key == 'default') {
+      $contextual_links = nas_menu_guide_var_search_get_contextual_links($subtype);
+    }
+    else {
+      $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context->data, 'strategy', 'default');
+    }
+  }
+
+  if ($contextual_links) {
     $pane_attr['class'][] = 'contextual-links-region';
   }
 
@@ -112,6 +137,7 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $contexts
     'logo' => $logo,
     'exposed_form' => nas_menu_guide_bar_search_get_exposed_filters(FALSE, TRUE),
     'contextual_links' => $contextual_links,
+    'link' => $link,
   );
   $content = theme('nas_guide_bar_search', $t_vars);
   $block->title = t('Footer');
