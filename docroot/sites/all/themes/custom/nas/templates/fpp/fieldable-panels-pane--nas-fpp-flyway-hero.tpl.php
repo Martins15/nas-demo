@@ -39,7 +39,7 @@
           <img src="<?php print $minimap; ?>" alt="">
         </div>
         <?php foreach ($flyway_hero_items as $delta => $hero_item): ?>
-          <div class="flyway-content" data-point-id="<?php print $delta; ?>" <?php print $delta !== 1 ? 'style="display:none;' : ''; ?>>
+          <div class="flyway-content" data-point-id="<?php print $delta; ?>" <?php print $delta !== 1 ? 'style="display:none;"' : ''; ?>>
             <?php if (!empty($hero_item['subtitle_title'])): ?>
             <a href="<?php print $hero_item['subtitle_url']; ?>" class="editorial-card-slug"><?php print $hero_item['subtitle_title']; ?></a>
             <?php endif; ?>
