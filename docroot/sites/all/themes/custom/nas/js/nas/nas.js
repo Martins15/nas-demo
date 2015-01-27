@@ -243,4 +243,27 @@ var Nas = Nas || {};
     }
   };
 
+  // Additional behaviour for bird guide page.
+  Drupal.behaviors.colorbox_resize = {
+    attach: function (context, settings) {
+      $(window).on('resize', function(){
+        var $colorbox_instance = $('.node-type-bird #colorbox');
+        if (typeof $.colorbox != "undefined" && typeof $colorbox_instance != "undefined") {
+          var colorbox_offset = ($(window).width() - ($colorbox_instance.offset().left + $colorbox_instance.outerWidth()));
+
+          // Resize colorbox when it overlapped.
+          if (colorbox_offset < 0) {
+            $.colorbox.resize({
+              width: Drupal.settings.colorbox.initialWidth
+            });
+            $colorbox_instance.find('.cboxPhoto').css({
+              width: '100%',
+              height: '100%'
+            });
+          }
+        }
+      });
+    }
+  };
+
 })(jQuery);

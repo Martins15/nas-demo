@@ -8834,7 +8834,6 @@ body.black-bg .slide-img {
   }
 }
 .slide-img img {
-  height: 100%;
   vertical-align: middle;
 }
 
@@ -13574,6 +13573,18 @@ textarea.error {
 body.node-type-slideshow #tabs {
   position: relative;
   z-index: 10;
+}
+body.node-type-slideshow .slideshow .engagement-card-photo {
+  display: none;
+}
+@media only screen and (max-width: 479px) {
+  body.node-type-slideshow .slideshow .text-container h1 {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  body.node-type-slideshow .slideshow .button {
+    white-space: nowrap;
+  }
 }
 
 .editorial-card-river-content-wrapper .view .contextual-links-wrapper {
