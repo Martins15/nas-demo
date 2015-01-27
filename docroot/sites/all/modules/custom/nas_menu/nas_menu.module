@@ -72,6 +72,7 @@ function nas_menu_theme() {
         'logo' => NULL,
         'exposed_form' => NULL,
         'contextual_links' => NULL,
+        'link' => NULL,
       ),
       'template' => 'templates/nas-guide-bar-search',
     ),
