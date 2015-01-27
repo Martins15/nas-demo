@@ -1513,6 +1513,6 @@ function nas_master_update_7116() {
   field_cache_clear(TRUE);
   // Apply the new field instance configuration.
   features_revert(array(
-    'nas_bird_type_feature' => array('field'),
+    'nas_bird_type_feature' => array('field', 'field_instance'),
   ));
 }
