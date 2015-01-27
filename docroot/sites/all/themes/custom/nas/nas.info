@@ -54,6 +54,7 @@ scripts[] = js/vendor/foundation/foundation.min.js
 
 ;; NAS
 scripts[] = js/nas/nas.js
+scripts[] = js/nas/slideshow.js
 
 ; Panels layouts. You can place multiple layouts under the "layouts" folder.
 plugins[panels][layouts] = layouts
