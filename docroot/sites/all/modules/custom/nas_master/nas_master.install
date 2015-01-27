@@ -1477,3 +1477,10 @@ function nas_master_update_7113() {
 function nas_master_update_7114() {
   features_revert_module('nas_url_aliases_feature');
 }
+
+/**
+ * Enable modules. Revert features.
+ */
+function nas_master_update_7115() {
+  module_enable(array('webform'));
+}
