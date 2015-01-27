@@ -1517,3 +1517,43 @@ function nas_master_update_7116() {
     'nas_bird_type_feature' => array('field', 'field_instance'),
   ));
 }
+
+/**
+ * Reimport bird photos and related birds.
+ */
+function nas_master_update_7118(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'bird');
+    $nids = drupal_json_decode($result->data);
+    $sandbox['max'] = count($nids);
+    $sandbox['nid'] = $nids;
+  }
+
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+//    $sandbox['max'] = 50;
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    $sandbox['progress'] += count($nids);
+    nas_update_bird_photos_and_related($nids, 'birds_import');
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count birds images and related birds remigrated.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
+ * Modify reimported bird related field references in previous PR.
+ */
+function nas_master_update_7119() {
+  nas_import_modify_bird_related_references(TRUE);
+}
