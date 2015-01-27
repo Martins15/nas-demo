@@ -162,7 +162,7 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_flyway_bird',
-    'label' => 'Referenced Bird',
+    'label' => 'Referenced item',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -1394,7 +1394,7 @@ function nas_fpp_feature_field_default_field_instances() {
   t('Image');
   t('Map coordinates');
   t('Map image numbers will be placed on.');
-  t('Referenced Bird');
+  t('Referenced item');
   t('Similar Bird');
   t('Subtitle');
   t('Summary');

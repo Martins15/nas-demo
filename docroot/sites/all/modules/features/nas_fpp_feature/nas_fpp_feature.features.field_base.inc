@@ -157,7 +157,11 @@ function nas_fpp_feature_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
+          'article' => 'article',
           'bird' => 'bird',
+          'flyway' => 'flyway',
+          'project' => 'project',
+          'static_page' => 'static_page',
         ),
       ),
       'target_type' => 'node',
