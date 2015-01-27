@@ -117,7 +117,7 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context)
   $contextual_links = '';
   if (user_access('edit NAS panes')) {
     if ($conf_key == 'default') {
-      $contextual_links = nas_menu_guide_var_search_get_contextual_links($subtype);
+      $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
     }
     else {
       $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context->data, 'strategy', 'default');
@@ -191,44 +191,4 @@ function nas_menu_guide_bar_search_get_exposed_filters($auto_submit = TRUE, $ext
   }
 
   return drupal_render($form);
-}
-
-function nas_menu_guide_var_search_get_contextual_links($subtype) {
-  if (!module_exists('contextual') || !user_access('access contextual links')) {
-    return '';
-  }
-
-  ctools_include('ajax');
-  ctools_include('modal');
-  ctools_modal_add_js();
-  // Add ajax-responder so ctools_ajax_command_reload() will work.
-  ctools_add_js('ajax-responder');
-  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
-  if (empty($pid)) {
-    nas_panes_save_node_view_page();
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => $subtype))->fetchField();
-  }
-
-  $links = array(
-    'pane-edit' => array(
-      'title' => t('edit guide bar'),
-      'href' => 'panels/ajax/editor/edit-pane/panel_context:node_view::node_view_panel_context::::/' . $pid,
-      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-      'attributes' => array('class' => array('ctools-use-modal')),
-    ),
-  );
-
-  $build = array(
-    '#prefix' => '<div class="contextual-links-wrapper">',
-    '#suffix' => '</div>',
-    '#theme' => 'links__contextual',
-    '#links' => $links,
-    '#attributes' => array('class' => array('contextual-links')),
-    '#attached' => array(
-      'library' => array(array('contextual', 'contextual-links')),
-    ),
-  );
-  $contextual_links = drupal_render($build);
-
-  return $contextual_links;
 }

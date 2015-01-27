@@ -60,6 +60,7 @@ function nas_birds_priority_feature_default_page_manager_pages() {
       'left' => NULL,
       'right' => NULL,
       'card_set' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -67,6 +68,38 @@ function nas_birds_priority_feature_default_page_manager_pages() {
   $display->uuid = 'a4b806e1-35dd-4ca2-aa67-4c080a917c1a';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-4b389c59-5f9f-40b6-8545-b1b9dc559bdf';
+    $pane->panel = 'header';
+    $pane->type = 'nas_menu_microsite_guide_bar';
+    $pane->subtype = 'nas_menu_microsite_guide_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+      'preamble' => 'Brought to you by',
+      'logo' => 'sites/all/themes/custom/nas/img/canon-logo.png',
+      'css_class' => '',
+      'css_background_style' => '#276074',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'link' => 'birds/bird-guide',
+      'form_build_id' => 'form-CtqTy732zypiwlFG1fpLJRJRraUGWRycZolsYkM4Rho',
+      'form_token' => '2I8h-sxzfUUhF3OQFWYiOpQysDJzkozH0pGrbNBV09s',
+      'form_id' => 'nas_menu_guide_bar_pane_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4b389c59-5f9f-40b6-8545-b1b9dc559bdf';
+    $display->content['new-4b389c59-5f9f-40b6-8545-b1b9dc559bdf'] = $pane;
+    $display->panels['header'][0] = 'new-4b389c59-5f9f-40b6-8545-b1b9dc559bdf';
     $pane = new stdClass();
     $pane->pid = 'new-ba93376e-1c83-4a1e-a5ba-f7a763526d0d';
     $pane->panel = 'main';
