@@ -1482,5 +1482,12 @@ function nas_master_update_7114() {
  * Enable modules. Revert features.
  */
 function nas_master_update_7115() {
-  module_enable(array('webform'));
+  $modules = array(
+    'webform',
+    'seckit',
+    'securepages',
+    'autologout',
+  );
+  module_enable($modules);
+  features_revert_module('nas_overrides_feature');
 }

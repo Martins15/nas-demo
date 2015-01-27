@@ -579,3 +579,4 @@ $conf["cache_backends"][] = "sites/all/modules/contrib/memcache/memcache.inc";
 $conf['cache_default_class'] = 'MemCacheDrupal';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 $conf['cache_class_cache_page'] = 'DrupalFakeCache';
+$conf['https'] = TRUE;
