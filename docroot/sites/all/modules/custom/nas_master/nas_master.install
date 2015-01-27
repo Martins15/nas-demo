@@ -1517,3 +1517,10 @@ function nas_master_update_7116() {
     'nas_bird_type_feature' => array('field', 'field_instance'),
   ));
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7117() {
+  features_revert_module('nas_fpp_feature');
+}
