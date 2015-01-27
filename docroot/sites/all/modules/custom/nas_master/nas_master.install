@@ -1494,6 +1494,7 @@ function nas_master_update_7115() {
 
 /**
  * Change field_bird_conserv_status field from text to text_long.
+ * Revert features.
  */
 function nas_master_update_7116() {
   // Manual database changes.
