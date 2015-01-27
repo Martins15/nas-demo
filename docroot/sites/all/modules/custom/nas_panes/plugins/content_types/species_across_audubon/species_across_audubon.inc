@@ -103,6 +103,7 @@ function species_across_audubon_render($subtype, $conf, $args, $contexts) {
     $teasers[] = drupal_render($build);
   }
 
+  $contextual_links = '';
   if (user_access('edit NAS panes')) {
     $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context_node, 'bird', 'default');
   }
