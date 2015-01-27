@@ -24,7 +24,7 @@
           Slideshow._setupIndicatorPosition($slides, $indicator);
           Slideshow._setupButtonPosition($slides, $buttons);
         });
-      }
+      };
 
       Slideshow._resizeSlides = function($slides) {
         var $imgWrappers = $slides.find(".slide-img"),
@@ -115,15 +115,14 @@
         }
         // Landscape-orientation resizing rules
         else if($(window).width() < 768 && aspectRatio > 1.45) {
-          var $capSlides = $slides.filter(".title-slide, .end-slide"),
-              maxHeight = $(window).height() * 0.75 - 40 + "px";
+          maxHeight = $(window).height() * 0.75 - 40 + "px";
 
           $slides.find("img").css({
             "height": maxHeight,
             "width": "auto"
           });
         }
-      }
+      };
 
       Slideshow.setup = function() {
         var $body = $(".slideshow"),
@@ -148,7 +147,7 @@
         Slideshow._setupIndicator($indicator, $body);
         Slideshow._setupControls($controls);
         Slideshow.resize();
-      }
+      };
 
       Slideshow._setSizes = function($body) {
         var $scroller = $body.find(".slideshow-scroller"),
@@ -163,7 +162,7 @@
 
         Slideshow._setupIndicatorPosition($slides, $indicator);
         Slideshow._setupButtonPosition($slides, $buttons);
-      }
+      };
 
       Slideshow._setupIndicator = function($indicator, $body) {
         scroll.on("scrollEnd", function() {
@@ -180,7 +179,7 @@
             $(".ss-icon.next").addClass("inactive");
           }
         });
-      }
+      };
 
       Slideshow._setupIndicatorPosition = function($slides, $indicator) {
         var slideHeight = $slides.find(".slide-img").height(),
@@ -197,7 +196,7 @@
         else {
           $indicator.removeAttr("style");
         }
-      }
+      };
 
       Slideshow._setupButtonPosition = function($slides, $buttons) {
         var slideHeight = $slides.find(".slide-img").height(),
@@ -206,7 +205,7 @@
         $buttons.css({
           "top": (slideHeight / 2) - (buttonHeight / 2) + 20 + "px"
         });
-      }
+      };
 
       Slideshow._setupControls = function($controls) {
         $controls.bind("click", function(e) {
@@ -215,16 +214,16 @@
           var $this = $(this);
 
           if ($this.hasClass("next")) {
-            scroll.next(400)
+            scroll.next(400);
           }
           else if ($this.hasClass("prev")) {
-            scroll.prev(400)
+            scroll.prev(400);
           }
           else if ($this.hasClass("restart")) {
             scroll.goToPage(0, 0, 400);
           }
         });
-      }
+      };
 
       $(window).bind("resize", function() {
         Slideshow.resize();
