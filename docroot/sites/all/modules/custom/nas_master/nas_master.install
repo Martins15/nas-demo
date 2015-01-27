@@ -1490,6 +1490,8 @@ function nas_master_update_7115() {
   );
   module_enable($modules);
   features_revert_module('nas_overrides_feature');
+  features_revert(array('nas_bird_type_feature' => array('panelizer_defaults')));
+  features_revert_module('nas_birds_priority_feature');
 }
 
 /**
@@ -1516,6 +1518,13 @@ function nas_master_update_7116() {
   features_revert(array(
     'nas_bird_type_feature' => array('field', 'field_instance'),
   ));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7117() {
+  features_revert_module('nas_fpp_feature');
 }
 
 /**

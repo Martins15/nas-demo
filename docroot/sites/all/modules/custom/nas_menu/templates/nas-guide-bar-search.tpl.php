@@ -15,7 +15,11 @@
   <div class="row">
     <?php print $contextual_links; ?>
     <div class="column">
-      <h2 class="guide-bar-title"><?php print $title; ?></h2>
+      <?php if (!empty($link)) : ?>
+        <a href="<?php print $link; ?>"><h2 class="guide-bar-title"><?php print $title; ?></h2></a>
+      <?php else : ?>
+        <h2 class="guide-bar-title"><?php print $title; ?></h2>
+      <?php endif; ?>
       <a class="guide-bar-search toggle-bird-guide-search" href="#"><i class="icon-binoculars white"></i><i class="icon-binoculars black"></i> Find a Bird</a>
       <div class="guide-bar-attribution">
         <span class="preamble"><?php print $preamble; ?></span>
