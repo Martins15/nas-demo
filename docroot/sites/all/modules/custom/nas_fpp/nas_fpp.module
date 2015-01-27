@@ -440,8 +440,8 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
       $vars['flyway_hero_items'][$delta] = array(
         'bird_url' => url('node/' . $bird->nid),
         'bird_title' => check_plain($bird->title),
-        'subtitle_url' => $fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['url'],
-        'subtitle_title' => $fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['title'],
+        'subtitle_url' => isset($fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['url']) ? $fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['url'] : '',
+        'subtitle_title' => isset($fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['title']) ? $fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['title'] : '',
         'map_coordinates' => $fc->field_map_coordinates[LANGUAGE_NONE][0]['safe_value'],
         'background' => image_style_url('hero_image', $fc->field_background_image[LANGUAGE_NONE][0]['uri']),
         'description' => $fc->field_description[LANGUAGE_NONE][0]['safe_value'],
