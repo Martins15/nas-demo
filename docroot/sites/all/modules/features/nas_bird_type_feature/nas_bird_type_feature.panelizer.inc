@@ -126,20 +126,28 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-449bfc00-7c71-49f9-bc11-d7e955ae9511'] = $pane;
     $display->panels['card_set'][0] = 'new-449bfc00-7c71-49f9-bc11-d7e955ae9511';
     $pane = new stdClass();
-    $pane->pid = 'new-e07b3b7a-119a-4e88-b950-f6adf9fba69f';
+    $pane->pid = 'new-66d40dde-4f12-4242-be38-b8c936681a18';
     $pane->panel = 'header';
     $pane->type = 'nas_menu_guide_bar_search';
     $pane->subtype = 'nas_menu_guide_bar_search';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
-      'preamble' => 'Brought to you by',
-      'logo' => 'sites/all/themes/custom/nas/img/canon-logo.png',
-      'css_class' => '',
-      'css_background_style' => '#276074',
+      'context' => 'panelizer',
       'override_title' => 0,
       'override_title_text' => '',
+      'form_build_id' => 'form-RIEorUOyLbHyH9SXOnKbXdyKD716Gnzpg_UYGKFN0Yw',
+      'form_token' => 'yswSVC7csmNFf7FnYNFBjzMS_bUB-AKVj65ZMH7TZKw',
+      'form_id' => 'nas_menu_guide_bar_search_pane_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+      'default' => array(
+        'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+        'link' => 'birds/bird-guide',
+        'preamble' => '',
+        'logo' => '',
+        'css_class' => '',
+        'css_background_style' => '#276074',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -149,9 +157,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'e07b3b7a-119a-4e88-b950-f6adf9fba69f';
-    $display->content['new-e07b3b7a-119a-4e88-b950-f6adf9fba69f'] = $pane;
-    $display->panels['header'][0] = 'new-e07b3b7a-119a-4e88-b950-f6adf9fba69f';
+    $pane->uuid = '66d40dde-4f12-4242-be38-b8c936681a18';
+    $display->content['new-66d40dde-4f12-4242-be38-b8c936681a18'] = $pane;
+    $display->panels['header'][0] = 'new-66d40dde-4f12-4242-be38-b8c936681a18';
     $pane = new stdClass();
     $pane->pid = 'new-7b8211e1-e4dc-4308-b913-10c24773c06b';
     $pane->panel = 'in_action_left';

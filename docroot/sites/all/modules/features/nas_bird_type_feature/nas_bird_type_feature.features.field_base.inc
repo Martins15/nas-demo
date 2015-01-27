@@ -284,7 +284,7 @@ function nas_bird_type_feature_field_default_field_bases() {
       'max_length' => 255,
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_bird_description'

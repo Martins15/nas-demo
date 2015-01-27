@@ -718,12 +718,13 @@ function nas_preprocess_node_engagement_cards(&$vars) {
     $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
       'attributes' => array(
         'class' => array(
-        'button',
-        'tomato',
-        'large',
+          'button',
+          'tomato',
+          'large',
         ),
       ),
     ));
+    $vars['link'] = url($field_link_items[0]['url']);
   }
 }
 

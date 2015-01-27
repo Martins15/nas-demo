@@ -15,7 +15,11 @@
   <div class="row">
     <?php print $contextual_links; ?>
     <div class="column">
-      <h2 class="guide-bar-title"><?php print $title; ?></h2>
+      <?php if (!empty($link)) : ?>
+        <a href="<?php print $link; ?>"><h2 class="guide-bar-title"><?php print $title; ?></h2></a>
+      <?php else : ?>
+        <h2 class="guide-bar-title"><?php print $title; ?></h2>
+      <?php endif; ?>
       <div class="guide-bar-attribution">
         <span class="preamble"><?php print $preamble; ?></span>
         <?php print $logo; ?>
