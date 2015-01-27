@@ -14,6 +14,7 @@
     <?php print $content['main']; ?>
   </div>
   <?php print $content['similar_birds']; ?>
+  <?php if (!empty($content['in_action_left'])): ?>
   <div id="in-action">
     <div class="row section-header">
       <?php print $content['in_action_top']; ?>
@@ -35,6 +36,7 @@
       </div>
     </div>
   </div>
+  <?php endif;?>
   <div id="in-the-news">
     <?php print $content['in_the_news']; ?>
   </div>
