@@ -1537,7 +1537,7 @@ function nas_master_update_7118(&$sandbox) {
     $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'bird');
     $nids = drupal_json_decode($result->data);
     $sandbox['max'] = count($nids);
-    $sandbox['nid'] = $nids;
+    $sandbox['nids'] = $nids;
   }
 
   if (!empty($sandbox['max'])) {
