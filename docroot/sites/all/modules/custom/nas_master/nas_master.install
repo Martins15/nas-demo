@@ -1540,6 +1540,11 @@ function nas_master_update_7118(&$sandbox) {
     $sandbox['nids'] = $nids;
   }
 
+  // Limit nodes for dev environment.
+  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+    $sandbox['max'] = 30;
+  }
+
   if (!empty($sandbox['max'])) {
     // Get part of ids.
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
