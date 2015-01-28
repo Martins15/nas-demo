@@ -14,9 +14,15 @@ $plugin = array(
   'edit form' => 'boa_index_bio_form',
   'defaults' => array(
     'title' => 'The life’s work of both a lover and observer of birds and nature.',
-    'body' => '<p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more »</em></a></p>',
+    'body' => array(
+      'value' => '<p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more »</em></a></p>',
+      'format' => 'full_html',
+    ),
     'name' => 'John James Audubon',
-    'summary' => '<p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more »</em></a></p>',
+    'summary' => array(
+      'value' => '<p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more »</em></a></p>',
+      'format' => 'full_html',
+    ),
     'link' => '<front>',
   ),
 );
@@ -38,8 +44,8 @@ function boa_index_bio_form($form, &$form_state) {
     '#title' => t('Body'),
     '#description' => t('HTML is allowed.'),
     '#type' => 'text_format',
-    '#default_value' => $conf['body'],
-    '#format' => 'full_html',
+    '#default_value' => $conf['body']['value'],
+    '#format' => $conf['body']['format'],
   );
 
   $form['image'] = array(
@@ -85,8 +91,8 @@ function boa_index_bio_form($form, &$form_state) {
   $form['summary'] = array(
     '#title' => t('Sidebar Summary'),
     '#type' => 'text_format',
-    '#default_value' => $conf['summary'],
-    '#format' => 'full_html',
+    '#default_value' => $conf['summary']['value'],
+    '#format' => $conf['summary']['format'],
   );
 
   $form['link'] = array(
@@ -122,6 +128,8 @@ function nas_boa_index_bio_render($subtype, $conf, $args, $context) {
   }
 
   $contextual_links = nas_panes_build_page_contextual_links('nas_panes_boa_index_bio', NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY, 'page_boa_index_panel_context');
+
+  dpm($conf);
 
   $block = new stdClass();
   $block->content = theme('boa_index_bio', array(
