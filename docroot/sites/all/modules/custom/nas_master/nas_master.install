@@ -1556,7 +1556,7 @@ function nas_master_update_7118(&$sandbox) {
 }
 
 /**
- * Modify reimported bird related field references in previous PR.
+ * Modify reimported bird related field references in previous hook_update_n.
  */
 function nas_master_update_7119() {
   nas_import_modify_bird_related_references(TRUE);
