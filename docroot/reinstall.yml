@@ -170,6 +170,10 @@
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     when: pp_environment == "staging" or make_backup
 
+  - name: Update admin credentials
+    shell: "{{ php_env_vars }} drush user-password {{ drupal_user }} --password={{ drupal_pass }}"
+    when: pp_environment == "demo" or pp_environment == "default"
+
   - name: Solr - clearing index
     sudo: yes
     shell: "{{ php_env_vars }} drush -y search-api-clear -l {{ site_url }}"
