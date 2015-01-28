@@ -1566,3 +1566,11 @@ function nas_master_update_7118(&$sandbox) {
 function nas_master_update_7119() {
   nas_import_modify_bird_related_references(TRUE);
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7120() {
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_solr_feature');
+}
