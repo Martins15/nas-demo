@@ -316,9 +316,12 @@ function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $it
       }
     }
   }
-  // Add default images for empty fields.
-  $entity->field_bird_illustration[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ILLUSTRATION);
-  $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_BACK_COVER);
+
+  // Add default images for empty fields on initial import.
+  if ($source->importer->processor->config['update_existing'] != FEEDS_UPDATE_EXISTING) {
+    $entity->field_bird_illustration[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_ILLUSTRATION);
+    $entity->field_hero_image[LANGUAGE_NONE][0]['fid'] = nas_import_get_default_image(NAS_DEFAULT_BACK_COVER);
+  }
 }
 
 /**
@@ -642,6 +645,7 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
  *   Name of the field for drupal 7.
  */
 function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL) {
+  $file_entities = array();
   foreach ($d6_field_array as $key => $value) {
     if (!isset($value['fid'])) {
       continue;
@@ -660,8 +664,10 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL
       $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
       file_save($file_entity);
     }
-    return $file_entity;
+    $file_entities[] = $file_entity;
   }
+
+  return $file_entities;
 }
 
 /**
@@ -1158,7 +1164,8 @@ function nas_import_get_image_object($field_value, $entity, $image_fields_mappin
     return FALSE;
   }
 
-  $file_entity = nas_import_import_image($entity, $image_node['field_photo']);
+  $file_entities = nas_import_import_image($entity, $image_node['field_photo']);
+  $file_entity = $file_entities[0];
 
   // Attach other fields by mapping.
   if (empty($image_fields_mapping)) {
@@ -1422,4 +1429,121 @@ function nas_import_media_asset_set_target_local($source, $entity, $target, $val
   }
   list($fieldname, ) = explode(':', $target);
   $entity->{$fieldname} = array(LANGUAGE_NONE => array((array) $file));
+}
+
+/**
+ * Batch operation to remigrate birds photos and related birds fields.
+ */
+function nas_update_bird_photos_and_related($nids, $importer_id) {
+  foreach ($nids as $nid) {
+    $config = array(
+      'NASFeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid),
+      'FeedsNodeProcessor' => array('skip_default_images' => TRUE),
+    );
+    $source = feeds_source($importer_id);
+    $source->addConfig($config);
+    $source->save();
+    $source->importer->parser->addConfig(
+      array(
+        'context' => array(
+          'value' => '$.*',
+        ),
+        'sources' => array(
+          'nid' => array(
+            'name' => 'nid',
+            'value' => 'nid',
+            'debug' => 0,
+            'weight' => '0',
+          ),
+          'title' => array(
+            'name' => 'title',
+            'value' => 'title',
+            'debug' => 0,
+            'weight' => '1',
+          ),
+          'field_speices_image' => array(
+            'name' => 'field_speices_image',
+            'value' => 'field_speices_image.[*]',
+            'debug' => 0,
+            'weight' => '2',
+          ),
+          'field_similar_species' => array(
+            'name' => 'field_similar_species',
+            'value' => 'field_similar_species.[*]',
+            'debug' => 0,
+            'weight' => '3',
+          ),
+        )
+      )
+    );
+    $source->importer->processor->addConfig(array(
+      'update_existing' => FEEDS_UPDATE_EXISTING,
+      'skip_hash_check' => TRUE,
+      'mappings' => array(
+        0 => array(
+          'source' => 'title',
+          'target' => 'title',
+          'unique' => 1,
+        ),
+        1 => array(
+          'source' => 'nid',
+          'target' => 'guid',
+          'unique' => 1,
+        ),
+      ),
+    ));
+    $source->import();
+    // Clean up.
+    $source->state(FEEDS_FETCH);
+    $source->state(FEEDS_PROCESS);
+    $source->state(FEEDS_PROCESS_CLEAR);
+  }
+}
+
+/**
+ * Modifies field_bird_related field nids according to feeds items mapping.
+ */
+function nas_import_modify_bird_related_references($remove_first = FALSE) {
+  $map = db_select('feeds_item')
+    ->fields('feeds_item', array('guid', 'entity_id'))
+    ->condition('feed_nid', 0)
+    ->condition('entity_type', 'node')
+    ->condition('id', 'birds_import')
+    ->execute()
+    ->fetchAllKeyed();
+
+  $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'bird')
+    ->execute()
+    ->fetchAllKeyed(0, 0);
+
+  $progress = 0;
+  while ($_nids = array_slice($nids, $progress, 50)) {
+    $nodes = node_load_multiple($_nids);
+    // First step is creating mapping of old and new nids.
+    foreach ($nodes as $node) {
+      $field_related_bird = field_get_items('node', $node, 'field_related_bird');
+      if (!empty($field_related_bird)) {
+        if ($remove_first) {
+          // We dont need old nid anymore in the array, so remove it.
+          array_shift($field_related_bird);
+        }
+        // Modify of old nids to new nids based on mapping.
+        foreach ($field_related_bird as $key => $field_value) {
+          if (!empty($map[$field_value['target_id']])) {
+            $node->field_related_bird[LANGUAGE_NONE][$key]['target_id'] = $map[$field_value['target_id']];
+          }
+        }
+        if ($remove_first) {
+          // Remove the last item due to shifted array.
+          array_pop($node->field_related_bird[LANGUAGE_NONE]);
+        }
+        // Finally update the node's field.
+        field_attach_update('node', $node);
+      }
+    }
+    unset($nodes);
+    $progress += count($_nids);
+  }
 }
