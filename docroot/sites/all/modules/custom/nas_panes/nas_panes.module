@@ -1587,10 +1587,11 @@ function _nas_panes_get_priority_birds($state = 'all') {
   foreach ($results as $item) {
     $nids[] = $item->nid;
   }
-
-  $nodes = node_load_multiple($nids);
-  foreach ($nodes as $node) {
-    $items[] = node_view($node, 'teaser');
+  if (!empty($nids)) {
+    $nodes = node_load_multiple($nids);
+    foreach ($nodes as $node) {
+      $items[] = node_view($node, 'teaser');
+    }
   }
 
   return $items;

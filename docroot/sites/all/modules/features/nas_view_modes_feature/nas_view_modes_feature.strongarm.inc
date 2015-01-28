@@ -58,9 +58,6 @@ function nas_view_modes_feature_strongarm() {
       'search_result' => array(
         'custom_settings' => FALSE,
       ),
-      'hero_project' => array(
-        'custom_settings' => TRUE,
-      ),
       'related_features' => array(
         'custom_settings' => TRUE,
       ),
