@@ -108,6 +108,7 @@ function nas_solr_feature_default_search_api_index() {
         "status" : { "type" : "integer" },
         "sticky" : { "type" : "boolean" },
         "title" : { "type" : "text", "boost" : "5.0" },
+        "title_string" : { "type" : "string" },
         "type" : { "type" : "string" },
         "type_for_search" : { "type" : "string" },
         "year" : { "type" : "integer" }

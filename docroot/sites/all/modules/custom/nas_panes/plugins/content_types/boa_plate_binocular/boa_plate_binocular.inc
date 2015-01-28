@@ -102,6 +102,8 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
       'panel_context' => 'page_frontpage2_panel_context',
     ),
   );
+  $class = '';
+  $key = '';
   if (arg(0) == 'birds' && arg(1) == 'bird-guide' && !arg(2)) {
     $key = 'bird-guide';
     $class = 'bird-card-grid';
@@ -110,6 +112,7 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
     $key = 'frontpage';
     $class = 'bird-card-set bg-bone-white bg-boa';
   }
+  $contextual_links = '';
   if (isset($args_cache_key_pairs[$key])) {
     $context['landing'] = array(
       'cache_key' => $args_cache_key_pairs[$key]['cache_key'],

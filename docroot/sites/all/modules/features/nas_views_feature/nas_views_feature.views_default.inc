@@ -642,11 +642,10 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['format'] = 'map';
-  /* Sort criterion: Indexed Node: Date created */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Indexed Node: Title string */
+  $handler->display->display_options['sorts']['title_string']['id'] = 'title_string';
+  $handler->display->display_options['sorts']['title_string']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['title_string']['field'] = 'title_string';
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_node_index';
@@ -859,18 +858,28 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_related_bird_target_id']['id'] = 'field_related_bird_target_id';
-  $handler->display->display_options['relationships']['field_related_bird_target_id']['table'] = 'field_data_field_related_bird';
-  $handler->display->display_options['relationships']['field_related_bird_target_id']['field'] = 'field_related_bird_target_id';
-  $handler->display->display_options['relationships']['field_related_bird_target_id']['label'] = 'from field_related_bird';
-  $handler->display->display_options['relationships']['field_related_bird_target_id']['required'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Global: Random */
   $handler->display->display_options['sorts']['random']['id'] = 'random';
   $handler->display->display_options['sorts']['random']['table'] = 'views';
   $handler->display->display_options['sorts']['random']['field'] = 'random';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'bird' => 'bird',
+  );
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
   $export['nas_birds_view'] = $view;

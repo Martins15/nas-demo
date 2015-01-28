@@ -72,6 +72,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_article_inline_hero' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_file_plain_text_fields' => array(
         'label' => 'above',
         'settings' => array(),
@@ -190,6 +196,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_article_inline_hero' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
       ),
       'nas_bird_teaser_illustration' => array(
         'label' => 'above',
@@ -367,6 +380,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_article_inline_hero' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'nas_bird_teaser_illustration' => array(
         'label' => 'above',
         'settings' => array(),
@@ -530,6 +550,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_article_inline_hero' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'nas_bird_teaser_illustration' => array(
         'label' => 'above',
         'settings' => array(),
@@ -688,6 +714,12 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_article_inline_hero' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'nas_bird_teaser_illustration' => array(
         'label' => 'above',

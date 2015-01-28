@@ -73,12 +73,7 @@
   </article>
   <section class="card-set">
     <?php print $content['card_set']; ?>
-    <div class="row">
-      <div class="card-set-social social-sharing">
-        <span class="social-sharing-caption pea-green">Spread the word. It&rsquo;s the least you can do.</span>
-        <a class="social-sharing-icon pea-green" href="#"><i class="icon-twitter"></i></a>&nbsp;<a class="social-sharing-icon pea-green" href="#"><i class="icon-facebook"></i></a>&nbsp;<a class="social-sharing-icon pea-green" href="#"><i class="icon-mail"></i></a>
-      </div>
-    </div>
+
   </section>
   <?php print $content['article_more_features']; ?>
 </section>

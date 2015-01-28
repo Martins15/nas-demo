@@ -1533,6 +1533,7 @@ function nas_master_update_7117() {
 function nas_master_update_7118(&$sandbox) {
   $chunk = 10;
   if (!isset($sandbox['progress'])) {
+    variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
     $sandbox['progress'] = 0;
     $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'bird');
     $nids = drupal_json_decode($result->data);
@@ -1565,4 +1566,13 @@ function nas_master_update_7118(&$sandbox) {
  */
 function nas_master_update_7119() {
   nas_import_modify_bird_related_references(TRUE);
+  variable_del('nas_cached_files_folder');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7120() {
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_solr_feature');
 }
