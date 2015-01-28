@@ -129,8 +129,6 @@ function nas_boa_index_bio_render($subtype, $conf, $args, $context) {
 
   $contextual_links = nas_panes_build_page_contextual_links('nas_panes_boa_index_bio', NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY, 'page_boa_index_panel_context');
 
-  dpm($conf);
-
   $block = new stdClass();
   $block->content = theme('boa_index_bio', array(
     'title' => check_plain($conf['title']),
