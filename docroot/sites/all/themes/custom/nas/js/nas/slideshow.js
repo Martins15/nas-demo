@@ -45,7 +45,9 @@
         }).get();
 
         var minSlideImgHeight = Math.min.apply(null, slidesImgHeights);
-
+        if (typeof(window.devicePixelRatio != 'undefined')) {
+          minSlideImgHeight = minSlideImgHeight / window.devicePixelRatio;
+        }
         $imgs.css({
           "height": minSlideImgHeight + "px",
           "width": "auto"
