@@ -1300,6 +1300,30 @@ function nas_import_feeds_processor_targets_alter(&$targets, $entity_type, $bund
       );
     }
   }
+
+  // So we can import captions, descriptions to files separately based on their
+  // file names.
+  if ($entity_type == 'file') {
+    $targets['name']['optional_unique'] = TRUE;
+    $targets['name']['unique_callbacks'] = array('nas_import_filename_unique');
+  }
+}
+
+/**
+ * Checks if file is unique by filename.
+ */
+function nas_import_filename_unique(FeedsSource $source, $entity_type, $bundle, $target, array $values) {
+  $column = 'filename';
+  // Example for if the target is a field.
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', $entity_type)
+    ->entityCondition('bundle', $bundle)
+    ->propertyCondition($column, $values)
+    ->execute();
+  if (!empty($result[$entity_type])) {
+    return key($result[$entity_type]);
+  }
 }
 
 /**
