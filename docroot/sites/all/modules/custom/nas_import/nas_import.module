@@ -645,6 +645,7 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
  *   Name of the field for drupal 7.
  */
 function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL) {
+  $file_entities = array();
   foreach ($d6_field_array as $key => $value) {
     if (!isset($value['fid'])) {
       continue;
@@ -663,8 +664,10 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL
       $file_entity->field_file_credit[LANGUAGE_NONE][0]['value'] = $value['data']['title'];
       file_save($file_entity);
     }
-    return $file_entity;
+    $file_entities[] = $file_entity;
   }
+
+  return $file_entities;
 }
 
 /**
@@ -1161,7 +1164,8 @@ function nas_import_get_image_object($field_value, $entity, $image_fields_mappin
     return FALSE;
   }
 
-  $file_entity = nas_import_import_image($entity, $image_node['field_photo']);
+  $file_entities = nas_import_import_image($entity, $image_node['field_photo']);
+  $file_entity = $file_entities[0];
 
   // Attach other fields by mapping.
   if (empty($image_fields_mapping)) {
