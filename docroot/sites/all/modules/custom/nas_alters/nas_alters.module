@@ -344,3 +344,22 @@ function nas_alters_form_alter(&$form, &$form_state, $form_id) {
     $form['override_title_text']['#title'] = t('Title');
   }
 }
+
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function nas_alters_entity_property_info_alter(&$info) {
+  $info['node']['properties']['title_string'] = array(
+    'type' => 'text',
+    'label' => t('Title string'),
+    'description' => t('Mirror of the node title'),
+    'getter callback' => 'nas_alters_title_getter_callback',
+  );
+}
+
+/**
+ * Wrapper callback for title.
+ */
+function nas_alters_title_getter_callback($item) {
+  return $item->title;
+}
