@@ -8,7 +8,6 @@ dependencies[] = better_formats
 dependencies[] = bigmenu
 dependencies[] = block
 dependencies[] = contextual
-dependencies[] = devel
 dependencies[] = ds
 dependencies[] = epsacrop
 dependencies[] = features
