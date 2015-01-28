@@ -154,13 +154,12 @@
           <div class="large-4 columns">
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
               <p>
-                <?php if (isset($bird_illustration_author)): ?>
-                  <?php print $bird_illustration_author; ?>
-                <?php endif; ?>
-                <br />
-                <?php if (isset($learn_more_link)): ?>
-                  <?php print $learn_more_link; ?>
-                <?php endif; ?>
+                Text © Kenn Kaufman, adapted from <br>
+                <?php print l('<em>Lives of North American Birds</em>', 'kaufman', array('html' => TRUE)); ?>
+              </p>
+              <p>
+                Illustration © David Allen Sibley.<br>
+                <?php print l('Learn more about these drawings.', 'sibley'); ?>
               </p>
             </section>
 
