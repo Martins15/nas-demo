@@ -13608,7 +13608,18 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .boa-plate-view-wrapper {
   position: relative;
 }
+.boa-plate-view-wrapper.show-bg {
+  -moz-transition: background-image 0.5s ease-in-out;
+  -o-transition: background-image 0.5s ease-in-out;
+  -webkit-transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.5s ease-in-out;
+}
+.boa-plate-view-wrapper.show-bg .row,
 .boa-plate-view-wrapper.show-bg .view-nas-bird-guide {
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   opacity: 0;
   pointer-events: none;
 }
