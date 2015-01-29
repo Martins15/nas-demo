@@ -137,7 +137,7 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
     $title = $conf['flyway'][$i]['name'];
     $type = 'flyway';
-    $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type", array(":title"=> $title, ":type"=> $type));
+    $result = db_query("SELECT n.nid FROM {node} n WHERE n.title = :title AND n.type = :type", array(":title" => $title, ":type" => $type));
     $condition = $result->fetchField();
     $news_nodes = array();
     if (isset($conf['flyway'][$i]) && $conf_is_not_empty($conf['flyway'][$i])) {
