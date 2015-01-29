@@ -149,11 +149,17 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     $image_string = t('Please edit Caption and Credits of hero image of the selected bird.');
   }
 
+  $illustration_path = '';
   $illustration_item = field_get_items('node', $node, 'field_bird_illustration');
-  $illustration = file_load($illustration_item[0]['fid']);
-  $illustration_path = image_style_url(NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE, $illustration->uri);
+  if (!empty($illustration_item[0]['fid'])) {
+    $illustration = file_load($illustration_item[0]['fid']);
+    $illustration_path = !empty($illustration->uri) ? image_style_url('nas_bird_teaser_illustration', $illustration->uri) : '';
+  }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  $field_audio = field_view_field('node', $node, 'field_bird_audio', 'teaser');
+  $bird_audio = !empty($field_audio[0]) ? render($field_audio) : '';
 
   $content = theme('nas_featured_bird', array(
     'name' => check_plain($node->title),
@@ -165,6 +171,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     'illustration_path' => $illustration_path,
     'contextual_links' => $contextual_links,
     'color_classes' => $color_classes,
+    'bird_audio' => $bird_audio,
   ));
 
   $block->content = $content;

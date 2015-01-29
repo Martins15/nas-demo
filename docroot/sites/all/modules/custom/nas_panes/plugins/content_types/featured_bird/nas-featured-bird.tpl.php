@@ -16,7 +16,7 @@
  * - $color_classes: color classes for text.
  */
 ?>
-<div class="hero <?php print $color_text; ?>-text <?php print $color; ?>-gradient">
+<div class="hero <?php print $color_classes; ?>">
   <div class="hero-image contextual-links-region">
     <?php print $contextual_links; ?>
     <?php if(!empty($image_path_mobile) && !empty($image_path)) : ?>
@@ -43,7 +43,7 @@
             <h4 class="common-name"><a href="<?php print $url; ?>"><?php print $name; ?></a></h4>
             <p class="scientific-name"><?php print $scientific_name; ?></p>
           </figcaption>
-          <a href="#" class="icon-sound-full bird-card-audio"></a>
+          <?php print $bird_audio; ?>
         </figure>
       </div>
     </div>

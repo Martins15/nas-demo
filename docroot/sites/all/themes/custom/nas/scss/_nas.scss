@@ -1,5 +1,5 @@
 .sm2_playing .icon-sound-full:before {
-  content: '\e600';
+  content: '\e601';
   font-size: 11px;
   left: -1px;
   position: relative;
@@ -25,9 +25,12 @@
 
     a {
       font-size: 0;
-      
+      color: $color-bright-blue;
       .icon-sound-full {
         font-size: 15px;
+      }
+      &:hover {
+        color: $color-bright-blue;
       }
     }
   }
