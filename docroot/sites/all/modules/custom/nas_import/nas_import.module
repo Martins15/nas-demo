@@ -172,17 +172,17 @@ function pp_file_create_url($uri) {
  */
 function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $item) {
   // Save speices_image field data to field_bird_photo.
-  if (!empty($item['field_speices_image']) && empty($entity->field_bird_photo)) {
+  if (!empty($item['field_speices_image'])) {
     nas_import_import_image($entity, $item['field_speices_image'], 'field_bird_photo');
   }
 
   // Save field_rangemaps field data to field_bird_rangemap.
-  if (!empty($item['field_rangemaps']) && empty($entity->field_bird_rangemap)) {
+  if (!empty($item['field_rangemaps'])) {
     nas_import_import_image($entity, $item['field_rangemaps'], 'field_bird_rangemap');
   }
 
   // Save field_bird_call field data to field_bird_audio.
-  if (!empty($item['field_bird_call']) && empty($entity->field_bird_audio)) {
+  if (!empty($item['field_bird_call'])) {
     foreach ($item['field_bird_call'] as $key => $value) {
       if (!isset($value['fid'])) {
         continue;
