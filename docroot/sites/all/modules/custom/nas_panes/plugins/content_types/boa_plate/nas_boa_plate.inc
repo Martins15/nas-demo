@@ -66,7 +66,7 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     return;
   }
   $image_thumbnail_path = image_style_url('boa_plate_thumbnail', $image_items[0]['uri']);
-  $original_image_path = file_create_url($image_items[0]['uri']);
+  $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . $image_items[0]['filename'];
   $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
 
   $block = new stdClass();
