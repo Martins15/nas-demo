@@ -158,7 +158,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
-  $field_audio = field_view_field('node', $node, 'field_bird_audio', 'default');
+  $field_audio = field_view_field('node', $node, 'field_bird_audio', 'teaser');
   $bird_audio = !empty($field_audio[0]) ? render($field_audio) : '';
 
   $content = theme('nas_featured_bird', array(
