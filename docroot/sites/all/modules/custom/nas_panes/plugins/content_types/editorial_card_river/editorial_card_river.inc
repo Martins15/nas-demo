@@ -140,7 +140,6 @@ function editorial_card_river_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf['paddings']) ? $conf['paddings'] : _editorial_card_river_default_paddings_conf(),
   );
 
-
   return $form;
 }
 
