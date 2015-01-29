@@ -30,7 +30,7 @@
             '<div class="donate-bar-caption">' +
               'Support our conservation work by contributing today.' +
             '</div>' +
-            '<div class="donate-bar-button"><a href="/donate" class="button tomato large">Donate</a></div>' +
+            '<div class="donate-bar-button"><a href="donate" class="button tomato large">Donate</a></div>' +
           '</div>',
 
         editables: {
