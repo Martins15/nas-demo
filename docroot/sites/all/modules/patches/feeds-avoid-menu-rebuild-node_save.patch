@@ -1,7 +1,7 @@
-diff --git a/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc b/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
+diff --git a/docroot/sites/all/modules/contrib/feeds/includes/FeedsSource.inc b/docroot/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
 index 98cd0f1..da90718 100644
---- a/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
-+++ b/drupal/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
+--- a/docroot/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
++++ b/docroot/sites/all/modules/contrib/feeds/includes/FeedsSource.inc
 @@ -366,7 +366,9 @@ class FeedsSource extends FeedsConfigurable {
      $result = $this->progressImporting();
      if ($result == FEEDS_BATCH_COMPLETE || isset($e)) {
@@ -13,10 +13,10 @@ index 98cd0f1..da90718 100644
        module_invoke_all('feeds_after_import', $this);
        unset($this->fetcher_result, $this->state);
      }
-diff --git a/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc b/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
+diff --git a/docroot/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc b/docroot/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
 index 519dfc5..717f12d 100644
---- a/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
-+++ b/drupal/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
+--- a/docroot/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
++++ b/docroot/sites/all/modules/contrib/feeds/plugins/FeedsNodeProcessor.inc
 @@ -123,7 +123,10 @@ class FeedsNodeProcessor extends FeedsProcessor {
     * Save a node.
     */

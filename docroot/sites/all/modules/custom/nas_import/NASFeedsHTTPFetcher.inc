@@ -16,6 +16,7 @@ class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
 
     $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/urls/' . preg_replace('/[^A-Za-z0-9-.]/', '-', $this->url) . '.txt';
     if (file_exists($cached_filepath)) {
+      watchdog('nas_feeds_fetcher', 'Cache hit @url', array('@url' => $cached_filepath));
       $data = file_get_contents($cached_filepath);
     }
     else {
@@ -25,7 +26,8 @@ class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
       $time_pre = microtime(TRUE);
       $result = http_request_get($this->url, NULL, NULL, NULL, $this->timeout);
       $time_post = microtime(TRUE);
-      watchdog('feeds-http-request', '%export', array('%export' => '<pre>' . $time_post - $time_pre . '</pre>'));
+      watchdog('nas_feeds_fetcher', 'Cache miss @url', array('@url' => $this->url));
+      watchdog('feeds-http-request', '!export', array('!export' => $time_post - $time_pre));
 
       if (!in_array($result->code, array(200, 201, 202, 203, 204, 205, 206))) {
         throw new Exception(t('3Download of @url failed with code !code.', array('@url' => $this->url, '!code' => $result->code)));
