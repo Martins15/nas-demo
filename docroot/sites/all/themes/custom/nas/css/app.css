@@ -13010,7 +13010,7 @@ h2.grey {
 }
 
 .sm2_playing .icon-sound-full:before {
-  content: '\e600';
+  content: '\e601';
   font-size: 11px;
   left: -1px;
   position: relative;

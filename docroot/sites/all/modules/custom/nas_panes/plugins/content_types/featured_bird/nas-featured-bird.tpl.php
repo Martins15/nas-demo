@@ -43,7 +43,7 @@
             <h4 class="common-name"><a href="<?php print $url; ?>"><?php print $name; ?></a></h4>
             <p class="scientific-name"><?php print $scientific_name; ?></p>
           </figcaption>
-          <a href="#" class="icon-sound-full bird-card-audio"></a>
+          <?php print $bird_audio; ?>
         </figure>
       </div>
     </div>
