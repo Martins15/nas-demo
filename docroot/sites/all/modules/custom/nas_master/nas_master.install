@@ -1533,17 +1533,19 @@ function nas_master_update_7117() {
 function nas_master_update_7118(&$sandbox) {
   $chunk = 10;
   if (!isset($sandbox['progress'])) {
-    variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
     $sandbox['progress'] = 0;
     $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'bird');
     $nids = drupal_json_decode($result->data);
     $sandbox['max'] = count($nids);
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      // Limit nodes for dev environment.
+      $sandbox['max'] = max($sandbox['max'], 20);
+    }
+    else {
+      // Change variable for non dev environment.
+      variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
+    }
     $sandbox['nids'] = $nids;
-  }
-
-  // Limit nodes for dev environment.
-  if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-    $sandbox['max'] = 10;
   }
 
   if (!empty($sandbox['max'])) {
@@ -1575,4 +1577,11 @@ function nas_master_update_7119() {
 function nas_master_update_7120() {
   features_revert_module('nas_views_feature');
   features_revert_module('nas_solr_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7122() {
+  features_revert(array('nas_boa_index_feature' => array('views_default')));
 }
