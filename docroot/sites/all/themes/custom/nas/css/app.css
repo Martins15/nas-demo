@@ -13608,3 +13608,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .boa-plate-view-wrapper {
   position: relative;
 }
+.boa-plate-view-wrapper.show-bg .view-nas-bird-guide {
+  opacity: 0;
+  pointer-events: none;
+}

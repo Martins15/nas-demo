@@ -645,4 +645,10 @@ body.node-type-slideshow {
 
 .boa-plate-view-wrapper {
   position: relative;
+  &.show-bg {
+    .view-nas-bird-guide {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
 }
