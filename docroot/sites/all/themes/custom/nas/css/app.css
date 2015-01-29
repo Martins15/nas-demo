@@ -7466,6 +7466,9 @@ body.touch .primary-sub-nav-index {
     opacity: 0;
     pointer-events: none;
   }
+  .bird-card-set.show-bg .columns a {
+    pointer-events: auto;
+  }
 }
 
 .bird-card-set-bg-caption {
@@ -13600,4 +13603,8 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   .featured-bird-placeholder {
     min-height: 400px;
   }
+}
+
+.boa-plate-view-wrapper {
+  position: relative;
 }
