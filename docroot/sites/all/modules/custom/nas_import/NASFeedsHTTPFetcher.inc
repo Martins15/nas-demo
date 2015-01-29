@@ -25,7 +25,7 @@ class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
       $time_pre = microtime(true);
       $result = http_request_get($this->url, NULL, NULL, NULL, $this->timeout);
       $time_post = microtime(true);
-      watchdog('feeds-http-request', $time_post - $time_pre);
+      watchdog('feeds-http-request', '%export', array('%export' => '<pre>' . $time_post - $time_pre . '</pre>'));
 
       if (!in_array($result->code, array(200, 201, 202, 203, 204, 205, 206))) {
         throw new Exception(t('3Download of @url failed with code !code.', array('@url' => $this->url, '!code' => $result->code)));

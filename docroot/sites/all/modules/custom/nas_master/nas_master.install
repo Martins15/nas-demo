@@ -1551,7 +1551,7 @@ function nas_master_update_7118(&$sandbox) {
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
     $sandbox['progress'] += count($nids);
     // Propeople debugging performance.
-    watchdog('nids', var_export($nids, TRUE));
+    watchdog('nids', '%export', array('%export' => '<pre>' . var_export($nids, TRUE) . '</pre>'));
     nas_update_bird_photos_and_related($nids, 'birds_import');
   }
 
