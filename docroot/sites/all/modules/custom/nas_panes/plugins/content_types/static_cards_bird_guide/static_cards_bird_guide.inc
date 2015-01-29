@@ -73,7 +73,7 @@ function static_cards_bird_guide_render($subtype, $conf, $args, $contexts) {
   $links = theme('item_list', array(
     'items' => array(
       l(t('Explore Our Bird Guide'), 'birds/bird-guide'),
-      l(t('Adopt a Bird'), '', array('attributes' => array('class' => array('cta')))),
+      l(t('Adopt a Bird'), 'https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html', array('attributes' => array('class' => array('cta')))),
     ),
     'attributes' => array(
       'class' => array(

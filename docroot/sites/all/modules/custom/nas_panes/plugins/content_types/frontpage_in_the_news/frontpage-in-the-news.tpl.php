@@ -17,7 +17,7 @@
     <div class="columns">
       <ul class="section-nav inline-list">
         <li class="hide-for-small hide-for-tiny"><a href="<?php print $bird_guide_link; ?>"><?php print $bird_guide_title; ?></a></li>
-        <li><a class="cta" href="#">Adopt a Bird</a></li>
+        <li><a class="cta" href="https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html">Adopt a Bird</a></li>
       </ul>
     </div>
   </div>
