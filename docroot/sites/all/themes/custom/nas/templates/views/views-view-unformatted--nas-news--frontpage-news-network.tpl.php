@@ -14,7 +14,7 @@
   </div>
   <div class="column">
     <ul class="inline-list section-nav">
-      <li><?php print l(t('Find the Audubon Chapter Near You »'), ''); ?></a></li>
+      <li><?php print l(t('Find the Audubon Chapter Near You »'), 'audubon-near-you'); ?></a></li>
     </ul>
   </div>
 </div>

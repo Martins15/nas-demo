@@ -14,6 +14,6 @@
     <?php foreach ($releases as $release): ?>
       <li><a href="<?php print $release['url']; ?>"><?php print $release['title']; ?></a></li>
     <?php endforeach; ?>
-    <li class="more"><a href="#">View all press releases »</a></li>
+    <li class="more"><?php print l(t('View all press releases') . ' »', 'menu/press-room'); ?></li>
   </ul>
 </div>
