@@ -1526,3 +1526,62 @@ function nas_master_update_7116() {
 function nas_master_update_7117() {
   features_revert_module('nas_fpp_feature');
 }
+
+/**
+ * Reimport bird photos and related birds.
+ */
+function nas_master_update_7118(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'bird');
+    $nids = drupal_json_decode($result->data);
+    $sandbox['max'] = count($nids);
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      // Limit nodes for dev environment.
+      $sandbox['max'] = max($sandbox['max'], 20);
+    }
+    else {
+      // Change variable for non dev environment.
+      variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
+    }
+    $sandbox['nids'] = $nids;
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    $sandbox['progress'] += count($nids);
+    nas_update_bird_photos_and_related($nids, 'birds_import');
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count birds images and related birds remigrated.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
+ * Modify reimported bird related field references in previous hook_update_n.
+ */
+function nas_master_update_7119() {
+  nas_import_modify_bird_related_references(TRUE);
+  variable_del('nas_cached_files_folder');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7120() {
+  features_revert_module('nas_views_feature');
+  features_revert_module('nas_solr_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7122() {
+  features_revert(array('nas_boa_index_feature' => array('views_default')));
+}

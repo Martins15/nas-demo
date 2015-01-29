@@ -11,7 +11,7 @@
  * - $image_desaturated: image from field_boa_plate_illustr_des.
  */
 ?>
-<div class="<?php print $class; ?> contextual-links-region" style="background-image: url(<?php print $image_desaturated; ?>);">
+<div class="boa-plate-view-wrapper <?php print $class; ?> contextual-links-region" style="background-image: url(<?php print $image_desaturated; ?>);">
   <?php print $contextual_links; ?>
   <?php if (!empty($title)): ?>
   <a href="#" class="bg-egg icon-binoculars white"></a>

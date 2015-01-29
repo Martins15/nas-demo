@@ -41,7 +41,12 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
 
   $current_link = 'by-family';
   if (!empty($_GET['sort_by'])) {
-    $content = views_embed_view('boa_index', 'boa_index');
+    if ($_GET['sort_by'] == 'name') {
+      $content = views_embed_view('boa_index', 'boa_index_state');
+    }
+    else {
+      $content = views_embed_view('boa_index', 'boa_index');
+    }
     switch ($_GET['sort_by']) {
       case 'field_boa_plate_value':
         $current_link = 'by-chronological';

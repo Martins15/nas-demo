@@ -1275,3 +1275,36 @@ function nas_extract_magazine_date($string) {
 
   return $data;
 }
+
+function nas_images_thumbnails_list($variables) {
+  if (empty($variables['thumbnail_options']) || $variables['file'] == NULL) {
+    return;
+  }
+
+  $file = file_load($variables['file']);
+  $file_info = image_get_info($file->uri);
+
+  $manage_crop_link = "<span class=\"manage-link-wrapper\"></br><a class=\"button manage-crop-link\" href=\"javascript:Drupal.PPCrop.dialog("
+    . "'" . $variables['entity_type'] . "',"
+    . "'" . $variables['field_name'] . "' ,"
+    . "'" . $variables['bundle'] . "' , '"
+    . $file->fid . "', &quot;"
+    . image_style_url('epsacrop_thumb', $file->uri) . "&quot;, ["
+    . $file_info['width'] . ","
+    . $file_info['height'] . "]);\">" . t("Change thumbnails") . "</a> <a class=\"button dialog-close\" href=\"#\"> " . t('Close preview') . " </a></br></br></span>";
+
+  $thumbnail_options = $variables['thumbnail_options'];
+
+  // Create a table with thumbnails.
+  $rows = array();
+  foreach ($thumbnail_options as $image_preset => $image_element) {
+    $rows[] = array(
+      array('data' => $image_preset),
+      array('data' => $image_element)
+    );
+  }
+  $header = array(t('Image preset'), t('Image thumbnail'));
+  $images_table = theme('table', array('header' => $header, 'rows' => $rows));
+
+  return '<div id="view-thumbnails-' . $file->fid . '-block" title="Manage image thumbnails">' . $manage_crop_link . $images_table . $manage_crop_link . '</div>';
+}

@@ -76,6 +76,18 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
 }
 
 /**
+ * Form submit callback.
+ */
+function nas_footer_mail_subscription_form_submit($form, $form_state) {
+  drupal_goto('http://www.audubonaction.org/site/Survey', array(
+    'query' => array(
+      'ACTION_REQUIRED' => 'URI_ACTION_USER_REQUESTS',
+      'SURVEY_ID' => '17180',
+    ),
+  ));
+}
+
+/**
  * Implements hook_ajax_render_alter().
  */
 function nas_footer_ajax_render_alter(&$commands) {

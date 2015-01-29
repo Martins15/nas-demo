@@ -66,4 +66,4 @@
   </div>
 </div>
 <div class="article-body row">
-  <div class="article-text large-10 columns reflow-body">
+  <div class="article-text large-push-2 large-10 columns reflow-body">

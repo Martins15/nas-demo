@@ -6,7 +6,6 @@ dependencies[] = image
 dependencies[] = page_manager
 features[ctools][] = page_manager:pages_default:1
 features[features_api][] = api:2
-features[image][] = featured_bird_illustration
 features[page_manager_pages][] = bird_guide
 mtime = 1421239122
 project path = sites/all/modules/features

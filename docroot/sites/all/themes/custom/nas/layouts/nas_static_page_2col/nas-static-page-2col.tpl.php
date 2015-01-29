@@ -16,7 +16,7 @@
  */
 ?>
 <?php if (!empty($content['hero_image'])): ?>
-  <div class="bg-respond hero small <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text expand">
+  <div class="bg-respond hero small <?php print !empty($color_mode_gradient) ? $color_mode_gradient : 'dark'; ?>-gradient <?php print !empty($color_mode_text) ? $color_mode_text : 'light'; ?>-text">
     <div class="hero-image">
       <?php print $content['hero_image']; ?>
     </div>
@@ -62,13 +62,5 @@
   <?php print $content['related']; ?>
   <section class="card-set bg-1">
     <?php print $content['card_set']; ?>
-    <div class="row">
-      <div class="card-set-social social-sharing">
-        <span class="social-sharing-caption white">Spread the word. It&rsquo;s the least you can do.</span>
-        <a class="social-sharing-icon white" href="#"><i class="icon-twitter"></i></a>
-        <a class="social-sharing-icon white" href="#"><i class="icon-facebook"></i></a>
-        <a class="social-sharing-icon white" href="#"><i class="icon-mail"></i></a>
-      </div>
-    </div>
   </section>
 </section>
