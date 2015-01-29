@@ -31,7 +31,7 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'load_more';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '48';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -105,6 +105,10 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -146,6 +150,13 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['row_options']['links'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: State (field_state) */
+  $handler->display->display_options['relationships']['field_state_tid']['id'] = 'field_state_tid';
+  $handler->display->display_options['relationships']['field_state_tid']['table'] = 'field_data_field_state';
+  $handler->display->display_options['relationships']['field_state_tid']['field'] = 'field_state_tid';
+  $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
+  $handler->display->display_options['relationships']['field_state_tid']['required'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
@@ -161,6 +172,18 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['sorts']['name']['relationship'] = 'field_state_tid';
   $handler->display->display_options['sorts']['name']['expose']['label'] = 'State';
+  $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: BOA Index state birds */
+  $handler = $view->new_display('panel_pane', 'BOA Index state birds', 'boa_index_state');
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: State (field_state) */
+  $handler->display->display_options['relationships']['field_state_tid']['id'] = 'field_state_tid';
+  $handler->display->display_options['relationships']['field_state_tid']['table'] = 'field_data_field_state';
+  $handler->display->display_options['relationships']['field_state_tid']['field'] = 'field_state_tid';
+  $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
+  $handler->display->display_options['relationships']['field_state_tid']['required'] = TRUE;
   $handler->display->display_options['inherit_panels_path'] = '1';
   $export['boa_index'] = $view;
 

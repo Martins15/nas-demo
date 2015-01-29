@@ -642,3 +642,16 @@ body.node-type-slideshow {
     min-height: 400px;
   }
 }
+
+.boa-plate-view-wrapper {
+  position: relative;
+  &.show-bg {
+    @include transition(background-image 0.5s ease-in-out);
+    .row,
+    .view-nas-bird-guide {
+      @include transition(opacity 0.5s ease-in-out);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}

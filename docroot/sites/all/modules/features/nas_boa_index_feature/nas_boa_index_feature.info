@@ -13,4 +13,3 @@ features[features_api][] = api:2
 features[image][] = boa_index_bio
 features[page_manager_pages][] = boa_index
 features[views_view][] = boa_index
-mtime = 1418124975
