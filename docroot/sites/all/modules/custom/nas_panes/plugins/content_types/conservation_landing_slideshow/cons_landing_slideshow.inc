@@ -190,6 +190,9 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
   $data = $conf['wrapper'];
   $nodes_array_to_show = array();
   foreach ($data as $key => $value) {
+    if (!is_array($value)) {
+      continue;
+    }
     if (!$node = node_load($value['entity_reference']['entity_id'])) {
       continue;
     }
