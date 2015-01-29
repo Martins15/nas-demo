@@ -1548,7 +1548,6 @@ function nas_master_update_7118(&$sandbox) {
     $sandbox['nids'] = $nids;
   }
 
-
   if (!empty($sandbox['max'])) {
     // Get part of ids.
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
