@@ -172,17 +172,17 @@ function pp_file_create_url($uri) {
  */
 function nas_import_feeds_presave_birds_import(FeedsSource $source, $entity, $item) {
   // Save speices_image field data to field_bird_photo.
-  if (!empty($item['field_speices_image'])) {
+  if (!empty($item['field_speices_image']) && empty($entity->field_bird_photo)) {
     nas_import_import_image($entity, $item['field_speices_image'], 'field_bird_photo');
   }
 
   // Save field_rangemaps field data to field_bird_rangemap.
-  if (!empty($item['field_rangemaps'])) {
+  if (!empty($item['field_rangemaps']) && empty($entity->field_bird_rangemap)) {
     nas_import_import_image($entity, $item['field_rangemaps'], 'field_bird_rangemap');
   }
 
   // Save field_bird_call field data to field_bird_audio.
-  if (!empty($item['field_bird_call'])) {
+  if (!empty($item['field_bird_call']) && empty($entity->field_bird_audio)) {
     foreach ($item['field_bird_call'] as $key => $value) {
       if (!isset($value['fid'])) {
         continue;
@@ -1460,6 +1460,9 @@ function nas_import_media_asset_set_target_local($source, $entity, $target, $val
  */
 function nas_update_bird_photos_and_related($nids, $importer_id) {
   foreach ($nids as $nid) {
+    // Propeople debugging performance.
+    $time_pre = microtime(true);
+
     $config = array(
       'NASFeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid),
       'FeedsNodeProcessor' => array('skip_default_images' => TRUE),
@@ -1521,6 +1524,10 @@ function nas_update_bird_photos_and_related($nids, $importer_id) {
     $source->state(FEEDS_FETCH);
     $source->state(FEEDS_PROCESS);
     $source->state(FEEDS_PROCESS_CLEAR);
+
+    // Propeople debugging performance.
+    $time_post = microtime(true);
+    watchdog('nas-update-import', $time_post - $time_pre);
   }
 }
 

@@ -136,7 +136,11 @@ class FeedsNodeProcessor extends FeedsProcessor {
    * Save a node.
    */
   public function entitySave($entity) {
+    // Propeople debugging performance.
+    $time_pre = microtime(true);
     node_save($entity);
+    $time_post = microtime(true);
+    watchdog('feeds-node-save', $time_post - $time_pre);
   }
 
   /**
