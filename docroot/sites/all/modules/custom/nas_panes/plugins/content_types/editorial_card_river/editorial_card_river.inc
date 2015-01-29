@@ -128,6 +128,18 @@ function editorial_card_river_edit_form($form, &$form_state) {
     '#title' => t('Donate URL'),
     '#default_value' => !empty($conf['donate_path']) ? $conf['donate_path'] : '',
   );
+  $form['paddings'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Paddings'),
+    '#options' => array(
+      'top' => t('Top padding'),
+      'between' => t('Additional space between title and content'),
+      'bottom' => t('Bottom padding'),
+      'double-bottom' => t('Double bottom padding'),
+    ),
+    '#default_value' => !empty($conf['paddings']) ? $conf['paddings'] : _editorial_card_river_default_paddings_conf(),
+  );
+
 
   return $form;
 }
@@ -188,12 +200,26 @@ function editorial_card_river_render($subtype, $conf, $args, $context) {
     unset($content['bottom']);
   }
 
+  if (empty($conf['paddings'])) {
+    $conf['paddings'] = _editorial_card_river_default_paddings_conf();
+  }
+  $spacebottom = '';
+  if ($conf['paddings']['double-bottom']) {
+    $spacebottom = 'space-bottom double';
+  }
+  elseif ($conf['paddings']['bottom']) {
+    $spacebottom = 'space-bottom';
+  }
+
   $block = new stdClass();
   $block->content = theme('editorial_card_river', array(
     'content' => implode(' ', $content),
     'title' => !empty($conf['override_title_text']) ? check_plain($conf['override_title_text']) : '',
     'more_link' => $more_link,
     'contextual_links' => $contextual_links,
+    'spacetop' => $conf['paddings']['top'],
+    'spacebetween' => $conf['paddings']['between'],
+    'spacebottom' => $spacebottom,
   ));
 
   return $block;
@@ -309,4 +335,16 @@ function _editorial_card_river_get_view_args(&$args, $settings, $context, $conf 
   }
 
   return $args;
+}
+
+/**
+ * Helper function to provide default panes padding configuration.
+ */
+function _editorial_card_river_default_paddings_conf() {
+  return array(
+    'top' => 'top',
+    'between' => 'between',
+    'bottom' => 'bottom',
+    'double-bottom' => 0,
+  );
 }
