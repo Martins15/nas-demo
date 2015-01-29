@@ -1461,7 +1461,7 @@ function nas_import_media_asset_set_target_local($source, $entity, $target, $val
 function nas_update_bird_photos_and_related($nids, $importer_id) {
   foreach ($nids as $nid) {
     // Propeople debugging performance.
-    $time_pre = microtime(true);
+    $time_pre = microtime(TRUE);
 
     $config = array(
       'NASFeedsHTTPFetcher' => array('source' => LOAD_NODE_JSON_OBJECT_URL . $nid),
@@ -1526,7 +1526,7 @@ function nas_update_bird_photos_and_related($nids, $importer_id) {
     $source->state(FEEDS_PROCESS_CLEAR);
 
     // Propeople debugging performance.
-    $time_post = microtime(true);
+    $time_post = microtime(TRUE);
     watchdog('nas-update-import', '%export', array('%export' => '<pre>' . $time_post - $time_pre . '</pre>'));
   }
 }

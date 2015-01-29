@@ -22,9 +22,9 @@ class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
       feeds_include_library('http_request.inc', 'http_request');
 
       // Propeople debugging performance.
-      $time_pre = microtime(true);
+      $time_pre = microtime(TRUE);
       $result = http_request_get($this->url, NULL, NULL, NULL, $this->timeout);
-      $time_post = microtime(true);
+      $time_post = microtime(TRUE);
       watchdog('feeds-http-request', '%export', array('%export' => '<pre>' . $time_post - $time_pre . '</pre>'));
 
       if (!in_array($result->code, array(200, 201, 202, 203, 204, 205, 206))) {
