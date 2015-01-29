@@ -21,7 +21,6 @@ define('NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY', 'page-birds_priority')
 
 define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
 define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
-define('NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE', 'featured_bird_illustration');
 define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
 
 define('NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE', 'article_featured');

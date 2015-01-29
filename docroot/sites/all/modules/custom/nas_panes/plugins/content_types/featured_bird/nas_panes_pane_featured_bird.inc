@@ -151,7 +151,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
 
   $illustration_item = field_get_items('node', $node, 'field_bird_illustration');
   $illustration = file_load($illustration_item[0]['fid']);
-  $illustration_path = image_style_url(NAS_FEATURED_ILLUSTRATION_IMAGE_STYLE, $illustration->uri);
+  $illustration_path = image_style_url('nas_bird_teaser_illustration', $illustration->uri);
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
