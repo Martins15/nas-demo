@@ -1533,7 +1533,7 @@ function nas_master_update_7117() {
 function nas_master_update_7118(&$sandbox) {
   $chunk = 10;
   if (!isset($sandbox['progress'])) {
-//    variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
+    variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
     $sandbox['progress'] = 0;
     $result = drupal_http_request(EXPORT_NODE_LIST_NIDS_URL . 'bird');
     $nids = drupal_json_decode($result->data);
@@ -1543,7 +1543,7 @@ function nas_master_update_7118(&$sandbox) {
 
   // Limit nodes for dev environment.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-//    $sandbox['max'] = 100;
+    $sandbox['max'] = 100;
   }
 
   if (!empty($sandbox['max'])) {
