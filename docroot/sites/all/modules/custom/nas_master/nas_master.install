@@ -1543,7 +1543,7 @@ function nas_master_update_7118(&$sandbox) {
 
   // Limit nodes for dev environment.
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
-    $sandbox['max'] = 30;
+    $sandbox['max'] = 10;
   }
 
   if (!empty($sandbox['max'])) {
