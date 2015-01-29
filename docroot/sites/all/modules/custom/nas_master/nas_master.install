@@ -1550,8 +1550,6 @@ function nas_master_update_7118(&$sandbox) {
     // Get part of ids.
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
     $sandbox['progress'] += count($nids);
-    // Propeople debugging performance.
-    watchdog('nids', '!export', array('!export' => var_export($nids, TRUE)));
     nas_update_bird_photos_and_related($nids, 'birds_import');
   }
 
