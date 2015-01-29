@@ -25,9 +25,12 @@
 
     a {
       font-size: 0;
-      
+      color: $color-bright-blue;
       .icon-sound-full {
         font-size: 15px;
+      }
+      &:hover {
+        color: $color-bright-blue;
       }
     }
   }

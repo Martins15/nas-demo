@@ -13038,10 +13038,15 @@ h2.grey {
 .bird-card .views-field-field-bird-audio a,
 .bird-card .field-name-field-bird-audio a {
   font-size: 0;
+  color: #0AA8E3;
 }
 .bird-card .views-field-field-bird-audio a .icon-sound-full,
 .bird-card .field-name-field-bird-audio a .icon-sound-full {
   font-size: 15px;
+}
+.bird-card .views-field-field-bird-audio a:hover,
+.bird-card .field-name-field-bird-audio a:hover {
+  color: #0AA8E3;
 }
 
 .bird-guide-body .field-name-field-bird-audio {
