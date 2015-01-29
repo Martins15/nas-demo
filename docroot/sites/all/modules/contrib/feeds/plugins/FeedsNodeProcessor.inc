@@ -141,7 +141,6 @@ class FeedsNodeProcessor extends FeedsProcessor {
     variable_set('menu_rebuild_needed', FALSE);
     lock_acquire('menu_rebuild');
     node_save($entity);
-    node_save($entity);
     lock_release('menu_rebuild');
     $time_post = microtime(TRUE);
     watchdog('feeds-node-save', '!export', array('!export' => $time_post - $time_pre));
