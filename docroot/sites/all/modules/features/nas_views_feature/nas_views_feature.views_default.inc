@@ -626,7 +626,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '24';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -642,7 +642,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['format'] = 'map';
-  /* Sort criterion: Indexed Node: Title string */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['title_string']['id'] = 'title_string';
   $handler->display->display_options['sorts']['title_string']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['sorts']['title_string']['field'] = 'title_string';
@@ -663,21 +663,6 @@ function nas_views_feature_views_default_views() {
     'field_bird_sci_name' => 'field_bird_sci_name',
     'title' => 'title',
   );
-  /* Filter criterion: Indexed Node: Bird Call Type */
-  $handler->display->display_options['filters']['field_bird_call_type']['id'] = 'field_bird_call_type';
-  $handler->display->display_options['filters']['field_bird_call_type']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['filters']['field_bird_call_type']['field'] = 'field_bird_call_type';
-  $handler->display->display_options['filters']['field_bird_call_type']['value'] = array();
-  $handler->display->display_options['filters']['field_bird_call_type']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['operator_id'] = 'field_bird_call_type_op';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['label'] = 'Bird Call Type';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['operator'] = 'field_bird_call_type_op';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['identifier'] = 'field_bird_call_type_tid';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
-  $handler->display->display_options['filters']['field_bird_call_type']['type'] = 'select';
   /* Filter criterion: Indexed Node: Family */
   $handler->display->display_options['filters']['field_bird_family']['id'] = 'field_bird_family';
   $handler->display->display_options['filters']['field_bird_family']['table'] = 'search_api_index_default_node_index';
@@ -910,6 +895,16 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['style_options']['wrapper_class'] = '';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = TRUE;
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'popular_stories' => 'popular_stories',
+    'engagement_cards' => 0,
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -921,11 +916,11 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  /* Sort criterion: Statistics: Page Views in the past 31 days */
-  $handler->display->display_options['sorts']['count']['id'] = 'count';
-  $handler->display->display_options['sorts']['count']['table'] = 'ga_stats_count_pageviews_month';
-  $handler->display->display_options['sorts']['count']['field'] = 'count';
-  $handler->display->display_options['sorts']['count']['order'] = 'DESC';
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
