@@ -62,7 +62,8 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
     }
   }
   else {
-    $content = views_embed_view('boa_index', 'boa_index_family');
+    $_GET['sort_by'] = 'title';
+    $content = views_embed_view('boa_index', 'boa_index');
   }
 
   $links_to_display = array();

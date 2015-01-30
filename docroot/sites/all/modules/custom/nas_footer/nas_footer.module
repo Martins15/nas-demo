@@ -54,21 +54,21 @@ function nas_footer_theme() {
 
 function nas_footer_mail_subscription_form($form, &$form_state) {
   $form['email'] = array(
-      '#type' => 'textfield',
-      '#attributes' => array(
-          'placeholder' => array(t('Enter your email address')),
-          'class' => array('mailing-list-input', 'radius')
-      ),
-      '#size' => '',
-      '#id' => 'nas-mail-subscription-email'
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Enter your email address')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#size' => '',
+    '#id' => 'nas-mail-subscription-email'
   );
   $form['submit'] = array(
-      '#type' => 'submit',
-      '#value' => t('Sign Up'),
-      '#attributes' => array(
-          'class' => array('button', 'tomato', 'large')
-      ),
-      '#id' => 'nas-mail-subscription-submit'
+    '#type' => 'submit',
+    '#value' => t('Sign Up'),
+    '#attributes' => array(
+      'class' => array('button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-mail-subscription-submit'
   );
   $form['#attributes']['class'] = array('mailing-list-form');
 
@@ -79,12 +79,62 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
  * Form submit callback.
  */
 function nas_footer_mail_subscription_form_submit($form, $form_state) {
-  drupal_goto('http://www.audubonaction.org/site/Survey', array(
-    'query' => array(
-      'ACTION_REQUIRED' => 'URI_ACTION_USER_REQUESTS',
-      'SURVEY_ID' => '17180',
-    ),
-  ));
+  $url = 'http://www.audubonaction.org/site/Survey';
+  $data = array(
+    'cons_email' => $form_state['values']['email'],
+    'cons_info_component' => 't',
+    'cons_mail_opt_in' => 't',
+    'cons_email_opt_in' => 1,
+    'cons_email_opt_in_requested' => 'true',
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+    'SURVEY_ID' => '17180',
+    'denySubmit' => '',
+    "3340_17180_2_14661" => "1441",
+    "3340_17180_2_14661" => "1401",
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 15,
+  );
+  $result = drupal_http_request($url, $options);
+
+  watchdog('email_subscribe', 'Email %email subscribed', array('%email' => $form_state['values']['email']));
+  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
+
+  drupal_goto(variable_get('email_submission_redirect_url', 'thankyou'));
+}
+
+/**
+ * Form validation callback.
+ */
+function nas_footer_mail_subscription_form_validate($form, &$form_state) {
+  if ($form_state['values']['email'] && !valid_email_address($form_state['values']['email'])) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Adds 'Email subscribe form settings' fieldset to Site information form.
+ */
+function nas_footer_form_system_site_information_settings_alter(&$form, &$form_state) {
+  $form['email_subscribe'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Email subscribe form settings'),
+  );
+  $form['email_subscribe']['email_submission_redirect_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Redirect url'),
+    '#default_value' => variable_get('email_submission_redirect_url', 'thankyou'),
+    '#size' => '40',
+    '#description' => t('This page is displayed when the email subscribtion form has been send'),
+    '#field_prefix' => url('', array('absolute' => TRUE)),
+  );
 }
 
 /**

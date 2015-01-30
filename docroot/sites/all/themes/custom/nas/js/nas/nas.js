@@ -268,4 +268,13 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.boaPlateViewLoadMore = {
+    attach: function (context, settings) {
+      var boa_plates_wrapper = $('.boa-plate-view-wrapper');
+      $('.view-nas-bird-guide .pager-load-more a.load-more', boa_plates_wrapper).once('views-load-more-boa-plate-handler').click(function() {
+        $('.icon-binoculars', boa_plates_wrapper).hide();
+      });
+    }
+  };
+
 })(jQuery);

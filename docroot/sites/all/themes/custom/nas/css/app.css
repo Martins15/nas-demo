@@ -13623,3 +13623,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   opacity: 0;
   pointer-events: none;
 }
+.boa-plate-view-wrapper.show-bg .row a,
+.boa-plate-view-wrapper.show-bg .view-nas-bird-guide a {
+  pointer-events: auto;
+}
