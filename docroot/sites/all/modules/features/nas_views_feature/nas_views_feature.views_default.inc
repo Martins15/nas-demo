@@ -626,7 +626,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '24';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -642,7 +642,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['format'] = 'map';
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Indexed Node: Title string */
   $handler->display->display_options['sorts']['title_string']['id'] = 'title_string';
   $handler->display->display_options['sorts']['title_string']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['sorts']['title_string']['field'] = 'title_string';
@@ -663,6 +663,21 @@ function nas_views_feature_views_default_views() {
     'field_bird_sci_name' => 'field_bird_sci_name',
     'title' => 'title',
   );
+  /* Filter criterion: Indexed Node: Bird Call Type */
+  $handler->display->display_options['filters']['field_bird_call_type']['id'] = 'field_bird_call_type';
+  $handler->display->display_options['filters']['field_bird_call_type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_bird_call_type']['field'] = 'field_bird_call_type';
+  $handler->display->display_options['filters']['field_bird_call_type']['value'] = array();
+  $handler->display->display_options['filters']['field_bird_call_type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_bird_call_type']['expose']['operator_id'] = 'field_bird_call_type_op';
+  $handler->display->display_options['filters']['field_bird_call_type']['expose']['label'] = 'Bird Call Type';
+  $handler->display->display_options['filters']['field_bird_call_type']['expose']['operator'] = 'field_bird_call_type_op';
+  $handler->display->display_options['filters']['field_bird_call_type']['expose']['identifier'] = 'field_bird_call_type_tid';
+  $handler->display->display_options['filters']['field_bird_call_type']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  $handler->display->display_options['filters']['field_bird_call_type']['type'] = 'select';
   /* Filter criterion: Indexed Node: Family */
   $handler->display->display_options['filters']['field_bird_family']['id'] = 'field_bird_family';
   $handler->display->display_options['filters']['field_bird_family']['table'] = 'search_api_index_default_node_index';
