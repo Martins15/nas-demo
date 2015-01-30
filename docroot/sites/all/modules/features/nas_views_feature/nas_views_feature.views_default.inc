@@ -626,7 +626,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '24';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -642,7 +642,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['format'] = 'map';
-  /* Sort criterion: Broken/missing handler */
+  /* Sort criterion: Indexed Node: Title string */
   $handler->display->display_options['sorts']['title_string']['id'] = 'title_string';
   $handler->display->display_options['sorts']['title_string']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['sorts']['title_string']['field'] = 'title_string';
