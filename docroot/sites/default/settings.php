@@ -580,3 +580,14 @@ $conf['cache_default_class'] = 'MemCacheDrupal';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 $conf['cache_class_cache_page'] = 'DrupalFakeCache';
 $conf['https'] = TRUE;
+
+/**
+ * Override domain detection in Acquia Purge.
+ */
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
+    $conf['acquia_purge_domains'] = array(
+      'www.audubon.com',
+    );
+  }
+}
