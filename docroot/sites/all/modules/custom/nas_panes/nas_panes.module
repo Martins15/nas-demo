@@ -1620,6 +1620,12 @@ function nas_panes_menu() {
     'page callback' => 'nas_panes_engagement_cards_nodequeue_redirect',
     'weight' => 10,
   );
+  $items['admin/content/popular-stories-nodequeue'] = array(
+    'title' => 'Poular stories nodequeue',
+    'access arguments' => array('administer nodes'),
+    'page callback' => 'nas_panes_popular_stories_nodequeue_redirect',
+    'weight' => 10,
+  );
 
   return $items;
 }
@@ -1629,6 +1635,13 @@ function nas_panes_menu() {
  */
 function nas_panes_engagement_cards_nodequeue_redirect() {
   drupal_goto('admin/structure/nodequeue/1/view/1');
+}
+
+/**
+ * Page callback for admin/content/popular-stories-nodequeue.
+ */
+function nas_panes_popular_stories_nodequeue_redirect() {
+  drupal_goto('admin/structure/nodequeue/2/view/2');
 }
 
 /**
