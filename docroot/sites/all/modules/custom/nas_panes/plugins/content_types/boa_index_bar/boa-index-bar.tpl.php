@@ -13,7 +13,11 @@
 <div class="guide-bar clearfix">
   <div class="row">
     <div class="column">
-      <h2 class="guide-bar-title"><span class="hide-for-small hide-for-tiny"></span><?php print t("John J. Audubon’s Birds of America"); ?></h2>
+      <a href="<?php print $boa_url; ?>">
+        <h2 class="guide-bar-title">
+          <span class="hide-for-small hide-for-tiny"></span><?php print t("John J. Audubon’s Birds of America"); ?>
+        </h2>
+      </a>
       <div class="hide-for-small hide-for-tiny boa-guide-bar-attribution">
         <ul>
         <?php foreach ($links as $link): ?>

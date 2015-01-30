@@ -293,6 +293,10 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
     $spacebottom = 'space-bottom';
   }
 
+  if (empty($teasers) && $conf['preset'] == 'bird_in_the_news') {
+    return;
+  }
+
   $block = new stdClass();
   $block->content = theme('editorial_card_3x', array(
     'teasers' => $teasers,
