@@ -110,7 +110,7 @@ function species_across_audubon_render($subtype, $conf, $args, $contexts) {
 
   $block = new stdClass();
   $block->content = '';
-  if (!empty($teasers) || !empty($contextual_links)) {
+  if (!empty($teasers)) {
     $block->content = theme('species_across_audubon', array(
       'teasers' => $teasers,
       'title' => $block_title,
