@@ -100,7 +100,10 @@ function nas_footer_mail_subscription_form_submit($form, $form_state) {
     'data' => http_build_query($data),
     'timeout' => 15,
   );
-  drupal_http_request($url, $options);
+  $result = drupal_http_request($url, $options);
+
+  watchdog('email_subscribe', 'Email %email subscribed', array('%email' => $form_state['values']['email']));
+  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
 
   drupal_goto(variable_get('email_submission_redirect_url', 'thankyou'));
 }
