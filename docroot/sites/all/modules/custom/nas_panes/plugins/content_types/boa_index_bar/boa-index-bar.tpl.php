@@ -13,7 +13,7 @@
 <div class="guide-bar clearfix">
   <div class="row">
     <div class="column">
-      <a href="<?php print url('birds-of-america'); ?>">
+      <a href="<?php print $boa_url; ?>">
         <h2 class="guide-bar-title">
           <span class="hide-for-small hide-for-tiny"></span><?php print t("John J. Audubon’s Birds of America"); ?>
         </h2>
