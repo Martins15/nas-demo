@@ -21,10 +21,10 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   $links = array(
-    'by-family' => array(
+    /*'by-family' => array(
       'title' => 'Explore by family',
       'query' => array(),
-    ),
+    ),*/
     'by-chronological' => array(
       'title' => 'View the plates in chronological order',
       'query' => array('sort_by' => 'field_boa_plate_value'),
@@ -33,13 +33,13 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
       'title' => 'Alphabetically',
       'query' => array('sort_by' => 'title'),
     ),
-    'by-state' => array(
+    /*'by-state' => array(
       'title' => 'State Birds',
       'query' => array('sort_by' => 'name'),
-    ),
+    ),*/
   );
 
-  $current_link = 'by-family';
+  $current_link = 'by-alphabetical';
   if (!empty($_GET['sort_by'])) {
     if ($_GET['sort_by'] == 'name') {
       $content = views_embed_view('boa_index', 'boa_index_state');
