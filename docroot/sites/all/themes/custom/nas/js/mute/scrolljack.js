@@ -2,11 +2,15 @@
   Drupal.behaviors.scrolljack = {
     attach: function(context, settings) {
       if(!$(".bird-guide-container").length == 0) {
-        var MINSCROLL = 50,
+        var USERAGENT = navigator.userAgent.toLowerCase(),
+            ISWINDOWS = USERAGENT.match("windows"),
+            ISWEBKIT  = $.browser.webkit,
+            ISFIREFOX = USERAGENT.match("firefox"),
+            MINSCROLL = 50,
             MAXSCROLL = parseInt($(".bird-guide-container").css("padding-top")) + 1;
 
         function scroll(e, $container, cardPadding, delta) {
-          if(navigator.userAgent.toLowerCase().match("windows") && $.browser.webkit) {
+          if(ISWINDOWS && ISWEBKIT || ISWINDOWS && ISFIREFOX) {
             delta = delta * 15;
           }
 
