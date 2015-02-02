@@ -24,7 +24,7 @@
   &.light-bg {
     @include breakpoint(large-up) {
       background-color: transparent;
-      background: linear-gradient(rgba(#fff, 1) 0%, rgba(#fff, .6) 75%, rgba(#fff, 0) 100%);
+      background: linear-gradient(rgba(#fff, .9) 0%, rgba(#fff, .65) 85%, rgba(#fff, 0) 100%);
     }
   }
 
