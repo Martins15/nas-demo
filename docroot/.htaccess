@@ -168,6 +168,10 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{HTTP_HOST} ^audubonmagazine\.org [NC]
   RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
 
+  # audubonmagazine.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^www.audubonmagazine\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
   # athome.audubon.org -> www.audubon.org/conservation/creating-bird-friendly-communities
   RewriteCond %{HTTP_HOST} ^athome\.audubon\.org [NC]
   RewriteRule ^$ http://www.audubon.org/conservation/creating-bird-friendly-communities [R=301,L]
