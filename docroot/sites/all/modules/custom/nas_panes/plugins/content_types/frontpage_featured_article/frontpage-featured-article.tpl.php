@@ -16,7 +16,7 @@
     <div class="editorial-card contextual-links-region" data-equalizer-watch>
       <?php print $contextual_links; ?>
       <div class="editorial-card-photo">
-        <img src="<?php print $image_path; ?>" alt="">
+        <a href="<?php print $article_raw_link ?>"><img src="<?php print $image_path; ?>" alt=""></a>
       </div>
       <div class="editorial-card-content short">
         <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h3>
