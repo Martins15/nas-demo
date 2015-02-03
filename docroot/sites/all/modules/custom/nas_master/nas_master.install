@@ -1638,6 +1638,6 @@ function nas_master_update_7124(&$sandbox) {
 
   if ($sandbox['#finished'] >= 1) {
     $sandbox['#finished'] = 1;
-    watchdog('nas_master', '@count magazine issue articles updated.', array('@count' => $sandbox['progress']));
+    watchdog('nas_master', '@count magazine issue articles hero and editorial card images were updated.', array('@count' => $sandbox['progress']));
   }
 }
