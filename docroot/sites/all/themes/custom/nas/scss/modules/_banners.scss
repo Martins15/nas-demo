@@ -20,12 +20,12 @@
 
   // Variants
   &.dark-bg {
-    h2, h3, h4, p, ul {
+    h2, h3, h4, p, ul, h2 a {
       color: $color-white;
     }
   }
   &.light-bg {
-    h2, h3, h4, p, ul {
+    h2, h3, h4, p, ul, h2 a {
       color: $color-black;
     }
   }
