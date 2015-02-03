@@ -198,10 +198,14 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     }
 
     // Set title.
-    $nodes_array_to_show[$key]['title'] = $value['title'];
-    if (empty($value['title'])) {
-      $nodes_array_to_show[$key]['title'] = $node->title;
-    }
+    $title = empty($value['title']) ? $node->title : $value['title'];
+    $nodes_array_to_show[$key]['title_link'] = l($title, 'node/' . $node->nid, array(
+        'attributes' => array(
+          'title' => $node->title,
+          'class' => array('conservation-slide-headline'),
+        ),
+      ));
+
     // Set image.
     $image_fid = $value['image'];
     if (empty($image_fid)) {

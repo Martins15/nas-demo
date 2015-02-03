@@ -79,9 +79,21 @@ function nas_footer_mail_subscription_form($form, &$form_state) {
  * Form submit callback.
  */
 function nas_footer_mail_subscription_form_submit($form, $form_state) {
+  drupal_goto(variable_get('email_submission_redirect_url', 'thankyou'));
+}
+
+/**
+ * Form validation callback.
+ */
+function nas_footer_mail_subscription_form_validate($form, &$form_state) {
+  $email = strtolower(trim($form_state['values']['email']));
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
   $url = 'http://www.audubonaction.org/site/Survey';
   $data = array(
-    'cons_email' => $form_state['values']['email'],
+    'cons_email' => $email,
     'cons_info_component' => 't',
     'cons_mail_opt_in' => 't',
     'cons_email_opt_in' => 1,
@@ -101,18 +113,10 @@ function nas_footer_mail_subscription_form_submit($form, $form_state) {
     'timeout' => 15,
   );
   $result = drupal_http_request($url, $options);
-
-  watchdog('email_subscribe', 'Email %email subscribed', array('%email' => $form_state['values']['email']));
+  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
   watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
 
-  drupal_goto(variable_get('email_submission_redirect_url', 'thankyou'));
-}
-
-/**
- * Form validation callback.
- */
-function nas_footer_mail_subscription_form_validate($form, &$form_state) {
-  if ($form_state['values']['email'] && !valid_email_address($form_state['values']['email'])) {
+  if (!isset($result->redirect_code) || $result->redirect_code != 302 || !isset($result->redirect_url) || $result->redirect_url != 'http://www.audubon.org/thankyou') {
     form_set_error('email', t('The e-mail address you specified is not valid.'));
   }
 }

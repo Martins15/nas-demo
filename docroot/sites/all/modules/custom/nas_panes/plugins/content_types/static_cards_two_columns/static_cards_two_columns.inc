@@ -122,6 +122,10 @@ function static_cards_two_columns_render($subtype, $conf, $args, $contexts) {
       $item['top_link_markup'] = l($item['top_link']['title'], $item['top_link']['url'], array('attributes' => array('class' => array('banner-slug'))));
     }
 
+    $item['title_link'] = l($item['title'], $item['bottom_link']['url'], array(
+      'attributes' => array('title' => $item['title']),
+    ));
+
     $item['bottom_link_markup'] = l($item['bottom_link']['title'], $item['bottom_link']['url']);
   }
 
