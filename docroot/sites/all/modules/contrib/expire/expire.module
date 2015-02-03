@@ -250,7 +250,9 @@ function expire_menu_link_insert($link) {
 function expire_execute_expiration($type, $object, $action) {
   $status = variable_get('expire_status', EXPIRE_STATUS_DISABLED);
   if ($status) {
-    return _expire_get_expiration_handler($type)->expire($object, $action);
+    if ($handler = _expire_get_expiration_handler($type)) {
+      $handler->expire($object, $action);
+    }
   }
   return FALSE;
 }
@@ -276,7 +278,13 @@ function _expire_get_expiration_handler($type) {
     }
 
     $class = variable_get('expire_handler_' . $type, 'Expire' . implode('', $class_bits));
-    $cache_objects[$type] = class_exists($class) ? new $class() : FALSE;
+    if (class_exists($class)) {
+      $cache_objects[$type] = new $class();
+    }
+    else {
+      $cache_objects[$type] = FALSE;
+      trigger_error("Unable to find expiration handler class $class for type $type.", E_USER_ERROR);
+    }
   }
   return $cache_objects[$type];
 }
