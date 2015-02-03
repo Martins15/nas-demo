@@ -14,15 +14,36 @@
         self.init = function() {
           window.scrollTo(0, 1);
 
-          // Make sure the body's got height while everything's fixed
+          $(document).bind("respond", function(e) {
+            if(e.size == "tiny" || e.size == "small" || e.size == "medium") {
+              self.reset();
+            }
+            else if(e.size == "large") {
+              self.setup();
+            }
+          });
+        }
+
+        self.setup = function() {
           $body.css({"min-height": $body.height()});
 
           self.setCurtainFocus(true);
           self.bind();
         }
 
+        self.reset = function() {
+          $body.removeAttr("style");
+          $wrapper.removeClass("on").removeAttr("style");
+
+          self.unbind();
+        }
+
         self.bind = function() {
           $(window).on("scroll", self.handleScroll);
+        }
+
+        self.unbind = function() {
+          $(window).off("scroll");
         }
 
         self.handleScroll = function(e) {

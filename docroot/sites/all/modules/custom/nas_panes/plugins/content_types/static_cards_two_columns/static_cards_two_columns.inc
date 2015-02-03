@@ -79,6 +79,11 @@ function static_cards_two_columns_form($form, &$form_state) {
       '#default_value' => !empty($conf['items'][$i]['color_mode']) ? $conf['items'][$i]['color_mode'] : 'dark',
       '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to content.'),
     );
+    $form['items'][$i]['gradient'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Add gradient background'),
+      '#default_value' => !empty($conf['items'][$i]['gradient']) ? $conf['items'][$i]['gradient'] : 0,
+    );
   }
 
   ctools_form_include($form_state, 'content');
@@ -127,6 +132,7 @@ function static_cards_two_columns_render($subtype, $conf, $args, $contexts) {
     ));
 
     $item['bottom_link_markup'] = l($item['bottom_link']['title'], $item['bottom_link']['url']);
+    $item['gradient'] = !empty($item['gradient']) ? $item['gradient'] : 0;
   }
 
   $content = theme('static_cards_two_columns', array(

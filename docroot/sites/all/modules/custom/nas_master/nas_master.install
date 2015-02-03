@@ -1596,7 +1596,7 @@ function nas_master_update_7123() {
 }
 
 /**
- * Migrate Magazine issues articles hero images.
+ * Migrate Magazine issues articles hero and editorial card images.
  */
 function nas_master_update_7124(&$sandbox) {
   $chunk = 10;
@@ -1640,4 +1640,17 @@ function nas_master_update_7124(&$sandbox) {
     $sandbox['#finished'] = 1;
     watchdog('nas_master', '@count magazine issue articles hero and editorial card images were updated.', array('@count' => $sandbox['progress']));
   }
+}
+
+/**
+ * Set variables.
+ */
+function nas_master_update_7125() {
+  $actions = array(
+    EXPIRE_PANELS_DISPLAY_UPDATE => EXPIRE_PANELS_DISPLAY_UPDATE,
+    EXPIRE_PANELS_DISPLAY_DELETE => EXPIRE_PANELS_DISPLAY_DELETE,
+  );
+  variable_set('expire_panels_actions', $actions);
+  variable_set('expire_panels_panel_page', TRUE);
+  variable_set('expire_panels_panelizer_page', TRUE);
 }

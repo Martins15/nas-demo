@@ -52,6 +52,10 @@ define('EXPIRE_MENU_LINK_INSERT', 1);
 define('EXPIRE_MENU_LINK_UPDATE', 2);
 define('EXPIRE_MENU_LINK_DELETE', 3);
 
+// Panels actions.
+define('EXPIRE_PANELS_DISPLAY_UPDATE', 1);
+define('EXPIRE_PANELS_DISPLAY_DELETE', 2);
+
 // Debug levels.
 define('EXPIRE_DEBUG_DISABLED', 0);
 define('EXPIRE_DEBUG_WATCHDOG', 1);
@@ -84,6 +88,10 @@ define('EXPIRE_VOTINGAPI_CUSTOM'                , FALSE);
 define('EXPIRE_FILE_FILE'                       , FALSE);
 define('EXPIRE_FILE_FRONT_PAGE'                 , FALSE);
 define('EXPIRE_FILE_CUSTOM'                     , FALSE);
+define('EXPIRE_PANELS_PANEL_PAGE'               , FALSE);
+define('EXPIRE_PANELS_PANELIZER_PAGE'           , FALSE);
+define('EXPIRE_PANELS_FRONT_PAGE'               , FALSE);
+define('EXPIRE_PANELS_CUSTOM'                   , FALSE);
 
 /**
  * Implementation of hook_menu().
@@ -245,12 +253,30 @@ function expire_menu_link_insert($link) {
 }
 
 /**
+ * Implements hook_panels_display_save().
+ */
+function expire_panels_display_save($display) {
+  expire_execute_expiration('panels', $display, EXPIRE_PANELS_DISPLAY_UPDATE);
+}
+
+/**
+ * Implements hook_panels_delete_display().
+ */
+function expire_panels_delete_display($did) {
+  $display = new stdClass();
+  $display->did = $did;
+  expire_execute_expiration('panels', $display, EXPIRE_PANELS_DISPLAY_DELETE);
+}
+
+/**
  * Execute expiration method for object.
  */
 function expire_execute_expiration($type, $object, $action) {
   $status = variable_get('expire_status', EXPIRE_STATUS_DISABLED);
   if ($status) {
-    return _expire_get_expiration_handler($type)->expire($object, $action);
+    if ($handler = _expire_get_expiration_handler($type)) {
+      $handler->expire($object, $action);
+    }
   }
   return FALSE;
 }
@@ -276,7 +302,13 @@ function _expire_get_expiration_handler($type) {
     }
 
     $class = variable_get('expire_handler_' . $type, 'Expire' . implode('', $class_bits));
-    $cache_objects[$type] = class_exists($class) ? new $class() : FALSE;
+    if (class_exists($class)) {
+      $cache_objects[$type] = new $class();
+    }
+    else {
+      $cache_objects[$type] = FALSE;
+      trigger_error("Unable to find expiration handler class $class for type $type.", E_USER_ERROR);
+    }
   }
   return $cache_objects[$type];
 }
