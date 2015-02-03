@@ -11,6 +11,9 @@
   <?php foreach ($items as $item) : ?>
     <div class="large-6 columns">
       <div class="banner <?php print $item['color_mode']; ?>-bg bg-respond" style="background-image: url(<?php print $item['image_url']; ?>);" data-bg-small="<?php print $item['image_url_mobile']; ?>" data-bg-large="<?php print $item['image_url']; ?>">
+        <?php if ($item['gradient']): ?>
+        <div class="banner-gradient-overlay-horizontal"></div>
+        <?php endif; ?>
         <div class="banner-text full-width">
           <?php print $item['top_link_markup']; ?>
           <h2 class="banner-title"><?php print $item['title_link']; ?></h2>
