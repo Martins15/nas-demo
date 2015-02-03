@@ -1580,6 +1580,9 @@ function _nas_import_update_mag_issue_articles($nids) {
     $nid = $_data->entity_id;
     $d6nid = $_data->guid;
     $node = node_load($nid);
+    // Update the node's panelizer layout.
+    $node->panelizer['page_manager']->name = 'node:article:inline_hero_photo';
+    node_save($node);
 
     $hero_image_items = field_get_items('node', $node, 'field_hero_image');
     $editorial_card_image_items = field_get_items('node', $node, 'field_editorial_card_image');
@@ -1614,15 +1617,12 @@ function _nas_import_update_mag_issue_articles($nids) {
           $node->field_editorial_card_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
           watchdog('nas_import', 'Editorial card image updated in node nid :nid', array(':nid' => $nid));
         }
+        node_save($node);
       }
       else {
         // Images was not downloaded.
         watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
       }
-
-      // Finally update the node's panelizer layout.
-      $node->panelizer['page_manager']->name = 'node:article:inline_hero_photo';
-      node_save($node);
     }
     else {
       watchdog('nas_import', 'Node nid :nid already has hero and editorial card images set', array(':nid' => $nid));
