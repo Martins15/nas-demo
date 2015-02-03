@@ -13,7 +13,7 @@
       <div class="banner <?php print $item['color_mode']; ?>-bg bg-respond" style="background-image: url(<?php print $item['image_url']; ?>);" data-bg-small="<?php print $item['image_url_mobile']; ?>" data-bg-large="<?php print $item['image_url']; ?>">
         <div class="banner-text full-width">
           <?php print $item['top_link_markup']; ?>
-          <h2 class="banner-title"><?php print check_plain($item['title']); ?></h2>
+          <h2 class="banner-title"><?php print $item['title_link']; ?></h2>
           <ul class="banner-links inline-list">
             <?php if (!empty($item['bottom_link_markup'])) : ?>
               <li><?php print $item['bottom_link_markup'] ?></li>

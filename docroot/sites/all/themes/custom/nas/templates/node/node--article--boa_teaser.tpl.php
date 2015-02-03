@@ -94,7 +94,7 @@
     <?php if (!empty($blue_text_link_url)): ?>
     <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
     <?php endif; ?>
-    <h4 class="editorial-card-title"><?php print $title; ?></h4>
+    <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
     <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
   </div>
 </div>

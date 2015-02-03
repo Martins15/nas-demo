@@ -82,6 +82,136 @@ DirectoryIndex index.php index.html index.htm
   # downloaded.
   RewriteRule "(^|/)\." - [F]
 
+  # Custom redirect rules.
+
+  # If there any hardcoded links to nasprod.
+  RewriteCond %{HTTP_HOST} ^nasprod\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # birds.audubon.org -> www.audubon.org/birds
+  RewriteCond %{HTTP_HOST} ^birds\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/birds [R=301,L]
+
+  # birds.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^birds\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # marketplace.audubon.org -> www.audubon.org/marketplace
+  RewriteCond %{HTTP_HOST} ^marketplace\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/marketplace [R=301,L]
+
+  # marketplace.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^marketplace\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # policy.audubon.org -> www.audubon.org/conservation/advocacy
+  RewriteCond %{HTTP_HOST} ^policy\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/advocacy [R=301,L]
+
+  # policy.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^policy\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # conservation.audubon.org -> www.audubon.org/conservation
+  RewriteCond %{HTTP_HOST} ^conservation\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation [R=301,L]
+
+  # conservation.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^conservation\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # support.audubon.org -> www.audubon.org/how-to-help
+  RewriteCond %{HTTP_HOST} ^support\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/how-to-help [R=301,L]
+
+  # support.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^support\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # chapterservice.audubon.org -> www.audubon.org/chapters
+  RewriteCond %{HTTP_HOST} ^chapterservice\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/chapters [R=301,L]
+
+  # chapterservice.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^chapterservice\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # education.audubon.org -> www.audubon.org/conservation/education
+  RewriteCond %{HTTP_HOST} ^education\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/education [R=301,L]
+
+  # education.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^education\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # getoutside.audubon.org -> www.audubon.org/get-outside
+  RewriteCond %{HTTP_HOST} ^getoutside\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/get-outside [R=301,L]
+
+  # getoutside.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^getoutside\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # iap.audubon.org -> www.audubon.org/conservation/international
+  RewriteCond %{HTTP_HOST} ^iap\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/international [R=301,L]
+
+  # iap.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^iap\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # mag.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^mag\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # audubonmagazine.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^audubonmagazine\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # audubonmagazine.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^www\.audubonmagazine\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # athome.audubon.org -> www.audubon.org/conservation/creating-bird-friendly-communities
+  RewriteCond %{HTTP_HOST} ^athome\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/creating-bird-friendly-communities [R=301,L]
+
+  # athome.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^athome\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # bird-friendly.audubon.org -> www.audubon.org/conservation/creating-bird-friendly-communities
+  RewriteCond %{HTTP_HOST} ^bird-friendly\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/creating-bird-friendly-communities [R=301,L]
+
+  # bird-friendly.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^bird-friendly\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # lightsout.audubon.org -> www.audubon.org/conservation/creating-bird-friendly-communities
+  RewriteCond %{HTTP_HOST} ^lightsout\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/creating-bird-friendly-communities [R=301,L]
+
+  # lightsout.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^lightsout\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # espanol.audubon.org -> www.audubon.org/audubon-en-espanol
+  RewriteCond %{HTTP_HOST} ^espanol\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/audubon-en-espanol [R=301,L]
+
+  # espanol.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^espanol\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # gulfoilspill.audubon.org -> www.audubon.org/conservation/gulf
+  RewriteCond %{HTTP_HOST} ^gulfoilspill\.audubon\.org [NC]
+  RewriteRule ^$ http://www.audubon.org/conservation/gulf [R=301,L]
+
+  # gulfoilspill.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^gulfoilspill\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
   # If your site can be accessed both with and without the 'www.' prefix, you
   # can use one of the following settings to redirect users to your preferred
   # URL, either WITH or WITHOUT the 'www.' prefix. Choose ONLY one option:
@@ -90,8 +220,8 @@ DirectoryIndex index.php index.html index.htm
   # (http://example.com/... will be redirected to http://www.example.com/...)
   # uncomment the following:
   # RewriteCond %{HTTP_HOST} .
-  # RewriteCond %{HTTP_HOST} !^www\. [NC]
-  # RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteCond %{HTTP_HOST} ^audubon\.org [NC]
+  RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   #
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
   # (http://www.example.com/... will be redirected to http://example.com/...)
@@ -108,6 +238,33 @@ DirectoryIndex index.php index.html index.htm
   # If your site is running in a VirtualDocumentRoot at http://example.com/,
   # uncomment the following line:
   # RewriteBase /
+
+  # From previous d6 website. Requested to be added by Nick nyacullo@audubon.org
+  #fix /images rewriting
+  #redirect to web4
+  RewriteCond   %{REQUEST_URI}  !^/images/photos.*
+  RewriteCond   %{REQUEST_URI}  !^/images/logos.*
+  RewriteRule ^(images)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(webtrends.js)$ http://www.audubon.org/sites/default/files/webtrends/$1 [L,R=301,NC]
+  RewriteRule ^(nas.css)$ http://web4.audubon.org/$1 [L,R=301,NC]
+  RewriteRule ^(header_links.js)$ http://web4.audubon.org/$1 [L,R=301,NC]
+  RewriteRule ^(footer.js)$ http://web4.audubon.org/$1 [L,R=301,NC]
+  RewriteRule ^(footer_green.js)$ http://web4.audubon.org/$1 [L,R=301,NC]
+  RewriteRule ^(national_images)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(menus)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(bird)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(educate)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(globalwarming/)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(globalwarming)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(states/application)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(states/statelogos)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(states/state_images)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(states/images)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(local/cso)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(campaign/advisory)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(campaign/esa)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(campaign/esa)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
+  RewriteRule ^(news/pressroom/bacc/pdfs)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
 
   # Pass all requests not referring directly to files in the filesystem to
   # index.php. Clean URLs are handled in drupal_environment_initialize().
