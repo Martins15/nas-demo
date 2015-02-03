@@ -1594,3 +1594,16 @@ function nas_master_update_7123() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_views_feature');
 }
+
+/**
+ * Set variables.
+ */
+function nas_master_update_7125() {
+  $actions = array(
+    EXPIRE_PANELS_DISPLAY_UPDATE => EXPIRE_PANELS_DISPLAY_UPDATE,
+    EXPIRE_PANELS_DISPLAY_DELETE => EXPIRE_PANELS_DISPLAY_DELETE,
+  );
+  variable_set('expire_panels_actions', $actions);
+  variable_set('expire_panels_panel_page', TRUE);
+  variable_set('expire_panels_panelizer_page', TRUE);
+}
