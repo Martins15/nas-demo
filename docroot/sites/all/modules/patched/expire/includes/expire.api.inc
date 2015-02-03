@@ -101,6 +101,12 @@ class ExpireAPI {
     // Latest possibility to change urls that should be expired.
     drupal_alter('expire_urls', $urls, $object_type, $object);
 
+    // Probably during alteration all urls were deleted. In this case
+    // we should stop any further expiration.
+    if (empty($urls)) {
+      return;
+    }
+
     // Write some debug information.
     self::debugLog($urls, $wildcards, $object_type);
 
