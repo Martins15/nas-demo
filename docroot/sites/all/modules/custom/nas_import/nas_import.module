@@ -1582,7 +1582,10 @@ function _nas_import_update_mag_issue_articles($nids) {
     $node = node_load($nid);
     // Update the node's panelizer layout.
     $node->panelizer['page_manager']->name = 'node:article:inline_hero_photo';
+    variable_set('menu_rebuild_needed', FALSE);
+    lock_acquire('menu_rebuild');
     node_save($node);
+    lock_release('menu_rebuild');
 
     $hero_image_items = field_get_items('node', $node, 'field_hero_image');
     $editorial_card_image_items = field_get_items('node', $node, 'field_editorial_card_image');
@@ -1617,7 +1620,9 @@ function _nas_import_update_mag_issue_articles($nids) {
           $node->field_editorial_card_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
           watchdog('nas_import', 'Editorial card image updated in node nid :nid', array(':nid' => $nid));
         }
+        lock_acquire('menu_rebuild');
         node_save($node);
+        lock_release('menu_rebuild');
       }
       else {
         // Images was not downloaded.

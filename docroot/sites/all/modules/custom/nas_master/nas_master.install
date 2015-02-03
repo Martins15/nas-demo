@@ -1618,7 +1618,7 @@ function nas_master_update_7124(&$sandbox) {
     $sandbox['max'] = count($results);
     if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
       // Limit nodes for dev environment.
-      $sandbox['max'] = min($sandbox['max'], 20);
+      $sandbox['max'] = min($sandbox['max'], 100);
     }
     else {
       // Change variable for non dev environment.
