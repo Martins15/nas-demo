@@ -4686,8 +4686,8 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 
 @media only screen and (min-width: 768px) {
   .editorial-card-no-image .editorial-card-title {
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 38px;
+    line-height: 41px;
   }
   .editorial-card-no-image .editorial-card-subtitle {
     font-size: 14px;
@@ -8127,6 +8127,26 @@ body.touch .primary-sub-nav-index {
   }
   .light-bg .banner-gradient-overlay {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 40%, rgba(255, 255, 255, 0) 85%);
+  }
+}
+
+.banner-gradient-overlay-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0.2));
+}
+.light-bg .banner-gradient-overlay-horizontal {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.85) 25%, rgba(255, 255, 255, 0.2));
+}
+@media only screen and (min-width: 601px) {
+  .banner-gradient-overlay-horizontal {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0) 75%);
+  }
+  .light-bg .banner-gradient-overlay-horizontal {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.85) 25%, rgba(255, 255, 255, 0) 75%);
   }
 }
 
