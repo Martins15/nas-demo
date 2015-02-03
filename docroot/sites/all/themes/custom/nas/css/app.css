@@ -8085,10 +8085,10 @@ body.touch .primary-sub-nav-index {
 .banner.donate-banner {
   height: 285px;
 }
-.banner.dark-bg h2, .banner.dark-bg h3, .banner.dark-bg h4, .banner.dark-bg p, .banner.dark-bg ul {
+.banner.dark-bg h2, .banner.dark-bg h3, .banner.dark-bg h4, .banner.dark-bg p, .banner.dark-bg ul, .banner.dark-bg h2 a {
   color: #fff;
 }
-.banner.light-bg h2, .banner.light-bg h3, .banner.light-bg h4, .banner.light-bg p, .banner.light-bg ul {
+.banner.light-bg h2, .banner.light-bg h3, .banner.light-bg h4, .banner.light-bg p, .banner.light-bg ul, .banner.light-bg h2 a {
   color: #000;
 }
 @media only screen and (min-width: 768px) and (max-width: 840px) {
