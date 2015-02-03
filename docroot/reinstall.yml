@@ -157,7 +157,7 @@
 
   - name: Stage File Proxy settings
     sudo: yes
-    lineinfile: dest='sites/default/settings.php' line='$conf[\"stage_file_proxy_origin\"] = \"http://nas.wearepropeople.md/staging\";'
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"stage_file_proxy_origin\"] = \"http://www.audubon.org\";'
     when: pp_environment == "demo" or pp_environment == "default"
 
   - name: Enable https

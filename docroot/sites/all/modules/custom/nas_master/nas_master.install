@@ -1594,3 +1594,63 @@ function nas_master_update_7123() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_views_feature');
 }
+
+/**
+ * Migrate Magazine issues articles hero and editorial card images.
+ */
+function nas_master_update_7124(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    // Fetch imported magazine issues articles nids and corresponding d6 nids.
+    $query = db_select('node', 'n');
+    $query->innerJoin('feeds_item', 'fi', 'n.nid = fi.entity_id AND fi.id = :importer_id AND fi.entity_type = :entity_type', array(
+      ':importer_id' => 'news_import',
+      ':entity_type' => 'node',
+    ));
+    $query->innerJoin('field_data_field_magazine_issue', 'fmi', 'fmi.entity_id = n.nid and fmi.entity_type = :entity_type', array(
+      ':entity_type' => 'node',
+    ));
+    $query->condition('n.type', 'article');
+    $query->fields('fi', array('entity_id', 'guid'));
+    $results = $query->execute()->fetchAll();
+
+    $sandbox['progress'] = 0;
+    $sandbox['max'] = count($results);
+    if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
+      // Limit nodes for dev environment.
+      $sandbox['max'] = min($sandbox['max'], 20);
+    }
+    else {
+      // Change variable for non dev environment.
+      variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
+    }
+    $sandbox['nids'] = $results;
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    $sandbox['progress'] += count($nids);
+    _nas_import_update_mag_issue_articles($nids);
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count magazine issue articles hero and editorial card images were updated.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
+ * Set variables.
+ */
+function nas_master_update_7125() {
+  $actions = array(
+    EXPIRE_PANELS_DISPLAY_UPDATE => EXPIRE_PANELS_DISPLAY_UPDATE,
+    EXPIRE_PANELS_DISPLAY_DELETE => EXPIRE_PANELS_DISPLAY_DELETE,
+  );
+  variable_set('expire_panels_actions', $actions);
+  variable_set('expire_panels_panel_page', TRUE);
+  variable_set('expire_panels_panelizer_page', TRUE);
+}
