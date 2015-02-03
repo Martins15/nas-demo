@@ -52,6 +52,10 @@ define('EXPIRE_MENU_LINK_INSERT', 1);
 define('EXPIRE_MENU_LINK_UPDATE', 2);
 define('EXPIRE_MENU_LINK_DELETE', 3);
 
+// Panels actions.
+define('EXPIRE_PANELS_DISPLAY_UPDATE', 1);
+define('EXPIRE_PANELS_DISPLAY_DELETE', 2);
+
 // Debug levels.
 define('EXPIRE_DEBUG_DISABLED', 0);
 define('EXPIRE_DEBUG_WATCHDOG', 1);
@@ -84,6 +88,10 @@ define('EXPIRE_VOTINGAPI_CUSTOM'                , FALSE);
 define('EXPIRE_FILE_FILE'                       , FALSE);
 define('EXPIRE_FILE_FRONT_PAGE'                 , FALSE);
 define('EXPIRE_FILE_CUSTOM'                     , FALSE);
+define('EXPIRE_PANELS_PANEL_PAGE'               , FALSE);
+define('EXPIRE_PANELS_PANELIZER_PAGE'           , FALSE);
+define('EXPIRE_PANELS_FRONT_PAGE'               , FALSE);
+define('EXPIRE_PANELS_CUSTOM'                   , FALSE);
 
 /**
  * Implementation of hook_menu().
@@ -242,6 +250,22 @@ function expire_menu_link_update($link) {
  */
 function expire_menu_link_insert($link) {
   expire_execute_expiration('menu_link', $link, EXPIRE_MENU_LINK_INSERT);
+}
+
+/**
+ * Implements hook_panels_display_save().
+ */
+function expire_panels_display_save($display) {
+  expire_execute_expiration('panels', $display, EXPIRE_PANELS_DISPLAY_UPDATE);
+}
+
+/**
+ * Implements hook_panels_delete_display().
+ */
+function expire_panels_delete_display($did) {
+  $display = new stdClass();
+  $display->did = $did;
+  expire_execute_expiration('panels', $display, EXPIRE_PANELS_DISPLAY_DELETE);
 }
 
 /**
