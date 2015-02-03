@@ -162,7 +162,7 @@ function nas_preprocess_node_bird(&$vars) {
 
     $vars['hero_image_credit'] = '';
     if (!empty($get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'])) {
-      $vars['hero_image_credit'] = check_plain($get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value']);
+      $vars['hero_image_credit'] = $get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'];
     }
   }
   // Color mode.
@@ -1095,8 +1095,8 @@ function nas_preprocess_nas_flyway(&$variables) {
   $variables['image_credit'] = '';
   if (!empty($variables['display']->context['panelizer']->data)) {
     $node = $variables['display']->context['panelizer']->data;
-    if (!empty($node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['safe_value'])) {
-      $variables['image_credit'] = $node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['safe_value'];
+    if (!empty($node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'])) {
+      $variables['image_credit'] = $node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'];
     }
   }
 

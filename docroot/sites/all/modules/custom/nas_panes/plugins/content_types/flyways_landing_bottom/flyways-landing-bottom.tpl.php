@@ -29,7 +29,7 @@
     <div id="<?php print $flyway[$i]['name_id']; ?>-slide" class="flyway-slide<?php if ($i == 1 ): ?> current<?php endif; ?>">
       <div class="row section-header">
         <div class="column">
-          <h1><?php print $flyway[$i]['name']; ?></h1>
+          <h1><a href="<?php print $flyway[$i]['summary_more_link_uri']; ?>"><?php print $flyway[$i]['name']; ?></a></h1>
         </div>
         <div class="column">
           <ul class="inline-list section-nav">

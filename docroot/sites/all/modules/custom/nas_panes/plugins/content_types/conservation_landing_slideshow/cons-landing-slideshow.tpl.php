@@ -27,7 +27,7 @@
         <div class="conservation-slide-text text-container">
           <div class="row">
             <div class="column text-container">
-              <h2 class="conservation-slide-headline thin"><?php print $node['title']; ?></h2>
+              <h2 class="conservation-slide-headline thin"><?php print $node['title_link']; ?></h2>
               <?php print $node['summary']; ?>
               <p><em><?php print $node['learn_more_link']; ?></em></p>
               <?php if (isset($node['featured_node'])): ?>
