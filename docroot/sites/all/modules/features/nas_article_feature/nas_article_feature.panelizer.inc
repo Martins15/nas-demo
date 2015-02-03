@@ -1736,7 +1736,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'title',
-      'formatter' => 'text_default',
+      'formatter' => 'text_plain',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
