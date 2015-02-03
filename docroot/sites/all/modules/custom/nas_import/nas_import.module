@@ -4,7 +4,7 @@
  * Modifications to import process.
  */
 
-define('NAS_IMPORT_LIVE_SITE_URL', 'http://www.audubon.org/');
+define('NAS_IMPORT_LIVE_SITE_URL', 'http://audubon.prod.acquia-sites.com/');
 define('NAS_FILES_CACHE_DIR', '/var/www/cache');
 define('NAS_OLD_D6_VID_HABITAT', 96);
 define('NAS_OLD_D6_VID_LOLOMOTION', 101);
@@ -650,7 +650,10 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL
     if (!isset($value['fid'])) {
       continue;
     }
-    $file = nas_import_add_existing_file($value['filepath'], 'image');
+    if (!$file = nas_import_add_existing_file($value['filepath'], 'image')) {
+      continue;
+    }
+
     if (!empty($d7_field_name)) {
       $entity->{$d7_field_name}[LANGUAGE_NONE][] = array('fid' => $file->fid);
     }
@@ -1570,4 +1573,85 @@ function nas_import_modify_bird_related_references($remove_first = FALSE) {
     unset($nodes);
     $progress += count($_nids);
   }
+}
+
+function _nas_import_update_mag_issue_articles($nids) {
+  foreach ($nids as $_data) {
+    $nid = $_data->entity_id;
+    $d6nid = $_data->guid;
+    $node = node_load($nid);
+
+    $hero_image_items = field_get_items('node', $node, 'field_hero_image');
+    $editorial_card_image_items = field_get_items('node', $node, 'field_editorial_card_image');
+    // Update only if any of fields is empty
+    if (!$hero_image_items || !$editorial_card_image_items) {
+      $d6node = json_decode(_nas_import_get_cached(LOAD_NODE_JSON_OBJECT_URL . $d6nid));
+      $d6node = reset($d6node);
+
+      // No reference to image node in d6 node.
+      if (empty($d6node->field_image_ref[0]->nid)) {
+        watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
+        continue;
+      }
+
+      $image_nid = $d6node->field_image_ref[0]->nid;
+      $image_node = drupal_json_decode(_nas_import_get_cached(LOAD_NODE_JSON_OBJECT_URL . $image_nid));
+      $image_node = reset($image_node);
+
+      // No image in d6 image node.
+      if (empty($image_node['field_photo'])) {
+        watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
+        continue;
+      }
+
+      if ($images = nas_import_import_image($node, $image_node['field_photo'])) {
+        $image = reset($images);
+        if (!$hero_image_items) {
+          $node->field_hero_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
+          watchdog('nas_import', 'Hero image updated in node nid :nid', array(':nid' => $nid));
+        }
+        if (!$editorial_card_image_items) {
+          $node->field_editorial_card_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
+          watchdog('nas_import', 'Editorial card image updated in node nid :nid', array(':nid' => $nid));
+        }
+      }
+      else {
+        // Images was not downloaded.
+        watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
+      }
+
+      // Finally update the node's panelizer layout.
+      $node->panelizer['page_manager']->name = 'node:article:inline_hero_photo';
+      node_save($node);
+    }
+    else {
+      watchdog('nas_import', 'Node nid :nid already has hero and editorial card images set', array(':nid' => $nid));
+    }
+  }
+}
+
+/**
+ * Copied from NASFeedsHTTPFetcher.inc
+ *
+ * @param $url
+ */
+function _nas_import_get_cached($url) {
+  $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/urls/' . preg_replace('/[^A-Za-z0-9-.]/', '-', $url) . '.txt';
+  if (file_exists($cached_filepath)) {
+    $data = file_get_contents($cached_filepath);
+  }
+  else {
+    feeds_include_library('http_request.inc', 'http_request');
+    $result = http_request_get($url, NULL, NULL, NULL, 15);
+    if (!in_array($result->code, array(200, 201, 202, 203, 204, 205, 206))) {
+      throw new Exception(t('3Download of @url failed with code !code.', array('@url' => $url, '!code' => $result->code)));
+    }
+
+    $data = $result->data;
+
+    $cached_directory = drupal_dirname($cached_filepath);
+    file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
+    file_put_contents($cached_filepath, $data);
+  }
+  return NASFeedsHTTPFetcherResult::sanitizeRaw($data);
 }
