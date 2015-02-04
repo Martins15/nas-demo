@@ -82,12 +82,17 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['article_teaser'] = array(
     'label' => 'Article teaser',
     'effects' => array(
-      2 => array(
+      27 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
           'width' => 630,
           'height' => 401,
         ),
+        'weight' => 2,
+      ),
+      28 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
         'weight' => 2,
       ),
     ),

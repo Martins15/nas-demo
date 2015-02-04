@@ -1680,7 +1680,10 @@ function nas_master_update_7127() {
  */
 function nas_master_update_7128() {
   features_revert_module('nas_image_styles_feature');
-  $imagestyle = image_style_load('nas_bird_teaser_illustration');
-  image_style_flush($imagestyle);
+  $image_style_names = array('nas_bird_teaser_illustration', 'article_teaser');
+  foreach ($image_style_names as $image_style_name) {
+    $image_style = image_style_load($image_style_name);
+    image_style_flush($image_style);
+  }
   features_revert(array('nas_view_modes_feature' => array('file_display')));
 }
