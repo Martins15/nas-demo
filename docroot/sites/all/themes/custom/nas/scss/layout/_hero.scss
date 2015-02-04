@@ -28,7 +28,7 @@
   .global-header.transparent + & {
     @include breakpoint(large-up) {
       top: -100px;
-      margin-bottom: -130px;
+      margin-bottom: -100px;
     }
   }
 
