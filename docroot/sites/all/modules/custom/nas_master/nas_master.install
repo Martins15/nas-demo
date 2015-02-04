@@ -1661,3 +1661,13 @@ function nas_master_update_7125() {
 function nas_master_update_7126() {
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
 }
+
+/**
+ * Revert feature and uninstall modules.
+ */
+function nas_master_update_7127() {
+  $uninstall = array('ds');
+  module_disable($uninstall);
+  drupal_uninstall_modules($uninstall);
+  features_revert_module('nas_view_modes_feature');
+}
