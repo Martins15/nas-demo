@@ -1601,7 +1601,7 @@ function _nas_import_update_mag_issue_articles($nids) {
         if (empty($image_node['field_photo'])) {
           watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
         }
-        else if ($images = nas_import_import_image($node, $image_node['field_photo'])) {
+        elseif ($images = nas_import_import_image($node, $image_node['field_photo'])) {
           $image = reset($images);
           if (!$hero_image_items) {
             $node->field_hero_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
