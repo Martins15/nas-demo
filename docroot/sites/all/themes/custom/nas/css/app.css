@@ -13653,11 +13653,11 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   pointer-events: auto;
 }
 
-.article-text h1 > a, .article-text h2 > a, .article-text h3 > a, .article-text h4 > a, .article-text h5 > a, .article-text h6 > a,
+.article-text h1 > a, .article-text h2 > a, .article-text h3 > a, .article-text h4:not(.editorial-card-title) > a, .article-text h5 > a, .article-text h6 > a,
 .text-container h1 > a,
 .text-container h2 > a,
 .text-container h3 > a,
-.text-container h4 > a,
+.text-container h4:not(.editorial-card-title) > a,
 .text-container h5 > a,
 .text-container h6 > a {
   color: #0AA8E3;
