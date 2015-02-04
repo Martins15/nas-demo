@@ -13619,6 +13619,11 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   color: #aaa;
 }
 
+.strip-nav li a.active,
+.category-nav li a.active {
+  color: #0AA8E3;
+}
+
 @media only screen and (min-width: 480px) {
   .featured-bird-placeholder {
     min-height: 400px;
