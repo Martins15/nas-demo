@@ -592,6 +592,10 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   }
 }
 
+/**
+ * Fast 404 settings:
+ * See https://docs.acquia.com/articles/using-fast-404-drupal
+ */
 // This path may need to be changed if the fast 404 module is in a different location.
 include_once('./sites/all/modules/contrib/fast_404/fast_404.inc');
 
