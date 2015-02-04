@@ -1654,3 +1654,10 @@ function nas_master_update_7125() {
   variable_set('expire_panels_panel_page', TRUE);
   variable_set('expire_panels_panelizer_page', TRUE);
 }
+
+/**
+ * Revert feature component.
+ */
+function nas_master_update_7126() {
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+}
