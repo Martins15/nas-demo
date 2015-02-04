@@ -637,7 +637,7 @@ function nas_view_modes_feature_file_default_displays() {
   $file_display->weight = 0;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'colorbox_node_style' => '',
+    'colorbox_node_style' => 'bean_wysiwyg_full_width',
     'colorbox_node_style_first' => '',
     'colorbox_image_style' => '',
     'colorbox_gallery' => 'post',

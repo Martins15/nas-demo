@@ -1674,3 +1674,13 @@ function nas_master_update_7127() {
   $enable = array('fast_404');
   module_enable($enable);
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7128() {
+  features_revert_module('nas_image_styles_feature');
+  $imagestyle = image_style_load('nas_bird_teaser_illustration');
+  image_style_flush($imagestyle);
+  features_revert(array('nas_view_modes_feature' => array('file_display')));
+}
