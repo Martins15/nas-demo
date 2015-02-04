@@ -663,3 +663,12 @@ body.node-type-slideshow {
     }
   }
 }
+
+.article-text,
+.text-container {
+  h1, h2, h3, h4:not(.editorial-card-title), h5, h6 {
+    > a {
+      color: $color-bright-blue;
+    }
+  }
+}

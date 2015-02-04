@@ -3972,7 +3972,7 @@ h1, h2, h3, h4, h5 {
   margin: 0 0 25.5px 0;
 }
 h1 > a, h2 > a, h3 > a, h4 > a, h5 > a {
-  color: #0AA8E3;
+  color: #000;
 }
 h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover {
   color: #054e69;
@@ -5390,7 +5390,7 @@ table.row-borders tbody td {
 @media only screen and (min-width: 768px) {
   .global-header.transparent + .hero {
     top: -100px;
-    margin-bottom: -100px;
+    margin-bottom: -130px;
   }
 }
 .hero.light-text a {
@@ -13651,4 +13651,14 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .boa-plate-view-wrapper.show-bg .row a,
 .boa-plate-view-wrapper.show-bg .view-nas-bird-guide a {
   pointer-events: auto;
+}
+
+.article-text h1 > a, .article-text h2 > a, .article-text h3 > a, .article-text h4:not(.editorial-card-title) > a, .article-text h5 > a, .article-text h6 > a,
+.text-container h1 > a,
+.text-container h2 > a,
+.text-container h3 > a,
+.text-container h4:not(.editorial-card-title) > a,
+.text-container h5 > a,
+.text-container h6 > a {
+  color: #0AA8E3;
 }
