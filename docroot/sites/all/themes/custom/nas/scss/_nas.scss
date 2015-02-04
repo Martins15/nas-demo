@@ -637,6 +637,11 @@ body.node-type-slideshow {
   color: #aaa;
 }
 
+.strip-nav li a.active,
+.category-nav li a.active {
+  color: $color-bright-blue;
+}
+
 .featured-bird-placeholder {
   @include breakpoint(small-up) {
     min-height: 400px;
