@@ -9,7 +9,7 @@
  * @see template_preprocess_fieldable_panels_pane()
  */
 ?>
-<div class="breakout-section no-hero contextual-links-region" style="background-image: url(<?php print $hero_image; ?>); background-color: #444444">
+<div class="breakout-section no-hero contextual-links-region" style="background-image: none; background-color: #444444;" data-background="<?php print $hero_image; ?>">
   <?php print $contextual_links; ?>
   <div class="breakout-section-content light-text">
     <div class="row space-top space-bottom double">
