@@ -5390,7 +5390,7 @@ table.row-borders tbody td {
 @media only screen and (min-width: 768px) {
   .global-header.transparent + .hero {
     top: -100px;
-    margin-bottom: -130px;
+    margin-bottom: -100px;
   }
 }
 .hero.light-text a {
