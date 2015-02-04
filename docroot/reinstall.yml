@@ -191,7 +191,7 @@
 
   - name: Enable devel and views_ui for dev
     sudo: yes
-    shell: "{{ php_env_vars }} drush en -y devel views_ui"
+    shell: "{{ php_env_vars }} drush en -y devel views_ui diff"
     when: pp_environment == "default"
 
   handlers:
