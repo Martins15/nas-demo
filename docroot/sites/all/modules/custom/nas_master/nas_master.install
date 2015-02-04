@@ -1663,11 +1663,14 @@ function nas_master_update_7126() {
 }
 
 /**
- * Revert feature and uninstall modules.
+ * Revert feature and enable and uninstall modules.
  */
 function nas_master_update_7127() {
   $uninstall = array('ds');
   module_disable($uninstall);
   drupal_uninstall_modules($uninstall);
   features_revert_module('nas_view_modes_feature');
+
+  $enable = array('fast_404');
+  module_enable($enable);
 }
