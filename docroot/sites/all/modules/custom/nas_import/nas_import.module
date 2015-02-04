@@ -1580,9 +1580,6 @@ function _nas_import_update_mag_issue_articles($nids) {
     $nid = $_data->entity_id;
     $d6nid = $_data->guid;
     $node = node_load($nid);
-    // Update the node's panelizer layout.
-    $node->panelizer['page_manager']->name = 'node:article:inline_hero_photo';
-    node_save($node);
 
     $hero_image_items = field_get_items('node', $node, 'field_hero_image');
     $editorial_card_image_items = field_get_items('node', $node, 'field_editorial_card_image');
@@ -1594,39 +1591,44 @@ function _nas_import_update_mag_issue_articles($nids) {
       // No reference to image node in d6 node.
       if (empty($d6node->field_image_ref[0]->nid)) {
         watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
-        continue;
-      }
-
-      $image_nid = $d6node->field_image_ref[0]->nid;
-      $image_node = drupal_json_decode(_nas_import_get_cached(LOAD_NODE_JSON_OBJECT_URL . $image_nid));
-      $image_node = reset($image_node);
-
-      // No image in d6 image node.
-      if (empty($image_node['field_photo'])) {
-        watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
-        continue;
-      }
-
-      if ($images = nas_import_import_image($node, $image_node['field_photo'])) {
-        $image = reset($images);
-        if (!$hero_image_items) {
-          $node->field_hero_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
-          watchdog('nas_import', 'Hero image updated in node nid :nid', array(':nid' => $nid));
-        }
-        if (!$editorial_card_image_items) {
-          $node->field_editorial_card_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
-          watchdog('nas_import', 'Editorial card image updated in node nid :nid', array(':nid' => $nid));
-        }
-        node_save($node);
       }
       else {
-        // Images was not downloaded.
-        watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
+        $image_nid = $d6node->field_image_ref[0]->nid;
+        $image_node = drupal_json_decode(_nas_import_get_cached(LOAD_NODE_JSON_OBJECT_URL . $image_nid));
+        $image_node = reset($image_node);
+
+        // No image in d6 image node.
+        if (empty($image_node['field_photo'])) {
+          watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
+        }
+        elseif ($images = nas_import_import_image($node, $image_node['field_photo'])) {
+          $image = reset($images);
+          if (!$hero_image_items) {
+            $node->field_hero_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
+            watchdog('nas_import', 'Hero image updated in node nid :nid', array(':nid' => $nid));
+          }
+          if (!$editorial_card_image_items) {
+            $node->field_editorial_card_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
+            watchdog('nas_import', 'Editorial card image updated in node nid :nid', array(':nid' => $nid));
+          }
+        }
+        else {
+          // Images was not downloaded.
+          watchdog('nas_import', 'No image imported for node nid :nid', array(':nid' => $nid));
+        }
       }
     }
     else {
       watchdog('nas_import', 'Node nid :nid already has hero and editorial card images set', array(':nid' => $nid));
     }
+
+    // Finally update the node's panelizer layout.
+    $node->panelizer['page_manager']->name = 'node:article:inline_hero_photo';
+    // Save node.
+    variable_set('menu_rebuild_needed', FALSE);
+    lock_acquire('menu_rebuild');
+    node_save($node);
+    lock_release('menu_rebuild');
   }
 }
 
