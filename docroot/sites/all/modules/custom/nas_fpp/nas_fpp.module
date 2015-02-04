@@ -214,6 +214,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('About page related teaser'),
     'custom settings' => FALSE,
   );
+  $entity_info['file']['view modes']['nas_bird_teaser_illustration'] = array(
+    'label' => t('nas_bird_teaser_illustration'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
