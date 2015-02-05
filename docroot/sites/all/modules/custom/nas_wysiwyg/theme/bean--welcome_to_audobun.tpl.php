@@ -49,8 +49,8 @@
   <div class="welcome-card-banner" style="background-color:<?php print ($color);?>">
     <div class="social-sharing">
       <span class="social-sharing-caption small">Follow us </span>
-      <a class="social-sharing-icon small" href="<?php print ($social_link_fb);?>"><i class="icon-twitter"></i></a>
-      <a class="social-sharing-icon small" href="<?php print ($social_link_tw);?>"><i class="icon-facebook"></i></a>
+      <a class="social-sharing-icon small" href="<?php print ($social_link_fb);?>"><i class="icon-facebook"></i></a>
+      <a class="social-sharing-icon small" href="<?php print ($social_link_tw);?>"><i class="icon-twitter"></i></a>
       <a class="social-sharing-icon small" href="<?php print ($social_link_yotube);?>"><i class="icon-youtube"></i></a>
       <a class="social-sharing-icon small" href="<?php print ($social_link_pi);?>"><i class="icon-pinterest"></i></a>
     </div>

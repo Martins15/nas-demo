@@ -172,7 +172,7 @@
             <div id="bird-cta">
               <section class="social-sharing bird-guide-section right-col small center">
                 <span class="social-sharing-caption small"><?php print t('Share this bird'); ?></span>
-                <a class="social-sharing-icon blue small" target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>"><i class="icon-twitter"></i></a>&nbsp;
+                <a class="social-sharing-icon blue small" target="_blank" href="<?php print $twitter_url; ?>"><i class="icon-twitter"></i></a>&nbsp;
                 <a class="social-sharing-icon blue small" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>"><i class="icon-facebook"></i></a>&nbsp;
                 <a class="social-sharing-icon blue small" target="_blank" href="http://pinterest.com/pin/create/button/?url=<?php print $page_link; ?>"><i class="icon-pinterest"></i></a>&nbsp;
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
