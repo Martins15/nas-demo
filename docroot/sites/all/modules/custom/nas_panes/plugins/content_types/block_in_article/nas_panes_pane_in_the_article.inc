@@ -28,11 +28,13 @@ function nas_panes_pane_in_the_article_render($subtype, $conf, $args, $contexts)
   }
   $title = $contexts['panelizer']->data->title;
   $page_link = $base_url . '/' . drupal_get_path_alias();
+  $twitter_text = $title . ' ' . $page_link . ' via @audubonsociety';
 
   $block = new stdClass();
   $content = theme('nas_featured_social_in_article', array(
     'title' => check_plain($title),
     'page_link' => $page_link,
+    'twitter_url' => url('http://twitter.com/share', array('query' => array('text' => $twitter_text))),
   ));
   $block->content = $content;
 
