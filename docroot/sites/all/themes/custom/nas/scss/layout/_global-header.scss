@@ -13,7 +13,7 @@
   &.transparent {
     @include breakpoint(large-up) {
       background-color: transparent;
-      margin-bottom: -95px;
+      margin-bottom: -100px;
     }
   }
   &.dark-bg {
