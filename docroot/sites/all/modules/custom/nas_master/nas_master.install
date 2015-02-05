@@ -1674,3 +1674,10 @@ function nas_master_update_7127() {
   $enable = array('fast_404');
   module_enable($enable);
 }
+
+/**
+ * Revert features components.
+ */
+function nas_master_update_7128() {
+  features_revert(array('nas_site_template_feature' => array('page_manager_handlers')));
+}
