@@ -9,7 +9,7 @@
 
         // Tracking curtain movement and status
         self.height = 0;
-        self.buffer = 200;
+        self.buffer = 20;
 
         self.init = function() {
           window.scrollTo(0, 1);
@@ -22,6 +22,8 @@
               self.setup();
             }
           });
+
+          $('.curtain-arrow').on('click', self.unfurl);
         }
 
         self.setup = function() {
@@ -81,6 +83,22 @@
         // Curtain height plus an arbitrary buffer
         self.getTotalHeight = function() {
           return self.height + self.buffer;
+        }
+
+        self.unfurl = function() {
+          var scrollFactor = self.height + self.buffer;
+
+          // Unbind for a second
+          self.unbind();
+
+          $('html, body').animate({
+            scrollTop: scrollFactor
+          }, {
+            duration: 400,
+            complete: function() {
+              self.bind();
+            }
+          });
         }
 
         self.init();
