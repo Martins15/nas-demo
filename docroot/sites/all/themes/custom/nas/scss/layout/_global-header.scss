@@ -13,6 +13,7 @@
   &.transparent {
     @include breakpoint(large-up) {
       background-color: transparent;
+      margin-bottom: -95px;
     }
   }
   &.dark-bg {
@@ -48,6 +49,11 @@
     }
     @include breakpoint(large-up) {
       min-height: 60px;
+    }
+  }
+  &.transparent + #tabs {
+    @include breakpoint(large-up) {
+      margin-top: 95px;
     }
   }
 }
