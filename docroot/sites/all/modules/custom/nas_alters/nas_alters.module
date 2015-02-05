@@ -363,3 +363,17 @@ function nas_alters_entity_property_info_alter(&$info) {
 function nas_alters_title_getter_callback($item) {
   return $item->title;
 }
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function nas_alters_views_pre_view(&$view) {
+  if ($view->name == 'nas_news' && $view->current_display == 'articles_list_bot') {
+    // This view by default is showing 3 items with offset 6.
+    // Starting from second page it should show 9 items per page.
+    if (pager_find_page($view->display_handler->options['pager']['options']['id'])) {
+      $view->display_handler->options['pager']['options']['items_per_page'] = 9;
+      $view->display_handler->options['pager']['options']['offset'] = 0;
+    }
+  }
+}
