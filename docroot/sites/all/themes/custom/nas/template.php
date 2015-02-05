@@ -1063,10 +1063,12 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
  * Preprocess function for nas_static_page_1col theme.
  */
 function nas_preprocess_nas_static_page_1col(&$variables) {
-  $node = $variables['display']->context['panelizer']->data;
   $variables['color_mode_gradient'] = 'dark';
-  if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
-    $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+  if (!empty($variables['display']->context['panelizer']->data) && $node = $variables['display']->context['panelizer']->data) {
+    $node = $variables['display']->context['panelizer']->data;
+    if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+      $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+    }
   }
   $variables['color_mode_text'] = $variables['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
 }
@@ -1075,10 +1077,11 @@ function nas_preprocess_nas_static_page_1col(&$variables) {
  * Preprocess function for nas_static_page_2col theme.
  */
 function nas_preprocess_nas_static_page_2col(&$variables) {
-  $node = $variables['display']->context['panelizer']->data;
   $variables['color_mode_gradient'] = 'dark';
-  if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
-    $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+  if (!empty($variables['display']->context['panelizer']->data) && $node = $variables['display']->context['panelizer']->data) {
+    if (!empty($node->field_color_mode[LANGUAGE_NONE][0]['value'])) {
+      $variables['color_mode_gradient'] = $node->field_color_mode[LANGUAGE_NONE][0]['value'];
+    }
   }
   $variables['color_mode_text'] = $variables['color_mode_gradient'] == 'dark' ? 'light' : 'dark';
 }

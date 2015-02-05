@@ -684,7 +684,7 @@ birds-of-america/*',
     $pane->panel = 'footer';
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
@@ -708,7 +708,7 @@ birds-of-america/*',
     $pane->panel = 'footer';
     $pane->type = 'nas_footer_pane';
     $pane->subtype = 'nas_footer_pane';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'logo_path' => 'public://footer-logo.png',
@@ -730,25 +730,6 @@ birds-of-america/*',
     $display->content['new-948c6438-31cc-4908-a4a5-ef83daa37351'] = $pane;
     $display->panels['footer'][1] = 'new-948c6438-31cc-4908-a4a5-ef83daa37351';
     $pane = new stdClass();
-    $pane->pid = 'new-3a96d15f-27b3-4222-a58e-2a7bd9a0c043';
-    $pane->panel = 'main';
-    $pane->type = 'page_messages';
-    $pane->subtype = 'page_messages';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3a96d15f-27b3-4222-a58e-2a7bd9a0c043';
-    $display->content['new-3a96d15f-27b3-4222-a58e-2a7bd9a0c043'] = $pane;
-    $display->panels['main'][0] = 'new-3a96d15f-27b3-4222-a58e-2a7bd9a0c043';
-    $pane = new stdClass();
     $pane->pid = 'new-c720122f-93d5-43ff-9a60-6d0b2b32c541';
     $pane->panel = 'main';
     $pane->type = 'page_tabs';
@@ -767,11 +748,11 @@ birds-of-america/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = 'c720122f-93d5-43ff-9a60-6d0b2b32c541';
     $display->content['new-c720122f-93d5-43ff-9a60-6d0b2b32c541'] = $pane;
-    $display->panels['main'][1] = 'new-c720122f-93d5-43ff-9a60-6d0b2b32c541';
+    $display->panels['main'][0] = 'new-c720122f-93d5-43ff-9a60-6d0b2b32c541';
     $pane = new stdClass();
     $pane->pid = 'new-a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7';
     $pane->panel = 'main';
@@ -790,11 +771,11 @@ birds-of-america/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7';
     $display->content['new-a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7'] = $pane;
-    $display->panels['main'][2] = 'new-a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7';
+    $display->panels['main'][1] = 'new-a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

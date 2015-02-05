@@ -34,3 +34,4 @@
     </section>
   </section>
 </div>
+<?php print $content['footer']; ?>
