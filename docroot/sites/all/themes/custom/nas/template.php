@@ -117,6 +117,14 @@ function nas_preprocess_node_bird(&$vars) {
   $vars['learn_more_link'] = l(t('Learn more about these drawings.'), '');
   // Add Page absolute url.
   $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+  // Add Twitter share url.
+  $vars['twitter_url'] = url('http://twitter.com/share', array(
+    'query' => array(
+      'text' => drupal_get_title(),
+      'via' => 'audubonsociety',
+      'url' => $vars['page_link'],
+    ),
+  ));
   // Add learn mode link.
   $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
 
@@ -1217,6 +1225,14 @@ function nas_preprocess_nas_conservation_project(&$vars) {
 
   // Add Page title.
   $vars['page_title'] = drupal_get_title();
+
+  $vars['twitter_url'] = url('http://twitter.com/share', array(
+    'query' => array(
+      'text' => $vars['page_title'],
+      'via' => 'audubonsociety',
+      'url' => $vars['page_link'],
+    ),
+  ));
 }
 
 /**

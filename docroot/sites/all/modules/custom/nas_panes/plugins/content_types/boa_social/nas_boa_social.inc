@@ -26,6 +26,13 @@ function nas_panes_boa_social_block_render($subtype, $conf, $args, $contexts) {
   $content = theme('nas_boa_social', array(
     'caption' => t('Share this plate'),
     'page_link' => $page_link,
+    'twitter_url' => url('http://twitter.com/share', array(
+      'query' => array(
+        'text' => drupal_get_title(),
+        'via' => 'audubonsociety',
+        'url' => $page_link,
+      ),
+    )),
   ));
   $block->content = $content;
 

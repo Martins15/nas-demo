@@ -39,7 +39,7 @@
         <?php if (!empty($page_link)): ?>
         <div class="social-sharing align-right">
           <span class="social-sharing-caption small">Share this project</span>
-            <a target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-twitter"></i></a>
+            <a target="_blank" href="<?php print $twitter_url; ?>" class="social-sharing-icon blue small"><i class="icon-twitter"></i></a>
             <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-facebook"></i></a>
             <a href="mailto:?subject=<?php print $page_title; ?>&body=<?php print $page_link; ?>" class="social-sharing-icon blue small"><i class="icon-mail"></i></a>
         </div>

@@ -4102,7 +4102,7 @@ ul.small-list li {
 @media only screen and (min-width: 768px) {
   .global-header.transparent {
     background-color: transparent;
-    margin-bottom: -95px;
+    margin-bottom: -96px;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -5412,14 +5412,14 @@ table.row-borders tbody td {
   min-width: 100%;
 }
 @media only screen and (min-width: 768px) {
-  .hero:not(.expand) .hero-image img {
+  .hero:not(.expand) .hero-image img:not(.canon-logo) {
     height: 440px;
     max-width: none;
     width: auto;
   }
 }
 @media only screen and (min-width: 900px) {
-  .hero:not(.expand) .hero-image img {
+  .hero:not(.expand) .hero-image img:not(.canon-logo) {
     height: auto;
     max-width: 100%;
   }
@@ -6201,6 +6201,8 @@ input.header-search-input,
   height: 15px;
   vertical-align: middle;
   position: relative;
+  display: inline;
+  min-width: 0;
 }
 @media only screen and (min-width: 601px) {
   .guide-bar-attribution {
