@@ -22,14 +22,17 @@ function nas_panes_pane_news_social_block_render($subtype, $conf, $args, $contex
   global $base_url;
   $title = drupal_get_title();
   $page_link = $base_url . '/' . drupal_get_path_alias();
-  $twitter_text = $title . ' ' . $page_link . ' via @audubonsociety';
 
   $block = new stdClass();
   $content = theme('nas_panes_social_news_block', array(
     'caption' => t('Take flight with Audubon'),
     'title' => check_plain($title),
     'page_link' => $page_link,
-    'twitter_url' => url('http://twitter.com/share', array('query' => array('text' => $twitter_text))),
+    'twitter_url' => url('http://twitter.com/share', array('query' => array(
+      'text' => $title,
+      'via' => 'audubonsociety',
+      'url' => $page_link,
+    ))),
   ));
   $block->content = $content;
 

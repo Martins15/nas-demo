@@ -118,8 +118,11 @@ function nas_preprocess_node_bird(&$vars) {
   // Add Page absolute url.
   $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
   // Add Twitter share url.
-  $twitter_text = drupal_get_title() . ' ' . $vars['page_link'] . ' via @audubonsociety';
-  $vars['twitter_url'] = url('http://twitter.com/share', array('query' => array('text' => $twitter_text)));
+  $vars['twitter_url'] = url('http://twitter.com/share', array('query' => array(
+    'text' => drupal_get_title(),
+    'via' => 'audubonsociety',
+    'url' => $vars['page_link'],
+  )));
   // Add learn mode link.
   $vars['learn_more_node_link'] = l(t('Learn more »'), 'node/' . $vars['nid']);
 
@@ -1218,8 +1221,11 @@ function nas_preprocess_nas_conservation_project(&$vars) {
   // Add Page title.
   $vars['page_title'] = drupal_get_title();
 
-  $twitter_text = $vars['page_title'] . ' ' . $vars['page_link'] . ' via @audubonsociety';
-  $vars['twitter_url'] = url('http://twitter.com/share', array('query' => array('text' => $twitter_text)));
+  $vars['twitter_url'] = url('http://twitter.com/share', array('query' => array(
+    'text' => $vars['page_title'],
+    'via' => 'audubonsociety',
+    'url' => $vars['page_link'],
+  )));
 }
 
 /**
