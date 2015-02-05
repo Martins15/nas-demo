@@ -37,6 +37,8 @@
           class_to_show = '.' + all_fpp_classes[randKey];
         }
         $(class_to_show).show();
+        var $boSection = $(class_to_show).find(".breakout-section");
+        $boSection.css({backgroundImage: 'url(' + $boSection.data("background") + ')'});
       };
 
       var onError = function(error) {
