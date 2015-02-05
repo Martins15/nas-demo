@@ -1686,4 +1686,59 @@ function nas_master_update_7128() {
     image_style_flush($image_style);
   }
   features_revert(array('nas_view_modes_feature' => array('file_display')));
+  features_revert(array('nas_site_template_feature' => array('page_manager_handlers')));
+
+  ctools_include('export');
+  if ($handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array('task' => 'page', 'subtask' => 'frontpage2'))) {
+    $handler = reset($handlers);
+    $did = $handler->conf['did'];
+    // Insert 'Stay abreast' pane into 'Footer' region of frontpage panel.
+    db_insert('panels_pane')
+      ->fields(array(
+        'did' => $did,
+        'panel' => 'footer',
+        'type' => 'nas_stay_abreast_pane',
+        'subtype' => 'nas_stay_abreast_pane',
+        'shown' => 1,
+        'access' => serialize(array()),
+        'configuration' => serialize(array(
+          'headline' => 'Stay abreast of Audubon',
+          'caption' => 'Our email newsletter shares the latest programs and initiatives.',
+          'override_title' => 0,
+          'override_title_text' => '',
+        )),
+        'cache' => serialize(array()),
+        'style' => serialize(array('settings' => NULL)),
+        'css' => serialize(array()),
+        'extras' => serialize(array()),
+        'position' => 0,
+        'locks' => serialize(array()),
+      ))
+      ->execute();
+    // Insert 'Footer' pane into 'Footer' region of frontpage panel.
+    db_insert('panels_pane')
+      ->fields(array(
+        'did' => $did,
+        'panel' => 'footer',
+        'type' => 'nas_footer_pane',
+        'subtype' => 'nas_footer_pane',
+        'shown' => 1,
+        'access' => serialize(array()),
+        'configuration' => serialize(array(
+          'logo_path' => 'public://footer-logo.png',
+          'title' => 'National Audubon Society',
+          'mission' => 'Our mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth’s biological diversity.',
+          'copyright' => 'Copyright © 2014 National Audubon Society, Inc.',
+          'override_title' => 0,
+          'override_title_text' => '',
+        )),
+        'cache' => serialize(array()),
+        'style' => serialize(array('settings' => NULL)),
+        'css' => serialize(array()),
+        'extras' => serialize(array()),
+        'position' => 1,
+        'locks' => serialize(array()),
+      ))
+      ->execute();
+  }
 }

@@ -25,5 +25,6 @@ $plugin = array(
     'editorial_cards' => t('Editorial Cards'),
     'main' => t('Main'),
     'cards_set' => t('Engagement cards'),
+    'footer' => t('Footer'),
   ),
 );

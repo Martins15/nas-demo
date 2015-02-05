@@ -17,6 +17,7 @@ $plugin = array(
         'headline' => '',
         'caption' => '',
     ),
+  'render first' => TRUE,
     'all contexts' => TRUE,
 );
 
