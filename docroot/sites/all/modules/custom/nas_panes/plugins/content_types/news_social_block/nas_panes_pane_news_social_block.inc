@@ -28,11 +28,13 @@ function nas_panes_pane_news_social_block_render($subtype, $conf, $args, $contex
     'caption' => t('Take flight with Audubon'),
     'title' => check_plain($title),
     'page_link' => $page_link,
-    'twitter_url' => url('http://twitter.com/share', array('query' => array(
-      'text' => $title,
-      'via' => 'audubonsociety',
-      'url' => $page_link,
-    ))),
+    'twitter_url' => url('http://twitter.com/share', array(
+      'query' => array(
+        'text' => $title,
+        'via' => 'audubonsociety',
+        'url' => $page_link,
+      ),
+    )),
   ));
   $block->content = $content;
 
