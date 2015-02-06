@@ -1751,4 +1751,5 @@ function nas_master_update_7129() {
   foreach ($styles as $style) {
     image_style_flush($style);
   }
+  features_revert_module('nas_slideshow_feature');
 }
