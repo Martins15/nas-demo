@@ -37,6 +37,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      17 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -59,6 +64,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -74,6 +84,11 @@ function nas_image_styles_feature_image_default_styles() {
           'upscale' => 1,
         ),
         'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -110,6 +125,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      4 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -126,6 +146,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      28 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -140,6 +165,11 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 260,
         ),
         'weight' => 2,
+      ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
       ),
     ),
   );
@@ -157,6 +187,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => -10,
       ),
+      5 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 1,
+      ),
     ),
   );
 
@@ -172,6 +207,11 @@ function nas_image_styles_feature_image_default_styles() {
           'upscale' => 0,
         ),
         'weight' => -10,
+      ),
+      6 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 1,
       ),
     ),
   );
@@ -203,6 +243,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      5 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -233,13 +278,24 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => -9,
       ),
+      15 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 1,
+      ),
     ),
   );
 
   // Exported image style: boa_lightbox.
   $styles['boa_lightbox'] = array(
     'label' => 'BOA lightbox',
-    'effects' => array(),
+    'effects' => array(
+      0 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 1,
+      ),
+    ),
   );
 
   // Exported image style: conservation_slideshow_featured_project.
@@ -260,6 +316,11 @@ function nas_image_styles_feature_image_default_styles() {
           ),
         ),
         'weight' => 1,
+      ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -283,13 +344,24 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      4 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
   // Exported image style: conservation_strategy_icon.
   $styles['conservation_strategy_icon'] = array(
     'label' => 'Conservation Strategy Icon',
-    'effects' => array(),
+    'effects' => array(
+      0 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 1,
+      ),
+    ),
   );
 
   // Exported image style: conservation_strategy_slideshow.
@@ -310,6 +382,11 @@ function nas_image_styles_feature_image_default_styles() {
           ),
         ),
         'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -333,6 +410,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -347,6 +429,11 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 570,
         ),
         'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -378,6 +465,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -400,6 +492,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -407,14 +504,25 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['frontpage_featured_article_image'] = array(
     'label' => 'Frontpage featured article image',
     'effects' => array(
-      2 => array(
-        'name' => 'image_scale',
+      29 => array(
+        'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 640,
-          'height' => '',
-          'upscale' => 0,
+          'width' => 1280,
+          'height' => 720,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => 1.77778,
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
         ),
-        'weight' => 1,
+        'weight' => 2,
+      ),
+      30 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
       ),
     ),
   );
@@ -438,6 +546,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -460,6 +573,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      8 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -476,6 +594,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      7 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -491,6 +614,11 @@ function nas_image_styles_feature_image_default_styles() {
           'upscale' => 0,
         ),
         'weight' => 2,
+      ),
+      12 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
       ),
     ),
   );
@@ -522,6 +650,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      7 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -551,6 +684,11 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 840,
         ),
         'weight' => 2,
+      ),
+      6 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
       ),
     ),
   );
@@ -582,6 +720,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      7 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -598,6 +741,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -612,6 +760,11 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 97,
         ),
         'weight' => 1,
+      ),
+      5 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -628,6 +781,11 @@ function nas_image_styles_feature_image_default_styles() {
           'upscale' => 0,
         ),
         'weight' => 1,
+      ),
+      17 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -659,6 +817,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      4 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -673,6 +836,11 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 350,
         ),
         'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -689,6 +857,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
     ),
   );
 
@@ -704,6 +877,11 @@ function nas_image_styles_feature_image_default_styles() {
           'upscale' => 0,
         ),
         'weight' => 1,
+      ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -735,6 +913,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -749,6 +932,11 @@ function nas_image_styles_feature_image_default_styles() {
           'height' => 340,
         ),
         'weight' => 1,
+      ),
+      2 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );
@@ -780,6 +968,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      3 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -810,6 +1003,11 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      5 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 
@@ -825,6 +1023,11 @@ function nas_image_styles_feature_image_default_styles() {
           'upscale' => 0,
         ),
         'weight' => 1,
+      ),
+      4 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
       ),
     ),
   );

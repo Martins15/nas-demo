@@ -402,6 +402,7 @@ function nas_alters_image_styles_alter(&$styles) {
         'weight' => $max_weight + 1,
         'effect callback' => 'imagemagick_advanced_strip_effect',
         'module' => 'imagemagick_advanced',
+        'label' => 'Strip metadata',
       );
     }
   }
