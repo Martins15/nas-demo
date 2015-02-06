@@ -184,6 +184,16 @@ function nas_slideshow_feature_strongarm() {
         'default' => 0,
         'choice' => 0,
       ),
+      'editorial_card_3x' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'status' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
       'nas_node_teaser_no_section_link' => array(
         'status' => 0,
         'default' => 0,
