@@ -4660,6 +4660,7 @@ small {
 }
 .editorial-card-content.minimal {
   min-height: 0;
+  padding: 12.5px;
 }
 @media only screen and (min-width: 768px) {
   .editorial-card-content {

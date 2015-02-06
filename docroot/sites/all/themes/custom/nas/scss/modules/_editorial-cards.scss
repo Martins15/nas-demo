@@ -39,6 +39,7 @@
   min-height: 180px;
   &.minimal {
     min-height: 0;
+    padding: $column-gutter/2;
   }
   @include breakpoint(large-up) {
     min-height: 200px;
