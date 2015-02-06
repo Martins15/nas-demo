@@ -12,7 +12,7 @@
  */
 ?>
   <div class="columns large-8 medium-6">
-    <div class="editorial-card contextual-links-region" data-equalizer-watch>
+    <div class="editorial-card contextual-links-region skip-nas-equalization" data-equalizer-watch>
       <?php print $contextual_links; ?>
       <div class="editorial-card-photo">
         <a href="<?php print $article_raw_link ?>"><img src="<?php print $image_path; ?>" alt=""></a>
