@@ -959,7 +959,7 @@ function nas_field__field_author__article($variables) {
       if ($image_field) {
         $image_file = file_load($image_field[0]['fid']);
         $image = theme('image_style', array(
-          'style_name' => 'thumbnail',
+          'style_name' => 'bio_image',
           'path' => $image_file->uri,
           'attributes' => array(
             'class' => array(
@@ -1011,7 +1011,10 @@ function nas_preprocess_field_field_related_bird_contact(&$variables) {
  */
 function nas_preprocess_image_style(&$vars) {
   if ($vars['style_name'] == 'bio_image') {
-    $vars['attributes']['class'] = array('bio-image');
+    // Do not override already set classes.
+    if (empty($vars['attributes']['class'])) {
+      $vars['attributes']['class'] = array('bio-image');
+    }
   }
   if ($vars['style_name'] == 'conservation_strategy_icon') {
     $vars['attributes']['class'] = array('hero-icon');

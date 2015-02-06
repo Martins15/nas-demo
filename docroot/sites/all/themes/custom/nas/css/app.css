@@ -4102,7 +4102,7 @@ ul.small-list li {
 @media only screen and (min-width: 768px) {
   .global-header.transparent {
     background-color: transparent;
-    margin-bottom: -96px;
+    margin-bottom: -100px;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -12879,6 +12879,7 @@ h2.grey {
   .article-sidebar {
     width: 20%;
     right: 80%;
+    float: right;
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
