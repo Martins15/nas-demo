@@ -1745,10 +1745,53 @@ function nas_master_update_7128() {
 
 /**
  * Flush all image styles.
+ * Revert features.
  */
 function nas_master_update_7129() {
+  features_revert_module('nas_image_styles_feature');
   $styles = image_styles();
   foreach ($styles as $style) {
     image_style_flush($style);
+  }
+  features_revert_module('nas_slideshow_feature');
+  _nas_master_update_7129_update_frontpage_engagement_card();
+}
+
+/**
+ * Helper function to keep hook_update_n code clean.
+ */
+function _nas_master_update_7129_update_frontpage_engagement_card() {
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'task' => 'page',
+    'subtask' => 'frontpage2',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    // Look up pane.
+    $query = db_select('panels_pane', 'pp')
+      ->fields('pp', array('pid', 'configuration'))
+      ->condition('panel', 'more_headlines')
+      ->condition('subtype', 'engagement_cards_sidebar')
+      ->condition('did', $handler->conf['did'])
+      ->execute();
+    if ($pane = $query->fetchObject()) {
+      // Update configuration
+      $pane->configuration = unserialize($pane->configuration);
+      $pane->configuration['default'] += array(
+        'equalize_height' => 1,
+        'show_social_icons' => 1,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      );
+      // Save to DB.
+      db_update('panels_pane')
+        ->fields(array('configuration' => serialize($pane->configuration)))
+        ->condition('pid', $pane->pid)
+        ->execute();
+    }
   }
 }

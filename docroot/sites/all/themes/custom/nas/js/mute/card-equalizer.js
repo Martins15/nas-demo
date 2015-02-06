@@ -56,7 +56,9 @@
       }
 
       $(document).bind("respond", function(e) {
-        $(".editorial-card, .engagement-card-content").removeAttr("style");
+        $(".editorial-card, .engagement-card-content")
+          .not(".skip-nas-equalization")
+          .removeAttr("style");
         // We want to wait for stuff to load and render before we get down to business
         setTimeout(function() {
           equalizeCards(e.size);

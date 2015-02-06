@@ -42,6 +42,50 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
     '#title' => t('Hide for firsttime visitors'),
     '#default_value' => !empty($conf[$conf_key]['hide_for_firsttime_visitors']) ? $conf[$conf_key]['hide_for_firsttime_visitors'] : 0,
   );
+  $form[$conf_key]['equalize_height'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Equalize height'),
+    '#default_value' => !empty($conf[$conf_key]['equalize_height']) ? $conf[$conf_key]['equalize_height'] : 0,
+  );
+  $form[$conf_key]['show_social_icons'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show social icons'),
+    '#attributes' => array(
+      'class' => array('social-icons-checkbox'),
+    ),
+    '#default_value' => !empty($conf[$conf_key]['show_social_icons']) ? $conf[$conf_key]['show_social_icons'] : 0,
+  );
+  $form[$conf_key]['social_icons'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Social icons'),
+    '#tree' => TRUE,
+    '#states' => array(
+      'visible' => array(
+        '.social-icons-checkbox' => array('checked' => TRUE),
+      ),
+    ),
+  );
+  if (empty($conf[$conf_key]['social_icons'])) {
+    $conf[$conf_key]['social_icons'] = _nas_panes_default_social_pages_url();
+  }
+  else {
+    $conf[$conf_key]['social_icons'] += _nas_panes_default_social_pages_url();
+  }
+  $form[$conf_key]['social_icons']['twitter'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Twitter URL'),
+    '#default_value' => $conf[$conf_key]['social_icons']['twitter'],
+  );
+  $form[$conf_key]['social_icons']['facebook'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Facebook URL'),
+    '#default_value' => $conf[$conf_key]['social_icons']['facebook'],
+  );
+  $form[$conf_key]['social_icons']['instagram'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Instagram URL'),
+    '#default_value' => $conf[$conf_key]['social_icons']['instagram'],
+  );
 
   return $form;
 }
@@ -71,6 +115,13 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
   }
+  if (empty($data['social_icons'])) {
+    $data['social_icons'] = _nas_panes_default_social_pages_url();
+  }
+  else {
+    $data['social_icons'] += _nas_panes_default_social_pages_url();
+  }
+
   // Call main function and get what we have to render.
   $cards_array = nas_panes_engagement_cards_get_cards($subtype, $data, TRUE);
   $nodes = $cards_array['nodes'];
@@ -88,6 +139,9 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   if (!empty($teasers) || !empty($contextual_links)) {
     $block->content = theme('engagement_cards_sidebar', array(
       'ftv_class' => !empty($data['hide_for_firsttime_visitors']) ? 'hide-for-firsttime-visitors' : '',
+      'equalize_height' => !empty($data['equalize_height']) ? ' data-equalizer-watch' : '',
+      'show_social_icons' => !empty($data['show_social_icons']) ? $data['show_social_icons'] : FALSE,
+      'social_icons' => $data['social_icons'],
       'teasers' => $teasers,
       'contextual_links' => $contextual_links,
     ));

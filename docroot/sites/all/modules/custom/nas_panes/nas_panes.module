@@ -1777,3 +1777,15 @@ function _nas_panes_get_menu_section_options() {
 
   return $options;
 }
+
+/**
+ * Helper function.
+ * Provides default social pages urls.
+ */
+function _nas_panes_default_social_pages_url() {
+  return array(
+    'twitter' => 'https://twitter.com/audubonsociety',
+    'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+    'instagram' => 'http://instagram.com/audubonsociety',
+  );
+}
