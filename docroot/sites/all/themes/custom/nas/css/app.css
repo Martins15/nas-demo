@@ -439,6 +439,20 @@ th {
   content: "\f613";
 }
 
+.icon-instagram {
+  display: inline-block;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  background-image: url(../img/ie/icon-instagram.png);
+}
+
+.icon-instagram:before {
+  content: "";
+}
+
 .icon-quote:before {
   content: "\f614";
 }
@@ -4636,9 +4650,16 @@ small {
 .editorial-card-banner.gray {
   background-color: #404040;
 }
+.editorial-card-banner.editorial-card-banner-frontpage {
+  border: 1px solid #d4d4d4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
 
 .editorial-card-content {
   min-height: 180px;
+}
+.editorial-card-content.minimal {
+  min-height: 0;
 }
 @media only screen and (min-width: 768px) {
   .editorial-card-content {
@@ -12842,6 +12863,9 @@ h2.grey {
     min-height: 0 !important;
     height: auto !important;
   }
+}
+.homepage-first-row .engagement-card {
+  margin-bottom: 12.5px;
 }
 
 /**
