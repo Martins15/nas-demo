@@ -1742,3 +1742,13 @@ function nas_master_update_7128() {
       ->execute();
   }
 }
+
+/**
+ * Flush all image styles.
+ */
+function nas_master_update_7129() {
+  $styles = image_styles();
+  foreach ($styles as $style) {
+    image_style_flush($style);
+  }
+}

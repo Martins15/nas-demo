@@ -377,3 +377,32 @@ function nas_alters_views_pre_view(&$view) {
     }
   }
 }
+
+/**
+ * Implements hook_image_styles_alter().
+ *
+ * Adds 'Strip metadata' filter to all styles that doesn't have it enabled.
+ */
+function nas_alters_image_styles_alter(&$styles) {
+  if (module_exists('imagemagick_advanced')) {
+    foreach ($styles as &$style) {
+      $max_weight = 0;
+      // Look up style.
+      foreach ($style['effects'] as $effect) {
+        if ($effect['name'] == 'imagemagick_strip') {
+          // Go to next style.
+          continue 2;
+        }
+        $max_weight = max($max_weight, $effect['weight']);
+      }
+      // Style was not found, add it.
+      $style['effects'][] = array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => $max_weight + 1,
+        'effect callback' => 'imagemagick_advanced_strip_effect',
+        'module' => 'imagemagick_advanced',
+      );
+    }
+  }
+}
