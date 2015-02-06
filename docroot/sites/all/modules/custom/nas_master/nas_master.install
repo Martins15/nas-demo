@@ -1747,6 +1747,7 @@ function nas_master_update_7128() {
  * Flush all image styles.
  */
 function nas_master_update_7129() {
+  features_revert_module('nas_image_styles_feature');
   $styles = image_styles();
   foreach ($styles as $style) {
     image_style_flush($style);
