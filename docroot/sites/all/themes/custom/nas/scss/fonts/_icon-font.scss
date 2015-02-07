@@ -45,6 +45,20 @@
 .icon-pinterest:before {
 	content: "\f613";
 }
+.icon-instagram {
+  display: inline-block;
+  background-size: 16px 16px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-bottom: 3.5px;
+  background-image: url(../img/icon-instagram-32-white.png);
+}
+.icon-instagram:before {
+    content: "";
+}
 .icon-quote:before {
 	content: "\f614";
 }
