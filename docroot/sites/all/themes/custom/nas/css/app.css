@@ -441,12 +441,14 @@ th {
 
 .icon-instagram {
   display: inline-block;
-  background-size: 24px 24px;
+  background-size: 16px 16px;
+  background-position: center center;
   background-repeat: no-repeat;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
-  background-image: url(../img/ie/icon-instagram.png);
+  margin-bottom: 3.5px;
+  background-image: url(../img/icon-instagram-32-white.png);
 }
 
 .icon-instagram:before {
