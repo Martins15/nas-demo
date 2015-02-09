@@ -1795,3 +1795,12 @@ function _nas_master_update_7129_update_frontpage_engagement_card() {
     }
   }
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7130() {
+  features_revert_module('nas_image_styles_feature');
+  $style = image_style_load('article_featured');
+  image_style_flush($style);
+}
