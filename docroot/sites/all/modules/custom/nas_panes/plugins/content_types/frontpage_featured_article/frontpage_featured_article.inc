@@ -36,7 +36,7 @@ function frontpage_featured_article_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE),
+    '#pp_crop_styles' => array(NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -95,7 +95,7 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE, $image->uri);
+    $image_path = image_style_url(NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE, $image->uri);
   }
 
   $article_raw_link = url('node/' . $node->nid);

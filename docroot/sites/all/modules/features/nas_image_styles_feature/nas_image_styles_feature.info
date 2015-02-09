@@ -23,7 +23,6 @@ features[image][] = default_teaser_image
 features[image][] = donate_banner_bg
 features[image][] = featured_frontpage
 features[image][] = front_flyway_image
-features[image][] = frontpage_featured_article_image
 features[image][] = get_outside
 features[image][] = hero_cover_bird_page
 features[image][] = hero_image

@@ -49,14 +49,14 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['article_featured'] = array(
     'label' => 'Article featured',
     'effects' => array(
-      2 => array(
+      27 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 1007,
-          'height' => 600,
-          'anchor' => 'center-top',
+          'width' => 1280,
+          'height' => 720,
+          'anchor' => 'center-center',
           'jcrop_settings' => array(
-            'aspect_ratio' => '',
+            'aspect_ratio' => 1.777,
             'bgcolor' => 'black',
             'bgopacity' => 0.6,
             'fallback' => 0,
@@ -64,7 +64,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      3 => array(
+      28 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 2,
@@ -496,33 +496,6 @@ function nas_image_styles_feature_image_default_styles() {
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 2,
-      ),
-    ),
-  );
-
-  // Exported image style: frontpage_featured_article_image.
-  $styles['frontpage_featured_article_image'] = array(
-    'label' => 'Frontpage featured article image',
-    'effects' => array(
-      29 => array(
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 1280,
-          'height' => 720,
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => 1.77778,
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => 2,
-      ),
-      30 => array(
-        'name' => 'imagemagick_strip',
-        'data' => array(),
-        'weight' => 3,
       ),
     ),
   );
