@@ -266,6 +266,9 @@ DirectoryIndex index.php index.html index.htm
   RewriteRule ^(campaign/esa)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
   RewriteRule ^(news/pressroom/bacc/pdfs)(/.*)$ http://web4.audubon.org/$1$2 [L,R=301,NC]
 
+  # Close access to reinstall.yml.
+  RewriteRule ^reinstall.yml$ [R=404,L,NC]
+
   # Pass all requests not referring directly to files in the filesystem to
   # index.php. Clean URLs are handled in drupal_environment_initialize().
   RewriteCond %{REQUEST_FILENAME} !-f
