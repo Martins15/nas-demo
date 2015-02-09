@@ -54,6 +54,17 @@ function frontpage_featured_form($form, &$form_state) {
   // can successfully retrieve the settings form.
   ctools_form_include($form_state, 'nas_panes_frontpage_featured', 'nas_panes', 'plugins/content_types/frontpage_featured');
 
+  $form['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+    ),
+    '#default_value' => !empty($conf['header_color_mode']) ? $conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+
   $form['title'] = array(
     '#type' => 'textfield',
     '#title' => t('Title'),
@@ -130,6 +141,12 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   $contextual_links = '';
   if (user_access('frontpage featured pane edit')) {
     $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+  }
+
+  $class = &drupal_static('nas_header_class');
+  $class = 'dark-text light-bg transparent';
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
   }
 
   // Pass image url value to theme
