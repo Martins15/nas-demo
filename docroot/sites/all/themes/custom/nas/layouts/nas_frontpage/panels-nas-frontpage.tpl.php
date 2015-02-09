@@ -6,7 +6,7 @@
  */
 ?>
 <section class="curtain" style="background-color: #fff; background-image: url(<?php print !empty($frontpage_backgroundimage) ? $frontpage_backgroundimage : ''; ?>)">
-  <header class="global-header transparent dark-text light-bg">
+  <header class="global-header <?php print drupal_static('nas_header_class'); ?>">
     <?php print $content['header']; ?>
   </header>
   <?php print $content['featured_top']; ?>
