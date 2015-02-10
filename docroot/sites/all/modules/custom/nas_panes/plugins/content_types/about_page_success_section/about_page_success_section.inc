@@ -70,6 +70,7 @@ function about_page_success_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $contextual_links = '';
   $image = '';
+  $attribution = '';
 
   if (user_access('edit NAS panes')) {
     $contextual_links = nas_panes_build_page_contextual_links('about_page_success_section', NAS_PANES_ABOUT_PAGE_MANAGER_CACHE_KEY, 'page_about_panel_context');
@@ -78,12 +79,22 @@ function about_page_success_section_render($subtype, $conf, $args, $contexts) {
   if (!empty($conf['image'])) {
     $image_object = file_load($conf['image']);
     $image = image_style_url('about_page_success_section', $image_object->uri);
+
+    $attribution = array();
+    if ($items = field_get_items('file', $image_object, 'field_file_caption')) {
+      $attribution[] = $items[0]['safe_value'];
+    }
+    if ($items = field_get_items('file', $image_object, 'field_file_credit')) {
+      $attribution[] = $items[0]['safe_value'];
+    }
+    $attribution = implode(' ', $attribution);
   }
 
   $block->content = theme('about_page_success_section', array(
       'title' => $conf['override_title_text'],
       'text' => $conf['text']['value'],
       'image' => $image,
+      'attribution' => $attribution,
       'contextual_links' => $contextual_links,
     ));
 
