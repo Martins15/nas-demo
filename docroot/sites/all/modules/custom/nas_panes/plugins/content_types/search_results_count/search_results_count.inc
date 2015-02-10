@@ -48,8 +48,12 @@ function search_results_count_render($subtype, $conf, $args, $contexts) {
  *   array of rendered sort links if applicable otherwise FALSE.
  */
 function _search_results_count_render_sort_links() {
-  // Facet filter by news content type should be selected
-  if (!isset($_GET['f']) || !is_array($_GET['f']) || !in_array('type_for_search:News', $_GET['f'])) {
+  // Facet filter by News or Magazine Article content type must be selected
+  if (!isset($_GET['f']) || !is_array($_GET['f'])) {
+    return FALSE;
+  }
+  $allowed = array('type_for_search:News', 'type_for_search:Magazine Article');
+  if (!array_intersect($allowed, $_GET['f'])) {
     return FALSE;
   }
 
@@ -61,13 +65,14 @@ function _search_results_count_render_sort_links() {
 
   $rel_classes = $date_classes = array('color-blue');
   if (isset($_GET['sort']) && $_GET['sort'] == 'date') {
-    $_GET['sort_by'] = 'field_article_date';
     $date_classes[] = 'active';
   }
   else {
+    $_GET['sort_by'] = 'search_api_relevance';
     $rel_classes[] = 'active';
   }
 
+  $original_q = $_GET['q'];
   // Trick to prevent 'active' class to be added automatically.
   $_GET['q'] = '_' . $_GET['q'];
   $sort_links = array(
@@ -85,7 +90,7 @@ function _search_results_count_render_sort_links() {
     )),
   );
   // Revert 'q' back to original state.
-  $_GET['q'] = substr($_GET['q'], 1);
+  $_GET['q'] = $original_q;
 
   return $sort_links;
 }
