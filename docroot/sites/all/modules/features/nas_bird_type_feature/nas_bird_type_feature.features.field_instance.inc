@@ -227,7 +227,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_plain',
+        'type' => 'text_default',
         'weight' => 1,
       ),
       'nas_wysiwyg_image' => array(
@@ -456,7 +456,37 @@ function nas_bird_type_feature_field_default_field_instances() {
     'label' => 'Credit',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 0,
+          'html' => 'html',
+          'map' => 0,
+          'plain_text' => 0,
+          'video' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => -48,
+            ),
+            'html' => array(
+              'weight' => -50,
+            ),
+            'map' => array(
+              'weight' => -47,
+            ),
+            'plain_text' => array(
+              'weight' => -49,
+            ),
+            'video' => array(
+              'weight' => -46,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 1,
       'user_register_form' => FALSE,
       'wysiwyg_override' => 0,
     ),
