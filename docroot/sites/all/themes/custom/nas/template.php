@@ -649,6 +649,14 @@ function nas_preprocess_node_strategy(&$vars) {
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
   $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+
+  $vars['subtitle'] = '';
+  if (!empty($node->body[LANGUAGE_NONE][0]['value'])) {
+    $vars['subtitle'] = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150);
+    // Tags to remove.
+    $tags = array('i', 'em', 'span', 'b', 'strong', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+    $vars['subtitle'] = preg_replace('/<(' . implode( '|', $tags) . ')(?:[^>]+)?>(.*)?<\/\1>/s', '$2', $vars['subtitle']);
+  }
 }
 
 /**
