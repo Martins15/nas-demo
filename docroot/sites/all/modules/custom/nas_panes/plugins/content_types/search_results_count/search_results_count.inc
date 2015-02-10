@@ -48,7 +48,7 @@ function search_results_count_render($subtype, $conf, $args, $contexts) {
  *   array of rendered sort links if applicable otherwise FALSE.
  */
 function _search_results_count_render_sort_links() {
-  // Facet filter by News or Magazine Article content type must be selected
+  // Facet filter by News or Magazine Article content type must be selected.
   if (!isset($_GET['f']) || !is_array($_GET['f'])) {
     return FALSE;
   }
