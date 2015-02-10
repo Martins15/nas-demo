@@ -1805,3 +1805,22 @@ function nas_master_update_7130() {
   image_style_flush($style);
   features_revert(array('nas_search_feature' => array('views_view')));
 }
+
+/**
+ * Revert features and update file text fields format.
+ */
+function nas_master_update_7131() {
+  features_revert(array('nas_bird_type_feature' => array('field_instance')));
+  $query = db_update('field_data_field_file_credit')
+    ->fields(array('field_file_credit_format' => 'html'))
+    ->execute();
+  $query = db_update('field_revision_field_file_credit')
+    ->fields(array('field_file_credit_format' => 'html'))
+    ->execute();
+  $query = db_update('field_data_field_file_caption')
+    ->fields(array('field_file_caption_format' => 'html'))
+    ->execute();
+  $query = db_update('field_revision_field_file_caption')
+    ->fields(array('field_file_caption_format' => 'html'))
+    ->execute();
+}
