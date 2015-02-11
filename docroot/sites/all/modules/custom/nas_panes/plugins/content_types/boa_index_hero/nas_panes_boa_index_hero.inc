@@ -100,6 +100,7 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
 
   $hero_image = file_load($conf['image']);
   $hero_image_path = image_style_url('hero_image', $hero_image->uri);
+  $attribution = _nas_panes_format_image_attribution($hero_image);
 
   $title = check_plain($conf['title']);
   $color = check_plain($conf['color']);
@@ -107,6 +108,7 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links('nas_panes_boa_index_hero', NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY, 'page_boa_index_panel_context');
 
   $content = theme('boa_index_hero', array(
+    'attribution' => $attribution,
     'image_path' => $hero_image_path,
     'title' => $title,
     'color' => $color,

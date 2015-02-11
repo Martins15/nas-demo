@@ -40,11 +40,11 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'teaser';
-  /* Field: Indexed Node: Node ID */
+  /* Field: Indexed Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  /* Filter criterion: Indexed Node: Content type */
+  /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -90,6 +90,13 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Indexed Content: Date */
+  $handler->display->display_options['sorts']['field_article_date']['id'] = 'field_article_date';
+  $handler->display->display_options['sorts']['field_article_date']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['field_article_date']['field'] = 'field_article_date';
+  $handler->display->display_options['sorts']['field_article_date']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_article_date']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_article_date']['expose']['label'] = 'Date';
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_node_index';
@@ -97,22 +104,14 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
   $handler->display->display_options['sorts']['search_api_relevance']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['search_api_relevance']['expose']['label'] = 'Relevance';
-  /* Sort criterion: Indexed Node: Date */
-  $handler->display->display_options['sorts']['field_article_date']['id'] = 'field_article_date';
-  $handler->display->display_options['sorts']['field_article_date']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['sorts']['field_article_date']['field'] = 'field_article_date';
-  $handler->display->display_options['sorts']['field_article_date']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['field_article_date']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['field_article_date']['expose']['label'] = 'Date';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Indexed Node: Content type */
+  /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
-    'boa' => 'boa',
     'project' => 'project',
     'strategy' => 'strategy',
     'flyway' => 'flyway',
@@ -137,7 +136,7 @@ function nas_search_feature_views_default_views() {
     'field_bird_sci_name' => 'field_bird_sci_name',
     'title' => 'title',
   );
-  /* Filter criterion: Indexed Node: Status */
+  /* Filter criterion: Indexed Content: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
