@@ -22,6 +22,11 @@ function nas_formatters_field_formatter_info() {
       'settings' => array('title' => 'Bottom line'),
       'multiple values' => FIELD_BEHAVIOR_DEFAULT,
     ),
+    'image_attributions' => array(
+      'label' => t('Image Attributions'),
+      'field types' => array('image', 'media'),
+      'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+    ),
   );
 }
 
@@ -39,6 +44,12 @@ function nas_formatters_theme() {
        ),
       'template' => 'gray-block-with-title',
       'path' => drupal_get_path('module', 'nas_formatters') . '/templates',
+    ),
+    'image_attributions' => array(
+      'variables' => array(
+        'element' => NULL,
+        'field' => NULL,
+      ),
     ),
   );
 }
@@ -76,6 +87,18 @@ function nas_formatters_field_formatter_view($entity_type, $entity, $field, $ins
         $elements[$delta] = array('#markup' => $output);
       }
       break;
+
+    case 'image_attributions':
+      $theme = 'image_attributions';
+      foreach ($items as $delta => $item) {
+        $elements[$delta] = array(
+          '#theme' => $theme,
+          '#element' => $item,
+          '#field' => $instance,
+          '#display' => $display,
+        );
+      }
+      break;
   }
 
   return $elements;
@@ -102,3 +125,13 @@ function nas_formatters_field_formatter_settings_form($field, $instance, $view_m
   return $form;
 }
 
+/**
+ * Formats image/media field value.
+ */
+function theme_image_attributions($variables) {
+  dpm($variables);
+  if (!empty($variables['element']['file']) && function_exists('_nas_panes_format_image_attribution')) {
+    return _nas_panes_format_image_attribution($variables['element']['file']);
+  }
+  return 'Image caption Photo: Credits';
+}
