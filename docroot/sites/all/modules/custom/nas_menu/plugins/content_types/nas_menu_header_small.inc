@@ -21,7 +21,7 @@ $plugin = array(
  * Render function.
  */
 function nas_menu_nas_menu_header_small_content_type_render() {
-  $menu_tree = menu_tree_all_data(NAS_MENU_MAIN_NAVIGATION, 2);
+  $menu_tree = menu_tree_all_data(NAS_MENU_HEADER_SMALL_MENU, 2);
 
   $block = new stdClass();
 
@@ -35,10 +35,10 @@ function nas_menu_nas_menu_header_small_content_type_render() {
     );
 
     if (!empty($menu_item['link']['options']['attributes']['liclass'])) {
-      $classes['li_class'][] = $menu_item['link']['options']['attributes']['liclass'];
+      $classes['li_class'] += $menu_item['link']['options']['attributes']['liclass'];
     }
     if (!empty($menu_item['link']['options']['attributes']['class'])) {
-      $classes['a_class'][] = $menu_item['link']['options']['attributes']['class'];
+      $classes['a_class'] += $menu_item['link']['options']['attributes']['class'];
     }
     $item['#below'] = array();
     if (!empty($menu_item['below'])) {
