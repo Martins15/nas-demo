@@ -149,6 +149,11 @@
       }
     }
   }
+
+  .curtain & .column {
+    top: 0;
+    right: $column-gutter/2;
+  }
 }
 
 .hero-attribution-fullscreen {
