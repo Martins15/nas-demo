@@ -6,14 +6,7 @@
  */
 ?>
 
-<div class="guide-bar">
-  <div class="row">
-    <div class="column">
-      <h2 class="guide-bar-title"><span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds</h2>
-      <div class="guide-bar-attribution"><span class="preamble">Brought to you by</span><img class="canon-logo" src="<?php print base_path() . path_to_theme() . '/img/canon-logo.png'; ?>"></div>
-    </div>
-  </div>
-</div>
+<?php print $content['guide_bar']; ?>
 
 <section class="global-content birds-family-section">
   <div class="row column">

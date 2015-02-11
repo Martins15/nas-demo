@@ -57,6 +57,7 @@ function nas_birds_family_feature_default_page_manager_handlers() {
       'scientific_name' => NULL,
       'description' => NULL,
       'cards' => NULL,
+      'guide_bar' => NULL,
     ),
   );
   $display->cache = array();
@@ -131,6 +132,38 @@ function nas_birds_family_feature_default_page_manager_handlers() {
     $pane->uuid = '2576d329-1602-477a-851d-96608da45e3c';
     $display->content['new-2576d329-1602-477a-851d-96608da45e3c'] = $pane;
     $display->panels['description'][0] = 'new-2576d329-1602-477a-851d-96608da45e3c';
+    $pane = new stdClass();
+    $pane->pid = 'new-4040d0c1-8488-4948-a3fa-ddf25aa9b3e7';
+    $pane->panel = 'guide_bar';
+    $pane->type = 'nas_menu_microsite_guide_bar';
+    $pane->subtype = 'nas_menu_microsite_guide_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '<span class="hide-for-small hide-for-tiny">Guide to </span>North American Birds',
+      'preamble' => '',
+      'logo' => '',
+      'css_class' => '',
+      'css_background_style' => '#276074',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'link' => 'birds/bird-guide',
+      'form_build_id' => 'form-4UX3774JsNfbiUU4UWzE_9Sv_-0fPbaA5iGP6Dw6H-I',
+      'form_token' => 'xUi12YjMyGuiUgE3PF4jxo97Ygtu3pUZT9OYXj8vq00',
+      'form_id' => 'nas_menu_guide_bar_pane_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4040d0c1-8488-4948-a3fa-ddf25aa9b3e7';
+    $display->content['new-4040d0c1-8488-4948-a3fa-ddf25aa9b3e7'] = $pane;
+    $display->panels['guide_bar'][0] = 'new-4040d0c1-8488-4948-a3fa-ddf25aa9b3e7';
     $pane = new stdClass();
     $pane->pid = 'new-872520e6-862f-4f9b-bcdd-6f37e3fb63d2';
     $pane->panel = 'main';
