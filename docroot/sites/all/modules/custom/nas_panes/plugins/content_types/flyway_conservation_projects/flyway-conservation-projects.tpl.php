@@ -23,18 +23,9 @@
       </ul>
     </div>
   </div>
-  <div class="row card-set-wrapper">
-    <div class="clearfix card-set-scroller">
-      <?php foreach ($teasers as $teaser): ?>
-        <?php print $teaser; ?>
-      <?php endforeach; ?>
-    </div>
-  </div>
-  <div class="row space-bottom double">
-    <div class="card-set-dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+  <div class="row">
+    <?php foreach ($teasers as $teaser): ?>
+      <?php print $teaser; ?>
+    <?php endforeach; ?>
   </div>
 </div>
