@@ -169,8 +169,8 @@ function nas_preprocess_node_bird(&$vars) {
     ));
 
     $vars['hero_image_credit'] = '';
-    if (!empty($get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'])) {
-      $vars['hero_image_credit'] = $get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'];
+    if (!empty($get_field_hero_image[0]['file']) && function_exists('_nas_panes_format_image_attribution')) {
+      $vars['hero_image_credit'] = _nas_panes_format_image_attribution($get_field_hero_image[0]['file']);
     }
   }
   // Color mode.
