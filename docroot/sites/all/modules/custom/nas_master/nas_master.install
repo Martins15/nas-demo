@@ -1824,3 +1824,10 @@ function nas_master_update_7131() {
     ->fields(array('field_file_caption_format' => 'html'))
     ->execute();
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7132() {
+  features_revert(array('nas_article_feature' => array('views_view')));
+}
