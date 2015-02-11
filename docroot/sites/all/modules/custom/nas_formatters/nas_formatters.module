@@ -129,9 +129,8 @@ function nas_formatters_field_formatter_settings_form($field, $instance, $view_m
  * Formats image/media field value.
  */
 function theme_image_attributions($variables) {
-  dpm($variables);
-  if (!empty($variables['element']['file']) && function_exists('_nas_panes_format_image_attribution')) {
-    return _nas_panes_format_image_attribution($variables['element']['file']);
+  if (empty($variables['element']['file']) || !function_exists('_nas_panes_format_image_attribution')) {
+    return '';
   }
-  return 'Image caption Photo: Credits';
+  return _nas_panes_format_image_attribution($variables['element']['file']);
 }
