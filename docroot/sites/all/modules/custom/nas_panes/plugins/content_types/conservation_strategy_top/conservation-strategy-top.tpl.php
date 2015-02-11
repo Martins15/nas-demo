@@ -32,8 +32,8 @@
   </div>
 </div>
 
-<?php if (!empty($credit)) : ?>
+<?php if ($attribution) : ?>
   <div class="hero-attribution row">
-    <p class="column"><span class="hero-attribution-text"><?php print $credit ?></span></p>
+    <p class="column"><span class="hero-attribution-text"><?php print $attribution ?></span></p>
   </div>
 <?php endif; ?>
