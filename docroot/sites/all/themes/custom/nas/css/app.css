@@ -13200,6 +13200,10 @@ h2.grey {
     position: relative !important;
   }
 }
+.curtain .hero-attribution .column, .curtain .hero-attribution-fullscreen .column {
+  top: 0;
+  right: 12.5px;
+}
 
 .hero-attribution-fullscreen .column {
   position: inherit;

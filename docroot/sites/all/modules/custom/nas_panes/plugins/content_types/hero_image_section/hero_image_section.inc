@@ -98,15 +98,13 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $hero_image = '';
   $hero_image_mobile = '';
-  $credit = '';
+  $attribution = '';
 
   if (!empty($conf['image'])) {
     $hero_image_object = file_load($conf['image']);
     $hero_image = image_style_url('hero_image', $hero_image_object->uri);
     $hero_image_mobile = image_style_url('hero_mobile', $hero_image_object->uri);
-    if (!empty($hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value'])) {
-      $credit = $hero_image_object->field_file_credit[LANGUAGE_NONE][0]['value'];
-    }
+    $attribution = _nas_panes_format_image_attribution($hero_image_object);
   }
 
   $contextual_links = '';
@@ -130,7 +128,7 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
       'subtitle' => $conf['subtitle'],
       'hero_image' => $hero_image,
       'hero_image_mobile' => $hero_image_mobile,
-      'credit' => $credit,
+      'credit' => $attribution,
       'color_mode_gradient' => $color_mode_gradient,
       'color_mode_text' => $conf['text_color_mode'],
       'contextual_links' => $contextual_links,

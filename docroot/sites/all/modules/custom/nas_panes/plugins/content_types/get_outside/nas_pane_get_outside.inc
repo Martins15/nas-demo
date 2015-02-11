@@ -119,15 +119,7 @@ function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
-
-    $attribution = array();
-    if ($items = field_get_items('file', $hero_image, 'field_file_caption')) {
-      $attribution[] = $items[0]['safe_value'];
-    }
-    if ($items = field_get_items('file', $hero_image, 'field_file_credit')) {
-      $attribution[] = $items[0]['safe_value'];
-    }
-    $attribution = implode(' ', $attribution);
+    $attribution = _nas_panes_format_image_attribution($hero_image);
   }
 
   $color_classes = 'light-text';
