@@ -14,6 +14,7 @@ $plugin = array(
   'icon' => 'birds_family.png',
   'theme' => 'birds_family',
   'regions' => array(
+    'guide_bar' => t('Guide Bar'),
     'title' => t('Family title'),
     'scientific_name' => t('Scientific name'),
     'description' => t('Description'),

@@ -119,6 +119,8 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
   $hero_image_path = image_style_url('hero_image', $hero_image->uri);
   $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
 
+  $attribution = _nas_panes_format_image_attribution($hero_image);
+
   $summary = check_plain($conf['summary']);
 
   $bird_guide_link = l(t('Bird Guide'), 'birds/bird-guide');
@@ -170,6 +172,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     'color' => !empty($conf['color']) ? $conf['color'] : 'dark',
     'category_link_url' => url($category_link),
     'category_link_more' => $category_link_more,
+    'attribution' => $attribution,
     'contextual_links' => $contextual_links,
   ));
 

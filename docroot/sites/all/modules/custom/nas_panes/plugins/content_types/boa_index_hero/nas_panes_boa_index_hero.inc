@@ -100,15 +100,7 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
 
   $hero_image = file_load($conf['image']);
   $hero_image_path = image_style_url('hero_image', $hero_image->uri);
-
-  $attribution = array();
-  if ($items = field_get_items('file', $hero_image, 'field_file_caption')) {
-    $attribution[] = $items[0]['safe_value'];
-  }
-  if ($items = field_get_items('file', $hero_image, 'field_file_credit')) {
-    $attribution[] = $items[0]['safe_value'];
-  }
-  $attribution = implode(' ', $attribution);
+  $attribution = _nas_panes_format_image_attribution($hero_image);
 
   $title = check_plain($conf['title']);
   $color = check_plain($conf['color']);

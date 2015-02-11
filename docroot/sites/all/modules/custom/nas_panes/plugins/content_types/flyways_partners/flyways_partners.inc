@@ -98,18 +98,12 @@ function flyways_partners_render($subtype, $conf, $args, $contexts) {
   $conf['background_image'] = file_create_url($conf['background_image']);
   $conf['summary'] = check_plain($conf['summary']);
   $conf['read_more_link'] = url($conf['read_more_link']);
-  $conf['attribution'] = array();
+  $conf['attribution'] = '';
   if (!empty($conf['background_image2'])) {
     $file = file_load($conf['background_image2']);
     $conf['background_image'] = image_style_url('hero_image', $file->uri);
-    if ($items = field_get_items('file', $file, 'field_file_caption')) {
-      $conf['attribution'][] = $items[0]['safe_value'];
-    }
-    if ($items = field_get_items('file', $file, 'field_file_credit')) {
-      $conf['attribution'][] = $items[0]['safe_value'];
-    }
+    $conf['attribution'] = _nas_panes_format_image_attribution($file);
   }
-  $conf['attribution'] = implode(' ', $conf['attribution']);
 
   $contextual_links = '';
   if (user_access('edit NAS panes')) {

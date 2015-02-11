@@ -1803,6 +1803,7 @@ function nas_master_update_7130() {
   features_revert_module('nas_image_styles_feature');
   $style = image_style_load('article_featured');
   image_style_flush($style);
+  features_revert(array('nas_search_feature' => array('views_view')));
 }
 
 /**
@@ -1822,4 +1823,21 @@ function nas_master_update_7131() {
   $query = db_update('field_revision_field_file_caption')
     ->fields(array('field_file_caption_format' => 'html'))
     ->execute();
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7132() {
+  features_revert(array('nas_article_feature' => array('views_view')));
+  features_revert(array('nas_birds_family_feature' => array('page_manager_handlers')));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7133() {
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
 }

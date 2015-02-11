@@ -649,6 +649,14 @@ function nas_preprocess_node_strategy(&$vars) {
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
   $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+
+  $vars['subtitle'] = '';
+  if ($field_items = field_get_items('node', $node, 'body')) {
+    $vars['subtitle'] = text_summary($field_items[0]['value'], 'full_html', 150);
+    // Tags to remove.
+    $tags = array('i', 'em', 'span', 'b', 'strong', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+    $vars['subtitle'] = preg_replace('/<(' . implode( '|', $tags) . ')(?:[^>]+)?>(.*)?<\/\1>/s', '$2', $vars['subtitle']);
+  }
 }
 
 /**
@@ -1105,12 +1113,13 @@ function nas_preprocess_nas_flyway(&$variables) {
   $background_image_url = ctools_context_keyword_substitute($variables['settings']['background_image'], array(), $variables['display']->context);
   $variables['background_image'] = $background_image_url;
 
-  // Add image credit.
-  $variables['image_credit'] = '';
+  // Add image attributions.
+  $variables['attributions'] = '';
   if (!empty($variables['display']->context['panelizer']->data)) {
     $node = $variables['display']->context['panelizer']->data;
-    if (!empty($node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'])) {
-      $variables['image_credit'] = $node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'];
+    if ($items = field_get_items('node', $node, 'field_background_image')) {
+      $image = file_load($items[0]['fid']);
+      $variables['attributions'] = _nas_panes_format_image_attribution($image);
     }
   }
 

@@ -1233,7 +1233,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'media',
+      'formatter' => 'image_attributions',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,

@@ -123,17 +123,13 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   if (!empty($conf['image'])) {
     $image_fid = $conf['image'];
   }
-  $image_caption = '';
-  $image_credit = '';
+  $attribution = '';
   $hero_image_path = '';
   $hero_image_path_mobile = '';
   if (isset($image_fid) && $hero_image = file_load($image_fid)) {
     $hero_image_path = image_style_url('hero_image', $hero_image->uri);
     $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
-    $image_caption_item = field_get_items('file', $hero_image, 'field_file_caption');
-    $image_caption = isset($image_caption_item[0]['safe_value']) ? $image_caption_item[0]['safe_value'] : '';
-    $image_credit_item = field_get_items('file', $hero_image, 'field_file_credit');
-    $image_credit = isset($image_credit_item[0]['safe_value']) ? $image_credit_item[0]['safe_value'] : '';
+    $attribution = _nas_panes_format_image_attribution($hero_image);
   }
 
   $color_classes = 'light-text dark-gradient';
@@ -143,11 +139,6 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
 
   $scientific_name_item = field_get_items('node', $node, 'field_bird_sci_name');
   $scientific_name = isset($scientific_name_item[0]['safe_value']) ? $scientific_name_item[0]['safe_value'] : '';
-
-  $image_string = trim(implode(' ', array($image_caption, $image_credit)));
-  if (empty($image_string)) {
-    $image_string = t('Please edit Caption and Credits of hero image of the selected bird.');
-  }
 
   $illustration_path = '';
   $illustration_item = field_get_items('node', $node, 'field_bird_illustration');
@@ -167,7 +158,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     'url' => url('node/' . $node->nid),
     'image_path' => $hero_image_path,
     'image_path_mobile' => $hero_image_path_mobile,
-    'image_string' => $image_string,
+    'attribution' => $attribution,
     'illustration_path' => $illustration_path,
     'contextual_links' => $contextual_links,
     'color_classes' => $color_classes,

@@ -79,15 +79,7 @@ function about_page_success_section_render($subtype, $conf, $args, $contexts) {
   if (!empty($conf['image'])) {
     $image_object = file_load($conf['image']);
     $image = image_style_url('about_page_success_section', $image_object->uri);
-
-    $attribution = array();
-    if ($items = field_get_items('file', $image_object, 'field_file_caption')) {
-      $attribution[] = $items[0]['safe_value'];
-    }
-    if ($items = field_get_items('file', $image_object, 'field_file_credit')) {
-      $attribution[] = $items[0]['safe_value'];
-    }
-    $attribution = implode(' ', $attribution);
+    $attribution = _nas_panes_format_image_attribution($image_object);
   }
 
   $block->content = theme('about_page_success_section', array(

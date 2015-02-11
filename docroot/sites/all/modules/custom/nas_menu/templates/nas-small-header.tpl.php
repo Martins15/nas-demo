@@ -67,9 +67,6 @@
             </li>
           <?php endforeach; ?>
           <li class="primary-nav-item">
-            <a class="orange" href="#">Donate</a>
-          </li>
-          <li class="primary-nav-item">
             <a href="<?php print $searchpage_url; ?>" class="primary-nav-search"><i class="icon-magnifier"></i></a>
           </li>
         </ul>
