@@ -64,12 +64,12 @@ function _search_results_count_render_sort_links() {
   unset($query['sort']);
 
   $rel_classes = $date_classes = array('color-blue');
-  if (isset($_GET['sort']) && $_GET['sort'] == 'date') {
-    $date_classes[] = 'active';
-  }
-  else {
+  if (isset($_GET['sort']) && $_GET['sort'] == 'rel') {
     $_GET['sort_by'] = 'search_api_relevance';
     $rel_classes[] = 'active';
+  }
+  else {
+    $date_classes[] = 'active';
   }
 
   $original_q = $_GET['q'];
@@ -77,13 +77,13 @@ function _search_results_count_render_sort_links() {
   $_GET['q'] = '_' . $_GET['q'];
   $sort_links = array(
     l(t('Relevance'), 'search_results', array(
-      'query' => $query,
+      'query' => $query + array('sort' => 'rel'),
       'attributes' => array(
         'class' => $rel_classes,
       ),
     )),
     l(t('Date'), 'search_results', array(
-      'query' => $query + array('sort' => 'date'),
+      'query' => $query,
       'attributes' => array(
         'class' => $date_classes,
       ),
