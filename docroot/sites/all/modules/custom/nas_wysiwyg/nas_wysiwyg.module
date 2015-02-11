@@ -52,18 +52,10 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
   $vars['theme_hook_suggestions'][] = 'bean__' . $vars['elements']['#bundle'];
   if ($vars['elements']['#bundle'] == 'wysiwyg_image') {
     $entity = $vars['elements']['#entity'];
+    $vars['figcaption'] = '';
     $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
     if (!empty($get_field_wysiwyg_image)) {
-      $get_field_file_caption = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_caption');
-      $get_field_file_credit = field_view_field('file', $get_field_wysiwyg_image[0]['file'], 'field_file_credit');
-      $vars['figcaption'] = '';
-      if (!empty($get_field_file_caption)) {
-        $vars['figcaption'] .= $get_field_file_caption[0]['#markup'] .'&nbsp;';
-      }
-      if (!empty($get_field_file_credit)) {
-        $vars['figcaption'] .= $get_field_file_credit[0]['#markup'];
-      }
-      $vars['figcaption'] = strip_tags($vars['figcaption'], '<a>');
+      $vars['figcaption'] = _nas_panes_format_image_attribution($get_field_wysiwyg_image[0]['file']);
     }
     $get_field_wysiwyg_width_mode = field_get_items('bean', $entity, 'field_wysiwyg_width_mode');
     $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
@@ -81,7 +73,6 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     // Get images.
     $get_images = field_get_items('bean', $entity, 'field_wysiwyg_images');
     $slides = array();
-    $count = 0;
     if (!empty($get_images)) {
       foreach ($get_images as $key => $image) {
         $file = file_load($image['fid']);
@@ -89,12 +80,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
           'style_name' => 'wysiwyg_slide',
           'path' => $file->uri,
         ));
-        $get_caption = field_get_items('file', $file, 'field_file_caption');
-        $slides[$key]['caption'] = !empty($get_caption[0]['value']) ? $get_caption[0]['value'] : '';
-        $get_credit = field_get_items('file', $file, 'field_file_credit');
-        if (!empty($get_credit)) {
-          $slides[$key]['caption'] .= '(' . $get_credit[0]['value'] . ')';
-        }
+        $slides[$key]['caption'] = _nas_panes_format_image_attribution($file);
       }
       $vars['slides'] = $slides;
       $vars['count'] = count($get_images);
