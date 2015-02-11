@@ -27,6 +27,7 @@ $plugin = array(
  */
 function nas_menu_guide_bar_pane_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   $form['title'] = array(
     '#type' => 'textfield',

@@ -1828,6 +1828,14 @@ function nas_master_update_7131() {
 /**
  * Revert features.
  */
+function nas_master_update_7132() {
+  features_revert(array('nas_article_feature' => array('views_view')));
+  features_revert(array('nas_birds_family_feature' => array('page_manager_handlers')));
+}
+
+/**
+ * Revert features.
+ */
 function nas_master_update_7133() {
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
   features_revert(array('nas_conservation_project_feature' => array('panelizer_defaults')));
