@@ -334,7 +334,7 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'override_title' => 1,
       'override_title_text' => 'Local Chapters & Centers',
       'image' => '9802',
-      'image_link' => 'conservation',
+      'image_link' => 'audubon-near-you',
       'bottom_link' => array(
         'title' => 'See all',
         'url' => 'audubon-near-you',
