@@ -1824,3 +1824,12 @@ function nas_master_update_7131() {
     ->fields(array('field_file_caption_format' => 'html'))
     ->execute();
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7133() {
+  features_revert(array('nas_article_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_conservation_project_feature' => array('panelizer_defaults')));
+  features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
+}
