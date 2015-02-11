@@ -111,10 +111,20 @@ function frontpage_conservation_section_edit_form_submit(&$form, &$form_state) {
 function frontpage_conservation_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
+  $attribution = '';
   $hero_image_path = '';
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
+
+    $attribution = array();
+    if ($items = field_get_items('file', $hero_image, 'field_file_caption')) {
+      $attribution[] = $items[0]['safe_value'];
+    }
+    if ($items = field_get_items('file', $hero_image, 'field_file_credit')) {
+      $attribution[] = $items[0]['safe_value'];
+    }
+    $attribution = implode(' ', $attribution);
   }
 
   $contextual_links = nas_panes_build_page_contextual_links('frontpage_conservation_section', NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY, 'page_frontpage2_panel_context');
@@ -146,6 +156,7 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
   $content = theme('frontpage_conservation_section', array(
       'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
       'image_path' => $hero_image_path,
+      'attribution' => $attribution,
       'contextual_links' => $contextual_links,
       'content' => $content,
       'color_mode' => $conf['color_mode'],

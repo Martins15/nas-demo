@@ -33,9 +33,28 @@ function flyways_partners_form($form, &$form_state) {
     '#default_value' => $conf['title'],
   );
 
+  $form['background_image2'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: jpg, jpeg.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'jpg jpeg',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($conf['background_image2']) ? $conf['background_image2'] : FALSE,
+  );
+
+  ctools_form_include($form_state, 'content');
+  ctools_form_include($form_state, 'flyways_partners', 'nas_panes', 'plugins/content_types/flyways_partners');
+
   $form['background_image'] = array(
     '#type' => 'textfield',
-    '#title' => 'Background image',
+    '#title' => 'Legacy Background image',
     '#description' => 'URI of the image i.e. public://background.jpg',
     '#default_value' => $conf['background_image'],
   );
@@ -74,20 +93,23 @@ function flyways_partners_form_submit(&$form, &$form_state) {
  */
 function flyways_partners_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
-  // @codingStandardsIgnoreStart
-  // Sanitize configuration before passing to template.
-  array_walk_recursive($conf, function(&$value, $key) {
-    if (strpos($key, 'link') !== FALSE) {
-      $value = url($value);
+
+  $conf['title'] = check_plain($conf['title']);
+  $conf['background_image'] = file_create_url($conf['background_image']);
+  $conf['summary'] = check_plain($conf['summary']);
+  $conf['read_more_link'] = url($conf['read_more_link']);
+  $conf['attribution'] = array();
+  if ($conf['background_image2']) {
+    $file = file_load($conf['background_image2']);
+    $conf['background_image'] = image_style_url('hero_image', $file->uri);
+    if ($items = field_get_items('file', $file, 'field_file_caption')) {
+      $conf['attribution'][] = $items[0]['safe_value'];
     }
-    elseif (strpos($key, 'image') !== FALSE) {
-      $value = file_create_url($value);
+    if ($items = field_get_items('file', $file, 'field_file_credit')) {
+      $conf['attribution'][] = $items[0]['safe_value'];
     }
-    else {
-      $value = check_plain($value);
-    }
-  });
-  // @codingStandardsIgnoreEnd
+  }
+  $conf['attribution'] = implode(' ', $conf['attribution']);
 
   $contextual_links = '';
   if (user_access('edit NAS panes')) {

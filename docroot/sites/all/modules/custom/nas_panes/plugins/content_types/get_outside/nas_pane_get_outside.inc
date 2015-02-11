@@ -115,9 +115,19 @@ function nas_pane_get_outside_edit_form_submit(&$form, &$form_state) {
 function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
+  $attribution = '';
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
+
+    $attribution = array();
+    if ($items = field_get_items('file', $hero_image, 'field_file_caption')) {
+      $attribution[] = $items[0]['safe_value'];
+    }
+    if ($items = field_get_items('file', $hero_image, 'field_file_credit')) {
+      $attribution[] = $items[0]['safe_value'];
+    }
+    $attribution = implode(' ', $attribution);
   }
 
   $color_classes = 'light-text';
@@ -162,6 +172,7 @@ function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
   $content = theme('nas_get_outside', array(
     'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
     'image_path' => $hero_image_path,
+    'attribution' => $attribution,
     'contextual_links' => $contextual_links,
     'color_classes' => $color_classes,
     'text_array' => $conf['wrapper'],

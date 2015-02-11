@@ -39,4 +39,13 @@
       <?php endforeach; ?>
     </div>
   </div>
+  <?php if ($attribution): ?>
+    <div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">
+        <?php print $attribution; ?>
+      </span>
+      </p>
+    </div>
+  <?php endif; ?>
 </section>
