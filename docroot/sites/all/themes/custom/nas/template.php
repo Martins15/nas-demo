@@ -1200,18 +1200,27 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
   if (!empty($variables['element']['#items'])) {
     $overlay_image = FALSE;
     foreach ($variables['element']['#items'] as $delta => $image) {
+      $image_file = (object) $image;
       // Add regular slide.
       $content_image = array(
-        'url' => image_style_url('slideshow', $image['uri']),
+        'url' => image_style_url('slideshow', $image_file->uri),
         // Additional fields to display on each slide.
-        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? $image['field_file_credit'][LANGUAGE_NONE][0]['value'] : '',
-        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
-        'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
-        'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
+        'attribution' => '',
+        'alt' => '',
+        'title' => '',
         // First or last slide.
         'first' => FALSE,
         'last' => FALSE,
       );
+      if ($items = field_get_items('file', $image_file, 'field_file_image_alt_text')) {
+        $content_image['alt'] = check_plain($items[0]['value']);
+      }
+      if ($items = field_get_items('file', $image_file, 'field_file_image_title_text')) {
+        $content_image['title'] = check_plain($items[0]['value']);
+      }
+      if (function_exists('_nas_panes_format_image_attribution')) {
+        $content_image['attribution'] = _nas_panes_format_image_attribution($image_file);
+      }
       $variables['images'][] = $content_image;
 
       // If it's first image.
