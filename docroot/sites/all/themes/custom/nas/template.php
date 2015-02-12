@@ -920,8 +920,10 @@ function nas_preprocess_field(&$variables, $hook) {
 function nas_preprocess_field_field_hero_image(&$variables) {
   if (function_exists('_nas_panes_format_image_attribution')) {
     foreach ($variables['items'] as &$item) {
-      $file = (object) $item['file']['#item'];
-      $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      if (!empty($item['file'])) {
+        $file = (object) $item['file']['#item'];
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      }
     }
   }
 }
