@@ -1841,3 +1841,10 @@ function nas_master_update_7133() {
   features_revert(array('nas_conservation_project_feature' => array('panelizer_defaults')));
   features_revert(array('nas_static_page_feature' => array('panelizer_defaults')));
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7134() {
+  features_revert(array('nas_bird_type_feature' => array('field_base', 'field_instance')));
+}

@@ -19,13 +19,13 @@
   &.dark-bg {
     @include breakpoint(large-up) {
       background-color: transparent;
-      background: linear-gradient(rgba(#000, .75) 0%, rgba(#000, .4) 75%, rgba(#000, 0) 100%);
+      background: linear-gradient(to top, rgba(black, 0) 0%, rgba(black, 0.4) 30px, rgba(black, 0.75) 95px, rgba(black, 0.75) 100%);
     }
   }
   &.light-bg {
     @include breakpoint(large-up) {
       background-color: transparent;
-      background: linear-gradient(rgba(#fff, .9) 0%, rgba(#fff, .65) 85%, rgba(#fff, 0) 100%);
+      background: linear-gradient(to top, rgba(white, 0) 0%, rgba(white, 0.5) 25px, rgba(white, 0.8) 95px, rgba(white, 0.8) 100%);
     }
   }
 

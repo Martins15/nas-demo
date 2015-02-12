@@ -150,6 +150,12 @@
     }
   }
 
+  @include breakpoint(medium-up) {
+    .frontpage-conservation-section & .column {
+      top: -20px;
+    }
+  }
+
   .curtain & .column {
     top: 0;
     right: $column-gutter/2;
@@ -676,4 +682,8 @@ body.node-type-slideshow {
       color: $color-bright-blue;
     }
   }
+}
+
+.view-nas-similar-birds .view-footer {
+  clear: both;
 }

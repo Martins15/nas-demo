@@ -462,7 +462,7 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'field_bird_family_sci_name' => array(),
   );
   $terms[] = array(
-    'name' => 'Silky Flycatchers',
+    'name' => 'Silky-flycatchers',
     'description' => '',
     'format' => 'plain_text',
     'weight' => 0,

@@ -7,11 +7,11 @@
 ?>
 <?php
   $item = array_shift($items);
-  $caption = render($item['field_file_caption']);
-  $credits = render($item['field_file_credit']);
 ?>
 
 <?php print render($item); ?>
+<?php if (!empty($item['#attributions'])): ?>
 <figcaption class="article-aside-caption">
-  <?php print $caption . '&nbsp;' . $credits; ?>
+  <?php print $item['#attributions']; ?>
 </figcaption>
+<?php endif; ?>
