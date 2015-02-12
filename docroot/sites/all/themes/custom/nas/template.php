@@ -914,6 +914,18 @@ function nas_preprocess_field(&$variables, $hook) {
   }
 }
 
+/**
+ * Preprocess function for media fields.
+ */
+function nas_preprocess_field_field_hero_image(&$variables) {
+  if (function_exists('_nas_panes_format_image_attribution')) {
+    foreach ($variables['items'] as &$item) {
+      $file = (object) $item['file']['#item'];
+      $item['#attributions'] = _nas_panes_format_image_attribution($file);
+    }
+  }
+}
+
 /*
  * Implements template_preprocess_panels_pane().
  */
