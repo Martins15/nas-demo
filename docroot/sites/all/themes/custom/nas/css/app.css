@@ -13698,3 +13698,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .text-container h6 > a {
   color: #0AA8E3;
 }
+
+.view-nas-similar-birds .view-footer {
+  clear: both;
+}
