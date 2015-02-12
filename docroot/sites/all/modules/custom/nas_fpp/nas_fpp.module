@@ -536,19 +536,25 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
 function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $fpp = $vars['elements']['#fieldable_panels_pane'];
 
-  $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
   $vars['image'] = '';
-  if (isset($get_field_image[0]['uri'])) {
+  $items = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
+  if (isset($items[0]['uri'])) {
+    $image = $items[0];
     $vars['image'] = theme('image_style', array(
       'style_name' => 'front_flyway_image',
-      'path' => $get_field_image[0]['uri'],
+      'path' => $image['uri'],
     ));
   }
-  $get_field_hero_image = field_get_items('fieldable_panels_pane', $fpp, 'field_hero_image');
+
   $vars['hero_image'] = '';
-  if (isset($get_field_hero_image[0]['file']->uri)) {
-    $vars['hero_image'] = image_style_url('get_outside', $get_field_hero_image[0]['file']->uri);
+  $vars['attribution'] = '';
+  $field_items = field_get_items('fieldable_panels_pane', $fpp, 'field_hero_image');
+  if (isset($field_items[0]['file']->uri)) {
+    $image = $field_items[0]['file'];
+    $vars['hero_image'] = image_style_url('get_outside', $image->uri);
+    $vars['attribution'] = _nas_panes_format_image_attribution($image);
   }
+
   $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
   $vars['title'] = $get_field_flyway[0]['entity']->title;
   $get_field_flyway_description = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_description');

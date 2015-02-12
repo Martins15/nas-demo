@@ -251,7 +251,7 @@ function nas_conservation_project_feature_panelizer_defaults() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'media',
+      'formatter' => 'image_attributions',
       'delta_limit' => 0,
       'delta_offset' => '0',
       'delta_reversed' => FALSE,
@@ -334,14 +334,15 @@ function nas_conservation_project_feature_panelizer_defaults() {
       'override_title' => 1,
       'override_title_text' => 'Local Chapters & Centers',
       'image' => '9802',
-      'image_link' => 'conservation',
+      'image_link' => 'audubon-near-you',
       'bottom_link' => array(
         'title' => 'See all',
-        'url' => 'conservation',
+        'url' => 'audubon-near-you',
       ),
-      'form_build_id' => 'form-CvR-0UCvTw55xb_Ar3P7dcEqR_NKafLpGLyKvQmcnwY',
-      'form_token' => 'S8XXcPkGYpja-pjOYMfbBqMCAnqhDtonhmYDWqk7rWQ',
+      'form_build_id' => 'form-uTQYAQL5-1UzN1TUl5gOenfNthI-Bejdh3r93vFH9Oo',
+      'form_token' => 'N6uFPpgMOxMGXcKoAIISk2KHkf0vraon6NvLiCEOrYA',
       'form_id' => 'local_chapters_centers_block_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(

@@ -169,8 +169,8 @@ function nas_preprocess_node_bird(&$vars) {
     ));
 
     $vars['hero_image_credit'] = '';
-    if (!empty($get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'])) {
-      $vars['hero_image_credit'] = $get_field_hero_image[0]['file']->field_file_credit[LANGUAGE_NONE][0]['value'];
+    if (!empty($get_field_hero_image[0]['file']) && function_exists('_nas_panes_format_image_attribution')) {
+      $vars['hero_image_credit'] = _nas_panes_format_image_attribution($get_field_hero_image[0]['file']);
     }
   }
   // Color mode.
@@ -649,6 +649,14 @@ function nas_preprocess_node_strategy(&$vars) {
   $vars['title'] = check_plain($node->title);
   $vars['url'] = url('node/' . $node->nid);
   $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+
+  $vars['subtitle'] = '';
+  if ($field_items = field_get_items('node', $node, 'body')) {
+    $vars['subtitle'] = text_summary($field_items[0]['value'], 'full_html', 150);
+    // Tags to remove.
+    $tags = array('i', 'em', 'span', 'b', 'strong', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+    $vars['subtitle'] = preg_replace('/<(' . implode( '|', $tags) . ')(?:[^>]+)?>(.*)?<\/\1>/s', '$2', $vars['subtitle']);
+  }
 }
 
 /**
@@ -906,6 +914,18 @@ function nas_preprocess_field(&$variables, $hook) {
   }
 }
 
+/**
+ * Preprocess function for media fields.
+ */
+function nas_preprocess_field_field_hero_image(&$variables) {
+  if (function_exists('_nas_panes_format_image_attribution')) {
+    foreach ($variables['items'] as &$item) {
+      $file = (object) $item['file']['#item'];
+      $item['#attributions'] = _nas_panes_format_image_attribution($file);
+    }
+  }
+}
+
 /*
  * Implements template_preprocess_panels_pane().
  */
@@ -1105,12 +1125,13 @@ function nas_preprocess_nas_flyway(&$variables) {
   $background_image_url = ctools_context_keyword_substitute($variables['settings']['background_image'], array(), $variables['display']->context);
   $variables['background_image'] = $background_image_url;
 
-  // Add image credit.
-  $variables['image_credit'] = '';
+  // Add image attributions.
+  $variables['attributions'] = '';
   if (!empty($variables['display']->context['panelizer']->data)) {
     $node = $variables['display']->context['panelizer']->data;
-    if (!empty($node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'])) {
-      $variables['image_credit'] = $node->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'];
+    if ($items = field_get_items('node', $node, 'field_background_image')) {
+      $image = file_load($items[0]['fid']);
+      $variables['attributions'] = _nas_panes_format_image_attribution($image);
     }
   }
 
@@ -1179,18 +1200,27 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
   if (!empty($variables['element']['#items'])) {
     $overlay_image = FALSE;
     foreach ($variables['element']['#items'] as $delta => $image) {
+      $image_file = (object) $image;
       // Add regular slide.
       $content_image = array(
-        'url' => image_style_url('slideshow', $image['uri']),
+        'url' => image_style_url('slideshow', $image_file->uri),
         // Additional fields to display on each slide.
-        'credit' => !empty($image['field_file_credit'][LANGUAGE_NONE][0]['value']) ? $image['field_file_credit'][LANGUAGE_NONE][0]['value'] : '',
-        'caption' => !empty($image['field_file_caption'][LANGUAGE_NONE][0]['value']) ? $image['field_file_caption'][LANGUAGE_NONE][0]['value'] : '',
-        'alt' => !empty($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_alt_text'][LANGUAGE_NONE][0]['value']) : '',
-        'title' => !empty($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) ? check_plain($image['field_file_image_title_text'][LANGUAGE_NONE][0]['value']) : '',
+        'attribution' => '',
+        'alt' => '',
+        'title' => '',
         // First or last slide.
         'first' => FALSE,
         'last' => FALSE,
       );
+      if ($items = field_get_items('file', $image_file, 'field_file_image_alt_text')) {
+        $content_image['alt'] = check_plain($items[0]['value']);
+      }
+      if ($items = field_get_items('file', $image_file, 'field_file_image_title_text')) {
+        $content_image['title'] = check_plain($items[0]['value']);
+      }
+      if (function_exists('_nas_panes_format_image_attribution')) {
+        $content_image['attribution'] = _nas_panes_format_image_attribution($image_file);
+      }
       $variables['images'][] = $content_image;
 
       // If it's first image.

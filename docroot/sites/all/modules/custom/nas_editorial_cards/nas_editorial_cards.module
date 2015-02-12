@@ -33,20 +33,27 @@ function _nas_editorial_cards_get_title($node) {
  */
 function _nas_editorial_cards_get_subtitle($node) {
   $subtitle = '';
-  if (!empty($node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-    $subtitle = $node->field_editorial_card_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  if ($field_items = field_get_items('node', $node, 'field_editorial_card_subtitle')) {
+    $subtitle = $field_items[0]['safe_value'];
   }
-  elseif ($node->type == 'slideshow' && !empty($node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-    $subtitle = $node->field_slideshow_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  elseif ($node->type == 'slideshow' && $field_items = field_get_items('node', $node, 'field_slideshow_subtitle')) {
+    $subtitle = $field_items[0]['safe_value'];
   }
-  elseif ($node->type !== 'project' && !empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
-    $subtitle = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
+  elseif ($node->type !== 'project' && $field_items = field_get_items('node', $node, 'field_subtitle')) {
+    $subtitle = $field_items[0]['safe_value'];
   }
-  elseif ($node->type !== 'project' && !empty($node->body[LANGUAGE_NONE][0]['value'])) {
-    $subtitle = text_summary($node->body[LANGUAGE_NONE][0]['value'], 'full_html', 150);
+  elseif ($node->type !== 'project' && $field_items = field_get_items('node', $node, 'body')) {
+    // Remove some tags.
+    $tags = array('i', 'em', 'span', 'b', 'strong', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a');
+    $text = preg_replace('/<(' . implode( '|', $tags) . ')(?:[^>]+)>(.*)?<\/\1>/Uus', '$2', $field_items[0]['value']);
+    // Remove image tags.
+    $text = preg_replace('/<img[^>]*>/', '', $text);
+    // Remove block_insert tags.
+    $text = preg_replace('/\[block_insert\]([0-9]+)\[\/block_insert\]/', '', $text);
+    $subtitle = text_summary($text, 'full_html', 150);
   }
-  elseif ($node->type === 'project' && !empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
-    $subtitle = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
+  elseif ($node->type === 'project' && $field_items = field_get_items('node', $node, 'field_project_description')) {
+    $subtitle = $field_items[0]['safe_value'];
   }
 
   return $subtitle;

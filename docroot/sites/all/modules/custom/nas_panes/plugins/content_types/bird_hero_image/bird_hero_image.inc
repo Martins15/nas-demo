@@ -32,7 +32,7 @@ function bird_hero_image_render($subtype, $conf, $args, $context) {
 
   $block->content = theme('bird_hero_image', array(
     'image_path' => image_style_url('hero_cover_bird_page', $hero_image->uri),
-    'image_caption' => !empty($hero_image->field_file_caption[LANGUAGE_NONE][0]['value']) ? check_plain($hero_image->field_file_caption[LANGUAGE_NONE][0]['value']) : '',
+    'image_caption' => _nas_panes_format_image_attribution($hero_image),
   ));
 
   return $block;

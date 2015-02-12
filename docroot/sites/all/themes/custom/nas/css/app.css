@@ -4124,13 +4124,13 @@ ul.small-list li {
 @media only screen and (min-width: 768px) {
   .global-header.dark-bg {
     background-color: transparent;
-    background: linear-gradient(rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.4) 75%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 30px, rgba(0, 0, 0, 0.75) 95px, rgba(0, 0, 0, 0.75) 100%);
   }
 }
 @media only screen and (min-width: 768px) {
   .global-header.light-bg {
     background-color: transparent;
-    background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.65) 85%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 25px, rgba(255, 255, 255, 0.8) 95px, rgba(255, 255, 255, 0.8) 100%);
   }
 }
 @media only screen and (min-width: 768px) {
@@ -5601,6 +5601,9 @@ table.row-borders tbody td {
   .hero-attribution .hero-attribution-text, .hero-attribution-fullscreen .hero-attribution-text {
     padding: 2px 5px;
     background-color: rgba(0, 0, 0, 0.2);
+  }
+  .hero-attribution .hero-attribution-text a, .hero-attribution-fullscreen .hero-attribution-text a {
+    color: #7CDEFF;
   }
 }
 .hero-attribution.breakout-hero-attribution, .breakout-hero-attribution.hero-attribution-fullscreen {
@@ -7348,7 +7351,6 @@ body.touch .primary-sub-nav-index {
   background-color: #262626;
 }
 .card-set .engagement-card,
-.card-set .editorial-card,
 .card-set .bird-card {
   margin-bottom: 0;
 }
@@ -8887,11 +8889,11 @@ body.black-bg .slide-img {
 
 .slide-caption {
   color: #888;
+  font-family: "Source Sans Pro",Verdana,sans-serif;
   font-size: 14px;
-  font-style: italic;
   line-height: 20px;
-  text-align: left;
   margin-top: 10px;
+  text-align: left;
 }
 .slide-caption p {
   margin-bottom: 25.5px;
@@ -13201,6 +13203,15 @@ h2.grey {
     position: relative !important;
   }
 }
+@media only screen and (min-width: 601px) {
+  .frontpage-conservation-section .hero-attribution .column, .frontpage-conservation-section .hero-attribution-fullscreen .column {
+    top: -20px;
+  }
+}
+.curtain .hero-attribution .column, .curtain .hero-attribution-fullscreen .column {
+  top: 0;
+  right: 12.5px;
+}
 
 .hero-attribution-fullscreen .column {
   position: inherit;
@@ -13691,4 +13702,8 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .text-container h5 > a,
 .text-container h6 > a {
   color: #0AA8E3;
+}
+
+.view-nas-similar-birds .view-footer {
+  clear: both;
 }

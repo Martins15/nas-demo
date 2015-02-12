@@ -54,6 +54,17 @@ function frontpage_featured_form($form, &$form_state) {
   // can successfully retrieve the settings form.
   ctools_form_include($form_state, 'nas_panes_frontpage_featured', 'nas_panes', 'plugins/content_types/frontpage_featured');
 
+  $form['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+    ),
+    '#default_value' => !empty($conf['header_color_mode']) ? $conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+
   $form['title'] = array(
     '#type' => 'textfield',
     '#title' => t('Title'),
@@ -117,9 +128,7 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   $image_credit = '';
   if (!empty($image)) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
-    $image_wrapper = entity_metadata_wrapper('file', $image);
-    $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
-    $image_credit = check_plain($image_wrapper->field_file_credit->value());
+    $attribution = _nas_panes_format_image_attribution($image);
   }
 
   $summary = check_plain($conf['summary']);
@@ -132,12 +141,17 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
   }
 
+  $class = &drupal_static('nas_header_class');
+  $class = 'dark-text light-bg transparent';
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
+  }
+
   // Pass image url value to theme
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $featured_frontpage_image = $image_path;
   $content = theme('nas_frontpage_featured', array(
-    'image_caption' => $image_caption,
-    'image_credit' => $image_credit,
+    'attribution' => $attribution,
     'summary' => $summary,
     'title_link' => $title_link,
     'blue_text_link' => $blue_text_link,

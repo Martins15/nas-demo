@@ -49,6 +49,8 @@
     </div>
   </div>
 </div>
-<div class="hero-attribution align-left row">
-  <p class="column">Photo: <?php print $image_string; ?></p>
-</div>
+<?php if ($attribution): ?>
+  <div class="hero-attribution align-left row">
+    <p class="column"><?php print $attribution; ?></p>
+  </div>
+<?php endif; ?>

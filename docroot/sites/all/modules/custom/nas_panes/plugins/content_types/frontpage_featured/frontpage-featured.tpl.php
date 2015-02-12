@@ -25,13 +25,14 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="column">
-      <div class="curtain-attribution">
-        <p class="title"><?php print $image_caption ?></p>
-        <p class="credit"><?php print $image_credit ?></p>
-      </div>
+  <?php if ($attribution): ?>
+    <div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">
+        <?php print $attribution; ?>
+      </span>
+      </p>
     </div>
-  </div>
+  <?php endif; ?>
 </div>
 <a href="#" class="curtain-arrow"></a>

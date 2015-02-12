@@ -10,7 +10,7 @@
  * -
  */
 ?>
-<section class="breakout-section <?php print $color_mode == 'dark' ? 'black-bg' : ''; ?> contextual-links-region">
+<section class="frontpage-conservation-section breakout-section <?php print $color_mode == 'dark' ? 'black-bg' : ''; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <div class="breakout-section-hero margin-bottom" style="background-image: url(<?php print $image_path; ?>)">
     <div class="row">
@@ -39,4 +39,13 @@
       <?php endforeach; ?>
     </div>
   </div>
+  <?php if ($attribution): ?>
+    <div class="hero-attribution">
+      <p class="column">
+      <span class="hero-attribution-text">
+        <?php print $attribution; ?>
+      </span>
+      </p>
+    </div>
+  <?php endif; ?>
 </section>

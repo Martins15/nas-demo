@@ -20,7 +20,6 @@ define('NAS_PANES_GETOUTSIDE_PAGE_MANAGER_CACHE_KEY', 'page-getoutside');
 define('NAS_PANES_BIRDS_PRIORITY_PAGE_MANAGER_CACHE_KEY', 'page-birds_priority');
 
 define('NAS_FEATURED_FRONTPAGE_IMAGE_STYLE', 'featured_frontpage');
-define('NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE', 'frontpage_featured_article_image');
 define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
 
 define('NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE', 'article_featured');
@@ -1788,4 +1787,28 @@ function _nas_panes_default_social_pages_url() {
     'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
     'instagram' => 'http://instagram.com/audubonsociety',
   );
+}
+
+/**
+ * Helper function to format image attribution text.
+ *
+ * @param object $file
+ *  Loaded file entity of bundle 'image'.
+ *
+ * @return string
+ *   Image caption and credit formatted like "[Caption] Photo: [Credit]".
+ */
+function _nas_panes_format_image_attribution($file) {
+  if (!$file) {
+    return '';
+  }
+
+  $parts = array();
+  if ($items = field_get_items('file', $file, 'field_file_caption')) {
+    $parts[] = trim($items[0]['safe_value']);
+  }
+  if ($items = field_get_items('file', $file, 'field_file_credit')) {
+    $parts[] = 'Photo: ' . trim($items[0]['safe_value']);
+  }
+  return implode(' ', $parts);
 }

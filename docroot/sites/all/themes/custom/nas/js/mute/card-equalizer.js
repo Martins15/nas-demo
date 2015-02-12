@@ -23,20 +23,17 @@
               cardEdHeights = new Array(),
               contentsEngHeights = new Array();
 
-          // Do not equalize height of editorial cards on tiny, small, medium layout
-          if (size !== 'tiny' && size !== 'small' && size !== 'medium') {
-            // Fix height for Editorial blocks.
-            $cardsEd.each(function() {
-              var $this = $(this);
-              cardEdHeights.push($this.outerHeight());
-            });
+          // Fix height for Editorial blocks.
+          $cardsEd.each(function() {
+            var $this = $(this);
+            cardEdHeights.push($this.outerHeight());
+          });
 
-            maxHeightEd = Math.max.apply(null, cardEdHeights);
-            minHeightEd = Math.min.apply(null, cardEdHeights);
-            deltaEd = maxHeightEd - minHeightEd;
+          maxHeightEd = Math.max.apply(null, cardEdHeights);
+          minHeightEd = Math.min.apply(null, cardEdHeights);
+          deltaEd = maxHeightEd - minHeightEd;
 
-            $cardsEd.css({"min-height": (maxHeightEd + 7) + "px"});
-          }
+          $cardsEd.css({"min-height": (maxHeightEd + 7) + "px"});
 
           // Fix height for Engagements blocks.
           $contentsEng.each(function() {

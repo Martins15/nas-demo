@@ -53,5 +53,4 @@ features[variable][] = panelizer_node:static_page_allowed_layouts_default
 features[variable][] = panelizer_node:static_page_allowed_types_default
 features[variable][] = panelizer_node:static_page_default
 features[variable][] = scheduler_publish_enable_static_page
-mtime = 1421406320
 project path = sites/all/modules/features

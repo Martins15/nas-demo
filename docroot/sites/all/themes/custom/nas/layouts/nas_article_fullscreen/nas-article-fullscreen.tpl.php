@@ -33,15 +33,6 @@
   <div class="column"><span class="hero-attribution-text extra"><?php print $content['header_hero_attr_text']; ?></span></div>
 </div>
 <?php endif; ?>
-<?php if (trim($content['header_hero_caption_text'])): ?>
-<div class="hero-caption grey-bar">
-  <div class="row">
-    <div class="caption large-10 large-centered columns">
-      <?php print $content['header_hero_caption_text']; ?>
-    </div>
-  </div>
-</div>
-<?php endif; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

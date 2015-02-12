@@ -36,7 +36,7 @@ function frontpage_featured_article_form($form, &$form_state) {
     ),
     '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE),
+    '#pp_crop_styles' => array(NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE),
   );
 
   // The two function calls below are necessary if we want to use a media
@@ -60,13 +60,6 @@ function frontpage_featured_article_form($form, &$form_state) {
     '#default_value' => !empty($conf['article']['entity_id']) ? $conf['article']['entity_id'] : '',
     '#era_entity_type' => 'node',
     '#era_bundles' => array('article'),
-  );
-
-  $form['tagline_text'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Tagline'),
-    '#default_value' => !empty($conf['tagline_text']) ? $conf['tagline_text'] : '',
-    '#required' => TRUE,
   );
 
   return $form;
@@ -102,16 +95,25 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_ARTICLE_IMAGE_STYLE, $image->uri);
+    $image_path = image_style_url(NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE, $image->uri);
   }
 
-  $article_title = filter_xss($node->title);
   $article_raw_link = url('node/' . $node->nid);
+  // Card title
+  if ($ec_title_items = field_get_items('node', $node, 'field_editorial_card_title')) {
+    $article_title = $ec_title_items[0]['safe_value'];
+  }
+  else {
+    $article_title = filter_xss($node->title);
+  }
+
   $subtitle = '';
-  if ($field_items = field_get_items('node', $node, 'field_subtitle')) {
+  if ($ec_subtitle_items = field_get_items('node', $node, 'field_editorial_card_subtitle')) {
+    $subtitle = $ec_subtitle_items[0]['safe_value'];
+  }
+  elseif ($field_items = field_get_items('node', $node, 'field_subtitle')) {
     $subtitle = $field_items[0]['safe_value'];
   }
-  $tagline_text = filter_xss($conf['tagline_text']);
 
   $contextual_links = '';
   if (user_access('featured article pane edit')) {
@@ -152,7 +154,6 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     'article_title' => $article_title,
     'article_raw_link' => $article_raw_link,
     'subtitle' => $subtitle,
-    'tagline_text' => $tagline_text,
     'contextual_links' => $contextual_links,
   ));
 
