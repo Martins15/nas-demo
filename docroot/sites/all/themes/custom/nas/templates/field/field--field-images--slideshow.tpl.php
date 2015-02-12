@@ -87,7 +87,7 @@
               </div>
               <div class="row">
                 <div class="large-9 columns">
-                  <div class="slide-caption"><?php print $image['caption']; ?> <?php print $image['credit']; ?></div>
+                  <div class="slide-caption"><?php print $image['attribution']; ?></div>
                 </div>
               </div>
             </div>

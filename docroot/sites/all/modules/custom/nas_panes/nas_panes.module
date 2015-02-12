@@ -1805,10 +1805,10 @@ function _nas_panes_format_image_attribution($file) {
 
   $parts = array();
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
-    $parts[] = $items[0]['safe_value'];
+    $parts[] = trim($items[0]['safe_value']);
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    $parts[] = 'Photo: ' . $items[0]['safe_value'];
+    $parts[] = 'Photo: ' . trim($items[0]['safe_value']);
   }
   return implode(' ', $parts);
 }

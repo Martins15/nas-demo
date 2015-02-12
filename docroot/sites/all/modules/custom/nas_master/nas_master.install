@@ -1846,5 +1846,5 @@ function nas_master_update_7133() {
  * Revert features.
  */
 function nas_master_update_7134() {
-  features_revert(array('nas_bird_type_feature' => array('field_base')));
+  features_revert(array('nas_bird_type_feature' => array('field_base', 'field_instance')));
 }
