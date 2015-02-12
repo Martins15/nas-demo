@@ -407,3 +407,13 @@ function nas_alters_image_styles_alter(&$styles) {
     }
   }
 }
+
+/**
+ * Implements hook_epsacrop_crop_image_postsave().
+ */
+function nas_alters_epsacrop_crop_image_postsave($image, $settings, $coords, $style_name) {
+  if (module_exists('expire')) {
+    $image_uri = str_replace(url('', array('absolute' => TRUE)), '', image_style_url($style_name, $image->source));
+    ExpireAPI::executeExpiration(array($image_uri => $image_uri));
+  }
+}
