@@ -40,7 +40,7 @@
 <figure class="article-image">
   <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
-    <figcaption>
+    <figcaption class="caption">
       <?php print $figcaption; ?>
     </figcaption>
   <?php endif; ?>

@@ -5602,6 +5602,9 @@ table.row-borders tbody td {
     padding: 2px 5px;
     background-color: rgba(0, 0, 0, 0.2);
   }
+  .hero-attribution .hero-attribution-text a, .hero-attribution-fullscreen .hero-attribution-text a {
+    color: #7CDEFF;
+  }
 }
 .hero-attribution.breakout-hero-attribution, .breakout-hero-attribution.hero-attribution-fullscreen {
   position: absolute;
@@ -8886,11 +8889,11 @@ body.black-bg .slide-img {
 
 .slide-caption {
   color: #888;
+  font-family: "Source Sans Pro",Verdana,sans-serif;
   font-size: 14px;
-  font-style: italic;
   line-height: 20px;
-  text-align: left;
   margin-top: 10px;
+  text-align: left;
 }
 .slide-caption p {
   margin-bottom: 25.5px;

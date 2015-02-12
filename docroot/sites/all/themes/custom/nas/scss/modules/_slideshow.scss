@@ -174,11 +174,11 @@
 }
 .slide-caption {
   color: #888;
+  font-family: "Source Sans Pro",Verdana,sans-serif;
   font-size: $size-text-tiny + 2px;
-  font-style: italic;
   line-height: $size-line-small;
-  text-align: left;
   margin-top: $size-space;
+  text-align: left;
   p {
     margin-bottom: $size-line-base;
     &:last-child {
