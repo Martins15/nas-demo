@@ -199,9 +199,8 @@ function nas_bird_type_feature_field_default_field_instances() {
       ),
       'nas_article_inline_hero' => array(
         'label' => 'hidden',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 2,
       ),
       'nas_bird_teaser_illustration' => array(
@@ -382,9 +381,8 @@ function nas_bird_type_feature_field_default_field_instances() {
       ),
       'nas_article_inline_hero' => array(
         'label' => 'hidden',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'nas_bird_teaser_illustration' => array(
