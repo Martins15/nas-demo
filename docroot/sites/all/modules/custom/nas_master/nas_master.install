@@ -1831,6 +1831,8 @@ function nas_master_update_7131() {
 function nas_master_update_7132() {
   features_revert(array('nas_article_feature' => array('views_view')));
   features_revert(array('nas_birds_family_feature' => array('page_manager_handlers')));
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+  features_revert(array('nas_search_feature' => array('views_view')));
 }
 
 /**

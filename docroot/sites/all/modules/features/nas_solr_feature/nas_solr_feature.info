@@ -36,5 +36,4 @@ features[variable][] = search_active_modules
 features[variable][] = search_api_solr_site_hash
 features[variable][] = search_cron_limit
 features[variable][] = search_default_module
-mtime = 1421431342
 project path = sites/all/modules/features
