@@ -99,8 +99,9 @@ function flyways_partners_render($subtype, $conf, $args, $contexts) {
   $conf['summary'] = check_plain($conf['summary']);
   $conf['read_more_link'] = url($conf['read_more_link']);
   $conf['attribution'] = '';
-  if ($conf['background_image2']) {
+  if (!empty($conf['background_image2'])) {
     $file = file_load($conf['background_image2']);
+    $conf['background_image'] = image_style_url('hero_image', $file->uri);
     $conf['attribution'] = _nas_panes_format_image_attribution($file);
   }
 
