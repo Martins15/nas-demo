@@ -205,6 +205,10 @@ function nas_alters_form_article_node_form_after_build($form, &$form_state) {
  * Validate the Article node form.
  */
 function nas_alters_form_article_node_form_submit($form, &$form_state) {
+  // For overridden panelizer.
+  if (!isset($form_state['values']['panelizer'])) {
+    return;
+  }
   // Change layout to default if Hero image wasn't uploaded.
   $layout = $form_state['values']['panelizer']['page_manager']['name'];
   if (($layout == 'node:article:big_image' || $layout == 'node:article:fullscreen_image' || $layout == 'node:article:inline_hero_photo') && isset($form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid']) && $form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid'] == 0) {
