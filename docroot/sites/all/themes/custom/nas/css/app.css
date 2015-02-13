@@ -12087,6 +12087,18 @@ body.touch .sticky-wrapper {
 .boa-family-block-pager .columns .inner * {
   position: absolute;
 }
+.boa-family-block-pager .columns .inner .previous-text a, .boa-family-block-pager .columns .inner .previous-title a, .boa-family-block-pager .columns .inner .next-text a, .boa-family-block-pager .columns .inner .next-title a {
+  position: static;
+}
+.boa-family-block-pager .columns .inner .previous-text a, .boa-family-block-pager .columns .inner .next-text a {
+  color: inherit;
+}
+.boa-family-block-pager .columns .inner .previous-title a, .boa-family-block-pager .columns .inner .next-title a {
+  color: #000;
+}
+.boa-family-block-pager .columns .inner .previous-title a:hover, .boa-family-block-pager .columns .inner .next-title a:hover {
+  color: #054e69;
+}
 .boa-family-block-pager .previous {
   background: url(../img/pager-arrows.png) no-repeat 0 0;
   display: block;
