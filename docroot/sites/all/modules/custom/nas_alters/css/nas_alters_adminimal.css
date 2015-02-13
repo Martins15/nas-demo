@@ -57,3 +57,7 @@ div.ctools-modal-content .form-type-textarea.form-item label {
 #file-entity-edit .form-item .form-textarea-wrapper {
   margin: 0;
 }
+
+input, select, textarea {
+  font-size: 14px;
+}
