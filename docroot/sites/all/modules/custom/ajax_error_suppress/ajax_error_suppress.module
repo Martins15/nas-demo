@@ -14,7 +14,7 @@ function ajax_error_suppress_library_alter(&$libraries, $module) {
   if ($module == 'system' && isset($libraries['drupal.ajax'])) {
     $libraries['drupal.ajax']['js'][$ajax_js_file_path] = array('group' => JS_DEFAULT, 'weight' => 3);
   }
-  
+
   // Automatically loads autocomplete.js if the autocomplete library is in use.
   $autocomplete_js_file_path = drupal_get_path('module', 'ajax_error_suppress') . '/js/autocomplete.js';
   if ($module == 'system' && isset($libraries['drupal.autocomplete'])) {
