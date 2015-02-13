@@ -402,7 +402,7 @@ function nas_views_feature_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Content: Rendered Node */
+  /* Field: Content: Rendered Content */
   $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['rendered_entity']['field'] = 'rendered_entity';
@@ -626,7 +626,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'load_more';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '12';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '32';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -642,7 +642,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
   $handler->display->display_options['header']['area']['format'] = 'map';
-  /* Sort criterion: Indexed Node: Title string */
+  /* Sort criterion: Indexed Content: Title string */
   $handler->display->display_options['sorts']['title_string']['id'] = 'title_string';
   $handler->display->display_options['sorts']['title_string']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['sorts']['title_string']['field'] = 'title_string';
@@ -663,22 +663,7 @@ function nas_views_feature_views_default_views() {
     'field_bird_sci_name' => 'field_bird_sci_name',
     'title' => 'title',
   );
-  /* Filter criterion: Indexed Node: Bird Call Type */
-  $handler->display->display_options['filters']['field_bird_call_type']['id'] = 'field_bird_call_type';
-  $handler->display->display_options['filters']['field_bird_call_type']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['filters']['field_bird_call_type']['field'] = 'field_bird_call_type';
-  $handler->display->display_options['filters']['field_bird_call_type']['value'] = array();
-  $handler->display->display_options['filters']['field_bird_call_type']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['operator_id'] = 'field_bird_call_type_op';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['label'] = 'Bird Call Type';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['operator'] = 'field_bird_call_type_op';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['identifier'] = 'field_bird_call_type_tid';
-  $handler->display->display_options['filters']['field_bird_call_type']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
-  $handler->display->display_options['filters']['field_bird_call_type']['type'] = 'select';
-  /* Filter criterion: Indexed Node: Family */
+  /* Filter criterion: Indexed Content: Family */
   $handler->display->display_options['filters']['field_bird_family']['id'] = 'field_bird_family';
   $handler->display->display_options['filters']['field_bird_family']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['field_bird_family']['field'] = 'field_bird_family';
@@ -693,7 +678,7 @@ function nas_views_feature_views_default_views() {
     1 => 0,
   );
   $handler->display->display_options['filters']['field_bird_family']['expose']['reduce'] = 0;
-  /* Filter criterion: Indexed Node: Region */
+  /* Filter criterion: Indexed Content: Region */
   $handler->display->display_options['filters']['field_bird_region']['id'] = 'field_bird_region';
   $handler->display->display_options['filters']['field_bird_region']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['field_bird_region']['field'] = 'field_bird_region';
@@ -708,14 +693,14 @@ function nas_views_feature_views_default_views() {
     1 => 0,
   );
   $handler->display->display_options['filters']['field_bird_region']['expose']['reduce'] = 0;
-  /* Filter criterion: Indexed Node: Content type */
+  /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'bird' => 'bird',
   );
-  /* Filter criterion: Indexed Node: Status */
+  /* Filter criterion: Indexed Content: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -1393,11 +1378,11 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['row_options']['view_mode'] = 'nas_teaser_from_network';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Statistics: Page Views in the past 31 days */
-  $handler->display->display_options['sorts']['count']['id'] = 'count';
-  $handler->display->display_options['sorts']['count']['table'] = 'ga_stats_count_pageviews_month';
-  $handler->display->display_options['sorts']['count']['field'] = 'count';
-  $handler->display->display_options['sorts']['count']['order'] = 'DESC';
+  /* Sort criterion: Content: Date (field_article_date) */
+  $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
+  $handler->display->display_options['sorts']['field_article_date_value']['field'] = 'field_article_date_value';
+  $handler->display->display_options['sorts']['field_article_date_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */

@@ -75,9 +75,8 @@
  *
  * Custom variables:
  * - $title_link: Title with link to node page.
- * - $blue_text_link_url: Menu or Custom section url.
- * - $blue_text_link_text: Menu or Custom section text.
- * - $linked_image: Hero image wrapper with A tag linked to node.
+ * - $blue_link: Menu or Custom section link.
+ * - $linked_image: Editorial card image wrapped with A tag linked to node.
  *
  * @see template_preprocess()
  * @see template_preprocess_node()
@@ -93,6 +92,6 @@
   </div>
   <div class="editorial-card-content">
     <?php print $blue_link; ?>
-    <h4 class="editorial-card-title no-margin"><?php print $title; ?></h4>
+    <h4 class="editorial-card-title no-margin"><?php print $title_link; ?></h4>
   </div>
 </div>

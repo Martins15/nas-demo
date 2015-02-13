@@ -411,6 +411,10 @@ function nas_preprocess_node_article(&$vars) {
     }
   }
 
+  if ($vars['view_mode'] == 'nas_teaser_from_network') {
+    nas_preprocess_node_article_news_from_network($vars);
+  }
+
   $editorial_cards_view_modes = array(
     'editorial_card_3x',
     'editorial_card_4x',
@@ -421,6 +425,7 @@ function nas_preprocess_node_article(&$vars) {
     'teaser',
     'teaser_author_page',
     'search_result',
+    'nas_teaser_from_network',
   );
   if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
     nas_preprocess_nodes_editorial_cards($vars);
@@ -464,11 +469,6 @@ function nas_preprocess_node_article(&$vars) {
     if (!empty($node->field_subtitle[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['subtitle'] = $node->field_subtitle[LANGUAGE_NONE][0]['safe_value'];
     }
-  }
-
-  if ($vars['view_mode'] == 'nas_teaser_from_network') {
-    nas_preprocess_node_article_news_from_network($vars);
-    return;
   }
 
   $vars['title'] = check_plain($node->title);
