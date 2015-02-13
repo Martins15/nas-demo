@@ -11,7 +11,7 @@
    */
   Drupal.ajax.prototype.error = function(response, uri) {
     // Suppressing the error message if status = 0.
-    if (response.status != 0) {
+    if (response.status !== 0) {
       alert(Drupal.ajaxError(response, uri));
     }
     // Remove the progress element.

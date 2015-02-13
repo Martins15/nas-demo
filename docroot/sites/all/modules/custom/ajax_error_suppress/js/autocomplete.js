@@ -39,7 +39,7 @@
         url: db.uri + '/' + Drupal.encodePath(searchString),
         dataType: 'json',
         success: function(matches) {
-          if (typeof matches.status == 'undefined' || matches.status != 0) {
+          if (typeof matches.status == 'undefined' || matches.status !== 0) {
             db.cache[searchString] = matches;
             // Verify if these are still the matches the user wants to see.
             if (db.searchString == searchString) {
@@ -50,7 +50,7 @@
         },
         error: function(xmlhttp) {
           // Suppressing the error message if status = 0.
-          if (xmlhttp.status != 0) {
+          if (xmlhttp.status !== 0) {
             alert(Drupal.ajaxError(xmlhttp, db.uri));
           }
         }
