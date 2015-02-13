@@ -421,6 +421,7 @@ function nas_preprocess_node_article(&$vars) {
     'nas_teaser_related_news',
     'nas_editorial_card',
     'nas_node_teaser_no_section_link',
+    'nas_teaser_flyway_landing',
     'teaser',
     'teaser_author_page',
     'search_result',
