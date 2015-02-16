@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Implementation of ajax error suppress functionality.
+ * @author Imre Horján <imre.horjan@penceo.com>
+ */
+
+/**
+ * Implements hook_libray_alter().
+ */
+function ajax_error_suppress_library_alter(&$libraries, $module) {
+  // Automatically loads ajax.js if the ajax library is in use.
+  $ajax_js_file_path = drupal_get_path('module', 'ajax_error_suppress') . '/js/ajax.js';
+  if ($module == 'system' && isset($libraries['drupal.ajax'])) {
+    $libraries['drupal.ajax']['js'][$ajax_js_file_path] = array('group' => JS_DEFAULT, 'weight' => 3);
+  }
+
+  // Automatically loads autocomplete.js if the autocomplete library is in use.
+  $autocomplete_js_file_path = drupal_get_path('module', 'ajax_error_suppress') . '/js/autocomplete.js';
+  if ($module == 'system' && isset($libraries['drupal.autocomplete'])) {
+    $libraries['drupal.autocomplete']['js'][$autocomplete_js_file_path] = array('group' => JS_DEFAULT, 'weight' => 3);
+  }
+}

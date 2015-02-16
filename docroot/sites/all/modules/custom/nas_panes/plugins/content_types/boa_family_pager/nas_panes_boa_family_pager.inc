@@ -42,21 +42,28 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
   $prev_key = $current - 1 < 0 ? count($links) - 1 : $current - 1;
   $next_key = $current + 1 < count($links) ? $current + 1 : 0;
 
-  list(, $nid) = explode('/', $links[$prev_key]['link_path']);
+  $prev_path = $links[$prev_key]['link_path'];
+  list(, $nid) = explode('/', $prev_path);
   $prev_node = node_load($nid);
-  $prev_title = check_plain($prev_node->title);
-  $prev_link = l('', $links[$prev_key]['link_path'], array('attributes' => array('class' => 'previous')));
-  list(, $nid) = explode('/', $links[$next_key]['link_path']);
+  $prev_title_link = l($prev_node->title, $prev_path);
+  $prev_text_link = l(t('Previous Family'), $prev_path);
+  $prev_link = l('', $prev_path, array('attributes' => array('class' => 'previous')));
+
+  $next_path = $links[$next_key]['link_path'];
+  list(, $nid) = explode('/', $next_path);
   $next_node = node_load($nid);
-  $next_title = check_plain($next_node->title);
-  $next_link = l('', $links[$next_key]['link_path'], array('attributes' => array('class' => 'next')));
+  $next_title_link = l($next_node->title, $next_path);
+  $next_text_link = l(t('Next Family'), $next_path);
+  $next_link = l('', $next_path, array('attributes' => array('class' => 'next')));
 
   $block = new stdClass();
   $block->content = '';
   $block->content = theme('boa_family_pager', array(
-      'prev_title' => $prev_title,
+      'prev_text_link' => $prev_text_link,
+      'prev_title_link' => $prev_title_link,
       'prev_link' => $prev_link,
-      'next_title' => $next_title,
+      'next_text_link' => $next_text_link,
+      'next_title_link' => $next_title_link,
       'next_link' => $next_link,
   ));
 

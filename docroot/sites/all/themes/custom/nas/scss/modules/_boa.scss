@@ -407,9 +407,32 @@
     .inner {
       height: 100px;
       position: relative;
-        * {
+
+      * {
         position: absolute;
       }
+
+      .previous-text, .previous-title, .next-text, .next-title {
+        a {
+          position: static;
+        }
+      }
+
+      .previous-text, .next-text {
+        a {
+          color: inherit;
+        }
+      }
+
+      .previous-title, .next-title {
+        a {
+          color: #000;
+          &:hover {
+            color: #054e69;
+          }
+        }
+      }
+
     }
   }
 

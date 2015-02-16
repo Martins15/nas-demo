@@ -1831,6 +1831,8 @@ function nas_master_update_7131() {
 function nas_master_update_7132() {
   features_revert(array('nas_article_feature' => array('views_view')));
   features_revert(array('nas_birds_family_feature' => array('page_manager_handlers')));
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+  features_revert(array('nas_search_feature' => array('views_view')));
 }
 
 /**
@@ -1847,4 +1849,20 @@ function nas_master_update_7133() {
  */
 function nas_master_update_7134() {
   features_revert(array('nas_bird_type_feature' => array('field_base', 'field_instance')));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7135() {
+  features_revert(array('nas_article_feature' => array('field_base')));
+  module_enable(array('ajax_error_suppress'));
+}
+
+/**
+ * Download GeoLite2 city database.
+ */
+function nas_master_update_7136() {
+  $result = drupal_http_request('http://nas.wearepropeople.md/cache/GeoLite2-City.mmdb');
+  file_unmanaged_save_data($result->data, 'public://GeoLite2-City.mmdb', FILE_EXISTS_REPLACE);
 }

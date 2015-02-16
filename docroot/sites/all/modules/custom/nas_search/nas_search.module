@@ -95,6 +95,13 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => '_nas_search_node_get_type_for_search',
     'calculated' => TRUE,
   );
+  $info['node']['properties']['node_date'] = array(
+    'label' => t('Node date'),
+    'type' => 'date',
+    'description' => t('Node date'),
+    'getter callback' => '_nas_search_node_get_node_date',
+    'calculated' => TRUE,
+  );
 }
 
 /**
@@ -215,7 +222,7 @@ function nas_search_block_view_alter(&$data, $block) {
 }
 
 /**
- * Implementes hook_facet_items_alter().
+ * Implements hook_facet_items_alter().
  */
 function nas_search_facet_items_alter(&$build, &$settings) {
   if ($settings->facet == 'month') {
@@ -223,4 +230,15 @@ function nas_search_facet_items_alter(&$build, &$settings) {
       $build[$key]['#markup'] = date('F', mktime(NULL, NULL, NULL, $item['#indexed_value']));
     }
   }
+}
+
+/**
+ * Property callback. Returns node date.
+ */
+function _nas_search_node_get_node_date($entity, $options, $name, $entity_type) {
+  if (!empty($entity->field_article_date[LANGUAGE_NONE][0]['value'])) {
+    return strtotime($entity->field_article_date[LANGUAGE_NONE][0]['value']);
+  }
+
+  return $entity->created;
 }

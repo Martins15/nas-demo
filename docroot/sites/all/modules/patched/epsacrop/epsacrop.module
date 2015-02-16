@@ -417,6 +417,10 @@ function epsacrop_crop_image(stdClass $image, $settings) {
       else {
         $style_name = _epsacrop_get_style_name_from_url();
       }
+
+      // Trigger presave hook.
+      module_invoke_all('epsacrop_crop_image_presave', $image, $settings, $coords, $style_name);
+
       if (!empty($style_name)) {
         $style = _epsacrop_load_style($style_name);
         if (!empty($style)) {
@@ -427,7 +431,14 @@ function epsacrop_crop_image(stdClass $image, $settings) {
             $coord = isset($coords[$fid][$preset]) ? $coords[$fid][$preset] : '';
             if (!empty($coord)) {
               if (image_crop($image, $coord['x'], $coord['y'], $coord['w'], $coord['h'])) {
-                return image_scale($image, $settings['width'], $settings['height']);
+                $proceed = image_scale($image, $settings['width'], $settings['height']);
+
+                // Trigger postsave hook.
+                if ($proceed) {
+                  module_invoke_all('epsacrop_crop_image_postsave', $image, $settings, $coords, $style_name);
+                }
+
+                return $proceed;
               }
             }
           }
