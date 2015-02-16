@@ -15,7 +15,7 @@ header('Expires: 0');
 
 define('GEOIP_DATABASE', '../sites/default/files/GeoLite2-City.mmdb');
 
-// Get client ip. Can be in $_GET query or server env.
+// Get client IP. Can be in $_GET query or server env.
 $ip = !empty($_GET['ip']) ? $_GET['ip'] :
   getenv('HTTP_CLIENT_IP') ?:
   getenv('HTTP_X_FORWARDED_FOR') ?:
@@ -25,17 +25,21 @@ $ip = !empty($_GET['ip']) ? $_GET['ip'] :
   getenv('REMOTE_ADDR');
 
 try {
+  if (!file_exists(__DIR__ . '/' . GEOIP_DATABASE)) {
+    throw new Exception('Database file not found.');
+  }
+
   $reader = new Reader(__DIR__ . '/' . GEOIP_DATABASE);
   $response = $reader->get($ip);
   if (empty($response)) {
     $response = array(
-      'empty' => TRUE,
+      'code' => 0,
       'message' => 'Location is not found',
     );
   }
   echo json_encode($response);
+  $reader->close();
 }
 catch (Exception $e) {
   echo json_encode(array('code' => $e->getCode(), 'message' => $e->getMessage()));
 }
-$reader->close();
