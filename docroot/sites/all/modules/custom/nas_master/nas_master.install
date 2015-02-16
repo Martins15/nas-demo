@@ -1858,3 +1858,11 @@ function nas_master_update_7135() {
   features_revert(array('nas_article_feature' => array('field_base')));
   module_enable(array('ajax_error_suppress'));
 }
+
+/**
+ * Download GeoLite2 city database.
+ */
+function nas_master_update_7139() {
+  $result = drupal_http_request('http://nas.wearepropeople.md/cache/GeoLite2-City.mmdb');
+  file_unmanaged_save_data($result->data, 'public://GeoLite2-City.mmdb', FILE_EXISTS_REPLACE);
+}
