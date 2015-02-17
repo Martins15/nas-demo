@@ -25,7 +25,7 @@ function nas_solr_feature_default_search_api_index() {
     "name" : "Default node index",
     "machine_name" : "default_node_index",
     "description" : "An automatically created search index for indexing node data. Might be configured to specific needs.",
-    "server" : "solr_4_x",
+    "server" : "acquia_search",
     "item_type" : "node",
     "options" : {
       "index_directly" : 1,
