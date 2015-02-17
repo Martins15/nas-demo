@@ -112,78 +112,6 @@ function nas_beans_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-slideshow-field_wysiwyg_slideshow_title'
-  $field_instances['bean-slideshow-field_wysiwyg_slideshow_title'] = array(
-    'bundle' => 'slideshow',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'bean_image_colorbox' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'bean_image_without_colorbox' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'field_name' => 'field_wysiwyg_slideshow_title',
-    'label' => 'Title',
-    'required' => 1,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'full_html' => 'full_html',
-          'map' => 'map',
-          'plain_text' => 'plain_text',
-          'video' => 'video',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'full_html' => array(
-              'weight' => 0,
-            ),
-            'map' => array(
-              'weight' => -8,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-            'video' => array(
-              'weight' => 0,
-            ),
-          ),
-        ),
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 2,
-    ),
-  );
-
   // Exported field_instance: 'bean-wysiwyg_image-field_wysiwyg_image'
   $field_instances['bean-wysiwyg_image-field_wysiwyg_image'] = array(
     'bundle' => 'wysiwyg_image',
@@ -293,7 +221,6 @@ function nas_beans_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Image');
   t('Images');
-  t('Title');
   t('Width mode');
 
   return $field_instances;
