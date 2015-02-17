@@ -1858,7 +1858,7 @@ function nas_master_update_7135() {
 }
 
 /**
- * Download GeoLite2 city database. Revers features.
+ * Download GeoLite2 city database. Revert features.
  */
 function nas_master_update_7136() {
   $result = drupal_http_request('http://nas.wearepropeople.md/cache/GeoLite2-City.mmdb');
