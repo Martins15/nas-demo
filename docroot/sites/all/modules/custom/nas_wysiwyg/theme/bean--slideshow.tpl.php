@@ -34,11 +34,6 @@
   </div>
 </div>
 <div class="slideshow clearfix">
-  <div class="row slideshow-title">
-    <div class="column">
-      <h3><?php print $title; ?></h3>
-    </div>
-  </div>
   <?php if ($count > 1): ?>
   <div class="slideshow-indicator row">
     <div class="column large-offset-9 large-3">

@@ -1866,3 +1866,11 @@ function nas_master_update_7136() {
   $result = drupal_http_request('http://nas.wearepropeople.md/cache/GeoLite2-City.mmdb');
   file_unmanaged_save_data($result->data, 'public://GeoLite2-City.mmdb', FILE_EXISTS_REPLACE);
 }
+
+/**
+ * Revert features, delete field_wysiwyg_slideshow_title field.
+ */
+function nas_master_update_7137() {
+  features_revert_module('nas_beans_feature');
+  field_delete_field('field_wysiwyg_slideshow_title');
+}
