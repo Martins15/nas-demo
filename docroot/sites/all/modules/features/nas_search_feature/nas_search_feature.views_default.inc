@@ -90,13 +90,13 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Indexed Content: Date */
-  $handler->display->display_options['sorts']['field_article_date']['id'] = 'field_article_date';
-  $handler->display->display_options['sorts']['field_article_date']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['sorts']['field_article_date']['field'] = 'field_article_date';
-  $handler->display->display_options['sorts']['field_article_date']['order'] = 'DESC';
-  $handler->display->display_options['sorts']['field_article_date']['exposed'] = TRUE;
-  $handler->display->display_options['sorts']['field_article_date']['expose']['label'] = 'Date';
+  /* Sort criterion: Indexed Content: Node date */
+  $handler->display->display_options['sorts']['node_date']['id'] = 'node_date';
+  $handler->display->display_options['sorts']['node_date']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['node_date']['field'] = 'node_date';
+  $handler->display->display_options['sorts']['node_date']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['node_date']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['node_date']['expose']['label'] = 'Node date';
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_node_index';

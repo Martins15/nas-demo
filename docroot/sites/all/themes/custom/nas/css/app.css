@@ -4925,6 +4925,11 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   }
 }
 
+.sidebar > .local-cnc, .article-sidebar > .local-cnc {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* @todo refactor the hell out of this */
 .mailing-list .row:before {
   content: "";
@@ -5549,6 +5554,7 @@ table.row-borders tbody td {
 @media only screen and (min-width: 601px) {
   .hero-title.big {
     font-size: 64px;
+    line-height: 64px;
   }
 }
 
@@ -8873,7 +8879,6 @@ body.black-bg .slideshow {
   pointer-events: none;
   overflow: hidden;
   text-align: center;
-  background-color: #d4d4d4;
 }
 body.black-bg .slide-img {
   background-color: #202020;
@@ -12086,6 +12091,18 @@ body.touch .sticky-wrapper {
 }
 .boa-family-block-pager .columns .inner * {
   position: absolute;
+}
+.boa-family-block-pager .columns .inner .previous-text a, .boa-family-block-pager .columns .inner .previous-title a, .boa-family-block-pager .columns .inner .next-text a, .boa-family-block-pager .columns .inner .next-title a {
+  position: static;
+}
+.boa-family-block-pager .columns .inner .previous-text a, .boa-family-block-pager .columns .inner .next-text a {
+  color: inherit;
+}
+.boa-family-block-pager .columns .inner .previous-title a, .boa-family-block-pager .columns .inner .next-title a {
+  color: #000;
+}
+.boa-family-block-pager .columns .inner .previous-title a:hover, .boa-family-block-pager .columns .inner .next-title a:hover {
+  color: #054e69;
 }
 .boa-family-block-pager .previous {
   background: url(../img/pager-arrows.png) no-repeat 0 0;

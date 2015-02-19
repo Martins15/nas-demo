@@ -1,0 +1,5 @@
+name = AJAX Error Suppress
+description = This module aims to supress Drupal core's default AJAX error (especially status 0).
+core = 7.x
+package = Ajax Error Suppress
+version = 7.x-1.2

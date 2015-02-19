@@ -1848,3 +1848,30 @@ function nas_master_update_7133() {
 function nas_master_update_7134() {
   features_revert(array('nas_bird_type_feature' => array('field_base', 'field_instance')));
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7135() {
+  features_revert(array('nas_article_feature' => array('field_base')));
+  module_enable(array('ajax_error_suppress'));
+}
+
+/**
+ * Download GeoLite2 city database. Revert features.
+ */
+function nas_master_update_7136() {
+  $result = drupal_http_request('http://nas.wearepropeople.md/cache/GeoLite2-City.mmdb');
+  file_unmanaged_save_data($result->data, 'public://GeoLite2-City.mmdb', FILE_EXISTS_REPLACE);
+
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+  features_revert(array('nas_search_feature' => array('views_view')));
+}
+
+/**
+ * Revert features, delete field_wysiwyg_slideshow_title field.
+ */
+function nas_master_update_7137() {
+  features_revert_module('nas_beans_feature');
+  field_delete_field('field_wysiwyg_slideshow_title');
+}
