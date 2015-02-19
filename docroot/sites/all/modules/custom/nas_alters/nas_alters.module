@@ -333,7 +333,7 @@ function _nas_alters_menu_admin_page($menu) {
  */
 function _nas_alters_is_article_full_view_mode_page() {
   $args = arg();
-  return $args[0] == 'node' && is_numeric($args[1]) && empty($args[2]);
+  return $args[0] == 'node' && !empty($args[1]) && is_numeric($args[1]) && empty($args[2]);
 }
 
 /**
@@ -419,5 +419,17 @@ function nas_alters_epsacrop_crop_image_postsave($image, $settings, $coords, $st
   if (module_exists('expire')) {
     $image_uri = str_replace(url('', array('absolute' => TRUE)), '', image_style_url($style_name, $image->source));
     ExpireAPI::executeExpiration(array($image_uri => $image_uri));
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function nas_alters_node_presave($node) {
+  if ($node->type !== 'article' || empty($node->original)) {
+    return;
+  }
+  if ($node->status == NODE_PUBLISHED && $node->original->status == NODE_NOT_PUBLISHED) {
+    $node->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s');
   }
 }
