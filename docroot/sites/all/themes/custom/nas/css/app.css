@@ -4925,6 +4925,11 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   }
 }
 
+.sidebar > .local-cnc, .article-sidebar > .local-cnc {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* @todo refactor the hell out of this */
 .mailing-list .row:before {
   content: "";

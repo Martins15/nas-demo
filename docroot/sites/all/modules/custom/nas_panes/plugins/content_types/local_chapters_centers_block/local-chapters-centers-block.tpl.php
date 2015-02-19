@@ -5,7 +5,7 @@
  */
 ?>
 
-<section class="sidebar-section medium-6 large-12 columns">
+<section class="sidebar-section medium-6 large-12 columns local-cnc">
   <div class="sidebar-section editorial-card <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
     <?php print $contextual_links; ?>
 
