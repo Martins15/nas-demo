@@ -421,3 +421,15 @@ function nas_alters_epsacrop_crop_image_postsave($image, $settings, $coords, $st
     ExpireAPI::executeExpiration(array($image_uri => $image_uri));
   }
 }
+
+/**
+ * Implements hook_node_presave().
+ */
+function nas_alters_node_presave($node) {
+  if ($node->type !== 'article' || empty($node->original)) {
+    return;
+  }
+  if ($node->status == NODE_PUBLISHED && $node->original->status == NODE_NOT_PUBLISHED) {
+    $node->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s');
+  }
+}
