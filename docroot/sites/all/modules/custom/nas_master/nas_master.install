@@ -1883,3 +1883,17 @@ function nas_master_update_7138() {
   db_query('UPDATE {field_data_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
   db_query('UPDATE {field_revision_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
 }
+
+/**
+ * Fix BOA images.
+ *
+ * BOA images have incorrect URI in database with triple "/".
+ */
+function nas_master_update_7139() {
+  $needle = 'public:///';
+  $replace = 'public://';
+  db_update('file_managed')
+    ->expression('uri', 'replace(uri, :needle, :replace)', array(':needle' => $needle, ':replace' => $replace))
+    ->condition('uri', db_like($needle) . '%', 'LIKE')
+    ->execute();
+}
