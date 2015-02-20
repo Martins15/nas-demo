@@ -1,7 +1,7 @@
 (function($) {
   Drupal.behaviors.slideshowCT = {
     attach: function(context, settings) {
-    if($(".slideshow").length) {
+    if ($(".slideshow").length) {
       var Slideshow = {},
           scroll;
 
@@ -36,12 +36,12 @@
 
         // Get the max height of all landscape
         var slideHeights = $slides.not(".portrait").map(function() {
-          return $(this).find(".slide-img img").height();
+          return $(this).find(".slide-img img").data("height");
         }).get();
 
         // Get the max height of all images
         var slidesImgHeights = $slides.map(function() {
-          return $(this).find(".slide-img img").height();
+          return $(this).find(".slide-img img").data("height");
         }).get();
 
         var minSlideImgHeight = Math.min.apply(null, slidesImgHeights);
@@ -68,7 +68,7 @@
 
         // Get the max width of all images after resizing
         var slidesImgWidths = $slides.map(function() {
-          return $(this).find(".slide-img img").width();
+          return $(this).find(".slide-img img").data("width");
         }).get();
 
         var maxSlideImgWidth = Math.max.apply(null, slidesImgWidths);
@@ -128,6 +128,22 @@
         var $body = $(".slideshow"),
             $indicator = $body.find(".slideshow-indicator"),
             $controls = $body.find(".slideshow-control");
+
+        // Move src, width, height attributes for each images into 'data'
+        // Keep source for first two images of each slideshow.
+        $(".slideshow").each(function() {
+          $(this)
+            .find(".slide .slide-img img")
+            .each(function(i) {
+              var $image = $(this);
+              $image
+                .data("width", $image.attr("width")).removeAttr("width")
+                .data("height", $image.attr("height")).removeAttr("height");
+              if (i < 2) return;
+              $image
+                .data("src", $image.attr("src")).removeAttr("src");
+            });
+        });
 
         Slideshow._setSizes($body);
 
@@ -221,6 +237,13 @@
           }
           else if ($this.hasClass("restart")) {
             scroll.goToPage(0, 0, 400);
+          }
+
+          // Preload image of next slide.
+          var $next_image = $(scroll.wrapper)
+            .find(".slide:eq(" + (scroll.currentPage.pageX + 1) + ") .slide-img img");
+          if ($next_image.attr("src") !== "") {
+            $next_image.attr("src", $next_image.data("src"));
           }
         });
       };
