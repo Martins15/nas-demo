@@ -1855,10 +1855,6 @@ function nas_master_update_7134() {
 function nas_master_update_7135() {
   features_revert(array('nas_article_feature' => array('field_base')));
   module_enable(array('ajax_error_suppress'));
-
-  // Set country of location address field.
-  db_query('UPDATE {field_data_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
-  db_query('UPDATE {field_revision_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
 }
 
 /**
@@ -1878,4 +1874,12 @@ function nas_master_update_7136() {
 function nas_master_update_7137() {
   features_revert_module('nas_beans_feature');
   field_delete_field('field_wysiwyg_slideshow_title');
+}
+
+/**
+ * Set country of location address field.
+ */
+function nas_master_update_7138() {
+  db_query('UPDATE {field_data_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
+  db_query('UPDATE {field_revision_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
 }
