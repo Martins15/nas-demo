@@ -24,10 +24,9 @@
       <?php if (!empty($images)) : ?>
         <?php foreach ($images as $image) : ?>
           <?php if ($image['first']) : ?>
-
             <div class="slide title-slide">
               <div class="slide-img">
-                <img src="<?php print $image['url']; ?>" alt="<?php print $image['alt']; ?>" title="<?php print $image['title']; ?>" />
+                <?php print $image['render']; ?>
               </div>
               <div class="title-slide-content row">
                 <div class="columns large-10 large-offset-1 text-container">
@@ -49,7 +48,7 @@
 
             <div class="slide end-slide">
               <div class="slide-img">
-                <img src="<?php print $image['url']; ?>" alt="<?php print $image['alt']; ?>" title="<?php print $image['title']; ?>" />
+                <?php print $image['render']; ?>
               </div>
               <div class="end-slide-content row">
                 <div class="column">
@@ -83,7 +82,7 @@
 
             <div class="slide">
               <div class="slide-img">
-                <img src="<?php print $image['url']; ?>" alt="<?php print $image['alt']; ?>" title="<?php print $image['title']; ?>" />
+                <?php print $image['render']; ?>
               </div>
               <div class="row">
                 <div class="large-9 columns">

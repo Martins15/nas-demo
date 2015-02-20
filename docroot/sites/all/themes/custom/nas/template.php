@@ -854,7 +854,6 @@ function nas_image($variables) {
     'boa_family_species',
     'magazine_issue_cover',
     'our_leadership',
-    'wysiwyg_slide',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -1206,7 +1205,7 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       $image_file = (object) $image;
       // Add regular slide.
       $content_image = array(
-        'url' => image_style_url('slideshow', $image_file->uri),
+        'render' => '',
         // Additional fields to display on each slide.
         'attribution' => '',
         'alt' => '',
@@ -1221,6 +1220,15 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       if ($items = field_get_items('file', $image_file, 'field_file_image_title_text')) {
         $content_image['title'] = check_plain($items[0]['value']);
       }
+      $content_image['render'] = theme('image_style', array(
+        'style_name' => 'slideshow',
+        'path' => $image_file->uri,
+        'height' => $image_file->height,
+        'width' => $image_file->width,
+        'alt' => $content_image['alt'],
+        'title' => $content_image['title'],
+      ));
+
       if (function_exists('_nas_panes_format_image_attribution')) {
         $content_image['attribution'] = _nas_panes_format_image_attribution($image_file);
       }
