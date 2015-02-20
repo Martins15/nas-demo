@@ -1875,3 +1875,11 @@ function nas_master_update_7137() {
   features_revert_module('nas_beans_feature');
   field_delete_field('field_wysiwyg_slideshow_title');
 }
+
+/**
+ * Set country of location address field.
+ */
+function nas_master_update_7138() {
+  db_query('UPDATE {field_data_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
+  db_query('UPDATE {field_revision_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
+}
