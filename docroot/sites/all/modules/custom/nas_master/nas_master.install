@@ -1941,3 +1941,25 @@ function nas_master_update_7140(&$sandbox) {
     watchdog('nas_master', '@count birds images and related birds remigrated.', array('@count' => $sandbox['progress']));
   }
 }
+
+/**
+ * Replace incorrect links and image sources.
+ */
+function nas_master_update_7141() {
+  foreach (array('field_data_body', 'field_revision_body') as $table) {
+    // http://audubon.wearepropeople.md/ -> http://www.audubon.org/.
+    db_update($table)
+      ->expression('body_value', 'replace(body_value, :old, :new)', array(
+        ':old' => 'http://audubon.wearepropeople.md/',
+        ':new' => 'http://www.audubon.org/'))
+      ->condition('body_value', '%http://audubon.wearepropeople.md/%', 'LIKE')
+      ->execute();
+    // http://nas.wearepropeople.md/staging/ -> http://www.audubon.org/.
+    db_update($table)
+      ->expression('body_value', 'replace(body_value, :old, :new)', array(
+        ':old' => 'http://nas.wearepropeople.md/staging/',
+        ':new' => 'http://www.audubon.org/'))
+      ->condition('body_value', '%http://nas.wearepropeople.md/staging/%', 'LIKE')
+      ->execute();
+  }
+}
