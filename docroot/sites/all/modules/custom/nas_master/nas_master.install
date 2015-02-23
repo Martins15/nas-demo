@@ -1949,19 +1949,19 @@ function nas_master_update_7140(&$sandbox) {
  */
 function nas_master_update_7141() {
   foreach (array('field_data_body', 'field_revision_body') as $table) {
-    // http://audubon.wearepropeople.md/ -> http://www.audubon.org/.
+    // ://audubon.wearepropeople.md/ -> ://audubon.prod.acquia-sites.com/ .
     db_update($table)
       ->expression('body_value', 'replace(body_value, :old, :new)', array(
-        ':old' => 'http://audubon.wearepropeople.md/',
-        ':new' => 'http://www.audubon.org/'))
-      ->condition('body_value', '%http://audubon.wearepropeople.md/%', 'LIKE')
+        ':old' => '://audubon.wearepropeople.md/',
+        ':new' => '://audubon.prod.acquia-sites.com/'))
+      ->condition('body_value', '%://audubon.wearepropeople.md/%', 'LIKE')
       ->execute();
-    // http://nas.wearepropeople.md/staging/ -> http://www.audubon.org/.
+    // ://nas.wearepropeople.md/staging/ -> ://www.audubon.org/.
     db_update($table)
       ->expression('body_value', 'replace(body_value, :old, :new)', array(
-        ':old' => 'http://nas.wearepropeople.md/staging/',
-        ':new' => 'http://www.audubon.org/'))
-      ->condition('body_value', '%http://nas.wearepropeople.md/staging/%', 'LIKE')
+        ':old' => '://nas.wearepropeople.md/staging/',
+        ':new' => '://www.audubon.org/'))
+      ->condition('body_value', '%://nas.wearepropeople.md/staging/%', 'LIKE')
       ->execute();
   }
 }
