@@ -1897,3 +1897,47 @@ function nas_master_update_7139() {
     ->condition('uri', db_like($needle) . '%', 'LIKE')
     ->execute();
 }
+
+/**
+ * Update articles layout.
+ */
+function nas_master_update_7140(&$sandbox) {
+  $chunk = 10;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    // Lookup nids of Article nodes with Standart Hero Photo panelizer layout
+    // that have no hero images uploaded.
+    $q = db_select('node', 'n');
+    $q->innerJoin('panelizer_entity', 'pe', 'pe.entity_id = n.nid AND pe.entity_type = :entity_type', array(':entity_type' => 'node'));
+    $q->leftJoin('field_data_field_hero_image', 'hi', 'hi.entity_id = n.nid AND hi.entity_type = :entity_type and hi.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => 0,
+    ));
+    $q->addField('n', 'nid');
+    $q->condition('n.type', 'article');
+    $q->condition('n.status', 1);
+    $q->condition('pe.name', 'node:article:big_image');
+    $q->isNull('hi.entity_id');
+    $sandbox['nids'] = $q->execute()->fetchAllKeyed(0, 0);
+    $sandbox['max'] = count($sandbox['nids']);
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    $sandbox['progress'] += count($nids);
+    // Set nodes' panelizer layout to default.
+    $nodes = node_load_multiple($nids);
+    foreach ($nodes as $node) {
+      $node->panelizer['page_manager']->name = 'node:article:default';
+      node_save($node);
+    }
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count birds images and related birds remigrated.', array('@count' => $sandbox['progress']));
+  }
+}
