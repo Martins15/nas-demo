@@ -212,6 +212,10 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{HTTP_HOST} ^gulfoilspill\.audubon\.org [NC]
   RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
 
+  # chapterservices.audubon.org/[whatever] -> www.audubon.org/[whatever]
+  RewriteCond %{HTTP_HOST} ^chapterservices\.audubon\.org [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
   # If your site can be accessed both with and without the 'www.' prefix, you
   # can use one of the following settings to redirect users to your preferred
   # URL, either WITH or WITHOUT the 'www.' prefix. Choose ONLY one option:
