@@ -1902,7 +1902,7 @@ function nas_master_update_7139() {
  * Update articles layout.
  */
 function nas_master_update_7140(&$sandbox) {
-  $chunk = 10;
+  $chunk = 100;
   if (!isset($sandbox['progress'])) {
     $sandbox['progress'] = 0;
     // Lookup nids of Article nodes with Standart Hero Photo panelizer layout
@@ -1927,14 +1927,13 @@ function nas_master_update_7140(&$sandbox) {
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
     $sandbox['progress'] += count($nids);
     // Set nodes' panelizer layout to default.
-    $nodes = node_load_multiple($nids);
-    foreach ($nodes as $node) {
-      $node->panelizer['page_manager']->name = 'node:article:default';
-      variable_set('menu_rebuild_needed', FALSE);
-      lock_acquire('menu_rebuild');
-      node_save($node);
-      lock_release('menu_rebuild');
-    }
+    db_update('panelizer_entity')
+      ->fields(array(
+        'name' => 'node:article:default',
+      ))
+      ->condition('entity_id', $nids)
+      ->condition('entity_type', 'node')
+      ->execute();
   }
 
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
