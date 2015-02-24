@@ -1988,4 +1988,16 @@ function nas_master_update_7143() {
 function nas_master_update_7144() {
   module_enable(array('captcha', 'recaptcha', 'nas_captcha_feature'));
   features_revert_module('nas_captcha_feature');
+
+  db_update('captcha_points')
+    ->fields(array('captcha_type' => 'default'))
+    ->condition('form_id', array(
+      'contact_site_form', 'user_login', 'user_login_block', 'user_pass', 'user_register_form'
+    ))
+    ->execute();
+  db_insert('captcha_points')
+    ->fields(array('form_id'))
+    ->values(array('form_id' => 'nas_footer_mail_subscription_form'))
+    ->values(array('form_id' => 'views_exposed_form'))
+    ->execute();
 }
