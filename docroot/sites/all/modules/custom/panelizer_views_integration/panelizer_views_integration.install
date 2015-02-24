@@ -1,0 +1,13 @@
+<?php
+/**
+ * @file
+ * For update hooks.
+ */
+
+/**
+ * Add index to panelizer_entity table to be able to lookup by revision id.
+ */
+function panelizer_views_integration_update_7000() {
+  $fields = array('entity_type', 'revision_id', 'view_mode');
+  db_add_index('panelizer_entity', 'entity_type_revision_id_view_mode', $fields);
+}

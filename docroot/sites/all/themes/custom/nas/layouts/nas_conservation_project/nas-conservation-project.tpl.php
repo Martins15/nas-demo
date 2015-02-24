@@ -26,7 +26,7 @@
 </div>
 <div class="hero-attribution row">
   <?php if (trim($content['hero_attribution'])): ?>
-    <p class="column"><?php print $content['hero_attribution']; ?></p>
+    <p class="column"><span class="hero-attribution-text extra"><?php print $content['hero_attribution']; ?></span></p>
   <?php endif; ?>
 </div>
 <section class="global-content with-padding">

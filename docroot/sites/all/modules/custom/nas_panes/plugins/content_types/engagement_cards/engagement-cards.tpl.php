@@ -34,7 +34,7 @@
 <div class="row">
   <div class="card-set-social social-sharing">
     <span class="social-sharing-caption white"><?php print t('Spread the word. It’s the least you can do.'); ?></span>
-    <a class="social-sharing-icon white" target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print t('Join me and help protect %23birds. Learn more about @audubonsociety\'s work to protect the habitat that supports us all: http://audubon.org'); ?>"><i class="icon-twitter"></i></a>
+    <a class="social-sharing-icon white" target="_blank" href="http://twitter.com/share?url=/&amp;text=<?php print t('Join me and help save %23birds. Learn more about @audubonsociety\'s work to protect the habitat that supports us all: http://audubon.org'); ?>"><i class="icon-twitter"></i></a>
     <a class="social-sharing-icon white" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://audubon.org"><i class="icon-facebook"></i></a>
   </div>
 </div>

@@ -18,7 +18,7 @@ function panelizer_views_integration_views_data() {
 
   // Advertise this table as a possible base table
   $data['panelizer_entity']['table']['base'] = array(
-    'field' => 'nid',
+    'field' => 'vid',
     'title' => t('Panelizer'),
     'weight' => -10,
     'defaults' => array(
@@ -29,8 +29,8 @@ function panelizer_views_integration_views_data() {
   $data['panelizer_entity']['table']['join']  = array(
     'node' => array(
       'table' => 'panelizer_entity',
-      'left_field' => 'nid',
-      'field' => 'entity_id',
+      'left_field' => 'vid',
+      'field' => 'revision_id',
       'type' => 'LEFT OUTER',
       'extra' => 'panelizer_entity.entity_type=\'node\'',
     )

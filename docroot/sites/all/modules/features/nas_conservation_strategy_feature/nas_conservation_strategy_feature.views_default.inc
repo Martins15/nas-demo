@@ -38,17 +38,7 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'conservation_strategy_list_teaser';
   $handler->display->display_options['row_options']['links'] = FALSE;
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_conservation_project_target_id']['id'] = 'field_conservation_project_target_id';
-  $handler->display->display_options['relationships']['field_conservation_project_target_id']['table'] = 'field_data_field_conservation_project';
-  $handler->display->display_options['relationships']['field_conservation_project_target_id']['field'] = 'field_conservation_project_target_id';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_conservation_strategy_target_id']['id'] = 'field_conservation_strategy_target_id';
-  $handler->display->display_options['relationships']['field_conservation_strategy_target_id']['table'] = 'field_data_field_conservation_strategy';
-  $handler->display->display_options['relationships']['field_conservation_strategy_target_id']['field'] = 'field_conservation_strategy_target_id';
-  $handler->display->display_options['relationships']['field_conservation_strategy_target_id']['relationship'] = 'field_conservation_project_target_id';
   /* Sort criterion: Content: Date (field_article_date) */
   $handler->display->display_options['sorts']['field_article_date_value']['id'] = 'field_article_date_value';
   $handler->display->display_options['sorts']['field_article_date_value']['table'] = 'field_data_field_article_date';
@@ -59,6 +49,16 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Has taxonomy term ID (with depth) */
+  $handler->display->display_options['arguments']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['depth'] = '5';
   /* Contextual filter: Exclude nodes */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
@@ -89,38 +89,6 @@ function nas_conservation_strategy_feature_views_default_views() {
     'article' => 'article',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Nid */
-  $handler->display->display_options['filters']['nid']['id'] = 'nid';
-  $handler->display->display_options['filters']['nid']['table'] = 'node';
-  $handler->display->display_options['filters']['nid']['field'] = 'nid';
-  $handler->display->display_options['filters']['nid']['relationship'] = 'field_conservation_strategy_target_id';
-  $handler->display->display_options['filters']['nid']['group'] = 1;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
-  $handler->display->display_options['filters']['status_1']['table'] = 'node';
-  $handler->display->display_options['filters']['status_1']['field'] = 'status';
-  $handler->display->display_options['filters']['status_1']['value'] = '1';
-  $handler->display->display_options['filters']['status_1']['group'] = 2;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
-  $handler->display->display_options['filters']['type_1']['table'] = 'node';
-  $handler->display->display_options['filters']['type_1']['field'] = 'type';
-  $handler->display->display_options['filters']['type_1']['value'] = array(
-    'article' => 'article',
-  );
-  $handler->display->display_options['filters']['type_1']['group'] = 2;
-  /* Filter criterion: Content: Menu Section (field_menu_section) */
-  $handler->display->display_options['filters']['field_menu_section_tid']['id'] = 'field_menu_section_tid';
-  $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
-  $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
-  $handler->display->display_options['filters']['field_menu_section_tid']['value'] = array(
-    14 => '14',
-  );
-  $handler->display->display_options['filters']['field_menu_section_tid']['group'] = 2;
-  $handler->display->display_options['filters']['field_menu_section_tid']['reduce_duplicates'] = TRUE;
-  $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_menu_section_tid']['vocabulary'] = 'menu_section';
-  $handler->display->display_options['filters']['field_menu_section_tid']['hierarchy'] = 1;
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');

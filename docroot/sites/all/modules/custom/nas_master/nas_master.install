@@ -1883,3 +1883,123 @@ function nas_master_update_7138() {
   db_query('UPDATE {field_data_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
   db_query('UPDATE {field_revision_field_location_address} SET field_location_address_country = :country', array(':country' => 'US'));
 }
+
+/**
+ * Fix BOA images.
+ *
+ * BOA images have incorrect URI in database with triple "/".
+ */
+function nas_master_update_7139() {
+  $needle = 'public:///';
+  $replace = 'public://';
+  db_update('file_managed')
+    ->expression('uri', 'replace(uri, :needle, :replace)', array(':needle' => $needle, ':replace' => $replace))
+    ->condition('uri', db_like($needle) . '%', 'LIKE')
+    ->execute();
+}
+
+/**
+ * Update articles layout.
+ */
+function nas_master_update_7140(&$sandbox) {
+  $chunk = 100;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    // Lookup nids of Article nodes with Standart Hero Photo panelizer layout
+    // that have no hero images uploaded.
+    $q = db_select('node', 'n');
+    $q->innerJoin('panelizer_entity', 'pe', 'pe.entity_id = n.nid AND pe.entity_type = :entity_type', array(':entity_type' => 'node'));
+    $q->leftJoin('field_data_field_hero_image', 'hi', 'hi.entity_id = n.nid AND hi.entity_type = :entity_type and hi.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => 0,
+    ));
+    $q->addField('n', 'nid');
+    $q->condition('n.type', 'article');
+    $q->condition('n.status', 1);
+    $q->condition('pe.name', 'node:article:big_image');
+    $q->isNull('hi.entity_id');
+    $sandbox['nids'] = $q->execute()->fetchAllKeyed(0, 0);
+    $sandbox['max'] = count($sandbox['nids']);
+  }
+
+  if (!empty($sandbox['max'])) {
+    // Get part of ids.
+    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
+    $sandbox['progress'] += count($nids);
+    // Set nodes' panelizer layout to default.
+    db_update('panelizer_entity')
+      ->fields(array(
+        'name' => 'node:article:default',
+      ))
+      ->condition('entity_id', $nids)
+      ->condition('entity_type', 'node')
+      ->execute();
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+
+  if ($sandbox['#finished'] >= 1) {
+    $sandbox['#finished'] = 1;
+    watchdog('nas_master', '@count birds images and related birds remigrated.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
+ * Replace incorrect links and image sources.
+ */
+function nas_master_update_7141() {
+  foreach (array('field_data_body', 'field_revision_body') as $table) {
+    // ://audubon.wearepropeople.md/ -> ://audubon.prod.acquia-sites.com/ .
+    db_update($table)
+      ->expression('body_value', 'replace(body_value, :old, :new)', array(
+        ':old' => '://audubon.wearepropeople.md/',
+        ':new' => '://audubon.prod.acquia-sites.com/'))
+      ->condition('body_value', '%://audubon.wearepropeople.md/%', 'LIKE')
+      ->execute();
+    // ://nas.wearepropeople.md/staging/ -> ://www.audubon.org/.
+    db_update($table)
+      ->expression('body_value', 'replace(body_value, :old, :new)', array(
+        ':old' => '://nas.wearepropeople.md/staging/',
+        ':new' => '://www.audubon.org/'))
+      ->condition('body_value', '%://nas.wearepropeople.md/staging/%', 'LIKE')
+      ->execute();
+  }
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7142() {
+  features_revert_module('nas_views_feature');
+  ga_stats_update_counts();
+  features_revert(array('nas_conservation_strategy_feature' => array('views_view')));
+  module_enable(array('entitycache'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7143() {
+  features_revert(array('nas_article_feature' => array('panelizer')));
+}
+
+/**
+ * Enable CAPTCHA, reCAPTCHA, nas_captcha_feature.
+ * Revert nas_captcha_feature
+ */
+function nas_master_update_7144() {
+  module_enable(array('captcha', 'recaptcha', 'nas_captcha_feature'));
+  features_revert_module('nas_captcha_feature');
+
+  db_update('captcha_points')
+    ->fields(array('captcha_type' => 'default'))
+    ->condition('form_id', array(
+      'contact_site_form', 'user_login', 'user_login_block', 'user_pass', 'user_register_form'
+    ))
+    ->execute();
+  db_insert('captcha_points')
+    ->fields(array('form_id'))
+    ->values(array('form_id' => 'nas_footer_mail_subscription_form'))
+    ->values(array('form_id' => 'views_exposed_form'))
+    ->execute();
+}
