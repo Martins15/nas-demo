@@ -75,17 +75,11 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
   // Default behaviour.
   else {
     $bird_view_results = views_get_view_result('boa_news', 'default', $context_node->nid);
-
     if (!empty($bird_view_results)) {
       $result = reset($bird_view_results);
       $nid = $result->field_related_bird_node_nid;
+      $node = node_load($nid);
     }
-    else {
-      $bird_view_results = views_get_view_result('random_news', 'default');
-      $result = reset($bird_view_results);
-      $nid = $result->nid;
-    }
-    $node = node_load($nid);
   }
 
   $contextual_links = '';
@@ -93,12 +87,15 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
     $contextual_links = nas_boa_news_build_contextual_links($subtype, $context_node);
   }
 
-  $node_build = node_view($node, 'boa_teaser');
-  $teaser = drupal_render($node_build);
+  $teaser = '';
+  if(isset($node)) {
+    $node_build = node_view($node, 'boa_teaser');
+    $teaser = drupal_render($node_build);   
+  }
 
   $block = new stdClass();
   $block->content = '';
-  if (!empty($teaser)) {
+  if (!empty($teaser) || !empty($contextual_links)) {
     $block->content = theme('boa_news', array(
       'teaser' => $teaser,
       'contextual_links' => $contextual_links,
