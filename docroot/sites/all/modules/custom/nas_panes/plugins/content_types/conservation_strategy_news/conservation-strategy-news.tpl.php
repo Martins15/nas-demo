@@ -5,13 +5,11 @@
  */
 ?>
 
-<?php if (!$hide_title || !empty($contextual_links)) : ?>
+<?php if (!$hide_content) : ?>
   <div class="row section-header space-top double">
-    <?php if (!$hide_title) : ?>
-      <div class="column">
-        <h2 class="thin"><?php print $title; ?></h2>
-      </div>
-    <?php endif; ?>
+    <div class="column">
+      <h2 class="thin"><?php print $title; ?></h2>
+    </div>
   </div>
   <div class="row <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
     <?php print $contextual_links; ?>

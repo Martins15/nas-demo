@@ -62,11 +62,10 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
   $form[$conf_key]['menu_item'] = array(
     '#type' => 'select',
     '#title' => t('Menu item'),
-    '#required' => TRUE,
+    '#empty_option' => t('-- Select menu item --'),
     '#default_value' => !empty($conf[$conf_key]['menu_item']) ? $conf[$conf_key]['menu_item'] : '',
     '#options' => taxonomy_allowed_values(field_info_field('field_menu_section')),
     '#description' => t('Menu item to filter news list.'),
-    '#disabled' => TRUE,
   );
 
   return $form;
@@ -90,6 +89,7 @@ function conservation_strategy_news_edit_form_submit(&$form, &$form_state) {
  */
 function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
+  $is_editor = FALSE;
   $context_node = $context->data;
   if ($context_node->type !== 'strategy') {
     return;
@@ -100,11 +100,17 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   $contextual_links = '';
   if (user_access('edit NAS panes')) {
     $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context_node, 'strategy', 'default');
+    $is_editor = TRUE;
   }
 
   // Get featured news.
+  $args = array(
+    'conservation_strategy_news',
+    'default',
+  );
   $featured_news = array();
-  $hide_title = FALSE;
+  $featured_news_ids = array();
+  $hide_content = FALSE;
   if (!empty($conf[$conf_key]['articles'])) {
     $nodes = array();
     foreach ($conf[$conf_key]['articles'] as $article) {
@@ -112,6 +118,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
         continue;
       }
 
+      $featured_news_ids[] = $article['entity_reference']['entity_id'];
       $nodes[] = node_load($article['entity_reference']['entity_id']);
     }
 
@@ -121,18 +128,20 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
     }
   }
 
-  // Get news list.
-  $display_id = 'default';
-  $view = views_get_view('conservation_strategy_news');
-  $view->set_display($display_id);
-  $view->set_use_ajax(TRUE);
-  // @see nas_conservation_views_pre_view() for filters.
-  $view->pre_execute();
-  $view->execute();
-  $news_list = $view->render();
+  // Filter by menu item and exclude nodes from right block.
+  if (!empty($conf[$conf_key]['menu_item'])) {
+    $args[] = $conf[$conf_key]['menu_item'];
+  }
+  if (!empty($featured_news_ids)) {
+    $args[] = implode('+', $featured_news_ids);
+  }
 
-  if (empty($view->result) && empty($featured_news)) {
-    $hide_title = TRUE;
+  // Get news list.
+  $news_list = call_user_func_array('views_embed_view', $args);
+  $news_results = call_user_func_array('views_get_view_result', $args);
+
+  if (empty($news_results) && empty($featured_news) && !$is_editor) {
+    $hide_content = TRUE;
   }
 
   $block->content = theme('conservation_strategy_news', array(
@@ -140,7 +149,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
       'news_list' => $news_list,
       'featured_news' => $featured_news,
       'contextual_links' => $contextual_links,
-      'hide_title' => $hide_title,
+      'hide_content' => $hide_content,
     ));
 
   return $block;
