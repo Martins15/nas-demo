@@ -1980,3 +1980,12 @@ function nas_master_update_7142() {
 function nas_master_update_7143() {
   features_revert(array('nas_article_feature' => array('panelizer')));
 }
+
+/**
+ * Enable CAPTCHA, reCAPTCHA, nas_captcha_feature.
+ * Revert nas_captcha_feature
+ */
+function nas_master_update_7144() {
+  module_enable(array('captacha', 'recaptcha', 'nas_captcha_feature'));
+  features_revert_module('nas_captcha_feature');
+}
