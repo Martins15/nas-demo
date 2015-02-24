@@ -8,7 +8,7 @@
  *  $teaser - rendered news teaser.
  */
 ?>
-
+<?php if(!empty($teaser)): ?>
 <section class="bird-guide-section right-col boa-in-the-news">
   <div class="contextual-links-region">
     <?php print $contextual_links; ?>
@@ -16,3 +16,4 @@
     <?php print $teaser; ?>
   </div>
 </section>
+<?php endif;?>
