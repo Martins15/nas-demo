@@ -1997,6 +1997,7 @@ function nas_master_update_7144() {
     ->execute();
   db_insert('captcha_points')
     ->fields(array('form_id'))
+    ->values(array('form_id' => 'audubon_near_you_search_form'))
     ->values(array('form_id' => 'nas_footer_mail_subscription_form'))
     ->values(array('form_id' => 'nas_menu_search_form'))
     ->values(array('form_id' => 'views_exposed_form'))
