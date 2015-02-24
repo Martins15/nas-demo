@@ -62,7 +62,7 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
   $form[$conf_key]['menu_item'] = array(
     '#type' => 'select',
     '#title' => t('Menu item'),
-    '#required' => TRUE,
+    '#empty_option' => t('-- Select menu item --'),
     '#default_value' => !empty($conf[$conf_key]['menu_item']) ? $conf[$conf_key]['menu_item'] : '',
     '#options' => taxonomy_allowed_values(field_info_field('field_menu_section')),
     '#description' => t('Menu item to filter news list.'),
