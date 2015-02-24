@@ -88,9 +88,9 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
   }
 
   $teaser = '';
-  if(isset($node)) {
+  if (isset($node)) {
     $node_build = node_view($node, 'boa_teaser');
-    $teaser = drupal_render($node_build);   
+    $teaser = drupal_render($node_build);
   }
 
   $block = new stdClass();
