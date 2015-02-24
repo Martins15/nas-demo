@@ -16,4 +16,4 @@
     <?php print $teaser; ?>
   </div>
 </section>
-<?php endif;?>
+<?php endif; ?>
