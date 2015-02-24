@@ -498,6 +498,7 @@ function nas_panes_theme() {
         'featured_news' => NULL,
         'news_list' => NULL,
         'contextual_links' => NULL,
+        'hide_content' => NULL,
       ),
       'template' => 'conservation-strategy-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_news',
