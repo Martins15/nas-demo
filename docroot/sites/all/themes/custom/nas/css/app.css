@@ -5403,6 +5403,14 @@ table.row-borders tbody td {
   padding: 0 10px;
 }
 
+.recaptchatable input {
+  height: 1.4rem;
+}
+
+.recaptcha_input_area {
+  overflow: hidden;
+}
+
 /* @todo refactor like crazy for more hero variations */
 .hero {
   position: relative;
