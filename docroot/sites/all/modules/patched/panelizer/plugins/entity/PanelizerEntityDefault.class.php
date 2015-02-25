@@ -1037,12 +1037,12 @@ abstract class PanelizerEntityDefault implements PanelizerEntityInterface {
     foreach ($this->plugin['view modes'] as $view_mode => $view_mode_info) {
       $view_bundle = $bundle . '.' . $view_mode;
 
+      $panelizers = $this->get_default_panelizer_objects($view_bundle);
+
       // Ignore view modes that don't have a choice or have no displays defined
       if (!$this->has_panel_choice($view_bundle) || empty($panelizers))) {
         continue;
       }
-
-      $panelizers = $this->get_default_panelizer_objects($view_bundle);
 
       $options = array();
       foreach ($panelizers as $name => $panelizer) {
