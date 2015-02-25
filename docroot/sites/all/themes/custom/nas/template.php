@@ -11,6 +11,60 @@
 include_once 'theme/pager.inc';
 
 /**
+ * Implements template_preprocess_html().
+ */
+function nas_preprocess_html(&$variables) {
+  $browser_scripts = array(
+    'lt IE 10' => array(
+      drupal_get_path('theme', 'nas') . '/js/mute/respond.min.js',
+      drupal_get_path('theme', 'nas') . '/js/mute/ie9.js',
+    ),
+    'lt IE 9' => array(
+      drupal_get_path('theme', 'nas') . '/js/mute/ie-carousel.js',
+      drupal_get_path('theme', 'nas') . '/js/mute/custom.modernizr.js',
+    ),
+  );
+  $key = 0;
+  foreach ($browser_scripts as $browser => $scripts) {
+    foreach ($scripts as $script) {
+      $script_tag = array(
+        '#browsers' => array('IE' => $browser, '!IE' => FALSE),
+        '#tag' => 'script',
+        '#attributes' => array(
+          'type' => "text/javascript",
+          'src' => url($script, array('absolute' => TRUE)),
+        ),
+        '#pre_render' => array('drupal_pre_render_conditional_comments'),
+        '#weight' =>  999 + $key,
+      );
+      drupal_add_html_head($script_tag, 'mytheme' . $key);
+      $key++;
+    }
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function nas_js_alter(&$javascript) {
+  foreach ($javascript as $path => $js) {
+    if (strpos($path, 'jquery.min.js') !== FALSE) {
+      unset($javascript[$path]);
+      $script_tag = array(
+        '#tag' => 'script',
+        '#value' => '',
+        '#attributes' => array(
+          'type' => 'text/javascript',
+          'src' => url($path, array('absolute' => TRUE, 'query' => array('v' => $js['version']))),
+        ),
+        '#weight' =>  998,
+      );
+      drupal_add_html_head($script_tag, 'jQuery');
+    }
+  }
+}
+
+/**
  * Implements hook_html_head_alter().
  */
 function nas_html_head_alter(&$head_elements) {

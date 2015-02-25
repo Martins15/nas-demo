@@ -1,4 +1,4 @@
-(function($) {
+(function($, Drupal) {
   Drupal.behaviors.slideshowCT = {
     attach: function(context, settings) {
     if ($(".slideshow").length) {
@@ -45,22 +45,20 @@
         }).get();
 
         var minSlideImgHeight = Math.min.apply(null, slidesImgHeights);
-
-        $imgs.css({
-          "height": minSlideImgHeight + "px",
-          "width": "auto"
-        });
-
         var defaultHeight = $("body").width() * 0.625;
             maxHeight = Math.max.apply(null, slideHeights);
 
-        if (defaultHeight > maxHeight) {
+        if ($slides.parent('.standalone').size() && maxHeight < defaultHeight) {
           maxHeight = defaultHeight;
         }
 
-        if (maxHeight > ($(window).height())) {
-          maxHeight = ($(window).height());
-        }
+        maxHeight = Math.min(maxHeight, $(window).height() - 100);
+        maxHeight = Math.max(maxHeight, 480);
+
+        $imgs.css({
+          "maxHeight": maxHeight + "px",
+          "width": "auto"
+        });
 
         $slides.filter(".portrait").find(".slide-img img").css({
           "width": "auto"
@@ -78,7 +76,7 @@
         });
 
         // Mobile resizing rules
-        if($(window).width() < 768 && aspectRatio < 1) {
+        if ($(window).width() < 768 && aspectRatio < 1) {
           var $portraitSlides = $slides.filter(".portrait").not(".title-slide, .end-slide"),
               $landscapeSlides = $slides.not(".portrait, .title-slide, .end-slide"),
               $capSlides = $slides.filter(".title-slide, .end-slide"),
@@ -141,27 +139,30 @@
                 .data("height", $image.attr("height")).removeAttr("height");
               if (i < 2) return;
               $image
-                .data("src", $image.attr("src")).removeAttr("src");
+                .data("src", $image.attr("src")).attr("src", '');
             });
         });
 
         Slideshow._setSizes($body);
 
-        scroll = new IScroll(".slideshow-wrapper", {
-          scrollX: true,
-          scrollY: false,
-          momentum: false,
-          snap: ".slide",
-          bounce: false,
-          touch: true,
-          eventPassthrough: true,
-          snapSpeed: 600,
-          resizePolling: 200,
-          bindToWrapper: true
-        });
+        // Prevent IE8 errors.
+        if (window.addEventListener) {
+          scroll = new IScroll(".slideshow-wrapper", {
+            scrollX: true,
+            scrollY: false,
+            momentum: false,
+            snap: ".slide",
+            bounce: false,
+            touch: true,
+            eventPassthrough: true,
+            snapSpeed: 600,
+            resizePolling: 200,
+            bindToWrapper: true
+          });
+          Slideshow._setupIndicator($indicator, $body);
+          Slideshow._setupControls($controls);
+        }
 
-        Slideshow._setupIndicator($indicator, $body);
-        Slideshow._setupControls($controls);
         Slideshow.resize();
       };
 
@@ -188,10 +189,10 @@
           $(".indicator-current").html(scroll.currentPage.pageX + 1);
           $(".ss-icon").removeClass("inactive");
 
-          if(currentPage == 1) {
+          if (currentPage == 1) {
             $(".ss-icon.prev").addClass("inactive");
           }
-          if(currentPage == totalPages) {
+          if (currentPage == totalPages) {
             $(".ss-icon.next").addClass("inactive");
           }
         });
@@ -202,7 +203,7 @@
             indicatorHeight = $indicator.outerHeight(),
             indicatorMargin = 20;
 
-        if($("body").width() > 767) {
+        if ($("body").width() > 767) {
           $indicator.css({
             "position": "relative",
             "top": slideHeight + indicatorHeight + indicatorMargin + "px",
@@ -242,7 +243,7 @@
           // Preload image of next slide.
           var $next_image = $(scroll.wrapper)
             .find(".slide:eq(" + (scroll.currentPage.pageX + 1) + ") .slide-img img");
-          if ($next_image.attr("src") !== "") {
+          if ($next_image.attr("src") == "") {
             $next_image.attr("src", $next_image.data("src"));
           }
         });
@@ -259,4 +260,4 @@
     }
   }
 };
-})(jQuery);
+})(jQuery, Drupal);
