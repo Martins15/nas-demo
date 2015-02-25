@@ -30,6 +30,7 @@ function nas_preprocess_html(&$variables) {
       $script_tag = array(
         '#browsers' => array('IE' => $browser, '!IE' => FALSE),
         '#tag' => 'script',
+        '#value' => '',
         '#attributes' => array(
           'type' => "text/javascript",
           'src' => url($script, array('absolute' => TRUE)),
