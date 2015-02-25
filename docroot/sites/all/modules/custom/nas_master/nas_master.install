@@ -1982,6 +1982,15 @@ function nas_master_update_7142() {
 function nas_master_update_7143() {
   features_revert(array('nas_article_feature' => array('panelizer')));
   features_revert(array('nas_location_feature' => array('views_view')));
+  registry_rebuild();
+  // Remove default Map code.
+  $map_html = '<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" scrolling="no" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=e47c7387f97d4f6f8f691e1c73e31a00&amp;extent=-74.1592,40.6498,-73.6521,40.8761"></iframe>';
+  db_delete('field_data_field_article_map')
+  ->condition('field_article_map_value', $map_html, '=')
+  ->execute();
+  db_delete('field_revision_field_article_map')
+  ->condition('field_article_map_value', $map_html, '=')
+  ->execute();
 }
 
 /**
