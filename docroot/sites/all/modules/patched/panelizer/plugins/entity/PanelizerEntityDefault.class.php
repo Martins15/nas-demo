@@ -1037,9 +1037,8 @@ abstract class PanelizerEntityDefault implements PanelizerEntityInterface {
     foreach ($this->plugin['view modes'] as $view_mode => $view_mode_info) {
       $view_bundle = $bundle . '.' . $view_mode;
 
-      // Ignore view modes that don't have a choice or already have their
-      // own custom panel set up.
-      if (!$this->has_panel_choice($view_bundle) || !empty($entity->panelizer[$view_mode]->did)) {
+      // Ignore view modes that don't have a choice or have no displays defined
+      if (!$this->has_panel_choice($view_bundle) || empty($panelizers))) {
         continue;
       }
 

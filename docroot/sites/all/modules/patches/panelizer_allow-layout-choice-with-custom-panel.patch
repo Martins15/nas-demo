@@ -1,0 +1,16 @@
+diff --git a/docroot/sites/all/modules/contrib/panelizer/plugins/entity/PanelizerEntityDefault.class.php b/docroot/sites/all/modules/contrib/panelizer/plugins/entity/PanelizerEntityDefault.class.php
+index 797b35e..620483d 100644
+--- a/docroot/sites/all/modules/contrib/panelizer/plugins/entity/PanelizerEntityDefault.class.php
++++ b/docroot/sites/all/modules/contrib/panelizer/plugins/entity/PanelizerEntityDefault.class.php
+@@ -1037,9 +1037,8 @@ abstract class PanelizerEntityDefault implements PanelizerEntityInterface {
+     foreach ($this->plugin['view modes'] as $view_mode => $view_mode_info) {
+       $view_bundle = $bundle . '.' . $view_mode;
+ 
+-      // Ignore view modes that don't have a choice or already have their
+-      // own custom panel set up.
+-      if (!$this->has_panel_choice($view_bundle) || !empty($entity->panelizer[$view_mode]->did)) {
++      // Ignore view modes that don't have a choice or have no displays defined
++      if (!$this->has_panel_choice($view_bundle) || empty($panelizers))) {
+         continue;
+       }
+ 
