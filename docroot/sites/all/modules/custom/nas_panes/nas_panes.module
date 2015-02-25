@@ -1506,10 +1506,9 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
       'title' => $item->node_title,
       'state' => $item->field_data_field_location_address_field_location_address_adm,
       'city' => $item->field_data_field_location_address_field_location_address_loc,
-      'link' => l($item->node_title, 'node/' . $item->nid),
+      'link' => l($item->node_title, $item->field_field_location_link[0]['raw']['url'], array('attributes' => array('target' => '_blank'))),
       'subtitle' => '',
     );
-
     // Add subtitle.
     $subtitle = array();
     if (!empty($item->field_data_field_location_address_field_location_address_loc)) {
