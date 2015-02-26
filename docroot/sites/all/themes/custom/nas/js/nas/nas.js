@@ -190,7 +190,7 @@ var Nas = Nas || {};
 
   Nav.unbind = function () {
     $(".header-btn").unbind();
-    $(".primary-nav-toggler").unbind();
+    $(".primary-nav-toggler").not($(".aid-filter .primary-nav-toggler")).unbind();
     $(".primary-nav-toggler").parent().unbind();
   };
 
