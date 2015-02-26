@@ -111,12 +111,9 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
     $logo = theme_image(array('path' => file_create_url($logo_path), 'alt' => '', 'attributes' => array('class' => array('footer-logo'))));
   }
 
-  // Update the strings to allow contexts.
-  if (!empty($contexts)) {
-    $title = ctools_context_keyword_substitute(filter_xss($conf['title']), array(), $contexts);
-    $mission = ctools_context_keyword_substitute(filter_xss($conf['mission']), array(), $contexts);
-    $copyright = ctools_context_keyword_substitute(filter_xss($conf['copyright']), array(), $contexts);
-  }
+  $title = filter_xss($conf['title']);
+  $mission = filter_xss($conf['mission']);
+  $copyright = filter_xss($conf['copyright']);
 
   $footer_copyright_menu = theme('nas_footer_copyright_menu', array('menu_tree' => $footer_copyright_menu_tree));
   $footer_menu = theme('nas_footer_menu', array('menu_tree' => $footer_menu_tree));
@@ -134,14 +131,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_footer_pane'))->fetchField();
   }
 
-  $custom_links = array(
-    'pane-edit' => array(
-      'title' => t('edit texts/logo'),
-      'href' => 'panels/ajax/editor/edit-pane/panel_context:site_template::site_template_panel_context::::/' . $pid,
-      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-      'attributes' => array('class' => array('ctools-use-modal')),
-    ),
-  );
+  $custom_links = nas_footer_pane_get_contextual_links();
 
   $contextual_links['menu'] = nas_menu_cl(NAS_MENU_FOOTER_MENU, $custom_links);
   $contextual_links['cr_menu'] = nas_menu_cl(NAS_MENU_FOOTER_COPYRIGHT_MENU);
@@ -160,4 +150,45 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $block->content = $content;
 
   return $block;
+}
+
+function nas_footer_pane_get_contextual_links() {
+  if (!user_access('edit NAS panes')) {
+    return '';
+  }
+
+  $pm_page = page_manager_get_current_page();
+
+  ctools_include('modal');
+  ctools_modal_add_js();
+  // Add ajax-responder so ctools_ajax_command_reload() will work.
+  ctools_add_js('ajax-responder');
+
+  // Lookup pid.
+  $result = ctools_export_load_object('page_manager_handlers', 'conditions', array('name' => $pm_page['handler']->conf['panels_everywhere_site_template']));
+  $did = $result[$pm_page['handler']->conf['panels_everywhere_site_template']]->conf['did'];
+  $pm_page['handler']->conf['display'] = panels_load_display($did);
+  $pid = 0;
+  // Get pid from loaded display.
+  foreach ($pm_page['handler']->conf['display']->content as $_pid => $pane) {
+    if (($pane->subtype == 'nas_footer_pane') && isset($pane->did) == $did) {
+      $pid = $_pid;
+      break;
+    }
+  }
+  // @todo sometimes cache_key is empty. We need build it manually.
+  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  if (empty($cache_key)) {
+    $cache_key = 'panel_context:site_template::' . $pm_page['handler']->conf['panels_everywhere_site_template'] . '::::';
+  }
+  $links = array(
+    'edit' => array(
+      'title' => t('Edit'),
+      'href' => 'panels/ajax/editor/edit-pane/' . $cache_key . '/' . $pid,
+      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
+      'attributes' => array('class' => array('ctools-use-modal')),
+    ),
+  );
+
+  return $links;
 }
