@@ -43,6 +43,12 @@ $(function() {
             $current = $current.next();
             $current.addClass("current");
 
+            // Preload image of next slide.
+            var $next_image = $current.next().find(".slide-img img");
+            if ($next_image.attr("src") == '') {
+              $next_image.attr("src", $next_image.data("src"));
+            }
+
             updateIndicator();
           });
         }
