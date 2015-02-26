@@ -277,4 +277,14 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.preventBouncing = {
+    attach: function (context, settings) {
+      $('.aid-filter .primary-nav-toggler').bind('click touchend', function(e) {
+        e.preventDefault();
+      });
+    }
+  };
+
+
+
 })(jQuery);
