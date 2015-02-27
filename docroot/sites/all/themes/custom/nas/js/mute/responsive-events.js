@@ -36,7 +36,9 @@ var StateManager = {
 };
 
 jQuery(function() {
+  StateManager.init();
   jQuery(window).load(function() {
-    StateManager.init();
+    StateManager.state = '';
+    jQuery(window).trigger('resize');
   });
 });

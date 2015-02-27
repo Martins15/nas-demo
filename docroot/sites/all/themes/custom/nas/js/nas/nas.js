@@ -277,4 +277,26 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.preventBouncing = {
+    attach: function (context, settings) {
+      $('.aid-filter .toggler').bind('click touchend', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        $(".primary-nav-toggler").not($this).removeClass("open");
+        $(".primary-sub-nav").not($this.next(".primary-sub-nav")).removeClass("show");
+
+        $this.toggleClass("open");
+        $this.next(".primary-sub-nav").toggleClass("show");
+
+        setTimeout(function () { // this is just a "next tick"
+          if (window.scrollY > $this.offset().top) {
+            window.scrollTo(0, $this.offset().top);
+          }
+        }, 0);
+      });
+    }
+  };
+
+
+
 })(jQuery);
