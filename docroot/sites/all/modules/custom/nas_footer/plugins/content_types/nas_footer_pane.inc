@@ -154,10 +154,13 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
 function nas_footer_pane_get_contextual_links() {
   if (!user_access('edit NAS panes')) {
-    return '';
+    return array();
   }
 
   $pm_page = page_manager_get_current_page();
+  if(!isset($pm_page) || !isset($pm_page['handler']->conf['panels_everywhere_site_template'])) {
+    return array();
+  }
 
   ctools_include('modal');
   ctools_modal_add_js();
