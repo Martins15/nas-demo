@@ -11,6 +11,35 @@
 include_once 'theme/pager.inc';
 
 /**
+ * Implements template_preprocess_html().
+ */
+function nas_preprocess_html(&$variables) {
+  $variables['jquery'] = &drupal_static('nas_jquery');
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function nas_js_alter(&$javascript) {
+  foreach ($javascript as $path => $js) {
+    if (strpos($path, 'jquery.min.js') !== FALSE) {
+      unset($javascript[$path]);
+      $script_tag = array(
+        '#theme' => 'html_tag',
+        '#tag' => 'script',
+        '#value' => '',
+        '#attributes' => array(
+          'type' => 'text/javascript',
+          'src' => url($path, array('absolute' => TRUE, 'query' => array('v' => $js['version']))),
+        ),
+      );
+      $jquery = &drupal_static('nas_jquery');
+      $jquery = drupal_render($script_tag);
+    }
+  }
+}
+
+/**
  * Implements hook_html_head_alter().
  */
 function nas_html_head_alter(&$head_elements) {

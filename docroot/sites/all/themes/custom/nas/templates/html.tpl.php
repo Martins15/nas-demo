@@ -51,7 +51,7 @@ global $base_url;
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
   <?php print $head; ?>
   <?php print $styles; ?>
-  <?php print $scripts; ?>
+  <?php print $jquery; ?>
   <!--[if lt IE 10]>
     <script src="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/js/mute/respond.min.js"></script>
     <script src="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/js/mute/ie9.js"></script>
@@ -64,6 +64,8 @@ global $base_url;
   <!--[if IE 9]>
     <link rel="stylesheet" href="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie9.css" />
   <![endif]-->
+  <?php print $scripts; ?>
+
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes;?>>
     <!-- Google Tag Manager -->
