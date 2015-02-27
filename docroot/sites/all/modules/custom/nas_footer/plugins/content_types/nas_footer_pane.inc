@@ -158,7 +158,7 @@ function nas_footer_pane_get_contextual_links() {
   }
 
   $pm_page = page_manager_get_current_page();
-  if(!isset($pm_page) || !isset($pm_page['handler']->conf['panels_everywhere_site_template'])) {
+  if (!isset($pm_page) || !isset($pm_page['handler']->conf['panels_everywhere_site_template'])) {
     return array();
   }
 
@@ -180,7 +180,9 @@ function nas_footer_pane_get_contextual_links() {
     }
   }
   // @todo sometimes cache_key is empty. We need build it manually.
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  if (isset($pm_page['handler']->conf['display']->cache_key)) {
+    $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  }
   if (empty($cache_key)) {
     $cache_key = 'panel_context:site_template::' . $pm_page['handler']->conf['panels_everywhere_site_template'] . '::::';
   }
