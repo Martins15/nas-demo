@@ -186,7 +186,7 @@ function nas_footer_pane_get_contextual_links() {
   }
   $links = array(
     'edit' => array(
-      'title' => t('Edit'),
+      'title' => t('edit text/logo'),
       'href' => 'panels/ajax/editor/edit-pane/' . $cache_key . '/' . $pid,
       'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
       'attributes' => array('class' => array('ctools-use-modal')),
