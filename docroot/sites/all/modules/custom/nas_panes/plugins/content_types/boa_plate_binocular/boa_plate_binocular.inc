@@ -92,6 +92,14 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
     }
   }
 
+  $class = '';
+  if (arg(0) == 'field-guide') {
+    $class = 'bird-card-grid';
+  }
+  if (arg(0) == 'frontpage') {
+    $class = 'bird-card-set bg-bone-white bg-boa';
+  }
+
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   if (!empty($nodes)) {
