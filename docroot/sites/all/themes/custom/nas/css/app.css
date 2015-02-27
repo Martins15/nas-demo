@@ -13714,9 +13714,9 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   opacity: 0;
   pointer-events: none;
 }
-.boa-plate-view-wrapper.show-bg .row a,
-.boa-plate-view-wrapper.show-bg .view-nas-bird-guide a {
-  pointer-events: auto;
+.boa-plate-view-wrapper.show-bg .row *,
+.boa-plate-view-wrapper.show-bg .view-nas-bird-guide * {
+  pointer-events: none;
 }
 
 .article-text h1 > a, .article-text h2 > a, .article-text h3 > a, .article-text h4:not(.editorial-card-title) > a, .article-text h5 > a, .article-text h6 > a,
