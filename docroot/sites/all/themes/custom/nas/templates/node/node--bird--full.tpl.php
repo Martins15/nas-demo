@@ -115,6 +115,11 @@
         <div class="row">
           <div class="large-8 columns">
             <section class="bird-guide-section left-col">
+              <div class="row hide-for-large hide-for-xlarge space-bottom">
+                <div class="columns">
+                  <?php print render($content['field_bird_description']); ?>
+                </div>
+              </div>
               <table class="collapse">
                 <tbody>
                     <?php print render($content['field_bird_conserv_status']); ?>
@@ -122,7 +127,7 @@
                     <?php print render($content['field_bird_habitat']); ?>
                 </tbody>
               </table>
-              <div><?php print render($content['field_bird_description']); ?></div>
+              <div class="hide-for-tiny hide-for-small hide-for-medium "><?php print render($content['field_bird_description']); ?></div>
             </section>
             <section class="bird-guide-section left-col">
               <h5><i class="icon-camera"></i> <?php print t('Photo Gallery'); ?></h5>

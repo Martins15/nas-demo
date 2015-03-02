@@ -27,7 +27,7 @@ function boa_plate_binocular_edit_form($form, &$form_state) {
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
-  for ($i = 1; $i <= 6; $i++) {
+  for ($i = 1; $i <= 8; $i++) {
     $form['wrapper'][$i]['entity_reference'] = array(
       '#type' => 'entityreference',
       '#default_value' => !empty($conf['wrapper'][$i]['entity_reference']) ? $conf['wrapper'][$i]['entity_reference'] : '',
@@ -91,35 +91,16 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
       }
     }
   }
-  // Current page is a one of landing pages.
-  $args_cache_key_pairs = array(
-    'bird-guide' => array(
-      'cache_key' => NAS_PANES_BIRD_GUIDE_PAGE_MANAGER_CACHE_KEY,
-      'panel_context' => 'page_bird_guide_panel_context',
-    ),
-    'frontpage' => array(
-      'cache_key' => NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY,
-      'panel_context' => 'page_frontpage2_panel_context',
-    ),
-  );
+
   $class = '';
-  $key = '';
-  if (arg(0) == 'birds' && arg(1) == 'bird-guide' && !arg(2)) {
-    $key = 'bird-guide';
+  if (arg(0) == 'field-guide') {
     $class = 'bird-card-grid';
   }
   if (arg(0) == 'frontpage') {
-    $key = 'frontpage';
     $class = 'bird-card-set bg-bone-white bg-boa';
   }
-  $contextual_links = '';
-  if (isset($args_cache_key_pairs[$key])) {
-    $context['landing'] = array(
-      'cache_key' => $args_cache_key_pairs[$key]['cache_key'],
-      'panel_context' => $args_cache_key_pairs[$key]['panel_context'],
-    );
-    $contextual_links = nas_panes_build_page_contextual_links('boa_plate_binocular', $context['landing']['cache_key'], $context['landing']['panel_context']);
-  }
+
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   if (!empty($nodes)) {
     $rand_key = array_rand($nodes, 1);
