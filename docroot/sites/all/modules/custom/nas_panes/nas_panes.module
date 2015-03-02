@@ -1820,10 +1820,16 @@ function nas_panes_expire_urls_alter(&$urls, $object_type, $object) {
   $ssl_urls = array();
   foreach ($urls as $url) {
     if (strpos($url, '://') === FALSE) {
-      $ssl_url = url($url, array(
+      $query = array();
+      list($path, $_query) = explode('?', $url);
+      if ($_query) {
+        parse_str($_query, $query);
+      }
+      $ssl_url = url($path, array(
         'alias' => TRUE,
         'absolute' => TRUE,
         'https' => TRUE,
+        'query' => $query,
       ));
       $ssl_urls[$ssl_url] = $ssl_url;
     }
