@@ -1812,3 +1812,27 @@ function _nas_panes_format_image_attribution($file) {
   }
   return implode(' ', $parts);
 }
+
+/**
+ * Implements hook_expire_urls_alter().
+ */
+function nas_panes_expire_urls_alter(&$urls, $object_type, $object) {
+  $ssl_urls = array();
+  foreach ($urls as $url) {
+    if (strpos($url, '://') === FALSE) {
+      $query = array();
+      list($path, $_query) = explode('?', $url);
+      if ($_query) {
+        parse_str($_query, $query);
+      }
+      $ssl_url = url($path, array(
+        'alias' => TRUE,
+        'absolute' => TRUE,
+        'https' => TRUE,
+        'query' => $query,
+      ));
+      $ssl_urls[$ssl_url] = $ssl_url;
+    }
+  }
+  $urls += $ssl_urls;
+}
