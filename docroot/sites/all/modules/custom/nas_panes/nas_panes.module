@@ -869,6 +869,17 @@ function nas_panes_ajax_render_alter(&$commands) {
       $cache = panels_edit_cache_get($cache_key);
       // Write it to DB.
       panels_save_display($cache->display);
+
+      if (module_exists('expire')) {
+        list(,$entity_type, $entity_id) = explode(':', $cache_key);
+        if ($entity = entity_load($entity_type, array($entity_id))) {
+          $entity = reset($entity);
+          $function = 'expire_' . $entity_type . '_update';
+          if (function_exists($function)) {
+            $function($entity);
+          }
+        }
+      }
     }
 
     $commands[] = ctools_ajax_command_reload();
