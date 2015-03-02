@@ -869,17 +869,6 @@ function nas_panes_ajax_render_alter(&$commands) {
       $cache = panels_edit_cache_get($cache_key);
       // Write it to DB.
       panels_save_display($cache->display);
-
-      if (module_exists('expire')) {
-        list(,$entity_type, $entity_id) = explode(':', $cache_key);
-        if ($entity = entity_load($entity_type, array($entity_id))) {
-          $entity = reset($entity);
-          $function = 'expire_' . $entity_type . '_update';
-          if (function_exists($function)) {
-            $function($entity);
-          }
-        }
-      }
     }
 
     $commands[] = ctools_ajax_command_reload();
@@ -1822,4 +1811,18 @@ function _nas_panes_format_image_attribution($file) {
     $parts[] = 'Photo: ' . trim($items[0]['safe_value']);
   }
   return implode(' ', $parts);
+}
+
+/**
+ * Implements hook_expire_urls_alter().
+ */
+function nas_panes_expire_urls_alter(&$urls, $object_type, $object) {
+  $ssl_urls = array();
+  foreach ($urls as $url) {
+    if (strpos($url, '://') === FALSE) {
+      $ssl_url = url($url, array('absolute' => TRUE, 'https' => TRUE));
+      $ssl_urls[$ssl_url] = $ssl_url;
+    }
+  }
+  $urls += $ssl_urls;
 }
