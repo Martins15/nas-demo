@@ -38,9 +38,6 @@ input.header-search-input,
   i {
     vertical-align: middle;
     font-size: 30px;
-    position: relative;
-    top: 1px;
-    left: -1px;
   }
 }
 
@@ -117,10 +114,6 @@ input.header-search-input,
   input.header-search-input,
   .header-search-button {
     height: 40px;
-    i {
-      position: relative;
-      top: 3px;
-    }
   }
   .header-search-button {
     min-width: 60px;

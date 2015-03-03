@@ -5294,6 +5294,11 @@ table.row-borders tbody td {
   text-align: center;
   padding: 9px;
 }
+.button.load-more i:before {
+  position: relative;
+  left: -3px;
+  top: -3px;
+}
 .button.load-more:hover i {
   color: rgba(0, 0, 0, 0.6);
 }
@@ -6083,9 +6088,6 @@ input.header-search-input,
 .header-search-button i {
   vertical-align: middle;
   font-size: 30px;
-  position: relative;
-  top: 1px;
-  left: -1px;
 }
 
 @media only screen and (max-width: 479px) {
@@ -6168,11 +6170,6 @@ input.header-search-input,
   input.header-search-input,
   .header-search-button {
     height: 40px;
-  }
-  input.header-search-input i,
-  .header-search-button i {
-    position: relative;
-    top: 3px;
   }
 
   .header-search-button {
