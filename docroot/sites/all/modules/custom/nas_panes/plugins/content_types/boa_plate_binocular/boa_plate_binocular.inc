@@ -113,7 +113,7 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
       'image_desaturated' => isset($chosen_node['image_desaturated']) ? $chosen_node['image_desaturated'] : '',
     ),
   ), 'setting');
-
+dpm($chosen_node['link']);
   $content = theme('boa_plate_binocular', array(
     'class' => $class,
     'image_desaturated' => isset($chosen_node['image_desaturated']) ? $chosen_node['image_desaturated'] : '',
