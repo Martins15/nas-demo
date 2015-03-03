@@ -139,8 +139,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   // Get news list.
   $news_list = call_user_func_array('views_embed_view', $args);
   $news_results = call_user_func_array('views_get_view_result', $args);
-dpm($news_list);
-dpm($args);dpm($conf[$conf_key]);
+
   if (empty($news_results) && empty($featured_news) && !$is_editor) {
     $hide_content = TRUE;
   }
