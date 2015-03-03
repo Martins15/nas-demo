@@ -30,6 +30,9 @@
         </div>
       </div>
       <div class="columns large-4">
+        &nbsp;
+      </div>
+      <div class="columns large-4">
         <div class="breakout-section-box">
           <?php print $image; ?>
           <br>
