@@ -51,6 +51,14 @@ function nas_location_feature_views_default_views() {
   $handler->display->display_options['fields']['field_location_address_locality']['field'] = 'field_location_address_locality';
   $handler->display->display_options['fields']['field_location_address_locality']['label'] = '';
   $handler->display->display_options['fields']['field_location_address_locality']['element_label_colon'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['field_location_link']['id'] = 'field_location_link';
+  $handler->display->display_options['fields']['field_location_link']['table'] = 'field_data_field_location_link';
+  $handler->display->display_options['fields']['field_location_link']['field'] = 'field_location_link';
+  $handler->display->display_options['fields']['field_location_link']['label'] = '';
+  $handler->display->display_options['fields']['field_location_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_location_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_location_link']['type'] = 'link_plain';
   /* Sort criterion: Global: Random */
   $handler->display->display_options['sorts']['random']['id'] = 'random';
   $handler->display->display_options['sorts']['random']['table'] = 'views';

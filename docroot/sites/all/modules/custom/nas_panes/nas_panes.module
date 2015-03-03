@@ -498,6 +498,7 @@ function nas_panes_theme() {
         'featured_news' => NULL,
         'news_list' => NULL,
         'contextual_links' => NULL,
+        'hide_content' => NULL,
       ),
       'template' => 'conservation-strategy-news',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/conservation_strategy_news',
@@ -853,14 +854,6 @@ function nas_panes_ajax_render_alter(&$commands) {
   $last_command = array_pop($copy_commands);
   // Will get triggered when user submitted the form.
   if (strpos($_GET['q'], '/form') !== FALSE && $last_command['command'] == 'modal_dismiss') {
-    // Here we save the cache to database. When we edited the pane we made
-    // changes in the cache. In order the page to see the changes we need
-    // to save cache data to database.
-    if (preg_match('/panels\/ajax\/editor\/edit-pane\/panel_context:([^:]*):.*/', $_GET['q'], $matches)) {
-      $key = $matches[1];
-      nas_panes_resave_panel($key);
-    }
-
     if (strpos($_GET['q'], NAS_PANES_PANELIZER_NODE_VIEW_PAGE_MANAGER_CACHE_KEY) !== FALSE) {
       // arg(4) is cache key like panelizer:node:%nid:page_manager.
       $cache_key = arg(4);
@@ -868,6 +861,20 @@ function nas_panes_ajax_render_alter(&$commands) {
       $cache = panels_edit_cache_get($cache_key);
       // Write it to DB.
       panels_save_display($cache->display);
+
+      if (module_exists('entitycache')) {
+        list(,, $entity_id) = explode(':', $cache_key);
+        $ecc = new EntityCacheNodeController('node');
+        $ecc->resetCache(array($entity_id));
+      }
+    }
+
+    // Here we save the cache to database. When we edited the pane we made
+    // changes in the cache. In order the page to see the changes we need
+    // to save cache data to database.
+    if (preg_match('/panels\/ajax\/editor\/edit-pane\/panel_context:([^:]*):.*/', $_GET['q'], $matches)) {
+      $key = $matches[1];
+      nas_panes_resave_panel($key);
     }
 
     $commands[] = ctools_ajax_command_reload();
@@ -1505,10 +1512,9 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
       'title' => $item->node_title,
       'state' => $item->field_data_field_location_address_field_location_address_adm,
       'city' => $item->field_data_field_location_address_field_location_address_loc,
-      'link' => l($item->node_title, 'node/' . $item->nid),
+      'link' => l($item->node_title, $item->field_field_location_link[0]['raw']['url'], array('attributes' => array('target' => '_blank'))),
       'subtitle' => '',
     );
-
     // Add subtitle.
     $subtitle = array();
     if (!empty($item->field_data_field_location_address_field_location_address_loc)) {

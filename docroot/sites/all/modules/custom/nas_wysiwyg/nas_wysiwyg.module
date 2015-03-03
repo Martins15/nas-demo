@@ -79,6 +79,8 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
         $slides[$key]['image'] = theme('image_style', array(
           'style_name' => 'wysiwyg_slide',
           'path' => $file->uri,
+          'width' => $file->metadata['width'],
+          'height' => $file->metadata['width'],
         ));
         $slides[$key]['caption'] = _nas_panes_format_image_attribution($file);
       }

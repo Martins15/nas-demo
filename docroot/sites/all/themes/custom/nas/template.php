@@ -11,6 +11,35 @@
 include_once 'theme/pager.inc';
 
 /**
+ * Implements template_preprocess_html().
+ */
+function nas_preprocess_html(&$variables) {
+  $variables['jquery'] = &drupal_static('nas_jquery');
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function nas_js_alter(&$javascript) {
+  foreach ($javascript as $path => $js) {
+    if (strpos($path, 'jquery.min.js') !== FALSE) {
+      unset($javascript[$path]);
+      $script_tag = array(
+        '#theme' => 'html_tag',
+        '#tag' => 'script',
+        '#value' => '',
+        '#attributes' => array(
+          'type' => 'text/javascript',
+          'src' => url($path, array('absolute' => TRUE, 'query' => array('v' => $js['version']))),
+        ),
+      );
+      $jquery = &drupal_static('nas_jquery');
+      $jquery = drupal_render($script_tag);
+    }
+  }
+}
+
+/**
  * Implements hook_html_head_alter().
  */
 function nas_html_head_alter(&$head_elements) {
@@ -854,7 +883,6 @@ function nas_image($variables) {
     'boa_family_species',
     'magazine_issue_cover',
     'our_leadership',
-    'wysiwyg_slide',
   );
   if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
     $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
@@ -1206,7 +1234,7 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       $image_file = (object) $image;
       // Add regular slide.
       $content_image = array(
-        'url' => image_style_url('slideshow', $image_file->uri),
+        'render' => '',
         // Additional fields to display on each slide.
         'attribution' => '',
         'alt' => '',
@@ -1221,6 +1249,15 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       if ($items = field_get_items('file', $image_file, 'field_file_image_title_text')) {
         $content_image['title'] = check_plain($items[0]['value']);
       }
+      $content_image['render'] = theme('image_style', array(
+        'style_name' => 'slideshow',
+        'path' => $image_file->uri,
+        'height' => $image_file->height,
+        'width' => $image_file->width,
+        'alt' => $content_image['alt'],
+        'title' => $content_image['title'],
+      ));
+
       if (function_exists('_nas_panes_format_image_attribution')) {
         $content_image['attribution'] = _nas_panes_format_image_attribution($image_file);
       }

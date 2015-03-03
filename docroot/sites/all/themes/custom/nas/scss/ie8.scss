@@ -17,6 +17,9 @@
 .strip-nav ul {
   width: 1000px !important;
   overflow: visible;
+  li {
+    padding:0 5px;
+  }
 }
 .dont-miss {
   height: 38px;
@@ -150,7 +153,7 @@
 }
 
 // Get rid of the mysterious space above and below certain elements
-section,
+section:not(.article-sidebar-section),
 header,
 footer,
 aside,

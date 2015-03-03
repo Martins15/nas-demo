@@ -34,7 +34,7 @@
       </div>
     </div>
   </article>
-  <section class="card-set">
+  <section class="card-set reset-white">
     <?php print $content['card_set']; ?>
   </section>
 </section>

@@ -115,45 +115,17 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
     $subtitle = $field_items[0]['safe_value'];
   }
 
-  $contextual_links = '';
-  if (user_access('featured article pane edit')) {
-    ctools_include('modal');
-    ctools_modal_add_js();
-    // Add ajax-responder so ctools_ajax_command_reload() will work.
-    ctools_add_js('ajax-responder');
-    // We expect Front Featured Article pane to be only on Front Page. If this is not
-    // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_featured_article'))->fetchField();
-    if (empty($pid)) {
-      page_manager_save_page_cache(NAS_PANES_NEWS_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_featured_article'))->fetchField();
-    }
-    $links = array(
-      'edit' => array(
-        'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-        'attributes' => array('class' => array('ctools-use-modal')),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $contextual_links = drupal_render($build);
-  }
+  list($section_link_text, $section_link_url) = nas_panes_get_blue_text_link($node);
+
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = theme('nas_frontpage_featured_article', array(
     'image_path' => $image_path,
     'article_title' => $article_title,
     'article_raw_link' => $article_raw_link,
     'subtitle' => $subtitle,
+    'section_link_text' => $section_link_text,
+    'section_link_url' => $section_link_url,
     'contextual_links' => $contextual_links,
   ));
 

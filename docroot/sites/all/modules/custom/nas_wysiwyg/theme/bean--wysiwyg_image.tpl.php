@@ -47,7 +47,7 @@
 </figure>
 <?php elseif ($width == 'half-right'): ?>
 <aside class="article-aside <?php print $width; ?>-width">
-  <figure class="article-image hide-for-tiny hide-for-small image-container">
+  <figure class="article-image image-container">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
     <figcaption class="caption article-aside-caption">

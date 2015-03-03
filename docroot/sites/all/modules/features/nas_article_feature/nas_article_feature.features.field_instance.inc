@@ -592,7 +592,7 @@ function nas_article_feature_field_default_field_instances() {
     'bundle' => 'article',
     'default_value' => array(
       0 => array(
-        'value' => '<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" scrolling="no" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=e47c7387f97d4f6f8f691e1c73e31a00&amp;extent=-74.1592,40.6498,-73.6521,40.8761"></iframe>',
+        'value' => '',
         'format' => 'map',
       ),
     ),
