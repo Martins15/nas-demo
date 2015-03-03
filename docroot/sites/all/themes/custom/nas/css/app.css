@@ -8675,7 +8675,7 @@ body.black-bg .section-header a:hover {
 }
 @media only screen and (min-width: 601px) {
   .thumb-strip {
-    margin: 0 36px 0 35px;
+    margin: 0 35px;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -11708,7 +11708,6 @@ body.touch .sticky-wrapper {
   max-width: 63px;
   position: absolute;
   top: 38px;
-  z-index: 0;
 }
 
 .page-birds-of-america .guide-bar-title {
@@ -13725,6 +13724,10 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .boa-plate-view-wrapper.show-bg .row *,
 .boa-plate-view-wrapper.show-bg .view-nas-bird-guide * {
   pointer-events: none;
+}
+.boa-plate-view-wrapper.show-bg .row a,
+.boa-plate-view-wrapper.show-bg .view-nas-bird-guide a {
+  pointer-events: auto;
 }
 
 .article-text h1 > a, .article-text h2 > a, .article-text h3 > a, .article-text h4:not(.editorial-card-title) > a, .article-text h5 > a, .article-text h6 > a,

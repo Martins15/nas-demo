@@ -672,6 +672,10 @@ body.node-type-slideshow {
       * {
         pointer-events: none;
       }
+
+      a {
+        pointer-events: auto;
+      }
     }
   }
 }
