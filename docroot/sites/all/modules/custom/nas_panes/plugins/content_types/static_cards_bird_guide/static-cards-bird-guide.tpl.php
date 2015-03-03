@@ -24,7 +24,7 @@
       <?php endforeach; ?>
     </div>
   </div>
-  <div class="row indicator space-bottom">
+  <div class="row indicator">
     <div class="column">
       <p><i class="indicator-left icon-arrow-left disabled"></i>&nbsp;&nbsp;&nbsp;<i class="indicator-right icon-arrow-right"></i></p>
     </div>

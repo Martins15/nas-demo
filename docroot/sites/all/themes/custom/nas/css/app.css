@@ -4537,6 +4537,7 @@ small {
 .bird-card.small .bird-card-illustration img {
   max-height: 100px;
   max-width: 90%;
+  width: auto !important;
 }
 @media only screen and (min-width: 768px) and (max-width: 840px) {
   .bird-card.small .bird-card-illustration {
@@ -5450,7 +5451,7 @@ table.row-borders tbody td {
 }
 @media only screen and (min-width: 768px) {
   .hero:not(.expand) .hero-image img:not(.canon-logo) {
-    height: 440px;
+    height: 465px;
     max-width: none;
     width: auto;
   }
@@ -8674,7 +8675,7 @@ body.black-bg .section-header a:hover {
 }
 @media only screen and (min-width: 601px) {
   .thumb-strip {
-    margin: 0 35px;
+    margin: 0 36px 0 35px;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -11707,6 +11708,7 @@ body.touch .sticky-wrapper {
   max-width: 63px;
   position: absolute;
   top: 38px;
+  z-index: 0;
 }
 
 .page-birds-of-america .guide-bar-title {
@@ -12828,11 +12830,6 @@ h2.grey {
   padding-top: 0px;
 }
 
-.load-more.button I {
-  top: auto\9;
-  left: auto\9;
-}
-
 .empty-search-results {
   text-align: center;
 }
@@ -13742,4 +13739,63 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 
 .view-nas-similar-birds .view-footer {
   clear: both;
+}
+
+/*Crossbrowser fixes*/
+.homepage-first-row .sidebar-section:last-child, .homepage-first-row .article-sidebar-section:last-child,
+.homepage-first-row .editorial-card {
+  margin-bottom: 0;
+}
+
+#nas-footer-mail-subscription-form .mailing-list-input {
+  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+}
+
+@media only screen and (max-width: 479px) {
+  div.index-list,
+  div.index-list .view .pager-load-more {
+    margin-bottom: 0;
+  }
+
+  #disqus_thread {
+    padding: 0 12.5px;
+  }
+
+  .breakout-section-content .editorial-card {
+    margin-bottom: 0;
+  }
+
+  .editorial-card-3x .section-header h2 {
+    margin-top: 0;
+  }
+  .editorial-card-3x .card-set .editorial-card {
+    min-height: 0 !important;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  div.index-list,
+  div.index-list .view .pager-load-more {
+    margin-bottom: 0;
+  }
+
+  #disqus_thread {
+    padding: 0 12.5px;
+  }
+
+  .breakout-section-content .editorial-card {
+    margin-bottom: 0;
+  }
+
+  .editorial-card-3x .section-header h2 {
+    margin-top: 0;
+  }
+  .editorial-card-3x .card-set .editorial-card {
+    min-height: 0 !important;
+  }
+}
+.reset-white .card-set-social .white {
+  color: #7BA701;
+}
+.reset-white .card-set-social a.white {
+  color: #7BA701;
 }

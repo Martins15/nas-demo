@@ -688,3 +688,71 @@ body.node-type-slideshow {
 .view-nas-similar-birds .view-footer {
   clear: both;
 }
+
+/*Crossbrowser fixes*/
+.homepage-first-row {
+  .sidebar-section:last-child,
+  .editorial-card {
+    margin-bottom: 0;
+  }
+}
+
+#nas-footer-mail-subscription-form .mailing-list-input {
+  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+}
+
+@include breakpoint(tiny-only) {
+  div.index-list,
+  div.index-list .view .pager-load-more {
+    margin-bottom: 0;
+  }
+
+  #disqus_thread {
+    padding: 0 12.5px;
+  }
+
+  .breakout-section-content .editorial-card {
+    margin-bottom: 0;
+  }
+
+  .editorial-card-3x {
+    .section-header h2 {
+      margin-top: 0;
+    }
+    .card-set .editorial-card {
+      min-height: 0 !important;
+    }
+  }
+}
+@include breakpoint(small-only) {
+  div.index-list,
+  div.index-list .view .pager-load-more {
+    margin-bottom: 0;
+  }
+
+  #disqus_thread {
+    padding: 0 12.5px;
+  }
+
+  .breakout-section-content .editorial-card {
+    margin-bottom: 0;
+  }
+
+  .editorial-card-3x {
+    .section-header h2 {
+      margin-top: 0;
+    }
+    .card-set .editorial-card {
+      min-height: 0 !important;
+    }
+  }
+}
+
+.reset-white .card-set-social {
+  .white {
+    color: #7BA701;
+  }
+  a.white {
+    color: #7BA701;
+  }
+}

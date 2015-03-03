@@ -11,7 +11,7 @@ $(function() {
         scrollerWidth = 0;
 
     thumbs.each(function() {
-      scrollerWidth += $(this).outerWidth();
+      scrollerWidth += $(this).outerWidth();console.log($(this).outerWidth());
     });
 
     scroller.css({
