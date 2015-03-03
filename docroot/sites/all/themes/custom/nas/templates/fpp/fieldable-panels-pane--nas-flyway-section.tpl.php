@@ -14,21 +14,23 @@
   <div class="breakout-section-content light-text">
     <div class="row space-top space-bottom double">
       <div class="columns large-4">
-        <h5 class="close-heading"><?php print t('You are a part of the'); ?></h5>
-        <h1 class="thin"><?php print $title; ?></h1>
-        <p><em><?php print $flyway_description; ?></em></p>
-        <br>
-        <div class="editorial-card dark no-border">
-          <div class="editorial-card-content">
-            <h4 class="editorial-card-title blue"><?php print $about_link; ?></h4>
-            <p><?php print $about_the_flyways; ?></p>
-            <br>
-            <em><?php print $learn_more; ?></em>
+        <div class="breakout-section-box">
+          <h5 class="close-heading"><?php print t('You are a part of the'); ?></h5>
+          <h1 class="thin"><?php print $title; ?></h1>
+          <p><em><?php print $flyway_description; ?></em></p>
+          <br>
+          <div class="editorial-card dark no-border">
+            <div class="editorial-card-content">
+              <h4 class="editorial-card-title blue"><?php print $about_link; ?></h4>
+              <p><?php print $about_the_flyways; ?></p>
+              <br>
+              <em><?php print $learn_more; ?></em>
+            </div>
           </div>
         </div>
       </div>
       <div class="columns large-4">
-       &nbsp;
+        &nbsp;
       </div>
       <div class="columns large-4">
         <div class="breakout-section-box">

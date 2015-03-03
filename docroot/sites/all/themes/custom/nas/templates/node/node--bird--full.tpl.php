@@ -192,11 +192,45 @@
                 <?php print render($content['field_bird_migration']); ?>
               </section>
             <?php endif; ?>
-
+            <?php if (!empty($content['field_bird_rangemap'])): ?>
             <section id="bird-map" class="bird-guide-section right-col">
               <?php print render($content['field_bird_rangemap']); ?>
+              <ul class="range-map-key">
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #7B7EB7"></span>
+                  <span class="key-label">All Seasons - Common</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #BABADB"></span>
+                  <span class="key-label">All Seasons - Uncommon</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #FE1450"></span>
+                  <span class="key-label">Breeding - Common</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #FFAAA8"></span>
+                  <span class="key-label">Breeding - Uncommon</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #00B0EB"></span>
+                  <span class="key-label">Winter - Common</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #79D9F6"></span>
+                  <span class="key-label">Winter - Uncommon</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #D3D4C6"></span>
+                  <span class="key-label">Migration - Common</span>
+                </li>
+                <li class="key-item">
+                  <span class="key-swatch" style="background-color: #EDECDC"></span>
+                  <span class="key-label">Migration - Uncommon</span>
+                </li>
+              </ul>
             </section>
-
+            <?php endif; ?>
             <section id="bird-songs-calls" class="bird-guide-section right-col small sans">
               <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
               <?php print render($content['field_bird_calls']); ?>

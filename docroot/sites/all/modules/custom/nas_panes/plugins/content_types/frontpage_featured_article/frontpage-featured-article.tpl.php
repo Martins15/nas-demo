@@ -18,6 +18,7 @@
         <a href="<?php print $article_raw_link ?>"><img src="<?php print $image_path; ?>" alt=""></a>
       </div>
       <div class="editorial-card-content minimal">
+      <a href="<?php print $section_link_url; ?>" class="editorial-card-slug"><?php print $section_link_text; ?></a>
         <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h3>
         <?php if ($subtitle): ?>
           <p><?php print $subtitle; ?></p>
