@@ -61,7 +61,7 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
 
   if (!nas_panes_location_filter_is_active()) {
     drupal_add_library('system', 'jquery.cookie');
-    drupal_add_js(base_path() . 'geoip/js/geoip.js');
+    drupal_add_js('geoip/js/geoip.js');
     drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search/audubon_near_you_search.js');
   }
 
