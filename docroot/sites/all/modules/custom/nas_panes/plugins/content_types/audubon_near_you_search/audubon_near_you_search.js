@@ -6,8 +6,7 @@
     attach: function(context, settings) {
       // Replace blocks only once.
       $('.audubon-near-you--global-content-wrapper').once('location-replace', function() {
-        var onSuccess = function(location) {
-          var stateIsoCode = location.subdivisions['0'].iso_code;
+        var onSuccess = function(stateIsoCode) {
           if (typeof(stateIsoCode) === 'undefined') {
             return;
           }
@@ -16,13 +15,8 @@
           Drupal.near_you.update_content(stateIsoCode);
         };
 
-        var onError = function(error) {
-          console.log('Error:' + JSON.stringify(error));
-          // Display empty text when error.
-          Drupal.near_you.update_content(null);
-        };
-
-        geoip2.city(onSuccess, onError);
+        // Internal request.
+        geoip.getState(onSuccess);
       });
     }
   };

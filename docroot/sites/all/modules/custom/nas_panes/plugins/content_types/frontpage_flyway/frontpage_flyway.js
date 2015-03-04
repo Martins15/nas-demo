@@ -13,19 +13,15 @@
 
   Drupal.behaviors.frontpage_flyway = {
     attach: function(context, settings) {
-      var onSuccess = function(location) {
-        var locationObject = $.parseJSON(JSON.stringify(location, undefined, 4));
-        console.log("Lookup successful:");
-        console.log(locationObject);
-        var StateIsoCode = locationObject.subdivisions['0'].iso_code;
-        if (typeof(StateIsoCode) === 'undefined') {
-          StateIsoCode = 'default';
+      var onSuccess = function(stateIsoCode) {
+        if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode == '') {
+          stateIsoCode = 'default';
         }
         var fpp_class_to_show = '',
           all_fpp_classes = [],
           class_to_show = '';
         for (var key in Drupal.settings.frontpage_flyway) {
-          if (in_array(StateIsoCode, Drupal.settings.frontpage_flyway[key])) {
+          if (in_array(stateIsoCode, Drupal.settings.frontpage_flyway[key])) {
             fpp_class_to_show = key;
           }
           all_fpp_classes.push(key);
@@ -41,11 +37,8 @@
         $boSection.css({backgroundImage: 'url(' + $boSection.data("background") + ')'});
       };
 
-      var onError = function(error) {
-        console.log("Error:\n\n" + JSON.stringify(error, undefined, 4));
-      };
-
-      geoip2.city(onSuccess, onError);
+      // Internal request.
+      geoip.getState(onSuccess);
     }
   };
 })(jQuery);

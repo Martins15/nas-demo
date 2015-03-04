@@ -60,7 +60,8 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   if (!nas_panes_location_filter_is_active()) {
-    drupal_add_js('//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js', 'external');
+    drupal_add_library('system', 'jquery.cookie');
+    drupal_add_js(base_path() . 'geoip/js/geoip.js');
     drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_search/audubon_near_you_search.js');
   }
 

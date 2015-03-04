@@ -24,7 +24,8 @@ function frontpage_flyway_pane_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $block->content = '';
 
-  drupal_add_js('//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js', 'external');
+  drupal_add_library('system', 'jquery.cookie');
+  drupal_add_js(base_path() . 'geoip/js/geoip.js');
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_flyway/frontpage_flyway.js');
 
   //We use 2 functions from this plugin.
