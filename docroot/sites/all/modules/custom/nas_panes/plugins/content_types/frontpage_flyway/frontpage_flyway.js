@@ -14,7 +14,7 @@
   Drupal.behaviors.frontpage_flyway = {
     attach: function(context, settings) {
       var onSuccess = function(stateIsoCode) {
-        if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode == '') {
+        if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
           stateIsoCode = 'default';
         }
         var fpp_class_to_show = '',
