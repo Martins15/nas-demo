@@ -7382,9 +7382,6 @@ body.touch .primary-sub-nav-index {
   margin-left: 5px;
 }
 
-.social-sharing.no-caption .social-sharing-icon {
-  margin: 0 10px;
-}
 .social-sharing.no-caption .social-sharing-icon:first-child {
   margin-left: 0;
 }

@@ -6,9 +6,8 @@
       $('.chapters-centers-content-layout').once('location-replace', function() {
         var wrapper = '#chapters-centers-content-wrapper';
 
-        var onSuccess = function(location) {
-          var stateIsoCode = location.subdivisions['0'].iso_code;
-          if (typeof(stateIsoCode) === 'undefined') {
+        var onSuccess = function(stateIsoCode) {
+          if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
             return;
           }
 
@@ -27,11 +26,8 @@
           });
         };
 
-        var onError = function(error) {
-          console.log('Error:' + JSON.stringify(error));
-        };
-
-        geoip2.city(onSuccess, onError);
+        // Internal request.
+        geoip.getState(onSuccess);
       });
     }
   };
