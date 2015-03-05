@@ -17,13 +17,7 @@ define('GEOIP_DATABASE', '../sites/default/files/GeoLite2-City.mmdb');
 define('GEOIP_DEBUG', FALSE);
 
 // Get client IP. Can be in $_GET query or server env.
-$ip = !empty($_GET['ip']) ? $_GET['ip'] :
-  getenv('HTTP_CLIENT_IP') ?:
-  getenv('HTTP_X_FORWARDED_FOR') ?:
-  getenv('HTTP_X_FORWARDED') ?:
-  getenv('HTTP_FORWARDED_FOR') ?:
-  getenv('HTTP_FORWARDED') ?:
-  getenv('REMOTE_ADDR');
+$ip = !empty($_GET['ip']) ? $_GET['ip'] : ip_address();
 
 try {
   if (!file_exists(__DIR__ . '/' . GEOIP_DATABASE)) {
@@ -45,4 +39,29 @@ catch (Exception $e) {
   if (GEOIP_DEBUG || !empty($_GET['debug'])) {
     echo $e->getMessage();
   }
+}
+
+/**
+ * Returns user IP based on conf.
+ */
+function ip_address() {
+  $ip_address = $_SERVER['REMOTE_ADDR'];
+  if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    // Turn XFF header into an array.
+    $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+    // Trim the forwarded IPs; they may have been delimited by commas and spaces.
+    $ips = array_map('trim', $ips);
+    // Tack direct client IP onto end of forwarded array.
+    $ips[] = $ip_address;
+
+    $ips = array_reverse($ips);
+    foreach ($ips as $ip) {
+      if (strpos($ip, '10.') !== 0) {
+        // We get first non 10. ip.
+        return $ip;
+      }
+    }
+  }
+
+  return $ip_address;
 }
