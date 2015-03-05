@@ -66,7 +66,7 @@
 
         // Get the max width of all images after resizing
         var slidesImgWidths = $slides.map(function() {
-          return $(this).find(".slide-img img").data("width");
+          return $(this).find(".slide-img img").width();
         }).get();
 
         var maxSlideImgWidth = Math.max.apply(null, slidesImgWidths);
