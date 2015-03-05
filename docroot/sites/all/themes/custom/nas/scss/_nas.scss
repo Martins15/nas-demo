@@ -699,10 +699,12 @@ body.node-type-slideshow {
 }
 
 /*Crossbrowser fixes*/
-.homepage-first-row {
-  .sidebar-section:last-child,
-  .editorial-card {
-    margin-bottom: 0;
+@include breakpoint(medium-up) {
+  .homepage-first-row {
+    .sidebar-section:last-child,
+    .editorial-card {
+      margin-bottom: 0;
+    }
   }
 }
 

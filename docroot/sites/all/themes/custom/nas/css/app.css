@@ -13824,11 +13824,12 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 /*Crossbrowser fixes*/
-.homepage-first-row .sidebar-section:last-child, .homepage-first-row .article-sidebar-section:last-child,
-.homepage-first-row .editorial-card {
-  margin-bottom: 0;
+@media only screen and (min-width: 601px) {
+  .homepage-first-row .sidebar-section:last-child, .homepage-first-row .article-sidebar-section:last-child,
+  .homepage-first-row .editorial-card {
+    margin-bottom: 0;
+  }
 }
-
 #nas-footer-mail-subscription-form .mailing-list-input {
   padding: 0.5rem 0.5rem 0.5rem 0.75rem;
 }
