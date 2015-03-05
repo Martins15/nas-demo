@@ -76,7 +76,8 @@ function local_chapters_centers_block_form_submit(&$form, &$form_state) {
 function local_chapters_centers_block_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  drupal_add_js('//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js', 'external');
+  drupal_add_library('system', 'jquery.cookie');
+  drupal_add_js('geoip/js/geoip.js');
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/local_chapters_centers_block/local_chapters_centers_block.js');
 
   $contextual_links = '';

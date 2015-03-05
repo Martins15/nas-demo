@@ -12,7 +12,7 @@ $plugin = array(
   'category' => 'NAS',
   'render callback' => 'conservation_strategy_news_render',
   'edit form' => 'conservation_strategy_news_edit_form',
-  'required context' => new ctools_context_required(t('Node'), 'node'),
+  'required context' => new ctools_context_optional(t('Node'), 'node'),
 );
 
 /**
@@ -22,13 +22,14 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   _nas_panes_hide_pane_title_field($form);
 
-  $context = reset($form_state['display']->context);
-  // Not on default panel, not article.
-  if (!$context->empty && $context->data->type !== 'strategy') {
-    return $form;
+  $conf_key = 'default';
+  if ($context = reset($form_state['display']->context)) {
+    // Not on default panel, not article.
+    if (isset($context->empty) && !$context->empty && isset($context->data->nid)) {
+      $conf_key = $context->data->nid;
+    }
   }
 
-  $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
   $form[$conf_key] = array(
     '#type' => 'fieldset',
     '#title' => t('Related News settings'),
@@ -88,19 +89,9 @@ function conservation_strategy_news_edit_form_submit(&$form, &$form_state) {
  * @see ctools_plugin_examples()
  */
 function conservation_strategy_news_render($subtype, $conf, $args, $context) {
-  $block = new stdClass();
-  $is_editor = FALSE;
-  $context_node = $context->data;
-  if ($context_node->type !== 'strategy') {
-    return;
-  }
-
-  $conf_key = $context_node->nid;
-
-  $contextual_links = '';
-  if (user_access('edit NAS panes')) {
-    $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context_node, 'strategy', 'default');
-    $is_editor = TRUE;
+  $conf_key = 'default';
+  if (isset($context->empty) && !$context->empty && !empty($context->data->nid)) {
+    $conf_key = $context->data->nid;
   }
 
   // Get featured news.
@@ -110,7 +101,6 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   );
   $featured_news = array();
   $featured_news_ids = array();
-  $hide_content = FALSE;
   if (!empty($conf[$conf_key]['articles'])) {
     $nodes = array();
     foreach ($conf[$conf_key]['articles'] as $article) {
@@ -140,16 +130,17 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   $news_list = call_user_func_array('views_embed_view', $args);
   $news_results = call_user_func_array('views_get_view_result', $args);
 
-  if (empty($news_results) && empty($featured_news) && !$is_editor) {
-    $hide_content = TRUE;
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+  if (empty($news_results) && empty($featured_news) && !$contextual_links) {
+    return;
   }
 
+  $block = new stdClass();
   $block->content = theme('conservation_strategy_news', array(
       'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Related News'),
       'news_list' => $news_list,
       'featured_news' => $featured_news,
       'contextual_links' => $contextual_links,
-      'hide_content' => $hide_content,
     ));
 
   return $block;
