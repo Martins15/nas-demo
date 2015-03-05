@@ -39,4 +39,12 @@
 .bio-title {
   font-size: 30px;
   font-weight: 300;
+
+  @include breakpoint(tiny-only) {
+    font-size: 20px;
+  }
+
+  @include breakpoint(small-only) {
+    font-size: 20px;
+  }
 }
