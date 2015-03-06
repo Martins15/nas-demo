@@ -15,6 +15,7 @@ $plugin = array(
   'icon' => 'nas_article_inline_hero_image.png',
   'theme' => 'nas_article_inline_hero_image',
   'regions' => array(
+    'magazine_bar' => t('Magazine Bar'),
     'header' => t('Header'),
     'inline_image' => t('Inline Hero image'),
     'main' => t('Main'),
