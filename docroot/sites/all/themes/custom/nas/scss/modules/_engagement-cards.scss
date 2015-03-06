@@ -95,4 +95,41 @@
 
 .engagement-card-sidebar-section {
   float: left;
+  .page-frontpage & {
+    width: 100%;
+  }
+}
+
+@include breakpoint(medium-up) {
+  .engagement-card-and-social-icons {
+    width:100%;
+    height:100%;
+    padding-bottom:60px;
+    position:relative;
+
+    .engagement-card {
+      position: relative;
+      height: 100%;
+
+      .engagement-card-content {
+  //      margin-bottom: 60px;
+        padding-bottom: 62%;
+
+        .engagement-card-cta {
+          position: static;
+        }
+      }
+
+      .engagement-card-photo {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
+    .editorial-card-banner.blue {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
 }
