@@ -1,29 +1,28 @@
 (function($, Drupal) {
   Drupal.behaviors.slideshowCT = {
     attach: function(context, settings) {
-    if ($(".slideshow").length) {
+    $(".slideshow", context).once('slideshow-drupal-behavior', function() {
+      var $slideshow = $(this);
       var Slideshow = {},
           scroll;
 
       // @todo Relieve some magic numbers
 
       Slideshow.resize = function() {
-        $(".slideshow").each(function() {
-          var $this = $(this),
-              $slides = $this.find(".slide"),
-              $wrapper = $this.find(".slideshow-wrapper"),
-              $scroller = $this.find(".slideshow-scroller"),
-              $title = $this.find(".slideshow-title"),
-              $indicator = $this.find(".slideshow-indicator");
-              $buttons = $this.find(".slideshow-button");
+        $this = $slideshow;
+        var $slides = $this.find(".slide"),
+            $wrapper = $this.find(".slideshow-wrapper"),
+            $scroller = $this.find(".slideshow-scroller"),
+            $title = $this.find(".slideshow-title"),
+            $indicator = $this.find(".slideshow-indicator");
+            $buttons = $this.find(".slideshow-button");
 
-          $slides.css("width", $("body").width() + "px");
-          $scroller.css("width", $("body").width() * $slides.length + "px");
+        $slides.css("width", $("body").width() + "px");
+        $scroller.css("width", $("body").width() * $slides.length + "px");
 
-          Slideshow._resizeSlides($slides);
-          Slideshow._setupIndicatorPosition($slides, $indicator);
-          Slideshow._setupButtonPosition($slides, $buttons);
-        });
+        Slideshow._resizeSlides($slides);
+        Slideshow._setupIndicatorPosition($slides, $indicator);
+        Slideshow._setupButtonPosition($slides, $buttons);
       };
 
       Slideshow._resizeSlides = function($slides) {
@@ -123,31 +122,30 @@
       };
 
       Slideshow.setup = function() {
-        var $body = $(".slideshow"),
+        var $body = $slideshow,
             $indicator = $body.find(".slideshow-indicator"),
             $controls = $body.find(".slideshow-control");
 
         // Move src, width, height attributes for each images into 'data'
         // Keep source for first two images of each slideshow.
-        $(".slideshow").each(function() {
-          $(this)
-            .find(".slide .slide-img img")
-            .each(function(i) {
-              var $image = $(this);
-              $image
-                .data("width", $image.attr("width")).removeAttr("width")
-                .data("height", $image.attr("height")).removeAttr("height");
-              if (i < 2) return;
-              $image
-                .data("src", $image.attr("src")).attr("src", '');
-            });
-        });
+        $body
+          .find(".slide .slide-img img")
+          .each(function(i) {
+            var $image = $(this);
+            $image
+              .data("width", $image.attr("width")).removeAttr("width")
+              .data("height", $image.attr("height")).removeAttr("height");
+            if (i < 2) return;
+            $image
+              .data("src", $image.attr("src")).attr("src", '');
+          });
 
         Slideshow._setSizes($body);
 
         // Prevent IE8 errors.
         if (window.addEventListener) {
-          scroll = new IScroll(".slideshow-wrapper", {
+          var wrapper = $body.find(".slideshow-wrapper").get(0);
+          scroll = new IScroll(wrapper, {
             scrollX: true,
             scrollY: false,
             momentum: false,
@@ -186,14 +184,14 @@
           var currentPage = scroll.currentPage.pageX + 1,
               totalPages = $body.find(".slide").length;
 
-          $(".indicator-current").html(scroll.currentPage.pageX + 1);
-          $(".ss-icon").removeClass("inactive");
+          $(".indicator-current", $indicator).html(scroll.currentPage.pageX + 1);
+          $(".ss-icon", $indicator).removeClass("inactive");
 
           if (currentPage == 1) {
-            $(".ss-icon.prev").addClass("inactive");
+            $(".ss-icon.prev", $indicator).addClass("inactive");
           }
           if (currentPage == totalPages) {
-            $(".ss-icon.next").addClass("inactive");
+            $(".ss-icon.next", $indicator).addClass("inactive");
           }
         });
       };
@@ -257,7 +255,9 @@
       setTimeout(function() {
         Slideshow.resize();
       }, 3000);
-    }
+
+    });
+
   }
 };
 })(jQuery, Drupal);
