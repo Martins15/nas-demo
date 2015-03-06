@@ -4677,7 +4677,37 @@ small {
 .engagement-card-sidebar-section {
   float: left;
 }
+.page-frontpage .engagement-card-sidebar-section {
+  width: 100%;
+}
 
+@media only screen and (min-width: 601px) {
+  .engagement-card-and-social-icons {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 60px;
+    position: relative;
+  }
+  .engagement-card-and-social-icons .engagement-card {
+    position: relative;
+    height: 100%;
+  }
+  .engagement-card-and-social-icons .engagement-card .engagement-card-content {
+    padding-bottom: 62%;
+  }
+  .engagement-card-and-social-icons .engagement-card .engagement-card-content .engagement-card-cta {
+    position: static;
+  }
+  .engagement-card-and-social-icons .engagement-card .engagement-card-photo {
+    position: absolute;
+    bottom: 0;
+  }
+  .engagement-card-and-social-icons .editorial-card-banner.blue {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
 /* @todo Add a markup example */
 .editorial-card-banner.fixed {
   position: absolute;
