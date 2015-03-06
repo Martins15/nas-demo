@@ -792,3 +792,35 @@ body.node-type-slideshow {
     padding-bottom: 20px;
   }
 }
+
+#tabs,
+.profile {
+  margin: 20px 15px;
+}
+
+#user-login,
+#user-pass {
+  margin: 0 20px;
+
+  .form-text {
+    margin-bottom: 5px;
+    @include breakpoint(large-up) {
+      width: 50%;
+    }
+  }
+
+  .description {
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+
+  .form-submit {
+    margin: 20px 0 40px;
+  }
+}
+
+.page-node.adminimal-menu {
+  .global-header.transparent {
+    margin-bottom: 0;
+  }
+}

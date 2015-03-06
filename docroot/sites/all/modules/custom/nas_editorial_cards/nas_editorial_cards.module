@@ -68,8 +68,8 @@ function nas_editorial_cards_token_info() {
     'description' => t('Returns Editorial card title'),
   );
   $info['tokens']['node']['editorial_card_subtitle'] = array(
-    'name' => t('Editorial card subtitle value'),
-    'description' => t('Returns Editorial card subtitle'),
+    'name' => t('Editorial card description value'),
+    'description' => t('Returns Editorial card description'),
   );
   $info['tokens']['node']['editorial_card_image'] = array(
     'name' => t('Editorial card image value'),

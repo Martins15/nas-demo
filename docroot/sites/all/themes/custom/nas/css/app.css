@@ -13904,3 +13904,36 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   margin-top: 30px;
   padding-bottom: 20px;
 }
+
+#tabs,
+.profile {
+  margin: 20px 15px;
+}
+
+#user-login,
+#user-pass {
+  margin: 0 20px;
+}
+#user-login .form-text,
+#user-pass .form-text {
+  margin-bottom: 5px;
+}
+@media only screen and (min-width: 768px) {
+  #user-login .form-text,
+  #user-pass .form-text {
+    width: 50%;
+  }
+}
+#user-login .description,
+#user-pass .description {
+  margin: 0 0 20px;
+  font-size: 15px;
+}
+#user-login .form-submit,
+#user-pass .form-submit {
+  margin: 20px 0 40px;
+}
+
+.page-node.adminimal-menu .global-header.transparent {
+  margin-bottom: 0;
+}
