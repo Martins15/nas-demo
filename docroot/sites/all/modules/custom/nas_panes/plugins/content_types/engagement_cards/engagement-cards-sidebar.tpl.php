@@ -10,6 +10,9 @@
 ?>
 <div class="sidebar-section engagement-card-sidebar-section <?php print $ftv_class; ?> contextual-links-region" <?php print $equalize_height; ?>>
   <?php print $contextual_links; ?>
+  <?php if ($show_social_icons): ?>
+  <div class="engagement-card-and-social-icons">
+  <?php endif; ?>
   <?php foreach ($teasers as $teaser): ?>
     <?php print $teaser; ?>
   <?php endforeach; ?>
@@ -25,5 +28,6 @@
         <a class="social-sharing-icon white small" href="<?php print $social_icons['instagram']; ?>"><i class="icon-instagram"></i></a>
       </div>
     </div>
+  </div>
   <?php endif; ?>
 </div>

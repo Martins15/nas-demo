@@ -89,7 +89,7 @@
 
 <div class="columns large-4">
   <div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
-    <div class="editorial-card-photo">
+    <div class="editorial-card-photo slideshow">
       <?php print $linked_image; ?>
     </div>
     <div class="editorial-card-banner gray"><i class="icon-slides"></i> Slideshow</div>

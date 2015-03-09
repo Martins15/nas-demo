@@ -234,10 +234,15 @@
 .section-nav.mag-issue-nav {
   top: -49px;  
 }
-.mag-issue-title span {
-  font-family: $font-sans;
-  font-size: $size-text-large;
-  margin-bottom: $size-space;
+.mag-issue-title {
+  @include breakpoint(width, 768px) {
+    font-size: 36px;
+  }
+  span {
+    font-family: $font-sans;
+    font-size: $size-text-large;
+    margin-bottom: $size-space;
+  }
 }
 .mag-issue-header.section-header {
   margin-bottom: 5px;
@@ -694,10 +699,12 @@ body.node-type-slideshow {
 }
 
 /*Crossbrowser fixes*/
-.homepage-first-row {
-  .sidebar-section:last-child,
-  .editorial-card {
-    margin-bottom: 0;
+@include breakpoint(medium-up) {
+  .homepage-first-row {
+    .sidebar-section:last-child,
+    .editorial-card {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -706,6 +713,11 @@ body.node-type-slideshow {
 }
 
 @include breakpoint(tiny-only) {
+  .title-slide-content .deck {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
   div.index-list,
   div.index-list .view .pager-load-more {
     margin-bottom: 0;
@@ -758,5 +770,57 @@ body.node-type-slideshow {
   }
   a.white {
     color: #7BA701;
+  }
+}
+
+.editorial-card.collapse-minimal .editorial-card-photo.slideshow {
+  display: block;
+}
+
+.text-container {
+  ul, ol {
+    margin-left: 25px;
+  }
+}
+
+#audubon-near-you--center-sanctuary--wrapper {
+  overflow: hidden;
+  clear: both;
+
+  .title-block {
+    margin-top: 30px;
+    padding-bottom: 20px;
+  }
+}
+
+#tabs,
+.profile {
+  margin: 20px 15px;
+}
+
+#user-login,
+#user-pass {
+  margin: 0 20px;
+
+  .form-text {
+    margin-bottom: 5px;
+    @include breakpoint(large-up) {
+      width: 50%;
+    }
+  }
+
+  .description {
+    margin: 0 0 20px;
+    font-size: 15px;
+  }
+
+  .form-submit {
+    margin: 20px 0 40px;
+  }
+}
+
+.page-node.adminimal-menu {
+  .global-header.transparent {
+    margin-bottom: 0;
   }
 }

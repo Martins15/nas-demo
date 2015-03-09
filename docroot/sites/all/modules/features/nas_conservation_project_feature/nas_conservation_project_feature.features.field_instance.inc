@@ -642,7 +642,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_editorial_card_subtitle',
-    'label' => 'Editorial card subtitle',
+    'label' => 'Editorial card description',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1771,7 +1771,7 @@ function nas_conservation_project_feature_field_default_field_instances() {
   t('Color mode');
   t('Conservation Strategy');
   t('Editorial card image');
-  t('Editorial card subtitle');
+  t('Editorial card description');
   t('Editorial card title');
   t('Hero Image');
   t('Icon Image');

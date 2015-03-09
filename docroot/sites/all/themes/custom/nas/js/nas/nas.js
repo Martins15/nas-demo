@@ -80,6 +80,20 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.nasSearchPage = {
+    attach: function (context, settings) {
+      $('.page-search-results .node').each(function() {
+        var src_str = $(this).html();
+        var term = $("#nas-search-page-search-form .form-search").val();
+        term = term.replace(/(\s+)/,"(<[^>]+>)*$1(<[^>]+>)*");
+        var pattern = new RegExp("("+term+")", "gi");
+        src_str = src_str.replace(pattern, "<mark>$1</mark>");
+        src_str = src_str.replace(/(<mark>[^<>]*)((<[^>]+>)+)([^<>]*<\/mark>)/,"$1</mark>$2<mark>$4");
+        $(this).html(src_str);
+      });
+    }
+  };
+
 // @todo Figure out how this is going to work on touch
   Nav.handleTouch = function () {
     $(".primary-nav-toggler").removeAttr("href");

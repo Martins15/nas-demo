@@ -424,7 +424,7 @@ function nas_article_feature_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
@@ -1844,7 +1844,7 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_editorial_card_subtitle',
-    'label' => 'Editorial card subtitle',
+    'label' => 'Editorial card description',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -3598,7 +3598,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Date');
   t('Editorial Section');
   t('Editorial card image');
-  t('Editorial card subtitle');
+  t('Editorial card description');
   t('Editorial card title');
   t('Flyway');
   t('For internal use only');

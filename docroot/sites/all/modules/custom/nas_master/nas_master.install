@@ -2008,3 +2008,14 @@ function nas_master_update_7144() {
   module_enable(array('captcha', 'recaptcha', 'nas_captcha_feature'));
   features_revert_module('nas_captcha_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7146() {
+  features_revert(array('nas_article_feature' => array('panelizer', 'field_instance')));
+  features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
+  features_revert(array('nas_conservation_project_feature' => array('field_instance')));
+  features_revert(array('nas_slideshow_feature' => array('field_instance')));
+  features_revert(array('nas_static_page_feature' => array('field_instance')));
+}

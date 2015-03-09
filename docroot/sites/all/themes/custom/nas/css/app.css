@@ -4677,7 +4677,37 @@ small {
 .engagement-card-sidebar-section {
   float: left;
 }
+.page-frontpage .engagement-card-sidebar-section {
+  width: 100%;
+}
 
+@media only screen and (min-width: 601px) {
+  .engagement-card-and-social-icons {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 60px;
+    position: relative;
+  }
+  .engagement-card-and-social-icons .engagement-card {
+    position: relative;
+    height: 100%;
+  }
+  .engagement-card-and-social-icons .engagement-card .engagement-card-content {
+    padding-bottom: 62%;
+  }
+  .engagement-card-and-social-icons .engagement-card .engagement-card-content .engagement-card-cta {
+    position: static;
+  }
+  .engagement-card-and-social-icons .engagement-card .engagement-card-photo {
+    position: absolute;
+    bottom: 0;
+  }
+  .engagement-card-and-social-icons .editorial-card-banner.blue {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
 /* @todo Add a markup example */
 .editorial-card-banner.fixed {
   position: absolute;
@@ -6188,7 +6218,6 @@ input.header-search-input,
   .global-header.alt .header-search input.header-search-input i,
   .global-header.alt .header-search .header-search-button i {
     font-size: 24px;
-    top: 0;
   }
 }
 .header-subtitle {
@@ -9631,6 +9660,16 @@ body.black-bg .slide-caption {
   font-size: 30px;
   font-weight: 300;
 }
+@media only screen and (max-width: 479px) {
+  .bio-title {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .bio-title {
+    font-size: 20px;
+  }
+}
 
 .table-sort select,
 .table-sort input,
@@ -9666,7 +9705,7 @@ body.black-bg .slide-caption {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 100.2%;
   z-index: 5;
   background-size: cover;
   background-repeat: no-repeat;
@@ -12636,6 +12675,11 @@ body.touch .sticky-wrapper {
   width: 100%;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+@media only screen and (max-width: 479px) {
+  .bird-guide-country {
+    width: 75%;
+  }
+}
 
 .bird-guide-zip-input {
   width: 30%;
@@ -13377,6 +13421,11 @@ h2.grey {
   top: -49px;
 }
 
+@media only screen and (width: 768px) {
+  .mag-issue-title {
+    font-size: 36px;
+  }
+}
 .mag-issue-title span {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 24px;
@@ -13805,16 +13854,22 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 /*Crossbrowser fixes*/
-.homepage-first-row .sidebar-section:last-child, .homepage-first-row .article-sidebar-section:last-child,
-.homepage-first-row .editorial-card {
-  margin-bottom: 0;
+@media only screen and (min-width: 601px) {
+  .homepage-first-row .sidebar-section:last-child, .homepage-first-row .article-sidebar-section:last-child,
+  .homepage-first-row .editorial-card {
+    margin-bottom: 0;
+  }
 }
-
 #nas-footer-mail-subscription-form .mailing-list-input {
   padding: 0.5rem 0.5rem 0.5rem 0.75rem;
 }
 
 @media only screen and (max-width: 479px) {
+  .title-slide-content .deck {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
   div.index-list,
   div.index-list .view .pager-load-more {
     margin-bottom: 0;
@@ -13861,4 +13916,54 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 .reset-white .card-set-social a.white {
   color: #7BA701;
+}
+
+.editorial-card.collapse-minimal .editorial-card-photo.slideshow {
+  display: block;
+}
+
+.text-container ul, .text-container ol {
+  margin-left: 25px;
+}
+
+#audubon-near-you--center-sanctuary--wrapper {
+  overflow: hidden;
+  clear: both;
+}
+#audubon-near-you--center-sanctuary--wrapper .title-block {
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+#tabs,
+.profile {
+  margin: 20px 15px;
+}
+
+#user-login,
+#user-pass {
+  margin: 0 20px;
+}
+#user-login .form-text,
+#user-pass .form-text {
+  margin-bottom: 5px;
+}
+@media only screen and (min-width: 768px) {
+  #user-login .form-text,
+  #user-pass .form-text {
+    width: 50%;
+  }
+}
+#user-login .description,
+#user-pass .description {
+  margin: 0 0 20px;
+  font-size: 15px;
+}
+#user-login .form-submit,
+#user-pass .form-submit {
+  margin: 20px 0 40px;
+}
+
+.page-node.adminimal-menu .global-header.transparent {
+  margin-bottom: 0;
 }
