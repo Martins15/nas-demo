@@ -21,7 +21,7 @@
     <?php if ($more_link): ?>
     <div class="column">
       <ul class="section-nav inline-list">
-        <li><?php print $more_link; ?></li>
+        <li class="first"><?php print $more_link; ?></li>
       </ul>
     </div>
     <?php endif; ?>

@@ -739,6 +739,10 @@ body.node-type-slideshow {
       min-height: 0 !important;
     }
   }
+  .article-text audio {
+    width: 295px;
+    margin: 0 12.5px
+  }
 }
 @include breakpoint(small-only) {
   div.index-list,
@@ -761,6 +765,9 @@ body.node-type-slideshow {
     .card-set .editorial-card {
       min-height: 0 !important;
     }
+  }
+  .article-text audio {
+    margin: 0 25px;
   }
 }
 

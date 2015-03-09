@@ -15,8 +15,8 @@
     </div>
     <div class="columns">
       <ul class="section-nav inline-list">
-        <li><?php print l(t('The Bird Guide'), '<front>'); ?></li>
-        <li><?php print l(t('Adopt a Bird'), '<front>'); ?></li>
+        <li class="first"><?php print l(t('The Bird Guide'), 'bird-guide'); ?></li>
+        <li class="last"><a class="cta" href="https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html">Adopt a Bird</a></li>
       </ul>
     </div>
   </div>
