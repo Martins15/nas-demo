@@ -86,7 +86,7 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
     '#title' => t('Instagram URL'),
     '#default_value' => $conf[$conf_key]['social_icons']['instagram'],
   );
-dpm($conf);
+
   return $form;
 }
 
@@ -133,7 +133,7 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   if (!empty($nodes) && $node = reset($nodes)) {
     $node_build = node_view($node);
     $teasers[] = drupal_render($node_build);
-  }dpm($conf);
+  }
   $block = new stdClass();
   $block->content = '';
   if (!empty($teasers) || !empty($contextual_links)) {
