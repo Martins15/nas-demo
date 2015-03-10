@@ -2021,3 +2021,11 @@ function nas_master_update_7146() {
   module_enable(array('transliteration'));
   features_revert_module('nas_overrides_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7147() {
+  module_enable(array('transliteration'));
+  features_revert_module('nas_overrides_feature');
+}
