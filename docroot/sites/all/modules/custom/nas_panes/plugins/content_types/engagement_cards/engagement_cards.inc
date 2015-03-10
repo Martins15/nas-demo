@@ -78,7 +78,11 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
   // Call main function and get what we have to render.
   $cards_array = nas_panes_engagement_cards_get_cards($subtype, $data);
   $nodes = $cards_array['nodes'];
+
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+  if(arg(0) == 'frontpage') {
+    $contextual_links = nas_panes_build_page_contextual_links($subtype, NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY, 'page_frontpage2_panel_context');
+  }
 
   // Finally render selected nodes.
   $teasers = array();
