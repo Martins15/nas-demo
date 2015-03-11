@@ -743,6 +743,15 @@ body.node-type-slideshow {
     width: 295px;
     margin: 0 12.5px
   }
+  #audubon-near-you--center-sanctuary--wrapper {
+    overflow: hidden;
+    clear: both;
+
+    .title-block {
+      margin-top: 30px;
+      padding-bottom: 20px;
+    }
+  }
 }
 @include breakpoint(small-only) {
   div.index-list,
@@ -769,8 +778,27 @@ body.node-type-slideshow {
   .article-text audio {
     margin: 0 25px;
   }
-}
+  #audubon-near-you--center-sanctuary--wrapper {
+    overflow: hidden;
+    clear: both;
 
+    .title-block {
+      margin-top: 30px;
+      padding-bottom: 20px;
+    }
+  }
+}
+@include breakpoint(medium-only) {
+  #audubon-near-you--center-sanctuary--wrapper {
+    overflow: hidden;
+    clear: both;
+
+    .title-block {
+      margin-top: 30px;
+      padding-bottom: 20px;
+    }
+  }
+}
 .reset-white .card-set-social {
   .white {
     color: #7BA701;
@@ -787,16 +815,6 @@ body.node-type-slideshow {
 .text-container {
   ul, ol {
     margin-left: 25px;
-  }
-}
-
-#audubon-near-you--center-sanctuary--wrapper {
-  overflow: hidden;
-  clear: both;
-
-  .title-block {
-    margin-top: 30px;
-    padding-bottom: 20px;
   }
 }
 
