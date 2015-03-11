@@ -15,7 +15,7 @@
     </div>
     <div class="columns">
       <ul class="section-nav inline-list hide-for-small hide-for-tiny">
-        <li><?php print l(t('More News »'), ''); ?></li>
+        <li><?php print l(t('More News »'), 'news'); ?></li>
       </ul>
     </div>
   </div>

@@ -1068,7 +1068,7 @@ function nas_views_feature_views_default_views() {
     </div>
     <div class="columns">
       <ul class="section-nav inline-list hide-for-small hide-for-tiny">
-        <li><a href="#">More News »</a></li>
+        <li><a href="/news">More News »</a></li>
       </ul>
     </div>
   </div>';

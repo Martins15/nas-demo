@@ -34,7 +34,7 @@
   }
 
   @include breakpoint(medium-up) {
-    margin: 0 35px;
+    margin: 0 36px 0 35px;
   }
 
   @include breakpoint(max-width, #{upper-bound($small-range)}) {
