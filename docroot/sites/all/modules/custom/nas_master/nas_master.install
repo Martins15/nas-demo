@@ -2029,3 +2029,16 @@ function nas_master_update_7147() {
   module_enable(array('transliteration'));
   features_revert_module('nas_overrides_feature');
 }
+
+/**
+ * Fix all URLs for nodes.
+ */
+function nas_master_update_7148() {
+  $query = db_select('node', 'n');
+  $query->fields('n', array('nid'));
+  $results = $query->execute()->fetchCol();
+  foreach ($results as $nid) {
+    $node = node_load($nid);
+    node_save($node);
+  }
+}
