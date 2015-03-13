@@ -2047,10 +2047,9 @@ function nas_master_update_7148(&$sandbox) {
   if (!empty($sandbox['max'])) {
     // Get part of ids.
     $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
-    foreach ($nids as $nid) {
-      $node = node_load($nid);
-      node_save($node);
-    }
+
+    module_load_include('inc', 'pathauto', 'pathauto');
+    pathauto_node_update_alias_multiple($nids, 'update');
     $sandbox['progress'] += count($nids);
     drupal_set_message(t('Processed @count / @max nodes', array('@count' => $sandbox['progress'], '@max' => $sandbox['max'])));
   }
