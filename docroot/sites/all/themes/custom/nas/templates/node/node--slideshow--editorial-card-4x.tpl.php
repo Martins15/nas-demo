@@ -88,7 +88,7 @@
 ?>
 <div class="columns large-3">
   <div class="editorial-card collapse-minimal">
-    <div class="editorial-card-photo slideshow">
+    <div class="editorial-card-photo slideshow-card">
       <?php print $linked_image; ?>
     </div>
     <div class="editorial-card-banner gray"><i class="icon-slides"></i> Slideshow</div>
