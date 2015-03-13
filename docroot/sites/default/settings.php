@@ -589,6 +589,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
     $conf['acquia_purge_domains'] = array(
       'www.audubon.org',
     );
+    $conf['acquia_purge_https'] = TRUE;
   }
 }
 

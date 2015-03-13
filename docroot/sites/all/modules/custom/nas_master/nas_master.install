@@ -2018,4 +2018,14 @@ function nas_master_update_7146() {
   features_revert(array('nas_conservation_project_feature' => array('field_instance')));
   features_revert(array('nas_slideshow_feature' => array('field_instance')));
   features_revert(array('nas_static_page_feature' => array('field_instance')));
+  module_enable(array('transliteration'));
+  features_revert_module('nas_overrides_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7147() {
+  module_enable(array('transliteration'));
+  features_revert_module('nas_overrides_feature');
 }

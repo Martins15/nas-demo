@@ -308,6 +308,9 @@ input.bird-guide-zip-input {
       color: rgba(131, 128, 120, 0.5);
       margin: 0 5px 0 0 ;
     }
+    &.first:before {
+      display: none; 
+    }
     &.hide-for-tiny {
       &:before {
         display: none;

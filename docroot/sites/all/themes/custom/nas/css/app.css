@@ -5797,6 +5797,12 @@ table.row-borders tbody td {
 .hero.light-text .hero-title {
   font-weight: 400;
 }
+@media only screen and (max-width: 479px) {
+  .hero.light-text .hero-title {
+    font-size: 37px;
+    line-height: 37px;
+  }
+}
 .hero.light-text .hero-slug {
   font-weight: 600;
 }
@@ -8763,7 +8769,7 @@ body.black-bg .section-header a:hover {
 }
 @media only screen and (min-width: 601px) {
   .thumb-strip {
-    margin: 0 35px;
+    margin: 0 36px 0 35px;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -13889,6 +13895,20 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   .editorial-card-3x .card-set .editorial-card {
     min-height: 0 !important;
   }
+
+  .article-text audio {
+    width: 295px;
+    margin: 0 12.5px;
+  }
+
+  #audubon-near-you--center-sanctuary--wrapper {
+    overflow: hidden;
+    clear: both;
+  }
+  #audubon-near-you--center-sanctuary--wrapper .title-block {
+    margin-top: 30px;
+    padding-bottom: 20px;
+  }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
   div.index-list,
@@ -13910,6 +13930,29 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   .editorial-card-3x .card-set .editorial-card {
     min-height: 0 !important;
   }
+
+  .article-text audio {
+    margin: 0 25px;
+  }
+
+  #audubon-near-you--center-sanctuary--wrapper {
+    overflow: hidden;
+    clear: both;
+  }
+  #audubon-near-you--center-sanctuary--wrapper .title-block {
+    margin-top: 30px;
+    padding-bottom: 20px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  #audubon-near-you--center-sanctuary--wrapper {
+    overflow: hidden;
+    clear: both;
+  }
+  #audubon-near-you--center-sanctuary--wrapper .title-block {
+    margin-top: 30px;
+    padding-bottom: 20px;
+  }
 }
 .reset-white .card-set-social .white {
   color: #7BA701;
@@ -13924,15 +13967,6 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 
 .text-container ul, .text-container ol {
   margin-left: 25px;
-}
-
-#audubon-near-you--center-sanctuary--wrapper {
-  overflow: hidden;
-  clear: both;
-}
-#audubon-near-you--center-sanctuary--wrapper .title-block {
-  margin-top: 30px;
-  padding-bottom: 20px;
 }
 
 #tabs,
