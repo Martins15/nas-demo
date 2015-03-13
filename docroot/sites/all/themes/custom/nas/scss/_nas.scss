@@ -808,7 +808,7 @@ body.node-type-slideshow {
   }
 }
 
-.editorial-card.collapse-minimal .editorial-card-photo.slideshow {
+.editorial-card.collapse-minimal .editorial-card-photo.slideshow-card {
   display: block;
 }
 
@@ -847,5 +847,11 @@ body.node-type-slideshow {
 .page-node.adminimal-menu {
   .global-header.transparent {
     margin-bottom: 0;
+  }
+}
+
+.node-type-magazine-issue {
+  .index-list {
+    margin-bottom: 50px;
   }
 }
