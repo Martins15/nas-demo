@@ -193,6 +193,13 @@
           if (currentPage == totalPages) {
             $(".ss-icon.next", $indicator).addClass("inactive");
           }
+
+          // Preload image of next slide.
+          var $next_image = $(scroll.wrapper)
+            .find(".slide:eq(" + (scroll.currentPage.pageX + 1) + ") .slide-img img");
+          if ($next_image.attr("src") === "") {
+            $next_image.attr("src", $next_image.data("src"));
+          }
         });
       };
 
