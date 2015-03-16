@@ -2029,35 +2029,3 @@ function nas_master_update_7147() {
   module_enable(array('transliteration'));
   features_revert_module('nas_overrides_feature');
 }
-
-/**
- * Fix all URLs for nodes.
- */
-function nas_master_update_7148(&$sandbox) {
-  $chunk = 100;
-  if (!isset($sandbox['progress'])) {
-    $sandbox['progress'] = 0;
-    $q = db_select('node', 'n');
-    $q->addField('n', 'nid');
-    $q->condition('n.status', 1);
-    $sandbox['nids'] = $q->execute()->fetchCol();
-    $sandbox['max'] = count($sandbox['nids']);
-  }
-
-  if (!empty($sandbox['max'])) {
-    // Get part of ids.
-    $nids = array_slice($sandbox['nids'], $sandbox['progress'], $chunk);
-
-    module_load_include('inc', 'pathauto', 'pathauto');
-    pathauto_node_update_alias_multiple($nids, 'update');
-    $sandbox['progress'] += count($nids);
-    drupal_set_message(t('Processed @count / @max nodes', array('@count' => $sandbox['progress'], '@max' => $sandbox['max'])));
-  }
-
-  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
-
-  if ($sandbox['#finished'] >= 1) {
-    $sandbox['#finished'] = 1;
-    watchdog('nas_master', '@count nodes had URLs checked and fixed.', array('@count' => $sandbox['progress']));
-  }
-}
