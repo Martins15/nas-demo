@@ -2038,8 +2038,13 @@ function nas_master_update_7148(&$sandbox) {
   if (!isset($sandbox['progress'])) {
     $sandbox['progress'] = 0;
     $q = db_select('node', 'n');
+    // This ugly join helps to select he alias for the nodes right away
+    $q->innerJoin('url_alias', 'path', 'path.source = CONCAT(:node, n.nid)', array(':node' => 'node/'));
     $q->addField('n', 'nid');
     $q->condition('n.status', 1);
+    // Finnaly, this ugly condition aims to do an heuristic and select only
+    // nodes that have weird URLs for regenerating aliases.
+    $q->where('NOT path.alias REGEXP :regexp', array(':regexp' => '^[A-Za-z0-9,./-]*$'));
     $sandbox['nids'] = $q->execute()->fetchCol();
     $sandbox['max'] = count($sandbox['nids']);
   }
