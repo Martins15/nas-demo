@@ -319,6 +319,11 @@
 
   .hero-title {
     font-weight: 400;
+
+    @include breakpoint(tiny-only) {
+      font-size: 37px;
+      line-height: 37px;
+    }
   }
   .hero-slug {
     font-weight: 600;

@@ -79,8 +79,8 @@ var Nas = Nas || {};
       });
     }
   };
-
-  Drupal.behaviors.nasSearchPage = {
+  // @todo Figure out how to fix urls replacement, disable for now.
+/*  Drupal.behaviors.nasSearchPage = {
     attach: function (context, settings) {
       $('.page-search-results .node').each(function() {
         var src_str = $(this).html();
@@ -92,7 +92,7 @@ var Nas = Nas || {};
         $(this).html(src_str);
       });
     }
-  };
+  };*/
 
 // @todo Figure out how this is going to work on touch
   Nav.handleTouch = function () {
