@@ -79,4 +79,3 @@
   </figure>
 </aside>
 <?php endif; ?>
-
