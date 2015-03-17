@@ -2066,3 +2066,11 @@ function nas_master_update_7148(&$sandbox) {
     watchdog('nas_master', '@count nodes had URLs checked and fixed.', array('@count' => $sandbox['progress']));
   }
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7149() {
+  module_enable(array('transliteration'));
+  features_revert_module('nas_overrides_feature');
+}
