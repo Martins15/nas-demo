@@ -14005,3 +14005,17 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .node-type-magazine-issue .index-list {
   margin-bottom: 50px;
 }
+
+/*Lazyload*/
+.bird-card-illustration {
+  position: relative;
+}
+.bird-card-illustration .lazyloader-icon {
+  left: 50% !important;
+  margin: -12px 0 0 -12px;
+  top: 50% !important;
+}
+
+#views_infinite_scroll-ajax-loader {
+  padding-bottom: 50px;
+}
