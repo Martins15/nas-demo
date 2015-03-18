@@ -2074,3 +2074,11 @@ function nas_master_update_7149() {
   module_enable(array('transliteration'));
   features_revert_module('nas_overrides_feature');
 }
+
+/**
+ * Enable module, revert feature.
+ */
+function nas_master_update_7150() {
+  module_enable(array('search_api_autocomplete'));
+  features_revert(array('nas_solr_feature' => array('search_api_index', 'search_api_autocomplete_search', 'user_permission')));
+}
