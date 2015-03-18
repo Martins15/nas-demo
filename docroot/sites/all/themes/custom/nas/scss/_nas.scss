@@ -869,3 +869,12 @@ body.node-type-slideshow {
 #views_infinite_scroll-ajax-loader {
   padding-bottom: 50px;
 }
+
+i:before {
+  display:none;
+}
+
+
+#bird-cta i:before{
+  display:block;
+}
