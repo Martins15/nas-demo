@@ -13,28 +13,36 @@ function nas_solr_feature_user_default_permissions() {
   // Exported permission: 'administer search'.
   $permissions['administer search'] = array(
     'name' => 'administer search',
-    'roles' => array(),
+    'roles' => array(
+      'super' => 'super',
+    ),
     'module' => 'search',
   );
 
   // Exported permission: 'administer search_api'.
   $permissions['administer search_api'] = array(
     'name' => 'administer search_api',
-    'roles' => array(),
+    'roles' => array(
+      'super' => 'super',
+    ),
     'module' => 'search_api',
   );
 
   // Exported permission: 'search content'.
   $permissions['search content'] = array(
     'name' => 'search content',
-    'roles' => array(),
+    'roles' => array(
+      'super' => 'super',
+    ),
     'module' => 'search',
   );
 
   // Exported permission: 'use advanced search'.
   $permissions['use advanced search'] = array(
     'name' => 'use advanced search',
-    'roles' => array(),
+    'roles' => array(
+      'super' => 'super',
+    ),
     'module' => 'search',
   );
 
