@@ -257,7 +257,7 @@ function _nas_wysiwyg_article_aside_generate_tagMap($text) {
  * Implementation of hook_wysiwyg_plugin().
  */
 function nas_wysiwyg_wysiwyg_plugin($editor) {
-  if($editor == 'ckeditor') {
+  if ($editor == 'ckeditor') {
     return array(
       'inlinevideo' => array(
         'title' => 'Inline Video',
