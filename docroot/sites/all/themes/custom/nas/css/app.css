@@ -6078,6 +6078,12 @@ header.global-header .bird-guide-search-species-page {
   display: none;
 }
 
+body.node-type-bird i:before {
+  display: none;
+}
+body.node-type-bird #bird-cta i:before {
+  display: block;
+}
 body.node-type-bird header.global-header .bird-guide-search-species-page {
   display: block;
 }
