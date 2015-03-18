@@ -46,5 +46,15 @@ function nas_solr_feature_user_default_permissions() {
     'module' => 'search',
   );
 
+  // Exported permission: 'use search_api_autocomplete for search_api_views_nas_bird_guide'.
+  $permissions['use search_api_autocomplete for search_api_views_nas_bird_guide'] = array(
+    'name' => 'use search_api_autocomplete for search_api_views_nas_bird_guide',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'search_api_autocomplete',
+  );
+
   return $permissions;
 }

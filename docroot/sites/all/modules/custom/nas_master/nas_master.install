@@ -2080,5 +2080,5 @@ function nas_master_update_7149() {
  */
 function nas_master_update_7150() {
   module_enable(array('search_api_autocomplete'));
-  features_revert(array('nas_solr_feature' => array('search_api_index', 'search_api_autocomplete_search')));
+  features_revert(array('nas_solr_feature' => array('search_api_index', 'search_api_autocomplete_search', 'user_permission')));
 }
