@@ -102,6 +102,13 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => '_nas_search_node_get_node_date',
     'calculated' => TRUE,
   );
+  $info['node']['properties']['bird_name_autocomplete'] = array(
+    'label' => t('Bird name for autocomplete'),
+    'type' => 'text',
+    'description' => t('Bird name for autocomplete'),
+    'getter callback' => '_nas_search_node_get_bird_name',
+    'calculated' => TRUE,
+  );
 }
 
 /**
@@ -129,6 +136,13 @@ function _nas_search_node_get_type_for_search($entity, array $options, $name, $e
   // Fallback for CT not listed in mapping.
   $node_type = node_type_get_type($entity);
   return $node_type->name;
+}
+
+/**
+ * Bird name property getter callback.
+ */
+function _nas_search_node_get_bird_name($entity, array $options, $name, $entity_type) {
+  return $entity->type == 'bird' ? $entity->title : '';
 }
 
 /**
