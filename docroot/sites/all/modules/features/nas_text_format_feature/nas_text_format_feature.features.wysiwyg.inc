@@ -45,6 +45,9 @@ function nas_text_format_feature_wysiwyg_default_profiles() {
           'RemoveFormat' => 1,
           'Format' => 1,
         ),
+        'inlinevideo' => array(
+          'inlinevideo_button' => 1,
+        ),
         'pasteformat' => array(
           'pasteformat' => 1,
         ),
@@ -65,7 +68,7 @@ function nas_text_format_feature_wysiwyg_default_profiles() {
       'simple_source_formatting' => 1,
       'acf_mode' => 0,
       'acf_allowed_content' => '',
-      'css_setting' => 'theme',
+      'css_setting' => 'self',
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,address,pre,h1,h2,h3,h4,h5,h6,div,blockquote',

@@ -252,3 +252,22 @@ function _nas_wysiwyg_article_aside_generate_tagMap($text) {
   }
   return $tagmap;
 }
+
+/**
+ * Implementation of hook_wysiwyg_plugin().
+ */
+function nas_wysiwyg_wysiwyg_plugin($editor) {
+  if ($editor == 'ckeditor') {
+    return array(
+      'inlinevideo' => array(
+        'title' => 'Inline Video',
+        'path' => drupal_get_path('module', 'nas_wysiwyg') . '/plugins/inlinevideo',
+        'filename' => 'plugin.js',
+        'buttons' => array(
+          'inlinevideo_button' => t('Add inline video'),
+        ),
+        'load' => TRUE,
+      ),
+    );
+  }
+}
