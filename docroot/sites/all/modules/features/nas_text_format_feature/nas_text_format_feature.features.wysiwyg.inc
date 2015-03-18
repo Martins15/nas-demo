@@ -45,6 +45,9 @@ function nas_text_format_feature_wysiwyg_default_profiles() {
           'RemoveFormat' => 1,
           'Format' => 1,
         ),
+        'inlinevideo' => array(
+          'inlinevideo_button' => 1,
+        ),
         'pasteformat' => array(
           'pasteformat' => 1,
         ),
