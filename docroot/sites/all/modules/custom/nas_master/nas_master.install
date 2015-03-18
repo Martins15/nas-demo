@@ -2074,3 +2074,11 @@ function nas_master_update_7149() {
   module_enable(array('transliteration'));
   features_revert_module('nas_overrides_feature');
 }
+
+/**
+ * Enable modules, revert features.
+ */
+function nas_master_update_7150() {
+  module_enable(array('lazyloader, views_infinite_scroll'));
+  features_revert_module('nas_overrides_feature');
+}
