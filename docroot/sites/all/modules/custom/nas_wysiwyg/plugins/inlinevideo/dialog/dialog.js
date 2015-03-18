@@ -30,7 +30,6 @@ CKEDITOR.dialog.add( 'inlinevideoDialog', function( editor ) {
       caption.addClass('caption');
       caption.addClass('video-caption');
       caption.setText(dialog.getValueOf('inlinevideo-dialog', 'inlinevideo-caption'));
-      caption.on
       // Set wrapper element
       wrapper.appendHtml('<div class="video-frame">'+url+'</div>'); // Add URL
       wrapper.addClass('video-wrapper');
