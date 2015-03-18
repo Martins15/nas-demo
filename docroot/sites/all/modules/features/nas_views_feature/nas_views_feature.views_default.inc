@@ -1049,6 +1049,8 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
+    'slideshow' => 'slideshow',
+    'static_page' => 'static_page',
   );
 
   /* Display: Bird in the News (default) */
