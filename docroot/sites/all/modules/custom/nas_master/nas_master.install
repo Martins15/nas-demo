@@ -2087,6 +2087,6 @@ function nas_master_update_7150() {
  * Enable modules, revert features.
  */
 function nas_master_update_7151() {
-  module_enable(array('lazyloader, views_infinite_scroll'));
+  module_enable(array('lazyloader', 'views_infinite_scroll'));
   features_revert_module('nas_overrides_feature');
 }
