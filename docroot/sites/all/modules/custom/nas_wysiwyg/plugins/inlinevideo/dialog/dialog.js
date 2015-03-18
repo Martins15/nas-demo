@@ -15,7 +15,6 @@ CKEDITOR.dialog.add( 'inlinevideoDialog', function( editor ) {
           type: 'text',
           id: 'inlinevideo-caption',
           label: Drupal.t('Caption'),
-          validate: CKEDITOR.dialog.validate.notEmpty('Caption field cannot be empty.')
         }
       ]
     }],
