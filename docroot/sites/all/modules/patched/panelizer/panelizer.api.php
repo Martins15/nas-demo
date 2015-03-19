@@ -2,8 +2,16 @@
 /**
  * @file
  *
- * Documentation for panelizer hooks.
+ * Documentation for Panelizer's hooks.
  */
+
+/**
+ * Allow panelizer_defaults_override to be customized.
+ *
+ * Primarily for use by Features Overrides.
+ */
+function hook_panelizer_defaults_override_alter(&$items) {
+}
 
 /**
  * Add operations to Panelizer objects.
@@ -39,4 +47,48 @@ function hook_panelizer_operations_alter(&$operations) {
     'entity callback' => 'mymodule_panelizer_example_entity_page',
     'admin callback' => 'mymodule_panelizer_example_admin_page',
   );
+}
+
+/**
+ * Allow panelizer_entity_plugin_process to be customized.
+ */
+function hook_panelizer_entity_plugin_process_alter(&$plugin, $info) {
+}
+
+/**
+ * Allow the links on the Overview page to be customized.
+ */
+function hook_panelizer_overview_links_alter(&$links_array, $entity_type, $context) {
+}
+
+/**
+ * Act on default objects just before they're deleted.
+ *
+ * @param object $panelizer
+ *   The panelizer default object.
+ */
+function hook_panelizer_delete_default($panelizer) {
+  db_delete('example_something')
+    ->condition('name', $panelizer->name)
+    ->execute();
+}
+
+/**
+ * Adjust access to the Panelizer administrative interface beyond the standard
+ * permissions options.
+ *
+ * @param string $op
+ *   The operation currently being performed.
+ * @param string $entity_type
+ *   The type of entity to which the operation is related.
+ * @param string|object $bundle
+ *   Either the entity's bundle name or the entity object itself, will vary
+ *   depending upon how it is called.
+ * @param string $view_mode
+ *   The view mode of the entity related to this operation.
+ *
+ * @return bool
+ *   Whether or not the user has permission to perform this $op.
+ */
+function hook_panelizer_access($op, $entity_type, $bundle, $view_mode) {
 }
