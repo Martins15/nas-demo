@@ -89,6 +89,7 @@ function nas_about_feature_default_page_manager_pages() {
         'value' => '',
         'format' => 'full_html',
       ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -381,7 +382,10 @@ function nas_about_feature_default_page_manager_pages() {
   $page->admin_title = 'Our Leadership';
   $page->admin_description = '';
   $page->path = 'about/our-leadership';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array(
     'type' => 'none',
     'title' => 'Our Leadership',
@@ -516,6 +520,95 @@ function nas_about_feature_default_page_manager_pages() {
     $pane->uuid = 'd095a1cd-f1a4-49c5-a76e-451c548bd93f';
     $display->content['new-d095a1cd-f1a4-49c5-a76e-451c548bd93f'] = $pane;
     $display->panels['main'][0] = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
+    $pane = new stdClass();
+    $pane->pid = 'new-6c938316-373b-4f7e-91f8-b2d355cf8c5b';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_leadership';
+    $pane->subtype = 'about_page_leadership';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'full_width_text' => array(
+        'value' => '<h2 class="thin">Audubon&#39;s leadership is supported by its Board of Directors. Bios of current&nbsp;board members can be <a href="http://audubon.org/content/board-directors" style="color: #0AA8E3;">found here</a>.</h2>
+
+<p>&nbsp;</p>
+',
+        'format' => 'full_html',
+      ),
+      'form_build_id' => 'form-_7H-qOQI6RoxXKjR8WL2UAbBzurceEs1Pvgu9P91uG4',
+      'form_token' => 'EU714rbGDn_nQIKJ93SiFHMb6_xuxEK8TzllkJDWXbw',
+      'form_id' => 'about_page_leadership_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '6c938316-373b-4f7e-91f8-b2d355cf8c5b';
+    $display->content['new-6c938316-373b-4f7e-91f8-b2d355cf8c5b'] = $pane;
+    $display->panels['main'][1] = 'new-6c938316-373b-4f7e-91f8-b2d355cf8c5b';
+    $pane = new stdClass();
+    $pane->pid = 'new-c2975b5a-b6fc-4de8-8768-6702db32c159';
+    $pane->panel = 'top';
+    $pane->type = 'hero_image_section';
+    $pane->subtype = 'hero_image_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'title' => 'Audubon Leadership',
+      'subtitle' => '',
+      'image' => '28306',
+      'header_color_mode' => 'light',
+      'text_color_mode' => 'light',
+      'form_build_id' => 'form-grGX6-Ea5_z__NO9bVjdnbPv2J44PutbapPG81Ik9Qk',
+      'form_token' => 'RyjIkJXHU7UhwRRICxZso0ksPFezlTom8hhi0fZ4LIM',
+      'form_id' => 'hero_image_section_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c2975b5a-b6fc-4de8-8768-6702db32c159';
+    $display->content['new-c2975b5a-b6fc-4de8-8768-6702db32c159'] = $pane;
+    $display->panels['top'][0] = 'new-c2975b5a-b6fc-4de8-8768-6702db32c159';
+    $pane = new stdClass();
+    $pane->pid = 'new-68d488ae-cd68-4108-bc1e-dc2d1c04b80b';
+    $pane->panel = 'top';
+    $pane->type = 'menu_bar_section';
+    $pane->subtype = 'menu_bar_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default_menu_item' => '157',
+      'form_build_id' => 'form-qKveLtbSt-TWBaPi0uX_qtLDTamQe3o0XfRYqE7J24M',
+      'form_token' => 'H3-w4l4nHHETF6sWKez6g43JoM33ehkVi_w-aNG_5qc',
+      'form_id' => 'menu_bar_section_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '68d488ae-cd68-4108-bc1e-dc2d1c04b80b';
+    $display->content['new-68d488ae-cd68-4108-bc1e-dc2d1c04b80b'] = $pane;
+    $display->panels['top'][1] = 'new-68d488ae-cd68-4108-bc1e-dc2d1c04b80b';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
