@@ -1,0 +1,136 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Define typeahead.js library url
+ */
+define('TWITTER_TYPEAHEAD_WEBSITE_URL', 'http://twitter.github.io/typeahead.js');
+
+/**
+ * Implements hook_library().
+ */
+function twitter_typeahead_library() {
+  $library_path = twitter_typeahead_get_path();
+
+  $info['typeahead.js'] = array(
+    'title' => 'typeahead.js',
+    'website' => TWITTER_TYPEAHEAD_WEBSITE_URL,
+    'version' => '0.10.5',
+    'js' => array(
+      $library_path . '/typeahead.bundle.js' => array('group' => 'JS_LIBRARY'),
+    ),
+  );
+
+  $options = array(
+    'highlight' => TRUE,
+    'hint' => TRUE,
+    'minlength' => 1,
+  );
+
+  $module_path = drupal_get_path('module', 'twitter_typeahead');
+  $info['drupal.typeahead'] = array(
+    'title' => 'Drupal typeahead.js integration',
+    'website' => 'https://drupal.org/project/twitter_typeahead',
+    'version' => '1.0.0',
+    'js' => array(
+      $module_path . '/twitter_typeahead.js' => array(
+        'group' => JS_DEFAULT,
+        'weight' => 100,
+      ),
+      array(
+        'data' => array(
+          'typeahead' => array(
+            'selector' => variable_get('typeahead_jquery_selector', '.tt-enable'),
+            'options' => $options,
+          ),
+        ),
+        'type' => 'setting',
+      ),
+    ),
+    'dependencies' => array(
+      array('system', 'jquery.once'),
+      array('twitter_typeahead', 'typeahead.js'),
+    ),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function twitter_typeahead_element_info_alter(&$info) {
+  $info['textfield']['#pre_render'][] = 'twitter_typeahead_pre_render_textfield';
+}
+
+/**
+ * Render API callback: Apply typeahead.hs to a textfield element.
+ */
+function twitter_typeahead_pre_render_textfield($element) {
+  // If the #typeahead FAPI property is set, then add the appropriate class.
+  if (!empty($element['#typeahead'])) {
+    $element['#attributes']['class'][] = 'tt-enable';
+    // Element has opted-in for typeahead.js, ensure the library gets added.
+    $element['#attached']['library'][] = array('twitter_typeahead', 'drupal.typeahead');
+    // Clear element settings.
+    $element['#attached']['js'][] = array(
+      'data' => array(
+        'typeahead' => array(
+          'settings' => array(
+            $element['#id'] => NULL,
+          ),
+        ),
+      ),
+      'type' => 'setting',
+    );
+    // Set settings.
+    $element['#attached']['js'][] = array(
+      'data' => array(
+        'typeahead' => array(
+          'settings' => array(
+            $element['#id'] => $element['#typeahead'],
+          ),
+        ),
+      ),
+      'type' => 'setting',
+    );
+  }
+
+  return $element;
+}
+
+/**
+ * Get the location of the typeahead.js library.
+ *
+ * @return
+ *   The location of the library, or FALSE if the library isn't installed.
+ */
+function twitter_typeahead_get_path() {
+  if (function_exists('libraries_get_path')) {
+    return libraries_get_path('typeahead.js');
+  }
+
+  // The following logic is taken from libraries_get_libraries()
+  $searchdir = array();
+
+  // Similar to 'modules' and 'themes' directories inside an installation
+  // profile, installation profiles may want to place libraries into a
+  // 'libraries' directory.
+  $searchdir[] = 'profiles/' . drupal_get_profile() . '/libraries';
+
+  // Always search sites/all/libraries.
+  $searchdir[] = 'sites/all/libraries';
+
+  // Also search sites/<domain>/*.
+  $searchdir[] = conf_path() . '/libraries';
+
+  foreach ($searchdir as $dir) {
+    if (file_exists($dir . '/typeahead.js/typeahead.bundle.js')) {
+      return $dir . '/typeahead.js';
+    }
+  }
+
+  return FALSE;
+}
