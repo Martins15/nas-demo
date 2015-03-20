@@ -31,16 +31,17 @@
           var options = {
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace(displayKey),
             queryTokenizer: Bloodhound.tokenizers.whitespace
-          }
+          };
           if (field_settings[i].type == 'local values') {
             options.local = field_settings[i].values;
           }
           else if (field_settings[i].type == 'local callback') {
             var settings = field_settings[i];
+            /*jshint -W083 */
             options.local = (function (settings) {
               return function() {
                 return executeFunctionByName(settings.localCallback, window, element, settings);
-              }
+              };
             })(settings);
           }
           else if (field_settings[i].type == 'prefetch') {
