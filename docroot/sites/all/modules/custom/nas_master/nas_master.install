@@ -2104,4 +2104,7 @@ function nas_master_update_7152() {
  */
 function nas_master_update_7153() {
   module_enable(array('twitter_typeahead'));
+  module_disable(array('search_api_autocomplete'));
+  drupal_uninstall_modules(array('search_api_autocomplete'));
+  features_revert_module('nas_solr_feature');
 }
