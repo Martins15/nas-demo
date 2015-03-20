@@ -2098,3 +2098,10 @@ function nas_master_update_7152() {
   module_enable(array('pasteformat'));
   features_revert_module('nas_text_format_feature');
 }
+
+/**
+ * Enable module.
+ */
+function nas_master_update_7153() {
+  module_enable(array('twitter_typeahead'));
+}
