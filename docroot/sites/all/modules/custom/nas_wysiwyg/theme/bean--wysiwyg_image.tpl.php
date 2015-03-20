@@ -37,7 +37,7 @@
  */
 ?>
 <?php if ($width == 'default'): ?>
-<figure class="article-image">
+<figure class="article-image type-full">
   <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
     <figcaption class="caption">
@@ -47,7 +47,7 @@
 </figure>
 <?php elseif ($width == 'half-right'): ?>
 <aside class="article-aside <?php print $width; ?>-width">
-  <figure class="article-image image-container">
+  <figure class="article-image image-container type-half-right">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
     <figcaption class="caption article-aside-caption">
@@ -58,7 +58,7 @@
 </aside>
 <?php elseif ($width == 'one-third-left'): ?>
 <div class="<?php print $width; ?>-width medium-4 columns">
-  <figure class="article-image">
+  <figure class="article-image type-one-third-left">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
       <figcaption class="caption article-aside-caption">
@@ -69,7 +69,7 @@
 </div>
 <?php else: ?>
 <aside class="article-aside <?php print $width; ?>-width">
-  <figure class="article-image">
+  <figure class="article-image type-default">
     <?php print render($content['field_wysiwyg_image']); ?>
     <?php if (!empty($figcaption)): ?>
     <figcaption class="caption article-aside-caption">
