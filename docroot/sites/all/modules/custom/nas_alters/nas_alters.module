@@ -228,6 +228,62 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['field_bird_call_type_tid']['#options']['All'] = t('Type of Bird');
     $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
     $form['field_bird_region_tid']['#options']['All'] = t('Region');
+    $form['#attributes']['class'][] = 'bird-guide-exposed-form';
+    $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/bird-guide-form.js';
+
+    $titles = db_query("SELECT n.title, field_bird_family_tid bfs, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
+    FROM {node} n
+    LEFT JOIN {field_data_field_bird_family} bf ON bf.entity_id = n.nid
+    LEFT JOIN {field_data_field_bird_region} br ON br.entity_id = n.nid
+    WHERE type = :type AND status = :status
+    GROUP BY n.title", array(
+      ':type' => 'bird',
+      ':status' => NODE_PUBLISHED,
+    ))->fetchAll();
+
+    foreach ($titles as &$title) {
+      $title->bfs = (int) $title->bfs;
+      $title->rgs = explode(',', $title->rgs);
+    }
+
+    $families = db_query("SELECT bftd.tid, bftd.name, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
+    FROM {node} n
+    LEFT JOIN {field_data_field_bird_family} bf ON bf.entity_id = n.nid
+    LEFT JOIN {taxonomy_term_data} bftd ON bftd.tid = bf.field_bird_family_tid
+    LEFT JOIN {field_data_field_bird_region} br ON br.entity_id = n.nid
+    WHERE type = :type AND status = :status
+    GROUP BY bftd.tid", array(
+      ':type' => 'bird',
+      ':status' => NODE_PUBLISHED,
+    ))->fetchAll();
+
+    foreach ($families as &$family) {
+      $family->rgs = explode(',', $family->rgs);
+    }
+
+    $form['search_api_views_fulltext']['#typeahead'] = array(
+      array(
+        'type' => 'local callback',
+        'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
+        'values' => $titles,
+        'options' => array(
+          'name' => 'species',
+          'displayKey' => 'title',
+        )
+      ),
+      array(
+        'type' => 'local callback',
+        'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
+        'values' => $families,
+        'options' => array(
+          'name' => 'families',
+          'displayKey' => 'name',
+          'templates' => array(
+            'header' => '<div class="tt-separator" style="border-top: 1px solid #eee; margin-top: 10px; padding-top:5px; color: #666;">Taxonomy families</div>'
+          ),
+        )
+      ),
+    );
 
     if (!empty($form_state['storage']['external_page'])) {
       $form['external_page'] = array(

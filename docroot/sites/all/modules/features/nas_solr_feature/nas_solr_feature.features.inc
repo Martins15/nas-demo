@@ -17,28 +17,6 @@ function nas_solr_feature_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
- * Implements hook_default_search_api_autocomplete_search().
- */
-function nas_solr_feature_default_search_api_autocomplete_search() {
-  $items = array();
-  $items['search_api_views_nas_bird_guide'] = entity_import('search_api_autocomplete_search', '{
-    "machine_name" : "search_api_views_nas_bird_guide",
-    "name" : "nas_bird_guide",
-    "index_id" : "default_node_index",
-    "type" : "search_api_views",
-    "enabled" : "1",
-    "options" : {
-      "result count" : true,
-      "fields" : [ "bird_name_autocomplete" ],
-      "results" : 0,
-      "min_length" : "1",
-      "custom" : { "display" : "nas_bird_guide_fav_birds" }
-    }
-  }');
-  return $items;
-}
-
-/**
  * Implements hook_default_search_api_index().
  */
 function nas_solr_feature_default_search_api_index() {
@@ -114,7 +92,6 @@ function nas_solr_feature_default_search_api_index() {
       },
       "fields" : {
         "author" : { "type" : "integer", "entity_type" : "user" },
-        "bird_name_autocomplete" : { "type" : "text" },
         "body:value" : { "type" : "text" },
         "changed" : { "type" : "date" },
         "created" : { "type" : "date" },
