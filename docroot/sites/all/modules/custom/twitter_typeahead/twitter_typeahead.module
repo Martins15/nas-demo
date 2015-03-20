@@ -1,6 +1,7 @@
 <?php
 /**
  * @file
+ * Typeahead.js drupal integration module.
  */
 
 /**
@@ -39,7 +40,7 @@ function twitter_typeahead_library() {
         'group' => JS_DEFAULT,
         'weight' => 100,
       ),
-      array(
+      0 => array(
         'data' => array(
           'typeahead' => array(
             'selector' => variable_get('typeahead_jquery_selector', '.tt-enable'),

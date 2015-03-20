@@ -229,7 +229,7 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['field_bird_family_tid']['#options']['All'] = t('Taxonomic Family');
     $form['field_bird_region_tid']['#options']['All'] = t('Region');
     $form['#attributes']['class'][] = 'bird-guide-exposed-form';
-    $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/bird-guide-form.js';//array('type' => 'file');
+    $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/bird-guide-form.js';
 
     $titles = db_query("SELECT n.title, field_bird_family_tid bfs, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
     FROM {node} n
