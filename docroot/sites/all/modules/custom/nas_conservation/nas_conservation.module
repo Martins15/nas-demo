@@ -42,7 +42,7 @@ function nas_conservation_entity_insert($entity, $entity_type) {
   $pid = _nas_panes_panelizer_lookup_pid('conservation_strategy_news', $entity);
   // When a node of this type is saved for the first time.
   if (empty($pid) || !is_numeric($pid)) {
-    $pid = _nas_panes_save_panelizer('conservation_strategy_news', $entity, 'strategy', 'default');
+    $pid = _nas_panes_save_panelizer('conservation_strategy_news', $entity);
   }
   $settings = db_select('panels_pane', 'p')
     ->fields('p', array('configuration'))

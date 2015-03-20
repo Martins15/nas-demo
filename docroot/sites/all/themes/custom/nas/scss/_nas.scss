@@ -855,3 +855,19 @@ body.node-type-slideshow {
     margin-bottom: 50px;
   }
 }
+
+/*Lazyload*/
+.bird-card-illustration {
+  position: relative;
+
+  .lazyloader-icon {
+    left: 50% !important;
+    margin: -12px 0 0 -12px;
+    top: 50% !important;
+  }
+}
+#views_infinite_scroll-ajax-loader {
+  padding-bottom: 50px;
+}
+
+

@@ -88,7 +88,7 @@ case $::osfamily {
       require => Exec['bash_git']
     }
 
-    file_line { 'link ~/.bash_git':
+    file_line {'link ~/.bash_git':
       ensure  => present,
       line    => 'if [ -f ~/.bash_git ] ; then source ~/.bash_git; fi',
       path    => "/home/${::ssh_username}/.bash_profile",
@@ -433,12 +433,12 @@ if hash_key_equals($apache_values, 'install', 1) {
       }
 
       create_resources(apache::vhost, { "${key}" => merge($vhost_merged, {
-        'custom_fragment' => template('puphpet/apache/custom_fragment.erb'),
-        'ssl'             => 'ssl' in $vhost and str2bool($vhost['ssl']) ? { true => true, default => false },
-        'ssl_cert'        => $vhost['ssl_cert'] ? { undef => undef, '' => undef, default => $vhost['ssl_cert'] },
-        'ssl_key'         => $vhost['ssl_key'] ? { undef => undef, '' => undef, default => $vhost['ssl_key'] },
-        'ssl_chain'       => $vhost['ssl_chain'] ? { undef => undef, '' => undef, default => $vhost['ssl_chain'] },
-        'ssl_certs_dir'   => $vhost['ssl_certs_dir'] ? { undef => undef, '' => undef, default => $vhost['ssl_certs_dir'] }
+          'custom_fragment' => template('puphpet/apache/custom_fragment.erb'),
+          'ssl'             => 'ssl' in $vhost and str2bool($vhost['ssl']) ? { true => true, default => false },
+          'ssl_cert'        => $vhost['ssl_cert'] ? { undef => undef, '' => undef, default => $vhost['ssl_cert'] },
+          'ssl_key'         => $vhost['ssl_key'] ? { undef => undef, '' => undef, default => $vhost['ssl_key'] },
+          'ssl_chain'       => $vhost['ssl_chain'] ? { undef => undef, '' => undef, default => $vhost['ssl_chain'] },
+          'ssl_certs_dir'   => $vhost['ssl_certs_dir'] ? { undef => undef, '' => undef, default => $vhost['ssl_certs_dir'] }
         })
       })
     }
@@ -719,7 +719,7 @@ if hash_key_equals($php_values, 'install', 1) {
     each( $php_values['ini'] ) |$key, $value| {
       if is_array($value) {
         each( $php_values['ini'][$key] ) |$innerkey, $innervalue| {
-          puphpet::php::ini { "${key}_${innerkey}":
+         puphpet::php::ini { "${key}_${innerkey}":
             entry       => "CUSTOM_${innerkey}/${key}",
             value       => $innervalue,
             php_version => $php_values['version'],
@@ -727,7 +727,7 @@ if hash_key_equals($php_values, 'install', 1) {
           }
         }
       } else {
-        puphpet::php::ini { $key:
+       puphpet::php::ini { $key:
           entry       => "CUSTOM/${key}",
           value       => $value,
           php_version => $php_values['version'],
@@ -749,8 +749,7 @@ if hash_key_equals($php_values, 'install', 1) {
       }
     }
   }
-
-  puphpet::php::ini { $key:
+ puphpet::php::ini {$key:
     entry       => 'CUSTOM/date.timezone',
     value       => $php_values['timezone'],
     php_version => $php_values['version'],
@@ -824,7 +823,7 @@ if hash_key_equals($xdebug_values, 'install', 1)
 
   if is_hash($xdebug_values['settings']) and count($xdebug_values['settings']) > 0 {
     each( $xdebug_values['settings'] ) |$key, $value| {
-      puphpet::php::ini { $key:
+     puphpet::php::ini {$key:
         entry       => "XDEBUG/${key}",
         value       => $value,
         php_version => $php_values['version'],
@@ -1452,9 +1451,6 @@ mysql_grant { "drupal@%/drupal.*":
 	privileges => [ 'ALL' ],
 }
 
-# include solr
-
-apt::ppa { 'ppa:ansible/ansible': }
 apt::ppa { 'ppa:chris-lea/node.js': }
 
 exec { "apt-update":
@@ -1470,10 +1466,6 @@ class ruby::ruby193 {
 
 package { "python-software-properties":
   ensure  => latest
-}
-package { "libaugeas-ruby":
-  ensure => latest,
-  require => Package['python-software-properties']
 }
 package { "ruby1.9.1":
   ensure  => latest,
@@ -1532,20 +1524,6 @@ alternatives { 'gem':
 # magic!
 include ruby::ruby193
 
-include nodejs
-
-package { 'jshint':
-  ensure   => present,
-  provider => 'npm',
-  require => Class['ruby::ruby193']
-}
-
-package { 'scss-lint':
-  ensure   => latest,
-  provider => 'gem',
-  require => Class['ruby::ruby193']
-}
-
 package { 'ruby-augeas':
   ensure   => installed,
   provider => 'gem',
@@ -1555,33 +1533,60 @@ package { 'ruby-augeas':
 package { "python-mysqldb":
   ensure  => latest
 }
-exec { "phpcs":
-  command => "pear install PHP_CodeSniffer-1.5.5",
-  returns => [0, 1, 100]
+
+# Mysql default config my.cnf
+file_line { 'innodb_file_per_table':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'innodb_file_per_table = 1',
+   notify  => Service['mysql'],
 }
 
-include ansible::master
-include solr
-# Solr config installation. see https://www.drupal.org/node/484800
-class drupal::solr {
-
-exec { "copy_solr_config":
-  command => "rm -rf /usr/share/solr/default/conf/* && cp -r /var/www/docroot/sites/all/modules/contrib/search_api_solr/solr-conf/4.x/* /usr/share/solr/default/conf/",
-  returns => [0, 1, 100],
-  require => Class['solr'],
+file_line { 'tmp_table_size':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'tmp_table_size = 160M',
+   notify  => Service['mysql'],
 }
 
-
-exec { "/etc/init.d/jetty restart":
-  subscribe => Exec["copy_solr_config"],
-  refreshonly => true,
+file_line { 'max_heap_table_size':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'max_heap_table_size = 160M',
+   notify  => Service['mysql'],
 }
 
+file_line { 'character-set-server':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'character-set-server=utf8',
+   notify  => Service['mysql'],
 }
 
-package { "ruby-compass":
-  ensure  => latest,
-  require => Class['ruby::ruby193']
+file_line { 'collation-server':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'collation-server=utf8_unicode_ci',
+   notify  => Service['mysql'],
+}
+
+file_line { 'innodb_flush_log_at_trx_commit':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'innodb_flush_log_at_trx_commit = 0 # or 2',
+   notify  => Service['mysql'],
+}
+
+file_line { 'query_cache_size':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'query_cache_size = 16M',
+   notify  => Service['mysql'],
+}
+
+file_line { 'table_cache':
+   path    => '/etc/mysql/my.cnf',
+   line    => 'table_cache = 800',
+   notify  => Service['mysql'],
+}
+
+# Creating symlink for sendmail
+file { '/usr/sbin/sendmail':
+   ensure => 'link',
+   target => '/bin/true',
 }
 
 # Install varnish. Otherwise remove Varnish for correct work apache.
