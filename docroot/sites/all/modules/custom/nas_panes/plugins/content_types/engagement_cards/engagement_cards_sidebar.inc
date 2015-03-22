@@ -23,8 +23,21 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
   _nas_panes_hide_pane_title_field($form);
 
   $conf_key = 'default';
-  if (isset($form_state['display']->context['panelizer'])) {
-    $conf_key = $form_state['display']->context['panelizer']->empty ? $conf_key : $form_state['display']->context['panelizer']->argument;
+
+  // Panelizer.
+  if (isset($form_state['display']->context['panelizer']) && !$form_state['display']->context['panelizer']->empty) {
+    $conf_key = $form_state['display']->context['panelizer']->keyword . $form_state['display']->context['panelizer']->argument;
+    // Support old version of the key that was simple nid. For the future it is better
+    // to have also type of the entity in the key so we could enable panelizer for
+    // taxonomy terms and have no conflicts in node's and term's ids.
+    if (!isset($conf[$conf_key])) {
+      $conf_key = $form_state['display']->context['panelizer']->argument;
+    }
+  }
+
+  // Panels page for taxonomy term view.
+  if (strpos($form_state['display']->cache_key, 'term_view') !== FALSE) {
+    $conf_key = 'taxonomy_term' . $form_state['display']->context['argument_term_1']->argument;
   }
   $form[$conf_key] = array(
     '#type' => 'fieldset',
@@ -110,8 +123,24 @@ function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {
   // We can't add node context to the pane, because it's use on landing pages too.
   $conf_key = 'default';
   if ($context_node = menu_get_object('node')) {
-    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
+    // Support old configuration when key was nid only.
+    if (isset($conf[$context_node->nid])) {
+      $conf_key = $context_node->nid;
+    }
+    // New configuration has entity type prefix.
+    if (isset($conf['node' . $context_node->nid])) {
+      $conf_key = 'node' . $context_node->nid;
+    }
   }
+
+  // Taxonomy term.
+  if (arg(0) == 'taxonomy' && arg(1) == 'term') {
+    $taxonomy_term_conf_key = 'taxonomy_term' . arg(2);
+    if (isset($conf[$taxonomy_term_conf_key])) {
+      $conf_key = $taxonomy_term_conf_key;
+    }
+  }
+
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
   }

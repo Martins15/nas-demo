@@ -562,6 +562,15 @@ function nas_panes_theme() {
       'template' => 'about-page-intro',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_intro',
     ),
+    'about_page_leadership' => array(
+      'variables' => array(
+        'title' => NULL,
+        'full_width_text' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'about-page-leadership',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_leadership',
+    ),
     'about_page_success_section' => array(
       'variables' => array(
         'title' => NULL,
@@ -1145,7 +1154,7 @@ function _nas_panes_build_panelizer_contextual_links($subtype, $entity, $bundle,
   }
   // If $pid is UUID then we have to save panel to DB.
   if (!is_numeric($pid)) {
-    $pid = _nas_panes_save_panelizer($subtype, $entity, $bundle, $panelizer_default);
+    $pid = _nas_panes_save_panelizer($subtype, $entity);
   }
   $page_manager = $entity->panelizer['page_manager'];
   $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
@@ -1273,14 +1282,27 @@ function _nas_panes_magazin_featured_articles($node) {
  * @return int
  *   ID of the panelizer.
  */
-function _nas_panes_save_panelizer($subtype, $node, $bundle, $panelizer_layout) {
-  $name = 'node:' . $bundle . ':' . $panelizer_layout;
+function _nas_panes_save_panelizer($subtype, $node) {
+
+  $bundle = $node->type;
+
+  $panelizer_name = $node->panelizer['page_manager']->name;
+  $panelizer_name_array = explode(':', $panelizer_name);
+  $panelizer_layout = array_pop($panelizer_name_array);
+
+  $name = 'node:' . $node->type . ':' . $panelizer_layout;
   $handler = panelizer_entity_plugin_get_handler('node');
   $bundle = $bundle . '.page_manager';
   $panelizer = $handler->get_default_panelizer_object($bundle, $name);
 
   if (!empty($panelizer)) {
-    ctools_export_crud_save('panelizer_defaults', $panelizer);
+    panelizer_export_save_callback($panelizer);
+
+    // Clear CTools cache.
+    db_delete('ctools_object_cache')
+      ->condition('name', 'node:' . $node->nid . ':page_manager%', 'LIKE')
+      ->execute();
+    drupal_static_reset('ctools_object_cache_get');
   }
 
   // Reload node cause panel is saved.
