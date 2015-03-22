@@ -2098,3 +2098,15 @@ function nas_master_update_7152() {
   module_enable(array('pasteformat'));
   features_revert_module('nas_text_format_feature');
 }
+
+/**
+ * Enable modules, revert features.
+ */
+function nas_master_update_7153() {
+  // Change weight of nas theme.
+  db_update('system')
+  ->fields(array('weight' => 3001))
+  ->condition('name', 'nas')
+  ->condition('type', 'theme')
+  ->execute();
+}
