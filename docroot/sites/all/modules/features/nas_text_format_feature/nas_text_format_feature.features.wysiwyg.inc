@@ -68,11 +68,11 @@ function nas_text_format_feature_wysiwyg_default_profiles() {
       'simple_source_formatting' => 1,
       'acf_mode' => 0,
       'acf_allowed_content' => '',
-      'css_setting' => 'self',
+      'css_setting' => 'theme',
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,address,pre,h1,h2,h3,h4,h5,h6,div,blockquote',
-      'advanced__active_tab' => 'edit-basic',
+      'advanced__active_tab' => 'edit-css',
       'forcePasteAsPlainText' => 0,
     ),
   );
