@@ -864,15 +864,20 @@ function nas_button($variables) {
   return theme_button($variables);
 }
 
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function nas_theme_registry_alter(&$theme_registry) {
+  $theme_registry['image']['function'] = 'nas_image';
+
+  return $theme_registry;
+}
+
 /*
  * Implements theme_image().
  * remove height and width to make image responsible
  */
 function nas_image($variables) {
-  $attributes = $variables['attributes'];
-  $attributes['src'] = file_create_url($variables['path']);
-  $add_attributes = array('alt', 'title');
-
   // These styles shouldn't have width and height for responsive design.
   $remove_attr_for = array(
     'hero_mobile',
@@ -884,17 +889,72 @@ function nas_image($variables) {
     'magazine_issue_cover',
     'our_leadership',
   );
-  if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
-    $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
-  }
 
-  foreach ($add_attributes as $key) {
-    if (isset($variables[$key])) {
-      $attributes[$key] = $variables[$key];
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED)) {
+    $attributes = $variables['attributes'];
+    $noscript_attributes = $variables['attributes'];
+
+    if (_lazy_loader_enabled()) {
+
+      $attributes['data-src'] = file_create_url($variables['path']);
+      // Path to dummy placeholder image, to be replaced by actual image.
+      $image_placeholder = trim(variable_get('lazyloader_placeholder', LAZYLOADER_PLACEHOLDER));
+      $attributes['src'] = $image_placeholder ? base_path() . $image_placeholder : url(drupal_get_path('module', 'lazyloader') . '/image_placeholder.gif');
+      $noscript_attributes['src'] = file_create_url($variables['path']);
+
+      // Integrate with Responsive Webdesign module.
+      if (module_exists('rdwimages')) {
+        global $_rwdimages_set;
+        if ($_rwdimages_set['enabled']) {
+          $attributes['class'] = array('rwdimage');
+        }
+      }
+
     }
-  }
+    else {
+      $attributes['src'] = file_create_url($variables['path']);
+    }
 
-  return '<img' . drupal_attributes($attributes) . ' />';
+    foreach (array('width', 'height', 'alt', 'title') as $key) {
+      if (isset($variables[$key])) {
+        $attributes[$key] = $variables[$key];
+      }
+      if (isset($variables[$key])) {
+        $noscript_attributes[$key] = $variables[$key];
+      }
+    }
+
+    if (isset($variables['style_name']) && in_array($variables['style_name'], $remove_attr_for)) {
+      unset($attributes['width']);
+      unset($attributes['height']);
+      unset($noscript_attributes['width']);
+      unset($noscript_attributes['height']);
+    }
+
+    $noscript = '';
+    if (!empty($attributes['data-src'])) {
+      $noscript = '<noscript><img' . drupal_attributes($noscript_attributes) . ' /></noscript>';
+    }
+
+    return '<img' . drupal_attributes($attributes) . ' />' . $noscript;
+  }
+  else {
+    $attributes = $variables['attributes'];
+    $attributes['src'] = file_create_url($variables['path']);
+    $add_attributes = array('alt', 'title');
+
+    if (isset($variables['style_name']) && !in_array($variables['style_name'], $remove_attr_for)) {
+      $add_attributes = array_merge($remove_attr_for, array('width', 'height'));
+    }
+
+    foreach ($add_attributes as $key) {
+      if (isset($variables[$key])) {
+        $attributes[$key] = $variables[$key];
+      }
+    }
+
+    return '<img' . drupal_attributes($attributes) . ' />';
+  }
 }
 
 /*

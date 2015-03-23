@@ -2100,7 +2100,7 @@ function nas_master_update_7152() {
 }
 
 /**
- * Enable module.
+ * Enable modules, revert features.
  */
 function nas_master_update_7153() {
   module_enable(array('twitter_typeahead'));

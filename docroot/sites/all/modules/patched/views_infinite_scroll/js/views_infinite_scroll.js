@@ -70,9 +70,11 @@
         var prev_content_height = $(content_selector).height();
         do {
           var last = $($items).filter(':last');
-          if (last.offset().top + last.height() < $(document).scrollTop() + $(window).height()) {
-            last = $($items).filter(':last');
-            $.autopager('load');
+          if (last.length > 0) {
+            if (last.offset().top + last.height() < $(document).scrollTop() + $(window).height()) {
+              last = $($items).filter(':last');
+              $.autopager('load');
+            }
           }
           else {
             break;
