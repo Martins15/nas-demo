@@ -232,7 +232,18 @@ function nas_birds_guide_feature_default_page_manager_pages() {
     $pane->type = 'nas_panes_pane_featured_bird';
     $pane->subtype = 'nas_panes_pane_featured_bird';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'hide bird',
+            'php' => 'return empty($_GET["search_api_views_fulltext"]);',
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
