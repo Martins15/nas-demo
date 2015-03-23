@@ -2108,3 +2108,10 @@ function nas_master_update_7153() {
   drupal_uninstall_modules(array('search_api_autocomplete'));
   features_revert_module('nas_solr_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7154() {
+  features_revert_module('nas_text_format_feature');
+}
