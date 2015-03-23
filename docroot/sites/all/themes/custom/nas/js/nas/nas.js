@@ -314,6 +314,11 @@ var Nas = Nas || {};
   Drupal.behaviors.fieldGuide = {
     attach: function (context, settings) {
       if ($('body').hasClass('page-field-guide')) {
+        $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+          if (options.url.match("\/views\/ajax")) {
+            options.url = options.url.replace(/\/views\/ajax\?page=\d&?/g, '/views/ajax?');
+          }
+        });
         $(document).ajaxComplete(function(event, xhr, settings) {
           var updated_url = '';
           // change the URL after a new content is loaded.
