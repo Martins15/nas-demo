@@ -2108,9 +2108,8 @@ function nas_master_update_7153() {
   drupal_uninstall_modules(array('search_api_autocomplete'));
   features_revert_module('nas_solr_feature');
 }
-
 /**
- * Enable modules, revert features.
+ * Revert feature.
  */
 function nas_master_update_7154() {
   features_revert_module('nas_birds_guide_feature');
@@ -2121,4 +2120,11 @@ function nas_master_update_7154() {
  */
 function nas_master_update_7155() {
   features_revert_module('nas_text_format_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7156() {
+  features_revert_module('nas_birds_guide_feature');
 }
