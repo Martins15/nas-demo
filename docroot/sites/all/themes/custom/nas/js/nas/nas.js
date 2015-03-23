@@ -317,7 +317,7 @@ var Nas = Nas || {};
         $(document).ajaxComplete(function(event, xhr, settings) {
           var updated_url = '';
           // change the URL after a new content is loaded.
-          if (settings.url.match("\/field-guide\\?page\=")) {
+          if (settings.url.match("\/field-guide\\?page=")) {
             updated_url = settings.url;
           }
           if (settings.url.match("\/views\/ajax")) {
