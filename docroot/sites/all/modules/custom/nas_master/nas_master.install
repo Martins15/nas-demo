@@ -2110,6 +2110,13 @@ function nas_master_update_7153() {
 }
 
 /**
+ * Enable modules, revert features.
+ */
+function nas_master_update_7154() {
+  features_revert_module('nas_birds_guide_feature');
+}
+
+/**
  * Revert features.
  */
 function nas_master_update_7155() {
