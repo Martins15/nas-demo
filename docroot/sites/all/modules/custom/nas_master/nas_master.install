@@ -2112,6 +2112,6 @@ function nas_master_update_7153() {
 /**
  * Revert features.
  */
-function nas_master_update_7154() {
+function nas_master_update_7155() {
   features_revert_module('nas_text_format_feature');
 }
