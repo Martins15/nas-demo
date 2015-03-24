@@ -2110,9 +2110,30 @@ function nas_master_update_7153() {
 }
 
 /**
+ * Revert feature.
+ */
+function nas_master_update_7154() {
+  features_revert_module('nas_birds_guide_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7155() {
+  features_revert_module('nas_text_format_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7156() {
+  features_revert_module('nas_birds_guide_feature');
+}
+
+/**
  * Update articles without hero and editorial card images.
  */
-function nas_master_update_7156(&$sandbox) {
+function nas_master_update_7157(&$sandbox) {
   // If this is the first pass through this update function then set some variables.
   if (!isset($sandbox['total'])) {
     $query = db_select('node', 'n');
