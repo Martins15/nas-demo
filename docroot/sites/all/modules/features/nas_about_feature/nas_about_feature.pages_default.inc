@@ -16,7 +16,10 @@ function nas_about_feature_default_page_manager_pages() {
   $page->admin_title = 'About';
   $page->admin_description = '';
   $page->path = 'about';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -612,6 +615,39 @@ function nas_about_feature_default_page_manager_pages() {
     $pane->uuid = 'd095a1cd-f1a4-49c5-a76e-451c548bd93f';
     $display->content['new-d095a1cd-f1a4-49c5-a76e-451c548bd93f'] = $pane;
     $display->panels['main'][0] = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
+    $pane = new stdClass();
+    $pane->pid = 'new-863768c0-f364-485d-a30e-8af0cdadaf03';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_leadership';
+    $pane->subtype = 'about_page_leadership';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'full_width_text' => array(
+        'value' => '<h2 class="thin">Audubon&#39;s leadership is supported by its Board of Directors. Bios of current&nbsp;board members can be <a href="http://audubon.org/content/board-directors" style="color: #0AA8E3;">found here</a>.</h2>
+
+<p>&nbsp;</p>
+',
+        'format' => 'full_html',
+      ),
+      'form_build_id' => 'form-shSlN-btCsRvvp530J-OmdekoyPpvF936zKIxTWxXqs',
+      'form_token' => 'pBn4a_vby_ctLuaWwtE_xbcqg0i81Puqeoe899Wfl8c',
+      'form_id' => 'about_page_leadership_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '863768c0-f364-485d-a30e-8af0cdadaf03';
+    $display->content['new-863768c0-f364-485d-a30e-8af0cdadaf03'] = $pane;
+    $display->panels['main'][1] = 'new-863768c0-f364-485d-a30e-8af0cdadaf03';
     $pane = new stdClass();
     $pane->pid = 'new-c2975b5a-b6fc-4de8-8768-6702db32c159';
     $pane->panel = 'top';
