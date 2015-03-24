@@ -2122,7 +2122,7 @@ function nas_master_update_7156(&$sandbox) {
     ));
     $query->condition('n.type', 'article');
     $query->fields('fi', array('entity_id', 'guid'));
-    $sandbox['total'] = $query->execute()->rowCount();watchdog('$sandbox[\'total\']', print_r($sandbox['total'],1));
+    $sandbox['total'] = $query->execute()->rowCount();watchdog('$sandbox[\'total\']', print_r($sandbox['total'], 1));
     $sandbox['current'] = 0;
     variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
   }
@@ -2140,8 +2140,8 @@ function nas_master_update_7156(&$sandbox) {
   $query->condition('n.type', 'article');
   $query->fields('fi', array('entity_id', 'guid'));
   $query->range($sandbox['current'], $chunk);
-  $results = $query->execute()->fetchAll();watchdog('$results', print_r($results,1));
-  foreach($results as $nids) {
+  $results = $query->execute()->fetchAll();watchdog('$results', print_r($results, 1));
+  foreach ($results as $nids) {
     $node = node_load($nids->entity_id);
     $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
     if (empty($get_field_hero_image)) {
@@ -2153,7 +2153,7 @@ function nas_master_update_7156(&$sandbox) {
     }
     $sandbox['current']++;
   }
-  watchdog('$sandbox[\'current\']', print_r($sandbox['current'],1));
+  watchdog('$sandbox[\'current\']', print_r($sandbox['current'], 1));
   // Set the value for finished. If current == total then finished will be 1, signifying we are done.
   $sandbox['#finished'] = ($sandbox['current'] / $sandbox['total']);
 
