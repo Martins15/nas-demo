@@ -87,13 +87,15 @@ header.global-header {
 }
 
 body.node-type-bird {
-  i:before {
+  .large-8.columns{
+    i:before {
+      display:none;
+    }
+  }
+  i.icon-info:before,i.icon-music:before{
     display:none;
   }
 
-  #bird-cta i:before{
-    display:block;
-  }
   header.global-header {
     .bird-guide-search-species-page {
       display: block;
