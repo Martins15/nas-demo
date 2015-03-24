@@ -4,7 +4,7 @@
  * Modifications to import process.
  */
 
-define('NAS_IMPORT_LIVE_SITE_URL', 'http://mag.audubonstg.zivtech.com/');
+define('NAS_IMPORT_LIVE_SITE_URL', 'http://audubon.prod.acquia-s.com/');
 define('NAS_FILES_CACHE_DIR', '/var/www/cache');
 define('NAS_OLD_D6_VID_HABITAT', 96);
 define('NAS_OLD_D6_VID_LOLOMOTION', 101);
@@ -685,7 +685,7 @@ function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status
   }
   $remote_filepath = implode('/', $path_parts);
 
-  $cached_filepath = '/var/www/cache' . '/' . $remote_filepath;
+  $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
   if (file_exists($cached_filepath)) {
     $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
   }
