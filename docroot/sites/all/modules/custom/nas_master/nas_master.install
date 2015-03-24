@@ -2182,3 +2182,10 @@ function nas_master_update_7157(&$sandbox) {
     watchdog('nas_master', '@count magazine issue articles hero and editorial card images were updated.', array('@count' => $sandbox['current']));
   }
 }
+
+/**
+ * Revert About feature.
+ */
+function nas_master_update_7158() {
+  features_revert_module('nas_about_feature');
+}
