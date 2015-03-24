@@ -4,7 +4,7 @@
  * Modifications to import process.
  */
 
-define('NAS_IMPORT_LIVE_SITE_URL', 'http://audubon.prod.acquia-sites.com/');
+define('NAS_IMPORT_LIVE_SITE_URL', 'http://mag.audubonstg.zivtech.com/');
 define('NAS_FILES_CACHE_DIR', '/var/www/cache');
 define('NAS_OLD_D6_VID_HABITAT', 96);
 define('NAS_OLD_D6_VID_LOLOMOTION', 101);
@@ -685,7 +685,7 @@ function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status
   }
   $remote_filepath = implode('/', $path_parts);
 
-  $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . '/' . $remote_filepath;
+  $cached_filepath = '/var/www/cache' . '/' . $remote_filepath;
   if (file_exists($cached_filepath)) {
     $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
   }
@@ -1603,6 +1603,23 @@ function _nas_import_update_mag_issue_articles($nids) {
         }
         elseif ($images = nas_import_import_image($node, $image_node['field_photo'])) {
           $image = reset($images);
+          // Save credit & caption.
+          $image_fields_mapping = array(
+            'field_photo_credit' => 'field_file_credit',
+            'field_caption' => 'field_file_caption',
+          );
+          foreach ($image_fields_mapping as $d6_field => $d7_field) {
+            if (empty($image_node[$d6_field][0]['value'])) {
+              continue;
+            }
+            $field_value = array(
+              'value' => $image_node[$d6_field][0]['value'],
+            );
+            $field_value['format'] = 'html';
+            $image->{$d7_field}[LANGUAGE_NONE][] = $field_value;
+          }
+          field_attach_update('file', $image);
+
           if (!$hero_image_items) {
             $node->field_hero_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
             watchdog('nas_import', 'Hero image updated in node nid :nid', array(':nid' => $nid));
