@@ -613,50 +613,6 @@ function nas_about_feature_default_page_manager_pages() {
     $display->content['new-d095a1cd-f1a4-49c5-a76e-451c548bd93f'] = $pane;
     $display->panels['main'][0] = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
     $pane = new stdClass();
-    $pane->pid = 'new-669b22a6-e600-4d29-8d19-b6a7c585bb87';
-    $pane->panel = 'main';
-    $pane->type = 'about_page_intro';
-    $pane->subtype = 'about_page_intro';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-      'left_column' => array(
-        'value' => '',
-        'format' => 'full_html',
-      ),
-      'right_column' => array(
-        'value' => '',
-        'format' => 'full_html',
-      ),
-      'full_width_text' => array(
-        'value' => '<h2 class="thin">Audubon&#39;s leadership is supported by its Board of Directors. Bios of current&nbsp;board members can be <a href="http://audubon.org/content/board-directors" style="color: #0AA8E3;">found here</a>.</h2>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p class="thin">&nbsp;</p>
-',
-        'format' => 'full_html',
-      ),
-      'form_build_id' => 'form-QsYYCKWw1TUcnrUv3eAGLiKWOJ-xBmKk8ELUQnDB94k',
-      'form_token' => 'xDw1KNLoylvXGtaa-Pxqi-U-L-LPmSU8qpO0mRgp-hk',
-      'form_id' => 'about_page_intro_form',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '669b22a6-e600-4d29-8d19-b6a7c585bb87';
-    $display->content['new-669b22a6-e600-4d29-8d19-b6a7c585bb87'] = $pane;
-    $display->panels['main'][1] = 'new-669b22a6-e600-4d29-8d19-b6a7c585bb87';
-    $pane = new stdClass();
     $pane->pid = 'new-c2975b5a-b6fc-4de8-8768-6702db32c159';
     $pane->panel = 'top';
     $pane->type = 'hero_image_section';
