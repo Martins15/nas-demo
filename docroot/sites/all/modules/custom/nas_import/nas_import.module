@@ -4,7 +4,7 @@
  * Modifications to import process.
  */
 
-define('NAS_IMPORT_LIVE_SITE_URL', 'http://audubon.prod.acquia-s.com/');
+define('NAS_IMPORT_LIVE_SITE_URL', 'http://audubon.prod.acquia-sites.com/');
 define('NAS_FILES_CACHE_DIR', '/var/www/cache');
 define('NAS_OLD_D6_VID_HABITAT', 96);
 define('NAS_OLD_D6_VID_LOLOMOTION', 101);
