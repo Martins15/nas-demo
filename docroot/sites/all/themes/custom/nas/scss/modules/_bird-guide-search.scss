@@ -103,3 +103,11 @@
     margin-left: $size-space;
   }
 }
+
+/* Typeahead */
+.tt-separator {
+  border-top: 1px solid #eee;
+  color: #666;
+  margin-top: 10px;
+  padding-top:5px;
+}

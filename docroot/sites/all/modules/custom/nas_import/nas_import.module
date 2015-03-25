@@ -1603,6 +1603,23 @@ function _nas_import_update_mag_issue_articles($nids) {
         }
         elseif ($images = nas_import_import_image($node, $image_node['field_photo'])) {
           $image = reset($images);
+          // Save credit & caption.
+          $image_fields_mapping = array(
+            'field_photo_credit' => 'field_file_credit',
+            'field_caption' => 'field_file_caption',
+          );
+          foreach ($image_fields_mapping as $d6_field => $d7_field) {
+            if (empty($image_node[$d6_field][0]['value'])) {
+              continue;
+            }
+            $field_value = array(
+              'value' => $image_node[$d6_field][0]['value'],
+            );
+            $field_value['format'] = 'html';
+            $image->{$d7_field}[LANGUAGE_NONE][] = $field_value;
+          }
+          field_attach_update('file', $image);
+
           if (!$hero_image_items) {
             $node->field_hero_image[LANGUAGE_NONE] = array(array('fid' => $image->fid));
             watchdog('nas_import', 'Hero image updated in node nid :nid', array(':nid' => $nid));

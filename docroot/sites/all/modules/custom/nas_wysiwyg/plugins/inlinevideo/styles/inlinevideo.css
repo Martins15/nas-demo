@@ -36,3 +36,13 @@
 .group {
     zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 }
+
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #404040;
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 25.5px;
+}

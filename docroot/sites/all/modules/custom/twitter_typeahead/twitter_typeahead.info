@@ -1,0 +1,4 @@
+name = Twitter Typeahead integration
+description = Makes textfield elements more user-friendly using <a href="http://twitter.github.io/typeahead.js/">typeahead.js</a>.
+package = User interface
+core = 7.x

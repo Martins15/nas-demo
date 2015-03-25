@@ -2098,3 +2098,94 @@ function nas_master_update_7152() {
   module_enable(array('pasteformat'));
   features_revert_module('nas_text_format_feature');
 }
+
+/**
+ * Enable modules, revert features.
+ */
+function nas_master_update_7153() {
+  module_enable(array('twitter_typeahead'));
+  module_disable(array('search_api_autocomplete'));
+  drupal_uninstall_modules(array('search_api_autocomplete'));
+  features_revert_module('nas_solr_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7154() {
+  features_revert_module('nas_birds_guide_feature');
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7155() {
+  features_revert_module('nas_text_format_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7156() {
+  features_revert_module('nas_birds_guide_feature');
+}
+
+/**
+ * Update articles without hero and editorial card images.
+ */
+function nas_master_update_7157(&$sandbox) {
+  // If this is the first pass through this update function then set some variables.
+  if (!isset($sandbox['total'])) {
+    $query = db_select('node', 'n');
+    $query->innerJoin('feeds_item', 'fi', 'n.nid = fi.entity_id AND fi.id = :importer_id AND fi.entity_type = :entity_type', array(
+      ':importer_id' => 'news_import',
+      ':entity_type' => 'node',
+    ));
+    $query->condition('n.type', 'article');
+    $query->fields('fi', array('entity_id', 'guid'));
+    $sandbox['total'] = $query->execute()->rowCount();
+    $sandbox['current'] = 0;
+    variable_set('nas_cached_files_folder', variable_get('file_temporary_path'));
+  }
+
+  // How many nodes should be processed per pass. The higher this number is, the faster your update will
+  // complete, but the more likely your server will run out of memory or timeout.
+  $chunk = 50;
+
+  // Get the nodes to process during this pass.
+  $query = db_select('node', 'n');
+  $query->innerJoin('feeds_item', 'fi', 'n.nid = fi.entity_id AND fi.id = :importer_id AND fi.entity_type = :entity_type', array(
+    ':importer_id' => 'news_import',
+    ':entity_type' => 'node',
+  ));
+  $query->condition('n.type', 'article');
+  $query->fields('fi', array('entity_id', 'guid'));
+  $query->range($sandbox['current'], $chunk);
+  $results = $query->execute()->fetchAll();
+  foreach ($results as $nids) {
+    $node = node_load($nids->entity_id);
+    $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
+    if (empty($get_field_hero_image)) {
+      $data = new stdClass();
+      $data->entity_id = $nids->entity_id;
+      $data->guid = $nids->guid;
+      $data = array($data);
+      _nas_import_update_mag_issue_articles($data);
+    }
+    $sandbox['current']++;
+  }
+
+  // Set the value for finished. If current == total then finished will be 1, signifying we are done.
+  $sandbox['#finished'] = ($sandbox['current'] / $sandbox['total']);
+
+  if ($sandbox['#finished'] === 1) {
+    watchdog('nas_master', '@count magazine issue articles hero and editorial card images were updated.', array('@count' => $sandbox['current']));
+  }
+}
+
+/**
+ * Revert About feature.
+ */
+function nas_master_update_7158() {
+  features_revert_module('nas_about_feature');
+}

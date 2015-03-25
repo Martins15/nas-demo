@@ -16,7 +16,10 @@ function nas_about_feature_default_page_manager_pages() {
   $page->admin_title = 'About';
   $page->admin_description = '';
   $page->path = 'about';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array();
   $page->conf = array(
@@ -89,6 +92,7 @@ function nas_about_feature_default_page_manager_pages() {
         'value' => '',
         'format' => 'full_html',
       ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -380,7 +384,7 @@ function nas_about_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Our Leadership';
   $page->admin_description = '';
-  $page->path = 'about/our-leadership';
+  $page->path = 'about/audubon-leaders';
   $page->access = array();
   $page->menu = array(
     'type' => 'none',
@@ -402,11 +406,11 @@ function nas_about_feature_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_our_leadership_panel_context';
+  $handler->name = 'page_our_leadership__panel_context_13afe71a-dfa8-42a3-b908-a44c53b974a3';
   $handler->task = 'page';
   $handler->subtask = 'our_leadership';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = 1;
   $handler->conf = array(
     'title' => 'Panel',
     'no_blocks' => 0,
@@ -427,6 +431,7 @@ function nas_about_feature_default_page_manager_pages() {
       'top' => NULL,
       'menu_bar' => NULL,
       'main' => NULL,
+      'cards' => NULL,
     ),
   );
   $display->cache = array();
@@ -434,6 +439,49 @@ function nas_about_feature_default_page_manager_pages() {
   $display->uuid = '6b299144-d0f5-42b3-b784-e476e1120f11';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-eee737eb-4468-4103-ba95-e2d2e726b7c6';
+    $pane->panel = 'cards';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default' => array(
+        'title' => 'These birds need your help',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-Sh1By4p3NA_tJrh5Row3Yy7VzjQrXGlBzKn1CRwbPzo',
+      'form_token' => 'xnOtvE_-6KmUsR8oyL0e9yuxqblEa89Cj1-1mrvWLsA',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'eee737eb-4468-4103-ba95-e2d2e726b7c6';
+    $display->content['new-eee737eb-4468-4103-ba95-e2d2e726b7c6'] = $pane;
+    $display->panels['cards'][0] = 'new-eee737eb-4468-4103-ba95-e2d2e726b7c6';
     $pane = new stdClass();
     $pane->pid = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
     $pane->panel = 'main';
@@ -444,66 +492,117 @@ function nas_about_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
-      'form_build_id' => 'form-efbU1KHtHkBumrmTtGB8q-m33eq1QRKPwaAClkFi2As',
-      'form_token' => 'fEM6YobHNfn17BMNbVFJA5xTtkUP26kSm35qZx_wDE4',
+      'form_build_id' => 'form-qmu9KoF_Dmcg0l_7aPOfGlXXz78toQ4Y1CB-5Wu7Nw0',
+      'form_token' => '33oluDG6TlAmDTeV8HX6eK7k0w2VxW46Pa5F3qGC5qw',
       'form_id' => 'our_leadership_list_form',
       'items' => array(
         0 => array(
-          'entity_id' => '203',
+          'entity_id' => '28486',
           'entity_label' => 'David Yarnold',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
         1 => array(
-          'entity_id' => '203',
-          'entity_label' => 'David Yarnold',
+          'entity_id' => '28471',
+          'entity_label' => 'John Beavers ',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
         2 => array(
-          'entity_id' => '203',
-          'entity_label' => 'David Yarnold',
+          'entity_id' => '27336',
+          'entity_label' => 'Diane Clifford',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
         3 => array(
-          'entity_id' => '203',
-          'entity_label' => 'David Yarnold',
+          'entity_id' => '27881',
+          'entity_label' => 'Mike Daulton',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
         4 => array(
-          'entity_id' => '203',
-          'entity_label' => 'David Yarnold',
+          'entity_id' => '27886',
+          'entity_label' => 'Mary Beth Henson',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
         5 => array(
-          'entity_id' => '203',
-          'entity_label' => 'David Yarnold',
+          'entity_id' => '27891',
+          'entity_label' => 'Mark Jannot',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
         6 => array(
-          'entity_id' => '203',
-          'entity_label' => 'David Yarnold',
+          'entity_id' => '27896',
+          'entity_label' => 'Kimberly Keller',
           'entity_type' => 'node',
           'entity_bundle' => 'contact',
         ),
-        7 => FALSE,
-        8 => FALSE,
-        9 => FALSE,
-        10 => FALSE,
-        11 => FALSE,
-        12 => FALSE,
-        13 => FALSE,
-        14 => FALSE,
-        15 => FALSE,
-        16 => FALSE,
+        7 => array(
+          'entity_id' => '27906',
+          'entity_label' => 'Gary Langham',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        8 => array(
+          'entity_id' => '45421',
+          'entity_label' => 'Anne Lieberman',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        9 => array(
+          'entity_id' => '27911',
+          'entity_label' => 'Susan Lunden',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        10 => array(
+          'entity_id' => '28441',
+          'entity_label' => 'Peg Olsen',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        11 => array(
+          'entity_id' => '28476',
+          'entity_label' => 'Glenn Olson',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        12 => array(
+          'entity_id' => '28461',
+          'entity_label' => 'Andy Roos',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        13 => array(
+          'entity_id' => '28446',
+          'entity_label' => 'Joe Ryan ',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        14 => array(
+          'entity_id' => '28451',
+          'entity_label' => 'Lorraine Sciarra',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        15 => array(
+          'entity_id' => '28481',
+          'entity_label' => 'Chandra Taylor Smith',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
+        16 => array(
+          'entity_id' => '28466',
+          'entity_label' => 'Peter Vincent',
+          'entity_type' => 'node',
+          'entity_bundle' => 'contact',
+        ),
         17 => FALSE,
         18 => FALSE,
         19 => FALSE,
       ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -516,6 +615,96 @@ function nas_about_feature_default_page_manager_pages() {
     $pane->uuid = 'd095a1cd-f1a4-49c5-a76e-451c548bd93f';
     $display->content['new-d095a1cd-f1a4-49c5-a76e-451c548bd93f'] = $pane;
     $display->panels['main'][0] = 'new-d095a1cd-f1a4-49c5-a76e-451c548bd93f';
+    $pane = new stdClass();
+    $pane->pid = 'new-863768c0-f364-485d-a30e-8af0cdadaf03';
+    $pane->panel = 'main';
+    $pane->type = 'about_page_leadership';
+    $pane->subtype = 'about_page_leadership';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'full_width_text' => array(
+        'value' => '<h2 class="thin">Audubon&#39;s leadership is supported by its Board of Directors. Bios of current&nbsp;board members can be <a href="http://audubon.org/content/board-directors" style="color: #0AA8E3;">found here</a>.</h2>
+
+<p>&nbsp;</p>
+',
+        'format' => 'full_html',
+      ),
+      'form_build_id' => 'form-shSlN-btCsRvvp530J-OmdekoyPpvF936zKIxTWxXqs',
+      'form_token' => 'pBn4a_vby_ctLuaWwtE_xbcqg0i81Puqeoe899Wfl8c',
+      'form_id' => 'about_page_leadership_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '863768c0-f364-485d-a30e-8af0cdadaf03';
+    $display->content['new-863768c0-f364-485d-a30e-8af0cdadaf03'] = $pane;
+    $display->panels['main'][1] = 'new-863768c0-f364-485d-a30e-8af0cdadaf03';
+    $pane = new stdClass();
+    $pane->pid = 'new-c2975b5a-b6fc-4de8-8768-6702db32c159';
+    $pane->panel = 'top';
+    $pane->type = 'hero_image_section';
+    $pane->subtype = 'hero_image_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'title' => 'Audubon Leadership',
+      'subtitle' => '',
+      'image' => '28306',
+      'header_color_mode' => 'light',
+      'text_color_mode' => 'light',
+      'form_build_id' => 'form-grGX6-Ea5_z__NO9bVjdnbPv2J44PutbapPG81Ik9Qk',
+      'form_token' => 'RyjIkJXHU7UhwRRICxZso0ksPFezlTom8hhi0fZ4LIM',
+      'form_id' => 'hero_image_section_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c2975b5a-b6fc-4de8-8768-6702db32c159';
+    $display->content['new-c2975b5a-b6fc-4de8-8768-6702db32c159'] = $pane;
+    $display->panels['top'][0] = 'new-c2975b5a-b6fc-4de8-8768-6702db32c159';
+    $pane = new stdClass();
+    $pane->pid = 'new-68d488ae-cd68-4108-bc1e-dc2d1c04b80b';
+    $pane->panel = 'top';
+    $pane->type = 'menu_bar_section';
+    $pane->subtype = 'menu_bar_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'default_menu_item' => '157',
+      'form_build_id' => 'form-qKveLtbSt-TWBaPi0uX_qtLDTamQe3o0XfRYqE7J24M',
+      'form_token' => 'H3-w4l4nHHETF6sWKez6g43JoM33ehkVi_w-aNG_5qc',
+      'form_id' => 'menu_bar_section_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '68d488ae-cd68-4108-bc1e-dc2d1c04b80b';
+    $display->content['new-68d488ae-cd68-4108-bc1e-dc2d1c04b80b'] = $pane;
+    $display->panels['top'][1] = 'new-68d488ae-cd68-4108-bc1e-dc2d1c04b80b';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
