@@ -6078,11 +6078,11 @@ header.global-header .bird-guide-search-species-page {
   display: none;
 }
 
-body.node-type-bird i:before {
+body.node-type-bird .large-8.columns i:before {
   display: none;
 }
-body.node-type-bird #bird-cta i:before {
-  display: block;
+body.node-type-bird i.icon-info:before, body.node-type-bird i.icon-music:before {
+  display: none;
 }
 body.node-type-bird header.global-header .bird-guide-search-species-page {
   display: block;
