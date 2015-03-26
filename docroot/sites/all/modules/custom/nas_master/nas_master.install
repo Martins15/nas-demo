@@ -2189,3 +2189,11 @@ function nas_master_update_7157(&$sandbox) {
 function nas_master_update_7158() {
   features_revert_module('nas_about_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7159() {
+  features_revert_module('nas_beans_feature');
+  features_revert_module('nas_text_format_feature');
+}
