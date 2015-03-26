@@ -870,4 +870,27 @@ body.node-type-slideshow {
   padding-bottom: 50px;
 }
 
-
+.article-text .article-video-container {
+  width: auto;
+  iframe {
+    
+  }
+  &.left {
+    text-align: left;
+    margin-right: 25px;
+  }
+  &.center {
+    width: 100%;
+    text-align: center;
+    figcaption {
+      text-align: center;
+    }
+  }
+  &.right {
+    text-align: right;
+    margin-left: 25px;
+    figcaption {
+      text-align: left;
+    }
+  }
+}
