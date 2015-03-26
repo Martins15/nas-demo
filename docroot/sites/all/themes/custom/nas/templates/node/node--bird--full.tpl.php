@@ -237,8 +237,9 @@
               <br />
               <?php print render($content['field_bird_audio']); ?>
             </section>
-            <section id="bird-songs-credits" class="bird-guide-section right-col small sans">
-              Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others. <a href="http://langelliott.com/audubon-bird-songs/">Learn more about this sound collection</a>.            
+            <section id="bird-songs-credits" class="sound-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
+              Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others.</br>
+              <a href="http://langelliott.com/audubon-bird-songs/">Learn more about this sound collection</a>.            
             </section>
           </div>
         </div>

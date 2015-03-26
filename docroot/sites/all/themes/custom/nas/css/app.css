@@ -8729,7 +8729,8 @@ body.black-bg .section-header a:hover {
   line-height: 20px;
 }
 
-.illustration-attribution {
+.illustration-attribution,
+.sound-attribution {
   font-size: 12px;
   line-height: 20px;
   text-align: center;
