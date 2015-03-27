@@ -1,5 +1,5 @@
 <?php
-//dpm();
+
 /**
  * @file
  * Custom view template to display Explore Similar Birds.
