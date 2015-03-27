@@ -12,7 +12,7 @@
   }
 
   // Children
-  figure {
+  figure:not(.article-video-container) {
     img, video, object, embed, iframe {
       width: 100% !important;
     }

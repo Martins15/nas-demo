@@ -51,6 +51,7 @@ scripts[] = js/mute/expand-hero.js
 scripts[] = js/mute/placeholders.js
 scripts[] = js/mute/wrap-select.js
 scripts[] = js/vendor/foundation/foundation.min.js
+scripts[] = js/mute/foundation.js
 
 ;; NAS
 scripts[] = js/nas/nas.js

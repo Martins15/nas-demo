@@ -65,6 +65,11 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     $vars_array_data = get_welcome_to_audubon_array_data($entity);
     $vars['content'] = theme('bean__welcome_to_audobun', $vars_array_data);
   }
+  elseif ($vars['elements']['#bundle'] == 'video') {
+    $entity = $vars['elements']['#entity'];
+    $get_alignment = field_get_items('bean', $entity, 'field_video_alignment');
+    $vars['alignment'] = $get_alignment[0]['value'];
+  }
   elseif ($vars['elements']['#bundle'] == 'slideshow') {
     $entity = $vars['elements']['#entity'];
     // Get Title.
@@ -191,6 +196,13 @@ function nas_wysiwyg_theme() {
         'count' => array(),
       ),
       'template' => 'bean--slideshow',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+    'bean__video' => array(
+      'variables' => array(
+        'alignment' => '',
+      ),
+      'template' => 'bean--video',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
   );
