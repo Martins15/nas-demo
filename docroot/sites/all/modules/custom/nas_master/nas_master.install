@@ -2204,3 +2204,10 @@ function nas_master_update_7159() {
 function nas_master_update_7160() {
   module_enable(array('fpa'));
 }
+
+/**
+ * Enable Event content type feature.
+ */
+function nas_master_update_7161() {
+  module_enable(array('nas_event_feature'));
+}
