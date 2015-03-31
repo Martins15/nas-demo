@@ -337,7 +337,7 @@ var Nas = Nas || {};
         $('.bird-card a').bind('click touchend', function (e) {
           var id = $(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', ''),
               page_numb_replace = 'page=' + id,
-              page_regexp_replace = /page=\d/g;
+              page_regexp_replace = /page=\d+/g;
           if (id === 0) {
             page_numb_replace = '';
             page_regexp_replace = /page=\d&?/g;
