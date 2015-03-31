@@ -45,14 +45,17 @@ function nas_text_format_feature_wysiwyg_default_profiles() {
           'RemoveFormat' => 1,
           'Format' => 1,
         ),
+        'pasteformat' => array(
+          'pasteformat' => 1,
+        ),
         'codemirror' => array(
           'codemirror' => 1,
         ),
         'drupal' => array(
           'bean_wysiwyg' => 1,
+          'bottom_line' => 1,
           'donate' => 1,
           'article_aside' => 1,
-          'bottom_line' => 1,
           'donate_half_size' => 1,
         ),
       ),

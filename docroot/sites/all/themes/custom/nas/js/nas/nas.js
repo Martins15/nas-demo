@@ -311,6 +311,42 @@ var Nas = Nas || {};
     }
   };
 
-
+  Drupal.behaviors.fieldGuide = {
+    attach: function (context, settings) {
+      if ($('body').hasClass('page-field-guide')) {
+        $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+          if (options.url.match("\/views\/ajax")) {
+            options.url = options.url.replace(/\/views\/ajax\?page=\d&?/g, '/views/ajax?');
+          }
+        });
+        $(document).ajaxComplete(function(event, xhr, settings) {
+          var updated_url = '';
+          // change the URL after a new content is loaded.
+          if (settings.url.match("\/field-guide\\?page=")) {
+            updated_url = settings.url;
+          }
+          if (settings.url.match("\/views\/ajax")) {
+            var data = settings.data.split('&').slice(0, 3).join('&');
+            updated_url = window.location.pathname + '?' + data;
+          }
+          if (updated_url !== '') {
+            window.history.replaceState('', '', updated_url);
+          }
+        });
+        // Additionatly change page number after bird is clicked.
+        $('.bird-card a').bind('click touchend', function (e) {
+          var id = $(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', ''),
+              page_numb_replace = 'page=' + id,
+              page_regexp_replace = /page=\d/g;
+          if (id === 0) {
+            page_numb_replace = '';
+            page_regexp_replace = /page=\d&?/g;
+          }
+          var updated_url = window.location.pathname + window.location.search.replace(page_regexp_replace, page_numb_replace);
+          window.history.replaceState('', '', updated_url);
+        });
+      }
+    }
+  };
 
 })(jQuery);

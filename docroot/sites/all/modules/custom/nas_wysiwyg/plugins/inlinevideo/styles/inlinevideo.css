@@ -1,0 +1,48 @@
+.video-wrapper{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.video-wrapper *{
+  box-sizing: border-box;
+}
+
+.video-wrapper .video-frame{
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  margin: 10px auto;  
+}
+
+.video-wrapper .video-caption{
+  width: 100%;
+  margin: 10px 0;
+  padding: 0 10px;
+  text-align: center;
+  color: gray;
+}
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #404040;
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 25.5px;
+}

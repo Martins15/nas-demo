@@ -6078,6 +6078,12 @@ header.global-header .bird-guide-search-species-page {
   display: none;
 }
 
+body.node-type-bird .large-8.columns i:before {
+  display: none;
+}
+body.node-type-bird i.icon-info:before, body.node-type-bird i.icon-music:before {
+  display: none;
+}
 body.node-type-bird header.global-header .bird-guide-search-species-page {
   display: block;
 }
@@ -6486,6 +6492,14 @@ input.header-search-input,
   .interactive-guide-button {
     margin-left: 10px;
   }
+}
+
+/* Typeahead */
+.tt-separator {
+  border-top: 1px solid #eee;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 5px;
 }
 
 .slideshow-page-header {
@@ -7932,14 +7946,14 @@ body.touch .primary-sub-nav-index {
     width: 75%;
   }
 }
-.article-text figure img, .article-text figure video, .article-text figure object, .article-text figure embed, .article-text figure iframe {
+.article-text figure:not(.article-video-container) img, .article-text figure:not(.article-video-container) video, .article-text figure:not(.article-video-container) object, .article-text figure:not(.article-video-container) embed, .article-text figure:not(.article-video-container) iframe {
   width: 100% !important;
 }
 @media only screen and (max-width: 600px) {
-  .article-text figure {
+  .article-text figure:not(.article-video-container) {
     margin-bottom: 25.5px;
   }
-  .article-text figure iframe {
+  .article-text figure:not(.article-video-container) iframe {
     max-height: 300px;
   }
 }
@@ -8715,10 +8729,18 @@ body.black-bg .section-header a:hover {
   line-height: 20px;
 }
 
-.illustration-attribution {
+.illustration-attribution,
+.sound-attribution {
   font-size: 12px;
   line-height: 20px;
+}
+
+.illustration-attribution {
   text-align: center;
+}
+
+.sound-attribution {
+  text-align: left;
 }
 
 .range-map-key {
@@ -14004,4 +14026,40 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 
 .node-type-magazine-issue .index-list {
   margin-bottom: 50px;
+}
+
+/*Lazyload*/
+.bird-card-illustration {
+  position: relative;
+}
+.bird-card-illustration .lazyloader-icon {
+  left: 50% !important;
+  margin: -12px 0 0 -12px;
+  top: 50% !important;
+}
+
+#views_infinite_scroll-ajax-loader {
+  padding-bottom: 50px;
+}
+
+.article-text .article-video-container {
+  width: auto;
+}
+.article-text .article-video-container.left {
+  text-align: left;
+  margin-right: 25px;
+}
+.article-text .article-video-container.center {
+  width: 100%;
+  text-align: center;
+}
+.article-text .article-video-container.center figcaption {
+  text-align: center;
+}
+.article-text .article-video-container.right {
+  text-align: right;
+  margin-left: 25px;
+}
+.article-text .article-video-container.right figcaption {
+  text-align: left;
 }

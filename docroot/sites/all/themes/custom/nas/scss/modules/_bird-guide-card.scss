@@ -120,8 +120,16 @@ $guide-border: 1px solid #ececec;
   }
 }
 
-.illustration-attribution {
+.illustration-attribution,
+.sound-attribution {
   font-size: $size-text-tiny;
   line-height: $size-line-small;
+}
+
+.illustration-attribution {
   text-align: center;
+}
+
+.sound-attribution {
+  text-align: left;
 }
