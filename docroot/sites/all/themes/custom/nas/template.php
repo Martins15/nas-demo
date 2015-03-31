@@ -107,21 +107,6 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
-  if ($vars['type'] == 'event') {
-    nas_preprocess_node_event($vars);
-  }
-}
-
-/**
- * Implements THEME_preprocess_node for Event content type.
- */
-function nas_preprocess_node_event(&$vars) {
-  $node = $vars['node'];
-
-  // Only load all these data if rendering full.
-  if ($vars['view_mode'] == 'full') {
-   
-  }
 }
 
 /**
