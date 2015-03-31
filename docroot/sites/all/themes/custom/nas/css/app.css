@@ -8740,7 +8740,11 @@ body.black-bg .section-header a:hover {
 }
 
 .sound-attribution {
-  text-align: left;
+  font-size: 12px;
+  line-height: 20px;
+  color: #404040;
+  font-family: "Noto Serif", Georgia, serif;
+  padding: 15px 0 !important;
 }
 
 .range-map-key {
