@@ -46,7 +46,7 @@
   <?php endif; ?>
 
   <?php if ($pager): ?>
-    <div class="row space-bottom">
+    <div class="hide row space-bottom">
       <div class="column">
         <?php print $pager; ?>
       </div>
