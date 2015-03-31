@@ -5,7 +5,7 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-<?php print $content['header']; ?>
+<?php //print $content['header']; ?>
 </header>
 <section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content">
   
@@ -13,9 +13,7 @@
     
     <!-- BEGIN HEADER -->
     <div class="column">
-      <header class="title">
-        <?php //print $content['header']; ?>
-      </header>
+      <?php print $content['header']; ?>
     </div>
     <!-- END HEADER -->
   
