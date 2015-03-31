@@ -335,7 +335,7 @@ var Nas = Nas || {};
         });
         // Additionatly change page number after bird is clicked.
         $('.bird-card a').bind('click touchend', function (e) {
-          var id = $(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', ''),
+          var id = $(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', '') * 1,
               page_numb_replace = 'page=' + id,
               page_regexp_replace = /page=\d+/g;
           if (id === 0) {
