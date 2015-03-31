@@ -343,8 +343,6 @@ var Nas = Nas || {};
             page_regexp_replace = /page=\d&?/g;
           }
           var updated_url = window.location.pathname + window.location.search.replace(page_regexp_replace, page_numb_replace);
-          console.log(page_numb_replace);
-          console.log(updated_url);
           window.history.replaceState('', '', updated_url);
         });
       }
