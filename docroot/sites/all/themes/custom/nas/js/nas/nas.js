@@ -340,7 +340,7 @@ var Nas = Nas || {};
               page_regexp_replace = /page=\d+/g;
           if (id === 0) {
             page_numb_replace = '';
-            page_regexp_replace = /page=\d&?/g;
+            page_regexp_replace = /page=\d+&?/g;
           }
           var updated_url = window.location.pathname + window.location.search.replace(page_regexp_replace, page_numb_replace);
           window.history.replaceState('', '', updated_url);
