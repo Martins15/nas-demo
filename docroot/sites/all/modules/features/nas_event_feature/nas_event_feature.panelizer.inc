@@ -687,6 +687,76 @@ function nas_event_feature_panelizer_defaults() {
     $pane->uuid = '53b68981-7abc-4320-beb3-8ab74b551c27';
     $display->content['new-53b68981-7abc-4320-beb3-8ab74b551c27'] = $pane;
     $display->panels['registration'][2] = 'new-53b68981-7abc-4320-beb3-8ab74b551c27';
+    $pane = new stdClass();
+    $pane->pid = 'new-67b7f8d6-08e0-418e-bf78-be3d61ae5b4b';
+    $pane->panel = 'sidebar';
+    $pane->type = 'local_chapters_centers_block';
+    $pane->subtype = 'local_chapters_centers_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'image' => '50345',
+      'image_link' => '',
+      'bottom_link' => array(
+        'title' => 'My Link',
+        'url' => 'www.google.com',
+      ),
+      'form_build_id' => 'form-OTSs3D8Hp_UGL4_4JuYcmGRsnfYqXzgq85oOwOqaAzQ',
+      'form_token' => 'xEA-qxdrSy8LBftvAZ6pwQ73DM2bfZNhG9wlumLPceE',
+      'form_id' => 'local_chapters_centers_block_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '67b7f8d6-08e0-418e-bf78-be3d61ae5b4b';
+    $display->content['new-67b7f8d6-08e0-418e-bf78-be3d61ae5b4b'] = $pane;
+    $display->panels['sidebar'][0] = 'new-67b7f8d6-08e0-418e-bf78-be3d61ae5b4b';
+    $pane = new stdClass();
+    $pane->pid = 'new-979e0ab7-675a-413b-ba23-310ca587d54e';
+    $pane->panel = 'sidebar';
+    $pane->type = 'views';
+    $pane->subtype = 'nas_most_viewed_articles';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 0,
+      'nodes_per_page' => '5',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 1,
+      'args' => '',
+      'url' => '',
+      'display' => 'default',
+      'context' => array(
+        0 => '',
+      ),
+      'override_title' => 1,
+      'override_title_text' => 'Popular Stories',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '979e0ab7-675a-413b-ba23-310ca587d54e';
+    $display->content['new-979e0ab7-675a-413b-ba23-310ca587d54e'] = $pane;
+    $display->panels['sidebar'][1] = 'new-979e0ab7-675a-413b-ba23-310ca587d54e';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-acfe668f-480e-4a90-b357-ee088dc9ca02';
   $panelizer->display = $display;
