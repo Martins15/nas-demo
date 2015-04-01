@@ -889,8 +889,11 @@ function nas_image($variables) {
     'magazine_issue_cover',
     'our_leadership',
   );
-
-  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED)) {
+  // List of styles for not applying of lazyloader.
+  $exclude_lazyloader_styles = array(
+    'engagement_card',
+  );
+  if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
     $attributes = $variables['attributes'];
     $noscript_attributes = $variables['attributes'];
 
