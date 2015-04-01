@@ -430,7 +430,7 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 0,
-      'override_title_text' => '',
+      'override_title_text' => 'Audubon Near You',
       'image' => '9803',
       'image_link' => '',
       'bottom_link' => array(
