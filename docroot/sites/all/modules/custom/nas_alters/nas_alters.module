@@ -231,72 +231,52 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['#attributes']['class'][] = 'bird-guide-exposed-form';
     $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/bird-guide-form.js';
 
-    // TODO: replace with db_select().
-    $species = db_query("SELECT n.title, n.nid, ua.alias, field_bird_family_tid bfs, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
-    FROM {node} n
-    LEFT JOIN {field_data_field_bird_family} bf ON bf.entity_id = n.nid
-    LEFT JOIN {field_data_field_bird_region} br ON br.entity_id = n.nid
-    LEFT JOIN {url_alias} ua ON ua.source = CONCAT(:prefix, n.nid)
-    WHERE type = :type AND status = :status
-    GROUP BY n.title", array(
-      ':prefix' => 'node/',
-      ':type' => 'bird',
-      ':status' => NODE_PUBLISHED,
-    ))->fetchAll();
-
-    foreach ($species as &$item) {
-      $item->bfs = (int) $item->bfs;
-      $item->rgs = explode(',', $item->rgs);
-      if (!$item->alias) {
-        $item->alias = 'node/' . $item->nid;
-      }
-      unset($item->nid);
-    }
-
-    // TODO: replace with db_select().
-    $families = db_query("SELECT bftd.tid, bftd.name, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
-    FROM {node} n
-    LEFT JOIN {field_data_field_bird_family} bf ON bf.entity_id = n.nid
-    LEFT JOIN {taxonomy_term_data} bftd ON bftd.tid = bf.field_bird_family_tid
-    LEFT JOIN {field_data_field_bird_region} br ON br.entity_id = n.nid
-    WHERE type = :type AND status = :status
-    GROUP BY bftd.tid", array(
-      ':type' => 'bird',
-      ':status' => NODE_PUBLISHED,
-    ))->fetchAll();
-
-    foreach ($families as &$family) {
-      $family->rgs = explode(',', $family->rgs);
-    }
-
-    $form['search_api_views_fulltext']['#typeahead'] = array(
-      array(
-        'type' => 'local callback',
-        'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
-        'values' => $species,
-        'options' => array(
-          'name' => 'species',
-          'displayKey' => 'title',
-        )
-      ),
-      array(
-        'type' => 'local callback',
-        'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
-        'values' => $families,
-        'options' => array(
-          'name' => 'families',
-          'displayKey' => 'name',
-          'templates' => array(
-            'header' => '<div class="tt-separator">' . t('Taxonomy families') . '</div>'
-          ),
-        )
-      ),
-    );
-
     if (!empty($form_state['storage']['external_page'])) {
       $form['external_page'] = array(
         '#type' => 'hidden',
         '#value' => TRUE,
+      );
+      // Apply typeahead.js settings for form placed not on the Field Guide page.
+      $species = _nas_search_get_tt_species();
+      $form['search_api_views_fulltext']['#typeahead'] = array(
+        array(
+          'type' => 'local values',
+          'values' => $species,
+          'options' => array(
+            'name' => 'species',
+            'displayKey' => 'title',
+            'limit' => 10,
+          )
+        ),
+      );
+    }
+    else {
+      // Apply typeahead.js settings for form placed on the Field Guide page.
+      $species = _nas_search_get_tt_species();
+      $families = _nas_search_get_tt_families();
+
+      $form['search_api_views_fulltext']['#typeahead'] = array(
+        array(
+          'type' => 'local callback',
+          'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
+          'values' => $species,
+          'options' => array(
+            'name' => 'species',
+            'displayKey' => 'title',
+          )
+        ),
+        array(
+          'type' => 'local callback',
+          'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
+          'values' => $families,
+          'options' => array(
+            'name' => 'families',
+            'displayKey' => 'name',
+            'templates' => array(
+              'header' => '<div class="tt-separator">' . t('Taxonomy families') . '</div>'
+            ),
+          )
+        ),
       );
     }
   }
