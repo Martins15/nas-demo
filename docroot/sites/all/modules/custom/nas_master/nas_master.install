@@ -2225,5 +2225,5 @@ function nas_master_update_7162() {
  * Disable Display cache module.
  */
 function nas_master_update_7163() {
-  module_disable(array('nas_event_feature'));
+  module_enable(array('nas_event_feature'));
 }
