@@ -2213,3 +2213,10 @@ function nas_master_update_7161() {
   features_revert(array('nas_birds_family_feature' => array('views_view')));
   features_revert(array('nas_birds_priority_feature' => array('views_view')));
 }
+
+/**
+ * Disable Display cache module.
+ */
+function nas_master_update_7162() {
+  module_disable(array('display_cache'));
+}
