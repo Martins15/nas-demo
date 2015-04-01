@@ -32,6 +32,9 @@
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace(displayKey),
             queryTokenizer: Bloodhound.tokenizers.whitespace
           };
+          if (field_settings[i].options.limit !== undefined) {
+            options.limit = field_settings[i].options.limit;
+          }
           if (field_settings[i].type == 'local values') {
             options.local = field_settings[i].values;
           }
@@ -46,7 +49,7 @@
           }
           else if (field_settings[i].type == 'prefetch') {
             options.prefetch = {
-              url: field_settings[i].prefetch,
+              url: field_settings[i].prefetch
               // TODO: implement.
 //              filter: birdGuideFilteredResults
 //              ttl: 1
