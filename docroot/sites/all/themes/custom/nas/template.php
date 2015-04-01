@@ -110,7 +110,7 @@ function nas_preprocess_node(&$vars) {
 }
 
 /**
- * theme_preprocess_node for bird content type..
+ * theme_preprocess_node for bird content type.
  */
 function nas_preprocess_node_bird(&$vars) {
   $node = $vars['node'];
