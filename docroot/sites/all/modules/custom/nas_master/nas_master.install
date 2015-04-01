@@ -2220,3 +2220,10 @@ function nas_master_update_7161() {
 function nas_master_update_7162() {
   module_disable(array('display_cache'));
 }
+
+/**
+ * Disable Display cache module.
+ */
+function nas_master_update_7163() {
+  module_enable(array('nas_event_feature'));
+}
