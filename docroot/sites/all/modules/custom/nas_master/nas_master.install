@@ -2227,3 +2227,10 @@ function nas_master_update_7162() {
 function nas_master_update_7163() {
   module_enable(array('nas_event_feature'));
 }
+
+/**
+ * Revert News page feature.
+ */
+function nas_master_update_7164() {
+  features_revert_module('nas_news_page_feature');
+}
