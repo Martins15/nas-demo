@@ -256,3 +256,98 @@ function _nas_search_node_get_node_date($entity, $options, $name, $entity_type) 
 
   return $entity->created;
 }
+
+/**
+ * Helper function returning list of species formatted for usage with Typeahead.
+ *
+ * Results are cached via drupal cache mechanism for one hour.
+ *
+ * @return array
+ *  An array of objects containing:
+ *  - title: Individual species title.
+ *  - nid: Species nid.
+ *  - alias: Alias to species page.
+ *  - bfs: Tid of species' bird family.
+ *  - rgs: An array of species bird region field's values.
+ */
+function _nas_search_get_tt_species() {
+  if ($cache = cache_get('nas_search_tt_species')) {
+    $species = $cache->data;
+  }
+  else {
+    $query = db_select('node', 'n');
+    $query->leftJoin('field_data_field_bird_family', 'bf', 'bf.entity_id = n.nid AND bf.entity_type = :entity_type AND bf.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => '0',
+    ));
+    $query->leftJoin('field_data_field_bird_region', 'br', 'br.entity_id = n.nid AND br.entity_type = :entity_type AND br.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => '0',
+    ));
+    $query->leftJoin('url_alias', 'ua', 'ua.source = CONCAT(:prefix, n.nid)', array(':prefix' => 'node/'));
+    $query->fields('n', array('title', 'nid'));
+    $query->addField('ua', 'alias');
+    $query->addField('bf', 'field_bird_family_tid', 'bfs');
+    $query->addExpression('GROUP_CONCAT(DISTINCT field_bird_region_tid)', 'rgs');
+    $query->condition('n.type', 'bird');
+    $query->condition('n.status', NODE_PUBLISHED);
+    $query->groupBy('n.nid');
+    $query->orderBy('n.title');
+    $species = $query->execute()->fetchAll();
+
+    foreach ($species as &$item) {
+      $item->bfs = (int) $item->bfs;
+      $item->rgs = explode(',', $item->rgs);
+      if (!$item->alias) {
+        $item->alias = 'node/' . $item->nid;
+      }
+      unset($item->nid);
+    }
+
+    cache_set('nas_search_tt_species', $species, 'cache', time() + 3600);
+  }
+
+  return $species;
+}
+
+/**
+ * Helper function returning list of families formatted for usage with Typeahead.
+ *
+ * Results are cached via drupal cache mechanism for one hour.
+ *
+ * @return array
+ *  An array of objects containing:
+ *  - name: Bird family name.
+ *  - tid: Bird family's tid.
+ *  - rgs: An array of regions tid where species of the family appears.
+ */
+function _nas_search_get_tt_families() {
+  if ($cache = cache_get('nas_search_tt_families')) {
+    $families = $cache->data;
+  }
+  else {
+    $query = db_select('node', 'n');
+    $query->leftJoin('field_data_field_bird_family', 'bf', 'bf.entity_id = n.nid AND bf.entity_type = :entity_type AND bf.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => '0',
+    ));
+    $query->leftJoin('taxonomy_term_data', 'bftd', 'bftd.tid = bf.field_bird_family_tid');
+    $query->leftJoin('field_data_field_bird_region', 'br', 'br.entity_id = n.nid AND br.entity_type = :entity_type AND br.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => '0',
+    ));
+    $query->fields('bftd', array('tid', 'name'));
+    $query->addExpression('GROUP_CONCAT(DISTINCT field_bird_region_tid)', 'rgs');
+    $query->condition('n.type', 'bird');
+    $query->condition('n.status', NODE_PUBLISHED);
+    $query->groupBy('bftd.tid');
+    $families = $query->execute()->fetchAll();
+
+    foreach ($families as &$family) {
+      $family->rgs = explode(',', $family->rgs);
+    }
+    cache_set('nas_search_tt_families', $families, 'cache', time() + 3600);
+  }
+
+  return $families;
+}
