@@ -87,16 +87,20 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="row">
-    <?php if (!empty($teaser_list_image)): ?>
+
+<?php 
+$field_images = $content['field_editorial_card_image'];
+if (!empty($field_images)):
+?>
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
-        <?php print $teaser_list_image; ?>
+        <?php print render($field_images); ?>
       </div>
     </div>
     <?php endif; ?>
-    <div class="tiny-<?php print !empty($teaser_list_image) ? '8' : '12'; ?> columns">
+    <div class="tiny-<?php print !empty($field_images) ? '8' : '12'; ?> columns">
       <div class="editorial-card-content">
-        <h4 class="editorial-card-title"><?php print $title; ?></h4>
+        <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
         <div class="editorial-card-body">
            <?php print $subtitle; ?>
         </div>

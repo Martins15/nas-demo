@@ -367,5 +367,4 @@ var Nas = Nas || {};
       } 
     }
   };
-
 })(jQuery);
