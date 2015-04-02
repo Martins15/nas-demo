@@ -10,6 +10,7 @@ dependencies[] = date
 dependencies[] = features
 dependencies[] = image
 dependencies[] = link
+dependencies[] = location_cck
 dependencies[] = media
 dependencies[] = menu
 dependencies[] = metatag

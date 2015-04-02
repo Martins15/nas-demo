@@ -75,12 +75,81 @@ function nas_event_feature_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_event_location',
     'foreign keys' => array(),
-    'indexes' => array(),
+    'indexes' => array(
+      'lid' => array(
+        0 => 'lid',
+      ),
+    ),
     'locked' => 0,
-    'module' => 'addressfield',
-    'settings' => array(),
+    'module' => 'location_cck',
+    'settings' => array(
+      'gmap_macro' => '[gmap ]',
+      'gmap_marker' => 'drupal',
+      'location_settings' => array(
+        'display' => array(
+          'hide' => array(
+            'additional' => 0,
+            'city' => 0,
+            'coords' => 0,
+            'country' => 0,
+            'country_name' => 0,
+            'locpick' => 0,
+            'map_link' => 0,
+            'name' => 0,
+            'postal_code' => 0,
+            'province' => 0,
+            'province_name' => 0,
+            'street' => 0,
+          ),
+        ),
+        'form' => array(
+          'fields' => array(
+            'additional' => array(
+              'collect' => 1,
+              'default' => '',
+              'weight' => 6,
+            ),
+            'city' => array(
+              'collect' => 1,
+              'default' => '',
+              'weight' => 8,
+            ),
+            'country' => array(
+              'collect' => 1,
+              'default' => 'us',
+              'weight' => 14,
+            ),
+            'locpick' => array(
+              'collect' => 1,
+              'weight' => 20,
+            ),
+            'name' => array(
+              'collect' => 0,
+              'default' => '',
+              'weight' => 2,
+            ),
+            'postal_code' => array(
+              'collect' => 1,
+              'default' => '',
+              'weight' => 12,
+            ),
+            'province' => array(
+              'collect' => 1,
+              'default' => '',
+              'weight' => 10,
+              'widget' => 'autocomplete',
+            ),
+            'street' => array(
+              'collect' => 1,
+              'default' => '',
+              'weight' => 4,
+            ),
+          ),
+        ),
+      ),
+    ),
     'translatable' => 0,
-    'type' => 'addressfield',
+    'type' => 'location',
   );
 
   // Exported field_base: 'field_event_location_help'

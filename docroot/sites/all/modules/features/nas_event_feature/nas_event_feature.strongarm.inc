@@ -109,6 +109,9 @@ function nas_event_feature_strongarm() {
         'xmlsitemap' => array(
           'weight' => '1',
         ),
+        'locations' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),

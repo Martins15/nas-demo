@@ -2222,8 +2222,15 @@ function nas_master_update_7162() {
 }
 
 /**
- * Disable Display cache module.
+ * Enable Events feature.
  */
 function nas_master_update_7163() {
   module_enable(array('nas_event_feature'));
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7164() {
+  features_revert_module('nas_event_feature');
 }
