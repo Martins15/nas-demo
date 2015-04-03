@@ -2241,3 +2241,11 @@ function nas_master_update_7164() {
 function nas_master_update_7165() {
   features_revert_module('nas_event_feature');
 }
+
+/**
+ * Enable and revert Events landing page related features.
+ */
+function nas_master_update_7166() {
+  module_enable(array('date_views', 'nas_events_landing_feature'));
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+}
