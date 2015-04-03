@@ -102,6 +102,20 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => '_nas_search_node_get_node_date',
     'calculated' => TRUE,
   );
+  $info['node']['properties']['event_months'] = array(
+    'label' => t('Event months'),
+    'type' => 'date',
+    'description' => t('Event months'),
+    'getter callback' => '_nas_search_node_get_event_months',
+    'calculated' => TRUE,
+  );
+  $info['node']['properties']['event_state'] = array(
+    'label' => t('Event state'),
+    'type' => 'string',
+    'description' => t('Event state'),
+    'getter callback' => '_nas_search_node_get_event_state',
+    'calculated' => TRUE,
+  );
   $info['node']['properties']['bird_name_autocomplete'] = array(
     'label' => t('Bird name for autocomplete'),
     'type' => 'text',
@@ -255,6 +269,35 @@ function _nas_search_node_get_node_date($entity, $options, $name, $entity_type) 
   }
 
   return $entity->created;
+}
+
+/**
+ * Property callback. Returns event's end date or NULL.
+ */
+function _nas_search_node_get_event_months($entity, $options, $name, $entity_type) {
+  if (!empty($entity->field_event_date[LANGUAGE_NONE][0]['value'])) {
+    $months = array();
+    if (!empty($entity->field_event_date[LANGUAGE_NONE][0]['value'])) {
+      $first_month = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']));
+      $last_month = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value2']));
+      for ($month = $first_month; $month <= $last_month; $month++) {
+        $months[] = $month;
+      }
+    }
+    else {
+      $months[] = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']));
+    }
+    return strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value2']);
+  }
+}
+
+/**
+ * Property callback. Returns event's end date or NULL.
+ */
+function _nas_search_node_get_event_state($entity, $options, $name, $entity_type) {
+  if (!empty($entity->field_event_location[LANGUAGE_NONE][0]['administrative_area'])) {
+    return $entity->field_event_location[LANGUAGE_NONE][0]['administrative_area'];
+  }
 }
 
 /**
