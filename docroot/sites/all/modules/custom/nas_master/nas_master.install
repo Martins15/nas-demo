@@ -2249,3 +2249,11 @@ function nas_master_update_7166() {
   field_delete_field('field_event_location');
   features_revert_module('nas_event_feature');
 }
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7167() {
+  module_enable(array('date_ical', 'nas_calendar_download_view_feature'));
+  features_revert_module('nas_event_feature');
+}

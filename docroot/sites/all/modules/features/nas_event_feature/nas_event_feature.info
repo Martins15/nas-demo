@@ -39,7 +39,6 @@ features[field_base][] = field_event_type
 features[field_instance][] = node-event-body
 features[field_instance][] = node-event-field_event_date
 features[field_instance][] = node-event-field_event_description
-features[field_instance][] = node-event-field_event_location
 features[field_instance][] = node-event-field_event_location_help
 features[field_instance][] = node-event-field_event_registration
 features[field_instance][] = node-event-field_event_registration_notes

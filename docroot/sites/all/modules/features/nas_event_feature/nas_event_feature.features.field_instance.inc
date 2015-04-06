@@ -24,6 +24,15 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'ical' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 60,
+        ),
+        'type' => 'text_trimmed',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -146,6 +155,19 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 1,
       ),
+      'ical' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -235,6 +257,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 6,
       ),
       'nas_editorial_card' => array(
@@ -428,6 +456,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 10,
       ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -540,6 +574,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'link_default',
         'weight' => 7,
       ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -634,6 +674,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 11,
       ),
       'nas_editorial_card' => array(
@@ -748,6 +794,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
       ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -827,6 +879,12 @@ function nas_event_feature_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
+        'weight' => 5,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 5,
       ),
       'nas_editorial_card' => array(
@@ -952,7 +1010,6 @@ function nas_event_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Event Date');
-  t('Event Location');
   t('Event Type');
   t('Hero image');
   t('Location Help');
