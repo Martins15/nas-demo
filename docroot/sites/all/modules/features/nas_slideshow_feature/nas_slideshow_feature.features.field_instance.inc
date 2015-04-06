@@ -72,7 +72,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -179,9 +179,13 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_no_section_link' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'article_teaser',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
@@ -341,7 +345,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -463,7 +467,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -597,7 +601,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -745,7 +749,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -848,7 +852,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -953,7 +957,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -1054,9 +1058,10 @@ function nas_slideshow_feature_field_default_field_instances() {
       ),
       'nas_node_teaser_no_section_link' => array(
         'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_plain',
+        'weight' => 1,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -1124,8 +1129,8 @@ function nas_slideshow_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Editorial card image');
   t('Editorial card description');
+  t('Editorial card image');
   t('Editorial card title');
   t('Editorial section');
   t('Images');
