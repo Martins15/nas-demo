@@ -2206,3 +2206,11 @@ function nas_master_update_7160() {
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_slideshow_feature');
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7168() {
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_slideshow_feature');
+}
