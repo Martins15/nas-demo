@@ -19,12 +19,10 @@ $plugin = array(
  *
  * @see ctools_plugin_examples()
  */
-function events_reg_block_render($subtype, $conf, $args, $contexts) {
-  $node = $context->data;
-  if (empty($node)) {
-    $node = menu_get_object('node');
+function events_reg_block_render($subtype, $conf, $args, $context) {
+  if (!$context->empty) {
+    $node = $context->data;
   }
-
   $date_city_province = '';
   $reg_notes = '';
   $button = '';

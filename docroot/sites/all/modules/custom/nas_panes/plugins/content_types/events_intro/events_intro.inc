@@ -19,12 +19,10 @@ $plugin = array(
  *
  * @see ctools_plugin_examples()
  */
-function events_intro_render($subtype, $conf, $args, $contexts) {
-  $node = $context->data;
-  if (empty($node)) {
-    $node = menu_get_object('node');
+function events_intro_render($subtype, $conf, $args, $context) {
+  if (!$context->empty) {
+    $node = $context->data;
   }
-
   $date_city_province = '';
   $address = '';
   $end_date = FALSE;
