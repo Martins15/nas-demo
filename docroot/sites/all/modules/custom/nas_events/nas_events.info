@@ -1,0 +1,7 @@
+name = NAS Events
+description = Handling Events with Audubon Works.
+core = 7.x
+package = NAS
+
+dependencies[] = job_scheduler
+dependencies[] = nas_import
