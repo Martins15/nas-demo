@@ -236,10 +236,10 @@
               <?php print render($content['field_bird_calls']); ?>
               <br />
               <?php print render($content['field_bird_audio']); ?>
-            </section>
-            <section id="bird-songs-credits" class="sound-attribution bird-guide-section right-col small left hide-for-medium hide-for-small hide-for-tiny">
-              Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others.</br>
-              <a href="http://langelliott.com/audubon-bird-songs/"><em>Learn more about this sound collection</em></a>.            
+              <section id="bird-songs-credits" class="sound-attribution bird-guide-section right-col small left hide-for-medium hide-for-small hide-for-tiny">
+                Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others.</br>
+                <a href="http://langelliott.com/audubon-bird-songs/"><em>Learn more about this sound collection</em></a>.            
+              </section>
             </section>
           </div>
         </div>
