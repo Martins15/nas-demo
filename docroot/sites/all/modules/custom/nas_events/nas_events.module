@@ -22,8 +22,8 @@ function nas_events_cron_job_scheduler_info() {
  * This function should only be called once a day.
  */
 function nas_events_update_nodes($job) {
-  $timestamp = 1426152117;
-  $uuids = nas_events_get_list($timestamp);watchdog('events', print_r($uuids,1));
+  $timestamp = variable_get('nas_events_last_time_processed', 1426152117);
+  $uuids = nas_events_get_list($timestamp);
   foreach ($uuids as $uuid => $timestamp) {
     $config = array('NASFeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
     $source = feeds_source('events_import');
