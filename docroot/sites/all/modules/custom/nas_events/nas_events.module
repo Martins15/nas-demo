@@ -31,7 +31,7 @@ function nas_events_update_nodes($job) {
     $source->save();
     $source->import();
   }
-  watchdog('events', "Last time Events were synced at '%time'", array('%time' => date($timestamp, 'Y-m-d H:i:s'));
+  watchdog('events', "Last time Events were synced at '%time'", array('%time' => date($timestamp, 'Y-m-d H:i:s')));
   variable_set('nas_events_last_time_processed', time());
 }
 
