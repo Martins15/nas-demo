@@ -179,8 +179,9 @@ function nas_event_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'display_all_day' => 1,
         'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
@@ -314,7 +315,7 @@ function nas_event_feature_field_default_field_instances() {
         'label' => 'above',
         'module' => 'location_cck',
         'settings' => array(),
-        'type' => 'location_default',
+        'type' => 'location_map',
         'weight' => 9,
       ),
       'nas_editorial_card' => array(
@@ -369,11 +370,12 @@ function nas_event_feature_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_event_location',
     'label' => 'Event Location',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'location_cck',
       'settings' => array(),
       'type' => 'location',
@@ -393,7 +395,7 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 10,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -453,11 +455,11 @@ function nas_event_feature_field_default_field_instances() {
         'allowed_formats' => array(
           'full_html' => 'full_html',
           'html' => 'html',
-          'map' => 'map',
+          'map' => 0,
           'plain_text' => 'plain_text',
-          'video' => 'video',
+          'video' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -479,17 +481,17 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
-      'weight' => 8,
+      'type' => 'text_textarea',
+      'weight' => 32,
     ),
   );
 
@@ -601,7 +603,7 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 11,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -661,11 +663,11 @@ function nas_event_feature_field_default_field_instances() {
         'allowed_formats' => array(
           'full_html' => 'full_html',
           'html' => 'html',
-          'map' => 'map',
+          'map' => 0,
           'plain_text' => 'plain_text',
-          'video' => 'video',
+          'video' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -687,17 +689,17 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
-      'weight' => 13,
+      'type' => 'text_textarea',
+      'weight' => 33,
     ),
   );
 

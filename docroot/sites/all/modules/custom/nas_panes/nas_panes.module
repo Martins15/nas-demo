@@ -838,6 +838,22 @@ function nas_panes_theme() {
       'template' => 'bird-hero-image',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_hero_image',
     ),
+    'events_intro' => array(
+      'variables' => array(
+        'address' => NULL,
+        'date_city_province' => NULL,
+      ),
+      'template' => 'events-intro',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
+    ),
+    'events_reg_block' => array(
+      'variables' => array(
+        'image_path' => NULL,
+        'image_path' => NULL,
+      ),
+      'template' => 'events-reg-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
