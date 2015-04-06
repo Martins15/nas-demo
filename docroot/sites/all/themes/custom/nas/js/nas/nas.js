@@ -346,9 +346,9 @@ var Nas = Nas || {};
 
      function titlePosition(){
        var lleft = $(".tiny-8").position().left;
-       var lleft = parseInt(lleft);
+       lleft = parseInt(lleft);
        var pleft = $(".tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
-       var pleft = parseInt(pleft);
+       pleft = parseInt(pleft);
        $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
      } 
     }
