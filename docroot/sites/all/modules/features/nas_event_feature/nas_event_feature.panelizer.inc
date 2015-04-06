@@ -638,15 +638,18 @@ function nas_event_feature_panelizer_defaults() {
     $pane->type = 'calendar_download';
     $pane->subtype = 'calendar_download';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(),
+    );
     $pane->configuration = array(
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
-      'calendar_download_text' => 'Add Event to calendar 4',
-      'form_build_id' => 'form-m2NnZmE8n4SHdTzSU9p0qjH7C9HwKwbkUrshM70rBFI',
+      'calendar_download_text' => 'Add Event to calendar',
+      'form_build_id' => 'form-LirgCaTDwvmB3MYqlpQp5ttG-fmz8UO3THH_jWXEAlY',
       'form_token' => 'oLhS6AQYnKNDmpWnEtXEkNvWEw7oM-1pAYgvkuNL9As',
       'form_id' => 'calendar_download_form',
+      'context' => 'panelizer',
     );
     $pane->cache = array();
     $pane->style = array(
