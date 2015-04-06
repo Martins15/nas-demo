@@ -31,16 +31,16 @@ function events_reg_block_render($subtype, $conf, $args, $contexts) {
   $image = theme('image', array(
     'path' => path_to_theme() . '/img/sibley_vereo.png',
   ));
-  if($get_date = field_get_items('node', $node, 'field_event_date')) {
+  if ($get_date = field_get_items('node', $node, 'field_event_date')) {
     $date_city_province = date_format(date_create($get_date[0]['value']), 'F d, Y');
   }
-  if($get_location = field_get_items('node', $node, 'field_event_location')) {
+  if ($get_location = field_get_items('node', $node, 'field_event_location')) {
     $date_city_province .= ' - ' . $get_location[0]['city'] . ', ' . $get_location[0]['province'];
   }
-  if($get_notes = field_get_items('node', $node, 'field_event_registration_notes')) {
+  if ($get_notes = field_get_items('node', $node, 'field_event_registration_notes')) {
     $reg_notes = $get_notes[0]['value'];
   }
-  if($get_button = field_get_items('node', $node, 'field_event_registration')) {
+  if ($get_button = field_get_items('node', $node, 'field_event_registration')) {
     $button_title = t('Register Now');
     if ($get_button[0]['url'] !== $get_button[0]['title']) {
       $button_title = $get_button[0]['title'];

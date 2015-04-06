@@ -28,14 +28,14 @@ function events_intro_render($subtype, $conf, $args, $contexts) {
   $date_city_province = '';
   $address = '';
   $end_date = FALSE;
-  if($get_date = field_get_items('node', $node, 'field_event_date')) {
+  if ($get_date = field_get_items('node', $node, 'field_event_date')) {
     $date_city_province .= date_format(date_create($get_date[0]['value']), 'l, F d, Y');
     if ($get_date[0]['value'] !== $get_date[0]['value2']) {
-     $date_city_province .= ' - ' . date_format(date_create($get_date[0]['value2']), 'l, F d, Y');
-     $end_date = TRUE;
+      $date_city_province .= ' - ' . date_format(date_create($get_date[0]['value2']), 'l, F d, Y');
+      $end_date = TRUE;
     }
   }
-  if($get_location = field_get_items('node', $node, 'field_event_location')) {
+  if ($get_location = field_get_items('node', $node, 'field_event_location')) {
     $city_province = $get_location[0]['city'] . ', ' . $get_location[0]['province_name'];
     if ($end_date) {
       $date_city_province .= '<span class="end-date-available">' . $city_province . '</span>';
