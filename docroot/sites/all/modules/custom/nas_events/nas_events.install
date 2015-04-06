@@ -15,4 +15,6 @@ function nas_events_install() {
     'periodic' => TRUE,
   );
   JobScheduler::get('nas_events_update_task')->set($job);
+  // Initional execution of the job.
+  nas_events_update_nodes($job);
 }
