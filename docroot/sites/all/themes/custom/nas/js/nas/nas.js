@@ -349,4 +349,20 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.noImage = {
+    attach: function (context, settings) {
+
+     $(window).on("load resize",function(e){
+       titlePosition();  
+     }); 
+
+     function titlePosition(){
+       var lleft = $(".tiny-8").position().left;
+       lleft = parseInt(lleft);
+       var pleft = $(".tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
+       pleft = parseInt(pleft);
+       $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
+     } 
+    }
+  };
 })(jQuery);

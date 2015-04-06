@@ -656,6 +656,7 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['custom_link_text'] = t('Read more');
 }
 
+
 /**
  * theme_preprocess_node for Conservation strategy content type.
  */
@@ -1400,6 +1401,15 @@ function nas_preprocess_node_slideshow(&$vars) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
     }
   }
+
+  $vars['title'] = check_plain($node->title);
+  $vars['subtitle'] = check_plain($node->field_slideshow_subtitle['und']['0']['value']);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
+  $vars['blue_text_link_url'] = $blue_text_link_url;
+  $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
+  $vars['custom_link_text'] = t('Read more');
 }
 
 /**
