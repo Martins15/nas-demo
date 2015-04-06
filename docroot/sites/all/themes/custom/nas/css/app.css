@@ -14068,3 +14068,67 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .article-text .article-video-container.right figcaption {
   text-align: left;
 }
+
+/* Individual Events page*/
+article.event .event-header {
+  margin-bottom: 30px;
+}
+article.event .event-header a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
+}
+article.event .event-header h1 {
+  margin-bottom: 8px;
+}
+article.event .event-header .deck {
+  margin: 8px 0 40px;
+}
+article.event .event-header h4 {
+  margin: 40px 0 8px;
+}
+article.event .event-header .end-date-available {
+  display: block;
+}
+article.event .event-header .location-details {
+  margin-bottom: 25px;
+}
+
+.events-registration-block {
+  background-color: #FBFAF6;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.events-registration-block img {
+  margin-top: -30px;
+}
+.events-registration-block h2 {
+  margin: -10px 0 5px;
+  line-height: 33px;
+}
+.events-registration-block p {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  line-height: 19px;
+  margin: 0 0 7px;
+}
+.events-registration-block .reg-notes {
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  line-height: 19px;
+}
+.events-registration-block .button {
+  margin: 12px 0 30px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+@media only screen and (max-width: 479px) {
+  .events-registration-block {
+    margin: 50px 0 25px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .events-registration-block {
+    margin: 50px 0 25px;
+  }
+}
