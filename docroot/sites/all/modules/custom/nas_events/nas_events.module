@@ -96,7 +96,7 @@ function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entit
         'latitude' => $item['address']['latitude'],
         'longitude' => $item['address']['longitude'],
       );
-      if($lid = location_save($location_array)){
+      if ($lid = location_save($location_array)){
         $entity->field_event_location[LANGUAGE_NONE][0]['lid'] = $lid;
         field_attach_update('node', $entity);
         $query = db_update('location')
