@@ -88,7 +88,7 @@
 <div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="row">
     
-<?php kpr($teaser_list_image); if (!empty($teaser_list_image)): ?>
+<?php if (!empty($teaser_list_image)): ?>
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
         <?php print $teaser_list_image; ?>
