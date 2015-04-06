@@ -17,8 +17,8 @@
         </div>
         <!-- BEGIN MAIN COLUMN -->
         <?php print $content['location']; ?>
-        <div class="row space-top text-container">
-          <div class="columns">
+        <div class="row space-top">
+          <div class="columns text-container">
             <?php print $content['description']; ?>
           </div>
         </div>
