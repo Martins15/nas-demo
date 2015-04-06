@@ -7,6 +7,7 @@ project = nas_event_feature
 dependencies[] = addressfield
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = date_all_day
 dependencies[] = features
 dependencies[] = image
 dependencies[] = link
