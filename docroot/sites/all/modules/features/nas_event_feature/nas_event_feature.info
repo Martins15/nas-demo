@@ -1,5 +1,4 @@
-name = nas_event_feature
-description = Create content type Event
+name = Event CT
 core = 7.x
 package = NAS
 version = 7.x-1.1
@@ -8,6 +7,7 @@ dependencies[] = addressfield
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_all_day
+dependencies[] = date_views
 dependencies[] = features
 dependencies[] = image
 dependencies[] = link

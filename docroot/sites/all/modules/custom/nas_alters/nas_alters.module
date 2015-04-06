@@ -503,8 +503,19 @@ function nas_alters_views_query_alter(&$view, &$query) {
     if ($get_date = field_get_items('node', $node, 'field_event_date')) {
       $current_node_date = date_format(date_create($get_date[0]['value']), 'Y-m-d');
     }
+    if ($get_location = field_get_items('node', $node, 'field_event_location')) {
+      $current_state = $get_location[0]['province'];
+    }
     foreach ($query->where as &$condition_group) {
-      foreach ($condition_group['conditions'] as &$condition) {
+      foreach ($condition_group['conditions'] as $key => &$condition) {
+        if ($condition['field'] == 'location.province') {
+          if (!empty($current_state)) {
+            $condition['value'] = $current_state;
+          }
+          else {
+            unset($condition_group['conditions'][$key]);
+          }
+        }
         if (isset($condition['value'][':field_data_field_event_date_field_event_date_value'])) {
           $condition['value'] = array(
             ':field_data_field_event_date_field_event_date_value' => $current_node_date,

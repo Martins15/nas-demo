@@ -75,6 +75,12 @@ function nas_event_feature_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>';
   $handler->display->display_options['filters']['field_event_date_value']['value']['value'] = '2015-03-30';
   $handler->display->display_options['filters']['field_event_date_value']['form_type'] = 'date_text';
+  /* Filter criterion: Location: Province */
+  $handler->display->display_options['filters']['province']['id'] = 'province';
+  $handler->display->display_options['filters']['province']['table'] = 'location';
+  $handler->display->display_options['filters']['province']['field'] = 'province';
+  $handler->display->display_options['filters']['province']['value'] = 'DC';
+  $handler->display->display_options['filters']['province']['type'] = 'select';
 
   /* Display: Other Upcoming Events */
   $handler = $view->new_display('panel_pane', 'Other Upcoming Events', 'other_upcoming_events');
