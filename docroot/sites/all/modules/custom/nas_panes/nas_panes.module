@@ -838,6 +838,10 @@ function nas_panes_theme() {
       'template' => 'bird-hero-image',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_hero_image',
     ),
+    'events_listing_featured' => array(
+      'template' => 'events-listing-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
