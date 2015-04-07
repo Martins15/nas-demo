@@ -44,15 +44,17 @@ function events_reg_block_render($subtype, $conf, $args, $context) {
     if ($get_button[0]['url'] !== $get_button[0]['title']) {
       $button_title = $get_button[0]['title'];
     }
-    $button = l($button_title, $get_button[0]['url'], array(
-      'attributes' => array(
-        'class' => array(
-          'button',
-          'tomato',
-          'large',
+    if (!empty($get_button[0]['url'])) {
+      $button = l($button_title, $get_button[0]['url'], array(
+        'attributes' => array(
+          'class' => array(
+            'button',
+            'tomato',
+            'large',
+          ),
         ),
-      ),
-    ));
+      ));
+    }
   }
   $block = new stdClass();
   $block->content = theme('events_reg_block', array(
