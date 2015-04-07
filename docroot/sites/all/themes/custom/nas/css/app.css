@@ -14092,6 +14092,22 @@ article.event .event-header .end-date-available {
 article.event .event-header .location-details {
   margin-bottom: 25px;
 }
+article.event .social-sharing {
+  margin: 94px 0 45px;
+  text-align: right;
+}
+article.event .social-sharing .social-sharing-caption {
+  vertical-align: sub;
+  margin-right: 5px;
+}
+article.event .social-sharing .social-sharing-icon {
+  font-size: 25px;
+  margin-left: 2px;
+}
+article.event .add-to-your-calendar {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
 .events-registration-block {
   background-color: #FBFAF6;
@@ -14131,4 +14147,23 @@ article.event .event-header .location-details {
   .events-registration-block {
     margin: 50px 0 25px;
   }
+}
+
+.other-upcoming-events {
+  background-color: #f8f8f8;
+}
+.other-upcoming-events .section-header {
+  margin-top: 45px;
+}
+.other-upcoming-events .section-header h2 {
+  font-size: 40px;
+  line-height: 46px;
+}
+.other-upcoming-events .date-display-single {
+  color: #6d6d6d;
+  display: block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 3px;
 }

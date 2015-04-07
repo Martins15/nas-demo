@@ -36,13 +36,13 @@
     </article>
   </div>
   <?php if (!empty($content['other_upcoming_events'])): ?>
-  <div class="bg-bone-white">
+  <div class="other-upcoming-events clearfix">
     <div class="row section-header ">
       <div class="columns">
-        <h2 class="thin">Other Upcoming Events</h2>
+        <h2 class="thin"><?php print t('Other Upcoming Events'); ?></h2>
       </div>
     </div>
-    <div class="columns">
+    <div class="row card-set space-bottom double">
       <?php print $content['other_upcoming_events']; ?>
     </div>
   </div>

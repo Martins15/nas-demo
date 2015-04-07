@@ -107,6 +107,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
+  if ($vars['type'] == 'event') {
+    nas_preprocess_node_event($vars);
+  }
 }
 
 /**
@@ -418,6 +421,29 @@ function nas_preprocess_node_magazine_issue(&$vars) {
   if ($vars['view_mode'] == 'teaser') {
     $vars['title_link'] = l($node->title, 'node/' . $node->nid, array('html' => TRUE));
   }
+}
+
+/**
+ * theme_preprocess_node for Event CT.
+ */
+function nas_preprocess_node_event(&$vars) {
+  $node = $vars['node'];
+  $vars['linked_image'] = '';
+  $image_uri = FALSE;
+  if ($get_image = field_get_items('node', $node, 'field_image')) {
+    $image_uri = $get_image[0]['uri'];
+  }
+  if ($image_uri) {
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser', $image_uri),
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
+  }
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
 /**
