@@ -30,12 +30,10 @@
     <!-- END SIDEBAR -->
   </div>
 
-  <!-- BEGIN MIDDLE FULLWIDTH -->
-  <div class="row">
-    <div class="large-12 columns">
-      <?php print $content['bottom']; ?>
-    </div>
-  </div>
-  <!-- END MIDDLE FULLWIDTH -->
+  <!-- Engagement cards -->
+  <section class="card-set bg-1">
+    <?php print $content['bottom']; ?>
+  </section>
+  <!-- END Engagement cards -->
 </section>
 
