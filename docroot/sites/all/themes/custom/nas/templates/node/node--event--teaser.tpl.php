@@ -90,7 +90,7 @@
 ?>
 
 <div class="event-teaser">
-  <div class="tiny-3 columns event-date-and-state">
+  <div class="tiny-4 small-3 columns event-date-and-state">
     <div class="event-date">
       <div class="event-date-month"><?php print $start_date_month; ?></div>
       <div class="event-date-day"><?php print $start_date_day; ?></div>
@@ -100,9 +100,9 @@
       <div class="event-state-abbr"><?php print $state; ?></div>
     </div>
   </div>
-  <div class="tiny-9 columns event-content">
+  <div class="tiny-8 small-9 columns event-content">
     <div class="event-type-and-date">
-      <a href="#" class="event-type">Festival</a> | <span class="event-dates">June 21 - August 30, 2015</span>
+      <?php print $event_type; ?> | <span class="event-dates"><?php print $event_dates; ?></span>
     </div>
     <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
     <p>

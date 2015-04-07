@@ -92,7 +92,7 @@
     <?php print $linked_image; ?>
   </div>
   <div class="editorial-card-content">
-    <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
+    <span class="event-dates"><?php print $event_dates; ?></span>
     <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
     <?php print $subtitle; ?>
   </div>

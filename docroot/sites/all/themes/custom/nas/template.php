@@ -427,6 +427,28 @@ function nas_preprocess_node_magazine_issue(&$vars) {
  * theme_preprocess_node for Event CT.
  */
 function nas_preprocess_node_event(&$vars) {
+  // Event dates.
+  $vars['event_dates'] = '';
+  $field_items = field_get_items('node', $vars['node'], 'field_event_date');
+  $from = strtotime($field_items[0]['value']);
+  $to = strtotime($field_items[0]['value2']);
+  // Single day.
+  if (date('Ymd', $from) == date('Ymd', $to)) {
+    $vars['event_dates'] = date('l, F j, Y', $from);
+  }
+  // Same month.
+  elseif (date('Ym', $from) == date('Ym', $to)) {
+    $vars['event_dates'] = date('F j', $from) . '–' . date('j, Y', $to);
+  }
+  // Same year.
+  elseif (date('Y', $from) == date('Y', $to)) {
+    $vars['event_dates'] = date('F j', $from) . ' – ' . date('F j, Y', $to);
+  }
+  // Full range.
+  else {
+    $vars['event_dates'] = date('F j, Y', $from) . ' – ' . date('F j, Y', $to);
+  }
+
   $editorial_cards_view_modes = array(
     'nas_editorial_card',
   );
@@ -456,6 +478,17 @@ function nas_preprocess_node_event(&$vars) {
   $vars['state'] = 'CA';
   if ($field_items = field_get_items('node', $node, 'field_event_location')) {
     $vars['state'] = $field_items[0]['province'];
+  }
+
+  // Event type taxonomy term reference.
+  $vars['event_type'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_event_type')) {
+    if ($term = taxonomy_term_load($field_items[0]['tid'])) {
+      $vars['event_type'] = l($term->name, 'taxonomy/term/' . $term->tid, array(
+          'attributes' => array(
+            'class' => array('event-type'),
+          )));
+    }
   }
 
   $vars['linked_image'] = '';
