@@ -423,6 +423,10 @@ class date_ical_plugin_style_ical_feed extends views_plugin_style {
         $filename = end($path_array);
         drupal_add_http_header('Content-Disposition', "attachment; filename=\"$filename\"");
       }
+      else {
+		$filename = $this->view->args[1] . '.ics';
+		drupal_add_http_header('Content-Disposition', "attachment; filename=\"$filename\"");  
+	  }
     }
     
     // Allow other modules to alter the rendered calendar.
