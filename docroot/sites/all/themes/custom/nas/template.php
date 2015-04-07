@@ -475,7 +475,7 @@ function nas_preprocess_node_event(&$vars) {
   }
 
   $vars['center_address'] = '';
-  $vars['state'] = 'CA';
+  $vars['state'] = '??';
   if ($field_items = field_get_items('node', $node, 'field_event_location')) {
     $vars['state'] = $field_items[0]['province'];
   }
