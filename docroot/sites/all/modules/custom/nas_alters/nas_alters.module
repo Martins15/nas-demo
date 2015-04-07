@@ -35,6 +35,16 @@ function nas_alters_theme() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function nas_alters_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'nas_alters'),
+  );
+}
+
+/**
  * Implements theme_button()
  * used to return <button> tag when needed
  */

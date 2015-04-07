@@ -308,6 +308,15 @@ function nas_panes_theme() {
       'template' => 'nas-panes-social-news-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
     ),
+    'events_social_block' => array(
+      'variables' => array(
+        'title' => '',
+        'page_link' => '',
+        'caption' => '',
+      ),
+      'template' => 'events_social_block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block'
+    ),
     'nas_panes_press_contact' => array(
       'variables' => array(
         'title' => '',
@@ -837,6 +846,33 @@ function nas_panes_theme() {
       ),
       'template' => 'bird-hero-image',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_hero_image',
+    ),
+    'events_intro' => array(
+      'variables' => array(
+        'date_city_province' => NULL,
+        'address' => NULL,
+      ),
+      'template' => 'events-intro',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
+    ),
+    'events_reg_block' => array(
+      'variables' => array(
+        'image' => NULL,
+        'title' => NULL,
+        'date_city_province' => NULL,
+        'reg_notes' => NULL,
+        'button' => NULL,
+      ),
+      'template' => 'events-reg-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
+    ),
+    'calendar_download' => array(
+      'variables' => array(
+        'title' => NULL,
+        'download_link' => '',
+      ),
+      'template' => 'calendar-download',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download'
     ),
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',

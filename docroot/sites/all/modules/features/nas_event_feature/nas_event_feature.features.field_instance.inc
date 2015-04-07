@@ -24,6 +24,15 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'ical' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 60,
+        ),
+        'type' => 'text_trimmed',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -79,13 +88,44 @@ function nas_event_feature_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 0,
+          'plain_text' => 'plain_text',
+          'video' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => -50,
+            ),
+            'html' => array(
+              'weight' => -49,
+            ),
+            'map' => array(
+              'weight' => -47,
+            ),
+            'plain_text' => array(
+              'weight' => -48,
+            ),
+            'video' => array(
+              'weight' => -46,
+            ),
+          ),
+        ),
+      ),
+      'display_summary' => 1,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -103,6 +143,19 @@ function nas_event_feature_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'nas_date_day',
+          'fromto' => 'value',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
+      ),
+      'ical' => array(
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
@@ -179,8 +232,9 @@ function nas_event_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'display_all_day' => 1,
         'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
         'label_position' => 'above',
         'text_parts' => array(),
@@ -203,6 +257,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 6,
       ),
       'nas_editorial_card' => array(
@@ -256,40 +316,40 @@ function nas_event_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_event_description',
-    'label' => 'Description',
+    'label' => 'Subtitle',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'full_html' => 'full_html',
           'html' => 'html',
-          'map' => 'map',
+          'map' => 0,
           'plain_text' => 'plain_text',
-          'video' => 'video',
+          'video' => 0,
         ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'full_html' => array(
-              'weight' => 0,
+              'weight' => -50,
             ),
             'html' => array(
-              'weight' => 0,
+              'weight' => -49,
             ),
             'map' => array(
-              'weight' => -8,
+              'weight' => -46,
             ),
             'plain_text' => array(
-              'weight' => 10,
+              'weight' => -48,
             ),
             'video' => array(
-              'weight' => 0,
+              'weight' => -47,
             ),
           ),
         ),
       ),
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -315,7 +375,13 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'location_cck',
         'settings' => array(),
         'type' => 'location_default',
-        'weight' => 9,
+        'weight' => 12,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -377,14 +443,14 @@ function nas_event_feature_field_default_field_instances() {
       'module' => 'location_cck',
       'settings' => array(),
       'type' => 'location',
-      'weight' => 31,
+      'weight' => 34,
     ),
   );
 
   // Exported field_instance: 'node-event-field_event_location_help'
   $field_instances['node-event-field_event_location_help'] = array(
     'bundle' => 'event',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -393,7 +459,13 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 10,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -453,43 +525,43 @@ function nas_event_feature_field_default_field_instances() {
         'allowed_formats' => array(
           'full_html' => 'full_html',
           'html' => 'html',
-          'map' => 'map',
+          'map' => 0,
           'plain_text' => 'plain_text',
-          'video' => 'video',
+          'video' => 0,
         ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'full_html' => array(
-              'weight' => 0,
+              'weight' => -50,
             ),
             'html' => array(
-              'weight' => 0,
+              'weight' => -49,
             ),
             'map' => array(
-              'weight' => -8,
+              'weight' => -47,
             ),
             'plain_text' => array(
-              'weight' => 10,
+              'weight' => -48,
             ),
             'video' => array(
-              'weight' => 0,
+              'weight' => -46,
             ),
           ),
         ),
       ),
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
-      'weight' => 8,
+      'type' => 'text_textarea',
+      'weight' => 32,
     ),
   );
 
@@ -505,6 +577,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
+        'weight' => 7,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 7,
       ),
       'nas_editorial_card' => array(
@@ -601,7 +679,13 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 11,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -661,43 +745,43 @@ function nas_event_feature_field_default_field_instances() {
         'allowed_formats' => array(
           'full_html' => 'full_html',
           'html' => 'html',
-          'map' => 'map',
+          'map' => 0,
           'plain_text' => 'plain_text',
-          'video' => 'video',
+          'video' => 0,
         ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'full_html' => array(
-              'weight' => 0,
+              'weight' => -50,
             ),
             'html' => array(
-              'weight' => 0,
+              'weight' => -49,
             ),
             'map' => array(
-              'weight' => -8,
+              'weight' => -48,
             ),
             'plain_text' => array(
-              'weight' => 10,
+              'weight' => -46,
             ),
             'video' => array(
-              'weight' => 0,
+              'weight' => -47,
             ),
           ),
         ),
       ),
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
-      'weight' => 13,
+      'type' => 'text_textarea',
+      'weight' => 33,
     ),
   );
 
@@ -713,6 +797,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
+        'weight' => 2,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 2,
       ),
       'nas_editorial_card' => array(
@@ -780,6 +870,91 @@ function nas_event_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_geolocation'
+  $field_instances['node-event-field_geolocation'] = array(
+    'bundle' => 'event',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 13,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_geolocation',
+    'label' => 'Geolocation',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'geocoder',
+      'settings' => array(),
+      'type' => 'geocoder',
+      'weight' => 35,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_image'
   $field_instances['node-event-field_image'] = array(
     'bundle' => 'event',
@@ -794,6 +969,12 @@ function nas_event_feature_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
+        'weight' => 5,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 5,
       ),
       'nas_editorial_card' => array(
@@ -918,14 +1099,15 @@ function nas_event_feature_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Description');
   t('Event Date');
   t('Event Location');
   t('Event Type');
+  t('Geolocation');
   t('Hero image');
   t('Location Help');
   t('Registration Link');
   t('Registration Notes');
+  t('Subtitle');
 
   return $field_instances;
 }

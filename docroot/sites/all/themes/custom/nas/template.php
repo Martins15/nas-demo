@@ -424,6 +424,29 @@ function nas_preprocess_node_magazine_issue(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for Event CT.
+ */
+function nas_preprocess_node_event(&$vars) {
+  $node = $vars['node'];
+  $vars['linked_image'] = '';
+  $image_uri = FALSE;
+  if ($get_image = field_get_items('node', $node, 'field_image')) {
+    $image_uri = $get_image[0]['uri'];
+  }
+  if ($image_uri) {
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser', $image_uri),
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
+  }
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+}
+
+/**
  * theme_preprocess_node for article content type.
  */
 function nas_preprocess_node_article(&$vars) {
@@ -702,6 +725,7 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
   $vars['custom_link_text'] = t('Read more');
 }
+
 
 /**
  * theme_preprocess_node for Conservation strategy content type.
@@ -1454,6 +1478,15 @@ function nas_preprocess_node_slideshow(&$vars) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
     }
   }
+
+  $vars['title'] = check_plain($node->title);
+  $vars['subtitle'] = check_plain($node->field_slideshow_subtitle['und']['0']['value']);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
+  $vars['blue_text_link_url'] = $blue_text_link_url;
+  $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
+  $vars['custom_link_text'] = t('Read more');
 }
 
 /**

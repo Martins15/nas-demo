@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * @file
+ * Handling Events with Audubon Works.
+ */
+
+define('NAS_AUDUBON_WORKS_EVENTS_URL', 'http://worksdev.prod.acquia-sites.com/event/');
+
+/**
+ * Implements hook_cron_job_scheduler_info().
+ */
+function nas_events_cron_job_scheduler_info() {
+  $schedulers = array();
+  $schedulers['nas_events_update_task'] = array(
+    'worker callback' => 'nas_events_update_nodes',
+  );
+  return $schedulers;
+}
+
+/**
+ * This function should only be called once a day.
+ */
+function nas_events_update_nodes($job) {
+  $timestamp = variable_get('nas_events_last_time_processed', 1426152117);
+  $uuids = nas_events_get_list($timestamp);
+  foreach ($uuids as $uuid => $timestamp) {
+    $config = array('NASFeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
+    $source = feeds_source('events_import');
+    $source->addConfig($config);
+    $source->save();
+    $source->import();
+  }
+  watchdog('events', "Last time Events were synced at '%time'", array('%time' => date('Y-m-d H:i:s', $timestamp)));
+  variable_set('nas_events_last_time_processed', time());
+}
+
+/**
+ * Get list of uuid and timestamp pairs().
+ */
+function nas_events_get_list($timestamp, $page = 1, $site = 'National') {
+  $params  = array(
+    'timestamp' => $timestamp,
+    'site' => $site,
+    'page' => $page,
+  );
+  $uri = url(NAS_AUDUBON_WORKS_EVENTS_URL . 'changes', array('query' => $params, 'external' => TRUE));
+  $result = drupal_http_request($uri);
+  $data = drupal_json_decode($result->data);
+
+  return $data;
+}
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
+  switch ($entity->feeds_item->id) {
+    case 'events_import':
+      if (isset($item['date']) && !empty($item['date']['value'])) {
+        $date_start = date_create($item['date']['value']);
+        $entity->field_event_date[LANGUAGE_NONE][0]['value'] = date_format($date_start, 'Y-m-d - H:i:s');
+        if (isset($item['date']['value2']) && !empty($item['date']['value2'])) {
+          $date_end = date_create($item['date']['value2']);
+          $entity->field_event_date[LANGUAGE_NONE][0]['value2'] = date_format($date_end, 'Y-m-d - H:i:s');
+        }
+        $entity->field_event_date[LANGUAGE_NONE][0]['timezone'] = $item['date']['timezone'];
+        $entity->field_event_date[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
+      }
+      if (isset($item['type'])) {
+        $terms = explode(',', $item['type']);
+        foreach ($terms as $term_name) {
+          $entity->field_event_type[LANGUAGE_NONE][] = array(
+            'tid' => nas_import_term_init($term_name, 'event_type'),
+          );
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_feeds_after_save().
+ */
+function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
+  switch ($entity->feeds_item->id) {
+    case 'events_import':
+      $location_array = array(
+        'street' => $item['address']['street'],
+        'additional' => $item['address']['additional'],
+        'province' => $item['address']['province'],
+        'city' => $item['address']['city'],
+        'postal_code' => $item['address']['postal_code'],
+        'country' => strtolower($item['address']['country']),
+        'source' => 1,
+        'latitude' => $item['address']['latitude'],
+        'longitude' => $item['address']['longitude'],
+      );
+      if ($lid = location_save($location_array)) {
+        $entity->field_event_location[LANGUAGE_NONE][0]['lid'] = $lid;
+        field_attach_update('node', $entity);
+        $query = db_update('location')
+          ->condition('lid', $lid)
+          ->fields(array('latitude' => $item['address']['latitude'], 'longitude' => $item['address']['longitude'], 'source' => 1))
+          ->execute();
+      }
+      break;
+  }
+}

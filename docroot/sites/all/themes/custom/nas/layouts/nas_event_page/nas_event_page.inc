@@ -20,5 +20,7 @@ $plugin = array(
     'description' => t('Description'),
     'registration' => t('Registration'),
     'sidebar' => t('Sidebar'),
+    'other_upcoming_events' => t('Other upcoming events'),
+    'cards_set' => t('Engagement cards'),
   ),
 );

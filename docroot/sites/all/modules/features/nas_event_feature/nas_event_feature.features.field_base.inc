@@ -83,8 +83,8 @@ function nas_event_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'location_cck',
     'settings' => array(
-      'gmap_macro' => '[gmap ]',
-      'gmap_marker' => 'drupal',
+      'gmap_macro' => '[gmap |id=usermap|center=40,0|zoom=15|width=100%|height=360px]',
+      'gmap_marker' => 'big red',
       'location_settings' => array(
         'display' => array(
           'hide' => array(
@@ -174,11 +174,9 @@ function nas_event_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_event_registration'
@@ -233,17 +231,15 @@ function nas_event_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-    ),
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_event_type'
   $field_bases['field_event_type'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_event_type',
