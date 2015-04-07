@@ -24,6 +24,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
     $node = $context->data;
   }
   $date_city_province = '';
+  $city_province = '';
   $address = '';
   $end_date = FALSE;
   if ($get_date = field_get_items('node', $node, 'field_event_date')) {
@@ -34,14 +35,17 @@ function events_intro_render($subtype, $conf, $args, $context) {
     }
   }
   if ($get_location = field_get_items('node', $node, 'field_event_location')) {
-    $city_province = $get_location[0]['city'] . ', ' . $get_location[0]['province_name'];
+    !empty($get_location[0]['city']) ? $city_province = $get_location[0]['city'] : '';
+    !empty($get_location[0]['province_name']) ? $city_province .= ', ' . $get_location[0]['province_name'] : '';
     if ($end_date) {
       $date_city_province .= '<span class="end-date-available">' . $city_province . '</span>';
     }
     else {
       $date_city_province .= ' - ' . $city_province;
     }
-    $address = $get_location[0]['street'] . ', ' . $get_location[0]['city'] . ', ' . $get_location[0]['postal_code'];
+    !empty($get_location[0]['street']) ? $address .= $get_location[0]['street'] : '';
+    !empty($get_location[0]['city']) ? $address .= ', ' . $get_location[0]['city'] : '';
+    !empty($get_location[0]['postal_code']) ? $address .= ', ' . $get_location[0]['postal_code'] : '';
   }
   $block = new stdClass();
   $block->content = theme('events_intro', array(
