@@ -1,0 +1,12 @@
+name = nas_calendar_download_view_feature
+description = Add a views feed to download Event calendar.
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_calendar_download_view_feature
+dependencies[] = date_ical
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = calendar_download
+features_exclude[dependencies][ctools] = ctools
