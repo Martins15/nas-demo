@@ -2239,6 +2239,7 @@ function nas_master_update_7164() {
  * Revert Events feature.
  */
 function nas_master_update_7165() {
+  field_delete_field('field_event_location');
   features_revert_module('nas_event_feature');
 }
 
@@ -2247,5 +2248,5 @@ function nas_master_update_7165() {
  */
 function nas_master_update_7166() {
   module_enable(array('date_views', 'nas_events_landing_feature'));
-  features_revert(array('nas_solr_feature' => array('search_api_index')));
+  features_revert(array('nas_solr_feature' => array('search_api_index', 'facetapi')));
 }
