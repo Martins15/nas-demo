@@ -105,7 +105,6 @@
       <a href="#" class="event-type">Festival</a> | <span class="event-dates">June 21 - August 30, 2015</span>
     </div>
     <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
-<!--    <div class="event-address"><a href="#" class="event-address-name">Audubon Kerne River Preserve</a> --><?php //print $center_address; ?><!--</div>-->
     <p>
       <?php print $summary; ?> <?php print $details_link; ?>
     </p>
