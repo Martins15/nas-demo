@@ -104,7 +104,7 @@ function nas_search_entity_property_info_alter(&$info) {
   );
   $info['node']['properties']['event_months'] = array(
     'label' => t('Event months'),
-    'type' => 'date',
+    'type' => 'list<integer>',
     'description' => t('Event months'),
     'getter callback' => '_nas_search_node_get_event_months',
     'calculated' => TRUE,
@@ -287,7 +287,7 @@ function _nas_search_node_get_event_months($entity, $options, $name, $entity_typ
     else {
       $months[] = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']));
     }
-    return strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value2']);
+    return $months;
   }
 }
 
@@ -295,8 +295,8 @@ function _nas_search_node_get_event_months($entity, $options, $name, $entity_typ
  * Property callback. Returns event's end date or NULL.
  */
 function _nas_search_node_get_event_state($entity, $options, $name, $entity_type) {
-  if (!empty($entity->field_event_location[LANGUAGE_NONE][0]['administrative_area'])) {
-    return $entity->field_event_location[LANGUAGE_NONE][0]['administrative_area'];
+  if (!empty($entity->field_event_location[LANGUAGE_NONE][0]['province'])) {
+    return $entity->field_event_location[LANGUAGE_NONE][0]['province'];
   }
 }
 
