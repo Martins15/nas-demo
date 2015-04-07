@@ -633,6 +633,36 @@ function nas_event_feature_panelizer_defaults() {
     $display->content['new-10128b80-8b3e-4021-8fbf-03a7dc0ae8e3'] = $pane;
     $display->panels['registration'][0] = 'new-10128b80-8b3e-4021-8fbf-03a7dc0ae8e3';
     $pane = new stdClass();
+    $pane->pid = 'new-17fbf60f-96fd-4135-bc69-c3a8b04b5898';
+    $pane->panel = 'registration';
+    $pane->type = 'calendar_download';
+    $pane->subtype = 'calendar_download';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(),
+    );
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'calendar_download_text' => 'Add Event to calendar',
+      'form_build_id' => 'form-LirgCaTDwvmB3MYqlpQp5ttG-fmz8UO3THH_jWXEAlY',
+      'form_token' => 'oLhS6AQYnKNDmpWnEtXEkNvWEw7oM-1pAYgvkuNL9As',
+      'form_id' => 'calendar_download_form',
+      'context' => 'panelizer',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '17fbf60f-96fd-4135-bc69-c3a8b04b5898';
+    $display->content['new-17fbf60f-96fd-4135-bc69-c3a8b04b5898'] = $pane;
+    $display->panels['registration'][1] = 'new-17fbf60f-96fd-4135-bc69-c3a8b04b5898';
+    $pane = new stdClass();
     $pane->pid = 'new-67b7f8d6-08e0-418e-bf78-be3d61ae5b4b';
     $pane->panel = 'sidebar';
     $pane->type = 'local_chapters_centers_block';
