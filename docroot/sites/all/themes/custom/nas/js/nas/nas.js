@@ -357,7 +357,7 @@ var Nas = Nas || {};
      }); 
 
       function titlePosition(){
-        if ($(".view-display-id-articles_term_10 .tiny-8").position() != null){
+        if ($(".view-display-id-articles_term_10 .tiny-8").position() !== null){
           var lleft = $(".view-display-id-articles_term_10 .tiny-8").position().left;
           lleft = parseInt(lleft);
           var pleft = $(".view-display-id-articles_term_10 .tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
