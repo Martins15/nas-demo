@@ -43,7 +43,7 @@ function nas_events_landing_feature_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'nas_bricks';
+  $display->layout = 'events_landing_page';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -58,10 +58,13 @@ function nas_events_landing_feature_default_page_manager_pages() {
       'bottom_left' => NULL,
       'bottom_right' => NULL,
       'bottom' => NULL,
+      'exposed_form' => NULL,
+      'main' => NULL,
+      'sidebar' => NULL,
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Upcoming events';
   $display->uuid = '9e8deb21-dcf2-4ff4-a0b1-bdced26a2280';
   $display->content = array();
   $display->panels = array();
@@ -108,18 +111,19 @@ function nas_events_landing_feature_default_page_manager_pages() {
     $display->content['new-6106372a-90fd-4aa2-b9a2-06e37d120a1a'] = $pane;
     $display->panels['bottom'][0] = 'new-6106372a-90fd-4aa2-b9a2-06e37d120a1a';
     $pane = new stdClass();
-    $pane->pid = 'new-ae102986-c19c-4d39-a5d7-fc2f8e582286';
-    $pane->panel = 'top';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->pid = 'new-d26fa8bc-f1c1-4e0d-8030-33856e7f9eac';
+    $pane->panel = 'exposed_form';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'search form',
-      'title' => '',
-      'body' => 'Search form goes here',
-      'format' => 'plain_text',
-      'substitute' => TRUE,
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -129,23 +133,68 @@ function nas_events_landing_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'ae102986-c19c-4d39-a5d7-fc2f8e582286';
-    $display->content['new-ae102986-c19c-4d39-a5d7-fc2f8e582286'] = $pane;
-    $display->panels['top'][0] = 'new-ae102986-c19c-4d39-a5d7-fc2f8e582286';
+    $pane->uuid = 'd26fa8bc-f1c1-4e0d-8030-33856e7f9eac';
+    $display->content['new-d26fa8bc-f1c1-4e0d-8030-33856e7f9eac'] = $pane;
+    $display->panels['exposed_form'][0] = 'new-d26fa8bc-f1c1-4e0d-8030-33856e7f9eac';
     $pane = new stdClass();
-    $pane->pid = 'new-2d113f63-693f-48d3-9d16-f5acf870c6e8';
-    $pane->panel = 'top_left';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->pid = 'new-7aacca66-fe33-4f94-bc48-adf4ee6a4ded';
+    $pane->panel = 'exposed_form';
+    $pane->type = 'block';
+    $pane->subtype = 'views-af6bfcc988ef48d1af180eae663c40fa';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'admin_title' => 'Featured events',
-      'title' => '',
-      'body' => '<p>Featured event goes here</p>
-',
-      'format' => 'html',
-      'substitute' => TRUE,
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '7aacca66-fe33-4f94-bc48-adf4ee6a4ded';
+    $display->content['new-7aacca66-fe33-4f94-bc48-adf4ee6a4ded'] = $pane;
+    $display->panels['exposed_form'][1] = 'new-7aacca66-fe33-4f94-bc48-adf4ee6a4ded';
+    $pane = new stdClass();
+    $pane->pid = 'new-b2e31da8-4092-4c63-ada9-dac2436399aa';
+    $pane->panel = 'main';
+    $pane->type = 'events_listing_featured';
+    $pane->subtype = 'events_listing_featured';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title_heading' => 'h2',
+      'events' => array(
+        1 => array(
+          'entity_reference' => array(
+            'entity_id' => '47367',
+            'entity_label' => 'asdf',
+            'entity_type' => 'node',
+            'entity_bundle' => 'event',
+          ),
+        ),
+        2 => array(
+          'entity_reference' => array(
+            'entity_id' => '47366',
+            'entity_label' => 'event',
+            'entity_type' => 'node',
+            'entity_bundle' => 'event',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-LvdV06aKt6l3OxmiNRWVdPH21ve-gwv2E1mTCtCQ0U8',
+      'form_token' => 'x0SGhVb35yvZ5jjCCQfrA8R51486XFoOnK_0yXpdbdI',
+      'form_id' => 'events_listing_featured_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -155,12 +204,31 @@ function nas_events_landing_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '2d113f63-693f-48d3-9d16-f5acf870c6e8';
-    $display->content['new-2d113f63-693f-48d3-9d16-f5acf870c6e8'] = $pane;
-    $display->panels['top_left'][0] = 'new-2d113f63-693f-48d3-9d16-f5acf870c6e8';
+    $pane->uuid = 'b2e31da8-4092-4c63-ada9-dac2436399aa';
+    $display->content['new-b2e31da8-4092-4c63-ada9-dac2436399aa'] = $pane;
+    $display->panels['main'][0] = 'new-b2e31da8-4092-4c63-ada9-dac2436399aa';
+    $pane = new stdClass();
+    $pane->pid = 'new-27beb5c3-6bc4-44f1-bd2e-dda501fbcd61';
+    $pane->panel = 'main';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'events_listing-events_listing_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '27beb5c3-6bc4-44f1-bd2e-dda501fbcd61';
+    $display->content['new-27beb5c3-6bc4-44f1-bd2e-dda501fbcd61'] = $pane;
+    $display->panels['main'][1] = 'new-27beb5c3-6bc4-44f1-bd2e-dda501fbcd61';
     $pane = new stdClass();
     $pane->pid = 'new-abd990a1-6b3e-46d6-a01a-95431994ec4f';
-    $pane->panel = 'top_right';
+    $pane->panel = 'sidebar';
     $pane->type = 'engagement_cards_sidebar';
     $pane->subtype = 'engagement_cards_sidebar';
     $pane->shown = TRUE;
@@ -200,10 +268,10 @@ function nas_events_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = 'abd990a1-6b3e-46d6-a01a-95431994ec4f';
     $display->content['new-abd990a1-6b3e-46d6-a01a-95431994ec4f'] = $pane;
-    $display->panels['top_right'][0] = 'new-abd990a1-6b3e-46d6-a01a-95431994ec4f';
+    $display->panels['sidebar'][0] = 'new-abd990a1-6b3e-46d6-a01a-95431994ec4f';
     $pane = new stdClass();
     $pane->pid = 'new-3b56e608-527b-4068-a4c1-2c1ad521006f';
-    $pane->panel = 'top_right';
+    $pane->panel = 'sidebar';
     $pane->type = 'slideshow_sidebar_block';
     $pane->subtype = 'slideshow_sidebar_block';
     $pane->shown = TRUE;
@@ -227,9 +295,9 @@ function nas_events_landing_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = '3b56e608-527b-4068-a4c1-2c1ad521006f';
     $display->content['new-3b56e608-527b-4068-a4c1-2c1ad521006f'] = $pane;
-    $display->panels['top_right'][1] = 'new-3b56e608-527b-4068-a4c1-2c1ad521006f';
+    $display->panels['sidebar'][1] = 'new-3b56e608-527b-4068-a4c1-2c1ad521006f';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-ae102986-c19c-4d39-a5d7-fc2f8e582286';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['events_landing_page'] = $page;
