@@ -683,7 +683,7 @@ function nas_event_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
-      'calendar_download_text' => 'Add Event to calendar',
+      'calendar_download_text' => 'Add to your calendar',
       'form_build_id' => 'form-LirgCaTDwvmB3MYqlpQp5ttG-fmz8UO3THH_jWXEAlY',
       'form_token' => 'oLhS6AQYnKNDmpWnEtXEkNvWEw7oM-1pAYgvkuNL9As',
       'form_id' => 'calendar_download_form',

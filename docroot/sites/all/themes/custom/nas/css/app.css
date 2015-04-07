@@ -14104,6 +14104,10 @@ article.event .social-sharing .social-sharing-icon {
   font-size: 25px;
   margin-left: 2px;
 }
+article.event .add-to-your-calendar {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
 .events-registration-block {
   background-color: #FBFAF6;
