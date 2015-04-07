@@ -113,5 +113,5 @@ function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entit
  */
 function nas_events_date_ical_export_post_render_alter(&$rendered_calendar, $view) {
   $filename = $view->args[1] . '.ics';
-  drupal_add_http_header('Content-Disposition', "attachment; filename=\"$filename\"");  
+  drupal_add_http_header('Content-Disposition', "attachment; filename=\"$filename\"");
 }
