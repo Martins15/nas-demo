@@ -84,6 +84,18 @@ function nas_calendar_download_view_feature_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  /* Contextual filter: Content: Title */
+  $handler->display->display_options['arguments']['title']['id'] = 'title';
+  $handler->display->display_options['arguments']['title']['table'] = 'node';
+  $handler->display->display_options['arguments']['title']['field'] = 'title';
+  $handler->display->display_options['arguments']['title']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['title']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['title']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['title']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['title']['limit'] = '0';
+  $handler->display->display_options['arguments']['title']['case'] = 'lower';
+  $handler->display->display_options['arguments']['title']['path_case'] = 'lower';
+  $handler->display->display_options['arguments']['title']['transform_dash'] = TRUE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -101,7 +113,7 @@ function nas_calendar_download_view_feature_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'calendar-download';
+  $handler->display->display_options['path'] = 'calendar/%/%';
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
@@ -114,7 +126,7 @@ function nas_calendar_download_view_feature_views_default_views() {
   $handler->display->display_options['row_options']['date_field'] = 'field_data_field_event_date.field_event_date_value';
   $handler->display->display_options['row_options']['summary_field'] = 'default_title';
   $handler->display->display_options['row_options']['location_field'] = 'field_data_field_event_location.field_event_location';
-  $handler->display->display_options['path'] = 'node/%/calendar.ics';
+  $handler->display->display_options['path'] = 'node/%/%';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
     'default' => 0,
