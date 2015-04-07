@@ -107,6 +107,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
+  if ($vars['type'] == 'event') {
+    nas_preprocess_node_event($vars);
+  }
 }
 
 /**
@@ -523,6 +526,47 @@ function nas_preprocess_node_article(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for Event content type.
+ */
+function nas_preprocess_node_event(&$vars) {
+  $node = $vars['node'];
+  $editorial_cards_view_modes = array(
+    'nas_editorial_card',
+  );
+
+  if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  $vars['summary'] = '';
+  if ($field_items = field_get_items('node', $node, 'body')) {
+    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
+  }
+  $vars['details_link'] = l(t('Details »'), 'node/' . $node->nid);
+
+  $vars['start_date_month'] = 'apr';
+  $vars['start_date_day'] = '1';
+  if ($start_date_items = field_get_items('node', $node, 'field_event_date')) {
+    $start_date = strtotime($start_date_items[0]['value']);
+    $vars['start_date_day'] = date('d', $start_date);
+    $vars['start_date_month'] = date('M', $start_date);
+  }
+
+  $vars['state'] = 'CA';
+  $vars['address'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_event_location')) {
+    $vars['state'] = $field_items[0]['province'];
+    if ($field_items[0]['city']) {
+      $address[] = $field_items[0]['city'];
+    }
+    $address[] = $field_items[0]['province'];
+    $vars['address'] = '(' . implode(', ', $address) . ')';
+  }
+}
+
+/**
  * Preprocess function for editorial card teasers view modes.
  */
 function nas_preprocess_nodes_editorial_cards(&$vars) {
@@ -534,6 +578,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   elseif ($vars['type'] === 'slideshow' && $image_items = field_get_items('node', $node, 'field_images')) {
+    $image_uri = $image_items[0]['uri'];
+  }
+  elseif ($vars['type'] === 'event' && $image_items = field_get_items('node', $node, 'field_image')) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
@@ -852,7 +899,14 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn', 'edit-nas-search-btn--2', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
+  // TODO: improve to not to use ids.
+  $button_tag = array(
+    'edit-nas-search-btn',
+    'edit-nas-search-btn--2',
+    'edit-submit-search-form',
+    'edit-submit-nas-bird-guide',
+    'edit-submit-events-listing',
+  );
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';
