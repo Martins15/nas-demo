@@ -356,13 +356,15 @@ var Nas = Nas || {};
        titlePosition();  
      }); 
 
-     function titlePosition(){
-       var lleft = $(".tiny-8").position().left;
-       lleft = parseInt(lleft);
-       var pleft = $(".tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
-       pleft = parseInt(pleft);
-       $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
-     } 
+      function titlePosition(){
+        if ($(".view-display-id-articles_term_10 .tiny-8").position() != null){
+          var lleft = $(".view-display-id-articles_term_10 .tiny-8").position().left;
+          lleft = parseInt(lleft);
+          var pleft = $(".view-display-id-articles_term_10 .tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
+          pleft = parseInt(pleft);
+          $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
+        }
+      } 
     }
   };
 })(jQuery);
