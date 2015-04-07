@@ -427,7 +427,37 @@ function nas_preprocess_node_magazine_issue(&$vars) {
  * theme_preprocess_node for Event CT.
  */
 function nas_preprocess_node_event(&$vars) {
+  $editorial_cards_view_modes = array(
+    'nas_editorial_card',
+  );
+
+  if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
   $node = $vars['node'];
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  $vars['summary'] = '';
+  if ($field_items = field_get_items('node', $node, 'body')) {
+    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
+  }
+  $vars['details_link'] = l(t('Details »'), 'node/' . $node->nid);
+
+  $vars['start_date_month'] = 'apr';
+  $vars['start_date_day'] = '1';
+  if ($start_date_items = field_get_items('node', $node, 'field_event_date')) {
+    $start_date = strtotime($start_date_items[0]['value']);
+    $vars['start_date_day'] = date('d', $start_date);
+    $vars['start_date_month'] = date('M', $start_date);
+  }
+
+  $vars['center_address'] = '';
+  $vars['state'] = 'CA';
+  if ($field_items = field_get_items('node', $node, 'field_event_location')) {
+    $vars['state'] = $field_items[0]['province'];
+  }
+
   $vars['linked_image'] = '';
   $image_uri = FALSE;
   if ($get_image = field_get_items('node', $node, 'field_image')) {
@@ -443,7 +473,6 @@ function nas_preprocess_node_event(&$vars) {
       'attributes' => array('title' => $node->title),
     ));
   }
-  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
 }
 
 /**
@@ -545,47 +574,6 @@ function nas_preprocess_node_article(&$vars) {
     if (!empty($vars['content']['field_menu_section'])) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
     }
-  }
-}
-
-/**
- * theme_preprocess_node for Event content type.
- */
-function nas_preprocess_node_event(&$vars) {
-  $node = $vars['node'];
-  $editorial_cards_view_modes = array(
-    'nas_editorial_card',
-  );
-
-  if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
-    nas_preprocess_nodes_editorial_cards($vars);
-    return;
-  }
-
-  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
-  $vars['summary'] = '';
-  if ($field_items = field_get_items('node', $node, 'body')) {
-    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
-  }
-  $vars['details_link'] = l(t('Details »'), 'node/' . $node->nid);
-
-  $vars['start_date_month'] = 'apr';
-  $vars['start_date_day'] = '1';
-  if ($start_date_items = field_get_items('node', $node, 'field_event_date')) {
-    $start_date = strtotime($start_date_items[0]['value']);
-    $vars['start_date_day'] = date('d', $start_date);
-    $vars['start_date_month'] = date('M', $start_date);
-  }
-
-  $vars['state'] = 'CA';
-  $vars['address'] = '';
-  if ($field_items = field_get_items('node', $node, 'field_event_location')) {
-    $vars['state'] = $field_items[0]['province'];
-    if ($field_items[0]['city']) {
-      $address[] = $field_items[0]['city'];
-    }
-    $address[] = $field_items[0]['province'];
-    $vars['address'] = '(' . implode(', ', $address) . ')';
   }
 }
 
