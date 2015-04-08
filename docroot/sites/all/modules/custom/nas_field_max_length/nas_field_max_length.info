@@ -1,0 +1,3 @@
+name = NAS Field Max Length
+description = NAS field max length setter
+core = 7.x
