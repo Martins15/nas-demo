@@ -303,13 +303,20 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     // Checks view uses search index and adapter is loaded.
     if (facetapi_is_active_searcher($searcher) && $adapter = facetapi_adapter_load($searcher)) {
       $current_search = $adapter->getCurrentSearch();
-      $facets = $current_search[1]['search_api_facets'];
+
+      $facets = array();
+      // Facets might be empty.
+      if (!empty($current_search[1]['search_api_facets'])) {
+        $facets = $current_search[1]['search_api_facets'];
+      }
 
       // Process filter by state.
       $options = array('All' => t('Filter by State'));
-      foreach ($facets['event_state'] as $rawvalue) {
-        $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
-        $options[$key] = $key;
+      if (!empty($facets['event_state'])) {
+        foreach ($facets['event_state'] as $rawvalue) {
+          $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
+          $options[$key] = $key;
+        }
       }
       $form['event_state']['#type'] = 'select';
       $form['event_state']['#options'] = $options;
@@ -318,14 +325,16 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
 
       // Process filter by month.
       $options = array('All' => t('Filter by Month'));
-      foreach ($facets['event_months'] as $rawvalue) {
-        $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
-        // Convert month number to name.
-        $month_num = (int) substr($key, 4, 2);
-        $date_obj = DateTime::createFromFormat('!m', $month_num);
-        $month_name = $date_obj->format('F');
-        // TODO: translate month name.
-        $options[$key] = $month_name . ' ' . substr($key, 0, 4);
+      if (!empty($facets['event_months'])) {
+        foreach ($facets['event_months'] as $rawvalue) {
+          $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
+          // Convert month number to name.
+          $month_num = (int) substr($key, 4, 2);
+          $date_obj = DateTime::createFromFormat('!m', $month_num);
+          $month_name = $date_obj->format('F');
+          // TODO: translate month name.
+          $options[$key] = $month_name . ' ' . substr($key, 0, 4);
+        }
       }
       $form['event_months']['#type'] = 'select';
       $form['event_months']['#options'] = $options;
@@ -334,12 +343,14 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
 
       // Process filter by type.
       $available_types[] = 'All';
-      foreach ($facets['field_event_type'] as $rawvalue) {
-        $available_types[] = (int) preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
-      }
-      foreach ($form['field_event_type']['#options'] as $key => $value) {
-        if (!in_array($key, $available_types)) {
-          unset($form['field_event_type']['#options'][$key]);
+      if (!empty($facets['field_event_type'])) {
+        foreach ($facets['field_event_type'] as $rawvalue) {
+          $available_types[] = (int) preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
+        }
+        foreach ($form['field_event_type']['#options'] as $key => $value) {
+          if (!in_array($key, $available_types)) {
+            unset($form['field_event_type']['#options'][$key]);
+          }
         }
       }
       $form['field_event_type']['#options']['All'] = t('Filter by Event Type');
