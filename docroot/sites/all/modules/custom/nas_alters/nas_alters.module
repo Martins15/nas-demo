@@ -303,7 +303,12 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     // Checks view uses search index and adapter is loaded.
     if (facetapi_is_active_searcher($searcher) && $adapter = facetapi_adapter_load($searcher)) {
       $current_search = $adapter->getCurrentSearch();
-      $facets = $current_search[1]['search_api_facets'];
+
+      $facets = array();
+      // Facets might be empty.
+      if (!empty($current_search[1]['search_api_facets'])) {
+        $facets = $current_search[1]['search_api_facets'];
+      }
 
       // Process filter by state.
       $options = array('All' => t('Filter by State'));
