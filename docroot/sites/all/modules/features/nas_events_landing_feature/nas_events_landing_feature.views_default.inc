@@ -71,7 +71,8 @@ function nas_events_landing_feature_views_default_views() {
     16 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
-    'field_event_description' => 'field_event_description',
+    'body:value' => 'body:value',
+    'field_event_description:value' => 'field_event_description:value',
     'title' => 'title',
   );
   /* Filter criterion: Indexed Content: Event state */
@@ -127,6 +128,12 @@ function nas_events_landing_feature_views_default_views() {
     16 => 0,
   );
   $handler->display->display_options['filters']['field_event_type']['expose']['reduce'] = 0;
+  /* Filter criterion: Event Date: End date (indexed) */
+  $handler->display->display_options['filters']['field_event_date_value2']['id'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'now';
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'events_listing_pane');
