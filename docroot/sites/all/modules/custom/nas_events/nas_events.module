@@ -25,12 +25,11 @@ function nas_events_update_nodes($job) {
   $timestamp = variable_get('nas_events_last_time_processed', 1426152117);
   $uuids = nas_events_get_list($timestamp);
   foreach ($uuids as $uuid => $timestamp) {
+    $config = array('NASFeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
     $source = feeds_source('events_import');
-    $fetcher_config = $source->getConfigFor($source->importer->fetcher);
-    $fetcher_config['source'] =  NAS_AUDUBON_WORKS_EVENTS_URL . $uuid;
-    $source->setConfigFor($source->importer->fetcher, $fetcher_config);
+    $source->addConfig($config);
     $source->save();
-    $source->startImport();
+    $source->import();
   }
   watchdog('events', "Last time Events were synced at '%time'", array('%time' => date('Y-m-d H:i:s', $timestamp)));
   variable_set('nas_events_last_time_processed', time());
