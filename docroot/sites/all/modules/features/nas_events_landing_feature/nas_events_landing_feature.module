@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Events Landing page feature.
+ */
+
+include_once 'nas_events_landing_feature.features.inc';

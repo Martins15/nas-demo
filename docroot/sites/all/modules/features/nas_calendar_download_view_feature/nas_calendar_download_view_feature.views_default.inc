@@ -101,7 +101,7 @@ function nas_calendar_download_view_feature_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'calendar-download';
+  $handler->display->display_options['path'] = 'calendar/%';
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
@@ -114,7 +114,7 @@ function nas_calendar_download_view_feature_views_default_views() {
   $handler->display->display_options['row_options']['date_field'] = 'field_data_field_event_date.field_event_date_value';
   $handler->display->display_options['row_options']['summary_field'] = 'default_title';
   $handler->display->display_options['row_options']['location_field'] = 'field_data_field_event_location.field_event_location';
-  $handler->display->display_options['path'] = 'node/%/calendar.ics';
+  $handler->display->display_options['path'] = 'node/%/calendar';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
     'default' => 0,

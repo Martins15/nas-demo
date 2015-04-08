@@ -56,7 +56,7 @@ function calendar_download_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $block->content = theme('calendar_download', array(
     'title' => $conf['override_title_text'],
-    'download_link' => l($conf['calendar_download_text'], 'node/' . $node->nid . '/calendar.ics', array(
+    'download_link' => l($conf['calendar_download_text'], 'node/' . $node->nid . '/calendar', array(
       'attributes' => array(
         'class' => array(
           'button',
