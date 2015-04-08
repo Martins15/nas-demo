@@ -874,6 +874,10 @@ function nas_panes_theme() {
       'template' => 'calendar-download',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download'
     ),
+    'events_listing_featured' => array(
+      'template' => 'events-listing-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
