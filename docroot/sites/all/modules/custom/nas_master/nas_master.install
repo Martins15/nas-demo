@@ -2274,3 +2274,11 @@ function nas_master_update_7169() {
   module_enable(array('date_views', 'nas_events_landing_feature'));
   features_revert(array('nas_solr_feature' => array('search_api_index', 'facetapi')));
 }
+
+/**
+ * Enable NAS field max length module and increasing slideshow subtitle length
+ */
+function nas_master_update_7170() {
+  module_enable(array('nas_field_max_length'));
+  nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
+}
