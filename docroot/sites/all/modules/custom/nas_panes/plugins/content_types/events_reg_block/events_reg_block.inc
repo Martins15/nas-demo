@@ -33,7 +33,8 @@ function events_reg_block_render($subtype, $conf, $args, $context) {
     $date_city_province = date_format(date_create($get_date[0]['value']), 'F d, Y');
   }
   if ($get_location = field_get_items('node', $node, 'field_event_location')) {
-    $date_city_province .= ' - ' . $get_location[0]['city'] . ', ' . $get_location[0]['province'];
+    !empty($get_location[0]['city']) ? $date_city_province .= ' - ' . $get_location[0]['city'] : '';
+    !empty($get_location[0]['province']) ? $date_city_province .= ', ' . $get_location[0]['province'] : '';
   }
   if ($get_notes = field_get_items('node', $node, 'field_event_registration_notes')) {
     $reg_notes = $get_notes[0]['value'];
@@ -43,15 +44,17 @@ function events_reg_block_render($subtype, $conf, $args, $context) {
     if ($get_button[0]['url'] !== $get_button[0]['title']) {
       $button_title = $get_button[0]['title'];
     }
-    $button = l($button_title, $get_button[0]['url'], array(
-      'attributes' => array(
-        'class' => array(
-          'button',
-          'tomato',
-          'large',
+    if (!empty($get_button[0]['url'])) {
+      $button = l($button_title, $get_button[0]['url'], array(
+        'attributes' => array(
+          'class' => array(
+            'button',
+            'tomato',
+            'large',
+          ),
         ),
-      ),
-    ));
+      ));
+    }
   }
   $block = new stdClass();
   $block->content = theme('events_reg_block', array(

@@ -24,6 +24,15 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'ical' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 60,
+        ),
+        'type' => 'text_trimmed',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -137,6 +146,19 @@ function nas_event_feature_field_default_field_instances() {
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
+          'format_type' => 'nas_date_day',
+          'fromto' => 'value',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
           'format_type' => 'long',
           'fromto' => 'both',
           'multiple_from' => '',
@@ -235,6 +257,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 6,
       ),
       'nas_editorial_card' => array(
@@ -346,8 +374,14 @@ function nas_event_feature_field_default_field_instances() {
         'label' => 'above',
         'module' => 'location_cck',
         'settings' => array(),
-        'type' => 'location_map',
-        'weight' => 9,
+        'type' => 'location_default',
+        'weight' => 12,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -401,23 +435,22 @@ function nas_event_feature_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_event_location',
     'label' => 'Event Location',
-    'required' => 0,
+    'required' => FALSE,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
       'module' => 'location_cck',
       'settings' => array(),
       'type' => 'location',
-      'weight' => 31,
+      'weight' => 34,
     ),
   );
 
   // Exported field_instance: 'node-event-field_event_location_help'
   $field_instances['node-event-field_event_location_help'] = array(
     'bundle' => 'event',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -426,6 +459,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 10,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 10,
       ),
       'nas_editorial_card' => array(
@@ -540,6 +579,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'link_default',
         'weight' => 7,
       ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -634,6 +679,12 @@ function nas_event_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 11,
       ),
       'nas_editorial_card' => array(
@@ -748,6 +799,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
       ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -813,6 +870,91 @@ function nas_event_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-event-field_geolocation'
+  $field_instances['node-event-field_geolocation'] = array(
+    'bundle' => 'event',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 13,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_geolocation',
+    'label' => 'Geolocation',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'geocoder',
+      'settings' => array(),
+      'type' => 'geocoder',
+      'weight' => 35,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_image'
   $field_instances['node-event-field_image'] = array(
     'bundle' => 'event',
@@ -827,6 +969,12 @@ function nas_event_feature_field_default_field_instances() {
           'image_style' => '',
         ),
         'type' => 'image',
+        'weight' => 5,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 5,
       ),
       'nas_editorial_card' => array(
@@ -954,6 +1102,7 @@ function nas_event_feature_field_default_field_instances() {
   t('Event Date');
   t('Event Location');
   t('Event Type');
+  t('Geolocation');
   t('Hero image');
   t('Location Help');
   t('Registration Link');

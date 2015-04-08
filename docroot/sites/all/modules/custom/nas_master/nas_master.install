@@ -2248,6 +2248,15 @@ function nas_master_update_7165() {
 function nas_master_update_7166() {
   field_delete_field('field_event_location');
   features_revert_module('nas_event_feature');
+  module_enable(array('nas_events'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7167() {
+  module_enable(array('date_ical', 'nas_calendar_download_view_feature'));
+  features_revert_module('nas_event_feature');
 }
 
 /**
@@ -2256,6 +2265,14 @@ function nas_master_update_7166() {
 function nas_master_update_7168() {
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_slideshow_feature');
+}
+
+/**
+ * Enable and revert Events landing page related features.
+ */
+function nas_master_update_7169() {
+  module_enable(array('date_views', 'nas_events_landing_feature'));
+  features_revert(array('nas_solr_feature' => array('search_api_index', 'facetapi')));
 }
 
 /**
