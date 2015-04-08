@@ -1,6 +1,12 @@
 <?php
+
 /**
- * Utility to change the max length of a text field
+ * @file
+ * Update a field Max Length.
+ */
+
+/**
+ * Utility to change the max length of a text field.
  */
 function nas_field_max_length_change_text_field_max_length($field_name, $new_length) {
   $field_table = 'field_data_' . $field_name;
