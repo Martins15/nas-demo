@@ -6,6 +6,7 @@
  */
 
 define('NAS_AUDUBON_WORKS_EVENTS_URL', 'http://worksdev.prod.acquia-sites.com/event/');
+define('NAS_AUDUBON_WORKS_START_TIMESTAMP', 1426152117);
 
 /**
  * Implements hook_cron_job_scheduler_info().
@@ -21,8 +22,8 @@ function nas_events_cron_job_scheduler_info() {
 /**
  * This function should only be called once a day.
  */
-function nas_events_update_nodes($job) {
-  $timestamp = variable_get('nas_events_last_time_processed', 1426152117);
+function nas_events_update_nodes($job = NULL) {
+  $timestamp = variable_get('nas_events_last_time_processed', NAS_AUDUBON_WORKS_START_TIMESTAMP);
   $uuids = nas_events_get_list($timestamp);
   foreach ($uuids as $uuid => $timestamp) {
     $config = array('NASFeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
@@ -106,6 +107,41 @@ function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       }
       break;
   }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_events_menu() {
+  $items = array();
+  $items['admin/content/nas/events/sync'] = array(
+    'title' => 'Run events sync from Works',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_events_sync_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Callback form for nas/events/sync page.
+ */
+function nas_events_sync_form($form, &$form_state) {
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Sync',
+  );
+  return $form;
+}
+
+/**
+ * Submit form for nas/events/sync page.
+ */
+function nas_events_sync_form_submit($form, &$form_state) {
+  nas_events_update_nodes();
+  drupal_set_message('Synchronization has been completed.');
+  return $form;
 }
 
 /**
