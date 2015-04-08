@@ -2257,3 +2257,11 @@ function nas_master_update_7168() {
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_slideshow_feature');
 }
+
+/**
+ * Enable NAS field max length module and increasing slideshow subtitle length
+ */
+function nas_master_update_7170() {
+  module_enable(array('nas_field_max_length'));
+  nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
+}
