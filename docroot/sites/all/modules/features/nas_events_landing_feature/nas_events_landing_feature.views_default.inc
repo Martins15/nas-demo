@@ -41,6 +41,13 @@ function nas_events_landing_feature_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'entity';
   $handler->display->display_options['row_options']['view_mode'] = 'teaser';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No events matching your search query were found';
+  $handler->display->display_options['empty']['area']['format'] = 'html';
   /* Sort criterion: Indexed Content: Node date */
   $handler->display->display_options['sorts']['node_date']['id'] = 'node_date';
   $handler->display->display_options['sorts']['node_date']['table'] = 'search_api_index_default_node_index';
