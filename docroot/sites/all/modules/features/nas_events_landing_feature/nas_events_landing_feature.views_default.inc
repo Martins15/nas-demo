@@ -52,6 +52,14 @@ function nas_events_landing_feature_views_default_views() {
   $handler->display->display_options['sorts']['node_date']['id'] = 'node_date';
   $handler->display->display_options['sorts']['node_date']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['sorts']['node_date']['field'] = 'node_date';
+  /* Contextual filter: Indexed Content: Event Type */
+  $handler->display->display_options['arguments']['field_event_type']['id'] = 'field_event_type';
+  $handler->display->display_options['arguments']['field_event_type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['field_event_type']['field'] = 'field_event_type';
+  $handler->display->display_options['arguments']['field_event_type']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_event_type']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_event_type']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_event_type']['not'] = 0;
   /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
@@ -145,6 +153,16 @@ function nas_events_landing_feature_views_default_views() {
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'events_listing_pane');
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['argument_input'] = array(
+    'field_event_type' => array(
+      'type' => 'context',
+      'context' => 'entity:taxonomy_term.tid',
+      'context_optional' => 1,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Indexed Content: Event Type',
+    ),
+  );
   $handler->display->display_options['inherit_panels_path'] = '1';
   $export['events_listing'] = $view;
 

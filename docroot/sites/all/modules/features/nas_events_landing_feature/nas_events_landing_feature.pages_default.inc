@@ -5,6 +5,234 @@
  */
 
 /**
+ * Implements hook_default_page_manager_handlers().
+ */
+function nas_events_landing_feature_default_page_manager_handlers() {
+  $export = array();
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'term_view__event_types';
+  $handler->task = 'term_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = -97;
+  $handler->conf = array(
+    'title' => 'Event types',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => 'event_types',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_bundle:taxonomy_term',
+          'settings' => array(
+            'type' => array(
+              'event_type' => 'event_type',
+            ),
+          ),
+          'context' => 'argument_term_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'events_landing_page';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'exposed_form' => NULL,
+      'header' => NULL,
+      'main' => NULL,
+      'sidebar' => NULL,
+      'bottom' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%term:name';
+  $display->uuid = '9a8a9045-13a9-459f-98ca-8f47edcb886c';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-177b2744-fe5b-4b5f-abd3-79b4cbf5d550';
+    $pane->panel = 'bottom';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title_heading' => 'h2',
+      'default' => array(
+        'title' => '',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-S_vgg6hPw1GvCjrifWoVBmkmVsh2TuZWOv_MBg8ei6s',
+      'form_token' => 'DhY5WC5aKR-tozqEDgcQz8bhhdl6mE8J2gV0aFMDvsE',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '177b2744-fe5b-4b5f-abd3-79b4cbf5d550';
+    $display->content['new-177b2744-fe5b-4b5f-abd3-79b4cbf5d550'] = $pane;
+    $display->panels['bottom'][0] = 'new-177b2744-fe5b-4b5f-abd3-79b4cbf5d550';
+    $pane = new stdClass();
+    $pane->pid = 'new-438fbde9-b82b-47a0-a57a-e42075fa758d';
+    $pane->panel = 'main';
+    $pane->type = 'page_title';
+    $pane->subtype = 'page_title';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'markup' => 'h1',
+      'class' => '',
+      'id' => '',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '438fbde9-b82b-47a0-a57a-e42075fa758d';
+    $display->content['new-438fbde9-b82b-47a0-a57a-e42075fa758d'] = $pane;
+    $display->panels['main'][0] = 'new-438fbde9-b82b-47a0-a57a-e42075fa758d';
+    $pane = new stdClass();
+    $pane->pid = 'new-be810a78-f967-4bb9-83a0-f77eaf5c32df';
+    $pane->panel = 'main';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'events_listing-events_listing_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_term_1',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'be810a78-f967-4bb9-83a0-f77eaf5c32df';
+    $display->content['new-be810a78-f967-4bb9-83a0-f77eaf5c32df'] = $pane;
+    $display->panels['main'][1] = 'new-be810a78-f967-4bb9-83a0-f77eaf5c32df';
+    $pane = new stdClass();
+    $pane->pid = 'new-700a94c2-a8d9-49cf-abd1-93fbcc276c01';
+    $pane->panel = 'sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title_heading' => 'h2',
+      'taxonomy_term' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      'form_build_id' => 'form-JcZqmhn9qukVNPc5g2gB0ZX5vM1HFqnnICr2iB96n24',
+      'form_token' => '1FK2satvd7u3d51p5Fcuk41hgPVTOeB3HUv-X5HL-ts',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '700a94c2-a8d9-49cf-abd1-93fbcc276c01';
+    $display->content['new-700a94c2-a8d9-49cf-abd1-93fbcc276c01'] = $pane;
+    $display->panels['sidebar'][0] = 'new-700a94c2-a8d9-49cf-abd1-93fbcc276c01';
+    $pane = new stdClass();
+    $pane->pid = 'new-c2a00d72-c114-4706-89ba-287ba450ea0d';
+    $pane->panel = 'sidebar';
+    $pane->type = 'slideshow_sidebar_block';
+    $pane->subtype = 'slideshow_sidebar_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'slideshow' => FALSE,
+      'form_build_id' => 'form-FXuqHSTQXg15NhoG0nvVwCXS6VicNeXMHHEHeoTtHV8',
+      'form_token' => 'k4ODNvi9k87gOmB6cY6EdHzxBideBTW9b7BEm9BvV9I',
+      'form_id' => 'slideshow_sidebar_block_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'c2a00d72-c114-4706-89ba-287ba450ea0d';
+    $display->content['new-c2a00d72-c114-4706-89ba-287ba450ea0d'] = $pane;
+    $display->panels['sidebar'][1] = 'new-c2a00d72-c114-4706-89ba-287ba450ea0d';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-be810a78-f967-4bb9-83a0-f77eaf5c32df';
+  $handler->conf['display'] = $display;
+  $export['term_view__event_types'] = $handler;
+
+  return $export;
+}
+
+/**
  * Implements hook_default_page_manager_pages().
  */
 function nas_events_landing_feature_default_page_manager_pages() {
@@ -214,7 +442,11 @@ function nas_events_landing_feature_default_page_manager_pages() {
     $pane->subtype = 'events_listing-events_listing_pane';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'empty',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
