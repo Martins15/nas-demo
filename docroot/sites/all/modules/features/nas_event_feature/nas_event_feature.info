@@ -1,5 +1,5 @@
-name = nas_event_feature
-description = Create content type Event
+name = Event CT
+description = Includes Event CT, importer, panelizer, view.
 core = 7.x
 package = NAS
 version = 7.x-1.1
