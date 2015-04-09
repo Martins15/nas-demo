@@ -283,7 +283,7 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
             'name' => 'families',
             'displayKey' => 'name',
             'templates' => array(
-              'header' => '<div class="tt-separator">' . t('Taxonomy families') . '</div>'
+              'header' => '<div class="tt-separator">' . t('Taxonomy') . '</div>'
             ),
           )
         ),
