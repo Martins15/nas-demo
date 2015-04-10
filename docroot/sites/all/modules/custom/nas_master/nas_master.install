@@ -2248,6 +2248,7 @@ function nas_master_update_7165() {
 function nas_master_update_7166() {
   field_delete_field('field_event_location');
   features_revert_module('nas_event_feature');
+  features_revert_module('nas_views_feature');
   module_enable(array('nas_events'));
 }
 
