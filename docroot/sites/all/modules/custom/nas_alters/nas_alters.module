@@ -478,19 +478,3 @@ function nas_alters_node_presave($node) {
  
   }
 }
-
-/**
- * Implements hook_node_update().
- */
-function nas_alters_node_update($node) {
-  dsm($node);
-  if (!empty($node->old_vid)) {
-    // fetch the did from the old revision
-    $old_did = db_query("SELECT did FROM {panelizer_entity} WHERE entity_id = :nid AND    revision_id = :oldvid ORDER BY revision_id DESC",
-      array(":nid" => $node->nid, ":oldvid" => $node->old_vid))
-      ->fetchField();
-    if (!empty($old_did) && !empty($node->panelizer['page_manager']) && empty($node->panelizer['page_manager']->did)) {
-      $node->panelizer['page_manager']->did = $old_did;
-    }
-  }
-}
