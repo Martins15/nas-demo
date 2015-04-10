@@ -493,7 +493,7 @@ function nas_alters_title_getter_callback($item) {
  */
 function nas_alters_views_pre_view(&$view) {
   if ($view->name == 'nas_news') {
-    if ($view->current_display == 'articles_list_top') {dpm();
+    if ($view->current_display == 'articles_list_top') {
       if (isset($_GET['page']) && is_numeric($_GET['page'])) {
         $view->display_handler->options['pager']['options']['offset'] = 6 * $_GET['page'];
       }
