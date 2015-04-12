@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Class for the Panelizer comment entity plugin.
