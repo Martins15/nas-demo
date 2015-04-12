@@ -4,6 +4,7 @@
  * @file
  * Class for the Panelizer node entity plugin.
  */
+
 module_load_include('class.php', 'panelizer', 'plugins/entity/PanelizerEntityNode');
 
 /**

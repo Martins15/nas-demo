@@ -4,6 +4,7 @@
  * @file
  * Main module's file.
  */
+
 /**
  * Implements hook_panelizer_entity_plugin_process_alter().
  */

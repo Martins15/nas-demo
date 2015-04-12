@@ -4,6 +4,7 @@
  * @file
  * Class for the Panelizer comment entity plugin.
  */
+
 module_load_include('class.php', 'panelizer', 'plugins/entity/PanelizerEntityComment');
 
 /**
