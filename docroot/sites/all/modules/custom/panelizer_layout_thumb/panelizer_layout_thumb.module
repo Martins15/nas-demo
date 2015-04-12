@@ -1,0 +1,79 @@
+<?php
+/**
+ * @file
+ * Main module's file.
+ */
+/**
+ * Implements hook_panelizer_entity_plugin_process_alter().
+ */
+function panelizer_layout_thumb_panelizer_entity_plugin_process_alter(&$plugin, &$info) {
+  if ($plugin['plugin type'] == 'entity' && $plugin['plugin module'] == 'panelizer') {
+    switch ($plugin['name']) {
+      case 'node':
+      case 'user':
+      case 'comment':
+      case 'taxonomy_term':
+        $plugin['handler'] = 'PanelizerEntity' . ucfirst($plugin['name']) . 'LayoutThumb';
+        $plugin['plugin module'] = 'panelizer_layout_thumb';
+        $plugin['path'] = drupal_get_path('module', 'panelizer_layout_thumb') . '/plugins/entity';
+        break;
+    }
+  }
+}
+
+/**
+ * Add modifications to field.
+ *
+ * @param PanelizerEntityDefault $plugin
+ *  Plugin object
+ * @param object $entity
+ *  Entity object
+ * @param array $form
+ *  Form
+ * @param array $form_state
+ *  Form state
+ * @param string $langcode
+ *  Language
+ */
+function panelizer_layout_thumb_field_alter($plugin, $entity, &$form, &$form_state, $langcode) {
+  if (isset($form['panelizer'])) {
+    foreach ($form['panelizer'] as $key => &$item) {
+      if (is_array($item) && isset($item['name'])) {
+        panelizer_layout_thumb_add_layout_thumbs($plugin, $key, $item, $entity);
+      }
+    }
+    $form['panelizer']['#attributes']['class'][] = 'clearfix';
+  }
+}
+
+/**
+ * Alter form field and add layout thumbs.
+ * @param PanelizerEntityDefault $plugin
+ *  Plugin object
+ * @param string $view_mode
+ *  Panelizer view mode
+ * @param array $item
+ *  Form field with list of layouts in options.
+ * @param object $entity
+ *  Entity object
+ */
+function panelizer_layout_thumb_add_layout_thumbs($plugin, $view_mode, &$item, $entity) {
+  ctools_include('common', 'panels');
+  $bundle = $entity->type . '.' . $view_mode;
+  $allowed_layouts = panelizer_get_allowed_layouts_option($plugin->entity_type, $entity->type);
+  $options = array();
+  foreach ($item['name']['#options'] as $key => $val) {
+    $panelizer = $plugin->get_default_panelizer_object($bundle, $key);
+    $layouts = panels_common_get_allowed_layouts($allowed_layouts);
+    foreach ($layouts as $id => $layout) {
+      if ($id == $panelizer->display->layout) {
+        $options[$key] = panels_print_layout_icon($id, $layout, check_plain($val));
+      }
+    }
+  }
+  if (!empty($options)) {
+    $item['name']['#attributes']['class'][] = 'panels-choose-layout';
+    $item['name']['#type'] = 'radios';
+    $item['name']['#options'] = $options;
+  }
+}

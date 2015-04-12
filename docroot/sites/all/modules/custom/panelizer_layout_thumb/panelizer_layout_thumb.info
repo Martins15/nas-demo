@@ -1,0 +1,11 @@
+name = "Panelizer Layout Thumbnail"
+description = "Provide possiblity choose layout with preview of layout"
+core = "7.x"
+package = "Panels"
+dependencies[] = ctools
+dependencies[] = panelizer
+
+files[] = plugins/entity/PanelizerEntityNodeLayoutThumb.php
+files[] = plugins/entity/PanelizerEntityUserLayoutThumb.php
+files[] = plugins/entity/PanelizerEntityCommentLayoutThumb.php
+files[] = plugins/entity/PanelizerEntityTaxonomy_termLayoutThumb.php
