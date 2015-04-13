@@ -9,9 +9,9 @@
     drupal_user: admin
     drupal_pass: propeople
     installation_profile_name: pp
-    mysql_user: audubon
-    mysql_pass: audubon
-    mysql_db: audubon
+    mysql_user: root
+    mysql_pass: root
+    mysql_db: drupal
     cache_folder: /var/www/cache
     backup_folder: /var/www/backup
     backup_user: propeople
