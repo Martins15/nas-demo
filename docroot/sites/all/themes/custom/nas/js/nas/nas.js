@@ -351,7 +351,7 @@ var Nas = Nas || {};
 
   Drupal.behaviors.NewsPage = {
     attach: function (context, settings) {
-      if ($('body').hasClass('page-news') || ($('body').hasClass('page-taxonomy-term') && $('.view-nas-news').length > 0)) {
+      if ($('body').hasClass('page-news') || ($('body').hasClass('page-taxonomy-term-tags'))) {
         $(document).ajaxComplete(function(event, xhr, settings) {
           var updated_url = '';
           // change the URL after a new content is loaded.
