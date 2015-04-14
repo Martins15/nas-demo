@@ -6,6 +6,7 @@
  */
 
 define('NAS_AUDUBON_WORKS_EVENTS_URL', 'http://worksdev.prod.acquia-sites.com/event/');
+define('NAS_AUDUBON_WORKS_S3_IMAGES_URL', 'http://nasworks-dev.s3.amazonaws.com/');
 define('NAS_AUDUBON_WORKS_START_TIMESTAMP', 1426152117);
 
 /**
@@ -75,6 +76,11 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
             'tid' => nas_import_term_init($term_name, 'event_type'),
           );
         }
+      }
+      if (!empty($item['featured_image'])) {
+        $uri = preg_replace("/s3\:\/\//", '', $item['featured_image']['uri']);
+        $image = nas_import_add_existing_file($uri, 'image', 1, FILE_STATUS_PERMANENT, 0, NAS_AUDUBON_WORKS_S3_IMAGES_URL);
+        $entity->field_image[LANGUAGE_NONE][0]['fid'] = $image->fid;
       }
       break;
   }

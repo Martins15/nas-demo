@@ -2283,3 +2283,10 @@ function nas_master_update_7170() {
   module_enable(array('nas_field_max_length'));
   nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
 }
+
+/**
+ * Enable Panelizer Layout Thumbnails module for changing type of choosing layouts.
+ */
+function nas_master_update_7171() {
+  module_enable(array('nas_field_max_length'));
+}

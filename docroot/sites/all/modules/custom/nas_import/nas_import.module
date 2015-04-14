@@ -676,7 +676,7 @@ function nas_import_import_image($entity, $d6_field_array, $d7_field_name = NULL
 /**
  * Custom function for saving files.
  */
-function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0) {
+function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0, $source_url = NAS_IMPORT_LIVE_SITE_URL) {
   // Prepare filepath. It might be already encoded or not.
   $remote_filepath = trim($remote_filepath, '/');
   $path_parts = explode('/', $remote_filepath);
@@ -693,7 +693,7 @@ function nas_import_add_existing_file($remote_filepath, $type, $uid = 1, $status
     $remote_fullpath = $remote_filepath;
     // if remote_filepath is relative url add scheme and domain
     if (strpos($remote_filepath, '://') === FALSE) {
-      $remote_fullpath = NAS_IMPORT_LIVE_SITE_URL . $remote_filepath;
+      $remote_fullpath = $source_url . $remote_filepath;
     }
     $filepath = _nas_import_system_retrieve_file($remote_fullpath, NULL, FALSE, FILE_EXISTS_REPLACE, $source_nid);
     if (!$filepath) {
