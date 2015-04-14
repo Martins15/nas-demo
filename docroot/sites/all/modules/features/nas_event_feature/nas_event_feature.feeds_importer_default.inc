@@ -134,6 +134,12 @@ function nas_event_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '30',
           ),
+          'featured_image' => array(
+            'name' => 'featured_image',
+            'value' => 'featured_image',
+            'debug' => 0,
+            'weight' => '31',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
