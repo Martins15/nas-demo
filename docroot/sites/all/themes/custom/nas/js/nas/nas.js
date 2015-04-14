@@ -355,7 +355,7 @@ var Nas = Nas || {};
         $(document).ajaxComplete(function(event, xhr, settings) {
           var updated_url = '';
           // change the URL after a new content is loaded.
-          if (settings.url.match("\/news\\?page=")) {
+          if (settings.url.match("\\?page=")) {
             updated_url = settings.url;
           }
           if (updated_url !== '') {
