@@ -349,4 +349,22 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.noImage = {
+    attach: function (context, settings) {
+
+     $(window).on("load resize",function(e){
+       titlePosition();  
+     }); 
+
+      function titlePosition(){
+        if ($(".view-display-id-articles_term_10 .tiny-8").position() !== null){
+          var lleft = $(".view-display-id-articles_term_10 .tiny-8").position().left;
+          lleft = parseInt(lleft);
+          var pleft = $(".view-display-id-articles_term_10 .tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
+          pleft = parseInt(pleft);
+          $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
+        }
+      } 
+    }
+  };
 })(jQuery);

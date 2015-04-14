@@ -13049,6 +13049,173 @@ h2.grey {
   padding-top: 25px;
 }
 
+.events-search {
+  display: none;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  background-color: #FBFAF6;
+  padding: 25px 0;
+  margin-bottom: 50px;
+}
+.events-search.show, .events-search.open {
+  display: block;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .events-search {
+    padding: 12.5px 0 25px 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .events-search {
+    padding: 12.5px 0;
+  }
+}
+
+.events-search-form select {
+  width: 100%;
+  margin: 12.5px 0 0 0;
+}
+
+.bird-guide-search-input {
+  float: left;
+  width: 79%;
+  margin-right: 4%;
+}
+.bird-guide-search-input input {
+  height: 45px;
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 601px) {
+  .bird-guide-search-input input {
+    font-size: 20px;
+    margin-bottom: 12.5px;
+  }
+}
+
+.bird-guide-search-submit {
+  float: left;
+  width: 17%;
+  height: 45px;
+  font-size: 24px;
+  font-weight: 300 !important;
+}
+.bird-guide-search-submit i {
+  vertical-align: middle;
+}
+
+.event-teaser {
+  padding-bottom: 50px;
+}
+.event-teaser:before, .event-teaser:after {
+  content: " ";
+  display: table;
+}
+.event-teaser:after {
+  clear: both;
+}
+.event-teaser .event-date-and-state {
+  background-color: #EFEFEF;
+  color: #6D6D6D;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 33px;
+  font-weight: 300;
+  padding: 18px 0 15px 0;
+  position: relative;
+}
+.event-teaser .event-date-and-state .event-date {
+  border-right: 1px solid #C8C8C8;
+  float: left;
+  padding-bottom: 6px;
+  text-align: center;
+  width: 58%;
+}
+.event-teaser .event-date-and-state .event-date .event-date-month {
+  text-transform: uppercase;
+  line-height: 30px;
+}
+.event-teaser .event-date-and-state .event-date .event-date-day {
+  font-size: 60px;
+  line-height: 50px;
+}
+.event-teaser .event-date-and-state .event-state {
+  float: right;
+  padding-top: 17px;
+  text-align: center;
+  width: 40%;
+}
+.event-teaser .event-date-and-state .event-state .icon-marker {
+  color: #c2c2c2;
+  font-size: 42px;
+}
+.event-teaser .event-date-and-state .event-state .event-state-abbr {
+  line-height: 36px;
+}
+.event-teaser .event-content .event-type-and-date {
+  color: #d4d4d4;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  padding-bottom: 7px;
+}
+.event-teaser .event-content .event-type-and-date .event-dates {
+  color: #6d6d6d;
+}
+.event-teaser .event-content .event-address {
+  color: #000000;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  padding-bottom: 7px;
+}
+.event-teaser .event-content p {
+  font-size: 14px;
+  line-height: 19px;
+}
+@media only screen and (max-width: 600px) {
+  .event-teaser .event-date-and-state {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    padding: 12px 0 10px 0;
+  }
+  .event-teaser .event-date-and-state .event-date .event-date-month {
+    line-height: 20px;
+  }
+  .event-teaser .event-date-and-state .event-date .event-date-day {
+    font-size: 38px;
+    line-height: 27px;
+    padding-top: 10px;
+  }
+  .event-teaser .event-date-and-state .event-state {
+    padding-top: 11px;
+  }
+  .event-teaser .event-date-and-state .event-state .icon-marker {
+    font-size: 28px;
+  }
+  .event-teaser .event-date-and-state .event-state .event-state-abbr {
+    line-height: 17px;
+  }
+  .event-teaser .event-content .event-type-and-date {
+    font-size: 18px;
+    line-height: 18px;
+    padding-bottom: 7px;
+  }
+  .event-teaser .event-content .event-address {
+    font-size: 18px;
+    line-height: 18px;
+    padding-bottom: 7px;
+  }
+  .event-teaser .event-content p {
+    font-size: 14px;
+    line-height: 19px;
+  }
+}
+
+.editorial-card .event-dates {
+  color: #6d6d6d;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
@@ -14067,4 +14234,103 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 .article-text .article-video-container.right figcaption {
   text-align: left;
+}
+
+/* Individual Events page*/
+article.event .event-header {
+  margin-bottom: 30px;
+}
+article.event .event-header a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
+}
+article.event .event-header h1 {
+  margin-bottom: 8px;
+}
+article.event .event-header .deck {
+  margin: 8px 0 40px;
+}
+article.event .event-header h4 {
+  margin: 40px 0 8px;
+}
+article.event .event-header .end-date-available {
+  display: block;
+}
+article.event .event-header .location-details {
+  margin-bottom: 25px;
+}
+article.event .social-sharing {
+  margin: 94px 0 45px;
+  text-align: right;
+}
+article.event .social-sharing .social-sharing-caption {
+  vertical-align: sub;
+  margin-right: 5px;
+}
+article.event .social-sharing .social-sharing-icon {
+  font-size: 25px;
+  margin-left: 2px;
+}
+article.event .add-to-your-calendar {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.events-registration-block {
+  background-color: #FBFAF6;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.events-registration-block img {
+  margin-top: -30px;
+}
+.events-registration-block h2 {
+  margin: -10px 0 5px;
+  line-height: 33px;
+}
+.events-registration-block p {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  line-height: 19px;
+  margin: 0 0 7px;
+}
+.events-registration-block .reg-notes {
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  line-height: 19px;
+}
+.events-registration-block .button {
+  margin: 12px 0 30px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+@media only screen and (max-width: 479px) {
+  .events-registration-block {
+    margin: 50px 0 25px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .events-registration-block {
+    margin: 50px 0 25px;
+  }
+}
+
+.other-upcoming-events {
+  background-color: #f8f8f8;
+}
+.other-upcoming-events .section-header {
+  margin-top: 45px;
+}
+.other-upcoming-events .section-header h2 {
+  font-size: 40px;
+  line-height: 46px;
+}
+.other-upcoming-events .date-display-single {
+  color: #6d6d6d;
+  display: block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 3px;
 }

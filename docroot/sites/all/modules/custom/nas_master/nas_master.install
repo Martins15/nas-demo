@@ -2220,3 +2220,72 @@ function nas_master_update_7161() {
 function nas_master_update_7162() {
   module_disable(array('display_cache'));
 }
+
+/**
+ * Enable Events feature.
+ */
+function nas_master_update_7163() {
+  module_enable(array('nas_event_feature'));
+}
+
+/**
+ * Revert News page feature.
+ */
+function nas_master_update_7164() {
+  features_revert_module('nas_news_page_feature');
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7165() {
+  features_revert_module('nas_event_feature');
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7166() {
+  field_delete_field('field_event_location');
+  features_revert_module('nas_event_feature');
+  module_enable(array('nas_events'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7167() {
+  module_enable(array('date_ical', 'nas_calendar_download_view_feature'));
+  features_revert_module('nas_event_feature');
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7168() {
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_slideshow_feature');
+}
+
+/**
+ * Enable and revert Events landing page related features.
+ */
+function nas_master_update_7169() {
+  module_enable(array('date_views', 'nas_events_landing_feature'));
+  features_revert(array('nas_solr_feature' => array('search_api_index', 'facetapi')));
+}
+
+/**
+ * Enable NAS field max length module and increasing slideshow subtitle length
+ */
+function nas_master_update_7170() {
+  module_enable(array('nas_field_max_length'));
+  nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
+}
+
+/**
+ * Enable Panelizer Layout Thumbnails module for changing type of choosing layouts.
+ */
+function nas_master_update_7171() {
+  module_enable(array('nas_field_max_length'));
+}

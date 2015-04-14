@@ -107,6 +107,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
+  if ($vars['type'] == 'event') {
+    nas_preprocess_node_event($vars);
+  }
 }
 
 /**
@@ -421,6 +424,91 @@ function nas_preprocess_node_magazine_issue(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for Event CT.
+ */
+function nas_preprocess_node_event(&$vars) {
+  // Event dates.
+  $vars['event_dates'] = '';
+  $field_items = field_get_items('node', $vars['node'], 'field_event_date');
+  $from = strtotime($field_items[0]['value']);
+  $to = strtotime($field_items[0]['value2']);
+  // Single day.
+  if (date('Ymd', $from) == date('Ymd', $to)) {
+    $vars['event_dates'] = date('l, F j, Y', $from);
+  }
+  // Same month.
+  elseif (date('Ym', $from) == date('Ym', $to)) {
+    $vars['event_dates'] = date('F j', $from) . '–' . date('j, Y', $to);
+  }
+  // Same year.
+  elseif (date('Y', $from) == date('Y', $to)) {
+    $vars['event_dates'] = date('F j', $from) . ' – ' . date('F j, Y', $to);
+  }
+  // Full range.
+  else {
+    $vars['event_dates'] = date('F j, Y', $from) . ' – ' . date('F j, Y', $to);
+  }
+
+  $editorial_cards_view_modes = array(
+    'nas_editorial_card',
+  );
+
+  if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
+  $node = $vars['node'];
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  $vars['summary'] = '';
+  if ($field_items = field_get_items('node', $node, 'body')) {
+    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
+  }
+  $vars['details_link'] = l(t('Details »'), 'node/' . $node->nid);
+
+  $vars['start_date_month'] = 'apr';
+  $vars['start_date_day'] = '1';
+  if ($start_date_items = field_get_items('node', $node, 'field_event_date')) {
+    $start_date = strtotime($start_date_items[0]['value']);
+    $vars['start_date_day'] = date('d', $start_date);
+    $vars['start_date_month'] = date('M', $start_date);
+  }
+
+  $vars['center_address'] = '';
+  $vars['state'] = '??';
+  if ($field_items = field_get_items('node', $node, 'field_event_location')) {
+    $vars['state'] = $field_items[0]['province'];
+  }
+
+  // Event type taxonomy term reference.
+  $vars['event_type'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_event_type')) {
+    if ($term = taxonomy_term_load($field_items[0]['tid'])) {
+      $vars['event_type'] = l($term->name, 'taxonomy/term/' . $term->tid, array(
+          'attributes' => array(
+            'class' => array('event-type'),
+          )));
+    }
+  }
+
+  $vars['linked_image'] = '';
+  $image_uri = FALSE;
+  if ($get_image = field_get_items('node', $node, 'field_image')) {
+    $image_uri = $get_image[0]['uri'];
+  }
+  if ($image_uri) {
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser', $image_uri),
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
+  }
+}
+
+/**
  * theme_preprocess_node for article content type.
  */
 function nas_preprocess_node_article(&$vars) {
@@ -534,6 +622,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   elseif ($vars['type'] === 'slideshow' && $image_items = field_get_items('node', $node, 'field_images')) {
+    $image_uri = $image_items[0]['uri'];
+  }
+  elseif ($vars['type'] === 'event' && $image_items = field_get_items('node', $node, 'field_image')) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
@@ -655,6 +746,7 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
   $vars['custom_link_text'] = t('Read more');
 }
+
 
 /**
  * theme_preprocess_node for Conservation strategy content type.
@@ -852,7 +944,14 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn', 'edit-nas-search-btn--2', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
+  // TODO: improve to not to use ids.
+  $button_tag = array(
+    'edit-nas-search-btn',
+    'edit-nas-search-btn--2',
+    'edit-submit-search-form',
+    'edit-submit-nas-bird-guide',
+    'edit-submit-events-listing',
+  );
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';
@@ -1400,6 +1499,15 @@ function nas_preprocess_node_slideshow(&$vars) {
       _nas_related_features_attach_menu_section_class($vars['content']['field_menu_section']);
     }
   }
+
+  $vars['title'] = check_plain($node->title);
+  $vars['subtitle'] = check_plain($node->field_slideshow_subtitle['und']['0']['value']);
+  $vars['url'] = url('node/' . $node->nid);
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  list($blue_text_link_text, $blue_text_link_url) = nas_panes_get_blue_text_link($node);
+  $vars['blue_text_link_url'] = $blue_text_link_url;
+  $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
+  $vars['custom_link_text'] = t('Read more');
 }
 
 /**

@@ -67,9 +67,12 @@ function nas_static_page_feature_field_default_field_instances() {
       ),
       'nas_node_teaser_no_section_link' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 2,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -215,7 +218,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 11,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -323,7 +326,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 9,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -445,7 +448,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -609,7 +612,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -743,7 +746,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -871,8 +874,11 @@ function nas_static_page_feature_field_default_field_instances() {
       ),
       'nas_node_teaser_no_section_link' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'article_teaser',
+        ),
+        'type' => 'media',
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
@@ -1015,7 +1021,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -1177,7 +1183,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -1282,7 +1288,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 10,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -1390,7 +1396,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'above',
@@ -1500,9 +1506,10 @@ function nas_static_page_feature_field_default_field_instances() {
       ),
       'nas_node_teaser_no_section_link' => array(
         'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_plain',
+        'weight' => 1,
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
@@ -1585,8 +1592,8 @@ function nas_static_page_feature_field_default_field_instances() {
   t('Body');
   t('Color mode');
   t('Editorial Section');
-  t('Editorial card image');
   t('Editorial card description');
+  t('Editorial card image');
   t('Editorial card title');
   t('Hero Image');
   t('Internal tagging');
