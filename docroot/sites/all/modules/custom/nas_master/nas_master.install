@@ -2248,7 +2248,21 @@ function nas_master_update_7165() {
 function nas_master_update_7166() {
   field_delete_field('field_event_location');
   features_revert_module('nas_event_feature');
+  features_revert_module('nas_views_feature');
   module_enable(array('nas_events'));
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'name' => 'term_view_panel_context',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    $handler->conf['body_classes_to_add'] = 'page-taxonomy-term-tags';
+    $conf = serialize($handler->conf);
+    db_update('page_manager_handlers')
+    ->fields(array('conf' => $conf))
+    ->condition('name', 'term_view_panel_context')
+    ->execute();
+  }
 }
 
 /**
