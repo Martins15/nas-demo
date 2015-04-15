@@ -1799,13 +1799,15 @@ function nas_panes_upcoming_events_callback() {
   if (!empty($query['state'])) {
     $locations = _nas_panes_get_upcoming_events($query['state']);
   }
-
+  
+  print_r $locations;
   // Display default behaviour.
   if (empty($locations)) {
-    return;
+    //return;
   }
 
   print theme('upcoming_events_block_item', array('locations' => $locations));
+  drupal_exit();
 }
 
 /**
