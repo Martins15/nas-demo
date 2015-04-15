@@ -1726,9 +1726,8 @@ function nas_panes_menu() {
     'type' => MENU_CALLBACK,
   );
 
-  $items['ajax/upcoming-events/%'] = array(
+  $items['ajax/upcoming-events'] = array(
     'page callback' => 'nas_panes_upcoming_events_callback',
-    'page arguments' => array(2),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -1792,7 +1791,7 @@ function nas_panes_local_chapters_centers_callback() {
 /**
  * Returns markup for Upcoming Events block.
  */
-function nas_panes_upcoming_events_callback($state = 'all') {
+function nas_panes_upcoming_events_callback() {
   $query = drupal_get_query_parameters();
   $locations = array();
 

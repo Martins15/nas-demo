@@ -16,7 +16,7 @@
           // Replace default block with content filtered by state.
           $.ajax({
             type: 'GET',
-            url: Drupal.settings.basePath + 'ajax/upcoming-events/' + stateIsoCode,
+            url: Drupal.settings.basePath + 'ajax/upcoming-events',
             data: { 'state': stateIsoCode },
             dataType: 'html',
             success: function (data) {
@@ -24,6 +24,7 @@
               debugFragment.innerHTML = data;
               console.log('AJAX success');
               console.log(debugFragment);
+              console.log(data);
               if (data !== '') {
                 $(wrapper).once().replaceWith(data);
               }
