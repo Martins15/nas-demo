@@ -1626,9 +1626,9 @@ function _nas_panes_get_upcoming_events($state = 'all') {
   $count = 0;
   
   foreach ($results as $item) {
-	$link = NULL;
-	if ( isset($item->field_field_event_registration[0]) ) {
-	  $link = l($item->node_title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $link = NULL;
+    if ( isset($item->field_field_event_registration[0]) ) {
+      $link = l($item->node_title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
     }
     $items[$item->nid] = array(
       'nid' => $item->nid,

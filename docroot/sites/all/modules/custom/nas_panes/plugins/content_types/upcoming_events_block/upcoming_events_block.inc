@@ -75,7 +75,7 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   }
 
   $locations = _nas_panes_get_upcoming_events();
-  
+
   $image_markup = '';
   $nid = 0;
   if (!empty($locations)) {
@@ -92,7 +92,7 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
     ));
     $image_markup = !empty($conf['image_link']) ? l($image, $conf['image_link'], array('html' => TRUE)) : $image;
   }
-  
+
   $content = theme('upcoming_events_block', array(
       'contextual_links' => $contextual_links,
       'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Upcoming Events'),
