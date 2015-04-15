@@ -1625,8 +1625,9 @@ function _nas_panes_get_upcoming_events($state = 'all') {
   $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
   $count = 0;
 
-  foreach ($results as $item) {
+  foreach ($results as $result) {
     $link = NULL;
+    $item = node_load($result->entity);
     if ( isset($item->field_field_event_registration[0]) ) {
       $link = l($item->node_title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
     }
