@@ -1804,6 +1804,7 @@ function nas_panes_upcoming_events_callback() {
   // Display default behaviour.
   if (empty($locations)) {
     //return;
+    drupal_exit();
   }
 
   print theme('upcoming_events_block_item', array('locations' => $locations));
