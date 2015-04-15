@@ -1628,15 +1628,13 @@ function _nas_panes_get_upcoming_events($state = 'all') {
   foreach ($results as $result) {
     $link = NULL;
     $item = node_load($result->entity);
-    if ( isset($item->field_field_event_registration[0]) ) {
-      $link = l($item->node_title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
-    }
+    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
     $items[$item->nid] = array(
       'nid' => $item->nid,
-      'title' => $item->node_title,
-      'time' => $item->field_field_event_date[0]['rendered']['#markup'],
-      'state' => $item->field_field_event_location[0]['raw']['province'],
-      'city' => $item->field_field_event_location[0]['raw']['city'],
+      'title' => $item->title,
+      'time' => $item->field_event_date[LANGUAGE_NONE][0]['value'],
+      'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
+      'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
       'link' => $link,
       'order' => $count,
     );
