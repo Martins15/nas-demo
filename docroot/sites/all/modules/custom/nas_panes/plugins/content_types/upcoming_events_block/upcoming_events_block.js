@@ -8,7 +8,8 @@
 
         var onSuccess = function(stateIsoCode) {
           console.log('stateIsoCode= ' + stateIsoCode);
-          //stateIsoCode = 'NC';
+          stateIsoCode = 'CA';
+          console.log('stateIsoCode= ' + stateIsoCode);
           if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
             return;
           }
@@ -27,11 +28,18 @@
               console.log(data);
               if (data !== '') {
                 $(wrapper).once().replaceWith(data);
+                $('.upcoming-events-block').show();
               }
+              else {
+			    $('.upcoming-events-block').hide();	  
+			  }
               $(wrapper).once().addClass('state-code-' + stateIsoCode);
             }
           });
         };
+        
+        $('.upcoming-events-block').hide();
+        
         console.log('geoIP');
         // Internal request.
         geoip.getState(onSuccess);

@@ -1,11 +1,11 @@
 <?php
 /**
  * @file
- * Local Chapters & Centers template file.
+ * Upcoming Events block template file.
  */
 ?>
 
-<section class="sidebar-section medium-6 large-12 columns local-cnc">
+<section class="sidebar-section medium-6 large-12 columns local-cnc upcoming-events-block">
   <div class="sidebar-section editorial-card <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
     <?php print $contextual_links; ?>
 
