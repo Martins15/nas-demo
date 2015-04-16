@@ -39,9 +39,9 @@ function frontpage_featured_form($form, &$form_state) {
   $variants = array(
     'curtain_simple' => t('Simple curtain'),
     'hero_image' => t('Hero image (no curtain)'),
-//    'curtain_3stories' => t('Curtain with 3 stories'),
-//    'curtain_package' => t('Curtain with a package of stories'),
-//    'curtain_video' => t('Video curtain'),
+  //    'curtain_3stories' => t('Curtain with 3 stories'),
+  //    'curtain_package' => t('Curtain with a package of stories'),
+  //    'curtain_video' => t('Video curtain'),
   );
   $form['variant'] = array(
     '#type' => 'select',
@@ -55,7 +55,7 @@ function frontpage_featured_form($form, &$form_state) {
     '#title' => t('Simple curtain fields'),
     '#tree' => TRUE,
   );
-  $_conf = !empty($conf['curtain_simple']) ? $conf['curtain_simple'] : $conf; //array();
+  $_conf = !empty($conf['curtain_simple']) ? $conf['curtain_simple'] : array();
   $form['curtain_simple']['image'] = array(
     '#type' => 'media',
     '#tree' => TRUE,
