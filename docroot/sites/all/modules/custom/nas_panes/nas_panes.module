@@ -215,6 +215,11 @@ function nas_panes_theme() {
       'template' => 'frontpage-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
+    'nas_frontpage_featured__hero_image' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
         'image_path' => '',
