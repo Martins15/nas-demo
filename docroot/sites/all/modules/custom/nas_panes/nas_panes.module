@@ -1612,7 +1612,7 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
- * Returns Upcoming events base on state or postal code.
+ * Returns Upcoming events base on state.
  *
  * @param string $state
  *   State/province. Two letters.
@@ -1732,6 +1732,12 @@ function nas_panes_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['uev'] = array(
+    'page callback' => 'nas_panes_upcoming_events_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   $items['ajax/audubon-near-you'] = array(
     'page callback' => 'nas_panes_audubon_near_you_elements_callback',
     'access callback' => TRUE,
@@ -1800,14 +1806,23 @@ function nas_panes_upcoming_events_callback() {
     $locations = _nas_panes_get_upcoming_events($query['state']);
   }
 
+  dpm(array($query, $locations);
+
+  /*$locations = array( 0 => array(
+    'nid' => 47838,
+    'title' => 'Monthly Bird Walks',
+    'time' => '2015-04-23 04:00:00',
+    'state' => 'CA',
+    'city' => 'Tiburon',
+    'link' => '<a href="/build2377/content/monthly-bird-walks" target="_blank">Monthly Bird Walks</a>',
+    'order' => 0,
+  ));*/
   // Display default behaviour.
   if (empty($locations)) {
-    //return;
-    drupal_exit();
+    return 'null';
   }
 
-  print theme('upcoming_events_block_item', array('locations' => $locations));
-  drupal_exit();
+  print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
 /**

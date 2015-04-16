@@ -82,14 +82,16 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
     $nid = array_shift($loc_copy);
     $node = node_load($nid);
     $field_image = field_get_items('node', $node, 'field_image');
-    $image_object = file_load($field_image[0]['fid']);
-    $image = theme('image_style', array(
-      'path' => $image_object->uri,
-      'style_name' => 'clasifika_pages',
-      'getsize' => 'true',
-      'attributes' => array(),
-    ));
-    $image_markup = !empty($conf['image_link']) ? l($image, $conf['image_link'], array('html' => TRUE)) : $image;
+    if ($field_image and !empty($field_image)) {
+      $image_object = file_load($field_image[0]['fid']);
+      $image = theme('image_style', array(
+        'path' => $image_object->uri,
+        'style_name' => 'clasifika_pages',
+        'getsize' => 'true',
+        'attributes' => array(),
+      ));
+      $image_markup = !empty($conf['image_link']) ? l($image, $conf['image_link'], array('html' => TRUE)) : $image;
+    }
   }
 
   $content = theme('upcoming_events_block', array(
