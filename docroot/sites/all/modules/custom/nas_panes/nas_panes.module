@@ -1808,15 +1808,6 @@ function nas_panes_upcoming_events_callback() {
 
   dpm(array($query, $locations);
 
-  /*$locations = array( 0 => array(
-    'nid' => 47838,
-    'title' => 'Monthly Bird Walks',
-    'time' => '2015-04-23 04:00:00',
-    'state' => 'CA',
-    'city' => 'Tiburon',
-    'link' => '<a href="/build2377/content/monthly-bird-walks" target="_blank">Monthly Bird Walks</a>',
-    'order' => 0,
-  ));*/
   // Display default behaviour.
   if (empty($locations)) {
     return 'null';
