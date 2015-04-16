@@ -23,7 +23,7 @@ function nas_news_page_feature_default_page_manager_handlers() {
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
+    'body_classes_to_add' => 'page-taxonomy-term-tags',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
