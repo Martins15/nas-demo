@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Contain birds export to JSON functionality.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function nas_export_birds_menu() {
+  $items['export/birds'] = array(
+    'page callback' => '_nas_export_birds_get_json',
+    'access callback' => 'user_access',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Return JSON stream with birds content.
+ */
+function _nas_export_birds_get_json(){
+  $data = array();
+
+  $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'bird')
+    ->condition('n.status', 1)
+    ->execute()
+    ->fetchAllKeyed(0, 0);
+
+  if (!empty($nids)) {
+
+    $nodes = node_load_multiple($nids);
+    foreach($nodes as $node) {
+      $node_wrapper = entity_metadata_wrapper('node', $node);
+
+      $url = url('node/' . $node->nid, array('absolute' => TRUE));
+      $title = $node_wrapper->title->value();
+      $field_bird_sci_name = $node_wrapper->field_bird_illustration->value();
+
+      $bird_audio_url = '';
+      $field_bird_audio = $node_wrapper->field_bird_audio->value();
+      $field_bird_audio = reset($field_bird_audio);
+      if (!empty($field_bird_audio['fid'])) {
+        $bird_audio_url = _nas_export_birds_get_file_url($field_bird_audio['fid']);
+      }
+
+      $bird_illustration_url = '';
+      $field_bird_illustration = $node_wrapper->field_bird_illustration->value();
+      if (!empty($field_bird_illustration['fid'])) {
+        $bird_illustration_url = _nas_export_birds_get_file_url($field_bird_illustration['fid']);
+      }
+
+      $row = array(
+        'title' => $title,
+        'bird_sci_name' => $field_bird_sci_name,
+        'bird_audio' => $bird_audio_url,
+        'bird_illustration' => $bird_illustration_url,
+        'url' => $url
+      );
+
+      $data[] = $row;
+    }
+  }
+
+  drupal_json_output($data);
+  drupal_exit();
+}
+
+/**
+ * Return file url by fid.
+ */
+function _nas_export_birds_get_file_url($fid) {
+  $file = file_load($fid);
+  $uri = $file->uri;
+  return file_create_url($uri);
+}
