@@ -2287,6 +2287,35 @@ function nas_master_update_7168() {
 function nas_master_update_7169() {
   module_enable(array('date_views', 'nas_events_landing_feature'));
   features_revert(array('nas_solr_feature' => array('search_api_index', 'facetapi')));
+
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'name' => 'page_frontpage2_panel_context',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    $query = db_select('panels_pane');
+    $query->addField('panels_pane', 'configuration');
+    $query->condition('type', 'nas_panes_frontpage_featured');
+    $query->condition('did', $handler->conf['did']);
+    $conf = $query->execute()->fetchField();
+    $conf = unserialize($conf);
+
+    // Update Frontpage featured panel pane configuation.
+    $conf['variant'] = 'curtain_simple';
+
+    $fields = array('image', 'title', 'title_link', 'blue_text', 'blue_text_link', 'summary');
+    $conf['curtain_simple'] = array();
+    foreach ($fields as $field) {
+      $conf['curtain_simple'][$field] = $conf[$field];
+      unset($conf[$field]);
+    }
+    $query = db_update('panels_pane');
+    $query->fields(array('configuration' => serialize($conf)));
+    $query->condition('type', 'nas_panes_frontpage_featured');
+    $query->condition('did', $handler->conf['did']);
+    $query->execute();
+  }
 }
 
 /**
