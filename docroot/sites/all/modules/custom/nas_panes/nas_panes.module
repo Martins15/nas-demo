@@ -1581,7 +1581,11 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
-      'first_name' => $item->field_first_name,
+      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
+      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'phone' => $item->_field_data['nid']['entity']->field_phone['und']['0']['value'],
+      'email' => $item->_field_data['nid']['entity']->field_email['und']['0']['email'],
+      'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
     );
 
     // Add site link.
