@@ -21,24 +21,6 @@ function frontpage_featured_form($form, &$form_state) {
   $conf = $form_state['conf'];
   _nas_panes_hide_pane_title_field($form);
 
-  $form['image'] = array(
-    '#type' => 'media',
-    '#tree' => TRUE,
-    '#title' => t('Image'),
-    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
-    '#media_options' => array(
-      'global' => array(
-        'file_extensions' => 'png jpg jpeg gif',
-        'max_filesize' => '20 MB',
-        'file_directory' => '',
-        'types' => array('image'),
-      ),
-    ),
-    '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
-    '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_frontpage'),
-  );
-
   // The two function calls below are necessary if we want to use a media
   // element type, because it causes ajax requests, which in turn call
   // drupal_form_rebuild(), and without the below includes, Drupal will
@@ -54,51 +36,146 @@ function frontpage_featured_form($form, &$form_state) {
   // can successfully retrieve the settings form.
   ctools_form_include($form_state, 'nas_panes_frontpage_featured', 'nas_panes', 'plugins/content_types/frontpage_featured');
 
-  $form['header_color_mode'] = array(
+  $variants = array(
+    'curtain_simple' => t('Simple curtain'),
+    'hero_image' => t('Hero image (no curtain)'),
+//    'curtain_3stories' => t('Curtain with 3 stories'),
+//    'curtain_package' => t('Curtain with a package of stories'),
+//    'curtain_video' => t('Video curtain'),
+  );
+  $form['variant'] = array(
+    '#type' => 'select',
+    '#title' => t('Frontpage variant'),
+    '#options' => $variants,
+    '#default_value' => !empty($conf['variant']) ? $conf['variant'] : 'curtain_simple',
+  );
+
+  $form['curtain_simple'] = array(
+    '#type' => 'container',
+    '#title' => t('Simple curtain fields'),
+    '#tree' => TRUE,
+  );
+  $_conf = !empty($conf['curtain_simple']) ? $conf['curtain_simple'] : $conf; //array();
+  $form['curtain_simple']['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
+    '#required' => TRUE,
+    '#pp_crop_styles' => array('featured_frontpage'),
+  );
+  $form['curtain_simple']['header_color_mode'] = array(
     '#type' => 'radios',
     '#title' => t('Header color mode'),
     '#options' => array(
       'dark' => t('Dark'),
       'light' => t('Light'),
     ),
-    '#default_value' => !empty($conf['header_color_mode']) ? $conf['header_color_mode'] : 'dark',
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
   );
-
-  $form['title'] = array(
+  $form['curtain_simple']['title'] = array(
     '#type' => 'textfield',
     '#title' => t('Title'),
-    '#default_value' => !empty($conf['title']) ? $conf['title'] : '',
+    '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
     '#required' => TRUE,
   );
-
-  $form['title_link'] = array(
+  $form['curtain_simple']['title_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Title link'),
-    '#default_value' => !empty($conf['title_link']) ? $conf['title_link'] : '',
+    '#default_value' => !empty($_conf['title_link']) ? $_conf['title_link'] : '',
     '#required' => TRUE,
   );
-
-  $form['blue_text'] = array(
+  $form['curtain_simple']['blue_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Blue text'),
-    '#default_value' => !empty($conf['blue_text']) ? $conf['blue_text'] : '',
+    '#default_value' => !empty($_conf['blue_text']) ? $_conf['blue_text'] : '',
     '#required' => TRUE,
   );
-
-  $form['blue_text_link'] = array(
+  $form['curtain_simple']['blue_text_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Blue text link'),
-    '#default_value' => !empty($conf['blue_text_link']) ? $conf['blue_text_link'] : '',
+    '#default_value' => !empty($_conf['blue_text_link']) ? $_conf['blue_text_link'] : '',
     '#required' => TRUE
   );
-
-  $form['summary'] = array(
+  $form['curtain_simple']['summary'] = array(
     '#type' => 'textarea',
     '#title' => t('Summary'),
     '#required' => TRUE,
-    '#default_value' => !empty($conf['summary']) ? $conf['summary'] : '',
+    '#default_value' => !empty($_conf['summary']) ? $_conf['summary'] : '',
   );
+
+  $form['hero_image'] = array(
+    '#type' => 'container',
+    '#title' => t('Hero image'),
+    '#tree' => TRUE,
+  );
+  $_conf = !empty($conf['hero_image']) ? $conf['hero_image'] : array();
+
+  $form['hero_image']['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
+    '#required' => TRUE,
+    '#pp_crop_styles' => array('featured_frontpage'),
+  );
+  $form['hero_image']['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+    ),
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['hero_image']['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
+    '#required' => TRUE,
+  );
+  $form['hero_image']['title_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title link'),
+    '#default_value' => !empty($_conf['title_link']) ? $_conf['title_link'] : '',
+    '#required' => TRUE,
+  );
+  $form['hero_image']['blue_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Slug text'),
+    '#default_value' => !empty($_conf['blue_text']) ? $_conf['blue_text'] : '',
+    '#required' => TRUE,
+  );
+  $form['hero_image']['blue_text_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Slug text link'),
+    '#default_value' => !empty($_conf['blue_text_link']) ? $_conf['blue_text_link'] : '',
+    '#required' => TRUE
+  );
+
+  foreach (array_keys($variants) as $variant) {
+    $form[$variant]['#states']['visible']['select[name="variant"]'][] = array('value' => $variant);
+  }
 
   return $form;
 }
@@ -111,6 +188,10 @@ function frontpage_featured_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
+      // Update frontpage variant.
+      if ($key == 'variant') {
+        _frontpage_variant($form_state['values'][$key] == 'hero_image' ? 'hero_image' : 'curtain');
+      }
     }
   }
 }
@@ -120,12 +201,41 @@ function frontpage_featured_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function frontpage_featured_render($subtype, $conf, $args, $contexts) {
-  $block = new stdClass();
+  $contextual_links = '';
+  if (user_access('frontpage featured pane edit')) {
+    $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+  }
 
+  switch ($conf['variant']) {
+    case 'curtain_simple':
+      $content = _frontpage_featured_simple_curtain_render($conf['curtain_simple'], $contextual_links);
+      break;
+
+    case 'hero_image':
+      $content = _frontpage_featured_hero_image_render($conf['hero_image'], $contextual_links);
+      break;
+
+  }
+
+  $block = new stdClass();
+  $block->content = $content;
+  return $block;
+}
+
+/**
+ * Helper function for rendering 'Simple curtain' pane variant.
+ *
+ * @param array $conf
+ *   Configuration array.
+ * @param string $contextual_links
+ *   Rendered contextual links.
+ *
+ * @return string
+ *   Rendered HTML markup.
+ */
+function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
-  $image_caption = '';
-  $image_credit = '';
   if (!empty($image)) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
     $attribution = _nas_panes_format_image_attribution($image);
@@ -135,11 +245,6 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 
   $title_link = l(t($conf['title']), $conf['title_link']);
   $blue_text_link = l(t($conf['blue_text']), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
-
-  $contextual_links = '';
-  if (user_access('frontpage featured pane edit')) {
-    $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
-  }
 
   $class = &drupal_static('nas_header_class');
   $class = 'dark-text light-bg transparent';
@@ -168,6 +273,49 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
     'contextual_links' => $contextual_links,
   ));
 
-  $block->content = $content;
-  return $block;
+  return $content;
+}
+
+/**
+ * Helper function for rendering 'hero image' pane variant.
+ *
+ * @param array $conf
+ *   Configuration array.
+ * @param string $contextual_links
+ *   Rendered contextual links.
+ *
+ * @return string
+ *   Rendered HTML markup.
+ */
+function _frontpage_featured_hero_image_render($conf, $contextual_links) {
+  $image = file_load($conf['image']);
+  if (!empty($image)) {
+    $image_wrapper = entity_metadata_wrapper('file', $image);
+    $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
+    $hero_image = theme('image_style', array(
+      'style_name' => 'hero_image',
+      'path' => $image->uri,
+      'title' => $image_caption,
+    ));
+    $attribution = _nas_panes_format_image_attribution($image);
+  }
+
+  $class = &drupal_static('nas_header_class');
+  $class = 'dark-text light-bg transparent';
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
+  }
+
+  $title_link = l(t($conf['title']), $conf['title_link']);
+  $blue_text_link = l(t($conf['blue_text']), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
+
+  $content = theme('nas_frontpage_featured__hero_image', array(
+    'hero_image' => $hero_image,
+    'attribution' => $attribution,
+    'title_link' => $title_link,
+    'slug_link' => $blue_text_link,
+    'contextual_links' => $contextual_links,
+  ));
+
+  return $content;
 }
