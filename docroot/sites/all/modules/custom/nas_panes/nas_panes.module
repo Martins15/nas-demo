@@ -1579,6 +1579,7 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
+      'first_name' => $item->field_first_name,
     );
 
     // Add site link.
