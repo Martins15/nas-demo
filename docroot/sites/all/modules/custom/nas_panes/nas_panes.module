@@ -1800,7 +1800,6 @@ function nas_panes_upcoming_events_callback() {
     $locations = _nas_panes_get_upcoming_events($query['state']);
   }
 
-  print_r $locations;
   // Display default behaviour.
   if (empty($locations)) {
     //return;
