@@ -51,7 +51,6 @@ function upcoming_events_block_form_submit(&$form, &$form_state) {
   }
 }
 
-
 /**
  * Run-time rendering of the body of the block (content type).
  *
