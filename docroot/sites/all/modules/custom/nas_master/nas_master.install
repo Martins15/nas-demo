@@ -2219,5 +2219,7 @@ function nas_master_update_7168() {
  * Revert feature.
  */
 function nas_master_update_7170() {
-  features_revert_module('nas_locations');
+  module_enable(array('email'));
+  module_enable(array('phone'));
+  features_revert_module('nas_location_feature');
 }
