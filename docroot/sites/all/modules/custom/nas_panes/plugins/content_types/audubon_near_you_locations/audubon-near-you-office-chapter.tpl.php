@@ -21,7 +21,9 @@
         <article class="node-<?php print $item['nid']; ?>">
           <h1 class="title-article"><?php print $item['title']; ?><span><?php print $item['subtitle']; ?></span></h1>
           <div class="content-article">
+            <?php dsm($item); ?>
             <?php print $item['body']; ?>
+            <?php print $item['first_name']; ?>
             <?php print $item['site_link'] ?>
           </div>
         </article>

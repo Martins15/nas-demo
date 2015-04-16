@@ -27,4 +27,5 @@ function nas_sla_update_7102() {
 function nas_sla_update_7103() {
   module_enable(array('taxonomy_orderselect'));
   features_revert_module('nas_article_feature');
+  features_revert_module('nas_locations');
 }
