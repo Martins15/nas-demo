@@ -1812,7 +1812,7 @@ function nas_panes_upcoming_events_callback() {
   if (empty($locations)) {
     return;
   }
-  
+
   print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
