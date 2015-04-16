@@ -1810,9 +1810,9 @@ function nas_panes_upcoming_events_callback() {
 
   // Display default behaviour.
   if (empty($locations)) {
-    return 'null';
+    return;
   }
-
+  
   print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 

@@ -7,8 +7,8 @@
         var wrapper = '#upcoming-events-content-wrapper';
 
         var onSuccess = function(stateIsoCode) {
-          console.log(stateIsoCode);
-          stateIsoCode = 'NC';
+          console.log('stateIsoCode= ' + stateIsoCode);
+          //stateIsoCode = 'NC';
           if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
             return;
           }
