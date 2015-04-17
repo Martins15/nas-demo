@@ -29,7 +29,11 @@ function nas_location_feature_field_group_info() {
       3 => 'field_location_address',
       4 => 'field_location_link',
       5 => 'field_location_type',
-      6 => 'title',
+      6 => 'field_phone',
+      7 => 'field_email',
+      8 => 'field_first_name',
+      9 => 'field_last_name',
+      10 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -54,7 +58,7 @@ function nas_location_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'field_internal_tagging',
     ),
