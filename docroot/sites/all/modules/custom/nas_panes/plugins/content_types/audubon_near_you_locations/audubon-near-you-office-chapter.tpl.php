@@ -23,22 +23,24 @@
           <div class="content-article">
             <?php print $item['body']; ?>
           </div>
-          <div class="contact-name">
-            <?php print $item['first_name']; ?>
-            <?php print $item['last_name']; ?>
-          </div>
-          <div class="contact-phone">
-            <?php print $item['phone']; ?>
-          </div>
-          <div class="contact-email">
-            <?php print $item['email']; ?>
-          </div>
-          <div class="address">
-            <?php print $item['address']['thoroughfare']; ?>
-            <?php print $item['address']['postal_code']." - "; ?>
-            <?php print $item['address']['locality']." - "; ?>
-            <?php print $item['address']['administrative_area']." - "; ?>
-            <?php print $item['address']['country']; ?>
+          <div class="contact">
+            <div class="contact-name">
+              <?php print $item['first_name']; ?>
+              <?php print $item['last_name']; ?>
+            </div>
+            <div class="contact-phone-email">
+              <?php print $item['phone_email']; ?>
+            </div>
+            <div class="contact-address">
+              <span class="contact-address-label">
+                <?php print $item['address_label']; ?>
+              </span>
+              <?php print $item['address']['thoroughfare']; ?>
+              <?php print $item['address']['postal_code']."<br/>"; ?>
+              <?php print $item['address']['locality']." - "; ?>
+              <?php print $item['address']['administrative_area']." - "; ?>
+              <?php print $item['address']['country']; ?>
+            </div>
           </div>
           <div class="site-link">
             <?php print $item['site_link'] ?>

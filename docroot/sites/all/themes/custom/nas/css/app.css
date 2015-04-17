@@ -14063,3 +14063,23 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .article-text .article-video-container.right figcaption {
   text-align: left;
 }
+
+.page-audubon-near-you .contact {
+  margin: 5px 0;
+  padding: 5px 10px;
+  border: solid 1px #ccc;
+}
+.page-audubon-near-you .contact .contact-name {
+  font-weight: bold;
+}
+.page-audubon-near-you .contact .contact-phone-email {
+  font-size: 14px;
+}
+.page-audubon-near-you .contact .contact-address {
+  font-size: 14px;
+  line-height: 17px;
+  padding-top: 5px;
+}
+.page-audubon-near-you .contact .contact-address .contact-address-label {
+  font-weight: bold;
+}
