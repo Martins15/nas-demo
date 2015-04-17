@@ -40,7 +40,7 @@ function _nas_export_birds_get_json() {
 
       $url = url('node/' . $node->nid, array('absolute' => TRUE));
       $title = $node_wrapper->title->value();
-      $field_bird_sci_name = $node_wrapper->field_bird_illustration->value();
+      $field_bird_sci_name = $node_wrapper->field_bird_sci_name->value();
 
       $bird_audio_url = '';
       $field_bird_audio = $node_wrapper->field_bird_audio->value();
