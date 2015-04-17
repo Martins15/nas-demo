@@ -47,17 +47,21 @@ function _nas_export_birds_get_json() {
       $field_bird_audio = reset($field_bird_audio);
       if (!empty($field_bird_audio['fid'])) {
         $file = file_load($field_bird_audio['fid']);
-        $bird_audio_url = file_create_url($file->uri);
+        if (isset($file->uri)) {
+          $bird_audio_url = file_create_url($file->uri);
+        }
       }
 
       $bird_illustration_url = '';
       $field_bird_illustration = $node_wrapper->field_bird_illustration->value();
       if (!empty($field_bird_illustration['fid'])) {
         $file = file_load($field_bird_illustration['fid']);
-        $bird_illustration_url = image_style_url(
-          'nas_bird_teaser_illustration',
-          $file->uri
-        );
+        if (isset($file->uri)) {
+          $bird_illustration_url = image_style_url(
+            'nas_bird_teaser_illustration',
+            $file->uri
+          );
+        }
       }
 
       $row = array(
