@@ -172,7 +172,6 @@ function frontpage_featured_form($form, &$form_state) {
     '#required' => TRUE
   );
 
-
   $form['curtain_3stories'] = array(
     '#type' => 'container',
     '#title' => t('Hero image'),
