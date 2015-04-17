@@ -35,6 +35,16 @@ function nas_alters_theme() {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function nas_alters_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'nas_alters'),
+  );
+}
+
+/**
  * Implements theme_button()
  * used to return <button> tag when needed
  */
@@ -231,73 +241,119 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['#attributes']['class'][] = 'bird-guide-exposed-form';
     $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/bird-guide-form.js';
 
-    // TODO: replace with db_select().
-    $species = db_query("SELECT n.title, n.nid, ua.alias, field_bird_family_tid bfs, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
-    FROM {node} n
-    LEFT JOIN {field_data_field_bird_family} bf ON bf.entity_id = n.nid
-    LEFT JOIN {field_data_field_bird_region} br ON br.entity_id = n.nid
-    LEFT JOIN {url_alias} ua ON ua.source = CONCAT(:prefix, n.nid)
-    WHERE type = :type AND status = :status
-    GROUP BY n.title", array(
-      ':prefix' => 'node/',
-      ':type' => 'bird',
-      ':status' => NODE_PUBLISHED,
-    ))->fetchAll();
-
-    foreach ($species as &$item) {
-      $item->bfs = (int) $item->bfs;
-      $item->rgs = explode(',', $item->rgs);
-      if (!$item->alias) {
-        $item->alias = 'node/' . $item->nid;
-      }
-      unset($item->nid);
-    }
-
-    // TODO: replace with db_select().
-    $families = db_query("SELECT bftd.tid, bftd.name, GROUP_CONCAT(DISTINCT field_bird_region_tid) rgs
-    FROM {node} n
-    LEFT JOIN {field_data_field_bird_family} bf ON bf.entity_id = n.nid
-    LEFT JOIN {taxonomy_term_data} bftd ON bftd.tid = bf.field_bird_family_tid
-    LEFT JOIN {field_data_field_bird_region} br ON br.entity_id = n.nid
-    WHERE type = :type AND status = :status
-    GROUP BY bftd.tid", array(
-      ':type' => 'bird',
-      ':status' => NODE_PUBLISHED,
-    ))->fetchAll();
-
-    foreach ($families as &$family) {
-      $family->rgs = explode(',', $family->rgs);
-    }
-
-    $form['search_api_views_fulltext']['#typeahead'] = array(
-      array(
-        'type' => 'local callback',
-        'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
-        'values' => $species,
-        'options' => array(
-          'name' => 'species',
-          'displayKey' => 'title',
-        )
-      ),
-      array(
-        'type' => 'local callback',
-        'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
-        'values' => $families,
-        'options' => array(
-          'name' => 'families',
-          'displayKey' => 'name',
-          'templates' => array(
-            'header' => '<div class="tt-separator">' . t('Taxonomy families') . '</div>'
-          ),
-        )
-      ),
-    );
-
     if (!empty($form_state['storage']['external_page'])) {
       $form['external_page'] = array(
         '#type' => 'hidden',
         '#value' => TRUE,
       );
+      // Apply typeahead.js settings for form placed not on the Field Guide page.
+      $species = _nas_search_get_tt_species();
+      $form['search_api_views_fulltext']['#typeahead'] = array(
+        array(
+          'type' => 'local values',
+          'values' => $species,
+          'options' => array(
+            'name' => 'species',
+            'displayKey' => 'title',
+            'limit' => 10,
+          )
+        ),
+      );
+    }
+    else {
+      // Apply typeahead.js settings for form placed on the Field Guide page.
+      $species = _nas_search_get_tt_species();
+      $families = _nas_search_get_tt_families();
+
+      $form['search_api_views_fulltext']['#typeahead'] = array(
+        array(
+          'type' => 'local callback',
+          'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
+          'values' => $species,
+          'options' => array(
+            'name' => 'species',
+            'displayKey' => 'title',
+          )
+        ),
+        array(
+          'type' => 'local callback',
+          'localCallback' => 'Drupal.behaviors.birdGuideFilters.birdGuideFilteredResults',
+          'values' => $families,
+          'options' => array(
+            'name' => 'families',
+            'displayKey' => 'name',
+            'templates' => array(
+              'header' => '<div class="tt-separator">' . t('Taxonomy families') . '</div>'
+            ),
+          )
+        ),
+      );
+    }
+  }
+
+  if ($form['#id'] == 'views-exposed-form-events-listing-events-listing-pane') {
+    $form['#attributes']['class'][] = 'events-search-form';
+    $form['query']['#attributes']['placeholder'] = t('Search for an event...');
+    $form['submit']['#value'] = '<span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">' . $form['submit']['#value'] . '</span>';
+    $form['submit']['#attributes']['class'][] = 'bird-guide-search-submit';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+
+    $searcher = 'search_api@default_node_index';
+    // Checks view uses search index and adapter is loaded.
+    if (facetapi_is_active_searcher($searcher) && $adapter = facetapi_adapter_load($searcher)) {
+      $current_search = $adapter->getCurrentSearch();
+
+      $facets = array();
+      // Facets might be empty.
+      if (!empty($current_search[1]['search_api_facets'])) {
+        $facets = $current_search[1]['search_api_facets'];
+      }
+
+      // Process filter by state.
+      $options = array('All' => t('Filter by State'));
+      if (!empty($facets['event_state'])) {
+        foreach ($facets['event_state'] as $rawvalue) {
+          $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
+          $options[$key] = $key;
+        }
+      }
+      $form['event_state']['#type'] = 'select';
+      $form['event_state']['#options'] = $options;
+      $form['event_state']['#multiple'] = FALSE;
+      unset($form['event_state']['#size']);
+
+      // Process filter by month.
+      $options = array('All' => t('Filter by Month'));
+      if (!empty($facets['event_months'])) {
+        foreach ($facets['event_months'] as $rawvalue) {
+          $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
+          // Convert month number to name.
+          $month_num = (int) substr($key, 4, 2);
+          $date_obj = DateTime::createFromFormat('!m', $month_num);
+          $month_name = $date_obj->format('F');
+          // TODO: translate month name.
+          $options[$key] = $month_name . ' ' . substr($key, 0, 4);
+        }
+      }
+      $form['event_months']['#type'] = 'select';
+      $form['event_months']['#options'] = $options;
+      $form['event_months']['#multiple'] = FALSE;
+      unset($form['event_months']['#size']);
+
+      // Process filter by type.
+      $available_types[] = 'All';
+      if (!empty($facets['field_event_type'])) {
+        foreach ($facets['field_event_type'] as $rawvalue) {
+          $available_types[] = (int) preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
+        }
+        foreach ($form['field_event_type']['#options'] as $key => $value) {
+          if (!in_array($key, $available_types)) {
+            unset($form['field_event_type']['#options'][$key]);
+          }
+        }
+      }
+      $form['field_event_type']['#options']['All'] = t('Filter by Event Type');
     }
   }
 }
@@ -495,5 +551,24 @@ function nas_alters_node_presave($node) {
   }
   if ($node->status == NODE_PUBLISHED && $node->original->status == NODE_NOT_PUBLISHED) {
     $node->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s');
+  }
+}
+
+/**
+ * Implements hook_panels_pane_prepared_alter().
+ */
+function nas_alters_panels_panes_prepared_alter(&$panes, $b) {
+  // Events listing views should be processed first, so facets will be available.
+  if (strpos($b->display->cache_key, 'page-events_landing_page') !== FALSE) {
+    foreach ($panes as &$pane) {
+      if ($pane->subtype == 'events_listing-events_listing_pane') {
+        $copy = clone $pane;
+        unset($panes[$pane->pid]);
+        break;
+      }
+    }
+    $panes = array_reverse($panes, TRUE);
+    $panes[$copy->pid] = $copy;
+    $panes = array_reverse($panes, TRUE);
   }
 }
