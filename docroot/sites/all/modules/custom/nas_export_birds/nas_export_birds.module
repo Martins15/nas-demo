@@ -22,7 +22,7 @@ function nas_export_birds_menu() {
 /**
  * Return JSON stream with birds content.
  */
-function _nas_export_birds_get_json(){
+function _nas_export_birds_get_json() {
   $data = array();
 
   $nids = db_select('node', 'n')
@@ -35,7 +35,7 @@ function _nas_export_birds_get_json(){
   if (!empty($nids)) {
 
     $nodes = node_load_multiple($nids);
-    foreach($nodes as $node) {
+    foreach ($nodes as $node) {
       $node_wrapper = entity_metadata_wrapper('node', $node);
 
       $url = url('node/' . $node->nid, array('absolute' => TRUE));
