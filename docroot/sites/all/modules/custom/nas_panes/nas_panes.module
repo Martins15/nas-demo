@@ -1640,7 +1640,6 @@ function _nas_panes_get_upcoming_events($state = 'all') {
     );
     $count = $count + 1;
   }
-  dpm(array($results, $items, $state));
   return $items;
 }
 
@@ -1727,12 +1726,6 @@ function nas_panes_menu() {
   );
 
   $items['ajax/upcoming-events'] = array(
-    'page callback' => 'nas_panes_upcoming_events_callback',
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
-
-  $items['uev'] = array(
     'page callback' => 'nas_panes_upcoming_events_callback',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,

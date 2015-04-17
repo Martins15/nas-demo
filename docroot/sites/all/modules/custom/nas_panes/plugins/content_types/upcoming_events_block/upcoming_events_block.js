@@ -7,9 +7,6 @@
         var wrapper = '#upcoming-events-content-wrapper';
 
         var onSuccess = function(stateIsoCode) {
-          console.log('stateIsoCode= ' + stateIsoCode);
-          stateIsoCode = 'CA';
-          console.log('stateIsoCode= ' + stateIsoCode);
           if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
             return;
           }
@@ -21,11 +18,6 @@
             data: { 'state': stateIsoCode },
             dataType: 'html',
             success: function (data) {
-              var debugFragment = document.createElement('div');
-              debugFragment.innerHTML = data;
-              console.log('AJAX success');
-              console.log(debugFragment);
-              console.log(data);
               if (data !== '') {
                 $(wrapper).once().replaceWith(data);
                 $('.upcoming-events-block').show();
@@ -39,8 +31,7 @@
         };
         
         $('.upcoming-events-block').hide();
-        
-        console.log('geoIP');
+
         // Internal request.
         geoip.getState(onSuccess);
       });
