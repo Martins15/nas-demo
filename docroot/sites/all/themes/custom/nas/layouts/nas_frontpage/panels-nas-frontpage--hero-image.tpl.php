@@ -6,7 +6,7 @@
  */
 ?>
 <header class="global-header <?php print drupal_static('nas_header_class'); ?>">
-  <?php print $content['header']; ?>
+  <?php print $content['top']; ?>
 </header>
 <?php print $content['featured_top']; ?>
 <section class="global-content">
