@@ -21,6 +21,24 @@ $plugin = array(
 function upcoming_events_block_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
+  $form['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '10 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($conf['image']) ? $conf['image'] : 0,
+    '#required' => TRUE,
+    '#pp_crop_styles' => array('local_chapters_centers'),
+  );
+
   $form['image_link'] = array(
     '#title' => t('Image link'),
     '#type' => 'textfield',
@@ -72,26 +90,15 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   if (!empty($conf['bottom_link']['title']) && !empty($conf['bottom_link']['url'])) {
     $bottom_link = l($conf['bottom_link']['title'], $conf['bottom_link']['url'], array('attributes' => array('class' => array('editorial-card-link', 'sans'))));
   }
-
-  $locations = _nas_panes_get_upcoming_events();
+  
+  // No locations are going to be loaded by ajax.
+  // $locations = _nas_panes_get_upcoming_events();
 
   $image_markup = '';
-  $nid = 0;
-  if (!empty($locations)) {
-    $loc_copy = $locations;
-    $nid = array_shift($loc_copy);
-    $node = node_load($nid);
-    $field_image = field_get_items('node', $node, 'field_image');
-    if ($field_image and !empty($field_image)) {
-      $image_object = file_load($field_image[0]['fid']);
-      $image = theme('image_style', array(
-        'path' => $image_object->uri,
-        'style_name' => 'clasifika_pages',
-        'getsize' => 'true',
-        'attributes' => array(),
-      ));
-      $image_markup = !empty($conf['image_link']) ? l($image, $conf['image_link'], array('html' => TRUE)) : $image;
-    }
+  if (!empty($conf['image'])) {
+    $image_object = file_load($conf['image']);
+    $image = theme('image', array('path' => image_style_url('local_chapters_centers', $image_object->uri)));
+    $image_markup = !empty($conf['image_link']) ? l($image, $conf['image_link'], array('html' => TRUE)) : $image;
   }
 
   $content = theme('upcoming_events_block', array(
