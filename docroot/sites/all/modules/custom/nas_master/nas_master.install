@@ -2332,3 +2332,10 @@ function nas_master_update_7170() {
 function nas_master_update_7171() {
   module_enable(array('nas_field_max_length'));
 }
+
+/**
+ * Enable Export birds module.
+ */
+function nas_master_update_7172() {
+  module_enable(array('nas_export_birds'));
+}
