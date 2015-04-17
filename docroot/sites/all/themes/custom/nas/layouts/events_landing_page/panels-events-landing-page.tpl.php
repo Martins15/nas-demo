@@ -8,6 +8,7 @@
 <?php print $content['header']; ?>
 </header>
 
+<?php if (!empty($content['exposed_form'])): ?>
 <div class="events-search show">
   <div class="row">
     <div class="columns large-12">
@@ -15,6 +16,7 @@
     </div>
   </div>
 </div>
+<?php endif; ?>
 <section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content">
   <div class="row">
     <!-- BEGIN MAIN COLUMN -->

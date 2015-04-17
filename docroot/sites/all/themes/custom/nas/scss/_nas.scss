@@ -91,7 +91,7 @@
   .button.load-more:hover {
     background-color: #EDECEA;
   }
-
+  
   &.pager-load-more-empty,
   .ajax-progress-throbber {
     display: none;
@@ -288,112 +288,112 @@ textarea {
 /** 
  * CTools popup forms refinements.
  */
-  #modalContent .ctools-modal-content {
-    .description {
-      color: #333;
-      font-size: 13px;
+#modalContent .ctools-modal-content {
+  .description {
+    color: #333;
+    font-size: 13px;
+  }
+
+  .form-type-checkboxes,
+  .form-type-radios {
+    .form-item,
+    input {
+      margin: 0;
+    }
+  }
+
+  .form-type-media {
+    label {
+      float: left;
+      margin-right: 1em;
+
+      &.media-filename {
+        font-size: 10px;
+        line-height: 12px;
+        margin: 0;
+        padding: 2px;
+        width: 100%;
+      }
     }
 
-    .form-type-checkboxes,
-    .form-type-radios {
-      .form-item,
-      input {
+    .preview {
+      margin-bottom: 1em;
+      float: left;
+    }
+
+    .remove {
+      clear: left;
+    }
+  }
+
+  .clearfix {
+    clear: both;
+  }
+
+  .resizable-textarea {
+    margin: 0;
+  }
+
+  .sticky-header {
+    display: none;
+  }
+
+  .button {
+    margin-right: 1em;
+    float: left;
+  }
+
+  input.form-submit {
+    @include button;
+    @include button-style($bg:$color-tomato);
+    float: left;
+    margin-right: 1em;
+
+    &.field-add-more-submit {
+      margin-top: 1em;
+    }
+  }
+
+  .text-format-wrapper {
+    margin-bottom: 1em;
+
+    label {
+      float: none;
+    }
+
+    .form-type-textarea {
+      margin-bottom: 0;
+    }
+
+    .wysiwyg-toggle-wrapper {
+      padding-left: 1.5em;
+    }
+    .form-type-select {
+      margin:  0;
+
+      select {
         margin: 0;
       }
     }
+  }
 
-    .form-type-media {
-      label {
-        float: left;
-        margin-right: 1em;
+  a.tabledrag-handle .handle {
+    padding: 12px 10px;
+  }
 
-        &.media-filename {
-          font-size: 10px;
-          line-height: 12px;
-          margin: 0;
-          padding: 2px;
-          width: 100%;
-        }
-      }
+  .form-item-context,
+  .form-item-reusable,
+  .form-item-category,
+  .form-item-admin-title,
+  #edit-admin-description-wrapper,
+  #edit-log-wrapper,
+  .form-item-revision {
+    display: none !important;
+  }
 
-      .preview {
-        margin-bottom: 1em;
-        float: left;
-      }
-
-      .remove {
-        clear: left;
-      }
-    }
-
-    .clearfix {
-      clear: both;
-    }
-
-    .resizable-textarea {
-      margin: 0;
-    }
-
-    .sticky-header {
-      display: none;
-    }
-
-    .button {
-      margin-right: 1em;
-      float: left;
-    }
-
-    input.form-submit {
-      @include button;
-      @include button-style($bg:$color-tomato);
-      float: left;
-      margin-right: 1em;
-
-      &.field-add-more-submit {
-        margin-top: 1em;
-      }
-    }
-
-    .text-format-wrapper {
-      margin-bottom: 1em;
-
-      label {
-        float: none;
-      }
-
-      .form-type-textarea {
-        margin-bottom: 0;
-      }
-
-      .wysiwyg-toggle-wrapper {
-        padding-left: 1.5em;
-      }
-      .form-type-select {
-        margin:  0;
-
-        select {
-          margin: 0;
-        }
-      }
-    }
-
-    a.tabledrag-handle .handle {
-      padding: 12px 10px;
-    }
-
-    .form-item-context,
-    .form-item-reusable,
-    .form-item-category,
-    .form-item-admin-title,
-    #edit-admin-description-wrapper,
-    #edit-log-wrapper,
-    .form-item-revision {
-      display: none !important;
-    }
-
-    /**
-     * Tables.
-     */
+  /**
+   * Tables.
+   */
   table {
     margin: 0 0 10px;
     width: 100%;
@@ -873,7 +873,7 @@ body.node-type-slideshow {
 .article-text .article-video-container {
   width: auto;
   iframe {
-
+    
   }
   &.left {
     text-align: left;
@@ -894,8 +894,6 @@ body.node-type-slideshow {
     }
   }
 }
-
-<<<<<<< HEAD
 .page-audubon-near-you{
   .contact{
     margin: 5px 0;
@@ -917,7 +915,6 @@ body.node-type-slideshow {
     }
   }
 }
-=======
 /* Individual Events page*/
 article.event {
   .event-header {
@@ -1033,4 +1030,3 @@ article.event {
     margin: 0 0 3px;
   }
 }
->>>>>>> master

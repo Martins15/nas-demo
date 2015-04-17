@@ -333,6 +333,47 @@ var Nas = Nas || {};
             window.history.replaceState('', '', updated_url);
           }
         });
+        // Additionatly change page number after bird is clicked.
+        $('.bird-card a').bind('click touchend', function (e) {
+          var id = parseInt($(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', '')),
+              page_numb_replace = 'page=' + id,
+              page_regexp_replace = /page=\d+/g;
+          if (id === 0) {
+            page_numb_replace = '';
+            page_regexp_replace = /page=\d+&?/g;
+          }
+          var updated_url = window.location.pathname + window.location.search.replace(page_regexp_replace, page_numb_replace);
+          window.history.replaceState('', '', updated_url);
+        });
+      }
+    }
+  };
+
+  Drupal.behaviors.NewsPage = {
+    attach: function (context, settings) {
+      if ($('body').hasClass('page-news') || ($('body').hasClass('page-taxonomy-term-tags'))) {
+        $(document).ajaxComplete(function(event, xhr, settings) {
+          var updated_url = '';
+          // change the URL after a new content is loaded.
+          if (settings.url.match("\\?page=")) {
+            updated_url = settings.url;
+          }
+          if (updated_url !== '') {
+            window.history.replaceState('', '', updated_url);
+          }
+        });
+        // Additionatly change page number after links is clicked.
+        $('.view-nas-news a').bind('click touchend', function (e) {
+          var id = parseInt($(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', '')),
+              page_numb_replace = 'page=' + id,
+              page_regexp_replace = /page=\d+/g;
+          if (id === 0) {
+            page_numb_replace = '';
+            page_regexp_replace = /page=\d+&?/g;
+          }
+          var updated_url = window.location.pathname + window.location.search.replace(page_regexp_replace, page_numb_replace);
+          window.history.replaceState('', '', updated_url);
+        });
       }
     }
   };
@@ -344,13 +385,15 @@ var Nas = Nas || {};
        titlePosition();  
      }); 
 
-     function titlePosition(){
-       var lleft = $(".tiny-8").position().left;
-       lleft = parseInt(lleft);
-       var pleft = $(".tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
-       pleft = parseInt(pleft);
-       $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
-     } 
+      function titlePosition(){
+        if ($(".view-display-id-articles_term_10 .tiny-8").position() !== null){
+          var lleft = $(".view-display-id-articles_term_10 .tiny-8").position().left;
+          lleft = parseInt(lleft);
+          var pleft = $(".view-display-id-articles_term_10 .tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
+          pleft = parseInt(pleft);
+          $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
+        }
+      } 
     }
   };
 })(jQuery);

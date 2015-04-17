@@ -1347,13 +1347,17 @@ function nas_preprocess_nas_flyway(&$variables) {
  * Implements hook_preprocess_panels_nas_frontpage().
  */
 function nas_preprocess_panels_nas_frontpage(&$variables) {
-  // Set featured frontpage backgroudimage variable.
+  // Set featured frontpage background image variable.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $variables['frontpage_backgroundimage'] = $featured_frontpage_image;
 
   // Set featured frontpage mobile content variable.
   $featured_frontpage_mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $variables['featured_frontpage_mobile_content'] = $featured_frontpage_mobile_content;
+
+  if (_frontpage_variant() == 'hero_image') {
+    $variables['theme_hook_suggestion'] = 'panels_nas_frontpage__hero_image';
+  }
 }
 
 /**
