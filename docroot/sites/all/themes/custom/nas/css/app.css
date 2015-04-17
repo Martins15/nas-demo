@@ -4158,7 +4158,6 @@ ul.small-list li {
 @media only screen and (min-width: 768px) {
   .global-header.transparent {
     background-color: transparent;
-    margin-bottom: -100px;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -5505,6 +5504,12 @@ table.row-borders tbody td {
   width: 100%;
   height: 200px;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+}
+@media only screen and (min-width: 768px) {
+  .global-header.transparent + .hero {
+    top: -100px;
+    margin-bottom: -100px;
+  }
 }
 .hero.light-text a {
   color: #fff;
