@@ -90,7 +90,7 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   if (!empty($conf['bottom_link']['title']) && !empty($conf['bottom_link']['url'])) {
     $bottom_link = l($conf['bottom_link']['title'], $conf['bottom_link']['url'], array('attributes' => array('class' => array('editorial-card-link', 'sans'))));
   }
-  
+
   // No locations are going to be loaded by ajax.
   // $locations = _nas_panes_get_upcoming_events();
 
