@@ -39,7 +39,7 @@ function frontpage_featured_form($form, &$form_state) {
   $variants = array(
     'curtain_simple' => t('Simple curtain'),
     'hero_image' => t('Hero image (no curtain)'),
-  //    'curtain_3stories' => t('Curtain with 3 stories'),
+    'curtain_3stories' => t('Curtain with 3 stories'),
   //    'curtain_package' => t('Curtain with a package of stories'),
   //    'curtain_video' => t('Video curtain'),
   );
@@ -136,7 +136,6 @@ function frontpage_featured_form($form, &$form_state) {
     ),
     '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
     '#required' => TRUE,
-    '#pp_crop_styles' => array('featured_frontpage'),
   );
   $form['hero_image']['header_color_mode'] = array(
     '#type' => 'radios',
@@ -173,11 +172,141 @@ function frontpage_featured_form($form, &$form_state) {
     '#required' => TRUE
   );
 
+
+  $form['curtain_3stories'] = array(
+    '#type' => 'container',
+    '#title' => t('Hero image'),
+    '#tree' => TRUE,
+  );
+  $_conf = !empty($conf['curtain_3stories']) ? $conf['curtain_3stories'] : array();
+
+  $form['curtain_3stories']['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
+    '#required' => TRUE,
+  );
+  $form['curtain_3stories']['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+    ),
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['curtain_3stories']['title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
+    '#required' => TRUE,
+  );
+  $form['curtain_3stories']['title_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title link'),
+    '#default_value' => !empty($_conf['title_link']) ? $_conf['title_link'] : '',
+    '#required' => TRUE,
+  );
+  $form['curtain_3stories']['action_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Action link text'),
+    '#default_value' => !empty($_conf['action_text']) ? $_conf['action_text'] : '',
+    '#required' => TRUE,
+  );
+  $form['curtain_3stories']['action_text_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Action link url'),
+    '#default_value' => !empty($_conf['action_text_link']) ? $_conf['action_text_link'] : '',
+    '#required' => TRUE
+  );
+  $form['curtain_3stories']['articles'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Stories'),
+    '#tree' => TRUE,
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+  if (empty($_conf['count'])) {
+    if (empty($form_state['curtain_3stories']['count'])) {
+      $count = 1;
+      $form_state['curtain_3stories']['count'] = $count;
+    }
+    else {
+      $count = $form_state['curtain_3stories']['count'];
+    }
+  }
+  else {
+    if (empty($form_state['curtain_3stories']['count'])) {
+      $count = $_conf['count'];
+      $form_state['curtain_3stories']['count'] = $count;
+    }
+    else {
+      $count = $form_state['curtain_3stories']['count'];
+    }
+  }
+  $form['curtain_3stories']['count'] = array(
+    '#type' => 'value',
+    '#value' => $count,
+  );
+  for ($i = 0; $i < $form_state['curtain_3stories']['count']; $i++) {
+    $form['curtain_3stories']['articles'][$i] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Story !num', array('!num' => $i + 1)),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#prefix' => '<div class="wrapper-' . $i .'">',
+      '#suffix' => '</div>',
+    );
+    $form['curtain_3stories']['articles'][$i]['entity_reference'] = array(
+      '#type' => 'entityreference',
+      '#title' => 'Story reference',
+      '#default_value' => !empty($_conf['articles'][$i]['entity_reference']) ? $_conf['articles'][$i]['entity_reference'] : '',
+      '#era_entity_type' => 'node',
+      '#era_bundles' => array('article', 'static_page', 'project'),
+    );
+    $form['curtain_3stories']['articles'][$i]['title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Title'),
+      '#default_value' => !empty($_conf['articles'][$i]['title']) ? $_conf['articles'][$i]['title'] : '',
+    );
+    $form['curtain_3stories']['articles'][$i]['slug_link'] = array(
+      '#type' => 'link_field',
+      '#title' => t('Slug link'),
+      '#default_value' => !empty($_conf['articles'][$i]['slug_link']) ? $_conf['articles'][$i]['slug_link'] : '',
+    );
+  }
+  if ($form_state['curtain_3stories']['count'] < 3) {
+    $form['curtain_3stories']['articles']['add_more'] = array(
+      '#type' => 'submit',
+      '#value' => t('Add more stories'),
+      '#submit' => array('frontpage_featured_curtain_3stories_add_more'),
+    );
+  }
+
   foreach (array_keys($variants) as $variant) {
     $form[$variant]['#states']['visible']['select[name="variant"]'][] = array('value' => $variant);
   }
 
   return $form;
+}
+
+/**
+ * Edit form submit for add more.
+ */
+function frontpage_featured_curtain_3stories_add_more($form, &$form_state) {
+  $form_state['curtain_3stories']['count']++;
+  $form_state['rebuild'] = TRUE;
 }
 
 /**
@@ -213,6 +342,10 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 
     case 'hero_image':
       $content = _frontpage_featured_hero_image_render($conf['hero_image'], $contextual_links);
+      break;
+
+    case 'curtain_3stories':
+      $content = _frontpage_featured_curtain_3stories_render($conf['curtain_3stories'], $contextual_links);
       break;
 
   }
@@ -314,6 +447,86 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
     'attribution' => $attribution,
     'title_link' => $title_link,
     'slug_link' => $blue_text_link,
+    'contextual_links' => $contextual_links,
+  ));
+
+  return $content;
+}
+
+/**
+ * Helper function for rendering 'hero image' pane variant.
+ *
+ * @param array $conf
+ *   Configuration array.
+ * @param string $contextual_links
+ *   Rendered contextual links.
+ *
+ * @return string
+ *   Rendered HTML markup.
+ */
+function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
+  $image = file_load($conf['image']);
+  if (!empty($image)) {
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $attribution_caption = $attribution_credit = '';
+    if ($items = field_get_items('file', $image, 'field_file_caption')) {
+      $attribution_caption = trim($items[0]['safe_value']);
+    }
+    if ($items = field_get_items('file', $image, 'field_file_credit')) {
+      $attribution_credit = 'Photo: ' . trim($items[0]['safe_value']);
+    }
+  }
+
+  // Pass image url value to theme
+  $featured_frontpage_image = &drupal_static('featured_frontpage_image');
+  $featured_frontpage_image = $image_path;
+
+  $class = &drupal_static('nas_header_class');
+  $class = 'dark-text light-bg transparent';
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
+  }
+
+  $title_link = l(t($conf['title']), $conf['title_link']);
+  $action_link = l(t($conf['action_text']), $conf['action_text_link'], array(
+    'attributes' => array(
+      'class' => array('button', 'large', 'expand', 'tomato'),
+    )));
+
+  $stories = array();
+  foreach ($conf['articles'] as $story) {
+    if (!empty($story['entity_reference']) && $node = node_load($story['entity_reference']['entity_id'])) {
+      $title = !empty($story['title']) ? $story['title'] : $node->title;
+      $slug_link = '';
+      if ($story['slug_link']['title'] && $story['slug_link']['url']) {
+        $slug_link = l($story['slug_link']['title'], $story['slug_link']['url']);
+      }
+      elseif ($section = nas_search_get_article_section($node, array(), '', 'node')) {
+        $slug_link = l($section->name, 'taxonomy/term/' . $section->tid);
+      }
+      $stories[] = array(
+        'title_link' => l($title, 'node/' . $node->nid),
+        'slug_link' => $slug_link,
+      );
+    }
+  }
+
+  // Pass mobile_content to theme
+  $mobile_content = &drupal_static('featured_frontpage_mobile_content');
+  $mobile_content = theme('nas_frontpage_featured__curtain_3stories_mobile', array(
+    'image_path' => $image_path,
+    'title_link' => $title_link,
+    'stories' => $stories,
+    'action_link' => $action_link,
+    'contextual_links' => $contextual_links,
+  ));
+
+  $content = theme('nas_frontpage_featured__curtain_3stories', array(
+    'attribution_title' => $attribution_caption,
+    'attribution_credit' => $attribution_credit,
+    'title_link' => $title_link,
+    'stories' => $stories,
+    'action_link' => $action_link,
     'contextual_links' => $contextual_links,
   ));
 
