@@ -46,16 +46,26 @@ function _nas_export_birds_get_json() {
       $field_bird_audio = $node_wrapper->field_bird_audio->value();
       $field_bird_audio = reset($field_bird_audio);
       if (!empty($field_bird_audio['fid'])) {
-        $bird_audio_url = _nas_export_birds_get_file_url($field_bird_audio['fid']);
+        $file = file_load($field_bird_audio['fid']);
+        if (isset($file->uri)) {
+          $bird_audio_url = file_create_url($file->uri);
+        }
       }
 
       $bird_illustration_url = '';
       $field_bird_illustration = $node_wrapper->field_bird_illustration->value();
       if (!empty($field_bird_illustration['fid'])) {
-        $bird_illustration_url = _nas_export_birds_get_file_url($field_bird_illustration['fid']);
+        $file = file_load($field_bird_illustration['fid']);
+        if (isset($file->uri)) {
+          $bird_illustration_url = image_style_url(
+            'nas_bird_teaser_illustration',
+            $file->uri
+          );
+        }
       }
 
       $row = array(
+        'nid' => $node->nid,
         'title' => $title,
         'bird_sci_name' => $field_bird_sci_name,
         'bird_audio' => $bird_audio_url,
@@ -69,13 +79,4 @@ function _nas_export_birds_get_json() {
 
   drupal_json_output($data);
   drupal_exit();
-}
-
-/**
- * Return file url by fid.
- */
-function _nas_export_birds_get_file_url($fid) {
-  $file = file_load($fid);
-  $uri = $file->uri;
-  return file_create_url($uri);
 }
