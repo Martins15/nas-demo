@@ -495,6 +495,5 @@ function nas_alters_node_presave($node) {
   }
   if ($node->status == NODE_PUBLISHED && $node->original->status == NODE_NOT_PUBLISHED) {
     $node->field_article_date[LANGUAGE_NONE][0]['value'] = date('Y-m-d - H:i:s');
- 
   }
 }
