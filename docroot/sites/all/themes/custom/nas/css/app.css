@@ -9803,6 +9803,9 @@ body.black-bg .slide-caption {
 .curtain-content.dark-text {
   color: #404040;
 }
+.curtain-content .hero-header {
+  position: static;
+}
 
 .curtain-attribution {
   line-height: 20px;
@@ -9892,6 +9895,58 @@ body.black-bg .slide-caption {
     left: 0;
     width: 100%;
   }
+}
+
+.curtain-package {
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75));
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 300px;
+}
+.curtain-package h4 {
+  font-size: 21px;
+  line-height: 24px;
+  letter-spacing: -0.1px;
+}
+.curtain-package .hero-header .button {
+  padding: 5px 25px;
+}
+.curtain-package .hero-paragraph {
+  margin: 20px 0;
+  width: auto;
+}
+.curtain-package .editorial-card-list-item {
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 20px;
+}
+.curtain-package.dark-bottom-bg {
+  background: linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 300px;
+}
+.curtain-package.dark-bottom-bg h4 a {
+  color: #fff;
+}
+.curtain-package.dark-text .hero-paragraph {
+  color: #404040;
+}
+.curtain-package.light-text .hero-title, .curtain-package.light-text .hero-slug {
+  color: #fff !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
+}
+.curtain-package.light-text .hero-slug {
+  font-weight: 600;
+}
+.curtain-package.light-text .hero-title {
+  font-weight: 400;
+}
+
+.curtain-summary {
+  padding-bottom: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
 .bg-egg {

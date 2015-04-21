@@ -40,7 +40,7 @@ function frontpage_featured_form($form, &$form_state) {
     'curtain_simple' => t('Simple curtain'),
     'hero_image' => t('Hero image (no curtain)'),
     'curtain_3stories' => t('Curtain with 3 stories'),
-  //    'curtain_package' => t('Curtain with a package of stories'),
+    'curtain_package' => t('Curtain with a package of stories'),
   //    'curtain_video' => t('Video curtain'),
   );
   $form['variant'] = array(
@@ -53,6 +53,7 @@ function frontpage_featured_form($form, &$form_state) {
   _frontpage_featured_simple_curtain_form($form, $form_state, $conf);
   _frontpage_featured_hero_image_form($form, $form_state, $conf);
   _frontpage_featured_curtain_3stories_form($form, $form_state, $conf);
+  _frontpage_featured_curtain_package_form($form, $form_state, $conf);
 
   foreach (array_keys($variants) as $variant) {
     $form[$variant]['#states']['visible']['select[name="variant"]'][] = array('value' => $variant);
@@ -325,6 +326,144 @@ function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) 
 }
 
 /**
+ * Form builder for curtain with a package of stories displayed horizontally
+ * variant.
+ */
+function _frontpage_featured_curtain_package_form(&$form, &$form_state, $conf) {
+  $form['curtain_package'] = array(
+    '#type' => 'container',
+    '#title' => t('Curtain with package of stories'),
+    '#tree' => TRUE,
+  );
+  $_conf = !empty($conf['curtain_package']) ? $conf['curtain_package'] : array();
+  $state = array(
+    'required' => array(
+      'select[name="variant"]' => array('value' => 'curtain_package'),
+    ),
+  );
+  $form['curtain_package']['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
+    '#pp_crop_styles' => array('featured_frontpage'),
+    '#states' => $state,
+  );
+  $form['curtain_package']['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+    ),
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['curtain_package']['bg_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Background color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+    ),
+    '#default_value' => !empty($_conf['bg_color_mode']) ? $_conf['bg_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to bottom content.'),
+  );
+  $form['curtain_package']['title'] = array(
+    '#type' => 'link_field',
+    '#title' => t('Featured heading'),
+    '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
+    '#states' => $state,
+  );
+  $form['curtain_package']['slug_link'] = array(
+    '#type' => 'link_field',
+    '#title' => t('Featured blue slug'),
+    '#default_value' => !empty($_conf['slug_link']) ? $_conf['slug_link'] : '',
+  );
+  $form['curtain_package']['action_item'] = array(
+    '#type' => 'link_field',
+    '#title' => t('Featured action item'),
+    '#default_value' => !empty($_conf['action_item']) ? $_conf['action_item'] : '',
+  );
+  $form['curtain_package']['summary'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Featured summary'),
+    '#default_value' => !empty($_conf['summary']) ? $_conf['summary'] : '',
+  );
+  $form['curtain_package']['articles'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Stories'),
+    '#tree' => TRUE,
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+  if (empty($_conf['count'])) {
+    if (empty($form_state['curtain_package']['count'])) {
+      $count = 1;
+      $form_state['curtain_package']['count'] = $count;
+    }
+    else {
+      $count = $form_state['curtain_package']['count'];
+    }
+  }
+  else {
+    if (empty($form_state['curtain_package']['count'])) {
+      $count = $_conf['count'];
+      $form_state['curtain_package']['count'] = $count;
+    }
+    else {
+      $count = $form_state['curtain_package']['count'];
+    }
+  }
+  $form['curtain_package']['count'] = array(
+    '#type' => 'value',
+    '#value' => $count,
+  );
+  for ($i = 0; $i < $form_state['curtain_package']['count']; $i++) {
+    $form['curtain_package']['articles'][$i] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Story !num', array('!num' => $i + 1)),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#prefix' => '<div class="wrapper-' . $i .'">',
+      '#suffix' => '</div>',
+    );
+    $form['curtain_package']['articles'][$i]['entity_reference'] = array(
+      '#type' => 'entityreference',
+      '#title' => 'Story reference',
+      '#default_value' => !empty($_conf['articles'][$i]['entity_reference']) ? $_conf['articles'][$i]['entity_reference'] : '',
+      '#era_entity_type' => 'node',
+    );
+    $form['curtain_package']['articles'][$i]['title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Title'),
+      '#default_value' => !empty($_conf['articles'][$i]['title']) ? $_conf['articles'][$i]['title'] : '',
+    );
+    $form['curtain_package']['articles'][$i]['slug_link'] = array(
+      '#type' => 'link_field',
+      '#title' => t('Blue slug link'),
+      '#default_value' => !empty($_conf['articles'][$i]['slug_link']) ? $_conf['articles'][$i]['slug_link'] : '',
+    );
+  }
+  if ($form_state['curtain_package']['count'] < 3) {
+    $form['curtain_package']['articles']['add_more'] = array(
+      '#type' => 'submit',
+      '#value' => t('Add more stories'),
+      '#submit' => array('frontpage_featured_curtain_package_add_more'),
+    );
+  }
+}
+
+/**
  * Validation callback.
  */
 function frontpage_featured_form_validate($form, $form_state) {
@@ -357,6 +496,16 @@ function frontpage_featured_form_validate($form, $form_state) {
       }
       break;
 
+    case 'curtain_package':
+      if (empty($values['curtain_package']['image'])) {
+        form_set_error('curtain_package][image', t('Image field is required'));
+      }
+      $title_value = array_filter($values['curtain_package']['title']);
+      if (empty($title_value)) {
+        form_set_error('curtain_package][title', t('Featured heading is required'));
+      }
+      break;
+
   }
 }
 
@@ -365,6 +514,14 @@ function frontpage_featured_form_validate($form, $form_state) {
  */
 function frontpage_featured_curtain_3stories_add_more($form, &$form_state) {
   $form_state['curtain_3stories']['count']++;
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Edit form submit for add more.
+ */
+function frontpage_featured_curtain_package_add_more($form, &$form_state) {
+  $form_state['curtain_package']['count']++;
   $form_state['rebuild'] = TRUE;
 }
 
@@ -405,6 +562,10 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 
     case 'curtain_3stories':
       $content = _frontpage_featured_curtain_3stories_render($conf['curtain_3stories'], $contextual_links);
+      break;
+
+    case 'curtain_package':
+      $content = _frontpage_featured_curtain_package_render($conf['curtain_package'], $contextual_links);
       break;
 
   }
@@ -605,6 +766,125 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
     'stories' => $stories,
     'action_link' => $action_link,
     'contextual_links' => $contextual_links,
+  ));
+
+  return $content;
+}
+
+/**
+ * Helper function for rendering 'hero image' pane variant.
+ *
+ * @param array $conf
+ *   Configuration array.
+ * @param string $contextual_links
+ *   Rendered contextual links.
+ *
+ * @return string
+ *   Rendered HTML markup.
+ */
+function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
+  $image = file_load($conf['image']);
+  if (!empty($image)) {
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $attribution_caption = $attribution_credit = '';
+    if ($items = field_get_items('file', $image, 'field_file_caption')) {
+      $attribution_caption = trim($items[0]['safe_value']);
+    }
+    if ($items = field_get_items('file', $image, 'field_file_credit')) {
+      $attribution_credit = 'Photo: ' . trim($items[0]['safe_value']);
+    }
+  }
+
+  // Pass image url value to theme
+  $featured_frontpage_image = &drupal_static('featured_frontpage_image');
+  $featured_frontpage_image = $image_path;
+
+  $class = &drupal_static('nas_header_class');
+  $class = 'dark-text light-bg transparent';
+  $curtain_content_class = 'dark-text';
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
+    $curtain_content_class = 'light-text';
+  }
+
+  if (!empty($conf['bg_color_mode']) && $conf['bg_color_mode'] == 'dark') {
+    $curtain_content_class .= ' dark-bottom-bg';
+  }
+
+  $title_link = t($conf['title']['title']);
+  if ($conf['title']['url']) {
+    $title_link = l($title_link, $conf['title']['url']);
+  }
+  else {
+    $title_link = check_plain($title_link);
+  }
+
+  $featured_slug_link = '';
+  if ($conf['slug_link']['title'] && $conf['slug_link']['url']) {
+    $featured_slug_link = l(t($conf['slug_link']['title']), $conf['slug_link']['url'], array(
+        'attributes' => array('class' => array('hero-slug')),
+      ));
+    $mobile_featured_slug_link = l(t($conf['slug_link']['title']), $conf['slug_link']['url']);
+  }
+
+  $action_link = '';
+  $mobile_action_link = '';
+  if ($conf['action_item']['title'] && $conf['action_item']['url']) {
+    $action_link = l(t($conf['action_item']['title']), $conf['action_item']['url'], array(
+      'attributes' => array(
+        'class' => array('button', 'large', 'blue'),
+      )));
+    $mobile_action_link = l(t($conf['action_item']['title']), $conf['action_item']['url'], array(
+      'attributes' => array(
+        'class' => array('button', 'large', 'blue', 'expand'),
+      )));
+  }
+
+  $summary = '';
+  if (!empty($conf['summary'])) {
+    $summary = check_plain($conf['summary']);
+  }
+
+  $stories = array();
+  foreach ($conf['articles'] as $story) {
+    if (!empty($story['entity_reference']) && $node = node_load($story['entity_reference']['entity_id'])) {
+      $title = !empty($story['title']) ? $story['title'] : $node->title;
+      $slug_link = '';
+      if ($story['slug_link']['title'] && $story['slug_link']['url']) {
+        $slug_link = l($story['slug_link']['title'], $story['slug_link']['url']);
+      }
+      elseif ($section = nas_search_get_article_section($node, array(), '', 'node')) {
+        $slug_link = l($section->name, 'taxonomy/term/' . $section->tid);
+      }
+      $stories[] = array(
+        'title_link' => l($title, 'node/' . $node->nid),
+        'slug_link' => $slug_link,
+      );
+    }
+  }
+
+  // Pass mobile_content to theme
+  $mobile_content = &drupal_static('featured_frontpage_mobile_content');
+  $mobile_content = theme('nas_frontpage_featured__curtain_package_mobile', array(
+    'image_path' => $image_path,
+    'contextual_links' => $contextual_links,
+    'slug_link' => $mobile_featured_slug_link,
+    'title_link' => $title_link,
+    'summary' => $summary,
+    'action_link' => $mobile_action_link,
+    'stories' => $stories,
+  ));
+
+  $content = theme('nas_frontpage_featured__curtain_package', array(
+    'attribution_title' => $attribution_caption,
+    'attribution_credit' => $attribution_credit,
+    'slug_link' => $featured_slug_link,
+    'title_link' => $title_link,
+    'summary' => $summary,
+    'stories' => $stories,
+    'action_link' => $action_link,
+    'contextual_links' => $contextual_links,
+    'curtain_class' => $curtain_content_class,
   ));
 
   return $content;
