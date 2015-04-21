@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * @file
+ * For hook_update_X functions.
+ */
+
+function nas_sla_install() {
+  features_revert_module('nas_news_page_feature');
+}
