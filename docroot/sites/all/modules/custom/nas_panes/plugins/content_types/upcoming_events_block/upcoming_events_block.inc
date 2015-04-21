@@ -94,7 +94,7 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   $locations = '';
   $state = 'all';
   $acc = $GLOBALS['user'];
-  if (isset($acc->data['state'])){
+  if (isset($acc->data['state'])) {
     $state = $acc->data['state'];
     $locations = _nas_panes_get_upcoming_events($state);
   }

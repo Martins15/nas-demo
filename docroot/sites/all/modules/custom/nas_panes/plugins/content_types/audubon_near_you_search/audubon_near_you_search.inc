@@ -118,7 +118,7 @@ function audubon_near_you_search_form_submit($form, &$form_state) {
   if (!empty($form_state['values']['state'])) {
     $query['state'] = $form_state['values']['state'];
     $edit = array(
-      'data' => array( 
+      'data' => array(
         'state' => $form_state['values']['state']
       )
     );
