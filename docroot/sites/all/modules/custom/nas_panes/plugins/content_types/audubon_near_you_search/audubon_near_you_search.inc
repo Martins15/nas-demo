@@ -117,12 +117,7 @@ function audubon_near_you_search_form_submit($form, &$form_state) {
 
   if (!empty($form_state['values']['state'])) {
     $query['state'] = $form_state['values']['state'];
-    $edit = array(
-      'data' => array(
-        'state' => $form_state['values']['state']
-      )
-    );
-    user_save($user, $edit, 'account');
+    $_SESSION['state'] = $form_state['values']['state'];
   }
 
   // Redirect to Audubon Near You page with activated filters.
