@@ -28,7 +28,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
       'style_name' => 'event_featured',
       'path' => $get_featured_image[0]['uri'],
     ));
-    if($image_attribution = _nas_panes_format_image_attribution((object) $get_featured_image[0])) {
+    if ($image_attribution = _nas_panes_format_image_attribution((object) $get_featured_image[0])) {
       $featured_image .= '<figcaption>' . $image_attribution . '</figcaption>';
     }
   }
