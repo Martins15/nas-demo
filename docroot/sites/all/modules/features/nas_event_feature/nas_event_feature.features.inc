@@ -42,7 +42,7 @@ function nas_event_feature_image_default_styles() {
       57 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 640,
+          'width' => 1280,
           'height' => '',
           'upscale' => 0,
         ),
