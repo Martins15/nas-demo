@@ -23,6 +23,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
   if (!$context->empty) {
     $node = $context->data;
   }
+  $featured_image = '';
   if ($get_featured_image = field_get_items('node', $node, 'field_image')) {
     $featured_image = theme('image_style', array(
       'style_name' => 'event_featured',
