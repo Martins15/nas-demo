@@ -2286,7 +2286,10 @@ function nas_master_update_7168() {
  */
 function nas_master_update_7169() {
   module_enable(array('date_views', 'nas_events_landing_feature'));
-  features_revert(array('nas_solr_feature' => array('search_api_index', 'facetapi')));
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index', 'facetapi'),
+    'nas_image_styles_feature' => array('image'),
+  ));
 
   ctools_include('export');
   $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
