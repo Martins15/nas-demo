@@ -2322,15 +2322,14 @@ function nas_master_update_7169() {
  * Enable NAS field max length module and increasing slideshow subtitle length
  */
 function nas_master_update_7170() {
-  module_enable(array('nas_field_max_length'));
-  nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
+  // Remove in favor of nas_sla
 }
 
 /**
  * Enable Panelizer Layout Thumbnails module for changing type of choosing layouts.
  */
 function nas_master_update_7171() {
-  module_enable(array('nas_field_max_length'));
+  // Remove in favor of nas_sla
 }
 
 /**

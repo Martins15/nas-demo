@@ -1,0 +1,4 @@
+name = "NAS SLA updb helper module."
+description = "This module is used to run Update hooks without interfering with NAS master"
+core = "7.x"
+package = NAS
