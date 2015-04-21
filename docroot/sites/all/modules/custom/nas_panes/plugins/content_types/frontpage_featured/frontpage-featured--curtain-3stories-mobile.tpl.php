@@ -20,7 +20,9 @@
          <h2 class="curtain-card-headline"><?php print $title_link; ?></h2>
          <?php foreach ($stories as $story): ?>
            <div class="editorial-card-list-item">
+             <?php if (!empty($story['slug_link'])): ?>
              <small><?php print $story['slug_link']; ?></small>
+             <?php endif; ?>
              <h4 class="thin close-heading"><?php print $story['title_link']; ?></h4>
            </div>
          <?php endforeach; ?>

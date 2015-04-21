@@ -20,7 +20,9 @@
         <h2 class="curtain-card-headline"><?php print $title_link; ?></h2>
         <?php foreach ($stories as $story): ?>
           <div class="editorial-card-list-item">
+            <?php if ($story['slug_link']): ?>
             <small><?php print $story['slug_link']; ?></small>
+            <?php endif; ?>
             <h4 class="thin close-heading"><?php print $story['title_link']; ?></h4>
           </div>
         <?php endforeach; ?>
@@ -28,6 +30,7 @@
       </div>
     </div>
   </div>
+  <?php if ($attribution_title || $attribution_credit): ?>
   <div class="row">
     <div class="column">
       <div class="curtain-attribution">
@@ -40,5 +43,6 @@
       </div>
     </div>
   </div>
+  <?php endif; ?>
 </div>
 <a href="#" class="curtain-arrow"></a>

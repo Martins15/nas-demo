@@ -50,12 +50,32 @@ function frontpage_featured_form($form, &$form_state) {
     '#default_value' => !empty($conf['variant']) ? $conf['variant'] : 'curtain_simple',
   );
 
+  _frontpage_featured_simple_curtain_form($form, $form_state, $conf);
+  _frontpage_featured_hero_image_form($form, $form_state, $conf);
+  _frontpage_featured_curtain_3stories_form($form, $form_state, $conf);
+
+  foreach (array_keys($variants) as $variant) {
+    $form[$variant]['#states']['visible']['select[name="variant"]'][] = array('value' => $variant);
+  }
+
+  return $form;
+}
+
+/**
+ * Form builder for simple curtain variant.
+ */
+function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
   $form['curtain_simple'] = array(
     '#type' => 'container',
     '#title' => t('Simple curtain fields'),
     '#tree' => TRUE,
   );
   $_conf = !empty($conf['curtain_simple']) ? $conf['curtain_simple'] : array();
+  $state = array(
+    'required' => array(
+      'select[name="variant"]' => array('value' => 'curtain_simple'),
+    ),
+  );
   $form['curtain_simple']['image'] = array(
     '#type' => 'media',
     '#tree' => TRUE,
@@ -70,7 +90,7 @@ function frontpage_featured_form($form, &$form_state) {
       ),
     ),
     '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
-    '#required' => TRUE,
+    '#states' => $state,
     '#pp_crop_styles' => array('featured_frontpage'),
   );
   $form['curtain_simple']['header_color_mode'] = array(
@@ -87,40 +107,45 @@ function frontpage_featured_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Title'),
     '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
-    '#required' => TRUE,
+    '#states' => $state,
   );
   $form['curtain_simple']['title_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Title link'),
     '#default_value' => !empty($_conf['title_link']) ? $_conf['title_link'] : '',
-    '#required' => TRUE,
   );
   $form['curtain_simple']['blue_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Blue text'),
     '#default_value' => !empty($_conf['blue_text']) ? $_conf['blue_text'] : '',
-    '#required' => TRUE,
   );
   $form['curtain_simple']['blue_text_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Blue text link'),
     '#default_value' => !empty($_conf['blue_text_link']) ? $_conf['blue_text_link'] : '',
-    '#required' => TRUE
   );
   $form['curtain_simple']['summary'] = array(
     '#type' => 'textarea',
     '#title' => t('Summary'),
-    '#required' => TRUE,
     '#default_value' => !empty($_conf['summary']) ? $_conf['summary'] : '',
   );
+}
 
+/**
+ * Form builder for hero image variant.
+ */
+function _frontpage_featured_hero_image_form(&$form, $form_state, $conf) {
   $form['hero_image'] = array(
     '#type' => 'container',
     '#title' => t('Hero image'),
     '#tree' => TRUE,
   );
   $_conf = !empty($conf['hero_image']) ? $conf['hero_image'] : array();
-
+  $state = array(
+    'required' => array(
+      'select[name="variant"]' => array('value' => 'hero_image'),
+    ),
+  );
   $form['hero_image']['image'] = array(
     '#type' => 'media',
     '#tree' => TRUE,
@@ -135,7 +160,8 @@ function frontpage_featured_form($form, &$form_state) {
       ),
     ),
     '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
-    '#required' => TRUE,
+    '#pp_crop_styles' => array('hero_image'),
+    '#states' => $state,
   );
   $form['hero_image']['header_color_mode'] = array(
     '#type' => 'radios',
@@ -151,34 +177,40 @@ function frontpage_featured_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Title'),
     '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
-    '#required' => TRUE,
+    '#states' => $state,
   );
   $form['hero_image']['title_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Title link'),
     '#default_value' => !empty($_conf['title_link']) ? $_conf['title_link'] : '',
-    '#required' => TRUE,
   );
   $form['hero_image']['blue_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Slug text'),
     '#default_value' => !empty($_conf['blue_text']) ? $_conf['blue_text'] : '',
-    '#required' => TRUE,
   );
   $form['hero_image']['blue_text_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Slug text link'),
     '#default_value' => !empty($_conf['blue_text_link']) ? $_conf['blue_text_link'] : '',
-    '#required' => TRUE
   );
+}
 
+/**
+ * Form builder for curtain with 3 stories variant.
+ */
+function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) {
   $form['curtain_3stories'] = array(
     '#type' => 'container',
     '#title' => t('Hero image'),
     '#tree' => TRUE,
   );
   $_conf = !empty($conf['curtain_3stories']) ? $conf['curtain_3stories'] : array();
-
+  $state = array(
+    'required' => array(
+      'select[name="variant"]' => array('value' => 'curtain_3stories'),
+    ),
+  );
   $form['curtain_3stories']['image'] = array(
     '#type' => 'media',
     '#tree' => TRUE,
@@ -193,7 +225,8 @@ function frontpage_featured_form($form, &$form_state) {
       ),
     ),
     '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
-    '#required' => TRUE,
+    '#pp_crop_styles' => array('featured_frontpage'),
+    '#states' => $state,
   );
   $form['curtain_3stories']['header_color_mode'] = array(
     '#type' => 'radios',
@@ -209,25 +242,22 @@ function frontpage_featured_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('Title'),
     '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
-    '#required' => TRUE,
+    '#states' => $state,
   );
   $form['curtain_3stories']['title_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Title link'),
     '#default_value' => !empty($_conf['title_link']) ? $_conf['title_link'] : '',
-    '#required' => TRUE,
   );
   $form['curtain_3stories']['action_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Action link text'),
     '#default_value' => !empty($_conf['action_text']) ? $_conf['action_text'] : '',
-    '#required' => TRUE,
   );
   $form['curtain_3stories']['action_text_link'] = array(
     '#type' => 'textfield',
     '#title' => t('Action link url'),
     '#default_value' => !empty($_conf['action_text_link']) ? $_conf['action_text_link'] : '',
-    '#required' => TRUE
   );
   $form['curtain_3stories']['articles'] = array(
     '#type' => 'fieldset',
@@ -292,12 +322,42 @@ function frontpage_featured_form($form, &$form_state) {
       '#submit' => array('frontpage_featured_curtain_3stories_add_more'),
     );
   }
+}
 
-  foreach (array_keys($variants) as $variant) {
-    $form[$variant]['#states']['visible']['select[name="variant"]'][] = array('value' => $variant);
+/**
+ * Validation callback.
+ */
+function frontpage_featured_form_validate($form, $form_state) {
+  $values =& $form_state['values'];
+  switch ($values['variant']) {
+    case 'curtain_simple':
+      if (empty($values['curtain_simple']['image'])) {
+        form_set_error('curtain_simple][image', t('Image field is required'));
+      }
+      if (empty($values['curtain_simple']['title'])) {
+        form_set_error('curtain_simple][title', t('Title field is required'));
+      }
+      break;
+
+    case 'hero_image':
+      if (empty($values['hero_image']['image'])) {
+        form_set_error('hero_image][image', t('Image field is required'));
+      }
+      if (empty($values['hero_image']['title'])) {
+        form_set_error('hero_image][title', t('Title field is required'));
+      }
+      break;
+
+    case 'curtain_3stories':
+      if (empty($values['curtain_3stories']['image'])) {
+        form_set_error('curtain_3stories][image', t('Image field is required'));
+      }
+      if (empty($values['curtain_3stories']['title'])) {
+        form_set_error('curtain_3stories][title', t('Title field is required'));
+      }
+      break;
+
   }
-
-  return $form;
 }
 
 /**
@@ -438,8 +498,17 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
     $class = 'light-text dark-bg transparent';
   }
 
-  $title_link = l(t($conf['title']), $conf['title_link']);
-  $blue_text_link = l(t($conf['blue_text']), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
+  $title_link = t($conf['title']);
+  if (!empty($conf['title_link'])) {
+    $title_link = l(t($conf['title']), $conf['title_link']);
+  }
+  else {
+    $title_link = check_plain($title_link);
+  }
+  $blue_text_link = '';
+  if ($conf['blue_text'] && $conf['blue_text_link']) {
+    $blue_text_link = l(t($conf['blue_text']), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
+  }
 
   $content = theme('nas_frontpage_featured__hero_image', array(
     'hero_image' => $hero_image,
@@ -486,11 +555,20 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
     $class = 'light-text dark-bg transparent';
   }
 
-  $title_link = l(t($conf['title']), $conf['title_link']);
-  $action_link = l(t($conf['action_text']), $conf['action_text_link'], array(
-    'attributes' => array(
-      'class' => array('button', 'large', 'expand', 'tomato'),
-    )));
+  $title_link = t($conf['title']);
+  if ($conf['title_link']) {
+    $title_link = l(t($conf['title']), $conf['title_link']);
+  }
+  else {
+    $title_link = check_plain($title_link);
+  }
+  $action_link = '';
+  if ($conf['action_text'] && $conf['action_text_link']) {
+    $action_link = l(t($conf['action_text']), $conf['action_text_link'], array(
+      'attributes' => array(
+        'class' => array('button', 'large', 'expand', 'tomato'),
+      )));
+  }
 
   $stories = array();
   foreach ($conf['articles'] as $story) {
