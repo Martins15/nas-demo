@@ -31,7 +31,7 @@
         };
         
         // If locations were loaded by default state, no Ajax is required.
-        if ($('#upcoming-events-content-wrapper li').lenght === 0){
+        if ($('#upcoming-events-content-wrapper').attr('data-state') == 'all'){
           $('.upcoming-events-block').hide();
           // Internal request.
           geoip.getState(onSuccess);
