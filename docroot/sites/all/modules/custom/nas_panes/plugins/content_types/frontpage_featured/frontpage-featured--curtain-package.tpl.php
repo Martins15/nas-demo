@@ -26,9 +26,9 @@
       </div>
     </div>
   </div>
-  <div class="row space-bottom">
+  <div class="row space-bottom" data-equalizer>
     <?php foreach ($stories as $story): ?>
-      <div class="editorial-card-list-item column medium-4">
+      <div class="editorial-card-list-item column medium-4" data-equalizer-watch>
         <?php if ($story['slug_link']): ?>
           <small><?php print $story['slug_link']; ?></small>
         <?php endif; ?>

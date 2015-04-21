@@ -9917,7 +9917,7 @@ body.black-bg .slide-caption {
 }
 .curtain-package .editorial-card-list-item {
   border-left: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 20px;
+  padding: 15px 20px;
 }
 .curtain-package.dark-bottom-bg {
   background: linear-gradient(rgba(0, 0, 0, 0), #000000);
