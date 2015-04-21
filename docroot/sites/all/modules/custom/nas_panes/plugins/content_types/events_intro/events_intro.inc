@@ -23,6 +23,15 @@ function events_intro_render($subtype, $conf, $args, $context) {
   if (!$context->empty) {
     $node = $context->data;
   }
+  if ($get_featured_image = field_get_items('node', $node, 'field_image')) {
+    $featured_image = theme('image_style', array(
+      'style_name' => 'event_featured',
+      'path' => $get_featured_image[0]['uri'],
+    ));
+    if($image_attribution = _nas_panes_format_image_attribution((object) $get_featured_image[0])) {
+      $featured_image .= '<figcaption>' . $image_attribution . '</figcaption>';
+    }
+  }
   $date_city_province = '';
   $city_province = '';
   $address = '';
@@ -50,6 +59,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = theme('events_intro', array(
     'date_city_province' => $date_city_province,
+    'featured_image' => $featured_image,
     'address' => $address,
   ));
 
