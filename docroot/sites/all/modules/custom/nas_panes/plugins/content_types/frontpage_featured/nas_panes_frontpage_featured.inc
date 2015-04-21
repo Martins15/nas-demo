@@ -311,6 +311,7 @@ function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) 
     $form['curtain_3stories']['articles'][$i]['slug_link'] = array(
       '#type' => 'link_field',
       '#title' => t('Slug link'),
+      '#description' => t("You should specify both 'Title' and 'URL' if you'd like to display custom blue slug text above story title. If you leave these fields empty Editorial Section or Menu Section of referenced story will be displayed"),
       '#default_value' => !empty($_conf['articles'][$i]['slug_link']) ? $_conf['articles'][$i]['slug_link'] : '',
     );
   }
