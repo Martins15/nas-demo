@@ -302,7 +302,6 @@ function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) 
       '#title' => 'Story reference',
       '#default_value' => !empty($_conf['articles'][$i]['entity_reference']) ? $_conf['articles'][$i]['entity_reference'] : '',
       '#era_entity_type' => 'node',
-      '#era_bundles' => array('article', 'static_page', 'project'),
     );
     $form['curtain_3stories']['articles'][$i]['title'] = array(
       '#type' => 'textfield',
