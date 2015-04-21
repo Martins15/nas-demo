@@ -442,11 +442,11 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['featured_frontpage'] = array(
     'label' => 'Featured frontpage',
     'effects' => array(
-      1 => array(
+      31 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 2400,
-          'height' => 1400,
+          'height' => '',
           'anchor' => 'center-center',
           'jcrop_settings' => array(
             'aspect_ratio' => '',
@@ -455,20 +455,21 @@ function nas_image_styles_feature_image_default_styles() {
             'fallback' => 1,
           ),
         ),
-        'weight' => 1,
+        'weight' => -10,
       ),
-      2 => array(
-        'name' => 'image_scale_and_crop',
+      51 => array(
+        'name' => 'image_scale',
         'data' => array(
           'width' => 2400,
           'height' => 1400,
+          'upscale' => 0,
         ),
-        'weight' => 2,
+        'weight' => -9,
       ),
-      3 => array(
+      41 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );
