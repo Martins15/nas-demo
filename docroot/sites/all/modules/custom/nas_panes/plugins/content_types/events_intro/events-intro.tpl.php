@@ -8,7 +8,7 @@
 <?php if (!empty($address)): ?>
 <?php if (!empty($featured_image)): ?>
 <div class="featured-image">
-	<?php print $featured_image; ?>
+  <?php print $featured_image; ?>
 </div>
 <?php endif; ?>
 <div class="location-details">
