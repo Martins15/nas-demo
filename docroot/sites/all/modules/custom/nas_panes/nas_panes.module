@@ -1634,8 +1634,22 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
+      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
+      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'phone_email' => '',
+      'address_label' => t("Address") . ":<br/>",
+      'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
     );
-
+    // Add Phone and/or email.
+    if (!empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];
+    }
+    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'];
+    }
+    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email']) && !empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'] . " - " . $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];
+    }
     // Add site link.
     if (!empty($item->field_field_location_link[0]['raw']['url'])) {
       $options = array('attributes' => array('target' => '_blank', 'class' => array('more-link')));
@@ -1862,6 +1876,7 @@ function _nas_panes_get_menu_section_options() {
 
 /**
  * Helper function.
+ *
  * Provides default social pages urls.
  */
 function _nas_panes_default_social_pages_url() {

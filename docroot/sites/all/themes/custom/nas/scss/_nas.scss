@@ -894,7 +894,27 @@ body.node-type-slideshow {
     }
   }
 }
-
+.page-audubon-near-you{
+  .contact{
+    margin: 5px 0;
+    padding: 5px 10px;
+    border: solid 1px #ccc;
+    .contact-name{
+      font-weight: bold;
+    }
+    .contact-phone-email{
+      font-size:14px;
+    }
+    .contact-address{
+      font-size: 14px;
+      line-height: 17px;
+      padding-top: 5px;
+      .contact-address-label{
+        font-weight: bold;
+      }
+    }
+  }
+}
 /* Individual Events page*/
 article.event {
   .event-header {
