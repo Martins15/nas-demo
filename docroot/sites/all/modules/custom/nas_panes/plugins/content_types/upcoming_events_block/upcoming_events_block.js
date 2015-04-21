@@ -30,10 +30,12 @@
           });
         };
         
-        $('.upcoming-events-block').hide();
-
-        // Internal request.
-        geoip.getState(onSuccess);
+        // If locations were loaded by default state, no Ajax is required.
+        if ($('#upcoming-events-content-wrapper li').lenght == 0){
+          $('.upcoming-events-block').hide();
+          // Internal request.
+          geoip.getState(onSuccess);
+	    }
       });
     }
   };

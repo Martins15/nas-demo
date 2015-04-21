@@ -91,7 +91,14 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
     $bottom_link = l($conf['bottom_link']['title'], $conf['bottom_link']['url'], array('attributes' => array('class' => array('editorial-card-link', 'sans'))));
   }
 
-  // No locations are going to be loaded by ajax.
+  $locations = '';
+  $state = 'all';
+  $acc = $GLOBALS['user'];
+  if (isset($acc->data['state'])){
+    $state = $acc->data['state'];
+    $locations = _nas_panes_get_upcoming_events($state);
+  }
+  // Locations are going to be loaded by ajax.
   // $locations = _nas_panes_get_upcoming_events();
 
   $image_markup = '';
@@ -106,7 +113,7 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
       'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Upcoming Events'),
       'image' => $image_markup,
       'bottom_link' => $bottom_link,
-      'content' => theme('upcoming_events_block_content', array('locations' => $locations)),
+      'content' => theme('upcoming_events_block_content', array('locations' => $locations, 'state' => $state)),
     ));
 
   $block->content = $content;

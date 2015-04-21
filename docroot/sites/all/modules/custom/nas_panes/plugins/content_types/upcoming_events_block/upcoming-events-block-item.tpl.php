@@ -4,7 +4,7 @@
  * Local Chapters & Centers content template file.
  */
 ?>
-<div id="upcoming-events-content-wrapper">
+<div id="upcoming-events-content-wrapper" date-state="<?php print $state; ?>">
   <ul class="no-bullets item-margin">
 	<?php if (is_array($locations)): ?>
       <?php foreach($locations as $location) : ?>
