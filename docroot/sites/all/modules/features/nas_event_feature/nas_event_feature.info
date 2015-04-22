@@ -55,6 +55,7 @@ features[field_instance][] = node-event-field_event_registration_notes
 features[field_instance][] = node-event-field_event_type
 features[field_instance][] = node-event-field_geolocation
 features[field_instance][] = node-event-field_image
+features[image][] = event_featured
 features[node][] = event
 features[panelizer_defaults][] = node:event:default
 features[panelizer_defaults][] = node:event:event_panelizer

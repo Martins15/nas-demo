@@ -1028,7 +1028,7 @@ function nas_event_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_image',
-    'label' => 'Hero image',
+    'label' => 'Featured image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -1102,8 +1102,8 @@ function nas_event_feature_field_default_field_instances() {
   t('Event Date');
   t('Event Location');
   t('Event Type');
+  t('Featured image');
   t('Geolocation');
-  t('Hero image');
   t('Location Help');
   t('Registration Link');
   t('Registration Notes');

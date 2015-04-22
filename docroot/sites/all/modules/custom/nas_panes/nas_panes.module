@@ -875,6 +875,7 @@ function nas_panes_theme() {
     'events_intro' => array(
       'variables' => array(
         'date_city_province' => NULL,
+        'featured_image' => NULL,
         'address' => NULL,
       ),
       'template' => 'events-intro',
@@ -902,6 +903,25 @@ function nas_panes_theme() {
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
+    'upcoming_events_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'upcoming-events-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
+    ),
+    'upcoming_events_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+        'state' => NULL,
+      ),
+      'template' => 'upcoming-events-block-item',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
     ),
   );
 
@@ -1619,6 +1639,38 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
+ * Returns Upcoming events base on state.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_upcoming_events($state = 'all') {
+  $items = array();
+  $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
+  $count = 0;
+
+  foreach ($results as $result) {
+    $link = NULL;
+    $item = node_load($result->entity);
+    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->title,
+      'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
+      'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
+      'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'link' => $link,
+      'order' => $count,
+    );
+    $count = $count + 1;
+  }
+  return $items;
+}
+
+/**
  * Returns locations.
  *
  * @param string $state
@@ -1714,6 +1766,12 @@ function nas_panes_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['ajax/upcoming-events'] = array(
+    'page callback' => 'nas_panes_upcoming_events_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   $items['ajax/audubon-near-you'] = array(
     'page callback' => 'nas_panes_audubon_near_you_elements_callback',
     'access callback' => TRUE,
@@ -1768,6 +1826,26 @@ function nas_panes_local_chapters_centers_callback() {
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
+
+/**
+ * Returns markup for Upcoming Events block.
+ */
+function nas_panes_upcoming_events_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_upcoming_events($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
 /**
