@@ -474,6 +474,42 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: featured_frontpage_hero_image.
+  $styles['featured_frontpage_hero_image'] = array(
+    'label' => 'featured_frontpage_hero_image',
+    'effects' => array(
+      56 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 2400,
+          'height' => '',
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 2,
+      ),
+      58 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 2400,
+          'height' => 1800,
+          'upscale' => 0,
+        ),
+        'weight' => 3,
+      ),
+      59 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 4,
+      ),
+    ),
+  );
+
   // Exported image style: front_flyway_image.
   $styles['front_flyway_image'] = array(
     'label' => 'Frontpage flyway',
