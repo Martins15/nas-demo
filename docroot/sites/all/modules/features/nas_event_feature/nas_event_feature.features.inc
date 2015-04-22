@@ -30,6 +30,36 @@ function nas_event_feature_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function nas_event_feature_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: event_featured.
+  $styles['event_featured'] = array(
+    'label' => 'Event Featured',
+    'effects' => array(
+      57 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1280,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+      58 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function nas_event_feature_node_info() {

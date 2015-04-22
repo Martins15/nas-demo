@@ -1030,3 +1030,12 @@ article.event {
     margin: 0 0 3px;
   }
 }
+
+figcaption {
+  color: darken($color-warm-gray, 5%);
+  font-family: $font-sans;
+  font-size: $size-text-tiny + 2px;
+  line-height: $size-line-small;
+  margin: $size-space/2 0 $column-gutter/2 0;
+}
+
