@@ -231,8 +231,8 @@ function nas_panes_theme() {
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
     'nas_frontpage_featured__curtain_package' => array(
-     'variables' => array(),
-     'template' => 'frontpage-featured--curtain-package',
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
     'nas_frontpage_featured__curtain_package_mobile' => array(
