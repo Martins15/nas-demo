@@ -215,30 +215,30 @@ function nas_panes_theme() {
       'template' => 'frontpage-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
-    'nas_frontpage_featured__hero_image' => array(		
-      'variables' => array(),		
-      'template' => 'frontpage-featured--hero-image',		
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'		
-    ),		
-    'nas_frontpage_featured__curtain_3stories' => array(		
-      'variables' => array(),		
-      'template' => 'frontpage-featured--curtain-3stories',		
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'		
-    ),		
-    'nas_frontpage_featured__curtain_3stories_mobile' => array(		
-      'variables' => array(),		
-      'template' => 'frontpage-featured--curtain-3stories-mobile',		
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'		
-    ),		
-    'nas_frontpage_featured__curtain_package' => array(		
-     'variables' => array(),		
-     'template' => 'frontpage-featured--curtain-package',		
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'		
-    ),		
-    'nas_frontpage_featured__curtain_package_mobile' => array(		
-      'variables' => array(),		
-      'template' => 'frontpage-featured--curtain-package-mobile',		
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'		
+    'nas_frontpage_featured__hero_image' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_3stories' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_3stories_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_package' => array(
+     'variables' => array(),
+     'template' => 'frontpage-featured--curtain-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_package_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
@@ -1695,21 +1695,21 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
-      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],		
-      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],		
-      'phone_email' => '',		
-      'address_label' => t("Address") . ":<br/>",		
+      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
+      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'phone_email' => '',
+      'address_label' => t("Address") . ":<br/>",
       'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
     );
-    // Add Phone and/or email.		+
-    if (!empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {		
-      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];		
-    }		
-    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email'])) {		
-      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'];		
-    }		
-    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email']) && !empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {		
-      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'] . " - " . $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];		
+    // Add Phone and/or email.
+    if (!empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];
+    }
+    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'];
+    }
+    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email']) && !empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'] . " - " . $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];
     }
 
     // Add site link.
