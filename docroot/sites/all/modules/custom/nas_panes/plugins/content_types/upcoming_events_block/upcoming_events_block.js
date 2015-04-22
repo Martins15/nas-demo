@@ -33,7 +33,6 @@
         $('.upcoming-events-block').hide();
 
         var state = getCookie('Drupal.visitor.state');
-        console.log(state);
         if (state && state.length == 2){
           onSuccess(state);
 	    }
