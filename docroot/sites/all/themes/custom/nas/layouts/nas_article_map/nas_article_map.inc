@@ -20,6 +20,7 @@ $plugin = array(
     'map' => t('Map'),
     'mobile_author' => t('Mobile author'),
     'main' => t('Main'),
+    'file_attachments' => t('File attachments'),
     'social' => t('Social icons'),
     'author' => t('Author'),
     'birds' => t('Birds in this story'),

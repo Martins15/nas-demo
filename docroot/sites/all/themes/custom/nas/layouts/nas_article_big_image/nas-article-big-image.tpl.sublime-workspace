@@ -1,0 +1,266 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"ora",
+				"orange1"
+			],
+			[
+				"m",
+				"margin-right"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"gre",
+				"grey4"
+			],
+			[
+				"strto",
+				"strtoupper"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"p",
+				"preventDefault"
+			],
+			[
+				"firs",
+				"first-child"
+			],
+			[
+				"or",
+				"org_arg"
+			],
+			[
+				"mar",
+				"margin"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Library/WebServer/Documents/TFALL/docroot/sites/default/appno_settings.inc",
+		"/Library/WebServer/Documents/TFALL.sublime-project",
+		"/Library/WebServer/Documents/NAS.sublime-project",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/css/style.css",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/sass/style.scss",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/modules/custom/plp_master/plp_master.install",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/layouts/attendees_page/attendees_page.tpl.php",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/sass/partials/styleguide/_forms.scss",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/modules/custom/gc_master/gc_master.module",
+		"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/layouts/locations_page/locations_page.inc",
+		"/Library/WebServer/Documents/TFALL-sublime.project"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/modules/features",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallplp",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/sass",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/sass",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallplp",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/sass",
+			"/Library/WebServer/Documents/TFALL/docroot/sites/all/themes/tfallgc/sass/partials/global"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"arrow_up",
+			"console",
+			"$mobile-landscape",
+			"glossa",
+			"@include breakpoint(",
+			"attendees-filters-mobile",
+			"attendees",
+			"main-menu_attendees",
+			"Attendees",
+			"agenda",
+			"Italic",
+			"border",
+			"glossary-la",
+			"border-radius",
+			"appearance",
+			"hide",
+			"hide-",
+			"hide-for",
+			"@include breakpoint",
+			"Drupal.ar",
+			"arg",
+			"  <?",
+			"orange3",
+			"8d9688",
+			"f7901e",
+			"semi",
+			"font-weight",
+			"weig",
+			"Open",
+			"68px",
+			"78px"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"attendees"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "nas-article-big-image.tpl.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 434.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

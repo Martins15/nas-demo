@@ -18,6 +18,7 @@ $plugin = array(
     'magazine_bar' => t('Magazine Bar'),
     'header' => t('Header'),
     'main' => t('Main'),
+    'file_attachments' => t('File attachments'),
     'mobile_author' => t('Mobile author'),
     'social' => t('Social icons'),
     'author' => t('Author'),

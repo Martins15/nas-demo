@@ -22,6 +22,7 @@ $plugin = array(
     'header_hero_attr_text' => t('Hero image attributions'),
     'big_image' => t('Fullscreen image'),
     'main' => t('Main'),
+    'file_attachments' => t('File attachments'),
     'mobile_author' => t('Mobile author'),
     'social' => t('Social icons'),
     'author' => t('Author'),

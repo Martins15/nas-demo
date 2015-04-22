@@ -18,6 +18,16 @@
           <?php print $content['right']; ?>
         </aside>
         <?php print $content['main']; ?>
+
+        <?php if(!empty($content['file_attachments'])): ?>
+        <div class="file-attachments">
+          <h3><?php print t('Downloadable Resources'); ?></h3>
+          <div class="files-list">
+            <?php print $content['file_attachments']; ?>
+          </div>
+        </div>
+        <?php endif;?>
+
       </div>
       <div class="article-sidebar large-pull-10 large-2 columns press-release">
         <?php print $content['left']; ?>

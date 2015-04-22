@@ -66,6 +66,7 @@ features[field_instance][] = node-article-field_custom_section
 features[field_instance][] = node-article-field_editorial_card_image
 features[field_instance][] = node-article-field_editorial_card_subtitle
 features[field_instance][] = node-article-field_editorial_card_title
+features[field_instance][] = node-article-field_file_attachments
 features[field_instance][] = node-article-field_flyway
 features[field_instance][] = node-article-field_hero_image
 features[field_instance][] = node-article-field_internal_tagging

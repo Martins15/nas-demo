@@ -19,6 +19,7 @@ $plugin = array(
     'header' => t('Header'),
     'inline_image' => t('Inline Hero image'),
     'main' => t('Main'),
+    'file_attachments' => t('File attachments'),
     'mobile_author' => t('Mobile author'),
     'social' => t('Social icons'),
     'author' => t('Author'),
