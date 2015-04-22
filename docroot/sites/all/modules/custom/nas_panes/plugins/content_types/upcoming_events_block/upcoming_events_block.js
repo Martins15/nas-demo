@@ -29,14 +29,29 @@
             }
           });
         };
-        
-        // If locations were loaded by default state, no Ajax is required.
-        if ($('#upcoming-events-content-wrapper').attr('data-state') == 'all'){
-          $('.upcoming-events-block').hide();
-          // Internal request.
+
+        $('.upcoming-events-block').hide();
+
+        var state = getCookie('Drupal.visitor.state');
+        console.log(state);
+        if (state && state.length == 2){
+          onSuccess(state);
+	    }
+        else {
           geoip.getState(onSuccess);
 	    }
       });
     }
   };
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1);
+      if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+  }
 })(jQuery);
