@@ -58,6 +58,16 @@
   <div class="row">
     <div class="text-container columns">
       <?php print $content['main']; ?>
+
+      <?php if(!empty($content['file_attachments'])): ?>
+      <div class="file-attachments">
+        <h3><?php print t('Downloadable Resources'); ?></h3>
+        <div class="files-list">
+          <?php print $content['file_attachments']; ?>
+        </div>
+      </div>
+      <?php endif;?>
+
     </div>
   </div>
   <?php print $content['related']; ?>

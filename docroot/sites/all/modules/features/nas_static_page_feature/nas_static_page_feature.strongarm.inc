@@ -112,6 +112,15 @@ function nas_static_page_feature_strongarm() {
         'redirect' => array(
           'weight' => '4',
         ),
+        'locations' => array(
+          'weight' => '30',
+        ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
