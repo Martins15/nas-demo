@@ -595,34 +595,19 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['hero_image'] = array(
     'label' => 'Hero image',
     'effects' => array(
-      54 => array(
-        'name' => 'epsacrop_crop',
-        'data' => array(
-          'width' => 2400,
-          'height' => '',
-          'anchor' => 'center-center',
-          'jcrop_settings' => array(
-            'aspect_ratio' => '',
-            'bgcolor' => 'black',
-            'bgopacity' => 0.6,
-            'fallback' => 1,
-          ),
-        ),
-        'weight' => -10,
-      ),
-      52 => array(
+      6 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 2400,
           'height' => 1800,
           'upscale' => 0,
         ),
-        'weight' => -9,
+        'weight' => 1,
       ),
-      53 => array(
+      7 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => -8,
+        'weight' => 2,
       ),
     ),
   );
