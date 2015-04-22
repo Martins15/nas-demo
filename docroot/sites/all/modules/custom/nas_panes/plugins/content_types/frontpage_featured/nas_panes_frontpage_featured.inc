@@ -887,5 +887,7 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
     'curtain_class' => $curtain_content_class,
   ));
 
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured/js/curtain-package.js');
+
   return $content;
 }

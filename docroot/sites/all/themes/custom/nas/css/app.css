@@ -9914,6 +9914,8 @@ body.black-bg .slide-caption {
 .curtain-package .hero-paragraph {
   margin: 20px 0;
   width: auto;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-style: normal;
 }
 .curtain-package .editorial-card-list-item {
   border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -9931,7 +9933,7 @@ body.black-bg .slide-caption {
 .curtain-package.dark-text .hero-paragraph {
   color: #404040;
 }
-.curtain-package.light-text .hero-title, .curtain-package.light-text .hero-slug {
+.curtain-package.light-text .hero-title, .curtain-package.light-text .hero-slug, .curtain-package.light-text .hero-paragraph {
   color: #fff !important;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.75);
 }
@@ -9947,6 +9949,7 @@ body.black-bg .slide-caption {
   font-size: 16px;
   line-height: 20px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-style: normal;
 }
 
 .bg-egg {

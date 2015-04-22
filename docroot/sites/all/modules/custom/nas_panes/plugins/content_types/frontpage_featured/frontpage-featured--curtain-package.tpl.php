@@ -14,13 +14,13 @@
 ?>
 <div class="curtain-content curtain-package <?php print $curtain_class; ?>">
   <div class="row space-bottom">
-    <div class="column medium-6 contextual-links-region">
+    <div class="column medium-6 curtain-featured contextual-links-region">
       <?php print $contextual_links; ?>
       <div class="hero-header">
         <?php print $slug_link; ?>
         <h2 class="hero-title"><?php print $title_link; ?></h2>
         <div class="hero-text">
-          <div class="hero-paragraph"><?php print $summary; ?></div>
+          <div class="hero-paragraph curtain-summary"><?php print $summary; ?></div>
         </div>
         <?php print $action_link; ?>
       </div>
