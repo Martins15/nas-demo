@@ -2341,6 +2341,7 @@ function nas_master_update_7171() {
 function nas_master_update_7172() {
   module_enable(array('nas_export_birds'));
 }
+
 /**
  * Revert feature.
  */
@@ -2348,4 +2349,11 @@ function nas_master_update_7173() {
   module_enable(array('email'));
   module_enable(array('phone'));
   features_revert_module('nas_location_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7174() {
+  features_revert_module('nas_static_page_feature');
 }

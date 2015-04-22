@@ -14368,3 +14368,42 @@ figcaption {
   line-height: 20px;
   margin: 5px 0 12.5px 0;
 }
+
+.file-attachments {
+  margin: 20px 0;
+}
+.file-attachments h3 {
+  border-bottom: 1px solid #a4a4a4;
+  font-size: 22px;
+  margin: 0 0 10px;
+  padding: 0 0 5px;
+}
+.file-attachments .file {
+  display: inline-block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  min-height: 27px;
+  padding: 0 30px 0 45px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+  width: 49%;
+  word-break: break-all;
+}
+@media only screen and (max-width: 479px) {
+  .file-attachments .file {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+.file-attachments .file a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.file-attachments .file img {
+  display: inline-block;
+  height: 34px;
+  margin-left: -40px;
+  vertical-align: middle;
+  width: 35px;
+}
