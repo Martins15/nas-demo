@@ -161,7 +161,7 @@ function _frontpage_featured_hero_image_form(&$form, $form_state, $conf) {
       ),
     ),
     '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
-    '#pp_crop_styles' => array('hero_image'),
+    '#pp_crop_styles' => array('featured_frontpage_hero_image'),
     '#states' => $state,
   );
   $form['hero_image']['header_color_mode'] = array(
@@ -646,7 +646,7 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
     $image_wrapper = entity_metadata_wrapper('file', $image);
     $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
     $hero_image = theme('image_style', array(
-      'style_name' => 'hero_image',
+      'style_name' => 'featured_frontpage_hero_image',
       'path' => $image->uri,
       'title' => $image_caption,
     ));
@@ -683,7 +683,7 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
 }
 
 /**
- * Helper function for rendering 'hero image' pane variant.
+ * Helper function for rendering 'Curtain with 3 stories' pane variant.
  *
  * @param array $conf
  *   Configuration array.
@@ -772,7 +772,8 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
 }
 
 /**
- * Helper function for rendering 'hero image' pane variant.
+ * Helper function for rendering 'Curtain with a package of stories' pane
+ * variant.
  *
  * @param array $conf
  *   Configuration array.

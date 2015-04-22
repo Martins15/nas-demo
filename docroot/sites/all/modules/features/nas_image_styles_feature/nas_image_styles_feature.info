@@ -22,6 +22,7 @@ features[image][] = conservation_strategy_slideshow
 features[image][] = default_teaser_image
 features[image][] = donate_banner_bg
 features[image][] = featured_frontpage
+features[image][] = featured_frontpage_hero_image
 features[image][] = front_flyway_image
 features[image][] = get_outside
 features[image][] = hero_cover_bird_page
