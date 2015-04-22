@@ -9,7 +9,7 @@
 
       $(window).resize(function() {
         var headerHeight = $header.height();
-        var widths = ['medium-8', 'medium-9', 'medium-10', 'medium-11', 'medium-12']
+        var widths = ['medium-8', 'medium-9', 'medium-10', 'medium-11', 'medium-12'];
         $curtainFeaturedHeader.removeClass(widths.join(' '));
         for (var i in widths) {
           if ($curtainFeaturedHeader.offset().top >= headerHeight) {
