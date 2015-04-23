@@ -14071,9 +14071,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 .page-audubon-near-you .contact {
-  margin: 5px 0;
-  padding: 5px 10px;
-  border: solid 1px #ccc;
+  margin: 0 0 10px 0;
 }
 .page-audubon-near-you .contact .contact-name {
   font-weight: bold;
@@ -14088,4 +14086,10 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 .page-audubon-near-you .contact .contact-address .contact-address-label {
   font-weight: bold;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+.page-audubon-near-you .site-link {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
 }

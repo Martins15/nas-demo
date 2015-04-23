@@ -289,10 +289,17 @@ textarea {
 /**
  * CTools popup forms refinements.
  */
-  #modalContent .ctools-modal-content {
-    .description {
-      color: #333;
-      font-size: 13px;
+ #modalContent .ctools-modal-content {
+  .description {
+    color: #333;
+    font-size: 13px;
+  }
+
+  .form-type-checkboxes,
+  .form-type-radios {
+    .form-item,
+    input {
+      margin: 0;
     }
 
     .form-type-checkboxes,
@@ -392,10 +399,10 @@ textarea {
       display: none !important;
     }
 
-    /**
-     * Tables.
-     */
-  table {
+  /**
+   * Tables.
+   */
+   table {
     margin: 0 0 10px;
     width: 100%;
   }
@@ -518,7 +525,7 @@ textarea {
   /**
    * Form elements.
    */
-  .form-item {
+   .form-item {
     padding: 0 1em 0 0;
     margin: 0 0 10px;
   }
@@ -898,9 +905,7 @@ body.node-type-slideshow {
 
 .page-audubon-near-you{
   .contact{
-    margin: 5px 0;
-    padding: 5px 10px;
-    border: solid 1px #ccc;
+    margin: 0 0 10px 0;
     .contact-name{
       font-weight: bold;
     }
@@ -913,7 +918,13 @@ body.node-type-slideshow {
       padding-top: 5px;
       .contact-address-label{
         font-weight: bold;
+        font-family: "Source Sans Pro", Verdana, sans-serif;
+        font-size: 16px;
+        line-height: 24px;
       }
     }
+  }
+  .site-link{
+    font-family: "Source Sans Pro", Verdana, sans-serif;
   }
 }
