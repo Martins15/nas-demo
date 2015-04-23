@@ -9,6 +9,7 @@ dependencies[] = features
 dependencies[] = feeds
 dependencies[] = feeds_ex
 dependencies[] = field_group
+dependencies[] = file
 dependencies[] = filter
 dependencies[] = image
 dependencies[] = link

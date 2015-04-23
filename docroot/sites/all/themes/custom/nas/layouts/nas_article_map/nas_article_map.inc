@@ -19,6 +19,7 @@ $plugin = array(
     'header' => t('Header'),
     'map' => t('Map'),
     'mobile_author' => t('Mobile author'),
+    'comments' => t('Comments'),
     'main' => t('Main'),
     'file_attachments' => t('File attachments'),
     'social' => t('Social icons'),
