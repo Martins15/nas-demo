@@ -2403,7 +2403,7 @@ function nas_master_update_7174() {
       $did = $value->did;
       if (is_numeric($did)) {
         $display = panels_load_display($did);
-        if($display) {
+        if ($display) {
           $display->add_pane($new_pane, 'file_attachments');
           panels_save_display($display);
         }
