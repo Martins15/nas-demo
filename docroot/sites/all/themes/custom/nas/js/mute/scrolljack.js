@@ -4,6 +4,7 @@
       if(!$(".bird-guide-container").length == 0) {
         var USERAGENT = navigator.userAgent.toLowerCase(),
             ISWINDOWS = USERAGENT.match("windows"),
+            ISOSX = USERAGENT.match("os x"),
             ISWEBKIT  = $.browser.webkit,
             ISFIREFOX = USERAGENT.match("firefox"),
             MINSCROLL = 50,
@@ -11,6 +12,12 @@
 
         function scroll(e, $container, cardPadding, delta) {
           if(ISWINDOWS && ISWEBKIT || ISWINDOWS && ISFIREFOX) {
+            delta = delta * 15;
+          } else if (ISOSX) {
+            delta = delta;
+          } else if(ISWEBKIT || ISFIREFOX) {
+            delta = delta * 15;
+          } else {
             delta = delta * 15;
           }
 
