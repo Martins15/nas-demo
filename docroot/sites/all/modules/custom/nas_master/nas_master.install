@@ -2356,4 +2356,65 @@ function nas_master_update_7173() {
  */
 function nas_master_update_7174() {
   features_revert_module('nas_static_page_feature');
+  // Move Disquss pane to the own panel.
+  db_update('panels_pane')
+  ->fields(array('position' => 0, 'panel' => 'comments'))
+  ->condition('subtype', 'disqus-disqus_comments')
+  ->execute();
+
+  // Create new pane and configure content and visibility settings.
+  $new_pane = panels_new_pane('entity_field', 'node:field_file_attachments', TRUE);
+  if ($new_pane) {
+    // Set up content.
+    $new_pane->configuration['label'] = 'hidden';
+    $new_pane->configuration['formatter'] = 'file_default';
+    $new_pane->configuration['formatter_settings'] = array();
+    $new_pane->configuration['context'] = 'panelizer';
+    $new_pane->configuration['override_title'] = 0;
+    $new_pane->configuration['override_title_text'] = '';
+    $new_pane->configuration['override_title_heading'] = 'h2';
+    // Select all Articles default panelizers.
+    $db_or = db_or()
+      ->condition('p.name', 'node:article:fullscreen_image')
+      ->condition('p.name', 'node:article:inline_hero_photo')
+      ->condition('p.name', 'node:article:big_image')
+      ->condition('p.name', 'node:article:default')
+      ->condition('p.name', 'node:article:press_release')
+      ->condition('p.name', 'node:article:map');
+    $query = db_select('panelizer_defaults', 'p')
+      ->fields('p', array('did'))
+      ->condition($db_or);
+    $dids1 = $query->execute()->fetchAll();
+    // Select all overriden Articles panelizers.
+    $db_or = db_or()
+      ->condition('p.layout', 'nas_article_default', '=')
+      ->condition('p.layout', 'nas_article_inline_hero_image', '=')
+      ->condition('p.layout', 'nas_article_big_image')
+      ->condition('p.layout', 'nas_article_fullscreen')
+      ->condition('p.layout', 'nas_article_map');
+    $query = db_select('panels_display', 'p')
+      ->fields('p', array('did'))
+      ->condition($db_or);
+    $dids2 = $query->execute()->fetchAll();
+    // Save pane to the all provided panel_displays.
+    $result = array_merge($dids1, $dids2);
+    foreach ($result as $value) {
+      // Load the panel display to add the new pane.
+      $did = $value->did;
+      if (is_numeric($did)) {
+        $display = panels_load_display($did);
+        if($display) {
+          $display->add_pane($new_pane, 'file_attachments');
+          panels_save_display($display);
+        }
+      }
+      else {
+        drupal_set_message(t('Incorrect reference to panels display'), 'warning', FALSE);
+        watchdog('nas_install', 'did passed to panels_load_display is not int - @did.', array('@did' => $did));
+      }
+    }
+  }
+  else {
+    drupal_set_message(t('Failed to create new pane.'), 'warning', FALSE);
+  }
 }
