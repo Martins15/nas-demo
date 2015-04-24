@@ -4130,8 +4130,8 @@ hr {
   border-top: 1px solid #d4d4d4;
 }
 
-ul {
-  margin-left: 20px;
+ul, ol {
+  margin-left: 23px;
 }
 
 ul.no-bullets {
@@ -9368,8 +9368,8 @@ body.black-bg .slide-caption {
 .breakout-section-box h1 a, .breakout-section-box h2 a, .breakout-section-box h3 a, .breakout-section-box h4 a, .breakout-section-box h5 a {
   color: #fff;
 }
-.breakout-section-box ul {
-  margin-left: 20px;
+.breakout-section-box ul, .breakout-section-box ol {
+  margin-left: 23px;
 }
 @media only screen and (min-width: 900px) {
   .breakout-section-box {
