@@ -1357,7 +1357,7 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
 
   // Set curtain background color.
   $bg_color = &drupal_static('featured_frontpage_bgcolor');
-  $variables['bg_color'] = !empty($bg_color) ? $bg_color : '#fff';
+  $variables['bg_color'] = !empty($bg_color) ? '#' . $bg_color : '#fff';
 
   if (_frontpage_variant() == 'hero_image') {
     $variables['theme_hook_suggestion'] = 'panels_nas_frontpage__hero_image';
