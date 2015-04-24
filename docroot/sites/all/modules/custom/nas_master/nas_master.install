@@ -2355,7 +2355,9 @@ function nas_master_update_7173() {
  * Revert feature.
  */
 function nas_master_update_7174() {
-  features_revert_module('nas_news_page_feature');
+  if (!empty(variable_get('pp_environment', ''))) {
+    features_revert_module('nas_news_page_feature');
+  }
   features_revert_module('nas_static_page_feature');
   features_revert(array('nas_article_feature' => array('field_instance')));
   // Move Disquss pane to the own panel.
