@@ -9863,6 +9863,7 @@ body.black-bg .slide-caption {
   min-height: 432px;
   position: absolute;
   bottom: 0;
+  left: 0;
 }
 @media only screen and (min-width: 1024px) {
   .curtain-video video {
