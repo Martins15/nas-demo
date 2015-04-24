@@ -396,12 +396,56 @@ var Nas = Nas || {};
       } 
     }
   };
-Drupal.behaviors.centerAuthorImage = {
-  attach: function (context, settings) {
-    articleAuthor = jQuery(".article-sidebar-section.article-meta img");
-    if(articleAuthor.length) {
-      jQuery(".article-sidebar-section.article-meta").css("text-align","center");
+
+  Drupal.behaviors.centerAuthorImage = {
+    attach: function (context, settings) {
+      articleAuthor = jQuery(".article-sidebar-section.article-meta img");
+      if(articleAuthor.length) {
+        jQuery(".article-sidebar-section.article-meta").css("text-align","center");
+      }
     }
-  }
-};
+  };
+
+  Drupal.behaviors.search_highlight = {
+    attach: function (context, settings) {
+      $('.page-search-results').each(function(){
+        var query = {},
+            queries = window.location.search.substring(1).split('&'),
+            qr_length = queries.length,
+            highlight = ['.common-name a', '.scientific-name', '.editorial-card-title a', '.editorial-card-content p', '.editorial-card-info a'],
+            hl_length = highlight.length,
+            i = 0;
+
+        // Retrieving the search words from URL.
+        for (i = 0; i < qr_length; i = i + 1) {
+          queries[i] = queries[i].split('=');
+          if (queries[i][0] == 'search') {
+            query[queries[i][0]] = queries[i][1].split('+');
+          }
+          else {
+            query[queries[i][0]] = queries[i][1];
+		  }
+        }
+        if ($.isArray(query.search)) {
+
+          // Iterate over all strings container and highlight search words.
+          for (i = 0; i < hl_length; i = i + 1) {
+            $(highlight[i]).each(function(){
+              var text = this.innerHTML,
+                  sr_length = query.search.length,
+                  j = 0,
+                  index = 0,
+                  wr_length = 0,
+                  replacement = '';
+              for (j = 0; j < sr_length; j = j + 1) {
+			    replacement = '<mark class="highlight">'+query.search[j]+'</mark>';
+                text = text.replace(new RegExp(query.search[j], 'gi'), '<mark>$&</mark>');
+                this.innerHTML = text;
+              }
+            });
+          }
+        }
+      });
+    }
+  };
 })(jQuery);
