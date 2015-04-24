@@ -5402,7 +5402,6 @@ table.row-borders tbody td {
 .article-date {
   color: #888;
   font-size: 13px;
-  font-style: italic;
 }
 
 .strip-nav {
@@ -13103,11 +13102,12 @@ h2.grey {
   margin: 0 0 10px 0;
 }
 .article-sidebar-section .article-author-name {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 15px;
+  margin: 0 0 5px 0;
 }
 .article-sidebar-section .article-date {
-  font-size: 11px;
+  font-size: 14px;
 }
 .article-sidebar-section .tiny-6 {
   padding-left: 0;
@@ -13446,7 +13446,8 @@ h2.grey {
   font-size: 14px;
 }
 
-.press-release .article-sidebar-section.article-meta {
+.press-release .article-sidebar-section.article-meta,
+.article-sidebar-section.article-meta {
   text-align: left;
 }
 
@@ -13502,7 +13503,7 @@ textarea.error {
   color: #D4D4D4;
 }
 
-/** 
+/**
  * CTools popup forms refinements.
  */
 #modalContent .ctools-modal-content {
