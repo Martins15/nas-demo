@@ -18,7 +18,7 @@ function nas_event_feature_feeds_importer_default() {
     'name' => 'Events',
     'description' => '',
     'fetcher' => array(
-      'plugin_key' => 'NASFeedsHTTPFetcher',
+      'plugin_key' => 'FeedsHTTPFetcher',
       'config' => array(
         'auto_detect_feeds' => FALSE,
         'use_pubsubhubbub' => FALSE,
