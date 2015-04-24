@@ -511,7 +511,7 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     ),
     '#default_value' => !empty($_conf['video']) ? $_conf['video'] : 0,
     '#states' => $state,
-//    '#pp_crop_styles' => array('featured_frontpage'),
+    '#pp_crop_styles' => array('featured_frontpage'),
   );
   $form['curtain_video']['header_color_mode'] = array(
     '#type' => 'radios',
@@ -592,13 +592,16 @@ function frontpage_featured_form_validate($form, $form_state) {
       break;
 
     case 'curtain_video':
+      if (empty($values['curtain_video']['image'])) {
+        form_set_error('curtain_video][image', t('Image field is required'));
+      }
       if (empty($values['curtain_video']['video'])) {
         form_set_error('curtain_video][video', t('Video field is required'));
       }
-//      $title_value = array_filter($values['curtain_package']['title']);
-//      if (empty($title_value)) {
-//        form_set_error('curtain_package][title', t('Featured heading is required'));
-//      }
+      $title_value = array_filter($values['curtain_video']['title']);
+      if (empty($title_value)) {
+        form_set_error('curtain_video][title', t('Heading is required'));
+      }
       break;
   }
 }
