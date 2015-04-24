@@ -414,7 +414,20 @@ var Nas = Nas || {};
             qr_length = queries.length,
             highlight = ['.common-name a', '.scientific-name', '.editorial-card-title a', '.editorial-card-content p', '.editorial-card-info a'],
             hl_length = highlight.length,
-            i = 0;
+            i = 0,
+            highlight_aplly = function(){
+              var text = this.innerHTML,
+                  sr_length = query.search.length,
+                  j = 0,
+                  index = 0,
+                  wr_length = 0,
+                  replacement = '';
+              for (j = 0; j < sr_length; j = j + 1) {
+			    replacement = '<mark class="highlight">'+query.search[j]+'</mark>';
+                text = text.replace(new RegExp(query.search[j], 'gi'), '<mark>$&</mark>');
+                this.innerHTML = text;
+              }
+            };
 
         // Retrieving the search words from URL.
         for (i = 0; i < qr_length; i = i + 1) {
@@ -430,19 +443,7 @@ var Nas = Nas || {};
 
           // Iterate over all strings container and highlight search words.
           for (i = 0; i < hl_length; i = i + 1) {
-            $(highlight[i]).each(function(){
-              var text = this.innerHTML,
-                  sr_length = query.search.length,
-                  j = 0,
-                  index = 0,
-                  wr_length = 0,
-                  replacement = '';
-              for (j = 0; j < sr_length; j = j + 1) {
-			    replacement = '<mark class="highlight">'+query.search[j]+'</mark>';
-                text = text.replace(new RegExp(query.search[j], 'gi'), '<mark>$&</mark>');
-                this.innerHTML = text;
-              }
-            });
+            $(highlight[i]).each(highlight_aplly);
           }
         }
       });
