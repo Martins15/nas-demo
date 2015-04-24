@@ -61,8 +61,8 @@
       color: $color-white;
     }
   }
-  ul {
-    margin-left: 20px;
+  ul, ol {
+    margin-left: 23px;
   }
 
   @include breakpoint(min-width, 900px) {
