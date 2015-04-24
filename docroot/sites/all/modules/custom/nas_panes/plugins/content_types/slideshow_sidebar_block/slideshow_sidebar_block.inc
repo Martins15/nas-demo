@@ -73,7 +73,7 @@ function slideshow_sidebar_block_form_submit(&$form, &$form_state) {
  */
 function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
-  
+
   drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
 
   // Get latest slideshow if pane config is empty.
