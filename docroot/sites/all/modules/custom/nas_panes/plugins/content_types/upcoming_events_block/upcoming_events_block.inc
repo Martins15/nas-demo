@@ -92,11 +92,6 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   }
 
   $locations = '';
-  $state = 'all';
-  if (isset($_SESSION['state'])) {
-    $state = $_SESSION['state'];
-    $locations = _nas_panes_get_upcoming_events($state);
-  }
   // Locations are going to be loaded by ajax.
   // $locations = _nas_panes_get_upcoming_events();
 
@@ -112,7 +107,7 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
       'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Upcoming Events'),
       'image' => $image_markup,
       'bottom_link' => $bottom_link,
-      'content' => theme('upcoming_events_block_content', array('locations' => $locations, 'state' => $state)),
+      'content' => theme('upcoming_events_block_content', array('locations' => $locations)),
     ));
 
   $block->content = $content;

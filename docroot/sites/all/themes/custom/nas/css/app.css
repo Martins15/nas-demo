@@ -12717,7 +12717,7 @@ body.touch .sticky-wrapper {
   font-size: 24px;
   font-weight: normal;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   letter-spacing: .1px;
 }
 .blocks-events article .title-article span {
@@ -14302,9 +14302,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 .page-audubon-near-you .contact {
-  margin: 5px 0;
-  padding: 5px 10px;
-  border: solid 1px #ccc;
+  margin: 0 0 10px 0;
 }
 .page-audubon-near-you .contact .contact-name {
   font-weight: bold;
@@ -14315,10 +14313,16 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .page-audubon-near-you .contact .contact-address {
   font-size: 14px;
   line-height: 17px;
-  padding-top: 5px;
+  padding-top: 0px;
 }
 .page-audubon-near-you .contact .contact-address .contact-address-label {
   font-weight: bold;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+.page-audubon-near-you .site-link {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
 /* Individual Events page*/
@@ -14426,4 +14430,43 @@ figcaption {
   font-size: 14px;
   line-height: 20px;
   margin: 5px 0 12.5px 0;
+}
+
+.file-attachments {
+  margin: 20px 0;
+}
+.file-attachments h3 {
+  border-bottom: 1px solid #a4a4a4;
+  font-size: 22px;
+  margin: 0 0 10px;
+  padding: 0 0 5px;
+}
+.file-attachments .file {
+  display: inline-block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+  min-height: 27px;
+  padding: 0 30px 0 45px;
+  margin-bottom: 15px;
+  vertical-align: middle;
+  width: 49%;
+  word-break: break-all;
+}
+@media only screen and (max-width: 479px) {
+  .file-attachments .file {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+.file-attachments .file a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.file-attachments .file img {
+  display: inline-block;
+  height: 34px;
+  margin-left: -40px;
+  vertical-align: middle;
+  width: 35px;
 }

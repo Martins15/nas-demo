@@ -923,7 +923,6 @@ function nas_panes_theme() {
     'upcoming_events_block_content' => array(
       'variables' => array(
         'locations' => array(),
-        'state' => NULL,
       ),
       'template' => 'upcoming-events-block-item',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
