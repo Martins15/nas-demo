@@ -1,0 +1,21 @@
+.editorial-card-photo{
+  position: relative;
+}
+
+.editorial-card-banner.overlap{
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.editorial-card-banner.overlap a{
+  display: inline-block;
+}
+
+.editorial-slideshow{
+  min-height: 100px !important;
+}
+
+.editorial-slideshow > a:after{
+  content: ' \00BB';
+}

@@ -10,10 +10,19 @@
 
   <div class="editorial-card-photo">
     <?php print $image; ?>
+    <div class="editorial-card-banner gray overlap">
+      <?php if ($logo) : ?><?php print $logo; ?>
+      <?php else : ?><i class="icon-slides"></i>
+      <?php endif; ?>
+      <?php print $block_title; ?>
+    </div>
   </div>
 
-  <div class="editorial-card-banner gray"><i class="icon-slides"></i> <?php print $block_title; ?></div>
-  <div class="editorial-card-content">
+  <div class="editorial-card-content editorial-slideshow">
     <h3 class="editorial-card-title"><?php print $slideshow; ?></h3>
+    <?php if (!empty($link)) : ?>
+      <?php print $link; ?>
+    <?php endif; ?>
   </div>
+  
 </section>

@@ -19,6 +19,30 @@ $plugin = array(
  */
 function slideshow_sidebar_block_form($form, &$form_state) {
   $conf = $form_state['conf'];
+  $form['override_title'] = NULL;
+
+  $form['block_title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Title'),
+    '#required' => TRUE,
+    '#default_value' => !empty($conf['block_title']) ? $conf['block_title'] : '',
+  );
+
+  $form['logo'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Logo'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '10 MB',
+        'file_directory' => 'slideshow_logo',
+        'types' => array('logo'),
+      ),
+    ),
+    '#default_value' => !empty($conf['logo']) ? $conf['logo'] : 0,
+  );
 
   $form['slideshow'] = array(
     '#type' => 'entityreference',
@@ -49,6 +73,8 @@ function slideshow_sidebar_block_form_submit(&$form, &$form_state) {
  */
 function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
+  
+  drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
 
   // Get latest slideshow if pane config is empty.
   if (empty($conf['slideshow']['entity_id'])) {
@@ -76,14 +102,21 @@ function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
     $image_markup = l($image, 'node/' . $node->nid, array('html' => TRUE));
   }
 
+  $logo_markup = '';
+  if (!empty($conf['logo'])) {
+    $logo = theme('image', array('path' => image_style_url('thumbnail', $conf['logo'])));
+    $logo_markup = l($logo, 'node/' . $node->nid, array('html' => TRUE));
+  }
+
   $content = theme('slideshow_sidebar_block', array(
       'contextual_links' => $contextual_links,
-      'block_title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Slideshow'),
+      'block_title' => !empty($conf['block_title']) ? $conf['block_title'] : t('Slideshow'),
       'image' => $image_markup,
+      'logo' => $logo_markup,
       'slideshow' => l($node->title, 'node/' . $node->nid),
+      'link' => l(t('See more photos'), 'node/' . $node->nid, array('class' => array('see-more-photos')))
     ));
 
   $block->content = $content;
-
   return $block;
 }
