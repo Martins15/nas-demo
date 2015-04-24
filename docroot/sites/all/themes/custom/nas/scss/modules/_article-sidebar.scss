@@ -47,11 +47,12 @@
     margin: 0 0 $size-space 0;
   }
   .article-author-name {
-    font-size: $size-text-small;
+    font-size: 18px;
     line-height: $size-text-small;
+    margin: 0 0 5px 0;
   }
   .article-date {
-    font-size: $size-text-tiny - 1px;
+    font-size: $size-text-tiny + 2px;
   }
 
   .tiny-6 {
