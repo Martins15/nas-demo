@@ -2355,7 +2355,7 @@ function nas_master_update_7173() {
  * Revert feature.
  */
 function nas_master_update_7174() {
-  if (!empty(variable_get('pp_environment', ''))) {
+  if (!isset($_ENV['AH_SITE_ENVIRONMENT']) || (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] !== 'prod') {
     features_revert_module('nas_news_page_feature');
   }
   features_revert_module('nas_static_page_feature');
