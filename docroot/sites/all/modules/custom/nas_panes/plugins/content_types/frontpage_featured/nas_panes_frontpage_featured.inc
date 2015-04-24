@@ -524,7 +524,7 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#description' => t('You can choose if the video you uploaded is dark or light so that proper font styles were applied to header content.'),
   );
   $form['curtain_video']['bg_color'] = array(
-    '#type' => 'colorfield',
+    '#type' => 'jquery_colorpicker',
     '#title' => t('Background color'),
     '#default_value' => !empty($_conf['bg_color']) ? $_conf['bg_color'] : '',
     '#states' => $state,
@@ -544,6 +544,8 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#title' => t('Summary'),
     '#default_value' => !empty($_conf['summary']) ? $_conf['summary'] : '',
   );
+
+  $form['#attached']['css'][] = drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured/css/colorpicker.css';
 }
 
 /**
