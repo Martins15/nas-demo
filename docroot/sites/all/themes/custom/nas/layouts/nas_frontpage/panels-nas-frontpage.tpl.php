@@ -5,7 +5,7 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-<section class="curtain" style="background-color: #fff; background-image: url(<?php print !empty($frontpage_backgroundimage) ? $frontpage_backgroundimage : ''; ?>)">
+<section class="curtain" style="background-color: <?php print $bg_color; ?>; background-image: url(<?php print !empty($frontpage_backgroundimage) ? $frontpage_backgroundimage : ''; ?>)">
   <header class="global-header <?php print drupal_static('nas_header_class'); ?>">
     <?php print $content['header']; ?>
   </header>
