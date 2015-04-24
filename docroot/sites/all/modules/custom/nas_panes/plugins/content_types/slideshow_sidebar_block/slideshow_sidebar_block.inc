@@ -38,7 +38,7 @@ function slideshow_sidebar_block_form($form, &$form_state) {
         'file_extensions' => 'png jpg jpeg gif',
         'max_filesize' => '10 MB',
         'file_directory' => 'slideshow_logo',
-        'types' => array('png', 'jpg', 'jpeg', 'gif'),
+        'types' => array('image'),
       ),
     ),
     '#default_value' => !empty($conf['logo']) ? $conf['logo'] : 0,
