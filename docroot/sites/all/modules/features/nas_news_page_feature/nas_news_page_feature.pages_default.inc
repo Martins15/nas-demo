@@ -23,7 +23,7 @@ function nas_news_page_feature_default_page_manager_handlers() {
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
-    'body_classes_to_add' => 'page-taxonomy-term-tags',
+    'body_classes_to_add' => '',
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
@@ -326,35 +326,62 @@ function nas_news_page_feature_default_page_manager_pages() {
     $display->content['new-6cec715f-979a-404c-880d-9c2931f7b6f9'] = $pane;
     $display->panels['featured'][0] = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
     $pane = new stdClass();
-    $pane->pid = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $pane->pid = 'new-8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9';
     $pane->panel = 'featured';
-    $pane->type = 'editorial_card_package';
-    $pane->subtype = 'editorial_card_package';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
       'override_title' => 0,
       'override_title_text' => '',
-      'image' => '9799',
-      'references' => array(
-        0 => array(
-          'title' => 'A Crow Never Forgets',
-          'url' => 'http://nas.wearepropeople.md/staging/articles/birds/crow-never-forgets',
-          'blue_link_text' => 'Features',
-          'blue_link_url' => 'http://nas.wearepropeople.md/staging/taxonomy/term/4',
-        ),
+      'override_title_heading' => 'h2',
+      'preset' => 'manual_override',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
         1 => array(
-          'title' => 'Online Explorers: How You Can Help Scientists',
-          'url' => 'http://nas.wearepropeople.md/staging/articles/conservation/online-explorers-how-you-can-help-scientists',
-          'blue_link_text' => 'Press Room',
-          'blue_link_url' => 'http://nas.wearepropeople.md/staging/editorial-section/press-room',
+          'reference' => array(
+            'entity_id' => '47846',
+            'entity_label' => 'Bird-of-Paradise Stamps, On Sale Now',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'reference' => array(
+            'entity_id' => '47811',
+            'entity_label' => 'Sacred Spaces',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        3 => array(
+          'reference' => array(
+            'entity_id' => '47681',
+            'entity_label' => 'Untying the Knot',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
         ),
       ),
-      'button_text' => 'Lorem ipsum dolor sit amet',
-      'button_url' => 'http://nas.wearepropeople.md/staging/conservation',
-      'form_build_id' => 'form-14yFeBW57mfSLG0QetcZq6cVqtPN8nCYO0FWLHfag1s',
-      'form_token' => 'rPZhL6squwAjoFU5oubvA4BzQhyb6MO8SgBhJ48yA08',
-      'form_id' => 'editorial_card_package_form',
+      'form_build_id' => 'form-BD9sTpSFft87SQAuwMSDrIafHoo8ZI1bUEspwmQkJas',
+      'form_token' => 'Sui1_iaIFt6HghduFwW0YxatJKzx-BiMrV2FDk_hSNY',
+      'form_id' => 'editorial_card_3x_edit_form',
       'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
@@ -365,9 +392,9 @@ function nas_news_page_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '62a564fc-c5cc-404f-8fd3-130da8011a98';
-    $display->content['new-62a564fc-c5cc-404f-8fd3-130da8011a98'] = $pane;
-    $display->panels['featured'][1] = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
+    $pane->uuid = '8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9';
+    $display->content['new-8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9'] = $pane;
+    $display->panels['featured'][1] = 'new-8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9';
     $pane = new stdClass();
     $pane->pid = 'new-2b28ca52-7485-48f7-89d3-12920e44c8ec';
     $pane->panel = 'right_sidebar';
