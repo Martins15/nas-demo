@@ -12716,7 +12716,7 @@ body.touch .sticky-wrapper {
   font-size: 24px;
   font-weight: normal;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   letter-spacing: .1px;
 }
 .blocks-events article .title-article span {
@@ -14301,9 +14301,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 .page-audubon-near-you .contact {
-  margin: 5px 0;
-  padding: 5px 10px;
-  border: solid 1px #ccc;
+  margin: 0 0 10px 0;
 }
 .page-audubon-near-you .contact .contact-name {
   font-weight: bold;
@@ -14314,10 +14312,16 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .page-audubon-near-you .contact .contact-address {
   font-size: 14px;
   line-height: 17px;
-  padding-top: 5px;
+  padding-top: 0px;
 }
 .page-audubon-near-you .contact .contact-address .contact-address-label {
   font-weight: bold;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+.page-audubon-near-you .site-link {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
 /* Individual Events page*/
