@@ -6340,7 +6340,7 @@ input.header-search-input,
     line-height: 25.5px;
   }
   .guide-bar-attribution .canon-logo {
-    width: 86px;
+    width: auto;
     height: 16px;
     margin-left: 5px;
     top: -1px;
