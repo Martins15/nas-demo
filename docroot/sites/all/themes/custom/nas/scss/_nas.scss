@@ -91,7 +91,7 @@
   .button.load-more:hover {
     background-color: #EDECEA;
   }
-  
+
   &.pager-load-more-empty,
   .ajax-progress-throbber {
     display: none;
@@ -227,12 +227,13 @@
   font-style: normal;
   font-size: 14px;
 }
-.press-release .article-sidebar-section.article-meta {
+.press-release .article-sidebar-section.article-meta,
+.article-sidebar-section.article-meta {
   text-align: left;
 }
 
 .section-nav.mag-issue-nav {
-  top: -49px;  
+  top: -49px;
 }
 .mag-issue-title {
   @include breakpoint(width, 768px) {
@@ -285,7 +286,7 @@ textarea {
   color: #D4D4D4;
 }
 
-/** 
+/**
  * CTools popup forms refinements.
  */
  #modalContent .ctools-modal-content {
@@ -394,7 +395,7 @@ textarea {
   /**
    * Tables.
    */
-   table {
+  table {
     margin: 0 0 10px;
     width: 100%;
   }
@@ -517,7 +518,7 @@ textarea {
   /**
    * Form elements.
    */
-   .form-item {
+  .form-item {
     padding: 0 1em 0 0;
     margin: 0 0 10px;
   }
@@ -873,7 +874,6 @@ body.node-type-slideshow {
 .article-text .article-video-container {
   width: auto;
   iframe {
-    
   }
   &.left {
     text-align: left;

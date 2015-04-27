@@ -1203,10 +1203,10 @@ function nas_field__field_author__article($variables) {
     if (!empty($article_date)) {
       $created = strtotime($node->field_article_date[LANGUAGE_NONE][0]['value']);
     }
-    $published = date('M d, Y', $created);
+    $published = date('F d, Y', $created);
   }
 
-  $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
+  $output .= '<small class="article-date">' . t('@date', array('@date' => $published)) . '</small>';
   return $output;
 }
 
