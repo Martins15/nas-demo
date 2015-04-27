@@ -593,7 +593,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   }
 
   if ($vars['type'] == 'slideshow') {
-	if (module_exists('nas_panes')) {
+    if (module_exists('nas_panes')) {
       drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
     }
     if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
