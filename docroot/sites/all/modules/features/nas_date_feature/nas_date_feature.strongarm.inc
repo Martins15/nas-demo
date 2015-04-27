@@ -17,5 +17,12 @@ function nas_date_feature_strongarm() {
   $strongarm->value = 'F j, Y';
   $export['date_format_nas_date'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'date_format_nas_date_day';
+  $strongarm->value = 'l, M d, Y';
+  $export['date_format_nas_date_day'] = $strongarm;
+
   return $export;
 }

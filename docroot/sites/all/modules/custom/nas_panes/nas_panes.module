@@ -215,6 +215,31 @@ function nas_panes_theme() {
       'template' => 'frontpage-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
     ),
+    'nas_frontpage_featured__hero_image' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_3stories' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_3stories_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_package' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
+    'nas_frontpage_featured__curtain_package_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+    ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
         'image_path' => '',
@@ -307,6 +332,15 @@ function nas_panes_theme() {
       ),
       'template' => 'nas-panes-social-news-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
+    ),
+    'events_social_block' => array(
+      'variables' => array(
+        'title' => '',
+        'page_link' => '',
+        'caption' => '',
+      ),
+      'template' => 'events_social_block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block'
     ),
     'nas_panes_press_contact' => array(
       'variables' => array(
@@ -837,6 +871,56 @@ function nas_panes_theme() {
       ),
       'template' => 'bird-hero-image',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_hero_image',
+    ),
+    'events_intro' => array(
+      'variables' => array(
+        'date_city_province' => NULL,
+        'featured_image' => NULL,
+        'address' => NULL,
+      ),
+      'template' => 'events-intro',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
+    ),
+    'events_reg_block' => array(
+      'variables' => array(
+        'image' => NULL,
+        'title' => NULL,
+        'date_city_province' => NULL,
+        'reg_notes' => NULL,
+        'button' => NULL,
+      ),
+      'template' => 'events-reg-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
+    ),
+    'calendar_download' => array(
+      'variables' => array(
+        'title' => NULL,
+        'download_link' => '',
+      ),
+      'template' => 'calendar-download',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download'
+    ),
+    'events_listing_featured' => array(
+      'template' => 'events-listing-featured',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
+    'upcoming_events_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'upcoming-events-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
+    ),
+    'upcoming_events_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'upcoming-events-block-item',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
     ),
   );
 
@@ -1554,6 +1638,38 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
+ * Returns Upcoming events base on state.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_upcoming_events($state = 'all') {
+  $items = array();
+  $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
+  $count = 0;
+
+  foreach ($results as $result) {
+    $link = NULL;
+    $item = node_load($result->entity);
+    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->title,
+      'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
+      'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
+      'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'link' => $link,
+      'order' => $count,
+    );
+    $count = $count + 1;
+  }
+  return $items;
+}
+
+/**
  * Returns locations.
  *
  * @param string $state
@@ -1579,8 +1695,22 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
+      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
+      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'phone_email' => '',
+      'address_label' => t("Address") . ":<br/>",
+      'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
     );
-
+    // Add Phone and/or email.
+    if (!empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];
+    }
+    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'];
+    }
+    if (!empty($item->_field_data['nid']['entity']->field_email['und']['0']['email']) && !empty($item->_field_data['nid']['entity']->field_phone['und']['0']['value'])) {
+      $items[$item->nid]['phone_email'] = $item->_field_data['nid']['entity']->field_email['und']['0']['email'] . " - " . $item->_field_data['nid']['entity']->field_phone['und']['0']['value'];
+    }
     // Add site link.
     if (!empty($item->field_field_location_link[0]['raw']['url'])) {
       $options = array('attributes' => array('target' => '_blank', 'class' => array('more-link')));
@@ -1631,6 +1761,12 @@ function nas_panes_menu() {
 
   $items['ajax/local-chapters-centers'] = array(
     'page callback' => 'nas_panes_local_chapters_centers_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['ajax/upcoming-events'] = array(
+    'page callback' => 'nas_panes_upcoming_events_callback',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -1689,6 +1825,26 @@ function nas_panes_local_chapters_centers_callback() {
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
+
+/**
+ * Returns markup for Upcoming Events block.
+ */
+function nas_panes_upcoming_events_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_upcoming_events($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
 /**
@@ -1807,6 +1963,7 @@ function _nas_panes_get_menu_section_options() {
 
 /**
  * Helper function.
+ *
  * Provides default social pages urls.
  */
 function _nas_panes_default_social_pages_url() {

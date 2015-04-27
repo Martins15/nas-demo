@@ -28,3 +28,20 @@ $plugin = array(
     'footer' => t('Footer'),
   ),
 );
+
+/**
+ * Returns and sets current frontpage variant key.
+ *
+ * @param string $variant
+ *  'curtain' or 'hero_image' key.
+ *
+ * @return string
+ *   Key of current variant.
+ */
+function _frontpage_variant($key = '') {
+  if (!$key) {
+    return variable_get('frontpage_variant', 'curtain');
+  }
+
+  return variable_set('frontpage_variant', $key == 'hero_image' ? 'hero_image' : 'curtain');
+}

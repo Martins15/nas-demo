@@ -2221,3 +2221,204 @@ function nas_master_update_7162() {
   module_disable(array('display_cache'));
 }
 
+/**
+ * Enable Events feature.
+ */
+function nas_master_update_7163() {
+  module_enable(array('nas_event_feature'));
+}
+
+/**
+ * Revert News page feature.
+ */
+function nas_master_update_7164() {
+  features_revert_module('nas_news_page_feature');
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7165() {
+  features_revert_module('nas_event_feature');
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7166() {
+  field_delete_field('field_event_location');
+  features_revert_module('nas_event_feature');
+  features_revert_module('nas_views_feature');
+  module_enable(array('nas_events'));
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'name' => 'term_view_panel_context',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    $handler->conf['body_classes_to_add'] = 'page-taxonomy-term-tags';
+    $conf = serialize($handler->conf);
+    db_update('page_manager_handlers')
+    ->fields(array('conf' => $conf))
+    ->condition('name', 'term_view_panel_context')
+    ->execute();
+  }
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7167() {
+  module_enable(array('date_ical', 'nas_calendar_download_view_feature'));
+  features_revert_module('nas_event_feature');
+}
+
+/**
+ * Revert Events feature.
+ */
+function nas_master_update_7168() {
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_slideshow_feature');
+}
+
+/**
+ * Enable and revert Events landing page related features.
+ */
+function nas_master_update_7169() {
+  module_enable(array('date_views', 'nas_events_landing_feature'));
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index', 'facetapi'),
+    'nas_image_styles_feature' => array('image'),
+  ));
+
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'name' => 'page_frontpage2_panel_context',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    $query = db_select('panels_pane');
+    $query->addField('panels_pane', 'configuration');
+    $query->condition('type', 'nas_panes_frontpage_featured');
+    $query->condition('did', $handler->conf['did']);
+    $conf = $query->execute()->fetchField();
+    $conf = unserialize($conf);
+
+    // Update Frontpage featured panel pane configuation.
+    $conf['variant'] = 'curtain_simple';
+
+    $fields = array('image', 'title', 'title_link', 'blue_text', 'blue_text_link', 'summary');
+    $conf['curtain_simple'] = array();
+    foreach ($fields as $field) {
+      $conf['curtain_simple'][$field] = $conf[$field];
+      unset($conf[$field]);
+    }
+    $query = db_update('panels_pane');
+    $query->fields(array('configuration' => serialize($conf)));
+    $query->condition('type', 'nas_panes_frontpage_featured');
+    $query->condition('did', $handler->conf['did']);
+    $query->execute();
+  }
+}
+
+/**
+ * Enable NAS field max length module and increasing slideshow subtitle length
+ */
+function nas_master_update_7170() {
+  // Remove in favor of nas_sla
+}
+
+/**
+ * Enable Panelizer Layout Thumbnails module for changing type of choosing layouts.
+ */
+function nas_master_update_7171() {
+  // Remove in favor of nas_sla
+}
+
+/**
+ * Enable Export birds module.
+ */
+function nas_master_update_7172() {
+  module_enable(array('nas_export_birds'));
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7173() {
+  module_enable(array('email'));
+  module_enable(array('phone'));
+  features_revert_module('nas_location_feature');
+}
+
+/**
+ * Revert feature.
+ */
+function nas_master_update_7174() {
+  if (!isset($_ENV['AH_SITE_ENVIRONMENT']) || $_ENV['AH_SITE_ENVIRONMENT'] !== 'prod') {
+    features_revert_module('nas_news_page_feature');
+  }
+  features_revert_module('nas_static_page_feature');
+  features_revert(array('nas_article_feature' => array('field_instance')));
+  // Move Disquss pane to the own panel.
+  db_update('panels_pane')
+  ->fields(array('position' => 0, 'panel' => 'comments'))
+  ->condition('subtype', 'disqus-disqus_comments')
+  ->execute();
+
+  // Create new pane and configure content and visibility settings.
+  $new_pane = panels_new_pane('entity_field', 'node:field_file_attachments', TRUE);
+  if ($new_pane) {
+    // Set up content.
+    $new_pane->configuration['label'] = 'hidden';
+    $new_pane->configuration['formatter'] = 'file_default';
+    $new_pane->configuration['formatter_settings'] = array();
+    $new_pane->configuration['context'] = 'panelizer';
+    $new_pane->configuration['override_title'] = 0;
+    $new_pane->configuration['override_title_text'] = '';
+    $new_pane->configuration['override_title_heading'] = 'h2';
+    // Select all Articles default panelizers.
+    $db_or = db_or()
+      ->condition('p.name', 'node:article:fullscreen_image')
+      ->condition('p.name', 'node:article:inline_hero_photo')
+      ->condition('p.name', 'node:article:big_image')
+      ->condition('p.name', 'node:article:default')
+      ->condition('p.name', 'node:article:press_release')
+      ->condition('p.name', 'node:article:map');
+    $query = db_select('panelizer_defaults', 'p')
+      ->fields('p', array('did'))
+      ->condition($db_or);
+    $dids1 = $query->execute()->fetchAll();
+    // Select all overriden Articles panelizers.
+    $db_or = db_or()
+      ->condition('p.layout', 'nas_article_default', '=')
+      ->condition('p.layout', 'nas_article_inline_hero_image', '=')
+      ->condition('p.layout', 'nas_article_big_image')
+      ->condition('p.layout', 'nas_article_fullscreen')
+      ->condition('p.layout', 'nas_article_map');
+    $query = db_select('panels_display', 'p')
+      ->fields('p', array('did'))
+      ->condition($db_or);
+    $dids2 = $query->execute()->fetchAll();
+    // Save pane to the all provided panel_displays.
+    $result = array_merge($dids1, $dids2);
+    foreach ($result as $value) {
+      // Load the panel display to add the new pane.
+      $did = $value->did;
+      if (is_numeric($did)) {
+        $display = panels_load_display($did);
+        if ($display) {
+          $display->add_pane($new_pane, 'file_attachments');
+          panels_save_display($display);
+        }
+      }
+      else {
+        drupal_set_message(t('Incorrect reference to panels display'), 'warning', FALSE);
+        watchdog('nas_install', 'did passed to panels_load_display is not int - @did.', array('@did' => $did));
+      }
+    }
+  }
+  else {
+    drupal_set_message(t('Failed to create new pane.'), 'warning', FALSE);
+  }
+}
