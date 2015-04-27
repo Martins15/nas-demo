@@ -232,7 +232,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 42,
+      'weight' => 51,
     ),
   );
 
@@ -379,7 +379,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 41,
+      'weight' => 52,
     ),
   );
 
@@ -550,7 +550,102 @@ function nas_slideshow_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 45,
+      'weight' => 49,
+    ),
+  );
+
+  // Exported field_instance: 'node-slideshow-field_editorial_card_left_icon'
+  $field_instances['node-slideshow-field_editorial_card_left_icon'] = array(
+    'bundle' => 'slideshow',
+    'default_value' => array(
+      0 => array(
+        'value' => 'icon-slides',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 11,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_editorial_card_left_icon',
+    'label' => 'Editorial Card Left Icon',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 50,
     ),
   );
 
@@ -672,7 +767,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 44,
+      'weight' => 54,
     ),
   );
 
@@ -794,7 +889,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 43,
+      'weight' => 53,
     ),
   );
 
@@ -1402,6 +1497,7 @@ function nas_slideshow_feature_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Editorial Card Caption');
   t('Editorial Card Icon');
+  t('Editorial Card Left Icon');
   t('Editorial card description');
   t('Editorial card image');
   t('Editorial card title');

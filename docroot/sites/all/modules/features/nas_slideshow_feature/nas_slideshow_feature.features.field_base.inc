@@ -69,6 +69,67 @@ function nas_slideshow_feature_field_default_field_bases() {
     'type' => 'image',
   );
 
+  // Exported field_base: 'field_editorial_card_left_icon'
+  $field_bases['field_editorial_card_left_icon'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_editorial_card_left_icon',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'icon-mail' => 'icon-mail',
+        'icon-facebook' => 'icon-facebook',
+        'icon-twitter' => 'icon-twitter',
+        'icon-youtube' => 'icon-youtube',
+        'icon-pinterest' => 'icon-pinterest',
+        'icon-quote' => 'icon-quote',
+        'icon-info' => 'icon-info',
+        'icon-spin-widdershins' => 'icon-spin-widdershins',
+        'icon-spin-clockwise' => 'icon-spin-clockwise',
+        'icon-home' => 'icon-home',
+        'icon-delete' => 'icon-delete',
+        'icon-chevron-right' => 'icon-chevron-right',
+        'icon-chevron-left' => 'icon-chevron-left',
+        'icon-music' => 'icon-music',
+        'icon-check' => 'icon-check',
+        'icon-arrow-right' => 'icon-arrow-right',
+        'icon-expand' => 'icon-expand',
+        'icon-arrow-left' => 'icon-arrow-left',
+        'icon-zoom' => 'icon-zoom',
+        'icon-slides' => 'icon-slides',
+        'icon-paper-airplane' => 'icon-paper-airplane',
+        'icon-map' => 'icon-map',
+        'icon-marker' => 'icon-marker',
+        'icon-grid' => 'icon-grid',
+        'icon-burst' => 'icon-burst',
+        'icon-chevron-up' => 'icon-chevron-up',
+        'icon-comment' => 'icon-comment',
+        'icon-calendar' => 'icon-calendar',
+        'icon-newspaper' => 'icon-newspaper',
+        'icon-camera' => 'icon-camera',
+        'icon-video' => 'icon-video',
+        'icon-sound-off' => 'icon-sound-off',
+        'icon-sound-half' => 'icon-sound-half',
+        'icon-sound-full' => 'icon-sound-full',
+        'icon-magnifier' => 'icon-magnifier',
+        'icon-bookmark' => 'icon-bookmark',
+        'icon-link' => 'icon-link',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_images'
   $field_bases['field_images'] = array(
     'active' => 1,

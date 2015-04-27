@@ -27,7 +27,15 @@
   display: inline-block;
   overflow: hidden;
 }
+@media screen and (min-width: 768px) and (max-width: 980px){
+  .editorial-card .icon-wrapper{
+    max-width: 50px;
+  }
+}
 .editorial-card .icon-wrapper img{ 
   width: auto;
-  height: 100%;
+  height: 29px;
+}
+.editorial-card .custom-caption{
+  font-size: 14px;
 }
