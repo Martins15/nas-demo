@@ -483,7 +483,7 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#type' => 'media',
     '#tree' => TRUE,
     '#title' => t('Image'),
-    '#description' => t('Allowed formats: png, jpg, jpeg, gif. Will be used for mobile devices.'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif. Used for mobile devices.'),
     '#media_options' => array(
       'global' => array(
         'file_extensions' => 'png jpg jpeg gif',
@@ -531,7 +531,7 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
   );
   $form['curtain_video']['title'] = array(
     '#type' => 'link_field',
-    '#title' => t('Title'),
+    '#title' => t('Heading'),
     '#default_value' => !empty($_conf['title']) ? $_conf['title'] : '',
   );
   $form['curtain_video']['slug_link'] = array(
@@ -669,6 +669,12 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
       $content = _frontpage_featured_curtain_video_render($conf['curtain_video'], $contextual_links);
       break;
 
+  }
+
+  if ($contextual_links) {
+    $path = libraries_get_path('colorpicker');
+    drupal_add_css($path . '/css/colorpicker.css', array('group' => CSS_THEME));
+//    drupal_add_library('jquery_colorpicker', 'colorpicker');
   }
 
   $block = new stdClass();
