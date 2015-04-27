@@ -34,7 +34,7 @@
 }
 .editorial-card .icon-wrapper img{ 
   width: auto;
-  height: 29px;
+  max-height: 29px;
 }
 .editorial-card .custom-caption{
   font-size: 14px;
