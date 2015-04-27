@@ -1,21 +1,31 @@
-.editorial-card-photo{
+.editorial-card .sidebar > .local-cnc {
+  padding-left: 0;
+  padding-right: 0;
+}
+.editorial-card .editorial-card-photo{
   position: relative;
 }
-
-.editorial-card-banner.overlap{
+.editorial-card .overlap-banner{
   bottom: 0;
   position: absolute;
   width: 100%;
 }
-
-.editorial-card-banner.overlap a{
+.editorial-card .overlap-banner a{
   display: inline-block;
 }
-
-.editorial-slideshow{
+.editorial-card .editorial-slideshow{
   min-height: 100px !important;
 }
-
-.editorial-slideshow > a:after{
+.editorial-card .editorial-slideshow > a:after{
   content: ' \00BB';
+}
+.editorial-card .icon-wrapper{
+  position: relative;
+  width: 25px;
+  height: 31px;
+  display: inline-block;
+}
+.editorial-card .icon-wrapper img{ 
+  width: 100%;
+  height: auto;
 }

@@ -591,6 +591,19 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   if ($custom_link_title_items = field_get_items('node', $node, 'field_link_title')) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_items[0]['safe_value']);
   }
+
+  if ($vars['type'] == 'slideshow') {
+	if (module_exists('nas_panes')) {
+      drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
+    }
+    if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
+      $vars['icon'] = theme('image_style', array(
+        'path' => $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'],
+        'style_name' => 'thumbnail',
+      ));
+    }
+    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: t('Slideshow');
+  }
 }
 
 /**

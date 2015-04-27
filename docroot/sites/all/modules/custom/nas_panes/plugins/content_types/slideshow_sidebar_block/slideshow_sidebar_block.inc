@@ -104,13 +104,16 @@ function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
 
   $logo_markup = '';
   if (!empty($conf['logo'])) {
-    $logo = theme('image', array('path' => image_style_url('thumbnail', $conf['logo'])));
+	$logo_uri = $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'];
+    $logo = theme('image', array('path' => image_style_url('thumbnail', $logo_uri)));
     $logo_markup = l($logo, 'node/' . $node->nid, array('html' => TRUE));
   }
+  
+  $block_title = (!empty($node->field_editorial_card_caption)) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'] : t('Slideshow');
 
   $content = theme('slideshow_sidebar_block', array(
       'contextual_links' => $contextual_links,
-      'block_title' => !empty($conf['block_title']) ? $conf['block_title'] : t('Slideshow'),
+      'block_title' => $block_title,
       'image' => $image_markup,
       'logo' => $logo_markup,
       'slideshow' => l($node->title, 'node/' . $node->nid),

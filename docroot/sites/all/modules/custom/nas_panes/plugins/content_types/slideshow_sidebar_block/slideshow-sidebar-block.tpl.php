@@ -10,8 +10,9 @@
 
   <div class="editorial-card-photo">
     <?php print $image; ?>
-    <div class="editorial-card-banner gray overlap">
-      <?php if ($logo) : ?><?php print $logo; ?>
+    <div class="editorial-card-banner gray overlap-banner">
+      <?php if ($logo) : ?>
+      <div class="icon-wrapper"><?php print $logo; ?></div>
       <?php else : ?><i class="icon-slides"></i>
       <?php endif; ?>
       <?php print $block_title; ?>

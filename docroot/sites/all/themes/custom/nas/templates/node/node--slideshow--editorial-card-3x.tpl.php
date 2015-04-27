@@ -91,8 +91,15 @@
   <div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
     <div class="editorial-card-photo slideshow-card">
       <?php print $linked_image; ?>
+      <div class="editorial-card-banner gray overlap-banner">
+	    <?php if (!empty($icon)): ?>
+	      <div class="icon-wrapper"><?php print $icon; ?></div>
+	    <?php else: ?>
+	      <i class="icon-slides"></i>
+	    <?php endif; ?>
+        <?php print $caption; ?>
+      </div>
     </div>
-    <div class="editorial-card-banner gray"><i class="icon-slides"></i> Slideshow</div>
     <div class="editorial-card-content short">
       <?php if (!empty($blue_text_link_url)): ?>
       <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
