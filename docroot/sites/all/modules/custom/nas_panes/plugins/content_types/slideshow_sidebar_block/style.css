@@ -20,7 +20,8 @@
   content: ' \00BB';
 }
 .editorial-card .icon-wrapper{
-  position: relative;
+  position: absolute;
+  right: 5px;
   max-width: 100px;
   height: 31px;
   display: inline-block;
