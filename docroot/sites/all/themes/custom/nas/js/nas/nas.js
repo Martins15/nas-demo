@@ -402,6 +402,8 @@ var Nas = Nas || {};
             $(highlight[i]).each(highlight_aplly);
           }
         }
+        $('.highlight').css('background-color', 'yellow');
+        $('.highlight').css('color', 'black');
       });
     }
   };
