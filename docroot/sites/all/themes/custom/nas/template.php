@@ -602,7 +602,13 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
         'style_name' => 'thumbnail',
       ));
     }
-    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: t('Slideshow');
+    if (!empty($node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'])) {
+      $vars['left_icon'] = '<i class="' . $node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'] . '"></i>';
+    }
+    else {
+	  $vars['left_icon'] = '<i class="icon-slides"></i>';
+	}
+    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: null;
   }
 }
 
