@@ -15,7 +15,7 @@
     </div>
   </div>
   <?php endif; ?>
-  <div class="row boa-bird-card-container" data-equalizer>
+  <div class="row boa-bird-card-container">
     <?php foreach ($rows as $row): ?>
       <?php print $row; ?>
     <?php endforeach; ?>
