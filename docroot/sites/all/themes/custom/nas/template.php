@@ -685,9 +685,9 @@ function nas_preprocess_node_strategy(&$vars) {
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title)
+    ));
   }
 
   $vars['title'] = check_plain($node->title);
