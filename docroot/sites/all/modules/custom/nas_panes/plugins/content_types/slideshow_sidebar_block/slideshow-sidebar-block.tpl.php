@@ -11,11 +11,11 @@
   <div class="editorial-card-photo">
     <?php print $image; ?>
     <div class="editorial-card-banner gray overlap-banner">
-      <?php if ($logo) : ?>
-      <div class="icon-wrapper"><?php print $logo; ?></div>
-      <?php else : ?><i class="icon-slides"></i>
-      <?php endif; ?>
+      <i class="icon-slides"></i>
       <?php print $block_title; ?>
+      <?php if ($logo) : ?>
+        <div class="icon-wrapper"><?php print $logo; ?></div>
+      <?php endif; ?>
     </div>
   </div>
 

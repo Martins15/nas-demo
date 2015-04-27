@@ -92,12 +92,11 @@
     <div class="editorial-card-photo slideshow-card">
       <?php print $linked_image; ?>
       <div class="editorial-card-banner gray overlap-banner">
-	    <?php if (!empty($icon)): ?>
-	      <div class="icon-wrapper"><?php print $icon; ?></div>
-	    <?php else: ?>
-	      <i class="icon-slides"></i>
-	    <?php endif; ?>
+        <i class="icon-slides"></i>
         <?php print $caption; ?>
+        <?php if (!empty($icon)): ?>
+          <div class="icon-wrapper"><?php print $icon; ?></div>
+        <?php endif; ?>
       </div>
     </div>
     <div class="editorial-card-content short">

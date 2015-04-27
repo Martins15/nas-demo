@@ -21,11 +21,12 @@
 }
 .editorial-card .icon-wrapper{
   position: relative;
-  width: 25px;
+  max-width: 100px;
   height: 31px;
   display: inline-block;
+  overflow: hidden;
 }
 .editorial-card .icon-wrapper img{ 
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 }
