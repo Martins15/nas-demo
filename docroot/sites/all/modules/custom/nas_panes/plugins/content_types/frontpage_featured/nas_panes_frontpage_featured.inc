@@ -513,6 +513,23 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#states' => $state,
     '#pp_crop_styles' => array('featured_frontpage'),
   );
+  $form['curtain_video']['attribution'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Video attribution'),
+    '#collpsible' => TRUE,
+  );
+  $form['curtain_video']['attribution']['caption'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Caption'),
+    '#default_value' => !empty($_conf['attribution']['caption']) ? $_conf['attribution']['caption'] : '',
+    '#states' => $state,
+  );
+  $form['curtain_video']['attribution']['credits'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Credits'),
+    '#default_value' => !empty($_conf['attribution']['credits']) ? $_conf['attribution']['credits'] : '',
+    '#states' => $state,
+  );
   $form['curtain_video']['header_color_mode'] = array(
     '#type' => 'radios',
     '#title' => t('Header color mode'),
@@ -1020,6 +1037,10 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
   $video = file_load($conf['video']);
   $video_source = file_create_url($video->uri);
 
+  // Video attribution.
+  $caption = !empty($conf['attribution']['caption']) ? check_plain($conf['attribution']['caption']) : '';
+  $credits = !empty($conf['attribution']['credits']) ? check_plain($conf['attribution']['credits']) : '';
+
   $summary = check_plain($conf['summary']);
 
   $title_link = l(t($conf['title']['title']), $conf['title']['url']);
@@ -1037,8 +1058,8 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
   }
 
   $content = theme('nas_frontpage_featured__curtain_video', array(
-    'attribution_title' => '',
-    'attribution_credit' => '',
+    'attribution_title' => $caption,
+    'attribution_credit' => $credits,
     'summary' => $summary,
     'title_link' => $title_link,
     'slug_link' => $slug_link,
