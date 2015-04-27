@@ -416,16 +416,10 @@ var Nas = Nas || {};
             hl_length = highlight.length,
             i = 0,
             highlight_aplly = function(){
-              var text = this.innerHTML,
-                  sr_length = query.search.length,
+              var sr_length = query.search.length,
                   j = 0,
-                  index = 0,
-                  wr_length = 0,
-                  replacement = '';
               for (j = 0; j < sr_length; j = j + 1) {
-			    replacement = '<mark class="highlight">'+query.search[j]+'</mark>';
-                text = text.replace(new RegExp(query.search[j], 'gi'), '<mark>$&</mark>');
-                this.innerHTML = text;
+                $(this).highlight(query.search[j], { caseSensitive: false });
               }
             };
 
