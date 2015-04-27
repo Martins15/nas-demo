@@ -417,7 +417,7 @@ var Nas = Nas || {};
             i = 0,
             highlight_aplly = function(){
               var sr_length = query.search.length,
-                  j = 0,
+                  j = 0;
               for (j = 0; j < sr_length; j = j + 1) {
                 $(this).highlight(query.search[j], { caseSensitive: false });
               }
