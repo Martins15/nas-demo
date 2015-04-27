@@ -674,7 +674,6 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   if ($contextual_links) {
     $path = libraries_get_path('colorpicker');
     drupal_add_css($path . '/css/colorpicker.css', array('group' => CSS_THEME));
-//    drupal_add_library('jquery_colorpicker', 'colorpicker');
   }
 
   $block = new stdClass();
