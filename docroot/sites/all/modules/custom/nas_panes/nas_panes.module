@@ -2016,14 +2016,14 @@ function _nas_panes_format_image_attribution($file) {
  * Page callback for modal Download high-resolution file.
  */
 function nas_panes_ctools_modal_boa_subscribe($js = FALSE) {
- ctools_include('modal');
- ctools_include('ajax');
- $form_state = array(
-   'title' => t('Download high-resolution file'),
-   'ajax'  => TRUE,
- );
- $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
- print ajax_render($output);
+  ctools_include('modal');
+  ctools_include('ajax');
+  $form_state = array(
+    'title' => t('Download high-resolution file'),
+    'ajax'  => TRUE,
+  );
+  $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
+  print ajax_render($output);
 }
 
 /**
