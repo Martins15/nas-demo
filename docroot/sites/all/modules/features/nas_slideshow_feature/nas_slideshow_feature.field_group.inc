@@ -28,6 +28,7 @@ function nas_slideshow_feature_field_group_info() {
       2 => 'field_editorial_card_title',
       3 => 'field_editorial_card_icon',
       4 => 'field_editorial_card_caption',
+      5 => 'field_editorial_card_left_icon',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

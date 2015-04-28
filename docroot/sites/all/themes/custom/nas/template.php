@@ -693,7 +693,13 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
         'style_name' => 'thumbnail',
       ));
     }
-    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: t('Slideshow');
+    if (!empty($node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'])) {
+      $vars['left_icon'] = '<i class="' . $node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'] . '"></i>';
+    }
+    else {
+      $vars['left_icon'] = '<i class="icon-slides"></i>';
+    }
+    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: NULL;
   }
 }
 
@@ -1388,6 +1394,10 @@ function nas_preprocess_views_view(&$vars) {
     if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
       $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
     }
+  }
+
+  if ($view->name == 'boa_index' and $view->current_display == 'boa_index') {
+    drupal_add_js(drupal_get_path('theme', 'nas') .'/js/nas/boa.js');
   }
 
   $vars['equalizer'] = FALSE;
