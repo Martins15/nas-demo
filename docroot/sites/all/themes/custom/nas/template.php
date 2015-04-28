@@ -682,6 +682,19 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   if ($custom_link_title_items = field_get_items('node', $node, 'field_link_title')) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_items[0]['safe_value']);
   }
+
+  if ($vars['type'] == 'slideshow') {
+    if (module_exists('nas_panes')) {
+      drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
+    }
+    if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
+      $vars['icon'] = theme('image_style', array(
+        'path' => $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'],
+        'style_name' => 'thumbnail',
+      ));
+    }
+    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: t('Slideshow');
+  }
 }
 
 /**
@@ -763,9 +776,9 @@ function nas_preprocess_node_strategy(&$vars) {
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title)
+    ));
   }
 
   $vars['title'] = check_plain($node->title);
@@ -1203,10 +1216,10 @@ function nas_field__field_author__article($variables) {
     if (!empty($article_date)) {
       $created = strtotime($node->field_article_date[LANGUAGE_NONE][0]['value']);
     }
-    $published = date('M d, Y', $created);
+    $published = date('F d, Y', $created);
   }
 
-  $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
+  $output .= '<small class="article-date">' . t('@date', array('@date' => $published)) . '</small>';
   return $output;
 }
 
@@ -1354,6 +1367,10 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
   // Set featured frontpage mobile content variable.
   $featured_frontpage_mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $variables['featured_frontpage_mobile_content'] = $featured_frontpage_mobile_content;
+
+  // Set curtain background color.
+  $bg_color = &drupal_static('featured_frontpage_bgcolor');
+  $variables['bg_color'] = !empty($bg_color) ? '#' . $bg_color : '#fff';
 
   if (_frontpage_variant() == 'hero_image') {
     $variables['theme_hook_suggestion'] = 'panels_nas_frontpage__hero_image';
