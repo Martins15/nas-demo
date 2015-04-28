@@ -374,7 +374,6 @@ Drupal.behaviors.centerAuthorImage = {
     if(articleAuthor.length) {
       jQuery(".article-sidebar-section.article-meta").css("text-align","center");
     }
-<<<<<<< HEAD
   };
 
   Drupal.behaviors.search_highlight = {
