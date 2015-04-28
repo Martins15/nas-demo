@@ -127,6 +127,7 @@ function nas_panes_theme() {
         'lightbox_image_path' => NULL,
         'original_image_path' => NULL,
         'subscribe_link' => NULL,
+        'show_download_link' => FALSE,
         'link_title' => NULL,
         'link_url' => NULL,
       ),
