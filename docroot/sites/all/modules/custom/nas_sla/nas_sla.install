@@ -14,10 +14,17 @@ function nas_sla_install() {
 }
 
 /**
+ * Revert nas_slideshow_feature feature.
+ */
+function nas_sla_update_7100() {
+  feature_revert_module('nas_slideshow_feature');
+}
+
+/**
  * Enable module Taxonomy Order Select.
  * Revert NAS Article CT feature.
  */
-function nas_sla_update_7100() {
+function nas_sla_update_7101() {
   module_enable(array('taxonomy_orderselect'));
   features_revert_module('nas_article_feature');
 }

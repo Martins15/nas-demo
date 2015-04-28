@@ -591,6 +591,25 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   if ($custom_link_title_items = field_get_items('node', $node, 'field_link_title')) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_items[0]['safe_value']);
   }
+
+  if ($vars['type'] == 'slideshow') {
+    if (module_exists('nas_panes')) {
+      drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
+    }
+    if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
+      $vars['icon'] = theme('image_style', array(
+        'path' => $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'],
+        'style_name' => 'thumbnail',
+      ));
+    }
+    if (!empty($node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'])) {
+      $vars['left_icon'] = '<i class="' . $node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'] . '"></i>';
+    }
+    else {
+      $vars['left_icon'] = '<i class="icon-slides"></i>';
+    }
+    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: NULL;
+  }
 }
 
 /**
@@ -672,9 +691,9 @@ function nas_preprocess_node_strategy(&$vars) {
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title)
+    ));
   }
 
   $vars['title'] = check_plain($node->title);
@@ -1105,10 +1124,10 @@ function nas_field__field_author__article($variables) {
     if (!empty($article_date)) {
       $created = strtotime($node->field_article_date[LANGUAGE_NONE][0]['value']);
     }
-    $published = date('M d, Y', $created);
+    $published = date('F d, Y', $created);
   }
 
-  $output .= '<small class="article-date">' . t('Published @date', array('@date' => $published)) . '</small>';
+  $output .= '<small class="article-date">' . t('@date', array('@date' => $published)) . '</small>';
   return $output;
 }
 
@@ -1269,6 +1288,10 @@ function nas_preprocess_views_view(&$vars) {
     if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
       $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
     }
+  }
+
+  if ($view->name == 'boa_index' and $view->current_display == 'boa_index') {
+    drupal_add_js(drupal_get_path('theme', 'nas') .'/js/nas/boa.js');
   }
 
   $vars['equalizer'] = FALSE;
