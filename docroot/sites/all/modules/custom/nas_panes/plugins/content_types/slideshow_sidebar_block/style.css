@@ -1,0 +1,41 @@
+.editorial-card .sidebar > .local-cnc {
+  padding-left: 0;
+  padding-right: 0;
+}
+.editorial-card .editorial-card-photo{
+  position: relative;
+}
+.editorial-card .overlap-banner{
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.editorial-card .overlap-banner a{
+  display: inline-block;
+}
+.editorial-card .editorial-slideshow{
+  min-height: 100px !important;
+}
+.editorial-card .editorial-slideshow > a:after{
+  content: ' \00BB';
+}
+.editorial-card .icon-wrapper{
+  position: absolute;
+  right: 5px;
+  max-width: 100px;
+  height: 31px;
+  display: inline-block;
+  overflow: hidden;
+}
+@media screen and (min-width: 768px) and (max-width: 980px){
+  .editorial-card .icon-wrapper{
+    max-width: 50px;
+  }
+  .editorial-card .custom-caption{
+    font-size: 14px;
+  }
+}
+.editorial-card .icon-wrapper img{ 
+  width: auto;
+  max-height: 29px;
+}

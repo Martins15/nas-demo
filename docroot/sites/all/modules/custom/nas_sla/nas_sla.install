@@ -12,3 +12,10 @@ function nas_sla_install() {
   module_enable(array('nas_field_max_length'));
   nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
 }
+
+/**
+ * Revert nas_slideshow_feature feature.
+ */
+function nas_sla_update_7002() {
+  feature_revert_module('nas_slideshow_feature');
+}

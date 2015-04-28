@@ -112,6 +112,277 @@ function nas_slideshow_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-slideshow-field_editorial_card_caption'
+  $field_instances['node-slideshow-field_editorial_card_caption'] = array(
+    'bundle' => 'slideshow',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_editorial_card_caption',
+    'label' => 'Editorial Card Caption',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => 0,
+            ),
+            'html' => array(
+              'weight' => 0,
+            ),
+            'map' => array(
+              'weight' => -8,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'video' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 51,
+    ),
+  );
+
+  // Exported field_instance: 'node-slideshow-field_editorial_card_icon'
+  $field_instances['node-slideshow-field_editorial_card_icon'] = array(
+    'bundle' => 'slideshow',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 9,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_editorial_card_icon',
+    'label' => 'Editorial Card Icon',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'epsacrop' => array(
+        'styles' => array(
+          'about_page_success_section' => 0,
+          'article_featured' => 0,
+          'birds_landing_banner' => 0,
+          'boa_family_species' => 0,
+          'boa_hero' => 0,
+          'boa_index_bio' => 0,
+          'boa_plate_binocular' => 0,
+          'boa_plate_thumbnail' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_slideshow' => 0,
+          'default_teaser_image' => 0,
+          'engagement_card' => 0,
+          'featured_frontpage' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
+          'hero_cover_bird_page' => 0,
+          'local_chapters_centers' => 0,
+          'magazine_issue_cover' => 0,
+          'magazine_issue_cover_teaser' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 0,
+          'slideshow_sidebar' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
+        ),
+      ),
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 'media_internet',
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 52,
+    ),
+  );
+
   // Exported field_instance: 'node-slideshow-field_editorial_card_image'
   $field_instances['node-slideshow-field_editorial_card_image'] = array(
     'bundle' => 'slideshow',
@@ -279,7 +550,102 @@ function nas_slideshow_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 7,
+      'weight' => 49,
+    ),
+  );
+
+  // Exported field_instance: 'node-slideshow-field_editorial_card_left_icon'
+  $field_instances['node-slideshow-field_editorial_card_left_icon'] = array(
+    'bundle' => 'slideshow',
+    'default_value' => array(
+      0 => array(
+        'value' => 'icon-slides',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 11,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_editorial_card_left_icon',
+    'label' => 'Editorial Card Left Icon',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 50,
     ),
   );
 
@@ -401,7 +767,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'rows' => 4,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 54,
     ),
   );
 
@@ -523,7 +889,7 @@ function nas_slideshow_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 53,
     ),
   );
 
@@ -1129,6 +1495,9 @@ function nas_slideshow_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Editorial Card Caption');
+  t('Editorial Card Icon');
+  t('Editorial Card Left Icon');
   t('Editorial card description');
   t('Editorial card image');
   t('Editorial card title');
