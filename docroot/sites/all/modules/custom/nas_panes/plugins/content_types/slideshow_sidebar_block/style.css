@@ -31,11 +31,11 @@
   .editorial-card .icon-wrapper{
     max-width: 50px;
   }
+  .editorial-card .custom-caption{
+    font-size: 14px;
+  }
 }
 .editorial-card .icon-wrapper img{ 
   width: auto;
   max-height: 29px;
-}
-.editorial-card .custom-caption{
-  font-size: 14px;
 }
