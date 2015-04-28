@@ -24,6 +24,7 @@ dependencies[] = panelizer
 dependencies[] = scheduler
 dependencies[] = strongarm
 dependencies[] = taxonomy
+dependencies[] = taxonomy_orderselect
 dependencies[] = text
 dependencies[] = views
 features[ctools][] = feeds:feeds_importer_default:1

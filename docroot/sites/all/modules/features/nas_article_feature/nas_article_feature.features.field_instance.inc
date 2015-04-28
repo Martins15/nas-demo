@@ -3073,7 +3073,7 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_menu_section'
   $field_instances['node-article-field_menu_section'] = array(
     'bundle' => 'article',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -3219,12 +3219,12 @@ function nas_article_feature_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'options',
+      'module' => 'taxonomy_orderselect',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'options_select',
+      'type' => 'taxonomy_orderselect',
       'weight' => 19,
     ),
   );
