@@ -113,6 +113,7 @@
     min-height: 432px;
     position: absolute;
     bottom: 0;
+    left: 0;
 
     @include breakpoint(min-width, 1024px) {
       min-height: 576px;

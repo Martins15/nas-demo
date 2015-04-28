@@ -2285,7 +2285,7 @@ function nas_master_update_7168() {
  * Enable and revert Events landing page related features.
  */
 function nas_master_update_7169() {
-  module_enable(array('date_views', 'nas_events_landing_feature'));
+  module_enable(array('date_views', 'nas_events_landing_feature', 'jquery_colorpicker'));
   features_revert(array(
     'nas_solr_feature' => array('search_api_index', 'facetapi'),
     'nas_image_styles_feature' => array('image'),
