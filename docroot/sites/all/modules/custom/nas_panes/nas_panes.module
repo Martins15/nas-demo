@@ -126,6 +126,7 @@ function nas_panes_theme() {
         'image_thumbnail' => NULL,
         'lightbox_image_path' => NULL,
         'original_image_path' => NULL,
+        'subscribe_link' => NULL,
         'link_title' => NULL,
         'link_url' => NULL,
       ),
@@ -1789,7 +1790,12 @@ function nas_panes_menu() {
     'page callback' => 'nas_panes_popular_stories_nodequeue_redirect',
     'weight' => 10,
   );
-
+  $items['birds-of-america/%ctools_js/subscribe'] = array(
+    'page callback' => 'nas_panes_ctools_modal_boa_subscribe',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -1997,3 +2003,105 @@ function _nas_panes_format_image_attribution($file) {
   }
   return implode(' ', $parts);
 }
+
+/**
+ * Page callback for modal Download high-resolution file.
+ */
+function nas_panes_ctools_modal_boa_subscribe($js = FALSE) {
+ ctools_include('modal');
+ ctools_include('ajax');
+ $form_state = array(
+   'title' => t('Download high-resolution file'),
+   'ajax'  => TRUE,
+ );
+ $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
+ print ajax_render($output);
+}
+
+/**
+ * Form boa_mail_subscription_form.
+ */
+function nas_panes_boa_mail_subscription_form($form, &$form_state) {
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Enter your email address')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#size' => '',
+    '#id' => 'nas-boa-mail-subscription-email'
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Sign Up'),
+    '#attributes' => array(
+      'class' => array('button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-submit'
+  );
+  $form['cancel'] = array(
+    '#type' => 'submit',
+    '#value' => t('No thanks'),
+    '#attributes' => array(
+      'class' => array('ctools-close-modal', 'button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-cancel'
+  );
+  $form['#attributes']['class'] = array('mailing-list-form');
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_form validation callback.
+ */
+function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
+  $email = strtolower(trim($form_state['values']['email']));
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
+  $url = 'http://www.audubonaction.org/site/Survey';
+  $data = array(
+    'cons_email' => $email,
+    'cons_info_component' => 't',
+    'cons_mail_opt_in' => 't',
+    'cons_email_opt_in' => 1,
+    'cons_email_opt_in_requested' => 'true',
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+    'SURVEY_ID' => '17180',
+    'denySubmit' => '',
+    "3340_17180_2_14661" => "1441",
+    "3340_17180_2_14661" => "1401",
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 15,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
+  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
+  // Set up cookie for showing download link of already subscribed users.
+  if (isset($result->code) && ($result->code == 200)) {
+    setcookie('show_download_link', 1, time() + (86400 * 365), '/');
+  }
+  if (!isset($result->redirect_code) || $result->redirect_code != 302 || !isset($result->redirect_url) || $result->redirect_url != 'http://www.audubon.org/thankyou') {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+  }
+}
+
+/**
+ * boa_mail_subscription_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
+  $content = t('Thank you for pledging to help save the birds most at risk due to climate change. Share this urgent message with your friends and family.');
+  $commands[] = ctools_ajax_command_attr('#modalContent .close', 'class', 'close reload');
+  $commands[] = ctools_modal_command_display(t('Share Your Pledge'), $content);
+  print ajax_render($commands);
+  drupal_exit();
+}
+
