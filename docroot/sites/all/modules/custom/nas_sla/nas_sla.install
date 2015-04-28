@@ -12,3 +12,12 @@ function nas_sla_install() {
   module_enable(array('nas_field_max_length'));
   nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
 }
+
+/**
+ * Enable module Taxonomy Order Select.
+ * Revert NAS Article CT feature.
+ */
+function nas_sla_update_7100() {
+  module_enable(array('taxonomy_orderselect'));
+  features_revert_module('nas_article_feature');
+}
