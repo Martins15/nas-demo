@@ -43,6 +43,10 @@
         // is cardinality set to unlimted, or is it bigger then the size of the available options?
         if (($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED) || (sizeof($options) < $field['cardinality'])){  
           // set the max to the number of options
+          if (isset($items[$delta]) && empty($items[$delta]['tid'])) {
+            $element = FALSE;
+            break;
+          }
           $cardinality = sizeof($options);
         }else{
           //else use the specified cardinality

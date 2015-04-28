@@ -1,0 +1,72 @@
+From d63972d66e605f4c4cb6390390bfd4459b039fd3 Mon Sep 17 00:00:00 2001
+From: Ryan Mott <rymo@298223.no-reply.drupal.org>
+Date: Fri, 3 Apr 2015 11:34:13 -0500
+Subject: [PATCH] Issue #2384349 by spitfire378: fixed redundant select boxes
+
+---
+ taxonomy_orderselect.module | 22 +++++++++++++---------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
+
+diff --git a/taxonomy_orderselect.module b/taxonomy_orderselect.module
+index 6a6db90..4041743 100644
+--- a/taxonomy_orderselect.module
++++ b/taxonomy_orderselect.module
+@@ -17,16 +17,16 @@
+       ),
+     );
+   }
+-  
++
+   /**
+    * Implements hook_field_widget_form()
+    */
+   function taxonomy_orderselect_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+-    
++
+     switch ($instance['widget']['type']) {
+-      case 'taxonomy_orderselect':  
++      case 'taxonomy_orderselect':
+         // copy what options_select widget does to get the select values for our dropdown
+-        // see options.module 
++        // see options.module
+         $value_key   = key($field['columns']);
+         $multiple   = $field['cardinality'] > 1 || $field['cardinality'] == FIELD_CARDINALITY_UNLIMITED;
+         $has_value   = isset($items[0][$value_key]);
+@@ -38,17 +38,21 @@
+         $options       = _options_get_options($field, $instance, $properties, $entity_type, $entity);
+         //get the default values for the field
+         $default_values = _options_storage_to_form($items, $options, $value_key, $properties);
+-        
++
+         // determine actual cardinality
+         // is cardinality set to unlimted, or is it bigger then the size of the available options?
+-        if (($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED) || (sizeof($options) < $field['cardinality'])){  
++        if (($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED) || (sizeof($options) < $field['cardinality'])){
++        if (isset($items[$delta]) && empty($items[$delta]['tid'])) {
++          $element = FALSE;
++          break;
++        }
+           // set the max to the number of options
+           $cardinality = sizeof($options);
+         }else{
+           //else use the specified cardinality
+           $cardinality = $field['cardinality'];
+         }
+-        
++
+         // is cardinality greater then the current delta?
+         if ($cardinality > $delta){
+           //is there a default value for this delta?
+@@ -100,6 +104,6 @@
+           $element = false;
+         }
+         break;
+-    }    
++    }
+     return $element;
+-  }
+\ No newline at end of file
++  }
+-- 
+1.9.3 (Apple Git-50)
+
