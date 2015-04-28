@@ -602,7 +602,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
         'style_name' => 'thumbnail',
       ));
       if (!empty($node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'])) {
-        $vars['icon'] = '<a href="' . $node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'] . '">' . $vars['icon'] . '</a>';  
+        $vars['icon'] = '<a href="' . $node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'] . '">' . $vars['icon'] . '</a>';
       }
     }
     if (!empty($node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'])) {
