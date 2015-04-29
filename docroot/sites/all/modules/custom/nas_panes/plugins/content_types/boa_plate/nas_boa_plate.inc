@@ -61,18 +61,7 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
   ctools_modal_add_js();
 
   // After form submit close button has reload class, so we can reload page as well.
-  drupal_add_js('
-    (function ($) {
-      Drupal.behaviors.boa_subscribe_popup = {
-        attach: function (context, settings) {
-          $(\'#modalContent .close.reload\').bind(\'click\', function(e) {
-            window.location.reload();
-          });
-        }
-      }
-    })(jQuery);',
-    array('type' => 'inline')
-  );
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate/boa-plate.js');
 
   $node = $context->data;
   if ($node->type !== 'boa') {
@@ -84,18 +73,25 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     return;
   }
   $image_thumbnail_path = image_style_url('boa_plate_thumbnail', $image_items[0]['uri']);
-  $subscribe_link = l(t('Download high-resolution file'), 'birds-of-america/nojs/subscribe', array(
+  $subscribe_link = l(t('Download high-resolution file'), 'birds-of-america/nojs/subscribe/' . $node->nid, array(
     'attributes' => array(
       'class' => array(
         'illustration-attribution',
         'ctools-use-modal',
       ),
+      'id' => 'subscribe-link',
       'target' => 'blank',
     ),
     'html' => TRUE,
   ));
   $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
   $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
+
+  drupal_add_js(array(
+    'nas_panes' => array(
+      'boa_plate_original_image_path' => $original_image_path,
+    )
+  ), 'setting');
 
   $block = new stdClass();
   $block->content = theme('boa_plate', array(

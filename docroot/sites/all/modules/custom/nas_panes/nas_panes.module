@@ -1798,7 +1798,14 @@ function nas_panes_menu() {
     'page callback' => 'nas_panes_popular_stories_nodequeue_redirect',
     'weight' => 10,
   );
-  $items['birds-of-america/%ctools_js/subscribe'] = array(
+  $items['admin/content/boa-mail-subscription'] = array(
+    'title' => 'BOA mail subscription settings',
+    'access arguments' => array('administer nodes'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_panes_boa_mail_subscription_settings_form', 2),
+    'weight' => 11,
+  );
+  $items['birds-of-america/%ctools_js/subscribe/%id'] = array(
     'page callback' => 'nas_panes_ctools_modal_boa_subscribe',
     'page arguments' => array(1),
     'access callback' => TRUE,
@@ -2015,12 +2022,13 @@ function _nas_panes_format_image_attribution($file) {
 /**
  * Page callback for modal Download high-resolution file.
  */
-function nas_panes_ctools_modal_boa_subscribe($js = FALSE) {
+function nas_panes_ctools_modal_boa_subscribe() {
   ctools_include('modal');
   ctools_include('ajax');
   $form_state = array(
     'title' => t('Download high-resolution file'),
-    'ajax'  => TRUE,
+    'ajax' => TRUE,
+    'nid' => arg(3),
   );
   $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
   print ajax_render($output);
@@ -2030,6 +2038,9 @@ function nas_panes_ctools_modal_boa_subscribe($js = FALSE) {
  * Form boa_mail_subscription_form.
  */
 function nas_panes_boa_mail_subscription_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#markup' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+  );
   $form['email'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
@@ -2088,7 +2099,7 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
     'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
     'method' => 'POST',
     'data' => http_build_query($data),
-    'timeout' => 15,
+    'timeout' => 60,
   );
   $result = drupal_http_request($url, $options);
   watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
@@ -2106,10 +2117,46 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
  * boa_mail_subscription_form submit callback.
  */
 function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
-  $content = t('Thank you for pledging to help save the birds most at risk due to climate change. Share this urgent message with your friends and family.');
+  $node = node_load($form_state['nid']);
+  $image_items = field_get_items('node', $node, 'field_boa_illustration');
+  if (!empty($image_items[0]['filename'])) {
+    $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
+  }
+  $original_image_link = '<a href="' . $original_image_path . '" target="blank">' . t('Download bird full plate now.') . '</a>';
+  $content = variable_get('boa_mail_subscription_settings_form_after', '') . '&nbsp;' . $original_image_link;
   $commands[] = ctools_ajax_command_attr('#modalContent .close', 'class', 'close reload');
-  $commands[] = ctools_modal_command_display(t('Share Your Pledge'), $content);
+  $commands[] = ctools_modal_command_display(t('Download high-resolution file'), $content);
   print ajax_render($commands);
   drupal_exit();
+}
+
+/**
+ * Form boa_mail_subscription_settings_form.
+ */
+function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#title' => t('Intro'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+  );
+  $form['after'] = array(
+    '#title' => t('Text after form submit'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_settings_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state) {
+  variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
+  variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
 }
 
