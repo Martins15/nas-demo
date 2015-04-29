@@ -2452,7 +2452,7 @@ function nas_master_update_7175(&$sandbox) {
         // If any articles were referencing to this node change references to
         // primary node.
         if ($stats[$nid]->count > 0) {
-          _nas_master_update_references_to_contact_nodes($stats[$nid]->references, $primary_node);
+          _nas_master_update_references_to_contact_nodes($stats[$nid]->references, $primary_node, $nid);
         }
         node_delete($nid);
       }

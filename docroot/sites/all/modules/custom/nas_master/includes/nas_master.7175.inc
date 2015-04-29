@@ -33,6 +33,44 @@ function _nas_master_get_duplicated_contacts() {
     $dc->nids = explode(',', $dc->nids);
   }
 
+  // Process comma separated contacts (like 'OPAR, Alisa').
+  $comma_separated_contacts = db_query("SELECT title, nid FROM {node} WHERE title LIKE '%,_%' AND type='contact'")->fetchAllKeyed(1, 0);
+
+  foreach ($comma_separated_contacts as $nid => $title) {
+    $p = explode(', ', $title);
+    $p  = array_reverse($p);
+    $name = implode(' ', $p);
+
+    // Look for non-comma-separated contact.
+    $contact = db_query("SELECT title, nid FROM {node} WHERE title=:like AND type=:type", array(
+      ':like' => $name,
+      ':type' => 'contact',
+    ))->fetch();
+
+    // If non-comma-separated contact exists add comma-separated contact to
+    // group.
+    if ($contact) {
+      // Scan thru already found contacts and add to group.
+      $found = FALSE;
+      foreach ($duplicated_contacts as &$dc) {
+        if ($dc->title == $contact->title) {
+          $dc->nids[] = $nid;
+          $dc->cnt++;
+          $found = TRUE;
+          break;
+        }
+      }
+      // If such duplicated contact was not found before, then create group.
+      if (!$found) {
+        $duplicated_contacts[] = (object) array(
+          'title' => $name,
+          'cnt' => 2,
+          'nids' => array($contact->nid, $nid),
+        );
+      }
+    }
+  }
+
   return $duplicated_contacts;
 }
 
@@ -160,9 +198,13 @@ function _nas_master_get_primary_node_of_group($stats) {
  * Update referencing articles to reference on primary node.
  *
  * @param array $references
+ *   nids of referencing articles.
  * @param object $primary_node
+ *   Node to be referenced by articles.
+ * @param int $secondary_nid
+ *   target nid of the reference to be replaced.
  */
-function _nas_master_update_references_to_contact_nodes($references, $primary_node) {
+function _nas_master_update_references_to_contact_nodes($references, $primary_node, $secondary_nid) {
   $chunk = 10;
   $processed = 0;
   while ($part = array_slice($references, $processed, $chunk)) {
@@ -171,16 +213,22 @@ function _nas_master_update_references_to_contact_nodes($references, $primary_no
       $updated = FALSE;
 
       if ($items = field_get_items('node', $node, 'field_author')) {
-        unset($node->field_author[LANGUAGE_NONE]);
-        $node->field_author[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
-        $node->log = t('Update author reference');
-        $updated = TRUE;
+        $item = reset($items);
+        if ($item['target_id'] == $secondary_nid) {
+          unset($node->field_author[LANGUAGE_NONE]);
+          $node->field_author[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
+          $node->log = t('Update author reference');
+          $updated = TRUE;
+        }
       }
       if ($items = field_get_items('node', $node, 'field_pressrelease_contact')) {
-        unset($node->field_pressrelease_contact[LANGUAGE_NONE]);
-        $node->field_pressrelease_contact[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
-        $node->log = t('Update press release contact reference');
-        $updated = TRUE;
+        $item = reset($items);
+        if ($item['target_id'] == $secondary_nid) {
+          unset($node->field_pressrelease_contact[LANGUAGE_NONE]);
+          $node->field_pressrelease_contact[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
+          $node->log = t('Update press release contact reference');
+          $updated = TRUE;
+        }
       }
 
       if ($updated) {
