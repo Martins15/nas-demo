@@ -33,6 +33,44 @@ function _nas_master_get_duplicated_contacts() {
     $dc->nids = explode(',', $dc->nids);
   }
 
+  // Process comma separated contacts (like 'OPAR, Alisa').
+  $comma_separated_contacts = db_query("SELECT title, nid FROM {node} WHERE title LIKE '%,_%' AND type='contact'")->fetchAllKeyed(1, 0);
+
+  foreach ($comma_separated_contacts as $nid => $title) {
+    $p = explode(', ', $title);
+    $p  = array_reverse($p);
+    $name = implode(' ', $p);
+
+    // Look for non-comma-separated contact.
+    $contact = db_query("SELECT title, nid FROM {node} WHERE title=:like AND type=:type", array(
+      ':like' => $name,
+      ':type' => 'contact',
+    ))->fetch();
+
+    // If non-comma-separated contact exists add comma-separated contact to
+    // group.
+    if ($contact) {
+      // Scan thru already found contacts and add to group.
+      $found = FALSE;
+      foreach ($duplicated_contacts as &$dc) {
+        if ($dc->title == $contact->title) {
+          $dc->nids[] = $nid;
+          $dc->cnt++;
+          $found = TRUE;
+          break;
+        }
+      }
+      // If such duplicated contact was not found before, then create group.
+      if (!$found) {
+        $duplicated_contacts[] = (object) array(
+          'title' => $name,
+          'cnt' => 2,
+          'nids' => array($contact->nid, $nid),
+        );
+      }
+    }
+  }
+
   return $duplicated_contacts;
 }
 
