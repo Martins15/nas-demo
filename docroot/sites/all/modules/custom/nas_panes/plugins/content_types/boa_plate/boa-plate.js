@@ -8,5 +8,5 @@
       	$('#subscribe-link').attr('href', settings.nas_panes.boa_plate_original_image_path);
       }
     }
-  }
+  };
 })(jQuery);
