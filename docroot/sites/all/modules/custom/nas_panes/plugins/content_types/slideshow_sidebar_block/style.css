@@ -27,15 +27,19 @@
   display: inline-block;
   overflow: hidden;
 }
+.editorial-card .icon-wrapper img{
+  width: auto;
+  max-height: 29px;
+  max-width: 100px;
+}
 @media screen and (min-width: 768px) and (max-width: 980px){
   .editorial-card .icon-wrapper{
-    max-width: 50px;
+    max-width: 60px;
   }
   .editorial-card .custom-caption{
     font-size: 14px;
   }
-}
-.editorial-card .icon-wrapper img{ 
-  width: auto;
-  max-height: 29px;
+  .editorial-card .icon-wrapper img{
+    max-width: 60px;
+  }
 }
