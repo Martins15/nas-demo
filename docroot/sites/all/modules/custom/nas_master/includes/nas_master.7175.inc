@@ -198,9 +198,13 @@ function _nas_master_get_primary_node_of_group($stats) {
  * Update referencing articles to reference on primary node.
  *
  * @param array $references
+ *   nids of referencing articles.
  * @param object $primary_node
+ *   Node to be referenced by articles.
+ * @param int $secondary_nid
+ *   target nid of the reference to be replaced.
  */
-function _nas_master_update_references_to_contact_nodes($references, $primary_node) {
+function _nas_master_update_references_to_contact_nodes($references, $primary_node, $secondary_nid) {
   $chunk = 10;
   $processed = 0;
   while ($part = array_slice($references, $processed, $chunk)) {
@@ -209,16 +213,22 @@ function _nas_master_update_references_to_contact_nodes($references, $primary_no
       $updated = FALSE;
 
       if ($items = field_get_items('node', $node, 'field_author')) {
-        unset($node->field_author[LANGUAGE_NONE]);
-        $node->field_author[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
-        $node->log = t('Update author reference');
-        $updated = TRUE;
+        $item = reset($items);
+        if ($item['target_id'] == $secondary_nid) {
+          unset($node->field_author[LANGUAGE_NONE]);
+          $node->field_author[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
+          $node->log = t('Update author reference');
+          $updated = TRUE;
+        }
       }
       if ($items = field_get_items('node', $node, 'field_pressrelease_contact')) {
-        unset($node->field_pressrelease_contact[LANGUAGE_NONE]);
-        $node->field_pressrelease_contact[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
-        $node->log = t('Update press release contact reference');
-        $updated = TRUE;
+        $item = reset($items);
+        if ($item['target_id'] == $secondary_nid) {
+          unset($node->field_pressrelease_contact[LANGUAGE_NONE]);
+          $node->field_pressrelease_contact[LANGUAGE_NONE][0]['target_id'] = $primary_node->nid;
+          $node->log = t('Update press release contact reference');
+          $updated = TRUE;
+        }
       }
 
       if ($updated) {
