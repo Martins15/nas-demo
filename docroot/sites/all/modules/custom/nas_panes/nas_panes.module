@@ -1805,7 +1805,7 @@ function nas_panes_menu() {
     'page arguments' => array('nas_panes_boa_mail_subscription_settings_form', 2),
     'weight' => 11,
   );
-  $items['birds-of-america/%ctools_js/subscribe/%id'] = array(
+  $items['birds-of-america/%ctools_js/subscribe/%'] = array(
     'page callback' => 'nas_panes_ctools_modal_boa_subscribe',
     'page arguments' => array(1),
     'access callback' => TRUE,
