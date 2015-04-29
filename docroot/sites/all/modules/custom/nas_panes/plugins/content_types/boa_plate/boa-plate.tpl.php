@@ -18,11 +18,11 @@
   <img src="<?php print $image_thumbnail; ?>" /><div class="clearfix"></div>
   <a href="<?php print $lightbox_image_path; ?>" class="see-full-plate lightboxzoom" ><i class="icon-magnifier"></i> <?php print t('See full plate'); ?></a><div class="clearfix"></div>
   <div class="download-link">
-	  <?php if ($show_download_link): ?>
-	  <a href="<?php print $original_image_path; ?>" class="illustration-attribution" target="blank"><?php print t('Download high-resolution file'); ?></a>
-	  <?php else: ?>
-	  <?php print $subscribe_link; ?>
-	  <?php endif; ?>
+    <?php if ($show_download_link): ?>
+    <a href="<?php print $original_image_path; ?>" class="illustration-attribution" target="blank"><?php print t('Download high-resolution file'); ?></a>
+    <?php else: ?>
+    <?php print $subscribe_link; ?>
+    <?php endif; ?>
   </div>
   <div class="clearfix"></div>
   <a href="<?php print $link_url; ?>" class="illustration-attribution"><?php print $link_title; ?></a>
