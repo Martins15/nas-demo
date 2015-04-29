@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: savage
- * Date: 28.04.15
- * Time: 17:52
+ * @file
+ * Helper functions for hook_update_7175.
  */
 
 /**
@@ -111,12 +109,14 @@ function _nas_master_get_primary_node_of_group($stats) {
     }
   }
 
+  // @codingStandardsIgnoreStart
   uasort($stats, function ($a, $b) {
     if ($b->count - $a->count != 0) {
       return $b->count - $a->count;
     }
     return $b->fieldsset - $a->fieldsset;
   });
+  // @codingStandardsIgnoreEnd
 
   $primary = reset($stats);
   $primary_node = node_load($primary->nid);
