@@ -72,7 +72,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $links_to_display = array();
   foreach ($links as $id => $link) {
     if ($id == $current_link) {
-      $title = ($id == 'by-chronological')? $title = $link['title'] : 'Explored by ' . $link['title'];
+      $title = ($id == 'by-chronological')? $title = $link['title'] : 'Explore by ' . $link['title'];
     }
     else {
       $links_to_display[] = l($link['title'], 'birds-of-america', array(
