@@ -26,7 +26,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
       'query' => array(),
     ),*/
     'by-chronological' => array(
-      'title' => 'Chronological',
+      'title' => 'View the plates in chronological order',
       'query' => array('sort_by' => 'field_boa_plate_value'),
     ),
     'by-alphabetical' => array(
@@ -72,7 +72,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $links_to_display = array();
   foreach ($links as $id => $link) {
     if ($id == $current_link) {
-      $title = 'View the birds in ' . $link['title'] . ' order';
+      $title = ($id == 'by-chronological')? $title = $link['title'] : 'Explored by ' . $link['title'];
     }
     else {
       $links_to_display[] = l($link['title'], 'birds-of-america', array(

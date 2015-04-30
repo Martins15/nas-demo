@@ -23,7 +23,7 @@ function nas_boa_index_feature_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Explore by family';
-  $handler->display->display_options['css_class'] = 'row boa-bird-card-container equalizer';
+  $handler->display->display_options['css_class'] = 'row boa-bird-card-container';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -192,6 +192,11 @@ function nas_boa_index_feature_views_default_views() {
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
+    1 => array(
+      'field' => 'name',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
   );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -206,14 +211,6 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
   $handler->display->display_options['relationships']['field_state_tid']['required'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: State */
-  $handler->display->display_options['fields']['field_state']['id'] = 'field_state';
-  $handler->display->display_options['fields']['field_state']['table'] = 'field_data_field_state';
-  $handler->display->display_options['fields']['field_state']['field'] = 'field_state';
-  $handler->display->display_options['fields']['field_state']['label'] = '';
-  $handler->display->display_options['fields']['field_state']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_state']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_state']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Rendered Content */
   $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
@@ -222,11 +219,27 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['element_type'] = '0';
   $handler->display->display_options['fields']['rendered_entity']['element_label_type'] = '0';
   $handler->display->display_options['fields']['rendered_entity']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['rendered_entity']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['rendered_entity']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'nas_node_teaser_small';
-  $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 0;
+  $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 1;
+  /* Field: Content: State */
+  $handler->display->display_options['fields']['field_state']['id'] = 'field_state';
+  $handler->display->display_options['fields']['field_state']['table'] = 'field_data_field_state';
+  $handler->display->display_options['fields']['field_state']['field'] = 'field_state';
+  $handler->display->display_options['fields']['field_state']['label'] = '';
+  $handler->display->display_options['fields']['field_state']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_state']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_state']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Taxonomy term: Name */
   $handler->display->display_options['sorts']['name']['id'] = 'name';
