@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * For hook_update_X functions.
+ */
+
+function nas_sla_install() {
+  features_revert_module('nas_news_page_feature');
+  features_revert_module('nas_static_page_feature');
+  features_revert_module('nas_slideshow_feature');
+  module_enable(array('nas_field_max_length'));
+  nas_field_max_length_change_text_field_max_length('field_slideshow_subtitle', 1000);
+}
