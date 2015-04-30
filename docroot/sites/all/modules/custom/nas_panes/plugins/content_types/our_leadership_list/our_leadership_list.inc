@@ -52,11 +52,7 @@ function our_leadership_list_form_submit(&$form, &$form_state) {
  */
 function our_leadership_list_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
-  $contextual_links = '';
-
-  if (user_access('edit NAS panes')) {
-    $contextual_links = nas_panes_build_page_contextual_links('our_leadership_list', NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY, 'page_our_leadership_panel_context');
-  }
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $items = array();
   foreach ($conf['items'] as $item) {

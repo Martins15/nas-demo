@@ -105,7 +105,7 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
   $title = check_plain($conf['title']);
   $color = check_plain($conf['color']);
 
-  $contextual_links = nas_panes_build_page_contextual_links('nas_panes_boa_index_hero', NAS_PANES_BOA_INDEX_PAGE_MANAGER_CACHE_KEY, 'page_boa_index_panel_context');
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = theme('boa_index_hero', array(
     'attribution' => $attribution,

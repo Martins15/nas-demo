@@ -267,7 +267,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     $nodes_array_to_show[$key]['summary'] = text_summary($summary, NULL, $summary_count);
   }
 
-  $contextual_links = nas_panes_build_page_contextual_links('cons_landing_slideshow', NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY, 'page_conservation_landing_panel_context');
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = theme('cons_landing_slideshow', array(
     'nodes_array_to_show' => $nodes_array_to_show,
