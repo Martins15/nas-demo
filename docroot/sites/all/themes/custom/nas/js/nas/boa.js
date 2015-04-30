@@ -43,7 +43,17 @@
         // Init
         $('.boa-item').removeAttr('data-equalizer-watch');
         boa_equalize();
+        
+        $(document).ajaxSuccess(function() {
+          boa_equilize();
+        });
       });
+    }
+  };
+  
+  Drupal.behaviors.boa_pager = {
+    attach: function (context, settings) {
+      $('.view-display-id-boa_index_state').find('.pager').parent().hide();
     }
   };
 })(jQuery);
