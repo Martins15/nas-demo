@@ -118,7 +118,7 @@ function cons_landing_full_bg_area_render($subtype, $conf, $args, $contexts) {
     $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
   }
 
-  $contextual_links = nas_panes_build_page_contextual_links('cons_landing_full_bg_area', NAS_PANES_CONSERVATION_LANDING_PAGE_MANAGER_CACHE_KEY, 'page_conservation_landing_panel_context');
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = theme('cons_landing_full_bg_area', array(
     'title' => !empty($conf['override_title_text']) ? $conf['override_title_text'] : '',
