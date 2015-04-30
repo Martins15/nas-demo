@@ -7,17 +7,20 @@
             boa_equalize = function() {
               var max_height = 0,
                   col_number = range(window.innerWidth),
-                  count = 1;
+                  count = 1,
+                  index = 1;
               $('.view-boa-index').attr('boa-equalizer', col_number);
-              $('.view-boa-index .columns').each(function(index) {
+              $('.view-boa-index .boa-item').each(function() {
                 var height = $(this).find('.photo').height() + $(this).find('.common-name').height();
                 $(this).attr('data-row', count);
                 if (height > max_height) max_height = height;
-                if (index > 0 && index % col_number === col_number - 1){
+                if ((index === col_number) || $(this).is(':last-child')) {
                   $('[data-row=' + count + ']').css('height', max_height + 40);
                   max_height = 0;
                   count = count + 1;
+                  index = 0;
                 }
+                index = index + 1;
               });
             },
             // Get the number of birds in a row based on the screen size.
@@ -38,7 +41,7 @@
         };
 
         // Init
-        $('.columns').removeAttr('data-equalizer-watch');
+        $('.boa-item').removeAttr('data-equalizer-watch');
         boa_equalize();
       });
     }
