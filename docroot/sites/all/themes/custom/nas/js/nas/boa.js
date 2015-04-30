@@ -45,7 +45,7 @@
         boa_equalize();
         
         $(document).ajaxSuccess(function() {
-          boa_equilize();
+          boa_equalize();
         });
       });
     }
