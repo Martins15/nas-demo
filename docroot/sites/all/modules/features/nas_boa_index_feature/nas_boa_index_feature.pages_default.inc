@@ -361,16 +361,26 @@ function nas_boa_index_feature_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'title' => 'The life’s work of both a lover and observer of birds and nature.',
-      'body' => '<p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more »</em></a></p>',
+      'body' => array(
+        'value' => '<p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more &raquo;</em></a></p>
+',
+        'format' => 'full_html',
+      ),
       'name' => 'John James Audubon',
-      'summary' => '<p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more »</em></a></p>',
+      'summary' => array(
+        'value' => '<p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more &raquo;</em></a></p>
+',
+        'format' => 'full_html',
+      ),
       'link' => '<front>',
       'override_title' => 0,
       'override_title_text' => '',
       'image' => '9740',
-      'form_build_id' => 'form-i9lQOPS1-C8Fr12leL6AikyWcIc71FsJYl10VahFFno',
-      'form_token' => 'cP3DvDSv-rKju3VBue0m1qSdOYKop7i7TT81cnfl62c',
+      'form_build_id' => 'form-iCpiCVQw9JyNo7Y5LdxCQZOJNcxqhD_wGppC3RvZLF0',
+      'form_token' => 'ETShneMIZyZs5kiloOk5OaU-RwHQBZ-PuFS94-nNFj4',
       'form_id' => 'boa_index_bio_form',
+      'override_title_heading' => 'h2',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
