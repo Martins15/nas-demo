@@ -51,10 +51,7 @@ function about_page_leadership_form_submit(&$form, &$form_state) {
  */
 function about_page_leadership_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
-  $contextual_links = '';
-  if (user_access('edit NAS panes')) {
-    $contextual_links = nas_panes_build_page_contextual_links('about_page_leadership', NAS_PANES_OUR_LEADERSHIP_PAGE_MANAGER_CACHE_KEY, 'page_our_leadership__panel_context_13afe71a-dfa8-42a3-b908-a44c53b974a3');
-  }
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $block->content = theme('about_page_leadership', array(
       'title' => $conf['override_title_text'],
