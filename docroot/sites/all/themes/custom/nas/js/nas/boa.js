@@ -7,17 +7,17 @@
             boa_equalize = function() {
               var max_height = 0,
                   col_number = range(window.innerWidth),
-                  count = 1,
+                  row_number = 1,
                   index = 1;
               $('.view-boa-index').attr('boa-equalizer', col_number);
               $('.view-boa-index .boa-item').each(function() {
                 var height = $(this).find('.photo').height() + $(this).find('.common-name').height();
-                $(this).attr('data-row', count);
+                $(this).attr('data-row', row_number);
                 if (height > max_height) max_height = height;
                 if ((index === col_number) || $(this).is(':last-child')) {
-                  $('[data-row=' + count + ']').css('height', max_height + 40);
+                  $('[data-row=' + row_number + ']').css('height', max_height + 40);
                   max_height = 0;
-                  count = count + 1;
+                  row_number = row_number + 1;
                   index = 0;
                 }
                 index = index + 1;
