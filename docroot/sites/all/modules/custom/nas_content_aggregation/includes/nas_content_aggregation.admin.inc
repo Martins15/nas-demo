@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Administration pages for nas_content_aggregation module.
@@ -216,8 +217,8 @@ function nas_content_aggregation_editorial_cards_form_validate($form, &$form_sta
         $url = parse_url($val['url']);
         $current_url = parse_url(url(NULL, array('absolute' => TRUE)));
         if ($url['host'] == $current_url['host']) {
-          //form_set_error("nas_agg_wrap][nas_agg_urls][$key][url", t('You can\'t import content from current host.'));
-          //return FALSE;
+          form_set_error("nas_agg_wrap][nas_agg_urls][$key][url", t('You can\'t import content from current host.'));
+          return FALSE;
         }
       }
       $available_ct = nas_content_aggregation_available_ct();

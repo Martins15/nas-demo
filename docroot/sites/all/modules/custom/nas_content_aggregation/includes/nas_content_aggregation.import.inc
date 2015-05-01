@@ -104,7 +104,7 @@ function nas_content_aggregation_import_batch_finished_callback($success, $resul
  * @param array $context
  *   Batch context.
  */
-function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, $object_url, $data = array(), &$context) {
+function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, $object_url, $data, &$context) {
   $domain = parse_url($object_url, PHP_URL_HOST);
   $context['message'] = t('Processed @count nodes from @domain', array(
     '@count' => count($items),
