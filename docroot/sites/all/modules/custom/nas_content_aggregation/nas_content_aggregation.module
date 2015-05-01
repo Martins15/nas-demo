@@ -155,7 +155,14 @@ function _nas_content_aggregation_start_import_helper($source_url) {
   $response = nas_import_send_request($source_url);
   $url = parse_url($source_url);
   $importer = NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER;
-  $url = $url['scheme'] . '://' . $url['host'] . '/export/node/';
+  $parts = array();
+  foreach (explode('/', $url['path']) as $part) {
+    if ($part == 'editorial-feed') {
+      break;
+    }
+    $parts[] = $part;
+  }
+  $url = $url['scheme'] . '://' . $url['host'] . implode('/', $parts) . '/export/node/';
   return array($response, $url, $importer);
 }
 
