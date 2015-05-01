@@ -5,3 +5,4 @@ package = NAS
 
 dependencies[] = taxonomy
 dependencies[] = nas_import
+dependencies[] = nas_import_editorial_content_feature

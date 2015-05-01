@@ -156,7 +156,7 @@ function nas_alters_form_slideshow_node_form_alter(&$form, &$form_state, $form_i
 /**
  * Implements hook_form_FORM_ID_alter().
  *
- * Alter the Slideshow node form.
+ * Alter the Static Page node form.
  */
 function nas_alters_form_static_page_node_form_alter(&$form, &$form_state, $form_id) {
   // Move redirect field to "Menu & URL path settings" tab.
