@@ -12,7 +12,7 @@
  *   Array of settings with source urls used for importing.
  *
  * @return array
- *   Batch array
+ *   Batch array.
  */
 function nas_content_aggregation_import_nodes($storage) {
   variable_set('nas_agg_import_timer', time());
@@ -130,11 +130,11 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
  * Add modifications to entity before saving from ASC sites.
  *
  * @param \FeedsSource $source
- *   Feed source
+ *   Feed source.
  * @param StdClass $entity
- *   Node object
+ *   Node object.
  * @param array $item
- *   List of vars from import
+ *   List of vars from import.
  */
 function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity, &$item) {
   global $user;
@@ -179,20 +179,6 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
             'name' => 'field_editorial_card_image',
             'key' => 'fid'
           ),
-        ),
-        'category' => array(
-          array(
-            'field' => 'field_category',
-            'name' => 'field_menu_section',
-            'vocabulary' => 'menu_section',
-            'key' => 'tid'
-          ),
-          array(
-            'field' => 'field_category',
-            'name' => 'field_custom_section',
-            'vocabulary' => 'section',
-            'key' => 'tid'
-          )
         )
       );
       break;
@@ -217,20 +203,6 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
             'name' => 'field_editorial_card_image',
             'key' => 'fid'
           ),
-        ),
-        'category' => array(
-          array(
-            'field' => 'field_category',
-            'name' => 'field_menu_section',
-            'vocabulary' => 'menu_section',
-            'key' => 'tid'
-          ),
-          array(
-            'field' => 'field_category',
-            'name' => 'field_custom_section',
-            'vocabulary' => 'section',
-            'key' => 'tid'
-          )
         )
       );
       break;
@@ -245,6 +217,20 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
       break;
   }
   if (isset($map)) {
+    $map['category'] = array(
+      array(
+        'field' => 'field_category',
+        'name' => 'field_menu_section',
+        'vocabulary' => 'menu_section',
+        'key' => 'tid'
+      ),
+      array(
+        'field' => 'field_category',
+        'name' => 'field_custom_section',
+        'vocabulary' => 'section',
+        'key' => 'tid'
+      )
+    );
     foreach ($map as $key => $field) {
       switch ($key) {
         case 'images':
@@ -262,12 +248,14 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
         case 'category':
           // Assign category if it exist in settings.
           if (!empty($source->data['ed_terms'])) {
-            foreach ($source->data['terms'] as $term) {
+            $terms = !is_array($source->data['ed_terms']) ? array($source->data['ed_terms']) : $source->data['ed_terms'];
+            foreach ($terms as $term) {
               $entity->field_custom_section[LANGUAGE_NONE][] = array('tid' => $term);
             }
           }
           elseif (!empty($source->data['menu_terms'])) {
-            foreach ($source->data['terms'] as $term) {
+            $terms = !is_array($source->data['menu_terms']) ? array($source->data['menu_terms']) : $source->data['menu_terms'];
+            foreach ($terms as $term) {
               $entity->field_menu_section[LANGUAGE_NONE][] = array('tid' => $term);
             }
           }

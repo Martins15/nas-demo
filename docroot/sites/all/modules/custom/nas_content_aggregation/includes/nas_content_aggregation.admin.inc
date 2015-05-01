@@ -71,7 +71,7 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
       Example: if entered value is "article" from provided url will be imported only article content.', array('@ct' => implode(', ', $available_ct))),
     );
     $section_terms = array('none' => t('Select Editorial Category'));
-    $section_terms = array_merge($section_terms, _nas_panes_get_taxonomy_options('section'));
+    $section_terms += _nas_panes_get_taxonomy_options('section');
     $form['nas_agg_wrap']['nas_agg_urls'][$i]['ed_terms'] = array(
       '#type' => 'select',
       '#title' => t('Editorial section'),
@@ -80,7 +80,7 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
       '#description' => t('Choose editorial categories, and imported content will be tagged these categories.'),
     );
     $menu_terms = array('none' => t('Select Menu Category'));
-    $menu_terms = array_merge($menu_terms, _nas_panes_get_taxonomy_options('menu_section'));
+    $menu_terms += _nas_panes_get_taxonomy_options('menu_section');
     $form['nas_agg_wrap']['nas_agg_urls'][$i]['menu_terms'] = array(
       '#type' => 'select',
       '#title' => t('Menu Section'),
@@ -258,8 +258,8 @@ function nas_content_aggregation_editorial_cards_form_submit($form, &$form_state
       $settings[] = array(
         'type' => $val['type'],
         'url' => $val['url'],
-        'ed_terms' => $val['ed_terms'],
-        'menu_terms' => $val['menu_terms']
+        'ed_terms' => $val['ed_terms'] != 'none' ? $val['ed_terms'] : NULL,
+        'menu_terms' => $val['menu_terms'] != 'none' ? $val['menu_terms'] : NULL
       );
     }
   }
