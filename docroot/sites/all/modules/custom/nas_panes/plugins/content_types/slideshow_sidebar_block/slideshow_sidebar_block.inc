@@ -105,7 +105,7 @@ function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
   $logo_markup = '';
   if (!empty($conf['logo'])) {
     $logo_uri = $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'];
-    $logo = theme('image', array('path' => image_style_url('thumbnail', $logo_uri)));
+    $logo = theme('image', array('path' => image_style_url('medium', $logo_uri)));
     $logo_markup = l($logo, 'node/' . $node->nid, array('html' => TRUE));
   }
 
