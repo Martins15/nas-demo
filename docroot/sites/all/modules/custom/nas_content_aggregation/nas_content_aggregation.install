@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Installation file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_content_aggregation_install() {
+  variable_set('nas_content_aggregation_storage', array());
+  variable_set('nas_agg_import_timer', '');
+  variable_set('nas_agg_import_node_counter', '');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function asc_content_aggregation_uninstall() {
+  variable_del('nas_content_aggregation_storage');
+  variable_del('nas_agg_import_timer', '');
+  variable_del('nas_agg_import_node_counter', '');
+}
