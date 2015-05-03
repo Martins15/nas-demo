@@ -6339,7 +6339,7 @@ input.header-search-input,
     line-height: 25.5px;
   }
   .guide-bar-attribution .canon-logo {
-    width: auto;
+    width: 86px;
     height: 16px;
     margin-left: 5px;
     top: -1px;
@@ -12716,7 +12716,7 @@ body.touch .sticky-wrapper {
   font-size: 24px;
   font-weight: normal;
   line-height: 1.1;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   letter-spacing: .1px;
 }
 .blocks-events article .title-article span {
@@ -13278,6 +13278,37 @@ h2.grey {
   color: #6d6d6d;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 18px;
+}
+
+.node-type-video-page h1 {
+  color: #aaaaaa;
+  font-size: 40px;
+  padding-left: 10px;
+}
+.node-type-video-page .video-wrapper {
+  background-color: #202020;
+}
+.node-type-video-page .video-wrapper .video {
+  text-align: center;
+  line-height: 0;
+  padding: 0 40px;
+}
+.node-type-video-page .video-wrapper .video .flex-video {
+  margin-bottom: 0;
+  padding-bottom: 60%;
+  padding-top: 0;
+}
+.node-type-video-page .video-summary {
+  color: #eeeeee;
+}
+.node-type-video-page .video-summary .text-container p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 15px;
+}
+.node-type-video-page .video-summary .social-sharing-icon {
+  font-size: 21px;
+  margin-left: 1px;
 }
 
 .sidebar, .article-sidebar {
@@ -14314,7 +14345,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .page-audubon-near-you .contact .contact-address {
   font-size: 14px;
   line-height: 17px;
-  padding-top: 0px;
+  padding-top: 5px;
 }
 .page-audubon-near-you .contact .contact-address .contact-address-label {
   font-weight: bold;
