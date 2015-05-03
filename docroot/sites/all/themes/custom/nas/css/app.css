@@ -13291,7 +13291,11 @@ h2.grey {
 .node-type-video-page .video-wrapper .video {
   text-align: center;
   line-height: 0;
-  padding: 0 40px;
+}
+@media only screen and (min-width: 768px) {
+  .node-type-video-page .video-wrapper .video {
+    padding: 0 40px;
+  }
 }
 .node-type-video-page .video-wrapper .video .flex-video {
   margin-bottom: 0;
