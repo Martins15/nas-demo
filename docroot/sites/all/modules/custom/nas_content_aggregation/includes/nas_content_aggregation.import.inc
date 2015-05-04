@@ -23,17 +23,19 @@ function nas_content_aggregation_import_nodes($storage) {
 
   $operations = array();
   foreach ($storage['feeds'] as $i => $source_url) {
-    list($response, $url, $importer) = _nas_content_aggregation_start_import_helper($source_url);
+    list($response, $url) = _nas_content_aggregation_start_import_helper($source_url);
     if (empty($response)) {
-      drupal_set_message(t('There is nothing that we could import.'));
-      return FALSE;
+      drupal_set_message(t('There is nothing that we could import from @url.', array(
+        '@url' => $storage['settings'][$i]['url']
+      )), 'info');
+      continue;
     }
     foreach (array_chunk($response, 10) as $chunk) {
       $operations[] = array(
         'nas_content_aggregation_import_nodes_batch',
         array(
           $chunk,
-          $importer,
+          NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER,
           $url,
           $storage['settings'][$i]
         )
@@ -57,6 +59,57 @@ function nas_content_aggregation_import_nodes($storage) {
 }
 
 /**
+ * Import individual nodes using batch operations.
+ *
+ * @param array $storage
+ *   Array of settings with source urls used for importing.
+ *
+ * @return array
+ *   Batch array.
+ */
+function nas_content_aggregation_import_individual_nodes($storage) {
+  variable_set('nas_import_timer', time());
+  variable_set('nas_import_node_counter', 0);
+  // Clear static caches so ctools_export_load_object can load feeds_importer
+  // from enabled feature.
+  drupal_static_reset();
+
+  $operations = array();
+  foreach ($storage['feeds'] as $i => $source_url) {
+    list($node_nid, $url) = _nas_content_aggregation_start_individual_import_helper($source_url);
+    if (!is_numeric($node_nid)) {
+      drupal_set_message(t('There is nothing that we could import from @url.', array(
+        '@url' => $storage['settings'][$i]['url']
+      )), 'info');
+      continue;
+    }
+    $operations[] = array(
+      'nas_content_aggregation_import_nodes_batch',
+      array(
+        array($node_nid),
+        NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER,
+        $url,
+        $storage['settings'][$i]
+      )
+    );
+  }
+  if (empty($operations)) {
+    return FALSE;
+  }
+
+  $batch = array(
+    'operations' => $operations,
+    'title' => t('Import Individual Content'),
+    'error_message' => t('The import process has encountered an error.'),
+    'finished' => 'nas_import_batch_finished_callback',
+  );
+
+  batch_set($batch);
+
+  return $batch;
+}
+
+/**
  * Finish callback for Batch.
  *
  * @param bool $success
@@ -67,27 +120,28 @@ function nas_content_aggregation_import_nodes($storage) {
  *   List of operations.
  */
 function nas_content_aggregation_import_batch_finished_callback($success, $results, $operations) {
+  $messages = array();
+  $args = array();
   if ($success) {
-    $message = 'Import finished successfully!<br />';
+    $messages[] = 'Import finished successfully!';
     $start_time = variable_get('nas_agg_import_timer', 0);
     $counter = variable_get('nas_agg_import_node_counter', 0);
     if ($start_time && $counter) {
-      $message .= 'Imported @count nodes.<br />';
-      $message .= 'Time of import is @time seconds.';
-      $message = t($message, array(
-        '@count' => $counter,
-        '@time' => time() - $start_time
-      ));
+      $messages[] = 'Imported @count nodes.';
+      $messages[] = 'Time of import is @time seconds.';
+      $args['@count'] = $counter;
+      $args['@time'] = time() - $start_time;
     }
-    else {
-      $message = t($message);
+    $info = drupal_get_messages('info');
+    if (!empty($info['info'])) {
+      $messages = array_merge($messages, $info['info']);
     }
   }
   else {
-    $message = t('The import process has encountered an error.');
+    $messages[] = 'The import process has encountered an error.';
   }
   drupal_get_messages();
-  drupal_set_message($message);
+  drupal_set_message(t(implode('<br />', $messages), $args));
 }
 
 /**
@@ -135,6 +189,9 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
  *   Node object.
  * @param array $item
  *   List of vars from import.
+ *
+ * @return bool
+ *   Status
  */
 function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity, &$item) {
   global $user;
@@ -210,15 +267,37 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
     case 'slideshow':
       // @todo Not ready yet.
       $entity->feeds_item->skip = TRUE;
-      break;
+
+      return TRUE;
 
     default:
       $entity->feeds_item->skip = TRUE;
-      break;
+
+      return TRUE;
   }
   if (isset($map)) {
     foreach ($map as $key => $field) {
       switch ($key) {
+        case 'redirect':
+          if (empty($item['redirect']) || !isset($map['redirect'])) {
+            $entity->feeds_item->skip = TRUE;
+
+            return TRUE;
+          }
+          else {
+            $redirect_domain = parse_url($item[$key], PHP_URL_HOST);
+            $current_domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
+            if ($redirect_domain == $current_domain) {
+              $entity->feeds_item->skip = TRUE;
+
+              return TRUE;
+            }
+            else {
+              $entity->{$field['name']}[LANGUAGE_NONE][0][$field['key']] = $item[$key];
+            }
+          }
+          break;
+
         case 'images':
           foreach ($field as $key => $image) {
             if (!empty($item[$key]['fullpath'])) {
@@ -250,7 +329,7 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
         $entity->field_custom_section[LANGUAGE_NONE][] = array('tid' => $term);
       }
     }
-    elseif (!empty($source->data['menu_terms'])) {
+    if (!empty($source->data['menu_terms'])) {
       $terms = !is_array($source->data['menu_terms']) ? array($source->data['menu_terms']) : $source->data['menu_terms'];
       foreach ($terms as $term) {
         $entity->field_menu_section[LANGUAGE_NONE][] = array('tid' => $term);
