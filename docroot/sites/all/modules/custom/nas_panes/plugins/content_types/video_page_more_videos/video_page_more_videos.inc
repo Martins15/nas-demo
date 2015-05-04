@@ -23,7 +23,7 @@ function video_page_more_videos_edit_form($form, &$form_state) {
 
   $context = reset($form_state['display']->context);
   $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
-  $conf = !empty($form_state['conf'][$conf_key]) ? $form_state['conf'][$conf_key] : array();
+  $conf = $form_state['conf'];
 
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'editorial_card_4x', 'nas_panes', 'plugins/content_types/editorial_card_4x');
@@ -50,7 +50,7 @@ function video_page_more_videos_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf['paddings']) ? $conf['paddings'] : _editorial_card_4x_default_paddings_conf(),
   );
 
-  $form['refs'] = array(
+  $form['refs'][$conf_key] = array(
     '#type' => 'fieldset',
     '#title' => t('References'),
     '#collapsible' => TRUE,
@@ -58,13 +58,13 @@ function video_page_more_videos_edit_form($form, &$form_state) {
   );
   // Limit to 4 numbers of references.
   for ($i = 1; $i <= 4; $i++) {
-    $form['refs'][$i] = array(
+    $form['refs'][$conf_key][$i] = array(
       '#tree' => TRUE,
     );
-    $form['refs'][$i]['reference'] = array(
+    $form['refs'][$conf_key][$i]['reference'] = array(
       '#type' => 'entityreference',
       '#title' => t('Reference %number', array('%number' => $i)),
-      '#default_value' => !empty($conf['refs'][$i]['reference']['entity_id']) ? $conf['refs'][$i]['reference']['entity_id'] : 0,
+      '#default_value' => !empty($conf['refs'][$conf_key][$i]['reference']['entity_id']) ? $conf['refs'][$conf_key][$i]['reference']['entity_id'] : 0,
       '#era_entity_type' => 'node',
       '#era_bundles' => array('video_page'),
     );
@@ -102,8 +102,8 @@ function video_page_more_videos_render($subtype, $conf, $args, $context) {
   }
 
   $nids = array();
-  if (!empty($conf[$conf_key]['refs'])) {
-    foreach ($conf[$conf_key]['refs'] as $ref) {
+  if (!empty($conf['refs'][$conf_key])) {
+    foreach ($conf['refs'][$conf_key] as $ref) {
       if (!empty($ref['reference']['entity_id'])) {
         $nids[] = $ref['reference']['entity_id'];
       }
@@ -114,7 +114,7 @@ function video_page_more_videos_render($subtype, $conf, $args, $context) {
 
   // Nodes are set.
   if ($nids && $nodes = node_load_multiple($nids)) {
-    foreach ($conf[$conf_key]['refs'] as $ref) {
+    foreach ($conf['refs'][$conf_key] as $ref) {
       if (empty($ref['reference']['entity_id']) || !isset($nodes[$ref['reference']['entity_id']])) {
         continue;
       }
