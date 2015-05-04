@@ -29,7 +29,7 @@
                 while ($(this).find('h2.boa-family-set-title').height() > 40) {
 				  fontsize = parseInt($(this).find('h2.boa-family-set-title').css('font-size'));
                   $(this).find('h2.boa-family-set-title').css('font-size', fontsize - 2);
-                };
+                }
               });
               console.log('boa_equalize');
             },
