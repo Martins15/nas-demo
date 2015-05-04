@@ -101,7 +101,7 @@ function nas_content_aggregation_import_individual_nodes($storage) {
     'operations' => $operations,
     'title' => t('Import Individual Content'),
     'error_message' => t('The import process has encountered an error.'),
-    'finished' => 'nas_import_batch_finished_callback',
+    'finished' => 'nas_content_aggregation_import_batch_finished_callback',
   );
 
   batch_set($batch);
@@ -176,7 +176,6 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
     $source->addConfig($config);
     $source->save();
     $source->import();
-    drupal_get_messages();
   }
 }
 
