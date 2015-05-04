@@ -22,8 +22,9 @@ function nas_alters_init() {
       'slideshow' => 'field_slideshow_redirect',
       'static_page' => 'field_static_page_redirect'
     );
-    if (!empty($node->{$fields[$node->type]}[LANGUAGE_NONE][0]['url'])) {
-      drupal_goto($node->{$fields[$node->type]}[LANGUAGE_NONE][0]['url'], array(), 301);
+    $redirect = field_get_items('node', $node, $fields[$node->type]);
+    if (!empty($redirect[0]['url'])) {
+      drupal_goto($redirect[0]['url'], array(), 301);
     }
   }
 }

@@ -181,10 +181,8 @@ function nas_content_aggregation_ajax_add_more_remove_one($form, &$form_state) {
     $item = explode('_', $parents[3]);
     $form_state['deleted_items'][$parents[2]] = $item[1];
   }
-  else {
-    if ($form_state['num_urls'] > 1) {
-      $form_state['num_urls']--;
-    }
+  elseif ($form_state['num_urls'] > 1) {
+    $form_state['num_urls']--;
   }
   $form_state['rebuild'] = TRUE;
 }
@@ -204,7 +202,7 @@ function nas_content_aggregation_editorial_cards_form_validate($form, &$form_sta
   if (!is_numeric($values['nas_content_aggregation_frequency'])) {
     form_set_error("nas_content_aggregation_frequency", t('Please provide numeric value'));
   }
-  elseif ((int) $values['nas_content_aggregation_frequency'] <= 0) {
+  elseif ($values['nas_content_aggregation_frequency'] <= 0) {
     form_set_error("nas_content_aggregation_frequency", t('Entered value is incorrect.'));
   }
   foreach ($values['nas_agg_wrap']['nas_agg_urls'] as $key => $val) {
