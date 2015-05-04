@@ -11,17 +11,27 @@
                   index = 1;
               $('.view-boa-index').attr('boa-equalizer', col_number);
               $('.view-boa-index .boa-item').each(function() {
-                var height = $(this).find('.photo').height() + $(this).find('.common-name').height();
+                var height = 0,
+                    fontsize = 0;
+				$(this).removeAttr('style');
+				$(this).removeAttr('data-row');
+                height = $(this).height();
                 $(this).attr('data-row', row_number);
                 if (height > max_height) max_height = height;
                 if ((index === col_number) || $(this).is(':last-child')) {
-                  $('[data-row=' + row_number + ']').css('height', max_height + 40);
+                  $('[data-row=' + row_number + ']').css('height', max_height);
                   max_height = 0;
                   row_number = row_number + 1;
                   index = 0;
                 }
                 index = index + 1;
+                // State name div height fix
+                while ($(this).find('h2.boa-family-set-title').height() > 40) {
+				  fontsize = parseInt($(this).find('h2.boa-family-set-title').css('font-size'));
+                  $(this).find('h2.boa-family-set-title').css('font-size', fontsize - 2);
+                };
               });
+              console.log('boa_equalize');
             },
             // Get the number of birds in a row based on the screen size.
             range = function(number) {

@@ -222,7 +222,7 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
   $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
-  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'nas_node_teaser_small';
+  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'nas_node_teaser_small_state';
   $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 1;
   /* Field: Content: State */
   $handler->display->display_options['fields']['field_state']['id'] = 'field_state';

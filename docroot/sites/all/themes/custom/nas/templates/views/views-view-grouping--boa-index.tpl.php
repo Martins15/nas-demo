@@ -17,13 +17,13 @@
  * - $content: The processed content output that will normally be used.
  */
 ?>
-<div class="columns boa-bird-card-set bg-boa-bejge">
+<div class="boa-item columns tiny-6 medium-4 large-3 bg-boa-bejge">
   <div class="row section-header space-top">
     <div class="column">
       <h2 class="thin boa-family-set-title"><?php print $title; ?></h2>
     </div>
   </div>
-  <div class="row boa-bird-card-container clearfix">
+  <div class="boa-bird-card-container clearfix">
     <?php print $content; ?>
   </div>
 </div>
