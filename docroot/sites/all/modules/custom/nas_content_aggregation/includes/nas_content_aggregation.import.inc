@@ -217,20 +217,6 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
       break;
   }
   if (isset($map)) {
-    $map['category'] = array(
-      array(
-        'field' => 'field_category',
-        'name' => 'field_menu_section',
-        'vocabulary' => 'menu_section',
-        'key' => 'tid'
-      ),
-      array(
-        'field' => 'field_category',
-        'name' => 'field_custom_section',
-        'vocabulary' => 'section',
-        'key' => 'tid'
-      )
-    );
     foreach ($map as $key => $field) {
       switch ($key) {
         case 'images':
@@ -240,32 +226,6 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
               $source_url = $url['scheme'] . '://' . $url['host'] . '/';
               if ($file = nas_import_add_existing_file($url['path'], 'image', $user->uid, FILE_STATUS_PERMANENT, 0, $source_url)) {
                 $entity->{$image['name']}[LANGUAGE_NONE][0][$image['key']] = $file->fid;
-              }
-            }
-          }
-          break;
-
-        case 'category':
-          // Assign category if it exist in settings.
-          if (!empty($source->data['ed_terms'])) {
-            $terms = !is_array($source->data['ed_terms']) ? array($source->data['ed_terms']) : $source->data['ed_terms'];
-            foreach ($terms as $term) {
-              $entity->field_custom_section[LANGUAGE_NONE][] = array('tid' => $term);
-            }
-          }
-          elseif (!empty($source->data['menu_terms'])) {
-            $terms = !is_array($source->data['menu_terms']) ? array($source->data['menu_terms']) : $source->data['menu_terms'];
-            foreach ($terms as $term) {
-              $entity->field_menu_section[LANGUAGE_NONE][] = array('tid' => $term);
-            }
-          }
-          else {
-            // Try search by term name.
-            foreach ($field as $key => $sub_field) {
-              $term = taxonomy_get_term_by_name($item[$sub_field['field']], $sub_field['vocabulary']);
-              $term = reset($term);
-              if (!empty($term->tid)) {
-                $entity->{$sub_field['name']}[LANGUAGE_NONE][0][$sub_field['key']] = $term->tid;
               }
             }
           }
@@ -281,6 +241,19 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
             }
           }
           break;
+      }
+    }
+    // Assign category if it exist in settings.
+    if (!empty($source->data['ed_terms'])) {
+      $terms = !is_array($source->data['ed_terms']) ? array($source->data['ed_terms']) : $source->data['ed_terms'];
+      foreach ($terms as $term) {
+        $entity->field_custom_section[LANGUAGE_NONE][] = array('tid' => $term);
+      }
+    }
+    elseif (!empty($source->data['menu_terms'])) {
+      $terms = !is_array($source->data['menu_terms']) ? array($source->data['menu_terms']) : $source->data['menu_terms'];
+      foreach ($terms as $term) {
+        $entity->field_menu_section[LANGUAGE_NONE][] = array('tid' => $term);
       }
     }
   }

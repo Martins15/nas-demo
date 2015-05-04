@@ -17,21 +17,13 @@ function nas_alters_init() {
 
   // Redirect articles only when field_article_redirect is filled and is full node page.
   if (_nas_alters_is_article_full_view_mode_page() && $node = menu_get_object('node')) {
-    switch ($node->type) {
-      case 'article':
-        $field = 'field_article_redirect';
-        break;
-
-      case 'slideshow':
-        $field = 'field_slideshow_redirect';
-        break;
-
-      case 'static_page':
-        $field = 'field_static_page_redirect';
-        break;
-    }
-    if (!empty($node->{$field}[LANGUAGE_NONE][0]['url'])) {
-      drupal_goto($node->{$field}[LANGUAGE_NONE][0]['url'], array(), 301);
+    $fields = array(
+      'article' => 'field_article_redirect',
+      'slideshow' => 'field_slideshow_redirect',
+      'static_page' => 'field_static_page_redirect'
+    );
+    if (!empty($node->{$fields[$node->type]}[LANGUAGE_NONE][0]['url'])) {
+      drupal_goto($node->{$fields[$node->type]}[LANGUAGE_NONE][0]['url'], array(), 301);
     }
   }
 }

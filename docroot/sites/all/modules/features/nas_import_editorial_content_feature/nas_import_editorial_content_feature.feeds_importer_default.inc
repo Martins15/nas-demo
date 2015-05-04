@@ -32,89 +32,95 @@ function nas_import_editorial_content_feature_feeds_importer_default() {
       'plugin_key' => 'FeedsExJsonPath',
       'config' => array(
         'sources' => array(
+          'guid' => array(
+            'name' => 'guid',
+            'value' => 'guid',
+            'debug' => 0,
+            'weight' => '0',
+          ),
           'nid' => array(
             'name' => 'nid',
             'value' => 'nid',
             'debug' => 0,
-            'weight' => '0',
+            'weight' => '1',
           ),
           'type' => array(
             'name' => 'type',
             'value' => 'type',
             'debug' => 0,
-            'weight' => '1',
+            'weight' => '2',
           ),
           'status' => array(
             'name' => 'status',
             'value' => 'status',
             'debug' => 0,
-            'weight' => '2',
+            'weight' => '3',
           ),
           'title' => array(
             'name' => 'title',
             'value' => 'title',
             'debug' => 0,
-            'weight' => '3',
+            'weight' => '4',
           ),
           'field_category' => array(
             'name' => 'field_category',
             'value' => 'field_category[*][0][name]',
             'debug' => 0,
-            'weight' => '4',
+            'weight' => '5',
           ),
           'redirect' => array(
             'name' => 'redirect',
             'value' => 'redirect',
             'debug' => 0,
-            'weight' => '5',
+            'weight' => '6',
           ),
           'field_art_subtitle' => array(
             'name' => 'field_art_subtitle',
             'value' => 'field_art_subtitle[*][0][value]',
             'debug' => 0,
-            'weight' => '6',
+            'weight' => '7',
           ),
           'field_art_editorial_card_image' => array(
             'name' => 'field_art_editorial_card_image',
             'value' => 'field_art_editorial_card_image[*][0]',
             'debug' => 0,
-            'weight' => '7',
+            'weight' => '8',
           ),
           'field_art_date' => array(
             'name' => 'field_art_date',
             'value' => 'field_art_date[*][0]',
             'debug' => 0,
-            'weight' => '8',
+            'weight' => '9',
           ),
           'field_static_page_subtitle' => array(
             'name' => 'field_static_page_subtitle',
             'value' => 'field_static_page_subtitle[*][0][value]',
             'debug' => 0,
-            'weight' => '9',
+            'weight' => '10',
           ),
           'field_sp_editorial_card_image' => array(
             'name' => 'field_sp_editorial_card_image',
             'value' => 'field_sp_editorial_card_image[*][0]',
             'debug' => 0,
-            'weight' => '10',
+            'weight' => '11',
           ),
           'field_prls_subtitle' => array(
             'name' => 'field_prls_subtitle',
             'value' => 'field_prls_subtitle[*][0][value]',
             'debug' => 0,
-            'weight' => '11',
+            'weight' => '12',
           ),
           'field_prls_editorial_card_image' => array(
             'name' => 'field_prls_editorial_card_image',
             'value' => 'field_prls_editorial_card_image[*][0]',
             'debug' => 0,
-            'weight' => '12',
+            'weight' => '13',
           ),
           'field_prls_date' => array(
             'name' => 'field_prls_date',
             'value' => 'field_prls_date[*][0]',
             'debug' => 0,
-            'weight' => '13',
+            'weight' => '14',
           ),
         ),
         'context' => array(
@@ -135,11 +141,16 @@ function nas_import_editorial_content_feature_feeds_importer_default() {
         'authorize' => 1,
         'mappings' => array(
           0 => array(
+            'source' => 'guid',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
             'source' => 'title',
             'target' => 'title',
             'unique' => FALSE,
           ),
-          1 => array(
+          2 => array(
             'source' => 'status',
             'target' => 'status',
             'unique' => FALSE,
@@ -156,7 +167,7 @@ function nas_import_editorial_content_feature_feeds_importer_default() {
     'update' => 0,
     'import_period' => '-1',
     'expire_period' => 3600,
-    'import_on_create' => 0,
+    'import_on_create' => 1,
     'process_in_background' => 0,
   );
   $export['nas_editorial_cards_content'] = $feeds_importer;

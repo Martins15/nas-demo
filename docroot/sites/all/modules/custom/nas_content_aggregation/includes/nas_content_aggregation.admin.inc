@@ -25,8 +25,9 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
     For example if entered value 5, import will start each 5 days.'),
   );
 
-  $number_items = isset($form_state['num_urls']) ? $form_state['num_urls'] : count($storage['settings']);
-  $number_items = $number_items > 0 ? $number_items : 1;
+  $count = isset($storage['settings']) ? count($storage['settings']) : 1;
+  $number_items = isset($form_state['num_urls']) ? $form_state['num_urls'] : $count;
+  $form_state['num_urls'] = $number_items;
 
   $form['nas_agg_wrap'] = array(
     '#type' => 'fieldset',
@@ -137,7 +138,6 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => t('Save Settings & Start Import'),
   );
-  $form_state['num_urls'] = $number_items;
 
   return $form;
 }

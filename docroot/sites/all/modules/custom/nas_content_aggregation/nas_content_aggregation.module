@@ -85,11 +85,10 @@ function nas_content_aggregation_add_headers_link($category) {
  *   TRUE, that Drupal could finish normally.
  */
 function nas_content_aggregation_editorial_feed($term) {
+  $available_ct = $allowed_ct = nas_content_aggregation_available_ct();
   if (isset($_GET['type_filter']) && !empty($_GET['type_filter'])) {
     $available_ct = explode(',', $_GET['type_filter']);
-  }
-  else {
-    $available_ct = nas_content_aggregation_available_ct();
+    $available_ct = array_intersect($available_ct, $allowed_ct);
   }
   $nids = nas_content_aggregation_taxonomy_select_nodes($term->tid, $available_ct);
   if (!empty($nids)) {
@@ -109,7 +108,8 @@ function nas_content_aggregation_editorial_feed($term) {
  */
 function nas_content_aggregation_export_node($node) {
   $node->redirect = url('node/' . $node->nid, array('absolute' => TRUE));
-  $node->field_editorial_card_image[LANGUAGE_NONE][0]['fullpath'] = file_create_url($node->field_editorial_card_image[LANGUAGE_NONE][0]['uri']);
+  $file_path = file_create_url($node->field_editorial_card_image[LANGUAGE_NONE][0]['uri']);
+  $node->field_editorial_card_image[LANGUAGE_NONE][0]['fullpath'] = $file_path;
   if (!empty($node->field_custom_section)) {
     $section = field_get_items('node', $node, 'field_custom_section');
     foreach ($section as $term) {
@@ -122,6 +122,8 @@ function nas_content_aggregation_export_node($node) {
       $node->category[] = (array) taxonomy_term_load($term['tid']);
     }
   }
+  $domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
+  $node->guid = $domain . '_' . $node->nid;
   drupal_json_output($node);
   return TRUE;
 }
@@ -192,7 +194,7 @@ function nas_content_aggregation_taxonomy_select_nodes($tid, $available_ct) {
   $query->leftJoin('node', 'n', 't.nid = n.nid');
   $query->condition('t.tid', $tid);
   $query->condition('n.type', $available_ct, 'IN');
-  $order = array('t.sticky' => 'DESC', 't.created' => 'DESC');
+  $order = array('n.changed' => 'DESC', 'n.created' => 'DESC');
   foreach ($order as $field => $direction) {
     $query->orderBy($field, $direction);
   }
