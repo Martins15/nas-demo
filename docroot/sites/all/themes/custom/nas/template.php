@@ -693,7 +693,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
       $vars['icon'] = theme('image_style', array(
         'path' => $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'],
-        'style_name' => 'thumbnail',
+        'style_name' => 'medium',
       ));
       if (!empty($node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'])) {
         $vars['icon'] = '<a href="' . $node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'] . '">' . $vars['icon'] . '</a>';

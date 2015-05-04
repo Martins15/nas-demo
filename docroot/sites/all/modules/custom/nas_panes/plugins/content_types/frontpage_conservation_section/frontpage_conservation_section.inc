@@ -119,7 +119,7 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
     $attribution = _nas_panes_format_image_attribution($hero_image);
   }
 
-  $contextual_links = nas_panes_build_page_contextual_links('frontpage_conservation_section', NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY, 'page_frontpage2_panel_context');
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = array();
 
