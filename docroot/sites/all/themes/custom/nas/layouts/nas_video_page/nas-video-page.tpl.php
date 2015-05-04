@@ -9,8 +9,7 @@
 <section class="global-content">
 
   <div class="row video-header">
-<!--    --><?php //print $content['header']; ?>
-    <h1 class="thin">Live: Hogg Island Puffin Cam</h1>
+    <h1 class="thin"><?php print $page_title; ?></h1>
   </div>
 
   <div class="video-wrapper">
