@@ -179,11 +179,8 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Explore by state';
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'infinite_scroll';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -193,7 +190,7 @@ function nas_boa_index_feature_views_default_views() {
       'rendered_strip' => 0,
     ),
     1 => array(
-      'field' => 'name',
+      'field' => 'field_state',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
