@@ -1966,6 +1966,7 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+  $form['override_title_heading']['#access'] = FALSE;
 }
 
 /**
