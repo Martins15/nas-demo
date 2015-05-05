@@ -949,7 +949,9 @@ article.event {
       margin-bottom: 25px;
     }
   }
-
+  .text-container {
+    word-break: break-all;
+  }
   .social-sharing {
     margin: 94px 0 45px;
     text-align: right;

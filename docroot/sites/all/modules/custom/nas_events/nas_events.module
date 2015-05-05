@@ -27,7 +27,7 @@ function nas_events_update_nodes($job = NULL) {
   $timestamp = variable_get('nas_events_last_time_processed', NAS_AUDUBON_WORKS_START_TIMESTAMP);
   $uuids = nas_events_get_list($timestamp);
   foreach ($uuids as $uuid => $timestamp) {
-    $config = array('NASFeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
+    $config = array('FeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
     $source = feeds_source('events_import');
     $source->addConfig($config);
     $source->save();
