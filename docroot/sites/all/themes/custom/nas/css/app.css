@@ -14259,6 +14259,9 @@ article.event .event-header .end-date-available {
 article.event .event-header .location-details {
   margin-bottom: 25px;
 }
+article.event .text-container {
+  word-break: break-all;
+}
 article.event .social-sharing {
   margin: 94px 0 45px;
   text-align: right;
