@@ -30,7 +30,7 @@ function boa_listing_render($subtype, $conf, $args, $contexts) {
       'query' => array('sort_by' => 'title'),
     ),
     'state' => array(
-      'display' => 'boa_listing',
+      'display' => 'boa_index_state',
       'title' => 'State Birds',
       'query' => array(),
     ),
