@@ -70,6 +70,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['nas_node_teaser_small_state'] = array(
+    'label' => t('Teaser small state'),
+    'custom settings' => TRUE,
+  );
   $entity_info['node']['view modes']['editorial_card_3x'] = array(
     'label' => t('Editorial card (3x) teaser'),
     'custom settings' => FALSE,

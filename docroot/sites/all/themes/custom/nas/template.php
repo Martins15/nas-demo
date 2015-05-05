@@ -1402,7 +1402,7 @@ function nas_preprocess_views_view(&$vars) {
     }
   }
 
-  if ($view->name == 'boa_index' and $view->current_display == 'boa_index') {
+  if ($view->name == 'boa_index') {
     drupal_add_js(drupal_get_path('theme', 'nas') .'/js/nas/boa.js');
   }
 
