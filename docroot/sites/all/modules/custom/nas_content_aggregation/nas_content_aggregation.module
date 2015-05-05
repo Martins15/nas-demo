@@ -17,6 +17,18 @@ function nas_content_aggregation_available_ct() {
 }
 
 /**
+ * Implements hook_permission().
+ */
+function nas_content_aggregation_permission() {
+  return array(
+    'administer imported nodes' => array(
+      'title' => t('Administer imported node'),
+      'description' => t('Perform administration nodes imported from other sites.'),
+    ),
+  );
+}
+
+/**
  * Implements hook_init().
  */
 function nas_content_aggregation_init() {
@@ -76,6 +88,32 @@ function nas_content_aggregation_menu() {
     'type' => MENU_CALLBACK
   );
   return $items;
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function asc_content_aggregation_node_access($node, $op, $account) {
+  switch ($op) {
+    case 'update':
+    case 'delete':
+      if (in_array($node->type, nas_content_aggregation_available_ct()) &&
+        !user_access('administer imported nodes', $account)
+      ) {
+        $redirect_fields = array(
+          'article' => 'field_article_redirect',
+          'static_page' => 'field_static_page_redirect',
+          'slideshow' => 'field_slideshow_redirect'
+        );
+        $redirect_field = field_get_items('node', $node, $redirect_fields[$node->type]);
+        if (!empty($redirect_field[0]['url'])) {
+          return NODE_ACCESS_DENY;
+        }
+      }
+      break;
+  }
+
+  return NODE_ACCESS_IGNORE;
 }
 
 /**
