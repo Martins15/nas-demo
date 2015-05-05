@@ -44,9 +44,9 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
       $display_remove--;
     }
   }
-  $section_terms = array('none' => t('Select Editorial Category'));
+  $section_terms = array('' => t('Select Editorial Category'));
   $section_terms += _nas_panes_get_taxonomy_options('section');
-  $menu_terms = array('none' => t('Select Menu Category'));
+  $menu_terms = array('' => t('Select Menu Category'));
   $menu_terms += _nas_panes_get_taxonomy_options('menu_section');
   for ($i = 0; $i < $form_state['num_urls']; $i++) {
     $form['nas_agg_wrap']['nas_agg_urls'][$i] = array(
@@ -58,6 +58,7 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
     );
     $form['nas_agg_wrap']['nas_agg_urls'][$i]['url'] = array(
       '#type' => 'textfield',
+      '#title' => t('Url address'),
       '#default_value' => !empty($storage['settings'][$i]['url']) ? $storage['settings'][$i]['url'] : '',
       '#description' => t('Enter source url with http:// as prefix'),
     );
@@ -70,6 +71,7 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
     );
     $form['nas_agg_wrap']['nas_agg_urls'][$i]['type'] = array(
       '#type' => 'textfield',
+      '#title' => t('Content Type'),
       '#size' => 30,
       '#default_value' => !empty($storage['settings'][$i]['type']) ? $storage['settings'][$i]['type'] : '',
       '#description' => t(' Enter content types using coma as a separator.
@@ -200,8 +202,8 @@ function nas_content_aggregation_editorial_cards_form_validate($form, &$form_sta
   nas_content_aggregation_validate_frequency($values['nas_content_aggregation_frequency']);
   foreach ($values['nas_agg_wrap']['nas_agg_urls'] as $key => $val) {
     if (is_array($val)) {
-      if (!empty($values['nas_agg_wrap']['nas_agg_urls'][$key]['type'])) {
-        $entered_ct = explode(',', $values['nas_agg_wrap']['nas_agg_urls'][$key]['type']);
+      if (!empty($val['type'])) {
+        $entered_ct = explode(',', $val['type']);
         $entered_ct = array_map('trim', $entered_ct);
         $available_ct = nas_content_aggregation_available_ct();
         if (array_diff($entered_ct, $available_ct)) {
@@ -211,6 +213,10 @@ function nas_content_aggregation_editorial_cards_form_validate($form, &$form_sta
         else {
           $val['url'] .= '?type_filter=' . implode(',', $entered_ct);
         }
+      }
+      if (empty($val['ed_terms']) && empty($val['menu_terms'])) {
+        form_set_error("nas_agg_wrap][nas_agg_urls][$key][ed_terms", t('Please choose Editorial or Menu section.'));
+        form_set_error("nas_agg_wrap][nas_agg_urls][$key][menu_terms");
       }
       nas_content_aggregation_validate_remote_url($form_state, $key, $val['url'], 'x-editorial-feed');
     }
@@ -288,9 +294,9 @@ function nas_content_aggregation_editorial_individual_form($form, &$form_state) 
       $display_remove--;
     }
   }
-  $section_terms = array('none' => t('Select Editorial Category'));
+  $section_terms = array('' => t('Select Editorial Category'));
   $section_terms += _nas_panes_get_taxonomy_options('section');
-  $menu_terms = array('none' => t('Select Menu Category'));
+  $menu_terms = array('' => t('Select Menu Category'));
   $menu_terms += _nas_panes_get_taxonomy_options('menu_section');
   for ($i = 0; $i < $form_state['num_urls']; $i++) {
     $form['nas_agg_wrap']['nas_agg_urls'][$i] = array(
@@ -302,6 +308,7 @@ function nas_content_aggregation_editorial_individual_form($form, &$form_state) 
     );
     $form['nas_agg_wrap']['nas_agg_urls'][$i]['url'] = array(
       '#type' => 'textfield',
+      '#title' => t('Url address'),
       '#default_value' => !empty($storage['settings'][$i]['url']) ? $storage['settings'][$i]['url'] : '',
       '#description' => t('Enter source url with http:// as prefix.'),
     );
@@ -383,6 +390,10 @@ function nas_content_aggregation_editorial_individual_form_validate($form, &$for
   nas_content_aggregation_validate_frequency($values['nas_content_aggregation_frequency']);
   foreach ($values['nas_agg_wrap']['nas_agg_urls'] as $key => $val) {
     if (is_array($val)) {
+      if (empty($val['ed_terms']) && empty($val['menu_terms'])) {
+        form_set_error("nas_agg_wrap][nas_agg_urls][$key][ed_terms", t('Please choose Editorial or Menu section.'));
+        form_set_error("nas_agg_wrap][nas_agg_urls][$key][menu_terms");
+      }
       nas_content_aggregation_validate_remote_url($form_state, $key, $val['url'], 'x-node-feed');
     }
   }

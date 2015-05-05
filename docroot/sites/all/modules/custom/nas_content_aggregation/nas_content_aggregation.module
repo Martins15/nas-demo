@@ -191,7 +191,7 @@ function nas_content_aggregation_feeds_presave(FeedsSource $source, $entity, $it
   switch ($source->id) {
     case NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER:
       nas_content_aggregation_feeds_presave_asc($source, $entity, $item);
-      if (!$entity->feeds_item->skip) {
+      if (isset($entity->feeds_item->skip) && !$entity->feeds_item->skip) {
         $counter += 1;
       }
       break;
@@ -219,7 +219,8 @@ function _nas_content_aggregation_start_import_helper($source_url) {
     }
     $parts[] = $part;
   }
-  $url = $url['scheme'] . '://' . $url['host'] . implode('/', $parts) . '/export/node/';
+  $url = $url['scheme'] . '://' . $url['host'] . implode('/', $parts) .
+    '/export/node/';
   return array($response, $url);
 }
 
