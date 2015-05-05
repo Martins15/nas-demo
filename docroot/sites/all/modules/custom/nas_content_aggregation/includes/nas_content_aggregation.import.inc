@@ -15,8 +15,8 @@
  *   Batch array.
  */
 function nas_content_aggregation_import_nodes($storage) {
-  variable_set('nas_agg_import_timer', time());
-  variable_set('nas_agg_import_node_counter', 0);
+  variable_set('nas_content_aggregation_import_timer', time());
+  variable_set('nas_content_aggregation_import_node_counter', 0);
   // Clear static caches so ctools_export_load_object can load feeds_importer
   // from enabled feature.
   drupal_static_reset();
@@ -124,8 +124,8 @@ function nas_content_aggregation_import_batch_finished_callback($success, $resul
   $args = array();
   if ($success) {
     $messages[] = 'Import finished successfully!';
-    $start_time = variable_get('nas_agg_import_timer', 0);
-    $counter = variable_get('nas_agg_import_node_counter', 0);
+    $start_time = variable_get('nas_content_aggregation_import_timer', 0);
+    $counter = variable_get('nas_content_aggregation_import_node_counter', 0);
     if ($start_time && $counter) {
       $messages[] = 'Imported @count nodes.';
       $messages[] = 'Time of import is @time seconds.';
@@ -198,7 +198,7 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
     case 'article':
       $entity->type = $item['type'];
       $map = array(
-        'field_art_subtitle' => array(
+        'field_subtitle' => array(
           'name' => 'field_subtitle',
           'key' => 'value'
         ),
@@ -210,19 +210,13 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
           'name' => 'field_article_date',
           'key' => 'value'
         ),
-        'images' => array(
-          'field_art_editorial_card_image' => array(
-            'name' => 'field_editorial_card_image',
-            'key' => 'fid'
-          ),
-        )
       );
       break;
 
     case 'static_page':
       $entity->type = $item['type'];
       $map = array(
-        'field_static_page_subtitle' => array(
+        'field_subtitle' => array(
           'name' => 'field_subtitle',
           'key' => 'value'
         ),
@@ -230,19 +224,13 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
           'name' => 'field_static_page_redirect',
           'key' => 'url'
         ),
-        'images' => array(
-          'field_sp_editorial_card_image' => array(
-            'name' => 'field_editorial_card_image',
-            'key' => 'fid'
-          ),
-        )
       );
       break;
 
     case 'pressrelease':
       $entity->type = 'article';
       $map = array(
-        'field_prls_subtitle' => array(
+        'field_subtitle' => array(
           'name' => 'field_subtitle',
           'key' => 'value'
         ),
@@ -254,12 +242,6 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
           'name' => 'field_article_date',
           'key' => 'value'
         ),
-        'images' => array(
-          'field_prls_editorial_card_image' => array(
-            'name' => 'field_editorial_card_image',
-            'key' => 'fid'
-          ),
-        )
       );
       break;
 
@@ -297,18 +279,6 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
           }
           break;
 
-        case 'images':
-          foreach ($field as $key => $image) {
-            if (!empty($item[$key]['fullpath'])) {
-              $url = parse_url($item[$key]['fullpath']);
-              $source_url = $url['scheme'] . '://' . $url['host'] . '/';
-              if ($file = nas_import_add_existing_file($url['path'], 'image', $user->uid, FILE_STATUS_PERMANENT, 0, $source_url)) {
-                $entity->{$image['name']}[LANGUAGE_NONE][0][$image['key']] = $file->fid;
-              }
-            }
-          }
-          break;
-
         default:
           if (!empty($item[$key])) {
             if (is_array($item[$key])) {
@@ -321,6 +291,14 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
           break;
       }
     }
+    if (!empty($item['field_editorial_card_image']['fullpath'])) {
+      $url = parse_url($item['field_editorial_card_image']['fullpath']);
+      $source_url = $url['scheme'] . '://' . $url['host'] . '/';
+      if ($file = nas_import_add_existing_file($url['path'], 'image', $user->uid, FILE_STATUS_PERMANENT, 0, $source_url)) {
+        $entity->field_editorial_card_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
+      }
+    }
+
     // Assign category if it exist in settings.
     if (!empty($source->data['ed_terms'])) {
       $terms = !is_array($source->data['ed_terms']) ? array($source->data['ed_terms']) : $source->data['ed_terms'];

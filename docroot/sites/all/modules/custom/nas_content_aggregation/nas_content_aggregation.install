@@ -10,8 +10,8 @@
  */
 function nas_content_aggregation_install() {
   variable_set('nas_content_aggregation_storage', array());
-  variable_set('nas_agg_import_timer', '');
-  variable_set('nas_agg_import_node_counter', '');
+  variable_set('nas_content_aggregation_import_timer', '');
+  variable_set('nas_content_aggregation_import_node_counter', '');
   variable_set('nas_content_aggregation_individual_storage', array());
 }
 
@@ -19,8 +19,7 @@ function nas_content_aggregation_install() {
  * Implements hook_uninstall().
  */
 function asc_content_aggregation_uninstall() {
-  variable_del('nas_content_aggregation_storage');
-  variable_del('nas_agg_import_timer', '');
-  variable_del('nas_agg_import_node_counter', '');
-  variable_del('nas_content_aggregation_individual_storage');
+  db_delete('variable')
+    ->condition('name', 'nas_content_aggregation%', 'LIKE')
+    ->execute();
 }
