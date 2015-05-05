@@ -110,6 +110,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'event') {
     nas_preprocess_node_event($vars);
   }
+  if ($vars['type'] == 'video_page') {
+    nas_preprocess_node_video_page($vars);
+  }
 }
 
 /**
@@ -1542,6 +1545,81 @@ function nas_preprocess_node_slideshow(&$vars) {
   $vars['blue_text_link_url'] = $blue_text_link_url;
   $vars['blue_text_link_text'] = ucwords($blue_text_link_text);
   $vars['custom_link_text'] = t('Read more');
+}
+
+/**
+ * Implements theme_preprocess_node().
+ *
+ * For Videos page content type.
+ */
+function nas_preprocess_node_video_page(&$vars) {
+  if (in_array($vars['view_mode'], array('teaser', 'editorial_card_3x', 'editorial_card_4x'))) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+}
+
+/**
+ * Preprocess function for nas_video_page theme.
+ */
+function nas_preprocess_nas_video_page(&$vars) {
+  global $base_url;
+  // Add Page absolute url.
+  $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+
+  // Add Page title.
+  $vars['page_title'] = drupal_get_title();
+
+  $vars['twitter_url'] = url('http://twitter.com/share', array(
+    'query' => array(
+      'text' => $vars['page_title'],
+      'via' => 'audubonsociety',
+      'url' => $vars['page_link'],
+    ),
+  ));
+
+  $vars['facebook_url'] = url('http://www.facebook.com/sharer/sharer.php', array(
+    'query' => array(
+      'u' => $vars['page_link'],
+    ),
+  ));
+
+  $vars['pinterest_url'] = url('http://pinterest.com/pin/create/button/', array(
+    'query' => array(
+      'url' => $vars['page_link'],
+    ),
+  ));
+
+  $vars['mailto_url'] = url('mailto:', array(
+    'query' => array(
+      'subject' => $vars['page_title'],
+      'body' => $vars['page_link'],
+    ),
+  ));
+
+  $caption = '';
+  if (in_array('node', $vars['display']->context['panelizer']->type)) {
+    $node = $vars['display']->context['panelizer']->data;
+    $video_caption = '';
+    if ($items = field_get_items('node', $node, 'field_video_caption')) {
+      $video_caption = reset($items);
+      $video_caption = $video_caption['safe_value'];
+    }
+    $video_credit = '';
+    if ($items = field_get_items('node', $node, 'field_video_credit')) {
+      $video_credit = reset($items);
+      $video_credit = $video_credit['safe_value'];
+    }
+
+    $caption = $video_caption;
+    if ($video_credit) {
+      $caption .= ' Video: ' . $video_credit;
+    }
+
+    if ($caption) {
+      $vars['caption'] = '<p>' . $caption . '</p>';
+    }
+  }
 }
 
 /**
