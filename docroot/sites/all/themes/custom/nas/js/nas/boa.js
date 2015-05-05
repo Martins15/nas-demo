@@ -31,7 +31,6 @@
                   $(this).find('h2.boa-family-set-title').css('font-size', fontsize - 2);
                 }
               });
-              console.log('boa_equalize');
             },
             // Get the number of birds in a row based on the screen size.
             range = function(number) {
