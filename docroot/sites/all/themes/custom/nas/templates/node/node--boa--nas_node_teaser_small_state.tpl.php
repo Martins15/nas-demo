@@ -87,7 +87,6 @@
  */
 ?>
 
-<div class="boa-item columns tiny-6 medium-4 large-3" data-equalizer-watch>
   <div class="boa-bird-card">
     <div class="photo">
       <?php print $bird_illustration; ?>
@@ -95,4 +94,3 @@
     <h4 class="common-name"><?php print $title_link; ?></h4>
     <p class="scientific-name"><?php print $sort_name; ?></p>
   </div>
-</div>
