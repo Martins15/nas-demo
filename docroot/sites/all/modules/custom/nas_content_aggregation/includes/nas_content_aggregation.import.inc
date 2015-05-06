@@ -222,8 +222,8 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
       ));
       // @todo remove next 2 lines after adding slideshow ct.
       $entity->feeds_item->skip = TRUE;
+
       return TRUE;
-      break;
   }
 
   // Redirect field.
