@@ -140,6 +140,12 @@ function nas_event_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '31',
           ),
+          'uuid' => array(
+            'name' => 'uuid',
+            'value' => 'uuid',
+            'debug' => 0,
+            'weight' => '32',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
@@ -159,42 +165,47 @@ function nas_event_feature_feeds_importer_default() {
         'authorize' => 0,
         'mappings' => array(
           0 => array(
-            'source' => 'title',
-            'target' => 'title',
+            'source' => 'uuid',
+            'target' => 'guid',
             'unique' => 1,
           ),
           1 => array(
+            'source' => 'title',
+            'target' => 'title',
+            'unique' => 0,
+          ),
+          2 => array(
             'source' => 'body',
             'target' => 'body',
             'unique' => FALSE,
           ),
-          2 => array(
+          3 => array(
             'source' => 'status',
             'target' => 'status',
             'unique' => FALSE,
           ),
-          3 => array(
+          4 => array(
             'source' => 'registration_link',
             'target' => 'field_event_registration:url',
             'unique' => FALSE,
           ),
-          4 => array(
+          5 => array(
             'source' => 'registration_info',
             'target' => 'field_event_registration_notes',
             'unique' => FALSE,
           ),
-          5 => array(
+          6 => array(
             'source' => 'location',
             'target' => 'field_event_location_help',
             'unique' => FALSE,
           ),
-          6 => array(
+          7 => array(
             'source' => 'subtitle',
             'target' => 'field_event_description',
             'unique' => FALSE,
           ),
         ),
-        'update_existing' => '1',
+        'update_existing' => '2',
         'input_format' => 'full_html',
         'skip_hash_check' => 1,
         'bundle' => 'event',
