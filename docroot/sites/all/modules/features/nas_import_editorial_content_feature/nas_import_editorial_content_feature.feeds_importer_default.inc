@@ -18,7 +18,7 @@ function nas_import_editorial_content_feature_feeds_importer_default() {
     'name' => 'NAS Editorial Cards Content',
     'description' => 'Import content from NAS sites.',
     'fetcher' => array(
-      'plugin_key' => 'NASFeedsHTTPFetcher',
+      'plugin_key' => 'FeedsHTTPFetcher',
       'config' => array(
         'auto_detect_feeds' => FALSE,
         'use_pubsubhubbub' => FALSE,
@@ -62,41 +62,29 @@ function nas_import_editorial_content_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '4',
           ),
-          'field_category' => array(
-            'name' => 'field_category',
-            'value' => 'field_category[*][0][name]',
-            'debug' => 0,
-            'weight' => '5',
-          ),
           'redirect' => array(
             'name' => 'redirect',
             'value' => 'redirect',
             'debug' => 0,
             'weight' => '6',
           ),
-          'field_art_date' => array(
-            'name' => 'field_art_date',
-            'value' => 'field_art_date[*][0]',
+          'date' => array(
+            'name' => 'date',
+            'value' => 'date[*][0]',
             'debug' => 0,
-            'weight' => '9',
+            'weight' => '17',
           ),
-          'field_prls_date' => array(
-            'name' => 'field_prls_date',
-            'value' => 'field_prls_date[*][0]',
+          'image' => array(
+            'name' => 'image',
+            'value' => 'image',
             'debug' => 0,
-            'weight' => '14',
+            'weight' => '18',
           ),
-          'field_subtitle' => array(
-            'name' => 'field_subtitle',
-            'value' => 'field_subtitle[*][0][value]',
+          'subtitle' => array(
+            'name' => 'subtitle',
+            'value' => 'subtitle[*][0][value]',
             'debug' => 0,
-            'weight' => '15',
-          ),
-          'field_editorial_card_image' => array(
-            'name' => 'field_editorial_card_image',
-            'value' => 'field_editorial_card_image[*][0]',
-            'debug' => 0,
-            'weight' => '16',
+            'weight' => '19',
           ),
         ),
         'context' => array(

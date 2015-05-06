@@ -17,6 +17,13 @@ function nas_content_aggregation_available_ct() {
 }
 
 /**
+ * List of available cts for import to editorial feed.
+ */
+function nas_content_aggregation_import_available_ct() {
+  return array('article', 'slideshow', 'pressrelease', 'static_page');
+}
+
+/**
  * Implements hook_permission().
  */
 function nas_content_aggregation_permission() {
@@ -183,6 +190,20 @@ function nas_content_aggregation_editorial_feed($term) {
  *   TRUE, that Drupal could finish normally.
  */
 function nas_content_aggregation_export_node($node) {
+  $export_node = new stdClass();
+  $export_node->nid = $node->nid;
+  $export_node->type = $node->type;
+  $export_node->title = $node->title;
+  $export_node->status = $node->status;
+  if (isset($node->field_subtitle)) {
+    $export_node->subtitle = $node->field_subtitle;
+  }
+  if (isset($node->field_slideshow_subtitle)) {
+    $export_node->subtitle = $node->field_slideshow_subtitle;
+  }
+  if (isset($node->field_article_date)) {
+    $export_node->date = $node->field_article_date;
+  }
   $redirect_fields = array(
     'article' => 'field_article_redirect',
     'static_page' => 'field_static_page_redirect',
@@ -191,32 +212,22 @@ function nas_content_aggregation_export_node($node) {
   if (isset($redirect_fields[$node->type])) {
     $redirect_field = field_get_items('node', $node, $redirect_fields[$node->type]);
     if (!empty($redirect_field[0]['url'])) {
-      $node->redirect = $redirect_field[0]['url'];
+      $export_node->redirect = $redirect_field[0]['url'];
     }
     else {
-      $node->redirect = url('node/' . $node->nid, array(
+      $export_node->redirect = url('node/' . $node->nid, array(
         'absolute' => TRUE,
         'alias' => TRUE
       ));
     }
   }
   $image_field = field_get_items('node', $node, 'field_editorial_card_image');
-  $node->field_editorial_card_image[LANGUAGE_NONE][0]['fullpath'] = file_create_url($image_field[0]['uri']);
-  $custom_section = field_get_items('node', $node, 'field_custom_section');
-  if (!empty($custom_section)) {
-    foreach ($custom_section as $term) {
-      $node->category[] = (array) taxonomy_term_load($term['tid']);
-    }
-  }
-  $menu_section = field_get_items('node', $node, 'field_menu_section');
-  if (!empty($menu_section)) {
-    foreach ($menu_section as $term) {
-      $node->category[] = (array) taxonomy_term_load($term['tid']);
-    }
-  }
+  $export_node->image = array(
+    'fullpath' => file_create_url($image_field[0]['uri'])
+  );
   $domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
-  $node->guid = $domain . '_' . $node->nid;
-  drupal_json_output($node);
+  $export_node->guid = $domain . '_' . $export_node->nid;
+  drupal_json_output($export_node);
 
   return TRUE;
 }
@@ -228,10 +239,15 @@ function nas_content_aggregation_feeds_presave(FeedsSource $source, $entity, $it
   $counter = (int) variable_get('nas_agg_import_node_counter');
   switch ($source->id) {
     case NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER:
-      nas_content_aggregation_feeds_presave_asc($source, $entity, $item);
-      if (isset($entity->feeds_item->skip) && !$entity->feeds_item->skip) {
-        $counter += 1;
+      if (!in_array($item['type'], nas_content_aggregation_import_available_ct()) ||
+        empty($item['redirect'])
+      ) {
+        $entity->feeds_item->skip = TRUE;
+
+        return FALSE;
       }
+      nas_content_aggregation_feeds_presave_asc($source, $entity, $item);
+      $counter += 1;
       break;
   }
   variable_set('nas_agg_import_node_counter', $counter);
@@ -306,6 +322,7 @@ function nas_content_aggregation_taxonomy_select_nodes($tid, $available_ct) {
   $query->addField('t', 'tid');
   $query->leftJoin('node', 'n', 't.nid = n.nid');
   $query->condition('t.tid', $tid);
+  $query->condition('n.status', NODE_PUBLISHED);
   $query->condition('n.type', $available_ct, 'IN');
   $order = array('n.changed' => 'DESC', 'n.created' => 'DESC');
   foreach ($order as $field => $direction) {

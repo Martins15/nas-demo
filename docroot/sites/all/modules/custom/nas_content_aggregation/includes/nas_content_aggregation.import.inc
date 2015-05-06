@@ -165,14 +165,14 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
     '@domain' => $domain
   ));
   foreach ($items as $nid) {
-    $config = array(
-      'NASFeedsHTTPFetcher' => array(
-        'source' => $object_url . $nid
-      )
-    );
     $source = feeds_source($importer_id);
     $source->object_url = $object_url;
     $source->data = $data;
+    $config = array(
+      $source->importer->config['fetcher']['plugin_key'] => array(
+        'source' => $object_url . $nid
+      )
+    );
     $source->addConfig($config);
     $source->save();
     $source->import();
@@ -190,127 +190,81 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
  *   List of vars from import.
  *
  * @return bool
- *   Status
+ *   Status.
  */
 function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity, &$item) {
   global $user;
+  $map = array(
+    'subtitle' => 'field_subtitle'
+  );
   switch ($item['type']) {
     case 'article':
-      $entity->type = $item['type'];
-      $map = array(
-        'field_subtitle' => array(
-          'name' => 'field_subtitle',
-          'key' => 'value'
-        ),
-        'redirect' => array(
-          'name' => 'field_article_redirect',
-          'key' => 'url'
-        ),
-        'field_art_date' => array(
-          'name' => 'field_article_date',
-          'key' => 'value'
-        ),
-      );
+    case 'pressrelease':
+      $entity->type = 'article';
+      $map = array_merge($map, array(
+        'redirect' => 'field_article_redirect',
+        'date' => 'field_article_date'
+      ));
       break;
 
     case 'static_page':
       $entity->type = $item['type'];
-      $map = array(
-        'field_subtitle' => array(
-          'name' => 'field_subtitle',
-          'key' => 'value'
-        ),
-        'redirect' => array(
-          'name' => 'field_static_page_redirect',
-          'key' => 'url'
-        ),
-      );
-      break;
-
-    case 'pressrelease':
-      $entity->type = 'article';
-      $map = array(
-        'field_subtitle' => array(
-          'name' => 'field_subtitle',
-          'key' => 'value'
-        ),
-        'redirect' => array(
-          'name' => 'field_article_redirect',
-          'key' => 'url'
-        ),
-        'field_prls_date' => array(
-          'name' => 'field_article_date',
-          'key' => 'value'
-        ),
-      );
+      $map = array_merge($map, array(
+        'redirect' => 'field_static_page_redirect'
+      ));
       break;
 
     case 'slideshow':
-      // @todo Not ready yet.
+      $entity->type = $item['type'];
+      $map = array_merge($map, array(
+        'subtitle' => 'field_slideshow_subtitle',
+        'redirect' => 'field_slideshow_redirect'
+      ));
+      // @todo remove next 2 lines after adding slideshow ct.
       $entity->feeds_item->skip = TRUE;
-
       return TRUE;
-
-    default:
-      $entity->feeds_item->skip = TRUE;
-
-      return TRUE;
+      break;
   }
-  if (isset($map)) {
-    foreach ($map as $key => $field) {
-      switch ($key) {
-        case 'redirect':
-          if (empty($item['redirect']) || !isset($map['redirect'])) {
-            $entity->feeds_item->skip = TRUE;
 
-            return TRUE;
-          }
-          else {
-            $redirect_domain = parse_url($item[$key], PHP_URL_HOST);
-            $current_domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
-            if ($redirect_domain == $current_domain) {
-              $entity->feeds_item->skip = TRUE;
+  // Redirect field.
+  $redirect_domain = parse_url($item['redirect'], PHP_URL_HOST);
+  $current_domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
+  if ($redirect_domain == $current_domain) {
+    $entity->feeds_item->skip = TRUE;
 
-              return TRUE;
-            }
-            else {
-              $entity->{$field['name']}[LANGUAGE_NONE][0][$field['key']] = $item[$key];
-            }
-          }
-          break;
+    return FALSE;
+  }
+  else {
+    $entity->{$map['redirect']}[LANGUAGE_NONE][0]['url'] = $item['redirect'];
+  }
+  // Subtitle field.
+  if (!empty($item['subtitle'])) {
+    $entity->{$map['subtitle']}[LANGUAGE_NONE][0]['value'] = $item['subtitle'];
+  }
+  // Date field.
+  if (!empty($item['date']) && isset($map['date'])) {
+    $entity->{$map['date']}[LANGUAGE_NONE][0] = $item['date'];
+  }
 
-        default:
-          if (!empty($item[$key])) {
-            if (is_array($item[$key])) {
-              $entity->{$field['name']}[LANGUAGE_NONE][0] = $item[$key];
-            }
-            else {
-              $entity->{$field['name']}[LANGUAGE_NONE][0][$field['key']] = $item[$key];
-            }
-          }
-          break;
-      }
+  // Image field.
+  if (!empty($item['image']['fullpath'])) {
+    $url = parse_url($item['image']['fullpath']);
+    $source_url = $url['scheme'] . '://' . $url['host'] . '/';
+    if ($file = nas_import_add_existing_file($url['path'], 'image', $user->uid, FILE_STATUS_PERMANENT, 0, $source_url)) {
+      $entity->field_editorial_card_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
     }
-    if (!empty($item['field_editorial_card_image']['fullpath'])) {
-      $url = parse_url($item['field_editorial_card_image']['fullpath']);
-      $source_url = $url['scheme'] . '://' . $url['host'] . '/';
-      if ($file = nas_import_add_existing_file($url['path'], 'image', $user->uid, FILE_STATUS_PERMANENT, 0, $source_url)) {
-        $entity->field_editorial_card_image[LANGUAGE_NONE][0]['fid'] = $file->fid;
-      }
+  }
+  // Assign category if it exist in settings.
+  if (!empty($source->data['ed_terms'])) {
+    $terms = !is_array($source->data['ed_terms']) ? array($source->data['ed_terms']) : $source->data['ed_terms'];
+    foreach ($terms as $term) {
+      $entity->field_custom_section[LANGUAGE_NONE][] = array('tid' => $term);
     }
-
-    // Assign category if it exist in settings.
-    if (!empty($source->data['ed_terms'])) {
-      $terms = !is_array($source->data['ed_terms']) ? array($source->data['ed_terms']) : $source->data['ed_terms'];
-      foreach ($terms as $term) {
-        $entity->field_custom_section[LANGUAGE_NONE][] = array('tid' => $term);
-      }
-    }
-    if (!empty($source->data['menu_terms'])) {
-      $terms = !is_array($source->data['menu_terms']) ? array($source->data['menu_terms']) : $source->data['menu_terms'];
-      foreach ($terms as $term) {
-        $entity->field_menu_section[LANGUAGE_NONE][] = array('tid' => $term);
-      }
+  }
+  if (!empty($source->data['menu_terms'])) {
+    $terms = !is_array($source->data['menu_terms']) ? array($source->data['menu_terms']) : $source->data['menu_terms'];
+    foreach ($terms as $term) {
+      $entity->field_menu_section[LANGUAGE_NONE][] = array('tid' => $term);
     }
   }
 }
