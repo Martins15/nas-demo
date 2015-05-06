@@ -17,7 +17,7 @@ function nas_sla_install() {
  * Revert nas_slideshow_feature feature.
  */
 function nas_sla_update_7102() {
-  feature_revert_module('nas_slideshow_feature');
+  //features_revert_module('nas_slideshow_feature');
 }
 
 /**
@@ -25,6 +25,7 @@ function nas_sla_update_7102() {
  * Revert NAS Article CT feature.
  */
 function nas_sla_update_7103() {
-  module_enable(array('taxonomy_orderselect'));
+  module_enable(array('taxonomy_orderselect', 'email', 'phone'));
   features_revert_module('nas_article_feature');
+  features_revert_module('nas_location_feature');
 }

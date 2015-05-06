@@ -289,7 +289,7 @@ textarea {
 /**
  * CTools popup forms refinements.
  */
-#modalContent .ctools-modal-content {
+ #modalContent .ctools-modal-content {
   .description {
     color: #333;
     font-size: 13px;
@@ -301,101 +301,108 @@ textarea {
     input {
       margin: 0;
     }
-  }
 
-  .form-type-media {
-    label {
+    .form-type-checkboxes,
+    .form-type-radios {
+      .form-item,
+      input {
+        margin: 0;
+      }
+    }
+
+    .form-type-media {
+      label {
+        float: left;
+        margin-right: 1em;
+
+        &.media-filename {
+          font-size: 10px;
+          line-height: 12px;
+          margin: 0;
+          padding: 2px;
+          width: 100%;
+        }
+      }
+
+      .preview {
+        margin-bottom: 1em;
+        float: left;
+      }
+
+      .remove {
+        clear: left;
+      }
+    }
+
+    .clearfix {
+      clear: both;
+    }
+
+    .resizable-textarea {
+      margin: 0;
+    }
+
+    .sticky-header {
+      display: none;
+    }
+
+    .button {
+      margin-right: 1em;
+      float: left;
+    }
+
+    input.form-submit {
+      @include button;
+      @include button-style($bg:$color-tomato);
       float: left;
       margin-right: 1em;
 
-      &.media-filename {
-        font-size: 10px;
-        line-height: 12px;
-        margin: 0;
-        padding: 2px;
-        width: 100%;
+      &.field-add-more-submit {
+        margin-top: 1em;
       }
     }
 
-    .preview {
+    .text-format-wrapper {
       margin-bottom: 1em;
-      float: left;
-    }
 
-    .remove {
-      clear: left;
-    }
-  }
+      label {
+        float: none;
+      }
 
-  .clearfix {
-    clear: both;
-  }
+      .form-type-textarea {
+        margin-bottom: 0;
+      }
 
-  .resizable-textarea {
-    margin: 0;
-  }
+      .wysiwyg-toggle-wrapper {
+        padding-left: 1.5em;
+      }
+      .form-type-select {
+        margin:  0;
 
-  .sticky-header {
-    display: none;
-  }
-
-  .button {
-    margin-right: 1em;
-    float: left;
-  }
-
-  input.form-submit {
-    @include button;
-    @include button-style($bg:$color-tomato);
-    float: left;
-    margin-right: 1em;
-
-    &.field-add-more-submit {
-      margin-top: 1em;
-    }
-  }
-
-  .text-format-wrapper {
-    margin-bottom: 1em;
-
-    label {
-      float: none;
-    }
-
-    .form-type-textarea {
-      margin-bottom: 0;
-    }
-
-    .wysiwyg-toggle-wrapper {
-      padding-left: 1.5em;
-    }
-    .form-type-select {
-      margin:  0;
-
-      select {
-        margin: 0;
+        select {
+          margin: 0;
+        }
       }
     }
-  }
 
-  a.tabledrag-handle .handle {
-    padding: 12px 10px;
-  }
+    a.tabledrag-handle .handle {
+      padding: 12px 10px;
+    }
 
-  .form-item-context,
-  .form-item-reusable,
-  .form-item-category,
-  .form-item-admin-title,
-  #edit-admin-description-wrapper,
-  #edit-log-wrapper,
-  .form-item-revision {
-    display: none !important;
-  }
+    .form-item-context,
+    .form-item-reusable,
+    .form-item-category,
+    .form-item-admin-title,
+    #edit-admin-description-wrapper,
+    #edit-log-wrapper,
+    .form-item-revision {
+      display: none !important;
+    }
 
   /**
    * Tables.
    */
-  table {
+   table {
     margin: 0 0 10px;
     width: 100%;
   }
@@ -518,7 +525,7 @@ textarea {
   /**
    * Form elements.
    */
-  .form-item {
+   .form-item {
     padding: 0 1em 0 0;
     margin: 0 0 10px;
   }
@@ -893,5 +900,31 @@ body.node-type-slideshow {
     figcaption {
       text-align: left;
     }
+  }
+}
+
+.page-audubon-near-you{
+  .contact{
+    margin: 0 0 10px 0;
+    .contact-name{
+      font-weight: bold;
+    }
+    .contact-phone-email{
+      font-size:14px;
+    }
+    .contact-address{
+      font-size: 14px;
+      line-height: 17px;
+      padding-top: 5px;
+      .contact-address-label{
+        font-weight: bold;
+        font-family: "Source Sans Pro", Verdana, sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+  .site-link{
+    font-family: "Source Sans Pro", Verdana, sans-serif;
   }
 }
