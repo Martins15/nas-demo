@@ -2,3 +2,7 @@ name = "NAS SLA updb helper module."
 description = "This module is used to run Update hooks without interfering with NAS master"
 core = "7.x"
 package = NAS
+dependencies[] = email
+dependencies[] = phone
+dependencies[] = nas_field_max_length
+dependencies[] = taxonomy_orderselect
