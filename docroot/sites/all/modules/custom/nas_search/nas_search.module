@@ -397,3 +397,56 @@ function _nas_search_get_tt_families() {
 
   return $families;
 }
+
+
+/**
+ * Helper function returning list of BOAs formatted for usage with Typeahead.
+ *
+ * Results are cached via drupal cache mechanism for one hour.
+ *
+ * @return array
+ *  An array of objects containing:
+ *  - title: Individual BAO species title.
+ *  - new_title: Individual corresponding species title.
+ *  - alias: Alias to species page.
+ *  - combined_title: title + new_title (if exists).
+ *  - sts: State tid.
+ */
+function _nas_search_get_tt_boas() {
+  if ($cache = cache_get('nas_search_tt_boas')) {
+    $species = $cache->data;
+  }
+  else {
+    $query = db_select('node', 'n');
+    $query->leftJoin('field_data_field_boa_bird', 'bb', 'bb.entity_id = n.nid AND bb.entity_type = :entity_type AND bb.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => '0',
+    ));
+    $query->leftJoin('node', 'nbb', 'nbb.nid = bb.field_boa_bird_target_id');
+    $query->leftJoin('url_alias', 'ua', 'ua.source = CONCAT(:prefix, n.nid)', array(':prefix' => 'node/'));
+    $query->fields('n', array('title', 'nid'));
+    $query->addField('ua', 'alias');
+    $query->addField('nbb', 'title', 'new_title');
+    $query->condition('n.type', 'boa');
+    $query->condition('n.status', NODE_PUBLISHED);
+    $query->orderBy('n.title');
+    $species = $query->execute()->fetchAll();
+
+    foreach ($species as &$item) {
+      $item->sts = (int) $item->sts;
+      if (!$item->alias) {
+        $item->alias = 'node/' . $item->nid;
+      }
+      $item->combined_title = $item->title;
+      if ($item->new_title) {
+        $item->combined_title .= ' ' . $item->new_title;
+      }
+      unset($item->new_title);
+      unset($item->nid);
+    }
+
+    cache_set('nas_search_tt_boas', $species, 'cache', time() + 3600);
+  }
+
+  return $species;
+}
