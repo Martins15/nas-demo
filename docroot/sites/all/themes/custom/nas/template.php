@@ -976,6 +976,7 @@ function nas_button($variables) {
     'edit-submit-search-form',
     'edit-submit-nas-bird-guide',
     'edit-submit-events-listing',
+    'edit-submit-boa-index',
   );
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
