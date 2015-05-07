@@ -377,6 +377,7 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
         'options' => array(
           'name' => 'boas',
           'displayKey' => 'combined_title',
+          'limit' => 10,
         ),
         'templates' => array(
           'suggestion' => 'Drupal.behaviors.boaSearchFilters.suggestionTemplate',
