@@ -147,6 +147,7 @@ function nas_event_feature_strongarm() {
   $strongarm->value = array(
     0 => 'status',
     1 => 'promote',
+    2 => 'revision',
   );
   $export['node_options_event'] = $strongarm;
 
@@ -184,6 +185,12 @@ function nas_event_feature_strongarm() {
         'choice' => 0,
       ),
       'teaser' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'ical' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,
