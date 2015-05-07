@@ -124,13 +124,19 @@ function asc_content_aggregation_node_access($node, $op, $account) {
 }
 
 /**
- * Add meta tag with link on list of nodes filtered by category.
+ * Add meta header with link on list of nodes filtered by category.
  *
  * @param int $category
  *   Taxonomy term id.
+ *
+ * @return bool
+ *   Status
  */
 function nas_content_aggregation_add_headers_link($category) {
-  if (!empty($category)) {
+  if (empty($category)) {
+
+    return FALSE;
+  }
     $query = array();
     if (isset($_GET['type_filter']) && !empty($_GET['type_filter'])) {
       $query['type_filter'] = $_GET['type_filter'];
@@ -140,7 +146,7 @@ function nas_content_aggregation_add_headers_link($category) {
       'query' => $query
     ));
     drupal_add_http_header('X-Editorial-Feed', $url);
-  }
+
 }
 
 /**
@@ -148,14 +154,19 @@ function nas_content_aggregation_add_headers_link($category) {
  *
  * @param int $nid
  *   Node id.
+ *
+ * @return bool
+ *   Status.
  */
 function nas_content_aggregation_add_node_headers_link($nid) {
   if (!empty($nid)) {
-    $url = url('export/node/' . $nid, array(
-      'absolute' => TRUE
-    ));
-    drupal_add_http_header('X-Node-Feed', $url);
+
+    return FALSE;
   }
+  $url = url('export/node/' . $nid, array(
+    'absolute' => TRUE
+  ));
+  drupal_add_http_header('X-Node-Feed', $url);
 }
 
 /**

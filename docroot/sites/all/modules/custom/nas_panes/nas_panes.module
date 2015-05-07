@@ -1985,18 +1985,24 @@ function _nas_panes_get_menu_section_options() {
  * @param string $vocabulary_name
  *   Vocabulary machine name
  *
+ * @param int $parent
+ *   Parent level number.
+ *
  * @return array
  *   Tree of terms
  */
-function _nas_panes_get_taxonomy_options($vocabulary_name) {
-  $vocabulary = taxonomy_vocabulary_machine_name_load($vocabulary_name);
-  $tree = taxonomy_get_tree($vocabulary->vid);
-  $options = array();
-  foreach ($tree as $item) {
-    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
-  }
-
-  return $options;
+function _nas_panes_get_taxonomy_options($vocabulary_name,  $parent = 0) {
+  $taxonomy_settings = array(
+    'settings' => array(
+      'allowed_values' => array(
+        array(
+          'vocabulary' => $vocabulary_name,
+          'parent' => $parent
+        )
+      )
+    )
+  );
+  return taxonomy_allowed_values($taxonomy_settings);
 }
 
 /**
