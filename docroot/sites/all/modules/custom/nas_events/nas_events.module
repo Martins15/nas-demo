@@ -27,14 +27,18 @@ function nas_events_update_nodes($job = NULL) {
   $timestamp = variable_get('nas_events_last_time_processed', NAS_AUDUBON_WORKS_START_TIMESTAMP);
   $uuids = nas_events_get_list($timestamp);
   foreach ($uuids as $uuid => $timestamp) {
-    $config = array('FeedsHTTPFetcher' => array('source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid));
+    $config = array(
+      'FeedsHTTPFetcher' => array(
+        'source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid . '?' . $_SERVER['REQUEST_TIME'],
+        'uuid' => $uuid,
+      ));
     $source = feeds_source('events_import');
     $source->addConfig($config);
     $source->save();
     $source->import();
   }
   watchdog('events', "Last time Events were synced at '%time'", array('%time' => date('Y-m-d H:i:s', $timestamp)));
-  variable_set('nas_events_last_time_processed', time());
+  variable_set('nas_events_last_time_processed', $_SERVER['REQUEST_TIME']);
 }
 
 /**
@@ -69,6 +73,8 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
         $entity->field_event_date[LANGUAGE_NONE][0]['timezone'] = $item['date']['timezone'];
         $entity->field_event_date[LANGUAGE_NONE][0]['timezone_db'] = 'UTC';
       }
+
+      $entity->field_event_type[LANGUAGE_NONE] = array();
       if (isset($item['type'])) {
         $terms = explode(',', $item['type']);
         foreach ($terms as $term_name) {
@@ -100,16 +106,24 @@ function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entit
         'postal_code' => $item['address']['postal_code'],
         'country' => strtolower($item['address']['country']),
         'source' => 1,
-        'latitude' => $item['address']['latitude'],
-        'longitude' => $item['address']['longitude'],
       );
+      if (!empty($item['address']['latitude']) && !empty($item['address']['longitude'])) {
+        $location_array['latitude'] = $item['address']['latitude'];
+        $location_array['longitude'] = $item['address']['longitude'];
+      }
       if ($lid = location_save($location_array)) {
-        $entity->field_event_location[LANGUAGE_NONE][0]['lid'] = $lid;
+        $entity->field_event_location[LANGUAGE_NONE][0] = array('lid' => $lid);
         field_attach_update('node', $entity);
-        $query = db_update('location')
-          ->condition('lid', $lid)
-          ->fields(array('latitude' => $item['address']['latitude'], 'longitude' => $item['address']['longitude'], 'source' => 1))
-          ->execute();
+        if (!empty($item['address']['latitude']) && !empty($item['address']['longitude'])) {
+          $query = db_update('location')
+            ->condition('lid', $lid)
+            ->fields(array(
+                'latitude' => $item['address']['latitude'],
+                'longitude' => $item['address']['longitude'],
+                'source' => 1,
+              ))
+            ->execute();
+        }
       }
       break;
   }
@@ -158,5 +172,16 @@ function nas_events_date_ical_export_post_render_alter(&$rendered_calendar, $vie
   if ($node) {
     $filename = drupal_html_class($node->title) . '.ics';
     drupal_add_http_header('Content-Disposition', "attachment; filename=\"$filename\"");
+  }
+}
+
+/**
+ * Implements hook_feeds_after_parse().
+ */
+function nas_events_feeds_after_parse(FeedsSource $source, FeedsParserResult $result) {
+  if ($source->id == 'events_import') {
+    foreach ($result->items as &$item) {
+      $item['uuid'] = $source->config['FeedsHTTPFetcher']['uuid'];
+    }
   }
 }

@@ -15,7 +15,16 @@
                     fontsize = 0;
 				$(this).removeAttr('style');
 				$(this).removeAttr('data-row');
-                height = $(this).height();
+                height = $(this).find('.common-name').height() + 40;
+                if ($(this).find('.section-header').length) {
+                  height += $(this).find('.section-header').height() + 30;
+                }
+                if ($(this).find('.photo').height() < 100) {
+                  height += $(this).width() / 0.76575;
+                }
+                else {
+                  height += $(this).find('.photo').height();
+                }
                 $(this).attr('data-row', row_number);
                 if (height > max_height) max_height = height;
                 if ((index === col_number) || $(this).is(':last-child')) {

@@ -275,7 +275,9 @@ function nas_overrides_feature_strongarm() {
   $strongarm->name = 'lazyloader_paths';
   $strongarm->value = 'field-guide
 bird-family/*
-birds/priority';
+birds/priority
+birds-of-america
+birds-of-america/*';
   $export['lazyloader_paths'] = $strongarm;
 
   $strongarm = new stdClass();

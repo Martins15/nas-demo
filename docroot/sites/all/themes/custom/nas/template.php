@@ -255,6 +255,7 @@ function nas_preprocess_node_boa(&$vars) {
     $illustration = theme('image_style', array(
         'style_name' => 'boa_family_species',
         'path' => $field_boa_illustration_items[0]['uri'],
+        'attributes' => array('class' => array('lazy'))
     ));
     $image = theme('image', array(
       'path' => image_style_url('article_teaser_list', $field_boa_illustration_items[0]['uri']),
@@ -1211,7 +1212,7 @@ function nas_field__field_author__article($variables) {
 
       $output .= '<a href="' . $path . '">';
       $output .= '<h5 class="article-author-name">';
-      $output .= check_plain($entity->title);
+      $output .= t('By ') . check_plain($entity->title);
       $output .= '</h5></a>';
     }
   }

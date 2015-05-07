@@ -2476,6 +2476,7 @@ function nas_master_update_7175(&$sandbox) {
  * Revert nas_boa_index_feature feature.
  */
 function nas_master_update_7176() {
+  features_revert_module('nas_overrides_feature');
   features_revert(array(
     'nas_boa_index_feature' => array('views_view', 'page_manager_pages'),
   ));
