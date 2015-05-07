@@ -91,7 +91,7 @@
   .button.load-more:hover {
     background-color: #EDECEA;
   }
-  
+
   &.pager-load-more-empty,
   .ajax-progress-throbber {
     display: none;
@@ -227,12 +227,13 @@
   font-style: normal;
   font-size: 14px;
 }
-.press-release .article-sidebar-section.article-meta {
+.press-release .article-sidebar-section.article-meta,
+.article-sidebar-section.article-meta {
   text-align: left;
 }
 
 .section-nav.mag-issue-nav {
-  top: -49px;  
+  top: -49px;
 }
 .mag-issue-title {
   @include breakpoint(width, 768px) {
@@ -285,7 +286,7 @@ textarea {
   color: #D4D4D4;
 }
 
-/** 
+/**
  * CTools popup forms refinements.
  */
 #modalContent .ctools-modal-content {
@@ -873,7 +874,7 @@ body.node-type-slideshow {
 .article-text .article-video-container {
   width: auto;
   iframe {
-    
+
   }
   &.left {
     text-align: left;
@@ -894,3 +895,32 @@ body.node-type-slideshow {
     }
   }
 }
+
+.page-audubon-near-you{
+  .contact{
+    margin: 0 0 10px 0;
+    .contact-name{
+      font-weight: bold;
+      font-family: "Source Sans Pro", Verdana, sans-serif;
+      font-size: 16px;
+    }
+    .contact-phone-email{
+      font-size:14px;
+    }
+    .contact-address{
+      font-size: 14px;
+      line-height: 17px;
+      padding-top: 0;
+      .contact-address-label{
+        font-weight: bold;
+        font-family: "Source Sans Pro", Verdana, sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+  }
+  .site-link{
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+  }
+}
+

@@ -112,6 +112,12 @@ function nas_slideshow_feature_strongarm() {
         'redirect' => array(
           'weight' => '4',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
