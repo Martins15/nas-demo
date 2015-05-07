@@ -137,15 +137,15 @@ function nas_content_aggregation_add_headers_link($category) {
 
     return FALSE;
   }
-    $query = array();
-    if (isset($_GET['type_filter']) && !empty($_GET['type_filter'])) {
-      $query['type_filter'] = $_GET['type_filter'];
-    }
-    $url = url('editorial-feed/' . $category, array(
-      'absolute' => TRUE,
-      'query' => $query
-    ));
-    drupal_add_http_header('X-Editorial-Feed', $url);
+  $query = array();
+  if (isset($_GET['type_filter']) && !empty($_GET['type_filter'])) {
+    $query['type_filter'] = $_GET['type_filter'];
+  }
+  $url = url('editorial-feed/' . $category, array(
+    'absolute' => TRUE,
+    'query' => $query
+  ));
+  drupal_add_http_header('X-Editorial-Feed', $url);
 
 }
 
