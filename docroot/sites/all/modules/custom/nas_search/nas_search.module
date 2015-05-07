@@ -433,7 +433,6 @@ function _nas_search_get_tt_boas() {
     $species = $query->execute()->fetchAll();
 
     foreach ($species as &$item) {
-      $item->sts = (int) $item->sts;
       if (!$item->alias) {
         $item->alias = 'node/' . $item->nid;
       }
