@@ -61,6 +61,7 @@ function nas_menu_theme() {
         'preamble' => NULL,
         'logo' => NULL,
         'contextual_links' => NULL,
+        'link' => NULL,
       ),
       'template' => 'templates/nas-guide-bar',
     ),
