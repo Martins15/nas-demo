@@ -27,13 +27,13 @@ function audubon_near_you_locations_render($subtype, $conf, $args, $context) {
   // Display empty blocks when it's first time view and no active filters.
   $block->content = '';
   $block->content .= theme('audubon_near_you_office_chapter', array(
-    'items' => $filter_active ? _nas_panes_get_locations($state, 'office_chapter') : array(),
+    'items' => $filter_active ? _nas_panes_get_locations($state, 'office_chapter+office+chapter') : array(),
     'hide_empty_text' => TRUE,
     'filter_active' => $filter_active,
   ));
 
   $block->content .= theme('audubon_near_you_center_sanctuary', array(
-    'items' => $filter_active ? _nas_panes_get_locations($state, 'center_sanctuary') : array(),
+    'items' => $filter_active ? _nas_panes_get_locations($state, 'center_sanctuary+center+sanctuary') : array(),
     'hide_empty_text' => TRUE,
     'filter_active' => $filter_active,
   ));

@@ -1723,7 +1723,7 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
     // Add site link.
     if (!empty($item->field_field_location_link[0]['raw']['url'])) {
       $options = array('attributes' => array('target' => '_blank', 'class' => array('more-link')));
-      $items[$item->nid]['site_link'] = l(t('View Site'), $item->field_field_location_link[0]['raw']['url'], $options);
+      $items[$item->nid]['site_link'] = l(t('View Website'), $item->field_field_location_link[0]['raw']['url'], $options);
     }
 
     // Add subtitle.
