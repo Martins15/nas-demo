@@ -1983,15 +1983,15 @@ function _nas_panes_get_menu_section_options() {
  * Returns options for specified vocabulary.
  *
  * @param string $vocabulary_name
- *   Vocabulary machine name
+ *   Vocabulary machine name.
  *
  * @param int $parent
  *   Parent level number.
  *
  * @return array
- *   Tree of terms
+ *   Tree of terms.
  */
-function _nas_panes_get_taxonomy_options($vocabulary_name,  $parent = 0) {
+function _nas_panes_get_taxonomy_options($vocabulary_name, $parent = 0) {
   $taxonomy_settings = array(
     'settings' => array(
       'allowed_values' => array(
