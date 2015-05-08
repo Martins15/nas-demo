@@ -164,18 +164,15 @@
         Slideshow.resize();
         
         // Go to hash page if hash is set.
-        var hash = parseInt(window.location.hash.substring(1));
+        var hash = parseInt(window.location.hash.substring(1)),
+            i = 0;
         if (!isNaN(hash)) {
-          while (hash > 1) {
-			// Scroll to the next image until it reaches the hash image.
-            scroll.next(400);
-            // Load all images till the hash image.
-            var $image = $(scroll.wrapper)
-              .find(".slide:eq(" + (scroll.currentPage.pageX) + ") .slide-img img");
-            if ($image.attr("src") === "") {
-              $image.attr("src", $image.data("src"));
-            }
-            hash--;
+          scroll.goToPage(hash - 1, 0, 400);
+          // Preload image of next slide.
+          var $current_image = $(scroll.wrapper)
+            .find(".slide:eq(" + (scroll.currentPage.pageX) + ") .slide-img img");
+          if ($current_image.attr("src") === "") {
+            $current_image.attr("src", $current_image.data("src"));
           }
 	    }
       };
@@ -215,6 +212,13 @@
             .find(".slide:eq(" + (scroll.currentPage.pageX + 1) + ") .slide-img img");
           if ($next_image.attr("src") === "") {
             $next_image.attr("src", $next_image.data("src"));
+          }
+          
+          // Preload image of prev slide.
+          var $prev_image = $(scroll.wrapper)
+            .find(".slide:eq(" + (scroll.currentPage.pageX - 1) + ") .slide-img img");
+          if ($prev_image.attr("src") === "") {
+            $prev_image.attr("src", $prev_image.data("src"));
           }
         });
       };
@@ -268,6 +272,13 @@
             .find(".slide:eq(" + (scroll.currentPage.pageX + 1) + ") .slide-img img");
           if ($next_image.attr("src") === "") {
             $next_image.attr("src", $next_image.data("src"));
+          }
+          
+          // Preload image of prev slide.
+          var $prev_image = $(scroll.wrapper)
+            .find(".slide:eq(" + (scroll.currentPage.pageX - 1) + ") .slide-img img");
+          if ($prev_image.attr("src") === "") {
+            $prev_image.attr("src", $prev_image.data("src"));
           }
         });
       };
