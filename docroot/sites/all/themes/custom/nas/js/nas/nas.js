@@ -69,10 +69,10 @@ var Nas = Nas || {};
               });
             });
           }
-        }
+        };
       });
     }
-  }
+  };
 
   Drupal.isFirstTimeVisitor = function () {
     var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
