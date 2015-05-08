@@ -2291,6 +2291,7 @@ function nas_master_update_7169() {
     'nas_solr_feature' => array('search_api_index', 'facetapi'),
     'nas_image_styles_feature' => array('image'),
     'nas_site_template_feature' => array('page_manager_handlers'),
+    'nas_search_feature' => array('views_view'),
   ));
 
   ctools_include('export');
