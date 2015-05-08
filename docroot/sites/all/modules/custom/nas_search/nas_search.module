@@ -439,7 +439,6 @@ function _nas_search_get_tt_boas() {
       if ($item->new_title) {
         $item->combined_title .= ' ' . $item->new_title;
       }
-      unset($item->new_title);
       unset($item->nid);
     }
 

@@ -27,7 +27,11 @@
       });
     },
     suggestionTemplate: function (item, settings, element) {
-      return item.title;
+      var title = item.title;
+      if (item.title != item.new_title) {
+        title += ' &mdash; <em>' + item.new_title + '</em>';
+      }
+      return title;
     }
   };
 })(jQuery);
