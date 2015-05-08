@@ -48,6 +48,32 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.videoCurtainSizing = {
+    attach: function(context, settings) {
+      $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
+        this.onloadedmetadata = function (e) {
+          var $video = $(this);
+          var width = $video.width();
+          var height = $video.height();
+          $video.css({
+            marginLeft: -width / 2,
+            marginTop: -height / 2
+          });
+          if ($video.parent().hasClass('cover')) {
+            $(window).bind('resize', function () {
+              var width = $video.width();
+              var height = $video.height();
+              $video.css({
+                marginLeft: -width / 2,
+                marginTop: -height / 2
+              });
+            });
+          }
+        }
+      });
+    }
+  }
+
   Drupal.isFirstTimeVisitor = function () {
     var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
     if (firsttimecookievalue) {
