@@ -162,6 +162,22 @@
         }
 
         Slideshow.resize();
+        
+        // Go to hash page if hash is set.
+        var hash = parseInt(window.location.hash.substring(1));
+        if (!isNaN(hash)) {
+          while (hash > 1) {
+			// Scroll to the next image until it reaches the hash image.
+            scroll.next(400);
+            // Load all images till the hash image.
+            var $image = $(scroll.wrapper)
+              .find(".slide:eq(" + (scroll.currentPage.pageX) + ") .slide-img img");
+            if ($image.attr("src") === "") {
+              $image.attr("src", $image.data("src"));
+            }
+            hash--;
+          }
+	    }
       };
 
       Slideshow._setSizes = function($body) {
@@ -244,6 +260,8 @@
           else if ($this.hasClass("restart")) {
             scroll.goToPage(0, 0, 400);
           }
+          // Update URI hash number.
+          window.location.hash = scroll.currentPage.pageX + 1;
 
           // Preload image of next slide.
           var $next_image = $(scroll.wrapper)
