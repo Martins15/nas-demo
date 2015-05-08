@@ -410,7 +410,6 @@ function _nas_search_get_tt_families() {
  *  - new_title: Individual corresponding species title.
  *  - alias: Alias to species page.
  *  - combined_title: title + new_title (if exists).
- *  - sts: State tid.
  */
 function _nas_search_get_tt_boas() {
   if ($cache = cache_get('nas_search_tt_boas')) {
