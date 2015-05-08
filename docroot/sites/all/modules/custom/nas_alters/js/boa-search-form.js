@@ -31,6 +31,7 @@
       if (item.title != item.new_title) {
         title += ' &mdash; <em>' + item.new_title + '</em>';
       }
+
       return title;
     }
   };
