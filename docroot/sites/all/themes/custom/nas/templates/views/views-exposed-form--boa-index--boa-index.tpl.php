@@ -20,7 +20,7 @@
  */
 ?>
 
-<div class="row space-bottom">
+<div class="row space-top">
   <div class="column">
     <div class="bird-guide-search-input">
       <?php print $widgets['filter-title']->widget; ?>
