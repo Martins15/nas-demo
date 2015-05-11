@@ -2507,7 +2507,7 @@ function nas_master_update_7178() {
                    "WHERE (( (node.status = '1') ".
                      "AND (node.type IN  ('bird')) ".
                      "AND (field_data_field_bird_audio.field_bird_audio_fid > '0') ))")->fetchAllKeyed();
-  foreach ($nids as $nid) {
+  foreach ($nids as $nid => $title) {
     $node = node_load($nid);
     // If there is more than 1 audio, sort them.
     if (!empty($node->field_bird_audio) and sizeof($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
