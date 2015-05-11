@@ -2515,7 +2515,7 @@ function nas_master_update_7178() {
       foreach ($node->field_bird_audio[LANGUAGE_NONE] as $key => $field) {
         $filename = db_query("SELECT fm.filename AS filename ".
                              "FROM {file_managed} fm ".
-                             "WHERE fm.fid = :fid", 
+                             "WHERE fm.fid = :fid",
                              array(':fid' => $field['fid']))->fetchField();
         $node->field_bird_audio[LANGUAGE_NONE][$key]['title'] = $filename;
       }
