@@ -2932,7 +2932,7 @@ function nas_article_feature_field_default_field_instances() {
     'bundle' => 'article',
     'default_value' => array(),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.',
     'display' => array(
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -3603,6 +3603,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Flyway');
   t('For internal use only');
   t('Hero Image');
+  t('If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.');
   t('If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.');
   t('Internal tagging');
   t('Legacy');
