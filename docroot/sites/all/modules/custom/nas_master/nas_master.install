@@ -2512,7 +2512,7 @@ function nas_master_update_7178() {
     // If there is more than 1 audio, sort them.
     if (!empty($node->field_bird_audio) and sizeof($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
       // Put the title of the file in the array for sorting.
-      foreach($node->field_bird_audio[LANGUAGE_NONE] as $key=>$field) {
+      foreach ($node->field_bird_audio[LANGUAGE_NONE] as $key => $field) {
         $filename = db_query("SELECT fm.filename AS filename ".
                              "FROM {file_managed} fm ".
                              "WHERE fm.fid = :fid", 
