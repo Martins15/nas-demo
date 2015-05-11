@@ -886,6 +886,7 @@ function nas_panes_theme() {
         'date_city_province' => NULL,
         'featured_image' => NULL,
         'address' => NULL,
+        'additional' => NULL,
       ),
       'template' => 'events-intro',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
@@ -2027,7 +2028,7 @@ function nas_panes_ctools_modal_boa_subscribe() {
   ctools_include('modal');
   ctools_include('ajax');
   $form_state = array(
-    'title' => t('Download high-resolution file'),
+    'title' => variable_get('boa_mail_subscription_settings_form_title', ''),
     'ajax' => TRUE,
     'nid' => arg(3),
   );
@@ -2040,16 +2041,46 @@ function nas_panes_ctools_modal_boa_subscribe() {
  */
 function nas_panes_boa_mail_subscription_form($form, &$form_state) {
   $form['intro'] = array(
-    '#markup' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+    '#markup' => '<div class="intro">' . variable_get('boa_mail_subscription_settings_form_intro', '') . '</div>',
+  );
+  $form['first_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('First')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#title' => t('Name'),
+    '#size' => '50',
+    '#id' => 'nas-boa-mail-subscription-first-name'
+  );
+  $form['last_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Last')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#size' => '50',
+    '#id' => 'nas-boa-mail-subscription-last-name'
   );
   $form['email'] = array(
     '#type' => 'textfield',
     '#attributes' => array(
-      'placeholder' => array(t('Enter your email address')),
+      'placeholder' => array(t('email')),
       'class' => array('mailing-list-input', 'radius'),
     ),
+    '#title' => t('Email'),
     '#size' => '',
     '#id' => 'nas-boa-mail-subscription-email'
+  );
+  $form['zip_code'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('ZIP')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#title' => t('ZIP'),
+    '#size' => '',
+    '#id' => 'nas-boa-mail-subscription-zip'
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -2060,14 +2091,33 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     '#id' => 'nas-boa-mail-subscription-submit'
   );
   $form['cancel'] = array(
-    '#type' => 'submit',
-    '#value' => t('No thanks'),
+    '#type' => 'link',
+    '#title' => t('No thanks'),
     '#attributes' => array(
-      'class' => array('ctools-close-modal', 'button', 'tomato', 'large'),
+      'class' => array('cancel'),
     ),
-    '#id' => 'nas-boa-mail-subscription-cancel'
   );
-  $form['#attributes']['class'] = array('mailing-list-form');
+  $form['privacy_policy'] = array(
+    '#type' => 'link',
+    '#title' => t('Privacy policy'),
+    '#href' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
+    '#attributes' => array(),
+    '#attributes' => array(
+      'target' => '_blank',
+      'class' => array('privacy-policy'),
+    ),
+  );
+
+  if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
+    $form['#prefix'] = '<div class="featured-image">' . theme('image_style', array(
+      'style_name' => 'boa_mail_subscription',
+      'path' => $image->uri,
+    ));
+    if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
+      $form['#prefix'] .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
+    }
+    $form['#prefix'] .= '</div>';
+  }
 
   return $form;
 }
@@ -2077,10 +2127,19 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
  */
 function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
   $email = strtolower(trim($form_state['values']['email']));
+  $first_name = $form_state['values']['first_name'];
+  $last_name = $form_state['values']['last_name'];
+  $zip_code = $form_state['values']['zip_code'];
+
+  if (empty($first_name)) {
+    form_set_error('first_name', t('First name is required.'));
+    return;
+  }
   if (!$email || !valid_email_address($email)) {
     form_set_error('email', t('The e-mail address you specified is not valid.'));
     return;
   }
+
   $url = 'http://www.audubonaction.org/site/Survey';
   $data = array(
     'cons_email' => $email,
@@ -2088,13 +2147,16 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
     'cons_mail_opt_in' => 't',
     'cons_email_opt_in' => 1,
     'cons_email_opt_in_requested' => 'true',
+    'cons_first_name' => $first_name,
+    'cons_last_name' => $last_name,
+    'cons_zip_code' => $zip_code,
     's_rememberMe' => 0,
     'remember_me_opt_in_requested' => 'true',
     'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
-    'SURVEY_ID' => '17180',
+    'SURVEY_ID' => '18260',
     'denySubmit' => '',
-    "3340_17180_2_14661" => "1441",
-    "3340_17180_2_14661" => "1401",
+    "3340_18260_2_14661" => "1441",
+    "3340_18260_2_14661" => "1401",
   );
   $options = array(
     'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
@@ -2123,10 +2185,20 @@ function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
   if (!empty($image_items[0]['filename'])) {
     $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
   }
-  $original_image_link = '<a href="' . $original_image_path . '" target="blank">' . t('Download bird full plate now.') . '</a>';
-  $content = variable_get('boa_mail_subscription_settings_form_after', '') . '&nbsp;' . $original_image_link;
+  $original_image_link = '<a class="download-link" href="' . $original_image_path . '" target="_blank">' . t('Download your image here.') . '</a>';
+  $content = '<p>' . variable_get('boa_mail_subscription_settings_form_after', '') . '</p>' . $original_image_link;
+  if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
+    $content .= '<div class="featured-image">' . theme('image_style', array(
+      'style_name' => 'boa_mail_subscription',
+      'path' => $image->uri,
+    ));
+    if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
+      $content .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
+    }
+  }
+  $content .= '</div>';
   $commands[] = ctools_ajax_command_attr('#modalContent .close', 'class', 'close reload');
-  $commands[] = ctools_modal_command_display(t('Download high-resolution file'), $content);
+  $commands[] = ctools_modal_command_display(variable_get('boa_mail_subscription_settings_form_title', ''), $content);
   print ajax_render($commands);
   drupal_exit();
 }
@@ -2135,11 +2207,38 @@ function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
  * Form boa_mail_subscription_settings_form.
  */
 function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
+  $form['title'] = array(
+    '#title' => t('Title'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_title', ''),
+  );
+  $form['privacy_policy'] = array(
+    '#title' => t('Privacy policy URL'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
+  );
   $form['intro'] = array(
     '#title' => t('Intro'),
     '#type' => 'textarea',
     '#default_value' => variable_get('boa_mail_subscription_settings_form_intro', ''),
   );
+  $form['image'] = array(
+  '#type' => 'media',
+  '#tree' => TRUE,
+  '#title' => t('Image'),
+  '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+  '#media_options' => array(
+    'global' => array(
+      'file_extensions' => 'png jpg jpeg gif',
+      'max_filesize' => '20 MB',
+      'file_directory' => '',
+      'types' => array('image'),
+    ),
+  ),
+  '#default_value' => variable_get('boa_mail_subscription_settings_form_image', ''),
+  '#required' => FALSE,
+  '#pp_crop_styles' => array('boa_mail_subscription'),
+);
   $form['after'] = array(
     '#title' => t('Text after form submit'),
     '#type' => 'textarea',
@@ -2157,6 +2256,9 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
  * boa_mail_subscription_settings_form submit callback.
  */
 function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state) {
+  variable_set('boa_mail_subscription_settings_form_title', $form_state['values']['title']);
+  variable_set('boa_mail_subscription_settings_form_privacy_policy', $form_state['values']['privacy_policy']);
+  variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
   variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
   variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
 }
