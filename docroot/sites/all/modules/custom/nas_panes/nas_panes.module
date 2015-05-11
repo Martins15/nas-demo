@@ -2223,22 +2223,22 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
     '#default_value' => variable_get('boa_mail_subscription_settings_form_intro', ''),
   );
   $form['image'] = array(
-  '#type' => 'media',
-  '#tree' => TRUE,
-  '#title' => t('Image'),
-  '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
-  '#media_options' => array(
-    'global' => array(
-      'file_extensions' => 'png jpg jpeg gif',
-      'max_filesize' => '20 MB',
-      'file_directory' => '',
-      'types' => array('image'),
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
     ),
-  ),
-  '#default_value' => variable_get('boa_mail_subscription_settings_form_image', ''),
-  '#required' => FALSE,
-  '#pp_crop_styles' => array('boa_mail_subscription'),
-);
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_image', ''),
+    '#required' => FALSE,
+    '#pp_crop_styles' => array('boa_mail_subscription'),
+  );
   $form['after'] = array(
     '#title' => t('Text after form submit'),
     '#type' => 'textarea',
