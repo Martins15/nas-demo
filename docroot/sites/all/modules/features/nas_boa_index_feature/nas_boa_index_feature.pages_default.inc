@@ -16,7 +16,10 @@ function nas_boa_index_feature_default_page_manager_pages() {
   $page->admin_title = 'BOA Index';
   $page->admin_description = '';
   $page->path = 'birds-of-america/!input';
-  $page->access = array();
+  $page->access = array(
+    'type' => 'none',
+    'settings' => NULL,
+  );
   $page->menu = array();
   $page->arguments = array(
     'input' => array(
