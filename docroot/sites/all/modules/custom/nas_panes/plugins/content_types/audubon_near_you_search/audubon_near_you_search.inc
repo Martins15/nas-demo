@@ -83,11 +83,19 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
 function audubon_near_you_search_form($form, &$form_state) {
   $query = drupal_get_query_parameters();
 
+  $form['zip_code'] = array(
+    '#type' => 'textfield',
+    '#empty_option' => t('ZIP Code'),
+    '#default_value' => !empty($query['zip_code']) ? $query['zip_code'] : '',
+    '#attributes' => array('placeholder' => t('ZIP Code')),
+  );
+
   $form['state'] = array(
     '#type' => 'select',
     '#empty_option' => t('Select a State'),
     '#options' => _audubon_near_you_states(),
     '#default_value' => !empty($query['state']) ? $query['state'] : '',
+    '#attributes' => array('class' => array('hide')),
   );
 
   $form['submit'] = array(
@@ -113,8 +121,17 @@ function audubon_near_you_search_form($form, &$form_state) {
 function audubon_near_you_search_form_submit($form, &$form_state) {
   $query = array();
 
+  if (!empty($form_state['values']['zip_code'])) {
+    $zip = $form_state['values']['zip_code'];
+    $nid = nas_get_chapter_by_zip(check_plain($zip));
+    // load node and get state of the node.
+    $query['state'] = ; // TODO
+    user_cookie_save(array('state' => $query['state']));
+  }
+
   if (!empty($form_state['values']['state'])) {
     $query['state'] = $form_state['values']['state'];
+    user_cookie_save(array('state' => $form_state['values']['state']));
   }
 
   // Redirect to Audubon Near You page with activated filters.

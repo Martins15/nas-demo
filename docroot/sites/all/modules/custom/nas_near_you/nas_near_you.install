@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Provides admin page for audubon-near-you zip search.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function nas_near_you_schema() {
+  $schema ['zip_code'] = array(
+    'description' => 'Table for Audubon location by ZIP code.',
+    'fields' => array(
+      'zid' => array(
+        'description' => 'The primary identifier for a zipcode.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'The NID of the chapter related for this ZIP code.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'zipcode' => array(
+        'description' => 'The ZIP code',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'unique keys' => array(
+      'zid' => array('zid'),
+    ),
+    'foreign keys' => array(
+      'nid' => array(
+        'table' => 'field_data_field_chapter_code',
+        'columns' => array('nid' => 'entity_id'),
+      ),
+    ),
+    'primary key' => array('zid'),
+  );
+  return $schema;
+}

@@ -1,4 +1,4 @@
-﻿%FontSource {
+%FontSource {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 .title-h1 {
@@ -73,7 +73,7 @@
     margin-bottom: 15px;
   }
 }
-.bird-guide-country {
+.near-you-form {
   width: 50%;
   float: left;
   padding: 0 10px;
@@ -86,11 +86,6 @@
   @include breakpoint(tiny-only) {
     width: 75%;
   }
-}
-.bird-guide-zip-input {
-  width: 30%;
-  float: left;
-  padding: 0 10px 0 0;
 }
 .btn-submint {
   width: 20%;
