@@ -71,7 +71,7 @@
   
   Drupal.behaviors.boa_pager = {
     attach: function (context, settings) {
-      $('.view-display-id-boa_index_state').find('.pager').parent().hide();
+      $('.view-boa-index').find('.pager').parent().hide();
     }
   };
 })(jQuery);
