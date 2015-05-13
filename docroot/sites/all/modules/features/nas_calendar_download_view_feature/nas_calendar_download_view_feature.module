@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the nas_calendar_download_view_feature feature.
+ */
+
+include_once 'nas_calendar_download_view_feature.features.inc';

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the NAS Events module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_events_install() {
+  $job = array(
+    'type' => 'events',
+    'period' => 86400,
+    'periodic' => TRUE,
+  );
+  JobScheduler::get('nas_events_update_task')->set($job);
+}
