@@ -352,6 +352,35 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
       $form['field_event_type']['#options']['All'] = t('Filter by Event Type');
     }
   }
+
+  if ($form['#id'] == 'views-exposed-form-boa-index-boa-index') {
+    $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/boa-search-form.js';
+    $form['#attributes']['class'][] = 'boa-search-form';
+    $form['query']['#attributes']['placeholder'] = t('Search for a bird...');
+    $form['submit']['#value'] = '<span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">' . $form['submit']['#value'] . '</span>';
+    $form['submit']['#attributes']['class'][] = 'bird-guide-search-submit';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+    $form['state']['#options']['All'] = t('State');
+
+    // Apply typeahead.js settings for form placed on the BOA Landing page.
+    $boas = _nas_search_get_tt_boas();
+
+    $form['query']['#typeahead'] = array(
+      array(
+        'type' => 'local values',
+        'values' => $boas,
+        'options' => array(
+          'name' => 'boas',
+          'displayKey' => 'combined_title',
+          'limit' => 10,
+        ),
+        'templates' => array(
+          'suggestion' => 'Drupal.behaviors.boaSearchFilters.suggestionTemplate',
+        ),
+      ),
+    );
+  }
 }
 
 /**

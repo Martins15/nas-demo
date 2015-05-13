@@ -332,14 +332,15 @@ function nas_boa_index_feature_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'image' => '9739',
-      'title' => 'John J Audubon’s Birds of America',
+      'image' => '19726',
+      'title' => 'John J. Audubon’s Birds of America',
       'color' => 'light',
       'override_title' => 0,
       'override_title_text' => '',
-      'form_build_id' => 'form-4DV00P-9TxmqQcDMYbCWVu4lg1HDvuMcJdLI_LqtNlQ',
-      'form_token' => 'Z4rRH3ydnv3PbAjVDTx8J5Tl5UerrdWua3_TC-ao5-Y',
+      'form_build_id' => 'form-8-a815VPaiJ-ZTGA84tn9MBFTMbZLRRQlrPOejxnSrI',
+      'form_token' => '4h8FqwXJvgM6xw5MMjN-ivOca7P3ZgD-jv5ijileEYA',
       'form_id' => 'boa_index_hero_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -361,16 +362,28 @@ function nas_boa_index_feature_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'title' => 'The life’s work of both a lover and observer of birds and nature.',
-      'body' => '<p><a href="#">John James Audubon</a> was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing. <a href="#"><em>Learn more »</em></a></p>',
+      'body' => array(
+        'value' => '<p>John James Audubon&#39;s&nbsp;<em>Birds of America&nbsp;</em>is&nbsp;a portal into the natural world. Printed between 1827 and 1838, it contains 435&nbsp;life-sized watercolours&nbsp;of North American birds (Havell edition), all reproduced from hand-engraved plates, and is considered to be the archetype of wildlife illustration. Nearly 200 years later, the&nbsp;Audubon prints are coming to life once again, thanks to our vibrant digital library.&nbsp;Roam around below and enjoy one of the most treasured&nbsp;pieces&nbsp;of Audubon&#39;s grand and wild legacy. Each print is also available as a free&nbsp;high-resolution download.</p>
+
+<p>The images in our collection are provided courtesy of the John James Audubon Center at Mill Grove in&nbsp;Audubon, Pennsylvania, and the Montgomery County&nbsp;Audubon Collection. <a href="http://johnjames.audubon.org/">Learn more about the John James Audubon Center</a>.&nbsp;</p>
+',
+        'format' => 'full_html',
+      ),
       'name' => 'John James Audubon',
-      'summary' => '<p>John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it. <a href="#"><em>Learn more »</em></a></p>',
-      'link' => '<front>',
+      'summary' => array(
+        'value' => '<p>The story of&nbsp;John James Audubon&nbsp;is one of triumph over adversity; his accomplishment is destined for the ages.&nbsp;</p>
+',
+        'format' => 'full_html',
+      ),
+      'link' => 'https://nasprod.audubon.org/content/john-james-audubon',
       'override_title' => 0,
       'override_title_text' => '',
-      'image' => '9740',
-      'form_build_id' => 'form-i9lQOPS1-C8Fr12leL6AikyWcIc71FsJYl10VahFFno',
-      'form_token' => 'cP3DvDSv-rKju3VBue0m1qSdOYKop7i7TT81cnfl62c',
+      'image' => '49571',
+      'form_build_id' => 'form-vHcad9fwUZzK3Xuq2O1LwafLqtQHQ5EqmcWX0cxtB2s',
+      'form_token' => 'SyA-Bke8JUcT1ETUniB0qDfKhJzZNrqFUEs9DEJ-HC8',
       'form_id' => 'boa_index_bio_form',
+      'nas_panes_resave_panel' => TRUE,
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -383,6 +396,30 @@ function nas_boa_index_feature_default_page_manager_pages() {
     $pane->uuid = '703fc326-24f8-4aae-8898-bed944ef1ef4';
     $display->content['new-703fc326-24f8-4aae-8898-bed944ef1ef4'] = $pane;
     $display->panels['main'][0] = 'new-703fc326-24f8-4aae-8898-bed944ef1ef4';
+    $pane = new stdClass();
+    $pane->pid = 'new-1d1f28a3-b477-4b2b-90f4-0554ef24b14b';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'views--exp-boa_index-boa_index';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '1d1f28a3-b477-4b2b-90f4-0554ef24b14b';
+    $display->content['new-1d1f28a3-b477-4b2b-90f4-0554ef24b14b'] = $pane;
+    $display->panels['main'][1] = 'new-1d1f28a3-b477-4b2b-90f4-0554ef24b14b';
     $pane = new stdClass();
     $pane->pid = 'new-f78b76e6-848a-4ca6-952f-8b484ed15b21';
     $pane->panel = 'main';
@@ -411,11 +448,11 @@ function nas_boa_index_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'f78b76e6-848a-4ca6-952f-8b484ed15b21';
     $display->content['new-f78b76e6-848a-4ca6-952f-8b484ed15b21'] = $pane;
-    $display->panels['main'][1] = 'new-f78b76e6-848a-4ca6-952f-8b484ed15b21';
+    $display->panels['main'][2] = 'new-f78b76e6-848a-4ca6-952f-8b484ed15b21';
     $pane = new stdClass();
     $pane->pid = 'new-554c47df-6251-4545-bcf9-6aa2453ad8b5';
     $pane->panel = 'main';
@@ -436,11 +473,11 @@ function nas_boa_index_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '554c47df-6251-4545-bcf9-6aa2453ad8b5';
     $display->content['new-554c47df-6251-4545-bcf9-6aa2453ad8b5'] = $pane;
-    $display->panels['main'][2] = 'new-554c47df-6251-4545-bcf9-6aa2453ad8b5';
+    $display->panels['main'][3] = 'new-554c47df-6251-4545-bcf9-6aa2453ad8b5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-a55dffb6-ba11-423d-b660-eeda2fa69ae7';
   $handler->conf['display'] = $display;

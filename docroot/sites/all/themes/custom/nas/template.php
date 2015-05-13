@@ -255,6 +255,7 @@ function nas_preprocess_node_boa(&$vars) {
     $illustration = theme('image_style', array(
         'style_name' => 'boa_family_species',
         'path' => $field_boa_illustration_items[0]['uri'],
+        'attributes' => array('class' => array('lazy'))
     ));
     $image = theme('image', array(
       'path' => image_style_url('article_teaser_list', $field_boa_illustration_items[0]['uri']),
@@ -976,6 +977,7 @@ function nas_button($variables) {
     'edit-submit-search-form',
     'edit-submit-nas-bird-guide',
     'edit-submit-events-listing',
+    'edit-submit-boa-index',
   );
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
@@ -1402,7 +1404,7 @@ function nas_preprocess_views_view(&$vars) {
     }
   }
 
-  if ($view->name == 'boa_index' and $view->current_display == 'boa_index') {
+  if ($view->name == 'boa_index') {
     drupal_add_js(drupal_get_path('theme', 'nas') .'/js/nas/boa.js');
   }
 

@@ -2291,6 +2291,7 @@ function nas_master_update_7169() {
     'nas_solr_feature' => array('search_api_index', 'facetapi'),
     'nas_image_styles_feature' => array('image'),
     'nas_site_template_feature' => array('page_manager_handlers'),
+    'nas_search_feature' => array('views_view'),
   ));
 
   ctools_include('export');
@@ -2469,5 +2470,62 @@ function nas_master_update_7175(&$sandbox) {
   if ($sandbox['#finished'] >= 1) {
     $sandbox['#finished'] = 1;
     watchdog('nas_master', '@count duplicated nodes were processed.', array('@count' => $sandbox['progress']));
+  }
+}
+
+/**
+ * Revert nas_boa_index_feature feature.
+ */
+function nas_master_update_7176() {
+  features_revert_module('nas_overrides_feature');
+  features_revert(array(
+    'nas_boa_index_feature' => array('views_view', 'page_manager_pages'),
+  ));
+}
+
+/**
+ * Bird call reordering.
+ * Sort helper function.
+ * See nas_master_update_7178()
+ */
+function _nas_master_compare_by_title($a, $b) {
+  return strcmp($a["title"], $b["title"]);
+}
+
+/**
+ * Bird call reordering.
+ * https://propeople-us.atlassian.net/browse/ANW-670
+ */
+function nas_master_update_7178() {
+  // Get NID from all birds nodes that have at least 1 audio file.
+  $nids = db_query("SELECT node.nid AS nid, node.title AS title ".
+                   "FROM {node} node ".
+                   "LEFT JOIN {field_data_field_bird_audio} field_data_field_bird_audio ".
+                     "ON node.nid = field_data_field_bird_audio.entity_id ".
+                     "AND (field_data_field_bird_audio.entity_type = 'node' ".
+                     "AND field_data_field_bird_audio.deleted = '0') ".
+                   "WHERE (( (node.status = '1') ".
+                     "AND (node.type IN  ('bird')) ".
+                     "AND (field_data_field_bird_audio.field_bird_audio_fid > '0') ))")->fetchAllKeyed();
+  foreach ($nids as $nid => $title) {
+    $node = node_load($nid);
+    // If there is more than 1 audio, sort them.
+    if (!empty($node->field_bird_audio) and sizeof($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
+      // Put the title of the file in the array for sorting.
+      foreach ($node->field_bird_audio[LANGUAGE_NONE] as $key => $field) {
+        $filename = db_query("SELECT fm.filename AS filename ".
+                             "FROM {file_managed} fm ".
+                             "WHERE fm.fid = :fid",
+                             array(':fid' => $field['fid']))->fetchField();
+        $node->field_bird_audio[LANGUAGE_NONE][$key]['title'] = $filename;
+      }
+      // Sort the audio files array by title.
+      usort($node->field_bird_audio[LANGUAGE_NONE], "_nas_master_compare_by_title");
+      // Save the node with the sorted audio files.
+      variable_set('menu_rebuild_needed', FALSE);
+      lock_acquire('menu_rebuild');
+      node_save($node);
+      lock_release('menu_rebuild');
+    }
   }
 }

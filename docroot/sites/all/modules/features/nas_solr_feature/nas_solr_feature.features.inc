@@ -29,7 +29,7 @@ function nas_solr_feature_default_search_api_index() {
     "item_type" : "node",
     "options" : {
       "index_directly" : 1,
-      "cron_limit" : "200",
+      "cron_limit" : "50",
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
           "status" : 0,
