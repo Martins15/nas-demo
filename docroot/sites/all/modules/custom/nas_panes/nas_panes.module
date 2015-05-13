@@ -2050,7 +2050,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
       'class' => array('mailing-list-input', 'radius'),
     ),
     '#title' => t('Name'),
-    '#size' => '50',
+    '#required' => TRUE,
     '#id' => 'nas-boa-mail-subscription-first-name'
   );
   $form['last_name'] = array(
@@ -2059,7 +2059,6 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
       'placeholder' => array(t('Last')),
       'class' => array('mailing-list-input', 'radius'),
     ),
-    '#size' => '50',
     '#id' => 'nas-boa-mail-subscription-last-name'
   );
   $form['email'] = array(
@@ -2068,8 +2067,8 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
       'placeholder' => array(t('email')),
       'class' => array('mailing-list-input', 'radius'),
     ),
+    '#required' => TRUE,
     '#title' => t('Email'),
-    '#size' => '',
     '#id' => 'nas-boa-mail-subscription-email'
   );
   $form['zip_code'] = array(
@@ -2079,7 +2078,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
       'class' => array('mailing-list-input', 'radius'),
     ),
     '#title' => t('ZIP'),
-    '#size' => '',
+    '#required' => TRUE,
     '#id' => 'nas-boa-mail-subscription-zip'
   );
   $form['submit'] = array(
@@ -2131,10 +2130,6 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
   $last_name = $form_state['values']['last_name'];
   $zip_code = $form_state['values']['zip_code'];
 
-  if (empty($first_name)) {
-    form_set_error('first_name', t('First name is required.'));
-    return;
-  }
   if (!$email || !valid_email_address($email)) {
     form_set_error('email', t('The e-mail address you specified is not valid.'));
     return;

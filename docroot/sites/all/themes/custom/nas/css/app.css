@@ -12642,6 +12642,9 @@ body.touch .sticky-wrapper {
   margin: 0;
   width: 75px;
 }
+.page-boa-bird #modalContent #modal-content form label .form-required {
+  display: none;
+}
 .page-boa-bird #modalContent #modal-content form input.form-text {
   min-width: 225px;
   width: 225px;

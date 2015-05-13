@@ -764,6 +764,10 @@
           font-weight: normal;
           margin: 0;
           width: 75px;
+
+          .form-required {
+            display: none;
+          }
         }
 
         input.form-text {
