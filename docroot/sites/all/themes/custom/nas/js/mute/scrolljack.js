@@ -1,7 +1,7 @@
 (function($) {
   Drupal.behaviors.scrolljack = {
     attach: function(context, settings) {
-      if(!$(".bird-guide-container").length == 0) {
+      if($(".bird-guide-container").length !== 0) {
         var USERAGENT = navigator.userAgent.toLowerCase(),
             ISWINDOWS = USERAGENT.match("windows"),
             ISOSX = USERAGENT.match("os x"),
@@ -10,7 +10,7 @@
             MINSCROLL = 50,
             MAXSCROLL = parseInt($(".bird-guide-container").css("padding-top")) + 1;
 
-        function scroll(e, $container, cardPadding, delta) {
+        var scroll = function(e, $container, cardPadding, delta) {
           if(ISWINDOWS && ISWEBKIT || ISWINDOWS && ISFIREFOX) {
             delta = delta * 15;
           } else if (ISOSX) {
@@ -21,9 +21,9 @@
             delta = delta * 15;
           }
 
-          var newPos = cardPadding + delta;
+          var newPos = cardPadding + delta ;
 
-          if(window.scrollY == 0) {
+          if(window.scrollY === 0) {
             if(newPos < MINSCROLL) {
               $container.css("padding-top", MINSCROLL + "px");
             }
@@ -35,9 +35,9 @@
               $container.css("padding-top", newPos + "px");
             }
           }
-        }
+        };
 
-        function stickyContainer() {
+        var stickyContainer = function() {
           var $hero_credit = $('.bird-hero-attribution'),
               $bird_guide_card = $('.bird-guide-card');
 
@@ -55,7 +55,7 @@
               $hero_credit.addClass('sticky');
             }
           }
-        }
+        };
 
 
         $(window).on('resize', function(){

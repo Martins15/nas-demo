@@ -64,3 +64,5 @@ dependencies[] = bigmenu
 dependencies[] = nas_text_format_feature
 dependencies[] = nas_metatags_feature
 dependencies[] = nas_captcha_feature
+dependencies[] = nas_event_feature
+dependencies[] = nas_events_landing_feature
