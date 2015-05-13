@@ -21,7 +21,6 @@
             delta = delta * 15;
           }
 
-
           var newPos = cardPadding + delta ;
 
           if(window.scrollY === 0) {

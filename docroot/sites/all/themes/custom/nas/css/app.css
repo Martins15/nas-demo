@@ -6339,7 +6339,7 @@ input.header-search-input,
     line-height: 25.5px;
   }
   .guide-bar-attribution .canon-logo {
-    width: 86px;
+    width: auto;
     height: 16px;
     margin-left: 5px;
     top: -1px;
@@ -14342,6 +14342,8 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 .page-audubon-near-you .contact .contact-name {
   font-weight: bold;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 16px;
 }
 .page-audubon-near-you .contact .contact-phone-email {
   font-size: 14px;
@@ -14349,7 +14351,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 .page-audubon-near-you .contact .contact-address {
   font-size: 14px;
   line-height: 17px;
-  padding-top: 5px;
+  padding-top: 0;
 }
 .page-audubon-near-you .contact .contact-address .contact-address-label {
   font-weight: bold;
@@ -14377,12 +14379,16 @@ article.event .event-header .deck {
 }
 article.event .event-header h4 {
   margin: 40px 0 8px;
+  font-weight: 600;
 }
 article.event .event-header .end-date-available {
   display: block;
 }
 article.event .event-header .location-details {
   margin-bottom: 25px;
+}
+article.event .event-header .additional {
+  font-weight: 600;
 }
 article.event .text-container {
   word-break: break-all;

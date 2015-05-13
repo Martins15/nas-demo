@@ -1210,7 +1210,7 @@ function nas_field__field_author__article($variables) {
 
       $output .= '<a href="' . $path . '">';
       $output .= '<h5 class="article-author-name">';
-      $output .= check_plain($entity->title);
+      $output .= t('By ') . check_plain($entity->title);
       $output .= '</h5></a>';
     }
   }

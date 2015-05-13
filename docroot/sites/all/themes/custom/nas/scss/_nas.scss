@@ -873,8 +873,7 @@ body.node-type-slideshow {
 
 .article-text .article-video-container {
   width: auto;
-  iframe {
-  }
+  iframe {}
   &.left {
     text-align: left;
     margin-right: 25px;
@@ -894,20 +893,24 @@ body.node-type-slideshow {
     }
   }
 }
-.page-audubon-near-you{
+
+.page-audubon-near-you {
   .contact{
     margin: 0 0 10px 0;
     .contact-name{
       font-weight: bold;
+      font-family: "Source Sans Pro", Verdana, sans-serif;
+      font-size: 16px;
     }
-    .contact-phone-email{
+    .contact-phone-email {
       font-size:14px;
     }
-    .contact-address{
+    .contact-address {
       font-size: 14px;
       line-height: 17px;
-      padding-top: 5px;
-      .contact-address-label{
+      padding-top: 0;
+
+      .contact-address-label {
         font-weight: bold;
         font-family: "Source Sans Pro", Verdana, sans-serif;
         font-size: 16px;
@@ -915,10 +918,11 @@ body.node-type-slideshow {
       }
     }
   }
-  .site-link{
+  .site-link {
     font-family: "Source Sans Pro", Verdana, sans-serif;
   }
 }
+
 /* Individual Events page*/
 article.event {
   .event-header {
@@ -939,6 +943,7 @@ article.event {
 
     h4 {
       margin: 40px 0 8px;
+      font-weight: 600;
     }
 
     .end-date-available {
@@ -947,6 +952,10 @@ article.event {
 
     .location-details {
       margin-bottom: 25px;
+    }
+
+    .additional {
+      font-weight: 600;
     }
   }
   .text-container {
