@@ -915,6 +915,7 @@ article.event {
 
     h4 {
       margin: 40px 0 8px;
+      font-weight: 600;
     }
 
     .end-date-available {
@@ -923,6 +924,10 @@ article.event {
 
     .location-details {
       margin-bottom: 25px;
+    }
+
+    .additional {
+      font-weight: 600;
     }
   }
   .text-container {

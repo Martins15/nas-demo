@@ -14252,12 +14252,16 @@ article.event .event-header .deck {
 }
 article.event .event-header h4 {
   margin: 40px 0 8px;
+  font-weight: 600;
 }
 article.event .event-header .end-date-available {
   display: block;
 }
 article.event .event-header .location-details {
   margin-bottom: 25px;
+}
+article.event .event-header .additional {
+  font-weight: 600;
 }
 article.event .text-container {
   word-break: break-all;
