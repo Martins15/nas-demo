@@ -23,6 +23,7 @@ $plugin = array(
     'header_hero_attr_text' => t('Hero attribution text'),
     'subtitle' => t('Subtitle'),
     'main' => t('Main'),
+    'file_attachments' => t('File attachments'),
     'related' => t('Related'),
     'social' => t('Social icons'),
     'card_set' => t('Card Set')

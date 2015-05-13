@@ -1,16 +1,19 @@
 ﻿%FontSource {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
+
 .title-h1 {
   font-weight: 300;
   font-size: 52px;
   line-height: 57px;
 }
+
 .content-bird {
   font-weight: 300;
   font-size: 24px;
   line-height: 27px;
 }
+
 .blocks-events {
   padding: 50px 0 80px;
   .title-block {
@@ -63,16 +66,19 @@
     }
   }
 }
+
 .bird-small {
   background-color: #faf9f5;
   padding: 10px 0;
 }
+
 .interactive-guide {
   .preamble {
     text-align: left;
     margin-bottom: 15px;
   }
 }
+
 .bird-guide-country {
   width: 50%;
   float: left;
@@ -87,6 +93,7 @@
     width: 75%;
   }
 }
+
 .bird-guide-zip-input {
   width: 30%;
   float: left;
@@ -101,12 +108,14 @@
     height: 40px;
   }
 }
+
 .interactive-guide-aid {
   @include breakpoint(large-up) {
     padding-top: 13px;
     padding-bottom: 10px;
   }
 }
+
 .aid-class {
   .editorial-card-content {
     @extend %card-content;
@@ -144,6 +153,7 @@
     }
   }
 }
+
 .center-and-sanctuaries {
   @include breakpoint(max-width, 768px) {
     margin-top: 50px;

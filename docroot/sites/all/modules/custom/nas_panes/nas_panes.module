@@ -126,6 +126,8 @@ function nas_panes_theme() {
         'image_thumbnail' => NULL,
         'lightbox_image_path' => NULL,
         'original_image_path' => NULL,
+        'subscribe_link' => NULL,
+        'show_download_link' => FALSE,
         'link_title' => NULL,
         'link_url' => NULL,
       ),
@@ -213,7 +215,37 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__hero_image' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_3stories' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_3stories_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_package' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_package_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_video' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-video',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
@@ -224,7 +256,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured-mobile',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
     'nas_frontpage_featured_article' => array(
       'variables' => array(
@@ -880,6 +912,24 @@ function nas_panes_theme() {
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
+    'upcoming_events_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'upcoming-events-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
+    ),
+    'upcoming_events_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'upcoming-events-block-item',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
     ),
   );
 
@@ -1597,6 +1647,38 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
+ * Returns Upcoming events base on state.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_upcoming_events($state = 'all') {
+  $items = array();
+  $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
+  $count = 0;
+
+  foreach ($results as $result) {
+    $link = NULL;
+    $item = node_load($result->entity);
+    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->title,
+      'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
+      'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
+      'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'link' => $link,
+      'order' => $count,
+    );
+    $count = $count + 1;
+  }
+  return $items;
+}
+
+/**
  * Returns locations.
  *
  * @param string $state
@@ -1692,6 +1774,12 @@ function nas_panes_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['ajax/upcoming-events'] = array(
+    'page callback' => 'nas_panes_upcoming_events_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   $items['ajax/audubon-near-you'] = array(
     'page callback' => 'nas_panes_audubon_near_you_elements_callback',
     'access callback' => TRUE,
@@ -1710,7 +1798,19 @@ function nas_panes_menu() {
     'page callback' => 'nas_panes_popular_stories_nodequeue_redirect',
     'weight' => 10,
   );
-
+  $items['admin/content/boa-mail-subscription'] = array(
+    'title' => 'BOA mail subscription settings',
+    'access arguments' => array('administer nodes'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_panes_boa_mail_subscription_settings_form', 2),
+    'weight' => 11,
+  );
+  $items['birds-of-america/%ctools_js/subscribe/%'] = array(
+    'page callback' => 'nas_panes_ctools_modal_boa_subscribe',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -1746,6 +1846,26 @@ function nas_panes_local_chapters_centers_callback() {
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
+
+/**
+ * Returns markup for Upcoming Events block.
+ */
+function nas_panes_upcoming_events_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_upcoming_events($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
 /**
@@ -1846,6 +1966,7 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+  $form['override_title_heading']['#access'] = FALSE;
 }
 
 /**
@@ -1898,3 +2019,145 @@ function _nas_panes_format_image_attribution($file) {
   }
   return implode(' ', $parts);
 }
+
+/**
+ * Page callback for modal Download high-resolution file.
+ */
+function nas_panes_ctools_modal_boa_subscribe() {
+  ctools_include('modal');
+  ctools_include('ajax');
+  $form_state = array(
+    'title' => t('Download high-resolution file'),
+    'ajax' => TRUE,
+    'nid' => arg(3),
+  );
+  $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
+  print ajax_render($output);
+}
+
+/**
+ * Form boa_mail_subscription_form.
+ */
+function nas_panes_boa_mail_subscription_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#markup' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Enter your email address')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#size' => '',
+    '#id' => 'nas-boa-mail-subscription-email'
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Sign Up'),
+    '#attributes' => array(
+      'class' => array('button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-submit'
+  );
+  $form['cancel'] = array(
+    '#type' => 'submit',
+    '#value' => t('No thanks'),
+    '#attributes' => array(
+      'class' => array('ctools-close-modal', 'button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-cancel'
+  );
+  $form['#attributes']['class'] = array('mailing-list-form');
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_form validation callback.
+ */
+function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
+  $email = strtolower(trim($form_state['values']['email']));
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
+  $url = 'http://www.audubonaction.org/site/Survey';
+  $data = array(
+    'cons_email' => $email,
+    'cons_info_component' => 't',
+    'cons_mail_opt_in' => 't',
+    'cons_email_opt_in' => 1,
+    'cons_email_opt_in_requested' => 'true',
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+    'SURVEY_ID' => '17180',
+    'denySubmit' => '',
+    "3340_17180_2_14661" => "1441",
+    "3340_17180_2_14661" => "1401",
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 60,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
+  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
+  // Set up cookie for showing download link of already subscribed users.
+  if (isset($result->code) && ($result->code == 200)) {
+    setcookie('show_download_link', 1, time() + (86400 * 365), '/');
+  }
+  if (!isset($result->redirect_code) || $result->redirect_code != 302 || !isset($result->redirect_url) || $result->redirect_url != 'http://www.audubon.org/thankyou') {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+  }
+}
+
+/**
+ * boa_mail_subscription_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
+  $node = node_load($form_state['nid']);
+  $image_items = field_get_items('node', $node, 'field_boa_illustration');
+  if (!empty($image_items[0]['filename'])) {
+    $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
+  }
+  $original_image_link = '<a href="' . $original_image_path . '" target="blank">' . t('Download bird full plate now.') . '</a>';
+  $content = variable_get('boa_mail_subscription_settings_form_after', '') . '&nbsp;' . $original_image_link;
+  $commands[] = ctools_ajax_command_attr('#modalContent .close', 'class', 'close reload');
+  $commands[] = ctools_modal_command_display(t('Download high-resolution file'), $content);
+  print ajax_render($commands);
+  drupal_exit();
+}
+
+/**
+ * Form boa_mail_subscription_settings_form.
+ */
+function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#title' => t('Intro'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+  );
+  $form['after'] = array(
+    '#title' => t('Text after form submit'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_settings_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state) {
+  variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
+  variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
+}
+

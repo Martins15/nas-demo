@@ -104,10 +104,16 @@ function nas_location_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '4',
+        ),
+        'metatags' => array(
+          'weight' => '6',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '5',
         ),
       ),
       'display' => array(),

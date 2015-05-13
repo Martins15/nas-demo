@@ -126,6 +126,9 @@ function nas_article_feature_strongarm() {
         'redirect' => array(
           'weight' => '6',
         ),
+        'locations' => array(
+          'weight' => '30',
+        ),
         'metatags' => array(
           'weight' => '40',
         ),

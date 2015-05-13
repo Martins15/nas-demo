@@ -423,6 +423,7 @@ function nas_article_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'display_all_day' => 0,
         'increment' => 15,
         'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
@@ -2039,6 +2040,148 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-article-field_file_attachments'
+  $field_instances['node-article-field_file_attachments'] = array(
+    'bundle' => 'article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 23,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_related_news' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_author_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_file_attachments',
+    'label' => 'File attachments',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 'audio',
+          'document' => 'document',
+          'image' => 'image',
+          'video' => 'video',
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 0,
+          'youtube' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance: 'node-article-field_flyway'
   $field_instances['node-article-field_flyway'] = array(
     'bundle' => 'article',
@@ -3255,7 +3398,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -3600,6 +3743,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Editorial card description');
   t('Editorial card image');
   t('Editorial card title');
+  t('File attachments');
   t('Flyway');
   t('For internal use only');
   t('Hero Image');

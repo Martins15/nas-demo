@@ -164,7 +164,19 @@ function editorial_card_river_render($subtype, $conf, $args, $context) {
   if (!empty($conf['more_link_text']) && !empty($conf['more_link_url'])) {
     $more_link = l($conf['more_link_text'], $conf['more_link_url']);
   }
-
+  $show_news_donate = &drupal_static('show_news_donate');
+  $show_news_donate = theme('nas_panes_pane_donate_button', array(
+    'caption' => $conf['donate_caption'],
+    'link' => l(t('Donate'), $conf['donate_path'], array(
+      'attributes' => array(
+        'class' => array(
+          'button',
+          'tomato',
+          'large',
+        ),
+      ),
+    )),
+  ));
   $presets = _editorial_card_river_presets();
   $preset = $presets[$conf['preset']];
   foreach ($preset['content'] as $key => $item) {
@@ -174,29 +186,7 @@ function editorial_card_river_render($subtype, $conf, $args, $context) {
         _editorial_card_river_get_view_args($args, $item['options']['args'], $context, $conf);
         $content[$key] = call_user_func_array('views_embed_view', $args);
         break;
-
-      case 'donate':
-        $content[$key] = theme('nas_panes_pane_donate_button', array(
-          'caption' => $conf['donate_caption'],
-          'link' => l(t('Donate'), $conf['donate_path'], array(
-            'attributes' => array(
-              'class' => array(
-                'button',
-                'tomato',
-                'large',
-              ),
-            ),
-          )),
-        ));
-        break;
     }
-  }
-
-  // Block specific logic. Donate block should be shown only if there are items
-  // in bottom view.
-  if (empty($content['bottom'])) {
-    unset($content['donate']);
-    unset($content['bottom']);
   }
 
   if (empty($conf['paddings'])) {
@@ -246,17 +236,6 @@ function _editorial_card_river_presets() {
         ),
         'donate' => array(
           'type' => 'donate',
-        ),
-        'bottom' => array(
-          'type' => 'view',
-          'options' => array(
-            'view' => 'nas_news',
-            'display' => 'articles_list_bot',
-            'args' => array(
-              'menu_section',
-              'editorial_section',
-            ),
-          ),
         ),
       ),
     ),
