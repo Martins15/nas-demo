@@ -2162,7 +2162,7 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
     'data' => http_build_query($data),
     'timeout' => 60,
   );
-  $result = drupal_http_request($url, $options);dpm($result);
+  $result = drupal_http_request($url, $options);
   watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
   watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
   // Set up cookie for showing download link of already subscribed users.
