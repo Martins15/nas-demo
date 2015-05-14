@@ -88,6 +88,8 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{HTTP_HOST} ^nasprod\.audubon\.org [NC]
   RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
 
+
+
   # birds.audubon.org -> www.audubon.org/birds
   RewriteCond %{HTTP_HOST} ^birds\.audubon\.org [NC]
   RewriteRule ^$ http://www.audubon.org/birds [R=301,L]
@@ -171,6 +173,23 @@ DirectoryIndex index.php index.html index.htm
   # audubonmagazine.org/[whatever] -> www.audubon.org/[whatever]
   RewriteCond %{HTTP_HOST} ^www\.audubonmagazine\.org [NC]
   RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # audubon.ong-> www.audubon.ong/[whatever]
+  RewriteCond %{HTTP_HOST} ^audubon\.ong [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # audubon.ong -> www.audubon.ong/[whatever]
+  RewriteCond %{HTTP_HOST} ^www\.audubon\.ong [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # audubon.ngo-> www.audubon.ngo/[whatever]
+  RewriteCond %{HTTP_HOST} ^audubon\.ngo [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
+  # audubon.ngo -> www.audubon.ngo/[whatever]
+  RewriteCond %{HTTP_HOST} ^www\.audubon\.ngo [NC]
+  RewriteRule ^(.*)$ http://www.audubon.org/$1 [R=301,L]
+
 
   # athome.audubon.org -> www.audubon.org/conservation/creating-bird-friendly-communities
   RewriteCond %{HTTP_HOST} ^athome\.audubon\.org [NC]

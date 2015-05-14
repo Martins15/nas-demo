@@ -41,6 +41,9 @@ function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
  */
 function nas_panes_theme() {
   $theme = array(
+    'x_image_anchor' => array(
+      'render element' => 'element',
+    ),
     'article_more_features' => array(
       'variables' => array(
         'teasers' => NULL,
@@ -2258,3 +2261,48 @@ function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state
   variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
 }
 
+/**
+ * Returns HTML for a 3x3 grid of radios for video cover placing handle.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: A render element containing radio buttons.
+ *
+ * @ingroup themeable
+ */
+function theme_x_image_anchor($variables) {
+  $element = $variables['element'];
+
+  $rows = array(
+    array('', '', ''),
+    array('', '', ''),
+    array('', '', '')
+  );
+  foreach (element_children($element) as $key) {
+    $element[$key]['#attributes']['title'] = $element[$key]['#title'];
+    unset($element[$key]['#title']);
+    switch ($key) {
+      case 'center':
+        $rows[1][1] = drupal_render($element[$key]);
+        break;
+
+      case 'top-left':
+        $rows[0][0] = drupal_render($element[$key]);
+        break;
+
+      case 'top-right':
+        $rows[0][2] = drupal_render($element[$key]);
+        break;
+
+      case 'bottom-left':
+        $rows[2][0] = drupal_render($element[$key]);
+        break;
+
+      case 'bottom-right':
+        $rows[2][2] = drupal_render($element[$key]);
+        break;
+    }
+  }
+
+  return theme('table', array('header' => array(), 'rows' => $rows, 'attributes' => array('class' => array('x-image-anchor'))));
+}

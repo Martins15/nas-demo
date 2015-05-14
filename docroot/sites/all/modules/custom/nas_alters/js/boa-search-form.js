@@ -28,7 +28,7 @@
     },
     suggestionTemplate: function (item, settings, element) {
       var title = item.title;
-      if (item.title != item.new_title) {
+      if (item.title != item.new_title && item.new_title !== null) {
         title += ' &mdash; <em>' + item.new_title + '</em>';
       }
 

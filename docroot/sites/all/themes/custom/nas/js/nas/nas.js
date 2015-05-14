@@ -23,7 +23,7 @@ var Nas = Nas || {};
       });
     }
   };
-  
+
   Drupal.behaviors.nasBirdGuide = {
     attach: function (context, settings) {
       $(".bird-guide-search select").once().change(function (e) {
@@ -44,6 +44,32 @@ var Nas = Nas || {};
         if (magIssueEdBlockHeight !== 0 && magIssueEdBlockHeight < magIssueCoverHeight) {
           $(".node-type-magazine-issue .editorial-card.collapse-minimal").css("min-height", magIssueCoverHeight);
         }
+      });
+    }
+  };
+
+  Drupal.behaviors.videoCurtainSizing = {
+    attach: function(context, settings) {
+      $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
+        this.onloadedmetadata = function (e) {
+          var $video = $(this);
+          var width = $video.width();
+          var height = $video.height();
+          $video.css({
+            marginLeft: -width / 2,
+            marginTop: -height / 2
+          });
+          if ($video.parent().hasClass('cover')) {
+            $(window).bind('resize', function () {
+              var width = $video.width();
+              var height = $video.height();
+              $video.css({
+                marginLeft: -width / 2,
+                marginTop: -height / 2
+              });
+            });
+          }
+        };
       });
     }
   };
@@ -80,21 +106,21 @@ var Nas = Nas || {};
     }
   };
   // @todo Figure out how to fix urls replacement, disable for now.
-/*  Drupal.behaviors.nasSearchPage = {
-    attach: function (context, settings) {
-      $('.page-search-results .node').each(function() {
-        var src_str = $(this).html();
-        var term = $("#nas-search-page-search-form .form-search").val();
-        term = term.replace(/(\s+)/,"(<[^>]+>)*$1(<[^>]+>)*");
-        var pattern = new RegExp("("+term+")", "gi");
-        src_str = src_str.replace(pattern, "<mark>$1</mark>");
-        src_str = src_str.replace(/(<mark>[^<>]*)((<[^>]+>)+)([^<>]*<\/mark>)/,"$1</mark>$2<mark>$4");
-        $(this).html(src_str);
-      });
-    }
-  };*/
+  /*  Drupal.behaviors.nasSearchPage = {
+  attach: function (context, settings) {
+  $('.page-search-results .node').each(function() {
+  var src_str = $(this).html();
+  var term = $("#nas-search-page-search-form .form-search").val();
+  term = term.replace(/(\s+)/,"(<[^>]+>)*$1(<[^>]+>)*");
+  var pattern = new RegExp("("+term+")", "gi");
+  src_str = src_str.replace(pattern, "<mark>$1</mark>");
+  src_str = src_str.replace(/(<mark>[^<>]*)((<[^>]+>)+)([^<>]*<\/mark>)/,"$1</mark>$2<mark>$4");
+  $(this).html(src_str);
+});
+}
+};*/
 
-// @todo Figure out how this is going to work on touch
+  // @todo Figure out how this is going to work on touch
   Nav.handleTouch = function () {
     $(".primary-nav-toggler").removeAttr("href");
   };
@@ -138,7 +164,7 @@ var Nas = Nas || {};
     bindHeaderButton(".header-btn-search", "icon-magnifier", ".header-search");
   };
 
-// @todo Refactor desktop and tablet; this is ridiculous
+  // @todo Refactor desktop and tablet; this is ridiculous
 
   Nav.bindDesktop = function () {
     $(".primary-nav-toggler").bind("mouseover", function () {
@@ -166,7 +192,7 @@ var Nas = Nas || {};
 
     $(".primary-nav-toggler").bind("click", function (e) {
       if (!$(this).hasClass("open") || $(this).data("touched")) {
-          e.preventDefault();
+        e.preventDefault();
       }
     });
 
@@ -232,14 +258,14 @@ var Nas = Nas || {};
           for (var i in classes) {
             var classname = classes[i];
             if (classname.match(/view-dom-id-.*/)) {
-              view_dom_id = classname;
-              break;
+  view_dom_id = classname;
+  break;
             }
           }
           // Regroup if found.
           if (view_dom_id) {
             var prev_title = '',
-                prev_row = false;
+            prev_row = false;
             $('.' + view_dom_id).find('.views-row-odd, .views-row-even').each(function () {
               var current_title = $(this).find('.boa-family-set-title').text();
               if (prev_row && current_title == prev_title) {
@@ -336,8 +362,8 @@ var Nas = Nas || {};
         // Additionatly change page number after bird is clicked.
         $('.bird-card a').bind('click touchend', function (e) {
           var id = parseInt($(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', '')),
-              page_numb_replace = 'page=' + id,
-              page_regexp_replace = /page=\d+/g;
+          page_numb_replace = 'page=' + id,
+          page_regexp_replace = /page=\d+/g;
           if (id === 0) {
             page_numb_replace = '';
             page_regexp_replace = /page=\d+&?/g;
@@ -381,9 +407,9 @@ var Nas = Nas || {};
   Drupal.behaviors.noImage = {
     attach: function (context, settings) {
 
-     $(window).on("load resize",function(e){
-       titlePosition();  
-     }); 
+      $(window).on("load resize",function(e){
+        titlePosition();
+      });
 
       function titlePosition(){
         if ($(".view-display-id-articles_term_10 .tiny-8").position() !== null){
@@ -393,7 +419,56 @@ var Nas = Nas || {};
           pleft = parseInt(pleft);
           $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
         }
-      } 
+      }
+    }
+  };
+
+  Drupal.behaviors.centerAuthorImage = {
+    attach: function (context, settings) {
+      articleAuthor = jQuery(".article-sidebar-section.article-meta img");
+      if(articleAuthor.length) {
+        jQuery(".article-sidebar-section.article-meta").css("text-align","center");
+      }
+    }
+  };
+
+  Drupal.behaviors.search_highlight = {
+    attach: function (context, settings) {
+      $('.page-search-results').each(function(){
+        var query = {},
+        queries = window.location.search.substring(1).split('&'),
+        qr_length = queries.length,
+        highlight = ['.common-name a', '.scientific-name', '.editorial-card-title a', '.editorial-card-content p', '.editorial-card-info a'],
+        hl_length = highlight.length,
+        i = 0,
+        highlight_aplly = function(){
+          var sr_length = query.search.length,
+          j = 0;
+          for (j = 0; j < sr_length; j = j + 1) {
+            $(this).highlight(query.search[j], { caseSensitive: false });
+          }
+        };
+
+        // Retrieving the search words from URL.
+        for (i = 0; i < qr_length; i = i + 1) {
+          queries[i] = queries[i].split('=');
+          if (queries[i][0] == 'search') {
+            query[queries[i][0]] = queries[i][1].split('+');
+          }
+          else {
+            query[queries[i][0]] = queries[i][1];
+          }
+        }
+        if ($.isArray(query.search)) {
+
+          // Iterate over all strings container and highlight search words.
+          for (i = 0; i < hl_length; i = i + 1) {
+            $(highlight[i]).each(highlight_aplly);
+          }
+        }
+        $('.highlight').css('background-color', 'yellow');
+        $('.highlight').css('color', 'black');
+      });
     }
   };
 
