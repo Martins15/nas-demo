@@ -8,7 +8,7 @@
       	$('#subscribe-link').attr('href', settings.nas_panes.boa_plate_original_image_path);
       	$('#subscribe-link').removeClass('ctools-use-modal');
       	$('#subscribe-link').removeClass('ctools-use-modal-processed');
-      	$('#subscribe-link').clone().appendTo('.download-link');
+      	$('#subscribe-link').clone().appendTo('div.download-link');
       	$('#subscribe-link:first').remove();
       }
       $('#modalBackdrop').click(function() {
@@ -22,7 +22,7 @@
         $('#subscribe-link').attr('href', settings.nas_panes.boa_plate_original_image_path);
         $('#subscribe-link').removeClass('ctools-use-modal');
         $('#subscribe-link').removeClass('ctools-use-modal-processed');
-        $('#subscribe-link').clone().appendTo('.download-link');
+        $('#subscribe-link').clone().appendTo('div.download-link');
         $('#subscribe-link:first').remove();
       });
     }
