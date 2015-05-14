@@ -2533,6 +2533,6 @@ function nas_master_update_7178() {
 /**
  * Re-update of missed update 7169.
  */
-function nas_master_update_7178() {
+function nas_master_update_7179() {
   nas_master_update_7169();
 }
