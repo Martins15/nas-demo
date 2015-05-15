@@ -139,6 +139,41 @@ function nas_overrides_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'boa_mail_subscription_settings_form_after';
+  $strongarm->value = 'Thank you for signing up!';
+  $export['boa_mail_subscription_settings_form_after'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'boa_mail_subscription_settings_form_image';
+  $strongarm->value = '52957';
+  $export['boa_mail_subscription_settings_form_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'boa_mail_subscription_settings_form_intro';
+  $strongarm->value = 'In exchange for downloading this Birds of america print in glorious high-resolution, perhaps you\'d consider signing up for our monthly newsletter, Wingspan. You\'ll be the first to hear about opportunities to help birds in your area or nationwide. (Privacy Policy)';
+  $export['boa_mail_subscription_settings_form_intro'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'boa_mail_subscription_settings_form_privacy_policy';
+  $strongarm->value = 'content/privacy-policy ';
+  $export['boa_mail_subscription_settings_form_privacy_policy'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'boa_mail_subscription_settings_form_title';
+  $strongarm->value = 'Your Birds of America download awaits';
+  $export['boa_mail_subscription_settings_form_title'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'cron_safe_threshold';
   $strongarm->value = '0';
   $export['cron_safe_threshold'] = $strongarm;
