@@ -69,6 +69,7 @@ var Nas = Nas || {};
               });
             });
           }
+          $video.parent().find('.curtain-video-play-button').hide();
         };
       });
       $('.curtain-video .curtain-video-play-button')
