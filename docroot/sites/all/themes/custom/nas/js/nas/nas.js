@@ -69,12 +69,16 @@ var Nas = Nas || {};
               });
             });
           }
-          $video.parent().find('.curtain-video-play-button').hide();
+          if ($video.get(0).readyState == 4) {
+            $video.parent().find('.curtain-video-play-button').hide();
+          }
         };
       });
       $('.curtain-video .curtain-video-play-button')
         .bind('click', function () {
-          $(this).prev().get(0).play();
+          $(this)
+            .hide()
+            .prev().get(0).play();
         })
         .trigger('click');
     }
