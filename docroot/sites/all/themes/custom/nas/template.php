@@ -1014,6 +1014,7 @@ function nas_image($variables) {
     'boa_family_species',
     'magazine_issue_cover',
     'our_leadership',
+    'boa_mail_subscription',
   );
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
