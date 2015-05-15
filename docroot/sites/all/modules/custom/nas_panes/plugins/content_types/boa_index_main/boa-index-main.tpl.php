@@ -11,7 +11,7 @@
 ?>
 
 <div class="boa-bird-card-set bg-boa-bejge" id="boa-index-plates">
-  <div class="row section-header space-top">
+  <div class="row section-header">
     <div class="columns">
       <h2 class="thin"><?php print $title; ?></h2>
     </div>
