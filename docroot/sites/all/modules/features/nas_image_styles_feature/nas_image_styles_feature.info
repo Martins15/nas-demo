@@ -15,6 +15,7 @@ features[image][] = bird_teaser_illustration
 features[image][] = birds_landing_banner
 features[image][] = boa_family_species
 features[image][] = boa_lightbox
+features[image][] = boa_mail_subscription
 features[image][] = conservation_slideshow_featured_project
 features[image][] = conservation_slideshow_icon
 features[image][] = conservation_strategy_icon
