@@ -472,15 +472,6 @@ var Nas = Nas || {};
     }
   };
 
-  Drupal.behaviors.centerAuthorImage = {
-    attach: function (context, settings) {
-      articleAuthor = jQuery(".article-sidebar-section.article-meta img");
-      if(articleAuthor.length) {
-        jQuery(".article-sidebar-section.article-meta").css("text-align","center");
-      }
-    }
-  };
-
   Drupal.behaviors.search_highlight = {
     attach: function (context, settings) {
       $('.page-search-results').each(function(){
@@ -520,4 +511,19 @@ var Nas = Nas || {};
       });
     }
   };
+
+  Drupal.behaviors.iframe_map = {
+  attach: function (context,settings){
+    var map = $("#map-canvas iframe");
+      parent_h = map.parent().height();
+      map_h = map.height();
+        if(parent_h < map_h){
+          map.parent().height(map_h);
+        }
+        else{
+          map.height(parent_h);
+        }
+    }
+  };
+
 })(jQuery);

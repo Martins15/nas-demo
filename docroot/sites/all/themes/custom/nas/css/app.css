@@ -3742,7 +3742,7 @@ ul.pagination li {
   -webkit-box-sizing: content-box;
 }
 
-/* 
+/*
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -3899,7 +3899,7 @@ ul.pagination li {
 
 /* Foundation v2.1.4 http://foundation.zurb.com */
 /* Artfully masterminded by ZURB  */
-/* -------------------------------------------------- 
+/* --------------------------------------------------
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
@@ -5545,6 +5545,7 @@ table.row-borders tbody td {
 .hero-map {
   max-width: 100%;
   overflow: hidden;
+  height: auto;
 }
 @media only screen {
   .hero-map {
@@ -5561,7 +5562,7 @@ table.row-borders tbody td {
     height: 380px;
   }
 }
-@media only screen and (min-width: 840px) {
+@media only screen and (max-width: 840px) {
   .hero-map {
     height: 450px;
   }
@@ -7940,6 +7941,23 @@ body.touch .primary-sub-nav-index {
   margin-bottom: 37.5px;
 }
 
+ div.page-summary {
+  border:none;
+  background-color: white;
+  margin-bottom: 10px;
+  position: relative;
+  right: 20px;
+}
+.page-summary-title{
+  display: none;
+}
+.page-summary-body{
+  font-size: 13px;
+  color: rgb(138, 135, 129);
+  font-family: 'Source Sans Pro',Verdana,sans-serif;
+  font-style: normal;
+}
+
 .article-slug {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 20px;
@@ -9523,6 +9541,7 @@ body.black-bg .slide-caption {
   position: relative;
   z-index: 0;
 }
+
 @media only screen {
   .inline-map-canvas {
     min-height: 280px;
@@ -9562,10 +9581,11 @@ body.black-bg .slide-caption {
   .inline-map.small > .inline-map-canvas {
     min-height: 360px;
   }
-}
+}*
 .inline-map-canvas iframe {
   min-height: 280px;
 }
+
 @media only screen and (min-width: 601px) {
   .inline-map-canvas iframe {
     position: absolute;
