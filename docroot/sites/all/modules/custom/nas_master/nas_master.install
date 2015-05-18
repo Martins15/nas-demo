@@ -2537,3 +2537,12 @@ function nas_master_update_7179() {
   nas_master_update_7169();
   features_revert_module('nas_image_styles_feature');
 }
+
+/**
+ * Revert Article feature.
+ */
+function nas_master_update_7179() {
+  features_revert_module('nas_article_feature');
+}
+
+
