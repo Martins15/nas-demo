@@ -268,10 +268,10 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
               'data' => array(
                 array('data' => $publish_date),
                 array('data' => $unpublish_date),
-                array('data' => 
-                  l(t('Edit'), 'admin/structure/pages/edit/page-' . $page->subtask, array(
+                array(
+                  'data' => l(t('Edit'), 'admin/structure/pages/edit/page-' . $page->subtask, array(
                     'attributes' => array(
-                    'target' => '_blank',
+                      'target' => '_blank',
                     ),
                   )),
                 ),
