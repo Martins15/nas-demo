@@ -33,9 +33,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
       $featured_image .= '<figcaption>' . $image_attribution . '</figcaption>';
     }
   }
-  $date_city_province = '';
-  $city_province = '';
-  $address = '';
+  $date_city_province = $city_province = $address = $additional = '';
   $end_date = FALSE;
   if ($get_date = field_get_items('node', $node, 'field_event_date')) {
     $date_city_province .= date_format(date_create($get_date[0]['value']), 'l, F d, Y');
@@ -53,6 +51,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
     else {
       $date_city_province .= ' - ' . $city_province;
     }
+    !empty($get_location[0]['additional']) ? $additional .= $get_location[0]['additional'] : '';
     !empty($get_location[0]['street']) ? $address .= $get_location[0]['street'] : '';
     !empty($get_location[0]['city']) ? $address .= ', ' . $get_location[0]['city'] : '';
     !empty($get_location[0]['postal_code']) ? $address .= ', ' . $get_location[0]['postal_code'] : '';
@@ -61,6 +60,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
   $block->content = theme('events_intro', array(
     'date_city_province' => $date_city_province,
     'featured_image' => $featured_image,
+    'additional' => $additional,
     'address' => $address,
   ));
 

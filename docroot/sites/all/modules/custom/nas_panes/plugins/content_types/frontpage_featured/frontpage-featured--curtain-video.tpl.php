@@ -42,6 +42,7 @@
 
 <a href="#" class="curtain-arrow"></a>
 
-<div class="curtain-video">
-  <video poster="../../img/video-poster.jpg" autoplay="" loop="" src="<?php print $video_source; ?>" muted=""></video>
+<div class="curtain-video <?php print $position; ?>">
+  <video poster="../../img/video-poster.jpg" loop="" autoplay="" src="<?php print $video_source; ?>" muted=""></video>
+  <div class="curtain-video-play-button"></div>
 </div>

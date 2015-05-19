@@ -65,7 +65,7 @@ function nas_solr_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'search_cron_limit';
-  $strongarm->value = '100';
+  $strongarm->value = '50';
   $export['search_cron_limit'] = $strongarm;
 
   $strongarm = new stdClass();

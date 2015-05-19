@@ -546,6 +546,33 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#default_value' => !empty($_conf['bg_color']) ? $_conf['bg_color'] : '',
     '#states' => $state,
   );
+  $form['curtain_video']['position'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Cover entire curtain'),
+    '#default_value' => isset($_conf['position']) ? $_conf['position'] : 'cover',
+    '#return_value' => 'cover',
+    '#attributes' => array(
+      'class' => array('video-position'),
+    ),
+  );
+  $form['curtain_video']['place'] = array(
+    '#type' => 'radios',
+    '#title' => t('Video position'),
+    '#options' => array(
+      'center' => t('Centered'),
+      'top-left' => t('Top left corner'),
+      'top-right' => t('Top right corner'),
+      'bottom-left' => t('Bottom left corner'),
+      'bottom-right' => t('Bottom right corner'),
+    ),
+    '#theme' => 'x_image_anchor',
+    '#default_value' => !empty($_conf['place']) ? $_conf['place'] : 'center',
+    '#states' => array(
+      'visible' => array(
+        '.video-position' => array('unchecked' => TRUE),
+      ),
+    ),
+  );
   $form['curtain_video']['title'] = array(
     '#type' => 'link_field',
     '#title' => t('Heading'),
@@ -1044,6 +1071,7 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
   $summary = check_plain($conf['summary']);
 
   $title_link = l(t($conf['title']['title']), $conf['title']['url']);
+  $slug_link = '';
   if ($conf['slug_link']['title'] && $conf['slug_link']['url']) {
     $slug_link = l(t($conf['slug_link']['title']), $conf['slug_link']['url'], array('attributes' => array('classes' => 'curtain-card-slug')));
   }
@@ -1057,6 +1085,11 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
     $class = 'light-text dark-bg transparent';
   }
 
+  $position = 'cover';
+  if (!$conf['position']) {
+    $position = $conf['place'];
+  }
+
   $content = theme('nas_frontpage_featured__curtain_video', array(
     'attribution_title' => $caption,
     'attribution_credit' => $credits,
@@ -1065,6 +1098,7 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
     'slug_link' => $slug_link,
     'contextual_links' => $contextual_links,
     'video_source' => $video_source,
+    'position' => $position,
   ));
 
   // Pass mobile_content to theme

@@ -61,7 +61,7 @@ function nas_search_feature_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'Search Results';
   $display->uuid = 'e6d20a9c-f9da-4889-a015-f55bc0e2019f';
   $display->content = array();
   $display->panels = array();

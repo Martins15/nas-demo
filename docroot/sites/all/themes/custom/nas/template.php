@@ -977,6 +977,7 @@ function nas_button($variables) {
     'edit-submit-search-form',
     'edit-submit-nas-bird-guide',
     'edit-submit-events-listing',
+    'edit-submit-boa-index',
   );
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
@@ -1013,10 +1014,12 @@ function nas_image($variables) {
     'boa_family_species',
     'magazine_issue_cover',
     'our_leadership',
+    'boa_mail_subscription',
   );
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
     'engagement_card',
+    'boa_mail_subscription',
   );
   if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
     $attributes = $variables['attributes'];
