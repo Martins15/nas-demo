@@ -125,6 +125,7 @@ function nas_article_feature_field_group_info() {
       2 => 'field_hero_image',
       3 => 'field_pressrelease_contact',
       4 => 'field_editorial_card_image',
+      5 => 'field_credit_caption_map',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
