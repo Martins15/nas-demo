@@ -48,6 +48,21 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.videoCurtainController = {
+    attach: function(context, settings) {
+      $('.curtain-video video').once('curtain-video-controller', function () {
+        var $video = $(this), video = this;
+        var $playButton = $(this).parent().find('.curtain-video-play-button');
+        $playButton.bind('click', function () {
+          video.play();
+        });
+        $video
+          .bind('play', function () { $playButton.hide(); })
+          .bind('pause', function () { $playButton.show(); });
+      });
+    }
+  };
+
   Drupal.behaviors.videoCurtainSizing = {
     attach: function(context, settings) {
       $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
