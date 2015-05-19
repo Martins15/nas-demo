@@ -210,14 +210,14 @@ function nas_page_scheduler_ctools_render_alter(&$info, &$page, &$context) {
   $contexts = ctools_context_handler_get_handler_contexts($context['contexts'], $handler);
   if (isset($handler->conf['nas_page_scheduler_state']) && $handler->conf['nas_page_scheduler_state']) {
     if (isset($handler->task) && $handler->task == 'page') {
-    drupal_set_message(l('Schedule new version', 'page/nojs/clone/' . $handler->subtask, array(
-      'attributes' => array(
-        'class' => array(
-          'ctools-use-modal',
+      drupal_set_message(l('Schedule new version', 'page/nojs/clone/' . $handler->subtask, array(
+        'attributes' => array(
+          'class' => array(
+            'ctools-use-modal',
+          ),
         ),
-      ),
-      'html' => TRUE,
-    )));
+        'html' => TRUE,
+      )));
     }
   }
 }
@@ -252,7 +252,7 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
       if (empty($page->conf['display']) && !empty($page->conf['did'])) {
         $page->conf['display'] = panels_load_display($page->conf['did']);
 
-        if(isset($page->conf['nas_page_scheduler_state']) &&
+        if (isset($page->conf['nas_page_scheduler_state']) &&
           $page->conf['nas_page_scheduler_state'] &&
           isset($page->conf['nas_page_scheduler_original_page_task_name']) &&
           $page->conf['nas_page_scheduler_original_page_task_name']) {
@@ -260,7 +260,7 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
           if ($page->conf['nas_page_scheduler_original_page_task_name'] == arg(5)) {
             $publish_date = date('Y-m-d H:i', $page->conf['nas_page_scheduler_date_publish']);
             $unpublish_date = date('Y-m-d H:i', $page->conf['nas_page_scheduler_date_unpublish']);
-            if($publish_date == $unpublish_date) {
+            if ($publish_date == $unpublish_date) {
               $unpublish_date = '';
             }
             $classes = array();
@@ -268,10 +268,12 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
               'data' => array(
                 array('data' => $publish_date),
                 array('data' => $unpublish_date),
-                array('data' => l(t('Edit'), 'admin/structure/pages/edit/page-' . $page->subtask, array(
-                  'attributes' => array(
-                  'target' => '_blank',
-                )))),
+                array('data' => l(t('Edit'), 'admin/structure/pages/edit/page-' . $page->subtask,
+                  array(
+                    'attributes' => array(
+                    'target' => '_blank',
+                  )))
+                ),
               ),
               'class' => $classes,
             );
@@ -413,7 +415,7 @@ function nas_page_scheduler_start() {
       if (empty($page->conf['display']) && !empty($page->conf['did'])) {
         $page->conf['display'] = panels_load_display($page->conf['did']);
 
-        if(isset($page->conf['nas_page_scheduler_state']) &&
+        if (isset($page->conf['nas_page_scheduler_state']) &&
           $page->conf['nas_page_scheduler_state'] &&
           isset($page->conf['nas_page_scheduler_original_page_task_name']) &&
           $page->conf['nas_page_scheduler_original_page_task_name']) {
