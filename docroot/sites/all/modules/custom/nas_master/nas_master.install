@@ -2536,4 +2536,5 @@ function nas_master_update_7178() {
 function nas_master_update_7179() {
   nas_master_update_7169();
   features_revert_module('nas_image_styles_feature');
+  module_enable(array('nas_page_scheduler'));
 }
