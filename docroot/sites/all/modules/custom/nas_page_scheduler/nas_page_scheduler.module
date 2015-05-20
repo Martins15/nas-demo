@@ -38,7 +38,6 @@ function nas_page_scheduler_page_clone() {
   $form_state = array(
     'title' => t('Schedule new version of the page'),
     'ajax' => TRUE,
-    //'nid' => arg(3),
   );
   $output = ctools_modal_form_wrapper('nas_page_scheduler_settings_form', $form_state);
   print ajax_render($output);
@@ -130,6 +129,17 @@ function nas_page_scheduler_settings_form_submit($form, $form_state) {
   $original->name = $form_state['values']['subtask'] . '_' . $hash;
   $original->admin_title = $page->subtask['subtask']->admin_title . ' ' . date('Y-m-d H:i', $form_state['values']['date_publish']);
   $original->path = $hash;
+  // Hide page from anonymous until get it published.
+  $original->access['plugins'][] = array(
+    'name' => 'role',
+    'settings'=> array(
+      'rids' => array(
+        0 => 1,
+      ),
+    ),
+    'context'=> 'logged-in-user',
+    'not' => TRUE,
+  );
 
   $handlers = !empty($page->handlers) ? $page->handlers : FALSE;
 
@@ -283,17 +293,18 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
       }
     }
   }
-
-  // Build table with all scheduled pages.
-  $header = array(
-    array('data' => t('Publish on')),
-    array('data' => t('Unpublish on')),
-    array('data' => t('')),
-  );
-  $output = theme('table', array(
-    'header' => $header,
-    'rows' => $rows,
-  ));
+  if (!empty($rows)) {
+    // Build table with all scheduled pages.
+    $header = array(
+      array('data' => t('Publish on')),
+      array('data' => t('Unpublish on')),
+      array('data' => t('')),
+    );
+    $output = theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+    ));
+  }
 
   $disabled = TRUE;
   if (!isset($conf['nas_page_scheduler_original_page']) || $conf['nas_page_scheduler_original_page']) {
@@ -310,7 +321,7 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
     '#default_value' => isset($conf['nas_page_scheduler_original_page']) ? $conf['nas_page_scheduler_original_page'] : TRUE,
   );
   $form['settings']['nas_page_scheduler_table'] = array(
-    '#markup' => $output,
+    '#markup' => isset($output) ? $output : '',
   );
   if ($conf['nas_page_scheduler_state'] && !$conf['nas_page_scheduler_original_page']) {
     $form['settings']['show_unpublish_date'] = array(
@@ -442,9 +453,25 @@ function nas_page_scheduler_start() {
                 // Modify scheduled page.
                 $scheduled_page->subtask['subtask']->path = $original_page->subtask['subtask']->path;
                 $scheduled_page->handlers[$key]->conf['nas_page_scheduler_page_published'] = TRUE;
+                // Remove previously added access plugin.
+                foreach ($scheduled_page->subtask['subtask']->access['plugins'] as $key => $plugin) {
+                  if ($plugin['name'] == 'role') {
+                    unset($scheduled_page->subtask['subtask']->access['plugins'][$key]);
+                  }
+                }
                 // Modify original page.
                 $original_page->subtask['subtask']->path = $hash;
-
+                // Hide page from anonymous until get it published.
+                $original_page->subtask['subtask']->access['plugins'][] = array(
+                  'name' => 'role',
+                  'settings'=> array(
+                    'rids' => array(
+                      0 => 1,
+                    ),
+                  ),
+                  'context'=> 'logged-in-user',
+                  'not' => TRUE,
+                );
                 $clear_cache = TRUE;
               }
             }
@@ -455,9 +482,25 @@ function nas_page_scheduler_start() {
                 // Modify scheduled page.
                 $scheduled_page->subtask['subtask']->path = $original_page->subtask['subtask']->path;
                 $scheduled_page->handlers[$key]->conf['nas_page_scheduler_page_published'] = TRUE;
+                // Remove previously added access plugin.
+                foreach ($scheduled_page->subtask['subtask']->access['plugins'] as $key => $plugin) {
+                  if ($plugin['name'] == 'role') {
+                    unset($scheduled_page->subtask['subtask']->access['plugins'][$key]);
+                  }
+                }
                 // Modify original page.
                 $original_page->subtask['subtask']->path = $hash;
-
+                // Hide page from anonymous until get it published.
+                $original_page->subtask['subtask']->access['plugins'][] = array(
+                  'name' => 'role',
+                  'settings'=> array(
+                    'rids' => array(
+                      0 => 1,
+                    ),
+                  ),
+                  'context'=> 'logged-in-user',
+                  'not' => TRUE,
+                );
                 $clear_cache = TRUE;
               }
               if ($date_unpublish <= REQUEST_TIME && $published) {
@@ -466,6 +509,17 @@ function nas_page_scheduler_start() {
                 $original_page->subtask['subtask']->path = $scheduled_page->subtask['subtask']->path;
                 $scheduled_page->subtask['subtask']->path = $hash;
                 $scheduled_page->handlers[$key]->conf['nas_page_scheduler_page_published'] = FALSE;
+                // Hide page from anonymous until get it published.
+                $scheduled_page->subtask['subtask']->access['plugins'][] = array(
+                  'name' => 'role',
+                  'settings'=> array(
+                    'rids' => array(
+                      0 => 1,
+                    ),
+                  ),
+                  'context'=> 'logged-in-user',
+                  'not' => TRUE,
+                );
                 $clear_cache = TRUE;
               }
             }
