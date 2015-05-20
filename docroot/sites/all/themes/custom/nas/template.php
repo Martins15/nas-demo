@@ -686,7 +686,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   if ($custom_link_title_items = field_get_items('node', $node, 'field_link_title')) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_items[0]['safe_value']);
   }
-  
+
   $editorial_extra_fields = FALSE;
   if ($vars['type'] == 'slideshow' or $vars['view_mode'] == 'editorial_card_3x') {
     if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
@@ -707,7 +707,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
       $vars['left_icon'] = '<i class="icon-slides"></i>';
     }
     $vars['caption'] = ucfirst($vars['type']);
-    if (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])){ 
+    if (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) {
       $vars['caption'] = $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'];
       $editorial_extra_fields = TRUE;
     }
