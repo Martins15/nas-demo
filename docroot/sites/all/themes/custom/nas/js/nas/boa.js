@@ -7,16 +7,37 @@
             boa_equalize = function() {
               var max_height = 0,
                   col_number = range(window.innerWidth),
-                  count = 1;
+                  row_number = 1,
+                  index = 1;
               $('.view-boa-index').attr('boa-equalizer', col_number);
-              $('.view-boa-index .columns').each(function(index) {
-                var height = $(this).find('.photo').height() + $(this).find('.common-name').height();
-                $(this).attr('data-row', count);
+              $('.view-boa-index .boa-item').each(function() {
+                var height = 0,
+                    fontsize = 0;
+				$(this).removeAttr('style');
+				$(this).removeAttr('data-row');
+                height = $(this).find('.common-name').height() + 40;
+                if ($(this).find('.section-header').length) {
+                  height += $(this).find('.section-header').height() + 30;
+                }
+                if ($(this).find('.photo').height() < 100) {
+                  height += $(this).width() / 0.76575;
+                }
+                else {
+                  height += $(this).find('.photo').height();
+                }
+                $(this).attr('data-row', row_number);
                 if (height > max_height) max_height = height;
-                if (index > 0 && index % col_number === col_number - 1){
-                  $('[data-row=' + count + ']').css('height', max_height + 40);
+                if ((index === col_number) || $(this).is(':last-child')) {
+                  $('[data-row=' + row_number + ']').css('height', max_height);
                   max_height = 0;
-                  count = count + 1;
+                  row_number = row_number + 1;
+                  index = 0;
+                }
+                index = index + 1;
+                // State name div height fix
+                while ($(this).find('h2.boa-family-set-title').height() > 40) {
+				  fontsize = parseInt($(this).find('h2.boa-family-set-title').css('font-size'));
+                  $(this).find('h2.boa-family-set-title').css('font-size', fontsize - 2);
                 }
               });
             },
@@ -38,9 +59,19 @@
         };
 
         // Init
-        $('.columns').removeAttr('data-equalizer-watch');
+        $('.boa-item').removeAttr('data-equalizer-watch');
         boa_equalize();
+        
+        $(document).ajaxSuccess(function() {
+          boa_equalize();
+        });
       });
+    }
+  };
+  
+  Drupal.behaviors.boa_pager = {
+    attach: function (context, settings) {
+      $('.view-boa-index').find('.pager').parent().hide();
     }
   };
 })(jQuery);

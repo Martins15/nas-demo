@@ -119,13 +119,15 @@ function audubon_near_you_search_form($form, &$form_state) {
  * Submit handler for the search form.
  */
 function audubon_near_you_search_form_submit($form, &$form_state) {
+  global $user;
+
   $query = array();
 
   if (!empty($form_state['values']['zip_code'])) {
     $zip = $form_state['values']['zip_code'];
     $nid = nas_get_chapter_by_zip(check_plain($zip));
     // load node and get state of the node.
-    $query['state'] = ; // TODO
+    $query['state'] = '';// TODO
     user_cookie_save(array('state' => $query['state']));
   }
 

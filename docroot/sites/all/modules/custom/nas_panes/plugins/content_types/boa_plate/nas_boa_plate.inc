@@ -56,6 +56,13 @@ function nas_panes_nas_boa_plate_content_type_edit_form_submit($form, &$form_sta
  * See ctools_plugin_examples for more advanced info.
  */
 function nas_boa_plate_render($subtype, $conf, $args, $context) {
+  ctools_include('ajax');
+  ctools_include('modal');
+  ctools_modal_add_js();
+
+  // After form submit close button has reload class, so we can reload page as well.
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_plate/boa-plate.js');
+
   $node = $context->data;
   if ($node->type !== 'boa') {
     return;
@@ -66,14 +73,33 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     return;
   }
   $image_thumbnail_path = image_style_url('boa_plate_thumbnail', $image_items[0]['uri']);
+  $subscribe_link = l(t('Download high-resolution file'), 'birds-of-america/nojs/subscribe/' . $node->nid, array(
+    'attributes' => array(
+      'class' => array(
+        'illustration-attribution',
+        'ctools-use-modal',
+      ),
+      'id' => 'subscribe-link',
+      'target' => 'blank',
+    ),
+    'html' => TRUE,
+  ));
   $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
   $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
+
+  drupal_add_js(array(
+    'nas_panes' => array(
+      'boa_plate_original_image_path' => $original_image_path,
+    )
+  ), 'setting');
 
   $block = new stdClass();
   $block->content = theme('boa_plate', array(
     'image_thumbnail' => $image_thumbnail_path,
     'lightbox_image_path' => $lightbox_image_path,
     'original_image_path' => $original_image_path,
+    'show_download_link' => isset($_COOKIE['show_download_link']) ? TRUE : FALSE,
+    'subscribe_link' => $subscribe_link,
     'link_title' => check_plain($conf['link_title']),
     'link_url' => url($conf['link_uri']),
   ));

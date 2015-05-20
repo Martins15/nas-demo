@@ -1774,9 +1774,8 @@ abstract class PanelizerEntityDefault implements PanelizerEntityInterface {
 
       $panelizers = $this->get_default_panelizer_objects($view_bundle);
 
-      // Ignore view modes that don't have a choice, have no displays defined,
-      // or already have their own custom display set up.
-      if (!$this->has_panel_choice($view_bundle) || empty($panelizers) || !empty($entity->panelizer[$view_mode]->did)) {
+      // Ignore view modes that don't have a choice or have no displays defined
+      if (!$this->has_panel_choice($view_bundle) || empty($panelizers)) {
         continue;
       }
 

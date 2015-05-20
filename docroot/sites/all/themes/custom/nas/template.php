@@ -107,6 +107,12 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'contact') {
     nas_preprocess_node_contact($vars);
   }
+  if ($vars['type'] == 'event') {
+    nas_preprocess_node_event($vars);
+  }
+  if ($vars['type'] == 'video_page') {
+    nas_preprocess_node_video_page($vars);
+  }
 }
 
 /**
@@ -249,6 +255,7 @@ function nas_preprocess_node_boa(&$vars) {
     $illustration = theme('image_style', array(
         'style_name' => 'boa_family_species',
         'path' => $field_boa_illustration_items[0]['uri'],
+        'attributes' => array('class' => array('lazy'))
     ));
     $image = theme('image', array(
       'path' => image_style_url('article_teaser_list', $field_boa_illustration_items[0]['uri']),
@@ -421,6 +428,91 @@ function nas_preprocess_node_magazine_issue(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for Event CT.
+ */
+function nas_preprocess_node_event(&$vars) {
+  // Event dates.
+  $vars['event_dates'] = '';
+  $field_items = field_get_items('node', $vars['node'], 'field_event_date');
+  $from = strtotime($field_items[0]['value']);
+  $to = strtotime($field_items[0]['value2']);
+  // Single day.
+  if (date('Ymd', $from) == date('Ymd', $to)) {
+    $vars['event_dates'] = date('l, F j, Y', $from);
+  }
+  // Same month.
+  elseif (date('Ym', $from) == date('Ym', $to)) {
+    $vars['event_dates'] = date('F j', $from) . '–' . date('j, Y', $to);
+  }
+  // Same year.
+  elseif (date('Y', $from) == date('Y', $to)) {
+    $vars['event_dates'] = date('F j', $from) . ' – ' . date('F j, Y', $to);
+  }
+  // Full range.
+  else {
+    $vars['event_dates'] = date('F j, Y', $from) . ' – ' . date('F j, Y', $to);
+  }
+
+  $editorial_cards_view_modes = array(
+    'nas_editorial_card',
+  );
+
+  if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+
+  $node = $vars['node'];
+  $vars['title_link'] = l($node->title, 'node/' . $node->nid);
+  $vars['summary'] = '';
+  if ($field_items = field_get_items('node', $node, 'body')) {
+    $vars['summary'] = text_summary($field_items[0]['safe_value'], 'full_html', '150');
+  }
+  $vars['details_link'] = l(t('Details »'), 'node/' . $node->nid);
+
+  $vars['start_date_month'] = 'apr';
+  $vars['start_date_day'] = '1';
+  if ($start_date_items = field_get_items('node', $node, 'field_event_date')) {
+    $start_date = strtotime($start_date_items[0]['value']);
+    $vars['start_date_day'] = date('d', $start_date);
+    $vars['start_date_month'] = date('M', $start_date);
+  }
+
+  $vars['center_address'] = '';
+  $vars['state'] = '??';
+  if ($field_items = field_get_items('node', $node, 'field_event_location')) {
+    $vars['state'] = $field_items[0]['province'];
+  }
+
+  // Event type taxonomy term reference.
+  $vars['event_type'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_event_type')) {
+    if ($term = taxonomy_term_load($field_items[0]['tid'])) {
+      $vars['event_type'] = l($term->name, 'taxonomy/term/' . $term->tid, array(
+          'attributes' => array(
+            'class' => array('event-type'),
+          )));
+    }
+  }
+
+  $vars['linked_image'] = '';
+  $image_uri = FALSE;
+  if ($get_image = field_get_items('node', $node, 'field_image')) {
+    $image_uri = $get_image[0]['uri'];
+  }
+  if ($image_uri) {
+    $image = theme('image', array(
+      'path' => image_style_url('article_teaser', $image_uri),
+      'alt' => $node->title,
+    ));
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
+  }
+}
+
+/**
  * theme_preprocess_node for article content type.
  */
 function nas_preprocess_node_article(&$vars) {
@@ -534,6 +626,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   elseif ($vars['type'] === 'slideshow' && $image_items = field_get_items('node', $node, 'field_images')) {
+    $image_uri = $image_items[0]['uri'];
+  }
+  elseif ($vars['type'] === 'event' && $image_items = field_get_items('node', $node, 'field_image')) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
@@ -875,7 +970,15 @@ function nas_form_element($variables) {
  * used to return <button> tag when needed
  */
 function nas_button($variables) {
-  $button_tag = array('edit-nas-search-btn', 'edit-nas-search-btn--2', 'edit-submit-search-form', 'edit-submit-nas-bird-guide');
+  // TODO: improve to not to use ids.
+  $button_tag = array(
+    'edit-nas-search-btn',
+    'edit-nas-search-btn--2',
+    'edit-submit-search-form',
+    'edit-submit-nas-bird-guide',
+    'edit-submit-events-listing',
+    'edit-submit-boa-index',
+  );
   $element = $variables['element'];
   if (in_array($element['#id'], $button_tag)) {
     $element['#attributes']['type'] = 'submit';
@@ -911,10 +1014,12 @@ function nas_image($variables) {
     'boa_family_species',
     'magazine_issue_cover',
     'our_leadership',
+    'boa_mail_subscription',
   );
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
     'engagement_card',
+    'boa_mail_subscription',
   );
   if (module_exists('lazyloader') && variable_get('lazyloader_enabled', LAZYLOADER_ENABLED) && isset($variables['style_name']) && !in_array($variables['style_name'], $exclude_lazyloader_styles)) {
     $attributes = $variables['attributes'];
@@ -1271,13 +1376,21 @@ function nas_preprocess_nas_flyway(&$variables) {
  * Implements hook_preprocess_panels_nas_frontpage().
  */
 function nas_preprocess_panels_nas_frontpage(&$variables) {
-  // Set featured frontpage backgroudimage variable.
+  // Set featured frontpage background image variable.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $variables['frontpage_backgroundimage'] = $featured_frontpage_image;
 
   // Set featured frontpage mobile content variable.
   $featured_frontpage_mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $variables['featured_frontpage_mobile_content'] = $featured_frontpage_mobile_content;
+
+  // Set curtain background color.
+  $bg_color = &drupal_static('featured_frontpage_bgcolor');
+  $variables['bg_color'] = !empty($bg_color) ? '#' . $bg_color : '#fff';
+
+  if (_frontpage_variant() == 'hero_image') {
+    $variables['theme_hook_suggestion'] = 'panels_nas_frontpage__hero_image';
+  }
 }
 
 /**
@@ -1293,7 +1406,7 @@ function nas_preprocess_views_view(&$vars) {
     }
   }
 
-  if ($view->name == 'boa_index' and $view->current_display == 'boa_index') {
+  if ($view->name == 'boa_index') {
     drupal_add_js(drupal_get_path('theme', 'nas') .'/js/nas/boa.js');
   }
 
@@ -1439,6 +1552,81 @@ function nas_preprocess_node_slideshow(&$vars) {
 }
 
 /**
+ * Implements theme_preprocess_node().
+ *
+ * For Videos page content type.
+ */
+function nas_preprocess_node_video_page(&$vars) {
+  if (in_array($vars['view_mode'], array('teaser', 'editorial_card_3x', 'editorial_card_4x'))) {
+    nas_preprocess_nodes_editorial_cards($vars);
+    return;
+  }
+}
+
+/**
+ * Preprocess function for nas_video_page theme.
+ */
+function nas_preprocess_nas_video_page(&$vars) {
+  global $base_url;
+  // Add Page absolute url.
+  $vars['page_link'] = $base_url . '/' . drupal_get_path_alias();
+
+  // Add Page title.
+  $vars['page_title'] = drupal_get_title();
+
+  $vars['twitter_url'] = url('http://twitter.com/share', array(
+    'query' => array(
+      'text' => $vars['page_title'],
+      'via' => 'audubonsociety',
+      'url' => $vars['page_link'],
+    ),
+  ));
+
+  $vars['facebook_url'] = url('http://www.facebook.com/sharer/sharer.php', array(
+    'query' => array(
+      'u' => $vars['page_link'],
+    ),
+  ));
+
+  $vars['pinterest_url'] = url('http://pinterest.com/pin/create/button/', array(
+    'query' => array(
+      'url' => $vars['page_link'],
+    ),
+  ));
+
+  $vars['mailto_url'] = url('mailto:', array(
+    'query' => array(
+      'subject' => $vars['page_title'],
+      'body' => $vars['page_link'],
+    ),
+  ));
+
+  $caption = '';
+  if (in_array('node', $vars['display']->context['panelizer']->type)) {
+    $node = $vars['display']->context['panelizer']->data;
+    $video_caption = '';
+    if ($items = field_get_items('node', $node, 'field_video_caption')) {
+      $video_caption = reset($items);
+      $video_caption = $video_caption['safe_value'];
+    }
+    $video_credit = '';
+    if ($items = field_get_items('node', $node, 'field_video_credit')) {
+      $video_credit = reset($items);
+      $video_credit = $video_credit['safe_value'];
+    }
+
+    $caption = $video_caption;
+    if ($video_credit) {
+      $caption .= ' Video: ' . $video_credit;
+    }
+
+    if ($caption) {
+      $vars['caption'] = '<p>' . $caption . '</p>';
+    }
+  }
+}
+
+/**
  * Attach "editorial-card-slug" class to taxonomy link.
  */
 function _nas_related_features_attach_menu_section_class(&$field) {
@@ -1498,4 +1686,24 @@ function nas_images_thumbnails_list($variables) {
   $images_table = theme('table', array('header' => $header, 'rows' => $rows));
 
   return '<div id="view-thumbnails-' . $file->fid . '-block" title="Manage image thumbnails">' . $manage_crop_link . $images_table . $manage_crop_link . '</div>';
+}
+
+/**
+ * Returns HTML for an image with an appropriate icon for the given file.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - file: A file object for which to make an icon.
+ *   - icon_directory: (optional) A path to a directory of icons to be used for
+ *     files. Defaults to the value of the "file_icon_directory" variable.
+ *
+ * @ingroup themeable
+ */
+function nas_file_icon($variables) {
+  $file = $variables['file'];
+  $icon_directory = $variables['icon_directory'];
+
+  $mime = check_plain($file->filemime);
+  $icon_url = base_path() . path_to_theme() . '/img/gnome_text_x_generic.png';
+  return '<img class="file-icon" alt="" title="' . $mime . '" src="' . $icon_url . '" />';
 }

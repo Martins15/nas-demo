@@ -102,6 +102,20 @@ function nas_search_entity_property_info_alter(&$info) {
     'getter callback' => '_nas_search_node_get_node_date',
     'calculated' => TRUE,
   );
+  $info['node']['properties']['event_months'] = array(
+    'label' => t('Event months'),
+    'type' => 'list<integer>',
+    'description' => t('Event months'),
+    'getter callback' => '_nas_search_node_get_event_months',
+    'calculated' => TRUE,
+  );
+  $info['node']['properties']['event_state'] = array(
+    'label' => t('Event state'),
+    'type' => 'string',
+    'description' => t('Event state'),
+    'getter callback' => '_nas_search_node_get_event_state',
+    'calculated' => TRUE,
+  );
   $info['node']['properties']['bird_name_autocomplete'] = array(
     'label' => t('Bird name for autocomplete'),
     'type' => 'text',
@@ -253,8 +267,40 @@ function _nas_search_node_get_node_date($entity, $options, $name, $entity_type) 
   if (!empty($entity->field_article_date[LANGUAGE_NONE][0]['value'])) {
     return strtotime($entity->field_article_date[LANGUAGE_NONE][0]['value']);
   }
+  if (!empty($entity->field_event_date[LANGUAGE_NONE][0]['value'])) {
+    return strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']);
+  }
 
   return $entity->created;
+}
+
+/**
+ * Property callback. Returns event's end date or NULL.
+ */
+function _nas_search_node_get_event_months($entity, $options, $name, $entity_type) {
+  if (!empty($entity->field_event_date[LANGUAGE_NONE][0]['value'])) {
+    $months = array();
+    if (!empty($entity->field_event_date[LANGUAGE_NONE][0]['value'])) {
+      $first_month = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']));
+      $last_month = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value2']));
+      for ($month = $first_month; $month <= $last_month; $month++) {
+        $months[] = $month;
+      }
+    }
+    else {
+      $months[] = (int) date('Ym', strtotime($entity->field_event_date[LANGUAGE_NONE][0]['value']));
+    }
+    return $months;
+  }
+}
+
+/**
+ * Property callback. Returns event's end date or NULL.
+ */
+function _nas_search_node_get_event_state($entity, $options, $name, $entity_type) {
+  if (!empty($entity->field_event_location[LANGUAGE_NONE][0]['province'])) {
+    return $entity->field_event_location[LANGUAGE_NONE][0]['province'];
+  }
 }
 
 /**
@@ -350,4 +396,54 @@ function _nas_search_get_tt_families() {
   }
 
   return $families;
+}
+
+
+/**
+ * Helper function returning list of BOAs formatted for usage with Typeahead.
+ *
+ * Results are cached via drupal cache mechanism for one hour.
+ *
+ * @return array
+ *  An array of objects containing:
+ *  - title: Individual BAO species title.
+ *  - new_title: Individual corresponding species title.
+ *  - alias: Alias to species page.
+ *  - combined_title: title + new_title (if exists).
+ */
+function _nas_search_get_tt_boas() {
+  if ($cache = cache_get('nas_search_tt_boas')) {
+    $species = $cache->data;
+  }
+  else {
+    $query = db_select('node', 'n');
+    $query->leftJoin('field_data_field_boa_bird', 'bb', 'bb.entity_id = n.nid AND bb.entity_type = :entity_type AND bb.deleted = :deleted', array(
+      ':entity_type' => 'node',
+      ':deleted' => '0',
+    ));
+    $query->leftJoin('node', 'nbb', 'nbb.nid = bb.field_boa_bird_target_id');
+    $query->leftJoin('url_alias', 'ua', 'ua.source = CONCAT(:prefix, n.nid)', array(':prefix' => 'node/'));
+    $query->fields('n', array('title', 'nid'));
+    $query->addField('ua', 'alias');
+    $query->addField('nbb', 'title', 'new_title');
+    $query->condition('n.type', 'boa');
+    $query->condition('n.status', NODE_PUBLISHED);
+    $query->orderBy('n.title');
+    $species = $query->execute()->fetchAll();
+
+    foreach ($species as &$item) {
+      if (!$item->alias) {
+        $item->alias = 'node/' . $item->nid;
+      }
+      $item->combined_title = $item->title;
+      if ($item->new_title) {
+        $item->combined_title .= ' ' . $item->new_title;
+      }
+      unset($item->nid);
+    }
+
+    cache_set('nas_search_tt_boas', $species, 'cache', time() + 3600);
+  }
+
+  return $species;
 }
