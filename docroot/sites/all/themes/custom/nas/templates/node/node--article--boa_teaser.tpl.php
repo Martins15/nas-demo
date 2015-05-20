@@ -89,6 +89,7 @@
 <div class="editorial-card collapse-minimal">
   <div class="editorial-card-photo">
     <?php print $linked_image; ?>
+    asdasdasdasdasd
   </div>
   <div class="editorial-card-content short">
     <?php if (!empty($blue_text_link_url)): ?>
