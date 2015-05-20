@@ -686,11 +686,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   if ($custom_link_title_items = field_get_items('node', $node, 'field_link_title')) {
     $vars['custom_link_text'] = drupal_ucfirst($custom_link_title_items[0]['safe_value']);
   }
-
-  if ($vars['type'] == 'slideshow') {
-    if (module_exists('nas_panes')) {
-      drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
-    }
+  
+  $editorial_extra_fields = FALSE;
+  if ($vars['type'] == 'slideshow' or $vars['view_mode'] == 'editorial_card_3x') {
     if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
       $vars['icon'] = theme('image_style', array(
         'path' => $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'],
@@ -699,15 +697,25 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
       if (!empty($node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'])) {
         $vars['icon'] = '<a href="' . $node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'] . '">' . $vars['icon'] . '</a>';
       }
+      $editorial_extra_fields = TRUE;
     }
     if (!empty($node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'])) {
       $vars['left_icon'] = '<i class="' . $node->field_editorial_card_left_icon[LANGUAGE_NONE][0]['value'] . '"></i>';
+      $editorial_extra_fields = TRUE;
     }
     else {
       $vars['left_icon'] = '<i class="icon-slides"></i>';
     }
-    $vars['caption'] = (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])) ? $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value']: NULL;
+    $vars['caption'] = ucfirst($vars['type']);
+    if (!empty($node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'])){ 
+      $vars['caption'] = $node->field_editorial_card_caption[LANGUAGE_NONE][0]['value'];
+      $editorial_extra_fields = TRUE;
+    }
+    if (module_exists('nas_panes') and $editorial_extra_fields) {
+      drupal_add_css(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/slideshow_sidebar_block/style.css');
+    }
   }
+  $vars['editorial_extra_fields'] = $editorial_extra_fields;
 }
 
 /**

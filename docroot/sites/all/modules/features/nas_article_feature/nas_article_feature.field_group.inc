@@ -25,6 +25,11 @@ function nas_article_feature_field_group_info() {
     'children' => array(
       0 => 'field_editorial_card_subtitle',
       1 => 'field_editorial_card_title',
+      2 => 'field_editorial_card_icon',
+      3 => 'field_editorial_card_icon_link',
+      4 => 'field_editorial_card_caption',
+      5 => 'field_editorial_card_left_icon',
+      6 => 'field_image',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

@@ -135,6 +135,9 @@ function nas_article_feature_strongarm() {
         'xmlsitemap' => array(
           'weight' => '30',
         ),
+        'locations' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(
         'disqus' => array(
