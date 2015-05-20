@@ -218,7 +218,7 @@ function nas_page_scheduler_variant_scheduler_form($form, &$form_state) {
 function nas_page_scheduler_ctools_render_alter(&$info, &$page, &$context) {
   $handler = $context['handler'];
   $contexts = ctools_context_handler_get_handler_contexts($context['contexts'], $handler);
-  if (isset($handler->conf['nas_page_scheduler_state']) && $handler->conf['nas_page_scheduler_state']) {
+  if (isset($handler->conf['nas_page_scheduler_state']) && $handler->conf['nas_page_scheduler_state'] && user_access('access administration pages')) {
     if (isset($handler->task) && $handler->task == 'page') {
       drupal_set_message(l('Schedule new version', 'page/nojs/clone/' . $handler->subtask, array(
         'attributes' => array(
