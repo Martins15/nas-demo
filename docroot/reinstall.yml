@@ -11,7 +11,7 @@
     installation_profile_name: pp
     mysql_user: root
     mysql_pass: root
-    mysql_db: nas
+    mysql_db: drupal
     cache_folder: /var/www/cache
     backup_folder: /var/www/backup
     backup_user: propeople
