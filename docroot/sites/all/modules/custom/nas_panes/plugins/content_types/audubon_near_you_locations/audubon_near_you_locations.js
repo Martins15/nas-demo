@@ -12,6 +12,9 @@
           $('#audubon-near-you--office-chapter--wrapper .'+selector).addClass('hide');
 		});
 	  }
+	  if ($('.near-you-form.bird-guide-country select').hasClass('hide')) {
+        $('.near-you-form.bird-guide-country').addClass('hide');
+	  }
     }
   };
 })(jQuery);
