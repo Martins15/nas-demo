@@ -834,8 +834,18 @@ function nas_panes_theme() {
         'title' => NULL,
         'items' => array(),
         'hide_empty_text' => NULL,
+        'top_offset' => NULL,
       ),
       'template' => 'audubon-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
+    'audubon_near_you_local_chapter' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-local-chapter',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
     'audubon_near_you_center_sanctuary' => array(
@@ -1694,11 +1704,12 @@ function _nas_panes_get_upcoming_events($state = 'all') {
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $type = 'all') {
+function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL) {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $type);
-
+  $results = views_get_view_result('locations', 'default', $state, $type, $nid);
   foreach ($results as $item) {
+    $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name))? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
+    $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name))? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->node_title,
@@ -1708,8 +1719,8 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
-      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
-      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'first_name' => $first_name,
+      'last_name' => $last_name,
       'phone_email' => '',
       'address_label' => t("Address") . ":<br/>",
       'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
