@@ -24,6 +24,7 @@ function video_page_more_videos_edit_form($form, &$form_state) {
   $context = reset($form_state['display']->context);
   $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
   $conf = $form_state['conf'];
+  _nas_panes_hide_pane_title_field($form);
 
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'editorial_card_4x', 'nas_panes', 'plugins/content_types/editorial_card_4x');
