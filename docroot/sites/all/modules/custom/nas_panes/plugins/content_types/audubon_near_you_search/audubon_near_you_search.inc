@@ -136,7 +136,7 @@ function audubon_near_you_search_form_validate($form, &$form_state) {
       // if zip code was not found, rebuild the form with state select
       $form_state['rebuild'] = TRUE;
       $form_state['rebuild_info']['chid'] = 0;
-      drupal_set_message(t("Sorry! This zip code is not on our database. Selecting your state."), 'error');
+      drupal_set_message(t("Sorry! This zip code is not on our database. Select your state."), 'error');
     }
     else {
       // if no error is set, store chapter nid for submit handler
