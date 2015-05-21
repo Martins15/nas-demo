@@ -2537,3 +2537,11 @@ function nas_master_update_7179() {
   nas_master_update_7169();
   features_revert_module('nas_image_styles_feature');
 }
+
+/**
+ * Enable module nas_near_you.
+ */
+function nas_master_update_7180() {
+  module_enable(array('nas_near_you'));
+}
+
