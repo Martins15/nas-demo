@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Audubon Near You. Offices & Chapters template file.
+ * Audubon Near You. Local Offices & Chapters template file.
  */
 ?>
 
-<div id="audubon-near-you--office-chapter--wrapper"<?php if (!empty($top_offset)) print " class='{$top_offset}'"; ?>>
+<div id="audubon-near-you--local-chapter--wrapper">
   <div class="large-6 columns">
-    <h2 class="title-block"><?php print t('Offices & Chapters'); ?></h2>
+    <h2 class="title-block"><?php print t('Your Local Chapter'); ?></h2>
     <?php if (empty($items)) : ?>
       <?php if (empty($hide_empty_text) && empty($filter_active)) : ?>
         <?php print t('Select your state above'); ?>

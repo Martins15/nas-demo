@@ -46,8 +46,10 @@ function nas_near_you_zip_form_submit($form, &$form_state) {
     variable_set('nas_near_you_zip_database', $file->fid);
     file_usage_add($file, 'nas_near_you', 'node', $user->uid);
     // Delete the old one.
-    $old = file_load($fid);
-    file_delete($old);
+    if ($fid != 0) {
+      $old = file_load($fid);
+      file_delete($old);
+    }
   }
   else {
     $file = file_load($fid);
@@ -121,6 +123,7 @@ function _nas_near_you_operation($rows, &$context){
 
 function _nas_near_you_batch_finished($success, $results, $operations) {
   if ($success) {
+    variable_set('nas_near_you_database_set', TRUE);
     $message = t('@count items successfully processed:', array('@count' => count($results)));
     drupal_set_message($message);
   }

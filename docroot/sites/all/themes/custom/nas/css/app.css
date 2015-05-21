@@ -9894,6 +9894,7 @@ body.black-bg .slide-caption {
   width: 77px;
   margin-top: -38px;
   margin-left: -38px;
+  cursor: pointer;
 }
 
 .curtain-arrow {
@@ -12988,6 +12989,12 @@ body.touch .sticky-wrapper {
   }
 }
 
+.bird-guide-zip-input {
+  width: 50%;
+  float: left;
+  padding: 0 10px 0 0;
+}
+
 .btn-submint {
   width: 20%;
   padding: 0 0 0 10px;
@@ -13048,6 +13055,17 @@ body.touch .sticky-wrapper {
   .center-and-sanctuaries {
     margin-top: 50px;
   }
+}
+
+.page-audubon-near-you .global-content > .row {
+  position: relative;
+}
+.page-audubon-near-you #audubon-near-you--local-chapter--wrapper {
+  position: absolute;
+  width: 100%;
+}
+.page-audubon-near-you .top-offset > div {
+  margin-top: 300px;
 }
 
 .static-page-content .deck {
