@@ -2538,11 +2538,6 @@ function nas_master_update_7179() {
   features_revert_module('nas_image_styles_feature');
   module_enable(array('nas_page_scheduler'));
   // Remove duplicated file_attachments panes.
-  ctools_include('object-cache');
-  if ($cache = ctools_object_cache_get('panelizer_display_cache', 'default:node:article.page_manager:node:article:map')) {
-    $cache->display->panels['file_attachments'] = array_slice($cache->display->panels['file_attachments'], 0, 1);
-    ctools_object_cache_set('panelizer_display_cache', 'default:node:article.page_manager:node:article:map', $cache);
-  }
   $query = db_select('panels_pane', 'p')
     ->fields('p', array('did', 'pid'))
     ->condition('p.subtype', 'node:field_file_attachments');
