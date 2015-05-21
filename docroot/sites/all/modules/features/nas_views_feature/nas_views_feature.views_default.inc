@@ -936,6 +936,13 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
+  /* Filter criterion: Content: Post date */
+  $handler->display->display_options['filters']['created']['id'] = 'created';
+  $handler->display->display_options['filters']['created']['table'] = 'node';
+  $handler->display->display_options['filters']['created']['field'] = 'created';
+  $handler->display->display_options['filters']['created']['operator'] = '>=';
+  $handler->display->display_options['filters']['created']['value']['value'] = '-30 days';
+  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
 
   /* Display: Most viewed articles */
   $handler = $view->new_display('panel_pane', 'Most viewed articles', 'nas_most_viewed_articles');
@@ -976,6 +983,13 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['table'] = 'field_data_field_magazine_issue';
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['field'] = 'field_magazine_issue_target_id';
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['operator'] = 'not empty';
+  /* Filter criterion: Content: Post date */
+  $handler->display->display_options['filters']['created']['id'] = 'created';
+  $handler->display->display_options['filters']['created']['table'] = 'node';
+  $handler->display->display_options['filters']['created']['field'] = 'created';
+  $handler->display->display_options['filters']['created']['operator'] = '>=';
+  $handler->display->display_options['filters']['created']['value']['value'] = '-30 days';
+  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
   $export['nas_most_viewed_articles'] = $view;
 
   $view = new view();
