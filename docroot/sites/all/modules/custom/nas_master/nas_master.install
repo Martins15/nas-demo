@@ -2539,10 +2539,8 @@ function nas_master_update_7179() {
 }
 
 /**
- * ANW586 Enable deepzoom module.
  * NAS63 Article feature revert.
  */
 function nas_master_update_7180(&$sandbox) {
-  module_enable(array('deepzoom'));
   features_revert_module('nas_article_feature');
 }
