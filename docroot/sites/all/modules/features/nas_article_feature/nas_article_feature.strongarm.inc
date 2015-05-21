@@ -58,7 +58,7 @@ function nas_article_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'rss' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'search_index' => array(
         'custom_settings' => FALSE,
@@ -150,6 +150,10 @@ function nas_article_feature_strongarm() {
           'editorial_card_4x' => array(
             'weight' => '1002',
             'visible' => TRUE,
+          ),
+          'rss' => array(
+            'weight' => '19',
+            'visible' => FALSE,
           ),
         ),
       ),

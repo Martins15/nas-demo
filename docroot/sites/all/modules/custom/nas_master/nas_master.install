@@ -2289,3 +2289,14 @@ function nas_master_update_7170() {
 function nas_master_update_7171() {
   module_enable(array('nas_field_max_length'));
 }
+
+/**
+ * Enable NAS RSS views feature;
+ */
+function nas_master_update_7182() {
+  module_enable(array('nas_rss'));
+  $features = array('nas_article_feature','nas_slideshow_feature');
+  foreach($features as $feature){
+    features_revert(array($feature => array('field_base', 'field_group', 'field_instance')));
+  }
+}

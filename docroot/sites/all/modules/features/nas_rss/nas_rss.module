@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the nas_rss feature.
+ */
+
+include_once 'nas_rss.features.inc';

@@ -137,6 +137,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'text_summary_or_trimmed',
         'weight' => 1,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -369,6 +375,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 11,
       ),
+      'rss' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'date',
@@ -423,6 +435,7 @@ function nas_article_feature_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
+        'display_all_day' => 0,
         'increment' => 15,
         'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
@@ -541,6 +554,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 13,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -698,6 +717,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 12,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -857,6 +882,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1031,6 +1062,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'rss' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1190,6 +1227,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 15,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'list',
@@ -1340,6 +1383,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 17,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1502,6 +1551,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 9,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -1642,6 +1697,16 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'large',
+        ),
+        'type' => 'image',
+        'weight' => 18,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1823,6 +1888,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
       'search_result' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1974,6 +2045,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -2153,6 +2230,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 16,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -2338,6 +2421,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'media',
         'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -2535,6 +2624,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -2686,6 +2781,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 14,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -2879,6 +2980,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 7,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -2930,7 +3037,11 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_menu_section'
   $field_instances['node-article-field_menu_section'] = array(
     'bundle' => 'article',
-    'default_value' => array(),
+    'default_value' => array(
+      0 => array(
+        'tid' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => 'If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.',
     'display' => array(
@@ -3041,6 +3152,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 8,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -3078,7 +3195,6 @@ function nas_article_feature_field_default_field_instances() {
       'active' => 0,
       'module' => 'taxonomy_orderselect',
       'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
       'type' => 'taxonomy_orderselect',
@@ -3210,6 +3326,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 10,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -3380,6 +3502,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'rss' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'search_result' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -3540,6 +3668,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
+      ),
+      'rss' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
       ),
       'search_result' => array(
         'label' => 'hidden',

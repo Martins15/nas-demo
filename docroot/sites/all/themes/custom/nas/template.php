@@ -55,13 +55,27 @@ function nas_html_head_alter(&$head_elements) {
     );
   }
 }
-
+function nas_preprocess_views_view_row_rss(&$vars){
+  $nid = $vars['row']->nid;
+  $node = node_load($nid);
+  $uid = $node->uid;
+  $created = $node->created;
+  $user = user_load($uid);
+  $name = $user->name;
+  $created = format_date($created, $type = 'medium');
+  $name = check_plain("<b>Author: </b>".$name."</br>");
+  $created = check_plain("<b>Published: </b>".$created);
+  
+  $vars['author'] = $name;
+  $vars['published'] = $created;
+}
 /**
  * Implements hook_preprocess_node().
  */
 function nas_preprocess_node(&$vars) {
   global $base_url;
 
+  die();
   // Tell Drupal that there is separate tpl.php files for view modes.
   if (!empty($vars['view_mode'])) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
@@ -110,6 +124,14 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'event') {
     nas_preprocess_node_event($vars);
   }
+}
+
+/**
+ * theme_preprocess_node for RSS view mode.
+ */
+function nas_preprocess_node_rss(&$vars) {
+  $vars['author'] = $vars['user']->name;
+  $vars['published_date'] = $vars['date'];
 }
 
 /**

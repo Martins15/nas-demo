@@ -40,6 +40,7 @@ features[variable][] = node_options_slideshow
 features[variable][] = node_preview_slideshow
 features[variable][] = node_submitted_slideshow
 features[variable][] = panelizer_defaults_node_slideshow
+features[variable][] = panelizer_node:slideshow:page_manager_selection
 features[variable][] = scheduler_publish_enable_slideshow
 features[views_view][] = slideshow_explore_more
 features[views_view][] = slideshow_related_features
