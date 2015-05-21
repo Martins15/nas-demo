@@ -9,7 +9,7 @@
  * Implements hook_schema().
  */
 function nas_near_you_schema() {
-  $schema ['zip_code'] = array(
+  $schema['zip_code'] = array(
     'description' => 'Table for Audubon location by ZIP code.',
     'fields' => array(
       'zid' => array(

@@ -102,7 +102,7 @@ function audubon_near_you_search_form($form, &$form_state) {
     '#options' => _audubon_near_you_states(),
     '#default_value' => !empty($query['state']) ? $query['state'] : '',
   );
-  if ($nas_near_you and empty($query['state']) and !$already_tried_zip) { 
+  if ($nas_near_you and empty($query['state']) and !$already_tried_zip) {
     $form['state']['#attributes'] = array('class' => array('hide'));
   }
 
@@ -163,7 +163,7 @@ function audubon_near_you_search_form_submit($form, &$form_state) {
     else {
       $nid = nas_get_chapter_by_zip(check_zip($zip));
       $debug .= ' function nid';
-	}
+    }
     if (!$nid) return;
     $node = node_load($nid);
     $field = field_get_items('node', $node, 'field_location_address');

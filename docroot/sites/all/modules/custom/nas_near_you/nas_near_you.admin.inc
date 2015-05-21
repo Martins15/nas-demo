@@ -35,7 +35,6 @@ function nas_near_you_zip_form($form, &$form_state) {
  */
 function nas_near_you_zip_form_submit($form, &$form_state) {
   global $user;
-  $rows = array(); // debug
   $file = NULL;
   $fid = variable_get('nas_near_you_zip_database', 0);
   if ($fid != $form_state['values']['zip_database']) {
@@ -59,7 +58,7 @@ function nas_near_you_zip_form_submit($form, &$form_state) {
   batch_set($batch);
 }
 
-function _nas_near_you_batch($file){
+function _nas_near_you_batch($file) {
   $rows = file($file->uri);
   $row_count = sizeof($rows);
   $batch_size = 200;
@@ -90,7 +89,7 @@ function _nas_near_you_batch($file){
   return $batch;
 }
 
-function _nas_near_you_operation($rows, &$context){
+function _nas_near_you_operation($rows, &$context) {
   // Variables
   $chcode = '';
   $nid = 0;
@@ -101,16 +100,16 @@ function _nas_near_you_operation($rows, &$context){
     $row[2] = substr($row[2], 0, 3);
     // If is the same chaptercode as the prev, do not query nid.
     if (strcmp($chcode, $row[2]) != 0) {
-	  // Finding Chapter for each ZIP code base on chapter_code.
-	  $nid = db_query('SELECT chapter.entity_id AS nid '.
-	                  'FROM {field_data_field_chapter_code} chapter '.
-	                  'WHERE chapter.field_chapter_code_value = :chcode',
+      // Finding Chapter for each ZIP code base on chapter_code.
+      $nid = db_query('SELECT chapter.entity_id AS nid '.
+                      'FROM {field_data_field_chapter_code} chapter '.
+                      'WHERE chapter.field_chapter_code_value = :chcode',
                    array(':chcode' => $row[2]))->fetchField();
       $nid = intval($nid);
     }
-	// Add zip_code to DB.
-	if (is_numeric($nid) and $nid > 0) {
-	  $result = db_insert('zip_code')
+    // Add zip_code to DB.
+    if (is_numeric($nid) and $nid > 0) {
+      $result = db_insert('zip_code')
         ->fields(array(
           'nid' => $nid,
           'zipcode' => $row[0]))
@@ -129,7 +128,7 @@ function _nas_near_you_batch_finished($success, $results, $operations) {
   }
   else {
     $error_operation = reset($operations);
-    $message = t('An error occurred while processing %error_operation with arguments: @arguments', 
+    $message = t('An error occurred while processing %error_operation with arguments: @arguments',
       array(
         '%error_operation' => $error_operation[0],
         '@arguments' => print_r($error_operation[1], TRUE)
