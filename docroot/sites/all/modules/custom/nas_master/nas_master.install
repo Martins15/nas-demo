@@ -2536,6 +2536,23 @@ function nas_master_update_7178() {
 function nas_master_update_7179() {
   nas_master_update_7169();
   features_revert_module('nas_image_styles_feature');
+  module_enable(array('nas_page_scheduler'));
+  // Remove duplicated file_attachments panes.
+  $query = db_select('panels_pane', 'p')
+    ->fields('p', array('did', 'pid'))
+    ->condition('p.subtype', 'node:field_file_attachments');
+  $pps = $query->execute()->fetchAll();
+  $unique_keys = array();
+  foreach ($pps as $p) {
+    if (!array_key_exists($p->did, $unique_keys)) {
+      $unique_keys[$p->did] = $p->pid;
+    }
+    else {
+      db_delete('panels_pane')
+        ->condition('pid', $p->pid, '=')
+        ->execute();
+    }
+  }
 }
 
 /**

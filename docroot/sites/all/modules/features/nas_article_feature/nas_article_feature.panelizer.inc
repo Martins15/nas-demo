@@ -2807,6 +2807,7 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-7dba9d59-295a-4c5c-8836-819a9f3221f0'] = $pane;
     $display->panels['file_attachments'][0] = 'new-7dba9d59-295a-4c5c-8836-819a9f3221f0';
     $pane = new stdClass();
+<<<<<<< HEAD
     $pane->pid = 'new-b8b129a8-d5b2-414d-96e4-0ed77b0d4c8b';
     $pane->panel = 'file_attachments';
     $pane->type = 'entity_field';
@@ -2929,6 +2930,8 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-0aff50b4-55a9-4baf-ab99-a5666d8dc0b2'] = $pane;
     $display->panels['header'][0] = 'new-0aff50b4-55a9-4baf-ab99-a5666d8dc0b2';
     $pane = new stdClass();
+=======
+>>>>>>> master
     $pane->pid = 'new-6cb669ac-c603-4557-a8de-0ba9cbdbb87d';
     $pane->panel = 'header';
     $pane->type = 'article_section';

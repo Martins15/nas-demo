@@ -155,6 +155,17 @@
     }
   }
 
+  .curtain-video-play-button {
+    background-image: url(../img/play-icon.png);
+    position: absolute;
+    height: 77px;
+    left: 50%;
+    top: 50%;
+    width: 77px;
+    margin-top: -38px;
+    margin-left: -38px;
+    cursor: pointer;
+  }
 }
 
 .curtain-arrow {
