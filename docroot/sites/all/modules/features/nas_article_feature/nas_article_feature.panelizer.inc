@@ -2930,8 +2930,7 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-0aff50b4-55a9-4baf-ab99-a5666d8dc0b2'] = $pane;
     $display->panels['header'][0] = 'new-0aff50b4-55a9-4baf-ab99-a5666d8dc0b2';
     $pane = new stdClass();
-=======
->>>>>>> master
+
     $pane->pid = 'new-6cb669ac-c603-4557-a8de-0ba9cbdbb87d';
     $pane->panel = 'header';
     $pane->type = 'article_section';
