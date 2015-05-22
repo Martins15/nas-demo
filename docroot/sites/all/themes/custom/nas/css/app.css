@@ -7941,7 +7941,7 @@ body.touch .primary-sub-nav-index {
   margin-bottom: 37.5px;
 }
 
- div.page-summary {
+.article-header div.page-summary {
   border:none;
   background-color: white;
   margin-bottom: -4px;
@@ -7949,10 +7949,10 @@ body.touch .primary-sub-nav-index {
   right: 20px;
   height: 0;
 }
-.page-summary-title{
+.article-header h4.page-summary-title{
   display: none;
 }
-.page-summary-body{
+.article-header p.page-summary-body{
   font-size: 13px;
   color: rgb(138, 135, 129);
   font-family: 'Source Sans Pro',Verdana,sans-serif;
@@ -9584,7 +9584,7 @@ body.black-bg .slide-caption {
   .inline-map.small > .inline-map-canvas {
     min-height: 360px;
   }
-}*
+}
 .inline-map-canvas iframe {
   min-height: 280px;
 }
