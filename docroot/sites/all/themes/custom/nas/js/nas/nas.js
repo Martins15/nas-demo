@@ -486,7 +486,7 @@ var Nas = Nas || {};
       });
     }
   };
-  
+
   Drupal.behaviors.centerAuthorImage = {
     attach: function (context, settings) {
       articleAuthor = jQuery(".article-sidebar-section.article-meta img");
