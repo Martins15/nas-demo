@@ -937,7 +937,7 @@ function nas_article_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -1435,6 +1435,166 @@ function nas_article_feature_field_default_field_instances() {
       ),
       'type' => 'entityreference_autocomplete',
       'weight' => 22,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_credit_caption_map'
+  $field_instances['node-article-field_credit_caption_map'] = array(
+    'bundle' => 'article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 24,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_related_news' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_author_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_credit_caption_map',
+    'label' => 'Credit/Caption',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => 0,
+            ),
+            'html' => array(
+              'weight' => 0,
+            ),
+            'map' => array(
+              'weight' => -8,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'video' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 5,
     ),
   );
 
@@ -4148,7 +4308,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -4500,6 +4660,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Can be left empty if Press Release panelizer is applied');
   t('Color mode');
   t('Conservation Project');
+  t('Credit/Caption');
   t('Date');
   t('Editorial Card Caption');
   t('Editorial Card Icon');

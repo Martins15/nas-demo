@@ -210,6 +210,33 @@ function nas_article_feature_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_credit_caption_map'
+  $field_bases['field_credit_caption_map'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_credit_caption_map',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_custom_section'
   $field_bases['field_custom_section'] = array(
     'active' => 1,

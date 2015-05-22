@@ -535,4 +535,19 @@ var Nas = Nas || {};
       });
     }
   };
+
+  Drupal.behaviors.iframe_map = {
+  attach: function (context,settings){
+    var map = $("#map-canvas iframe");
+      parent_h = map.parent().height();
+      map_h = map.height();
+        if(parent_h < map_h){
+          map.parent().height(map_h);
+        }
+        else{
+          map.height(parent_h);
+        }
+    }
+  };
+
 })(jQuery);
