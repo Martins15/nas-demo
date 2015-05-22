@@ -2289,10 +2289,3 @@ function nas_master_update_7170() {
 function nas_master_update_7171() {
   module_enable(array('nas_field_max_length'));
 }
-
-/**
- * NAS63 Article feature revert.
- */
-function nas_master_update_7180(&$sandbox) {
-  features_revert_module('nas_article_feature');
-}
