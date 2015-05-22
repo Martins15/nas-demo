@@ -496,7 +496,6 @@ var Nas = Nas || {};
     }
   };
 
-
   Drupal.behaviors.search_highlight = {
     attach: function (context, settings) {
       $('.page-search-results').each(function(){
