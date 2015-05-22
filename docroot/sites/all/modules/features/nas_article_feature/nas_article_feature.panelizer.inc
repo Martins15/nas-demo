@@ -1575,7 +1575,6 @@ function nas_article_feature_panelizer_defaults() {
       'header_hero_attr_text' => NULL,
       'inline_image' => NULL,
       'magazine_bar' => NULL,
-      'file_attachments' => NULL,
     ),
   );
   $display->cache = array();
@@ -1678,142 +1677,6 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '402fd139-8a7e-4c86-b385-84b9f7851ea6';
     $display->content['new-402fd139-8a7e-4c86-b385-84b9f7851ea6'] = $pane;
     $display->panels['card_set'][0] = 'new-402fd139-8a7e-4c86-b385-84b9f7851ea6';
-    $pane = new stdClass();
-    $pane->pid = 'new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
-    $pane->panel = 'comments';
-    $pane->type = 'block';
-    $pane->subtype = 'disqus-disqus_comments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
-    $display->content['new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6'] = $pane;
-    $display->panels['comments'][0] = 'new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
-    $pane = new stdClass();
-    $pane->pid = 'new-f4486480-f68a-4bda-a5ce-69f19dc2687a';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => '0',
-      'delta_offset' => '0',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'f4486480-f68a-4bda-a5ce-69f19dc2687a';
-    $display->content['new-f4486480-f68a-4bda-a5ce-69f19dc2687a'] = $pane;
-    $display->panels['file_attachments'][0] = 'new-f4486480-f68a-4bda-a5ce-69f19dc2687a';
-    $pane = new stdClass();
-    $pane->pid = 'new-342dacb0-2aa1-402a-a074-0c844d23c871';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '342dacb0-2aa1-402a-a074-0c844d23c871';
-    $display->content['new-342dacb0-2aa1-402a-a074-0c844d23c871'] = $pane;
-    $display->panels['file_attachments'][1] = 'new-342dacb0-2aa1-402a-a074-0c844d23c871';
-    $pane = new stdClass();
-    $pane->pid = 'new-12cd479a-931d-4741-904b-4248d8647458';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '12cd479a-931d-4741-904b-4248d8647458';
-    $display->content['new-12cd479a-931d-4741-904b-4248d8647458'] = $pane;
-    $display->panels['file_attachments'][2] = 'new-12cd479a-931d-4741-904b-4248d8647458';
-    $pane = new stdClass();
-    $pane->pid = 'new-47b00b5a-53ec-401e-a7f1-0fb03caf8bdb';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = '47b00b5a-53ec-401e-a7f1-0fb03caf8bdb';
-    $display->content['new-47b00b5a-53ec-401e-a7f1-0fb03caf8bdb'] = $pane;
-    $display->panels['file_attachments'][3] = 'new-47b00b5a-53ec-401e-a7f1-0fb03caf8bdb';
     $pane = new stdClass();
     $pane->pid = 'new-66161f93-996e-435d-84c1-0b2f7fcabb6b';
     $pane->panel = 'header';
@@ -1999,6 +1862,28 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-15b2f47b-9e70-451e-8845-28f737b2040b'] = $pane;
     $display->panels['main'][0] = 'new-15b2f47b-9e70-451e-8845-28f737b2040b';
     $pane = new stdClass();
+    $pane->pid = 'new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'disqus-disqus_comments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
+    $display->content['new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6'] = $pane;
+    $display->panels['main'][1] = 'new-6feb4492-e44a-48d3-9e7c-1f1d174e12e6';
+    $pane = new stdClass();
     $pane->pid = 'new-c4302322-480a-4845-9d5b-096ddc20fa9d';
     $pane->panel = 'mobile_author';
     $pane->type = 'entity_field';
@@ -2047,106 +1932,9 @@ function nas_article_feature_panelizer_defaults() {
         ),
         'hide_for_firsttime_visitors' => 1,
       ),
-      'form_build_id' => 'form-c9dHMAp8YzS7rsa8ocZn-Qt7F3OOqazRkyJzUQJlSB0',
-      'form_token' => 'Rplhw90JViCgpx0jWN6YsqafXJi7r4k8VFaC7Dd2fYE',
+      'form_build_id' => 'form-kKUtbyiCQiAxkFu6VSIUqUM6hhO__AzaJ4FSWBX4GZ4',
+      'form_token' => 'N4QTYJ0PieulgDl6ao4U87849WOfR6zN5aJ2OxRrWuo',
       'form_id' => 'engagement_cards_sidebar_edit_form',
-      'override_title_heading' => 'h2',
-      7971 => array(
-        'references' => array(
-          1 => array(
-            'entity_reference' => FALSE,
-          ),
-        ),
-        'hide_for_firsttime_visitors' => 0,
-        'equalize_height' => 0,
-        'show_social_icons' => 0,
-        'social_icons' => array(
-          'twitter' => 'https://twitter.com/audubonsociety',
-          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
-          'instagram' => 'http://instagram.com/audubonsociety',
-        ),
-      ),
-      'nas_panes_resave_panel' => TRUE,
-      47526 => array(
-        'references' => array(
-          1 => array(
-            'entity_reference' => array(
-              'entity_id' => '45146',
-              'entity_label' => 'Change Glass, Save Birds',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-        ),
-        'hide_for_firsttime_visitors' => 0,
-        'equalize_height' => 0,
-        'show_social_icons' => 0,
-        'social_icons' => array(
-          'twitter' => 'https://twitter.com/audubonsociety',
-          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
-          'instagram' => 'http://instagram.com/audubonsociety',
-        ),
-      ),
-      47531 => array(
-        'references' => array(
-          1 => array(
-            'entity_reference' => array(
-              'entity_id' => '45146',
-              'entity_label' => 'Change Glass, Save Birds',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-        ),
-        'hide_for_firsttime_visitors' => 0,
-        'equalize_height' => 0,
-        'show_social_icons' => 0,
-        'social_icons' => array(
-          'twitter' => 'https://twitter.com/audubonsociety',
-          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
-          'instagram' => 'http://instagram.com/audubonsociety',
-        ),
-      ),
-      47536 => array(
-        'references' => array(
-          1 => array(
-            'entity_reference' => array(
-              'entity_id' => '45146',
-              'entity_label' => 'Change Glass, Save Birds',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-        ),
-        'hide_for_firsttime_visitors' => 0,
-        'equalize_height' => 0,
-        'show_social_icons' => 0,
-        'social_icons' => array(
-          'twitter' => 'https://twitter.com/audubonsociety',
-          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
-          'instagram' => 'http://instagram.com/audubonsociety',
-        ),
-      ),
-      2291 => array(
-        'references' => array(
-          1 => array(
-            'entity_reference' => array(
-              'entity_id' => '46841',
-              'entity_label' => 'Join Our Climate Community',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-        ),
-        'hide_for_firsttime_visitors' => 0,
-        'equalize_height' => 0,
-        'show_social_icons' => 0,
-        'social_icons' => array(
-          'twitter' => 'https://twitter.com/audubonsociety',
-          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
-          'instagram' => 'http://instagram.com/audubonsociety',
-        ),
-      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -2321,142 +2109,6 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '6424f825-6c96-4bc2-843b-96bfe933a4ad';
     $display->content['new-6424f825-6c96-4bc2-843b-96bfe933a4ad'] = $pane;
     $display->panels['cards_set'][0] = 'new-6424f825-6c96-4bc2-843b-96bfe933a4ad';
-    $pane = new stdClass();
-    $pane->pid = 'new-7c01a5aa-d8a4-4f03-9336-f46f5085b7a7';
-    $pane->panel = 'comments';
-    $pane->type = 'block';
-    $pane->subtype = 'disqus-disqus_comments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '7c01a5aa-d8a4-4f03-9336-f46f5085b7a7';
-    $display->content['new-7c01a5aa-d8a4-4f03-9336-f46f5085b7a7'] = $pane;
-    $display->panels['comments'][0] = 'new-7c01a5aa-d8a4-4f03-9336-f46f5085b7a7';
-    $pane = new stdClass();
-    $pane->pid = 'new-7dba9d59-295a-4c5c-8836-819a9f3221f0';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => '0',
-      'delta_offset' => '0',
-      'delta_reversed' => 0,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '7dba9d59-295a-4c5c-8836-819a9f3221f0';
-    $display->content['new-7dba9d59-295a-4c5c-8836-819a9f3221f0'] = $pane;
-    $display->panels['file_attachments'][0] = 'new-7dba9d59-295a-4c5c-8836-819a9f3221f0';
-    $pane = new stdClass();
-    $pane->pid = 'new-b8b129a8-d5b2-414d-96e4-0ed77b0d4c8b';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = 'b8b129a8-d5b2-414d-96e4-0ed77b0d4c8b';
-    $display->content['new-b8b129a8-d5b2-414d-96e4-0ed77b0d4c8b'] = $pane;
-    $display->panels['file_attachments'][1] = 'new-b8b129a8-d5b2-414d-96e4-0ed77b0d4c8b';
-    $pane = new stdClass();
-    $pane->pid = 'new-9bf9250a-f094-4bb4-a5e3-8fbc09087fe5';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 2;
-    $pane->locks = array();
-    $pane->uuid = '9bf9250a-f094-4bb4-a5e3-8fbc09087fe5';
-    $display->content['new-9bf9250a-f094-4bb4-a5e3-8fbc09087fe5'] = $pane;
-    $display->panels['file_attachments'][2] = 'new-9bf9250a-f094-4bb4-a5e3-8fbc09087fe5';
-    $pane = new stdClass();
-    $pane->pid = 'new-bed1eca2-8e18-4b58-a103-7e3562474aa4';
-    $pane->panel = 'file_attachments';
-    $pane->type = 'entity_field';
-    $pane->subtype = 'node:field_file_attachments';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'label' => 'hidden',
-      'formatter' => 'file_default',
-      'delta_limit' => 0,
-      'delta_offset' => '0',
-      'delta_reversed' => FALSE,
-      'formatter_settings' => array(),
-      'context' => 'panelizer',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array();
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 3;
-    $pane->locks = array();
-    $pane->uuid = 'bed1eca2-8e18-4b58-a103-7e3562474aa4';
-    $display->content['new-bed1eca2-8e18-4b58-a103-7e3562474aa4'] = $pane;
-    $display->panels['file_attachments'][3] = 'new-bed1eca2-8e18-4b58-a103-7e3562474aa4';
     $pane = new stdClass();
     $pane->pid = 'new-6cb669ac-c603-4557-a8de-0ba9cbdbb87d';
     $pane->panel = 'header';
