@@ -11,7 +11,7 @@
 function nas_page_scheduler_install() {
   $job = array(
     'type' => 'scheduler',
-    'period' => 86400,
+    'period' => 900,
     'periodic' => TRUE,
   );
   JobScheduler::get('nas_page_scheduler_check_task')->set($job);
