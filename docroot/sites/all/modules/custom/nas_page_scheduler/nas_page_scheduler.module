@@ -81,7 +81,7 @@ function nas_page_scheduler_list() {
       );
     }
   }
-  
+
   $output = t('There are no scheduled pages yet.');
   if (!empty($rows)) {
     // Build table with all scheduled pages.
@@ -107,17 +107,17 @@ function nas_page_scheduler_get_pages_list() {
   ctools_include('page', 'page_manager', 'plugins/tasks');
   ctools_include('page_manager.admin', 'page_manager', '');
   ctools_include('export');
-   
+
   $tasks = page_manager_get_tasks_by_type('page');
   $pages_with_scheduling = $page_types = array();
-   
+
   foreach ($tasks as $task) {
     // Disabled page return empty
     if ($pages = page_manager_load_task_handlers($task)) {
       $page_types[] = $pages;
     }
   }
-   
+
   // Not all display objects are loaded, make sure to load them
   foreach ($page_types as &$pages) {
     foreach ($pages as &$page) {
@@ -359,7 +359,7 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
       '#date_year_range' => '0:+3',
     );
   }
-dpm($conf);
+
   return $form;
 }
 
@@ -443,7 +443,7 @@ function nas_page_scheduler_start() {
             foreach ($pages as $page) {
               if (isset($page->conf['nas_page_scheduler_page_published']) &&
                 $page->conf['nas_page_scheduler_page_published'] &&
-                $page->conf['nas_page_scheduler_original_page_task_name'] == 
+                $page->conf['nas_page_scheduler_original_page_task_name'] ==
                 $scheduled_page->handlers[$handler->name]->conf['nas_page_scheduler_original_page_task_name']) {
 
                 $original_page = page_manager_cache_load('page-' . $page->subtask);
@@ -497,7 +497,7 @@ function nas_page_scheduler_start() {
       }
       if ($changed) {
         // Finally save all changes to the original and scheduled pages.
-        /*page_manager_set_page_cache($scheduled_page);
+        page_manager_set_page_cache($scheduled_page);
         if ($cache = page_manager_get_page_cache('page-' . $scheduled_page->subtask_id)) {
           page_manager_save_page_cache($cache);
         }
@@ -511,13 +511,13 @@ function nas_page_scheduler_start() {
         if (isset($delete_page) && $delete_page && $original_page->subtask['subtask']->type == t('Normal')) {
           page_manager_page_delete($original_page->subtask['subtask']);
         }
-*/
+
         drupal_set_message('"' . $scheduled_page->subtask['admin title'] . '" has been published.');
       }
     }
   }
   if ($clear_cache) {
-   // drupal_flush_all_caches();
+    drupal_flush_all_caches();
   }
   else {
     drupal_set_message('There are no pages to publish.');
