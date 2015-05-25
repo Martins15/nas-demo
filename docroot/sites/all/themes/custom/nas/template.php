@@ -75,7 +75,6 @@ function nas_preprocess_views_view_row_rss(&$vars){
 function nas_preprocess_node(&$vars) {
   global $base_url;
 
-  die();
   // Tell Drupal that there is separate tpl.php files for view modes.
   if (!empty($vars['view_mode'])) {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
