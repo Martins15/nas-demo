@@ -336,6 +336,10 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
     '#default_value' => isset($conf['nas_page_scheduler_state']) ? $conf['nas_page_scheduler_state'] : FALSE,
     '#disabled' => $disabled,
   );
+  $form['settings']['nas_page_scheduler_page_published'] = array(
+    '#type' => 'hidden',
+    '#default_value' => isset($conf['nas_page_scheduler_page_published']) ? $conf['nas_page_scheduler_page_published'] : TRUE,
+  );
   $form['settings']['nas_page_scheduler_original_page'] = array(
     '#type' => 'hidden',
     '#default_value' => isset($conf['nas_page_scheduler_original_page']) ? $conf['nas_page_scheduler_original_page'] : TRUE,
@@ -355,7 +359,7 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
       '#date_year_range' => '0:+3',
     );
   }
-
+dpm($conf);
   return $form;
 }
 
@@ -383,6 +387,7 @@ function nas_page_scheduler_variant_scheduler_form_submit($form, &$form_state) {
   }
   $form_state['handler']->conf['nas_page_scheduler_state'] = (bool) $form_state['values']['nas_page_scheduler_state'];
   $form_state['handler']->conf['nas_page_scheduler_original_page'] = (bool) $form_state['values']['nas_page_scheduler_original_page'];
+  $form_state['handler']->conf['nas_page_scheduler_page_published'] = (bool) $form_state['values']['nas_page_scheduler_page_published'];
 }
 
 /**
@@ -420,7 +425,10 @@ function nas_page_scheduler_start() {
       if (empty($scheduled_page->subtask_id)) {
         continue;
       }
-
+      $original_published = FALSE;
+      foreach ($original_page->handlers as $key => $handler) {
+        $original_published = $handler->conf['nas_page_scheduler_page_published'];
+      }
       // Unique hash.
       $hash = substr(md5(rand()), 0, 6);
 
@@ -430,7 +438,7 @@ function nas_page_scheduler_start() {
 
         if ($date_publish <= REQUEST_TIME) {
           // We have to ensure that original page is loaded.
-          if (empty($original_page->subtask_id)) {
+          if (empty($original_page->subtask_id) || !$original_published) {
             // Try to load current published page instead.
             foreach ($pages as $page) {
               if (isset($page->conf['nas_page_scheduler_page_published']) &&
@@ -489,7 +497,7 @@ function nas_page_scheduler_start() {
       }
       if ($changed) {
         // Finally save all changes to the original and scheduled pages.
-        page_manager_set_page_cache($scheduled_page);
+        /*page_manager_set_page_cache($scheduled_page);
         if ($cache = page_manager_get_page_cache('page-' . $scheduled_page->subtask_id)) {
           page_manager_save_page_cache($cache);
         }
@@ -503,13 +511,13 @@ function nas_page_scheduler_start() {
         if (isset($delete_page) && $delete_page && $original_page->subtask['subtask']->type == t('Normal')) {
           page_manager_page_delete($original_page->subtask['subtask']);
         }
-
+*/
         drupal_set_message('"' . $scheduled_page->subtask['admin title'] . '" has been published.');
       }
     }
   }
   if ($clear_cache) {
-    drupal_flush_all_caches();
+   // drupal_flush_all_caches();
   }
   else {
     drupal_set_message('There are no pages to publish.');
