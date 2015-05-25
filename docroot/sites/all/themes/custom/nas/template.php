@@ -55,7 +55,7 @@ function nas_html_head_alter(&$head_elements) {
     );
   }
 }
-function nas_preprocess_views_view_row_rss(&$vars){
+function nas_preprocess_views_view_row_rss(&$vars) {
   $nid = $vars['row']->nid;
   $node = node_load($nid);
   $uid = $node->uid;
@@ -65,7 +65,7 @@ function nas_preprocess_views_view_row_rss(&$vars){
   $created = format_date($created, $type = 'medium');
   $name = check_plain("<b>Author: </b>".$name."</br>");
   $created = check_plain("<b>Published: </b>".$created);
-  
+
   $vars['author'] = $name;
   $vars['published'] = $created;
 }
