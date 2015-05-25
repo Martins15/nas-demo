@@ -66,6 +66,7 @@
   }
 }
 
+.flyways-slides-dots,
 .flyway-path-dots {
   margin: $size-space*1.5 auto;
   text-align: center;
@@ -81,6 +82,7 @@
     height: 12px;
     background-color: rgba(#000, 0.2);
     border-radius: 100%;
+    
     &.active {
       background-color: rgba(#000, 0.6);
     }

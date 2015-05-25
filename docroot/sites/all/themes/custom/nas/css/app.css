@@ -3742,7 +3742,7 @@ ul.pagination li {
   -webkit-box-sizing: content-box;
 }
 
-/*
+/* 
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -3899,7 +3899,7 @@ ul.pagination li {
 
 /* Foundation v2.1.4 http://foundation.zurb.com */
 /* Artfully masterminded by ZURB  */
-/* --------------------------------------------------
+/* -------------------------------------------------- 
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
@@ -4147,6 +4147,14 @@ ul.small-list li {
   font-size: 15px;
   line-height: 17px;
   margin-bottom: 6px;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
 }
 
 .global-header {
@@ -5545,7 +5553,6 @@ table.row-borders tbody td {
 .hero-map {
   max-width: 100%;
   overflow: hidden;
-  height: auto;
 }
 @media only screen {
   .hero-map {
@@ -5562,7 +5569,7 @@ table.row-borders tbody td {
     height: 380px;
   }
 }
-@media only screen and (max-width: 840px) {
+@media only screen and (min-width: 840px) {
   .hero-map {
     height: 450px;
   }
@@ -7941,26 +7948,6 @@ body.touch .primary-sub-nav-index {
   margin-bottom: 37.5px;
 }
 
-.article-header div.page-summary {
-  border:none;
-  background-color: white;
-  margin-bottom: -4px;
-  position: relative;
-  right: 20px;
-  height: 0;
-}
-.article-header h4.page-summary-title{
-  display: none;
-}
-.article-header p.page-summary-body{
-  font-size: 13px;
-  color: rgb(138, 135, 129);
-  font-family: 'Source Sans Pro',Verdana,sans-serif;
-  font-style: normal !important;
-  bottom: 35px;
-  position: relative;
-}
-
 .article-slug {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 20px;
@@ -9544,7 +9531,6 @@ body.black-bg .slide-caption {
   position: relative;
   z-index: 0;
 }
-
 @media only screen {
   .inline-map-canvas {
     min-height: 280px;
@@ -9588,7 +9574,6 @@ body.black-bg .slide-caption {
 .inline-map-canvas iframe {
   min-height: 280px;
 }
-
 @media only screen and (min-width: 601px) {
   .inline-map-canvas iframe {
     position: absolute;
@@ -10218,13 +10203,16 @@ body.black-bg .slide-caption {
   overflow: hidden;
 }
 
+.flyways-slides-dots,
 .flyway-path-dots {
   margin: 15px auto;
   text-align: center;
 }
+.flyways-slides-dots a,
 .flyway-path-dots a {
   display: inline-block;
 }
+.flyways-slides-dots .dot,
 .flyway-path-dots .dot {
   display: inline-block;
   margin: 0 2px;
@@ -10233,8 +10221,13 @@ body.black-bg .slide-caption {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 100%;
 }
+.flyways-slides-dots .dot.active,
 .flyway-path-dots .dot.active {
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.flyway-slides-container {
+  overflow: hidden;
 }
 
 .flyway-slides {
@@ -10247,6 +10240,7 @@ body.black-bg .slide-caption {
   width: 100%;
   opacity: 0;
   position: absolute;
+  left: -9999px;
   background-color: #f8f8f8;
   padding-top: 25px;
   -moz-transition: opacity 0.5s ease-in-out;
@@ -10257,6 +10251,7 @@ body.black-bg .slide-caption {
 .flyway-slide.current {
   opacity: 1;
   position: relative;
+  left: 0;
 }
 
 .flyway-slides-paddle {
@@ -14759,4 +14754,31 @@ figcaption {
   margin-left: -40px;
   vertical-align: middle;
   width: 35px;
+}
+
+article.article {
+  margin-bottom: 25px;
+}
+article.article article.article-header {
+  margin-top: 25px;
+  margin-bottom: 37.5px;
+}
+article.article article.article-header div.page-summary {
+  border: none;
+  background-color: white;
+  margin-bottom: -4px;
+  position: relative;
+  right: 20px;
+  height: 0;
+}
+article.article article.article-header div.page-summary h4.page-summary-title {
+  display: none;
+}
+article.article article.article-header div.page-summary p.page-summary-body {
+  font-size: 13px;
+  color: #8a8781;
+  font-family: 'Source Sans Pro',Verdana,sans-serif;
+  font-style: normal !important;
+  bottom: 35px;
+  position: relative;
 }

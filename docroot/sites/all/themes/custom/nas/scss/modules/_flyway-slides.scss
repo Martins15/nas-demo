@@ -1,3 +1,7 @@
+.flyway-slides-container {
+  overflow: hidden;
+}
+
 .flyway-slides {
   position: relative;
   background-color: #f8f8f8;
@@ -8,6 +12,7 @@
   width: 100%;
   opacity: 0;
   position: absolute;
+  left: -9999px;
   background-color: #f8f8f8;
   padding-top: $column-gutter;
   @include transition(opacity 0.5s ease-in-out);
@@ -15,6 +20,7 @@
   &.current {
     opacity: 1;
     position: relative;
+    left: 0;
   }
 }
 
