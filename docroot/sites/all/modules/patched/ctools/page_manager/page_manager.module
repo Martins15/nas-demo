@@ -401,7 +401,7 @@ function page_manager_save_page_cache($cache) {
       page_manager_save_task_handler($handler);
     }
     // Otherwise, check to see if it has moved and, if so, update the weight.
-    elseif ($info['weight'] != $handler->weight) {
+    elseif ($info['weight'] != $handler->weight) {dpm($info['changed']);
       // Theoretically we could only do this for in code objects, but since our
       // load mechanism checks for all, this is less database work.
       page_manager_update_task_handler_weight($handler, $info['weight']);
