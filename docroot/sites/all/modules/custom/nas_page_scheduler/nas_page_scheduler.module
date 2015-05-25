@@ -326,7 +326,11 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
     '#type' => 'hidden',
     '#default_value' => isset($conf['nas_page_scheduler_original_page']) ? $conf['nas_page_scheduler_original_page'] : TRUE,
   );
-  if (isset($conf['nas_page_scheduler_state']) && $conf['nas_page_scheduler_state'] && !$conf['nas_page_scheduler_original_page'] && isset($conf['nas_page_scheduler_date_publish'])) {
+  if (!empty($conf['nas_page_scheduler_state']) &&
+    isset($conf['nas_page_scheduler_original_page']) &&
+    !$conf['nas_page_scheduler_original_page'] &&
+    isset($conf['nas_page_scheduler_date_publish'])) {
+
     $form['settings']['nas_page_scheduler_date_publish'] = array(
       '#type' => 'date_popup',
       '#default_value' => isset($conf['nas_page_scheduler_date_publish']) ? date('Y-m-d H:i:s', $conf['nas_page_scheduler_date_publish']) : date('Y-m-d H:i:s'),
@@ -345,7 +349,7 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
  * Validation callback handler for panels scheduler configuration form.
  */
 function nas_page_scheduler_variant_scheduler_form_validate($form, &$form_state) {
-  if (isset($form_state['values']['nas_page_scheduler_date_publish']) && !empty($form_state['values']['nas_page_scheduler_date_publish'])) {
+  if (!empty($form_state['values']['nas_page_scheduler_date_publish'])) {
     $form_state['values']['nas_page_scheduler_date_publish'] = date_create($form_state['values']['nas_page_scheduler_date_publish'])->getTimestamp();
   }
   elseif ($form_state['values']['nas_page_scheduler_original_page']) {
@@ -360,7 +364,7 @@ function nas_page_scheduler_variant_scheduler_form_validate($form, &$form_state)
  * Submission callback handler for panels scheduler configuration form.
  */
 function nas_page_scheduler_variant_scheduler_form_submit($form, &$form_state) {
-  if (isset($form_state['values']['nas_page_scheduler_date_publish']) && !empty($form_state['values']['nas_page_scheduler_date_publish'])) {
+  if (!empty($form_state['values']['nas_page_scheduler_date_publish'])) {
     $form_state['handler']->conf['nas_page_scheduler_date_publish'] = $form_state['values']['nas_page_scheduler_date_publish'];
   }
   $form_state['handler']->conf['nas_page_scheduler_state'] = (bool) $form_state['values']['nas_page_scheduler_state'];
