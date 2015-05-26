@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Event Frontpage feature.
+ */
+
+include_once 'nas_events_view_feature.features.inc';
