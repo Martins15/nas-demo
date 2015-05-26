@@ -12572,9 +12572,25 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird #modalContent .ctools-modal-content {
   border: none;
+  height: auto !important;
   margin: 0;
-  max-width: 700px !important;
+  max-width: 875px !important;
   padding: 20px 30px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird #modalContent .ctools-modal-content {
+    padding: 20px 15px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .page-boa-bird #modalContent .ctools-modal-content {
+    padding-right: 0;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .page-boa-bird #modalContent .ctools-modal-content {
+    min-width: 875px;
+  }
 }
 .page-boa-bird #modalContent .messages {
   max-width: 410px;
@@ -12582,6 +12598,11 @@ body.touch .sticky-wrapper {
 .page-boa-bird #modalContent .modal-header {
   background-color: transparent;
   padding: 7px 0 15px;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird #modalContent .modal-header {
+    padding: 7px 0 0;
+  }
 }
 .page-boa-bird #modalContent .modal-header #modal-title {
   color: #262626;
@@ -12592,7 +12613,7 @@ body.touch .sticky-wrapper {
 }
 @media only screen and (max-width: 479px) {
   .page-boa-bird #modalContent .modal-header #modal-title {
-    font-size: 27px;
+    font-size: 20px;
   }
 }
 .page-boa-bird #modalContent .modal-header .close {
@@ -12611,14 +12632,23 @@ body.touch .sticky-wrapper {
     display: block;
   }
 }
-.page-boa-bird #modalContent #modal-content {
-  max-width: 670px !important;
-  padding: 0;
-}
-@media only screen and (max-width: 479px) {
-  .page-boa-bird #modalContent #modal-content {
-    padding: 0 30px 30px 0;
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird #modalContent .modal-header .close {
+    display: block;
   }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird #modalContent .modal-header .close {
+    display: block;
+  }
+}
+.page-boa-bird #modalContent #modal-content {
+  height: auto !important;
+  max-width: 845px !important;
+  min-height: 425px;
+  overflow: hidden;
+  padding: 0;
+  width: 100% !important;
 }
 .page-boa-bird #modalContent #modal-content .featured-image {
   height: 430px;
@@ -12644,6 +12674,11 @@ body.touch .sticky-wrapper {
     display: none;
   }
 }
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird #modalContent #modal-content .featured-image {
+    display: none;
+  }
+}
 .page-boa-bird #modalContent #modal-content p {
   margin: 30px 0 20px;
 }
@@ -12652,15 +12687,29 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird #modalContent #modal-content form {
   margin-bottom: 30px;
+  width: 565px;
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .page-boa-bird #modalContent #modal-content form {
+    width: 320px;
+  }
 }
 @media only screen and (max-width: 479px) {
   .page-boa-bird #modalContent #modal-content form {
     margin-bottom: 65px;
+    width: auto;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 600px) {
   .page-boa-bird #modalContent #modal-content form {
     margin-bottom: 65px;
+    width: auto;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird #modalContent #modal-content form {
+    margin-bottom: 65px;
+    width: auto;
   }
 }
 .page-boa-bird #modalContent #modal-content form label {
@@ -12679,6 +12728,7 @@ body.touch .sticky-wrapper {
 @media only screen and (max-width: 479px) {
   .page-boa-bird #modalContent #modal-content form input.form-text {
     min-width: 190px;
+    margin-bottom: 0;
     width: 100%;
   }
 }
@@ -12687,11 +12737,62 @@ body.touch .sticky-wrapper {
     padding-right: 0;
   }
 }
-.page-boa-bird #modalContent #modal-content form .form-item-zip-code {
-  margin-bottom: 30px;
+.page-boa-bird #modalContent #modal-content form .form-item-first-name {
+  display: inline-block;
 }
-.page-boa-bird #modalContent #modal-content form #nas-boa-mail-subscription-last-name {
-  margin-left: 75px;
+.page-boa-bird #modalContent #modal-content form .form-item-last-name {
+  display: inline-block;
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird #modalContent #modal-content form .form-item-last-name {
+    margin-left: 75px;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird #modalContent #modal-content form .form-item-last-name {
+    margin-left: 75px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .page-boa-bird #modalContent #modal-content form .form-item-last-name {
+    margin-left: 75px;
+  }
+}
+.page-boa-bird #modalContent #modal-content form .form-item-email {
+  display: inline-block;
+}
+@media only screen and (max-width: 479px) {
+  .page-boa-bird #modalContent #modal-content form .form-item-email {
+    margin-bottom: 10px;
+  }
+}
+.page-boa-bird #modalContent #modal-content form .form-item-zip-code {
+  display: inline-block;
+}
+@media only screen and (min-width: 768px) {
+  .page-boa-bird #modalContent #modal-content form .form-item-zip-code label {
+    width: 40px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .page-boa-bird #modalContent #modal-content form .form-item-zip-code label {
+    width: 75px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .page-boa-bird #modalContent #modal-content form .form-item-zip-code input {
+    min-width: 185px;
+    width: 180px;
+  }
+}
+.page-boa-bird #modalContent #modal-content form .actions {
+  overflow: hidden;
+  white-space: nowrap;
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .page-boa-bird #modalContent #modal-content form .actions {
+    width: 440px;
+  }
 }
 @media only screen and (max-width: 479px) {
   .page-boa-bird #modalContent #modal-content form #nas-boa-mail-subscription-last-name {
@@ -12699,6 +12800,7 @@ body.touch .sticky-wrapper {
   }
 }
 .page-boa-bird #modalContent #modal-content form .privacy-policy {
+  float: left;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   line-height: 65px;
   margin: 0 20px 0 0;
@@ -12711,7 +12813,18 @@ body.touch .sticky-wrapper {
     float: right;
   }
 }
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird #modalContent #modal-content form .privacy-policy {
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .page-boa-bird #modalContent #modal-content form .privacy-policy {
+    margin: 0;
+  }
+}
 .page-boa-bird #modalContent #modal-content form .cancel {
+  float: left;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   line-height: 65px;
   margin: 0 20px 0 0;
@@ -12728,13 +12841,19 @@ body.touch .sticky-wrapper {
     width: 100%;
   }
 }
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .page-boa-bird #modalContent #modal-content form #nas-boa-mail-subscription-submit {
+    font-size: 18px;
+  }
+}
 .page-boa-bird #modalContent .intro {
   margin: 10px 0 25px;
-  width: 390px;
 }
 @media only screen and (max-width: 479px) {
   .page-boa-bird #modalContent .intro {
-    width: auto;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 
