@@ -195,12 +195,12 @@ function _nas_events_get_events($state = 'all') {
     $query->condition('lc.province', $state, '=');
   }
   $results = $query->fields('lc', array('lid', 'province'))
-    ->range(0,2)
+    ->range(0, 2)
     ->orderRandom()
     ->execute()
     ->fetchAll();
   $lids = array();
-  foreach($results as $result) {
+  foreach ($results as $result) {
     $lids[] = $result->lid;
   }
   if (empty($lids)) return array();
