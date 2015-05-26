@@ -14746,6 +14746,32 @@ figcaption {
   width: 35px;
 }
 
+#nas-page-scheduler-settings-form .form-item-date-publish-time {
+  width: 155px;
+}
+#nas-page-scheduler-settings-form .form-item-date-publish-time input {
+  width: 85px;
+}
+
+a.schedule-new-version {
+  display: block;
+  font-size: 0;
+  height: 40px;
+  left: 10px;
+  position: absolute;
+  top: 100px;
+  width: 40px;
+  z-index: 100;
+}
+a.schedule-new-version:hover {
+  -moz-box-shadow: 0px 0px 5px #000;
+  -webkit-box-shadow: 0px 0px 5px #000;
+  box-shadow: 0px 0px 5px #000;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
 article.article {
   margin-bottom: 25px;
 }

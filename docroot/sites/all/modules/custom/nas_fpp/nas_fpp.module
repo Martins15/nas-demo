@@ -640,10 +640,3 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   );
   $vars['contextual_links'] = drupal_render($build);
 }
-
-/**
- * Implements HOOK_query_TAG_alter().
- */
-function nas_fpp_query_random_alter($query) {
-  $query->orderRandom();
-}

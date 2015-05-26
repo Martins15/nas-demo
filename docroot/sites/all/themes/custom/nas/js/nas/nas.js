@@ -521,7 +521,7 @@ var Nas = Nas || {};
           }
           else {
             query[queries[i][0]] = queries[i][1];
-		  }
+          }
         }
         if ($.isArray(query.search)) {
 
@@ -586,7 +586,7 @@ var Nas = Nas || {};
         // Internal request.
         geoip.getState(onSuccess);
       });
-	}
+    }
   };
 
 })(jQuery);
