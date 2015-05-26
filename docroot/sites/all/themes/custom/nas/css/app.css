@@ -9885,17 +9885,6 @@ body.black-bg .slide-caption {
   bottom: 0;
   right: 0;
 }
-.curtain-video .curtain-video-play-button {
-  background-image: url(../img/play-icon.png);
-  position: absolute;
-  height: 77px;
-  left: 50%;
-  top: 50%;
-  width: 77px;
-  margin-top: -38px;
-  margin-left: -38px;
-  cursor: pointer;
-}
 
 .curtain-arrow {
   position: absolute;
@@ -14789,4 +14778,24 @@ article.article article.article-header div.page-summary p.page-summary-body {
   font-style: normal !important;
   bottom: 35px;
   position: relative;
+}
+
+table.x-image-anchor,
+#modalContent .ctools-modal-content table.x-image-anchor {
+  width: auto;
+}
+table.x-image-anchor tr.even,
+table.x-image-anchor tr.odd,
+#modalContent .ctools-modal-content table.x-image-anchor tr.even,
+#modalContent .ctools-modal-content table.x-image-anchor tr.odd {
+  background-color: #f3f4ee;
+}
+table.x-image-anchor td,
+#modalContent .ctools-modal-content table.x-image-anchor td {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #666666;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
 }
