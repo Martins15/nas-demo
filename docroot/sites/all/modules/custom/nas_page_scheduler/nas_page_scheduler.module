@@ -26,7 +26,111 @@ function nas_page_scheduler_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
+  $items['admin/content/nas/page_scheduler/list'] = array(
+    'title' => 'Scheduled landing pages',
+    'page callback' => 'nas_page_scheduler_list',
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
   return $items;
+}
+
+/**
+ * Implements hook_cron_job_scheduler_info().
+ */
+function nas_page_scheduler_cron_job_scheduler_info() {
+  $schedulers = array();
+  $schedulers['nas_page_scheduler_check_task'] = array(
+    'worker callback' => 'nas_page_scheduler_start',
+  );
+  return $schedulers;
+}
+
+/**
+ * Page callback for page "Scheduled landing pages".
+ */
+function nas_page_scheduler_list() {
+  $pages = nas_page_scheduler_get_pages_list();
+
+  foreach ($pages as &$page) {
+    if (isset($page->conf['nas_page_scheduler_original_page_task_name']) &&
+      $page->conf['nas_page_scheduler_original_page_task_name'] &&
+      isset($page->conf['nas_page_scheduler_date_publish']) &&
+      isset($page->conf['nas_page_scheduler_page_published']) &&
+      !$page->conf['nas_page_scheduler_page_published']) {
+
+      $page_load = page_manager_cache_load('page-' . $page->subtask);
+
+      $name = $page_load->subtask['admin title'];
+      $publish_date = date('Y-m-d H:i', $page->conf['nas_page_scheduler_date_publish']);
+      $classes = array();
+      $rows[] = array(
+        'data' => array(
+          array('data' => $name),
+          array('data' => $publish_date),
+          array(
+            'data' => l(t('Edit'), 'admin/structure/pages/edit/page-' . $page->subtask, array(
+              'attributes' => array(
+                'target' => '_blank',
+              ),
+            )),
+          ),
+        ),
+        'class' => $classes,
+      );
+    }
+  }
+
+  $output = t('There are no scheduled pages yet.');
+  if (!empty($rows)) {
+    // Build table with all scheduled pages.
+    $header = array(
+      array('data' => t('Admin title')),
+      array('data' => t('Publish on')),
+      array('data' => t('')),
+    );
+    $output = theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+    ));
+  }
+
+  return $output;
+}
+
+/**
+ * Function to get all pages with.
+ */
+function nas_page_scheduler_get_pages_list() {
+  // Now check all panel pages and ignore all mini panels
+  ctools_include('page', 'page_manager', 'plugins/tasks');
+  ctools_include('page_manager.admin', 'page_manager', '');
+  ctools_include('export');
+
+  $tasks = page_manager_get_tasks_by_type('page');
+  $pages_with_scheduling = $page_types = array();
+
+  foreach ($tasks as $task) {
+    // Disabled page return empty
+    if ($pages = page_manager_load_task_handlers($task)) {
+      $page_types[] = $pages;
+    }
+  }
+
+  // Not all display objects are loaded, make sure to load them
+  foreach ($page_types as &$pages) {
+    foreach ($pages as &$page) {
+      if (empty($page->conf['display']) && !empty($page->conf['did'])) {
+        $page->conf['display'] = panels_load_display($page->conf['did']);
+        if (!empty($page->conf['nas_page_scheduler_state'])) {
+          $pages_with_scheduling[] = $page;
+        }
+      }
+    }
+  }
+
+  return $pages_with_scheduling;
 }
 
 /**
@@ -47,13 +151,6 @@ function nas_page_scheduler_page_clone() {
  * Form nas_page_scheduler_settings_form.
  */
 function nas_page_scheduler_settings_form($form, &$form_state) {
-  $form['intro'] = array(
-    '#markup' => 'Intro',
-  );
-  $form['show_unpublish_date'] = array(
-    '#type' => 'checkboxes',
-    '#options' => array('on' => t('Show unpublish date')),
-  );
   $form['date_publish'] = array(
     '#type' => 'date_popup',
     '#default_value' => date('Y-m-d H:i:s'),
@@ -63,20 +160,6 @@ function nas_page_scheduler_settings_form($form, &$form_state) {
     '#date_increment' => 1,
     '#date_year_range' => '0:+3',
     '#required' => TRUE,
-  );
-  $form['date_unpublish'] = array(
-    '#type' => 'date_popup',
-    '#default_value' => date('Y-m-d H:i:s'),
-    '#date_type' => DATE_DATETIME,
-    '#date_timezone' => date_default_timezone(),
-    '#date_format' => 'm-d-Y H:i',
-    '#date_increment' => 1,
-    '#date_year_range' => '0:+3',
-    '#states' => array(
-      'visible' => array(
-       ':input[name="show_unpublish_date[on]"]' => array('checked' => TRUE),
-      ),
-    ),
   );
   $form['subtask'] = array(
     '#type' => 'hidden',
@@ -103,16 +186,11 @@ function nas_page_scheduler_settings_form($form, &$form_state) {
  * nas_page_scheduler_settings_form validation callback.
  */
 function nas_page_scheduler_settings_form_validate($form, &$form_state) {
-  if (!empty($form_state['values']['date_publish']) && !empty($form_state['values']['date_unpublish'])) {
-    $publish_timestamp = date_create($form_state['values']['date_publish'])->getTimestamp();
-    $unpublish_timestamp = date_create($form_state['values']['date_unpublish'])->getTimestamp();
-
-    if ($publish_timestamp > $unpublish_timestamp) {
-      form_set_error('date_unpublish', t('Publish date should be less than publish.'));
-    }
-
-    $form_state['values']['date_publish'] = $publish_timestamp;
-    $form_state['values']['date_unpublish'] = $unpublish_timestamp;
+  if (!empty($form_state['values']['date_publish'])) {
+    $form_state['values']['date_publish'] = date_create($form_state['values']['date_publish'])->getTimestamp();
+  }
+  else {
+    form_set_error('date_publish', t('Please specify publish date'));
   }
 }
 
@@ -124,10 +202,13 @@ function nas_page_scheduler_settings_form_submit($form, $form_state) {
   $original = $page->subtask['subtask'];
 
   // Unique hash for path and machine name.
-  $hash = md5(rand());
-
-  $original->name = $form_state['values']['subtask'] . '_' . $hash;
-  $original->admin_title = $page->subtask['subtask']->admin_title . ' ' . date('Y-m-d H:i', $form_state['values']['date_publish']);
+  $hash = substr(md5(rand()), 0, 6);
+  $machine_name = preg_replace('/version(.*)/', 'version' . $hash, $form_state['values']['subtask']);
+  if ($machine_name == $form_state['values']['subtask']) {
+    $machine_name = $form_state['values']['subtask'] . '_version' . $hash;
+  }
+  $original->name = $machine_name;
+  $original->admin_title = $page->subtask['subtask']->admin_title;
   $original->path = $hash;
   // Hide page from anonymous until get it published.
   $original->access['plugins'][] = array(
@@ -150,7 +231,8 @@ function nas_page_scheduler_settings_form_submit($form, $form_state) {
     $handler->conf['nas_page_scheduler_original_page_task_name'] = 'page-' . $form_state['values']['subtask'];
     // Save date.
     $handler->conf['nas_page_scheduler_date_publish'] = $form_state['values']['date_publish'];
-    $handler->conf['nas_page_scheduler_date_unpublish'] = $form_state['values']['date_unpublish'];
+    // Status.
+    $handler->conf['nas_page_scheduler_page_published'] = FALSE;
   }
 
   // Export the handler, which is a fantastic way to clean database IDs out of it.
@@ -179,7 +261,6 @@ function nas_page_scheduler_settings_form_submit($form, $form_state) {
  * @see http://groups.drupal.org/node/110719#comment-356094
  */
 function nas_page_scheduler_page_manager_variant_operations_alter(&$operations, $handler) {
-
   // Use this obnoxious construct to safely insert our item.
   reset($operations['children']);
   $children_operations = array();
@@ -188,7 +269,7 @@ function nas_page_scheduler_page_manager_variant_operations_alter(&$operations, 
     if ($key == 'context') {
       $children_operations['scheduler'] = array(
         'title' => t('Scheduler'),
-        'description' => t('Edit publish and unpublish dates for this page.'),
+        'description' => t('Edit publish dates for this page.'),
         'form' => 'nas_page_scheduler_variant_scheduler_form',
       );
     }
@@ -220,14 +301,18 @@ function nas_page_scheduler_ctools_render_alter(&$info, &$page, &$context) {
   $contexts = ctools_context_handler_get_handler_contexts($context['contexts'], $handler);
   if (isset($handler->conf['nas_page_scheduler_state']) && $handler->conf['nas_page_scheduler_state'] && user_access('access administration pages')) {
     if (isset($handler->task) && $handler->task == 'page') {
-      drupal_set_message(l('Schedule new version', 'page/nojs/clone/' . $handler->subtask, array(
+      $info['content'] = l(theme('image', array(
+          'path' => drupal_get_path('theme', 'nas') . '/img/clock-icon.png',
+        )), 'page/nojs/clone/' . $handler->subtask, array(
         'attributes' => array(
           'class' => array(
             'ctools-use-modal',
+            'schedule-new-version',
           ),
+          'title' => t('Schedule new version'),
         ),
         'html' => TRUE,
-      )));
+      )) . $info['content'];
     }
   }
 }
@@ -241,71 +326,6 @@ function nas_page_scheduler_ctools_render_alter(&$info, &$page, &$context) {
  *  An array containing a partial configuration form.
  */
 function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
-  // Now check all panel pages and ignore all mini panels.
-  ctools_include('page', 'page_manager', 'plugins/tasks');
-  ctools_include('page_manager.admin', 'page_manager', '');
-  ctools_include('export');
-
-  $tasks = page_manager_get_tasks_by_type('page');
-  $page_types = array();
-
-  foreach ($tasks as $task) {
-    // Disabled page return empty.
-    if ($pages = page_manager_load_task_handlers($task)) {
-      $page_types[] = $pages;
-    }
-  }
-
-  // Not all display objects are loaded, make sure to load them.
-  foreach ($page_types as &$pages) {
-    foreach ($pages as &$page) {
-      if (empty($page->conf['display']) && !empty($page->conf['did'])) {
-        $page->conf['display'] = panels_load_display($page->conf['did']);
-
-        if (isset($page->conf['nas_page_scheduler_state']) &&
-          $page->conf['nas_page_scheduler_state'] &&
-          isset($page->conf['nas_page_scheduler_original_page_task_name']) &&
-          $page->conf['nas_page_scheduler_original_page_task_name']) {
-
-          if ($page->conf['nas_page_scheduler_original_page_task_name'] == arg(5)) {
-            $publish_date = date('Y-m-d H:i', $page->conf['nas_page_scheduler_date_publish']);
-            $unpublish_date = date('Y-m-d H:i', $page->conf['nas_page_scheduler_date_unpublish']);
-            if ($publish_date == $unpublish_date) {
-              $unpublish_date = '';
-            }
-            $classes = array();
-            $rows[] = array(
-              'data' => array(
-                array('data' => $publish_date),
-                array('data' => $unpublish_date),
-                array(
-                  'data' => l(t('Edit'), 'admin/structure/pages/edit/page-' . $page->subtask, array(
-                    'attributes' => array(
-                      'target' => '_blank',
-                    ),
-                  )),
-                ),
-              ),
-              'class' => $classes,
-            );
-          }
-        }
-      }
-    }
-  }
-  if (!empty($rows)) {
-    // Build table with all scheduled pages.
-    $header = array(
-      array('data' => t('Publish on')),
-      array('data' => t('Unpublish on')),
-      array('data' => t('')),
-    );
-    $output = theme('table', array(
-      'header' => $header,
-      'rows' => $rows,
-    ));
-  }
-
   $disabled = TRUE;
   if (!isset($conf['nas_page_scheduler_original_page']) || $conf['nas_page_scheduler_original_page']) {
     $disabled = FALSE;
@@ -316,19 +336,19 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
     '#default_value' => isset($conf['nas_page_scheduler_state']) ? $conf['nas_page_scheduler_state'] : FALSE,
     '#disabled' => $disabled,
   );
+  $form['settings']['nas_page_scheduler_page_published'] = array(
+    '#type' => 'hidden',
+    '#default_value' => isset($conf['nas_page_scheduler_page_published']) ? $conf['nas_page_scheduler_page_published'] : TRUE,
+  );
   $form['settings']['nas_page_scheduler_original_page'] = array(
     '#type' => 'hidden',
     '#default_value' => isset($conf['nas_page_scheduler_original_page']) ? $conf['nas_page_scheduler_original_page'] : TRUE,
   );
-  $form['settings']['nas_page_scheduler_table'] = array(
-    '#markup' => isset($output) ? $output : '',
-  );
-  if ($conf['nas_page_scheduler_state'] && !$conf['nas_page_scheduler_original_page']) {
-    $form['settings']['show_unpublish_date'] = array(
-      '#type' => 'checkboxes',
-      '#options' => array('on' => t('Show unpublish date')),
-      '#default_value' => $conf['nas_page_scheduler_date_publish'] !== $conf['nas_page_scheduler_date_unpublish'] ? array('on' => 'on') : array('on' => 0),
-    );
+  if (!empty($conf['nas_page_scheduler_state']) &&
+    isset($conf['nas_page_scheduler_original_page']) &&
+    !$conf['nas_page_scheduler_original_page'] &&
+    isset($conf['nas_page_scheduler_date_publish'])) {
+
     $form['settings']['nas_page_scheduler_date_publish'] = array(
       '#type' => 'date_popup',
       '#default_value' => isset($conf['nas_page_scheduler_date_publish']) ? date('Y-m-d H:i:s', $conf['nas_page_scheduler_date_publish']) : date('Y-m-d H:i:s'),
@@ -337,20 +357,6 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
       '#date_format' => 'm-d-Y H:i',
       '#date_increment' => 1,
       '#date_year_range' => '0:+3',
-    );
-    $form['settings']['nas_page_scheduler_date_unpublish'] = array(
-      '#type' => 'date_popup',
-      '#default_value' => isset($conf['nas_page_scheduler_date_unpublish']) ? date('Y-m-d H:i:s', $conf['nas_page_scheduler_date_unpublish']) : date('Y-m-d H:i:s'),
-      '#date_type' => DATE_DATETIME,
-      '#date_timezone' => date_default_timezone(),
-      '#date_format' => 'm-d-Y H:i',
-      '#date_increment' => 1,
-      '#date_year_range' => '0:+3',
-      '#states' => array(
-        'visible' => array(
-         ':input[name="show_unpublish_date[on]"]' => array('checked' => TRUE),
-        ),
-      ),
     );
   }
 
@@ -361,16 +367,14 @@ function nas_page_scheduler_partial_configuration_form($conf, $contexts) {
  * Validation callback handler for panels scheduler configuration form.
  */
 function nas_page_scheduler_variant_scheduler_form_validate($form, &$form_state) {
-  if (!empty($form_state['values']['nas_page_scheduler_date_publish']) && !empty($form_state['values']['nas_page_scheduler_date_unpublish'])) {
-    $publish_timestamp = date_create($form_state['values']['nas_page_scheduler_date_publish'])->getTimestamp();
-    $unpublish_timestamp = date_create($form_state['values']['nas_page_scheduler_date_unpublish'])->getTimestamp();
-
-    if ($publish_timestamp > $unpublish_timestamp) {
-      form_set_error('nas_page_scheduler_date_unpublish', t('Publish date should be less than publish.'));
-    }
-
-    $form_state['values']['nas_page_scheduler_date_publish'] = $publish_timestamp;
-    $form_state['values']['nas_page_scheduler_date_unpublish'] = $unpublish_timestamp;
+  if (!empty($form_state['values']['nas_page_scheduler_date_publish'])) {
+    $form_state['values']['nas_page_scheduler_date_publish'] = date_create($form_state['values']['nas_page_scheduler_date_publish'])->getTimestamp();
+  }
+  elseif ($form_state['values']['nas_page_scheduler_original_page']) {
+    return;
+  }
+  else {
+    form_set_error('nas_page_scheduler_date_publish', t('Please specify publish date'));
   }
 }
 
@@ -378,10 +382,12 @@ function nas_page_scheduler_variant_scheduler_form_validate($form, &$form_state)
  * Submission callback handler for panels scheduler configuration form.
  */
 function nas_page_scheduler_variant_scheduler_form_submit($form, &$form_state) {
-  $form_state['handler']->conf['nas_page_scheduler_date_publish'] = $form_state['values']['nas_page_scheduler_date_publish'];
-  $form_state['handler']->conf['nas_page_scheduler_date_unpublish'] = $form_state['values']['nas_page_scheduler_date_unpublish'];
+  if (!empty($form_state['values']['nas_page_scheduler_date_publish'])) {
+    $form_state['handler']->conf['nas_page_scheduler_date_publish'] = $form_state['values']['nas_page_scheduler_date_publish'];
+  }
   $form_state['handler']->conf['nas_page_scheduler_state'] = (bool) $form_state['values']['nas_page_scheduler_state'];
   $form_state['handler']->conf['nas_page_scheduler_original_page'] = (bool) $form_state['values']['nas_page_scheduler_original_page'];
+  $form_state['handler']->conf['nas_page_scheduler_page_published'] = (bool) $form_state['values']['nas_page_scheduler_page_published'];
 }
 
 /**
@@ -405,137 +411,108 @@ function nas_page_scheduler_check_form_submit($form, &$form_state) {
 }
 
 function nas_page_scheduler_start() {
-  // Now check all panel pages and ignore all mini panels.
-  ctools_include('page', 'page_manager', 'plugins/tasks');
-  ctools_include('page_manager.admin', 'page_manager', '');
-  ctools_include('export');
+  $pages = nas_page_scheduler_get_pages_list();
 
-  $tasks = page_manager_get_tasks_by_type('page');
-  $page_types = array();
-  $clear_cache = FALSE;
+  foreach ($pages as $page) {
+    if (isset($page->conf['nas_page_scheduler_original_page_task_name']) &&
+      $page->conf['nas_page_scheduler_original_page_task_name'] &&
+      isset($page->conf['nas_page_scheduler_page_published']) &&
+      !$page->conf['nas_page_scheduler_page_published']) {
 
-  foreach ($tasks as $task) {
-    // Disabled page return empty.
-    if ($pages = page_manager_load_task_handlers($task)) {
-      $page_types[] = $pages;
-    }
-  }
+      $original_page = page_manager_cache_load($page->conf['nas_page_scheduler_original_page_task_name']);
+      $scheduled_page = page_manager_cache_load('page-' . $page->subtask);
 
-  // Not all display objects are loaded, make sure to load them.
-  foreach ($page_types as &$pages) {
-    foreach ($pages as &$page) {
-      if (empty($page->conf['display']) && !empty($page->conf['did'])) {
-        $page->conf['display'] = panels_load_display($page->conf['did']);
+      if (empty($scheduled_page->subtask_id)) {
+        continue;
+      }
+      $original_published = FALSE;
+      foreach ($original_page->handlers as $key => $handler) {
+        $original_published = $handler->conf['nas_page_scheduler_page_published'];
+      }
+      // Unique hash.
+      $hash = substr(md5(rand()), 0, 6);
 
-        if (isset($page->conf['nas_page_scheduler_state']) &&
-          $page->conf['nas_page_scheduler_state'] &&
-          isset($page->conf['nas_page_scheduler_original_page_task_name']) &&
-          $page->conf['nas_page_scheduler_original_page_task_name']) {
+      foreach ($scheduled_page->handlers as $key => $handler) {
+        $date_publish = $handler->conf['nas_page_scheduler_date_publish'];
+        $changed = FALSE;
 
-          $original_page = page_manager_cache_load($page->conf['nas_page_scheduler_original_page_task_name']);
-          $scheduled_page = page_manager_cache_load('page-' . $page->subtask);
+        if ($date_publish <= REQUEST_TIME) {
+          // We have to ensure that original page is loaded.
+          if (empty($original_page->subtask_id) || !$original_published) {
+            // Try to load current published page instead.
+            foreach ($pages as $page) {
+              if (isset($page->conf['nas_page_scheduler_page_published']) &&
+                $page->conf['nas_page_scheduler_page_published'] &&
+                $page->conf['nas_page_scheduler_original_page_task_name'] ==
+                $scheduled_page->handlers[$handler->name]->conf['nas_page_scheduler_original_page_task_name']) {
 
-          // Unique hash.
-          $hash = md5(rand());
-
-          // Check publish/unpublish dates.
-          $scheduled_page_handlers = !empty($scheduled_page->handlers) ? $scheduled_page->handlers : FALSE;
-
-          foreach ($scheduled_page_handlers as $key => $handler) {
-            $date_publish = $handler->conf['nas_page_scheduler_date_publish'];
-            $date_unpublish = $handler->conf['nas_page_scheduler_date_unpublish'];
-            $published = isset($handler->conf['nas_page_scheduler_page_published']) ? $handler->conf['nas_page_scheduler_page_published'] : FALSE;
-
-            // Publish and unpublish dates are equal, so publish only.
-            if ($date_publish == $date_unpublish) {
-              if ($date_publish <= REQUEST_TIME) {
-                drupal_set_message('It\'s time to Publish "' . $scheduled_page->subtask['admin title'] . '"');
-                // Modify scheduled page.
-                $scheduled_page->subtask['subtask']->path = $original_page->subtask['subtask']->path;
-                $scheduled_page->handlers[$key]->conf['nas_page_scheduler_page_published'] = TRUE;
-                // Remove previously added access plugin.
-                foreach ($scheduled_page->subtask['subtask']->access['plugins'] as $key => $plugin) {
-                  if ($plugin['name'] == 'role') {
-                    unset($scheduled_page->subtask['subtask']->access['plugins'][$key]);
-                  }
-                }
-                // Modify original page.
-                $original_page->subtask['subtask']->path = $hash;
-                // Hide page from anonymous until get it published.
-                $original_page->subtask['subtask']->access['plugins'][] = array(
-                  'name' => 'role',
-                  'settings'=> array(
-                    'rids' => array(
-                      0 => 1,
-                    ),
-                  ),
-                  'context'=> 'logged-in-user',
-                  'not' => TRUE,
-                );
-                $clear_cache = TRUE;
-              }
-            }
-            // The page has publish and unpublish dates, lets define what to do.
-            if ($date_publish < $date_unpublish) {
-              if ($date_publish <= REQUEST_TIME && $date_unpublish >= REQUEST_TIME) {
-                drupal_set_message('It\'s time to Publish "' . $scheduled_page->subtask['admin title'] . '"');
-                // Modify scheduled page.
-                $scheduled_page->subtask['subtask']->path = $original_page->subtask['subtask']->path;
-                $scheduled_page->handlers[$key]->conf['nas_page_scheduler_page_published'] = TRUE;
-                // Remove previously added access plugin.
-                foreach ($scheduled_page->subtask['subtask']->access['plugins'] as $key => $plugin) {
-                  if ($plugin['name'] == 'role') {
-                    unset($scheduled_page->subtask['subtask']->access['plugins'][$key]);
-                  }
-                }
-                // Modify original page.
-                $original_page->subtask['subtask']->path = $hash;
-                // Hide page from anonymous until get it published.
-                $original_page->subtask['subtask']->access['plugins'][] = array(
-                  'name' => 'role',
-                  'settings'=> array(
-                    'rids' => array(
-                      0 => 1,
-                    ),
-                  ),
-                  'context'=> 'logged-in-user',
-                  'not' => TRUE,
-                );
-                $clear_cache = TRUE;
-              }
-              if ($date_unpublish <= REQUEST_TIME && $published) {
-                drupal_set_message('It\'s time to Unpublish "' . $scheduled_page->subtask['admin title'] . '"');
-                // We should return original page.
-                $original_page->subtask['subtask']->path = $scheduled_page->subtask['subtask']->path;
-                $scheduled_page->subtask['subtask']->path = $hash;
-                $scheduled_page->handlers[$key]->conf['nas_page_scheduler_page_published'] = FALSE;
-                // Hide page from anonymous until get it published.
-                $scheduled_page->subtask['subtask']->access['plugins'][] = array(
-                  'name' => 'role',
-                  'settings'=> array(
-                    'rids' => array(
-                      0 => 1,
-                    ),
-                  ),
-                  'context'=> 'logged-in-user',
-                  'not' => TRUE,
-                );
-                $clear_cache = TRUE;
+                $original_page = page_manager_cache_load('page-' . $page->subtask);
               }
             }
           }
 
-          // Finally save all changes to the original and scheduled pages.
-          page_manager_set_page_cache($scheduled_page);
-          if ($cache = page_manager_get_page_cache('page-' . $page->subtask)) {
-            page_manager_save_page_cache($cache);
+          // Modify scheduled page.
+          $scheduled_page->subtask['subtask']->path = $original_page->subtask['subtask']->path;
+          $scheduled_page->handlers[$handler->name]->conf['nas_page_scheduler_page_published'] = TRUE;
+          $scheduled_page->handlers[$handler->name]->conf['nas_page_scheduler_original_page'] = TRUE;
+          $scheduled_page->handlers[$handler->name]->conf['nas_page_scheduler_original_page_task_name'] = $original_page->task_name;
+          // Remove previously added access plugin.
+          foreach ($scheduled_page->subtask['subtask']->access['plugins'] as $key => $plugin) {
+            if ($plugin['name'] == 'role') {
+              unset($scheduled_page->subtask['subtask']->access['plugins'][$key]);
+            }
           }
-
-          page_manager_set_page_cache($original_page);
-          if ($cache = page_manager_get_page_cache($page->conf['nas_page_scheduler_original_page_task_name'])) {
-            page_manager_save_page_cache($cache);
+          // Mark handler as changed.
+          $scheduled_page->handler_info[$handler->name]['changed'] |= PAGE_MANAGER_CHANGED_CACHED;
+          // Modify original page.
+          $original_page->subtask['subtask']->path = $hash;
+          $original_page->subtask['disabled'] = TRUE;
+          foreach ($original_page->handlers as $key => $handler) {
+            $original_page->handlers[$handler->name]->conf['nas_page_scheduler_original_page'] = FALSE;
+            // Mark handler as changed.
+            $original_page->handler_info[$handler->name]['changed'] |= PAGE_MANAGER_CHANGED_CACHED;
           }
+          $access_plugin = array(
+            'name' => 'role',
+            'settings'=> array(
+              'rids' => array(
+                0 => 1,
+              ),
+            ),
+            'context'=> 'logged-in-user',
+            'not' => TRUE,
+          );
+          if (empty($original_page->subtask['subtask']->access['plugins'])) {
+            $original_page->subtask['subtask']->access['plugins'][] = $access_plugin;
+          }
+          else {
+            foreach ($original_page->subtask['subtask']->access['plugins'] as $key => $plugin) {
+              if ($plugin['name'] == 'role') {
+                $original_page->subtask['subtask']->access['plugins'][$key] = $access_plugin;
+              }
+            }
+          }
+          $clear_cache = $changed = $delete_page = TRUE;
         }
+      }
+      if ($changed) {
+        // Finally save all changes to the original and scheduled pages.
+        page_manager_set_page_cache($scheduled_page);
+        if ($cache = page_manager_get_page_cache('page-' . $scheduled_page->subtask_id)) {
+          page_manager_save_page_cache($cache);
+        }
+
+        page_manager_set_page_cache($original_page);
+        if ($cache = page_manager_get_page_cache('page-' . $original_page->subtask_id)) {
+          page_manager_save_page_cache($cache);
+        }
+
+        // Delete page in case it has normal storage.
+        if (isset($delete_page) && $delete_page && $original_page->subtask['subtask']->type == t('Normal')) {
+          page_manager_page_delete($original_page->subtask['subtask']);
+        }
+
+        drupal_set_message('"' . $scheduled_page->subtask['admin title'] . '" has been published.');
       }
     }
   }
@@ -543,6 +520,6 @@ function nas_page_scheduler_start() {
     drupal_flush_all_caches();
   }
   else {
-    drupal_set_message('There are no pages to publish/unpublish.');
+    drupal_set_message('There are no pages to publish.');
   }
 }
