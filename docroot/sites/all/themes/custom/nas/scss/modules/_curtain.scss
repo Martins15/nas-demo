@@ -161,6 +161,27 @@
       right: 0;
     }
   }
+
+  .curtain-video-load-indicator {
+    background-image: url(../img/spiffygif_34x34.png);
+    position: absolute;
+    height: 34px;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    margin-top: -17px;
+    margin-left: -17px;
+    cursor: pointer;
+    background-position: center center;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 17px;
+    animation: play 1.1s steps(19) infinite;
+  }
+}
+
+@keyframes play {
+  from { background-position: 0 0px; }
+  to { background-position: 0 -646px; }
 }
 
 .curtain-arrow {

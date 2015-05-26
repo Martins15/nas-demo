@@ -64,6 +64,7 @@ var Nas = Nas || {};
         $video
           .bind('play', function () {
             $video.fadeIn('slow');
+            $('.curtain-video-load-indicator').fadeOut('slow');
           });
       });
     }
