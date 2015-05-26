@@ -549,5 +549,44 @@ var Nas = Nas || {};
         }
     }
   };
+  
+  Drupal.behaviors.frontpage_flyway_ajax = {
+    attach: function(context, settings) {
+      // Replace block only once.
+      $('body.page-frontpage').once('flyways-ajax', function() {
+        var onSuccess = function(stateIsoCode) {
+          if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
+            return;
+          }
+          // Replace default block with Audubon Near You content filtered by state.
+          $.ajax({
+            type: 'GET',
+            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/audubon-near-you/'+stateIsoCode,
+            dataType: 'html',
+            success: function (data) {
+              if (data !== '') {
+                $('.flyways-nearyou-ajax-wrapper').once().html(data);
+              }
+              $('.flyways-nearyou-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+            }
+          });
+          // Replace default block with Event content filtered by state.
+          $.ajax({
+            type: 'GET',
+            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/events/'+stateIsoCode,
+            dataType: 'html',
+            success: function (data) {
+              if (data !== '') {
+                $('.flyways-events-ajax-wrapper').once().html(data);
+              }
+              $('.flyways-events-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+            }
+          });
+        };
+        // Internal request.
+        geoip.getState(onSuccess);
+      });
+	}
+  };
 
 })(jQuery);

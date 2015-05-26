@@ -30,7 +30,10 @@
         </div>
       </div>
       <div class="columns large-4">
-        &nbsp;
+		<div class="breakout-section-box">
+          <div class="flyways-nearyou-ajax-wrapper"><?php print $near_you; ?></div>
+          <div class="flyways-events-ajax-wrapper"><?php print $events; ?></div>
+        </div>
       </div>
       <div class="columns large-4">
         <div class="breakout-section-box">
