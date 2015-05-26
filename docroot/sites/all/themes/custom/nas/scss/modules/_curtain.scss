@@ -28,6 +28,13 @@
   @include breakpoint(large-up) {
     display: block;
   }
+
+  // Apple mobile devices never get curtain shown
+  .force-curtain-fallback & {
+    @include breakpoint(large-up) {
+      display: none;
+    }
+  }
 }
 
 .curtain-content {

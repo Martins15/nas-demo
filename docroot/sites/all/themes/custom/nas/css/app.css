@@ -9781,6 +9781,11 @@ body.black-bg .slide-caption {
     display: block;
   }
 }
+@media only screen and (min-width: 768px) {
+  .force-curtain-fallback .curtain {
+    display: none;
+  }
+}
 
 .curtain-content {
   position: absolute;
@@ -10279,6 +10284,11 @@ body.black-bg .slide-caption {
 @media only screen and (min-width: 768px) {
   .curtain-fallback {
     display: none;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .force-curtain-fallback .curtain-fallback {
+    display: block;
   }
 }
 

@@ -51,6 +51,14 @@ var Nas = Nas || {};
   Drupal.behaviors.videoCurtainController = {
     attach: function(context, settings) {
       $('.curtain-video video').once('curtain-video-controller', function () {
+        if (navigator && navigator.userAgent && navigator.userAgent != null) {
+          var strUserAgent = navigator.userAgent.toLowerCase();
+          var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+          if (arrMatches != null) {
+            $('body').addClass('force-curtain-fallback');
+          }
+        }
+
         var $video = $(this), video = this;
         $video.hide();
         $video

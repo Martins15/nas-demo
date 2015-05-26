@@ -21,6 +21,13 @@
   @include breakpoint(large-up) {
     display: none;
   }
+
+  // Always show curtain fallback (for Apple mobile devices)
+  .force-curtain-fallback & {
+    @include breakpoint(large-up) {
+      display: block;
+    }
+  }
 }
 
 .curtain-fallback-content {
