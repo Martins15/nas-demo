@@ -31,8 +31,12 @@
       </div>
       <div class="columns large-4">
         <div class="breakout-section-box">
-          <div class="flyways-nearyou-ajax-wrapper"><?php print $near_you; ?></div>
-          <div class="flyways-events-ajax-wrapper"><?php print $events; ?></div>
+          <?php if ($near_you): ?>
+            <div class="flyways-nearyou-ajax-wrapper"><?php print $near_you; ?></div>
+          <?php endif; ?>
+          <?php if ($events): ?>
+            <div class="flyways-events-ajax-wrapper"><?php print $events; ?></div>
+          <?php endif; ?>
         </div>
       </div>
       <div class="columns large-4">
