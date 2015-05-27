@@ -584,7 +584,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $vars['about_the_flyways'] = $get_field_about_the_flyways[0]['#markup'];
   $vars['about_link'] = l(t('About the Flyways'), 'flyways');
   $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
-  
+
   $events = TRUE;
   $near_you = TRUE;
   if (isset($vars['field_block_visibility'])) {
@@ -595,9 +595,9 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
       $near_you = FALSE;
     }
     elseif ($first) {
-	  if (is_numeric(strpos($first,'flyways_events'))) $events = FALSE;
-	  else $near_you = FALSE;
-	}
+      if (is_numeric(strpos($first,'flyways_events'))) $events = FALSE;
+      else $near_you = FALSE;
+    }
   }
 
   $vars['events'] = NULL;
