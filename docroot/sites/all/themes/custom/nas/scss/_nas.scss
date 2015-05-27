@@ -695,6 +695,7 @@ body.node-type-slideshow {
   }
 }
 
+
 .view-nas-similar-birds .view-footer {
   clear: both;
 }
@@ -987,7 +988,7 @@ article.event {
   text-align: center;
 
   img {
-    margin-top: -30px; 
+    margin-top: -30px;
   }
 
   h2 {
@@ -1095,5 +1096,77 @@ figcaption {
       vertical-align: middle;
       width: 35px;
     }
+  }
+}
+
+
+#nas-page-scheduler-settings-form {
+  .form-item-date-publish-time {
+    width: 155px;
+
+    input {
+      width: 85px;
+    }
+  }
+}
+a.schedule-new-version {
+  display: block;
+  font-size: 0;
+  height: 40px;
+  left: 10px;
+  position: absolute;
+  top: 100px;
+  width: 40px;
+  z-index: 100;
+
+  &:hover {
+    @include box-shadow(0px 0px 5px #000);
+    @include border-radius(20px);
+  }
+}
+
+article.article{
+  margin-bottom: 25px;
+  article.article-header{
+    margin-top: 25px;
+    margin-bottom: 37.5px;
+    div.page-summary {
+      border:none;
+      background-color: white;
+      margin-bottom: -4px;
+      position: relative;
+      right: 20px;
+      height: 0;
+      h4.page-summary-title{
+        display: none;
+      }
+      p.page-summary-body{
+        font-size: 13px;
+        color: rgb(138, 135, 129);
+        font-family: 'Source Sans Pro',Verdana,sans-serif;
+        font-style: normal !important;
+        bottom: 35px;
+        position: relative;
+      }
+    }
+  }
+}
+
+table.x-image-anchor,
+#modalContent .ctools-modal-content table.x-image-anchor {
+  width: auto;
+
+  tr.even,
+  tr.odd {
+    background-color: #f3f4ee;
+  }
+
+  td {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #666666;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
   }
 }

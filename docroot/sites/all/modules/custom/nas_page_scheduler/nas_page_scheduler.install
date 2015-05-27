@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the NAS Page Scheduler module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_page_scheduler_install() {
+  $job = array(
+    'type' => 'scheduler',
+    'period' => 900,
+    'periodic' => TRUE,
+  );
+  JobScheduler::get('nas_page_scheduler_check_task')->set($job);
+}

@@ -48,11 +48,34 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.videoCurtainController = {
+    attach: function(context, settings) {
+      $('.curtain-video video').once('curtain-video-controller', function () {
+        if (navigator && navigator.userAgent && navigator.userAgent !== null) {
+          var strUserAgent = navigator.userAgent.toLowerCase();
+          var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+          if (arrMatches !== null) {
+            $('body').addClass('force-curtain-fallback');
+          }
+        }
+
+        var $video = $(this), video = this;
+        $video.hide();
+        $video
+          .bind('play', function () {
+            $video.fadeIn('slow');
+            $('.curtain-video-load-indicator').fadeOut('slow');
+          });
+      });
+    }
+  };
+
   Drupal.behaviors.videoCurtainSizing = {
     attach: function(context, settings) {
       $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
+        var $video = $(this);
+
         this.onloadedmetadata = function (e) {
-          var $video = $(this);
           var width = $video.width();
           var height = $video.height();
           $video.css({
@@ -520,4 +543,19 @@ var Nas = Nas || {};
       });
     }
   };
+
+  Drupal.behaviors.iframe_map = {
+  attach: function (context,settings){
+    var map = $("#map-canvas iframe");
+      parent_h = map.parent().height();
+      map_h = map.height();
+        if(parent_h < map_h){
+          map.parent().height(map_h);
+        }
+        else{
+          map.height(parent_h);
+        }
+    }
+  };
+
 })(jQuery);
