@@ -9891,7 +9891,7 @@ body.black-bg .slide-caption {
   right: 0;
 }
 .curtain-video .curtain-video-load-indicator {
-  background-image: url(../img/spiffygif_34x34-2x.png);
+  background-image: url(../img/video-loading-indicator.png);
   position: absolute;
   height: 34px;
   left: 50%;
@@ -9902,35 +9902,36 @@ body.black-bg .slide-caption {
   cursor: pointer;
   background-position: center center;
   background-size: 34px;
-  -webkit-animation: video-loading-indicator 1.3s steps(12) infinite;
-  -moz-animation: video-loading-indicator 1.3s steps(12) infinite;
-  -ms-animation: video-loading-indicator 1.3s steps(12) infinite;
-  -o-animation: video-loading-indicator 1.3s steps(12) infinite;
-  animation: video-loading-indicator 1.3s steps(12) infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+  -moz-animation: spin 1s linear infinite;
+  -ms-animation: spin 1s linear infinite;
+  -o-animation: spin 1s linear infinite;
+  animation: spin 1s ease infinite;
 }
 
-@-webkit-keyframes video-loading-indicator {
-  from {
-    background-position: 0 0px;
-  }
-  to {
-    background-position: 0 -408px;
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
   }
 }
-@-moz-keyframes video-loading-indicator {
-  from {
-    background-position: 0 0px;
-  }
-  to {
-    background-position: 0 -408px;
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
   }
 }
-@keyframes video-loading-indicator {
-  from {
-    background-position: 0 0px;
+@-ms-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
   }
-  to {
-    background-position: 0 -408px;
+}
+@-o-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
 }
 .curtain-arrow {
