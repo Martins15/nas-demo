@@ -39,6 +39,7 @@
               <div class="flyways-events-ajax-wrapper"><?php print $events; ?></div>
             <?php endif; ?>
           </div>
+        <?php else: ?> &nbsp;
         <?php endif; ?>
       </div>
       <div class="columns large-4">
