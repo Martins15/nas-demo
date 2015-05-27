@@ -17,6 +17,7 @@
       $('#nas-panes-boa-mail-subscription-form #edit-cancel').bind('click touchend', function(e) {
         e.preventDefault();
         $(this).parents('form').remove();
+        $('#modal-content').append('<p>' + settings.nas_panes.boa_plate_no_thanks + '</p>');
         $('#modal-content').append('<a target="_blank" href="' + settings.nas_panes.boa_plate_original_image_path + '">' + Drupal.t('Download your image here.') + '</a>');
         $.cookie('show_download_link', 1, { expires : 365 });
         $('#subscribe-link').attr('href', settings.nas_panes.boa_plate_original_image_path);

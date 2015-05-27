@@ -2537,7 +2537,27 @@ function nas_master_update_7179() {
   nas_master_update_7169();
   features_revert_module('nas_image_styles_feature');
   module_enable(array('nas_page_scheduler'));
-  // Remove duplicated file_attachments panes.
+}
+
+/**
+ * NAS63 Article feature revert.
+ */
+function nas_master_update_7180(&$sandbox) {
+  features_revert_module('nas_article_feature');
+  module_enable(array('nas_near_you'));
+}
+
+/**
+ * Revert Article feature.
+ */
+function nas_master_update_7181() {
+  features_revert_module('nas_article_feature');
+}
+
+/**
+ * Remove duplicated file_attachments panes.
+ */
+function nas_master_update_7183() {
   $query = db_select('panels_pane', 'p')
     ->fields('p', array('did', 'pid'))
     ->condition('p.subtype', 'node:field_file_attachments');
@@ -2554,21 +2574,4 @@ function nas_master_update_7179() {
     }
   }
 }
-
-/**
- * NAS63 Article feature revert.
- * ANW 677 Enable module nas_location_view_feature
- */
-function nas_master_update_7180(&$sandbox) {
-  features_revert_module('nas_article_feature');
-  module_enable(array('nas_near_you', 'nas_location_view_feature'));
-}
-
-/**
- * Revert Article feature.
- */
-function nas_master_update_7181() {
-  features_revert_module('nas_article_feature');
-}
-
 

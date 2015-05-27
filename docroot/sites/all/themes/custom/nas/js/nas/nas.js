@@ -51,14 +51,21 @@ var Nas = Nas || {};
   Drupal.behaviors.videoCurtainController = {
     attach: function(context, settings) {
       $('.curtain-video video').once('curtain-video-controller', function () {
+        if (navigator && navigator.userAgent && navigator.userAgent !== null) {
+          var strUserAgent = navigator.userAgent.toLowerCase();
+          var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+          if (arrMatches !== null) {
+            $('body').addClass('force-curtain-fallback');
+          }
+        }
+
         var $video = $(this), video = this;
-        var $playButton = $(this).parent().find('.curtain-video-play-button');
-        $playButton.bind('click', function () {
-          video.play();
-        });
+        $video.hide();
         $video
-          .bind('play', function () { $playButton.hide(); })
-          .bind('pause', function () { $playButton.show(); });
+          .bind('play', function () {
+            $video.fadeIn('slow');
+            $('.curtain-video-load-indicator').fadeOut('slow');
+          });
       });
     }
   };
@@ -66,8 +73,9 @@ var Nas = Nas || {};
   Drupal.behaviors.videoCurtainSizing = {
     attach: function(context, settings) {
       $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
+        var $video = $(this);
+
         this.onloadedmetadata = function (e) {
-          var $video = $(this);
           var width = $video.width();
           var height = $video.height();
           $video.css({

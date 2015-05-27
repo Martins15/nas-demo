@@ -2096,6 +2096,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     '#id' => 'nas-boa-mail-subscription-zip'
   );
   $form['submit'] = array(
+    '#prefix' => '<div class="actions">',
     '#type' => 'submit',
     '#value' => t('Sign Up'),
     '#attributes' => array(
@@ -2111,6 +2112,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
   );
   $form['privacy_policy'] = array(
+    '#suffix' => '</div>',
     '#type' => 'link',
     '#title' => t('Privacy policy'),
     '#href' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
@@ -2250,6 +2252,11 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
     '#type' => 'textarea',
     '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
   );
+  $form['after_no'] = array(
+    '#title' => t('Text after No Thanks.'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
@@ -2267,6 +2274,7 @@ function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state
   variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
   variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
   variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
+  variable_set('boa_mail_subscription_settings_form_after_no', $form_state['values']['after_no']);
 }
 
 /**
