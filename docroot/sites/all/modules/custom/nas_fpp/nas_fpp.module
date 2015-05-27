@@ -595,7 +595,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
       $near_you = FALSE;
     }
     elseif ($first) {
-      if (is_numeric(strpos($first,'flyways_events'))) $events = FALSE;
+      if (is_numeric(strpos($first, 'flyways_events'))) $events = FALSE;
       else $near_you = FALSE;
     }
   }
