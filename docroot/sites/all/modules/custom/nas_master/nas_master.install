@@ -2544,6 +2544,7 @@ function nas_master_update_7179() {
  */
 function nas_master_update_7180(&$sandbox) {
   features_revert_module('nas_article_feature');
+  features_revert_module('nas_fpp_feature');
   module_enable(array('nas_near_you', 'nas_location_view_feature'));
 }
 
