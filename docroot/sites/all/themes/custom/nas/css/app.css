@@ -14899,6 +14899,10 @@ figcaption {
   width: 35px;
 }
 
+.form-item-override-title-heading {
+  display: none;
+}
+
 #nas-page-scheduler-settings-form .form-item-date-publish-time {
   width: 155px;
 }

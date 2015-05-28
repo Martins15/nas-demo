@@ -23,6 +23,7 @@ $plugin = array(
 function nas_pane_get_outside_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $form['image'] = array(
     '#type' => 'media',
