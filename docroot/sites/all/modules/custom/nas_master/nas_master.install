@@ -2575,8 +2575,11 @@ function nas_master_update_7183() {
   }
 }
 /**
- * Enable modules.
+ * Enable modules, update configuration.
  */
 function nas_master_update_7184() {
   module_enable(array('nas_boa_plates', 'deepzoom'));
+  $config = variable_get('deepzoom_config', array());
+  $config['engine'] = 'openseadragon';
+  variable_set('deepzoom_config', $config);
 }
