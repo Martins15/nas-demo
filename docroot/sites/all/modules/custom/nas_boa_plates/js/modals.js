@@ -19,7 +19,7 @@ Drupal.theme.prototype.BOAPlateModal = function () {
   html += '</div>';
 
   return html;
-}
+};
 
 jQuery.fn.extend({
   applySeadragon: function () {
