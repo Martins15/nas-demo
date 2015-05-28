@@ -8,15 +8,12 @@
  * Implements hook_field_formatter_info().
  */
 function deepzoom_field_formatter_info() {
-  return array(
-    'deepzoom_deepzoom' => array(
-      'label' => t('Deep Zoom'),
-      'field types' => array('image'),
-      'settings' => array(
-        'deepzoom_image_style' => 'large'
-      ),
-    ),
-  );
+  $items = array();
+  $config = deepzoom_config(FALSE);
+  if ($config) {
+    drupal_alter('deepzoom_field_formatter_info', $items);
+  }
+  return $items;
 }
 
 /**
@@ -26,13 +23,11 @@ function deepzoom_field_formatter_settings_summary($field, $instance, $view_mode
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
 
-  $summary = '';
-
-  if ($display['type'] == 'deepzoom_deepzoom') {
-    $summary = t('Fallback image style: @image_style', array('@image_style' => $settings['deepzoom_image_style']));
+  $function = "{$display['type']}_field_formatter_settings_summary";
+  if (function_exists($function)) {
+    return $function($settings);
   }
-
-  return $summary;
+  return '';
 }
 
 /**
@@ -42,34 +37,20 @@ function deepzoom_field_formatter_settings_form($field, $instance, $view_mode, $
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
 
-  $element = array();
-
-  if ($display['type'] == 'deepzoom_deepzoom') {
-    $element['deepzoom_image_style'] = array(
-      '#title' => t('Fallback image style'),
-      '#type' => 'select',
-      '#default_value' => $settings['deepzoom_image_style'],
-      '#options' => array(),
-      '#required' => TRUE,
-    );
-    foreach (array_keys(image_styles()) as $image_style) {
-      $element['deepzoom_image_style']['#options'][$image_style] = $image_style;
-    }
+  $function = "{$display['type']}_field_formatter_settings_form";
+  if (function_exists($function)) {
+    return $function($settings);
   }
-
-  return $element;
+  return array();
 }
 
 /**
  * Implements hook_field_formatter_view().
  */
 function deepzoom_field_formatter_view($obj_type, $object, $field, $instance, $langcode, $items, $display) {
-  $settings = $display['settings'];
-
-  $images = array();
-  foreach ($items as $item) {
-    $images[md5_file($item['uri'])] = $item['uri'];
+  $function = "{$display['type']}_field_formatter_view";
+  if (function_exists($function)) {
+    return $function($obj_type, $object, $field, $instance, $langcode, $items, $display);
   }
-
-  return count($images) ? theme('deepzoom', array('images' => $images, 'image_style' => $settings['deepzoom_image_style'])) : FALSE;
+  return FALSE;
 }
