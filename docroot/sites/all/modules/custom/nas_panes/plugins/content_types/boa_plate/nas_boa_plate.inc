@@ -90,6 +90,7 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
   drupal_add_js(array(
     'nas_panes' => array(
       'boa_plate_original_image_path' => $original_image_path,
+      'boa_plate_no_thanks' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
     )
   ), 'setting');
 
