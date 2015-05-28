@@ -1704,9 +1704,9 @@ function _nas_panes_get_upcoming_events($state = 'all') {
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL) {
+function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $view_name = 'locations') {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $type, $nid);
+  $results = views_get_view_result($view_name, 'default', $state, $type, $nid);
   foreach ($results as $item) {
     $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name))? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
     $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name))? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';

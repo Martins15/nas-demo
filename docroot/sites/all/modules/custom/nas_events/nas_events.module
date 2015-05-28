@@ -130,6 +130,21 @@ function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entit
 }
 
 /**
+ * Implements HOOK_theme().
+ */
+function nas_events_theme() {
+  return array(
+    'flyways_events' => array(
+      'variables' => array(
+        'items' => array(),
+      ),
+      'template' => 'flyways-events',
+      'path' => drupal_get_path('module', 'nas_events') . '/templates',
+    ),
+  );
+}
+
+/**
  * Implements hook_menu().
  */
 function nas_events_menu() {
@@ -140,6 +155,12 @@ function nas_events_menu() {
     'page arguments' => array('nas_events_sync_form'),
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
+  );
+  $items['ajax/frontpage-flyways/events/%'] = array(
+    'title' => 'Ajax - Frontpage Flyways Events',
+    'page callback' => 'nas_events_ajax_flyways_events',
+    'page arguments' => array(3),
+    'access arguments' => array('access content pages'),
   );
   return $items;
 }
@@ -153,6 +174,60 @@ function nas_events_sync_form($form, &$form_state) {
     '#value' => 'Sync',
   );
   return $form;
+}
+
+/**
+ * Callback for Ajax: Frontpage Flyways - Audubon Near You section.
+ */
+function nas_events_ajax_flyways_events($state) {
+  $items = _nas_events_get_events($state);
+  print theme('flyways_events', array(
+    'items' => $items,
+  ));
+}
+
+/**
+ * Helper function to GET Events (3) ready to theme with flyways_events.
+ */
+function _nas_events_get_events($state = 'all') {
+  $query = db_select('location', 'lc');
+  if (!empty($state) and $state != 'all') {
+    $query->condition('lc.province', $state, '=');
+  }
+  $results = $query->fields('lc', array('lid', 'province'))
+    ->range(0, 2)
+    ->orderRandom()
+    ->execute()
+    ->fetchAll();
+  $lids = array();
+  foreach ($results as $result) {
+    $lids[] = $result->lid;
+  }
+  if (empty($lids)) return array();
+  $entities = db_select('field_data_field_event_location', 'el')
+      ->fields('el', array('entity_id', 'field_event_location_lid'))
+      ->condition('field_event_location_lid', $lids, 'IN')
+      ->execute()
+      ->fetchAll();
+  $items = array();
+  foreach ($entities as $entity) {
+    $nid = $entity->entity_id;
+    $node = node_load($nid);
+    $items[$nid]['nid'] = $node->nid;
+    $items[$nid]['title'] = $node->title;
+    $items[$nid]['state'] = $state;
+    if (isset($node->field_event_description[LANGUAGE_NONE][0]['value'])) {
+      $items[$nid]['body'] = truncate_utf8($node->field_event_description[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
+    }
+    else {
+      $items[$nid]['body'] = truncate_utf8($node->body[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
+    }
+    if (isset($node->field_event_date[LANGUAGE_NONE][0]['value'])) {
+      $date = strtotime($node->field_event_date[LANGUAGE_NONE][0]['value']);
+      $items[$nid]['start_date'] = date('l, F j, Y', $date);
+    }
+  }
+  return $items;
 }
 
 /**

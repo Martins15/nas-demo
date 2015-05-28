@@ -2540,18 +2540,19 @@ function nas_master_update_7179() {
 }
 
 /**
- * Revert Article feature.
- */
-function nas_master_update_7181() {
-  features_revert_module('nas_article_feature');
-}
-
-/**
  * NAS63 Article feature revert.
  */
 function nas_master_update_7180(&$sandbox) {
   features_revert_module('nas_article_feature');
-  module_enable(array('nas_near_you'));
+  features_revert_module('nas_fpp_feature');
+  module_enable(array('nas_near_you', 'nas_location_view_feature'));
+}
+
+/**
+ * Revert Article feature.
+ */
+function nas_master_update_7181() {
+  features_revert_module('nas_article_feature');
 }
 
 /**
@@ -2574,3 +2575,4 @@ function nas_master_update_7183() {
     }
   }
 }
+
