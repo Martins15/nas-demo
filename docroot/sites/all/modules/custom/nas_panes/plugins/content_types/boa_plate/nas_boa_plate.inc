@@ -93,6 +93,17 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     )
   ), 'setting');
 
+  $deepzoom_link = l('<i class="icon-magnifier"></i> ' . t('See full plate'), 'node/' . $node->nid . '/plate', array(
+      'attributes' => array(
+        'class' => array(
+          'see-full-plate',
+          'ctools-use-modal',
+          'ctools-modal-boa-plate',
+        ),
+      ),
+      'html' => TRUE,
+    ));
+
   $block = new stdClass();
   $block->content = theme('boa_plate', array(
     'image_thumbnail' => $image_thumbnail_path,
@@ -102,6 +113,7 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     'subscribe_link' => $subscribe_link,
     'link_title' => check_plain($conf['link_title']),
     'link_url' => url($conf['link_uri']),
+    'deepzoom_link' => $deepzoom_link,
   ));
 
   return $block;
