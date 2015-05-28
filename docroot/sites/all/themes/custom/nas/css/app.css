@@ -12737,6 +12737,20 @@ body.touch .sticky-wrapper {
     width: auto;
   }
 }
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content {
+  max-width: none !important;
+  padding: 0;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .modal-header {
+  display: none;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content #modal-content {
+  max-width: none !important;
+  padding: 0;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .deepzoom {
+  height: 100%;
+}
 
 .boa-search-form {
   background-color: #f5f4eb;

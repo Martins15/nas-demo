@@ -839,6 +839,27 @@
         width: auto;
       }
     }
+
+    &.boa-plate-popup {
+
+      .ctools-modal-content {
+        max-width: none !important;
+        padding: 0;
+
+        .modal-header {
+          display: none;
+        }
+
+        #modal-content {
+          max-width: none !important;
+          padding: 0;
+        }
+
+        .deepzoom {
+          height: 100%;
+        }
+      }
+    }
   }
 }
 
