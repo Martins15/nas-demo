@@ -9902,10 +9902,10 @@ body.black-bg .slide-caption {
   cursor: pointer;
   background-position: center center;
   background-size: 34px;
-  -webkit-animation: spin 1s ease-in-out infinite;
-  -moz-animation: spin 1s linear infinite;
-  -ms-animation: spin 1s linear infinite;
-  -o-animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s ease infinite;
+  -moz-animation: spin 1s ease infinite;
+  -ms-animation: spin 1s ease infinite;
+  -o-animation: spin 1s ease infinite;
   animation: spin 1s ease infinite;
 }
 
@@ -14861,6 +14861,7 @@ figcaption {
 }
 
 .file-attachments {
+  clear: both;
   margin: 20px 0;
 }
 .file-attachments h3 {
