@@ -1,4 +1,4 @@
-﻿%FontSource {
+%FontSource {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
@@ -78,8 +78,7 @@
     margin-bottom: 15px;
   }
 }
-
-.bird-guide-country {
+.near-you-form {
   width: 50%;
   float: left;
   padding: 0 10px;
@@ -95,7 +94,7 @@
 }
 
 .bird-guide-zip-input {
-  width: 30%;
+  width: 50%;
   float: left;
   padding: 0 10px 0 0;
 }
@@ -157,5 +156,16 @@
 .center-and-sanctuaries {
   @include breakpoint(max-width, 768px) {
     margin-top: 50px;
+  }
+}
+
+.page-audubon-near-you {
+  .global-content > .row { position: relative; }
+  #audubon-near-you--local-chapter--wrapper {
+    position: absolute;
+    width: 100%;
+  }
+  .top-offset > div {
+    margin-top: 300px;
   }
 }

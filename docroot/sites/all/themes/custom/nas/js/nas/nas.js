@@ -51,14 +51,21 @@ var Nas = Nas || {};
   Drupal.behaviors.videoCurtainController = {
     attach: function(context, settings) {
       $('.curtain-video video').once('curtain-video-controller', function () {
+        if (navigator && navigator.userAgent && navigator.userAgent !== null) {
+          var strUserAgent = navigator.userAgent.toLowerCase();
+          var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+          if (arrMatches !== null) {
+            $('body').addClass('force-curtain-fallback');
+          }
+        }
+
         var $video = $(this), video = this;
-        var $playButton = $(this).parent().find('.curtain-video-play-button');
-        $playButton.bind('click', function () {
-          video.play();
-        });
+        $video.hide();
         $video
-          .bind('play', function () { $playButton.hide(); })
-          .bind('pause', function () { $playButton.show(); });
+          .bind('play', function () {
+            $video.fadeIn('slow');
+            $('.curtain-video-load-indicator').fadeOut('slow');
+          });
       });
     }
   };
@@ -66,8 +73,9 @@ var Nas = Nas || {};
   Drupal.behaviors.videoCurtainSizing = {
     attach: function(context, settings) {
       $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
+        var $video = $(this);
+
         this.onloadedmetadata = function (e) {
-          var $video = $(this);
           var width = $video.width();
           var height = $video.height();
           $video.css({
@@ -521,7 +529,7 @@ var Nas = Nas || {};
           }
           else {
             query[queries[i][0]] = queries[i][1];
-		  }
+          }
         }
         if ($.isArray(query.search)) {
 
@@ -535,4 +543,58 @@ var Nas = Nas || {};
       });
     }
   };
+
+  Drupal.behaviors.iframe_map = {
+  attach: function (context,settings){
+    var map = $("#map-canvas iframe");
+      parent_h = map.parent().height();
+      map_h = map.height();
+        if(parent_h < map_h){
+          map.parent().height(map_h);
+        }
+        else{
+          map.height(parent_h);
+        }
+    }
+  };
+  
+  Drupal.behaviors.frontpage_flyway_ajax = {
+    attach: function(context, settings) {
+      // Replace block only once.
+      $('body.page-frontpage').once('flyways-ajax', function() {
+        var onSuccess = function(stateIsoCode) {
+          if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
+            return;
+          }
+          // Replace default block with Audubon Near You content filtered by state.
+          $.ajax({
+            type: 'GET',
+            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/audubon-near-you/'+stateIsoCode,
+            dataType: 'html',
+            success: function (data) {
+              if (data !== '') {
+                $('.flyways-nearyou-ajax-wrapper').once().html(data);
+              }
+              $('.flyways-nearyou-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+            }
+          });
+          // Replace default block with Event content filtered by state.
+          $.ajax({
+            type: 'GET',
+            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/events/'+stateIsoCode,
+            dataType: 'html',
+            success: function (data) {
+              if (data !== '') {
+                $('.flyways-events-ajax-wrapper').once().html(data);
+              }
+              $('.flyways-events-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+            }
+          });
+        };
+        // Internal request.
+        geoip.getState(onSuccess);
+      });
+    }
+  };
+
 })(jQuery);

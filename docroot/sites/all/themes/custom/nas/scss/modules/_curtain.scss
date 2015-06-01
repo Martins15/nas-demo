@@ -28,6 +28,13 @@
   @include breakpoint(large-up) {
     display: block;
   }
+
+  // Apple mobile devices never get curtain shown
+  .force-curtain-fallback & {
+    @include breakpoint(large-up) {
+      display: none;
+    }
+  }
 }
 
 .curtain-content {
@@ -155,18 +162,31 @@
     }
   }
 
-  .curtain-video-play-button {
-    background-image: url(../img/play-icon.png);
+  .curtain-video-load-indicator {
+    background-image: url(../img/video-loading-indicator.png);
     position: absolute;
-    height: 77px;
+    height: 34px;
     left: 50%;
     top: 50%;
-    width: 77px;
-    margin-top: -38px;
-    margin-left: -38px;
+    width: 34px;
+    margin-top: -17px;
+    margin-left: -17px;
     cursor: pointer;
+    background-position: center center;
+    background-size: 34px;
+    -webkit-animation:spin 1s ease infinite;
+    -moz-animation:spin 1s ease infinite;
+    -ms-animation:spin 1s ease infinite;
+    -o-animation:spin 1s ease infinite;
+    animation:spin 1s ease infinite;
   }
 }
+
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-ms-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-o-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@keyframes spin { 100% { transform:rotate(360deg); } }
 
 .curtain-arrow {
   position: absolute;

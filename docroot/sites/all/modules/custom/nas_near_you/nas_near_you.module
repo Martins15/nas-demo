@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Provides admin page for audubon-near-you zip search.
+ */
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function nas_near_you_menu() {
+  $items = array();
+  $items['admin/config/content/near-you'] = array(
+    'title' => 'Audubon Near You ZIP',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_near_you_zip_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'nas_near_you.admin.inc',
+  );
+  $items['ajax/frontpage-flyways/audubon-near-you/%'] = array(
+    'title' => 'Ajax - Audubon Near You',
+    'page callback' => 'nas_near_you_ajax_flyways_nearyou',
+    'page arguments' => array(3),
+    'access arguments' => array('access content pages'),
+  );
+  return $items;
+}
+
+/**
+ * Get chapter node ID based on zip code.
+ * 
+ * @params string $zip
+ *   String with the zip code number already sanitized.
+ * 
+ * @return integer
+ *   The nid of the 'Chapters & Centers' type node related
+ *   to the zip code.
+ */
+function nas_get_chapter_by_zip($zip) {
+  $nid = db_query('SELECT nid FROM {zip_code} WHERE zipcode = :zip', array(':zip' => $zip))->fetchField();
+  if ($nid) {
+    return $nid;
+  }
+  return NULL;
+}
+
+/**
+ * Callback for Ajax: Frontpage Flyways - Audubon Near You section.
+ */
+function nas_near_you_ajax_flyways_nearyou($state) {
+  $items = _nas_panes_get_locations($state, 'office_chapter+office+chapter', NULL, 'locations_frontpage');
+  print theme('flyways_near_you_office_chapter', array(
+    'items' => $items,
+  ));
+}

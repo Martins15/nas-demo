@@ -663,9 +663,22 @@
 
     .ctools-modal-content {
       border: none;
+      height: auto !important;
       margin: 0;
-      max-width: 700px !important;
+      max-width: 875px !important;
       padding: 20px 30px;
+
+      @include breakpoint(tiny-only) {
+        padding: 20px 15px;
+      }
+
+      @include breakpoint(large-up) {
+        padding-right: 0;
+      }
+
+      @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        min-width: 875px;
+      }
     }
 
     .messages {
@@ -676,6 +689,10 @@
       background-color: transparent;
       padding: 7px 0 15px;
 
+      @include breakpoint(tiny-only) {
+        padding: 7px 0 0;
+      }
+
       #modal-title {
         color: #262626;
         font-family: "Source Sans Pro", Verdana, sans-serif;
@@ -684,7 +701,7 @@
         white-space: normal;
 
         @include breakpoint(tiny-only) {
-          font-size: 27px;
+          font-size: 20px;
         }
       }
 
@@ -706,15 +723,27 @@
           display: block;
         }
       }
+
+      @include breakpoint(small-only) {
+        .close {
+          display: block;
+        }
+      }
+
+      @include breakpoint(medium-only) {
+        .close {
+          display: block;
+        }
+      }
     }
 
     #modal-content {
-      max-width: 670px !important;
+      height: auto !important;
+      max-width: 845px !important;
+      min-height: 425px;
+      overflow: hidden;
       padding: 0;
-
-      @include breakpoint(tiny-only) {
-        padding: 0 30px 30px 0;
-      }
+      width: 100% !important;
 
       .featured-image {
         height: 430px;
@@ -738,6 +767,10 @@
         @include breakpoint(small-only) {
           display: none;
         }
+
+        @include breakpoint(medium-only) {
+          display: none;
+        }
       }
 
       p {
@@ -750,13 +783,25 @@
 
       form {
         margin-bottom: 30px;
+        width: 565px;
+
+        @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+          width: 320px;
+        }
 
         @include breakpoint(tiny-only) {
           margin-bottom: 65px;
+          width: auto;
         }
 
         @include breakpoint(small-only) {
           margin-bottom: 65px;
+          width: auto;
+        }
+
+        @include breakpoint(medium-only) {
+          margin-bottom: 65px;
+          width: auto;
         }
 
         label {
@@ -776,6 +821,7 @@
 
           @include breakpoint(tiny-only) {
             min-width: 190px;
+            margin-bottom: 0;
             width: 100%;
           }
         }
@@ -786,19 +832,72 @@
           }
         }
 
+        .form-item-first-name {
+          display: inline-block;
+        }
+
+        .form-item-last-name {
+          display: inline-block;
+
+          @include breakpoint(small-only) {
+            margin-left: 75px;
+          }
+
+          @include breakpoint(medium-only) {
+            margin-left: 75px;
+          }
+
+          @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            margin-left: 75px;
+          }
+        }
+
+        .form-item-email {
+          display: inline-block;
+
+          @include breakpoint(tiny-only) {
+            margin-bottom: 10px;
+          }
+        }
+
         .form-item-zip-code {
-          margin-bottom: 30px;
+          display: inline-block;
+
+          label {
+            @include breakpoint(large-up) {
+              width: 40px;
+            }
+
+            @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+              width: 75px;
+            }
+          }
+
+          input {
+            @include breakpoint(large-up) {
+              min-width: 185px;
+              width: 180px;
+            }
+          }
+        }
+
+        .actions {
+          overflow: hidden;
+          white-space: nowrap;
+
+            @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            width: 440px;
+          }
         }
 
         #nas-boa-mail-subscription-last-name {
-          margin-left: 75px;
-
           @include breakpoint(tiny-only) {
             margin-left: 0;
           }
         }
 
         .privacy-policy {
+          float: left;
           font-family: "Source Sans Pro", Verdana, sans-serif;
           line-height: 65px;
           margin: 0 20px 0 0;
@@ -809,9 +908,18 @@
             margin: 0;
             float: right;
           }
+
+          @include breakpoint(small-only) {
+            margin: 0;
+          }
+
+          @include breakpoint(medium-only) {
+            margin: 0;
+          }
         }
 
         .cancel {
+          float: left;
           font-family: "Source Sans Pro", Verdana, sans-serif;
           line-height: 65px;
           margin: 0 20px 0 0;
@@ -827,16 +935,21 @@
             margin-left: 0;
             width: 100%
           }
+
+          @include breakpoint(small-only) {
+            font-size: 18px;
+          }
         }
       }
     }
 
     .intro {
       margin: 10px 0 25px;
-      width: 390px;
 
       @include breakpoint(tiny-only) {
-        width: auto;
+        margin: 10px 0;
+        font-size: 14px;
+        line-height: 20px;
       }
     }
   }

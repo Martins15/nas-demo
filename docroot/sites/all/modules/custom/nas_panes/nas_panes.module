@@ -834,8 +834,18 @@ function nas_panes_theme() {
         'title' => NULL,
         'items' => array(),
         'hide_empty_text' => NULL,
+        'top_offset' => NULL,
       ),
       'template' => 'audubon-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
+    'audubon_near_you_local_chapter' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-local-chapter',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
     'audubon_near_you_center_sanctuary' => array(
@@ -1694,11 +1704,12 @@ function _nas_panes_get_upcoming_events($state = 'all') {
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $type = 'all') {
+function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $view_name = 'locations') {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $type);
-
+  $results = views_get_view_result($view_name, 'default', $state, $type, $nid);
   foreach ($results as $item) {
+    $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name))? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
+    $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name))? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->node_title,
@@ -1708,8 +1719,8 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
-      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
-      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'first_name' => $first_name,
+      'last_name' => $last_name,
       'phone_email' => '',
       'address_label' => t("Address") . ":<br/>",
       'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
@@ -2107,6 +2118,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     '#id' => 'nas-boa-mail-subscription-zip'
   );
   $form['submit'] = array(
+    '#prefix' => '<div class="actions">',
     '#type' => 'submit',
     '#value' => t('Sign Up'),
     '#attributes' => array(
@@ -2122,6 +2134,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
   );
   $form['privacy_policy'] = array(
+    '#suffix' => '</div>',
     '#type' => 'link',
     '#title' => t('Privacy policy'),
     '#href' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
@@ -2261,6 +2274,11 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
     '#type' => 'textarea',
     '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
   );
+  $form['after_no'] = array(
+    '#title' => t('Text after No Thanks.'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
@@ -2278,6 +2296,7 @@ function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state
   variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
   variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
   variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
+  variable_set('boa_mail_subscription_settings_form_after_no', $form_state['values']['after_no']);
 }
 
 /**
