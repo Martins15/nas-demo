@@ -2576,3 +2576,11 @@ function nas_master_update_7183() {
   }
 }
 
+/**
+ * Revert features.
+ */
+function nas_master_update_7184() {
+  features_revert(array(
+      'nas_search_feature' => array('views_view', 'page_manager_pages'),
+    ));
+}

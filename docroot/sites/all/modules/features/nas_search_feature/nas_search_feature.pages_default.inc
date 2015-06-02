@@ -104,6 +104,25 @@ function nas_search_feature_default_page_manager_pages() {
     $display->content['new-c8fe202b-ac4f-43a9-ae48-93f1dd39d872'] = $pane;
     $display->panels['birds_search_results'][1] = 'new-c8fe202b-ac4f-43a9-ae48-93f1dd39d872';
     $pane = new stdClass();
+    $pane->pid = 'new-39e21174-abc0-4268-9a46-d6fa28eda8c1';
+    $pane->panel = 'birds_search_results';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'search_results-boa_plates';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '39e21174-abc0-4268-9a46-d6fa28eda8c1';
+    $display->content['new-39e21174-abc0-4268-9a46-d6fa28eda8c1'] = $pane;
+    $display->panels['birds_search_results'][2] = 'new-39e21174-abc0-4268-9a46-d6fa28eda8c1';
+    $pane = new stdClass();
     $pane->pid = 'new-db825620-b152-4df6-a535-a05ec2e255c4';
     $pane->panel = 'search_form';
     $pane->type = 'search_form';
