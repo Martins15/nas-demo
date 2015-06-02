@@ -104,7 +104,7 @@ function nas_solr_feature_default_search_api_index() {
         "field_bird_sci_name" : { "type" : "text" },
         "field_event_date:value2" : { "type" : "date" },
         "field_event_description:value" : { "type" : "text" },
-        "field_event_type" : { "type" : "integer", "entity_type" : "taxonomy_term" },
+        "field_event_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "month" : { "type" : "integer" },
         "node_date" : { "type" : "date" },
         "promote" : { "type" : "boolean" },
@@ -118,6 +118,84 @@ function nas_solr_feature_default_search_api_index() {
         "type" : { "type" : "string" },
         "type_for_search" : { "type" : "string" },
         "year" : { "type" : "integer" }
+      }
+    },
+    "enabled" : "1",
+    "read_only" : "0"
+  }');
+  $items['page_manager_pages'] = entity_import('search_api_index', '{
+    "name" : "Page manager pages",
+    "machine_name" : "page_manager_pages",
+    "description" : null,
+    "server" : "acquia_search",
+    "item_type" : "page_manager_search",
+    "options" : {
+      "index_directly" : 1,
+      "cron_limit" : "1",
+      "fields" : {
+        "admin_description" : { "type" : "text" },
+        "has_image" : { "type" : "boolean" },
+        "hero_image_title" : { "type" : "text" },
+        "image" : { "type" : "integer", "entity_type" : "file" },
+        "search_api_language" : { "type" : "string" },
+        "title" : { "type" : "text" }
+      },
+      "data_alter_callbacks" : {
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "ical" } },
+        "search_api_alter_add_aggregation" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] }
+      },
+      "processors" : {
+        "search_api_case_ignore" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : { "title" : true } }
+        },
+        "search_api_html_filter" : {
+          "status" : 0,
+          "weight" : "10",
+          "settings" : {
+            "fields" : { "title" : true },
+            "title" : 0,
+            "alt" : 1,
+            "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
+          }
+        },
+        "search_api_transliteration" : {
+          "status" : 1,
+          "weight" : "15",
+          "settings" : { "fields" : { "title" : true } }
+        },
+        "search_api_tokenizer" : {
+          "status" : 0,
+          "weight" : "20",
+          "settings" : {
+            "fields" : { "title" : true },
+            "spaces" : "[^[:alnum:]]",
+            "ignorable" : "[\\u0027]"
+          }
+        },
+        "search_api_stopwords" : {
+          "status" : 0,
+          "weight" : "30",
+          "settings" : {
+            "fields" : { "title" : true },
+            "file" : "",
+            "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
+          }
+        },
+        "search_api_highlighting" : {
+          "status" : 0,
+          "weight" : "35",
+          "settings" : {
+            "prefix" : "\\u003Cstrong\\u003E",
+            "suffix" : "\\u003C\\/strong\\u003E",
+            "excerpt" : 1,
+            "excerpt_length" : "256",
+            "exclude_fields" : [],
+            "highlight" : "always"
+          }
+        }
       }
     },
     "enabled" : "1",

@@ -123,6 +123,25 @@ function nas_search_feature_default_page_manager_pages() {
     $display->content['new-39e21174-abc0-4268-9a46-d6fa28eda8c1'] = $pane;
     $display->panels['birds_search_results'][2] = 'new-39e21174-abc0-4268-9a46-d6fa28eda8c1';
     $pane = new stdClass();
+    $pane->pid = 'new-bf132607-6b9a-4bd3-8f32-835389cfc518';
+    $pane->panel = 'birds_search_results';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'search_results_pm-site_sections';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = 'bf132607-6b9a-4bd3-8f32-835389cfc518';
+    $display->content['new-bf132607-6b9a-4bd3-8f32-835389cfc518'] = $pane;
+    $display->panels['birds_search_results'][3] = 'new-bf132607-6b9a-4bd3-8f32-835389cfc518';
+    $pane = new stdClass();
     $pane->pid = 'new-db825620-b152-4df6-a535-a05ec2e255c4';
     $pane->panel = 'search_form';
     $pane->type = 'search_form';
