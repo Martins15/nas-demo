@@ -51,4 +51,26 @@ function nas_alters_views_query_alter(&$view, &$query) {
       }
     }
   }
+
+  // Filter by both BOA's title and corresponding field guide bird's title.
+  if ($view->name == 'boa_index') {
+    if (!empty($view->filter['title']->value)) {
+      // Split on words.
+      $words = explode(' ', $view->filter['title']->value);
+      $words = array_filter($words);
+      // Remove old group conditions.
+      $query->where[2]['conditions'] = array();
+      foreach (array('node.title', 'node_field_data_field_boa_bird.title') as $field) {
+        $condition = db_and();
+        foreach ($words as $word) {
+          $condition->condition($field, '%' . $word . '%', 'LIKE');
+        }
+        $query->where[2]['conditions'][] = array(
+          'field' => $condition,
+          'operator' => NULL,
+          'value' => NULL,
+        );
+      }
+    }
+  }
 }

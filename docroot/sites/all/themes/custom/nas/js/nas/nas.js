@@ -48,6 +48,55 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.videoCurtainController = {
+    attach: function(context, settings) {
+      $('.curtain-video video').once('curtain-video-controller', function () {
+        if (navigator && navigator.userAgent && navigator.userAgent !== null) {
+          var strUserAgent = navigator.userAgent.toLowerCase();
+          var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+          if (arrMatches !== null) {
+            $('body').addClass('force-curtain-fallback');
+          }
+        }
+
+        var $video = $(this), video = this;
+        $video.hide();
+        $video
+          .bind('play', function () {
+            $video.fadeIn('slow');
+            $('.curtain-video-load-indicator').fadeOut('slow');
+          });
+      });
+    }
+  };
+
+  Drupal.behaviors.videoCurtainSizing = {
+    attach: function(context, settings) {
+      $('.curtain-video.center video, .curtain-video.cover video').once('video-curtain-sizing', function () {
+        var $video = $(this);
+
+        this.onloadedmetadata = function (e) {
+          var width = $video.width();
+          var height = $video.height();
+          $video.css({
+            marginLeft: -width / 2,
+            marginTop: -height / 2
+          });
+          if ($video.parent().hasClass('cover')) {
+            $(window).bind('resize', function () {
+              var width = $video.width();
+              var height = $video.height();
+              $video.css({
+                marginLeft: -width / 2,
+                marginTop: -height / 2
+              });
+            });
+          }
+        };
+      });
+    }
+  };
+
   Drupal.isFirstTimeVisitor = function () {
     var firsttimecookievalue = parseInt($.cookie('firsttimevisitors'));
     if (firsttimecookievalue) {
@@ -349,6 +398,35 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.NewsPage = {
+    attach: function (context, settings) {
+      if ($('body').hasClass('page-news') || ($('body').hasClass('page-taxonomy-term-tags'))) {
+        $(document).ajaxComplete(function(event, xhr, settings) {
+          var updated_url = '';
+          // change the URL after a new content is loaded.
+          if (settings.url.match("\\?page=")) {
+            updated_url = settings.url;
+          }
+          if (updated_url !== '') {
+            window.history.replaceState('', '', updated_url);
+          }
+        });
+        // Additionatly change page number after links is clicked.
+        $('.view-nas-news a').bind('click touchend', function (e) {
+          var id = parseInt($(this).parents('.views-row').attr('class').split(' ')[0].replace('page-', '')),
+              page_numb_replace = 'page=' + id,
+              page_regexp_replace = /page=\d+/g;
+          if (id === 0) {
+            page_numb_replace = '';
+            page_regexp_replace = /page=\d+&?/g;
+          }
+          var updated_url = window.location.pathname + window.location.search.replace(page_regexp_replace, page_numb_replace);
+          window.history.replaceState('', '', updated_url);
+        });
+      }
+    }
+  };
+
   Drupal.behaviors.noImage = {
     attach: function (context, settings) {
 
@@ -416,4 +494,68 @@ var Nas = Nas || {};
       });
     }
   };
+
+  Drupal.behaviors.centerAuthorImage = {
+    attach: function (context, settings) {
+      articleAuthor = jQuery(".article-sidebar-section.article-meta img");
+      if(articleAuthor.length) {
+        jQuery(".article-sidebar-section.article-meta").css("text-align","center");
+      }
+    }
+  };
+
+  Drupal.behaviors.search_highlight = {
+    attach: function (context, settings) {
+      $('.page-search-results').each(function(){
+        var query = {},
+            queries = window.location.search.substring(1).split('&'),
+            qr_length = queries.length,
+            highlight = ['.common-name a', '.scientific-name', '.editorial-card-title a', '.editorial-card-content p', '.editorial-card-info a'],
+            hl_length = highlight.length,
+            i = 0,
+            highlight_aplly = function(){
+              var sr_length = query.search.length,
+                  j = 0;
+              for (j = 0; j < sr_length; j = j + 1) {
+                $(this).highlight(query.search[j], { caseSensitive: false });
+              }
+            };
+
+        // Retrieving the search words from URL.
+        for (i = 0; i < qr_length; i = i + 1) {
+          queries[i] = queries[i].split('=');
+          if (queries[i][0] == 'search') {
+            query[queries[i][0]] = queries[i][1].split('+');
+          }
+          else {
+            query[queries[i][0]] = queries[i][1];
+		  }
+        }
+        if ($.isArray(query.search)) {
+
+          // Iterate over all strings container and highlight search words.
+          for (i = 0; i < hl_length; i = i + 1) {
+            $(highlight[i]).each(highlight_aplly);
+          }
+        }
+        $('.highlight').css('background-color', 'yellow');
+        $('.highlight').css('color', 'black');
+      });
+    }
+  };
+
+  Drupal.behaviors.iframe_map = {
+  attach: function (context,settings){
+    var map = $("#map-canvas iframe");
+      parent_h = map.parent().height();
+      map_h = map.height();
+        if(parent_h < map_h){
+          map.parent().height(map_h);
+        }
+        else{
+          map.height(parent_h);
+        }
+    }
+  };
+
 })(jQuery);

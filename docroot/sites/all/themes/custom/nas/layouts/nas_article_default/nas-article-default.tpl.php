@@ -31,6 +31,15 @@
           <?php print $content['right']; ?>
         </aside>
         <?php print $content['main']; ?>
+        <?php if(!empty($content['file_attachments'])): ?>
+        <div class="file-attachments">
+          <h3><?php print t('Downloadable Resources'); ?></h3>
+          <div class="files-list">
+            <?php print $content['file_attachments']; ?>
+          </div>
+        </div>
+        <?php endif;?>
+        <?php print $content['comments']; ?>
       </div>
     </div>
   </article>

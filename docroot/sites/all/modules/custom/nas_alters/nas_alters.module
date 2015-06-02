@@ -191,6 +191,7 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
     ),
     'map' => array(
       'field_article_map',
+      'field_credit_caption_map',
     ),
     'press_release' => array(
       'field_pressrelease_contact',
@@ -374,6 +375,35 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
       $form['field_event_type']['#options']['All'] = t('Filter by Event Type');
     }
   }
+
+  if ($form['#id'] == 'views-exposed-form-boa-index-boa-index') {
+    $form['#attached']['js'][] = drupal_get_path('module', 'nas_alters') . '/js/boa-search-form.js';
+    $form['#attributes']['class'][] = 'boa-search-form';
+    $form['query']['#attributes']['placeholder'] = t('Search for a bird...');
+    $form['submit']['#value'] = '<span class="hide-for-medium hide-for-large hide-for-xlarge"><i class="icon-magnifier"></i></span><span class="hide-for-tiny hide-for-small">' . $form['submit']['#value'] . '</span>';
+    $form['submit']['#attributes']['class'][] = 'bird-guide-search-submit';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+    $form['state']['#options']['All'] = t('State');
+
+    // Apply typeahead.js settings for form placed on the BOA Landing page.
+    $boas = _nas_search_get_tt_boas();
+
+    $form['query']['#typeahead'] = array(
+      array(
+        'type' => 'local values',
+        'values' => $boas,
+        'options' => array(
+          'name' => 'boas',
+          'displayKey' => 'combined_title',
+          'limit' => 10,
+        ),
+        'templates' => array(
+          'suggestion' => 'Drupal.behaviors.boaSearchFilters.suggestionTemplate',
+        ),
+      ),
+    );
+  }
 }
 
 /**
@@ -510,14 +540,6 @@ function nas_alters_title_getter_callback($item) {
  * Implements hook_views_pre_view().
  */
 function nas_alters_views_pre_view(&$view) {
-  if ($view->name == 'nas_news' && $view->current_display == 'articles_list_bot') {
-    // This view by default is showing 3 items with offset 6.
-    // Starting from second page it should show 9 items per page.
-    if (pager_find_page($view->display_handler->options['pager']['options']['id'])) {
-      $view->display_handler->options['pager']['options']['items_per_page'] = 9;
-      $view->display_handler->options['pager']['options']['offset'] = 0;
-    }
-  }
 }
 
 /**

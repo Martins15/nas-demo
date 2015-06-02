@@ -112,6 +112,7 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
+    'boa' => 'boa',
     'project' => 'project',
     'strategy' => 'strategy',
     'flyway' => 'flyway',

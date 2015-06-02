@@ -1,0 +1,4 @@
+name = NAS Birds export
+description = Export all published birds to JSON format
+core = 7.x
+package = NAS

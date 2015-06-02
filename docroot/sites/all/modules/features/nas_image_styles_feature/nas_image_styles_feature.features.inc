@@ -298,6 +298,33 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: boa_mail_subscription.
+  $styles['boa_mail_subscription'] = array(
+    'label' => 'BOA Mail Subscription form',
+    'effects' => array(
+      57 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 500,
+          'height' => 750,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 2,
+      ),
+      58 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
+    ),
+  );
+
   // Exported image style: conservation_slideshow_featured_project.
   $styles['conservation_slideshow_featured_project'] = array(
     'label' => 'Conservation Slideshow featured project',
@@ -442,7 +469,7 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['featured_frontpage'] = array(
     'label' => 'Featured frontpage',
     'effects' => array(
-      1 => array(
+      31 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 2400,
@@ -455,20 +482,57 @@ function nas_image_styles_feature_image_default_styles() {
             'fallback' => 1,
           ),
         ),
-        'weight' => 1,
+        'weight' => -10,
       ),
-      2 => array(
-        'name' => 'image_scale_and_crop',
+      51 => array(
+        'name' => 'image_scale',
         'data' => array(
           'width' => 2400,
           'height' => 1400,
+          'upscale' => 0,
+        ),
+        'weight' => -9,
+      ),
+      41 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => -8,
+      ),
+    ),
+  );
+
+  // Exported image style: featured_frontpage_hero_image.
+  $styles['featured_frontpage_hero_image'] = array(
+    'label' => 'featured_frontpage_hero_image',
+    'effects' => array(
+      56 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 2400,
+          'height' => '',
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
         ),
         'weight' => 2,
       ),
-      3 => array(
+      58 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 2400,
+          'height' => 1800,
+          'upscale' => 0,
+        ),
+        'weight' => 3,
+      ),
+      59 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => 3,
+        'weight' => 4,
       ),
     ),
   );

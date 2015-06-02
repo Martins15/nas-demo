@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Provides admin page for audubon-near-you zip search.
+ */
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function nas_near_you_menu() {
+  $items = array();
+  $items['admin/config/content/near-you'] = array(
+    'title' => 'Audubon Near You ZIP',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_near_you_zip_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'nas_near_you.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Get chapter node ID based on zip code.
+ * 
+ * @params string $zip
+ *   String with the zip code number already sanitized.
+ * 
+ * @return integer
+ *   The nid of the 'Chapters & Centers' type node related
+ *   to the zip code.
+ */
+function nas_get_chapter_by_zip($zip) {
+  $nid = db_query('SELECT nid FROM {zip_code} WHERE zipcode = :zip', array(':zip' => $zip))->fetchField();
+  if ($nid) {
+    return $nid;
+  }
+  return NULL;
+}

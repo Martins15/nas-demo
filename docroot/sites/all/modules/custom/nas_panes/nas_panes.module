@@ -41,6 +41,9 @@ function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
  */
 function nas_panes_theme() {
   $theme = array(
+    'x_image_anchor' => array(
+      'render element' => 'element',
+    ),
     'article_more_features' => array(
       'variables' => array(
         'teasers' => NULL,
@@ -126,6 +129,8 @@ function nas_panes_theme() {
         'image_thumbnail' => NULL,
         'lightbox_image_path' => NULL,
         'original_image_path' => NULL,
+        'subscribe_link' => NULL,
+        'show_download_link' => FALSE,
         'link_title' => NULL,
         'link_url' => NULL,
       ),
@@ -213,7 +218,37 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__hero_image' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_3stories' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_3stories_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_package' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_package_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_video' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-video',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
@@ -224,7 +259,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured-mobile',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
     'nas_frontpage_featured_article' => array(
       'variables' => array(
@@ -799,8 +834,18 @@ function nas_panes_theme() {
         'title' => NULL,
         'items' => array(),
         'hide_empty_text' => NULL,
+        'top_offset' => NULL,
       ),
       'template' => 'audubon-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
+    'audubon_near_you_local_chapter' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-local-chapter',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
     'audubon_near_you_center_sanctuary' => array(
@@ -854,6 +899,7 @@ function nas_panes_theme() {
         'date_city_province' => NULL,
         'featured_image' => NULL,
         'address' => NULL,
+        'additional' => NULL,
       ),
       'template' => 'events-intro',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
@@ -880,6 +926,24 @@ function nas_panes_theme() {
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
+    'upcoming_events_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'upcoming-events-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
+    ),
+    'upcoming_events_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'upcoming-events-block-item',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
     ),
   );
 
@@ -1597,6 +1661,38 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
+ * Returns Upcoming events base on state.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_upcoming_events($state = 'all') {
+  $items = array();
+  $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
+  $count = 0;
+
+  foreach ($results as $result) {
+    $link = NULL;
+    $item = node_load($result->entity);
+    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->title,
+      'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
+      'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
+      'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'link' => $link,
+      'order' => $count,
+    );
+    $count = $count + 1;
+  }
+  return $items;
+}
+
+/**
  * Returns locations.
  *
  * @param string $state
@@ -1608,11 +1704,12 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $type = 'all') {
+function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL) {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $type);
-
+  $results = views_get_view_result('locations', 'default', $state, $type, $nid);
   foreach ($results as $item) {
+    $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name))? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
+    $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name))? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->node_title,
@@ -1622,8 +1719,8 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
-      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
-      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'first_name' => $first_name,
+      'last_name' => $last_name,
       'phone_email' => '',
       'address_label' => t("Address") . ":<br/>",
       'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
@@ -1692,6 +1789,12 @@ function nas_panes_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['ajax/upcoming-events'] = array(
+    'page callback' => 'nas_panes_upcoming_events_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   $items['ajax/audubon-near-you'] = array(
     'page callback' => 'nas_panes_audubon_near_you_elements_callback',
     'access callback' => TRUE,
@@ -1710,7 +1813,19 @@ function nas_panes_menu() {
     'page callback' => 'nas_panes_popular_stories_nodequeue_redirect',
     'weight' => 10,
   );
-
+  $items['admin/content/boa-mail-subscription'] = array(
+    'title' => 'BOA mail subscription settings',
+    'access arguments' => array('administer nodes'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_panes_boa_mail_subscription_settings_form', 2),
+    'weight' => 11,
+  );
+  $items['birds-of-america/%ctools_js/subscribe/%'] = array(
+    'page callback' => 'nas_panes_ctools_modal_boa_subscribe',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -1746,6 +1861,26 @@ function nas_panes_local_chapters_centers_callback() {
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
+
+/**
+ * Returns markup for Upcoming Events block.
+ */
+function nas_panes_upcoming_events_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_upcoming_events($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
 /**
@@ -1846,6 +1981,7 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+  $form['override_title_heading']['#access'] = FALSE;
 }
 
 /**
@@ -1897,4 +2033,292 @@ function _nas_panes_format_image_attribution($file) {
     $parts[] = 'Photo: ' . trim($items[0]['safe_value']);
   }
   return implode(' ', $parts);
+}
+
+/**
+ * Page callback for modal Download high-resolution file.
+ */
+function nas_panes_ctools_modal_boa_subscribe() {
+  ctools_include('modal');
+  ctools_include('ajax');
+  $form_state = array(
+    'title' => variable_get('boa_mail_subscription_settings_form_title', ''),
+    'ajax' => TRUE,
+    'nid' => arg(3),
+  );
+  $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
+  print ajax_render($output);
+}
+
+/**
+ * Form boa_mail_subscription_form.
+ */
+function nas_panes_boa_mail_subscription_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#markup' => '<div class="intro">' . variable_get('boa_mail_subscription_settings_form_intro', '') . '</div>',
+  );
+  $form['first_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('First')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#title' => t('Name'),
+    '#required' => TRUE,
+    '#id' => 'nas-boa-mail-subscription-first-name'
+  );
+  $form['last_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Last')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-last-name'
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('email')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#required' => TRUE,
+    '#title' => t('Email'),
+    '#id' => 'nas-boa-mail-subscription-email'
+  );
+  $form['zip_code'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('ZIP')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#title' => t('ZIP'),
+    '#required' => TRUE,
+    '#id' => 'nas-boa-mail-subscription-zip'
+  );
+  $form['submit'] = array(
+    '#prefix' => '<div class="actions">',
+    '#type' => 'submit',
+    '#value' => t('Sign Up'),
+    '#attributes' => array(
+      'class' => array('button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-submit'
+  );
+  $form['cancel'] = array(
+    '#type' => 'link',
+    '#title' => t('No thanks'),
+    '#attributes' => array(
+      'class' => array('cancel'),
+    ),
+  );
+  $form['privacy_policy'] = array(
+    '#suffix' => '</div>',
+    '#type' => 'link',
+    '#title' => t('Privacy policy'),
+    '#href' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
+    '#attributes' => array(),
+    '#attributes' => array(
+      'target' => '_blank',
+      'class' => array('privacy-policy'),
+    ),
+  );
+
+  if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
+    $form['#prefix'] = '<div class="featured-image">' . theme('image_style', array(
+      'style_name' => 'boa_mail_subscription',
+      'path' => $image->uri,
+    ));
+    if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
+      $form['#prefix'] .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
+    }
+    $form['#prefix'] .= '</div>';
+  }
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_form validation callback.
+ */
+function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
+  $email = strtolower(trim($form_state['values']['email']));
+  $first_name = $form_state['values']['first_name'];
+  $last_name = $form_state['values']['last_name'];
+  $zip_code = $form_state['values']['zip_code'];
+
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
+
+  $url = 'http://www.audubonaction.org/site/Survey';
+  $data = array(
+    'cons_email' => $email,
+    'cons_info_component' => 't',
+    'cons_mail_opt_in' => 't',
+    'cons_email_opt_in' => 1,
+    'cons_email_opt_in_requested' => 'true',
+    'cons_first_name' => $first_name,
+    'cons_last_name' => $last_name,
+    'cons_zip_code' => $zip_code,
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+    'SURVEY_ID' => '18260',
+    'denySubmit' => '',
+    "3340_18260_2_14661" => "1441",
+    "3340_18260_2_14661" => "1401",
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 60,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
+  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
+  // Set up cookie for showing download link of already subscribed users.
+  if (isset($result->code) && ($result->code == 200)) {
+    setcookie('show_download_link', 1, time() + (86400 * 365), '/');
+  }
+}
+
+/**
+ * boa_mail_subscription_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
+  $node = node_load($form_state['nid']);
+  $image_items = field_get_items('node', $node, 'field_boa_illustration');
+  if (!empty($image_items[0]['filename'])) {
+    $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
+  }
+  $original_image_link = '<a class="download-link" href="' . $original_image_path . '" target="_blank">' . t('Download your image here.') . '</a>';
+  $content = '<p>' . variable_get('boa_mail_subscription_settings_form_after', '') . '</p>' . $original_image_link;
+  if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
+    $content .= '<div class="featured-image">' . theme('image_style', array(
+      'style_name' => 'boa_mail_subscription',
+      'path' => $image->uri,
+    ));
+    if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
+      $content .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
+    }
+  }
+  $content .= '</div>';
+  $commands[] = ctools_ajax_command_attr('#modalContent .close', 'class', 'close reload');
+  $commands[] = ctools_modal_command_display(variable_get('boa_mail_subscription_settings_form_title', ''), $content);
+  print ajax_render($commands);
+  drupal_exit();
+}
+
+/**
+ * Form boa_mail_subscription_settings_form.
+ */
+function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
+  $form['title'] = array(
+    '#title' => t('Title'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_title', ''),
+  );
+  $form['privacy_policy'] = array(
+    '#title' => t('Privacy policy URL'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
+  );
+  $form['intro'] = array(
+    '#title' => t('Intro'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+  );
+  $form['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_image', ''),
+    '#required' => FALSE,
+    '#pp_crop_styles' => array('boa_mail_subscription'),
+  );
+  $form['after'] = array(
+    '#title' => t('Text after form submit'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
+  );
+  $form['after_no'] = array(
+    '#title' => t('Text after No Thanks.'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_settings_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state) {
+  variable_set('boa_mail_subscription_settings_form_title', $form_state['values']['title']);
+  variable_set('boa_mail_subscription_settings_form_privacy_policy', $form_state['values']['privacy_policy']);
+  variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
+  variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
+  variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
+  variable_set('boa_mail_subscription_settings_form_after_no', $form_state['values']['after_no']);
+}
+
+/**
+ * Returns HTML for a 3x3 grid of radios for video cover placing handle.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: A render element containing radio buttons.
+ *
+ * @ingroup themeable
+ */
+function theme_x_image_anchor($variables) {
+  $element = $variables['element'];
+
+  $rows = array(
+    array('', '', ''),
+    array('', '', ''),
+    array('', '', '')
+  );
+  foreach (element_children($element) as $key) {
+    $element[$key]['#attributes']['title'] = $element[$key]['#title'];
+    unset($element[$key]['#title']);
+    switch ($key) {
+      case 'center':
+        $rows[1][1] = drupal_render($element[$key]);
+        break;
+
+      case 'top-left':
+        $rows[0][0] = drupal_render($element[$key]);
+        break;
+
+      case 'top-right':
+        $rows[0][2] = drupal_render($element[$key]);
+        break;
+
+      case 'bottom-left':
+        $rows[2][0] = drupal_render($element[$key]);
+        break;
+
+      case 'bottom-right':
+        $rows[2][2] = drupal_render($element[$key]);
+        break;
+    }
+  }
+
+  return theme('table', array('header' => array(), 'rows' => $rows, 'attributes' => array('class' => array('x-image-anchor'))));
 }
