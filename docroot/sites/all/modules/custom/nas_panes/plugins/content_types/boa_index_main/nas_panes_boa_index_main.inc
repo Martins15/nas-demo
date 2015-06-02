@@ -26,15 +26,18 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
       'query' => array(),
     ),*/
     'by-chronological' => array(
+      'head_title' => 'View the plates in chronological order',
       'title' => 'View the plates in chronological order',
       'query' => array('sort_by' => 'field_boa_plate_value'),
     ),
     'by-alphabetical' => array(
+      'head_title' => 'Alphabetical',
       'title' => 'Alphabetical',
       'query' => array('sort_by' => 'title'),
     ),
     'by-state' => array(
-      'title' => 'State',
+      'head_title' => 'Birds',
+      'title' => 'State Birds',
       'query' => array('sort_by' => 'state'),
     ),
   );
@@ -72,7 +75,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $links_to_display = array();
   foreach ($links as $id => $link) {
     if ($id == $current_link) {
-      $title = ($id == 'by-chronological')? $title = $link['title'] : 'Explore by ' . $link['title'];
+      $title = ($id == 'by-chronological')? $title = $link['head_title'] : 'Explore by ' . $link['head_title'];
     }
     else {
       $links_to_display[] = l($link['title'], 'birds-of-america', array(

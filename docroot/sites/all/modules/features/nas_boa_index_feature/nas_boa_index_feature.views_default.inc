@@ -267,6 +267,16 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
   $handler->display->display_options['relationships']['field_state_tid']['required'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: State */
+  $handler->display->display_options['fields']['field_state_1']['id'] = 'field_state_1';
+  $handler->display->display_options['fields']['field_state_1']['table'] = 'field_data_field_state';
+  $handler->display->display_options['fields']['field_state_1']['field'] = 'field_state';
+  $handler->display->display_options['fields']['field_state_1']['label'] = '';
+  $handler->display->display_options['fields']['field_state_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_state_1']['element_wrapper_type'] = 'h2';
+  $handler->display->display_options['fields']['field_state_1']['element_wrapper_class'] = 'thin';
+  $handler->display->display_options['fields']['field_state_1']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_state_1']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Rendered Content */
   $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
