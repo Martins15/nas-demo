@@ -29,3 +29,10 @@ function nas_sla_update_7103() {
   features_revert_module('nas_article_feature');
   features_revert_module('nas_location_feature');
 }
+
+/**
+ * NAS63 Article feature revert.
+ */
+function nas_sla_update_7104(&$sandbox) {
+  features_revert_module('nas_article_feature');
+}
