@@ -1,0 +1,35 @@
+Deep Zoom 7.x-1.x-dev, xxxx-xx-xx (Development release)
+--------------------------------------------------------------------------------
+
+- #1702124: Added cacheable JS configuration.
+- Fixed issue when installing with Libraries module disabled.
+- Fixed typo in menu path.
+- Added processor hook and settings.
+- Added Background Batch processor.
+- Added File field formatter.
+- Added help documentation.
+- Added a modular engine system.
+- Added makefile entries documentation.
+- Added support for OpenSeadragon.
+- Added Drush command to download library.
+- Updated generation for smaller derivatives.
+- Updated handling when libraries are missing.
+- Removed dependency on Image module.
+- Removed dependency on Seadragon Ajax library.
+- Removed makefile.
+- Removed dependency on Libraries API module.
+
+
+
+Deep Zoom 7.x-1.1, 2011-10-01
+--------------------------------------------------------------------------------
+
+- #1296028: Fixed issue with generating .dzi file in Apache.
+- Fixed Text format filter js and css caching issues.
+
+
+
+Deep Zoom 7.x-1.0, 2011-09-30
+--------------------------------------------------------------------------------
+
+- Initial 7.x release.

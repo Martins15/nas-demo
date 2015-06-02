@@ -1056,6 +1056,7 @@ figcaption {
 }
 
 .file-attachments {
+  clear: both;
   margin: 20px 0;
 
   h3 {
@@ -1099,6 +1100,34 @@ figcaption {
   }
 }
 
+.form-item-override-title-heading {
+  display: none;
+}
+
+#nas-page-scheduler-settings-form {
+  .form-item-date-publish-time {
+    width: 155px;
+
+    input {
+      width: 85px;
+    }
+  }
+}
+a.schedule-new-version {
+  display: block;
+  font-size: 0;
+  height: 40px;
+  left: 10px;
+  position: absolute;
+  top: 100px;
+  width: 40px;
+  z-index: 100;
+
+  &:hover {
+    @include box-shadow(0px 0px 5px #000);
+    @include border-radius(20px);
+  }
+}
 
 article.article{
   margin-bottom: 25px;
@@ -1124,5 +1153,24 @@ article.article{
         position: relative;
       }
     }
+  }
+}
+
+table.x-image-anchor,
+#modalContent .ctools-modal-content table.x-image-anchor {
+  width: auto;
+
+  tr.even,
+  tr.odd {
+    background-color: #f3f4ee;
+  }
+
+  td {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #666666;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
   }
 }

@@ -1,0 +1,217 @@
+<?php
+/**
+ * @file
+ * Contains core functions for the Deep Zoom module.
+ */
+
+/**
+ * Include additional files.
+ */
+foreach (module_list() as $module) {
+  if (file_exists($file = dirname(__FILE__) . "/includes/{$module}.inc")) {
+    require_once $file;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function deepzoom_permission() {
+  return array(
+    'administer deepzoom' => array(
+      'title' => t('Administer Deep Zoom configuration'),
+      'description' => t('Administer Deep Zoom configuration.'),
+    ),
+    'generate deepzoom files' => array(
+      'title' => t('Generate Deep Zoom files'),
+      'description' => t('Generate Deep Zoom files.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function deepzoom_theme() {
+  $items = array();
+
+  $items['deepzoom_wrapper'] = array(
+    'variables' => array(
+      'md5' => NULL,
+    ),
+    'template' => 'templates/deepzoom_wrapper',
+  );
+
+  $items['deepzoom_dzi'] = array(
+    'variables' => array(
+      'size' => NULL,
+      'overlap' => NULL,
+      'format' => NULL,
+      'width' => NULL,
+      'height' => NULL,
+    ),
+    'template' => 'templates/deepzoom_dzi',
+  );
+
+  // Allow other modules to add/alter theme items.
+  drupal_alter('deepzoom_theme', $items);
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function deepzoom_menu() {
+  $items = array();
+
+  $items['admin/config/media/deepzoom'] = array(
+    'title' => 'Deep Zoom',
+    'description' => 'Configure defaults for Deep Zoom images.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('deepzoom_configuration_form'),
+    'access arguments' => array('administer deepzoom'),
+    'file' => 'deepzoom.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function deepzoom_page_alter($variables) {
+  $config = deepzoom_config(FALSE);
+  if (!empty($config)) {
+    $engines = deepzoom_get_engines();
+    $engine = $config['engine'];
+
+    drupal_add_css(drupal_get_path('module', 'deepzoom') . '/deepzoom.css');
+
+    $vars = array('variables' => $variables);
+    deepzoom_invoke('page alter', $vars);
+  }
+}
+
+/**
+ * Returns Deep Zoom configuration.
+ */
+function deepzoom_config($warn = TRUE) {
+  $config = &drupal_static(__FUNCTION__, variable_get('deepzoom_config', array()));
+
+  // Provide default configuraiton if not set.
+  if (is_array($config) && empty($config)) {
+    $engines = deepzoom_get_engines();
+    if (!empty($engines)) {
+      $engine = key($engines);
+
+      // Get configuration defaults.
+      $function = isset($engines[$engine]['callbacks']['defaults']) ? $engines[$engine]['callbacks']['defaults'] : "deepzoom_engine_{$engine}_defaults";
+      if (function_exists($function)) {
+        $config = $function();
+      }
+      $config['engine'] = $engine;
+    }
+
+    // No engine installed.
+    else {
+      if ($warn) {
+        drupal_set_message(t('Deep Zoom is missing an engine, please view the !readme for installation instructions.', array(
+          '!readme' => l('README.txt', drupal_get_path('module', 'deepzoom') . '/README.txt'
+        ))), 'error');
+        watchdog('deepzoom', 'Deep Zoom is missing an engine, please view the !readme for installation instructions.', array(
+          '!readme' => l('README.txt', drupal_get_path('module', 'deepzoom') . '/README.txt'
+        ), WATCHDOG_ERROR));
+      }
+      $config = FALSE;
+    }
+  }
+
+  return $config;
+}
+
+/**
+ * Get all available Deep Zoom engines information.
+ */
+function deepzoom_get_engines() {
+  $engines = &drupal_static(__FUNCTION__, array());
+  if (empty($engines)) {
+    $engines = module_invoke_all('deepzoom_engine_info');
+  }
+  return $engines;
+}
+
+/**
+ * Deep Zoom generator callback.
+ */
+function deepzoom_generate_deepzoom($images, $method = 'batch') {
+  $info = module_invoke_all('deepzoom_processor_info');
+  if (isset($info[$method]) && function_exists($function = $info[$method]['process callback'])) {
+    return $function($images);
+  }
+  return FALSE;
+}
+
+/**
+ * Deep Zoom generate image info callback.
+ */
+function deepzoom_generate_image_info($uri, $md5) {
+  $config = deepzoom_config();
+  extract($config);
+
+  $image = image_load($uri);
+  $info = array(
+    'md5' => $md5,
+    'width' => $image->info['width'],
+    'height' => $image->info['height'],
+    'extension' => $image->info['extension'],
+    'max_dimension' => max(array($image->info['width'], $image->info['height'])),
+    'levels' => array(),
+    'count' => 0,
+  );
+  $info['num_levels'] = (int) ceil(log($info['max_dimension'], 2));
+
+  foreach (range(0, $info['num_levels']) as $level) {
+    $info['levels'][$level] = array();
+    $info['levels'][$level]['scale'] = pow(0.5, $info['num_levels'] - $level);
+    $info['levels'][$level]['width'] = (int) ceil($info['width'] * $info['levels'][$level]['scale']);
+    $info['levels'][$level]['height'] = (int) ceil($image->info['height'] * $info['levels'][$level]['scale']);
+    $info['levels'][$level]['columns'] = (int) ceil(floatval($info['levels'][$level]['width']) / $tile_size);
+    $info['levels'][$level]['rows'] = (int) ceil(floatval($info['levels'][$level]['height']) / $tile_size);
+    $info['levels'][$level]['count'] = $info['levels'][$level]['columns'] * $info['levels'][$level]['rows'];
+
+    $info['count'] += $info['levels'][$level]['columns'] * $info['levels'][$level]['rows'];
+  }
+
+  return $info;
+}
+
+/**
+ * Deep zoom invoke function; calls engine specific callback functions.
+ */
+function deepzoom_invoke($callback, &$vars = array(), $engine = NULL) {
+  if (is_null($engine)) {
+    $config = deepzoom_config();
+    if ($config) {
+      $engines = deepzoom_get_engines();
+      $engine = $config['engine'];
+    }
+    else {
+      return FALSE;
+    }
+  }
+
+  $function = isset($engines[$engine]['callbacks'][$callback]) ? $engines[$engine]['callbacks'][$callback] : "deepzoom_engine_{$engine}_" . str_replace(' ', '_', $callback);
+  if (function_exists($function)) {
+    return $function($vars);
+  }
+}
+
+/**
+ * Preprocess function for Deep Zoom Wrapper theme function.
+ */
+function template_preprocess_deepzoom_wrapper(&$vars) {
+  $vars['classes_array'][] = 'deepzoom';
+  $vars['attributes_array']['id'] = "deepzoom-{$vars['md5']}-" . rand(1000, 9999);
+}
