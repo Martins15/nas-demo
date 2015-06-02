@@ -154,6 +154,28 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
   $form['panelizer']['#type'] = 'container';
   $form['#group_children']['panelizer'] = 'group_panelizer';
 
+  // Add extra reset link if we have overriden display state.
+  if (!isset($form['panelizer']['page_manager'])) {
+    $form['panelizer']['reset_custom_display'] = array(
+      '#prefix' => '<div class="form-item">',
+      '#suffix' => '</div>',
+      '#type' => 'link',
+      '#title' => t('Reset custom display'),
+      '#href' => 'node/' . arg(1) . '/panelizer/page_manager/reset',
+      '#options' => array(
+        'query' => array(
+          'destination' => 'node/' . arg(1) . '/edit',
+        ),
+        'attributes' => array(
+          'class' => array(
+            'button',
+            'remove'
+          ),
+        ),
+      ),
+    );
+  }
+
   $states = array(
     'big_image' => array(
       'field_hero_image',
