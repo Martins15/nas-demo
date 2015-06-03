@@ -176,14 +176,3 @@ ul.small-list {
     margin-bottom: 6px;
   }
 }
-
-.clearfix {
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
