@@ -17,6 +17,9 @@
 
         $slides.removeClass("current");
         $newSlide.addClass("current");
+        
+        $('.flyways-slides-dots .active').removeClass('active');
+        $('.flyways-slides-dots a[href='+href+'] span').addClass('active');
       });
 
       // Next and previous paddles on the side
@@ -48,6 +51,32 @@
         $slides.removeClass("current");
         $newSlide.addClass("current");
       });
+      
+      // Dots to change slider
+      $('.flyways-slides-dots a').once('flywaySlides').bind('click', function(e) {
+        var selector = $(this).attr('href');
+        e.preventDefault();
+        $('.flyway-slide.current').removeClass('current');
+        $('.flyways-slides-dots .active').removeClass('active');
+        $('.flyway-slide-button.current').removeClass('current');
+        $(selector).addClass('current');
+        $(this).find('.dot').addClass('active');
+        $('.flyway-slide-button[href='+selector+']').addClass('current');
+      });
+      
+      // Equalize slider height
+      if ($('.page-birds-flyways').length) {
+        var max_height = 0;
+        $('.flyway-slide').each(function() {
+          var height = $(this).height();
+          if (height > max_height) {
+            max_height = height;
+          }
+        });
+        // +100 relative to container padding.
+        $('.flyway-slide').height(max_height + 100);
+        $('.flyway-slide').parent().height(max_height + 100);
+      }
     },
   };
 
