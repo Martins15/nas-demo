@@ -216,26 +216,24 @@ function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity
 
     case 'slideshow':
       $entity->type = $item['type'];
-      $map = array_merge($map, array(
-        'subtitle' => 'field_slideshow_subtitle',
-        'redirect' => 'field_slideshow_redirect'
-      ));
-      // @todo remove next 2 lines after adding slideshow ct.
-      $entity->feeds_item->skip = TRUE;
-
-      return TRUE;
+      $map = array(
+        'subtitle' => 'field_slideshow_subtitle'
+      );
+      break;
   }
 
   // Redirect field.
-  $redirect_domain = parse_url($item['redirect'], PHP_URL_HOST);
-  $current_domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
-  if ($redirect_domain == $current_domain) {
-    $entity->feeds_item->skip = TRUE;
+  if (isset($map['redirect'])) {
+    $redirect_domain = parse_url($item['redirect'], PHP_URL_HOST);
+    $current_domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
+    if ($redirect_domain == $current_domain) {
+      $entity->feeds_item->skip = TRUE;
 
-    return FALSE;
-  }
-  else {
-    $entity->{$map['redirect']}[LANGUAGE_NONE][0]['url'] = $item['redirect'];
+      return FALSE;
+    }
+    else {
+      $entity->{$map['redirect']}[LANGUAGE_NONE][0]['url'] = $item['redirect'];
+    }
   }
   // Subtitle field.
   if (!empty($item['subtitle'])) {
