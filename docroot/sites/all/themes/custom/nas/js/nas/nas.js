@@ -82,17 +82,18 @@ var Nas = Nas || {};
             marginLeft: -width / 2,
             marginTop: -height / 2
           });
-          if ($video.parent().hasClass('cover')) {
-            $(window).bind('resize', function () {
-              var width = $video.width();
-              var height = $video.height();
-              $video.css({
-                marginLeft: -width / 2,
-                marginTop: -height / 2
-              });
-            });
-          }
+          $(window).trigger('resize');
         };
+        if ($video.parent().hasClass('cover') || $video.parent().hasClass('center')) {
+          $(window).bind('resize', function () {
+            var width = $video.width();
+            var height = $video.height();
+            $video.css({
+              marginLeft: -width / 2,
+              marginTop: -height / 2
+            });
+          });
+        }
       });
     }
   };
