@@ -1462,7 +1462,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     if (isset($result['node'])) {
       $campaign_nids = array_keys($result['node']);
       $campaign_nodes = entity_load('node', $campaign_nids);
-    
+
       // Lets check if there any Campaign is equal one of the query parameters.
       foreach ($campaign_nodes as $campaign_node) {
         $get_field_campaign_url_parameter = field_get_items('node', $campaign_node, 'field_campaign_url_parameter');
