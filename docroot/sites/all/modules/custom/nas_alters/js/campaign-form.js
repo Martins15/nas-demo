@@ -11,7 +11,7 @@
         campaignFormTransliterate = function (source, settings) {
           var rx = new RegExp(settings.replace_pattern, 'g');
           return source.toLowerCase().replace(rx, settings.replace).substr(0, settings.maxlength);
-        }
+        };
 
         $('#edit-title-machine-name-suffix').append('<span class="generate-url-parameter admin-link"><a href="#">Generate</a></span>');
 
@@ -25,7 +25,7 @@
               $wrapper = $target.closest('.form-item'),
               machine = campaignFormTransliterate($source.val(), options);
             // Set the machine name to the transliterated value.
-            if (machine != '') {
+            if (machine !== '') {
               if (machine != options.replace) {
                 $target.val(machine);
                 $('.machine-name-value').html(options.field_prefix + Drupal.checkPlain(machine) + options.field_suffix);
