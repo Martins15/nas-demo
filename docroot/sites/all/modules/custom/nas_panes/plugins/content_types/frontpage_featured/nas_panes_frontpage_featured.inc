@@ -504,7 +504,6 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
     '#media_options' => array(
       'global' => array(
         'file_extensions' => 'mp4',
-        'max_filesize' => '20 MB',
         'file_directory' => '',
         'types' => array('video'),
       ),
