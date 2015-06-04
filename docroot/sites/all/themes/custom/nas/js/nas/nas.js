@@ -84,7 +84,7 @@ var Nas = Nas || {};
           });
           $(window).trigger('resize');
         };
-        if ($video.parent().hasClass('cover')) {
+        if ($video.parent().hasClass('cover') || $video.parent().hasClass('center')) {
           $(window).bind('resize', function () {
             var width = $video.width();
             var height = $video.height();
