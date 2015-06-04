@@ -246,6 +246,76 @@ function nas_alters_form_article_node_form_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Campaign node form.
+ */
+function nas_alters_form_campaign_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['field_campaign_url_parameter'][LANGUAGE_NONE][0]['value']['#default_value'])) {
+    $default_name = $form['field_campaign_url_parameter'][LANGUAGE_NONE][0]['value']['#default_value'];
+  }
+  $form['url_machine_name'] = array(
+    '#type' => 'machine_name',
+    '#title' => t('URL parameter'),
+    '#maxlength' => 255,
+    '#machine_name' => array(
+      'exists' => 'nas_alters_campaign_url_parameter_exists',
+      'source' => array('title'),
+    ),
+    '#description' => t('The URL parameter of this campaign. It must be unique, and it must contain only alphanumeric characters and underscores.'),
+    '#default_value' => isset($default_name) ? $default_name : '',
+  );
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/campaign-form.js', array('scope' => 'footer'));
+  // Attach after build callback.
+  $form['#after_build'][] = 'nas_alters_form_campaign_node_form_alter_build';
+  // Extra validate.
+  $form['#validate'][] = 'nas_alters_form_campaign_node_form_alter_validate';
+  // Extra submit.
+  $form['#submit'][] = 'nas_alters_form_campaign_node_form_alter_submit';
+}
+
+/**
+ * A function name to invoke for checking whether
+ * a submitted url parameter value already exists.
+ */
+function nas_alters_campaign_url_parameter_exists($name) {
+  $result = db_select('field_data_field_campaign_url_parameter', 'f')
+    ->fields('f', array('entity_id', 'field_campaign_url_parameter_value'))
+    ->condition('f.entity_id', arg(1), '<>')
+    ->condition('f.field_campaign_url_parameter_value', $name)
+    ->execute()
+    ->fetchAll();
+  foreach ($result as $value) {
+    if ($value->field_campaign_url_parameter_value == $name) {
+      drupal_set_message(t('The URL parameter is already in use. Please make sure it is unique by editing it manually or generate from title.'), 'error');
+      drupal_goto('node/' . arg(1) . '/edit');
+    }
+  }
+}
+
+/**
+ * After build callback.
+ */
+function nas_alters_form_campaign_node_form_alter_build($form, &$form_state) {
+  $form['url_machine_name']['#attached']['js'][1]['data']['machineName']['#edit-title']['label'] = t('URL parameter');
+  return $form;
+}
+
+/**
+ * Validate callback.
+ */
+function nas_alters_form_campaign_node_form_alter_validate($form, &$form_state) {
+  nas_alters_campaign_url_parameter_exists($form_state['values']['url_machine_name']);
+}
+
+/**
+ * Submit callback.
+ */
+function nas_alters_form_campaign_node_form_alter_submit($form, &$form_state) {
+  $form_state['values']['field_campaign_url_parameter'][LANGUAGE_NONE][0]['value'] = $form_state['values']['url_machine_name'];
+}
+
+/**
  * Implements hook_form_alter().
  */
 function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
