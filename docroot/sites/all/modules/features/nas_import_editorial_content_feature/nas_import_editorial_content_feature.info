@@ -1,0 +1,13 @@
+name = NAS Import Editorial content Feature
+description = Feeds importers for Editoriar cards listing content
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_import_editorial_content_feature
+dependencies[] = ctools
+dependencies[] = feeds
+dependencies[] = feeds_ex
+dependencies[] = nas_import
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:2
+features[feeds_importer][] = nas_editorial_cards_content

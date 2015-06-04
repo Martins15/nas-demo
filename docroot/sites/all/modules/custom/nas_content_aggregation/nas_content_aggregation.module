@@ -1,0 +1,414 @@
+<?php
+
+/**
+ * @file
+ * Main module file.
+ */
+
+define('NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER', 'nas_editorial_cards_content');
+
+module_load_include('inc', 'nas_content_aggregation', 'includes/nas_content_aggregation.import');
+
+/**
+ * List of available cts for export to editorial feed.
+ */
+function nas_content_aggregation_available_ct() {
+  return array('article', 'slideshow', 'static_page');
+}
+
+/**
+ * List of available cts for import to editorial feed.
+ */
+function nas_content_aggregation_import_available_ct() {
+  return array('article', 'slideshow', 'pressrelease', 'static_page');
+}
+
+/**
+ * Implements hook_permission().
+ */
+function nas_content_aggregation_permission() {
+  return array(
+    'administer imported nodes' => array(
+      'title' => t('Administer imported node'),
+      'description' => t('Perform administration nodes imported from other sites.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_init().
+ */
+function nas_content_aggregation_init() {
+  $args = arg();
+  if ($args[0] == 'taxonomy' && $args[1] == 'term' && is_numeric($args[2])) {
+    nas_content_aggregation_add_headers_link($args[2]);
+  }
+  if (_nas_alters_is_node_full_view_mode_page() &&
+    $node = menu_get_object('node')
+  ) {
+    if (in_array($node->type, nas_content_aggregation_available_ct())) {
+      nas_content_aggregation_add_node_headers_link($node->nid);
+    }
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function nas_content_aggregation_menu() {
+  $items = array();
+  $items['admin/content/nas/imports/editorial'] = array(
+    'title' => 'Import editorial Content',
+    'description' => 'Import editorial Content.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_content_aggregation_editorial_cards_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'includes/nas_content_aggregation.admin.inc',
+    'type' => MENU_LOCAL_ACTION
+  );
+  $items['admin/content/nas/imports/editorial/listing'] = array(
+    'title' => 'Import editorial listing',
+    'description' => 'Import UI for Editorial Content.',
+    'weight' => 1,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/content/nas/imports/editorial/individual'] = array(
+    'title' => 'Import editorial individual content',
+    'description' => 'Import UI for Individual Content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_content_aggregation_editorial_individual_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'includes/nas_content_aggregation.admin.inc',
+    'weight' => 2,
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['editorial-feed/%taxonomy_term'] = array(
+    'page callback' => 'nas_content_aggregation_editorial_feed',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  $items['export/node/%node'] = array(
+    'page callback' => 'nas_content_aggregation_export_node',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function asc_content_aggregation_node_access($node, $op, $account) {
+  switch ($op) {
+    case 'update':
+    case 'delete':
+      if (in_array($node->type, nas_content_aggregation_available_ct()) &&
+        !user_access('administer imported nodes', $account)
+      ) {
+        $redirect_fields = array(
+          'article' => 'field_article_redirect',
+          'static_page' => 'field_static_page_redirect',
+          'slideshow' => 'field_slideshow_redirect'
+        );
+        $redirect_field = field_get_items('node', $node, $redirect_fields[$node->type]);
+        if (!empty($redirect_field[0]['url'])) {
+          return NODE_ACCESS_DENY;
+        }
+      }
+      break;
+  }
+
+  return NODE_ACCESS_IGNORE;
+}
+
+/**
+ * Add meta header with link on list of nodes filtered by category.
+ *
+ * @param int $category
+ *   Taxonomy term id.
+ *
+ * @return bool
+ *   Status
+ */
+function nas_content_aggregation_add_headers_link($category) {
+  if (empty($category)) {
+
+    return FALSE;
+  }
+  $query = array();
+  if (isset($_GET['type_filter']) && !empty($_GET['type_filter'])) {
+    $query['type_filter'] = $_GET['type_filter'];
+  }
+  $url = url('editorial-feed/' . $category, array(
+    'absolute' => TRUE,
+    'query' => $query
+  ));
+  drupal_add_http_header('X-Editorial-Feed', $url);
+
+}
+
+/**
+ * Add meta header with link on export node.
+ *
+ * @param int $nid
+ *   Node id.
+ *
+ * @return bool
+ *   Status.
+ */
+function nas_content_aggregation_add_node_headers_link($nid) {
+  if (empty($nid)) {
+
+    return FALSE;
+  }
+  $url = url('export/node/' . $nid, array(
+    'absolute' => TRUE
+  ));
+  drupal_add_http_header('X-Node-Feed', $url);
+}
+
+/**
+ * Return list of nids filtered by term.
+ *
+ * @param object $term
+ *   The taxonomy term.
+ *
+ * @return bool
+ *   TRUE, that Drupal could finish normally.
+ */
+function nas_content_aggregation_editorial_feed($term) {
+  $available_ct = $allowed_ct = nas_content_aggregation_available_ct();
+  if (isset($_GET['type_filter']) && !empty($_GET['type_filter'])) {
+    $available_ct = explode(',', $_GET['type_filter']);
+    $available_ct = array_intersect($available_ct, $allowed_ct);
+  }
+  $nids = nas_content_aggregation_taxonomy_select_nodes($term->tid, $available_ct);
+  if (!empty($nids)) {
+    drupal_json_output($nids);
+  }
+  return TRUE;
+}
+
+/**
+ * Export node data.
+ *
+ * @param object $node
+ *   The node object.
+ *
+ * @return bool
+ *   TRUE, that Drupal could finish normally.
+ */
+function nas_content_aggregation_export_node($node) {
+  $export_node = new stdClass();
+  $export_node->nid = $node->nid;
+  $export_node->type = $node->type;
+  $export_node->title = $node->title;
+  $export_node->status = $node->status;
+  if (isset($node->field_subtitle)) {
+    $export_node->subtitle = $node->field_subtitle;
+  }
+  if (isset($node->field_slideshow_subtitle)) {
+    $export_node->subtitle = $node->field_slideshow_subtitle;
+  }
+  if (isset($node->field_article_date)) {
+    $export_node->date = $node->field_article_date;
+  }
+  $redirect_fields = array(
+    'article' => 'field_article_redirect',
+    'static_page' => 'field_static_page_redirect',
+    'slideshow' => 'field_slideshow_redirect'
+  );
+  if (isset($redirect_fields[$node->type])) {
+    $redirect_field = field_get_items('node', $node, $redirect_fields[$node->type]);
+    if (!empty($redirect_field[0]['url'])) {
+      $export_node->redirect = $redirect_field[0]['url'];
+    }
+    else {
+      $export_node->redirect = url('node/' . $node->nid, array(
+        'absolute' => TRUE,
+        'alias' => TRUE
+      ));
+    }
+  }
+  $image_field = field_get_items('node', $node, 'field_editorial_card_image');
+  $export_node->image = array(
+    'fullpath' => file_create_url($image_field[0]['uri'])
+  );
+  $domain = parse_url(url(NULL, array('absolute' => TRUE)), PHP_URL_HOST);
+  $export_node->guid = $domain . '_' . $export_node->nid;
+  drupal_json_output($export_node);
+
+  return TRUE;
+}
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_content_aggregation_feeds_presave(FeedsSource $source, $entity, $item) {
+  $counter = (int) variable_get('nas_agg_import_node_counter');
+  switch ($source->id) {
+    case NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER:
+      if (!in_array($item['type'], nas_content_aggregation_import_available_ct()) ||
+        empty($item['redirect'])
+      ) {
+        $entity->feeds_item->skip = TRUE;
+
+        return FALSE;
+      }
+      nas_content_aggregation_feeds_presave_asc($source, $entity, $item);
+      $counter += 1;
+      break;
+  }
+  variable_set('nas_agg_import_node_counter', $counter);
+}
+
+/**
+ * Helper for starting process of import.
+ *
+ * @param string $source_url
+ *   Remote url.
+ *
+ * @return array
+ *   - response: Response with results.
+ *   - url: Url for next requests.
+ */
+function _nas_content_aggregation_start_import_helper($source_url) {
+  $response = nas_import_send_request($source_url);
+  $url = parse_url($source_url);
+  $parts = array();
+  foreach (explode('/', $url['path']) as $part) {
+    if ($part == 'editorial-feed') {
+      break;
+    }
+    $parts[] = $part;
+  }
+  $url = $url['scheme'] . '://' . $url['host'] . implode('/', $parts) .
+    '/export/node/';
+  return array($response, $url);
+}
+
+/**
+ * Helper for starting process of individual import.
+ *
+ * @param string $source_url
+ *   Remote url.
+ *
+ * @return array
+ *   - node_nid: Node id.
+ *   - url: Url for next requests.
+ */
+function _nas_content_aggregation_start_individual_import_helper($source_url) {
+  $parsed_url = parse_url($source_url);
+  $parts = explode('/', $parsed_url['path']);
+  $node_nid = array_pop($parts);
+  $url = $parsed_url['scheme'] . '://' . $parsed_url['host'] .
+    implode('/', $parts) . '/';
+  return array($node_nid, $url);
+}
+
+/**
+ * Return nodes attached to a term across all field instances.
+ *
+ * This function requires taxonomy module to be maintaining its own tables,
+ * and will return an empty array if it is not. If using other field storage
+ * methods alternatives methods for listing terms will need to be used.
+ *
+ * @param int $tid
+ *   The term ID.
+ * @param array $available_ct
+ *   The node types(bundle name).
+ *
+ * @return array
+ *   An array of nids matching the query.
+ */
+function nas_content_aggregation_taxonomy_select_nodes($tid, $available_ct) {
+  if (!variable_get('taxonomy_maintain_index_table', TRUE)) {
+    return array();
+  }
+  $query = db_select('taxonomy_index', 't');
+  $query->addTag('node_access');
+  $query->addField('t', 'nid');
+  $query->addField('t', 'tid');
+  $query->leftJoin('node', 'n', 't.nid = n.nid');
+  $query->condition('t.tid', $tid);
+  $query->condition('n.status', NODE_PUBLISHED);
+  $query->condition('n.type', $available_ct, 'IN');
+  $order = array('n.changed' => 'DESC', 'n.created' => 'DESC');
+  foreach ($order as $field => $direction) {
+    $query->orderBy($field, $direction);
+  }
+  return $query->execute()->fetchCol();
+}
+
+/**
+ * Implements hook_cron().
+ */
+function nas_content_aggregation_cron() {
+  if (!lock_acquire('nas_content_aggregation_storage', 25)) {
+    return;
+  }
+  $storage = variable_get('nas_content_aggregation_storage', array());
+  if (!empty($storage)) {
+    $frequency_sec = strtotime('1 day', 0) * $storage['frequency'];
+    if (!empty($storage) && (time() - $storage['cron_time']) > $frequency_sec) {
+      $queue = DrupalQueue::get('nas_content_aggregation');
+      $queue->createQueue();
+      foreach ($storage['feeds'] as $i => $source_url) {
+        list($response, $url) = _nas_content_aggregation_start_import_helper($source_url);
+        foreach (array_chunk($response, 10) as $chunk) {
+          $queue->createItem(array(
+            'items' => $chunk,
+            'importer' => NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER,
+            'url' => $url,
+            'data' => $storage['settings'][$i]
+          ));
+        }
+      }
+      $storage['cron_time'] = REQUEST_TIME;
+      variable_set('nas_content_aggregation_storage', $storage);
+    }
+  }
+  // Update individual content.
+  $storage = variable_get('nas_content_aggregation_individual_storage', array());
+  if (!empty($storage)) {
+    $frequency_sec = strtotime('1 day', 0) * $storage['frequency'];
+    if (!empty($storage) && (time() - $storage['cron_time']) > $frequency_sec) {
+      $queue = DrupalQueue::get('nas_content_aggregation');
+      $queue->createQueue();
+      foreach ($storage['feeds'] as $i => $source_url) {
+        list($node_nid, $url) = _nas_content_aggregation_start_individual_import_helper($source_url);
+        $queue->createItem(array(
+          'items' => array($node_nid),
+          'importer' => NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER,
+          'url' => $url,
+          'data' => $storage['settings'][$i]
+        ));
+      }
+    }
+    $storage['cron_time'] = REQUEST_TIME;
+    variable_set('nas_content_aggregation_individual_storage', $storage);
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function nas_content_aggregation_cron_queue_info() {
+  $queue['nas_content_aggregation'] = array(
+    'worker callback' => 'nas_content_aggregation_import_cron_queue',
+  );
+  return $queue;
+}
+
+/**
+ * Import content by cron.
+ *
+ * @param array $item
+ *   Array with settings for import.
+ */
+function nas_content_aggregation_import_cron_queue($item) {
+  $context = array();
+  nas_content_aggregation_import_nodes_batch($item['items'], $item['importer'], $item['url'], $item['data'], $context);
+}

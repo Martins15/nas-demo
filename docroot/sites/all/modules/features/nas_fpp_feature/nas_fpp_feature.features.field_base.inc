@@ -68,6 +68,32 @@ function nas_fpp_feature_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_block_visibility'
+  $field_bases['field_block_visibility'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_block_visibility',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'flyways_events ' => ' Flyways - Upcoming Events block',
+        'flyways_nearyou ' => ' Flyways - Audubon Near You block',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_column_count'
   $field_bases['field_column_count'] = array(
     'active' => 1,

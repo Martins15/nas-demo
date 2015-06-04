@@ -1639,13 +1639,13 @@ function nas_preprocess_nas_video_page(&$vars) {
       $video_credit = $video_credit['safe_value'];
     }
 
-    $caption = $video_caption;
+    $caption = '<span class="video-caption">' . $video_caption . '</span>';
     if ($video_credit) {
-      $caption .= ' Video: ' . $video_credit;
+      $caption .= ' Video: <span class="video-credit">' . $video_credit . '</span>';
     }
 
     if ($caption) {
-      $vars['caption'] = '<p>' . $caption . '</p>';
+      $vars['caption'] = '<p class="video-attribution">' . $caption . '</p>';
     }
   }
 }

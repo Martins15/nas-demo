@@ -1751,9 +1751,9 @@ function _nas_panes_get_upcoming_events($state = 'all') {
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL) {
+function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $view_name = 'locations') {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $type, $nid);
+  $results = views_get_view_result($view_name, 'default', $state, $type, $nid);
   foreach ($results as $item) {
     $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name))? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
     $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name))? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
@@ -2033,16 +2033,38 @@ function _nas_panes_hide_pane_title_field(&$form) {
 
 /**
  * Returns options for menu section.
+ * @deprecated
+ * @see _nas_panes_get_taxonomy_options()
  */
 function _nas_panes_get_menu_section_options() {
-  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
-  $tree = taxonomy_get_tree($vocabulary->vid);
-  $options = array();
-  foreach ($tree as $item) {
-    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
-  }
 
-  return $options;
+  return _nas_panes_get_taxonomy_options('menu_section');
+}
+
+/**
+ * Returns options for specified vocabulary.
+ *
+ * @param string $vocabulary_name
+ *   Vocabulary machine name.
+ *
+ * @param int $parent
+ *   Parent level number.
+ *
+ * @return array
+ *   Tree of terms.
+ */
+function _nas_panes_get_taxonomy_options($vocabulary_name, $parent = 0) {
+  $taxonomy_settings = array(
+    'settings' => array(
+      'allowed_values' => array(
+        array(
+          'vocabulary' => $vocabulary_name,
+          'parent' => $parent
+        )
+      )
+    )
+  );
+  return taxonomy_allowed_values($taxonomy_settings);
 }
 
 /**

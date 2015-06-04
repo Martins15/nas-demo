@@ -1674,3 +1674,20 @@ function _nas_import_get_cached($url) {
   }
   return NASFeedsHTTPFetcherResult::sanitizeRaw($data);
 }
+
+/**
+ * Send request and get results.
+ *
+ * @param string $url
+ *   Request url
+ *
+ * @return mixed|null
+ *   Json result or NULL
+ */
+function nas_import_send_request($url) {
+  $response = drupal_http_request($url);
+  if (!empty($response->data)) {
+    return drupal_json_decode($response->data);
+  }
+  return NULL;
+}

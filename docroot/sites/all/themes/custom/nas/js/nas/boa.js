@@ -19,6 +19,9 @@
                 if ($(this).find('.section-header').length) {
                   height += $(this).find('.section-header').height() + 30;
                 }
+                if ($(this).find('h2.thin').length) {
+                  height += $(this).find('h2.thin').height();
+                }
                 if ($(this).find('.photo').height() < 100) {
                   height += $(this).width() / 0.76575;
                 }
