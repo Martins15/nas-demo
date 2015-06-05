@@ -1450,7 +1450,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   // Check if there any URL query parameter exists.
   $uri = request_uri();
   $parsed_url = drupal_parse_url($uri);
-
+dpm($parsed_url);
   if (!empty($parsed_url['query'])) {
     $query = new EntityFieldQuery();
 
@@ -1475,6 +1475,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
                 $nodes[] = $node;
               }
             }
+            break;
           }
         }
       }

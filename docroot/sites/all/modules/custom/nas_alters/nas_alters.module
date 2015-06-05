@@ -22,9 +22,11 @@ function nas_alters_init() {
       'slideshow' => 'field_slideshow_redirect',
       'static_page' => 'field_static_page_redirect'
     );
-    $redirect = field_get_items('node', $node, $fields[$node->type]);
-    if (!empty($redirect[0]['url'])) {
-      drupal_goto($redirect[0]['url'], array(), 301);
+    if (in_array($node->type, array_keys($fields))) {
+      $redirect = field_get_items('node', $node, $fields[$node->type]);
+      if (!empty($redirect[0]['url'])) {
+        drupal_goto($redirect[0]['url'], array(), 301);
+      }
     }
   }
 }
@@ -335,6 +337,9 @@ function nas_alters_form_campaign_node_form_alter_build($form, &$form_state) {
  * Validate callback.
  */
 function nas_alters_form_campaign_node_form_alter_validate($form, &$form_state) {
+  if ($form_state['values']['url_machine_name'] == 'q') {
+    form_set_error('url_machine_name', t('Incorrect URL query parameter, please use another one.'));
+  }
   nas_alters_campaign_url_parameter_exists($form_state['values']['url_machine_name']);
 }
 
