@@ -1450,7 +1450,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   // Check if there any URL query parameter exists.
   $uri = request_uri();
   $parsed_url = drupal_parse_url($uri);
-dpm($parsed_url);
+
   if (!empty($parsed_url['query'])) {
     $query = new EntityFieldQuery();
 
@@ -1487,7 +1487,14 @@ dpm($parsed_url);
     // Check if we have loaded cards from Campaign
     // and pass 4th card for sidebar.
     if (!empty($nodes) && isset($nodes[3])) {
-      $nodes = array_slice($nodes, 3, 3);
+      $nodes = array($nodes[3]);
+      // Pass to js special var for unchecking First Time Visitors.
+      drupal_add_js(array(
+        'nas_panes' => array(
+          'ignore_first_time_visitor' => TRUE,
+          ),
+        ), 'setting'
+      );
     }
     // Manual override.
     if (empty($nodes) &&

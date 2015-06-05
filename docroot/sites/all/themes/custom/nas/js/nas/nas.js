@@ -110,7 +110,9 @@ var Nas = Nas || {};
 
   Drupal.behaviors.firstTimeVisitors = {
     attach: function (context, settings) {
-      if (!Drupal.isFirstTimeVisitor()) {
+      if (!Drupal.isFirstTimeVisitor() ||
+        (typeof(settings.nas_panes) !== 'undefined' &&
+        typeof(settings.nas_panes.ignore_first_time_visitor) !== 'undefined')) {
         $(".bean-welcome-to-audubon").addClass('hide');
         $('.hide-for-firsttime-visitors').removeClass('hide-for-firsttime-visitors');
       }
