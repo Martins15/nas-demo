@@ -310,17 +310,24 @@ function nas_alters_form_campaign_node_form_alter(&$form, &$form_state, $form_id
  * A function name to invoke for checking whether
  * a submitted url parameter value already exists.
  */
-function nas_alters_campaign_url_parameter_exists($name) {
-  $result = db_select('field_data_field_campaign_url_parameter', 'f')
-    ->fields('f', array('entity_id', 'field_campaign_url_parameter_value'))
-    ->condition('f.entity_id', arg(1), '<>')
-    ->condition('f.field_campaign_url_parameter_value', $name)
-    ->execute()
-    ->fetchAll();
-  foreach ($result as $value) {
-    if ($value->field_campaign_url_parameter_value == $name) {
-      drupal_set_message(t('The URL parameter is already in use. Please make sure it is unique by editing it manually or generate from title.'), 'error');
-      drupal_goto('node/' . arg(1) . '/edit');
+function nas_alters_campaign_url_parameter_exists($name, $nid, $validate = FALSE) {
+  if ($validate) {
+    $db_or = db_or()
+      ->condition('f.field_campaign_url_parameter_value', $name);
+    if ($nid !== 0 && is_numeric($nid)) {
+      $db_or = db_or()
+        ->condition('f.entity_id', $nid, '<>')
+        ->condition('f.field_campaign_url_parameter_value', $name);
+    }
+    $result = db_select('field_data_field_campaign_url_parameter', 'f')
+      ->fields('f', array('entity_id', 'field_campaign_url_parameter_value'))
+      ->condition($db_or)
+      ->execute()
+      ->fetchAll();
+    foreach ($result as $value) {
+      if ($value->field_campaign_url_parameter_value == $name) {
+        return $name;
+      }
     }
   }
 }
@@ -340,7 +347,14 @@ function nas_alters_form_campaign_node_form_alter_validate($form, &$form_state) 
   if ($form_state['values']['url_machine_name'] == 'q') {
     form_set_error('url_machine_name', t('Incorrect URL query parameter, please use another one.'));
   }
-  nas_alters_campaign_url_parameter_exists($form_state['values']['url_machine_name']);
+  $nid = 0;
+  if (isset($form_state['node']->nid) && is_numeric($form_state['node']->nid)) {
+    $nid = $form_state['node']->nid;
+  }
+  if ($test = nas_alters_campaign_url_parameter_exists($form_state['values']['url_machine_name'], $nid, TRUE)) {
+    form_clear_error();
+    form_set_error('title', t('The URL parameter is already in use. Please make sure it is unique by editing it manually or generate from title.'));
+  }
 }
 
 /**

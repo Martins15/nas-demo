@@ -6,8 +6,18 @@
 (function ($) {
   Drupal.behaviors.campaignForm = {
     attach: function (context, settings) {
+       
+      if (($('body').hasClass('page-node-edit') && $('body').hasClass('node-type-campaign')) ||
+        $('body').hasClass('page-node-add-campaign')) {
+        if ($('.messages.error').length > 0) {
+          $('.messages.error li').each(function() {
+            if ($(this).text() == Drupal.t('The machine-readable name is already in use. It must be unique.')) {
+              $(this).remove();
+            }
+          });
+        }
+      }
       if ($('body').hasClass('page-node-edit') && $('body').hasClass('node-type-campaign')) {
-
         campaignFormTransliterate = function (source, settings) {
           var rx = new RegExp(settings.replace_pattern, 'g');
           return source.toLowerCase().replace(rx, settings.replace).substr(0, settings.maxlength);
