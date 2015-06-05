@@ -113,6 +113,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'video_page') {
     nas_preprocess_node_video_page($vars);
   }
+  if ($vars['type'] == 'campaign') {
+    nas_preprocess_node_campaign($vars);
+  }
 }
 
 /**
@@ -1569,6 +1572,19 @@ function nas_preprocess_node_video_page(&$vars) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
+}
+
+/**
+ * Implements theme_preprocess_node().
+ *
+ * For Campaign content type.
+ */
+function nas_preprocess_node_campaign(&$vars) {
+  $get_field_campaign_url_parameter = field_get_items('node', $vars['node'], 'field_campaign_url_parameter');
+  $vars['help_intro'] = t('Copy and paste this url parameter in the end of URL:');
+  $vars['url_parameter'] = '?' . $get_field_campaign_url_parameter[0]['value'];
+  $vars['help_text'] = t('e.g. for News page it will be: ');
+  $vars['help_link'] = url('news', array('absolute' => TRUE)) . $vars['url_parameter'];
 }
 
 /**

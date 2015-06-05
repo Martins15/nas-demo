@@ -2578,3 +2578,9 @@ function nas_master_update_7183() {
   features_revert(array('nas_boa_index_feature' => array('views_view')));
 }
 
+/**
+ * Enable Campaign feature.
+ */
+function nas_master_update_7185() {
+  module_enable(array('nas_campaign_feature'));
+}

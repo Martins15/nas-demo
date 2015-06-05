@@ -69,3 +69,7 @@ input, select, textarea {
 .field-name-field-fake-file-view {
   display: none;
 }
+
+#campaign-node-form .field-name-field-campaign-url-parameter {
+  display: none;
+}
