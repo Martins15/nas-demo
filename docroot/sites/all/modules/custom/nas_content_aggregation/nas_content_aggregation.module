@@ -159,7 +159,7 @@ function nas_content_aggregation_add_headers_link($category) {
  *   Status.
  */
 function nas_content_aggregation_add_node_headers_link($nid) {
-  if (!empty($nid)) {
+  if (empty($nid)) {
 
     return FALSE;
   }

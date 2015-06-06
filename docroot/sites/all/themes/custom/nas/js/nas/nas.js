@@ -82,17 +82,18 @@ var Nas = Nas || {};
             marginLeft: -width / 2,
             marginTop: -height / 2
           });
-          if ($video.parent().hasClass('cover')) {
-            $(window).bind('resize', function () {
-              var width = $video.width();
-              var height = $video.height();
-              $video.css({
-                marginLeft: -width / 2,
-                marginTop: -height / 2
-              });
-            });
-          }
+          $(window).trigger('resize');
         };
+        if ($video.parent().hasClass('cover') || $video.parent().hasClass('center')) {
+          $(window).bind('resize', function () {
+            var width = $video.width();
+            var height = $video.height();
+            $video.css({
+              marginLeft: -width / 2,
+              marginTop: -height / 2
+            });
+          });
+        }
       });
     }
   };
@@ -109,7 +110,9 @@ var Nas = Nas || {};
 
   Drupal.behaviors.firstTimeVisitors = {
     attach: function (context, settings) {
-      if (!Drupal.isFirstTimeVisitor()) {
+      if (!Drupal.isFirstTimeVisitor() ||
+        (typeof(settings.nas_panes) !== 'undefined' &&
+        typeof(settings.nas_panes.ignore_first_time_visitor) !== 'undefined')) {
         $(".bean-welcome-to-audubon").addClass('hide');
         $('.hide-for-firsttime-visitors').removeClass('hide-for-firsttime-visitors');
       }

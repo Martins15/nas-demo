@@ -2556,7 +2556,8 @@ function nas_master_update_7181() {
 }
 
 /**
- * Remove duplicated file_attachments panes.
+ * Remove duplicated file_attachments panes
+ * Update BOA Index view.
  */
 function nas_master_update_7183() {
   $query = db_select('panels_pane', 'p')
@@ -2574,6 +2575,7 @@ function nas_master_update_7183() {
         ->execute();
     }
   }
+  features_revert(array('nas_boa_index_feature' => array('views_view')));
 }
 
 /**
@@ -2585,4 +2587,11 @@ function nas_master_update_7184() {
       'nas_search_feature' => array('views_view', 'page_manager_pages'),
       'nas_solr_feature' => array('search_api_index'),
     ));
+}
+
+/**
+ * Enable Campaign feature.
+ */
+function nas_master_update_7185() {
+  module_enable(array('nas_campaign_feature'));
 }

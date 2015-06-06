@@ -1809,12 +1809,6 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
-      'nas_node_teaser_small_state' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -4436,7 +4430,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
