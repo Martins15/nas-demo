@@ -63,6 +63,13 @@ function nas_search_page_search_form($form, $form_state) {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function page_manager_search_entity_info_alter(&$entity_info) {
+  $entity_info['page_manager_search']['controller class'] = 'PageManagerSearchEntityControllerWithoutContent';
+}
+
+  /**
  * Implements hook_entity_property_info_alter().
  */
 function nas_search_entity_property_info_alter(&$info) {
@@ -150,6 +157,20 @@ function nas_search_entity_property_info_alter(&$info) {
     'type' => 'text',
     'description' => t('Admin description'),
     'getter callback' => '_nas_search_pm_admin_description',
+    'calculated' => TRUE,
+  );
+  $info['page_manager_search']['properties']['path'] = array(
+    'label' => t('Path'),
+    'type' => 'uri',
+    'description' => t('Page path'),
+    'getter callback' => '_nas_search_pm_path',
+    'calculated' => TRUE,
+  );
+  $info['page_manager_search']['properties']['status'] = array(
+    'label' => t('Status'),
+    'type' => 'boolean',
+    'description' => t('Page status'),
+    'getter callback' => '_nas_search_pm_status',
     'calculated' => TRUE,
   );
 }
@@ -544,6 +565,26 @@ function _nas_search_pm_admin_description($entity, array $options, $name, $entit
  */
 function _nas_search_pm_is_static_page($entity) {
   return strpos($entity->path, '%') === FALSE && strpos($entity->path, '!') === FALSE;
+}
+
+/**
+ * Page Manager page path entity property getter callback.
+ */
+function _nas_search_pm_path($entity, array $options, $name, $entity_type) {
+  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+    return FALSE;
+  }
+  return $subtask->path;
+}
+
+/**
+ * Page Manager page status entity property getter callback.
+ */
+function _nas_search_pm_status($entity, array $options, $name, $entity_type) {
+  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+    return FALSE;
+  }
+  return empty($subtask->disabled);
 }
 
 /**
