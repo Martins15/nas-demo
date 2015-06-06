@@ -135,10 +135,11 @@ function nas_solr_feature_default_search_api_index() {
       "fields" : {
         "admin_description" : { "type" : "text" },
         "has_image" : { "type" : "boolean" },
-        "hero_image_title" : { "type" : "text" },
+        "hero_image_title" : { "type" : "text", "boost" : "3.0" },
         "image" : { "type" : "integer", "entity_type" : "file" },
+        "path" : { "type" : "uri" },
         "search_api_language" : { "type" : "string" },
-        "title" : { "type" : "text" }
+        "status" : { "type" : "boolean" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "ical" } },

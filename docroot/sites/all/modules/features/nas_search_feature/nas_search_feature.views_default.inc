@@ -238,6 +238,11 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['fields']['admin_description']['table'] = 'search_api_index_page_manager_pages';
   $handler->display->display_options['fields']['admin_description']['field'] = 'admin_description';
   $handler->display->display_options['fields']['admin_description']['link_to_entity'] = 0;
+  /* Field: Indexed Page manager: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'search_api_index_page_manager_pages';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['link_to_entity'] = 0;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_page_manager_pages';
@@ -274,9 +279,14 @@ function nas_search_feature_views_default_views() {
     6 => 0,
     16 => 0,
   );
+  /* Filter criterion: Indexed Page manager: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_page_manager_pages';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
 
-  /* Display: Landing pages */
-  $handler = $view->new_display('panel_pane', 'Landing pages', 'site_sections');
+  /* Display: Site Sections */
+  $handler = $view->new_display('panel_pane', 'Site Sections', 'site_sections');
   $handler->display->display_options['exposed_block'] = TRUE;
   $export['search_results_pm'] = $view;
 
