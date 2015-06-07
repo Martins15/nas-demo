@@ -113,6 +113,9 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'video_page') {
     nas_preprocess_node_video_page($vars);
   }
+  if ($vars['type'] == 'campaign') {
+    nas_preprocess_node_campaign($vars);
+  }
 }
 
 /**
@@ -1572,6 +1575,19 @@ function nas_preprocess_node_video_page(&$vars) {
 }
 
 /**
+ * Implements theme_preprocess_node().
+ *
+ * For Campaign content type.
+ */
+function nas_preprocess_node_campaign(&$vars) {
+  $get_field_campaign_url_parameter = field_get_items('node', $vars['node'], 'field_campaign_url_parameter');
+  $vars['help_intro'] = t('Copy and paste this url parameter in the end of URL:');
+  $vars['url_parameter'] = '?' . $get_field_campaign_url_parameter[0]['value'];
+  $vars['help_text'] = t('e.g. for News page it will be: ');
+  $vars['help_link'] = url('news', array('absolute' => TRUE)) . $vars['url_parameter'];
+}
+
+/**
  * Preprocess function for nas_video_page theme.
  */
 function nas_preprocess_nas_video_page(&$vars) {
@@ -1623,13 +1639,13 @@ function nas_preprocess_nas_video_page(&$vars) {
       $video_credit = $video_credit['safe_value'];
     }
 
-    $caption = $video_caption;
+    $caption = '<span class="video-caption">' . $video_caption . '</span>';
     if ($video_credit) {
-      $caption .= ' Video: ' . $video_credit;
+      $caption .= ' Video: <span class="video-credit">' . $video_credit . '</span>';
     }
 
     if ($caption) {
-      $vars['caption'] = '<p>' . $caption . '</p>';
+      $vars['caption'] = '<p class="video-attribution">' . $caption . '</p>';
     }
   }
 }

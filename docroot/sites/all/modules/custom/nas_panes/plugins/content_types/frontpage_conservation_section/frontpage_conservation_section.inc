@@ -20,6 +20,7 @@ $plugin = array(
 function frontpage_conservation_section_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $form['image'] = array(
     '#type' => 'media',

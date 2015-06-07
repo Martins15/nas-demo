@@ -5000,6 +5000,10 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
   padding-right: 0;
 }
 
+.editorial-card-list-item small em {
+  white-space: nowrap;
+}
+
 /* @todo refactor the hell out of this */
 .mailing-list .row:before {
   content: "";
@@ -9902,10 +9906,10 @@ body.black-bg .slide-caption {
   cursor: pointer;
   background-position: center center;
   background-size: 34px;
-  -webkit-animation: spin 1s ease-in-out infinite;
-  -moz-animation: spin 1s linear infinite;
-  -ms-animation: spin 1s linear infinite;
-  -o-animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s ease infinite;
+  -moz-animation: spin 1s ease infinite;
+  -ms-animation: spin 1s ease infinite;
+  -o-animation: spin 1s ease infinite;
   animation: spin 1s ease infinite;
 }
 
@@ -12196,13 +12200,6 @@ body.touch .sticky-wrapper {
   font-style: italic;
 }
 
-.view-id-boa_index.view-display-id-boa_index_state .boa-bird-card {
-  display: none;
-}
-.view-id-boa_index.view-display-id-boa_index_state .boa-bird-card:first-child {
-  display: block;
-}
-
 .boa-bird-card {
   margin-bottom: 40px;
   -moz-transform: translateZ(0);
@@ -13677,6 +13674,10 @@ h2.grey {
   font-size: 18px;
 }
 
+.flyways-events-ajax-wrapper {
+  margin-top: 15px;
+}
+
 .node-type-video-page h1 {
   color: #aaaaaa;
   font-size: 40px;
@@ -13701,6 +13702,14 @@ h2.grey {
 }
 .node-type-video-page .video-summary {
   color: #eeeeee;
+}
+.node-type-video-page .video-summary .text-container .video-attribution {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+.node-type-video-page .video-summary .text-container .video-attribution .video-credit {
+  font-style: italic;
 }
 .node-type-video-page .video-summary .text-container p {
   font-size: 15px;
@@ -14875,6 +14884,7 @@ figcaption {
 }
 
 .file-attachments {
+  clear: both;
   margin: 20px 0;
 }
 .file-attachments h3 {
@@ -14911,6 +14921,10 @@ figcaption {
   margin-left: -40px;
   vertical-align: middle;
   width: 35px;
+}
+
+.form-item-override-title-heading {
+  display: none;
 }
 
 #nas-page-scheduler-settings-form .form-item-date-publish-time {
