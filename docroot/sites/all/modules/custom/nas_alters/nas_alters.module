@@ -315,9 +315,9 @@ function nas_alters_campaign_url_parameter_exists($name, $nid, $validate = FALSE
     $query = db_select('field_data_field_campaign_url_parameter', 'f')
       ->fields('f', array('entity_id', 'field_campaign_url_parameter_value'))
       ->condition('f.field_campaign_url_parameter_value', $name);
-      if (is_numeric($nid) && $nid !== 0) {
-        $query->condition('f.entity_id', $nid, '<>');
-      }
+    if (is_numeric($nid) && $nid !== 0) {
+      $query->condition('f.entity_id', $nid, '<>');
+    }
 
     $result = $query->execute()->fetchAll();
     foreach ($result as $value) {
