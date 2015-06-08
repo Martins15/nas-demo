@@ -12895,19 +12895,28 @@ body.touch .sticky-wrapper {
     line-height: 20px;
   }
 }
+.page-boa-bird #modalContent.boa-plate-popup {
+  height: 80% !important;
+}
 .page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content {
+  height: 100% !important;
   max-width: none !important;
   padding: 0;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .popups-container {
+  height: 100%;
 }
 .page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .modal-header {
   display: none;
 }
 .page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content #modal-content {
+  height: 100% !important;
   max-width: none !important;
   padding: 0;
 }
 .page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .deepzoom {
   height: 100%;
+  position: absolute;
 }
 
 .boa-search-form {
