@@ -2591,19 +2591,7 @@ function nas_master_update_7184() {
   $indexes = entity_load('search_api_index', array('page_manager_pages'));
   $index = reset($indexes);
   $index->queueItems();
-}
 
-/**
- * Enable Campaign feature.
- */
-function nas_master_update_7185() {
-  module_enable(array('nas_campaign_feature'));
-}
-
-/**
- * Enable modules, update configuration.
- */
-function nas_master_update_7184() {
   module_enable(array('nas_boa_plates', 'deepzoom'));
   $config = variable_get('deepzoom_config', array());
   $config['engine'] = 'openseadragon';
@@ -2632,4 +2620,11 @@ function nas_master_update_7184() {
       }
     }
   }
+}
+
+/**
+ * Enable Campaign feature.
+ */
+function nas_master_update_7185() {
+  module_enable(array('nas_campaign_feature'));
 }
