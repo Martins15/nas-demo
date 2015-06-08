@@ -12605,6 +12605,7 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird #modalBackdrop {
   background-color: #000 !important;
+  max-width: 100%;
 }
 .page-boa-bird #modalContent {
   color: #404040;
