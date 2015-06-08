@@ -2587,6 +2587,10 @@ function nas_master_update_7184() {
       'nas_search_feature' => array('views_view', 'page_manager_pages'),
       'nas_solr_feature' => array('search_api_index'),
     ));
+  // Workaround for empty search index.
+  $indexes = entity_load('search_api_index', array('page_manager_pages'));
+  $index = reset($indexes);
+  $index->queueItems();
 }
 
 /**
