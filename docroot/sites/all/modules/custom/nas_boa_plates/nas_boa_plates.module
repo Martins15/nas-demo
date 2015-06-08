@@ -74,7 +74,7 @@ function _nas_boa_plates_doheader() {
       'closeText' => t('Close'),
     ),
     'boadeepzoom' => array(
-      'path' => '//df0bd6h5ujoev.cloudfront.net/tiles',
+      'path' => '//d2e5ib4b6clnb8.cloudfront.net',
     ),
   );
 
@@ -84,9 +84,20 @@ function _nas_boa_plates_doheader() {
   ctools_add_js('modals', 'nas_boa_plates');
 }
 
+/**
+ * Implements hook_js_alter().
+ */
 function nas_boa_plates_js_alter(&$javascript) {
   $already_added = &drupal_static('nas_boa_plates_js');
   if ($already_added) {
     unset($javascript[drupal_get_path('module', 'deepzoom') . '/engines/deepzoom.openseadragon.js']);
+  }
+  $internal_path = 'sites/all/libraries/openseadragon/openseadragon.min.js';
+  if (isset($javascript[$internal_path])) {
+    $external_path = 'https://d2e5ib4b6clnb8.cloudfront.net/openseadragon/openseadragon.min.js';
+    $javascript[$external_path] = $javascript[$internal_path];
+    $javascript[$external_path]['data'] = $external_path;
+    $javascript[$external_path]['type'] = 'external';
+    unset($javascript[$internal_path]);
   }
 }
