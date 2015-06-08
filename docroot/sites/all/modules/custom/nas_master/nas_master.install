@@ -2584,3 +2584,37 @@ function nas_master_update_7183() {
 function nas_master_update_7185() {
   module_enable(array('nas_campaign_feature'));
 }
+
+/**
+ * Enable modules, update configuration.
+ */
+function nas_master_update_7184() {
+  module_enable(array('nas_boa_plates', 'deepzoom'));
+  $config = variable_get('deepzoom_config', array());
+  $config['engine'] = 'openseadragon';
+  variable_set('deepzoom_config', $config);
+
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if ($field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        $md5_file = md5_file($field_items[0]['uri']);
+        $dzi_filename = $dirname . '/' . $md5_file . '.dzi';
+        if (!file_exists($dzi_filename)) {
+          file_put_contents($dzi_filename, '');
+        }
+      }
+    }
+  }
+}
