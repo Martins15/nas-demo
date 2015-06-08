@@ -560,7 +560,7 @@ var Nas = Nas || {};
         }
     }
   };
-  
+
   Drupal.behaviors.frontpage_flyway_ajax = {
     attach: function(context, settings) {
       // Replace block only once.
@@ -599,27 +599,27 @@ var Nas = Nas || {};
       });
     }
   };
-  
+
   Drupal.behaviors.flyways_slider_megamap_integration = {
     attach: function(context, settings) {
-	  var flyways = ['#pacific-flyway-slide', '#central-flyway-slide', '#mississippi-flyway-slide', '#atlantic-flyway-slide'];
+      var flyways = ['#pacific-flyway-slide', '#central-flyway-slide', '#mississippi-flyway-slide', '#atlantic-flyway-slide'];
       $('.flyway-megamap-point, .flyway-path-dots a').once().click(function(e) {
         var id = $(this).attr('id');
         if (!id) {
-		  id = $(this).attr('href');
-		}
-	    var number = parseInt(id.charAt(id.length-1));
+          id = $(this).attr('href');
+        }
+        var number = parseInt(id.charAt(id.length-1));
         e.preventDefault();
         $('.flyway-slide.current').removeClass('current');
         $('.flyway-slide-button.current').removeClass('current');
         $(flyways[number-1]).addClass('current');
         $('.flyway-slide-button[href='+flyways[number-1]+']').addClass('current');
-	  });
-	  $('.flyway-slides-paddle, .flyway-slide-button').once().click(function(e) {
-	    var number = $('.flyway-slide-button.current').parent().index() + 1;
-	    $('a[href="#flyway-map-' + number + '"]').click();
-	  });
-	}
+      });
+      $('.flyway-slides-paddle, .flyway-slide-button').once().click(function(e) {
+        var number = $('.flyway-slide-button.current').parent().index() + 1;
+        $('a[href="#flyway-map-' + number + '"]').click();
+      });
+    }
   }
 
 })(jQuery);
