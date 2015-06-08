@@ -620,6 +620,6 @@ var Nas = Nas || {};
         $('a[href="#flyway-map-' + number + '"]').click();
       });
     }
-  }
+  };
 
 })(jQuery);
