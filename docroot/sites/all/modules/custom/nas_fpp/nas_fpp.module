@@ -535,6 +535,21 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
 }
 
 /**
+ * Implements HOOK_menu().
+ */
+function nas_fpp_theme() {
+  return array(
+    'flyways_near_you_office_chapter' => array(
+      'variables' => array(
+        'items' => array(),
+      ),
+      'template' => 'flyways-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_fpp') . '/templates',
+    ),
+  );
+}
+
+/**
  * Preprocess function for nas_featured_content_cards FPP.
  */
 function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
@@ -569,6 +584,37 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $vars['about_the_flyways'] = $get_field_about_the_flyways[0]['#markup'];
   $vars['about_link'] = l(t('About the Flyways'), 'flyways');
   $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
+
+  $events = TRUE;
+  $near_you = TRUE;
+  if (isset($vars['field_block_visibility'])) {
+    $first = isset($vars['field_block_visibility'][0]['value']) ? $vars['field_block_visibility'][0]['value'] : FALSE;
+    $second = isset($vars['field_block_visibility'][1]['value']) ? $vars['field_block_visibility'][1]['value'] : FALSE;
+    if ($second) {
+      $events = FALSE;
+      $near_you = FALSE;
+    }
+    elseif ($first) {
+      if (is_numeric(strpos($first, 'flyways_events'))) $events = FALSE;
+      else $near_you = FALSE;
+    }
+  }
+
+  $vars['events'] = NULL;
+  if ($events) {
+    $events = theme('flyways_events', array(
+     'items' => _nas_events_get_events(),
+    ));
+    $vars['events'] = $events;
+  }
+
+  $vars['near_you'] = NULL;
+  if ($near_you) {
+    $near_you = theme('flyways_near_you_office_chapter', array(
+      'items' => _nas_panes_get_locations('all', 'office_chapter+office+chapter', NULL, 'locations_frontpage'),
+    ));
+    $vars['near_you'] = $near_you;
+  }
 
   $vars['contextual_links'] = '';
   if (!user_access('access contextual links') || !user_access('edit NAS panes')) {

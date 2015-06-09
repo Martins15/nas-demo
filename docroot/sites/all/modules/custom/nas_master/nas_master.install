@@ -2540,18 +2540,19 @@ function nas_master_update_7179() {
 }
 
 /**
- * Revert Article feature.
- */
-function nas_master_update_7181() {
-  features_revert_module('nas_article_feature');
-}
-
-/**
  * NAS63 Article feature revert.
  */
 function nas_master_update_7180(&$sandbox) {
   features_revert_module('nas_article_feature');
-  module_enable(array('nas_near_you'));
+  features_revert_module('nas_fpp_feature');
+  module_enable(array('nas_near_you', 'nas_location_view_feature'));
+}
+
+/**
+ * Revert Article feature.
+ */
+function nas_master_update_7181() {
+  features_revert_module('nas_article_feature');
 }
 
 /**
@@ -2575,4 +2576,55 @@ function nas_master_update_7183() {
     }
   }
   features_revert(array('nas_boa_index_feature' => array('views_view')));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7184() {
+  module_enable(array('page_manager_search'));
+  features_revert(array(
+      'nas_search_feature' => array('views_view', 'page_manager_pages'),
+      'nas_solr_feature' => array('search_api_index'),
+    ));
+  // Workaround for empty search index.
+  $indexes = entity_load('search_api_index', array('page_manager_pages'));
+  $index = reset($indexes);
+  $index->queueItems();
+
+  module_enable(array('nas_boa_plates', 'deepzoom'));
+  $config = variable_get('deepzoom_config', array());
+  $config['engine'] = 'openseadragon';
+  variable_set('deepzoom_config', $config);
+
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if ($field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        $md5_file = md5_file($field_items[0]['uri']);
+        $dzi_filename = $dirname . '/' . $md5_file . '.dzi';
+        if (!file_exists($dzi_filename)) {
+          file_put_contents($dzi_filename, '');
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Enable Campaign feature.
+ */
+function nas_master_update_7185() {
+  module_enable(array('nas_campaign_feature'));
 }
