@@ -312,18 +312,14 @@ function nas_alters_form_campaign_node_form_alter(&$form, &$form_state, $form_id
  */
 function nas_alters_campaign_url_parameter_exists($name, $nid, $validate = FALSE) {
   if ($validate) {
-    $db_or = db_or()
-      ->condition('f.field_campaign_url_parameter_value', $name);
-    if ($nid !== 0 && is_numeric($nid)) {
-      $db_or = db_or()
-        ->condition('f.entity_id', $nid, '<>')
-        ->condition('f.field_campaign_url_parameter_value', $name);
-    }
-    $result = db_select('field_data_field_campaign_url_parameter', 'f')
+    $query = db_select('field_data_field_campaign_url_parameter', 'f')
       ->fields('f', array('entity_id', 'field_campaign_url_parameter_value'))
-      ->condition($db_or)
-      ->execute()
-      ->fetchAll();
+      ->condition('f.field_campaign_url_parameter_value', $name);
+    if (is_numeric($nid) && $nid !== 0) {
+      $query->condition('f.entity_id', $nid, '<>');
+    }
+
+    $result = $query->execute()->fetchAll();
     foreach ($result as $value) {
       if ($value->field_campaign_url_parameter_value == $name) {
         return $name;

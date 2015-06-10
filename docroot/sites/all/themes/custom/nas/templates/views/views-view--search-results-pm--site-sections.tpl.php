@@ -31,7 +31,6 @@
   <div class="row section-header space-top">
     <div class="columns">
       <h2><?php print $view->display[$view->current_display]->display_title; ?></h2>
-      <p class="sub-heading">Showing 1–<span class="search-counter"><?php print min($view->total_rows, 8); ?></span> of <?php print $view->total_rows; ?> results</p>
     </div>
   </div>
 
@@ -58,15 +57,7 @@
     </div>
   <?php endif; ?>
 
-  <?php if ($rows): ?>
-    <div class="row bird-card-grid-container view-content">
-      <?php print $rows; ?>
-    </div>
-  <?php elseif ($empty): ?>
-    <div class="view-empty">
-      <?php print $empty; ?>
-    </div>
-  <?php endif; ?>
+  <?php print $rows; ?>
 
   <?php if ($pager): ?>
     <div class="row space-bottom">

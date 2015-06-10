@@ -652,6 +652,7 @@
 
   #modalBackdrop {
     background-color: #000 !important;
+    max-width: 100%;
   }
 
   #modalContent {
@@ -946,6 +947,35 @@
         margin: 10px 0;
         font-size: 14px;
         line-height: 20px;
+      }
+    }
+
+    &.boa-plate-popup {
+      height: 80% !important;
+
+      .ctools-modal-content {
+        height: 100% !important;
+        max-width: none !important;
+        padding: 0;
+
+        .popups-container {
+          height: 100%;
+        }
+
+        .modal-header {
+          display: none;
+        }
+
+        #modal-content {
+          height: 100% !important;
+          max-width: none !important;
+          padding: 0;
+        }
+
+        .deepzoom {
+          height: 100%;
+          position: absolute;
+        }
       }
     }
   }

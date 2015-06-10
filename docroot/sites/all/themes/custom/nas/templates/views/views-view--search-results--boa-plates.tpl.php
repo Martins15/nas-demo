@@ -30,8 +30,12 @@
 <div class="<?php print $classes; ?>">
   <div class="row section-header space-top">
     <div class="columns">
-      <h2><?php print $view->display[$view->current_display]->display_title; ?></h2>
-      <p class="sub-heading">Showing 1–<span class="search-counter"><?php print min($view->total_rows, 8); ?></span> of <?php print $view->total_rows; ?> results</p>
+      <h2><?php print $view->display[$view->current_display]->display_options['title']; ?></h2>
+    </div>
+    <div class="columns">
+      <ul class="section-nav inline-list">
+        <li class="first"><?php print l(t('Search for more plates >>'), 'birds-of-america'); ?></li>
+      </ul>
     </div>
   </div>
 
@@ -59,7 +63,7 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <div class="row bird-card-grid-container view-content">
+    <div class="row space-bottom double boa-plates-grid-container view-content">
       <?php print $rows; ?>
     </div>
   <?php elseif ($empty): ?>

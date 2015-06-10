@@ -12642,6 +12642,7 @@ body.touch .sticky-wrapper {
 }
 .page-boa-bird #modalBackdrop {
   background-color: #000 !important;
+  max-width: 100%;
 }
 .page-boa-bird #modalContent {
   color: #404040;
@@ -12931,6 +12932,29 @@ body.touch .sticky-wrapper {
     font-size: 14px;
     line-height: 20px;
   }
+}
+.page-boa-bird #modalContent.boa-plate-popup {
+  height: 80% !important;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content {
+  height: 100% !important;
+  max-width: none !important;
+  padding: 0;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .popups-container {
+  height: 100%;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .modal-header {
+  display: none;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content #modal-content {
+  height: 100% !important;
+  max-width: none !important;
+  padding: 0;
+}
+.page-boa-bird #modalContent.boa-plate-popup .ctools-modal-content .deepzoom {
+  height: 100%;
+  position: absolute;
 }
 
 .boa-search-form {
@@ -13445,6 +13469,19 @@ h2.grey {
 
 .bird-card-set-search {
   padding-top: 0px;
+}
+.bird-card-set-search .pager {
+  list-style: none;
+  margin-left: 0;
+  text-align: center;
+}
+.bird-card-set-search .pager li {
+  display: inline-block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 20px;
+}
+.bird-card-set-search .pager li a, .bird-card-set-search .pager li.pager-current {
+  padding: 5px;
 }
 
 .empty-search-results {
