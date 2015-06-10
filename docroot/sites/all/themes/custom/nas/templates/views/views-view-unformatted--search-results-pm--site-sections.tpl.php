@@ -31,7 +31,6 @@
       </div>
       <div class="editorial-card-content short">
         <h4 class="editorial-card-title no-margin"><?php print $title; ?></h4>
-        <p class="editorial-card-subtitle"><?php print $result->_entity_properties['admin_description']; ?></p>
       </div>
     </div>
   </div>
