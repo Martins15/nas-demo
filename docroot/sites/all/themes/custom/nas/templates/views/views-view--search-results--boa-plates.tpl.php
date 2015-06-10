@@ -63,7 +63,7 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <div class="row space-bottom double boa-plates-grid-container view-content">
+    <div class="row boa-plates-grid-container view-content">
       <?php print $rows; ?>
     </div>
   <?php elseif ($empty): ?>
