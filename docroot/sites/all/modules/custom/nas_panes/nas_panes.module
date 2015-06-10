@@ -945,6 +945,14 @@ function nas_panes_theme() {
       'template' => 'upcoming-events-block-item',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
     ),
+    'asc_bird_top_bar' => array(
+      'variables' => array(
+        'title' => '',
+        'url' => '',
+      ),
+      'template' => 'asc-bird-top-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/asc_bird_top_bar',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
