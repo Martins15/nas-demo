@@ -8,7 +8,7 @@
  */
 ?>
 
-<div class="row card-set space-bottom">
+<div class="row card-set">
   <?php foreach ($view->result as $result): ?>
     <?php
       $image = '';
@@ -25,12 +25,12 @@
       $title = l($result->_entity_properties['hero_image_title'], $result->_entity_properties['path']);
     ?>
   <div class="columns large-3">
-    <div class="editorial-card collapse-minimal">
+    <div class="editorial-card feature collapse-minimal">
       <div class="editorial-card-photo">
         <?php print $linked_image; ?>
       </div>
       <div class="editorial-card-content short">
-        <h4 class="editorial-card-title"><?php print $title; ?></h4>
+        <h4 class="editorial-card-title no-margin"><?php print $title; ?></h4>
         <p class="editorial-card-subtitle"><?php print $result->_entity_properties['admin_description']; ?></p>
       </div>
     </div>
