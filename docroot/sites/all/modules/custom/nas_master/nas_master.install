@@ -2623,8 +2623,9 @@ function nas_master_update_7184() {
 }
 
 /**
- * Enable Campaign feature.
+ * Enable Campaign feature, revent features.
  */
 function nas_master_update_7185() {
   module_enable(array('nas_campaign_feature'));
+  features_revert_module('nas_site_template_feature');
 }
