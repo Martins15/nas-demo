@@ -2622,9 +2622,51 @@ function nas_master_update_7184() {
 }
 
 /**
- * Enable Campaign feature, revent features.
+ * Enable Campaign feature, revent features,
+ * Add Welcome to Audubon block to all articles.
  */
 function nas_master_update_7185() {
   module_enable(array('nas_campaign_feature'));
   features_revert_module('nas_site_template_feature');
+  features_revert_module('nas_articles_feature');
+
+  // Create new pane and configure content and visibility settings.
+  $new_pane = panels_new_pane('block', 'bean-welcome-to-audubon', TRUE);
+  if ($new_pane) {
+    // Set up content.
+    $new_pane->configuration['override_title'] = 0;
+    $new_pane->configuration['override_title_text'] = '';
+    $new_pane->configuration['override_title_heading'] = 'h2';
+
+    // Select all overriden Articles panelizers.
+    $db_or = db_or()
+      ->condition('p.layout', 'nas_article_default', '=')
+      ->condition('p.layout', 'nas_article_inline_hero_image', '=')
+      ->condition('p.layout', 'nas_article_big_image')
+      ->condition('p.layout', 'nas_article_fullscreen')
+      ->condition('p.layout', 'nas_article_map');
+    $query = db_select('panels_display', 'p')
+      ->fields('p', array('did'))
+      ->condition($db_or);
+    $result = $query->execute()->fetchAll();
+    // Save pane to the all provided panel_displays.
+    foreach ($result as $value) {
+      // Load the panel display to add the new pane.
+      $did = $value->did;
+      if (is_numeric($did)) {
+        $display = panels_load_display($did);
+        if ($display) {
+          $display->add_pane($new_pane, 'right');
+          panels_save_display($display);
+        }
+      }
+      else {
+        drupal_set_message(t('Incorrect reference to panels display'), 'warning', FALSE);
+        watchdog('nas_install', 'did passed to panels_load_display is not int - @did.', array('@did' => $did));
+      }
+    }
+  }
+  else {
+    drupal_set_message(t('Failed to create new pane.'), 'warning', FALSE);
+  }
 }
