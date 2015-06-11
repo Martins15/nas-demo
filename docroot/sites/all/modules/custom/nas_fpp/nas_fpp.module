@@ -601,7 +601,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   }
 
   $vars['events'] = NULL;
-  if ($events) {
+  if ($events && variable_get('events_frontpage_enabled', 0)) {
     $events = theme('flyways_events', array(
      'items' => _nas_events_get_events(),
     ));
