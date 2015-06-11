@@ -156,13 +156,35 @@ function nas_events_menu() {
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['admin/config/content/events'] = array(
+    'title' => 'Events configuration',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_events_config_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
   $items['ajax/frontpage-flyways/events/%'] = array(
     'title' => 'Ajax - Frontpage Flyways Events',
     'page callback' => 'nas_events_ajax_flyways_events',
     'page arguments' => array(3),
-    'access arguments' => array('access content pages'),
+    'access arguments' => array('access content'),
   );
   return $items;
+}
+
+/**
+ * Form builder.
+ */
+function nas_events_config_form() {
+  $form = array();
+
+  $form['events_frontpage_enabled'] = array(
+    '#title' => t('Enable events on frontpage flyways block'),
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('events_frontpage_enabled', 0),
+  );
+
+  return system_settings_form($form);
 }
 
 /**
@@ -181,6 +203,9 @@ function nas_events_sync_form($form, &$form_state) {
  */
 function nas_events_ajax_flyways_events($state) {
   $items = _nas_events_get_events($state);
+  if (!$items) {
+    return;
+  }
   print theme('flyways_events', array(
     'items' => $items,
   ));

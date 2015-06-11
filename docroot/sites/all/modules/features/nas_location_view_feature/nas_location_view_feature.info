@@ -1,6 +1,6 @@
 name = Location View Feature
 core = 7.x
-package = Features
+package = NAS
 version = 7.x-1.0
 project = nas_location_view_feature
 dependencies[] = views
