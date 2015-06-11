@@ -215,6 +215,25 @@ birds-of-america',
     $pane->uuid = '6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858';
     $display->content['new-6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858'] = $pane;
     $display->panels['main'][2] = 'new-6ac3c3a1-03d6-4e1d-9b05-c5f4c535e858';
+    $pane = new stdClass();
+    $pane->pid = 'new-e78df20c-3bbd-4009-a6a3-e81d4d32cda5';
+    $pane->panel = 'top';
+    $pane->type = 'asc_bird_top_bar';
+    $pane->subtype = 'asc_bird_top_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e78df20c-3bbd-4009-a6a3-e81d4d32cda5';
+    $display->content['new-e78df20c-3bbd-4009-a6a3-e81d4d32cda5'] = $pane;
+    $display->panels['top'][0] = 'new-e78df20c-3bbd-4009-a6a3-e81d4d32cda5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -252,6 +271,7 @@ birds-of-america',
       'header' => NULL,
       'main' => NULL,
       'footer' => NULL,
+      'top' => NULL,
     ),
   );
   $display->cache = array();
@@ -432,6 +452,25 @@ birds-of-america',
     $pane->uuid = 'a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7';
     $display->content['new-a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7'] = $pane;
     $display->panels['main'][2] = 'new-a1e4d9c7-3bf7-4779-aa1c-9326a1bcc4e7';
+    $pane = new stdClass();
+    $pane->pid = 'new-71e0cd7f-09f1-481b-a28e-43cad3fde376';
+    $pane->panel = 'top';
+    $pane->type = 'asc_bird_top_bar';
+    $pane->subtype = 'asc_bird_top_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '71e0cd7f-09f1-481b-a28e-43cad3fde376';
+    $display->content['new-71e0cd7f-09f1-481b-a28e-43cad3fde376'] = $pane;
+    $display->panels['top'][0] = 'new-71e0cd7f-09f1-481b-a28e-43cad3fde376';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
