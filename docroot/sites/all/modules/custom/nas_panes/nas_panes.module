@@ -1493,9 +1493,9 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   // Sidebar display card logic.
   if ($first) {
     // Check if we have loaded cards from Campaign
-    // and pass 4th card for sidebar.
-    if (!empty($nodes) && isset($nodes[3])) {
-      $nodes = array($nodes[3]);
+    // and pass 1st card for sidebar.
+    if (!empty($nodes) && isset($nodes[0])) {
+      $nodes = array($nodes[0]);
       // Pass to js special var for unchecking First Time Visitors.
       drupal_add_js(array(
         'nas_panes' => array(
@@ -1570,9 +1570,9 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
   // Footer block display cards logic.
   else {
     // Check if we have loaded cards from Campaign
-    // and pass first 3 cards for footer.
-    if (!empty($nodes)) {
-      $nodes = array_slice($nodes, 0, 3);
+    // and pass 2,3,4 cards for footer.
+    if (!empty($nodes) && count($nodes) == 4) {
+      $nodes = array_slice($nodes, 1, 4);
     }
     // Manual override.
     if (empty($nodes) && isset($data['references'])) {
