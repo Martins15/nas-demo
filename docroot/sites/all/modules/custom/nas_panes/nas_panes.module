@@ -1572,7 +1572,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     // Check if we have loaded cards from Campaign
     // and pass 2,3,4 cards for footer.
     if (!empty($nodes) && count($nodes) == 4) {
-      $nodes = array_slice($nodes, 1, 4);
+      $nodes = array_slice($nodes, 1, 3);
     }
     $nodes = array();
     // Manual override.
