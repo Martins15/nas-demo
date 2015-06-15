@@ -79,7 +79,7 @@ function nas_campaign_feature_field_default_field_instances() {
     'bundle' => 'campaign',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '<strong>The first 3 cards</strong> will appear in order of appearance <strong>in the footer section on the pages with this campaign URL parameter.</strong><br /><br /><strong>The 4th card</strong> from this queue <strong>will appear in the right sidebar placements on the pages with this campaign URL parameter.</strong>',
+    'description' => '<strong>The first card</strong> will appear <strong>in the right sidebar placements on the pages with this campaign URL parameter</strong>.<br /><br /><strong>The rest 3 cards</strong> will appear in order of appearance <strong>in the footer section on the pages with this campaign URL parameter</strong>.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -110,7 +110,7 @@ function nas_campaign_feature_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<strong>The first 3 cards</strong> will appear in order of appearance <strong>in the footer section on the pages with this campaign URL parameter.</strong><br /><br /><strong>The 4th card</strong> from this queue <strong>will appear in the right sidebar placements on the pages with this campaign URL parameter.</strong>');
+  t('<strong>The first card</strong> will appear <strong>in the right sidebar placements on the pages with this campaign URL parameter</strong>.<br /><br /><strong>The rest 3 cards</strong> will appear in order of appearance <strong>in the footer section on the pages with this campaign URL parameter</strong>.');
   t('Engagement cards');
   t('URL parameter');
 
