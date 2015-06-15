@@ -513,6 +513,29 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8'] = $pane;
     $display->panels['right'][0] = 'new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8';
     $pane = new stdClass();
+    $pane->pid = 'new-04c74d2c-dcf8-4ee2-92c1-4cd7ae6f0e4d';
+    $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '04c74d2c-dcf8-4ee2-92c1-4cd7ae6f0e4d';
+    $display->content['new-04c74d2c-dcf8-4ee2-92c1-4cd7ae6f0e4d'] = $pane;
+    $display->panels['right'][1] = 'new-04c74d2c-dcf8-4ee2-92c1-4cd7ae6f0e4d';
+    $pane = new stdClass();
     $pane->pid = 'new-3e16a00f-6fb7-4c33-bba4-1915737579a9';
     $pane->panel = 'social';
     $pane->type = 'nas_panes_pane_in_the_article';
@@ -1039,6 +1062,29 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '4eadb16b-8576-41cf-91cd-5aaf4140f95e';
     $display->content['new-4eadb16b-8576-41cf-91cd-5aaf4140f95e'] = $pane;
     $display->panels['right'][0] = 'new-4eadb16b-8576-41cf-91cd-5aaf4140f95e';
+    $pane = new stdClass();
+    $pane->pid = 'new-0ba66890-030a-4390-8ce7-b64cbc29f28a';
+    $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0ba66890-030a-4390-8ce7-b64cbc29f28a';
+    $display->content['new-0ba66890-030a-4390-8ce7-b64cbc29f28a'] = $pane;
+    $display->panels['right'][1] = 'new-0ba66890-030a-4390-8ce7-b64cbc29f28a';
     $pane = new stdClass();
     $pane->pid = 'new-5f1ed3f0-b40f-44a7-8624-be96c97b9cb4';
     $pane->panel = 'social';
@@ -2286,6 +2332,29 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8'] = $pane;
     $display->panels['right'][0] = 'new-11abb8ed-b0bb-4ed4-822a-bcf5b7b6f7c8';
     $pane = new stdClass();
+    $pane->pid = 'new-c47280cd-ef2a-4cbc-ba68-1ced015db73d';
+    $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'c47280cd-ef2a-4cbc-ba68-1ced015db73d';
+    $display->content['new-c47280cd-ef2a-4cbc-ba68-1ced015db73d'] = $pane;
+    $display->panels['right'][1] = 'new-c47280cd-ef2a-4cbc-ba68-1ced015db73d';
+    $pane = new stdClass();
     $pane->pid = 'new-3e16a00f-6fb7-4c33-bba4-1915737579a9';
     $pane->panel = 'social';
     $pane->type = 'nas_panes_pane_in_the_article';
@@ -2783,6 +2852,29 @@ function nas_article_feature_panelizer_defaults() {
     $pane->uuid = '058ae384-7328-45a4-8b0b-c0f097ff966c';
     $display->content['new-058ae384-7328-45a4-8b0b-c0f097ff966c'] = $pane;
     $display->panels['right'][0] = 'new-058ae384-7328-45a4-8b0b-c0f097ff966c';
+    $pane = new stdClass();
+    $pane->pid = 'new-081281dc-ee1b-48b5-aed6-d59295c1c5c6';
+    $pane->panel = 'right';
+    $pane->type = 'block';
+    $pane->subtype = 'bean-welcome-to-audubon';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '081281dc-ee1b-48b5-aed6-d59295c1c5c6';
+    $display->content['new-081281dc-ee1b-48b5-aed6-d59295c1c5c6'] = $pane;
+    $display->panels['right'][1] = 'new-081281dc-ee1b-48b5-aed6-d59295c1c5c6';
     $pane = new stdClass();
     $pane->pid = 'new-fe696520-1c14-42cf-b230-b65c80823adb';
     $pane->panel = 'social';

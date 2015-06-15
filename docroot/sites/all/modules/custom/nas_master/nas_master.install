@@ -2540,18 +2540,18 @@ function nas_master_update_7179() {
 }
 
 /**
- * Revert Article feature.
- */
-function nas_master_update_7181() {
-  features_revert_module('nas_article_feature');
-}
-
-/**
  * NAS63 Article feature revert.
  */
 function nas_master_update_7180(&$sandbox) {
   features_revert_module('nas_article_feature');
-  module_enable(array('nas_near_you'));
+  features_revert_module('nas_fpp_feature');
+}
+
+/**
+ * Revert Article feature.
+ */
+function nas_master_update_7181() {
+  features_revert_module('nas_article_feature');
 }
 
 /**
@@ -2575,4 +2575,98 @@ function nas_master_update_7183() {
     }
   }
   features_revert(array('nas_boa_index_feature' => array('views_view')));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7184() {
+  module_enable(array('page_manager_search', 'nas_location_view_feature'));
+  features_revert(array(
+      'nas_search_feature' => array('views_view', 'page_manager_pages'),
+      'nas_solr_feature' => array('search_api_index'),
+    ));
+  // Workaround for empty search index.
+  $indexes = entity_load('search_api_index', array('page_manager_pages'));
+  $index = reset($indexes);
+  $index->queueItems();
+
+  module_enable(array('nas_boa_plates', 'deepzoom'));
+  $config = variable_get('deepzoom_config', array());
+  $config['engine'] = 'openseadragon';
+  variable_set('deepzoom_config', $config);
+
+  $efq = new EntityFieldQuery();
+  $efq->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'boa');
+
+  $result = $efq->execute();
+  if (isset($result['node'])) {
+    $dirname = 'public://deepzoom';
+    if (!is_dir($dirname)) {
+      mkdir($dirname);
+      drupal_chmod($dirname);
+    }
+    $nids = array_keys($result['node']);
+    $nodes = entity_load('node', $nids);
+    foreach ($nodes as $node) {
+      if ($field_items = field_get_items('node', $node, 'field_boa_illustration')) {
+        $md5_file = md5_file($field_items[0]['uri']);
+        $dzi_filename = $dirname . '/' . $md5_file . '.dzi';
+        if (!file_exists($dzi_filename)) {
+          file_put_contents($dzi_filename, '');
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Enable Campaign feature, revent features,
+ * Add Welcome to Audubon block to all articles.
+ */
+function nas_master_update_7185() {
+  module_enable(array('nas_campaign_feature'));
+  features_revert_module('nas_site_template_feature');
+  features_revert_module('nas_articles_feature');
+
+  // Create new pane and configure content and visibility settings.
+  $new_pane = panels_new_pane('block', 'bean-welcome-to-audubon', TRUE);
+  if ($new_pane) {
+    // Set up content.
+    $new_pane->configuration['override_title'] = 0;
+    $new_pane->configuration['override_title_text'] = '';
+    $new_pane->configuration['override_title_heading'] = 'h2';
+
+    // Select all overriden Articles panelizers.
+    $db_or = db_or()
+      ->condition('p.layout', 'nas_article_default', '=')
+      ->condition('p.layout', 'nas_article_inline_hero_image', '=')
+      ->condition('p.layout', 'nas_article_big_image')
+      ->condition('p.layout', 'nas_article_fullscreen')
+      ->condition('p.layout', 'nas_article_map');
+    $query = db_select('panels_display', 'p')
+      ->fields('p', array('did'))
+      ->condition($db_or);
+    $result = $query->execute()->fetchAll();
+    // Save pane to the all provided panel_displays.
+    foreach ($result as $value) {
+      // Load the panel display to add the new pane.
+      $did = $value->did;
+      if (is_numeric($did)) {
+        $display = panels_load_display($did);
+        if ($display) {
+          $display->add_pane($new_pane, 'right');
+          panels_save_display($display);
+        }
+      }
+      else {
+        drupal_set_message(t('Incorrect reference to panels display'), 'warning', FALSE);
+        watchdog('nas_install', 'did passed to panels_load_display is not int - @did.', array('@did' => $did));
+      }
+    }
+  }
+  else {
+    drupal_set_message(t('Failed to create new pane.'), 'warning', FALSE);
+  }
 }

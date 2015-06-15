@@ -17,6 +17,12 @@ function nas_near_you_menu() {
     'access arguments' => array('access administration pages'),
     'file' => 'nas_near_you.admin.inc',
   );
+  $items['ajax/frontpage-flyways/audubon-near-you/%'] = array(
+    'title' => 'Ajax - Audubon Near You',
+    'page callback' => 'nas_near_you_ajax_flyways_nearyou',
+    'page arguments' => array(3),
+    'access arguments' => array('access content'),
+  );
   return $items;
 }
 
@@ -36,4 +42,14 @@ function nas_get_chapter_by_zip($zip) {
     return $nid;
   }
   return NULL;
+}
+
+/**
+ * Callback for Ajax: Frontpage Flyways - Audubon Near You section.
+ */
+function nas_near_you_ajax_flyways_nearyou($state) {
+  $items = _nas_panes_get_locations($state, 'all', NULL, 'locations_frontpage');
+  print theme('flyways_near_you_office_chapter', array(
+    'items' => $items,
+  ));
 }

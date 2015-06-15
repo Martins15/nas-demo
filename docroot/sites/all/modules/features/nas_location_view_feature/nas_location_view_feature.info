@@ -1,0 +1,10 @@
+name = Location View Feature
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_location_view_feature
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = locations_frontpage
+features_exclude[dependencies][ctools] = ctools

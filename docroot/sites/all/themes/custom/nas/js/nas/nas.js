@@ -110,7 +110,9 @@ var Nas = Nas || {};
 
   Drupal.behaviors.firstTimeVisitors = {
     attach: function (context, settings) {
-      if (!Drupal.isFirstTimeVisitor()) {
+      if (!Drupal.isFirstTimeVisitor() ||
+        (typeof(settings.nas_panes) !== 'undefined' &&
+        typeof(settings.nas_panes.ignore_first_time_visitor) !== 'undefined')) {
         $(".bean-welcome-to-audubon").addClass('hide');
         $('.hide-for-firsttime-visitors').removeClass('hide-for-firsttime-visitors');
       }
@@ -530,7 +532,7 @@ var Nas = Nas || {};
           }
           else {
             query[queries[i][0]] = queries[i][1];
-		  }
+          }
         }
         if ($.isArray(query.search)) {
 
@@ -556,6 +558,67 @@ var Nas = Nas || {};
         else{
           map.height(parent_h);
         }
+    }
+  };
+
+  Drupal.behaviors.frontpage_flyway_ajax = {
+    attach: function(context, settings) {
+      // Replace block only once.
+      $('body.page-frontpage').once('flyways-ajax', function() {
+        var onSuccess = function(stateIsoCode) {
+          if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
+            return;
+          }
+          // Replace default block with Audubon Near You content filtered by state.
+          $.ajax({
+            type: 'GET',
+            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/audubon-near-you/'+stateIsoCode,
+            dataType: 'html',
+            success: function (data) {
+              if (data !== '') {
+                $('.flyways-nearyou-ajax-wrapper').once().html(data);
+              }
+              $('.flyways-nearyou-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+            }
+          });
+          // Replace default block with Event content filtered by state.
+          $.ajax({
+            type: 'GET',
+            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/events/'+stateIsoCode,
+            dataType: 'html',
+            success: function (data) {
+              if (data !== '') {
+                $('.flyways-events-ajax-wrapper').once().html(data);
+              }
+              $('.flyways-events-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+            }
+          });
+        };
+        // Internal request.
+        geoip.getState(onSuccess);
+      });
+    }
+  };
+
+  Drupal.behaviors.flyways_slider_megamap_integration = {
+    attach: function(context, settings) {
+      var flyways = ['#pacific-flyway-slide', '#central-flyway-slide', '#mississippi-flyway-slide', '#atlantic-flyway-slide'];
+      $('.flyway-megamap-point, .flyway-path-dots a').once().click(function(e) {
+        var id = $(this).attr('id');
+        if (!id) {
+          id = $(this).attr('href');
+        }
+        var number = parseInt(id.charAt(id.length-1));
+        e.preventDefault();
+        $('.flyway-slide.current').removeClass('current');
+        $('.flyway-slide-button.current').removeClass('current');
+        $(flyways[number-1]).addClass('current');
+        $('.flyway-slide-button[href='+flyways[number-1]+']').addClass('current');
+      });
+      $('.flyway-slides-paddle, .flyway-slide-button').once().click(function(e) {
+        var number = $('.flyway-slide-button.current').parent().index() + 1;
+        $('a[href="#flyway-map-' + number + '"]').click();
+      });
     }
   };
 

@@ -16,9 +16,17 @@ function nas_alters_init() {
   }
 
   // Redirect articles only when field_article_redirect is filled and is full node page.
-  if (_nas_alters_is_article_full_view_mode_page() && $node = menu_get_object('node')) {
-    if ($node->type == 'article' && !empty($node->field_article_redirect[LANGUAGE_NONE][0]['url'])) {
-      drupal_goto($node->field_article_redirect[LANGUAGE_NONE][0]['url'], array(), 301);
+  if (_nas_alters_is_node_full_view_mode_page() && $node = menu_get_object('node')) {
+    $fields = array(
+      'article' => 'field_article_redirect',
+      'slideshow' => 'field_slideshow_redirect',
+      'static_page' => 'field_static_page_redirect'
+    );
+    if (in_array($node->type, array_keys($fields))) {
+      $redirect = field_get_items('node', $node, $fields[$node->type]);
+      if (!empty($redirect[0]['url'])) {
+        drupal_goto($redirect[0]['url'], array(), 301);
+      }
     }
   }
 }
@@ -122,6 +130,30 @@ function nas_alters_link_field_process(&$element, &$form_state, $complete_form) 
       break;
   }
   return $element;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Slideshow node form.
+ */
+function nas_alters_form_slideshow_node_form_alter(&$form, &$form_state, $form_id) {
+  // Move redirect field to "Menu & URL path settings" tab.
+  $form['menu_path_custom_tab']['field_slideshow_redirect'] = $form['field_slideshow_redirect'];
+  $form['menu_path_custom_tab']['field_slideshow_redirect']['#weight'] = 40;
+  unset($form['field_slideshow_redirect']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Static Page node form.
+ */
+function nas_alters_form_static_page_node_form_alter(&$form, &$form_state, $form_id) {
+  // Move redirect field to "Menu & URL path settings" tab.
+  $form['menu_path_custom_tab']['field_static_page_redirect'] = $form['field_static_page_redirect'];
+  $form['menu_path_custom_tab']['field_static_page_redirect']['#weight'] = 40;
+  unset($form['field_static_page_redirect']);
 }
 
 /**
@@ -243,6 +275,89 @@ function nas_alters_form_article_node_form_submit($form, &$form_state) {
   if (($layout == 'node:article:big_image' || $layout == 'node:article:fullscreen_image' || $layout == 'node:article:inline_hero_photo') && isset($form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid']) && $form_state['values']['field_hero_image'][LANGUAGE_NONE][0]['fid'] == 0) {
     $form_state['values']['panelizer']['page_manager']['name'] = 'node:article:default';
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Campaign node form.
+ */
+function nas_alters_form_campaign_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['field_campaign_url_parameter'][LANGUAGE_NONE][0]['value']['#default_value'])) {
+    $default_name = $form['field_campaign_url_parameter'][LANGUAGE_NONE][0]['value']['#default_value'];
+  }
+  $form['url_machine_name'] = array(
+    '#type' => 'machine_name',
+    '#title' => t('URL parameter'),
+    '#maxlength' => 255,
+    '#machine_name' => array(
+      'exists' => 'nas_alters_campaign_url_parameter_exists',
+      'source' => array('title'),
+    ),
+    '#description' => t('The URL parameter of this campaign. It must be unique, and it must contain only alphanumeric characters and underscores.'),
+    '#default_value' => isset($default_name) ? $default_name : '',
+  );
+  drupal_add_js(drupal_get_path('module', 'nas_alters') . '/js/campaign-form.js', array('scope' => 'footer'));
+  // Attach after build callback.
+  $form['#after_build'][] = 'nas_alters_form_campaign_node_form_alter_build';
+  // Extra validate.
+  $form['#validate'][] = 'nas_alters_form_campaign_node_form_alter_validate';
+  // Extra submit.
+  $form['#submit'][] = 'nas_alters_form_campaign_node_form_alter_submit';
+}
+
+/**
+ * A function name to invoke for checking whether
+ * a submitted url parameter value already exists.
+ */
+function nas_alters_campaign_url_parameter_exists($name, $nid, $validate = FALSE) {
+  if ($validate) {
+    $query = db_select('field_data_field_campaign_url_parameter', 'f')
+      ->fields('f', array('entity_id', 'field_campaign_url_parameter_value'))
+      ->condition('f.field_campaign_url_parameter_value', $name);
+    if (is_numeric($nid) && $nid !== 0) {
+      $query->condition('f.entity_id', $nid, '<>');
+    }
+
+    $result = $query->execute()->fetchAll();
+    foreach ($result as $value) {
+      if ($value->field_campaign_url_parameter_value == $name) {
+        return $name;
+      }
+    }
+  }
+}
+
+/**
+ * After build callback.
+ */
+function nas_alters_form_campaign_node_form_alter_build($form, &$form_state) {
+  $form['url_machine_name']['#attached']['js'][1]['data']['machineName']['#edit-title']['label'] = t('URL parameter');
+  return $form;
+}
+
+/**
+ * Validate callback.
+ */
+function nas_alters_form_campaign_node_form_alter_validate($form, &$form_state) {
+  if ($form_state['values']['url_machine_name'] == 'q') {
+    form_set_error('url_machine_name', t('Incorrect URL query parameter, please use another one.'));
+  }
+  $nid = 0;
+  if (isset($form_state['node']->nid) && is_numeric($form_state['node']->nid)) {
+    $nid = $form_state['node']->nid;
+  }
+  if ($test = nas_alters_campaign_url_parameter_exists($form_state['values']['url_machine_name'], $nid, TRUE)) {
+    form_clear_error();
+    form_set_error('title', t('The URL parameter is already in use. Please make sure it is unique by editing it manually or generate from title.'));
+  }
+}
+
+/**
+ * Submit callback.
+ */
+function nas_alters_form_campaign_node_form_alter_submit($form, &$form_state) {
+  $form_state['values']['field_campaign_url_parameter'][LANGUAGE_NONE][0]['value'] = $form_state['values']['url_machine_name'];
 }
 
 /**
@@ -499,7 +614,7 @@ function _nas_alters_menu_admin_page($menu) {
 /**
  * Returns whether is article full view mode page.
  */
-function _nas_alters_is_article_full_view_mode_page() {
+function _nas_alters_is_node_full_view_mode_page() {
   $args = arg();
   return $args[0] == 'node' && !empty($args[1]) && is_numeric($args[1]) && empty($args[2]);
 }
