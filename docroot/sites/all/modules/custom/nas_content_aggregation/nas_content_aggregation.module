@@ -206,6 +206,7 @@ function nas_content_aggregation_export_node($node) {
   $export_node->type = $node->type;
   $export_node->title = $node->title;
   $export_node->status = $node->status;
+  $export_node->created = $node->created;
   if (isset($node->field_subtitle)) {
     $export_node->subtitle = $node->field_subtitle;
   }
