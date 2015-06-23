@@ -43,7 +43,6 @@ function editorial_card_river_admin_info($subtype, $conf, $context = NULL) {
 function editorial_card_river_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
-  _nas_panes_hide_pane_title_field($form);
 
   // Do not show context selector if configuration form is called from page.
   if (isset($_GET['nas-panes-from-page'])) {
