@@ -20,7 +20,6 @@ $plugin = array(
 function editorial_card_4x_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
-  _nas_panes_hide_pane_title_field($form);
 
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'editorial_card_4x', 'nas_panes', 'plugins/content_types/editorial_card_4x');
