@@ -13781,6 +13781,39 @@ h2.grey {
   margin-left: 1px;
 }
 
+.node-type-iba .text-container h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+.node-type-iba .iba-photo-gallery h4 {
+  font-size: 23px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+.node-type-iba .iba-photo-gallery h4 .icon-camera:before {
+  vertical-align: sub;
+}
+.node-type-iba .iba-photo-gallery .thumb-strip .thumb-strip-prev, .node-type-iba .iba-photo-gallery .thumb-strip .thumb-strip-next {
+  cursor: pointer;
+}
+.node-type-iba .iba-photo-gallery .thumb-strip .icon-chevron-left:before {
+  margin-left: -3px;
+}
+.node-type-iba .iba-photo-gallery .thumb-strip .icon-chevron-right:before {
+  margin-left: -2px;
+}
+.node-type-iba .iba-photo-gallery .thumb-strip ul {
+  margin-left: 0;
+}
+.node-type-iba .sidebar .social-sharing, .node-type-iba .article-sidebar .social-sharing {
+  margin-bottom: 16px;
+}
+@media only screen and (min-width: 768px) {
+  .node-type-iba .sidebar .social-sharing, .node-type-iba .article-sidebar .social-sharing {
+    margin-top: -49px;
+  }
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
