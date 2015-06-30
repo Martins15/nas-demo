@@ -121,7 +121,7 @@ function get_welcome_to_audubon_array_data(&$entity) {
     $link_more = l($get_field_learn_more[0]['title'], $get_field_learn_more[0]['url'], array('attributes' => array('style' => $color_style)));
   }
   // Get link in the news.
-  $view_results = views_get_view_result('random_news', 'master');
+  $view_results = views_get_view_result('nas_news', 'nas_the_latest_news');
   if (!empty($view_results)) {
     $path_news = $base_url . '/news';
     $link_news = l($view_results[0]->node_title, 'node/' . $view_results[0]->nid, array('attributes' => array('style' => $color_style)));
