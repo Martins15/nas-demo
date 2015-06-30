@@ -2289,3 +2289,11 @@ function nas_master_update_7170() {
 function nas_master_update_7171() {
   module_enable(array('nas_field_max_length'));
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7186() {
+  features_revert(array('nas_views_feature' => array('views_view')));
+  features_revert(array('nas_boa_feature' => array('views_view')));
+}
