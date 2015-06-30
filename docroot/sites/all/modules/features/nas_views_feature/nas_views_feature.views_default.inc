@@ -1816,6 +1816,60 @@ function nas_views_feature_views_default_views() {
       'label' => 'Taxonomy term: Term ID',
     ),
   );
+
+  /* Display: The latest news */
+  $handler = $view->new_display('panel_pane', 'The latest news', 'nas_the_latest_news');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Has taxonomy term ID (with depth) */
+  $handler->display->display_options['arguments']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_options']['argument'] = 'News';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['term_node_tid_depth']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['validate_options']['vocabularies'] = array(
+    'menu_section' => 'menu_section',
+  );
+  $handler->display->display_options['arguments']['term_node_tid_depth']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['depth'] = '1';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'article' => 'article',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   $export['nas_news'] = $view;
 
   $view = new view();
