@@ -2670,3 +2670,11 @@ function nas_master_update_7185() {
     drupal_set_message(t('Failed to create new pane.'), 'warning', FALSE);
   }
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7186() {
+  features_revert(array('nas_views_feature' => array('views_view')));
+  features_revert(array('nas_boa_feature' => array('views_view')));
+}
