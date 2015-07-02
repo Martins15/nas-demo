@@ -23,7 +23,7 @@ function our_leadership_list_form($form, &$form_state) {
   $form['items'] = array(
     '#tree' => TRUE,
   );
-  for ($i = 0; $i < 20; $i++) {
+  for ($i = 0; $i < 50; $i++) {
     $form['items'][$i] = array(
       '#type' => 'entityreference',
       '#title' => '',
