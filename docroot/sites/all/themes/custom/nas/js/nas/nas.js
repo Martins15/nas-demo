@@ -630,9 +630,12 @@ var Nas = Nas || {};
         var header = $self.find('.hero-header');
         $(window).resize(function() {
           if (mobile_image.is(':visible')) {
-            mobile_image.css({minHeight: ''});
+            mobile_image.css({height: '', maxWidth: '100%'});
             if (header.height() + 40 > mobile_image.height()) {
-              mobile_image.css({minHeight: header.height() + 40});
+              mobile_image.css({
+                height: header.height() + 40,
+                maxWidth: 'none'
+              });
             }
           }
         });
