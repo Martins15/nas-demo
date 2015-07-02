@@ -61,9 +61,14 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     $vars['width'] = $get_field_wysiwyg_width_mode[0]['value'];
   }
   elseif ($vars['elements']['#bundle'] == 'welcome_to_audubon') {
-    $entity = $vars['elements']['#entity'];
-    $vars_array_data = get_welcome_to_audubon_array_data($entity);
-    $vars['content'] = theme('bean__welcome_to_audobun', $vars_array_data);
+    // Don't display Welcome to Audubon block when sidebar engagement card wasn't rendered on node.
+    $vars['content'] = '';
+    $nas_engagement_cards_sidebar_rendered_card = &drupal_static('nas_engagement_cards_sidebar_rendered_card');
+    if (!menu_get_object('node') || (menu_get_object('node') && !empty($nas_engagement_cards_sidebar_rendered_card))) {
+      $entity = $vars['elements']['#entity'];
+      $vars_array_data = get_welcome_to_audubon_array_data($entity);
+      $vars['content'] = theme('bean__welcome_to_audobun', $vars_array_data);
+    }
   }
   elseif ($vars['elements']['#bundle'] == 'video') {
     $entity = $vars['elements']['#entity'];
