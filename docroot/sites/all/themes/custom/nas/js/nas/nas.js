@@ -622,4 +622,25 @@ var Nas = Nas || {};
     }
   };
 
+  Drupal.behaviors.mobileHeaderImageResize = {
+    attach: function(context, settings) {
+      $('.hero').once('mobile-header-image-resize', function () {
+        var $self = $(this);
+        var mobile_image = $self.find('img.hide-for-large');
+        var header = $self.find('.hero-header');
+        $(window).resize(function() {
+          if (mobile_image.is(':visible')) {
+            mobile_image.css({height: '', maxWidth: '100%'});
+            if (header.height() + 40 > mobile_image.height()) {
+              mobile_image.css({
+                height: header.height() + 40,
+                maxWidth: 'none'
+              });
+            }
+          }
+        });
+      });
+    }
+  };
+
 })(jQuery);
