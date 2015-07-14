@@ -35,7 +35,7 @@ function nas_content_aggregation_import_nodes($storage) {
         'nas_content_aggregation_import_nodes_batch',
         array(
           $chunk,
-          NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER,
+          NAS_CONTENT_AGGREGATION_FEEDS_IMPORTER,
           $url,
           $storage['settings'][$i]
         )
@@ -87,7 +87,7 @@ function nas_content_aggregation_import_individual_nodes($storage) {
       'nas_content_aggregation_import_nodes_batch',
       array(
         array($node_nid),
-        NAS_CONTENT_AGGREGATION_FEEDS_ASC_IMPORTER,
+        NAS_CONTENT_AGGREGATION_FEEDS_IMPORTER,
         $url,
         $storage['settings'][$i]
       )
@@ -192,7 +192,7 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
  * @return bool
  *   Status.
  */
-function nas_content_aggregation_feeds_presave_asc(FeedsSource $source, &$entity, &$item) {
+function nas_content_aggregation_feeds_presave_alter(FeedsSource $source, &$entity, &$item) {
   global $user;
   $map = array(
     'subtitle' => 'field_subtitle'

@@ -127,7 +127,19 @@
                     <?php print render($content['field_bird_habitat']); ?>
                 </tbody>
               </table>
-              <div class="hide-for-tiny hide-for-small hide-for-medium "><?php print render($content['field_bird_description']); ?></div>
+              <div class="hide-for-tiny hide-for-small hide-for-medium ">
+                <?php print render($content['field_bird_description']); ?>
+              </div>
+              <?php if (!empty($external_content)): ?>
+                <div class="bird-guide-external">
+                  <div class="bird-guide-external-header">
+                    <?php print t('Brown Thrasher News Nearby'); ?>
+                  </div>
+                  <div class="bird-guide-external-content">
+                    <?php print $external_content; ?>
+                  </div>
+                </div>
+              <?php endif; ?>
             </section>
             <section class="bird-guide-section left-col">
               <h5><i class="icon-camera"></i> <?php print t('Photo Gallery'); ?></h5>
@@ -238,7 +250,7 @@
               <?php print render($content['field_bird_audio']); ?>
               <section id="bird-songs-credits" class="sound-attribution bird-guide-section right-col small left hide-for-medium hide-for-small hide-for-tiny">
                 Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others.</br>
-                <a href="http://langelliott.com/audubon-bird-songs/"><em>Learn more about this sound collection</em></a>.            
+                <a href="http://langelliott.com/audubon-bird-songs/"><em>Learn more about this sound collection</em></a>.
               </section>
             </section>
           </div>
