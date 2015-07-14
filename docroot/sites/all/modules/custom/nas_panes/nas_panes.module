@@ -2473,12 +2473,13 @@ function nas_panes_get_external_bird_content($node) {
   if (empty($data)) {
     return;
   }
-  $url = $data['url'] .= '/export/local-bird/' . $node->title;
+  $title = urlencode($node->title);
+  $url = $data['url'] .= '/export/local-bird/' . $title;
   // @todo remove this condition after moving State&Center sites to production.
   $params = drupal_get_query_parameters();
   if (isset($params['dev'])) {
     $parts_url = parse_url($params['dev']);
-    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $node->title;
+    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $title;
   }
 
   $result = nas_import_send_request($url);
