@@ -7323,7 +7323,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #909090;
+    color: #919191;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -8791,6 +8791,48 @@ body.black-bg .section-header a:hover {
   color: #404040;
   font-family: "Noto Serif", Georgia, serif;
   padding: 15px 0 !important;
+}
+
+.bird-guide-external {
+  margin-top: 25px;
+  border: 2px solid #FFAD33;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.bird-guide-external-header {
+  padding: 5px 12.5px;
+  background-color: #FFAD33;
+  color: black;
+  font-size: 16px;
+}
+.bird-guide-external-header .close {
+  float: right;
+  color: black;
+}
+
+.bird-guide-external-content {
+  padding: 12.5px;
+}
+
+.bird-guide-external-item + .bird-guide-external-item {
+  margin-top: 20px;
+}
+.bird-guide-external-item p + p {
+  margin-top: 5px;
+}
+.bird-guide-external-item img {
+  float: left;
+  max-width: 50%;
+  padding: 0 12.5px 12.5px 0;
+  vertical-align: middle;
+}
+@media only screen and (min-width: 601px) {
+  .bird-guide-external-item img {
+    max-width: 35%;
+    padding: 0 25px 12.5px 0;
+  }
 }
 
 .range-map-key {

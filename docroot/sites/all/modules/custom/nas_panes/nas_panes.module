@@ -2484,8 +2484,8 @@ function nas_panes_get_external_bird_content($node) {
 
   $result = nas_import_send_request($url);
 
-  if (empty($result->content)) {
+  if (empty($result['content'])) {
     return;
   }
-  return $result->content;
+  return $result['content'];
 }
