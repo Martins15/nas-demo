@@ -3742,7 +3742,7 @@ ul.pagination li {
   -webkit-box-sizing: content-box;
 }
 
-/* 
+/*
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -3899,7 +3899,7 @@ ul.pagination li {
 
 /* Foundation v2.1.4 http://foundation.zurb.com */
 /* Artfully masterminded by ZURB  */
-/* -------------------------------------------------- 
+/* --------------------------------------------------
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
@@ -6088,6 +6088,9 @@ header.global-header .bird-guide-search-species-page {
 
 body.node-type-bird .large-8.columns i:before {
   display: none;
+}
+body.node-type-bird .large-8.columns .bird-guide-external i:before {
+  display: block;
 }
 body.node-type-bird i.icon-info:before, body.node-type-bird i.icon-music:before {
   display: none;
@@ -8809,6 +8812,7 @@ body.black-bg .section-header a:hover {
 }
 .bird-guide-external-header .close {
   float: right;
+  cursor: pointer;
   color: black;
 }
 

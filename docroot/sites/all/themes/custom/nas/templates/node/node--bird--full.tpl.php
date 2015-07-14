@@ -134,7 +134,7 @@
                 <div class="bird-guide-external">
                   <div class="bird-guide-external-header">
                     <?php print t('Brown Thrasher News Nearby'); ?>
-                    <a onclick="$('.bird-guide-external').fadeOut(200)" class="close"><i class="icon-delete"></i></a>
+                    <a onclick="jQuery('.bird-guide-external').fadeOut(200)" class="close"><i class="icon-delete"></i></a>
                   </div>
                   <div class="bird-guide-external-content">
                     <?php print $external_content; ?>
