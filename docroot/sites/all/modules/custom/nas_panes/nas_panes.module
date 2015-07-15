@@ -2474,10 +2474,9 @@ function nas_panes_get_external_bird_content($node) {
     return;
   }
   $title = urlencode($node->title);
-  $url = $data['url'] .= '/export/local-bird/' . $title;
-  // @todo remove this condition after moving State&Center sites to production.
+  $url = $data['url'] . '/export/local-bird/' . $title;
   $params = drupal_get_query_parameters();
-  if (isset($params['dev'])) {
+  if (isset($params['dev']) && variable_get('nas_birds_allow_dev_params', FALSE)) {
     $parts_url = parse_url($params['dev']);
     $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $title;
   }
