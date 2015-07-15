@@ -243,6 +243,9 @@ function nas_preprocess_node_bird(&$vars) {
       ),
     )
   );
+  if ($vars['view_mode'] == 'full') {
+    $vars['external_content'] = nas_panes_get_external_bird_content($node);
+  }
 }
 
 /**

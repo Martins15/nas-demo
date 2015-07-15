@@ -164,7 +164,7 @@ function nas_panes_theme() {
       'variables' => array(
         'title' => '',
         'plate_number' => '',
-        'scientific_name' => ''
+        'scientific_name' => '',
       ),
       'template' => 'boa-header',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_header',
@@ -189,7 +189,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'nas-featured-bird',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird',
     ),
     'nas_bird_landing_featured' => array(
       'variables' => array(
@@ -206,7 +206,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'bird-landing-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_landing_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_landing_featured',
     ),
     'nas_frontpage_featured' => array(
       'variables' => array(
@@ -271,7 +271,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured-article',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured_article'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured_article',
     ),
     'nas_in_the_news' => array(
       'variables' => array(
@@ -279,7 +279,7 @@ function nas_panes_theme() {
         'title' => '',
       ),
       'template' => 'nas-in-the-news',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news',
     ),
     'species_across_audubon' => array(
       'variables' => array(
@@ -288,7 +288,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'species-across-audubon',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/species_across_audubon'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/species_across_audubon',
     ),
     'flyway_in_the_news' => array(
       'variables' => array(
@@ -297,7 +297,7 @@ function nas_panes_theme() {
         'more_link' => '',
       ),
       'template' => 'flyway-in-the-news',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_in_the_news'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_in_the_news',
     ),
     'flyway_conservation_projects' => array(
       'variables' => array(
@@ -306,7 +306,7 @@ function nas_panes_theme() {
         'more_link' => '',
       ),
       'template' => 'flyway-conservation-projects',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_conservation_projects'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_conservation_projects',
     ),
     'nas_panes_pane_donate_button' => array(
       'variables' => array(
@@ -314,7 +314,7 @@ function nas_panes_theme() {
         'link' => '',
       ),
       'template' => 'nas-panes-pane-donate-button',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button',
     ),
     'donate_with_gradient' => array(
       'variables' => array(),
@@ -332,7 +332,7 @@ function nas_panes_theme() {
         'page_link' => '',
       ),
       'template' => 'nas-featured-social-in-article',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article',
     ),
     'nas_panes_social_news_block' => array(
       'variables' => array(
@@ -341,7 +341,7 @@ function nas_panes_theme() {
         'caption' => '',
       ),
       'template' => 'nas-panes-social-news-block',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block',
     ),
     'events_social_block' => array(
       'variables' => array(
@@ -350,7 +350,7 @@ function nas_panes_theme() {
         'caption' => '',
       ),
       'template' => 'events_social_block',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block',
     ),
     'nas_panes_press_contact' => array(
       'variables' => array(
@@ -358,7 +358,7 @@ function nas_panes_theme() {
         'contacts' => array(),
       ),
       'template' => 'nas-panes-press-contact',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact',
     ),
     'nas_panes_press_releases' => array(
       'variables' => array(
@@ -366,7 +366,7 @@ function nas_panes_theme() {
         'releases' => array(),
       ),
       'template' => 'nas-panes-press-releases',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_releases'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_releases',
     ),
     'nas_panes_article_section' => array(
       'variables' => array(
@@ -386,7 +386,7 @@ function nas_panes_theme() {
         'flyway' => '',
       ),
       'template' => 'flyways-landing-top',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_top'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_top',
     ),
     'nas_flyways_landing_middle' => array(
       'variables' => array(
@@ -394,7 +394,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'flyways-landing-middle',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_middle'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_middle',
     ),
     'nas_flyways_landing_bottom' => array(
       'variables' => array(
@@ -402,7 +402,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'flyways-landing-bottom',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_bottom'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_bottom',
     ),
     'nas_flyways_landing_three_columns' => array(
       'variables' => array(
@@ -410,7 +410,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'flyways-landing-three-columns',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns',
     ),
     'frontpage_in_the_news' => array(
       'variables' => array(
@@ -420,7 +420,7 @@ function nas_panes_theme() {
         'bird_guide_title' => '',
       ),
       'template' => 'frontpage-in-the-news',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_in_the_news'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_in_the_news',
     ),
     'nas_flyways_partners' => array(
       'variables' => array(
@@ -430,15 +430,15 @@ function nas_panes_theme() {
         'read_more_link' => '',
       ),
       'template' => 'flyways-partners',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_partners'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_partners',
     ),
     'nas_get_outside' => array(
       'template' => 'nas-get-outside',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/get_outside'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/get_outside',
     ),
     'frontpage_editorial_cards' => array(
       'template' => 'frontpage-editorial-cards',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_editorial_cards'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_editorial_cards',
     ),
     'static_page_menu' => array(
       'template' => 'static-page-menu',
@@ -921,7 +921,7 @@ function nas_panes_theme() {
         'download_link' => '',
       ),
       'template' => 'calendar-download',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download',
     ),
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
@@ -987,7 +987,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       panels_save_display($cache->display);
 
       if (module_exists('entitycache')) {
-        list(,, $entity_id) = explode(':', $cache_key);
+        list(, , $entity_id) = explode(':', $cache_key);
         $ecc = new EntityCacheNodeController('node');
         $ecc->resetCache(array($entity_id));
       }
@@ -1311,10 +1311,14 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   if (!$display = panels_get_current_page_display()) {
     return;
   }
-  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(
+    ':type' => $pane_type,
+    ':did' => $display->did))->fetchField();
   if (empty($pid)) {
     nas_panes_resave_panel($page_cache_key);
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(
+      ':type' => $pane_type,
+      ':did' => $display->did))->fetchField();
   }
   $links = array(
     'edit' => array(
@@ -1340,6 +1344,7 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
 
 /**
  * Helper function to get Magazine issue's article node nids.
+ *
  * @param $node
  *  Node of type 'magazine_issue'.
  *
@@ -1475,7 +1480,8 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
       foreach ($campaign_nodes as $campaign_node) {
         $get_field_campaign_url_parameter = field_get_items('node', $campaign_node, 'field_campaign_url_parameter');
         if (isset($get_field_campaign_url_parameter[0]['value']) &&
-          in_array($get_field_campaign_url_parameter[0]['value'], array_keys($parsed_url['query']))) {
+          in_array($get_field_campaign_url_parameter[0]['value'], array_keys($parsed_url['query']))
+        ) {
           // We found necessary Campaign.
           if ($campaign_cards = field_get_items('node', $campaign_node, 'field_related_eng_cards')) {
             foreach ($campaign_cards as $card) {
@@ -1500,14 +1506,15 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
       drupal_add_js(array(
         'nas_panes' => array(
           'ignore_first_time_visitor' => TRUE,
-          ),
-        ), 'setting'
+        ),
+      ), 'setting'
       );
     }
     // Manual override.
     if (empty($nodes) &&
       !empty($data['references'][1]['entity_reference']['entity_id']) &&
-      $node = node_load($data['references'][1]['entity_reference']['entity_id'])) {
+      $node = node_load($data['references'][1]['entity_reference']['entity_id'])
+    ) {
       $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
     }
     if (empty($nodes)) {
@@ -1774,8 +1781,8 @@ function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $v
   $items = array();
   $results = views_get_view_result($view_name, 'default', $state, $type, $nid);
   foreach ($results as $item) {
-    $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name))? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
-    $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name))? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
+    $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name)) ? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
+    $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name)) ? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->node_title,
@@ -1803,7 +1810,10 @@ function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $v
     }
     // Add site link.
     if (!empty($item->field_field_location_link[0]['raw']['url'])) {
-      $options = array('attributes' => array('target' => '_blank', 'class' => array('more-link')));
+      $options = array(
+        'attributes' => array(
+          'target' => '_blank',
+          'class' => array('more-link')));
       $items[$item->nid]['site_link'] = l(t('View Website'), $item->field_field_location_link[0]['raw']['url'], $options);
     }
 
@@ -1883,7 +1893,9 @@ function nas_panes_menu() {
     'title' => 'BOA mail subscription settings',
     'access arguments' => array('administer nodes'),
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_panes_boa_mail_subscription_settings_form', 2),
+    'page arguments' => array(
+      'nas_panes_boa_mail_subscription_settings_form',
+      2),
     'weight' => 11,
   );
   $items['birds-of-america/%ctools_js/subscribe/%'] = array(
@@ -2078,10 +2090,10 @@ function _nas_panes_get_taxonomy_options($vocabulary_name, $parent = 0) {
       'allowed_values' => array(
         array(
           'vocabulary' => $vocabulary_name,
-          'parent' => $parent
-        )
-      )
-    )
+          'parent' => $parent,
+        ),
+      ),
+    ),
   );
   return taxonomy_allowed_values($taxonomy_settings);
 }
@@ -2153,7 +2165,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
     '#title' => t('Name'),
     '#required' => TRUE,
-    '#id' => 'nas-boa-mail-subscription-first-name'
+    '#id' => 'nas-boa-mail-subscription-first-name',
   );
   $form['last_name'] = array(
     '#type' => 'textfield',
@@ -2161,7 +2173,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
       'placeholder' => array(t('Last')),
       'class' => array('mailing-list-input', 'radius'),
     ),
-    '#id' => 'nas-boa-mail-subscription-last-name'
+    '#id' => 'nas-boa-mail-subscription-last-name',
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -2171,7 +2183,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
     '#required' => TRUE,
     '#title' => t('Email'),
-    '#id' => 'nas-boa-mail-subscription-email'
+    '#id' => 'nas-boa-mail-subscription-email',
   );
   $form['zip_code'] = array(
     '#type' => 'textfield',
@@ -2181,7 +2193,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
     '#title' => t('ZIP'),
     '#required' => TRUE,
-    '#id' => 'nas-boa-mail-subscription-zip'
+    '#id' => 'nas-boa-mail-subscription-zip',
   );
   $form['submit'] = array(
     '#prefix' => '<div class="actions">',
@@ -2190,7 +2202,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     '#attributes' => array(
       'class' => array('button', 'tomato', 'large'),
     ),
-    '#id' => 'nas-boa-mail-subscription-submit'
+    '#id' => 'nas-boa-mail-subscription-submit',
   );
   $form['cancel'] = array(
     '#type' => 'link',
@@ -2213,9 +2225,9 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
 
   if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
     $form['#prefix'] = '<div class="featured-image">' . theme('image_style', array(
-      'style_name' => 'boa_mail_subscription',
-      'path' => $image->uri,
-    ));
+        'style_name' => 'boa_mail_subscription',
+        'path' => $image->uri,
+      ));
     if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
       $form['#prefix'] .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
     }
@@ -2285,9 +2297,9 @@ function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
   $content = '<p>' . variable_get('boa_mail_subscription_settings_form_after', '') . '</p>' . $original_image_link;
   if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
     $content .= '<div class="featured-image">' . theme('image_style', array(
-      'style_name' => 'boa_mail_subscription',
-      'path' => $image->uri,
-    ));
+        'style_name' => 'boa_mail_subscription',
+        'path' => $image->uri,
+      ));
     if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
       $content .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
     }
@@ -2380,7 +2392,7 @@ function theme_x_image_anchor($variables) {
   $rows = array(
     array('', '', ''),
     array('', '', ''),
-    array('', '', '')
+    array('', '', ''),
   );
   foreach (element_children($element) as $key) {
     $element[$key]['#attributes']['title'] = $element[$key]['#title'];
@@ -2408,5 +2420,71 @@ function theme_x_image_anchor($variables) {
     }
   }
 
-  return theme('table', array('header' => array(), 'rows' => $rows, 'attributes' => array('class' => array('x-image-anchor'))));
+  return theme('table', array(
+    'header' => array(),
+    'rows' => $rows,
+    'attributes' => array('class' => array('x-image-anchor'))));
+}
+
+/**
+ * Get information about site by url params.
+ *
+ * @return array|void
+ *   Site details.
+ */
+function nas_panes_get_site_info() {
+  $params = drupal_get_query_parameters();
+
+  if (!isset($params['site'])) {
+    return;
+  }
+
+  // Get State or Center by provided site code.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'location')
+    ->fieldCondition('field_location_link', 'url', $params['site'] . '.', 'CONTAINS')
+    ->propertyCondition('status', NODE_PUBLISHED);
+  $result = $query->execute();
+
+  if (!isset($result['node']) || count($result['node']) != 1) {
+    return;
+  }
+  $node = node_load(reset($result['node'])->nid);
+  $url = 'http://' . $params['site'] . '.audubon.org';
+
+  return array(
+    'title' => $node->title,
+    'url' => $url,
+  );
+}
+
+/**
+ * Get external information about birds from State&Center sites.
+ *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
+ * @return string
+ *   External content.
+ */
+function nas_panes_get_external_bird_content($node) {
+  $data = nas_panes_get_site_info();
+  if (empty($data)) {
+    return;
+  }
+  $title = urlencode($node->title);
+  $url = $data['url'] . '/export/local-bird/' . $title;
+  $params = drupal_get_query_parameters();
+  if (isset($params['dev']) && variable_get('nas_birds_allow_dev_params', FALSE)) {
+    $parts_url = parse_url($params['dev']);
+    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $title;
+  }
+
+  $result = nas_import_send_request($url);
+
+  if (empty($result['content'])) {
+    return;
+  }
+  return $result['content'];
 }
