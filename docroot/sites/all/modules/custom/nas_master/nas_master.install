@@ -2678,3 +2678,10 @@ function nas_master_update_7186() {
   features_revert(array('nas_views_feature' => array('views_view')));
   features_revert(array('nas_boa_feature' => array('views_view')));
 }
+
+/**
+ * Enable IBA feature.
+ */
+function nas_master_update_7187() {
+  module_enable(array('nas_iba_feature'));
+}
