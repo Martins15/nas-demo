@@ -561,8 +561,8 @@ function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) 
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
-  $form['label']['#prefix'] = '<div style="display:none;">';
-  $form['label']['#suffix'] = '</div>';
+  //$form['label']['#prefix'] = '<div style="display:none;">';
+  //$form['label']['#suffix'] = '</div>';
   $form['label']['#default_value'] = 'bean_block';
   $form['title']['#prefix'] = '<div style="display:none;">';
   $form['title']['#suffix'] = '</div>';
