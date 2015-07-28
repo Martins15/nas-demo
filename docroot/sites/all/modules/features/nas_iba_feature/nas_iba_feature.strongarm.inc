@@ -19,22 +19,22 @@ function nas_iba_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '30',
+          'weight' => '3',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '6',
         ),
         'title' => array(
-          'weight' => '-5',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '5',
         ),
         'xmlsitemap' => array(
-          'weight' => '30',
+          'weight' => '4',
         ),
       ),
       'display' => array(),
