@@ -561,8 +561,8 @@ function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) 
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
-  $form['label']['#prefix'] = '<div style="display:none;">';
-  $form['label']['#suffix'] = '</div>';
+  //$form['label']['#prefix'] = '<div style="display:none;">';
+  //$form['label']['#suffix'] = '</div>';
   $form['label']['#default_value'] = 'bean_block';
   $form['title']['#prefix'] = '<div style="display:none;">';
   $form['title']['#suffix'] = '</div>';
@@ -726,4 +726,21 @@ function nas_alters_panels_panes_prepared_alter(&$panes, $b) {
     $panes[$copy->pid] = $copy;
     $panes = array_reverse($panes, TRUE);
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_alters_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+  $form['nas_alters_site_config'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('NAS site config'),
+  );
+  $form['nas_alters_site_config']['nas_birds_allow_dev_params'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Allow use dev params for External Content on Birds pages.'),
+    '#description' => t('This status allow to use dev params when build not in
+    production for checking how external content works on birds pages.'),
+    '#default_value' => variable_get('nas_birds_allow_dev_params', FALSE),
+  );
 }

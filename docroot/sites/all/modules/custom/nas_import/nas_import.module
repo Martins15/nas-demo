@@ -1686,7 +1686,7 @@ function _nas_import_get_cached($url) {
  */
 function nas_import_send_request($url) {
   $response = drupal_http_request($url);
-  if (!empty($response->data)) {
+  if ($response->code == 200 && !empty($response->data)) {
     return drupal_json_decode($response->data);
   }
   return NULL;
