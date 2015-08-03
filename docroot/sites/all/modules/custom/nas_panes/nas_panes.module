@@ -720,6 +720,8 @@ function nas_panes_theme() {
     ),
     'hero_image_section' => array(
       'variables' => array(
+        'slug' => NULL,
+        'hero_icon' => NULL,
         'hero_image' => NULL,
         'hero_image_mobile' => NULL,
         'title' => NULL,
@@ -952,6 +954,14 @@ function nas_panes_theme() {
       ),
       'template' => 'asc-bird-top-bar',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/asc_bird_top_bar',
+    ),
+    'iba_landing_body' => array(
+      'variables' => array(
+        'body' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'iba-landing-body',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_landing_body',
     ),
   );
 
