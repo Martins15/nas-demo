@@ -26,3 +26,14 @@ elseif (strpos($_SERVER['HTTP_HOST'], 'nas.wearepropeople.md') !== FALSE) {
     'en' => 'nas.wearepropeople.md',
   );
 }
+elseif (strpos($_SERVER['HTTP_HOST'], 'audubon.org') !== FALSE) {
+
+  // Base domain cookie.
+  $cookie_domain = '.audubon.org';
+
+  // Build environment.
+  $conf['language_domains'] = array(
+    'es' => 'es.audubon.org',
+    'en' => 'audubon.org',
+  );
+}
