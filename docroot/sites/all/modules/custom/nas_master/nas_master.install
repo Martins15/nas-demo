@@ -2688,7 +2688,8 @@ function nas_master_update_7190() {
       'locale',
       'language_domains',
       'i18n_panels',
-      'variable'
+      'variable',
+      'nas_localization_feature',
     )
   );
   registry_rebuild();
