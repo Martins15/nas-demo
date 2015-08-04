@@ -2678,3 +2678,33 @@ function nas_master_update_7186() {
   features_revert(array('nas_views_feature' => array('views_view')));
   features_revert(array('nas_boa_feature' => array('views_view')));
 }
+
+/**
+ * Install multilanguage stack.
+ */
+function nas_master_update_7190() {
+  module_enable(
+    array(
+      'locale',
+      'language_domains',
+      'i18n_panels',
+      'variable',
+      'nas_localization_feature',
+    )
+  );
+  registry_rebuild();
+}
+
+/**
+ * Install Spanish language.
+ */
+function nas_master_update_7191() {
+  require_once DRUPAL_ROOT . '/includes/locale.inc';
+  locale_add_language(
+    'es',
+    'Spanish',
+    'Español',
+    LANGUAGE_LTR,
+    'es.audubon.org'
+  );
+}
