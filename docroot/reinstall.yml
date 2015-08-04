@@ -57,11 +57,11 @@
 
   - name: Create initial backup from staging
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
-    when: workflow_type == "sql" and latest_backup_exists.stat.exists == false and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and latest_backup_exists.stat.exists == false
 
   - name: Downloading latest backup
     get_url: url={{ source_database }} dest={{ backup_folder }}/latest_remote.sql.gz force=yes
-    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER != "jenkins"
+    when: workflow_type == "sql" and pp_environment == "default"
 
   - name: Droping drupal database
     mysql_db: name={{ mysql_db }} state=absent login_user={{ mysql_user }} login_password={{ mysql_pass }}
@@ -73,22 +73,23 @@
   - name: Importing from remote backup
     mysql_db: name={{ mysql_db }} state=import target={{ backup_folder }}/latest_remote.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     sudo: yes
-    when: workflow_type == "sql" and pp_environment == "default" and ansible_env.SUDO_USER != "jenkins"
+    when: workflow_type == "sql" and pp_environment == "default"
 
   - name: Copy local backup to build folder
     sudo: yes
     copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes mode=0644
-    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo") and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo")
+    ignore_errors: yes
 
   - name: Importing from local backup
     mysql_db: name={{ mysql_db }} state=import target=./latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
     sudo: yes
-    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo") and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo")
 
   - name: Remove local backup from build folder
     sudo: yes
     file: name=./latest.sql.gz state=absent
-    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo") and ansible_env.SUDO_USER == "jenkins"
+    when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo")
 
   - name: Creating cache folder
     sudo: yes
@@ -103,29 +104,39 @@
     file: name=sites/default/settings.php state=absent
     sudo: yes
 
+  - name: Making everything accessible
+    shell: chmod -R 777 sites/default
+    sudo: yes
+
   - name: Creating settings.php
     sudo: yes
     copy: src=sites/default/default.settings.php dest=sites/default/settings.php force=yes mode=0644
+    ignore_errors: yes
 
   - name: Adding database variable to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$databases = array(\"default\" => array (\"default\" => array (\"database\" => \"{{ mysql_db }}\", \"username\" => \"{{ mysql_user }}\", \"password\" => \"{{ mysql_pass }}\", \"host\" => \"127.0.0.1\", \"port\" => \"\", \"driver\" => \"mysql\", \"prefix\" => \"\", ), ), );'
+    ignore_errors: yes
 
   - name: Random prefix for memcache to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"memcache_key_prefix\"] = \"{{ mysql_db }}\";'
+    ignore_errors: yes
 
   - name: Memcache settings to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"cache_backends\"][] = \"sites/all/modules/contrib/memcache/memcache.inc\";'
+    ignore_errors: yes
 
   - name: Memcache settings to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"cache_default_class\"] = \"MemCacheDrupal\";'
+    ignore_errors: yes
 
   - name: Adding environment variable to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
+    ignore_errors: yes
 
   - name: Check if registry_rebuild is installed
     shell: "{{ php_env_vars }} drush | grep -c registry_rebuild"
@@ -165,6 +176,11 @@
   - name: Enable https
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"https\"] = TRUE;'
+    when: pp_environment == "demo" or pp_environment == "default"
+
+  - name: Enable language domains
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='include_once \"domain.settings.php\";'
     when: pp_environment == "demo" or pp_environment == "default"
 
   - name: Creating latest staging backup
