@@ -36,7 +36,7 @@ function language_domains_boot() {
     // Initialize the language list now. There is no harm in doing this now as
     // opposed to waiting for the language bootstrap level since the function
     // will always load the language list directly from the db anyway.
-    language_list('language');
+    language_list('enabled');
     // Override language domains directly in the language list static cache.
     $languages = &drupal_static('language_list');
     if (isset($languages)) {
@@ -48,7 +48,7 @@ function language_domains_boot() {
         if (in_array($field, array('enabled', 'weight'))) {
           foreach ($language_data as $field_group => $grouped_lang) {
             foreach ($grouped_lang as $acrym => $lang) {
-              if (!empty($lang->domain) && !empty($domain_overrides[$acrym])) {
+              if (!empty($domain_overrides[$acrym])) {
                 $languages[$field][$field_group][$acrym]->domain = $domain_overrides[$acrym];
               }
             }
@@ -57,7 +57,7 @@ function language_domains_boot() {
         // ... and some are not.
         else {
           foreach ($language_data as $acrym => $lang) {
-            if (!empty($lang->domain) && !empty($domain_overrides[$acrym])) {
+            if (!empty($domain_overrides[$acrym])) {
               $languages[$field][$acrym]->domain = $domain_overrides[$acrym];
             }
           }
@@ -69,7 +69,7 @@ function language_domains_boot() {
     foreach (language_types() as $type) {
       if (!empty($GLOBALS[$type])) {
         $language_type = $GLOBALS[$type]->language;
-        if (!empty($GLOBALS[$type]->domain) && !empty($domain_overrides[$language_type]) && ($GLOBALS[$type]->domain != $domain_overrides[$language_type])) {
+        if (!empty($domain_overrides[$language_type]) && ($GLOBALS[$type]->domain != $domain_overrides[$language_type])) {
           $GLOBALS[$type]->domain = $domain_overrides[$language_type];
         }
       }
