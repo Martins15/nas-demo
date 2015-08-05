@@ -2718,5 +2718,10 @@ function nas_master_update_7192() {
       'l10n_update',
     )
   );
+  features_revert(array(
+    'nas_localization_feature' => array(
+      'variable'
+    )
+  ));
   registry_rebuild();
 }
