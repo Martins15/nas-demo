@@ -26,6 +26,28 @@ elseif (strpos($_SERVER['HTTP_HOST'], 'nas.wearepropeople.md') !== FALSE) {
     'en' => 'nas.wearepropeople.md',
   );
 }
+elseif (strpos($_SERVER['HTTP_HOST'], 'nasdev.audubon.org') !== FALSE) {
+
+  // Base domain cookie.
+  $cookie_domain = '.nasdev.audubon.org';
+
+  // Build environment.
+  $conf['language_domains'] = array(
+    'es' => 'es.nasdev.audubon.org',
+    'en' => 'nasdev.audubon.org',
+  );
+}
+elseif (strpos($_SERVER['HTTP_HOST'], 'nasstg.audubon.org') !== FALSE) {
+
+  // Base domain cookie.
+  $cookie_domain = '.nasstg.audubon.org';
+
+  // Build environment.
+  $conf['language_domains'] = array(
+    'es' => 'es.nasstg.audubon.org',
+    'en' => 'nasstg.audubon.org',
+  );
+}
 elseif (strpos($_SERVER['HTTP_HOST'], 'audubon.org') !== FALSE) {
 
   // Base domain cookie.

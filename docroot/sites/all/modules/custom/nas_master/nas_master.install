@@ -2708,3 +2708,16 @@ function nas_master_update_7191() {
     'es.audubon.org'
   );
 }
+
+/**
+ * Enable localization client.
+ */
+function nas_master_update_7192() {
+  module_enable(
+    array(
+      'l10n_client',
+      'l10n_update',
+    )
+  );
+  registry_rebuild();
+}
