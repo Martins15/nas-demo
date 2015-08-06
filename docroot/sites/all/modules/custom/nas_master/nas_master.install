@@ -2704,7 +2704,8 @@ function nas_master_update_7191() {
     'es',
     'Spanish',
     'Español',
-    LANGUAGE_LTR
+    LANGUAGE_LTR,
+    'es.audubon.org'
   );
 }
 
