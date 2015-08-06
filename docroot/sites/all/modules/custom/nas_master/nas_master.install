@@ -2686,7 +2686,6 @@ function nas_master_update_7190() {
   module_enable(
     array(
       'locale',
-      'language_domains',
       'i18n_panels',
       'variable',
       'nas_localization_feature',
@@ -2703,9 +2702,7 @@ function nas_master_update_7191() {
   locale_add_language(
     'es',
     'Spanish',
-    'Español',
-    LANGUAGE_LTR,
-    'es.audubon.org'
+    'Español'
   );
 }
 
