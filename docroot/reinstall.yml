@@ -178,11 +178,6 @@
     lineinfile: dest='sites/default/settings.php' line='$conf[\"https\"] = TRUE;'
     when: pp_environment == "demo" or pp_environment == "default"
 
-  - name: Enable language domains
-    sudo: yes
-    lineinfile: dest='sites/default/settings.php' line='include_once \"domain.settings.php\";'
-    when: pp_environment == "demo" or pp_environment == "default"
-
   - name: Creating latest staging backup
     sudo: yes
     mysql_db: name=staging state=dump target={{ backup_folder }}/latest.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
