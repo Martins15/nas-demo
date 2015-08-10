@@ -2478,5 +2478,5 @@ function nas_panes_get_external_bird_content($node) {
   if (!array_key_exists('content', $data) || empty($data['content'])) {
     return;
   }
-  return $result['content'];
+  return $data['content'];
 }
