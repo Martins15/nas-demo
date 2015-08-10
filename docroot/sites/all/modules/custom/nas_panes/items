@@ -133,7 +133,7 @@ nas_panes.module:1004:    ->condition('n.type', 'bird')
 nas_panes.module:1005:    ->orderRandom()
 nas_panes.module:1006:    ->range(0, 4)
 nas_panes.module:1007:    ->execute()->fetchAll();
-nas_panes.module:1009:    $article = node_load($result->nid);
+nas_panes.module:1009:    $article = _i18n_node_load($result->nid);
 nas_panes.module:1010:    $article->field_related_bird = array(
 nas_panes.module:1012:        array('target_id' => $bird_results[$key]->nid),
 nas_panes.module:1023:  if ($node->nid == nas_panes_boa_max()) {
@@ -196,7 +196,7 @@ nas_panes.module:1293:  $name = 'node:' . $node->type . ':' . $panelizer_layout;
 nas_panes.module:1296:  $panelizer = $handler->get_default_panelizer_object($bundle, $name);
 nas_panes.module:1303:      ->condition('name', 'node:' . $node->nid . ':page_manager%', 'LIKE')
 nas_panes.module:1304:      ->execute();
-nas_panes.module:1309:  $cloned_node = node_load($node->nid, NULL, TRUE);
+nas_panes.module:1309:  $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
 nas_panes.module:1340:    $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
 nas_panes.module:1351:        if ($context_node->type == 'bird') {
 nas_panes.module:1353:            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
@@ -369,7 +369,7 @@ plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:68:  $
 plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:69:  if ($context_node->type !== 'flyway') {
 plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:72:  $block_title = t('@title in the News', array('@title' => $context_node->title));
 plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:94:    $view_results = views_get_view_result('nas_news', 'flyway_in_the_news', $context_node->nid);
-plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:96:      $news_nodes[] = node_load($result->nid);
+plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:96:      $news_nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:113:  $block->content = '';
 plugins/content_types/flyway_in_the_news/nas_panes_flyway_in_the_news.inc:115:    $block->content = theme('flyway_in_the_news', array(
 plugins/content_types/other_projects/other-projects.tpl.php:7: *  $contextual_links - contextual links.
@@ -385,7 +385,7 @@ plugins/content_types/other_projects/nas_panes_other_projects.inc:68:  $context_
 plugins/content_types/other_projects/nas_panes_other_projects.inc:69:  if ($context_node->type !== 'project') {
 plugins/content_types/other_projects/nas_panes_other_projects.inc:72:  $conf_key = $context_node->nid;
 plugins/content_types/other_projects/nas_panes_other_projects.inc:96:    $view_results = views_get_view_result('conservation_projects', 'other_projects', $context_node->nid);
-plugins/content_types/other_projects/nas_panes_other_projects.inc:98:      $nodes[] = node_load($result->nid);
+plugins/content_types/other_projects/nas_panes_other_projects.inc:98:      $nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/other_projects/nas_panes_other_projects.inc:112:  $block->content = '';
 plugins/content_types/other_projects/nas_panes_other_projects.inc:114:    $block->content = theme('other_projects', array(
 plugins/content_types/flyways_landing_top/nas_panes_flyways_landing_top.inc:96: * Run-time rendering of the body of the block (content type)
@@ -441,7 +441,7 @@ plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_project
 plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:69:  if ($context_node->type !== 'flyway') {
 plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:72:  $block_title = t('Conservation Projects in the @title', array('@title' => $context_node->title));
 plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:94:    $view_results = views_get_view_result('flyway_conservation_projects', 'master', $context_node->nid);
-plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:96:      $news_nodes[] = node_load($result->nid);
+plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:96:      $news_nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:108:    $contextual_links = nas_panes_flyway_conservation_projects_build_contextual_links($subtype, $context_node->nid);
 plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:113:  $block->content = '';
 plugins/content_types/flyway_conservation_projects/nas_panes_flyway_cons_projects.inc:115:    $block->content = theme('flyway_conservation_projects', array(
@@ -517,7 +517,7 @@ plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:70:    $data = 
 plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:71:    if ($data->type !== 'bird') {
 plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:75:    $condition = $data->nid;
 plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:77:    $block_title = t('@title in the News', array('@title' => $data->title));
-plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:102:      $news_nodes[] = node_load($result->nid);
+plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:102:      $news_nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:117:    // Add ajax-responder so ctools_ajax_command_reload() will work.
 plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:118:    ctools_add_js('ajax-responder');
 plugins/content_types/in_the_news/nas_panes_pane_in_the_news.inc:123:      array(':panel' => 'bird_guide_search'))->fetchField();
@@ -559,7 +559,7 @@ plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.in
 plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:158:  // Add ajax-responder so ctools_ajax_command_reload() will work.
 plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:159:  ctools_add_js('ajax-responder');
 plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:170:    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:174:    $cloned_node = node_load($node->nid, NULL, TRUE);
+plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:174:    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
 plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:177:  $page_manager = $node->panelizer['page_manager'];
 plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:178:  $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
 plugins/content_types/magazine_issue_other_issues/magazine_issue_other_issues.inc:184:      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
@@ -583,13 +583,13 @@ plugins/content_types/article_more_features/nas_panes_article_more_features.inc:
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:73:  if (empty($context_node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'])) {
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:76:  $conf_key = $context_node->nid;
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:101:    $view_results = views_get_view_result('articles_more_features', 'default', $context_node->nid);
-plugins/content_types/article_more_features/nas_panes_article_more_features.inc:103:      $news_nodes[] = node_load($result->nid);
+plugins/content_types/article_more_features/nas_panes_article_more_features.inc:103:      $news_nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:120:  $block->content = '';
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:122:    $block->content = theme('article_more_features', array(
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:147:  // Add ajax-responder so ctools_ajax_command_reload() will work.
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:148:  ctools_add_js('ajax-responder');
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:159:    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-plugins/content_types/article_more_features/nas_panes_article_more_features.inc:163:    $cloned_node = node_load($node->nid, NULL, TRUE);
+plugins/content_types/article_more_features/nas_panes_article_more_features.inc:163:    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:166:  $page_manager = $node->panelizer['page_manager'];
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:167:  $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
 plugins/content_types/article_more_features/nas_panes_article_more_features.inc:173:      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
@@ -684,7 +684,7 @@ plugins/content_types/magazine_bar/magazine_bar.inc:24:    || $node->type !== 'a
 plugins/content_types/magazine_bar/magazine_bar.inc:25:    || empty($node->field_magazine_issue[LANGUAGE_NONE][0]['target_id'])
 plugins/content_types/magazine_bar/magazine_bar.inc:26:    || empty($node->panelizer['page_manager']->name)
 plugins/content_types/magazine_bar/magazine_bar.inc:27:    || $node->panelizer['page_manager']->name !== 'node:article:big_image') {
-plugins/content_types/magazine_bar/magazine_bar.inc:31:  $magazine_issue = node_load($node->field_magazine_issue[LANGUAGE_NONE][0]['target_id']);
+plugins/content_types/magazine_bar/magazine_bar.inc:31:  $magazine_issue = _i18n_node_load($node->field_magazine_issue[LANGUAGE_NONE][0]['target_id']);
 plugins/content_types/magazine_bar/magazine_bar.inc:37:  $data = nas_extract_magazine_date($magazine_issue->title);
 plugins/content_types/magazine_bar/magazine_bar.inc:38:  $data['link'] = url('node/' . $magazine_issue->nid);
 plugins/content_types/magazine_bar/magazine_bar.inc:41:  $block->content = theme('magazine_bar', $data);
@@ -725,7 +725,7 @@ plugins/content_types/conservation_strategy_projects/conservation_strategy_proje
 plugins/content_types/conservation_strategy_projects/conservation_strategy_projects.inc:67:  if ($context_node->type !== 'strategy') {
 plugins/content_types/conservation_strategy_projects/conservation_strategy_projects.inc:71:  $conf_key = $context_node->nid;
 plugins/content_types/conservation_strategy_projects/conservation_strategy_projects.inc:79:  $view_results = views_get_view_result('conservation_strategy_projects', 'default', $context_node->nid);
-plugins/content_types/conservation_strategy_projects/conservation_strategy_projects.inc:81:    $nodes[] = node_load($result->field_conservation_strategy_node_nid);
+plugins/content_types/conservation_strategy_projects/conservation_strategy_projects.inc:81:    $nodes[] = _i18n_node_load($result->field_conservation_strategy_node_nid);
 plugins/content_types/conservation_strategy_projects/conservation_strategy_projects.inc:93:  $block->content = theme('conservation_strategy_projects', array(
 plugins/content_types/boa_family_species/nas_panes_boa_family_species.inc:18: * Run-time rendering of the body of the block (content type)
 plugins/content_types/boa_family_species/nas_panes_boa_family_species.inc:22:  $context_node = $context->data;
@@ -880,7 +880,7 @@ plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:109:  
 plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:131:  // Add ajax-responder so ctools_ajax_command_reload() will work.
 plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:132:  ctools_add_js('ajax-responder');
 plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:143:    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:147:    $cloned_node = node_load($node->nid, NULL, TRUE);
+plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:147:    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
 plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:150:  $page_manager = $node->panelizer['page_manager'];
 plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:151:  $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
 plugins/content_types/magazine_issue_featured/magazine_issue_featured.inc:157:      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
@@ -895,7 +895,7 @@ plugins/content_types/magazine_issue_featured/magazine-issue-featured.tpl.php:8:
 plugins/content_types/magazine_issue_featured/magazine-issue-featured.tpl.php:12:<div class="row magazin-issue-featured contextual-links-region">
 plugins/content_types/magazine_issue_featured/magazine-issue-featured.tpl.php:15:  <div class="large-6 columns">
 plugins/content_types/frontpage_editorial_cards/frontpage_editorial_cards.inc:53: * Run-time rendering of the body of the block (content type)
-plugins/content_types/frontpage_editorial_cards/frontpage_editorial_cards.inc:82:      $news_nodes[] = node_load($result->nid);
+plugins/content_types/frontpage_editorial_cards/frontpage_editorial_cards.inc:82:      $news_nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/frontpage_editorial_cards/frontpage_editorial_cards.inc:96:    // Add ajax-responder so ctools_ajax_command_reload() will work.
 plugins/content_types/frontpage_editorial_cards/frontpage_editorial_cards.inc:97:    ctools_add_js('ajax-responder');
 plugins/content_types/frontpage_editorial_cards/frontpage_editorial_cards.inc:100:    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'frontpage_editorial_cards'))->fetchField();
@@ -934,7 +934,7 @@ plugins/content_types/project_birds/nas_panes_project_birds.inc:18: * Run-time r
 plugins/content_types/project_birds/nas_panes_project_birds.inc:22:  $context_node = $context->data;
 plugins/content_types/project_birds/nas_panes_project_birds.inc:23:  if ($context_node->type !== 'project') {
 plugins/content_types/project_birds/nas_panes_project_birds.inc:27:  if (!$view_results = views_get_view_result('project_birds', 'default', $context_node->nid)) {
-plugins/content_types/project_birds/nas_panes_project_birds.inc:33:    $node = node_load($item->node_field_data_field_project_related_birds_nid);
+plugins/content_types/project_birds/nas_panes_project_birds.inc:33:    $node = _i18n_node_load($item->node_field_data_field_project_related_birds_nid);
 plugins/content_types/project_birds/nas_panes_project_birds.inc:42:      $results[] = l('<small>' . check_plain($node->title) . '</small>', 'node/' . $node->nid, array('html' => TRUE));
 plugins/content_types/project_birds/nas_panes_project_birds.inc:49:  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/project_birds/see-all.js');
 plugins/content_types/project_birds/nas_panes_project_birds.inc:52:  $block->content = '';
@@ -943,7 +943,7 @@ plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:
 plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:23:  $context_node = $context->data;
 plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:24:  if ($context_node->type !== 'magazine_issue') {
 plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:30:  $view_results = views_get_view_result('nas_news', 'mag_issue_article_nids', $context_node->nid, implode('+', $magazine_issue_featured_nids));
-plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:35:      if (!empty($value->nid) && $node = node_load($value->nid)) {
+plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:35:      if (!empty($value->nid) && $node = _i18n_node_load($value->nid)) {
 plugins/content_types/magazine_issue_listing_top/magazine_issue_listing_top.inc:48:  $block->content = $teasers;
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:34:  $block->title = $presets[$conf['preset']]['title'];
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:35:  $block->content = '';
@@ -960,7 +960,7 @@ plugins/content_types/editorial_card_3x/editorial_card_3x.inc:216:          $vie
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:217:          $view->pre_execute();
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:218:          $view->execute();
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:219:          $view_results = $view->result;
-plugins/content_types/editorial_card_3x/editorial_card_3x.inc:221:            $node = node_load($result->{$options['result_key']});
+plugins/content_types/editorial_card_3x/editorial_card_3x.inc:221:            $node = _i18n_node_load($result->{$options['result_key']});
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:228:          if (!$context->data) {
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:231:          if ($field_items = field_get_items('node', $context->data, $options['field'])) {
 plugins/content_types/editorial_card_3x/editorial_card_3x.inc:289:  if ($conf['paddings']['double-bottom']) {
@@ -1054,7 +1054,7 @@ plugins/content_types/flyways_landing_bottom/flyways-landing-bottom.tpl.php:55: 
 plugins/content_types/flyways_landing_bottom/flyways-landing-bottom.tpl.php:56:  <a href="#" class="flyway-slides-paddle next"></a>
 plugins/content_types/flyways_landing_bottom/flyways_landing_bottom.inc:108: * Run-time rendering of the body of the block (content type)
 plugins/content_types/flyways_landing_bottom/flyways_landing_bottom.inc:141:    $condition = $result->fetchField();
-plugins/content_types/flyways_landing_bottom/flyways_landing_bottom.inc:155:        $news_nodes[] = node_load($result->nid);
+plugins/content_types/flyways_landing_bottom/flyways_landing_bottom.inc:155:        $news_nodes[] = _i18n_node_load($result->nid);
 plugins/content_types/flyways_landing_bottom/flyways_landing_bottom.inc:180:  $block->content = $content;
 plugins/content_types/about_page_leadership/about-page-leadership.tpl.php:15:<div class="row text-container <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
 plugins/content_types/about_page_leadership/about_page_leadership.inc:48: * Run-time rendering of the body of the block (content type).
@@ -1090,7 +1090,7 @@ plugins/content_types/species_across_audubon/species_across_audubon.inc:66:    $
 plugins/content_types/species_across_audubon/species_across_audubon.inc:67:    $conf_key = isset($conf[$context_node->nid]) ? $context_node->nid : $conf_key;
 plugins/content_types/species_across_audubon/species_across_audubon.inc:68:    $block_title = t('@title Across Audubon', array('@title' => $context_node->title));
 plugins/content_types/species_across_audubon/species_across_audubon.inc:93:    $view_results = views_get_view_result('project_birds', 'nas_across_audubon', $context_node->nid);
-plugins/content_types/species_across_audubon/species_across_audubon.inc:95:      $nodes[$result->nid] = node_load($result->nid);
+plugins/content_types/species_across_audubon/species_across_audubon.inc:95:      $nodes[$result->nid] = _i18n_node_load($result->nid);
 plugins/content_types/species_across_audubon/species_across_audubon.inc:112:  $block->content = '';
 plugins/content_types/species_across_audubon/species_across_audubon.inc:114:    $block->content = theme('species_across_audubon', array(
 plugins/content_types/donate_with_gradient/donate-with-gradient.tpl.php:7: * - $title: sanitized title.
@@ -1153,7 +1153,7 @@ plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:
 plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:23:  $context_node = $context->data;
 plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:24:  if ($context_node->type !== 'magazine_issue') {
 plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:30:  $view_results = views_get_view_result('nas_news', 'mag_issue_article_nids', $context_node->nid, implode('+', $magazine_issue_featured_nids));
-plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:35:      if (!empty($value->nid) && $node = node_load($value->nid)) {
+plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:35:      if (!empty($value->nid) && $node = _i18n_node_load($value->nid)) {
 plugins/content_types/magazine_issue_listing_bot/magazine_issue_listing_bot.inc:48:  $block->content = $teasers;
 plugins/content_types/bird_landing_featured/nas_panes_bird_landing_featured.inc:102: * Run-time rendering of the body of the block (content type)
 plugins/content_types/bird_landing_featured/nas_panes_bird_landing_featured.inc:109:    $block->content = '';
@@ -1288,7 +1288,7 @@ plugins/content_types/boa_news/nas_boa_news.inc:99:    $block->content = theme('
 plugins/content_types/boa_news/nas_boa_news.inc:122:  // Add ajax-responder so ctools_ajax_command_reload() will work.
 plugins/content_types/boa_news/nas_boa_news.inc:123:  ctools_add_js('ajax-responder');
 plugins/content_types/boa_news/nas_boa_news.inc:134:    $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-plugins/content_types/boa_news/nas_boa_news.inc:138:    $cloned_node = node_load($node->nid, NULL, TRUE);
+plugins/content_types/boa_news/nas_boa_news.inc:138:    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
 plugins/content_types/boa_news/nas_boa_news.inc:141:  $page_manager = $node->panelizer['page_manager'];
 plugins/content_types/boa_news/nas_boa_news.inc:142:  $href = 'panels/ajax/editor/edit-pane/' . $page_manager->display->cache_key . '/' . $pid;
 plugins/content_types/boa_news/nas_boa_news.inc:148:      'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
@@ -1426,8 +1426,8 @@ plugins/content_types/frontpage_in_the_news/frontpage-in-the-news.tpl.php:33:   
 plugins/content_types/frontpage_in_the_news/frontpage-in-the-news.tpl.php:38:  <div class="row indicator space-bottom double">
 plugins/content_types/frontpage_in_the_news/frontpage-in-the-news.tpl.php:40:      <p><i class="indicator-left icon-arrow-left disabled"></i>&nbsp;&nbsp;&nbsp;<i class="indicator-right icon-arrow-right"></i></p>
 plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:18: * Run-time rendering of the body of the block (content type)
-plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:25:    $bird_node = node_load($result->nid);
-plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:26:    $article_node = node_load($result->field_related_bird_node_nid);
+plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:25:    $bird_node = _i18n_node_load($result->nid);
+plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:26:    $article_node = _i18n_node_load($result->field_related_bird_node_nid);
 plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:33:      'article_url' => url('node/' . $article_node->nid),
 plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:34:      'article_title' => check_plain($article_node->title),
 plugins/content_types/frontpage_in_the_news/frontpage_in_the_news.inc:39:  $block->content = t('There are no news articles with related birds.');

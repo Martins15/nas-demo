@@ -60,7 +60,7 @@ function events_listing_featured_edit_form_submit(&$form, &$form_state) {
 function events_listing_featured_render($subtype, $conf, $args, $context) {
   $events_nodes = array();
   foreach ($conf['events'] as $item) {
-    if (!empty($item['entity_reference']['entity_id']) && $node = node_load($item['entity_reference']['entity_id'])) {
+    if (!empty($item['entity_reference']['entity_id']) && $node = _i18n_node_load($item['entity_reference']['entity_id'])) {
       $events_nodes[] = $node;
     }
   }

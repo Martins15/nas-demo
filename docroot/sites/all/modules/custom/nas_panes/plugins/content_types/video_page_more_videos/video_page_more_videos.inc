@@ -134,7 +134,7 @@ function video_page_more_videos_render($subtype, $conf, $args, $context) {
     $view->pre_execute();
     $view->execute();
     foreach ($view->result as $result) {
-      $node = node_load($result->nid);
+      $node = _i18n_node_load($result->nid);
       $node_view = node_view($node, 'editorial_card_4x');
       $teasers[] = drupal_render($node_view);
     }

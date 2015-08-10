@@ -870,7 +870,7 @@ function nas_master_update_7064() {
 
   if (isset($_SERVER['APP_ENV']) && $_SERVER['APP_ENV'] == 'dev') {
     module_load_include('inc', 'pathauto', 'pathauto');
-    $node = node_load(1689);
+    $node = _i18n_node_load(1689);
     pathauto_create_alias('node', 'bulkupdate', 'node/' . $node->nid, array('node' => $node), $node->type, LANGUAGE_NONE);
   }
 }
@@ -935,7 +935,7 @@ function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
 
     $result = $query->execute();
     foreach ($result as $node) {
-      $node = node_load($node->nid);
+      $node = _i18n_node_load($node->nid);
       pathauto_create_alias('node', 'bulkupdate', 'node/' . $node->nid, array('node' => $node), $node->type, LANGUAGE_NONE);
       $sandbox['current']++;
     }
@@ -1089,7 +1089,7 @@ function nas_master_update_7085(&$sandbox) {
 
     $result = $query->execute();
     foreach ($result as $item) {
-      $node = node_load($item->entity_id);
+      $node = _i18n_node_load($item->entity_id);
       $node->field_hero_image = array();
       node_save($node);
       $sandbox['current']++;
@@ -1134,7 +1134,7 @@ function nas_master_update_7086(&$sandbox) {
 
     $result = $query->execute();
     foreach ($result as $item) {
-      $node = node_load($item->entity_id);
+      $node = _i18n_node_load($item->entity_id);
       if (!empty($node->field_article_legacy[LANGUAGE_NONE][0]['value'])) {
         $legacy = substr($node->field_article_legacy[LANGUAGE_NONE][0]['value'], 0, 255);
         $node->field_subtitle[LANGUAGE_NONE][0] = array('value' => strip_tags($legacy));
@@ -2163,7 +2163,7 @@ function nas_master_update_7157(&$sandbox) {
   $query->range($sandbox['current'], $chunk);
   $results = $query->execute()->fetchAll();
   foreach ($results as $nids) {
-    $node = node_load($nids->entity_id);
+    $node = _i18n_node_load($nids->entity_id);
     $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
     if (empty($get_field_hero_image)) {
       $data = new stdClass();
@@ -2508,7 +2508,7 @@ function nas_master_update_7178() {
                      "AND (node.type IN  ('bird')) ".
                      "AND (field_data_field_bird_audio.field_bird_audio_fid > '0') ))")->fetchAllKeyed();
   foreach ($nids as $nid => $title) {
-    $node = node_load($nid);
+    $node = _i18n_node_load($nid);
     // If there is more than 1 audio, sort them.
     if (!empty($node->field_bird_audio) and sizeof($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
       // Put the title of the file in the array for sorting.
@@ -2733,5 +2733,17 @@ function nas_master_update_7193() {
       'variable'
     )
   ));
+  registry_rebuild();
+}
+
+/**
+ * Enable i18n_node_load module.
+ */
+function nas_master_update_7194() {
+  module_enable(
+    array(
+      'i18n_node_load',
+    )
+  );
   registry_rebuild();
 }

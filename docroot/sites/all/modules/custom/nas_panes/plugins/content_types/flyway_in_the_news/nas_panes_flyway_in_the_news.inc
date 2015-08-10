@@ -85,7 +85,7 @@ function nas_panes_flyway_in_the_news_render($subtype, $conf, $args, $context) {
 
   if (!$conf_is_empty) {
     foreach ($conf['articles'] as $value) {
-      if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+      if (!empty($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
         $news_nodes[] = $node;
       }
     }
@@ -93,7 +93,7 @@ function nas_panes_flyway_in_the_news_render($subtype, $conf, $args, $context) {
   else {
     $view_results = views_get_view_result('nas_news', 'flyway_in_the_news', $context_node->nid);
     foreach ($view_results as $result) {
-      $news_nodes[] = node_load($result->nid);
+      $news_nodes[] = _i18n_node_load($result->nid);
     }
   }
 
