@@ -2429,35 +2429,39 @@ function theme_x_image_anchor($variables) {
 /**
  * Get information about site by url params.
  *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
  * @return array|void
  *   Site details.
  */
-function nas_panes_get_site_info() {
-  $params = drupal_get_query_parameters();
+function nas_panes_get_site_info($node) {
+  $info = &drupal_static(__FUNCTION__, array());
+  if (!empty($info)) {
+    return $info;
+  }
 
-  if (!isset($params['site'])) {
+  $params = drupal_get_query_parameters();
+  if (!array_key_exists('site', $params)) {
     return;
   }
-  $url = 'http://' . $params['site'] . '.audubon.org';
-  if (array_key_exists('dev', $params) &&
+
+  $url = 'http://' . $params['site'] . '.audubon.org/';
+  if (isset($params['dev']) &&
     variable_get('nas_birds_allow_dev_params', FALSE)
   ) {
     $parts_url = parse_url($params['dev']);
     $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
       $parts_url['path'];
   }
-  $response = drupal_http_request($url . '/site/info');
-  if ($response->code != 200 || empty($response->data)) {
+  $title = urlencode($node->title);
+  $result = nas_import_send_request($url . 'export/local-bird/' . $title);
+  if (empty($result) || empty($result['title'])) {
     return;
   }
-  $result = drupal_json_decode($response->data);
-  if (!empty($result['title'])) {
-    return array(
-      'title' => $result['title'],
-      'url' => $url,
-    );
-  }
-  return;
+  $result['url'] = $url;
+  $info = $result;
+  return $result;
 }
 
 /**
@@ -2470,21 +2474,8 @@ function nas_panes_get_site_info() {
  *   External content.
  */
 function nas_panes_get_external_bird_content($node) {
-  $data = nas_panes_get_site_info();
-  if (empty($data)) {
-    return;
-  }
-  $title = urlencode($node->title);
-  $url = $data['url'] . '/export/local-bird/' . $title;
-  $params = drupal_get_query_parameters();
-  if (isset($params['dev']) && variable_get('nas_birds_allow_dev_params', FALSE)) {
-    $parts_url = parse_url($params['dev']);
-    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $title;
-  }
-
-  $result = nas_import_send_request($url);
-
-  if (empty($result['content'])) {
+  $data = nas_panes_get_site_info($node);
+  if (!array_key_exists('content', $data) || empty($data['content'])) {
     return;
   }
   return $result['content'];
