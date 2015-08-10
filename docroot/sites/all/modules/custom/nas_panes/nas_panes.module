@@ -2438,25 +2438,26 @@ function nas_panes_get_site_info() {
   if (!isset($params['site'])) {
     return;
   }
-
-  // Get State or Center by provided site code.
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'location')
-    ->fieldCondition('field_location_link', 'url', $params['site'] . '.', 'CONTAINS')
-    ->propertyCondition('status', NODE_PUBLISHED);
-  $result = $query->execute();
-
-  if (!isset($result['node']) || count($result['node']) != 1) {
+  $url = 'http://' . $params['site'] . '.audubon.org';
+  if (array_key_exists('dev', $params) &&
+    variable_get('nas_birds_allow_dev_params', FALSE)
+  ) {
+    $parts_url = parse_url($params['dev']);
+    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
+      $parts_url['path'];
+  }
+  $response = drupal_http_request($url . '/site/info');
+  if ($response->code != 200 || empty($response->data)) {
     return;
   }
-  $node = node_load(reset($result['node'])->nid);
-  $url = 'http://' . $params['site'] . '.audubon.org';
-
-  return array(
-    'title' => $node->title,
-    'url' => $url,
-  );
+  $result = drupal_json_decode($response->data);
+  if (!empty($result['title'])) {
+    return array(
+      'title' => $result['title'],
+      'url' => $url,
+    );
+  }
+  return;
 }
 
 /**
