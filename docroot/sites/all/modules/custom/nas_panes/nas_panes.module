@@ -2475,7 +2475,7 @@ function nas_panes_get_site_info($node) {
  */
 function nas_panes_get_external_bird_content($node) {
   $data = nas_panes_get_site_info($node);
-  if (!array_key_exists('content', $data) || empty($data['content'])) {
+  if (!$data || empty($data['content'])) {
     return;
   }
   return $data['content'];
