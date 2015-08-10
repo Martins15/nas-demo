@@ -2695,9 +2695,27 @@ function nas_master_update_7190() {
 }
 
 /**
- * Install Spanish language.
+ * Enable localization client.
  */
 function nas_master_update_7191() {
+  module_enable(
+    array(
+      'l10n_client',
+      'l10n_update',
+    )
+  );
+  features_revert(array(
+    'nas_localization_feature' => array(
+      'variable'
+    )
+  ));
+  registry_rebuild();
+}
+
+/**
+ * Install Spanish language.
+ */
+function nas_master_update_7192() {
   require_once DRUPAL_ROOT . '/includes/locale.inc';
   locale_add_language(
     'es',
@@ -2707,15 +2725,9 @@ function nas_master_update_7191() {
 }
 
 /**
- * Enable localization client.
+ * Revert localization settings.
  */
-function nas_master_update_7192() {
-  module_enable(
-    array(
-      'l10n_client',
-      'l10n_update',
-    )
-  );
+function nas_master_update_7193() {
   features_revert(array(
     'nas_localization_feature' => array(
       'variable'
