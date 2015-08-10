@@ -612,3 +612,8 @@ $conf['fast_404_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><titl
 
 # Call the extension checking now. This will skip any logging of 404s.
 fast_404_ext_check();
+
+# Change translations for Acquia hosting.
+if (isset($conf['file_temporary_path'])) {
+  $conf['l10n_update_download_store'] = $conf['file_temporary_path'] . '/translations';
+}
