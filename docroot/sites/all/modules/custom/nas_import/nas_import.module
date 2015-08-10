@@ -34,6 +34,7 @@ function nas_import_ctools_plugin_api($owner, $api) {
  * Implements hook_feeds_plugins().
  */
 function nas_import_feeds_plugins() {
+  $path = drupal_get_path('module', 'nas_import');
   $info = array();
   $info['NASFeedsHTTPFetcher'] = array(
     'name' => 'NAS Feeds HTTP Fetcher',
@@ -43,7 +44,17 @@ function nas_import_feeds_plugins() {
       'parent' => 'FeedsHTTPFetcher',
       'class' => 'NASFeedsHTTPFetcher',
       'file' => 'NASFeedsHTTPFetcher.inc',
-      'path' => drupal_get_path('module', 'nas_import'),
+      'path' => $path,
+    ),
+  );
+  $info['NASFeedsExJsonPath'] = array(
+    'name' => 'NAS JSON JSONPath parser',
+    'description' => 'Parse JSON with JSONPath, double decode.',
+    'handler' => array(
+      'parent' => 'FeedsExJsonPath',
+      'class' => 'NASFeedsExJsonPath',
+      'file' => 'NASFeedsExJsonPath.inc',
+      'path' => $path,
     ),
   );
   return $info;
