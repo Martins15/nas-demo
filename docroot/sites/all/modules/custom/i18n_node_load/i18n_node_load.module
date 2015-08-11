@@ -9,11 +9,8 @@
  * i18n wrapper over standard node_load().
  */
 function _i18n_node_load($nid = NULL, $vid = NULL, $reset = FALSE) {
-  if (!function_exists('translation_node_get_translations')) {
-    return node_load($nid, $vid, $reset);
-  }
   global $language;
-  $all_translations = translation_node_get_translations($nid);
+  $all_translations = _i18n_translation_node_get_translations($nid);
   if (isset($all_translations[$language->language])) {
     return node_load($all_translations[$language->language]->nid, $vid, $reset);
   }
@@ -61,4 +58,57 @@ function _i18n_node_load_multiple($nids = array(), $conditions = array(), $reset
   }
   // Fallback if there are special arguments - deal without i18n support.
   return node_load_multiple($nids, $conditions, $reset);
+}
+
+/**
+ * Gets all nodes in a given translation set.
+ *
+ * @see translation_node_get_translations()
+ *
+ * @param $tnid
+ *   The translation source nid of the translation set, the identifier of the
+ *   node used to derive all translations in the set.
+ *
+ * @return
+ *   Array of partial node objects (nid, title, language) representing all
+ *   nodes in the translation set, in effect all translations of node $tnid,
+ *   including node $tnid itself. Because these are partial nodes, you need to
+ *   node_load() the full node, if you need more properties. The array is
+ *   indexed by language code.
+ */
+function _i18n_translation_node_get_translations($tnid) {
+  if (is_numeric($tnid) && $tnid) {
+    $translations = &drupal_static(__FUNCTION__, array());
+
+    if (!isset($translations[$tnid])) {
+
+      $or = db_or();
+      $or_1 = db_select('node', 'n')->condition('nid', $tnid)->fields('n', array('tnid'));
+      $or_2 = db_select('node', 'n')->condition('tnid', $tnid)->fields('n', array('nid'));
+      $or->condition('nid', $tnid);
+      $or->condition('nid', $or_1, 'IN');
+      $or->condition('nid', $or_2, 'IN');
+      $translations[$tnid] = array();
+      $result = db_select('node', 'n')
+        ->fields('n', array('nid', 'type', 'uid', 'status', 'title', 'language'))
+        ->condition($or)
+        ->addTag('node_access');
+
+      $out = $result->execute()->fetchAll();
+
+      foreach ($out as $node) {
+        if (isset($translations[$node->nid]) && $tnid != $node->nid) {
+          $translations[$tnid] = $translations[$node->nid];
+          continue;
+        }
+        $langcode = entity_language('node', $node);
+        $translations[$tnid][$langcode] = $node;
+        // Let's make translations accessible via both node NIDs.
+        if ($tnid != $node->nid) {
+          $translations[$node->nid] = &$translations[$tnid];
+        }
+      }
+    }
+    return $translations[$tnid];
+  }
 }
