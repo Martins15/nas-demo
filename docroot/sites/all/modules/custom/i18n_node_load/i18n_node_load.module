@@ -82,16 +82,15 @@ function _i18n_translation_node_get_translations($tnid) {
 
     if (!isset($translations[$tnid])) {
 
-      $or = db_or();
-      $or_1 = db_select('node', 'n')->condition('nid', $tnid)->fields('n', array('tnid'));
-      $or_2 = db_select('node', 'n')->condition('tnid', $tnid)->fields('n', array('nid'));
-      $or->condition('nid', $tnid);
-      $or->condition('nid', $or_1, 'IN');
-      $or->condition('nid', $or_2, 'IN');
+      $sub_q = db_select('node', 'n')
+        ->condition('nid', $tnid)
+        ->fields('n', array('tnid'));
+
       $translations[$tnid] = array();
+
       $result = db_select('node', 'n')
         ->fields('n', array('nid', 'type', 'uid', 'status', 'title', 'language'))
-        ->condition($or)
+        ->condition('tnid', $sub_q, 'IN')
         ->addTag('node_access');
 
       $out = $result->execute()->fetchAll();
