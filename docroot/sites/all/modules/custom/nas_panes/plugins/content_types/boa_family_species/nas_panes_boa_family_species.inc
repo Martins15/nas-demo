@@ -42,7 +42,7 @@ function nas_panes_boa_family_species_render($subtype, $conf, $args, $context) {
       continue;
     }
     list(, $nid) = explode('/', $genus_link['link']['link_path']);
-    if (!$genus_node = node_load($nid)) {
+    if (!$genus_node = _i18n_node_load($nid)) {
       continue;
     }
     $genus = array(
@@ -61,7 +61,7 @@ function nas_panes_boa_family_species_render($subtype, $conf, $args, $context) {
         continue;
       }
       list(, $nid) = explode('/', $species_link['link']['link_path']);
-      if (!$species_node = node_load($nid)) {
+      if (!$species_node = _i18n_node_load($nid)) {
         continue;
       }
       $build = node_view($species_node, 'teaser');

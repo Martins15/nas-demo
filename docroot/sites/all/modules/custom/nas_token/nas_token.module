@@ -77,7 +77,7 @@ function _nas_token_article($node) {
       );
 
       if (!empty($magazine_items[0]['target_id'])) {
-        $magazine_node = node_load($magazine_items[0]['target_id']);
+        $magazine_node = _i18n_node_load($magazine_items[0]['target_id']);
         if (!empty($magazine_node->title)) {
           $pattern[] = $magazine_node->title;
         }
