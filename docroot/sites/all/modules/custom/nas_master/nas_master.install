@@ -2769,4 +2769,5 @@ function nas_master_update_7195() {
 function nas_master_update_7196() {
   $modules = array('nas_pm_xmlsitemap', 'hreflang');
   module_enable($modules);
+  variable_set('xmlsitemap_multilingual', 1);
 }
