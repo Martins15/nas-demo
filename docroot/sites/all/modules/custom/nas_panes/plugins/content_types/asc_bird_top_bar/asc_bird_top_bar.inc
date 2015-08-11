@@ -17,7 +17,16 @@ $plugin = array(
  * Render content.
  */
 function asc_bird_top_bar_render($subtype, $conf, $args, $context) {
-  $data = nas_panes_get_site_info();
+  $args = arg();
+  if ($args[0] != 'node' || !is_numeric($args['1'])) {
+    return;
+  }
+  $node = _i18n_node_load($args[1]);
+  if ($node->type != 'bird') {
+    return;
+  }
+
+  $data = nas_panes_get_site_info($node);
   if (empty($data)) {
     return;
   }
