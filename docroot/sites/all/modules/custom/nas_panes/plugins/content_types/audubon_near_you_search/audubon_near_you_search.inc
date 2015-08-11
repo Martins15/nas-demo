@@ -165,7 +165,7 @@ function audubon_near_you_search_form_submit($form, &$form_state) {
       $debug .= ' function nid';
     }
     if (!$nid) return;
-    $node = node_load($nid);
+    $node = _i18n_node_load($nid);
     $field = field_get_items('node', $node, 'field_location_address');
     // load node and get state of the node.
     $query['state'] = $field[0]['administrative_area'];

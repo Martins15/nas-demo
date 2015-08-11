@@ -131,7 +131,7 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
       'node_url' => '',
     );
     if (!empty($item['reference']['entity_id'])) {
-      if ($node = node_load($item['reference']['entity_id'])) {
+      if ($node = _i18n_node_load($item['reference']['entity_id'])) {
         $content[$delta]['title'] = $node->title;
         $content[$delta]['nid'] = $node->nid;
         $content[$delta]['node_url'] = url('node/' . $node->nid, array('absolute' => TRUE));

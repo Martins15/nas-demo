@@ -85,7 +85,7 @@ function magazine_issue_featured_render($subtype, $conf, $args, $context) {
   $articles_nodes = array();
   $magazine_issue_featured_nids = _nas_panes_magazin_featured_articles($context_node);
   foreach ($magazine_issue_featured_nids as $nid) {
-    $articles_nodes[] = node_load($nid);
+    $articles_nodes[] = _i18n_node_load($nid);
   }
 
   $teasers = array();
@@ -144,7 +144,7 @@ function magazine_issue_featured_build_contextual_links($subtype, $node) {
     ctools_export_crud_save('panelizer_defaults', $panelizer);
 
     // Reload node cause panel is saved.
-    $cloned_node = node_load($node->nid, NULL, TRUE);
+    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
     $pid = magazine_issue_featured_lookup_pid($subtype, $cloned_node);
   }
   $page_manager = $node->panelizer['page_manager'];
