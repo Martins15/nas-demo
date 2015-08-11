@@ -82,31 +82,16 @@ function _i18n_translation_node_get_translations($tnid) {
 
     if (!isset($translations[$tnid])) {
 
-      $sub_q = db_select('node', 'n')
+      $nid = db_select('node', 'n')
         ->condition('nid', $tnid)
-        ->fields('n', array('tnid'));
+        ->fields('n', array('tnid'))
+        ->execute()
+        ->fetchField();
 
-      $translations[$tnid] = array();
+      $nid = $nid ? $nid : $tnid;
 
-      $result = db_select('node', 'n')
-        ->fields('n', array('nid', 'type', 'uid', 'status', 'title', 'language'))
-        ->condition('tnid', $sub_q, 'IN')
-        ->addTag('node_access');
-
-      $out = $result->execute()->fetchAll();
-
-      foreach ($out as $node) {
-        if (isset($translations[$node->nid]) && $tnid != $node->nid) {
-          $translations[$tnid] = $translations[$node->nid];
-          continue;
-        }
-        $langcode = entity_language('node', $node);
-        $translations[$tnid][$langcode] = $node;
-        // Let's make translations accessible via both node NIDs.
-        if ($tnid != $node->nid) {
-          $translations[$node->nid] = &$translations[$tnid];
-        }
-      }
+      $translations[$tnid] = translation_node_get_translations($nid);
+      return $translations[$tnid];
     }
     return $translations[$tnid];
   }
