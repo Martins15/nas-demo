@@ -2735,3 +2735,11 @@ function nas_master_update_7193() {
   ));
   registry_rebuild();
 }
+
+/**
+ * Enable modules.
+ */
+function nas_master_update_7196() {
+  $modules = array('nas_pm_xmlsitemap');
+  module_enable($modules);
+}
