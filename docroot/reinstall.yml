@@ -70,11 +70,6 @@
   - name: Creating drupal database
     mysql_db: name={{ mysql_db }} state=present login_user={{ mysql_user }} login_password={{ mysql_pass }}
 
-  - name: Importing from remote backup
-    mysql_db: name={{ mysql_db }} state=import target={{ backup_folder }}/latest_remote.sql.gz login_user={{ mysql_user }} login_password={{ mysql_pass }}
-    sudo: yes
-    when: workflow_type == "sql" and pp_environment == "default"
-
   - name: Copy local backup to build folder
     sudo: yes
     copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes mode=0644
@@ -158,6 +153,10 @@
     shell: "{{ php_env_vars }} drush -y rr -l {{ site_url }} || true && {{ php_env_vars }} drush -y rr -l {{ site_url }} || true"
     when: workflow_type == "sql"
 
+  - name: Setting CI tmp dir
+    shell: "{{ php_env_vars }} drush -y vset file_temporary_path /tmp"
+    when: workflow_type == "sql"
+    
   - name: Updating database
     sudo: yes
     shell: "{{ php_env_vars }} drush -dvy updb -l {{ site_url }}"

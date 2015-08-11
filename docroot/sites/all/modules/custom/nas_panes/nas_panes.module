@@ -1121,7 +1121,7 @@ function nas_panes_nas_after_import() {
     ->range(0, 4)
     ->execute()->fetchAll();
   foreach ($article_results as $key => $result) {
-    $article = node_load($result->nid);
+    $article = _i18n_node_load($result->nid);
     $article->field_related_bird = array(
       LANGUAGE_NONE => array(
         array('target_id' => $bird_results[$key]->nid),
@@ -1360,7 +1360,7 @@ function _nas_panes_magazin_featured_articles($node) {
     $conf_is_empty = TRUE;
     if (!empty($conf[$node->nid])) {
       foreach ($conf[$node->nid] as $value) {
-        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+        if (!empty($value['entity_reference']['entity_id']) && _i18n_node_load($value['entity_reference']['entity_id'])) {
           $conf_is_empty = FALSE;
           break;
         }
@@ -1368,7 +1368,7 @@ function _nas_panes_magazin_featured_articles($node) {
     }
     if (!$conf_is_empty) {
       foreach ($conf[$node->nid] as $value) {
-        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+        if (!empty($value['entity_reference']['entity_id']) && _i18n_node_load($value['entity_reference']['entity_id'])) {
           $articles_nids[] = $value['entity_reference']['entity_id'];
         }
       }
@@ -1426,7 +1426,7 @@ function _nas_panes_save_panelizer($subtype, $node) {
   }
 
   // Reload node cause panel is saved.
-  $cloned_node = node_load($node->nid, NULL, TRUE);
+  $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
   return _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
 }
 
@@ -1485,7 +1485,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
           // We found necessary Campaign.
           if ($campaign_cards = field_get_items('node', $campaign_node, 'field_related_eng_cards')) {
             foreach ($campaign_cards as $card) {
-              if (!empty($card['target_id']) && $node = node_load($card['target_id'])) {
+              if (!empty($card['target_id']) && $node = _i18n_node_load($card['target_id'])) {
                 $nodes[] = $node;
               }
             }
@@ -1513,7 +1513,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     // Manual override.
     if (empty($nodes) &&
       !empty($data['references'][1]['entity_reference']['entity_id']) &&
-      $node = node_load($data['references'][1]['entity_reference']['entity_id'])
+      $node = _i18n_node_load($data['references'][1]['entity_reference']['entity_id'])
     ) {
       $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
     }
@@ -1587,7 +1587,7 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     // Manual override.
     if (empty($nodes) && isset($data['references'])) {
       foreach ($data['references'] as $value) {
-        if (isset($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+        if (isset($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
           $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
         }
       }
@@ -1749,7 +1749,7 @@ function _nas_panes_get_upcoming_events($state = 'all') {
 
   foreach ($results as $result) {
     $link = NULL;
-    $item = node_load($result->entity);
+    $item = _i18n_node_load($result->entity);
     $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
     $items[$item->nid] = array(
       'nid' => $item->nid,
@@ -1844,7 +1844,7 @@ function _nas_panes_get_priority_birds($state = 'all') {
     $nids[] = $item->nid;
   }
   if (!empty($nids)) {
-    $nodes = node_load_multiple($nids);
+    $nodes = _i18n_node_load_multiple($nids);
     foreach ($nodes as $node) {
       $items[] = node_view($node, 'teaser');
     }
@@ -2288,7 +2288,7 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
  * boa_mail_subscription_form submit callback.
  */
 function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
-  $node = node_load($form_state['nid']);
+  $node = _i18n_node_load($form_state['nid']);
   $image_items = field_get_items('node', $node, 'field_boa_illustration');
   if (!empty($image_items[0]['filename'])) {
     $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
@@ -2429,34 +2429,39 @@ function theme_x_image_anchor($variables) {
 /**
  * Get information about site by url params.
  *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
  * @return array|void
  *   Site details.
  */
-function nas_panes_get_site_info() {
+function nas_panes_get_site_info($node) {
+  $info = &drupal_static(__FUNCTION__, array());
+  if (!empty($info)) {
+    return $info;
+  }
+
   $params = drupal_get_query_parameters();
-
-  if (!isset($params['site'])) {
+  if (!array_key_exists('site', $params)) {
     return;
   }
 
-  // Get State or Center by provided site code.
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'location')
-    ->fieldCondition('field_location_link', 'url', $params['site'] . '.', 'CONTAINS')
-    ->propertyCondition('status', NODE_PUBLISHED);
-  $result = $query->execute();
-
-  if (!isset($result['node']) || count($result['node']) != 1) {
+  $url = 'http://' . $params['site'] . '.audubon.org/';
+  if (isset($params['dev']) &&
+    variable_get('nas_birds_allow_dev_params', FALSE)
+  ) {
+    $parts_url = parse_url($params['dev']);
+    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
+      $parts_url['path'];
+  }
+  $title = urlencode($node->title);
+  $result = nas_import_send_request($url . 'export/local-bird/' . $title);
+  if (empty($result) || empty($result['title'])) {
     return;
   }
-  $node = node_load(reset($result['node'])->nid);
-  $url = 'http://' . $params['site'] . '.audubon.org';
-
-  return array(
-    'title' => $node->title,
-    'url' => $url,
-  );
+  $result['url'] = $url;
+  $info = $result;
+  return $result;
 }
 
 /**
@@ -2469,22 +2474,9 @@ function nas_panes_get_site_info() {
  *   External content.
  */
 function nas_panes_get_external_bird_content($node) {
-  $data = nas_panes_get_site_info();
-  if (empty($data)) {
+  $data = nas_panes_get_site_info($node);
+  if (!$data || empty($data['content'])) {
     return;
   }
-  $title = urlencode($node->title);
-  $url = $data['url'] . '/export/local-bird/' . $title;
-  $params = drupal_get_query_parameters();
-  if (isset($params['dev']) && variable_get('nas_birds_allow_dev_params', FALSE)) {
-    $parts_url = parse_url($params['dev']);
-    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $title;
-  }
-
-  $result = nas_import_send_request($url);
-
-  if (empty($result['content'])) {
-    return;
-  }
-  return $result['content'];
+  return $data['content'];
 }
