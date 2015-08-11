@@ -41,3 +41,24 @@ function i18n_node_load_translation_tab_access($node) {
   }
   return FALSE;
 }
+
+/**
+ * i18n wrapper for node_load_miltiple().
+ */
+function _i18n_node_load_multiple($nids = array(), $conditions = array(), $reset = FALSE) {
+  if (!empty($nids) && empty($conditions) && !$reset) {
+    $all_translations = array();
+    foreach ($nids as $nid) {
+      $node = _i18n_node_load($nid);
+      /**
+       * Keep in mind that if source array is [1, 2, 3],
+       * Returned array can be [1 => stdClass, 2345 => stdClass, 3 => stdClass]
+       * when node 2 has node 2345 as translation.
+       */
+      $all_translations[$node->nid] = $node;
+    }
+    return $all_translations;
+  }
+  // Fallback if there are special arguments - deal without i18n support.
+  return node_load_multiple($nids, $conditions, $reset);
+}

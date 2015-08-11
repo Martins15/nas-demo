@@ -98,7 +98,7 @@ function static_cards_bird_guide_render($subtype, $conf, $args, $contexts) {
     }
   }
 
-  $nodes = node_load_multiple($nids);
+  $nodes = _i18n_node_load_multiple($nids);
   foreach ($nodes as $node) {
     $teasers[] = node_view($node, 'teaser');
   }

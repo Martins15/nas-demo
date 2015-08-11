@@ -114,7 +114,7 @@ function video_page_more_videos_render($subtype, $conf, $args, $context) {
   $teasers = array();
 
   // Nodes are set.
-  if ($nids && $nodes = node_load_multiple($nids)) {
+  if ($nids && $nodes = _i18n_node_load_multiple($nids)) {
     foreach ($conf['refs'][$conf_key] as $ref) {
       if (empty($ref['reference']['entity_id']) || !isset($nodes[$ref['reference']['entity_id']])) {
         continue;

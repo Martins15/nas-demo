@@ -1547,7 +1547,7 @@ function nas_import_modify_bird_related_references($remove_first = FALSE) {
 
   $progress = 0;
   while ($_nids = array_slice($nids, $progress, 50)) {
-    $nodes = node_load_multiple($_nids);
+    $nodes = _i18n_node_load_multiple($_nids);
     // First step is creating mapping of old and new nids.
     foreach ($nodes as $node) {
       $field_related_bird = field_get_items('node', $node, 'field_related_bird');
