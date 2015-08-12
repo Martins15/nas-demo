@@ -101,7 +101,7 @@ function magazine_issue_other_issues_render($subtype, $conf, $args, $context) {
     krsort($mag_issue_nids_raw);
     $mag_issue_nids_raw = array_slice($mag_issue_nids_raw, 0, 4);
     foreach ($mag_issue_nids_raw as $nid) {
-      if (!empty($nid) && $node = node_load($nid)) {
+      if (!empty($nid) && $node = _i18n_node_load($nid)) {
         $magazine_issue_nodes[] = $node;
       }
     }
@@ -109,7 +109,7 @@ function magazine_issue_other_issues_render($subtype, $conf, $args, $context) {
   // Manual override.
   if (!$conf_is_empty) {
     foreach ($conf[$conf_key] as $value) {
-      if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+      if (!empty($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
         $magazine_issue_nodes[] = $node;
       }
     }
@@ -171,7 +171,7 @@ function magazine_issue_other_issues_build_contextual_links($subtype, $node) {
     ctools_export_crud_save('panelizer_defaults', $panelizer);
 
     // Reload node cause panel is saved.
-    $cloned_node = node_load($node->nid, NULL, TRUE);
+    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
     $pid = magazine_issue_other_issues_lookup_pid($subtype, $cloned_node);
   }
   $page_manager = $node->panelizer['page_manager'];

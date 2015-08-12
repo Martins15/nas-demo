@@ -86,7 +86,7 @@ function nas_panes_other_projects_render($subtype, $conf, $args, $context) {
   // Manual override.
   if (!$conf_is_empty) {
     foreach ($conf[$conf_key] as $value) {
-      if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+      if (!empty($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
         $nodes[] = $node;
       }
     }
@@ -95,7 +95,7 @@ function nas_panes_other_projects_render($subtype, $conf, $args, $context) {
   else {
     $view_results = views_get_view_result('conservation_projects', 'other_projects', $context_node->nid);
     foreach ($view_results as $result) {
-      $nodes[] = node_load($result->nid);
+      $nodes[] = _i18n_node_load($result->nid);
     }
   }
 

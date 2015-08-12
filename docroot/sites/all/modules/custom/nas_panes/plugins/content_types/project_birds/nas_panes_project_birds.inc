@@ -30,7 +30,7 @@ function nas_panes_project_birds_render($subtype, $conf, $args, $context) {
 
   $results = array();
   foreach ($view_results as $delta => $item) {
-    $node = node_load($item->node_field_data_field_project_related_birds_nid);
+    $node = _i18n_node_load($item->node_field_data_field_project_related_birds_nid);
     if (!$node) {
       continue;
     }
