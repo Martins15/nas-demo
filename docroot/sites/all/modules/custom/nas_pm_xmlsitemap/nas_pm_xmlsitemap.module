@@ -99,9 +99,19 @@ function _nas_pm_xmlsitemap_pages_links_cache_set($links) {
  * Implements hook_cron().
  */
 function nas_pm_xmlsitemap_cron() {
+  // Trying to avoid possible race conditions, when there are more than one backend.
+  // The code below this one should run faster than 25 seconds.
+  // If it is not the lock will be automatically released.
+  if (!lock_acquire('nas_pm_xmlsitemap_cron', 25)) {
+    return;
+  }
+
   $links = nas_pm_xmlsitemap_load_pages();
   // Update records if cached listing isn't equal to current.
   if ($links != _nas_pm_xmlsitemap_pages_links_cache_get()) {
     _nas_pm_xmlsitemap_rebuild();
   }
+
+  // Releasing the lock for ability to run this again at next crontab task.
+  lock_release('nas_pm_xmlsitemap_cron');
 }
