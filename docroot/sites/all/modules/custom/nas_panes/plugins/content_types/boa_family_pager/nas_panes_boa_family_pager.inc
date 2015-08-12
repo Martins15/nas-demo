@@ -44,14 +44,14 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
 
   $prev_path = $links[$prev_key]['link_path'];
   list(, $nid) = explode('/', $prev_path);
-  $prev_node = node_load($nid);
+  $prev_node = _i18n_node_load($nid);
   $prev_title_link = l($prev_node->title, $prev_path);
   $prev_text_link = l(t('Previous Family'), $prev_path);
   $prev_link = l('', $prev_path, array('attributes' => array('class' => 'previous')));
 
   $next_path = $links[$next_key]['link_path'];
   list(, $nid) = explode('/', $next_path);
-  $next_node = node_load($nid);
+  $next_node = _i18n_node_load($nid);
   $next_title_link = l($next_node->title, $next_path);
   $next_text_link = l(t('Next Family'), $next_path);
   $next_link = l('', $next_path, array('attributes' => array('class' => 'next')));

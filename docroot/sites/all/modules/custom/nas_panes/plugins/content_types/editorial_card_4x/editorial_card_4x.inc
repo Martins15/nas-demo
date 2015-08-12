@@ -95,7 +95,7 @@ function editorial_card_4x_render($subtype, $conf, $args, $context) {
 
   $teasers = array();
   foreach ($conf['refs'] as $ref) {
-    if (empty($ref['reference']['entity_id']) || !$node = node_load($ref['reference']['entity_id'])) {
+    if (empty($ref['reference']['entity_id']) || !$node = _i18n_node_load($ref['reference']['entity_id'])) {
       continue;
     }
     $build = node_view($node, 'editorial_card_4x');

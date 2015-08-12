@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * i18n_node_load routines.
+ */
+
+/**
+ * i18n wrapper over standard node_load().
+ */
+function _i18n_node_load($nid = NULL, $vid = NULL, $reset = FALSE) {
+  global $language;
+  $all_translations = _i18n_translation_node_get_translations($nid);
+  if (isset($all_translations[$language->language])) {
+    return node_load($all_translations[$language->language]->nid, $vid, $reset);
+  }
+  if (isset($all_translations[LANGUAGE_NONE])) {
+    return node_load($all_translations[LANGUAGE_NONE]->nid, $vid, $reset);
+  }
+  return node_load($nid, $vid, $reset);
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function i18n_node_load_menu_alter(&$items) {
+  $items['node/%node/translate']['access callback'] = 'i18n_node_load_translation_tab_access';
+}
+
+/**
+ * Access callback: Checks that the user has permission to 'translate content'.
+ *
+ * @see _translation_tab_access()
+ */
+function i18n_node_load_translation_tab_access($node) {
+  if (translation_supported_type($node->type) && node_access('view', $node)) {
+    return user_access('translate content');
+  }
+  return FALSE;
+}
+
+/**
+ * i18n wrapper for node_load_miltiple().
+ */
+function _i18n_node_load_multiple($nids = array(), $conditions = array(), $reset = FALSE) {
+  if (!empty($nids) && empty($conditions) && !$reset) {
+    $all_translations = array();
+    foreach ($nids as $nid) {
+      $node = _i18n_node_load($nid);
+      /**
+       * Keep in mind that if source array is [1, 2, 3],
+       * Returned array can be [1 => stdClass, 2345 => stdClass, 3 => stdClass]
+       * when node 2 has node 2345 as translation.
+       */
+      $all_translations[$node->nid] = $node;
+    }
+    return $all_translations;
+  }
+  // Fallback if there are special arguments - deal without i18n support.
+  return node_load_multiple($nids, $conditions, $reset);
+}
+
+/**
+ * Gets all nodes in a given translation set.
+ *
+ * @see translation_node_get_translations()
+ *
+ * @param $tnid
+ *   The translation source nid of the translation set, the identifier of the
+ *   node used to derive all translations in the set.
+ *
+ * @return
+ *   Array of partial node objects (nid, title, language) representing all
+ *   nodes in the translation set, in effect all translations of node $tnid,
+ *   including node $tnid itself. Because these are partial nodes, you need to
+ *   node_load() the full node, if you need more properties. The array is
+ *   indexed by language code.
+ */
+function _i18n_translation_node_get_translations($tnid) {
+  if (is_numeric($tnid) && $tnid) {
+    $translations = &drupal_static(__FUNCTION__, array());
+
+    if (!isset($translations[$tnid])) {
+
+      $nid = db_select('node', 'n')
+        ->condition('nid', $tnid)
+        ->fields('n', array('tnid'))
+        ->execute()
+        ->fetchField();
+
+      $nid = $nid ? $nid : $tnid;
+
+      $translations[$tnid] = translation_node_get_translations($nid);
+    }
+    return $translations[$tnid];
+  }
+}

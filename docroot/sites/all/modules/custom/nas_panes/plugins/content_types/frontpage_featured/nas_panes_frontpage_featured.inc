@@ -882,7 +882,7 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
 
   $stories = array();
   foreach ($conf['articles'] as $story) {
-    if (!empty($story['entity_reference']) && $node = node_load($story['entity_reference']['entity_id'])) {
+    if (!empty($story['entity_reference']) && $node = _i18n_node_load($story['entity_reference']['entity_id'])) {
       $title = !empty($story['title']) ? $story['title'] : $node->title;
       $slug_link = '';
       if ($story['slug_link']['title'] && $story['slug_link']['url']) {
@@ -997,7 +997,7 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
 
   $stories = array();
   foreach ($conf['articles'] as $story) {
-    if (!empty($story['entity_reference']) && $node = node_load($story['entity_reference']['entity_id'])) {
+    if (!empty($story['entity_reference']) && $node = _i18n_node_load($story['entity_reference']['entity_id'])) {
       $title = !empty($story['title']) ? $story['title'] : $node->title;
       $slug_link = '';
       if ($story['slug_link']['title'] && $story['slug_link']['url']) {
