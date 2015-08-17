@@ -2684,4 +2684,5 @@ function nas_master_update_7186() {
  */
 function nas_master_update_7187() {
   module_enable(array('nas_iba_feature'));
+  features_revert(array('nas_image_styles_feature'));
 }

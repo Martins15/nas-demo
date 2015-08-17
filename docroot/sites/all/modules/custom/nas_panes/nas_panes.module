@@ -963,6 +963,28 @@ function nas_panes_theme() {
       'template' => 'iba-landing-body',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_landing_body',
     ),
+    'iba_individual_gallery' => array(
+      'variables' => array(
+        'images' => NULL,
+      ),
+      'template' => 'iba-individual-gallery',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_gallery',
+    ),
+    'iba_individual_native_birds' => array(
+      'variables' => array(
+        'teasers' => NULL,
+      ),
+      'template' => 'iba-individual-native-birds',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_native_birds',
+    ),
+    'iba_individual_social' => array(
+      'variables' => array(
+        'caption' => '',
+        'page_link' => '',
+      ),
+      'template' => 'iba-individual-social',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_social',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
