@@ -39,7 +39,6 @@ function nas_panes_iba_individual_gallery_content_type_render($subtype, $conf, $
     }
   }
 
-
   $block = new stdClass();
   $block->content = '';
 
