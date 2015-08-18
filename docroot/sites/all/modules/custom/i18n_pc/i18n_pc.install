@@ -22,7 +22,7 @@ function _i18n_pc_language_field_schema() {
     'type' => 'varchar',
     'length' => '12',
     'not null' => TRUE,
-    'default' => 'und',
+    'default' => LANGUAGE_NONE,
   );
 }
 
