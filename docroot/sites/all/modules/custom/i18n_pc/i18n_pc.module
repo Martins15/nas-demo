@@ -1,0 +1,241 @@
+<?php
+
+/**
+ * @file
+ * i18n_pc module routines.
+ */
+
+/**
+ * Implements hook_ctools_plugin_post_alter().
+ *
+ * Remove "Edit Panel" contextual link form all panels pages.
+ */
+function i18n_pc_ctools_plugin_post_alter(&$plugin, &$info) {
+
+  if ($info['type'] == 'task_handlers' && (!isset($plugin['contextual link']) || $plugin['contextual link'] === FALSE)) {
+    $plugin['contextual link'] = 'i18n_pc_contextual_link';
+  }
+}
+
+function i18n_pc_contextual_link(
+  $handler = NULL,
+  $plugin = NULL,
+  $contexts = NULL,
+  $args = NULL
+) {
+  if ($handler == NULL) {
+    return ctools_task_handler_default_contextual_link(
+      $handler,
+      $plugin,
+      $contexts,
+      $args
+    );
+  }
+  $cur_page = page_manager_get_current_page();
+  $subtask = $cur_page['subtask']['name'];
+  $links = array();
+  global $language;
+  $lang = $language->language;
+  $languages = language_list('language');
+  if (isset($handler->conf['access']['plugins'])) {
+    foreach ($handler->conf['access']['plugins'] as $plid => $access_plugin) {
+      if ($access_plugin['name'] != 'site_language') {
+        continue;
+      }
+      foreach ($languages as $langcode => $lang_obj) {
+        if ($access_plugin['settings']['language'][$langcode] === 0) {
+          $links[] = array(
+            'href' => 'admin/structure/pages/i18n_pc/' . $subtask . '/' . $langcode . '/1',
+            'title' => t(
+              '@name translation',
+              array('@name' => $lang_obj->name)
+            ),
+            'attributes' => array(
+              'class' => array(
+                'ctools-use-modal',
+                'ctools-modal-first-popup-style'
+              )
+            ),
+          );
+        }
+      }
+    }
+  }
+  else {
+    // Not yet translated. We are going to add Selection Rules and clone panel.
+    foreach ($languages as $langcode => $lang_obj) {
+      if ($langcode != $lang) {
+        $links[] = array(
+          'href' => 'admin/structure/pages/i18n_pc/' . $subtask . '/' . $langcode . '/1',
+          'title' => t(
+            'Add @name translation',
+            array('@name' => $lang_obj->name)
+          ),
+          'attributes' => array(
+            'class' => array(
+              'ctools-use-modal',
+              'ctools-modal-first-popup-style'
+            )
+          ),
+        );
+      }
+    }
+  }
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_modal_add_js();
+  drupal_add_library('system', 'drupal.ajax');
+
+  $links[] = array(
+    'href' => 'admin/structure/pages/i18n_pc/%ctools_js',
+    'title' => t('---Spanish translation'),
+    'attributes' => array(
+      'class' => array(
+        'ctools-use-modal',
+        'ctools-modal-first-popup-style'
+      )
+    ),
+  );
+
+  $all_links = array_merge(
+    $links,
+    ctools_task_handler_default_contextual_link(
+      $handler,
+      $plugin,
+      $contexts,
+      $args
+    )
+  );
+
+  return $all_links;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function i18n_pc_menu() {
+  $items['admin/structure/pages/i18n_pc/%ctools_js'] = array(
+    'page arguments' => array(1),
+    // @todo add access rule.
+    'access callback' => TRUE,
+    'page callback' => 'i18n_pc_translation_popup_callback',
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/structure/pages/i18n_pc/%/%/%'] = array(
+    'page arguments' => array(4, 5, 6),
+    // @todo add access rule.
+    'access callback' => TRUE,
+    'page callback' => 'i18n_pc_translation_popup_callback_new',
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/structure/pages/i18n_pc_redirect/%/%'] = array(
+    'page arguments' => array(4, 5),
+    // @todo add access rule.
+    'access callback' => TRUE,
+    'page callback' => 'i18n_pc_translation_redirect',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Popup’s callback function.
+ */
+function i18n_pc_translation_popup_callback($js = NULL) {
+
+  $popup_content = drupal_render(drupal_get_form('i18n_pc_translation_form'));
+
+  if (!$js) {
+    return $popup_content;
+  }
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  // Forming a modal window.
+  $output = array();
+  $output[] = ctools_modal_command_display(
+    t('Translate panel page'),
+    $popup_content
+  );
+  print ajax_render($output);
+  drupal_exit();
+}
+
+/**
+ * Popup’s callback function for new translation.
+ */
+function i18n_pc_translation_popup_callback_new($pname, $lang, $js = NULL) {
+
+  ctools_include('node.pages', 'node', '');
+  ctools_include('modal');
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+
+
+  $form_state = array(
+    'ajax' => TRUE,
+    'title' => t('Translate panel page to @lang', array('@lang' => $lang)),
+  );
+  $form_state['build_info']['args'] = array(
+    'pname' => $pname,
+    'lang' => $lang,
+  );
+  $form = ctools_modal_form_wrapper('i18n_pc_translation_form', $form_state);
+
+  print ajax_render($form);
+  drupal_exit();
+}
+
+/**
+ * Implement form for panel page translation.
+ */
+function i18n_pc_translation_form($form, &$form_state) {
+  if (isset($form_state['build_info']['args'])) {
+    $pname = isset($form_state['build_info']['args']['pname']) ? $form_state['build_info']['args']['pname'] : NULL;
+    $lang = isset($form_state['build_info']['args']['lang']) ? $form_state['build_info']['args']['lang'] : NULL;
+  }
+
+  $form['title'] = array(
+    '#title' => t('Title'),
+    '#type' => 'textfield',
+    '#description' => t('Page administrative title'),
+  );
+
+  $form['path'] = array(
+    '#title' => t('Redirect to'),
+    '#type' => 'textfield',
+    '#description' => t('Path URI of the translated page'),
+  );
+  $form['url'] = array(
+    '#type' => 'hidden',
+    // The name of the class is the #id of $form['ajax_button'] with "-url"
+    // suffix.
+    '#attributes' => array('class' => array('i18n-pc-ajax-submit-url')),
+    '#value' => url('admin/structure/pages/i18n_pc_redirect/' . $pname . '/' . $lang),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'button',
+    '#value' => t('Save and view clone for translation'),
+    '#attributes' => array('class' => array('ctools-use-modal')),
+    '#id' => 'i18n-pc-ajax-submit'
+  );
+  return $form;
+}
+
+function i18n_pc_translation_redirect($page, $lang) {
+  ctools_include('export');
+  $page_object = ctools_export_load_object('page_manager_pages', 'conditions', array('task' => 'page', 'name' => $page . '_' . $lang));
+
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($lang . '/' . $page_object[$page . '_' . $lang]->path);
+  print ajax_render($commands);
+  exit;
+}
+
+function i18n_pc_get_links_to_panel_page_translation($pname, $lang) {
+
+}
