@@ -1,0 +1,6 @@
+name = Page manager XML sitemap integration
+description = Makes Page manager pages available in xmlsitemap.
+dependencies[] = page_manager
+dependencies[] = xmlsitemap
+package = NAS
+core = 7.x

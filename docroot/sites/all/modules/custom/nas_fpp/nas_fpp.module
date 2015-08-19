@@ -519,7 +519,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
   $vars['links'] = array();
   if ($field_items = field_get_items('fieldable_panels_pane', $fpp, 'field_flyways')) {
     foreach ($field_items as $field_item) {
-      $node = node_load($field_item['target_id']);
+      $node = _i18n_node_load($field_item['target_id']);
       $path = 'node/' . $node->nid;
       $options = array();
       if ($_GET['q'] == $path) {
@@ -529,7 +529,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
     }
   }
   $vars['contextual_links'] = '';
-  if (user_access('edit NAS panes') && ($page_node = node_load(arg(1)))) {
+  if (user_access('edit NAS panes') && ($page_node = _i18n_node_load(arg(1)))) {
     $vars['contextual_links'] = _nas_panes_build_panelizer_contextual_links('uuid:' . $fpp->uuid, $page_node, 'flyway', 'default');
   }
 }
