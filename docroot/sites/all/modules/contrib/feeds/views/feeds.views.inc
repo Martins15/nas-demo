@@ -167,19 +167,21 @@ function feeds_views_data() {
   // Add a relationship for each entity type relating the entity's base table
   // to the feeds_item table whre feeds_item.entity_type = 'entity_type'.
   foreach (entity_get_info() as $entity_type => $info) {
-    $data['feeds_item']['table']['join'][$info['base table']] = array(
-      'left_field' => $info['entity keys']['id'],
-      'field' => 'entity_id',
-      'type' => 'LEFT',
-      'extra' => array(
-        array(
-          'table' => 'feeds_item',
-          'field' => 'entity_type',
-          'value' => $entity_type,
-          'operator' => '=',
+    if (!empty($info['base table'])) {
+      $data['feeds_item']['table']['join'][$info['base table']] = array(
+        'left_field' => $info['entity keys']['id'],
+        'field' => 'entity_id',
+        'type' => 'LEFT',
+        'extra' => array(
+          array(
+            'table' => 'feeds_item',
+            'field' => 'entity_type',
+            'value' => $entity_type,
+            'operator' => '=',
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   /**

@@ -1547,7 +1547,7 @@ function nas_import_modify_bird_related_references($remove_first = FALSE) {
 
   $progress = 0;
   while ($_nids = array_slice($nids, $progress, 50)) {
-    $nodes = node_load_multiple($_nids);
+    $nodes = _i18n_node_load_multiple($_nids);
     // First step is creating mapping of old and new nids.
     foreach ($nodes as $node) {
       $field_related_bird = field_get_items('node', $node, 'field_related_bird');
@@ -1579,7 +1579,7 @@ function _nas_import_update_mag_issue_articles($nids) {
   foreach ($nids as $_data) {
     $nid = $_data->entity_id;
     $d6nid = $_data->guid;
-    $node = node_load($nid);
+    $node = _i18n_node_load($nid);
 
     $hero_image_items = field_get_items('node', $node, 'field_hero_image');
     $editorial_card_image_items = field_get_items('node', $node, 'field_editorial_card_image');

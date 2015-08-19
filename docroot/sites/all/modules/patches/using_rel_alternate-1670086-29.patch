@@ -1,0 +1,207 @@
+diff --git a/xmlsitemap.admin.inc b/xmlsitemap.admin.inc
+index 55d6c2e..c6993bf 100644
+--- a/xmlsitemap.admin.inc
++++ b/xmlsitemap.admin.inc
+@@ -330,6 +330,32 @@ function xmlsitemap_settings_form($form, &$form_state) {
+     '#description' => t('This is the default base URL used for sitemaps and sitemap links.'),
+     '#required' => TRUE,
+   );
++  $form['advanced']['xmlsitemap_multilingual'] = array(
++    '#type' => 'checkbox',
++    '#title' => t('Multilingual sitemap'),
++    '#description' => t('When enabled, <em>rel="alternate" hreflang="x"</em> links are added to each item. More information !link.', array('!link' => l(t('here'), 'https://support.google.com/webmasters/answer/2620865?hl=en'))),
++    '#default_value' => xmlsitemap_var('multilingual'),
++  );
++  $form['advanced']['xmlsitemap_multilingual_only_nodes'] = array(
++    '#type' => 'checkbox',
++    '#title' => t('Only add <em>rel="alternate" hreflang="x"</em> links to translated nodes.'),
++    '#description' => t('When enabled the <em>rel="alternate" hreflang="x"</em>  links only apply to translated nodes. Multilingual sitemap has to be checked. More information !link.', array('!link' => l(t('here'), 'https://support.google.com/webmasters/answer/189077?hl=en'))),
++    '#default_value' => xmlsitemap_var('multilingual_only_nodes'),
++  );
++  $x_default_options = array(
++    'none' => t("Don't use X-Default link"),
++    'default' => t('Use default language'),
++  );
++  foreach(language_list() as $lang_code => $language){
++    $x_default_options[$lang_code] = $language->name;
++  }
++  $form['advanced']['xmlsitemap_multilingual_x_default'] = array(
++    '#type' => 'select',
++    '#title' => t('Add a <em>hreflang="x-default"</em> link'),
++    '#description' => t("The <em>hreflang='x-default'</em> link is used to set the default page when the visitor's language is not available as a site language. Multilingual sitemap has to be checked. More information !link.", array('!link' => l(t('here'), 'http://googlewebmastercentral.blogspot.nl/2013/04/x-default-hreflang-for-international-pages.html'))),
++    '#default_value' => xmlsitemap_var('multilingual_x_default'),
++    '#options' => $x_default_options,
++  );
+   $form['advanced']['xmlsitemap_lastmod_format'] = array(
+     '#type' => 'select',
+     '#title' => t('Last modification date format'),
+diff --git a/xmlsitemap.generate.inc b/xmlsitemap.generate.inc
+index 3072fac..9a5df60 100644
+--- a/xmlsitemap.generate.inc
++++ b/xmlsitemap.generate.inc
+@@ -184,6 +184,7 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer,
+   while ($link = $links->fetchAssoc()) {
+     $link['language'] = $link['language'] != LANGUAGE_NONE ? xmlsitemap_language_load($link['language']) : $url_options['language'];
+     if ($url_options['alias']) {
++      $link['original'] = $link['loc'];
+       $link['loc'] = xmlsitemap_get_path_alias($link['loc'], $link['language']->language);
+     }
+     $link_options = array(
+@@ -208,6 +209,11 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer,
+ 
+     $element = array();
+     $element['loc'] = $link_url;
++
++    if (xmlsitemap_var('multilingual')) {
++      $element['xhtml:link']['attributes'] = xmlsitemap_generate_multilingual($link);
++    }
++
+     if ($link['lastmod']) {
+       $element['lastmod'] = gmdate($lastmod_format, $link['lastmod']);
+       // If the link has a lastmod value, update the changefreq so that links
+@@ -521,3 +527,52 @@ function xmlsitemap_get_rebuildable_link_types() {
+ 
+   return $rebuild_types;
+ }
++
++/**
++ * Generate multilingual attributes.
++ * See https://support.google.com/webmasters/answer/2620865?hl=en.
++ *
++ * @param array $link
++ * @return array
++ */
++function xmlsitemap_generate_multilingual($link) {
++  if (xmlsitemap_var('multilingual_only_nodes')) {
++    if (module_exists('entity_translation')) {
++      $translation = db_select('entity_translation', 'et')->fields('et', array('language'))->condition('et.entity_type', $link['type'])->condition('et.entity_id', $link['id'])->execute()->fetchCol();
++    }
++    else {
++      $tnid = db_select('node', 'n')->fields('n', array('tnid'))->condition('n.nid', $link['id'])->execute()->fetchField();
++      $translation = db_select('node', 'n')->fields('n', array('language'))->condition('n.tnid', $tnid)->execute()->fetchCol();
++    }
++  }
++
++  // Only add hreflang if we have different URL's for different languages.
++  // For that locale-url has to be activated for language negotiation.
++  if (language_negotiation_get('language', 'locale-url')) {
++    foreach (language_list() as $lang) {
++      if (xmlsitemap_var('multilingual_only_nodes')) {
++        if (!$translation) {
++          continue;
++        }
++        if (!$lang->enabled || !in_array($lang->language, $translation)) {
++          continue;
++        }
++      }
++      $xhtml_links[] = array(
++        'rel' => 'alternate',
++        'href' => url($link['original'], array('language' => $lang, 'absolute' => TRUE)),
++        'hreflang' => $lang->language,
++      );
++      $x_default = xmlsitemap_var('multilingual_x_default');
++    }
++    if ($x_default != 'none') {
++      $x_default_lang = $x_default == "default" ? language_default()->language : $x_default;
++      $xhtml_links[] = array(
++        'rel' => 'alternate',
++        'href' => url($link['original'], array('language' => $x_default_lang, 'absolute' => TRUE)),
++        'hreflang' => 'x-default',
++      );
++    }
++  }
++  return isset($xhtml_links) ? $xhtml_links : array();
++}
+diff --git a/xmlsitemap.install b/xmlsitemap.install
+index 169bd96..4340e44 100644
+--- a/xmlsitemap.install
++++ b/xmlsitemap.install
+@@ -544,6 +544,15 @@ function xmlsitemap_update_7203() {
+   _xmlsitemap_sitemap_rehash_all();
+ }
+ 
++/**
++ * Implement hook_update_N().
++ * Change primary keys to id, type, language of xmlsitemap table.
++ */
++function xmlsitemap_update_7204() {
++  db_drop_primary_key('xmlsitemap');
++  db_add_primary_key('xmlsitemap', array('id', 'type', 'language'));
++}
++
+ function _xmlsitemap_sitemap_rehash_all() {
+   // Reload the schema cache and reprocess all sitemap hashes into smids.
+   drupal_load('module', 'xmlsitemap');
+diff --git a/xmlsitemap.module b/xmlsitemap.module
+index 9f4868b..52703ed 100644
+--- a/xmlsitemap.module
++++ b/xmlsitemap.module
+@@ -291,6 +291,9 @@ function xmlsitemap_variables() {
+     'xmlsitemap_batch_limit' => 100,
+     'xmlsitemap_path' => 'xmlsitemap',
+     'xmlsitemap_base_url' => $GLOBALS['base_url'],
++    'xmlsitemap_multilingual' => 0,
++    'xmlsitemap_multilingual_only_nodes' => 0,
++    'xmlsitemap_multilingual_x_default' => 'default',
+     'xmlsitemap_developer_mode' => 0,
+     'xmlsitemap_frontpage_priority' => 1.0,
+     'xmlsitemap_frontpage_changefreq' => XMLSITEMAP_FREQUENCY_DAILY,
+diff --git a/xmlsitemap.xmlsitemap.inc b/xmlsitemap.xmlsitemap.inc
+index 3e23622..5d4fadd 100644
+--- a/xmlsitemap.xmlsitemap.inc
++++ b/xmlsitemap.xmlsitemap.inc
+@@ -83,6 +83,7 @@ class XMLSitemapWriter extends XMLWriter {
+    */
+   public function getRootAttributes() {
+     $attributes['xmlns'] = 'http://www.sitemaps.org/schemas/sitemap/0.9';
++    $attributes['xmlns:xhtml'] = 'http://www.w3.org/1999/xhtml';
+     if (variable_get('xmlsitemap_developer_mode', 0)) {
+       $attributes['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
+       $attributes['xsi:schemaLocation'] = 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd';
+@@ -133,22 +134,36 @@ class XMLSitemapWriter extends XMLWriter {
+    *
+    * @param string $name
+    *   The element name.
+-   * @param string|array $content
++   * @param string|array $data
+    *   The element contents or an array of the elements' sub-elements.
+    *
+    * @todo Missing a return value since XMLWriter::writeElement() has one.
+    */
+-  public function writeElement($name, $content = NULL) {
+-    if (is_array($content)) {
+-      $this->startElement($name);
+-      $xml_content = format_xml_elements($content);
+-      // Remove additional spaces from the output.
+-      $xml_content = str_replace(array(" <", ">\n"), array("<", ">"), $xml_content);
+-      $this->writeRaw($xml_content);
+-      $this->endElement();
++  public function writeElement($name, $data = array()) {
++    if (is_string($data)) {
++      $data = array('content' => $data);
++    }
++
++    if (isset($data['attributes']) || isset($data['content'])) {
++      if (!empty($data['attributes'])) {
++        foreach ($data['attributes'] as $attributes) {
++          $this->startElement($name);
++          foreach ($attributes as $attr_title => $attr_content) {
++            parent::writeAttribute($attr_title, $attr_content);
++          }
++          $this->endElement();
++        }
++      }
++      if (!empty($data['content'])) {
++        parent::writeElement($name, check_plain((string) $data['content']));
++      }
+     }
+     else {
+-      parent::writeElement($name, check_plain((string) $content));
++      $this->startElement($name);
++      foreach ($data as $sub_name => $sub_content) {
++        $this->writeElement($sub_name, $sub_content);
++      }
++      $this->endElement();
+     }
+   }
+ 

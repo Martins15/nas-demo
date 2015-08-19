@@ -237,7 +237,7 @@ function _nas_events_get_events($state = 'all') {
   $items = array();
   foreach ($entities as $entity) {
     $nid = $entity->entity_id;
-    $node = node_load($nid);
+    $node = _i18n_node_load($nid);
     $items[$nid]['nid'] = $node->nid;
     $items[$nid]['title'] = $node->title;
     $items[$nid]['state'] = $state;
@@ -268,7 +268,7 @@ function nas_events_sync_form_submit($form, &$form_state) {
  * Implements hook_date_ical_export_post_render_alter() {
  */
 function nas_events_date_ical_export_post_render_alter(&$rendered_calendar, $view) {
-  $node = node_load($view->args[0]);
+  $node = _i18n_node_load($view->args[0]);
   if ($node) {
     $filename = drupal_html_class($node->title) . '.ics';
     drupal_add_http_header('Content-Disposition', "attachment; filename=\"$filename\"");

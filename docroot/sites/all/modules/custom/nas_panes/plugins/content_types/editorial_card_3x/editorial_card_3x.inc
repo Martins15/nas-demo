@@ -218,7 +218,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           $view->execute();
           $view_results = $view->result;
           foreach ($view_results as $result) {
-            $node = node_load($result->{$options['result_key']});
+            $node = _i18n_node_load($result->{$options['result_key']});
             $node_view = node_view($node, 'editorial_card_3x');
             $content[$key][] = drupal_render($node_view);
           }
@@ -230,7 +230,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           }
           if ($field_items = field_get_items('node', $context->data, $options['field'])) {
             foreach ($field_items as $item) {
-              if (!empty($item['target_id']) && $node = node_load($item['target_id'])) {
+              if (!empty($item['target_id']) && $node = _i18n_node_load($item['target_id'])) {
                 $build = node_view($node, 'editorial_card_3x');
                 $content[$key][] = drupal_render($build);
               }
@@ -264,7 +264,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
   else {
     $teasers = array();
     foreach ($conf['refs'] as $ref) {
-      if (!empty($ref['reference']['entity_id']) && $node = node_load($ref['reference']['entity_id'])) {
+      if (!empty($ref['reference']['entity_id']) && $node = _i18n_node_load($ref['reference']['entity_id'])) {
         $build = node_view($node, 'editorial_card_3x');
         $teaser = drupal_render($build);
       }

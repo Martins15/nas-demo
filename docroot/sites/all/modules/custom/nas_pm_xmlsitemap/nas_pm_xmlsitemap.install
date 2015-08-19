@@ -1,0 +1,12 @@
+<?php
+/**
+ * @file
+ * Contains install and update functions for nas_pm_xmlsitemap.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_pm_xmlsitemap_install() {
+  _nas_pm_xmlsitemap_rebuild();
+}
