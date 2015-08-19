@@ -84,7 +84,8 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
         }
       }
       if (!empty($item['featured_image'])) {
-        $uri = preg_replace("/s3\:\/\//", '', $item['featured_image']['uri']);
+        $pattern = '/' . preg_quote(NAS_AUDUBON_WORKS_S3_IMAGES_URL, '/') . '/';
+        $uri = preg_replace($pattern, '', $item['featured_image']);
         $image = nas_import_add_existing_file($uri, 'image', 1, FILE_STATUS_PERMANENT, 0, NAS_AUDUBON_WORKS_S3_IMAGES_URL);
         $entity->field_image[LANGUAGE_NONE][0]['fid'] = $image->fid;
       }
