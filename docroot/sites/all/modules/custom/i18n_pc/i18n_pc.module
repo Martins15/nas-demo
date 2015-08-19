@@ -115,49 +115,6 @@ function i18n_pc_contextual_link(
 
   }
 
-//  $subtask = $cur_page['subtask']['name'];
-//
-//  if (isset($handler->conf['access']['plugins'])) {
-//    foreach ($handler->conf['access']['plugins'] as $plid => $access_plugin) {
-//      if ($access_plugin['name'] != 'site_language') {
-//        continue;
-//      }
-//      foreach ($languages as $langcode => $lang_obj) {
-//        if ($access_plugin['settings']['language'][$langcode] === 0) {
-//          $links[] = array(
-//            'href' => 'admin/structure/pages/i18n_pc/' . $subtask . '/' . $langcode . '/1',
-//            'title' => t(
-//              '@name translation',
-//              array('@name' => $lang_obj->name)
-//            ),
-//            'attributes' => array(
-//              'class' => array(
-//                'ctools-use-modal',
-//                'ctools-modal-first-popup-style'
-//              )
-//            ),
-//          );
-//        }
-//      }
-//    }
-//  }
-
-  ctools_include('modal');
-  ctools_include('ajax');
-  ctools_modal_add_js();
-  drupal_add_library('system', 'drupal.ajax');
-
-  $links[] = array(
-    'href' => 'admin/structure/pages/i18n_pc/%ctools_js',
-    'title' => t('---Spanish translation'),
-    'attributes' => array(
-      'class' => array(
-        'ctools-use-modal',
-        'ctools-modal-first-popup-style'
-      )
-    ),
-  );
-
   $all_links = array_merge(
     $links,
     ctools_task_handler_default_contextual_link(
@@ -236,12 +193,21 @@ function i18n_pc_translation_popup_callback_new($pname, $lang, $js = NULL) {
 
   $form_state = array(
     'ajax' => TRUE,
-    'title' => t('Translate panel page to @lang language', array('@lang' => $lang)),
+    'title' => t(
+      'Translate panel page to @lang language',
+      array('@lang' => $lang)
+    ),
   );
   $form_state['build_info']['args'] = array(
     'pname' => $pname,
     'lang' => $lang,
   );
+  if (!$js) {
+    print drupal_render(
+      drupal_build_form('i18n_pc_translation_form', $form_state)
+    );
+    drupal_exit();
+  }
   $form = ctools_modal_form_wrapper('i18n_pc_translation_form', $form_state);
 
   print ajax_render($form);
@@ -290,7 +256,6 @@ function i18n_pc_translation_redirect($page, $lang) {
   $languages = language_list('language');
   $redirect_language = $languages[$lang];
   ctools_include('export');
-  $page_object = ctools_export_load_object('page_manager_pages', 'conditions', array('task' => 'page', 'name' => $page));
 
   $page_cache = page_manager_get_page_cache('page-' . $page);
   $l_page = page_manager_page_load($page);
@@ -307,7 +272,19 @@ function i18n_pc_translation_redirect($page, $lang) {
 
   $l_page->language = $lang;
   $l_page->tpid = $page_cache->subtask['subtask']->pid;
-  $export = page_manager_page_export($l_page, $page_cache->handlers);
+  // Make redirect handler for cloned page.
+  $prepared_language = array();
+  foreach ($languages as $h_lang => $h_language) {
+    $prepared_language[$h_lang] = ($h_lang == $l_page->language) ? 0 : $h_lang;
+  }
+  $redirect_handler = i18n_pc_init_redirect_handler(
+    $l_page->name,
+    $page_cache->subtask['admin path'],
+    $l_page->name,
+    $prepared_language
+  );
+  $prepared_handlers = array_merge($page_cache->handlers, $redirect_handler);
+  $export = page_manager_page_export($l_page, $prepared_handlers);
   ob_start();
   eval($export);
   ob_end_clean();
@@ -324,16 +301,82 @@ function i18n_pc_translation_redirect($page, $lang) {
   ctools_include('ajax');
   ctools_add_js('ajax-responder');
   $commands = array();
-  $redirect_url = ($redirect_language->prefix == '') ? $l_page->path : $redirect_language->prefix . '/' . $l_page->path;
+  // $redirect_url = ($redirect_language->prefix == '') ? $l_page->path : $redirect_language->prefix . '/' . $l_page->path;
+  $redirect_url = $l_page->path;
   $commands[] = ctools_ajax_command_redirect($redirect_url, 0, array('language' => $redirect_language));
   print ajax_render($commands);
   exit;
 }
 
-function i18n_pc_get_links_to_panel_page_translation($pname, $lang) {
+/**
+ * Init new handler.
+ *
+ * @param $subtask
+ *   Subtask name to be attached to.
+ * @param $destination
+ *   Redirect destination in case of language detected.
+ * @param $name
+ *   Unique name of the handler.
+ * @param array $language
+ *   Language array with key = key_name for TRUE.
+ *
+ * @return \stdClass
+ *   Object of the handler to be saved.
+ */
+function i18n_pc_init_redirect_handler($subtask, $destination, $name = '', $language = array()) {
 
-}
+// For redirecting to destination if language if English or Default.
+  // en is default here.
+//  $language = array(
+//    'default' => 'default',
+//    'en' => 'en',
+//    'es' => 0,
+//  );
 
-function i18n_pc_get_links_to_panel_page_translation_submit($form, &$form_state) {
-  $i = 0;
+  // Obtain new unique name in case of already has one in database.
+  if ($name == '') {
+    $name = truncate_utf8($subtask, 46);
+  }
+
+  // Check if name is already within db, make it unique.
+  $random_name = $name;
+  if ($name != $subtask) {
+    while (db_select('page_manager_handlers', 'p')
+      ->fields('p', array('did'))
+      ->condition('name', $random_name)
+      ->execute()
+      ->fetchCol()) {
+      $random_name = $name . drupal_random_key();
+    }
+  }
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = $random_name;
+  $handler->task = 'page';
+  $handler->subtask = $subtask;
+  $handler->handler = 'http_response';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'HTTP response code',
+    'contexts' => array(),
+    'relationships' => array(),
+    'code' => '301',
+    'destination' => $destination,
+    'name' => 'http_response_code',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'site_language',
+          'settings' => array(
+            'language' => $language,
+          ),
+          'not' => FALSE,
+        ),
+      ),
+    ),
+  );
+  $output = array($handler->name => $handler);
+  return $output;
 }
