@@ -2762,3 +2762,23 @@ function nas_master_update_7195() {
     variable_set('language_content_type_' . $type, '2');
   }
 }
+
+/**
+ * Enable modules.
+ */
+function nas_master_update_7196() {
+  $modules = array('nas_pm_xmlsitemap', 'hreflang');
+  module_enable($modules);
+  variable_set('xmlsitemap_multilingual', 1);
+}
+
+/**
+ * Enable taxonomy translation (localization variant).
+ */
+function nas_master_update_7197() {
+  module_enable(array('i18n_taxonomy'));
+  foreach (taxonomy_get_vocabularies() as $vocabulary) {
+    $vocabulary->i18n_mode = I18N_MODE_LOCALIZE;
+    taxonomy_vocabulary_save($vocabulary);
+  }
+}
