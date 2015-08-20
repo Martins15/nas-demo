@@ -2793,3 +2793,10 @@ function nas_master_update_7198() {
     menu_save($menu);
   }
 }
+
+/**
+ * Rebuild theme registry to find new theme function in "calendar_download" pane.
+ */
+function nas_master_update_7199() {
+  drupal_theme_rebuild();
+}

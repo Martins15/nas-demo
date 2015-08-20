@@ -915,14 +915,6 @@ function nas_panes_theme() {
       'template' => 'events-reg-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
     ),
-    'calendar_download' => array(
-      'variables' => array(
-        'title' => NULL,
-        'download_link' => '',
-      ),
-      'template' => 'calendar-download',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download',
-    ),
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',

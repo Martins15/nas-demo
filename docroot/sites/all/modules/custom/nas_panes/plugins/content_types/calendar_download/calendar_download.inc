@@ -13,6 +13,7 @@ $plugin = array(
   'edit form' => 'calendar_download_form',
   'render callback' => 'calendar_download_render',
   'required context' => new ctools_context_required(t('Node'), 'node'),
+  'hook theme' => 'calendar_download_theme',
 );
 
 /**
@@ -54,18 +55,36 @@ function calendar_download_render($subtype, $conf, $args, $contexts) {
     $node = $contexts->data;
   }
   $block = new stdClass();
+  $download_text = theme('calendar_download_text', array(
+    'download_text' => $conf['calendar_download_text'],
+  ));
   $block->content = theme('calendar_download', array(
     'title' => $conf['override_title_text'],
-    'download_link' => l($conf['calendar_download_text'], 'node/' . $node->nid . '/calendar', array(
-      'attributes' => array(
-        'class' => array(
-          'button',
-          'tomato',
-          'large',
-        ),
-      ),
+    'download_link' => l($download_text, 'node/' . $node->nid . '/calendar', array(
+      'html' => TRUE,
     )),
   ));
 
   return $block;
+}
+
+/**
+ * Delegated implementation of hook_theme().
+ */
+function calendar_download_theme(&$theme, $plugin) {
+  $theme['calendar_download'] = array(
+    'variables' => array(
+      'title' => NULL,
+      'download_link' => '',
+    ),
+    'template' => 'calendar-download',
+    'path' => $plugin['path'],
+  );
+  $theme['calendar_download_text'] = array(
+    'variables' => array(
+      'download_text' => '',
+    ),
+    'template' => 'calendar-download-text',
+    'path' => $plugin['path'],
+  );
 }
