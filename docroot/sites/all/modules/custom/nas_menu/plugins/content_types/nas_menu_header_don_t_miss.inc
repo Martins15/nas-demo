@@ -22,7 +22,7 @@ $plugin = array(
  * Render function.
  */
 function nas_menu_pane_don_t_miss_render() {
-  $menu_tree = menu_tree_all_data(NAS_MENU_HEADER_DON_T_MISS_MENU, 1);
+  $menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_HEADER_DON_T_MISS_MENU));
 
   $items = array();
 
@@ -33,7 +33,7 @@ function nas_menu_pane_don_t_miss_render() {
     $item = array();
     $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
     $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
-    $title = filter_xss($menu_item['link']['link_title'], array('i', 'span'));
+    $title = filter_xss($menu_item['link']['title'], array('i', 'span'));
     $path = $menu_item['link']['link_path'];
     $attributes = $a_class ? drupal_attributes(array('class' => $a_class)) : '';
     $item['link'] = '<a href="' . check_plain(url($path)) . '"' . $attributes . '>' .  $title . '</a>';

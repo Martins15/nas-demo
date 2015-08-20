@@ -21,7 +21,7 @@ $plugin = array(
  * Render function.
  */
 function nas_menu_nas_menu_header_small_content_type_render() {
-  $menu_tree = menu_tree_all_data(NAS_MENU_HEADER_SMALL_MENU, 2);
+  $menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_HEADER_SMALL_MENU));
 
   $block = new stdClass();
 
@@ -62,7 +62,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
           'li_class' => implode(' ', $child_classes['li_class']),
           'a_class' => implode(' ', $child_classes['a_class']),
           'url' => url($sub_menu_item['link']['link_path']),
-          'title' => check_plain($sub_menu_item['link']['link_title']),
+          'title' => check_plain($sub_menu_item['link']['title']),
         );
       }
     }
@@ -72,7 +72,7 @@ function nas_menu_nas_menu_header_small_content_type_render() {
       $activated = TRUE;
     }
     $item['url'] = url($menu_item['link']['link_path']);
-    $item['title'] = $menu_item['link']['link_title'];
+    $item['title'] = $menu_item['link']['title'];
     $item['a_class'] = implode(' ', $classes['a_class']);
     $item['li_class'] = implode(' ', $classes['li_class']);
 
