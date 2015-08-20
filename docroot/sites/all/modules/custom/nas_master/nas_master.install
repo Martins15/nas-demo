@@ -2782,3 +2782,14 @@ function nas_master_update_7197() {
     taxonomy_vocabulary_save($vocabulary);
   }
 }
+
+/**
+ * Enable menu translation.
+ */
+function nas_master_update_7198() {
+  module_enable(array('i18n_menu'));
+  foreach (menu_load_all() as $menu) {
+    $menu['i18n_mode'] = I18N_MODE_MULTIPLE;
+    menu_save($menu);
+  }
+}
