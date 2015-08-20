@@ -52,7 +52,11 @@ function i18n_pc_contextual_link(
   if ($tpid != 0 && $tpid != $pid) {
     // Current page has source page defined.
     ctools_include('export');
-    $task = ctools_export_load_object('page_manager_pages', 'conditions', array('pid' => $tpid));
+    $task = ctools_export_load_object(
+      'page_manager_pages',
+      'conditions',
+      array('pid' => $tpid)
+    );
     $source_page = array_shift($task);
     $source_page_language = $default_language;
     if ($source_page->language != LANGUAGE_NONE) {
@@ -72,7 +76,11 @@ function i18n_pc_contextual_link(
   if ($tpid == 0 || $tpid == $pid) {
     // Current page is source or untranslated.
     ctools_include('export');
-    $tasks = ctools_export_load_object('page_manager_pages', 'conditions', array('tpid' => $pid));
+    $tasks = ctools_export_load_object(
+      'page_manager_pages',
+      'conditions',
+      array('tpid' => $pid)
+    );
     if (!empty($tasks)) {
       // Page has translated pages.
       foreach ($tasks as $l_task) {
@@ -190,7 +198,6 @@ function i18n_pc_translation_popup_callback_new($pname, $lang, $js = NULL) {
   ctools_include('ajax');
   ctools_add_js('ajax-responder');
 
-
   $form_state = array(
     'ajax' => TRUE,
     'title' => t(
@@ -239,7 +246,9 @@ function i18n_pc_translation_form($form, &$form_state) {
     // The name of the class is the #id of $form['ajax_button'] with "-url"
     // suffix.
     '#attributes' => array('class' => array('i18n-pc-ajax-submit-url')),
-    '#value' => url('admin/structure/pages/i18n_pc_redirect/' . $pname . '/' . $lang),
+    '#value' => url(
+      'admin/structure/pages/i18n_pc_redirect/' . $pname . '/' . $lang
+    ),
   );
 
   $form['submit'] = array(
@@ -271,7 +280,9 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   if ($_POST['path'] != '') {
     $cloned_page->path = check_url($_POST['path']);
   }
-  $cloned_page->name = $source_page->subtask['name'] . '_' . $lang . '_' . drupal_random_key(3);
+  $cloned_page->name = $source_page->subtask['name'] . '_' . $lang . '_' . drupal_random_key(
+      3
+    );
 
   $cloned_page->language = $lang;
   $cloned_page->tpid = $source_page->subtask['subtask']->pid;
@@ -285,7 +296,11 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   );
 
   $source_handlers = $source_page->handlers;
-  i18n_pc_init_redirect_handlers($source_handlers, $cloned_redirect_handler, $lang);
+  i18n_pc_init_redirect_handlers(
+    $source_handlers,
+    $cloned_redirect_handler,
+    $lang
+  );
 
   // $prepared_handlers = array_merge($source_page->handlers, $cloned_redirect_handler);
   $export = page_manager_page_export($cloned_page, $source_handlers);
@@ -309,7 +324,11 @@ function i18n_pc_translation_redirect($page_name, $lang) {
     $source_page->subtask['name'],
     $lang
   );
-  i18n_pc_add_redirect_handlers($source_page, $source_redirect_handler, $source_lang);
+  i18n_pc_add_redirect_handlers(
+    $source_page,
+    $source_redirect_handler,
+    $source_lang
+  );
   page_manager_set_page_cache($source_page);
 
   page_manager_save_page_cache($source_page);
@@ -320,7 +339,11 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   $commands = array();
   // $redirect_url = ($redirect_language->prefix == '') ? $cloned_page->path : $redirect_language->prefix . '/' . $cloned_page->path;
   $redirect_url = $cloned_page->path;
-  $commands[] = ctools_ajax_command_redirect($redirect_url, 0, array('language' => $redirect_language));
+  $commands[] = ctools_ajax_command_redirect(
+    $redirect_url,
+    0,
+    array('language' => $redirect_language)
+  );
   print ajax_render($commands);
   exit;
 }
@@ -340,7 +363,12 @@ function i18n_pc_translation_redirect($page_name, $lang) {
  * @return \stdClass
  *   Object of the handler to be saved.
  */
-function i18n_pc_init_redirect_handler($subtask, $destination, $name = '', $for_lang = 'default') {
+function i18n_pc_init_redirect_handler(
+  $subtask,
+  $destination,
+  $name = '',
+  $for_lang = 'default'
+) {
 
   // Obtain new unique name in case of already has one in database.
   if ($name == '') {
@@ -396,7 +424,10 @@ function i18n_pc_init_redirect_handler($subtask, $destination, $name = '', $for_
  * @return array
  *   Array of site_language access plugin.
  */
-function i18n_pc_init_access_language_plugin($for_lang = LANGUAGE_NONE, &$plugin = array()) {
+function i18n_pc_init_access_language_plugin(
+  $for_lang = LANGUAGE_NONE,
+  &$plugin = array()
+) {
 
   $default_language = variable_get('language_default');
   $languages = language_list('language');
@@ -422,7 +453,21 @@ function i18n_pc_init_access_language_plugin($for_lang = LANGUAGE_NONE, &$plugin
   return $plugin;
 }
 
-function i18n_pc_init_redirect_handlers(&$handlers, $redirect_handler, $for_lang = LANGUAGE_NONE) {
+/**
+ * Adding handler to handlers array.
+ *
+ * @param array $handlers
+ *   Handlers array for page been created.
+ * @param array $redirect_handler
+ *   Array($NAME => handler_object) of the handler been added to handlers array.
+ * @param string $for_lang
+ *   Language for page to be applied to.
+ */
+function i18n_pc_init_redirect_handlers(
+  &$handlers,
+  $redirect_handler,
+  $for_lang = LANGUAGE_NONE
+) {
   $has_lang_plugin = FALSE;
   $has_redirect_handler = FALSE;
   foreach ($handlers as $handler_name => $handler_object) {
@@ -439,11 +484,16 @@ function i18n_pc_init_redirect_handlers(&$handlers, $redirect_handler, $for_lang
     foreach ($handler->conf['access']['plugins'] as $p_id => $plugin) {
       if ($plugin['name'] == 'site_language') {
         $has_lang_plugin = TRUE;
-        i18n_pc_init_access_language_plugin($for_lang, $handler->conf['access']['plugins'][$p_id]);
+        i18n_pc_init_access_language_plugin(
+          $for_lang,
+          $handler->conf['access']['plugins'][$p_id]
+        );
       }
     }
     if (!$has_lang_plugin) {
-      $handler->conf['access']['plugins'][] = i18n_pc_init_access_language_plugin($for_lang);
+      $handler->conf['access']['plugins'][] = i18n_pc_init_access_language_plugin(
+        $for_lang
+      );
     }
   }
   if (!$has_redirect_handler) {
@@ -451,7 +501,21 @@ function i18n_pc_init_redirect_handlers(&$handlers, $redirect_handler, $for_lang
   }
 }
 
-function i18n_pc_add_redirect_handlers(&$page, $redirect_handler, $for_lang = LANGUAGE_NONE) {
+/**
+ * Adding redirect handler to already stored page in database.
+ *
+ * @param object $page
+ *   Page object from page_manager_get_page_cache().
+ * @param array $redirect_handler
+ *   Array($NAME => handler_object) of the handler to add to page.
+ * @param string $for_lang
+ *   Language for page to be applied to.
+ */
+function i18n_pc_add_redirect_handlers(
+  &$page,
+  $redirect_handler,
+  $for_lang = LANGUAGE_NONE
+) {
   $handlers = &$page->handlers;
   $has_lang_plugin = FALSE;
   $has_redirect_handler = FALSE;
@@ -469,11 +533,16 @@ function i18n_pc_add_redirect_handlers(&$page, $redirect_handler, $for_lang = LA
     foreach ($handler->conf['access']['plugins'] as $p_id => $plugin) {
       if ($plugin['name'] == 'site_language') {
         $has_lang_plugin = TRUE;
-        i18n_pc_init_access_language_plugin($for_lang, $handler->conf['access']['plugins'][$p_id]);
+        i18n_pc_init_access_language_plugin(
+          $for_lang,
+          $handler->conf['access']['plugins'][$p_id]
+        );
       }
     }
     if (!$has_lang_plugin) {
-      $handler->conf['access']['plugins'][] = i18n_pc_init_access_language_plugin($for_lang);
+      $handler->conf['access']['plugins'][] = i18n_pc_init_access_language_plugin(
+        $for_lang
+      );
     }
   }
   if (!$has_redirect_handler) {
