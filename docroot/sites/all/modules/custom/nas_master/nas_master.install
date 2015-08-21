@@ -2807,3 +2807,12 @@ function nas_master_update_7199() {
 function nas_master_update_7200() {
   cache_clear_all();
 }
+
+
+/**
+ * Disable Welcome bean.
+ */
+function nas_master_update_7201() {
+  module_disable(array('nas_welcome_to_audubon'));
+}
+
