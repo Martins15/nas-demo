@@ -6,7 +6,6 @@
  */
 
 define('NAS_AUDUBON_WORKS_EVENTS_URL', 'http://worksdev.prod.acquia-sites.com/');
-define('NAS_AUDUBON_WORKS_S3_IMAGES_URL', 'http://nasworks-dev.s3.amazonaws.com/');
 define('NAS_AUDUBON_WORKS_START_TIMESTAMP', 1426152117);
 
 /**
@@ -84,10 +83,7 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
         }
       }
       if (!empty($item['featured_image'])) {
-        $images_url = variable_get('nas_events_works_images_url', NAS_AUDUBON_WORKS_S3_IMAGES_URL);
-        $pattern = '/' . preg_quote($images_url, '/') . '/';
-        $uri = preg_replace($pattern, '', $item['featured_image']);
-        $image = nas_import_add_existing_file($uri, 'image', 1, FILE_STATUS_PERMANENT, 0, $images_url);
+        $image = nas_events_add_existing_file($item['featured_image'], 'image', 1, FILE_STATUS_PERMANENT, 0);
         $entity->field_image[LANGUAGE_NONE][0]['fid'] = $image->fid;
       }
       break;
@@ -199,12 +195,6 @@ function nas_events_sync_form($form, &$form_state) {
     '#default_value' => variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL),
     '#element_validate' => array('elements_validate_url'),
   );
-  $form['nas_events_works_images_url'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Works images website'),
-    '#default_value' => variable_get('nas_events_works_images_url', NAS_AUDUBON_WORKS_S3_IMAGES_URL),
-    '#element_validate' => array('elements_validate_url'),
-  );
   $form['nas_events_last_time_processed'] = array(
     '#type' => 'textfield',
     '#title' => t('Start timestamp'),
@@ -235,13 +225,12 @@ function nas_events_sync_form($form, &$form_state) {
  * Submit save callback for nas/events/sync page.
  */
 function nas_events_sync_form_submit_save($form, &$form_state) {
-  foreach (array('nas_events_works_url', 'nas_events_works_images_url') as $key) {
-    $url = $form_state['values'][$key];
-    if (substr($url, -1, 1) !== '/') {
-      $url .= '/';
-    }
-    variable_set($key, $url);
+  $url = $form_state['values']['nas_events_works_url'];
+  if (substr($url, -1, 1) !== '/') {
+    $url .= '/';
   }
+  variable_set('nas_events_works_url', $url);
+
   variable_set('nas_events_last_time_processed', $form_state['values']['nas_events_last_time_processed']);
 }
 
@@ -330,4 +319,45 @@ function nas_events_feeds_after_parse(FeedsSource $source, FeedsParserResult $re
       $item['uuid'] = $source->config['FeedsHTTPFetcher']['uuid'];
     }
   }
+}
+
+/**
+ * Custom function for saving files, modified nas_import_add_existing_file().
+ *
+ * @see nas_import_add_existing_file().
+ */
+function nas_events_add_existing_file($url, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0) {
+  $remote_filepath = parse_url($url, PHP_URL_PATH);
+  $cached_filepath = variable_get('nas_cached_files_folder', NAS_FILES_CACHE_DIR) . $remote_filepath;
+  if (file_exists($cached_filepath)) {
+    $filepath = file_unmanaged_copy($cached_filepath, NULL, FILE_EXISTS_REPLACE);
+  }
+  else {
+    $filepath = _nas_import_system_retrieve_file($url, NULL, FALSE, FILE_EXISTS_REPLACE, $source_nid);
+    if (!$filepath) {
+      return FALSE;
+    }
+    $cached_directory = drupal_dirname($cached_filepath);
+    file_prepare_directory($cached_directory, FILE_CREATE_DIRECTORY);
+    file_unmanaged_copy($filepath, $cached_filepath);
+  }
+
+  $files = file_load_multiple(array(), array('uri' => $filepath));
+  $file = reset($files);
+
+  if (!$file) {
+    $file = (object) array(
+      'filename' => basename($filepath),
+      'filepath' => $filepath,
+      'filemime' => file_get_mimetype($filepath),
+      'filesize' => filesize($filepath),
+      'uid' => $uid,
+      'status' => $status,
+      'timestamp' => REQUEST_TIME,
+      'uri' => $filepath,
+      'type' => $type,
+    );
+    drupal_write_record('file_managed', $file);
+  }
+  return $file;
 }
