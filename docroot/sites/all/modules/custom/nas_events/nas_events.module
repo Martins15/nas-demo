@@ -324,7 +324,7 @@ function nas_events_feeds_after_parse(FeedsSource $source, FeedsParserResult $re
 /**
  * Custom function for saving files, modified nas_import_add_existing_file().
  *
- * @see nas_import_add_existing_file().
+ * @see nas_import_add_existing_file()
  */
 function nas_events_add_existing_file($url, $type, $uid = 1, $status = FILE_STATUS_PERMANENT, $source_nid = 0) {
   $remote_filepath = parse_url($url, PHP_URL_PATH);
