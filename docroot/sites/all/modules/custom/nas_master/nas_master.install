@@ -2800,3 +2800,10 @@ function nas_master_update_7198() {
 function nas_master_update_7199() {
   drupal_theme_rebuild();
 }
+
+/**
+ * Clear cache to apply modifications to "events_social_block" pane.
+ */
+function nas_master_update_7200() {
+  cache_clear_all();
+}
