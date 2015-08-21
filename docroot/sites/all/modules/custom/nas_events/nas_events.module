@@ -5,7 +5,7 @@
  * Handling Events with Audubon Works.
  */
 
-define('NAS_AUDUBON_WORKS_EVENTS_URL', 'http://worksdev.prod.acquia-sites.com/event/');
+define('NAS_AUDUBON_WORKS_EVENTS_URL', 'http://worksdev.prod.acquia-sites.com/');
 define('NAS_AUDUBON_WORKS_S3_IMAGES_URL', 'http://nasworks-dev.s3.amazonaws.com/');
 define('NAS_AUDUBON_WORKS_START_TIMESTAMP', 1426152117);
 
@@ -29,7 +29,7 @@ function nas_events_update_nodes($job = NULL) {
   foreach ($uuids as $uuid => $timestamp) {
     $config = array(
       'FeedsHTTPFetcher' => array(
-        'source' => NAS_AUDUBON_WORKS_EVENTS_URL . $uuid . '?' . $_SERVER['REQUEST_TIME'],
+        'source' => variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . 'event/' . $uuid . '?' . $_SERVER['REQUEST_TIME'],
         'uuid' => $uuid,
       ));
     $source = feeds_source('events_import');
@@ -38,7 +38,7 @@ function nas_events_update_nodes($job = NULL) {
     $source->import();
   }
   watchdog('events', "Last time Events were synced at '%time'", array('%time' => date('Y-m-d H:i:s', $timestamp)));
-  variable_set('nas_events_last_time_processed', $_SERVER['REQUEST_TIME']);
+  variable_set('nas_events_last_time_processed', REQUEST_TIME);
 }
 
 /**
@@ -50,7 +50,7 @@ function nas_events_get_list($timestamp, $page = 1, $site = 'National') {
     'site' => $site,
     'page' => $page,
   );
-  $uri = url(NAS_AUDUBON_WORKS_EVENTS_URL . 'changes', array('query' => $params, 'external' => TRUE));
+  $uri = url(variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . 'event/changes', array('query' => $params, 'external' => TRUE));
   $result = drupal_http_request($uri);
   $data = drupal_json_decode($result->data);
 
@@ -84,9 +84,10 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
         }
       }
       if (!empty($item['featured_image'])) {
-        $pattern = '/' . preg_quote(NAS_AUDUBON_WORKS_S3_IMAGES_URL, '/') . '/';
+        $images_url = variable_get('nas_events_works_images_url', NAS_AUDUBON_WORKS_S3_IMAGES_URL);
+        $pattern = '/' . preg_quote($images_url, '/') . '/';
         $uri = preg_replace($pattern, '', $item['featured_image']);
-        $image = nas_import_add_existing_file($uri, 'image', 1, FILE_STATUS_PERMANENT, 0, NAS_AUDUBON_WORKS_S3_IMAGES_URL);
+        $image = nas_import_add_existing_file($uri, 'image', 1, FILE_STATUS_PERMANENT, 0, $images_url);
         $entity->field_image[LANGUAGE_NONE][0]['fid'] = $image->fid;
       }
       break;
@@ -192,10 +193,47 @@ function nas_events_config_form() {
  * Callback form for nas/events/sync page.
  */
 function nas_events_sync_form($form, &$form_state) {
+  $form['nas_events_works_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Works website'),
+    '#default_value' => variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL),
+    '#element_validate' => array('elements_validate_url'),
+  );
+  $form['nas_events_works_images_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Works images website'),
+    '#default_value' => variable_get('nas_events_works_images_url', NAS_AUDUBON_WORKS_S3_IMAGES_URL),
+    '#element_validate' => array('elements_validate_url'),
+  );
+  $form['nas_events_last_time_processed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Start timestamp'),
+    '#description' => t('The very initial start timestamp is 1426152117'),
+    '#default_value' => variable_get('nas_events_last_time_processed', NAS_AUDUBON_WORKS_START_TIMESTAMP),
+    '#element_validate' => array('element_validate_integer_positive'),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Sync',
   );
+  return $form;
+}
+
+/**
+ * Submit form for nas/events/sync page.
+ */
+function nas_events_sync_form_submit($form, &$form_state) {
+  foreach (array('nas_events_works_url', 'nas_events_works_images_url') as $key) {
+    $url = $form_state['values'][$key];
+    if (substr($url, -1, 1) !== '/') {
+      $url .= '/';
+    }
+    variable_set($key, $url);
+  }
+  variable_set('nas_events_last_time_processed', $form_state['values']['nas_events_last_time_processed']);
+
+  nas_events_update_nodes();
+  drupal_set_message('Synchronization has been completed.');
   return $form;
 }
 
@@ -254,15 +292,6 @@ function _nas_events_get_events($state = 'all') {
     }
   }
   return $items;
-}
-
-/**
- * Submit form for nas/events/sync page.
- */
-function nas_events_sync_form_submit($form, &$form_state) {
-  nas_events_update_nodes();
-  drupal_set_message('Synchronization has been completed.');
-  return $form;
 }
 
 /**
