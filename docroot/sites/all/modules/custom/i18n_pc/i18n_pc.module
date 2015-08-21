@@ -7,8 +7,6 @@
 
 /**
  * Implements hook_ctools_plugin_post_alter().
- *
- * Remove "Edit Panel" contextual link form all panels pages.
  */
 function i18n_pc_ctools_plugin_post_alter(&$plugin, &$info) {
 
@@ -17,6 +15,9 @@ function i18n_pc_ctools_plugin_post_alter(&$plugin, &$info) {
   }
 }
 
+/**
+ * Callback for changing panel page contextual links.
+ */
 function i18n_pc_contextual_link(
   $handler = NULL,
   $plugin = NULL,
@@ -260,6 +261,14 @@ function i18n_pc_translation_form($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Clone source page, prepare handlers and redirect to new page.
+ *
+ * @param string $page_name
+ *   Page name - 'name' from pages table.
+ * @param string $lang
+ *   Language cloning to.
+ */
 function i18n_pc_translation_redirect($page_name, $lang) {
 
   $languages = language_list('language');
@@ -302,7 +311,6 @@ function i18n_pc_translation_redirect($page_name, $lang) {
     $lang
   );
 
-  // $prepared_handlers = array_merge($source_page->handlers, $cloned_redirect_handler);
   $export = page_manager_page_export($cloned_page, $source_handlers);
   ob_start();
   eval($export);
@@ -333,7 +341,6 @@ function i18n_pc_translation_redirect($page_name, $lang) {
 
   page_manager_save_page_cache($source_page);
 
-  // @todo Clone source panel $page and make it as translation to $lang.
   ctools_include('ajax');
   ctools_add_js('ajax-responder');
   $commands = array();
@@ -454,7 +461,7 @@ function i18n_pc_init_access_language_plugin(
 }
 
 /**
- * Adding handler to handlers array.
+ * Adding handler to handlers array. This works for new pages only.
  *
  * @param array $handlers
  *   Handlers array for page been created.
