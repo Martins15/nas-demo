@@ -2809,7 +2809,7 @@ function nas_master_update_7200() {
 }
 
 /**
- * Delete no longed used variable.
+ * Delete no longer used variable.
  */
 function nas_master_update_7201() {
   variable_del('nas_events_works_images_url');
