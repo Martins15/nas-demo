@@ -87,8 +87,8 @@ function nas_footer_pane_custom_pane_edit_form_submit(&$form, &$form_state) {
  */
 function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
-  $footer_menu_tree = menu_tree_all_data(NAS_MENU_FOOTER_MENU, 2);
-  $footer_copyright_menu_tree = menu_tree_all_data(NAS_MENU_FOOTER_COPYRIGHT_MENU, 2);
+  $footer_menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_FOOTER_MENU));
+  $footer_copyright_menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_FOOTER_COPYRIGHT_MENU));
   foreach ($footer_copyright_menu_tree as $key => $value) {
     if ($value['link']['hidden'] == TRUE) {
       unset($footer_copyright_menu_tree[$key]);
