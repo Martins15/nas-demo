@@ -91,7 +91,6 @@ function _i18n_translation_node_get_translations($tnid) {
       $nid = $nid ? $nid : $tnid;
 
       $translations[$tnid] = translation_node_get_translations($nid);
-      return $translations[$tnid];
     }
     return $translations[$tnid];
   }

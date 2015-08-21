@@ -343,15 +343,6 @@ function nas_panes_theme() {
       'template' => 'nas-panes-social-news-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block',
     ),
-    'events_social_block' => array(
-      'variables' => array(
-        'title' => '',
-        'page_link' => '',
-        'caption' => '',
-      ),
-      'template' => 'events_social_block',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block',
-    ),
     'nas_panes_press_contact' => array(
       'variables' => array(
         'title' => '',
@@ -915,14 +906,6 @@ function nas_panes_theme() {
       'template' => 'events-reg-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
     ),
-    'calendar_download' => array(
-      'variables' => array(
-        'title' => NULL,
-        'download_link' => '',
-      ),
-      'template' => 'calendar-download',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download',
-    ),
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
@@ -1048,7 +1031,7 @@ function nas_panes_get_blue_text_link($node) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
     $term = taxonomy_term_load($custom_section_item[0]['tid']);
-    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
+    return array(check_plain(i18n_taxonomy_term_name($term)), url('taxonomy/term/' . $term->tid));
   }
 
   $menu_section_item = field_get_items('node', $node, 'field_menu_section');
@@ -1075,7 +1058,7 @@ function nas_panes_get_blue_text_link($node) {
         break;
       }
     }
-    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
+    return array(check_plain(i18n_taxonomy_term_name($term)), url('taxonomy/term/' . $term->tid));
   }
   return array(NULL, NULL);
 }
@@ -2430,34 +2413,39 @@ function theme_x_image_anchor($variables) {
 /**
  * Get information about site by url params.
  *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
  * @return array|void
  *   Site details.
  */
-function nas_panes_get_site_info() {
+function nas_panes_get_site_info($node) {
+  $info = &drupal_static(__FUNCTION__, array());
+  if (!empty($info)) {
+    return $info;
+  }
+
   $params = drupal_get_query_parameters();
-
-  if (!isset($params['site'])) {
+  if (!array_key_exists('site', $params)) {
     return;
   }
 
-  // Get State or Center by provided site code.
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'location')
-    ->fieldCondition('field_location_link', 'url', $params['site'] . '.', 'CONTAINS')
-    ->propertyCondition('status', NODE_PUBLISHED);
-  $result = $query->execute();
-
-  if (!isset($result['node']) || count($result['node']) != 1) {
+  $url = 'http://' . $params['site'] . '.audubon.org/';
+  if (isset($params['dev']) &&
+    variable_get('nas_birds_allow_dev_params', FALSE)
+  ) {
+    $parts_url = parse_url($params['dev']);
+    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
+      $parts_url['path'];
+  }
+  $title = urlencode($node->title);
+  $result = nas_import_send_request($url . 'export/local-bird/' . $title);
+  if (empty($result) || empty($result['title'])) {
     return;
   }
-  $node = _i18n_node_load(reset($result['node'])->nid);
-  $url = 'http://' . $params['site'] . '.audubon.org';
-
-  return array(
-    'title' => $node->title,
-    'url' => $url,
-  );
+  $result['url'] = $url;
+  $info = $result;
+  return $result;
 }
 
 /**
@@ -2470,22 +2458,9 @@ function nas_panes_get_site_info() {
  *   External content.
  */
 function nas_panes_get_external_bird_content($node) {
-  $data = nas_panes_get_site_info();
-  if (empty($data)) {
+  $data = nas_panes_get_site_info($node);
+  if (!$data || empty($data['content'])) {
     return;
   }
-  $title = urlencode($node->title);
-  $url = $data['url'] . '/export/local-bird/' . $title;
-  $params = drupal_get_query_parameters();
-  if (isset($params['dev']) && variable_get('nas_birds_allow_dev_params', FALSE)) {
-    $parts_url = parse_url($params['dev']);
-    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] . $parts_url['path'] .  'export/local-bird/' . $title;
-  }
-
-  $result = nas_import_send_request($url);
-
-  if (empty($result['content'])) {
-    return;
-  }
-  return $result['content'];
+  return $data['content'];
 }

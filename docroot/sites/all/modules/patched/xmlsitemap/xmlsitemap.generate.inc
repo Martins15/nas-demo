@@ -184,6 +184,7 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer, 
   while ($link = $links->fetchAssoc()) {
     $link['language'] = $link['language'] != LANGUAGE_NONE ? xmlsitemap_language_load($link['language']) : $url_options['language'];
     if ($url_options['alias']) {
+      $link['original'] = $link['loc'];
       $link['loc'] = xmlsitemap_get_path_alias($link['loc'], $link['language']->language);
     }
     $link_options = array(
@@ -208,6 +209,11 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer, 
 
     $element = array();
     $element['loc'] = $link_url;
+
+    if (xmlsitemap_var('multilingual')) {
+      $element['xhtml:link']['attributes'] = xmlsitemap_generate_multilingual($link);
+    }
+
     if ($link['lastmod']) {
       $element['lastmod'] = gmdate($lastmod_format, $link['lastmod']);
       // If the link has a lastmod value, update the changefreq so that links
@@ -520,4 +526,53 @@ function xmlsitemap_get_rebuildable_link_types() {
   }
 
   return $rebuild_types;
+}
+
+/**
+ * Generate multilingual attributes.
+ * See https://support.google.com/webmasters/answer/2620865?hl=en.
+ *
+ * @param array $link
+ * @return array
+ */
+function xmlsitemap_generate_multilingual($link) {
+  if (xmlsitemap_var('multilingual_only_nodes')) {
+    if (module_exists('entity_translation')) {
+      $translation = db_select('entity_translation', 'et')->fields('et', array('language'))->condition('et.entity_type', $link['type'])->condition('et.entity_id', $link['id'])->execute()->fetchCol();
+    }
+    else {
+      $tnid = db_select('node', 'n')->fields('n', array('tnid'))->condition('n.nid', $link['id'])->execute()->fetchField();
+      $translation = db_select('node', 'n')->fields('n', array('language'))->condition('n.tnid', $tnid)->execute()->fetchCol();
+    }
+  }
+
+  // Only add hreflang if we have different URL's for different languages.
+  // For that locale-url has to be activated for language negotiation.
+  if (language_negotiation_get('language', 'locale-url')) {
+    foreach (language_list() as $lang) {
+      if (xmlsitemap_var('multilingual_only_nodes')) {
+        if (!$translation) {
+          continue;
+        }
+        if (!$lang->enabled || !in_array($lang->language, $translation)) {
+          continue;
+        }
+      }
+      $xhtml_links[] = array(
+        'rel' => 'alternate',
+        'href' => url($link['original'], array('language' => $lang, 'absolute' => TRUE)),
+        'hreflang' => $lang->language,
+      );
+      $x_default = xmlsitemap_var('multilingual_x_default');
+    }
+    if ($x_default != 'none') {
+      $x_default_lang = $x_default == "default" ? language_default()->language : $x_default;
+      $xhtml_links[] = array(
+        'rel' => 'alternate',
+        'href' => url($link['original'], array('language' => $x_default_lang, 'absolute' => TRUE)),
+        'hreflang' => 'x-default',
+      );
+    }
+  }
+  return isset($xhtml_links) ? $xhtml_links : array();
 }

@@ -83,6 +83,7 @@ class XMLSitemapWriter extends XMLWriter {
    */
   public function getRootAttributes() {
     $attributes['xmlns'] = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+    $attributes['xmlns:xhtml'] = 'http://www.w3.org/1999/xhtml';
     if (variable_get('xmlsitemap_developer_mode', 0)) {
       $attributes['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
       $attributes['xsi:schemaLocation'] = 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd';
@@ -133,22 +134,37 @@ class XMLSitemapWriter extends XMLWriter {
    *
    * @param string $name
    *   The element name.
-   * @param string|array $content
+   * @param string|array $data
    *   The element contents or an array of the elements' sub-elements.
    *
    * @todo Missing a return value since XMLWriter::writeElement() has one.
    */
-  public function writeElement($name, $content = NULL) {
-    if (is_array($content)) {
-      $this->startElement($name);
-      $xml_content = format_xml_elements($content);
-      // Remove additional spaces from the output.
-      $xml_content = str_replace(array(" <", ">\n"), array("<", ">"), $xml_content);
-      $this->writeRaw($xml_content);
-      $this->endElement();
+  public function writeElement($name, $data = array()) {
+    if (is_string($data)) {
+      $data = array('content' => $data);
+    }
+
+    if (isset($data['attributes']) || isset($data['content'])) {
+      if (!empty($data['attributes'])) {
+        foreach ($data['attributes'] as $attributes) {
+          $this->startElement($name);
+          foreach ($attributes as $attr_title => $attr_content) {
+            parent::writeAttribute($attr_title, $attr_content);
+          }
+          $this->endElement();
+        }
+      }
+      if (!empty($data['content'])) {
+        parent::writeElement($name, check_plain((string) $data['content']));
+      }
     }
     else {
-      parent::writeElement($name, $content);
+      $this->startElement($name);
+      foreach ($data as $sub_name => $sub_content) {
+        $this->writeElement($sub_name, $sub_content);
+      }
+      $this->endElement();
+      parent::writeElement($name, $data['content']);
     }
   }
 

@@ -330,6 +330,32 @@ function xmlsitemap_settings_form($form, &$form_state) {
     '#description' => t('This is the default base URL used for sitemaps and sitemap links.'),
     '#required' => TRUE,
   );
+  $form['advanced']['xmlsitemap_multilingual'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Multilingual sitemap'),
+    '#description' => t('When enabled, <em>rel="alternate" hreflang="x"</em> links are added to each item. More information !link.', array('!link' => l(t('here'), 'https://support.google.com/webmasters/answer/2620865?hl=en'))),
+    '#default_value' => xmlsitemap_var('multilingual'),
+  );
+  $form['advanced']['xmlsitemap_multilingual_only_nodes'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Only add <em>rel="alternate" hreflang="x"</em> links to translated nodes.'),
+    '#description' => t('When enabled the <em>rel="alternate" hreflang="x"</em>  links only apply to translated nodes. Multilingual sitemap has to be checked. More information !link.', array('!link' => l(t('here'), 'https://support.google.com/webmasters/answer/189077?hl=en'))),
+    '#default_value' => xmlsitemap_var('multilingual_only_nodes'),
+  );
+  $x_default_options = array(
+    'none' => t("Don't use X-Default link"),
+    'default' => t('Use default language'),
+  );
+  foreach(language_list() as $lang_code => $language){
+    $x_default_options[$lang_code] = $language->name;
+  }
+  $form['advanced']['xmlsitemap_multilingual_x_default'] = array(
+    '#type' => 'select',
+    '#title' => t('Add a <em>hreflang="x-default"</em> link'),
+    '#description' => t("The <em>hreflang='x-default'</em> link is used to set the default page when the visitor's language is not available as a site language. Multilingual sitemap has to be checked. More information !link.", array('!link' => l(t('here'), 'http://googlewebmastercentral.blogspot.nl/2013/04/x-default-hreflang-for-international-pages.html'))),
+    '#default_value' => xmlsitemap_var('multilingual_x_default'),
+    '#options' => $x_default_options,
+  );
   $form['advanced']['xmlsitemap_lastmod_format'] = array(
     '#type' => 'select',
     '#title' => t('Last modification date format'),

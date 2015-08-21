@@ -2764,6 +2764,51 @@ function nas_master_update_7195() {
 }
 
 /**
+ * Enable modules.
+ */
+function nas_master_update_7196() {
+  $modules = array('nas_pm_xmlsitemap', 'hreflang');
+  module_enable($modules);
+  variable_set('xmlsitemap_multilingual', 1);
+}
+
+/**
+ * Enable taxonomy translation (localization variant).
+ */
+function nas_master_update_7197() {
+  module_enable(array('i18n_taxonomy'));
+  foreach (taxonomy_get_vocabularies() as $vocabulary) {
+    $vocabulary->i18n_mode = I18N_MODE_LOCALIZE;
+    taxonomy_vocabulary_save($vocabulary);
+  }
+}
+
+/**
+ * Enable menu translation.
+ */
+function nas_master_update_7198() {
+  module_enable(array('i18n_menu'));
+  foreach (menu_load_all() as $menu) {
+    $menu['i18n_mode'] = I18N_MODE_MULTIPLE;
+    menu_save($menu);
+  }
+}
+
+/**
+ * Rebuild theme registry to find new theme function in "calendar_download" pane.
+ */
+function nas_master_update_7199() {
+  drupal_theme_rebuild();
+}
+
+/**
+ * Clear cache to apply modifications to "events_social_block" pane.
+ */
+function nas_master_update_7200() {
+  cache_clear_all();
+}
+
+/**
  * Enable i18n_pc module.
  */
 function nas_master_update_7201() {
