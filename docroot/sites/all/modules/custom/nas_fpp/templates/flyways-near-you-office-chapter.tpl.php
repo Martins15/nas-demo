@@ -6,7 +6,6 @@
 ?>
 
 <h4 class="editorial-card-title blue"><a href="audubon-near-you"><?php print t('Audubon Near You'); ?></a></h4>
-<?php dpm($items); ?>
 <?php foreach ($items as $item) : ?>
   <div class="editorial-card-list-item">
     <h5 class="editorial-card-title no-margin">
