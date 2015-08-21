@@ -3,3 +3,4 @@ description = Internationalization for panels via clone and selection rules
 core = 7.x
 
 dependencies[] = page_manager
+dependencies[] = locale

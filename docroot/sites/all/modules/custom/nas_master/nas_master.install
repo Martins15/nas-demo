@@ -2762,3 +2762,15 @@ function nas_master_update_7195() {
     variable_set('language_content_type_' . $type, '2');
   }
 }
+
+/**
+ * Enable i18n_pc module.
+ */
+function nas_master_update_7196() {
+  module_enable(
+    array(
+      'i18n_pc',
+    )
+  );
+  registry_rebuild();
+}

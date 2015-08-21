@@ -550,4 +550,8 @@ function i18n_pc_add_redirect_handlers(
     $name = key($redirect_handler);
     page_manager_handler_add_to_page($page, $redirect_handler[$name]);
   }
+  // Mark all handlers as changed for ability to get they updated within DB.
+  foreach ($page->handler_info as &$handler) {
+    $handler['changed'] = PAGE_MANAGER_CHANGED_CACHED;
+  }
 }
