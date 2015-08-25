@@ -343,15 +343,6 @@ function nas_panes_theme() {
       'template' => 'nas-panes-social-news-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block',
     ),
-    'events_social_block' => array(
-      'variables' => array(
-        'title' => '',
-        'page_link' => '',
-        'caption' => '',
-      ),
-      'template' => 'events_social_block',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block',
-    ),
     'nas_panes_press_contact' => array(
       'variables' => array(
         'title' => '',
@@ -916,14 +907,6 @@ function nas_panes_theme() {
       ),
       'template' => 'events-reg-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
-    ),
-    'calendar_download' => array(
-      'variables' => array(
-        'title' => NULL,
-        'download_link' => '',
-      ),
-      'template' => 'calendar-download',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download',
     ),
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
@@ -1846,7 +1829,9 @@ function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $v
         'attributes' => array(
           'target' => '_blank',
           'class' => array('more-link')));
+      $url = $item->field_field_location_link[0]['raw']['url'];
       $items[$item->nid]['site_link'] = l(t('View Website'), $item->field_field_location_link[0]['raw']['url'], $options);
+      $items[$item->nid]['site_address'] = (!empty($url)) ? $url : NULL;
     }
 
     // Add subtitle.

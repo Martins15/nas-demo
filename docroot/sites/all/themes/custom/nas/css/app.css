@@ -14954,6 +14954,10 @@ article.event .add-to-your-calendar {
   text-align: center;
   margin-bottom: 15px;
 }
+article.event .add-to-your-calendar .icon-calendar {
+  font-size: 25px;
+  vertical-align: middle;
+}
 
 .events-registration-block {
   background-color: #FBFAF6;
