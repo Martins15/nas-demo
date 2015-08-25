@@ -2809,8 +2809,15 @@ function nas_master_update_7200() {
 }
 
 /**
- * Delete no longer used variable.
+ * Disable Welcome bean.
  */
 function nas_master_update_7201() {
+  module_disable(array('nas_welcome_to_audubon'));
+}
+
+/**
+ * Delete no longer used variable.
+ */
+function nas_master_update_7202() {
   variable_del('nas_events_works_images_url');
 }
