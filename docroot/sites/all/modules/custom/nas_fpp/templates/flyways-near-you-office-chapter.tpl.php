@@ -9,12 +9,19 @@
 <?php foreach ($items as $item) : ?>
   <div class="editorial-card-list-item">
     <h5 class="editorial-card-title no-margin">
-      <a href="node/<?php print $item['nid']; ?>">
+      <?php if ($item['site_address'] != NULL ): ?>
+        <a href="<?php print $item['site_address']; ?>">
+        <?php print $item['title']; ?>
+          <small class="serif">
+            <em><?php print $item['subtitle']; ?></em>
+          </small>
+         </a>
+      <?php else: ?>
         <?php print $item['title']; ?>
         <small class="serif">
           <em><?php print $item['subtitle']; ?></em>
         </small>
-      </a>
+       <?php endif; ?>
     </h5>
   </div>
 <?php endforeach; ?>
