@@ -2848,3 +2848,10 @@ function nas_master_update_7202() {
 function nas_master_update_7203() {
   variable_del('nas_events_works_images_url');
 }
+
+/**
+ * Rebuild menu for applying changes in menu items.
+ */
+function nas_master_update_7204() {
+  menu_rebuild();
+}
