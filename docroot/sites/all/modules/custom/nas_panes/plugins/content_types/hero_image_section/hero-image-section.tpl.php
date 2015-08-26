@@ -24,7 +24,9 @@
     <div class="hero-header <?php print !empty($contextual_links) ? 'contextual-links-region' : ''; ?>">
       <?php print $contextual_links; ?>
       <div class="column">
-        <h2 class="hero-title big"><?php print $title; ?></h2>
+        <img class="hero-icon" src="<?php print $hero_icon; ?>" alt="" />
+        <h4 class="hero-slug"><?php print $slug; ?></h2>
+        <h2 class="hero-title big <?php print !empty($hero_icon) ? 'with-icon' : ''; ?>"><?php print $title; ?></h2>
         <p class="hero-blurb"><?php print $subtitle; ?></p>
       </div>
     </div>

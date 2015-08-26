@@ -30,7 +30,7 @@ function nas_js_alter(&$javascript) {
         '#value' => '',
         '#attributes' => array(
           'type' => 'text/javascript',
-          'src' => url($path, array('absolute' => TRUE, 'query' => array('v' => $js['version']))),
+          'src' => file_create_url($path) . '?v=' . $js['version'],
         ),
       );
       $jquery = &drupal_static('nas_jquery');

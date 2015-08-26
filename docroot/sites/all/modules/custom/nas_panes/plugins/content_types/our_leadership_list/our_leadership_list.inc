@@ -56,7 +56,7 @@ function our_leadership_list_render($subtype, $conf, $args, $contexts) {
 
   $items = array();
   foreach ($conf['items'] as $item) {
-    if (!empty($item['entity_id']) && $node = node_load($item['entity_id'])) {
+    if (!empty($item['entity_id']) && $node = _i18n_node_load($item['entity_id'])) {
       $build = node_view($node, 'teaser');
       $items[] = drupal_render($build);
     }

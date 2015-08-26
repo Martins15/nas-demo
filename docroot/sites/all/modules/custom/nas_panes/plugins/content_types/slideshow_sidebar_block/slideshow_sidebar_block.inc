@@ -89,7 +89,7 @@ function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
   else {
     $nid = $conf['slideshow']['entity_id'];
   }
-  $node = node_load($nid);
+  $node = _i18n_node_load($nid);
 
   $contextual_links = '';
   if (user_access('edit NAS panes')) {

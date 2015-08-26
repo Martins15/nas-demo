@@ -109,7 +109,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
       }
 
       $featured_news_ids[] = $article['entity_reference']['entity_id'];
-      $nodes[] = node_load($article['entity_reference']['entity_id']);
+      $nodes[] = _i18n_node_load($article['entity_reference']['entity_id']);
     }
 
     foreach ($nodes as $node) {

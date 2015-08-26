@@ -32,7 +32,7 @@ function magazine_issue_listing_top_render($subtype, $conf, $args, $context) {
   if (!empty($view_results)) {
     $view_results = array_slice($view_results, 0, 5);
     foreach ($view_results as $value) {
-      if (!empty($value->nid) && $node = node_load($value->nid)) {
+      if (!empty($value->nid) && $node = _i18n_node_load($value->nid)) {
         $articles_nodes[] = $node;
       }
     }

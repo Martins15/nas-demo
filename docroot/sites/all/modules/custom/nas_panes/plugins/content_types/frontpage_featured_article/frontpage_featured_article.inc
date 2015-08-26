@@ -84,7 +84,7 @@ function frontpage_featured_article_form_submit(&$form, &$form_state) {
 function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
-  if (empty($conf['article']['entity_id']) || !$node = node_load($conf['article']['entity_id'])) {
+  if (empty($conf['article']['entity_id']) || !$node = _i18n_node_load($conf['article']['entity_id'])) {
     $block->content = '';
     if (user_access('access contextual links') && user_access('edit NAS panes')) {
       $block->content = t('No featured article selected');

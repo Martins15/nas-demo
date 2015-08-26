@@ -14,11 +14,13 @@
     apache_vhosts:
       - {
         servername: "nas.192.168.56.132.xip.io",
+        serveralias: "es.nas.192.168.56.132.xip.io",
         documentroot: "/var/www/docroot"
       }
     apache_vhosts_ssl:
       - {
         servername: "nas.192.168.56.132.xip.io",
+        serveralias: "es.nas.192.168.56.132.xip.io",
         documentroot: "/var/www/docroot",
         certificate_file: "/var/www/ssl_certificate/example.crt",
         certificate_key_file: "/var/www/ssl_certificate/example.key",

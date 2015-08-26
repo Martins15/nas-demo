@@ -157,7 +157,7 @@ function _nas_master_get_primary_node_of_group($stats) {
   // @codingStandardsIgnoreEnd
 
   $primary = reset($stats);
-  $primary_node = node_load($primary->nid);
+  $primary_node = _i18n_node_load($primary->nid);
 
   // Prevent empty nodes to be scanned for field values.
   $nodestats = array_filter($nodestats);
@@ -169,7 +169,7 @@ function _nas_master_get_primary_node_of_group($stats) {
     foreach ($fields as $fieldname) {
       if (!field_get_items('node', $primary_node, $fieldname)) {
         foreach ($nodestats as $nid => $value) {
-          $node = node_load($nid);
+          $node = _i18n_node_load($nid);
           if (!$items = field_get_items('node', $node, $fieldname)) {
             continue;
           }
