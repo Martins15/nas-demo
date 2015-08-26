@@ -2841,3 +2841,10 @@ function nas_master_update_7202() {
   );
   registry_rebuild();
 }
+
+/**
+ * Delete no longer used variable.
+ */
+function nas_master_update_7203() {
+  variable_del('nas_events_works_images_url');
+}
