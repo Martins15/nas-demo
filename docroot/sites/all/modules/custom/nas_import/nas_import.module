@@ -1753,6 +1753,30 @@ function nas_import_iba_nodes($url) {
 }
 
 /**
+ * Batch operation to process IBAs.
+ */
+function nas_import_iba_batch($ibas, &$context) {
+  foreach ($ibas as $iba) {
+    nas_import_iba_node($iba);
+    $context['results'][] = $iba['Id'];
+  }
+  // Suppress messages from Feeds importer.
+  drupal_get_messages();
+}
+
+/**
+ * Finish callback for the IBAs batch import.
+ */
+function nas_import_iba_batch_finished_callback($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(t('IBA import has finished. Processed @count IBAs.', array('@count' => count($results))));
+  }
+  else {
+    drupal_set_message(t('The import process has encountered an error.'));
+  }
+}
+
+/**
  * Helper function to get keys of IBAs to update.
  */
 function nas_import_iba_get_iba_keys($url) {
@@ -1765,18 +1789,6 @@ function nas_import_iba_get_iba_keys($url) {
 
   $ibas = reset($result);
   return $ibas;
-}
-
-/**
- * Batch operation to process IBAs.
- */
-function nas_import_iba_batch($ibas, &$context) {
-  foreach ($ibas as $iba) {
-    nas_import_iba_node($iba);
-    $context['results'][] = $iba['Id'];
-  }
-  // Suppress messages from Feeds importer.
-  drupal_get_messages();
 }
 
 /**
@@ -1797,36 +1809,6 @@ function nas_import_iba_node($iba) {
   $source->state(FEEDS_FETCH);
   $source->state(FEEDS_PROCESS);
   $source->state(FEEDS_PROCESS_CLEAR);
-}
-
-/**
- * Finish callback for the IBAs batch import.
- */
-function nas_import_iba_batch_finished_callback($success, $results, $operations) {
-  if ($success) {
-    drupal_set_message(t('IBA import has finished. Processed @count IBAs.', array('@count' => count($results))));
-  }
-  else {
-    drupal_set_message(t('The import process has encountered an error.'));
-  }
-}
-
-/**
- * Implements hook_cron_queue_info().
- */
-function nas_import_cron_queue_info() {
-  $queues['nas_import_iba_queue'] = array(
-    'worker callback' => 'nas_import_iba_queue_item_process',
-    'time' => 60,
-  );
-  return $queues;
-}
-
-/**
- * NAS import IBA queue worker callback.
- */
-function nas_import_iba_queue_item_process($item) {
-  nas_import_iba_node($item);
 }
 
 /**
@@ -1866,4 +1848,22 @@ function nas_import_iba_job_scheduler_worker($job) {
   foreach ($ibas as $item) {
     $queue->createItem($item);
   }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function nas_import_cron_queue_info() {
+  $queues['nas_import_iba_queue'] = array(
+    'worker callback' => 'nas_import_iba_queue_item_process',
+    'time' => 60,
+  );
+  return $queues;
+}
+
+/**
+ * NAS import IBA queue worker callback.
+ */
+function nas_import_iba_queue_item_process($item) {
+  nas_import_iba_node($item);
 }
