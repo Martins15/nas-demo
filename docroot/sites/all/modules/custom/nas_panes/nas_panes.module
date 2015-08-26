@@ -1018,8 +1018,9 @@ function nas_panes_save_node_view_page() {
  * Remove "Edit Panel" contextual link form all panels pages.
  */
 function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
-  if ($info['type'] == 'task_handlers') {
-    $plugin['contextual link'] = 'return';
+  if ($info['type'] == 'task_handlers' && !isset($plugin['contextual link'])) {
+    // 'ctools_task_handler_default_contextual_link' otherwise.
+    $plugin['contextual link'] = FALSE;
   }
 }
 
