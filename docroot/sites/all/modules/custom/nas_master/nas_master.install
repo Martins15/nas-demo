@@ -2824,3 +2824,11 @@ function nas_master_update_7201() {
   module_disable(array('nas_welcome_to_audubon'));
 }
 
+/**
+ * Enable NAS IBA Import feature.
+ */
+function nas_master_update_7202() {
+  // Clear cache to discover new Feeds parser plugin.
+  cache_clear_all();
+  module_enable(array('nas_iba_import_feeds_feature'));
+}
