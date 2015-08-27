@@ -2816,7 +2816,6 @@ function nas_master_update_7200() {
   cache_clear_all();
 }
 
-
 /**
  * Disable Welcome bean.
  */
@@ -2825,9 +2824,50 @@ function nas_master_update_7201() {
 }
 
 /**
- * Enable NAS IBA Import feature.
+ * Enable i18n_pc module.
  */
 function nas_master_update_7202() {
+  $language_default = array(
+    'language' => 'en',
+    'name' => 'English',
+    'native' => 'English',
+    'direction' => 0,
+    'enabled' => 1,
+    'plurals' => 0,
+    'formula' => '',
+    'domain' => '',
+    'prefix' => '',
+    'weight' => 0,
+    'javascript' => '',
+  );
+  $language_default = (object) $language_default;
+  variable_set('language_default', $language_default);
+  module_enable(
+    array(
+      'i18n_pc',
+    )
+  );
+  registry_rebuild();
+}
+
+/**
+ * Delete no longer used variable.
+ */
+function nas_master_update_7203() {
+  variable_del('nas_events_works_images_url');
+}
+
+/**
+ * Rebuild menu for applying changes in menu items.
+ */
+function nas_master_update_7204() {
+  menu_rebuild();
+}
+
+/**
+ * Enable NAS IBA Import feature.
+ */
+function nas_master_update_7205() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_import_feeds_feature'));
