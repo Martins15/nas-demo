@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS IBA Import feature.
+ */
+
+include_once 'nas_iba_import_feeds_feature.features.inc';
