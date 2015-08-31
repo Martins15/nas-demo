@@ -21,6 +21,13 @@ define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
+define('NAS_IMPORT_FEEDS_IBA', 'iba_import');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT', 'http://netapp.audubon.org/IBARestSvcUAT/IBAService/Export/');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ALL', 'All');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_UPDATES', 'Updates');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ITEM', 'Site');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_KEY', '49204D21-A952-402C-A51D-3A1A86B8AA29');
+
 /**
  * Implements hook_ctools_plugin_api().
  */
@@ -34,6 +41,7 @@ function nas_import_ctools_plugin_api($owner, $api) {
  * Implements hook_feeds_plugins().
  */
 function nas_import_feeds_plugins() {
+  $path = drupal_get_path('module', 'nas_import');
   $info = array();
   $info['NASFeedsHTTPFetcher'] = array(
     'name' => 'NAS Feeds HTTP Fetcher',
@@ -43,7 +51,17 @@ function nas_import_feeds_plugins() {
       'parent' => 'FeedsHTTPFetcher',
       'class' => 'NASFeedsHTTPFetcher',
       'file' => 'NASFeedsHTTPFetcher.inc',
-      'path' => drupal_get_path('module', 'nas_import'),
+      'path' => $path,
+    ),
+  );
+  $info['NASFeedsExJsonPath'] = array(
+    'name' => 'NAS JSON JSONPath parser',
+    'description' => 'Parse JSON with JSONPath, double decode.',
+    'handler' => array(
+      'parent' => 'FeedsExJsonPath',
+      'class' => 'NASFeedsExJsonPath',
+      'file' => 'NASFeedsExJsonPath.inc',
+      'path' => $path,
     ),
   );
   return $info;
@@ -790,6 +808,24 @@ function nas_import_menu() {
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
+
+  $items['admin/content/nas_import'] = array(
+    'title' => 'NAS imports',
+    'description' => 'Import UI for content.',
+    'page callback' => 'nas_import_list_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'nas_import.admin.inc',
+  );
+  $items['admin/content/nas_import/iba'] = array(
+    'title' => 'Important Bird Areas',
+    'description' => 'Import UI for IBA.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_import_iba_ct_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'nas_import.admin.inc',
+    'type' => MENU_LOCAL_ACTION,
+  );
+
   return $items;
 }
 
@@ -1690,4 +1726,144 @@ function nas_import_send_request($url) {
     return drupal_json_decode($response->data);
   }
   return NULL;
+}
+
+/**
+ * Import nodes from external IBA source.
+ */
+function nas_import_iba_nodes($url) {
+  $ibas = nas_import_iba_get_iba_keys($url);
+
+  $operations = array();
+  foreach (array_chunk($ibas, 5) as $ibas_chunk) {
+    $operations[] = array(
+      'nas_import_iba_batch',
+      array($ibas_chunk),
+    );
+  }
+
+  $batch = array(
+    'operations' => $operations,
+    'title' => t('IBA import'),
+    'finished' => 'nas_import_iba_batch_finished_callback',
+  );
+
+  batch_set($batch);
+  return $batch;
+}
+
+/**
+ * Batch operation to process IBAs.
+ */
+function nas_import_iba_batch($ibas, &$context) {
+  foreach ($ibas as $iba) {
+    nas_import_iba_node($iba);
+    $context['results'][] = $iba['Id'];
+  }
+  // Suppress messages from Feeds importer.
+  drupal_get_messages();
+}
+
+/**
+ * Finish callback for the IBAs batch import.
+ */
+function nas_import_iba_batch_finished_callback($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(t('IBA import has finished. Processed @count IBAs.', array('@count' => count($results))));
+  }
+  else {
+    drupal_set_message(t('The import process has encountered an error.'));
+  }
+}
+
+/**
+ * Helper function to get keys of IBAs to update.
+ */
+function nas_import_iba_get_iba_keys($url) {
+  $result = nas_import_send_request($url);
+
+  // Sometimes JSON from source comes double-encoded.
+  if (!is_array($result)) {
+    $result = drupal_json_decode($result);
+  }
+
+  $ibas = reset($result);
+  return $ibas;
+}
+
+/**
+ * Helper function to import single IBA node.
+ */
+function nas_import_iba_node($iba) {
+  $iba_url = NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT . NAS_IMPORT_FEEDS_IBA_IMPORT_ITEM . '/' . $iba['Id'] . '/' . NAS_IMPORT_FEEDS_IBA_IMPORT_KEY;
+
+  $source = feeds_source(NAS_IMPORT_FEEDS_IBA);
+  $config = array(
+    $source->importer->config['fetcher']['plugin_key'] => array(
+      'source' => $iba_url,
+    ),
+  );
+  $source->addConfig($config);
+  $source->save();
+  $source->import();
+  $source->state(FEEDS_FETCH);
+  $source->state(FEEDS_PROCESS);
+  $source->state(FEEDS_PROCESS_CLEAR);
+}
+
+/**
+ * Implements hook_cron_job_scheduler_info().
+ */
+function nas_import_cron_job_scheduler_info() {
+  $info = array();
+
+  $url = NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT . NAS_IMPORT_FEEDS_IBA_IMPORT_UPDATES . '/' . NAS_IMPORT_FEEDS_IBA_IMPORT_KEY;
+  $info['iba_import'] = array(
+    'worker callback' => 'nas_import_iba_job_scheduler_worker',
+    'jobs' => array(
+      array(
+        'url' => $url,
+        'crontab' => '0 0 * * *',
+        'periodic' => TRUE,
+      ),
+    ),
+  );
+
+  return $info;
+}
+
+/**
+ * Worker callback for job scheduler.
+ *
+ * @see nas_import_cron_job_scheduler_info()
+ */
+function nas_import_iba_job_scheduler_worker($job) {
+  // Populate NAS import IBA queue.
+  $ibas = nas_import_iba_get_iba_keys($job['url']);
+  if (!$ibas) {
+    return;
+  }
+
+  $queue = DrupalQueue::get('nas_import_iba_queue');
+  foreach ($ibas as $item) {
+    $queue->createItem($item);
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function nas_import_cron_queue_info() {
+  $queues['nas_import_iba_queue'] = array(
+    'worker callback' => 'nas_import_iba_queue_item_process',
+    'time' => 60,
+  );
+  return $queues;
+}
+
+/**
+ * NAS import IBA queue worker callback.
+ */
+function nas_import_iba_queue_item_process($item) {
+  nas_import_iba_node($item);
 }
