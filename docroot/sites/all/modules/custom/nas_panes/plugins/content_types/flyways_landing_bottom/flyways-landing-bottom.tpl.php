@@ -15,7 +15,7 @@
     <div class="columns">
       <ul class="inline-list">
         <?php for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++): ?>
-        <li><a class="flyway-slide-button<?php if ($i == 1 ): ?> current<?php endif; ?>" href="#<?php print $flyway[$i]['name_id']; ?>-slide"><?php print $flyway[$i]['name']; ?></a></li>
+        <li><a class="flyway-slide-button<?php if ($i == 1 ): ?> current<?php endif; ?>" href="#<?php print $flyway[$i]['name_id']; ?>-slide"><?php print t($flyway[$i]['name']); ?></a></li>
         <?php endfor; ?>
       </ul>
     </div>
