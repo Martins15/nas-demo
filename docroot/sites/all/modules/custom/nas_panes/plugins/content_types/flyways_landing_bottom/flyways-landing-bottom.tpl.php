@@ -15,7 +15,7 @@
     <div class="columns">
       <ul class="inline-list">
         <?php for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++): ?>
-        <li><a class="flyway-slide-button<?php if ($i == 1 ): ?> current<?php endif; ?>" href="#<?php print $flyway[$i]['name_id']; ?>-slide"><?php print $flyway[$i]['name']; ?></a></li>
+        <li><a class="flyway-slide-button<?php if ($i == 1 ): ?> current<?php endif; ?>" href="#<?php print $flyway[$i]['name_id']; ?>-slide"><?php print t($flyway[$i]['name']); ?></a></li>
         <?php endfor; ?>
       </ul>
     </div>
@@ -29,7 +29,7 @@
     <div id="<?php print $flyway[$i]['name_id']; ?>-slide" class="flyway-slide<?php if ($i == 1 ): ?> current<?php endif; ?>">
       <div class="row section-header">
         <div class="column">
-          <h1><a href="<?php print $flyway[$i]['summary_more_link_uri']; ?>"><?php print $flyway[$i]['name']; ?></a></h1>
+          <h1><a href="<?php print $flyway[$i]['summary_more_link_uri']; ?>"><?php print t($flyway[$i]['name']); ?></a></h1>
         </div>
         <div class="column">
           <ul class="inline-list section-nav">

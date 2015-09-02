@@ -121,7 +121,7 @@ function editorial_card_river_edit_form($form, &$form_state) {
   $form['donate_caption'] = array(
     '#type' => 'textfield',
     '#title' => t('Donate caption'),
-    '#default_value' => !empty($conf['donate_caption']) ? $conf['donate_caption'] : 'Remember that Audubon depends on your support to do the conservation work that we do.',
+    '#default_value' => !empty($conf['donate_caption']) ? $conf['donate_caption'] : t('Remember that Audubon depends on your support to do the conservation work that we do.'),
   );
   $form['donate_path'] = array(
     '#type' => 'textfield',
