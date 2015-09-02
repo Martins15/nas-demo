@@ -173,7 +173,7 @@
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
               <p>
                 <?php print t('Text © Kenn Kaufman, adapted from'); ?> <br>
-                <?php print l('<em>Lives of North American Birds</em>', 'kaufman', array('html' => TRUE)); ?>
+                <?php print l('<em>' . t('Lives of North American Birds') . '</em>', 'kaufman', array('html' => TRUE)); ?>
               </p>
               <p>
                 <?php print t('Illustration © David Allen Sibley'); ?>.<br>
