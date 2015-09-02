@@ -72,7 +72,7 @@
 
   - name: Copy local backup to build folder
     sudo: yes
-    copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes mode=0644
+    copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes
     when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo")
     ignore_errors: yes
 
