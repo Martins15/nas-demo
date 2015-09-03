@@ -2855,3 +2855,16 @@ function nas_master_update_7203() {
 function nas_master_update_7204() {
   menu_rebuild();
 }
+
+/**
+ * Revert nas_boa_index_feature .
+ */
+function nas_master_update_7205() {
+  features_revert(array(
+    'nas_boa_index_feature' => array(
+      'page_manager_pages',
+      'views_view'
+    )
+  ));
+  registry_rebuild();
+}
