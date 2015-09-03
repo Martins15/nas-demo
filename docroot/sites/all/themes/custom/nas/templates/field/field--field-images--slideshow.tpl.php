@@ -32,7 +32,7 @@
                 <div class="columns large-10 large-offset-1 text-container">
                   <h1 class="thin"><?php print $title; ?></h1>
                   <p class="deck"><?php print $subtitle; ?></p>
-                  <p><a href="#" class="title-slide-button button pea-green xlarge slideshow-control next">View Slideshow</a></p>
+                  <p><a href="#" class="title-slide-button button pea-green xlarge slideshow-control next"><?php print t('View Slideshow'); ?></a></p>
                   <div class="social-sharing align-left hide-for-small hide-for-medium hide-for-tiny">
                     <span class="social-sharing-caption white">Share this</span>
                     <a href="http://twitter.com/share?url=/&amp;text=<?php print $page_link; ?>" class="social-sharing-icon white" target="_blank"><i class="icon-twitter"></i></a>
