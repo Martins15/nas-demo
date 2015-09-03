@@ -27,7 +27,7 @@ function calendar_download_form($form, &$form_state) {
   $form['calendar_download_text'] = array(
     '#type' => 'textfield',
     '#title' => t('Link text'),
-    '#default_value' => !empty($conf['calendar_download_text']) ? $conf['calendar_download_text'] : t('Add to your calendar'),
+    '#default_value' => !empty($conf['calendar_download_text']) ? t($conf['calendar_download_text']) : t('Add to your calendar'),
   );
 
   return $form;
