@@ -2866,5 +2866,11 @@ function nas_master_update_7205() {
       'views_view'
     )
   ));
+  module_enable(
+    array(
+      'i18n_field',
+    )
+  );
   registry_rebuild();
+  i18n_string_refresh_group('field');
 }
