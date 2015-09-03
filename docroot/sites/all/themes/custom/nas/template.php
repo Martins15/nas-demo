@@ -1412,11 +1412,11 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
  */
 function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
-  // View to be preprocessed
+  // View to be preprocessed.
   $needs_preprocess = array('related_birds', 'flyway_related_birds');
   if (in_array($view->name, $needs_preprocess)) {
     if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
-      $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+      $vars['title'] = t('@title\'s Priority Birds', array('@title' => check_plain($node->title)));
     }
   }
 
