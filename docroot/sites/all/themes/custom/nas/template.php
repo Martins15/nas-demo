@@ -1259,7 +1259,7 @@ function nas_field__field_author__article($variables) {
 function nas_preprocess_field_field_related_bird_contact(&$variables) {
   $name = '';
   $name = strtok($variables['element']['#object']->title, ' ') . "'s ";
-  $variables['label'] = check_plain($name . 'Favorite Birds');
+  $variables['label'] = check_plain($name . t('Favorite Birds'));
 }
 
 /**
