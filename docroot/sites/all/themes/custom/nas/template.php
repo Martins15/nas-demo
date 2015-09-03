@@ -1296,7 +1296,7 @@ function nas_preprocess_views_exposed_form(&$variables) {
   $fulltext = $variables['form']['search_api_views_fulltext'];
   $fulltext['#printed'] = FALSE;
   $fulltext['#theme'] = 'searchfield';
-  $fulltext['#attributes']['placeholder'] = array('Search for a bird in the guide...');
+  $fulltext['#attributes']['placeholder'] = array(t('Search for a bird in the guide...'));
   $fulltext['#theme_wrappers'] = array_filter($fulltext['#theme_wrappers'], function ($item) {
     return $item !== 'form_element';
   });
