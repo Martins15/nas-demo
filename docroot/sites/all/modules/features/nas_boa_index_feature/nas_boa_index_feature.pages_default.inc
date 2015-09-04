@@ -34,6 +34,8 @@ function nas_boa_index_feature_default_page_manager_pages() {
   $page->conf = array(
     'admin_paths' => FALSE,
   );
+  $page->language = 'und';
+  $page->tpid = 0;
   $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */

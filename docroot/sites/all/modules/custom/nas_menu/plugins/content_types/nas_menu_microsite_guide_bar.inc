@@ -88,7 +88,7 @@ function nas_menu_guide_bar_pane_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
-  $title = filter_xss($conf['title'], array('span'));
+  $title = filter_xss(t($conf['title']), array('span'));
   $preamble = check_plain($conf['preamble']);
   $css_class = trim(check_plain($conf['css_class']));
   $css_background_style = check_plain($conf['css_background_style']);

@@ -340,6 +340,35 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['filters']['name']['relationship'] = 'field_state_tid';
   $handler->display->display_options['filters']['name']['operator'] = 'not empty';
   $handler->display->display_options['inherit_panels_path'] = '1';
+  $translatables['boa_index'] = array(
+    t('Master'),
+    t('Explore by family'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Show More'),
+    t('state'),
+    t('Bird guide referenced bird'),
+    t('plate'),
+    t('Title'),
+    t('State'),
+    t('BOA Index birds'),
+    t('View panes'),
+    t('BOA Index Families'),
+    t('BOA listing'),
+    t('BOA Index State'),
+    t('Explore by state'),
+  );
   $export['boa_index'] = $view;
 
   return $export;
