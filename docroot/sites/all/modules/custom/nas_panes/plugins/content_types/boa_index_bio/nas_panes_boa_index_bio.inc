@@ -18,7 +18,7 @@ $plugin = array(
       'value' => '<p><a href="#">' . t('John James Audubon') . '</a> ' . t('was a daring and colorful character renowned for his adventurous nature, his artistic genius, and his obsessive interest in birds. He explored the natural history of much of the central and eastern United States, painted almost 500 species of the 700 or so regularly occurring North American species, worked tirelessly to promote his project, and set a new standard for artistry and printing.') . ' <a href="#"><em>' . t('Learn more »') . '</em></a></p>',
       'format' => 'full_html',
     ),
-    'name' => t('John James Audubon'),
+    'name' => 'John James Audubon',
     'summary' => array(
       'value' => '<p>' . t('John James Audubon, 1785-1851. The American Woodsman: Our Namesake and Inspiration. Yes, he shot the birds. Deal with it.') . ' <a href="#"><em>' . t('Learn more »') . '</em></a></p>',
       'format' => 'full_html',
