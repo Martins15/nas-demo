@@ -15142,3 +15142,7 @@ table.x-image-anchor td,
   vertical-align: middle;
   padding: 0;
 }
+
+.ffw-hack-margin-top {
+  margin-top: 25px;
+}
