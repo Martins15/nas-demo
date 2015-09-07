@@ -234,13 +234,17 @@ function i18n_pc_translation_form($form, &$form_state) {
   $form['title'] = array(
     '#title' => t('Title'),
     '#type' => 'textfield',
-    '#description' => t('Page administrative title'),
+    '#description' => t('The title of the page in Spanish should be brief and comprehensive. It will be used for page URI below.'),
   );
-
   $form['path'] = array(
-    '#title' => t('Redirect to'),
-    '#type' => 'textfield',
-    '#description' => t('Path URI of the translated page'),
+    '#description' => t('No leading slash needed. It is automatically filled in per page Title entered above. You can edit it manually'),
+    '#type' => 'machine_name',
+    '#title' => t('Path URI of the translated page'),
+    '#maxlength' => 255,
+    '#machine_name' => array(
+      //'exists' => 'nas_alters_campaign_url_parameter_exists',
+      'source' => array('title'),
+    ),
   );
   $form['url'] = array(
     '#type' => 'hidden',
