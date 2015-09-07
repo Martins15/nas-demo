@@ -11,13 +11,14 @@
  */
 ?>
 
-<div class="hero dark-gradient <?php print $color; ?>-text">
+<div class="hero dark-gradient <?php print $color; ?>-text contextual-links-region">
+  <?php print $contextual_links; ?>
   <div class="hero-image">
     <img src="<?php print $image_path; ?>" alt="">
   </div>
   <div class="row">
-    <div class="hero-header contextual-links-region">
-      <?php print $contextual_links; ?>
+    <div class="hero-header">
+
       <div class="columns large-centered">
         <h1 class="hero-title"><?php print $title; ?></h1>
       </div>
