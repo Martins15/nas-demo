@@ -16,6 +16,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_call_type' => array(
       'name' => 'Bird Call Type',
@@ -24,6 +26,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_category' => array(
       'name' => 'Bird Category',
@@ -32,6 +36,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_color' => array(
       'name' => 'Bird Color',
@@ -40,6 +46,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_family' => array(
       'name' => 'Bird Family',
@@ -48,6 +56,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_habitat' => array(
       'name' => 'Bird Habitat',
@@ -56,6 +66,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_locomotion' => array(
       'name' => 'Bird Locomotion',
@@ -64,6 +76,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_region' => array(
       'name' => 'Bird Region',
@@ -72,6 +86,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_size' => array(
       'name' => 'Bird Size',
@@ -80,6 +96,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'bird_wing_shape' => array(
       'name' => 'Bird Wing Shape',
@@ -88,6 +106,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'boa_family' => array(
       'name' => 'Birds of America Family',
@@ -96,6 +116,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'conservation_status' => array(
       'name' => 'Conservation Status',
@@ -104,6 +126,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'conservation_strategy' => array(
       'name' => 'Conservation Strategy',
@@ -112,6 +136,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
     'section' => array(
       'name' => 'Editorial Section',
@@ -120,6 +146,8 @@ function nas_bird_type_feature_taxonomy_default_vocabularies() {
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
     ),
   );
 }
