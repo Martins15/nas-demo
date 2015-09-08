@@ -266,7 +266,7 @@
             'margin-left': negative_margin,
             'margin-right': negative_margin
           });
-          if ($slideshow.offset().left != 0) {
+          if ($slideshow.offset().left !== 0) {
             $slideshow.css({
               'margin-left': (margin + $slideshow.offset().left) * (-1),
               'margin-right': (margin - $slideshow.offset().left) * (-1)
