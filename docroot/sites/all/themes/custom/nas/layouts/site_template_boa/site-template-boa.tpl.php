@@ -9,4 +9,3 @@
   <?php print $content['header']; ?>
 <?php print $content['main']; ?>
 <?php print $content['footer']; ?>
-</header>
