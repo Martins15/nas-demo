@@ -39,7 +39,7 @@ function nas_search_page_search_form($form, $form_state) {
     '#name' => 'search',
     '#theme' => 'searchfield',
     '#attributes' => array(
-      'placeholder' => 'Search for a bird ...',
+      'placeholder' => t('Search for a bird ...'),
       'class' => array('radius'),
     ),
     '#default_value' => !empty($_GET['search']) ? $_GET['search'] : '',
@@ -50,7 +50,7 @@ function nas_search_page_search_form($form, $form_state) {
     '#value' => '<span class="hide-for-medium hide-for-large hide-for-xlarge">
       <i class="icon-magnifier"></i>
   </span>
-  <span class="hide-for-tiny hide-for-small">Search</span>',
+  <span class="hide-for-tiny hide-for-small">' . t('Search') . '</span>',
     '#id' => 'edit-submit-search-form',
     '#attributes' => array(
       'class' => array('top-search-form-submit', 'button', 'pea-green'),
@@ -171,6 +171,13 @@ function nas_search_entity_property_info_alter(&$info) {
     'type' => 'boolean',
     'description' => t('Page status'),
     'getter callback' => '_nas_search_pm_status',
+    'calculated' => TRUE,
+  );
+  $info['page_manager_search']['properties']['language'] = array(
+    'label' => t('Language'),
+    'type' => 'string',
+    'description' => t('Page language'),
+    'getter callback' => '_nas_search_pm_language',
     'calculated' => TRUE,
   );
 }
@@ -305,7 +312,12 @@ function nas_search_block_view_alter(&$data, $block) {
 function nas_search_facet_items_alter(&$build, &$settings) {
   if ($settings->facet == 'month') {
     foreach ($build as $key => $item) {
-      $build[$key]['#markup'] = date('F', mktime(NULL, NULL, NULL, $item['#indexed_value']));
+      $build[$key]['#markup'] = t(date('F', mktime(NULL, NULL, NULL, $item['#indexed_value'])), array(), array('context' => 'Long month name'));
+    }
+  }
+  if ($settings->facet == 'type_for_search') {
+    foreach ($build as &$item) {
+      $item['#markup'] = t($item['#markup'], [], ['context' => 'Facet item']);
     }
   }
 }
@@ -548,7 +560,7 @@ function _nas_search_pm_hero_image_title($entity, array $options, $name, $entity
  * Page Manager page admin description entity property getter callback.
  */
 function _nas_search_pm_admin_description($entity, array $options, $name, $entity_type) {
-  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
     return FALSE;
   }
   return $subtask->admin_description;
@@ -571,7 +583,7 @@ function _nas_search_pm_is_static_page($entity) {
  * Page Manager page path entity property getter callback.
  */
 function _nas_search_pm_path($entity, array $options, $name, $entity_type) {
-  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
     return FALSE;
   }
   return $subtask->path;
@@ -581,10 +593,20 @@ function _nas_search_pm_path($entity, array $options, $name, $entity_type) {
  * Page Manager page status entity property getter callback.
  */
 function _nas_search_pm_status($entity, array $options, $name, $entity_type) {
-  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
     return FALSE;
   }
   return empty($subtask->disabled);
+}
+
+/**
+ * Page Manager page language entity property getter callback.
+ */
+function _nas_search_pm_language($entity, array $options, $name, $entity_type) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
+    return FALSE;
+  }
+  return $subtask->language;
 }
 
 /**
@@ -598,7 +620,7 @@ function _nas_search_pm_status($entity, array $options, $name, $entity_type) {
  */
 function _nas_search_pm_get_hero_image_pane_configuration($entity) {
   $config = FALSE;
-  $subtask = page_manager_search_get_pages_by_dec($entity->pid, 10);
+  $subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid);
   $task = page_manager_get_task('page');
   $handlers = page_manager_load_task_handlers($task, $subtask->name);
   $handler = reset($handlers);
@@ -613,4 +635,116 @@ function _nas_search_pm_get_hero_image_pane_configuration($entity) {
     }
   }
   return $config;
+}
+
+/**
+ * Implements hook_search_api_solr_query_alter();
+ */
+function nas_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  $search_id = $query->getOption('search id');
+  if ($search_id == 'search_api_views:search_results:other_results' || $search_id == 'search_api_views:search_results:birds') {
+    global $language;
+    $lang = $language->language;
+    if ($lang == 'es') {
+      $call_args['params']['fq'][] = 'ss_search_api_language:"es"';
+    }
+    else {
+      $call_args['params']['fq'][] = '((ss_search_api_language:"en") OR (ss_search_api_language:"und"))';
+    }
+  }
+  if ($search_id == 'search_api_views:search_results_pm:site_sections') {
+    global $language;
+    $lang = $language->language;
+    if ($lang == 'es') {
+      $call_args['params']['fq'][] = 'ss_language:"es"';
+    }
+    else {
+      $call_args['params']['fq'][] = '((ss_language:"en") OR (ss_language:"und"))';
+    }
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_post_alter().
+ */
+function nas_search_ctools_plugin_post_alter(&$plugin, &$info) {
+  if ($info['type'] == 'tasks' && $info['module'] == 'page_manager') {
+    $plugin['save'] = 'nas_search_page_manager_page_save';
+    $plugin['delete'] = 'nas_search_page_manager_page_delete';
+  }
+}
+
+/**
+ * Custom save callback for page manager pages CTools plugin.
+ */
+function nas_search_page_manager_page_save($page, $update) {
+  if (empty($page->pid)) {
+    _nas_search_page_manager_page_inserted($page);
+  }
+  else {
+    _nas_search_page_manager_page_updated($page);
+  }
+}
+
+/**
+ * Custom delete callback for page manager pages CTools plugin.
+ */
+function nas_search_page_manager_page_delete($page) {
+  $clone = clone $page;
+  $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
+  module_invoke_all('entity_delete', $clone, 'page_manager_search');
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nas_search_form_alter(&$form, &$form_state, $form_id) {
+  $forms = array('page_manager_disable_form', 'page_manager_enable_form');
+  if (in_array($form_id, $forms)) {
+    $form['#submit'][] = 'nas_search_page_manager_form_submit';
+  }
+}
+
+/**
+ * Custom submit callback.
+ */
+function nas_search_page_manager_form_submit(&$form, &$form_state) {
+  _nas_search_page_manager_page_updated($form_state['page']->subtask['subtask']);
+}
+
+/**
+ * Helper function invokes hook_entity_update.
+ */
+function _nas_search_page_manager_page_updated($page) {
+  $clone = clone $page;
+  $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
+  module_invoke_all('entity_update', $clone, 'page_manager_search');
+}
+
+/**
+ * Helper function invokes hook_entity_insert.
+ */
+function _nas_search_page_manager_page_inserted($page) {
+  $clone = clone $page;
+  $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
+  module_invoke_all('entity_insert', $clone, 'page_manager_search');
+}
+
+/**
+ * Helper functon; Get Page manager page(s) by decimal conversion of MD5 hash.
+ */
+function _nas_search_page_manager_search_get_pages_by_dec($dec = NULL, $length = 9) {
+  $items = &drupal_static('__FUNCTION__');
+
+  // Build list of SIDs.
+  if (empty($items)) {
+    ctools_include('export');
+    $pages = ctools_export_crud_load_all('page_manager_pages', TRUE);
+    foreach ($pages as $subtask_id => $subtask) {
+      $sid = page_manager_search_machine_name_to_dec($subtask_id, $length);
+      $items[$sid] = $subtask;
+    }
+  }
+
+  return !is_null($dec) && isset($items[$dec]) ? $items[$dec] : $items;
 }
