@@ -168,13 +168,13 @@ function nas_footer_pane_get_contextual_links() {
   ctools_add_js('ajax-responder');
 
   // Lookup pid.
-  $result = ctools_export_load_object('page_manager_handlers', 'conditions', array('name' => $pm_page['handler']->conf['panels_everywhere_site_template']));
-  $did = $result[$pm_page['handler']->conf['panels_everywhere_site_template']]->conf['did'];
-  $pm_page['handler']->conf['display'] = panels_load_display($did);
+  if (empty($pm_page['handler']->conf['display'])) {
+    $pm_page['handler']->conf['display'] = panels_load_display($pm_page['handler']->conf['did']);
+  }
   $pid = 0;
   // Get pid from loaded display.
   foreach ($pm_page['handler']->conf['display']->content as $_pid => $pane) {
-    if (($pane->subtype == 'nas_footer_pane') && isset($pane->did) == $did) {
+    if (($pane->subtype == 'nas_footer_pane')) {
       $pid = $_pid;
       break;
     }
