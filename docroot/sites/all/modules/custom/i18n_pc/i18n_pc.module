@@ -24,6 +24,11 @@ function i18n_pc_contextual_link(
   $contexts = NULL,
   $args = NULL
 ) {
+  // Do not add contextual links if it is frontpage as it breaks it.
+  if (drupal_is_front_page()) {
+    return;
+  }
+
   if ($handler == NULL) {
     return ctools_task_handler_default_contextual_link(
       $handler,
