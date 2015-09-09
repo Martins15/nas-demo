@@ -57,30 +57,31 @@ function nas_content_aggregation_init() {
  */
 function nas_content_aggregation_menu() {
   $items = array();
-  $items['admin/content/nas/imports/editorial'] = array(
-    'title' => 'Import editorial Content',
-    'description' => 'Import editorial Content.',
+  $items['admin/content/nas/imports/aggregation/editorial'] = array(
+    'title' => 'Import editorial Content Listing',
+    'description' => 'Import UI for Listing Content',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_content_aggregation_editorial_cards_form'),
     'access arguments' => array('administer site configuration'),
     'file' => 'includes/nas_content_aggregation.admin.inc',
-    'type' => MENU_LOCAL_ACTION,
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 3,
   );
-  $items['admin/content/nas/imports/editorial/listing'] = array(
-    'title' => 'Import editorial listing',
+  $items['admin/content/nas/imports/aggregation/individual'] = array(
+    'title' => 'Import Editorial Individual Content',
     'description' => 'Import UI for Editorial Content.',
     'weight' => 1,
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
-  $items['admin/content/nas/imports/editorial/individual'] = array(
-    'title' => 'Import editorial individual content',
+  $items['admin/content/nas/imports/aggregation'] = array(
+    'title' => 'Import Editorial Individual Content',
     'description' => 'Import UI for Individual Content',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_content_aggregation_editorial_individual_form'),
     'access arguments' => array('administer site configuration'),
     'file' => 'includes/nas_content_aggregation.admin.inc',
     'weight' => 2,
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_LOCAL_ACTION,
   );
   $items['editorial-feed/%taxonomy_term'] = array(
     'page callback' => 'nas_content_aggregation_editorial_feed',

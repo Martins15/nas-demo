@@ -59,7 +59,7 @@ function nas_stay_abreast_pane_custom_pane_render($subtype, $conf, $args, $conte
     $caption = ctools_context_keyword_substitute($caption, array(), $contexts);
   }
 
-  $content = theme('nas_stay_abreast', array('headline' => $headline, 'caption' => $caption, 'form' => $rendered_form));
+  $content = theme('nas_stay_abreast', array('headline' => t($headline), 'caption' => t($caption), 'form' => $rendered_form));
   $block = new stdClass();
   $block->title = t('Stay abreast');
   $block->content = $content;

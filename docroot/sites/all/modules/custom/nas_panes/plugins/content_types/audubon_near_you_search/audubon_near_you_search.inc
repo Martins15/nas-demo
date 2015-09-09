@@ -8,12 +8,12 @@
 $plugin = array(
   'title' => t('Audubon Near You. Search'),
   'description' => t('Block with search form'),
-  'category' => 'NAS',
+  'category' => t('NAS'),
   'edit form' => 'audubon_near_you_search_settings_form',
   'render callback' => 'audubon_near_you_search_render',
   'defaults' => array(
-    'description' => 'Twenty-two state programs, 47 centers, 450+ local chapters, and countless events.',
-    'form_title' => 'Explore the Audubon network.',
+    'description' => t('Twenty-two state programs, 47 centers, 450+ local chapters, and countless events.'),
+    'form_title' => t('Explore the Audubon network.'),
   ),
 );
 
@@ -33,7 +33,7 @@ function audubon_near_you_search_settings_form($form, &$form_state) {
   $form['form_title'] = array(
     '#type' => 'textfield',
     '#title' => t('Form title'),
-    '#default_value' => $conf['form_title'],
+    '#default_value' => t($conf['form_title']),
   );
 
   return $form;
@@ -67,9 +67,9 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
 
   $form = drupal_get_form('audubon_near_you_search_form');
   $block->content = theme('audubon_near_you_search', array(
-    'title' => check_plain($conf['override_title_text']),
-    'description' => check_plain($conf['description']),
-    'form_title' => check_plain($conf['form_title']),
+    'title' => check_plain(t($conf['override_title_text'])),
+    'description' => check_plain(t($conf['description'])),
+    'form_title' => check_plain(t($conf['form_title'])),
     'form' => drupal_render($form),
     'contextual_links' => $contextual_links,
   ));

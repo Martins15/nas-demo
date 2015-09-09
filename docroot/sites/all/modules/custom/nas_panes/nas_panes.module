@@ -148,6 +148,7 @@ function nas_panes_theme() {
     'boa_bird' => array(
       'variables' => array(
         'bird' => '',
+        'title' => '',
       ),
       'template' => 'boa-bird',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
@@ -1018,8 +1019,9 @@ function nas_panes_save_node_view_page() {
  * Remove "Edit Panel" contextual link form all panels pages.
  */
 function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
-  if ($info['type'] == 'task_handlers') {
-    $plugin['contextual link'] = 'return';
+  if ($info['type'] == 'task_handlers' && !isset($plugin['contextual link'])) {
+    // 'ctools_task_handler_default_contextual_link' otherwise.
+    $plugin['contextual link'] = FALSE;
   }
 }
 
@@ -1612,7 +1614,9 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
   // @todo sometimes cache_key is empty. We need build it manually.
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  if (isset($pm_page['handler']->conf['display']->cache_key)) {
+    $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  }
   if (empty($cache_key)) {
     $cache_key = $pm_page['handler']->handler . ':' . $pm_page['name'] . '::' . $pm_page['handler']->name . '::::';
   }
@@ -2440,11 +2444,20 @@ function nas_panes_get_site_info($node) {
       $parts_url['path'];
   }
   $title = urlencode($node->title);
-  $result = nas_import_send_request($url . 'export/local-bird/' . $title);
+
+  $request_url = $url . 'export/local-bird/' . $title;
+  if (array_key_exists('nid', $params)) {
+    $request_url .= '/' . $params['nid'];
+  }
+
+  $result = nas_import_send_request($request_url);
   if (empty($result) || empty($result['title'])) {
     return;
   }
   $result['url'] = $url;
+  if (array_key_exists('return_url', $result)) {
+    $result['url'] = $result['return_url'];
+  }
   $info = $result;
   return $result;
 }
