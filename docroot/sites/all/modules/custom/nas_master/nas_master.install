@@ -2874,3 +2874,17 @@ function nas_master_update_7205() {
   registry_rebuild();
   i18n_string_refresh_group('field');
 }
+
+/**
+ * Revert nas_boa_index_feature .
+ */
+function nas_master_update_7206() {
+  features_revert(
+    array(
+      'nas_boa_index_feature' => array(
+        'page_manager_pages',
+      )
+    )
+  );
+  registry_rebuild();
+}
