@@ -2888,3 +2888,11 @@ function nas_master_update_7206() {
   );
   registry_rebuild();
 }
+
+/**
+ * Disabling admin_menu client side caching .
+ */
+function nas_master_update_7207() {
+  variable_set('admin_menu_cache_client', 0);
+  cache_clear_all();
+}
