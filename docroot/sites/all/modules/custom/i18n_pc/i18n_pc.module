@@ -25,9 +25,9 @@ function i18n_pc_contextual_link(
   $args = NULL
 ) {
   // Do not add contextual links if it is frontpage as it breaks it.
-  if (drupal_is_front_page()) {
-    return;
-  }
+  //if (drupal_is_front_page()) {
+  //  return;
+  //}
 
   if ($handler == NULL) {
     return ctools_task_handler_default_contextual_link(
@@ -44,12 +44,22 @@ function i18n_pc_contextual_link(
   // Get current system language.
   global $language;
   $lang = $language->language;
-  $default_language = variable_get('language_default');
+  $default_language = language_default();
   $languages = language_list('language');
 
   // Get current page.
   $cur_page = page_manager_get_current_page();
   $cur_page_language = $cur_page['subtask']['subtask']->language;
+  $get_plugin = page_manager_get_task_handler($handler->handler);
+  $get_contexts = page_manager_page_get_contexts(
+    $cur_page['task'],
+    $cur_page['subtask']
+  );
+  $get_arguments = page_manager_page_get_arguments(
+    $cur_page['task'],
+    $cur_page['subtask']
+  );
+  $get_handler = $cur_page['handler'];
 
   // Get tpid for the current page.
   $tpid = $cur_page['subtask']['subtask']->tpid;
@@ -139,7 +149,7 @@ function i18n_pc_contextual_link(
     )
   );
 
-  return $all_links;
+  //return $all_links;
 }
 
 /**
@@ -239,10 +249,14 @@ function i18n_pc_translation_form($form, &$form_state) {
   $form['title'] = array(
     '#title' => t('Title'),
     '#type' => 'textfield',
-    '#description' => t('The title of the page in Spanish should be brief and comprehensive. It will be used for page URI below.'),
+    '#description' => t(
+      'The title of the page in Spanish should be brief and comprehensive. It will be used for page URI below.'
+    ),
   );
   $form['path'] = array(
-    '#description' => t('No leading slash needed. It is automatically filled in per page Title entered above. You can edit it manually'),
+    '#description' => t(
+      'No leading slash needed. It is automatically filled in per page Title entered above. You can edit it manually'
+    ),
     '#type' => 'machine_name',
     '#title' => t('Path URI of the translated page'),
     '#maxlength' => 255,
@@ -570,4 +584,170 @@ function i18n_pc_add_redirect_handlers(
   foreach ($page->handler_info as &$handler) {
     $handler['changed'] = PAGE_MANAGER_CHANGED_CACHED;
   }
+}
+
+function i18n_pc_admin_menu_output_alter(&$content) {
+  $content['i18n_pc'] = array(
+    '#markup' => '<ul id="i18n_pc_contextual_links" class="dropdown"></ul>',
+    '#weight' => 101
+  );
+}
+
+function i18n_pc_admin_menu_replacements($complete) {
+
+  // Links array for contextual links.
+  $links = array();
+
+  // Get current system language.
+  global $language;
+  $lang = $language->language;
+  $default_language = language_default();
+  $languages = language_list('language');
+
+  // Get current page.
+  $cur_page = page_manager_get_current_page();
+  $handler = isset($cur_page['handler']) ? $cur_page['handler'] : NULL;
+  if ($handler == NULL) {
+    return;
+  }
+
+  $cur_page_language = $cur_page['subtask']['subtask']->language;
+  $plugin = page_manager_get_task_handler($handler->handler);
+  $contexts = page_manager_page_get_contexts(
+    $cur_page['task'],
+    $cur_page['subtask']
+  );
+  $arguments = page_manager_page_get_arguments(
+    $cur_page['task'],
+    $cur_page['subtask']
+  );
+
+  // Get tpid for the current page.
+  $tpid = $cur_page['subtask']['subtask']->tpid;
+  $pid = $cur_page['subtask']['subtask']->pid;
+
+  if ($tpid != 0 && $tpid != $pid) {
+    // Current page has source page defined.
+    ctools_include('export');
+    $task = ctools_export_load_object(
+      'page_manager_pages',
+      'conditions',
+      array('pid' => $tpid)
+    );
+    $source_page = array_shift($task);
+    $source_page_language = $default_language;
+    if ($source_page->language != LANGUAGE_NONE) {
+      $source_page_language = $languages[$source_page->language];
+    }
+    $links[] = array(
+      // @todo check if Drupal in subfolder.
+      'href' => ($default_language->prefix == '') ? $source_page->path : $default_language->prefix . '/' . $source_page->path,
+      'title' => t(
+        'Source @name page translation',
+        array('@name' => $source_page_language->name)
+      ),
+      'language' => $source_page_language,
+    );
+  }
+
+  if ($tpid == 0 || $tpid == $pid) {
+    // Current page is source or untranslated.
+    ctools_include('export');
+    $tasks = ctools_export_load_object(
+      'page_manager_pages',
+      'conditions',
+      array('tpid' => $pid)
+    );
+    if (!empty($tasks)) {
+      // Page has translated pages.
+      foreach ($tasks as $l_task) {
+        $l_task_language = $default_language;
+        if ($l_task->language != LANGUAGE_NONE) {
+          $l_task_language = $languages[$l_task->language];
+        }
+        $links[] = array(
+          // @todo check if Drupal in subfolder.
+          'href' => $l_task->path,
+          'title' => t(
+            '@name page translation',
+            array('@name' => $l_task_language->name)
+          ),
+          'language' => $l_task_language,
+        );
+      }
+    }
+    else {
+      // Page has no translations yes.
+      $new_languages = $languages;
+      unset($new_languages[$default_language->language]);
+      // Populate contextual links with links to create translations popups.
+      foreach ($new_languages as $language_key => $new_lang_object) {
+        $links[] = array(
+          'href' => 'admin/structure/pages/i18n_pc/' . $cur_page['subtask']['name'] . '/' . $new_lang_object->language . '/%ctools_js',
+          'title' => t(
+            'Add @name translation',
+            array('@name' => $new_lang_object->name)
+          ),
+          'attributes' => array(
+            'class' => array(
+              'ctools-use-modal',
+              'ctools-modal-first-popup-style'
+            )
+          ),
+        );
+      }
+    }
+
+  }
+
+  $all_links = array_merge(
+    $links,
+    ctools_task_handler_default_contextual_link(
+      $handler,
+      $plugin,
+      $contexts,
+      $arguments
+    )
+  );
+
+  if (empty($all_links)) {
+    return;
+  }
+  $admin_menu_links['menu_name'] = array(
+    '#markup' => l(
+      t('Translate'),
+      'admin/config/regional/translate/translate',
+      array(
+        'language' => isset($l_task_language) ? $l_task_language : language_default(
+        )
+      )
+    )
+  );
+  $test = drupal_render($admin_menu_links);
+  foreach ($all_links as $id => $item) {
+    $i = 0;
+    $menu_links[] = array(
+      'data' => l(
+        $item['title'],
+        $item['href'],
+        array(
+          'language' => isset($l_task_language) ? $l_task_language : language_default(
+          ),
+          'attributes' => isset($item['attributes']['class']) ? array('class' => implode(' ', $item['attributes']['class'])) : array()
+        )
+      ),
+    );
+  }
+  $test2 = theme_item_list(
+    array(
+      'items' => $menu_links,
+      'title' => '',
+      'type' => 'ul',
+      'attributes' => array('class' => 'dropdown')
+    )
+  );
+  // -----------------------
+  $items = array();
+  $items['ul#i18n_pc_contextual_links'] = '<li class="admin-menu-action">' . $test . $test2 . '</li>';
+  return $items;
 }
