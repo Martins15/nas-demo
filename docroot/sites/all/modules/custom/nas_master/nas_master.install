@@ -2924,6 +2924,14 @@ function nas_master_update_7207() {
 }
 
 /**
+ * Disabling admin_menu client side caching .
+ */
+function nas_master_update_7208() {
+  variable_set('admin_menu_cache_client', 0);
+  cache_clear_all();
+}
+
+/**
  * Revert features.
  */
 function nas_master_update_7209() {
