@@ -49,11 +49,10 @@ function i18n_pc_contextual_link(
 
   // Get current page.
   $cur_page = page_manager_get_current_page();
-  $cur_page_language = $cur_page['subtask']['subtask']->language;
 
   // Get tpid for the current page.
-  $tpid = $cur_page['subtask']['subtask']->tpid;
-  $pid = $cur_page['subtask']['subtask']->pid;
+  $tpid = !empty($cur_page['subtask']['subtask']->tpid) ? $cur_page['subtask']['subtask']->tpid : 0;
+  $pid = !empty($cur_page['subtask']['subtask']->pid) ? $cur_page['subtask']['subtask']->pid : 0;
 
   if ($tpid != 0 && $tpid != $pid) {
     // Current page has source page defined.
@@ -298,8 +297,9 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   if ($_POST['path'] != '') {
     $cloned_page->path = check_url($_POST['path']);
   }
-  $page_name = $source_page->subtask['name'] . '_' . $lang . '_' . drupal_random_key(3);
-  $cloned_page->name = drupal_strtolower($page_name);
+  $cloned_page->name = $source_page->subtask['name'] . '_' . $lang . '_' . drupal_random_key(
+      3
+    );
 
   $cloned_page->language = $lang;
   $cloned_page->tpid = $source_page->subtask['subtask']->pid;
