@@ -641,26 +641,47 @@ function _nas_search_pm_get_hero_image_pane_configuration($entity) {
  * Implements hook_search_api_solr_query_alter();
  */
 function nas_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  $search_ids_mapping = array(
+    'search_api_views:search_results:other_results' => 'ss_search_api_language',
+    'search_api_views:search_results:birds' => 'ss_search_api_language',
+    'search_api_views:search_results_pm:site_sections' => 'ss_language',
+  );
   $search_id = $query->getOption('search id');
-  if ($search_id == 'search_api_views:search_results:other_results' || $search_id == 'search_api_views:search_results:birds') {
+  if (isset($search_ids_mapping[$search_id])) {
     global $language;
-    $lang = $language->language;
-    if ($lang == 'es') {
-      $call_args['params']['fq'][] = 'ss_search_api_language:"es"';
+    $languages = array($language->language);
+    $default_language = variable_get('language_default');
+    if ($language->language == $default_language->language) {
+      $languages[] = LANGUAGE_NONE;
     }
-    else {
-      $call_args['params']['fq'][] = '((ss_search_api_language:"en") OR (ss_search_api_language:"und"))';
-    }
+    $call_args['params']['fq'][] = _nas_search_format_solr_filter($search_ids_mapping[$search_id], $languages);
   }
-  if ($search_id == 'search_api_views:search_results_pm:site_sections') {
-    global $language;
-    $lang = $language->language;
-    if ($lang == 'es') {
-      $call_args['params']['fq'][] = 'ss_language:"es"';
+}
+
+/**
+ * Helper function; formats Apache SOLR filter string.
+ *
+ * @param string $fieldname
+ *  Name of field to filter on.
+ * @param array $values
+ *  Array of values.
+ *
+ * @return string
+ *  Formatted Apache SOLR filter string.
+ */
+function _nas_search_format_solr_filter($fieldname, array $values) {
+  if (empty($values)) {
+    return '';
+  }
+  elseif (count($values) == 1) {
+    return $fieldname . ':"' . reset($values) . '"';
+  }
+  else {
+    $parts = array();
+    foreach ($values as $value) {
+      $parts[] = '(' . _nas_search_format_solr_filter($fieldname, array($value)) . ')';
     }
-    else {
-      $call_args['params']['fq'][] = '((ss_language:"en") OR (ss_language:"und"))';
-    }
+    return '(' . implode(' OR ', $parts) . ')';
   }
 }
 
