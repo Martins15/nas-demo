@@ -604,7 +604,8 @@ function i18n_pc_admin_menu_replacements($complete) {
   // Get current page.
   $cur_page = page_manager_get_current_page();
   $handler = isset($cur_page['handler']) ? $cur_page['handler'] : NULL;
-  if ($handler == NULL) {
+  // We should follow only when there is a pagemaker page view.
+  if ($handler == NULL || $handler->task != 'page') {
     return;
   }
 
