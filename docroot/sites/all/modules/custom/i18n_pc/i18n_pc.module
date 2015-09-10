@@ -24,10 +24,10 @@ function i18n_pc_contextual_link(
   $contexts = NULL,
   $args = NULL
 ) {
-  // Do not add contextual links if it is frontpage as it breaks it.
-  //if (drupal_is_front_page()) {
-  //  return;
-  //}
+  // Disable contextual links when module admin_menu enabled.
+  if (module_exists('admin_menu')) {
+    return;
+  }
 
   if ($handler == NULL) {
     return ctools_task_handler_default_contextual_link(
@@ -43,23 +43,11 @@ function i18n_pc_contextual_link(
 
   // Get current system language.
   global $language;
-  $lang = $language->language;
   $default_language = language_default();
   $languages = language_list('language');
 
   // Get current page.
   $cur_page = page_manager_get_current_page();
-  $cur_page_language = $cur_page['subtask']['subtask']->language;
-  $get_plugin = page_manager_get_task_handler($handler->handler);
-  $get_contexts = page_manager_page_get_contexts(
-    $cur_page['task'],
-    $cur_page['subtask']
-  );
-  $get_arguments = page_manager_page_get_arguments(
-    $cur_page['task'],
-    $cur_page['subtask']
-  );
-  $get_handler = $cur_page['handler'];
 
   // Get tpid for the current page.
   $tpid = $cur_page['subtask']['subtask']->tpid;
@@ -149,7 +137,7 @@ function i18n_pc_contextual_link(
     )
   );
 
-  //return $all_links;
+  return $all_links;
 }
 
 /**
@@ -261,7 +249,6 @@ function i18n_pc_translation_form($form, &$form_state) {
     '#title' => t('Path URI of the translated page'),
     '#maxlength' => 255,
     '#machine_name' => array(
-      //'exists' => 'nas_alters_campaign_url_parameter_exists',
       'source' => array('title'),
     ),
   );
@@ -312,8 +299,10 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   if ($_POST['path'] != '') {
     $cloned_page->path = check_url($_POST['path']);
   }
-  $cloned_page->name = $source_page->subtask['name'] . '_' . $lang . '_' . drupal_random_key(
-      3
+  $cloned_page->name = $source_page->subtask['name'] . '_' . $lang . '_' . drupal_strtolower(
+      drupal_random_key(
+        3
+      )
     );
 
   $cloned_page->language = $lang;
@@ -405,7 +394,7 @@ function i18n_pc_init_redirect_handler(
     $name = truncate_utf8($subtask, 46);
   }
   if (empty($subtask)) {
-    $subtask = drupal_random_key();
+    $subtask = drupal_strtolower(drupal_random_key());
   }
 
   // Check if name is already within db, make it unique.
@@ -416,7 +405,7 @@ function i18n_pc_init_redirect_handler(
       ->condition('name', $random_name)
       ->execute()
       ->fetchCol()) {
-      $random_name = $name . drupal_random_key();
+      $random_name = $name . drupal_strtolower(drupal_random_key());
     }
   }
 
@@ -450,6 +439,8 @@ function i18n_pc_init_redirect_handler(
  *
  * @param string $for_lang
  *   For which language should be access ON.
+ * @param array $plugin
+ *   Plugin to be processing on.
  *
  * @return array
  *   Array of site_language access plugin.
@@ -593,9 +584,12 @@ function i18n_pc_admin_menu_output_alter(&$content) {
   );
 }
 
+/**
+ * Implements hook_admin_menu_replacements().
+ */
 function i18n_pc_admin_menu_replacements($complete) {
 
-  // Links array for contextual links.
+  // Links array for admin_menu links.
   $links = array();
 
   // Get current system language.
@@ -611,7 +605,6 @@ function i18n_pc_admin_menu_replacements($complete) {
     return;
   }
 
-  $cur_page_language = $cur_page['subtask']['subtask']->language;
   $plugin = page_manager_get_task_handler($handler->handler);
   $contexts = page_manager_page_get_contexts(
     $cur_page['task'],
@@ -697,9 +690,9 @@ function i18n_pc_admin_menu_replacements($complete) {
         );
       }
     }
-
   }
 
+  // Provide links from panel page default contextual links.
   $all_links = array_merge(
     $links,
     ctools_task_handler_default_contextual_link(
@@ -723,9 +716,8 @@ function i18n_pc_admin_menu_replacements($complete) {
       )
     )
   );
-  $test = drupal_render($admin_menu_links);
+  $top_menu_item = drupal_render($admin_menu_links);
   foreach ($all_links as $id => $item) {
-    $i = 0;
     $menu_links[] = array(
       'data' => l(
         $item['title'],
@@ -733,12 +725,17 @@ function i18n_pc_admin_menu_replacements($complete) {
         array(
           'language' => isset($l_task_language) ? $l_task_language : language_default(
           ),
-          'attributes' => isset($item['attributes']['class']) ? array('class' => implode(' ', $item['attributes']['class'])) : array()
+          'attributes' => isset($item['attributes']['class']) ? array(
+            'class' => implode(
+              ' ',
+              $item['attributes']['class']
+            )
+          ) : array()
         )
       ),
     );
   }
-  $test2 = theme_item_list(
+  $dropdown_items = theme_item_list(
     array(
       'items' => $menu_links,
       'title' => '',
@@ -746,8 +743,8 @@ function i18n_pc_admin_menu_replacements($complete) {
       'attributes' => array('class' => 'dropdown')
     )
   );
-  // -----------------------
+
   $items = array();
-  $items['ul#i18n_pc_contextual_links'] = '<li class="admin-menu-action">' . $test . $test2 . '</li>';
+  $items['ul#i18n_pc_contextual_links'] = '<li class="admin-menu-action">' . $top_menu_item . $dropdown_items . '</li>';
   return $items;
 }
