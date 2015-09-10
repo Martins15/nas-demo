@@ -412,7 +412,7 @@ function i18n_pc_init_redirect_handler(
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = $random_name;
+  $handler->name = drupal_strtolower($random_name);
   $handler->task = 'page';
   $handler->subtask = $subtask;
   $handler->handler = 'http_response';
