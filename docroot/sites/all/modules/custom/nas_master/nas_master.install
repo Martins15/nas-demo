@@ -2890,6 +2890,40 @@ function nas_master_update_7206() {
 }
 
 /**
+ * Localize path strings.
+ */
+function nas_master_update_7207() {
+  // Look for all top terms in Menu Section vocabulary.
+  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
+  $terms = taxonomy_get_tree($vocabulary->vid, 0, 1);
+  // Load all menu items from main menu.
+  $menu_items = menu_load_links('menu-header-big-main-menu');
+
+  // Build paths to localize.
+  // @see _nas_token_menu_section()
+  $paths = array();
+  foreach ($terms as $term) {
+    foreach ($menu_items as $menu_item) {
+      if (strip_tags($menu_item['link_title']) == strip_tags($term->name)) {
+        $paths[] = $menu_item['link_path'];
+        break;
+      }
+    }
+  }
+
+  // Localize the paths.
+  foreach ($paths as $path) {
+    locale($path, NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'es');
+  }
+
+  // Localize 3 hardcoded path sections used for articles.
+  // @see _nas_token_article()
+  foreach (array('press-release', 'magazine', 'news') as $string) {
+    locale($string, NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'es');
+  }
+}
+
+/**
  * Disabling admin_menu client side caching .
  */
 function nas_master_update_7208() {
