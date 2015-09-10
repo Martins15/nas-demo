@@ -2930,3 +2930,16 @@ function nas_master_update_7208() {
   variable_set('admin_menu_cache_client', 0);
   cache_clear_all();
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7209() {
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index', 'facetapi'),
+  ));
+  // Requeue items in the index.
+  $indexes = entity_load('search_api_index', array('page_manager_pages'));
+  $index = reset($indexes);
+  $index->queueItems();
+}
