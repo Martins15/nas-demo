@@ -2893,7 +2893,7 @@ function nas_master_update_7206() {
  */
 function nas_master_update_7207() {
   module_disable(array('nas_welcome_to_audubon'));
-  drupal_uninstall_module('nas_welcome_to_audubon');
+  drupal_uninstall_modules('nas_welcome_to_audubon');
   registry_rebuild();
 }
 
