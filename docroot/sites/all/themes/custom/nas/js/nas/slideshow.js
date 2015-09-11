@@ -200,14 +200,14 @@
         };
 
         Slideshow._setupIndicatorPosition = function ($slides, $indicator) {
-          var heights = [];
-          $slides.each(function () {
-            heights.push($('.slide-caption', $(this)).height());
-          });
+          var slideHeight = $slides.find(".slide-img").height(),
+            indicatorHeight = $indicator.outerHeight(),
+            indicatorMargin = 20;
           if ($("body").width() > 767) {
             $indicator.css({
-              'margin-top': Math.max.apply(Math, heights) * (-1),
-              'z-index': 2
+              position: "relative",
+              top: slideHeight + indicatorHeight + indicatorMargin + "px",
+              zIndex: "2"
             });
           }
           else {
