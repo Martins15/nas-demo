@@ -88,7 +88,7 @@
 
               $img.css({
                 position: "relative",
-                top: heightDifference / 2
+                top: "50%"
               });
             });
 
