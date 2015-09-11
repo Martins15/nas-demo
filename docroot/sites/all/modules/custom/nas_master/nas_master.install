@@ -2943,3 +2943,12 @@ function nas_master_update_7209() {
   $index = reset($indexes);
   $index->queueItems();
 }
+
+/**
+ * Update Bird CT feature.
+ */
+function nas_master_update_7210() {
+  features_revert(array(
+    'nas_bird_type_feature' => array('field_instance'),
+  ));
+}
