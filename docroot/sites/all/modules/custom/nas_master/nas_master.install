@@ -2812,7 +2812,6 @@ function nas_master_update_7200() {
  * Disable Welcome bean.
  */
 function nas_master_update_7201() {
-  module_disable(array('nas_welcome_to_audubon'));
 }
 
 /**
@@ -2888,3 +2887,13 @@ function nas_master_update_7206() {
   );
   registry_rebuild();
 }
+
+/**
+ * Disable Welcome bean in a right way.
+ */
+function nas_master_update_7207() {
+  module_disable(array('nas_welcome_to_audubon'));
+  drupal_uninstall_modules('nas_welcome_to_audubon');
+  registry_rebuild();
+}
+
