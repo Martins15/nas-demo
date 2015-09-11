@@ -9,7 +9,7 @@
 <?php foreach ($items as $item) : ?>
   <div class="editorial-card-list-item">
     <h5 class="editorial-card-title no-margin">
-      <?php if ($item['site_address'] != NULL ): ?>
+      <?php if (!empty($item['site_address'])): ?>
         <a href="<?php print $item['site_address']; ?>">
         <?php print $item['title']; ?>
           <small class="serif">
