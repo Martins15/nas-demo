@@ -7496,7 +7496,7 @@ body.touch .primary-sub-nav-index {
   padding: 0;
 }
 .card-set.bg-1 {
-  background-image: url(../img/card-set-bg-1.jpg);
+  /*background-image: url(../img/card-set-bg-1.jpg);*/
 }
 .card-set.bg-gray {
   background-color: #f8f8f8;
@@ -15145,22 +15145,4 @@ table.x-image-anchor td,
 
 .ffw-hack-margin-top {
   margin-top: 25px;
-}
-
-body .global-content .slideshow {
-  width: auto;
-  margin-bottom: 25px;
-}
-body .global-content .slideshow .row {
-  margin: 0 auto;
-  width: 1000px;
-  padding: 0 12.5px;
-}
-body .global-content .slideshow .slideshow-indicator .column p {
-  margin: 0;
-}
-body .global-content .slideshow .slide .slide-img img {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
