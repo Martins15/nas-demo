@@ -105,8 +105,7 @@
       <?php print $event_type; ?> | <span class="event-dates"><?php print $event_dates; ?></span>
     </div>
     <h3 class="editorial-card-title"><?php print $title_link; ?></h3>
-    <p>
-      <?php print $summary; ?> <?php print $details_link; ?>
-    </p>
+    <p><?php print '(' . $city . ', ' . $state . ')'; ?></p>
+    <?php print $summary; ?> <?php print $details_link; ?>
   </div>
 </div>

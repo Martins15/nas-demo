@@ -485,9 +485,11 @@ function nas_preprocess_node_event(&$vars) {
   }
 
   $vars['center_address'] = '';
+  $vars['city'] = '';
   $vars['state'] = '??';
   if ($field_items = field_get_items('node', $node, 'field_event_location')) {
     $vars['state'] = $field_items[0]['province'];
+    $vars['city'] = $field_items[0]['city'];
   }
 
   // Event type taxonomy term reference.
