@@ -8968,6 +8968,10 @@ body.black-bg .slideshow {
   }
 }
 
+.hero-image .slideshow img {
+  min-width: auto;
+}
+
 .slide {
   float: left;
   -moz-transform: translateZ(0);
