@@ -3742,7 +3742,7 @@ ul.pagination li {
   -webkit-box-sizing: content-box;
 }
 
-/*
+/* 
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -3899,7 +3899,7 @@ ul.pagination li {
 
 /* Foundation v2.1.4 http://foundation.zurb.com */
 /* Artfully masterminded by ZURB  */
-/* --------------------------------------------------
+/* -------------------------------------------------- 
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
@@ -7326,7 +7326,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -8966,6 +8966,10 @@ body.black-bg .slideshow {
   .slideshow.standalone {
     margin-top: -60px;
   }
+}
+
+.hero-image .slideshow img {
+  min-width: auto;
 }
 
 .slide {
@@ -15157,7 +15161,7 @@ body .global-content .slideshow .row {
 body .global-content .slideshow .slideshow-indicator .column p {
   margin: 0;
 }
-body .global-content .slideshow .slide .slide-img img {
+body .slide .slide-img img {
   position: relative;
   top: 50%;
   -moz-transform: translateY(-50%);
