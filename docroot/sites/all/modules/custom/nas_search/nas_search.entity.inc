@@ -19,18 +19,14 @@ class PageManagerSearchEntityControllerWithoutContent extends PageManagerSearchE
   public function load($ids = array(), $conditions = array()) {
     $entities = array();
 
-    $conditions += array(
-      'length' => 9,
-    );
-
     // Get all IDs if no IDs are provided.
     if (empty($ids)) {
-      $ids = array_keys(page_manager_search_get_pages_by_dec(NULL, $conditions['length']));
+      $ids = array_keys(_nas_search_page_manager_search_get_pages_by_dec(NULL));
     }
 
     module_load_include('inc', 'page_manager', 'plugins/tasks/page');
     foreach ($ids as $id) {
-      $subtask = page_manager_search_get_pages_by_dec($id, $conditions['length']);
+      $subtask = _nas_search_page_manager_search_get_pages_by_dec($id);
 
       $entity = new stdClass();
       $entity->pid = $id;
