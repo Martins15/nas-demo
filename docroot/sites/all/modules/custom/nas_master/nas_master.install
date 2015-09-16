@@ -2812,7 +2812,6 @@ function nas_master_update_7200() {
  * Disable Welcome bean.
  */
 function nas_master_update_7201() {
-  module_disable(array('nas_welcome_to_audubon'));
 }
 
 /**
@@ -2951,4 +2950,13 @@ function nas_master_update_7210() {
   features_revert(array(
     'nas_bird_type_feature' => array('field_base', 'field_instance'),
   ));
+}
+
+/**
+ * Disable Welcome bean in a right way.
+ */
+function nas_master_update_7211() {
+  module_disable(array('nas_welcome_to_audubon'));
+  drupal_uninstall_modules('nas_welcome_to_audubon');
+  registry_rebuild();
 }
