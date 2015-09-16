@@ -7496,7 +7496,7 @@ body.touch .primary-sub-nav-index {
   padding: 0;
 }
 .card-set.bg-1 {
-  background-image: url(../img/card-set-bg-1.jpg);
+  /*background-image: url(../img/card-set-bg-1.jpg);*/
 }
 .card-set.bg-gray {
   background-color: #f8f8f8;
@@ -15169,3 +15169,4 @@ body .slide .slide-img img {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
