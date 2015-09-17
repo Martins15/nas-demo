@@ -656,6 +656,8 @@ function nas_search_search_api_solr_query_alter(array &$call_args, SearchApiQuer
     }
     $call_args['params']['fq'][] = _nas_search_format_solr_filter($search_ids_mapping[$search_id], $languages);
   }
+  // Alter solr query to search on language specific fields.
+  _nas_search_multilingual_search_api_solr_query_alter($call_args, $query);
 }
 
 /**
@@ -768,4 +770,110 @@ function _nas_search_page_manager_search_get_pages_by_dec($dec = NULL, $length =
   }
 
   return !is_null($dec) && isset($items[$dec]) ? $items[$dec] : $items;
+}
+
+/**
+ * Implements hook_search_api_solr_documents_alter().
+ *
+ * Stores the values of all text fields in relevant language-based solr dynamic
+ * fields instead of the default ones.
+ *
+ * For example, when indexing "body:value" field, solr would normally store its
+ * value in "tm_body:value" field. With this hook (assuming that document is not
+ * in default language and that currently being processed content language is
+ * "fr") it will be stored in "tm_fr_body:value" instead, with nothing saved to
+ * default "tm_body:value" field.
+ */
+function nas_search_search_api_solr_documents_alter(&$documents, $index, $items) {
+  // Site-specific exception for the index.
+  $index_language_mapping = array(
+    'page_manager_pages' => 'ss_language',
+  );
+  // Get the current index language field.
+  $index_language_field = 'ss_search_api_language';
+  if (!empty($index_language_mapping[$index->machine_name])) {
+    $index_language_field = $index_language_mapping[$index->machine_name];
+  }
+  foreach ($documents as $document) {
+    // Get the current document language.
+    $document_language_field = $document->getField($index_language_field);
+    $document_language = $document_language_field['value'];
+
+    foreach ($document->getFieldNames() as $solr_field_name) {
+      if (strpos($solr_field_name, '_') !== FALSE) {
+        // For translatable fields, store the value in relevant multilingual
+        // solr field instead of the default one.
+        if (_nas_search_solr_field_is_translatable($solr_field_name, $document_language)) {
+          list($solr_prefix, $field_name) = explode('_', $solr_field_name, 2);
+          $multilingual_solr_field_name = implode('_', array($solr_prefix, $document_language, $field_name));
+          $old_solr_field = $document->getField($solr_field_name);
+          $document->setField($multilingual_solr_field_name, $old_solr_field['value'], $old_solr_field['boost']);
+          $document->setField($solr_field_name, '', $old_solr_field['boost']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Helper function; part of hook_search_api_solr_query_alter() implementation.
+ *
+ * When a search is executed, this hook implementation makes sure that all
+ * required multilingual fields are added to the query to be searched (in the
+ * "qf" parameter).
+ */
+function _nas_search_multilingual_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  global $language;
+  $langcode = $language->language;
+
+  $qf_multilang = array();
+  foreach ($call_args['params']['qf'] as $query_field) {
+    // First extract the basic field name.
+    $boost = '';
+    if (strpos($query_field, '^') !== FALSE) {
+      list($query_field, $boost) = explode('^', $query_field);
+    }
+    // Make sure the field is translatable, otherwise we don't want to add
+    // anything.
+    if (_nas_search_solr_field_is_translatable($query_field, $langcode)) {
+      list($field_type_prefix, $field_name) = explode('_', $query_field, 2);
+      // Build multilingual field name variation to be added to the query.
+      $new_field_name = implode('_', array(
+        $field_type_prefix,
+        $langcode,
+        $field_name,
+      ));
+      if (!empty($boost)) {
+        $new_field_name .= '^' . $boost;
+      }
+      // Temporarily store those new names in the separate array so we don't
+      // get caught in the never-ending loop.
+      $qf_multilang[] = $new_field_name;
+    }
+  }
+  // Finally add all new multilingual variants to the main query parameters.
+  $call_args['params']['qf'] = array_merge($call_args['params']['qf'], $qf_multilang);
+}
+
+/**
+ * Helper function; decides if solr field is translatable or not.
+ *
+ * @param string $solr_field_name
+ *  Solr document field name (with type prefix).
+ * @param string $document_langcode
+ *  Solr document langcode.
+ *
+ * @return bool
+ *   TRUE if field is translatable, FALSE otherwise.
+ */
+function _nas_search_solr_field_is_translatable($solr_field_name, $document_langcode = LANGUAGE_NONE) {
+  $default_language = language_default();
+  // Fields of documents in default language or fields of language neutral
+  // documents are not translatable.
+  if ($document_langcode == $default_language->language || $document_langcode == LANGUAGE_NONE) {
+    return FALSE;
+  }
+  list($solr_prefix, $field_name) = explode('_', $solr_field_name, 2);
+  // Only text fields may be translatable.
+  return in_array($solr_prefix, array('ts', 'tm'));
 }

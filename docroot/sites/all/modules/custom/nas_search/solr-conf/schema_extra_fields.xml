@@ -1,0 +1,5 @@
+<fields>
+<!-- Normal text fields are for full text - the relevance of a match depends on the length of the text -->
+    <dynamicField name="ts_es_*"  type="text_es"    indexed="true"  stored="true" multiValued="false" termVectors="true"/>
+    <dynamicField name="tm_es_*"  type="text_es"    indexed="true"  stored="true" multiValued="true" termVectors="true"/>
+</fields>
