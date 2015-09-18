@@ -11,3 +11,7 @@
 - name: Set configs to Solr
   shell: rsync -ra /root/{{ jetty_solr_module }}/{{ jetty_solr_module_config_path }}/ /opt/solr/solr/{{ item.value.name }}/conf/
   with_dict: jetty_solr_cores
+
+- name: Copy NAS-specific configs to Solr
+  shell: rsync -ra /var/www/docroot/sites/all/modules/custom/nas_search/solr-conf/* /opt/solr/solr/{{ item.value.name }}/conf/
+  with_dict: jetty_solr_cores
