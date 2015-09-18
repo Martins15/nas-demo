@@ -13,5 +13,5 @@
   with_dict: jetty_solr_cores
 
 - name: Copy NAS-specific configs to Solr
-  shell: cp /var/www/docroot/sites/all/modules/custom/nas_search/solr-conf/* /opt/solr/solr/{{ item.value.name }}/conf/
+  shell: rsync -ra /var/www/docroot/sites/all/modules/custom/nas_search/solr-conf/* /opt/solr/solr/{{ item.value.name }}/conf/
   with_dict: jetty_solr_cores
