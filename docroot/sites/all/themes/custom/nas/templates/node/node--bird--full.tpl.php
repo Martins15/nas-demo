@@ -196,7 +196,14 @@
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
               <section class="bird-guide-section right-col small center">
-                <?php print $donate_link; ?>
+                <?php //print $donate_link; ?>
+                <h5>Download the Audubon App</h5>
+                <p>
+                  <a href="http://www.audubon.org/ios-app?utm_source=bird-guide&utm_medium=national&utm_campaign=iosapp
+" target="_BLANK"><img src="/sites/all/themes/custom/nas/img/apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a>
+                  <a href="http://www.audubon.org/android-app?utm_source=bird-guide&utm_medium=national&utm_campaign=android-app
+" target="_BLANK"><img src="/sites/all/themes/custom/nas/img/google-play.png" width="110" Title="Get the Audubon Bird Guide App on Google Play"></a>
+                </p>
               </section>
             </div>
 
