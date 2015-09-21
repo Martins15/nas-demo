@@ -148,6 +148,7 @@ function nas_panes_theme() {
     'boa_bird' => array(
       'variables' => array(
         'bird' => '',
+        'title' => '',
       ),
       'template' => 'boa-bird',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
@@ -1645,7 +1646,9 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
   // @todo sometimes cache_key is empty. We need build it manually.
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  if (isset($pm_page['handler']->conf['display']->cache_key)) {
+    $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  }
   if (empty($cache_key)) {
     $cache_key = $pm_page['handler']->handler . ':' . $pm_page['name'] . '::' . $pm_page['handler']->name . '::::';
   }

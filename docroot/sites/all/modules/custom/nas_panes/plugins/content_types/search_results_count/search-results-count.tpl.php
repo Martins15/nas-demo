@@ -17,7 +17,7 @@
 <div class="columns">
   <?php if ($sort_links): ?>
   <div class="section-nav inline-list filter-list">
-    <span>Sort by:</span>
+    <span><?php print t('Sort by:') ?></span>
     <?php foreach ($sort_links as $link): ?>
       <li><?php print $link; ?></li>
     <?php endforeach; ?>

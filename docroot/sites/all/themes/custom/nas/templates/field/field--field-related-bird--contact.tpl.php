@@ -12,7 +12,7 @@
     <div class="columns">
       <ul class="section-nav inline-list">
         <li class="first"><?php print l(t('The Bird Guide'), 'bird-guide'); ?></li>
-        <li class="last"><a class="orange" href="https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html">Adopt a Bird</a></li>
+        <li class="last"><a class="orange" href="https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html"><?php print t('Adopt a Bird'); ?></a></li>
       </ul>
     </div>
   </div>

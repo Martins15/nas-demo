@@ -2820,7 +2820,6 @@ function nas_master_update_7200() {
  * Disable Welcome bean.
  */
 function nas_master_update_7201() {
-  module_disable(array('nas_welcome_to_audubon'));
 }
 
 /**
@@ -2871,4 +2870,110 @@ function nas_master_update_7205() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_import_feeds_feature'));
+}
+
+/**
+ * Revert nas_boa_index_feature.
+ */
+function nas_master_update_7205() {
+  features_revert(array(
+    'nas_boa_index_feature' => array(
+      'page_manager_pages',
+      'views_view'
+    )
+  ));
+  module_enable(
+    array(
+      'i18n_field',
+    )
+  );
+  registry_rebuild();
+  i18n_string_refresh_group('field');
+}
+
+/**
+ * Revert nas_boa_index_feature .
+ */
+function nas_master_update_7206() {
+  features_revert(
+    array(
+      'nas_boa_index_feature' => array(
+        'page_manager_pages',
+      )
+    )
+  );
+  registry_rebuild();
+}
+
+/**
+ * Localize path strings.
+ */
+function nas_master_update_7207() {
+  // Look for all top terms in Menu Section vocabulary.
+  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
+  $terms = taxonomy_get_tree($vocabulary->vid, 0, 1);
+  // Load all menu items from main menu.
+  $menu_items = menu_load_links('menu-header-big-main-menu');
+
+  // Build paths to localize.
+  // @see _nas_token_menu_section()
+  $paths = array();
+  foreach ($terms as $term) {
+    foreach ($menu_items as $menu_item) {
+      if (strip_tags($menu_item['link_title']) == strip_tags($term->name)) {
+        $paths[] = $menu_item['link_path'];
+        break;
+      }
+    }
+  }
+
+  // Localize the paths.
+  foreach ($paths as $path) {
+    locale($path, NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'es');
+  }
+
+  // Localize 3 hardcoded path sections used for articles.
+  // @see _nas_token_article()
+  foreach (array('press-release', 'magazine', 'news') as $string) {
+    locale($string, NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'es');
+  }
+}
+
+/**
+ * Disabling admin_menu client side caching .
+ */
+function nas_master_update_7208() {
+  variable_set('admin_menu_cache_client', 0);
+  cache_clear_all();
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7209() {
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index', 'facetapi'),
+  ));
+  // Requeue items in the index.
+  $indexes = entity_load('search_api_index', array('page_manager_pages'));
+  $index = reset($indexes);
+  $index->queueItems();
+}
+
+/**
+ * Update Bird CT feature.
+ */
+function nas_master_update_7210() {
+  features_revert(array(
+    'nas_bird_type_feature' => array('field_base', 'field_instance'),
+  ));
+}
+
+/**
+ * Disable Welcome bean in a right way.
+ */
+function nas_master_update_7211() {
+  module_disable(array('nas_welcome_to_audubon'));
+  drupal_uninstall_modules('nas_welcome_to_audubon');
+  registry_rebuild();
 }

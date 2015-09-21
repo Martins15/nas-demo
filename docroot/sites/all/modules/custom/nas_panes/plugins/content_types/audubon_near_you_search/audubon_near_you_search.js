@@ -30,7 +30,7 @@
   Drupal.near_you.update_content = function(stateIsoCode) {
     $.ajax({
       type: 'GET',
-      url: Drupal.settings.basePath + 'ajax/audubon-near-you',
+      url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/audubon-near-you',
       data: { 'state': stateIsoCode },
       dataType: 'json',
       success: function (data) {
