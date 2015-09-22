@@ -54,9 +54,9 @@
 
   @include breakpoint(large-up) {
     .hero:not(.expand) & img:not(.canon-logo) {
-      height: 465px;
+      min-height: 465px;
       max-width: none;
-      width: auto;
+      width: 100%;
     }
   }
 
