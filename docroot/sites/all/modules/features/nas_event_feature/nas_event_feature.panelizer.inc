@@ -454,7 +454,7 @@ function nas_event_feature_panelizer_defaults() {
     $pane->access = array();
     $pane->configuration = array(
       'label' => 'hidden',
-      'formatter' => 'taxonomy_term_reference_link',
+      'formatter' => 'i18n_taxonomy_term_reference_link',
       'delta_limit' => '1',
       'delta_offset' => '0',
       'delta_reversed' => 0,
