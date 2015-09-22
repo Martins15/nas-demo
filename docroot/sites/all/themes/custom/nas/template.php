@@ -492,6 +492,19 @@ function nas_preprocess_node_event(&$vars) {
     $vars['city'] = $field_items[0]['city'];
   }
 
+  // Link to the event origin site.
+  $vars['origin_site_events_link'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_sites')) {
+    $sites = drupal_json_decode($field_items[0]['value']);
+    foreach ($sites as $site) {
+      if ($site['machine_name'] != 'national') {
+        $site['url'] = trim($site['url'] , '/');
+        $vars['origin_site_events_link'] = l($site['name'], $site['url'] . '/events', array('external' => TRUE));
+        break;
+      }
+    }
+  }
+
   // Event type taxonomy term reference.
   $vars['event_type'] = '';
   if ($field_items = field_get_items('node', $node, 'field_event_type')) {
