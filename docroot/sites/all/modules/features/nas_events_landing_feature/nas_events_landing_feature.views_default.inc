@@ -215,6 +215,32 @@ function nas_events_landing_feature_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
   $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>=';
   $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'now';
+  $translatables['events_listing'] = array(
+    t('Master'),
+    t('more'),
+    t('Search'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Show Me More'),
+    t('No events matching your search query were found'),
+    t('All'),
+    t('Fulltext search'),
+    t('Event state'),
+    t('Event months'),
+    t('Event Type'),
+    t('Content pane'),
+    t('View panes'),
+    t('Upcoming Events'),
+  );
   $export['events_listing'] = $view;
 
   return $export;
