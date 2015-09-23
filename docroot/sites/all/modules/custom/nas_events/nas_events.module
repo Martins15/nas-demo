@@ -86,6 +86,9 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
         $image = nas_events_add_existing_file($item['featured_image'], 'image', 1, FILE_STATUS_PERMANENT, 0);
         $entity->field_image[LANGUAGE_NONE][0]['fid'] = $image->fid;
       }
+      if (!empty($item['sites'])) {
+        $entity->field_sites[LANGUAGE_NONE][0]['value'] = drupal_json_encode($item['sites']);
+      }
       break;
   }
 }
