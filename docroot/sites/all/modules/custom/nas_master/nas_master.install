@@ -2985,3 +2985,13 @@ function nas_master_update_7212() {
 function nas_master_update_7213() {
   module_enable(array('i18n_redirect'));
 }
+
+/**
+ * Enable module, revert feature components.
+ */
+function nas_master_update_7214() {
+  module_enable(array('nas_i18n_file'));
+  features_revert(array(
+      'nas_bird_type_feature' => array('field_base'),
+  ));
+}
