@@ -18,7 +18,6 @@ function nas_i18n_file_entity_info() {
           'dummy' => TRUE,
         ),
       ),
-      //
       'language callback' => 'nas_i18n_file_entity_language_callback',
     );
   }
