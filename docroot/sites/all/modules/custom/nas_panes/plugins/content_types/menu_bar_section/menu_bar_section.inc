@@ -68,10 +68,10 @@ function menu_bar_section_render($subtype, $conf, $args, $contexts) {
     'conditions' => array('plid' => $parent['mlid']),
   );
 
-  $menu_items = menu_build_tree(NAS_PANES_MAIN_MENU_NAME, $parameters);
+  $menu_items = i18n_menu_localize_tree(menu_build_tree(NAS_PANES_MAIN_MENU_NAME, $parameters));
 
   foreach ($menu_items as $item) {
-    $items[] = l($item['link']['link_title'], $item['link']['link_path']);
+    $items[] = l(t($item['link']['link_title']), $item['link']['link_path']);
   }
 
   $block->content = theme('menu_bar_section', array(

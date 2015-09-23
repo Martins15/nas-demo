@@ -1259,7 +1259,7 @@ function nas_field__field_author__article($variables) {
 function nas_preprocess_field_field_related_bird_contact(&$variables) {
   $name = '';
   $name = strtok($variables['element']['#object']->title, ' ') . "'s ";
-  $variables['label'] = check_plain($name . 'Favorite Birds');
+  $variables['label'] = check_plain($name . t('Favorite Birds'));
 }
 
 /**
@@ -1296,7 +1296,7 @@ function nas_preprocess_views_exposed_form(&$variables) {
   $fulltext = $variables['form']['search_api_views_fulltext'];
   $fulltext['#printed'] = FALSE;
   $fulltext['#theme'] = 'searchfield';
-  $fulltext['#attributes']['placeholder'] = array('Search for a bird in the guide...');
+  $fulltext['#attributes']['placeholder'] = array(t('Search for a bird in the guide...'));
   $fulltext['#theme_wrappers'] = array_filter($fulltext['#theme_wrappers'], function ($item) {
     return $item !== 'form_element';
   });
@@ -1412,11 +1412,11 @@ function nas_preprocess_panels_nas_frontpage(&$variables) {
  */
 function nas_preprocess_views_view(&$vars) {
   $view = $vars['view'];
-  // View to be preprocessed
+  // View to be preprocessed.
   $needs_preprocess = array('related_birds', 'flyway_related_birds');
   if (in_array($view->name, $needs_preprocess)) {
     if (!empty($view->args[0]) && $node = node_load($view->args[0])) {
-      $vars['title'] = check_plain($node->title) . '\'s Priority Birds';
+      $vars['title'] = t('@title\'s Priority Birds', array('@title' => check_plain($node->title)));
     }
   }
 

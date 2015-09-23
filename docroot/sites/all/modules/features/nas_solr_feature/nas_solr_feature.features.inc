@@ -137,6 +137,7 @@ function nas_solr_feature_default_search_api_index() {
         "has_image" : { "type" : "boolean" },
         "hero_image_title" : { "type" : "text", "boost" : "3.0" },
         "image" : { "type" : "integer", "entity_type" : "file" },
+        "language" : { "type" : "string" },
         "path" : { "type" : "uri" },
         "search_api_language" : { "type" : "string" },
         "status" : { "type" : "boolean" }

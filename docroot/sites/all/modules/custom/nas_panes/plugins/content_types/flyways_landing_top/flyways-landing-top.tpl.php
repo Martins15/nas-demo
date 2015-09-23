@@ -30,7 +30,7 @@
       </div>
       <div class="name hide-for-small hide-for-tiny">
         <div class="bird"><?php print $flyway[$i]['bird']; ?></div>
-        <div class="flyway"><?php print $flyway[$i]['flyway']; ?></div>
+        <div class="flyway"><?php print t($flyway[$i]['flyway']); ?></div>
       </div>
     </a>
     <?php endfor; ?>

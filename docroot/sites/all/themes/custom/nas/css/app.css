@@ -3742,7 +3742,7 @@ ul.pagination li {
   -webkit-box-sizing: content-box;
 }
 
-/*
+/* 
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -3899,7 +3899,7 @@ ul.pagination li {
 
 /* Foundation v2.1.4 http://foundation.zurb.com */
 /* Artfully masterminded by ZURB  */
-/* --------------------------------------------------
+/* -------------------------------------------------- 
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
@@ -7326,7 +7326,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -7496,7 +7496,7 @@ body.touch .primary-sub-nav-index {
   padding: 0;
 }
 .card-set.bg-1 {
-  background-image: url(../img/card-set-bg-1.jpg);
+  /*background-image: url(../img/card-set-bg-1.jpg);*/
 }
 .card-set.bg-gray {
   background-color: #f8f8f8;
@@ -8966,6 +8966,10 @@ body.black-bg .slideshow {
   .slideshow.standalone {
     margin-top: -60px;
   }
+}
+
+.hero-image .slideshow img {
+  min-width: auto;
 }
 
 .slide {
@@ -15141,4 +15145,27 @@ table.x-image-anchor td,
   text-align: center;
   vertical-align: middle;
   padding: 0;
+}
+
+.ffw-hack-margin-top {
+  margin-top: 25px;
+}
+
+body .global-content .slideshow {
+  width: auto;
+}
+body .global-content .slideshow .row {
+  margin: 0 auto;
+  padding: 0 12.5px;
+}
+body .global-content .slideshow .slideshow-indicator .column p {
+  margin: 0;
+}
+body .slide .slide-img img {
+  position: relative;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }

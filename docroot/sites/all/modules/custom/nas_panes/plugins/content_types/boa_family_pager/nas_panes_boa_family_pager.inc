@@ -29,7 +29,7 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
     'min_depth' => 1,
     'min_depth' => 1,
   );
-  $_links = menu_build_tree('boa', $parameters);
+  $_links = i18n_menu_localize_tree(menu_build_tree('boa', $parameters));
   $links = array();
   foreach ($_links as $link) {
     if ($link['link']['router_path'] === 'node/%') {

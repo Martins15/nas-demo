@@ -6,6 +6,7 @@
  */
 
 define('NAS_TOKEN_PLACEHOLDER', 'slashplaceholder');
+define('NAS_TOKEN_PATH_LOCALIZATION_CONTEXT', 'path_localization');
 
 /**
  * Implements hook_token_info().
@@ -65,7 +66,7 @@ function _nas_token_article($node) {
   switch ($news_type) {
     case 'press-release':
       $pattern = array(
-        'press-release',
+        nas_token_path_string_localize('press-release'),
         $node->title,
       );
       break;
@@ -73,7 +74,7 @@ function _nas_token_article($node) {
     case 'magazine-article':
       $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
       $pattern = array(
-        'magazine',
+        nas_token_path_string_localize('magazine'),
       );
 
       if (!empty($magazine_items[0]['target_id'])) {
@@ -88,7 +89,7 @@ function _nas_token_article($node) {
 
     default:
       $pattern = array(
-        'news',
+        nas_token_path_string_localize('news'),
         $node->title,
       );
   }
@@ -114,7 +115,7 @@ function _nas_token_menu_section($node) {
   $path = '';
   foreach ($menu_items as $menu_item) {
     if (strip_tags($menu_item['link_title']) == strip_tags($term->name)) {
-      $path = $menu_item['link_path'];
+      $path = drupal_get_path_alias($menu_item['link_path'], 'en');
       break;
     }
   }
@@ -123,7 +124,7 @@ function _nas_token_menu_section($node) {
     return;
   }
 
-  return drupal_get_path_alias($path);
+  return nas_token_path_string_localize($path);
 }
 
 /**
@@ -152,4 +153,11 @@ function nas_token_get_news_type($node) {
  */
 function nas_token_pathauto_alias_alter(&$alias, array &$context) {
   $alias = str_replace(NAS_TOKEN_PLACEHOLDER, '/', $alias);
+}
+
+/**
+ * Helper function to localize path strings.
+ */
+function nas_token_path_string_localize($string) {
+  return t($string, array(), array('context' => NAS_TOKEN_PATH_LOCALIZATION_CONTEXT));
 }

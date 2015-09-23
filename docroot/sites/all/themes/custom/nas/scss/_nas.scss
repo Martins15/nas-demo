@@ -1178,3 +1178,33 @@ table.x-image-anchor,
     padding: 0;
   }
 }
+
+.ffw-hack-margin-top {
+  margin-top: $column-gutter;
+}
+
+body {
+  .global-content {
+    .slideshow {
+      width: auto;
+      .row {
+        margin: 0 auto;
+        padding: 0 12.5px;
+      }
+      .slideshow-indicator {
+        .column p {
+          margin: 0;
+        }
+      }
+    }
+  }
+  .slide {
+    .slide-img {
+      img {
+        position: relative;
+        top: 50%;
+        @include transform(translateY(-50%));
+      }
+    }
+  }
+}

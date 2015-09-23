@@ -9,6 +9,6 @@
 ?>
 
 <section class="clearfix article-sidebar-section popular-stories story-list small reflow reflow-into-bottom">
-  <h5><?php print $view->display[$view->current_display]->display_options['title']; ?></h5>
+  <h5><?php print t($view->display[$view->current_display]->display_options['title']); ?></h5>
   <?php print $rows; ?>
 </section>

@@ -39,6 +39,7 @@ function nas_boa_bird_render($subtype, $conf, $args, $context) {
 
   $block->content = theme('boa_bird', array(
     'bird' => drupal_render($build),
+    'title' => t('In the Bird Guide'),
   ));
 
   return $block;

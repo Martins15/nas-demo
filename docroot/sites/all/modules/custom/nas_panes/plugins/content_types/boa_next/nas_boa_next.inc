@@ -43,10 +43,10 @@ function nas_boa_next_render($subtype, $conf, $args, $context) {
   $block->content = theme('boa_next', array(
     'next_url' => url('node/' . $next_nid),
     'next_title' => check_plain($next_node->title),
-    'next_plate_number' => $next_plate_number,
+    'next_plate_number' => t('Plate @number', array('@number' => $next_plate_number)),
     'prev_url' => url('node/' . $prev_nid),
     'prev_title' => check_plain($prev_node->title),
-    'prev_plate_number' => $prev_plate_number,
+    'prev_plate_number' => t('Plate @number', array('@number' => $prev_plate_number)),
   ));
 
   return $block;

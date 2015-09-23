@@ -572,7 +572,7 @@ var Nas = Nas || {};
           // Replace default block with Audubon Near You content filtered by state.
           $.ajax({
             type: 'GET',
-            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/audubon-near-you/'+stateIsoCode,
+            url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/frontpage-flyways/audubon-near-you/'+stateIsoCode,
             dataType: 'html',
             success: function (data) {
               if (data !== '') {
@@ -584,7 +584,7 @@ var Nas = Nas || {};
           // Replace default block with Event content filtered by state.
           $.ajax({
             type: 'GET',
-            url: Drupal.settings.basePath + 'ajax/frontpage-flyways/events/'+stateIsoCode,
+            url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/frontpage-flyways/events/'+stateIsoCode,
             dataType: 'html',
             success: function (data) {
               if (data !== '') {

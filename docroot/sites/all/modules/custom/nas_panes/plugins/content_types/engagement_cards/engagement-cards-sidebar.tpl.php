@@ -22,7 +22,7 @@
   <?php if ($show_social_icons): ?>
     <div class="editorial-card-banner editorial-card-banner-frontpage blue">
       <div class="social-sharing">
-        <span class="social-sharing-caption small">Follow us </span>
+        <span class="social-sharing-caption small"><?php t('Follow us'); ?></span>
         <a class="social-sharing-icon white small" href="<?php print $social_icons['twitter']; ?>"><i class="icon-twitter"></i></a>
         <a class="social-sharing-icon white small" href="<?php print $social_icons['facebook']; ?>"><i class="icon-facebook"></i></a>
         <a class="social-sharing-icon white small" href="<?php print $social_icons['instagram']; ?>"><i class="icon-instagram"></i></a>

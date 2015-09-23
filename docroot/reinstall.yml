@@ -73,7 +73,7 @@
 
   - name: Copy local backup to build folder
     sudo: yes
-    copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes mode=0644
+    copy: src={{ backup_folder }}/latest.sql.gz dest=./latest.sql.gz force=yes
     when: workflow_type == "sql" and (pp_environment == "default" or pp_environment == "demo")
     ignore_errors: yes
 
@@ -202,9 +202,9 @@
     shell: "{{ php_env_vars }} drush vset error_level 2"
     when: pp_environment == "default"
 
-  - name: Enable dblog
+  - name: Enable devel and views_ui for dev
     sudo: yes
-    shell: "{{ php_env_vars }} drush en -y dblog"
+    shell: "{{ php_env_vars }} drush en -y devel views_ui diff dblog"
     when: pp_environment == "default"
 
   handlers:

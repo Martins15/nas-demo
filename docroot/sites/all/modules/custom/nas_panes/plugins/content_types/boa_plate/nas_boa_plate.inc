@@ -112,7 +112,7 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     'original_image_path' => $original_image_path,
     'show_download_link' => isset($_COOKIE['show_download_link']) ? TRUE : FALSE,
     'subscribe_link' => $subscribe_link,
-    'link_title' => check_plain($conf['link_title']),
+    'link_title' => t($conf['link_title']),
     'link_url' => url($conf['link_uri']),
     'deepzoom_link' => $deepzoom_link,
   ));

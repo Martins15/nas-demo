@@ -25,6 +25,8 @@ Disallow: /modules/
 Disallow: /profiles/
 Disallow: /scripts/
 Disallow: /themes/
+#disable Spanish URLs
+Disallow: /es/
 # Files
 Disallow: /CHANGELOG.txt
 Disallow: /cron.php

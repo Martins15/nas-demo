@@ -39,7 +39,7 @@ function nas_search_page_search_form($form, $form_state) {
     '#name' => 'search',
     '#theme' => 'searchfield',
     '#attributes' => array(
-      'placeholder' => 'Search for a bird ...',
+      'placeholder' => t('Search for a bird ...'),
       'class' => array('radius'),
     ),
     '#default_value' => !empty($_GET['search']) ? $_GET['search'] : '',
@@ -50,7 +50,7 @@ function nas_search_page_search_form($form, $form_state) {
     '#value' => '<span class="hide-for-medium hide-for-large hide-for-xlarge">
       <i class="icon-magnifier"></i>
   </span>
-  <span class="hide-for-tiny hide-for-small">Search</span>',
+  <span class="hide-for-tiny hide-for-small">' . t('Search') . '</span>',
     '#id' => 'edit-submit-search-form',
     '#attributes' => array(
       'class' => array('top-search-form-submit', 'button', 'pea-green'),
@@ -171,6 +171,13 @@ function nas_search_entity_property_info_alter(&$info) {
     'type' => 'boolean',
     'description' => t('Page status'),
     'getter callback' => '_nas_search_pm_status',
+    'calculated' => TRUE,
+  );
+  $info['page_manager_search']['properties']['language'] = array(
+    'label' => t('Language'),
+    'type' => 'string',
+    'description' => t('Page language'),
+    'getter callback' => '_nas_search_pm_language',
     'calculated' => TRUE,
   );
 }
@@ -305,7 +312,12 @@ function nas_search_block_view_alter(&$data, $block) {
 function nas_search_facet_items_alter(&$build, &$settings) {
   if ($settings->facet == 'month') {
     foreach ($build as $key => $item) {
-      $build[$key]['#markup'] = date('F', mktime(NULL, NULL, NULL, $item['#indexed_value']));
+      $build[$key]['#markup'] = t(date('F', mktime(NULL, NULL, NULL, $item['#indexed_value'])), array(), array('context' => 'Long month name'));
+    }
+  }
+  if ($settings->facet == 'type_for_search') {
+    foreach ($build as &$item) {
+      $item['#markup'] = t($item['#markup'], [], ['context' => 'Facet item']);
     }
   }
 }
@@ -548,7 +560,7 @@ function _nas_search_pm_hero_image_title($entity, array $options, $name, $entity
  * Page Manager page admin description entity property getter callback.
  */
 function _nas_search_pm_admin_description($entity, array $options, $name, $entity_type) {
-  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
     return FALSE;
   }
   return $subtask->admin_description;
@@ -571,7 +583,7 @@ function _nas_search_pm_is_static_page($entity) {
  * Page Manager page path entity property getter callback.
  */
 function _nas_search_pm_path($entity, array $options, $name, $entity_type) {
-  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
     return FALSE;
   }
   return $subtask->path;
@@ -581,10 +593,20 @@ function _nas_search_pm_path($entity, array $options, $name, $entity_type) {
  * Page Manager page status entity property getter callback.
  */
 function _nas_search_pm_status($entity, array $options, $name, $entity_type) {
-  if (!$subtask = page_manager_search_get_pages_by_dec($entity->pid, 10)) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
     return FALSE;
   }
   return empty($subtask->disabled);
+}
+
+/**
+ * Page Manager page language entity property getter callback.
+ */
+function _nas_search_pm_language($entity, array $options, $name, $entity_type) {
+  if (!$subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid)) {
+    return FALSE;
+  }
+  return $subtask->language;
 }
 
 /**
@@ -598,7 +620,7 @@ function _nas_search_pm_status($entity, array $options, $name, $entity_type) {
  */
 function _nas_search_pm_get_hero_image_pane_configuration($entity) {
   $config = FALSE;
-  $subtask = page_manager_search_get_pages_by_dec($entity->pid, 10);
+  $subtask = _nas_search_page_manager_search_get_pages_by_dec($entity->pid);
   $task = page_manager_get_task('page');
   $handlers = page_manager_load_task_handlers($task, $subtask->name);
   $handler = reset($handlers);
@@ -613,4 +635,245 @@ function _nas_search_pm_get_hero_image_pane_configuration($entity) {
     }
   }
   return $config;
+}
+
+/**
+ * Implements hook_search_api_solr_query_alter();
+ */
+function nas_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  $search_ids_mapping = array(
+    'search_api_views:search_results:other_results' => 'ss_search_api_language',
+    'search_api_views:search_results:birds' => 'ss_search_api_language',
+    'search_api_views:search_results_pm:site_sections' => 'ss_language',
+  );
+  $search_id = $query->getOption('search id');
+  if (isset($search_ids_mapping[$search_id])) {
+    global $language;
+    $languages = array($language->language);
+    $default_language = language_default();
+    if ($language->language == $default_language->language) {
+      $languages[] = LANGUAGE_NONE;
+    }
+    $call_args['params']['fq'][] = _nas_search_format_solr_filter($search_ids_mapping[$search_id], $languages);
+  }
+  // Alter solr query to search on language specific fields.
+  _nas_search_multilingual_search_api_solr_query_alter($call_args, $query);
+}
+
+/**
+ * Helper function; formats Apache SOLR filter string.
+ *
+ * @param string $fieldname
+ *  Name of field to filter on.
+ * @param array $values
+ *  Array of values.
+ *
+ * @return string
+ *  Formatted Apache SOLR filter string.
+ */
+function _nas_search_format_solr_filter($fieldname, array $values) {
+  if (empty($values)) {
+    return '';
+  }
+  elseif (count($values) == 1) {
+    return $fieldname . ':"' . reset($values) . '"';
+  }
+  else {
+    $parts = array();
+    foreach ($values as $value) {
+      $parts[] = '(' . _nas_search_format_solr_filter($fieldname, array($value)) . ')';
+    }
+    return '(' . implode(' OR ', $parts) . ')';
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_post_alter().
+ */
+function nas_search_ctools_plugin_post_alter(&$plugin, &$info) {
+  if ($info['type'] == 'tasks' && $info['module'] == 'page_manager') {
+    $plugin['save'] = 'nas_search_page_manager_page_save';
+    $plugin['delete'] = 'nas_search_page_manager_page_delete';
+  }
+}
+
+/**
+ * Custom save callback for page manager pages CTools plugin.
+ */
+function nas_search_page_manager_page_save($page, $update) {
+  if (empty($page->pid)) {
+    _nas_search_page_manager_page_inserted($page);
+  }
+  else {
+    _nas_search_page_manager_page_updated($page);
+  }
+}
+
+/**
+ * Custom delete callback for page manager pages CTools plugin.
+ */
+function nas_search_page_manager_page_delete($page) {
+  $clone = clone $page;
+  $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
+  module_invoke_all('entity_delete', $clone, 'page_manager_search');
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nas_search_form_alter(&$form, &$form_state, $form_id) {
+  $forms = array('page_manager_disable_form', 'page_manager_enable_form');
+  if (in_array($form_id, $forms)) {
+    $form['#submit'][] = 'nas_search_page_manager_form_submit';
+  }
+}
+
+/**
+ * Custom submit callback.
+ */
+function nas_search_page_manager_form_submit(&$form, &$form_state) {
+  _nas_search_page_manager_page_updated($form_state['page']->subtask['subtask']);
+}
+
+/**
+ * Helper function invokes hook_entity_update.
+ */
+function _nas_search_page_manager_page_updated($page) {
+  $clone = clone $page;
+  $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
+  module_invoke_all('entity_update', $clone, 'page_manager_search');
+}
+
+/**
+ * Helper function invokes hook_entity_insert.
+ */
+function _nas_search_page_manager_page_inserted($page) {
+  $clone = clone $page;
+  $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
+  module_invoke_all('entity_insert', $clone, 'page_manager_search');
+}
+
+/**
+ * Helper functon; Get Page manager page(s) by decimal conversion of MD5 hash.
+ */
+function _nas_search_page_manager_search_get_pages_by_dec($dec = NULL, $length = 9) {
+  $items = &drupal_static('__FUNCTION__');
+
+  // Build list of SIDs.
+  if (empty($items)) {
+    ctools_include('export');
+    $pages = ctools_export_crud_load_all('page_manager_pages', TRUE);
+    foreach ($pages as $subtask_id => $subtask) {
+      $sid = page_manager_search_machine_name_to_dec($subtask_id, $length);
+      $items[$sid] = $subtask;
+    }
+  }
+
+  return !is_null($dec) && isset($items[$dec]) ? $items[$dec] : $items;
+}
+
+/**
+ * Implements hook_search_api_solr_documents_alter().
+ *
+ * Stores the values of all text fields in relevant language-based solr dynamic
+ * fields instead of the default ones.
+ *
+ * For example, when indexing "body:value" field, solr would normally store its
+ * value in "tm_body:value" field. With this hook (assuming that document is not
+ * in default language and that currently being processed content language is
+ * "fr") it will be stored in "tm_fr_body:value" instead, with nothing saved to
+ * default "tm_body:value" field.
+ */
+function nas_search_search_api_solr_documents_alter(&$documents, $index, $items) {
+  // Site-specific exception for the index.
+  $index_language_mapping = array(
+    'page_manager_pages' => 'ss_language',
+  );
+  // Get the current index language field.
+  $index_language_field = 'ss_search_api_language';
+  if (!empty($index_language_mapping[$index->machine_name])) {
+    $index_language_field = $index_language_mapping[$index->machine_name];
+  }
+  foreach ($documents as $document) {
+    // Get the current document language.
+    $document_language_field = $document->getField($index_language_field);
+    $document_language = $document_language_field['value'];
+
+    foreach ($document->getFieldNames() as $solr_field_name) {
+      if (strpos($solr_field_name, '_') !== FALSE) {
+        // For translatable fields, store the value in relevant multilingual
+        // solr field instead of the default one.
+        if (_nas_search_solr_field_is_translatable($solr_field_name, $document_language)) {
+          list($solr_prefix, $field_name) = explode('_', $solr_field_name, 2);
+          $multilingual_solr_field_name = implode('_', array($solr_prefix, $document_language, $field_name));
+          $old_solr_field = $document->getField($solr_field_name);
+          $document->setField($multilingual_solr_field_name, $old_solr_field['value'], $old_solr_field['boost']);
+          $document->setField($solr_field_name, '', $old_solr_field['boost']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Helper function; part of hook_search_api_solr_query_alter() implementation.
+ *
+ * When a search is executed, this hook implementation makes sure that all
+ * required multilingual fields are added to the query to be searched (in the
+ * "qf" parameter).
+ */
+function _nas_search_multilingual_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  global $language;
+  $langcode = $language->language;
+
+  $qf_multilang = array();
+  foreach ($call_args['params']['qf'] as $query_field) {
+    // First extract the basic field name.
+    $boost = '';
+    if (strpos($query_field, '^') !== FALSE) {
+      list($query_field, $boost) = explode('^', $query_field);
+    }
+    // Make sure the field is translatable, otherwise we don't want to add
+    // anything.
+    if (_nas_search_solr_field_is_translatable($query_field, $langcode)) {
+      list($field_type_prefix, $field_name) = explode('_', $query_field, 2);
+      // Build multilingual field name variation to be added to the query.
+      $new_field_name = implode('_', array(
+        $field_type_prefix,
+        $langcode,
+        $field_name,
+      ));
+      if (!empty($boost)) {
+        $new_field_name .= '^' . $boost;
+      }
+      // Temporarily store those new names in the separate array so we don't
+      // get caught in the never-ending loop.
+      $qf_multilang[] = $new_field_name;
+    }
+  }
+  // Finally add all new multilingual variants to the main query parameters.
+  $call_args['params']['qf'] = array_merge($call_args['params']['qf'], $qf_multilang);
+}
+
+/**
+ * Helper function; decides if solr field is translatable or not.
+ *
+ * @param string $solr_field_name
+ *  Solr document field name (with type prefix).
+ * @param string $document_langcode
+ *  Solr document langcode.
+ *
+ * @return bool
+ *   TRUE if field is translatable, FALSE otherwise.
+ */
+function _nas_search_solr_field_is_translatable($solr_field_name, $document_langcode = LANGUAGE_NONE) {
+  $default_language = language_default();
+  // Fields of documents in default language or fields of language neutral
+  // documents are not translatable.
+  if ($document_langcode == $default_language->language || $document_langcode == LANGUAGE_NONE) {
+    return FALSE;
+  }
+  list($solr_prefix, $field_name) = explode('_', $solr_field_name, 2);
+  // Only text fields may be translatable.
+  return in_array($solr_prefix, array('ts', 'tm'));
 }

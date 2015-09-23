@@ -7,7 +7,7 @@
 <?php print render($content['top']); ?>
 <?php print render($content['menu_bar']); ?>
 
-<section class="global-content with-padding">
+<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content with-padding">
   <?php print render($content['main']); ?>
   <section class="card-set bg-1">
     <?php print render($content['cards']); ?>

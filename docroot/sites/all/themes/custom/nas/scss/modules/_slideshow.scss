@@ -15,6 +15,10 @@
   }
 }
 
+.hero-image .slideshow img {
+  min-width: auto;
+}
+
 .slide {
   float: left;
   @include transform(translateZ(0));

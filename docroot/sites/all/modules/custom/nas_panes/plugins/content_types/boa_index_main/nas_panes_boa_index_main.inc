@@ -9,7 +9,7 @@ $plugin = array(
   'single' => TRUE,
   'title' => t('BOA index main'),
   'description' => t('Provides BOA Index pane with list of BOA'),
-  'category' => 'NAS',
+  'category' => t('NAS'),
   'render callback' => 'boa_index_main_render',
 );
 
@@ -22,22 +22,22 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
 
   $links = array(
     /*'by-family' => array(
-      'title' => 'Explore by family',
+      'title' => t('Explore by family'),
       'query' => array(),
     ),*/
     'by-chronological' => array(
-      'head_title' => 'View the plates in chronological order',
-      'title' => 'View the plates in chronological order',
+      'head_title' => t('View the plates in chronological order'),
+      'title' => t('View the plates in chronological order'),
       'query' => array('sort_by' => 'field_boa_plate_value'),
     ),
     'by-alphabetical' => array(
-      'head_title' => 'Alphabetical',
-      'title' => 'Alphabetical',
+      'head_title' => t('Alphabetical'),
+      'title' => t('Alphabetical'),
       'query' => array('sort_by' => 'title'),
     ),
     'by-state' => array(
-      'head_title' => 'Birds',
-      'title' => 'State Birds',
+      'head_title' => t('Birds'),
+      'title' => t('State Birds'),
       'query' => array('sort_by' => 'state'),
     ),
   );
@@ -75,7 +75,7 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $links_to_display = array();
   foreach ($links as $id => $link) {
     if ($id == $current_link) {
-      $title = ($id == 'by-chronological')? $title = $link['head_title'] : 'Explore by ' . $link['head_title'];
+      $title = ($id == 'by-chronological') ? $title = $link['head_title'] : t('Explore by @head_title', array('@head_title' => $link['head_title']));
     }
     else {
       $links_to_display[] = l($link['title'], 'birds-of-america', array(

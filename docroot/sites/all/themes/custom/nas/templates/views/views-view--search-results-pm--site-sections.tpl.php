@@ -30,7 +30,7 @@
 <div class="<?php print $classes; ?>">
   <div class="row section-header space-top">
     <div class="columns">
-      <h2><?php print $view->display[$view->current_display]->display_title; ?></h2>
+      <h2><?php print t($view->display[$view->current_display]->display_title, array(), array('context' => 'Search section header')); ?></h2>
     </div>
   </div>
 

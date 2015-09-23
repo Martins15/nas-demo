@@ -14,7 +14,7 @@
           // Replace default block with content filtered by state.
           $.ajax({
             type: 'GET',
-            url: Drupal.settings.basePath + 'ajax/upcoming-events',
+            url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/upcoming-events',
             data: { 'state': stateIsoCode },
             dataType: 'html',
             success: function (data) {
