@@ -2967,3 +2967,21 @@ function nas_master_update_7211() {
 function nas_master_update_7212() {
   module_enable(array('i18n_redirect'));
 }
+
+/**
+ * Update Event CT feature.
+ */
+function nas_master_update_7213() {
+  features_revert(array(
+    'nas_event_feature' => array(
+      'field_base',
+      'field_instance',
+      'feeds_importer_default',
+      'strongarm',
+      'taxonomy',
+      'uuid_term',
+      'panelizer',
+      'views_default',
+    ),
+  ));
+}
