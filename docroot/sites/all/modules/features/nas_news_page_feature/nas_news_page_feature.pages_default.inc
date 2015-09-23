@@ -112,31 +112,10 @@ function nas_news_page_feature_default_page_manager_handlers() {
         ),
         'hide_for_firsttime_visitors' => 0,
       ),
-      'form_build_id' => 'form-p_4WNFCux70JERKmuoJ_4KwpAO-yM9LzMQuD1slRVDk',
-      'form_token' => 'BJUw_T9lyVO9cTwc1kf2Eh4e4vFt5EGhtzyU4IW9IFc',
+      'form_build_id' => 'form-szfd3kZbu2sjCjQXRsZWTcaoMqrKeItkfBrTO6Gny9U',
+      'form_token' => 'g6cLcTdDc4raty3k2quKqhD_5AiKP8E5_T_QNVBBuoY',
       'form_id' => 'engagement_cards_sidebar_edit_form',
       'nas_panes_resave_panel' => TRUE,
-      'override_title_heading' => 'h2',
-      'taxonomy_term16' => array(
-        'references' => array(
-          1 => array(
-            'entity_reference' => array(
-              'entity_id' => '49496',
-              'entity_label' => 'A Closer Look At Audubon\'s Advocacy',
-              'entity_type' => 'node',
-              'entity_bundle' => 'engagement_cards',
-            ),
-          ),
-        ),
-        'hide_for_firsttime_visitors' => 0,
-        'equalize_height' => 0,
-        'show_social_icons' => 0,
-        'social_icons' => array(
-          'twitter' => 'https://twitter.com/audubonsociety',
-          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
-          'instagram' => 'http://instagram.com/audubonsociety',
-        ),
-      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -222,8 +201,6 @@ function nas_news_page_feature_default_page_manager_pages() {
   $page->conf = array(
     'admin_paths' => FALSE,
   );
-  $page->language = 'und';
-  $page->tpid = 0;
   $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
@@ -349,50 +326,7 @@ function nas_news_page_feature_default_page_manager_pages() {
     $display->content['new-6cec715f-979a-404c-880d-9c2931f7b6f9'] = $pane;
     $display->panels['featured'][0] = 'new-6cec715f-979a-404c-880d-9c2931f7b6f9';
     $pane = new stdClass();
-    $pane->pid = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
-    $pane->panel = 'featured';
-    $pane->type = 'editorial_card_package';
-    $pane->subtype = 'editorial_card_package';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 0,
-      'override_title_text' => '',
-      'image' => '9799',
-      'references' => array(
-        0 => array(
-          'title' => 'A Crow Never Forgets',
-          'url' => 'http://nas.wearepropeople.md/staging/articles/birds/crow-never-forgets',
-          'blue_link_text' => 'Features',
-          'blue_link_url' => 'http://nas.wearepropeople.md/staging/taxonomy/term/4',
-        ),
-        1 => array(
-          'title' => 'Online Explorers: How You Can Help Scientists',
-          'url' => 'http://nas.wearepropeople.md/staging/articles/conservation/online-explorers-how-you-can-help-scientists',
-          'blue_link_text' => 'Press Room',
-          'blue_link_url' => 'http://nas.wearepropeople.md/staging/editorial-section/press-room',
-        ),
-      ),
-      'button_text' => 'Lorem ipsum dolor sit amet',
-      'button_url' => 'http://nas.wearepropeople.md/staging/conservation',
-      'form_build_id' => 'form-14yFeBW57mfSLG0QetcZq6cVqtPN8nCYO0FWLHfag1s',
-      'form_token' => 'rPZhL6squwAjoFU5oubvA4BzQhyb6MO8SgBhJ48yA08',
-      'form_id' => 'editorial_card_package_form',
-      'nas_panes_resave_panel' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '62a564fc-c5cc-404f-8fd3-130da8011a98';
-    $display->content['new-62a564fc-c5cc-404f-8fd3-130da8011a98'] = $pane;
-    $display->panels['featured'][1] = 'new-62a564fc-c5cc-404f-8fd3-130da8011a98';
-    $pane = new stdClass();
-    $pane->pid = 'new-409520d2-d9a8-47dd-b424-4f1330109760';
+    $pane->pid = 'new-8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9';
     $pane->panel = 'featured';
     $pane->type = 'editorial_card_3x';
     $pane->subtype = 'editorial_card_3x';
@@ -422,31 +356,31 @@ function nas_news_page_feature_default_page_manager_pages() {
       'refs' => array(
         1 => array(
           'reference' => array(
-            'entity_id' => '51296',
-            'entity_label' => 'Inside Ralph Steadman\'s Gonzo World of "Nextinct" Birds',
+            'entity_id' => '47846',
+            'entity_label' => 'Bird-of-Paradise Stamps, On Sale Now',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
           ),
         ),
         2 => array(
           'reference' => array(
-            'entity_id' => '51441',
-            'entity_label' => 'Black-and-White Photos Show Off Swamps’ Inner Beauty',
+            'entity_id' => '47811',
+            'entity_label' => 'Sacred Spaces',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
           ),
         ),
         3 => array(
           'reference' => array(
-            'entity_id' => '51431',
-            'entity_label' => 'John James Audubon: Crazy, Wrong, or Neither?',
+            'entity_id' => '47681',
+            'entity_label' => 'Untying the Knot',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
           ),
         ),
       ),
-      'form_build_id' => 'form-oZ4n1_zqJU58iGUDkoY68nU6xyR5RM-lpVYVh4PwZs8',
-      'form_token' => 'h5QcLpB6LFOmTEQQijvCVS8y2NkEsQ5KuPBsxLpaHhA',
+      'form_build_id' => 'form-BD9sTpSFft87SQAuwMSDrIafHoo8ZI1bUEspwmQkJas',
+      'form_token' => 'Sui1_iaIFt6HghduFwW0YxatJKzx-BiMrV2FDk_hSNY',
       'form_id' => 'editorial_card_3x_edit_form',
       'nas_panes_resave_panel' => TRUE,
     );
@@ -456,11 +390,11 @@ function nas_news_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '409520d2-d9a8-47dd-b424-4f1330109760';
-    $display->content['new-409520d2-d9a8-47dd-b424-4f1330109760'] = $pane;
-    $display->panels['featured'][2] = 'new-409520d2-d9a8-47dd-b424-4f1330109760';
+    $pane->uuid = '8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9';
+    $display->content['new-8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9'] = $pane;
+    $display->panels['featured'][1] = 'new-8da4cf4b-2ed7-4d73-8b09-abdebeaf8be9';
     $pane = new stdClass();
     $pane->pid = 'new-2b28ca52-7485-48f7-89d3-12920e44c8ec';
     $pane->panel = 'right_sidebar';

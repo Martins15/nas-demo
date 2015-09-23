@@ -2985,14 +2985,3 @@ function nas_master_update_7212() {
 function nas_master_update_7213() {
   module_enable(array('i18n_redirect'));
 }
-
-/**
- * Change taxonomy term pages title to i18n name of the term.
- */
-function nas_master_update_7214() {
-  features_revert(array(
-    'nas_birds_family_feature' => array('pages_default', 'views_default'),
-    'nas_events_landing_feature' => array('pages_default', 'views_default'),
-    'nas_news_page_feature' => array('pages_default'),
-  ));
-}

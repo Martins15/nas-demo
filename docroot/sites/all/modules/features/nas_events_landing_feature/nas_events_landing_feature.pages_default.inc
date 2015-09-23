@@ -253,8 +253,6 @@ function nas_events_landing_feature_default_page_manager_pages() {
   $page->conf = array(
     'admin_paths' => FALSE,
   );
-  $page->language = 'und';
-  $page->tpid = 0;
   $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
@@ -409,23 +407,23 @@ function nas_events_landing_feature_default_page_manager_pages() {
       'events' => array(
         1 => array(
           'entity_reference' => array(
-            'entity_id' => '51126',
-            'entity_label' => 'TEST Event NY, CA, Rockies and NAS',
+            'entity_id' => '47367',
+            'entity_label' => 'asdf',
             'entity_type' => 'node',
             'entity_bundle' => 'event',
           ),
         ),
         2 => array(
           'entity_reference' => array(
-            'entity_id' => '50866',
-            'entity_label' => 'Testing featured image on National site',
+            'entity_id' => '47366',
+            'entity_label' => 'event',
             'entity_type' => 'node',
             'entity_bundle' => 'event',
           ),
         ),
       ),
-      'form_build_id' => 'form-gJrhpfdWryEYwgEyO4WcsO8qH8HLo9ib9LH8lZxter0',
-      'form_token' => 'ozt10Su3VsKcz2nVuK-p3oDECDSJ_jR9F8u_qSjOwhM',
+      'form_build_id' => 'form-LvdV06aKt6l3OxmiNRWVdPH21ve-gwv2E1mTCtCQ0U8',
+      'form_token' => 'x0SGhVb35yvZ5jjCCQfrA8R51486XFoOnK_0yXpdbdI',
       'form_id' => 'events_listing_featured_edit_form',
       'nas_panes_resave_panel' => TRUE,
     );
