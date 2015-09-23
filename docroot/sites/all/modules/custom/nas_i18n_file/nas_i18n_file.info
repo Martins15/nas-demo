@@ -1,0 +1,3 @@
+name = NAS files i18n
+description = NAS specific files internationalization
+core = 7.x

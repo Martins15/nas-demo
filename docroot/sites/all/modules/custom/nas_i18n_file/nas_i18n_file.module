@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * nas_i18n_file routines.
+ */
+
+/**
+ * Implements hook_entity_info().
+ */
+function nas_i18n_file_entity_info() {
+  $info = array();
+
+  if (module_exists('file_entity')) {
+    $info['file'] = array(
+      'translation' => array(
+        'dummy_translation' => array(),
+      ),
+      'language callback' => 'nas_i18n_file_entity_language_callback',
+    );
+  }
+
+  return $info;
+}
+
+function nas_i18n_file_entity_language_callback($entity_type, $entity) {
+  global $language;
+  $langcode = $language->language;
+  $default_language = language_default();
+  $default_langcode = $default_language->language;
+
+  return $langcode == $default_langcode ? LANGUAGE_NONE : $langcode;
+}
