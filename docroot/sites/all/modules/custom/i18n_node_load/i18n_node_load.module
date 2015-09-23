@@ -95,3 +95,50 @@ function _i18n_translation_node_get_translations($tnid) {
     return $translations[$tnid];
   }
 }
+
+/**
+ * Implements hook_i18n_translate_path().
+ *
+ * It's the customized version of i18n_node_i18n_translate_path().
+ *
+ * @see i18n_node_i18n_translate_path()
+ */
+function i18n_node_load_i18n_translate_path($path) {
+  if (preg_match("!^node/(\d+)(/.+|)!", $path, $matches) && ($node = node_load((int) $matches[1])) && !empty($node->tnid)) {
+    if ($translations = _i18n_translation_node_get_translations($node->tnid)) {
+      $result = array();
+      foreach ($translations as $langcode => $node_translation) {
+        $result[$langcode] = array(
+          'href' => 'node/' . $node_translation->nid . $matches[2],
+          'title' => $node_translation->title,
+          'object' => $node_translation,
+          // Performance: for node view add access information right away.
+          'access' => !$matches[2] ? $node_translation->status : NULL,
+        );
+      }
+      // Hard-coded langcode und == langcode en.
+      if (!isset($result['en']) && isset($result['und'])) {
+        $result['en'] = $result['und'];
+      }
+      return $result;
+    }
+  }
+}
+
+/**
+ * Implements hook_path_insert().
+ */
+function i18n_node_load_path_insert($path) {
+  // We need to register node path alias for all languages.
+  if (preg_match("!^node/(\d+)(/.+|)!", $path['source'], $matches) && $path['language'] != LANGUAGE_NONE) {
+    $path['language'] = LANGUAGE_NONE;
+    path_save($path);
+  }
+}
+
+/**
+ * Implements hook_path_update().
+ */
+function i18n_node_load_path_update($path) {
+  i18n_node_load_path_insert($path);
+}

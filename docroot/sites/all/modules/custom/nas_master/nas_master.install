@@ -2978,3 +2978,10 @@ function nas_master_update_7212() {
     ),
   ));
 }
+
+/**
+ * Enable Translation redirect module.
+ */
+function nas_master_update_7213() {
+  module_enable(array('i18n_redirect'));
+}
