@@ -498,7 +498,7 @@ function nas_preprocess_node_event(&$vars) {
     $sites = drupal_json_decode($field_items[0]['value']);
     foreach ($sites as $site) {
       if ($site['machine_name'] != 'national') {
-        $site['url'] = trim($site['url'] , '/');
+        $site['url'] = trim($site['url'], '/');
         $vars['origin_site_events_link'] = l($site['name'], $site['url'] . '/events', array('external' => TRUE));
         break;
       }
