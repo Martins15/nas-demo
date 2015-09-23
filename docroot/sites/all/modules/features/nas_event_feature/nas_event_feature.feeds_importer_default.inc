@@ -146,6 +146,12 @@ function nas_event_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '32',
           ),
+          'sites' => array(
+            'name' => 'sites',
+            'value' => 'sites',
+            'debug' => 0,
+            'weight' => '33',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
