@@ -2960,3 +2960,10 @@ function nas_master_update_7211() {
   drupal_uninstall_modules('nas_welcome_to_audubon');
   registry_rebuild();
 }
+
+/**
+ * Enable Translation redirect module.
+ */
+function nas_master_update_7212() {
+  module_enable(array('i18n_redirect'));
+}
