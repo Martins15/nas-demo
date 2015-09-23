@@ -2978,3 +2978,14 @@ function nas_master_update_7212() {
     ),
   ));
 }
+
+/**
+ * Change taxonomy term pages title to i18n name of the term.
+ */
+function nas_master_update_7213() {
+  features_revert(array(
+    'nas_birds_family_feature' => array('pages_default', 'views_default'),
+    'nas_events_landing_feature' => array('pages_default', 'views_default'),
+    'nas_news_page_feature' => array('pages_default'),
+  ));
+}
