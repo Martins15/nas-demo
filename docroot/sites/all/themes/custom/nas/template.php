@@ -488,8 +488,16 @@ function nas_preprocess_node_event(&$vars) {
   $vars['city'] = '';
   $vars['state'] = '??';
   if ($field_items = field_get_items('node', $node, 'field_event_location')) {
-    $vars['state'] = $field_items[0]['province'];
     $vars['city'] = $field_items[0]['city'];
+    $vars['state'] = $field_items[0]['province'];
+  }
+  $vars['event_location'] = $vars['city'];
+  if (!empty($vars['state'])) {
+    $vars['event_location'] .= !empty($vars['event_location']) ? ', ' : '';
+    $vars['event_location'] .= $vars['state'];
+  }
+  if (!empty($vars['event_location'])) {
+    $vars['event_location'] = '(' . $vars['event_location'] . ')';
   }
 
   // Link to the event origin site.
