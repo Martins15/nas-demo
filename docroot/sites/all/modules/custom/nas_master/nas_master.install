@@ -2960,3 +2960,21 @@ function nas_master_update_7211() {
   drupal_uninstall_modules('nas_welcome_to_audubon');
   registry_rebuild();
 }
+
+/**
+ * Update Event CT feature.
+ */
+function nas_master_update_7212() {
+  features_revert(array(
+    'nas_event_feature' => array(
+      'field_base',
+      'field_instance',
+      'feeds_importer_default',
+      'strongarm',
+      'taxonomy',
+      'uuid_term',
+      'panelizer',
+      'views_default',
+    ),
+  ));
+}
