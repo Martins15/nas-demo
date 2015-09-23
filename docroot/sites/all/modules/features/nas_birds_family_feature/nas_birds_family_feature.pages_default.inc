@@ -61,7 +61,7 @@ function nas_birds_family_feature_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '%term:name';
+  $display->title = '%term:i18n-name';
   $display->uuid = '3a76d002-eb20-4c24-9898-eb8b217d1cf6';
   $display->content = array();
   $display->panels = array();

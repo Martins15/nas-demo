@@ -59,7 +59,7 @@ function nas_events_landing_feature_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '%term:name';
+  $display->title = '%term:i18n-name';
   $display->uuid = '9a8a9045-13a9-459f-98ca-8f47edcb886c';
   $display->content = array();
   $display->panels = array();

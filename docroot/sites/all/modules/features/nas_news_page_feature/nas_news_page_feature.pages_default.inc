@@ -63,7 +63,7 @@ function nas_news_page_feature_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%term:i18n-name';
   $display->uuid = 'dc2e096a-e0e1-4367-af17-f4ab6559819b';
   $display->content = array();
   $display->panels = array();
