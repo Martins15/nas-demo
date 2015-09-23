@@ -13,8 +13,12 @@ function nas_i18n_file_entity_info() {
   if (module_exists('file_entity')) {
     $info['file'] = array(
       'translation' => array(
-        'dummy_translation' => array(),
+        // We need this translation handler to get fields translatable.
+        'dummy_translation' => array(
+          'dummy' => TRUE,
+        ),
       ),
+      //
       'language callback' => 'nas_i18n_file_entity_language_callback',
     );
   }
@@ -22,6 +26,17 @@ function nas_i18n_file_entity_info() {
   return $info;
 }
 
+/**
+ * Return current site language instead of entity language.
+ *
+ * @param string $entity_type
+ *  Type of inspected entity, is not in use.
+ * @param mixed $entity
+ *  Inspected entity, is not in use.
+ *
+ * @return string
+ *  Language code.
+ */
 function nas_i18n_file_entity_language_callback($entity_type, $entity) {
   global $language;
   $langcode = $language->language;
