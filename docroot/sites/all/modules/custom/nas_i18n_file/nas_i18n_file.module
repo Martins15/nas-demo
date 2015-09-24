@@ -7,22 +7,12 @@
 /**
  * Implements hook_entity_info().
  */
-function nas_i18n_file_entity_info() {
-  $info = array();
-
-  if (module_exists('file_entity')) {
-    $info['file'] = array(
-      'translation' => array(
-        // We need this translation handler to get fields translatable.
-        'dummy_translation' => array(
-          'dummy' => TRUE,
-        ),
-      ),
-      'language callback' => 'nas_i18n_file_entity_language_callback',
-    );
+function nas_i18n_file_entity_info_alter(&$entity_info) {
+  if (module_exists('file_entity') && isset($entity_info['file'])) {
+    // We need this translation handler to get fields translatable.
+    $entity_info['file']['translation'] = array('nas_i18n_file' => array('dummy' => TRUE));
+    $entity_info['file']['language callback'] = 'nas_i18n_file_entity_language_callback';
   }
-
-  return $info;
 }
 
 /**
