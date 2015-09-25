@@ -1,0 +1,5 @@
+name = NAS i18n Views
+description = NAS specific Views internationalization
+core = 7.x
+
+dependencies[] = views

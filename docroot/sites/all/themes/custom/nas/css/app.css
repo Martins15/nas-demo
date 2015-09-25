@@ -5534,9 +5534,9 @@ table.row-borders tbody td {
 }
 @media only screen and (min-width: 768px) {
   .hero:not(.expand) .hero-image img:not(.canon-logo) {
-    height: 465px;
+    min-height: 465px;
     max-width: none;
-    width: auto;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 900px) {
