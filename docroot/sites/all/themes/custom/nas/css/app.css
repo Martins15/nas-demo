@@ -8969,7 +8969,7 @@ body.black-bg .slideshow {
 }
 
 .hero-image .slideshow img {
-  min-width: auto;
+  min-width: 0;
 }
 
 .slide {
