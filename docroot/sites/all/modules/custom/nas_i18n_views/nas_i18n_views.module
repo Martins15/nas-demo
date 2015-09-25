@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Main file for the NAS i18n Views module.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function nas_i18n_views_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
