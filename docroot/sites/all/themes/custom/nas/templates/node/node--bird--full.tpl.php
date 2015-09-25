@@ -196,7 +196,6 @@
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
               <section class="bird-guide-section right-col small center">
-                <?php //print $donate_link; ?>
                 <h5>Download the Audubon App</h5>
                 <p>
                   <a href="http://www.audubon.org/ios-app?utm_source=bird-guide&utm_medium=national&utm_campaign=iosapp
