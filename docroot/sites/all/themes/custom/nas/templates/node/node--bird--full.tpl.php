@@ -201,7 +201,7 @@
                   <a href="http://www.audubon.org/ios-app?utm_source=bird-guide&utm_medium=national&utm_campaign=iosapp
 " target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a>
                   <a href="http://www.audubon.org/android-app?utm_source=bird-guide&utm_medium=national&utm_campaign=android-app
-" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>google-play.png" width="110" Title="Get the Audubon Bird Guide App on Google Play"></a>
+" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>google-play.png" width="110" title="Get the Audubon Bird Guide App on Google Play"></a>
                 </p>
               </section>
             </div>
