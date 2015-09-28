@@ -748,6 +748,12 @@ function _nas_search_page_manager_page_updated($page) {
  * Helper function invokes hook_entity_insert.
  */
 function _nas_search_page_manager_page_inserted($page) {
+  // All "in code" pages should already be in the Search API index.
+  if (isset($page->in_code_only) && $page->in_code_only) {
+    _nas_search_page_manager_page_updated($page);
+    return;
+  }
+
   $clone = clone $page;
   $clone->pid = page_manager_search_machine_name_to_dec($page->name, 9);
   module_invoke_all('entity_insert', $clone, 'page_manager_search');
