@@ -199,9 +199,9 @@
                 <h5>Download the Audubon App</h5>
                 <p>
                   <a href="http://www.audubon.org/ios-app?utm_source=bird-guide&utm_medium=national&utm_campaign=iosapp
-" target="_BLANK"><img src="/sites/all/themes/custom/nas/img/apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a>
+" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a>
                   <a href="http://www.audubon.org/android-app?utm_source=bird-guide&utm_medium=national&utm_campaign=android-app
-" target="_BLANK"><img src="/sites/all/themes/custom/nas/img/google-play.png" width="110" Title="Get the Audubon Bird Guide App on Google Play"></a>
+" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>google-play.png" width="110" Title="Get the Audubon Bird Guide App on Google Play"></a>
                 </p>
               </section>
             </div>
