@@ -2485,3 +2485,20 @@ function nas_panes_get_external_bird_content($node) {
   }
   return $data['content'];
 }
+
+/**
+ * Get external site title to display on injected Bird box from S&C site.
+ *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
+ * @return string
+ *   The box headline.
+ */
+function nas_panes_get_external_bird_headline($node) {
+  $data = nas_panes_get_site_info($node);
+  if (!$data || empty($data['content'])) {
+    return;
+  }
+  return t('!birdname around @sitename', array('!birdname' => $node->title, '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))));
+}
