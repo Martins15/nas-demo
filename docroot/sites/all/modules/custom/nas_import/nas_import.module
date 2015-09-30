@@ -1731,8 +1731,11 @@ function nas_import_send_request($url) {
 /**
  * Import nodes from external IBA source.
  */
-function nas_import_iba_nodes($url) {
+function nas_import_iba_nodes($url, $limit = NULL) {
   $ibas = nas_import_iba_get_iba_keys($url);
+  if ($limit) {
+    $ibas = array_slice($ibas, 0, $limit);
+  }
 
   $operations = array();
   foreach (array_chunk($ibas, 5) as $ibas_chunk) {
