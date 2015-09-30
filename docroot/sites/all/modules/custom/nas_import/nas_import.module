@@ -684,6 +684,7 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       // We don't want to create field collections several times; so that is
       // why !$entity_id condition below.
       // TODO: We should probably somehow update field collections.
+      $entity_save = FALSE;
       if (!$entity_id && isset($item['statepriorities'])) {
         foreach ($item['statepriorities'] as $priority) {
           $fc_item = entity_create('field_collection_item', array('field_name' => 'field_iba_state_priorities'));
@@ -693,12 +694,17 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
           $fc_wrapper->field_iba_state_iba_count->set($priority['IBACount']);
           $fc_wrapper->field_iba_state_acres->set($priority['Acres']);
           $fc_wrapper->save(TRUE);
-          entity_save('node', $entity);
+          $entity_save = TRUE;
         }
+      }
+
+      if ($entity_save) {
+        entity_save('node', $entity);
       }
       break;
 
     case 'iba_import':
+      $entity_save = FALSE;
       // IBA State entity reference.
       if (isset($item['sitestate2'])) {
         // Trying to find IBA State.
@@ -712,7 +718,7 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
         if (isset($result['node'])) {
           $state = reset($result['node']);
           $entity->field_iba_state[LANGUAGE_NONE][0]['target_id'] = $state->nid;
-          entity_save('node', $entity);
+          $entity_save = TRUE;
         }
       }
       // Birds entity references.
@@ -736,10 +742,14 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
             }
             if (!$referenced) {
               $entity->field_iba_birds[LANGUAGE_NONE][]['target_id'] = $fbird->nid;
-              entity_save('node', $entity);
+              $entity_save = TRUE;
             }
           }
         }
+      }
+
+      if ($entity_save) {
+        entity_save('node', $entity);
       }
       break;
   }
