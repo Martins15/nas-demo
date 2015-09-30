@@ -625,6 +625,17 @@ function _frontpage_featured_curtain_html_form(&$form, $form_state, $conf) {
     '#states' => $state,
     '#pp_crop_styles' => array('featured_frontpage'),
   );
+  $form['curtain_html']['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+      'none' => t('None'),
+    ),
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
   $form['curtain_html']['header_bg'] = array(
     '#type' => 'radios',
     '#title' => t('Shaded background'),
@@ -1194,6 +1205,14 @@ function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
   if (!empty($image)) {
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
     $attribution = _nas_panes_format_image_attribution($image);
+  }
+
+  $class = &drupal_static('nas_header_class');
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = 'dark-text light-bg transparent';
   }
 
   $summary = _filter_htmlcorrector($conf['summary']);
