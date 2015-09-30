@@ -34,3 +34,17 @@ function nas_i18n_file_entity_language_callback($entity_type, $entity) {
 
   return $langcode == $default_langcode ? LANGUAGE_NONE : $langcode;
 }
+
+/**
+ * Implements hook_field_available_languages_alter().
+ */
+function nas_i18n_file_field_available_languages_alter(&$languages, $context) {
+  if ($context['entity_type'] != 'file') {
+    return;
+  }
+  $default_language = language_default();
+  // Do not allow usage of default language (english).
+  $languages = array_filter($languages, function ($v) use ($default_language) {
+    return $v != $default_language->language;
+  });
+}
