@@ -76,6 +76,18 @@ function nas_iba_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'iba' => 'iba',
   );
+  $translatables['iba_native_birds'] = array(
+    t('Master'),
+    t('Birds Native to This Area'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Content entity referenced from field_iba_birds'),
+    t('All'),
+  );
   $export['iba_native_birds'] = $view;
 
   return $export;

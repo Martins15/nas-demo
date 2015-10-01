@@ -109,13 +109,13 @@ function nas_iba_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_iba_counties'
-  $field_bases['field_iba_counties'] = array(
+  // Exported field_base: 'field_iba_county'
+  $field_bases['field_iba_county'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_iba_counties',
+    'field_name' => 'field_iba_county',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -131,9 +131,11 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'max_length' => 255,
+    ),
     'translatable' => 0,
-    'type' => 'text_long',
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_iba_criteria'
@@ -262,6 +264,64 @@ function nas_iba_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_iba_lat'
+  $field_bases['field_iba_lat'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_iba_lat',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_iba_long'
+  $field_bases['field_iba_long'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_iba_long',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_iba_map'
   $field_bases['field_iba_map'] = array(
     'active' => 1,
@@ -380,30 +440,39 @@ function nas_iba_feature_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_iba_state',
     'foreign keys' => array(
-      'tid' => array(
+      'node' => array(
         'columns' => array(
-          'tid' => 'tid',
+          'target_id' => 'nid',
         ),
-        'table' => 'taxonomy_term_data',
+        'table' => 'node',
       ),
     ),
     'indexes' => array(
-      'tid' => array(
-        0 => 'tid',
+      'target_id' => array(
+        0 => 'target_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'taxonomy',
+    'module' => 'entityreference',
     'settings' => array(
-      'allowed_values' => array(
-        0 => array(
-          'vocabulary' => 'us_and_canada_states',
-          'parent' => 0,
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'iba_state' => 'iba_state',
         ),
       ),
+      'target_type' => 'node',
     ),
     'translatable' => 0,
-    'type' => 'taxonomy_term_reference',
+    'type' => 'entityreference',
   );
 
   // Exported field_base: 'field_iba_status'

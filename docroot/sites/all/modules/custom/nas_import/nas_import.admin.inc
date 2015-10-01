@@ -41,6 +41,16 @@ function nas_import_iba_ct_form($form, &$form_state) {
     '#default_value' => 'batch',
     '#required' => TRUE,
   );
+  $form['nas_import_iba_limit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Batch limit'),
+    '#description' => t('Process maximum this number of IBAs. Leave empty to process them all.'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="nas_import_iba_method"]' => array('value' => 'batch'),
+      ),
+    ),
+  );
 
   $form['submit'] = array(
     '#type' => 'submit',
@@ -63,7 +73,7 @@ function nas_import_iba_ct_form_submit($form, &$form_state) {
 
   switch ($values['nas_import_iba_method']) {
     case 'batch':
-      nas_import_iba_nodes($url);
+      nas_import_iba_nodes($url, $values['nas_import_iba_limit']);
       break;
 
     case 'queue':
