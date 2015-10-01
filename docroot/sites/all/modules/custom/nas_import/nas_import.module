@@ -584,6 +584,9 @@ function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $e
 function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity, $item) {
   list(, $title) = explode('-', $entity->title);
   $entity->title = trim($title);
+  // Convert line breaks using Drupal core filter.
+  $entity->body[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->body[LANGUAGE_NONE][0]['value']);
+
   if (isset($item['statecontacts'])) {
     $contact = reset($item['statecontacts']);
     $entity->field_iba_state_contact_name[LANGUAGE_NONE][0]['value'] = $contact['Name'];
@@ -595,9 +598,19 @@ function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity
  * hook_feeds_presave() for iba importer.
  */
 function nas_import_feeds_presave_iba_import(FeedsSource $source, $entity, $item) {
-
+  // Convert line breaks using Drupal core filter.
+  $fields = array(
+    'field_iba_description',
+    'field_iba_ornithological',
+    'field_iba_conservation_issues'
+  );
+  foreach ($fields as $field) {
+    $entity->{$field}[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['value']);
+    if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
+      $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+    }
+  }
 }
-
 
 /**
  * Implements hook_feeds_after_save().
