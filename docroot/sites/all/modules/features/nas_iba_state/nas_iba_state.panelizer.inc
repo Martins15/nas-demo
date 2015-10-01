@@ -39,6 +39,9 @@ function nas_iba_state_panelizer_defaults() {
       'sidebar' => NULL,
       'main' => NULL,
       'cards_set' => NULL,
+      'map' => NULL,
+      'more' => NULL,
+      'title' => NULL,
     ),
   );
   $display->cache = array();
@@ -117,7 +120,7 @@ function nas_iba_state_panelizer_defaults() {
     $display->panels['main'][0] = 'new-45de9982-8b91-4ac2-8d8c-7f6d6fd7fd38';
     $pane = new stdClass();
     $pane->pid = 'new-0ab64c8f-a251-4750-9ff6-0d77d69477d3';
-    $pane->panel = 'main';
+    $pane->panel = 'more';
     $pane->type = 'editorial_card_3x';
     $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
@@ -164,14 +167,33 @@ function nas_iba_state_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '0ab64c8f-a251-4750-9ff6-0d77d69477d3';
     $display->content['new-0ab64c8f-a251-4750-9ff6-0d77d69477d3'] = $pane;
-    $display->panels['main'][1] = 'new-0ab64c8f-a251-4750-9ff6-0d77d69477d3';
+    $display->panels['more'][0] = 'new-0ab64c8f-a251-4750-9ff6-0d77d69477d3';
+    $pane = new stdClass();
+    $pane->pid = 'new-28317161-07ca-49fa-92c1-7c5a255e0a6a';
+    $pane->panel = 'sidebar';
+    $pane->type = 'iba_state_info';
+    $pane->subtype = 'iba_state_info';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '28317161-07ca-49fa-92c1-7c5a255e0a6a';
+    $display->content['new-28317161-07ca-49fa-92c1-7c5a255e0a6a'] = $pane;
+    $display->panels['sidebar'][0] = 'new-28317161-07ca-49fa-92c1-7c5a255e0a6a';
     $pane = new stdClass();
     $pane->pid = 'new-4d7bdeba-c86f-4eb3-9e6c-ae4136cbb8dd';
-    $pane->panel = 'top';
+    $pane->panel = 'title';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
@@ -179,10 +201,7 @@ function nas_iba_state_panelizer_defaults() {
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
-      'body' => '<div class="column">
-  <a class="section-header-slug" href=/iba">Important Bird Areas</a>
-  <h1 class="thin">%node:title</h1>
-</div>',
+      'body' => '<h1 class="thin">%node:title</h1>',
       'format' => 'html',
       'substitute' => 1,
     );
@@ -196,7 +215,7 @@ function nas_iba_state_panelizer_defaults() {
     $pane->locks = array();
     $pane->uuid = '4d7bdeba-c86f-4eb3-9e6c-ae4136cbb8dd';
     $display->content['new-4d7bdeba-c86f-4eb3-9e6c-ae4136cbb8dd'] = $pane;
-    $display->panels['top'][0] = 'new-4d7bdeba-c86f-4eb3-9e6c-ae4136cbb8dd';
+    $display->panels['title'][0] = 'new-4d7bdeba-c86f-4eb3-9e6c-ae4136cbb8dd';
     $pane = new stdClass();
     $pane->pid = 'new-77fc48e3-14e4-4ec9-a819-b8bd2dec1594';
     $pane->panel = 'top';
@@ -211,11 +230,11 @@ function nas_iba_state_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '77fc48e3-14e4-4ec9-a819-b8bd2dec1594';
     $display->content['new-77fc48e3-14e4-4ec9-a819-b8bd2dec1594'] = $pane;
-    $display->panels['top'][1] = 'new-77fc48e3-14e4-4ec9-a819-b8bd2dec1594';
+    $display->panels['top'][0] = 'new-77fc48e3-14e4-4ec9-a819-b8bd2dec1594';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-45de9982-8b91-4ac2-8d8c-7f6d6fd7fd38';
   $panelizer->display = $display;

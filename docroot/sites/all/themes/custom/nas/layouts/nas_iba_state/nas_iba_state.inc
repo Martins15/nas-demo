@@ -15,9 +15,12 @@ $plugin = array(
   'icon' => 'nas_iba_state.png',
   'theme' => 'nas_iba_state',
   'regions' => array(
+    'title' => t('Title'),
     'top' => t('Top'),
     'sidebar' => t('Sidebar'),
+    'map' => t('Map'),
     'main' => t('Main'),
+    'more' => t('More'),
     'cards_set' => t('Engagement cards'),
   ),
 );

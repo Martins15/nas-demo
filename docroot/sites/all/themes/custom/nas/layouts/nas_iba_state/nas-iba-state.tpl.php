@@ -6,69 +6,30 @@
 ?>
 <section class="global-content">
   <div class="row section-header">
+    <div class="column">
+    <?php print l(t('Important Bird Areas'), 'iba', array('attributes' => array('class' => array('section-header-slug')))); ?>
+      <?php print $content['title']; ?>
+    </div>
     <?php print $content['top']; ?>
   </div>
 
   <div class="row space-bottom">
-    <div class="column">
-      <?php print $content['main']; ?>
-      <div class="inline-map small">
-        <div class="columns medium-6 large-8">
-          <div class="inline-map-canvas">
-            <div class="inline-map-mask"></div>
-            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=5b8624b080484d2e8b0ea6f6abb6d08e&amp;extent=-174.8584,47.7477,-133.418,73.1604&amp;zoom=true&amp;scale=true"></iframe>
-          </div>
+    <?php print $content['map']; ?>
+    <div class="inline-map small">
+      <div class="columns medium-6 large-8">
+        <div class="inline-map-canvas">
+          <div class="inline-map-mask"></div>
+          <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=5b8624b080484d2e8b0ea6f6abb6d08e&amp;extent=-174.8584,47.7477,-133.418,73.1604&amp;zoom=true&amp;scale=true"></iframe>
         </div>
       </div>
-      <div class="columns medium-6 large-4">
+    </div>
+    <div class="columns medium-6 large-4">
       <?php print $content['sidebar']; ?>
-        <p>
-          <strong>Andrea Jones</strong><br>
-          State Program Director<br>
-          <a href="#">Important Bird Areas of California</a>
-        </p>
-        <br>
-        <h4>California IBAs by Type</h4>
-        <table class="data">
-          <thead>
-            <tr>
-              <th>IBA Priority</th>
-              <th>Number</th>
-              <th>Acres</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Global</td>
-              <td>69</td>
-              <td>13,014,412</td>
-            </tr>
-            <tr>
-              <td>State</td>
-              <td>106</td>
-              <td>6,672,934</td>
-            </tr>
-            <tr>
-              <td>Continental</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>Total</td>
-              <td>175</td>
-              <td>19,687,346</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
     </div>
   </div>
   <div class="row space-bottom">
     <div class="column text-container">
-      <p>California's Important Bird Areas Program, launched in 1996, surged forward in 2000. Beginning in 2001, dozens of California field ornithologists, representing a broad range of agencies and affiliations, were interviewed and questioned about sites significant to bird populations in the state. These interviews, in combination with collecting data from around the state, and review by a technical committee, led to 145 sites becoming designated as Important Bird Areas. In 2004, Audubon published the book "Important Bird Areas of California" by Daniel S. Cooper. This network of IBAs is the cornerstone of Audubon's conservation activities in California. Their identification is guiding conservation at the chapter, state, and national levels of Audubon, and serves to showcase noteworthy habitat to other interested groups and agencies. </p>
-      <p>In 2006, Audubon California prioritized IBAs based on bird value, degree of threat, and availability of conservation opportunities, and works with local chapters to conserve these sites and to develop systems to monitor their bird life. Audubon California has partnered with Cornell Lab of Ornithology and Point Blue Conservation Science to develop <a href="#">California eBird</a> to gather bird abundance and distribution data at IBA sites into an online database. </p>
+      <?php print $content['main']; ?>
     </div>
   </div>
 
@@ -262,6 +223,7 @@
       </div>
     </div>
   </div>
+  <?php print $content['more']; ?>
   <section class="card-set bg-1">
   	<?php print $content['cards_set']; ?>
   </section>
