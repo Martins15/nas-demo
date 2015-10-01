@@ -32,7 +32,7 @@ function iba_state_switcher_render($subtype, $conf, $args, $context) {
     $options[] = array(
       'default' => $node->nid == $context->data->nid ?  TRUE : FALSE,
       'title' => $node->title,
-      'path' => drupal_get_path_alias('node/' . $node->nid),
+      'path' => base_path() . drupal_get_path_alias('node/' . $node->nid),
     );
   }
 
