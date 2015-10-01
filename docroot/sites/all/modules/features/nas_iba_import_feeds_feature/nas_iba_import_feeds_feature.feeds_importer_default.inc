@@ -211,7 +211,7 @@ function nas_iba_import_feeds_feature_feeds_importer_default() {
           4 => array(
             'source' => 'longdescription',
             'target' => 'field_iba_description',
-            'unique' => FALSE,
+            'format' => 'full_html',
           ),
           5 => array(
             'source' => 'shortornithological',
@@ -221,7 +221,7 @@ function nas_iba_import_feeds_feature_feeds_importer_default() {
           6 => array(
             'source' => 'longornithological',
             'target' => 'field_iba_ornithological',
-            'unique' => FALSE,
+            'format' => 'full_html',
           ),
           7 => array(
             'source' => 'siteownership',
@@ -231,7 +231,7 @@ function nas_iba_import_feeds_feature_feeds_importer_default() {
           8 => array(
             'source' => 'conservationissues',
             'target' => 'field_iba_conservation_issues',
-            'unique' => FALSE,
+            'format' => 'full_html',
           ),
           9 => array(
             'source' => 'landuse',
