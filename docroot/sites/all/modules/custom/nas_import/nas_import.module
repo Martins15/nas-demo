@@ -602,12 +602,14 @@ function nas_import_feeds_presave_iba_import(FeedsSource $source, $entity, $item
   $fields = array(
     'field_iba_description',
     'field_iba_ornithological',
-    'field_iba_conservation_issues'
+    'field_iba_conservation_issues',
   );
   foreach ($fields as $field) {
-    $entity->{$field}[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['value']);
-    if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
-      $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+    if (isset($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
+      $entity->{$field}[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['value']);
+      if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
+        $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+      }
     }
   }
 }
@@ -765,12 +767,15 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
             $fbird = reset($result['node']);
             // Check that this bird is not referenced yet.
             $referenced = FALSE;
-            foreach ($entity->field_iba_birds[LANGUAGE_NONE] as $reference) {
-              if ($reference['target_id'] == $fbird->nid) {
-                $referenced = TRUE;
-                break;
+            if (isset($entity->field_iba_birds)) {
+              foreach ($entity->field_iba_birds[LANGUAGE_NONE] as $reference) {
+                if ($reference['target_id'] == $fbird->nid) {
+                  $referenced = TRUE;
+                  break;
+                }
               }
             }
+
             if (!$referenced) {
               $entity->field_iba_birds[LANGUAGE_NONE][]['target_id'] = $fbird->nid;
               $entity_save = TRUE;
