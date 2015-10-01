@@ -745,6 +745,9 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
               $entity_save = TRUE;
             }
           }
+          else {
+            watchdog('nas_import', 'Failed to find Bird node for "@bird_name".', array('@bird_name' => $bird['Name']));
+          }
         }
       }
 
