@@ -681,20 +681,38 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       break;
 
     case 'iba_states_import':
-      // We don't want to create field collections several times; so that is
-      // why !$entity_id condition below.
-      // TODO: We should probably somehow update field collections.
       $entity_save = FALSE;
-      if (!$entity_id && isset($item['statepriorities'])) {
-        foreach ($item['statepriorities'] as $priority) {
-          $fc_item = entity_create('field_collection_item', array('field_name' => 'field_iba_state_priorities'));
-          $fc_item->setHostEntity('node', $entity);
-          $fc_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
-          $fc_wrapper->field_iba_state_priority->set($priority['Priority']);
-          $fc_wrapper->field_iba_state_iba_count->set($priority['IBACount']);
-          $fc_wrapper->field_iba_state_acres->set($priority['Acres']);
-          $fc_wrapper->save(TRUE);
-          $entity_save = TRUE;
+      if (isset($item['statepriorities'])) {
+        $priorities = $item['statepriorities'];
+
+        // Check for already existing priorities field collections.
+        $entity_wrapper = entity_metadata_wrapper('node', $entity);
+        $fc = $entity_wrapper->field_iba_state_priorities->value();
+        foreach ($fc as $fc_item) {
+          $fc_item_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
+          $fc_item_priority = $fc_item_wrapper->field_iba_state_priority->value();
+          foreach ($priorities as $key => $priority) {
+            if ($fc_item_priority == $priority['Priority']) {
+              $fc_item_wrapper->field_iba_state_iba_count->set($priority['IBACount']);
+              $fc_item_wrapper->field_iba_state_acres->set($priority['Acres']);
+              $fc_item_wrapper->save(TRUE);
+              unset($priorities[$key]);
+            }
+          }
+        }
+
+        // Create new field collections for new priorities.
+        if (!empty($priorities)) {
+          foreach ($priorities as $priority) {
+            $fc_item = entity_create('field_collection_item', array('field_name' => 'field_iba_state_priorities'));
+            $fc_item->setHostEntity('node', $entity);
+            $fc_item_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
+            $fc_item_wrapper->field_iba_state_priority->set($priority['Priority']);
+            $fc_item_wrapper->field_iba_state_iba_count->set($priority['IBACount']);
+            $fc_item_wrapper->field_iba_state_acres->set($priority['Acres']);
+            $fc_item_wrapper->save(TRUE);
+            $entity_save = TRUE;
+          }
         }
       }
 
