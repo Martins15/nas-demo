@@ -21,7 +21,7 @@
   <?php print $link; ?><br>
 </p>
 <br>
-<h4><?php print t('California IBAs by Type'); ?></h4>
+<h4><?php print $state_title . ' ' . t('IBAs by Type'); ?></h4>
 <table class="data">
   <thead>
     <tr>
