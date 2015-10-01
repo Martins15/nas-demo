@@ -61,8 +61,8 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = '';
   $block->content = theme('iba_state_info', array(
-    'contact_name' => $contact_name[0]['#markup'],
-    'contact_title' => $contact_title[0]['#markup'],
+    'contact_name' => !empty($contact_name[0]['#markup']) ? $contact_name[0]['#markup'] : '',
+    'contact_title' => !empty($contact_title[0]['#markup']) ? $contact_title[0]['#markup'] :'',
     'link' => l(t('Important Bird Areas of California'), ''),
     'priorities_data' => $priorities_data,
   ));

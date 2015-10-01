@@ -12,8 +12,12 @@
 ?>
 
 <p>
+<?php if (!empty($contact_name)): ?> 
   <strong><?php print $contact_name; ?></strong><br>
+<?php endif; ?>
+<?php if (!empty($contact_title)): ?> 
   <?php print $contact_title; ?><br>
+<?php endif; ?>
   <?php print $link; ?><br>
 </p>
 <br>

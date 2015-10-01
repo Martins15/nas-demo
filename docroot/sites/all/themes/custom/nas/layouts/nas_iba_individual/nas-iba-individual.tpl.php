@@ -7,7 +7,8 @@
 <section class="global-content with-padding static-page-content">
   <header class="row">
     <div class="large-10 columns">
-    	<?php print $content['top']; ?>
+    <?php print l(t('Important Bird Areas'), 'iba', array('attributes' => array('class' => array('article-slug')))); ?>
+    <?php print $content['top']; ?>
     </div>
   </header>
   <div class="row">

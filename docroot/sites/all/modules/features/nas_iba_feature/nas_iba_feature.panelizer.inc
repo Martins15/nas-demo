@@ -398,8 +398,7 @@ function nas_iba_feature_panelizer_defaults() {
     $pane->configuration = array(
       'admin_title' => 'IBA Header',
       'title' => '',
-      'body' => '<a class="article-slug" href="/iba">Important Bird Areas</a>
-<h1>%node:title</h1>
+      'body' => '<h1>%node:title</h1>
 <p class="deck">%node:field_iba_state</p>
 ',
       'format' => 'html',
