@@ -82,6 +82,10 @@
   color: $color-white;
   padding: $column-gutter;
 
+  &.no-bg {
+    background-color: transparent;
+  }
+
   h1, h2, h3, h4, h5 {
     a {
       color: $color-white;

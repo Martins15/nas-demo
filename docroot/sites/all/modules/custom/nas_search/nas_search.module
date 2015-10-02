@@ -701,11 +701,13 @@ function nas_search_ctools_plugin_post_alter(&$plugin, &$info) {
  * Custom save callback for page manager pages CTools plugin.
  */
 function nas_search_page_manager_page_save($page, $update) {
-  if (empty($page->pid)) {
-    _nas_search_page_manager_page_inserted($page);
+  // All "in code" pages and pages with pid should already be in the Search API
+  // index.
+  if ((isset($page->in_code_only) && $page->in_code_only) || !empty($page->pid)) {
+    _nas_search_page_manager_page_updated($page);
   }
   else {
-    _nas_search_page_manager_page_updated($page);
+    _nas_search_page_manager_page_inserted($page);
   }
 }
 

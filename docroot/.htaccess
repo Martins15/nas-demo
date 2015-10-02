@@ -292,6 +292,11 @@ DirectoryIndex index.php index.html index.htm
   # Close access to reinstall.yml.
   RewriteRule ^reinstall.yml$ [R=404,L,NC]
 
+  # Redirect all non www.audubon.org requests to www.audubon.org
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
+  RewriteCond %{HTTP_HOST} !www.audubon.org$
+  RewriteRule ^ http%{ENV:protossl}://www.audubon.org%{REQUEST_URI} [R=301,L]
+
   # Pass all requests not referring directly to files in the filesystem to
   # index.php. Clean URLs are handled in drupal_environment_initialize().
   RewriteCond %{REQUEST_FILENAME} !-f

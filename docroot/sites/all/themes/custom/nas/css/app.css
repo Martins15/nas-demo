@@ -9920,6 +9920,9 @@ body.black-bg .slide-caption {
   color: #fff;
   padding: 25px;
 }
+.curtain-card.no-bg {
+  background-color: transparent;
+}
 .curtain-card h1 a, .curtain-card h2 a, .curtain-card h3 a, .curtain-card h4 a, .curtain-card h5 a {
   color: #fff;
 }
