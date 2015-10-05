@@ -9184,6 +9184,11 @@ body.black-bg .slide-caption {
   color: #fff;
 }
 
+.global-content .article .article-body .article-text .slideshow .slide > .row,
+.global-content .article .article-body .article-text .slideshow .slideshow-indicator {
+  max-width: 1000px;
+}
+
 .see-all-show {
   display: none;
 }
