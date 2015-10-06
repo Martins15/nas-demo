@@ -42,6 +42,7 @@ function nas_iba_state_panelizer_defaults() {
       'map' => NULL,
       'more' => NULL,
       'title' => NULL,
+      'search' => NULL,
     ),
   );
   $display->cache = array();
@@ -172,6 +173,25 @@ function nas_iba_state_panelizer_defaults() {
     $pane->uuid = '0ab64c8f-a251-4750-9ff6-0d77d69477d3';
     $display->content['new-0ab64c8f-a251-4750-9ff6-0d77d69477d3'] = $pane;
     $display->panels['more'][0] = 'new-0ab64c8f-a251-4750-9ff6-0d77d69477d3';
+    $pane = new stdClass();
+    $pane->pid = 'new-3404ac8b-c25a-4a94-85a6-a01904e7fdd5';
+    $pane->panel = 'search';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'iba_search_state_page-iba_search_state_page';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3404ac8b-c25a-4a94-85a6-a01904e7fdd5';
+    $display->content['new-3404ac8b-c25a-4a94-85a6-a01904e7fdd5'] = $pane;
+    $display->panels['search'][0] = 'new-3404ac8b-c25a-4a94-85a6-a01904e7fdd5';
     $pane = new stdClass();
     $pane->pid = 'new-28317161-07ca-49fa-92c1-7c5a255e0a6a';
     $pane->panel = 'sidebar';

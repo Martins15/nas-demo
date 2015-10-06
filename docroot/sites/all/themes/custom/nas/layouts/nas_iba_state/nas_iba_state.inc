@@ -20,6 +20,7 @@ $plugin = array(
     'sidebar' => t('Sidebar'),
     'map' => t('Map'),
     'main' => t('Main'),
+    'search' => t('Search'),
     'more' => t('More'),
     'cards_set' => t('Engagement cards'),
   ),

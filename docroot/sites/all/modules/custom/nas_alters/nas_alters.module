@@ -519,6 +519,16 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
       ),
     );
   }
+
+  if ($form['#id'] == 'views-exposed-form-iba-search-state-page-iba-search-state-page') {
+    $form['field_iba_status']['#options']['All'] = t('Filter by Status');
+    $form['priority']['#options']['All'] = t('Filter by Priority');
+    $form['search_api_views_fulltext']['#placeholder'] = t('Search for a specific site...');
+    $form['submit']['#attributes']['class'][] = 'table-sort-button';
+    $form['submit']['#attributes']['class'][] = 'large';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+  }
 }
 
 /**
