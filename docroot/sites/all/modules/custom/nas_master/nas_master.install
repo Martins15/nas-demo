@@ -3002,3 +3002,17 @@ function nas_master_update_7214() {
 function nas_master_update_7215() {
   module_enable(array('nas_i18n_views'));
 }
+
+/**
+ * Update Event CT and importer - location name field.
+ */
+function nas_master_update_7216() {
+  features_revert(array(
+    'nas_events_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+      'feeds_importer',
+    ),
+  ));
+}

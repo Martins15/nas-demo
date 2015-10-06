@@ -101,22 +101,22 @@ function nas_event_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'title' => array(
-          'weight' => '0',
-        ),
-        'path' => array(
-          'weight' => '2',
-        ),
-        'redirect' => array(
-          'weight' => '3',
-        ),
-        'xmlsitemap' => array(
           'weight' => '1',
         ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '4',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
+        ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '0',
