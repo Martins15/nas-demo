@@ -7326,7 +7326,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #909090;
+    color: #919191;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -15168,4 +15168,131 @@ body .slide .slide-img img {
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+/**
+ * IBA State page exposed form.
+ */
+#views-exposed-form-iba-search-state-page-iba-search-state-page label {
+  display: none;
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page select {
+  width: 100%;
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page #edit-field-iba-status-wrapper {
+  float: none;
+  padding: 0;
+}
+@media only screen and (min-width: 601px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-field-iba-status-wrapper {
+    padding: 0 12.5px 0 0;
+    float: left;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-field-iba-status-wrapper {
+    padding: 0 12.5px 0 0;
+    float: left;
+    width: 25%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page #edit-priority-wrapper {
+  float: none;
+  padding: 0;
+}
+@media only screen and (min-width: 601px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-priority-wrapper {
+    float: left;
+    padding: 0 0 0 12.5px;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-priority-wrapper {
+    float: left;
+    padding: 0 12.5px;
+    width: 25%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page #edit-search-api-views-fulltext-wrapper {
+  padding: 0 12.5px 0 0;
+  width: 86%;
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-search-api-views-fulltext-wrapper {
+    padding: 0 12.5px 0 0;
+    width: 42%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button {
+  padding: 0 0 0 12.5px;
+  width: 14%;
+}
+@media only screen and (max-width: 320px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button {
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button {
+    padding: 0;
+    width: 8%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button input {
+  margin: 0;
+  height: 40px;
+  width: 100%;
+}
+
+.view-iba-search-state-page ul.pager {
+  display: block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  height: 40px;
+  margin: 0 0 5px;
+}
+.view-iba-search-state-page ul.pager .ajax-progress-throbber {
+  display: inline-block;
+  margin-left: 5px;
+}
+.view-iba-search-state-page ul.pager .ajax-progress-throbber * {
+  display: inline-block;
+}
+.view-iba-search-state-page ul.pager li {
+  height: 30px;
+  color: #222222;
+  font-size: 17px;
+  margin-left: 5px;
+  display: inline-block;
+}
+.view-iba-search-state-page ul.pager li.pager-next, .view-iba-search-state-page ul.pager li.pager-previous {
+  display: none;
+}
+.view-iba-search-state-page ul.pager li a {
+  display: inline-block;
+  padding: 1px 5px 1px;
+  color: #0aa8e3;
+  border-radius: 3px;
+}
+.view-iba-search-state-page ul.pager li:hover a,
+.view-iba-search-state-page ul.pager li a:focus {
+  background: transparent;
+}
+.view-iba-search-state-page ul.pager li.unavailable a {
+  cursor: default;
+  color: #d4d4d4;
+}
+.view-iba-search-state-page ul.pager li.unavailable a:hover a, .view-iba-search-state-page ul.pager li.unavailable a:focus {
+  background: transparent;
+}
+.view-iba-search-state-page ul.pager li.current {
+  background: transparent;
+  color: black;
+  font-weight: 600;
+  cursor: default;
+}
+.view-iba-search-state-page ul.pager li.current:hover,
+.view-iba-search-state-page ul.pager li.current a:focus {
+  background: transparent;
 }

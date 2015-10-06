@@ -40,6 +40,7 @@ function nas_iba_feature_panelizer_defaults() {
       'cards_set' => NULL,
       'sidebar' => NULL,
       'featured' => NULL,
+      'title' => NULL,
     ),
   );
   $display->cache = array();
