@@ -44,7 +44,10 @@ function nas_i18n_permissions_feature_user_default_permissions() {
   // Exported permission: 'translate user-defined strings'.
   $permissions['translate user-defined strings'] = array(
     'name' => 'translate user-defined strings',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+      'super' => 'super',
+    ),
     'module' => 'i18n_string',
   );
 
