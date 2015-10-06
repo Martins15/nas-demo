@@ -8969,7 +8969,7 @@ body.black-bg .slideshow {
 }
 
 .hero-image .slideshow img {
-  min-width: auto;
+  min-width: 0;
 }
 
 .slide {
@@ -9182,6 +9182,11 @@ body.black-bg .slideshow,
 body.black-bg .slideshow-indicator,
 body.black-bg .slide-caption {
   color: #fff;
+}
+
+.global-content .article .article-body .article-text .slideshow .slide > .row,
+.global-content .article .article-body .article-text .slideshow .slideshow-indicator {
+  max-width: 1000px;
 }
 
 .see-all-show {
@@ -15171,4 +15176,8 @@ body .slide .slide-img img {
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+#admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
+  right: auto;
 }
