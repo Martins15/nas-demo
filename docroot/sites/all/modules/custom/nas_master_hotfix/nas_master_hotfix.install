@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * For hook_update_X functions.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nas_master_hotfix_install() {
+  nas_master_hotfix_update_7001();
+}
+
+/**
+ * Enable nas_slideshow_feature feature.
+ */
+function nas_master_hotfix_update_7001() {
+  module_enable(array('nas_i18n_permissions_feature'));
+}
