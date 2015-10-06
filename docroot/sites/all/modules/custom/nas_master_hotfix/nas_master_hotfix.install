@@ -17,4 +17,7 @@ function nas_master_hotfix_install() {
  */
 function nas_master_hotfix_update_7001() {
   module_enable(array('nas_i18n_permissions_feature'));
+  features_revert(array(
+    'nas_i18n_permissions_feature' => array('user_permission'),
+  ));
 }
