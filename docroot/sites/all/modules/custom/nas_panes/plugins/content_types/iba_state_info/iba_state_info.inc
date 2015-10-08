@@ -27,6 +27,19 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
 
   $contact_name = field_view_field('node', $node, 'field_iba_state_contact_name');
   $contact_title = field_view_field('node', $node, 'field_iba_state_contact_title');
+
+  $state_link = '';
+  if ($link_field = field_get_items('node', $node, 'field_iba_state_link')) {
+    // 'Important Bird Areas of California'
+    $link_field_value = reset($link_field);
+    // Check for empty title.
+    if (empty($link_field_value['title']) || strpos($link_field_value['url'], $link_field_value['title']) !== FALSE) {
+      $link_field_value['title'] = t('Important Bird Areas of @state', array('@state' => $node->title));
+    }
+    $link_view = field_view_value('node', $node, 'field_iba_state_link', $link_field_value);
+    $state_link = drupal_render($link_view);
+  }
+
   $get_priorities_wrapper = field_get_items('node', $node, 'field_iba_state_priorities');
   $priorities_data = array(
     'total_number' => 0,
@@ -63,7 +76,7 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
   $block->content = theme('iba_state_info', array(
     'contact_name' => !empty($contact_name[0]['#markup']) ? $contact_name[0]['#markup'] : '',
     'contact_title' => !empty($contact_title[0]['#markup']) ? $contact_title[0]['#markup'] :'',
-    'link' => l(t('Important Bird Areas of California'), ''),
+    'state_link' => $state_link,
     'priorities_data' => $priorities_data,
     'state_title' => $node->title,
   ));
@@ -79,7 +92,7 @@ function iba_state_info_theme(&$theme, $plugin) {
     'variables' => array(
       'contact_name' => '',
       'contact_title' => '',
-      'link' => '',
+      'state_link' => '',
       'priorities_data' => array(),
       'state_title' => '',
     ),
