@@ -106,6 +106,50 @@ function nas_iba_feature_panelizer_defaults() {
     $display->content['new-e94c3826-3587-4a9c-91d7-0802d26ebc58'] = $pane;
     $display->panels['cards_set'][0] = 'new-e94c3826-3587-4a9c-91d7-0802d26ebc58';
     $pane = new stdClass();
+    $pane->pid = 'new-7fb6d02f-ad11-4bb7-ba0f-689de21c4a99';
+    $pane->panel = 'featured';
+    $pane->type = 'nas_panes_other_projects';
+    $pane->subtype = 'nas_panes_other_projects';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Explore More Conservation Projects',
+      'title_heading' => 'h2',
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => 'Featured Conservation Projects',
+      'override_title_heading' => 'h2',
+      'default' => array(
+        1 => array(
+          'entity_reference' => FALSE,
+        ),
+        2 => array(
+          'entity_reference' => FALSE,
+        ),
+        3 => array(
+          'entity_reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-9-xEMc8b0rWhO313ELJpoRNucOMhIOsA4fsWFIuPzag',
+      'form_token' => 'SY5PV94g-oY1QHDAZBK9-6HvlLrYmLl3k5GZ45K_nCw',
+      'form_id' => 'nas_panes_other_projects_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7fb6d02f-ad11-4bb7-ba0f-689de21c4a99';
+    $display->content['new-7fb6d02f-ad11-4bb7-ba0f-689de21c4a99'] = $pane;
+    $display->panels['featured'][0] = 'new-7fb6d02f-ad11-4bb7-ba0f-689de21c4a99';
+    $pane = new stdClass();
     $pane->pid = 'new-12314bcb-d1aa-496c-a7a3-5f723da89109';
     $pane->panel = 'main';
     $pane->type = 'entity_field';
