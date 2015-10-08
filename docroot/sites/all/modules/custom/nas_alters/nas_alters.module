@@ -636,8 +636,8 @@ function nas_alters_form_alter(&$form, &$form_state, $form_id) {
   $query = drupal_get_query_parameters();
   if ((!empty($query['nas-panes-from-page']) || !empty($query['nas_panes_resave_panel'])) && isset($form['override_title_text'])) {
     // Hide "Override title" field and add label to title field.
+    $form['override_title']['#type'] = 'hidden';
     $form['override_title']['#default_value'] = 1;
-    $form['override_title']['#access'] = FALSE;
     $form['override_title_text']['#title'] = t('Title');
   }
 }
