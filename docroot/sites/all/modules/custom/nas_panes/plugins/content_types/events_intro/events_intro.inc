@@ -56,12 +56,19 @@ function events_intro_render($subtype, $conf, $args, $context) {
     !empty($get_location[0]['city']) ? $address .= ', ' . $get_location[0]['city'] : '';
     !empty($get_location[0]['postal_code']) ? $address .= ', ' . $get_location[0]['postal_code'] : '';
   }
+
+  $location_name = '';
+  if ($location_name_field = field_get_items('node', $node, 'field_event_location_name')) {
+    $location_name = reset($location_name_field)['value'];
+  }
+
   $block = new stdClass();
   $block->content = theme('events_intro', array(
     'date_city_province' => $date_city_province,
     'featured_image' => $featured_image,
-    'additional' => $additional,
     'address' => $address,
+    'additional' => $additional,
+    'location_name' => $location_name,
   ));
 
   return $block;

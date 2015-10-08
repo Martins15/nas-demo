@@ -16,7 +16,7 @@
 }
 
 .hero-image .slideshow img {
-  min-width: auto;
+  min-width: 0;
 }
 
 .slide {
@@ -233,5 +233,15 @@ body.black-bg {
   .slideshow-indicator,
   .slide-caption {
     color: $color-white;
+  }
+}
+
+// Inline slideshows
+.global-content .article .article-body .article-text {
+  .slideshow {
+    .slide > .row,
+    .slideshow-indicator {
+      max-width: 1000px;
+    }
   }
 }

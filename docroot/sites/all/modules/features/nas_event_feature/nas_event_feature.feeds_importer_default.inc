@@ -152,6 +152,12 @@ function nas_event_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '33',
           ),
+          'location_name' => array(
+            'name' => 'location_name',
+            'value' => 'location_name',
+            'debug' => 0,
+            'weight' => '34',
+          ),
         ),
         'context' => array(
           'value' => '$.*',
@@ -208,6 +214,11 @@ function nas_event_feature_feeds_importer_default() {
           7 => array(
             'source' => 'subtitle',
             'target' => 'field_event_description',
+            'unique' => FALSE,
+          ),
+          8 => array(
+            'source' => 'location_name',
+            'target' => 'field_event_location_name',
             'unique' => FALSE,
           ),
         ),
