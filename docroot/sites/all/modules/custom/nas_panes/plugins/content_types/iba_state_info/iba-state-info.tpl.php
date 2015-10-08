@@ -6,7 +6,7 @@
  * Available variables:
  *  $contact_name - (string) Contact Name.
  *  $contact_title - (string) Contact Title.
- *  $link - (string) Static link.
+ *  $state_link - (string) Static link.
  *  $priorities_data - (array) Contains priorities fields.
  */
 ?>
@@ -18,7 +18,9 @@
 <?php if (!empty($contact_title)): ?> 
   <?php print $contact_title; ?><br>
 <?php endif; ?>
-  <?php print $link; ?><br>
+<?php if (!empty($state_link)): ?>
+  <?php print $state_link; ?><br>
+<?php endif; ?>
 </p>
 <br>
 <h4><?php print $state_title . ' ' . t('IBAs by Type'); ?></h4>
