@@ -997,6 +997,8 @@ function nas_panes_ajax_render_alter(&$commands) {
       $cache = panels_edit_cache_get($cache_key);
       // Write it to DB.
       panels_save_display($cache->display);
+      // Clear CTools object cache.
+      panels_edit_cache_clear($cache);
 
       if (module_exists('entitycache')) {
         list(, , $entity_id) = explode(':', $cache_key);
