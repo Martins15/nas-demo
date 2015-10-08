@@ -1001,9 +1001,19 @@ function nas_panes_ajax_render_alter(&$commands) {
       panels_edit_cache_clear($cache);
 
       if (module_exists('entitycache')) {
-        list(, , $entity_id) = explode(':', $cache_key);
-        $ecc = new EntityCacheNodeController('node');
-        $ecc->resetCache(array($entity_id));
+        list(, $entity_type, $entity_id) = explode(':', $cache_key);
+        $ids = array($entity_id);
+        // If we deal with a default panelizer display then we need to clear
+        // entity cache of each entity using the same panelizer display.
+        if (!empty($cache->display->context['panelizer']->data->panelizer['page_manager']->pnid)) {
+          $panelizer = $cache->display->context['panelizer']->data->panelizer['page_manager'];
+          $query = db_select('panelizer_entity', 'ep')
+            ->fields('ep', array('entity_id'))
+            ->condition('entity_type', $entity_type)
+            ->condition('name', $panelizer->name);
+          $ids = $query->execute()->fetchAllKeyed(0, 0);
+        }
+        entity_get_controller($entity_type)->resetCache($ids);
       }
     }
 
