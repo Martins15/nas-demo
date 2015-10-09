@@ -226,7 +226,7 @@ function nas_iba_feature_default_page_manager_pages() {
       'override_title_text' => 'Conservation',
       'title' => 'Important Bird Areas',
       'subtitle' => '',
-      'image' => '59245',
+      'image' => '65361',
       'color_mode' => 'dark',
       'form_build_id' => 'form-Eh7Hasdfbj_QlZ2o-q0VZzpUC8eOQJf9LCUksjy7bjM',
       'form_token' => 'iVEUXE4me5Mw-DKeBUS_gYcW1t1ZRP6-QO1MAolnuoY',
@@ -236,7 +236,7 @@ function nas_iba_feature_default_page_manager_pages() {
       'nas_panes_resave_panel' => TRUE,
       'override_title_heading' => 'h2',
       'slug' => 'Conservation',
-      'icon' => '59242',
+      'icon' => '65366',
     );
     $pane->cache = array();
     $pane->style = array(

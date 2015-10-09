@@ -70,7 +70,7 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_bird_pattern';
-  $strongarm->value = 'bird-guide/[node:title]';
+  $strongarm->value = 'field-guide/bird/[node:title]';
   $export['pathauto_node_bird_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -118,8 +118,22 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_iba_pattern';
+  $strongarm->value = 'iba/[node:title]';
+  $export['pathauto_node_iba_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_iba_state_pattern';
+  $strongarm->value = 'iba/state/[node:title]';
+  $export['pathauto_node_iba_state_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_location_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'location/[node:title]';
   $export['pathauto_node_location_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -147,7 +161,7 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_slideshow_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'photos/[node:title]';
   $export['pathauto_node_slideshow_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -266,28 +280,28 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_internal_tagging_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'tag/[term:name]';
   $export['pathauto_taxonomy_term_internal_tagging_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_menu_section_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'menu/[term:name]';
   $export['pathauto_taxonomy_term_menu_section_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_pattern';
-  $strongarm->value = '[term:vocabulary]/[term:name]';
+  $strongarm->value = '';
   $export['pathauto_taxonomy_term_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_section_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'section/[term:name]';
   $export['pathauto_taxonomy_term_section_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
