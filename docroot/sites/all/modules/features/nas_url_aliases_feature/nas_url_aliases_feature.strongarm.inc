@@ -118,6 +118,20 @@ function nas_url_aliases_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_iba_pattern';
+  $strongarm->value = 'iba/[node:title]';
+  $export['pathauto_node_iba_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_iba_state_pattern';
+  $strongarm->value = 'iba/state/[node:title]';
+  $export['pathauto_node_iba_state_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_location_pattern';
   $strongarm->value = 'location/[node:title]';
   $export['pathauto_node_location_pattern'] = $strongarm;
