@@ -51,6 +51,11 @@ function i18n_node_translation_overview($node) {
     $translations = array($node->language => $node);
   }
 
+  $default_language = language_default();
+  if ($node->language == LANGUAGE_NONE) {
+    $translations[$default_language->language] = &$translations[$node->language];
+  }
+
   $type = variable_get('translation_language_type', LANGUAGE_TYPE_INTERFACE);
   $header = array(t('Language'), t('Title'), t('Status'), t('Operations'));
 
