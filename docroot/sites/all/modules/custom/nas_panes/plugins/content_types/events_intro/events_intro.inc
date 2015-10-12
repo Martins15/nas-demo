@@ -36,9 +36,22 @@ function events_intro_render($subtype, $conf, $args, $context) {
   $date_city_province = $city_province = $address = $additional = '';
   $end_date = FALSE;
   if ($get_date = field_get_items('node', $node, 'field_event_date')) {
-    $date_city_province .= date_format(date_create($get_date[0]['value']), 'l, F d, Y');
+    $date = new DateTime($get_date[0]['value'], new DateTimeZone($get_date[0]['timezone_db']));
+    $date->setTimezone(new DateTimeZone(variable_get('date_default_timezone', date_default_timezone_get())));
+    $date_formatted = $date->format('l, F d, Y');
+
+    $date_city_province .= $date_formatted;
     if ($get_date[0]['value'] !== $get_date[0]['value2']) {
-      $date_city_province .= ' - ' . date_format(date_create($get_date[0]['value2']), 'l, F d, Y');
+      $date2 = new DateTime($get_date[0]['value2'], new DateTimeZone($get_date[0]['timezone_db']));
+      $date2->setTimezone(new DateTimeZone(variable_get('date_default_timezone', date_default_timezone_get())));
+
+      $date2_formatted = $date2->format('l, F d, Y');
+
+      if ($date_formatted != $date2_formatted) {
+        $date_city_province .= ' - ' . $date2_formatted;
+      }
+      $date_city_province .= '<br />' . $date->format('g:ia') . ' - ' . $date2->format('g:ia');
+
       $end_date = TRUE;
     }
   }
