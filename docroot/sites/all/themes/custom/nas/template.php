@@ -245,6 +245,7 @@ function nas_preprocess_node_bird(&$vars) {
   );
   if ($vars['view_mode'] == 'full') {
     $vars['external_content'] = nas_panes_get_external_bird_content($node);
+    $vars['external_headline'] = nas_panes_get_external_bird_headline($node);
   }
 }
 
@@ -485,9 +486,32 @@ function nas_preprocess_node_event(&$vars) {
   }
 
   $vars['center_address'] = '';
+  $vars['city'] = '';
   $vars['state'] = '??';
   if ($field_items = field_get_items('node', $node, 'field_event_location')) {
+    $vars['city'] = $field_items[0]['city'];
     $vars['state'] = $field_items[0]['province'];
+  }
+  $vars['event_location'] = $vars['city'];
+  if (!empty($vars['state'])) {
+    $vars['event_location'] .= !empty($vars['event_location']) ? ', ' : '';
+    $vars['event_location'] .= $vars['state'];
+  }
+  if (!empty($vars['event_location'])) {
+    $vars['event_location'] = '(' . $vars['event_location'] . ')';
+  }
+
+  // Link to the event origin site.
+  $vars['origin_site_events_link'] = '';
+  if ($field_items = field_get_items('node', $node, 'field_sites')) {
+    $sites = drupal_json_decode($field_items[0]['value']);
+    foreach ($sites as $site) {
+      if ($site['machine_name'] != 'national') {
+        $site['url'] = trim($site['url'], '/');
+        $vars['origin_site_events_link'] = l($site['name'], $site['url'] . '/events', array('external' => TRUE));
+        break;
+      }
+    }
   }
 
   // Event type taxonomy term reference.

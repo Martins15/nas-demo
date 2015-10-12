@@ -9,6 +9,7 @@
     <?php print $content['big_image']; ?>
   </div>
 </div>
+<?php if (!empty($content['header_hero_attr_text'])): ?>
 <div class="hero-caption">
   <div class="row">
     <div class="caption large-10 large-centered columns">
@@ -16,6 +17,7 @@
     </div>
   </div>
 </div>
+<?php endif; ?>
 <section class="global-content">
   <article class="article">
     <header class="article-header row">

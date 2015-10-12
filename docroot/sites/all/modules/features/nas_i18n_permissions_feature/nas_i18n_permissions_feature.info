@@ -1,0 +1,16 @@
+name = NAS i18n permissions
+core = 7.x
+package = NAS
+dependencies[] = features
+dependencies[] = i18n_node
+dependencies[] = i18n_string
+dependencies[] = l10n_client
+dependencies[] = translation
+features[features_api][] = api:2
+features[user_permission][] = administer content translations
+features[user_permission][] = submit translations to localization server
+features[user_permission][] = translate admin strings
+features[user_permission][] = translate content
+features[user_permission][] = translate user-defined strings
+features[user_permission][] = use on-page translation
+project path = sites/all/modules/features

@@ -1,0 +1,50 @@
+<?php
+/**
+ * @file
+ * nas_i18n_file routines.
+ */
+
+/**
+ * Implements hook_entity_info().
+ */
+function nas_i18n_file_entity_info_alter(&$entity_info) {
+  if (module_exists('file_entity') && isset($entity_info['file'])) {
+    // We need this translation handler to get fields translatable.
+    $entity_info['file']['translation'] = array('nas_i18n_file' => array('dummy' => TRUE));
+    $entity_info['file']['language callback'] = 'nas_i18n_file_entity_language_callback';
+  }
+}
+
+/**
+ * Return current site language instead of entity language.
+ *
+ * @param string $entity_type
+ *  Type of inspected entity, is not in use.
+ * @param mixed $entity
+ *  Inspected entity, is not in use.
+ *
+ * @return string
+ *  Language code.
+ */
+function nas_i18n_file_entity_language_callback($entity_type, $entity) {
+  global $language;
+  $langcode = $language->language;
+  $default_language = language_default();
+  $default_langcode = $default_language->language;
+
+  return $langcode == $default_langcode ? LANGUAGE_NONE : $langcode;
+}
+
+/**
+ * Implements hook_field_available_languages_alter().
+ */
+function nas_i18n_file_field_available_languages_alter(&$languages, $context) {
+  if ($context['entity_type'] != 'file') {
+    return;
+  }
+  $default_language = language_default();
+  // Do not allow usage of default language (english).
+  $languages = array_filter($languages, function ($v) use ($default_language) {
+    return $v != $default_language->language;
+  });
+}

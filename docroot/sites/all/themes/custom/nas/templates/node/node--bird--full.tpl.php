@@ -133,7 +133,7 @@
               <?php if (!empty($external_content)): ?>
                 <div class="bird-guide-external">
                   <div class="bird-guide-external-header">
-                    <?php print t('Brown Thrasher News Nearby'); ?>
+                    <?php print $external_headline; ?>
                     <a onclick="jQuery('.bird-guide-external').fadeOut(200)" class="close"><i class="icon-delete"></i></a>
                   </div>
                   <div class="bird-guide-external-content">
@@ -196,7 +196,13 @@
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
               <section class="bird-guide-section right-col small center">
-                <?php print $donate_link; ?>
+                <h5>Download Our Bird Guide App</h5>
+                <p>
+                  <a href="http://www.audubon.org/ios-app?utm_source=bird-guide&utm_campaign=iosapp
+" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a>
+                  <a href="http://www.audubon.org/android-app?utm_source=bird-guide&utm_campaign=android-app
+" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>google-play.png" width="110" title="Get the Audubon Bird Guide App on Google Play"></a>
+                </p>
               </section>
             </div>
 

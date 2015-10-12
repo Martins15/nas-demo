@@ -2960,3 +2960,59 @@ function nas_master_update_7211() {
   drupal_uninstall_modules('nas_welcome_to_audubon');
   registry_rebuild();
 }
+
+/**
+ * Update Event CT feature.
+ */
+function nas_master_update_7212() {
+  features_revert(array(
+    'nas_event_feature' => array(
+      'field_base',
+      'field_instance',
+      'feeds_importer_default',
+      'strongarm',
+      'taxonomy',
+      'uuid_term',
+      'panelizer',
+      'views_default',
+    ),
+  ));
+}
+
+/**
+ * Enable Translation redirect module.
+ */
+function nas_master_update_7213() {
+  module_enable(array('i18n_redirect'));
+}
+
+/**
+ * Enable module, revert feature components.
+ */
+function nas_master_update_7214() {
+  module_enable(array('nas_i18n_file'));
+  features_revert(array(
+      'nas_bird_type_feature' => array('field_base'),
+  ));
+}
+
+/**
+ * Enable NAS i18n Views module.
+ */
+function nas_master_update_7215() {
+  module_enable(array('nas_i18n_views'));
+}
+
+/**
+ * Update Event CT and importer - location name field.
+ */
+function nas_master_update_7216() {
+  features_revert(array(
+    'nas_events_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+      'feeds_importer',
+    ),
+  ));
+}

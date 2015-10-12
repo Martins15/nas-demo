@@ -42,6 +42,7 @@ function frontpage_featured_form($form, &$form_state) {
     'curtain_3stories' => t('Curtain with 3 stories'),
     'curtain_package' => t('Curtain with a package of stories'),
     'curtain_video' => t('Video curtain'),
+    'curtain_html' => t('Free HTML/CSS curtain'),
   );
   $form['variant'] = array(
     '#type' => 'select',
@@ -55,6 +56,7 @@ function frontpage_featured_form($form, &$form_state) {
   _frontpage_featured_curtain_3stories_form($form, $form_state, $conf);
   _frontpage_featured_curtain_package_form($form, $form_state, $conf);
   _frontpage_featured_curtain_video_form($form, $form_state, $conf);
+  _frontpage_featured_curtain_html_form($form, $form_state, $conf);
 
   foreach (array_keys($variants) as $variant) {
     $form[$variant]['#states']['visible']['select[name="variant"]'][] = array('value' => $variant);
@@ -592,6 +594,76 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
 }
 
 /**
+ * Form builder for HTML curtain variant.
+ */
+function _frontpage_featured_curtain_html_form(&$form, $form_state, $conf) {
+  $form['curtain_html'] = array(
+    '#type' => 'container',
+    '#title' => t('Free HTML/CSS'),
+    '#tree' => TRUE,
+  );
+  $_conf = !empty($conf['curtain_html']) ? $conf['curtain_html'] : array();
+  $state = array(
+    'required' => array(
+      'select[name="variant"]' => array('value' => 'curtain_html'),
+    ),
+  );
+  $form['curtain_html']['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($_conf['image']) ? $_conf['image'] : 0,
+    '#states' => $state,
+    '#pp_crop_styles' => array('featured_frontpage'),
+  );
+  $form['curtain_html']['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Header color mode'),
+    '#options' => array(
+      'dark' => t('Dark'),
+      'light' => t('Light'),
+      'none' => t('None'),
+    ),
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['curtain_html']['header_bg'] = array(
+    '#type' => 'radios',
+    '#title' => t('Shaded background'),
+    '#options' => array(
+      '1' => t('Yes'),
+      '-1' => t('No'),
+    ),
+    '#default_value' => !empty($_conf['header_bg']) ? $_conf['header_bg'] : '1',
+    '#description' => t('You can choose wether the HTML box will have a semitransparent box or not.'),
+  );
+  $form['curtain_html']['header_position'] = array(
+    '#type' => 'radios',
+    '#title' => t('Box position'),
+    '#options' => array(
+      'left' => t('Left'),
+      'right' => t('Right'),
+    ),
+    '#default_value' => !empty($_conf['header_position']) ? $_conf['header_position'] : 'right',
+    '#description' => t('You can choose wether the HTML box should be positioned on non-mobile dimensions.'),
+  );
+  $form['curtain_html']['summary'] = array(
+    '#type' => 'textarea',
+    '#title' => t('HTML'),
+    '#default_value' => !empty($_conf['summary']) ? $_conf['summary'] : '',
+  );
+}
+
+/**
  * Validation callback.
  */
 function frontpage_featured_form_validate($form, $form_state) {
@@ -710,6 +782,10 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 
     case 'curtain_video':
       $content = _frontpage_featured_curtain_video_render($conf['curtain_video'], $contextual_links);
+      break;
+
+    case 'curtain_html':
+      $content = _frontpage_featured_curtain_html_render($conf['curtain_html'], $contextual_links);
       break;
 
   }
@@ -1112,3 +1188,63 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
 
   return $content;
 }
+/**
+ * Helper function for rendering 'HTML curtain' pane variant.
+ *
+ * @param array $conf
+ *   Configuration array.
+ * @param string $contextual_links
+ *   Rendered contextual links.
+ *
+ * @return string
+ *   Rendered HTML markup.
+ */
+function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
+  $image = file_load($conf['image']);
+  $image_path = '';
+  if (!empty($image)) {
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $attribution = _nas_panes_format_image_attribution($image);
+  }
+
+  $class = &drupal_static('nas_header_class');
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = 'dark-text light-bg transparent';
+  }
+
+  $summary = _filter_htmlcorrector($conf['summary']);
+
+  // Pass image url value to theme
+  $featured_frontpage_image = &drupal_static('featured_frontpage_image');
+  $featured_frontpage_image = $image_path;
+  $content = theme('nas_frontpage_featured__curtain_html', array(
+    'attribution' => $attribution,
+    'summary' => $summary,
+    'title_link' => '',
+    'blue_text_link' => '',
+    'contextual_links' => $contextual_links,
+    'extra_options' => array(
+      'no_bg' => $conf['header_bg'] > 0 ? TRUE : FALSE,
+      'position' => $conf['header_position'],
+    ),
+  ));
+
+  // Pass mobile_content to theme
+  $mobile_content = &drupal_static('featured_frontpage_mobile_content');
+  $mobile_content = theme('nas_frontpage_featured_mobile', array(
+    'image_path' => $image_path,
+    'summary' => $summary,
+    'title_link' => '',
+    'blue_text_link' => '',
+    'contextual_links' => $contextual_links,
+    'extra_options' => array(
+      'no_bg' => $conf['header_bg'] > 0 ? TRUE : FALSE,
+    ),
+  ));
+
+  return $content;
+}
+
