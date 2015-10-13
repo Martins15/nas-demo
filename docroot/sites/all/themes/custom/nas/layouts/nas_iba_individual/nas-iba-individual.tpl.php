@@ -11,7 +11,7 @@
     <?php print $content['top']; ?>
     </div>
   </header>
-  <div class="row">
+  <div class="row space-bottom double">
     <div class="large-8 columns text-container">
     	<?php print $content['main']; ?>
     </div>

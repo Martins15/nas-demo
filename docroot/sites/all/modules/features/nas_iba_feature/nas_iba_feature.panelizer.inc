@@ -106,37 +106,48 @@ function nas_iba_feature_panelizer_defaults() {
     $display->content['new-e94c3826-3587-4a9c-91d7-0802d26ebc58'] = $pane;
     $display->panels['cards_set'][0] = 'new-e94c3826-3587-4a9c-91d7-0802d26ebc58';
     $pane = new stdClass();
-    $pane->pid = 'new-7fb6d02f-ad11-4bb7-ba0f-689de21c4a99';
+    $pane->pid = 'new-90893b6d-9183-4d36-addd-0a38f93f5eb5';
     $pane->panel = 'featured';
-    $pane->type = 'nas_panes_other_projects';
-    $pane->subtype = 'nas_panes_other_projects';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'title' => 'Explore More Conservation Projects',
-      'title_heading' => 'h2',
       'buttons' => array(
         'return' => 'Finish',
         'cancel' => 'Cancel',
       ),
-      'context' => 'panelizer',
-      'override_title' => 1,
-      'override_title_text' => 'Featured Conservation Projects',
+      'context' => 'empty',
+      'override_title' => 0,
+      'override_title_text' => '',
       'override_title_heading' => 'h2',
-      'default' => array(
+      'preset' => 'manual_override',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 'bottom',
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
         1 => array(
-          'entity_reference' => FALSE,
+          'reference' => FALSE,
         ),
         2 => array(
-          'entity_reference' => FALSE,
+          'reference' => FALSE,
         ),
         3 => array(
-          'entity_reference' => FALSE,
+          'reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-9-xEMc8b0rWhO313ELJpoRNucOMhIOsA4fsWFIuPzag',
-      'form_token' => 'SY5PV94g-oY1QHDAZBK9-6HvlLrYmLl3k5GZ45K_nCw',
-      'form_id' => 'nas_panes_other_projects_edit_form',
+      'form_build_id' => 'form-jk0kz5lgkK-kZHs4Bznaf-Frim6ltAETvV5g0eRxKSI',
+      'form_token' => 'OCfmn7E-tgQRnYBOG85gWqIp21ccNpAf4OY_bOPd3mI',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -146,9 +157,9 @@ function nas_iba_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '7fb6d02f-ad11-4bb7-ba0f-689de21c4a99';
-    $display->content['new-7fb6d02f-ad11-4bb7-ba0f-689de21c4a99'] = $pane;
-    $display->panels['featured'][0] = 'new-7fb6d02f-ad11-4bb7-ba0f-689de21c4a99';
+    $pane->uuid = '90893b6d-9183-4d36-addd-0a38f93f5eb5';
+    $display->content['new-90893b6d-9183-4d36-addd-0a38f93f5eb5'] = $pane;
+    $display->panels['featured'][0] = 'new-90893b6d-9183-4d36-addd-0a38f93f5eb5';
     $pane = new stdClass();
     $pane->pid = 'new-12314bcb-d1aa-496c-a7a3-5f723da89109';
     $pane->panel = 'main';
