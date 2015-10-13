@@ -3043,7 +3043,7 @@ function nas_master_update_7217() {
   );
 }
 
- /**
+/**
  * Revert features.
  */
 function nas_master_update_7218() {
