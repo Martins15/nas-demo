@@ -13,7 +13,7 @@ define('NAS_TOKEN_PATH_LOCALIZATION_CONTEXT', 'path_localization');
  */
 function nas_token_token_info() {
   $info['tokens']['node']['nas-article'] = array(
-    'name' => t('NAS article alias'),
+    'name' => t('NAS @ct alias', array('@ct' => t('Article'))),
     'description' => t('Custom alias based on whether news article is Press Release, Magazine Article or general News Article'),
   );
 
@@ -23,22 +23,22 @@ function nas_token_token_info() {
   );
 
   $info['tokens']['node']['nas-guide-bird-title'] = array(
-    'name' => t('NAS Bird alias'),
+    'name' => t('NAS @ct alias', array('@ct' => t('Bird'))),
     'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Bird'))),
   );
 
   $info['tokens']['node']['nas-conservation-project-title'] = array(
-    'name' => t('NAS Conservation Project alias'),
+    'name' => t('NAS @ct alias', array('@ct' => t('Conservation Project'))),
     'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Conservation Project'))),
   );
 
   $info['tokens']['node']['nas-magazine-issue-title'] = array(
-    'name' => t('NAS Magazine Issue alias'),
+    'name' => t('NAS @ct alias', array('@ct' => t('Magazine Issue'))),
     'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Magazine Issue'))),
   );
 
   $info['tokens']['node']['nas-slideshow-title'] = array(
-    'name' => t('NAS Slideshow alias'),
+    'name' => t('NAS @ct alias', array('@ct' => t('Slideshow'))),
     'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Slideshow'))),
   );
 

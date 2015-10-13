@@ -3043,10 +3043,18 @@ function nas_master_update_7217() {
   );
 }
 
+ /**
+ * Revert features.
+ */
+function nas_master_update_7218() {
+  features_revert(array('nas_event_feature' => array('variable')));
+}
+
+
 /**
  * Enable variable_store and i18n_variable.
  */
-function nas_master_update_7218() {
+function nas_master_update_7219() {
   module_enable(array(
     'variable_store',
     'i18n_variable'
@@ -3056,7 +3064,7 @@ function nas_master_update_7218() {
 /**
  * Clone default 404 page into Spanish language.
  */
-function nas_master_update_7219() {
+function nas_master_update_7220() {
   // Define which node is the source,
   // this node has his own id as translation nid (tnid)
   $source_node = node_load(42611);
