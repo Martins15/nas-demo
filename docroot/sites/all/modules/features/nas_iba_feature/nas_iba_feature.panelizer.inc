@@ -106,6 +106,61 @@ function nas_iba_feature_panelizer_defaults() {
     $display->content['new-e94c3826-3587-4a9c-91d7-0802d26ebc58'] = $pane;
     $display->panels['cards_set'][0] = 'new-e94c3826-3587-4a9c-91d7-0802d26ebc58';
     $pane = new stdClass();
+    $pane->pid = 'new-90893b6d-9183-4d36-addd-0a38f93f5eb5';
+    $pane->panel = 'featured';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'preset' => 'manual_override',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 'top',
+        'between' => 0,
+        'bottom' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
+        1 => array(
+          'reference' => FALSE,
+        ),
+        2 => array(
+          'reference' => FALSE,
+        ),
+        3 => array(
+          'reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-jk0kz5lgkK-kZHs4Bznaf-Frim6ltAETvV5g0eRxKSI',
+      'form_token' => 'OCfmn7E-tgQRnYBOG85gWqIp21ccNpAf4OY_bOPd3mI',
+      'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '90893b6d-9183-4d36-addd-0a38f93f5eb5';
+    $display->content['new-90893b6d-9183-4d36-addd-0a38f93f5eb5'] = $pane;
+    $display->panels['featured'][0] = 'new-90893b6d-9183-4d36-addd-0a38f93f5eb5';
+    $pane = new stdClass();
     $pane->pid = 'new-12314bcb-d1aa-496c-a7a3-5f723da89109';
     $pane->panel = 'main';
     $pane->type = 'entity_field';
