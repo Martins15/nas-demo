@@ -126,9 +126,9 @@ function nas_iba_feature_panelizer_defaults() {
       'more_link_url' => '',
       'additional_classes' => '',
       'paddings' => array(
-        'top' => 'top',
+        'top' => 0,
         'between' => 0,
-        'bottom' => 0,
+        'bottom' => 'bottom',
         'double-bottom' => 0,
       ),
       'count' => '3',
