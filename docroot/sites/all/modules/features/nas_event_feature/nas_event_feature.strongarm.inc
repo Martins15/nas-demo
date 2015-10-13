@@ -118,11 +118,15 @@ function nas_event_feature_strongarm() {
         'locations' => array(
           'weight' => '12',
         ),
+      ),
+      'display' => array(
         'language' => array(
-          'weight' => '0',
+          'ical' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
         ),
       ),
-      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__event'] = $strongarm;

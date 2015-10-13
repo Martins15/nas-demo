@@ -3016,3 +3016,36 @@ function nas_master_update_7216() {
     ),
   ));
 }
+
+/**
+ * Update aliases.
+ */
+function nas_master_update_7217() {
+  // Localize all hardcoded path sections used for articles.
+  // @see _nas_tokens_simple()
+  $strings = array(
+    'field-guide',
+    'bird',
+    'conservation',
+    'project',
+    'magazine',
+    'photos'
+  );
+  foreach ($strings as $string) {
+    locale($string, NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'es');
+  }
+  features_revert(
+    array(
+      'nas_url_aliases_feature' => array(
+        'variable',
+      ),
+    )
+  );
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7218() {
+  features_revert(array('nas_event_feature' => array('variable')));
+}
