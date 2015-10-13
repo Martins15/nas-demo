@@ -3050,7 +3050,6 @@ function nas_master_update_7218() {
   features_revert(array('nas_event_feature' => array('variable')));
 }
 
-
 /**
  * Enable variable_store and i18n_variable.
  */
