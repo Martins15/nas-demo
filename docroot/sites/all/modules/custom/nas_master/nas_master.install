@@ -3049,3 +3049,11 @@ function nas_master_update_7217() {
 function nas_master_update_7218() {
   features_revert(array('nas_event_feature' => array('variable')));
 }
+
+/**
+ * Enable modules.
+ */
+function nas_master_update_7219() {
+  module_disable(array('i18n_redirect'));
+  module_enable(array('nas_i18n_redirect'));
+}
