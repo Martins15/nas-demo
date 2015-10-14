@@ -106,7 +106,7 @@ function nas_alters_form_node_form_alter(&$form, &$form_state, $form_id) {
  */
 function nas_alters_node_prepare($node) {
   // If creating a translation, copy panelizer settings to be synchronized.
-  if (empty($node->nid) && !empty($node->translation_source) && isset($node->panelizer)) {
+  if (empty($node->nid) && !empty($node->translation_source) && isset($node->translation_source->panelizer)) {
     $source = $node->translation_source;
     $node->panelizer = $source->panelizer;
   }
