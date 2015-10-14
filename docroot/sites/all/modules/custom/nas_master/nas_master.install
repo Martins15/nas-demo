@@ -3089,3 +3089,11 @@ function nas_master_update_7220() {
   );
   variable_store_set('language', 'es', 'site_404', 'node/' . $es_node_404->nid);
 }
+
+/**
+ * Enable modules.
+ */
+function nas_master_update_7221() {
+  module_disable(array('i18n_redirect'));
+  module_enable(array('nas_i18n_redirect'));
+}
