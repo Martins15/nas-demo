@@ -250,6 +250,126 @@ function nas_iba_state_views_default_views() {
 
   /* Display: IBA Search (state page) */
   $handler = $view->new_display('panel_pane', 'IBA Search (state page)', 'iba_search_state_page');
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Content: Status */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'iba' => 'iba',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Content type';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  /* Filter criterion: Indexed Content: Status */
+  $handler->display->display_options['filters']['field_iba_status']['id'] = 'field_iba_status';
+  $handler->display->display_options['filters']['field_iba_status']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_iba_status']['field'] = 'field_iba_status';
+  $handler->display->display_options['filters']['field_iba_status']['group'] = 2;
+  $handler->display->display_options['filters']['field_iba_status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_iba_status']['expose']['operator_id'] = 'field_iba_status_op';
+  $handler->display->display_options['filters']['field_iba_status']['expose']['label'] = 'Filter by Status';
+  $handler->display->display_options['filters']['field_iba_status']['expose']['operator'] = 'field_iba_status_op';
+  $handler->display->display_options['filters']['field_iba_status']['expose']['identifier'] = 'field_iba_status';
+  $handler->display->display_options['filters']['field_iba_status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+  );
+  $handler->display->display_options['filters']['field_iba_status']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_iba_status']['group_info']['label'] = 'Status';
+  $handler->display->display_options['filters']['field_iba_status']['group_info']['identifier'] = 'field_iba_status';
+  $handler->display->display_options['filters']['field_iba_status']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Recognized',
+      'operator' => '=',
+      'value' => 'Recognized',
+    ),
+    2 => array(
+      'title' => 'Merged',
+      'operator' => '=',
+      'value' => 'Merged',
+    ),
+    3 => array(
+      'title' => '',
+      'operator' => '=',
+      'value' => '',
+    ),
+  );
+  /* Filter criterion: Indexed Content: Priority */
+  $handler->display->display_options['filters']['field_iba_priority']['id'] = 'field_iba_priority';
+  $handler->display->display_options['filters']['field_iba_priority']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_iba_priority']['field'] = 'field_iba_priority';
+  $handler->display->display_options['filters']['field_iba_priority']['group'] = 2;
+  $handler->display->display_options['filters']['field_iba_priority']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_iba_priority']['expose']['operator_id'] = 'field_iba_priority_op';
+  $handler->display->display_options['filters']['field_iba_priority']['expose']['label'] = 'Filter by Priority';
+  $handler->display->display_options['filters']['field_iba_priority']['expose']['operator'] = 'field_iba_priority_op';
+  $handler->display->display_options['filters']['field_iba_priority']['expose']['identifier'] = 'field_iba_priority';
+  $handler->display->display_options['filters']['field_iba_priority']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+  );
+  $handler->display->display_options['filters']['field_iba_priority']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_iba_priority']['group_info']['label'] = 'Filter by Priority';
+  $handler->display->display_options['filters']['field_iba_priority']['group_info']['identifier'] = 'priority';
+  $handler->display->display_options['filters']['field_iba_priority']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Global',
+      'operator' => '=',
+      'value' => 'Global',
+    ),
+    2 => array(
+      'title' => 'State',
+      'operator' => '=',
+      'value' => 'State',
+    ),
+    3 => array(
+      'title' => 'Continental',
+      'operator' => '=',
+      'value' => 'Continental',
+    ),
+  );
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 2;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search for a specific site';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+  );
+  $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'title' => 'title',
+  );
   $translatables['iba_search_state_page'] = array(
     t('Master'),
     t('more'),

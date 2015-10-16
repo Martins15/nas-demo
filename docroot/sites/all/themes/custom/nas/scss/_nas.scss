@@ -1341,3 +1341,11 @@ body {
     }
   }
 }
+
+
+.node-type-iba .social-sharing-caption.small {
+  @include breakpoint(width, 768px) {
+    display: block;
+  }
+}
+

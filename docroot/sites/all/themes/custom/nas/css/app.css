@@ -15296,3 +15296,9 @@ body .slide .slide-img img {
 .view-iba-search-state-page ul.pager li.current a:focus {
   background: transparent;
 }
+
+@media only screen and (width: 768px) {
+  .node-type-iba .social-sharing-caption.small {
+    display: block;
+  }
+}
