@@ -3097,3 +3097,10 @@ function nas_master_update_7221() {
   module_disable(array('i18n_redirect'));
   module_enable(array('nas_i18n_redirect'));
 }
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7222() {
+  features_revert(array('nas_views_feature' => array('views_view')));
+}
