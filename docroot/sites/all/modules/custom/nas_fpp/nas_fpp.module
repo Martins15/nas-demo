@@ -467,7 +467,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   }
 
   $vars['blue_text_link'] = '';
-  if ($node && $blue = nas_panes_get_blue_text_link($node)) {
+  if ($node && $blue = nas_panes_get_blue_text_link($node, FALSE)) {
     $vars['blue_text_link'] = l($blue[0], $blue[1], array('attributes' => array('class' => array('hero-slug'))));
   };
 

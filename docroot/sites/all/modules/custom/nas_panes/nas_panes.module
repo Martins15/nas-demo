@@ -1036,11 +1036,12 @@ function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
 /**
  * Get blue text link of the node (article).
  */
-function nas_panes_get_blue_text_link($node) {
+function nas_panes_get_blue_text_link($node, $url = TRUE) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
     $term = taxonomy_term_load($custom_section_item[0]['tid']);
-    return array(check_plain(i18n_taxonomy_term_name($term)), url('taxonomy/term/' . $term->tid));
+    $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
+    return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
 
   $menu_section_item = field_get_items('node', $node, 'field_menu_section');
@@ -1067,7 +1068,8 @@ function nas_panes_get_blue_text_link($node) {
         break;
       }
     }
-    return array(check_plain(i18n_taxonomy_term_name($term)), url('taxonomy/term/' . $term->tid));
+    $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
+    return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
   return array(NULL, NULL);
 }
