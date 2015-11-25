@@ -3104,3 +3104,11 @@ function nas_master_update_7221() {
 function nas_master_update_7222() {
   features_revert(array('nas_views_feature' => array('views_view')));
 }
+
+/**
+ * Disable Localization client module.
+ */
+function nas_master_update_7223() {
+  features_revert(array('nas_i18n_permissions_feature' => array('user_permission')));
+  module_disable(array('l10n_client'));
+}
