@@ -101,9 +101,6 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
       }
     }
   }
-  $title = '';
-  $mission = '';
-  $copyright = '';
 
   $logo = '';
   $logo_path = filter_xss($conf['logo_path']);
@@ -138,9 +135,9 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
   $t_vars = array(
     'logo' => $logo,
-    'mission_title' => $title,
-    'mission' => $mission,
-    'copyright' => $copyright,
+    'mission_title' => t($title),
+    'mission' => t($mission),
+    'copyright' => t($copyright),
     'footer_menu' => $footer_menu,
     'footer_copyright_menu' => $footer_copyright_menu,
     'contextual_links' => $contextual_links
