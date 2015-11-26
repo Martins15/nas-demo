@@ -2969,10 +2969,164 @@ function nas_master_update_7211() {
   registry_rebuild();
 }
 
+
+/*
+ * Update Event CT feature.
+ */
+function nas_master_update_7212() {
+  features_revert(array(
+    'nas_event_feature' => array(
+      'field_base',
+      'field_instance',
+      'feeds_importer_default',
+      'strongarm',
+      'taxonomy',
+      'uuid_term',
+      'panelizer',
+      'views_default',
+    ),
+  ));
+}
+
+/**
+ * Enable Translation redirect module.
+ */
+function nas_master_update_7213() {
+  module_enable(array('i18n_redirect'));
+}
+
+/**
+ * Enable module, revert feature components.
+ */
+function nas_master_update_7214() {
+  module_enable(array('nas_i18n_file'));
+  features_revert(array(
+      'nas_bird_type_feature' => array('field_base'),
+  ));
+}
+
+/**
+ * Enable NAS i18n Views module.
+ */
+function nas_master_update_7215() {
+  module_enable(array('nas_i18n_views'));
+}
+
+/**
+ * Update Event CT and importer - location name field.
+ */
+function nas_master_update_7216() {
+  features_revert(array(
+    'nas_events_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+      'feeds_importer',
+    ),
+  ));
+}
+
+/**
+ * Update aliases.
+ */
+function nas_master_update_7217() {
+  // Localize all hardcoded path sections used for articles.
+  // @see _nas_tokens_simple()
+  $strings = array(
+    'field-guide',
+    'bird',
+    'conservation',
+    'project',
+    'magazine',
+    'photos'
+  );
+  foreach ($strings as $string) {
+    locale($string, NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'es');
+  }
+  features_revert(
+    array(
+      'nas_url_aliases_feature' => array(
+        'variable',
+      ),
+    )
+  );
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7218() {
+  features_revert(array('nas_event_feature' => array('variable')));
+}
+
+/**
+ * Enable variable_store and i18n_variable.
+ */
+function nas_master_update_7219() {
+  module_enable(array(
+    'variable_store',
+    'i18n_variable'
+  ));
+}
+
+/**
+ * Clone default 404 page into Spanish language.
+ */
+function nas_master_update_7220() {
+  // Define which node is the source,
+  // this node has his own id as translation nid (tnid)
+  $source_node = node_load(42611);
+  $es_node_404 = clone $source_node;
+  $source_node->tnid = 42611;
+  node_save($source_node);
+
+  unset($es_node_404->nid);
+  unset($es_node_404->vid);
+
+  node_object_prepare($es_node_404);
+  $es_node_404->title = '[ES] ' . $source_node->title;
+  $es_node_404->language = 'es';
+  $es_node_404->status = 1;
+  // Define source tnid.
+  $es_node_404->tnid = 42611;
+  node_save($es_node_404);
+
+  // Set created page for been used as 404 for Spanish language.
+  variable_set(
+    'variable_realm_list_language',
+    array('site_name', 'site_slogan', 'site_404')
+  );
+  variable_store_set('language', 'es', 'site_404', 'node/' . $es_node_404->nid);
+}
+
+/**
+ * Enable modules.
+ */
+function nas_master_update_7221() {
+  module_disable(array('i18n_redirect'));
+  module_enable(array('nas_i18n_redirect'));
+}
+
+/**
+ * Revert features.
+ */
+function nas_master_update_7222() {
+  features_revert(array('nas_views_feature' => array('views_view')));
+}
+
+/**
+ * Disable Localization client module.
+ */
+function nas_master_update_7223() {
+  features_revert(array('nas_i18n_permissions_feature' => array('user_permission')));
+  module_disable(array('l10n_client'));
+}
+
+
 /**
  * Enable NAS IBA Import feature.
  */
-function nas_master_update_7212() {
+function nas_master_update_7224() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_import_feeds_feature'));
@@ -2981,7 +3135,7 @@ function nas_master_update_7212() {
 /**
  * Enable NAS IBA features.
  */
-function nas_master_update_7218() {
+function nas_master_update_7225() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_feature', 'nas_iba_state', 'nas_iba_import_feeds_feature'));

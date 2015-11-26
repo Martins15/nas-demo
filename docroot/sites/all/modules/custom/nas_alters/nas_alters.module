@@ -102,6 +102,17 @@ function nas_alters_form_node_form_alter(&$form, &$form_state, $form_id) {
 }
 
 /**
+ * Implements hook_node_prepare().
+ */
+function nas_alters_node_prepare($node) {
+  // If creating a translation, copy panelizer settings to be synchronized.
+  if (empty($node->nid) && !empty($node->translation_source) && isset($node->translation_source->panelizer)) {
+    $source = $node->translation_source;
+    $node->panelizer = $source->panelizer;
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Alter the Magazine Issue node form.

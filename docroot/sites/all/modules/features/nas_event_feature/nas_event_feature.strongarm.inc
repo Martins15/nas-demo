@@ -101,28 +101,42 @@ function nas_event_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'title' => array(
-          'weight' => '0',
-        ),
-        'path' => array(
-          'weight' => '2',
-        ),
-        'redirect' => array(
-          'weight' => '3',
-        ),
-        'xmlsitemap' => array(
           'weight' => '1',
         ),
+        'path' => array(
+          'weight' => '3',
+        ),
+        'redirect' => array(
+          'weight' => '4',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '2',
+        ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '12',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'language' => array(
+          'ical' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__event'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_event';
+  $strongarm->value = '2';
+  $export['language_content_type_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

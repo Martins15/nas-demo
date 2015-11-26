@@ -929,7 +929,7 @@ article.event {
   .event-header {
     margin-bottom: 30px;
 
-    a {
+    > a {
       font-family: "Source Sans Pro", Verdana, sans-serif;
       font-size: 20px;
     }
@@ -1342,10 +1342,12 @@ body {
   }
 }
 
-
 .node-type-iba .social-sharing-caption.small {
   @include breakpoint(width, 768px) {
     display: block;
   }
 }
 
+#admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
+  right: auto;
+}

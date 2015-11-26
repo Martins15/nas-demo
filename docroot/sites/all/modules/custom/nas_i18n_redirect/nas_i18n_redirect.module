@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * NAS Internationalization (i18n) module.
+ *
+ * Redirect to node language path when prefix is missed.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function nas_i18n_redirect_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/regional/i18n':
+      if (!module_exists('i18n_node')) {
+        $output = '<p>' . t('To have <em>Translation redirect</em> working with your content you should <a href="@admin_modules">enable the <em>Multilingual content</em> module</a>.', array('@admin_modules' => url('admin/modules'))) . '</p>';
+        return $output;
+      }
+  }
+}
+
+/**
+ * Implements hook_init()
+ */
+function nas_i18n_redirect_init() {
+  $path = $_GET['q'];
+  $language = i18n_language_interface();
+  if (!$path || drupal_is_front_page()) {
+    return;
+  }
+  elseif ($translations = i18n_get_path_translations($path)) {
+    // Prevent loop redirects.
+    if ($translations[$language->language]['href'] === $path) {
+      return;
+    }
+    // Lookup correct language for the path .
+    foreach ($translations as $langcode => $translation) {
+      if ($translation['href'] === $path && $language->language != $langcode) {
+        $target_language = $langcode == LANGUAGE_NONE ? language_default() : i18n_language_load($langcode);
+        drupal_goto($translation['href'], array('language' => $target_language), 301);
+      }
+    }
+  }
+}

@@ -217,6 +217,7 @@ function nas_panes_theme() {
         'title_link' => '',
         'blue_text_link' => '',
         'contextual_links' => '',
+        'extra_options' => array(),
       ),
       'template' => 'frontpage-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
@@ -251,6 +252,11 @@ function nas_panes_theme() {
       'template' => 'frontpage-featured--curtain-video',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
+    'nas_frontpage_featured__curtain_html' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-html',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
         'image_path' => '',
@@ -258,6 +264,7 @@ function nas_panes_theme() {
         'title_link' => '',
         'blue_text_link' => '',
         'contextual_links' => '',
+        'extra_options' => array(),
       ),
       'template' => 'frontpage-featured-mobile',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
@@ -890,6 +897,7 @@ function nas_panes_theme() {
         'featured_image' => NULL,
         'address' => NULL,
         'additional' => NULL,
+        'location_name' => NULL,
       ),
       'template' => 'events-intro',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
@@ -2159,7 +2167,7 @@ function _nas_panes_format_image_attribution($file) {
     $parts[] = trim($items[0]['safe_value']);
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    $parts[] = 'Photo: ' . trim($items[0]['safe_value']);
+    $parts[] = t('Photo:') . ' ' . trim($items[0]['safe_value']);
   }
   return implode(' ', $parts);
 }
@@ -2517,4 +2525,21 @@ function nas_panes_get_external_bird_content($node) {
     return;
   }
   return $data['content'];
+}
+
+/**
+ * Get external site title to display on injected Bird box from S&C site.
+ *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
+ * @return string
+ *   The box headline.
+ */
+function nas_panes_get_external_bird_headline($node) {
+  $data = nas_panes_get_site_info($node);
+  if (!$data || empty($data['content'])) {
+    return;
+  }
+  return t('!birdname around @sitename', array('!birdname' => $node->title, '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))));
 }

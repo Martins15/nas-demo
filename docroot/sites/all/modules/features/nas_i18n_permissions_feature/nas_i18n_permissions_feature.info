@@ -1,0 +1,14 @@
+name = NAS i18n permissions
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_i18n_permissions_feature
+dependencies[] = features
+dependencies[] = i18n_node
+dependencies[] = i18n_string
+dependencies[] = translation
+features[features_api][] = api:2
+features[user_permission][] = administer content translations
+features[user_permission][] = translate admin strings
+features[user_permission][] = translate content
+features[user_permission][] = translate user-defined strings
