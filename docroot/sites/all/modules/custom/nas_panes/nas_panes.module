@@ -2503,3 +2503,10 @@ function nas_panes_get_external_bird_headline($node) {
   }
   return t('!birdname around @sitename', array('!birdname' => $node->title, '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))));
 }
+
+/**
+ * Returns default engagement cards title in English.
+ */
+function nas_panes_engagement_cards_default_title() {
+  return variable_get('nas_panes_engagement_cards_default_title', 'How you can help, right now');
+}
