@@ -1041,7 +1041,7 @@ function nas_bird_type_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'text_long',
   );
 
@@ -1068,7 +1068,7 @@ function nas_bird_type_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'text_long',
   );
 

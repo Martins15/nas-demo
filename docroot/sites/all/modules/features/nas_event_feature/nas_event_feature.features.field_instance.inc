@@ -75,6 +75,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -132,7 +138,7 @@ function nas_event_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -210,6 +216,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -241,7 +253,7 @@ function nas_event_feature_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -307,6 +319,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -359,7 +377,7 @@ function nas_event_feature_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -425,6 +443,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -443,7 +467,7 @@ function nas_event_feature_field_default_field_instances() {
       'module' => 'location_cck',
       'settings' => array(),
       'type' => 'location',
-      'weight' => 34,
+      'weight' => 16,
     ),
   );
 
@@ -509,6 +533,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -561,7 +591,131 @@ function nas_event_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 32,
+      'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_event_location_name'
+  $field_instances['node-event-field_event_location_name'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'i.e. Rock Creek Park Nature Center, Williamsburg Community Center, etc. Include any special instructions, such as \'Meet in the Parking Lot\'.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 15,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_location_name',
+    'label' => 'Location name',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => 0,
+            ),
+            'html' => array(
+              'weight' => 0,
+            ),
+            'map' => array(
+              'weight' => -8,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'video' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 3,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 15,
     ),
   );
 
@@ -627,6 +781,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -663,7 +823,7 @@ function nas_event_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -729,6 +889,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -781,7 +947,7 @@ function nas_event_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 33,
+      'weight' => 14,
     ),
   );
 
@@ -847,6 +1013,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -866,7 +1038,7 @@ function nas_event_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -933,6 +1105,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -951,7 +1129,7 @@ function nas_event_feature_field_default_field_instances() {
       'module' => 'geocoder',
       'settings' => array(),
       'type' => 'geocoder',
-      'weight' => 35,
+      'weight' => 17,
     ),
   );
 
@@ -1014,6 +1192,12 @@ function nas_event_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1092,7 +1276,131 @@ function nas_event_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 9,
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-event-field_sites'
+  $field_instances['node-event-field_sites'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
+      'ical' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sites',
+    'label' => 'Sites',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => 0,
+            ),
+            'html' => array(
+              'weight' => 0,
+            ),
+            'map' => array(
+              'weight' => -8,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'video' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 18,
     ),
   );
 
@@ -1105,9 +1413,12 @@ function nas_event_feature_field_default_field_instances() {
   t('Featured image');
   t('Geolocation');
   t('Location Help');
+  t('Location name');
   t('Registration Link');
   t('Registration Notes');
+  t('Sites');
   t('Subtitle');
+  t('i.e. Rock Creek Park Nature Center, Williamsburg Community Center, etc. Include any special instructions, such as \'Meet in the Parking Lot\'.');
 
   return $field_instances;
 }

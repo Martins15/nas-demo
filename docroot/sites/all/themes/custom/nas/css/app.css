@@ -5534,9 +5534,9 @@ table.row-borders tbody td {
 }
 @media only screen and (min-width: 768px) {
   .hero:not(.expand) .hero-image img:not(.canon-logo) {
-    height: 465px;
+    min-height: 465px;
     max-width: none;
-    width: auto;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 900px) {
@@ -8969,7 +8969,7 @@ body.black-bg .slideshow {
 }
 
 .hero-image .slideshow img {
-  min-width: auto;
+  min-width: 0;
 }
 
 .slide {
@@ -9182,6 +9182,11 @@ body.black-bg .slideshow,
 body.black-bg .slideshow-indicator,
 body.black-bg .slide-caption {
   color: #fff;
+}
+
+.global-content .article .article-body .article-text .slideshow .slide > .row,
+.global-content .article .article-body .article-text .slideshow .slideshow-indicator {
+  max-width: 1000px;
 }
 
 .see-all-show {
@@ -9919,6 +9924,9 @@ body.black-bg .slide-caption {
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 25px;
+}
+.curtain-card.no-bg {
+  background-color: transparent;
 }
 .curtain-card h1 a, .curtain-card h2 a, .curtain-card h3 a, .curtain-card h4 a, .curtain-card h5 a {
   color: #fff;
@@ -14916,7 +14924,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 article.event .event-header {
   margin-bottom: 30px;
 }
-article.event .event-header a {
+article.event .event-header > a {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 20px;
 }
@@ -15301,4 +15309,8 @@ body .slide .slide-img img {
   .node-type-iba .social-sharing-caption.small {
     display: block;
   }
+}
+
+#admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
+  right: auto;
 }

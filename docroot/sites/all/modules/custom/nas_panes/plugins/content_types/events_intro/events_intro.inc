@@ -36,10 +36,24 @@ function events_intro_render($subtype, $conf, $args, $context) {
   $date_city_province = $city_province = $address = $additional = '';
   $end_date = FALSE;
   if ($get_date = field_get_items('node', $node, 'field_event_date')) {
-    $date_city_province .= date_format(date_create($get_date[0]['value']), 'l, F d, Y');
+    $date = new DateTime($get_date[0]['value'], new DateTimeZone($get_date[0]['timezone_db']));
+    $date_formatted = $date->format('l, F d, Y');
+
+    $date_city_province .= $date_formatted;
     if ($get_date[0]['value'] !== $get_date[0]['value2']) {
-      $date_city_province .= ' - ' . date_format(date_create($get_date[0]['value2']), 'l, F d, Y');
       $end_date = TRUE;
+      $date2 = new DateTime($get_date[0]['value2'], new DateTimeZone($get_date[0]['timezone_db']));
+
+      $date2_formatted = $date2->format('l, F d, Y');
+      if ($date_formatted != $date2_formatted) {
+        $date_city_province .= ' - ' . $date2_formatted;
+      }
+    }
+
+    // Adding time.
+    $date_city_province .= '<br />' . $date->format('g:ia');
+    if ($end_date) {
+      $date_city_province .= ' - ' . $date2->format('g:ia');
     }
   }
   if ($get_location = field_get_items('node', $node, 'field_event_location')) {
@@ -56,12 +70,19 @@ function events_intro_render($subtype, $conf, $args, $context) {
     !empty($get_location[0]['city']) ? $address .= ', ' . $get_location[0]['city'] : '';
     !empty($get_location[0]['postal_code']) ? $address .= ', ' . $get_location[0]['postal_code'] : '';
   }
+
+  $location_name = '';
+  if ($location_name_field = field_get_items('node', $node, 'field_event_location_name')) {
+    $location_name = reset($location_name_field)['value'];
+  }
+
   $block = new stdClass();
   $block->content = theme('events_intro', array(
     'date_city_province' => $date_city_province,
     'featured_image' => $featured_image,
-    'additional' => $additional,
     'address' => $address,
+    'additional' => $additional,
+    'location_name' => $location_name,
   ));
 
   return $block;
