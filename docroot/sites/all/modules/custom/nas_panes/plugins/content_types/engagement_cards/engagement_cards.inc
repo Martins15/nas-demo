@@ -69,7 +69,7 @@ function engagement_cards_edit_form_submit(&$form, &$form_state) {
     if (isset($form_state['values'][$key])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
       if (is_array($form_state['conf'][$key]) && isset($form_state['conf'][$key]['global_configuration'])) {
-       // Do not store global config flag in configuration.
+        // Do not store global config flag in configuration.
         $global_config = $form_state['conf'][$key]['global_configuration'];
         $title = $form_state['conf'][$key]['title'];
         unset($form_state['conf'][$key]['global_configuration']);
