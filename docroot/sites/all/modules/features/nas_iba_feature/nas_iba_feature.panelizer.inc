@@ -184,7 +184,7 @@ function nas_iba_feature_panelizer_defaults() {
     $pane->panel = 'main';
     $pane->type = 'iba_individual_gallery';
     $pane->subtype = 'iba_individual_gallery';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array();
     $pane->cache = array();
