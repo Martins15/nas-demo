@@ -83,7 +83,12 @@ function engagement_cards_edit_form_submit(&$form, &$form_state) {
 
     // Update all overridden pane configs.
     $panel_type = 'engagement_cards';
-    $configs = db_query('SELECT pid, configuration FROM {panels_pane} WHERE type = :type', array(':type' => $panel_type))->fetchAll();
+    $configs = db_select('panels_pane', 'pp')
+      ->fields('pp', array('pid', 'configuration'))
+      ->condition('pp.type', $panel_type)
+      ->execute()
+      ->fetchAll();
+
     foreach ($configs as $config_data) {
       $config = unserialize($config_data->configuration);
       foreach ($config as &$config_part) {
@@ -91,11 +96,11 @@ function engagement_cards_edit_form_submit(&$form, &$form_state) {
           $config_part['title'] = $title;
         }
       }
-      db_query('UPDATE {panels_pane} SET configuration = :configuration WHERE type = :type AND pid = :pid', array(
-        ':configuration' => serialize($config),
-        ':type' => $panel_type,
-        ':pid' => $config_data->pid,
-      ));
+      db_update('panels_pane')
+        ->fields(array('configuration' => serialize($config)))
+        ->condition('type', $panel_type)
+        ->condition('pid', $config_data->pid)
+        ->execute();
     }
   }
 }
