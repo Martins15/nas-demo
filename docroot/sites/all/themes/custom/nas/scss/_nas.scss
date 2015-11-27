@@ -1351,3 +1351,22 @@ body {
 #admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
   right: auto;
 }
+
+.iba-landing-map {
+  .embed-container {
+    position: relative;
+    padding-bottom: 500px;
+    height: 0;
+    max-width: 100%;
+
+    iframe,
+    object,
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 500px;
+    }
+  }
+}
