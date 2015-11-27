@@ -347,6 +347,24 @@ function nas_iba_import_feeds_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '5',
           ),
+          'longitudestate' => array(
+            'name' => 'LongitudeState',
+            'value' => 'LongitudeState',
+            'debug' => 0,
+            'weight' => '6',
+          ),
+          'latitudestate' => array(
+            'name' => 'LatitudeState',
+            'value' => 'LatitudeState',
+            'debug' => 0,
+            'weight' => '7',
+          ),
+          'maplevelstate' => array(
+            'name' => 'MapLevelState',
+            'value' => 'MapLevelState',
+            'debug' => 0,
+            'weight' => '8',
+          ),
         ),
         'context' => array(
           'value' => '.',

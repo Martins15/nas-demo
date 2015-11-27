@@ -14,13 +14,9 @@
   </div>
 
   <div class="row space-bottom">
-    <?php print $content['map']; ?>
     <div class="inline-map small">
       <div class="columns medium-6 large-8">
-        <div class="inline-map-canvas">
-          <div class="inline-map-mask"></div>
-          <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=5b8624b080484d2e8b0ea6f6abb6d08e&amp;extent=-174.8584,47.7477,-133.418,73.1604&amp;zoom=true&amp;scale=true"></iframe>
-        </div>
+          <?php print $content['map']; ?>
       </div>
     </div>
     <div class="columns medium-6 large-4">

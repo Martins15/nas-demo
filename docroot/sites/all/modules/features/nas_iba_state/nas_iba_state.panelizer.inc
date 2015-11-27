@@ -120,6 +120,25 @@ function nas_iba_state_panelizer_defaults() {
     $display->content['new-45de9982-8b91-4ac2-8d8c-7f6d6fd7fd38'] = $pane;
     $display->panels['main'][0] = 'new-45de9982-8b91-4ac2-8d8c-7f6d6fd7fd38';
     $pane = new stdClass();
+    $pane->pid = 'new-83d6132e-71b4-4b51-8f93-840f78a7bb02';
+    $pane->panel = 'map';
+    $pane->type = 'iba_map';
+    $pane->subtype = 'iba_map';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '83d6132e-71b4-4b51-8f93-840f78a7bb02';
+    $display->content['new-83d6132e-71b4-4b51-8f93-840f78a7bb02'] = $pane;
+    $display->panels['map'][0] = 'new-83d6132e-71b4-4b51-8f93-840f78a7bb02';
+    $pane = new stdClass();
     $pane->pid = 'new-0ab64c8f-a251-4750-9ff6-0d77d69477d3';
     $pane->panel = 'more';
     $pane->type = 'editorial_card_3x';
