@@ -927,7 +927,7 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
       $attribution_caption = trim($items[0]['safe_value']);
     }
     if ($items = field_get_items('file', $image, 'field_file_credit')) {
-      $attribution_credit = 'Photo: ' . trim($items[0]['safe_value']);
+      $attribution_credit = t('Photo:') .' ' . trim($items[0]['safe_value']);
     }
   }
 
@@ -1017,7 +1017,7 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
       $attribution_caption = trim($items[0]['safe_value']);
     }
     if ($items = field_get_items('file', $image, 'field_file_credit')) {
-      $attribution_credit = 'Photo: ' . trim($items[0]['safe_value']);
+      $attribution_credit = t('Photo:') . ' ' . trim($items[0]['safe_value']);
     }
   }
 
