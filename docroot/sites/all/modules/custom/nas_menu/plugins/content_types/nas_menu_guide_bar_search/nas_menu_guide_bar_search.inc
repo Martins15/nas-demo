@@ -33,7 +33,7 @@ function nas_menu_guide_bar_search_pane_edit_form($form, &$form_state) {
   $form[$conf_key]['title'] = array(
     '#type' => 'textfield',
     '#title' => t('Guide Bar Title'),
-    '#description' => t('span tag is allowed'),
+    '#description' => t('span tag is allowed; You can use hide-for-tiny, hide-for-small, hide-for-medium, hide-for-large, hide-for-xlarge classes.'),
     '#default_value' => !empty($conf[$conf_key]['title']) ? $conf[$conf_key]['title'] : $conf['default']['title'],
   );
 
