@@ -3112,3 +3112,10 @@ function nas_master_update_7223() {
   features_revert(array('nas_i18n_permissions_feature' => array('user_permission')));
   module_disable(array('l10n_client'));
 }
+
+/**
+ * Update bird node default panelizer.
+ */
+function nas_master_update_7224() {
+  features_revert(array('nas_bird_type_feature' => array('panelizer_defaults')));
+}
