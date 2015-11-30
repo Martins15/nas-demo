@@ -1,5 +1,6 @@
 <?php
 /**
+ * @file
  * Header for the in action block for birds pages (nodes).
  */
 

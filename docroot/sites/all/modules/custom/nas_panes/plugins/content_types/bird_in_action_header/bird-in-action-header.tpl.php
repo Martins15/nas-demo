@@ -1,5 +1,8 @@
 <?php
 /**
+ * @file
+ * Bird in action Header template.
+ *
  * Variables:
  * - $bird_name - name on the bird.
  */
