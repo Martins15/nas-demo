@@ -2453,7 +2453,13 @@ function nas_panes_get_site_info($node) {
     $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
       $parts_url['path'];
   }
-  $title = urlencode($node->title);
+
+  if (!empty($node)) {
+    $title = urlencode($node->title);
+  }
+  else {
+    $title = 'nil';
+  }
 
   $request_url = $url . 'export/local-bird/' . $title;
   if (array_key_exists('nid', $params)) {

@@ -5,7 +5,10 @@
 .john-audubon-logo {
   max-width: 63px;
   position: absolute;
-  top: 38px;
+  bottom: 0;
+  img {
+    display: block
+  }
 }
 .page-birds-of-america {
   .guide-bar-title {
