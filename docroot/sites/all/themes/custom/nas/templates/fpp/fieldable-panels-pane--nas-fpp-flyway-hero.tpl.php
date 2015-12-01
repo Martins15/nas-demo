@@ -44,7 +44,7 @@
             <a href="<?php print $hero_item['subtitle_url']; ?>" class="editorial-card-slug"><?php print $hero_item['subtitle_title']; ?></a>
             <?php endif; ?>
             <h3 class="thin editorial-card-title"><a href="<?php print $hero_item['bird_url']; ?>"><?php print $hero_item['bird_title']; ?></a></h3>
-            <p class="serif"><em><?php print $hero_item['description']; ?> <a href="<?php print $hero_item['bird_url']; ?>">More »</a></em></p>
+            <p class="serif"><em><?php print $hero_item['description']; ?> <a href="<?php print $hero_item['bird_url']; ?>"><?php print t('More') . '»'; ?></a></em></p>
           </div>
         <?php endforeach; ?>
       </div>

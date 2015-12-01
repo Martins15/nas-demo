@@ -3119,3 +3119,10 @@ function nas_master_update_7223() {
 function nas_master_update_7224() {
   features_revert(array('nas_bird_type_feature' => array('panelizer_defaults')));
 }
+
+/**
+ * Enable NAS theme.
+ */
+function nas_master_update_7225() {
+  theme_enable(array('nas'));
+}
