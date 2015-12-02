@@ -14,7 +14,9 @@ $plugin = array(
   'hook theme' => 'bird_in_action_header_theme',
 );
 
-// Render callback.
+/**
+ * Render callback.
+ */
 function bird_in_action_header_render($subtype, $conf, $args, $context) {
   $context_node = $context->data;
   $block = new stdClass();
