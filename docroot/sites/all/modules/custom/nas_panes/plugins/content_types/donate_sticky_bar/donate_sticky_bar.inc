@@ -7,7 +7,7 @@
 $plugin = array(
   'title' => t('Donate sticky bar'),
   'description' => t('Donate sticky bar at the bottom of the page.'),
-  'category' => 'NAS Header/Footer',
+  'category' => 'NAS',
   'edit form' => 'donate_sticky_bar_edit_form',
   'no title override' => TRUE,
   'render callback' => 'donate_sticky_bar_render',
@@ -27,6 +27,11 @@ function donate_sticky_bar_edit_form($form, &$form_state) {
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
+  $form['global_configuration'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Global configuration'),
+    '#description' => t('Check it to set the properties globally for all panes of this type.'),
+  );
   $form['text'] = array(
     '#type' => 'textfield',
     '#title' => t('Donate bar text'),
@@ -55,24 +60,54 @@ function donate_sticky_bar_edit_form_submit(&$form, &$form_state) {
       $form_state['conf'][$key] = $form_state['values'][$key];
     }
   }
+
+  // Update all donate_sticky_bar panes with global configuration.
+  if ($form_state['values']['global_configuration']) {
+    $panel_type = 'donate_sticky_bar';
+    $configs = db_select('panels_pane', 'pp')
+      ->fields('pp', array('pid', 'configuration'))
+      ->condition('pp.type', $panel_type)
+      ->execute()
+      ->fetchAll();
+
+    foreach ($configs as $config_data) {
+      $config = unserialize($config_data->configuration);
+      foreach (array_keys($form_state['plugin']['defaults']) as $key) {
+        $config[$key] = $form_state['values'][$key];
+      }
+
+      db_update('panels_pane')
+        ->fields(array('configuration' => serialize($config)))
+        ->condition('type', $panel_type)
+        ->condition('pid', $config_data->pid)
+        ->execute();
+    }
+  }
 }
 
 /**
  * Render callback.
  */
 function donate_sticky_bar_render($subtype, $conf, $args, $context) {
+  // TODO: check if this is a correct way to build contextual links.
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+
   $block = new stdClass();
   $block->content = array(
     '#markup' => theme('donate_sticky_bar', array(
       'text' => filter_xss(t($conf['text'])),
       'placeholder' => filter_xss(t($conf['placeholder'])),
       'button_text' => filter_xss(t($conf['button_text'])),
+      'contextual_links' => $contextual_links,
     )),
   );
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
     $block->content['#attached'] = array(
       'css' => array(
         $plugin['path'] . '/css/donate_sticky_bar.css',
+      ),
+      'js' => array(
+        $plugin['path'] . '/js/donate_sticky_bar.js',
       ),
     );
   }
@@ -88,6 +123,7 @@ function donate_sticky_bar_theme(&$theme, $plugin) {
       'text' => '',
       'placeholder' => '',
       'button' => '',
+      'contextual_links' => '',
     ),
     'template' => 'donate-sticky-bar',
     'path' => $plugin['path'],

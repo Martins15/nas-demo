@@ -4,9 +4,10 @@
  * Template for the Donate sticky bar.
  */
 ?>
-<div class="hide-for-tiny hide-for-small" id="OptimizelyDonationBar">
+<div class="hide-for-tiny hide-for-small contextual-links-region" id="OptimizelyDonationBar">
+	<?php print $contextual_links; ?>
 	<p><?php print $text; ?></p>
-	<form action="https://secure.audubon.org/site/Donation2" onsubmit="return setPennies()">
+	<form action="https://secure.audubon.org/site/Donation2" onsubmit="return Drupal.donate_sticky_bar.setPennies();">
 		<input type="hidden" name="df_id" value="6960">
 		<input type="hidden" name="6960.donation" value="form1">
 		<input type="hidden" name="s_src" value="2015_AUDHP_doantionbar-donate_test">
