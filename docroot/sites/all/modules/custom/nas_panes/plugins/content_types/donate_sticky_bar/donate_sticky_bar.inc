@@ -61,6 +61,9 @@ function donate_sticky_bar_edit_form_submit(&$form, &$form_state) {
     }
   }
 
+  // Form build ID is required for contextual links.
+  $form_state['conf']['form_build_id'] = $form_state['values']['form_build_id'];
+
   // Update all donate_sticky_bar panes with global configuration.
   if ($form_state['values']['global_configuration']) {
     $panel_type = 'donate_sticky_bar';
@@ -89,7 +92,6 @@ function donate_sticky_bar_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function donate_sticky_bar_render($subtype, $conf, $args, $context) {
-  // TODO: check if this is a correct way to build contextual links.
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   $block = new stdClass();
