@@ -591,6 +591,25 @@ birds-of-america/*',
     $display->content['new-651ca440-8d50-4a19-9d92-9a64bdce62dc'] = $pane;
     $display->panels['footer'][1] = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
     $pane = new stdClass();
+    $pane->pid = 'new-6c96a342-3f4d-4ea6-88e5-02b4d7225740';
+    $pane->panel = 'header';
+    $pane->type = 'asc_bird_top_bar';
+    $pane->subtype = 'asc_bird_top_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6c96a342-3f4d-4ea6-88e5-02b4d7225740';
+    $display->content['new-6c96a342-3f4d-4ea6-88e5-02b4d7225740'] = $pane;
+    $display->panels['header'][0] = 'new-6c96a342-3f4d-4ea6-88e5-02b4d7225740';
+    $pane = new stdClass();
     $pane->pid = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane->panel = 'header';
     $pane->type = 'nas_menu_header_small';
@@ -604,11 +623,11 @@ birds-of-america/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '84661503-5e89-4544-bf5b-25bb04044d1c';
     $display->content['new-84661503-5e89-4544-bf5b-25bb04044d1c'] = $pane;
-    $display->panels['header'][0] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
+    $display->panels['header'][1] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane = new stdClass();
     $pane->pid = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $pane->panel = 'main';
