@@ -90,7 +90,7 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context)
   $conf_key = !empty($context->data->nid) ? $context->data->nid : 'default';
   $block_conf = !empty($conf[$conf_key]) ? $conf[$conf_key] : $conf['default'];
 
-  $title = !empty($block_conf['title']) ? filter_xss($block_conf['title'], array('span')) : '';
+  $title = !empty($block_conf['title']) ? filter_xss(t($block_conf['title']), array('span')) : '';
   $preamble = !empty($block_conf['preamble']) ? check_plain($block_conf['preamble']) : '';
   $css_class = !empty($block_conf['css_class']) ? trim(check_plain($block_conf['css_class'])) : '';
   $css_background_style = !empty($block_conf['css_background_style']) ? check_plain($block_conf['css_background_style']) : '';
