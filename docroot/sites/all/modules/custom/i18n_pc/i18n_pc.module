@@ -331,6 +331,12 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   $cache = new stdClass();
 
   page_manager_page_new_page_cache($page, $cache);
+  // Set panel display title to the new title $_POST['title'].
+  foreach ($page->default_handlers as &$handler) {
+    if ($handler->handler == 'panel_context') {
+      $handler->conf['display']->title = check_plain($_POST['title']);
+    }
+  }
   page_manager_set_page_cache($cache);
 
   page_manager_save_page_cache($cache);
