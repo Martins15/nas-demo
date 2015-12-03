@@ -14,7 +14,7 @@
   display: inline-block;
 }
 
-#OptimizelyDonationBar input[type="submit"] {
+#OptimizelyDonationBar input[type="submit"], #OptimizelyDonationBar a.buttonLink {
   background-color: #ef5a3e;
   border: none;
   border-color: #dd360f;
@@ -23,7 +23,7 @@
   display: inline-block;
   font: 16pt/1 "Source Sans Pro", Verdana, sans-serif;
   height: 40px;
-  padding: 5px 10px;
+  padding: 9px 10px;
   width: 140px;
 }
 
