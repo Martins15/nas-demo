@@ -17,13 +17,6 @@ function nas_i18n_permissions_feature_user_default_permissions() {
     'module' => 'i18n_node',
   );
 
-  // Exported permission: 'submit translations to localization server'.
-  $permissions['submit translations to localization server'] = array(
-    'name' => 'submit translations to localization server',
-    'roles' => array(),
-    'module' => 'l10n_client',
-  );
-
   // Exported permission: 'translate admin strings'.
   $permissions['translate admin strings'] = array(
     'name' => 'translate admin strings',
@@ -49,16 +42,6 @@ function nas_i18n_permissions_feature_user_default_permissions() {
       'super' => 'super',
     ),
     'module' => 'i18n_string',
-  );
-
-  // Exported permission: 'use on-page translation'.
-  $permissions['use on-page translation'] = array(
-    'name' => 'use on-page translation',
-    'roles' => array(
-      'editor' => 'editor',
-      'super' => 'super',
-    ),
-    'module' => 'l10n_client',
   );
 
   return $permissions;

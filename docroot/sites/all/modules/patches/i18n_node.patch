@@ -1,0 +1,16 @@
+diff --git a/docroot/sites/all/modules/contrib/i18n/i18n_node/i18n_node.pages.inc b/docroot/sites/all/modules/contrib/i18n/i18n_node/i18n_node.pages.inc
+index 4e13ba6..5b4e62e 100644
+--- a/docroot/sites/all/modules/contrib/i18n/i18n_node/i18n_node.pages.inc
++++ b/docroot/sites/all/modules/contrib/i18n/i18n_node/i18n_node.pages.inc
+@@ -51,6 +51,11 @@ function i18n_node_translation_overview($node) {
+     $translations = array($node->language => $node);
+   }
+ 
++  $default_language = language_default();
++  if (!array_key_exists($default_language->language, $translations)) {
++    $translations[$default_language->language] = &$translations[LANGUAGE_NONE];
++  }
++
+   $type = variable_get('translation_language_type', LANGUAGE_TYPE_INTERFACE);
+   $header = array(t('Language'), t('Title'), t('Status'), t('Operations'));
+ 

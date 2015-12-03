@@ -7326,7 +7326,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #909090;
+    color: #919191;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -12071,7 +12071,10 @@ body.touch .sticky-wrapper {
 .john-audubon-logo {
   max-width: 63px;
   position: absolute;
-  top: 38px;
+  bottom: 0;
+}
+.john-audubon-logo img {
+  display: block;
 }
 
 .page-birds-of-america .guide-bar-title {
@@ -14924,7 +14927,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 article.event .event-header {
   margin-bottom: 30px;
 }
-article.event .event-header a {
+article.event .event-header > a {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 20px;
 }

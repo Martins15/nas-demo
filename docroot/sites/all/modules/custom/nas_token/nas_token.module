@@ -13,13 +13,33 @@ define('NAS_TOKEN_PATH_LOCALIZATION_CONTEXT', 'path_localization');
  */
 function nas_token_token_info() {
   $info['tokens']['node']['nas-article'] = array(
-    'name' => t('NAS article alias'),
+    'name' => t('NAS @ct alias', array('@ct' => t('Article'))),
     'description' => t('Custom alias based on whether news article is Press Release, Magazine Article or general News Article'),
   );
 
   $info['tokens']['node']['nas-static-menu-section'] = array(
     'name' => t('NAS top menu section'),
     'description' => t('Custom alias based on top menu section of the selected section. Used for Static Pages.'),
+  );
+
+  $info['tokens']['node']['nas-guide-bird-title'] = array(
+    'name' => t('NAS @ct alias', array('@ct' => t('Bird'))),
+    'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Bird'))),
+  );
+
+  $info['tokens']['node']['nas-conservation-project-title'] = array(
+    'name' => t('NAS @ct alias', array('@ct' => t('Conservation Project'))),
+    'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Conservation Project'))),
+  );
+
+  $info['tokens']['node']['nas-magazine-issue-title'] = array(
+    'name' => t('NAS @ct alias', array('@ct' => t('Magazine Issue'))),
+    'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Magazine Issue'))),
+  );
+
+  $info['tokens']['node']['nas-slideshow-title'] = array(
+    'name' => t('NAS @ct alias', array('@ct' => t('Slideshow'))),
+    'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Slideshow'))),
   );
 
   return $info;
@@ -42,6 +62,22 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
 
         case 'nas-static-menu-section':
           $tokenized_value = _nas_token_menu_section($node);
+          break;
+
+        case 'nas-guide-bird-title':
+          $tokenized_value = _nas_tokens_simple($node, 'nas-guide-bird-title');
+          break;
+
+        case 'nas-conservation-project-title':
+          $tokenized_value = _nas_tokens_simple($node, 'nas-conservation-project-title');
+          break;
+
+        case 'nas-magazine-issue-title':
+          $tokenized_value = _nas_tokens_simple($node, 'nas-magazine-issue-title');
+          break;
+
+        case 'nas-slideshow-title':
+          $tokenized_value = _nas_tokens_simple($node, 'nas-slideshow-title');
           break;
       }
 
@@ -126,6 +162,58 @@ function _nas_token_menu_section($node) {
 
   return nas_token_path_string_localize($path);
 }
+
+/**
+ * Build a token for simple custom tokens.
+ */
+function _nas_tokens_simple($node, $token_name) {
+
+  // We can't use '/' in alias as it will be replaced by pathauto.
+  // String NAS_TOKEN_PLACEHOLDER will be replaced with / in function
+  // nas_token_pathauto_alias_alter.
+
+  switch ($token_name) {
+
+    case 'nas-guide-bird-title':
+      $pattern = array(
+        nas_token_path_string_localize('field-guide'),
+        nas_token_path_string_localize('bird'),
+        $node->title,
+      );
+      break;
+
+    case 'nas-conservation-project-title':
+      $pattern = array(
+        nas_token_path_string_localize('conservation'),
+        nas_token_path_string_localize('project'),
+        $node->title,
+      );
+      break;
+
+    case 'nas-magazine-issue-title':
+      $pattern = array(
+        nas_token_path_string_localize('magazine'),
+        $node->title,
+      );
+      break;
+
+    case 'nas-slideshow-title':
+      $pattern = array(
+        nas_token_path_string_localize('photos'),
+        $node->title,
+      );
+      break;
+
+    default:
+      $pattern = array(
+        $node->title
+      );
+      break;
+  }
+
+  return implode(NAS_TOKEN_PLACEHOLDER, $pattern);
+}
+
 
 /**
  * Get the news article type.
