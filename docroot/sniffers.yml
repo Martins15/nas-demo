@@ -18,6 +18,9 @@
     features_path: sites/all/modules/features
     features_ignore_path: sites/all/features/nonstandard
     ignore_path: sites/all/themes/circle
+    phpcs_modules_ignore:
+      - sites/all/modules/custom/adbn_sso/vendor
+      - sites/all/modules/custom/adbn_sso
     composer_global_require:
       - squizlabs/php_codesniffer=1.5.6
       - drupal/coder:dev-7.x-2.x
