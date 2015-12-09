@@ -17,8 +17,8 @@
     custom_themes_path: sites/all/themes/custom
     features_path: sites/all/modules/features
     features_ignore_path: sites/all/features/nonstandard
-    ignore_path: sites/all/themes/circle
     phpcs_modules_ignore:
+      - sites/all/themes/circle
       - sites/all/modules/custom/adbn_sso/vendor
       - sites/all/modules/custom/adbn_sso
     composer_global_require:
@@ -77,7 +77,7 @@
 
   - name: PHP CodeSniffer
     sudo: yes
-    shell: 'echo "CodeSniffer: {{ item }} standard file {{ webroot }}/{{ item }}sniff.txt" >> {{ workspace_root }}/{{ artifacts_file }} && phpcs --standard={{ item }} --extensions={{ phpcs_extensions }} -n {{ custom_modules_path }} profiles/{{ installation_profile_name }} {{ custom_themes_path }} --report-file={{ item }}sniff.txt --ignore={{ ignore_path }}'
+    shell: 'echo "CodeSniffer: {{ item }} standard file {{ webroot }}/{{ item }}sniff.txt" >> {{ workspace_root }}/{{ artifacts_file }} && phpcs --standard={{ item }} --extensions={{ phpcs_extensions }} -n {{ custom_modules_path }} profiles/{{ installation_profile_name }} {{ custom_themes_path }} --report-file={{ item }}sniff.txt --ignore={{ phpcs_modules_ignore | join(",") }}'
     with_items: phpcs_standards
 
   - name: PHP CodeSniffer for features
