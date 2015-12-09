@@ -15,7 +15,7 @@ function nas_iba_feature_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'IBA Landing Page';
   $page->admin_description = '';
-  $page->path = 'iba';
+  $page->path = 'important-bird-areas';
   $page->access = array();
   $page->menu = array();
   $page->arguments = array();

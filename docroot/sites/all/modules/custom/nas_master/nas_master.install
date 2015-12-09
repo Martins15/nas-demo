@@ -3135,7 +3135,7 @@ function nas_master_update_7224() {
 /**
  * Enable NAS IBA features.
  */
-function nas_master_update_7225() {
+function nas_master_update_7226() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_feature', 'nas_iba_state', 'nas_iba_import_feeds_feature'));
