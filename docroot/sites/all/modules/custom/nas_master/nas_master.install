@@ -3135,11 +3135,32 @@ function nas_master_update_7224() {
 /**
  * Enable NAS IBA features.
  */
-function nas_master_update_7225() {
+function nas_master_update_7226() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_feature', 'nas_iba_state', 'nas_iba_import_feeds_feature'));
   features_revert(array('nas_image_styles_feature'));
   features_revert_module('nas_solr_feature');
   features_revert_module('nas_url_aliases_feature');
+
+  // Delete old redirect for IBA page.
+  db_delete('redirect')
+    ->condition('source', 'important-bird-areas')
+    ->execute();
+
+  // Add redirects for IBA.
+  $redirect = new stdClass();
+
+  redirect_object_prepare(
+    $redirect,
+    array(
+      'source' => 'iba',
+      'source_options' => array(),
+      'redirect' => 'important-bird-areas',
+      'redirect_options' => array(),
+      'language' => LANGUAGE_NONE,
+    )
+  );
+
+  redirect_save($redirect);
 }
