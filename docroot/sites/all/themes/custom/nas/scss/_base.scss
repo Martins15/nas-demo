@@ -14,6 +14,10 @@ body {
   &.black-bg {
     background-color: $color-black;
   }
+
+  &.admin-menu {
+    margin-top: 29px !important;
+  }
 }
 
 @include width-range(#{lower-bound($small-range)}, 1020px) {

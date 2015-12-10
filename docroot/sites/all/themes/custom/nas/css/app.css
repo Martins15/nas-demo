@@ -3994,6 +3994,9 @@ body {
 body.black-bg {
   background-color: #000;
 }
+body.admin-menu {
+  margin-top: 29px !important;
+}
 
 @media only screen and (min-width: 480px) and (max-width: 1020px) {
   .row {
@@ -7326,7 +7329,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
