@@ -13,7 +13,7 @@
   <div class="row">
     <div class="columns">
       <a class="back" href="<?php print $url; ?>"><i class="icon-arrow-left"></i> <span class="optional">Back to </span><?php print $title; ?></a>
-      <a class="close" onclick="jQuery('.back-to-center').slideUp(200)" href="#"><i class="icon-delete"></i><span class="optional"> close</span></a>
+      <a class="close" href="#"><i class="icon-delete"></i><span class="optional"> close</span></a>
     </div>
   </div>
 </div>

@@ -36,6 +36,8 @@ function asc_bird_top_bar_render($subtype, $conf, $args, $context) {
     return;
   }
 
+  drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/asc_bird_top_bar/asc-bird-top-bar.js');
+
   $block = new stdClass();
   $block->content = theme('asc_bird_top_bar', $data);
 
