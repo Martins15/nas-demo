@@ -21,7 +21,7 @@
           $backBar.slideUp(200);
           $(".global-header").animate({paddingTop: 0}, 100);
           return false;
-        })
+        });
         // Workaround for admin menu.
         if ($("body").hasClass('admin-menu')) {
           setTimeout(function() {
