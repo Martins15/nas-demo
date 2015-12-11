@@ -13,7 +13,6 @@ function _ga_stats_update_counts() {
   if (isset($client)) {
     $data = ga_stats_collect_data($client);
   }
-
   // Only wipe the data if we retrieved something to replace it with.
   if (!empty($data)) {
     db_query('DELETE FROM {ga_stats_count}');
@@ -196,30 +195,29 @@ function ga_stats_ga_data_array($data_in) {
 function ga_stats_get_client($suppress = FALSE) {
   require_once 'gapi.class.php';
 
-  $email = variable_get('ga_stats_email', '');
-  $password = variable_get('ga_stats_password', '');
-  $type = variable_get('ga_stats_acct_type', NULL);
-
   $client = NULL;
-  if (ga_stats_is_ready()) {
-    try {
-      $client = new gapi($email, $password, NULL, $type);
+  $user = variable_get('ga_stats_email', '');
+  $p12_key = variable_get('ga_stats_private_key_p12', NULL);
+
+  if ($user && $p12_key) {
+    try{
+      $client = new gapi($user, $p12_key);
     }
     catch (Exception $e) {
-      $error = t('Invalid Google Analytics authentication attempt.');
+      $error = t('Invalid Google Analytics App authentication attempt.');
       watchdog('ga_stats', $e->getMessage(), array(), WATCHDOG_ERROR);
     }
   }
   else {
-    $error = t('Google Analytics Email and password not set.');
-    watchdog('ga_stats', 'Google Analytics email and password not set.', array(), WATCHDOG_ERROR);
+    $error = t('Google Analytics API Email and p12 key are not set.');
+    watchdog('ga_stats', 'Google Analytics API Email and p12 key are not set.', array(), WATCHDOG_ERROR);
   }
 
   if (!$suppress && isset($error)) {
     drupal_set_message($error, 'error');
   }
   if (!isset($error)) {
-    watchdog('ga_stats', 'Successfully authenticated client with Google Analytics.');
+    watchdog('ga_stats', 'Successfully authenticated client with Google Analytics App.');
   }
 
   return $client;
