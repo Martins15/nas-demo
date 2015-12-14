@@ -755,3 +755,14 @@ function nas_alters_form_system_site_information_settings_alter(&$form, &$form_s
     '#default_value' => variable_get('nas_birds_allow_dev_params', FALSE),
   );
 }
+
+/**
+ * Helper function to get language dropdown.
+ */
+function nas_alters_lang_dropdown() {
+  if (!module_exists('lang_dropdown')) {
+    return '';
+  }
+  $block = lang_dropdown_block_view();
+  return drupal_render($block['content']);
+}

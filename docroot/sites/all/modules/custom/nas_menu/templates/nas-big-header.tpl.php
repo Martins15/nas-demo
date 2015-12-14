@@ -65,6 +65,7 @@
               <a href="<?php print $searchpage_url; ?>" class=""><i class="icon-magnifier"></i></a>
           </li>
         </ul>
+        <?php print nas_alters_lang_dropdown(); ?>
         <ul class="secondary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['secondary_cl']; ?>
           <?php foreach ($items['secondary'] as $item) : ?>
