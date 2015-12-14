@@ -1217,11 +1217,47 @@ body {
 ul.secondary-nav {
   float: left;
 }
-.global-nav .lang_dropdown_form {
+.global-nav .mobile-nav .lang_dropdown_form .dd-selected label {
+  border-right: 1px solid #404040;
+}
+.global-nav .mobile-nav .lang_dropdown_form {
+  @include breakpoint(tiny-only) {
+    display: none;
+  }
+  @include breakpoint(small-only) {
+    display: none;
+  }
+  @include breakpoint(medium-only) {
+    display: none;
+  }
   float: left;
   padding-top: 6px;
   padding-right: 12px;
 }
-.global-nav .lang_dropdown_form .dd-selected label {
-  border-right: 1px solid #404040;
+
+.global-nav > .lang_dropdown_form.ddsDark {
+  margin-left: -12.5px;
+  margin-right: -12.5px;
+  @include breakpoint(small-up) {
+    display: none;
+  }
+  .dd-container {
+    padding-top: 0;
+    width: 100% !important;
+    background: none repeat scroll 0 0 #414141 !important;
+  }
+  .dd-select {
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+  .dd-options {
+    width: 100% !important;
+    text-align: center;
+    label {
+      padding-left: 0;
+    }
+    .dd-option {
+      padding: 10px 0;
+    }
+  }
 }

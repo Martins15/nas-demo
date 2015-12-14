@@ -44,6 +44,7 @@
           <li class="<?php print $item['li_class']; ?>"><?php print $item['link']; ?></li>
         <?php endforeach; ?>
       </ul>
+      <?php print nas_alters_lang_dropdown(); ?>
       <div class="mobile-nav">
         <ul class="primary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['main_cl']; ?>
