@@ -3128,9 +3128,17 @@ function nas_master_update_7225() {
 }
 
 /**
- * Create new menu Donate | Take action and its items.
+ * Add Action for creating Spanish translations.
  */
 function nas_master_update_7226() {
+  module_enable(array('nas_i18n_actions'));
+  features_revert(array('nas_content_administration_page_feature' => array('views_view')));
+}
+
+/**
+ * Create new menu Donate | Take action and its items.
+ */
+function nas_master_update_7227() {
   // Create new menu.
   $menu_id = 'menu-header-big-dta-desktop';
   $menu = array(
