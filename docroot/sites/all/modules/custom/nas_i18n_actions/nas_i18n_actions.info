@@ -1,0 +1,4 @@
+name = NAS i18n Actions
+description = Stores Custom Actions relative to translations
+core = 7.x
+package = NAS
