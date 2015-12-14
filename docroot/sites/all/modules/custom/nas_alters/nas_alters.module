@@ -763,6 +763,11 @@ function nas_alters_lang_dropdown() {
   if (!module_exists('lang_dropdown')) {
     return '';
   }
-  $block = lang_dropdown_block_view();
-  return drupal_render($block['content']);
+
+  // TODO: Somehow determine if current page has translation...
+
+  if ($block = lang_dropdown_block_view()) {
+    return drupal_render($block['content']);
+  }
+  return '';
 }
