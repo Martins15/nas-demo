@@ -3126,3 +3126,11 @@ function nas_master_update_7224() {
 function nas_master_update_7225() {
   theme_enable(array('nas'));
 }
+
+/**
+ * Add Action for creating Spanish translations.
+ */
+function nas_master_update_7226() {
+  module_enable(array('nas_i18n_actions'));
+  features_revert(array('nas_content_administration_page_feature' => array('views_view')));
+}
