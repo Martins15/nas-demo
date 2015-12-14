@@ -15187,3 +15187,18 @@ body .slide .slide-img img {
 #admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
   right: auto;
 }
+
+/* Language dropdown styling */
+ul.secondary-nav {
+  float: left;
+}
+
+.global-nav .lang_dropdown_form {
+  float: left;
+  padding-top: 6px;
+  padding-right: 12px;
+}
+
+.global-nav .lang_dropdown_form .dd-selected label {
+  border-right: 1px solid #404040;
+}
