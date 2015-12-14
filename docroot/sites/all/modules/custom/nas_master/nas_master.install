@@ -3126,3 +3126,104 @@ function nas_master_update_7224() {
 function nas_master_update_7225() {
   theme_enable(array('nas'));
 }
+
+/**
+ * Create new menu Donate | Take action and its items.
+ */
+function nas_master_update_7226() {
+  // Create new menu.
+  $menu_id = 'menu-header-big-dta-desktop';
+  $menu = array(
+    'menu_name' => $menu_id,
+    'title' => t('Header big donate | take action (desktop)'),
+    'description' => '',
+    'language' => LANGUAGE_NONE,
+    'i18n_mode' => I18N_MODE_MULTIPLE,
+  );
+  menu_save($menu);
+
+  // Define menu items.
+  $menu_items = array(
+    'Join' => array(
+      'url' => 'https://secure.audubon.org/site/Donation2?df_id=7140&7140.donation=form1&s_src=2015_AUDHP_topbanner-join_test&s_subsrc=website',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomato',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'Become a Member' => 'https://secure.audubon.org/site/Donation2?df_id=7140&7140.donation=form1&s_src=2015_AUDHP_topbanner-member_test&s_subsrc=website',
+        'Renew' => 'https://secure.audubon.org/site/Donation2?df_id=7900&7900.donation=form1&s_src=2015_AUDHP_topbanner-renew_test&s_subsrc=website',
+        'Gift Membership' => 'https://secure.audubon.org/site/Donation2?df_id=7320&7320.donation=form1&s_src=2015_AUDHP_topbanner-gift_test&s_subsrc=website',
+        'Audubon Near You' => 'audubon-near-you',
+      ),
+    ),
+    'Donate Now' => array(
+      'url' => 'https://secure.audubon.org/site/Donation2?df_id=6960&6960.donation=form1&s_src=2015_AUDHP_topbanner-donate_test&s_subsrc=website',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomatoDk',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'One-time Gift' => 'https://secure.audubon.org/site/Donation2?df_id=6960&6960.donation=form1&s_src=2015_AUDHP_topbanner-one-time_test&s_subsrc=website',
+        'Monthly' => 'https://audubon.secure-donor.com/cardinal/choose/?source=header',
+        'Online Store' => 'https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html&s_src=2015_AUDHP_topbanner-store_test&s_subsrc=website',
+        'More Ways to Give' => 'how-to-help',
+      ),
+    ),
+    'Take Action' => array(
+      'url' => 'takeaction',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomato',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'Prevent Needless Bird Deaths' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1829&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+        'Protect America\'s Open Spaces' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1945&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+        'Act for Greater Sage-Grouse' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1999&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+      ),
+    ),
+  );
+
+  $weight = 0;
+  foreach ($menu_items as $menu_item_title => $menu_item) {
+    $menu_link = array(
+      'link_title' => $menu_item_title,
+      'link_path' => $menu_item['url'],
+      'module' => 'menu',
+      'menu_name' => $menu_id,
+      'weight' => $weight,
+      'plid' => 0,
+    );
+    if (!empty($menu_item['class'])) {
+      $menu_link['options']['attributes']['class'] = $menu_item['class'];
+      $menu_link['options']['attributes']['liclass'] = $menu_item['liclass'];
+    }
+    $mlid = menu_link_save($menu_link);
+    $weight++;
+
+    if (empty($menu_item)) continue;
+
+    $inner_weight = -50;
+    foreach ($menu_item['children'] as $menu_child_item_title => $menu_child_item_url) {
+      $menu_link = array(
+        'link_title' => $menu_child_item_title,
+        'link_path' => $menu_child_item_url,
+        'module' => 'menu',
+        'menu_name' => $menu_id,
+        'weight' => $inner_weight,
+      );
+      $menu_link['plid'] = $mlid;
+      menu_link_save($menu_link);
+      $inner_weight++;
+    }
+  }
+}
