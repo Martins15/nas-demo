@@ -7177,8 +7177,6 @@ input.header-search-input,
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     background-color: #fff;
     color: #000;
-    padding-right: 15px;
-    margin-right: -5px;
     position: relative;
     z-index: 4;
   }
@@ -7421,6 +7419,50 @@ body.touch .primary-sub-nav-index {
   }
 }
 
+.action-nav-desktop .action-nav-item,
+.action-nav-desktop .action-nav-item:last-child, .action-navBody .action-nav-item,
+.action-navBody .action-nav-item:last-child {
+  margin-left: 16px;
+}
+.action-nav-desktop .button.tomato, .action-navBody .button.tomato {
+  background-color: #ef5a3e;
+}
+.action-nav-desktop .button.tomato:hover, .action-navBody .button.tomato:hover {
+  background-color: white;
+  border-radius: 0;
+  color: #ef5a3e !important;
+}
+.action-nav-desktop .button.tomatoDk, .action-navBody .button.tomatoDk {
+  background-color: #c93216;
+}
+.action-nav-desktop .button.tomatoDk:hover,
+.action-nav-desktop .button.tomatoDk.open, .action-navBody .button.tomatoDk:hover,
+.action-navBody .button.tomatoDk.open {
+  background-color: white;
+  border-radius: 0;
+  color: #c93216 !important;
+}
+.action-nav-desktop.contextual-links-region > li:last-child .primary-sub-nav, .action-navBody.contextual-links-region > li:last-child .primary-sub-nav {
+  right: 0;
+}
+.action-nav-desktop > li:last-child .primary-sub-nav, .action-navBody > li:last-child .primary-sub-nav {
+  right: 12px;
+}
+
+.action-nav-desktop {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .secondary-nav,
+  .action-nav {
+    display: none;
+  }
+
+  .action-nav-desktop {
+    display: block;
+  }
+}
 .social-sharing {
   text-align: center;
 }
@@ -10116,6 +10158,10 @@ body.black-bg .slide-caption {
   line-height: 20px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-style: normal;
+}
+
+.admin-menu .curtain {
+  margin-top: 29px;
 }
 
 .bg-egg {

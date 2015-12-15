@@ -7,6 +7,7 @@
 
 define('NAS_MENU_SECONDARY_NAVIGATION', 'menu-header-big-secondary-menu');
 define('NAS_MENU_SECONDARY_TAKE_ACTION', 'menu-header-big-donate-take-acti');
+define('NAS_MENU_SECONDARY_TAKE_ACTION_DESKTOP', 'menu-header-big-dta-desktop');
 
 /**
  * Plugin definition.
@@ -85,6 +86,7 @@ function nas_menu_pane_big_render() {
   $s_menus = array(
     'secondary' => NAS_MENU_SECONDARY_NAVIGATION,
     'secondary_ta' => NAS_MENU_SECONDARY_TAKE_ACTION,
+    'secondary_ta_desktop' => NAS_MENU_SECONDARY_TAKE_ACTION_DESKTOP,
   );
   foreach ($s_menus as $s_key => $s_menu) {
     $s_menu_tree = i18n_menu_localize_tree(menu_tree_all_data($s_menu));
@@ -92,12 +94,57 @@ function nas_menu_pane_big_render() {
       if ($menu_item['link']['hidden'] == TRUE) {
         continue;
       }
-      $item = array();
-      $item['li_class'] = isset($menu_item['link']['options']['attributes']['liclass']) ? ' ' . $menu_item['link']['options']['attributes']['liclass'] : '';
-      $a_class = isset($menu_item['link']['options']['attributes']['class']) ? $menu_item['link']['options']['attributes']['class'] : array();
+      $item = array(
+        'a_class' => array(),
+        'li_class' => '',
+        'below' => array(),
+      );
+
+      if ($menu_item['below']) {
+        foreach ($menu_item['below'] as $sub_menu_item) {
+          if ($sub_menu_item['link']['hidden']) {
+            continue;
+          }
+          $li_class = 'primary-sub-nav-item';
+          if (isset($sub_menu_item['link']['options']['attributes']['liclass'])) {
+            $li_class .=  ' ' . $sub_menu_item['link']['options']['attributes']['liclass'];
+          }
+          $sub_a_class = array('primary-sub-nav-link');
+          if (isset($sub_menu_item['link']['options']['attributes']['class'])) {
+            $sub_a_class = $sub_menu_item['link']['options']['attributes']['class'];
+          }
+
+          $subtitle = filter_xss($sub_menu_item['link']['title']);
+          $subpath = $sub_menu_item['link']['link_path'];
+
+          if (nas_menu_is_current_page($path)) {
+            $sub_a_class[] = NAS_MENU_ACTIVE_CLASS;
+          }
+          $subitem_link = l($subtitle, $subpath, array(
+              'html' => TRUE,
+              'attributes' => array('class' => $sub_a_class),
+            ));
+          $item['below'][] = array(
+            'li_class' => $li_class,
+            'link' => $subitem_link,
+          );
+        }
+      }
+      if (isset($menu_item['link']['options']['attributes']['liclass'])) {
+        $item['li_class'] = $menu_item['link']['options']['attributes']['liclass'];
+      }
+      if (isset($menu_item['link']['options']['attributes']['class'])) {
+        $item['a_class'] = $menu_item['link']['options']['attributes']['class'];
+      }
       $title = filter_xss($menu_item['link']['title'], array('i', 'span'));
       $path = $menu_item['link']['link_path'];
-      $item['link'] = l($title, $path, array('html' => TRUE, 'attributes' => array('class' => $a_class)));
+      if ($item['below']) {
+        $item['a_class'][] = 'primary-nav-toggler';
+      }
+      $item['link'] = l($title, $path, array(
+          'html' => TRUE,
+          'attributes' => array('class' => $item['a_class']),
+        ));
       $items[$s_key][] = $item;
       $items[$s_key . '_cl'] = nas_menu_cl($s_menu);
     }
