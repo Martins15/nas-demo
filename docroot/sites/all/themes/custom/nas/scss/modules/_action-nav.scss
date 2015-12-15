@@ -58,3 +58,54 @@
     width: 100%;
   }
 }
+
+.action-nav-desktop, .action-navBody {
+  .action-nav-item,
+  .action-nav-item:last-child {
+    margin-left: 16px;
+  }
+
+  .button.tomato {
+    background-color: #ef5a3e;
+  }
+
+  .button.tomato:hover {
+    background-color: white;
+    border-radius: 0;
+    color: #ef5a3e !important;
+  }
+
+  .button.tomatoDk {
+    background-color: #c93216;
+  }
+
+  .button.tomatoDk:hover,
+  .button.tomatoDk.open {
+    background-color: white;
+    border-radius: 0;
+    color: #c93216 !important;
+  }
+
+  &.contextual-links-region > li:last-child .primary-sub-nav {
+    right: 0;
+  }
+
+  > li:last-child .primary-sub-nav {
+    right: 12px;
+  }
+}
+
+.action-nav-desktop {
+  display: none;
+}
+
+@include breakpoint(large-up) {
+  .secondary-nav,
+  .action-nav {
+    display: none;
+  }
+
+  .action-nav-desktop {
+    display: block;
+  }
+}
