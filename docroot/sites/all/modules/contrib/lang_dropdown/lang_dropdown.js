@@ -48,7 +48,6 @@ Drupal.behaviors.lang_dropdown = {
               showSelectedHTML: Boolean(msddSettings.showSelectedHTML),
               imagePosition: msddSettings.imagePosition,
               onSelected: function(data) {
-                console.log(data);
                 var i = $.data(document.body, 'ddslick'+key+'flag');
                 if (i) {
                   $.data(document.body, 'ddslick'+key+'flag', 0);
