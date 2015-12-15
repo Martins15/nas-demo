@@ -1,0 +1,436 @@
+<?php
+/**
+ * @file
+ * Provides integration with the Audubon WCF Service for Drupal SSO.
+ *
+ * The WSDL can be found at
+ * http://nettest.audubon.org/AAPService/AAPService.svc?singleWsdl.
+ */
+
+define('ADBN_SSO_SOAP_VERSION', SOAP_1_1);
+define('ADBN_SSO_LOCAL_WSDL_TEST_FILE', 'wsdl/audubon_sso_test.wsdl');
+define('ADBN_SSO_LOCAL_WSDL_PRODUCTION_FILE', 'wsdl/audubon_sso_production.wsdl');
+define('ADBN_SSO_WSDL_TEST_URL', 'http://nettest.audubon.org/AAPService/AAPService.svc?singleWsdl');
+define('ADBN_SSO_WSDL_PRODUCTION_URL', 'http://netapp.audubon.org/AAPService/AAPService.svc?singleWsdl');
+
+define('ADBN_SSO_TEST_WSDL_VARIABLE', 'adbn_sso_wsdl');
+define('ADBN_SSO_PRODUCTION_WSDL_VARIABLE', 'adbn_sso_production_wsdl');
+define('ADBN_SSO_USE_PRODUCTION_WSDL_VARIABLE', 'adbn_sso_use_production_wsdl');
+
+define('ADBN_SSO_DEFAULT_CLASS', 'AudubonSSOService');
+define('ADBN_SSO_CLASS_HOOK', 'adbn_sso_class');
+define('ADBN_SSO_LOGGED_VIA_SERVICE_STATIC', 'adbn_logged_via_service');
+define('ADBN_SSO_REGISTERED_VIA_SERVICE_STATIC', 'adbn_registered_via_service');
+
+define('ADBN_SSO_MODULE_NAME', 'adbn_sso');
+define('ADBN_SSO_ADMIN_PATH', 'admin/config/people/audubon_sso');
+define('ADBN_SSO_AUTH_MAP_KEY', ADBN_SSO_MODULE_NAME);
+define('ADBN_SSO_WATCHDOG_KEY', ADBN_SSO_MODULE_NAME);
+define('ADBN_SSO_LAST_CACHE_TIME', ADBN_SSO_MODULE_NAME . '_last_cache_time');
+define('ADBN_SSO_USERNAME_NOT_VALID', 'N/A');
+
+include_once 'includes/adbn_sso.utils.inc';
+include_once 'includes/adbn_sso.api.inc';
+include_once 'includes/adbn_sso.login.inc';
+include_once 'includes/adbn_sso.registration.inc';
+include_once 'includes/adbn_sso.profile.inc';
+include_once 'includes/adbn_sso.authorization.inc';
+include_once 'includes/adbn_sso.request_password.inc';
+include_once 'includes/adbn_sso.messages.inc';
+
+/**
+ * Auto loads the zend classes required for the SOAP client.
+ */
+function adbn_sso_load_zend() {
+  require_once 'vendor/autoload.php';
+}
+
+/**
+ * A map of WSDL types to PHP classes for the Audubon WCF service.
+ *
+ * @return array
+ */
+function adbn_sso_class_map() {
+  $class_map = array(
+    'UserProfile' => 'AdbnUserProfile',
+    'AAPResponse' => 'AdbnAAPResponse',
+  );
+
+  return $class_map;
+}
+
+/**
+ * Returns default production WSDL path.
+ *
+ * @return string
+ */
+function adbn_sso_get_default_production_wsdl_path() {
+  $wsdl_path = drupal_get_path('module', ADBN_SSO_MODULE_NAME) . '/' . ADBN_SSO_LOCAL_WSDL_PRODUCTION_FILE;
+  return $wsdl_path;
+}
+
+/**
+ * Returns default test server WSDL path.
+ *
+ * @return string
+ */
+function adbn_sso_get_default_test_wsdl_path() {
+  $wsdl_path = drupal_get_path('module', ADBN_SSO_MODULE_NAME) . '/' . ADBN_SSO_LOCAL_WSDL_TEST_FILE;
+  return $wsdl_path;
+}
+
+/**
+ * Returns an object to work with the Audubon service.
+ *
+ * Use this function to call the defined methods in the SOAP service wrapper.
+ * If a service method is not available, you can get the underlying SOAP client,
+ * and call the method manually.
+ *
+ * @param bool $debug Whether to enable debugging via dpm.
+ * @return AudubonSSOService
+ */
+function adbn_sso_get_audubon_client($debug = FALSE) {
+  $audubon_client = &drupal_static(__FUNCTION__, NULL);
+
+  if (is_null($audubon_client)) {
+    $soap_client = adbn_sso_get_soap_client();
+    $audubon_client_class = adbn_sso_get_audubon_service_class();
+    $audubon_client = new $audubon_client_class($soap_client, $debug);
+  }
+
+  return $audubon_client;
+}
+
+/**
+ * Gets the class name to be instantiated for SSO usage.
+ *
+ * @return string
+ */
+function adbn_sso_get_audubon_service_class() {
+  // Default class.
+  $class = ADBN_SSO_DEFAULT_CLASS;
+
+  $modules = module_implements(ADBN_SSO_CLASS_HOOK);
+  foreach ($modules as $module) {
+    $function = $module . '_' . ADBN_SSO_CLASS_HOOK;
+    if (function_exists($function)) {
+      $class = $function();
+    }
+  }
+
+  return $class;
+}
+
+/**
+ * Returns a Zend SOAP Client configured to work with the Audubon service.
+ *
+ * @return \Zend\Soap\Client\DotNet
+ */
+function adbn_sso_get_soap_client() {
+  $soap_client = &drupal_static(__FUNCTION__, NULL);
+
+  if (is_null($soap_client)) {
+    adbn_sso_load_zend();
+
+    $use_production_wsdl = variable_get(ADBN_SSO_USE_PRODUCTION_WSDL_VARIABLE, FALSE);
+    if ($use_production_wsdl) {
+      $default_production_wsdl_path = adbn_sso_get_default_production_wsdl_path();
+      $wsdl_path = variable_get(ADBN_SSO_PRODUCTION_WSDL_VARIABLE, $default_production_wsdl_path);
+    }
+    else {
+      $default_test_wsdl_path = adbn_sso_get_default_test_wsdl_path();
+      $wsdl_path = variable_get(ADBN_SSO_TEST_WSDL_VARIABLE, $default_test_wsdl_path);
+    }
+
+    $options = array(
+      'compression' => SOAP_COMPRESSION_ACCEPT,
+      'soap_version' => ADBN_SSO_SOAP_VERSION,
+      'classmap' => adbn_sso_class_map(),
+    );
+
+    $soap_client = new Zend\Soap\Client\DotNet($wsdl_path, $options);
+  }
+
+  return $soap_client;
+}
+
+/**
+ * Implements hook_menu().
+ *
+ * @return array
+ */
+function adbn_sso_menu() {
+  $items = array();
+  $includes_folder = drupal_get_path('module', 'adbn_sso') . '/includes';
+
+  $items[ADBN_SSO_ADMIN_PATH] = array(
+    'title' => 'Audubon SSO',
+    'description' => 'Configure Audubon SSO settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('adbn_sso_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'adbn_sso.admin.inc',
+    'file path' => $includes_folder,
+  );
+
+  $items[ADBN_SSO_ADMIN_PATH . '/settings'] = array(
+    'title' => 'Audubon SSO',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items[ADBN_SSO_ADMIN_PATH . '/messages'] = array(
+    'title' => 'Messages',
+    'description' => 'Configure Audubon SSO messages',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('adbn_sso_admin_message_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'adbn_sso.admin.inc',
+    'file path' => $includes_folder,
+  );
+
+  $items['user/one-time-login'] = array(
+    'title' => 'One time login',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('adbn_sso_one_time_login_form'),
+    'access callback' => TRUE,
+    'file' => 'adbn_sso.request_password.inc',
+    'file path' => $includes_folder,
+  );
+
+  $items['user/one-time-login-check/%/%/%'] = array(
+    'title' => 'One time login',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('adbn_sso_one_time_login', 2, 3, 4),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'adbn_sso.request_password.inc',
+    'file path' => $includes_folder,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function adbn_cron() {
+  adbn_sso_update_sso_field_users_cache();
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function adbn_sso_views_views_api() {
+  return array("api" => "3.0");
+}
+
+/** ----------------------------- Hooks ------------------------------ */
+
+/**
+ * Invokes a module hook in every implementing module.
+ *
+ * We cannot use module_invoke() for this, because the arguments need to
+ * be passed by reference.
+ */
+function adbn_sso_module_invoke_profile($type, &$edit, $account, $category, $profile) {
+  foreach (module_implements('adbn_sso_user_' . $type) as $module) {
+    $function = $module . '_adbn_sso_user_' . $type;
+    if (function_exists($function)) {
+      $function($edit, $account, $category, $profile);
+    }
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ *
+ * This is called after the fields and object are saved.
+ *
+ * @param $edit
+ * @param $account
+ * @param null $category
+ */
+function adbn_sso_user_insert(&$edit, $account, $category = NULL) {
+  $is_authenticated_via_service = adbn_sso_is_user_authenticated_via_service($account->name);
+  $is_being_registered_in_service = adbn_sso_is_user_being_registered_in_service($account->mail);
+  $is_external = $is_authenticated_via_service || $is_being_registered_in_service;
+
+  // Choose the credential we will be using for setting the auth map table,
+  // and the for invoking the insert hooks. For reasons to why we use the email
+  // or username, check adbn_sso_user_presave().
+  $credential = '';
+  if ($is_authenticated_via_service) {
+    $credential = $account->name;
+  }
+  elseif ($is_being_registered_in_service) {
+    $credential = $account->mail;
+  }
+
+  // Check if new user is an external one.
+  if ($is_external) {
+
+    // Add an entry to the auth map table.
+    adbn_sso_set_auth_map($account, $credential);
+
+    // Allow other modules to act on insertion of external users.
+    $profile = adbn_sso_get_user_profile($credential);
+    if (!empty($profile)) {
+      adbn_sso_module_invoke_profile('insert', $edit, $account, $category, $profile);
+    }
+  }
+}
+
+/**
+ * Implements hook_user_presave().
+ *
+ * This is called before the fields and the user object are saved.
+ *
+ * @param $edit
+ * @param $account
+ * @param null $category
+ */
+function adbn_sso_user_presave(&$edit, $account, $category = NULL) {
+  // Check if we are creating a new local account because:
+  // - the user tried to login via an existing SSO account.
+  // - an account is being registered, that has to be added in the SSO as well.
+  if ($account->is_new) {
+
+    // Get the username and email provided for creation of the new account.
+    // When the account is created via the external login process, we use the
+    // provided username as the credential.
+    // When the account is created via registration form, we use the email as
+    // the credential. This is necessary because email_registration modifies
+    // the user name not to be equal to the email, when the registration form
+    // is used.
+    $username = '';
+    $email = '';
+    if (isset($edit['name'])) {
+      $username = $edit['name'];
+    }
+    if (isset($edit['mail'])) {
+      $email = $edit['mail'];
+    }
+
+    // Use the static functions to find out which user creation case do we have.
+    $is_authenticated_via_service = adbn_sso_is_user_authenticated_via_service($username);
+    $is_being_registered_in_service = adbn_sso_is_user_being_registered_in_service($email);
+    $is_sso_user = $is_authenticated_via_service || $is_being_registered_in_service;
+
+    // Choose the credential we will be using for getting the profile data.
+    $credential = '';
+    if ($is_authenticated_via_service) {
+      $credential = $username;
+    }
+    elseif ($is_being_registered_in_service) {
+      $credential = $email;
+    }
+
+    if ($is_sso_user) {
+      // Allow other modules to act on the pre-save of new accounts related to
+      // the SSO.
+      $profile = adbn_sso_get_user_profile($credential);
+      if (!empty($profile)) {
+        // Call SSO pre-save hooks implemented by other modules.
+        adbn_sso_module_invoke_profile('presave', $edit, $account, $category, $profile);
+      }
+      // For some reason we couldn't get the profile, add a watchdog warning.
+      else {
+        watchdog(ADBN_SSO_WATCHDOG_KEY, "Couldn't get SSO profile inside adbn_sso_user_presave for name / email @credential.", array('@credential' => $credential), WATCHDOG_ERROR);
+      }
+    }
+  }
+  // This is an existing account, that is being updated.
+  else {
+    // Check whether the SSO password has to be updated. If so, make sure that
+    // we reset the local user Drupal password, so the user can't login via the
+    // drupal standard login process.
+    if (isset($edit['update_adbn_sso_password']) && !empty($edit['current_pass']) && isset($edit['pass']) && !empty($edit['pass'])) {
+      require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+      $edit['pass'] = user_hash_password(user_password());
+    }
+  }
+}
+
+/**
+ * Implements hook_email_registration_name().
+ *
+ * In case email registration module is enabled, we specify that the generated
+ * user name should coincide with the email.
+ *
+ * @param $edit
+ * @param $account
+ * @return string
+ */
+function adbn_sso_email_registration_name(/** @noinspection PhpUnusedParameterInspection */
+  $edit, $account) {
+  return $account->mail;
+}
+
+/** ----------------------- Test functions ------------------------------ */
+
+
+/**
+ * Shows service types and functions that are available in the SOAP service.
+ */
+function adbn_sso_show_service_types_and_functions() {
+  $audubon_client = adbn_sso_get_audubon_client();
+  $soap_client = $audubon_client->getSoapClient();
+  $types = $soap_client->getTypes();
+  $functions = $soap_client->getFunctions();
+
+  if (module_exists('devel')) {
+    dpm($types);
+    dpm($functions);
+  }
+}
+
+/**
+ * Gets a user profile from the service.
+ */
+function adbn_sso_get_test_profile() {
+  $profile = NULL;
+
+  try {
+    $audubon_client = adbn_sso_get_audubon_client();
+    $email = 'alexandru.croitor@wearepropeople.com';
+    $profile = $audubon_client->GetUserProfile($email);
+  } catch (Exception $e) {
+    watchdog(ADBN_SSO_WATCHDOG_KEY, nl2br(check_plain($e->getMessage())), array(), WATCHDOG_ERROR);
+  }
+
+  return $profile;
+}
+
+/**
+ * Creates a test profile in the service.
+ */
+function adbn_sso_create_test_user_profile() {
+  $new_profile = NULL;
+
+  try {
+    $audubon_client = adbn_sso_get_audubon_client();
+
+    $profile = new AdbnUserProfile();
+    $email = 'alexandru.croitor@wearepropeople.com';
+    $password = 'ANicePassword';
+    $profile->EmailAddress = $email;
+    $profile->User = $email;
+    $profile->Username = $email;
+    $profile->FirstName = 'Alex';
+    $profile->LastName = 'C';
+    $new_profile = $audubon_client->CreateUserProfile($profile, $password);
+  } catch (Exception $e) {
+    watchdog(ADBN_SSO_WATCHDOG_KEY, nl2br(check_plain($e->getMessage())), array(), WATCHDOG_ERROR);
+  }
+
+  return $new_profile;
+}
+
+/**
+ * Tests getting an action link.
+ */
+function adbn_sso_test_action_link() {
+  $username = 'alexandru.croitor@wearepropeople.com';
+  return adbn_sso_get_action_link($username, $username, AdbnLinkType::PasswordReset);
+}

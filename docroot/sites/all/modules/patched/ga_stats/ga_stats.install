@@ -138,3 +138,8 @@ function ga_stats_update_7101(&$sandbox) {
     throw new DrupalUpdateException($e->getMessage());
   }
 }
+
+function ga_stats_update_7102() {
+  variable_del('ga_stats_password');
+  variable_del('ga_stats_acct_type');
+}
