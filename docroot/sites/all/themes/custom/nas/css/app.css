@@ -7442,8 +7442,11 @@ body.touch .primary-sub-nav-index {
   border-radius: 0;
   color: #c93216 !important;
 }
-.action-nav-desktop > li:last-child .primary-sub-nav, .action-navBody > li:last-child .primary-sub-nav {
+.action-nav-desktop.contextual-links-region > li:last-child .primary-sub-nav, .action-navBody.contextual-links-region > li:last-child .primary-sub-nav {
   right: 0;
+}
+.action-nav-desktop > li:last-child .primary-sub-nav, .action-navBody > li:last-child .primary-sub-nav {
+  right: 12px;
 }
 
 .action-nav-desktop {

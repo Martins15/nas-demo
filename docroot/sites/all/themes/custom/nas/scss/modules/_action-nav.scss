@@ -86,8 +86,12 @@
     color: #c93216 !important;
   }
 
-  > li:last-child .primary-sub-nav {
+  &.contextual-links-region > li:last-child .primary-sub-nav {
     right: 0;
+  }
+
+  > li:last-child .primary-sub-nav {
+    right: 12px;
   }
 }
 
