@@ -760,64 +760,70 @@ function i18n_pc_admin_menu_replacements($complete) {
 }
 
 /**
- * Implements hook_language_switch_links_alter().
+ * Implements hook_i18n_translate_path().
  */
-function i18n_pc_language_switch_links_alter(array &$links, $type, $path) {
-  // Get current system language.
-  global $language;
-  $lang = $language->language;
-  $default_language = language_default();
-  $languages = language_list('language');
+function i18n_pc_i18n_translate_path($path) {
+  $translated = array();
 
-  // Get current page.
-  $cur_page = page_manager_get_current_page();
-  $handler = isset($cur_page['handler']) ? $cur_page['handler'] : NULL;
-  // We should follow only when there is a pagemaker page view.
-  if ($handler == NULL || $handler->task != 'page') {
-    return;
+  module_load_include('inc', 'page_manager', 'plugins/tasks/page');
+  $page = NULL;
+  foreach (page_manager_page_load_all() as $candidate) {
+    if ($candidate->path == $path) {
+      $page = $candidate;
+    }
   }
 
-  // Get tpid for the current page.
-  $tpid = $cur_page['subtask']['subtask']->tpid;
-  $pid = $cur_page['subtask']['subtask']->pid;
+  if ($page) {
+    $task = page_manager_get_task($page->task);
+    $subtask = page_manager_get_task_subtask($task, $page->name);
 
-  if ($tpid != 0 && $tpid != $pid) {
-    // Current page has source page defined.
-    ctools_include('export');
-    $tasks = ctools_export_load_object(
-      'page_manager_pages',
-      'conditions',
-      array('pid' => $tpid)
-    );
-    if (!empty($tasks)) {
-      // Page has translated pages.
-      foreach ($tasks as $l_task) {
-        $l_task_language = $default_language;
-        if ($l_task->language != LANGUAGE_NONE) {
-          $l_task_language = $languages[$l_task->language];
+    // Get tpid for the current page.
+    $tpid = $subtask['subtask']->tpid;
+    $pid = $subtask['subtask']->pid;
+
+    $default_language = language_default();
+    $languages = language_list('language');
+
+    if ($tpid != 0 && $tpid != $pid) {
+      // Current page has source page defined.
+      ctools_include('export');
+      $tasks = ctools_export_load_object(
+        'page_manager_pages',
+        'conditions',
+        array('pid' => $tpid)
+      );
+      if (!empty($tasks)) {
+        // Page has translated pages.
+        foreach ($tasks as $l_task) {
+          $l_task_language = $default_language;
+          if ($l_task->language != LANGUAGE_NONE) {
+            $l_task_language = $languages[$l_task->language];
+          }
+          $translated[$l_task_language->language]['href'] = $l_task->path;
         }
-        $links[$l_task_language->language]['href'] = $l_task->path;
+      }
+    }
+
+    if ($tpid == 0 || $tpid == $pid) {
+      // Current page is source or untranslated.
+      ctools_include('export');
+      $tasks = ctools_export_load_object(
+        'page_manager_pages',
+        'conditions',
+        array('tpid' => $pid)
+      );
+      if (!empty($tasks)) {
+        // Page has translated pages.
+        foreach ($tasks as $l_task) {
+          $l_task_language = $default_language;
+          if ($l_task->language != LANGUAGE_NONE) {
+            $l_task_language = $languages[$l_task->language];
+          }
+          $translated[$l_task_language->language]['href'] = $l_task->path;
+        }
       }
     }
   }
 
-  if ($tpid == 0 || $tpid == $pid) {
-    // Current page is source or untranslated.
-    ctools_include('export');
-    $tasks = ctools_export_load_object(
-      'page_manager_pages',
-      'conditions',
-      array('tpid' => $pid)
-    );
-    if (!empty($tasks)) {
-      // Page has translated pages.
-      foreach ($tasks as $l_task) {
-        $l_task_language = $default_language;
-        if ($l_task->language != LANGUAGE_NONE) {
-          $l_task_language = $languages[$l_task->language];
-        }
-        $links[$l_task_language->language]['href'] = $l_task->path;
-      }
-    }
-  }
+  return $translated;
 }
