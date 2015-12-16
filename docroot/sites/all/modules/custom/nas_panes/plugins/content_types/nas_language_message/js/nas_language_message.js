@@ -12,6 +12,6 @@
         $.cookie('nas_language_message', 0, {expires: 7, path: Drupal.settings.basePath});
       }
     });
-  }
+  };
 
 })(jQuery);
