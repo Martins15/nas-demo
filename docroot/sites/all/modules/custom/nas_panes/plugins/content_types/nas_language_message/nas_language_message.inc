@@ -8,8 +8,8 @@ $plugin = array(
   'title' => t('Language message'),
   'description' => t('Special message to show when there is no translation of the page.'),
   'category' => 'NAS',
+  'admin info' => 'nas_language_message_admin_info',
   'edit form' => 'nas_language_message_edit_form',
-  // 'no title override' => TRUE,
   'render callback' => 'nas_language_message_render',
   'hook theme' => 'nas_language_message_theme',
   'defaults' => array(
@@ -20,6 +20,16 @@ $plugin = array(
     'image' => 0,
   ),
 );
+
+/**
+ * Callback to provide administrative info.
+ */
+function nas_language_message_admin_info($subtype, $conf, $context = NULL) {
+  $block = new stdClass();
+  $block->title = $conf['title'];
+  $block->content = $conf['spanish_message'] . '<br />' . $conf['english_message'];
+  return $block;
+}
 
 /**
  * Configuration form.
