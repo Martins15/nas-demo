@@ -104,6 +104,9 @@ function nas_language_message_render($subtype, $conf, $args, $context) {
   }
 
   $block->content['#attached'] = array(
+    'library' => array(
+      array('system', 'jquery.cookie'),
+    ),
     'css' => array(
       $plugin['path'] . '/css/nas_language_message.css',
     ),
