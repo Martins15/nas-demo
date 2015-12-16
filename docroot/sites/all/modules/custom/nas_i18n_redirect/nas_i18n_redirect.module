@@ -26,20 +26,16 @@ function nas_i18n_redirect_help($path, $arg) {
 function nas_i18n_redirect_init() {
   $path = $_GET['q'];
   $language = i18n_language_interface();
+  $default_language = language_default();
   if (!$path || drupal_is_front_page()) {
     return;
   }
   elseif ($translations = i18n_get_path_translations($path)) {
-    // Prevent loop redirects.
-    if ($translations[$language->language]['href'] === $path) {
-      return;
+    if (isset($translations[$language->language]) && $translations[$language->language]['href'] != $path) {
+      drupal_goto($translations[$language->language]['href'], array('language' => $language), 301);
     }
-    // Lookup correct language for the path .
-    foreach ($translations as $langcode => $translation) {
-      if ($translation['href'] === $path && $language->language != $langcode) {
-        $target_language = $langcode == LANGUAGE_NONE ? language_default() : i18n_language_load($langcode);
-        drupal_goto($translation['href'], array('language' => $target_language), 301);
-      }
-    }
+  }
+  elseif ($language->language != $default_language->language) {
+    drupal_goto($path, array('language' => $default_language), 301);
   }
 }
