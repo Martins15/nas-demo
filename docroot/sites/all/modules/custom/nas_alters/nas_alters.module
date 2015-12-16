@@ -802,6 +802,9 @@ function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
   }
 }
 
+/**
+ * Helper function to set a flag that we need to show language message.
+ */
 function nas_alters_show_language_message() {
   global $base_path;
   setcookie('nas_language_message', 1, NULL, $base_path);
