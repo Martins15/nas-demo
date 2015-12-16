@@ -40,22 +40,24 @@ Drupal.behaviors.lang_dropdown = {
           });
         }
         else if (msddSettings.widget == "ddslick") {
-          $.data(document.body, 'ddslick'+key+'flag', 0);
-          $('select#lang-dropdown-select-' + key).ddslick({
-            width: msddSettings.width,
-            height: (msddSettings.height == 0) ? null : msddSettings.height,
-            showSelectedHTML: Boolean(msddSettings.showSelectedHTML),
-            imagePosition: msddSettings.imagePosition,
-            onSelected: function(data) {
-              var i = $.data(document.body, 'ddslick'+key+'flag');
-              if (i) {
-                $.data(document.body, 'ddslick'+key+'flag', 0);
-                var lang = data.selectedData.value;
-                var href = $('#lang-dropdown-select-'+key).parents('form').find('input[name="' + lang + '"]').val();
-                window.location.href = href;
+          $('select#lang-dropdown-select-' + key).each(function(index) {
+            $.data(document.body, 'ddslick'+key+'flag', 0);
+            $(this).ddslick({
+              width: msddSettings.width,
+              height: (msddSettings.height == 0) ? null : msddSettings.height,
+              showSelectedHTML: Boolean(msddSettings.showSelectedHTML),
+              imagePosition: msddSettings.imagePosition,
+              onSelected: function(data) {
+                var i = $.data(document.body, 'ddslick'+key+'flag');
+                if (i) {
+                  $.data(document.body, 'ddslick'+key+'flag', 0);
+                  var lang = data.selectedData.value;
+                  var href = $('#lang-dropdown-select-'+key).parents('form').find('input[name="' + lang + '"]').val();
+                  window.location.href = href;
+                }
+                $.data(document.body, 'ddslick'+key+'flag', 1);
               }
-              $.data(document.body, 'ddslick'+key+'flag', 1);
-            }
+            });
           });
         }
       }
