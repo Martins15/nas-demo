@@ -758,3 +758,66 @@ function i18n_pc_admin_menu_replacements($complete) {
   $items['ul#i18n_pc_contextual_links'] = '<li class="admin-menu-action">' . $top_menu_item . $dropdown_items . '</li>';
   return $items;
 }
+
+/**
+ * Implements hook_language_switch_links_alter().
+ */
+function i18n_pc_language_switch_links_alter(array &$links, $type, $path) {
+  // Get current system language.
+  global $language;
+  $lang = $language->language;
+  $default_language = language_default();
+  $languages = language_list('language');
+
+  // Get current page.
+  $cur_page = page_manager_get_current_page();
+  $handler = isset($cur_page['handler']) ? $cur_page['handler'] : NULL;
+  // We should follow only when there is a pagemaker page view.
+  if ($handler == NULL || $handler->task != 'page') {
+    return;
+  }
+
+  // Get tpid for the current page.
+  $tpid = $cur_page['subtask']['subtask']->tpid;
+  $pid = $cur_page['subtask']['subtask']->pid;
+
+  if ($tpid != 0 && $tpid != $pid) {
+    // Current page has source page defined.
+    ctools_include('export');
+    $tasks = ctools_export_load_object(
+      'page_manager_pages',
+      'conditions',
+      array('pid' => $tpid)
+    );
+    if (!empty($tasks)) {
+      // Page has translated pages.
+      foreach ($tasks as $l_task) {
+        $l_task_language = $default_language;
+        if ($l_task->language != LANGUAGE_NONE) {
+          $l_task_language = $languages[$l_task->language];
+        }
+        $links[$l_task_language->language]['href'] = $l_task->path;
+      }
+    }
+  }
+
+  if ($tpid == 0 || $tpid == $pid) {
+    // Current page is source or untranslated.
+    ctools_include('export');
+    $tasks = ctools_export_load_object(
+      'page_manager_pages',
+      'conditions',
+      array('tpid' => $pid)
+    );
+    if (!empty($tasks)) {
+      // Page has translated pages.
+      foreach ($tasks as $l_task) {
+        $l_task_language = $default_language;
+        if ($l_task->language != LANGUAGE_NONE) {
+          $l_task_language = $languages[$l_task->language];
+        }
+        $links[$l_task_language->language]['href'] = $l_task->path;
+      }
+    }
+  }
+}
