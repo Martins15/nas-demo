@@ -44,6 +44,22 @@
           <li class="<?php print $item['li_class']; ?>"><?php print $item['link']; ?></li>
         <?php endforeach; ?>
       </ul>
+      <ul class="action-nav action-nav-desktop inline-list clearfix<?php print $cl_class; ?>">
+        <?php foreach ($items['secondary_ta_desktop'] as $item) : ?>
+          <li class="<?php print $item['li_class']; ?>">
+            <?php print $item['link']; ?>
+            <?php if ($item['below']) : ?>
+              <ul class="primary-sub-nav">
+                <?php foreach ($item['below'] as $subitem) : ?>
+                  <li class="<?php print $subitem['li_class']; ?>">
+                    <?php print $subitem['link']; ?>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
       <div class="mobile-nav">
         <ul class="primary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['main_cl']; ?>
