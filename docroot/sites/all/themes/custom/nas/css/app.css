@@ -15261,8 +15261,15 @@ ul.secondary-nav {
 }
 
 @media only screen and (min-width: 768px) {
-  .global-header.dark-text .ddsDark .dd-select {
-    background: none repeat scroll 0 0 #000 !important;
+  .global-header.dark-text .ddsDark .dd-select label {
+    background: url(../img/earth-205-black.svg) left center no-repeat;
+    color: #000;
+  }
+  .global-header.dark-text .ddsDark .dd-pointer-down {
+    border-color: #000 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+  }
+  .global-header.dark-text .ddsDark .dd-pointer-up {
+    border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000 !important;
   }
 }
 
