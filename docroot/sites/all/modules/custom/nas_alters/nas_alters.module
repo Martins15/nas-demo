@@ -760,15 +760,20 @@ function nas_alters_form_system_site_information_settings_alter(&$form, &$form_s
  * Helper function to get language dropdown.
  */
 function nas_alters_lang_dropdown() {
-  // TODO: add static cache?
+  $output = &drupal_static(__FUNCTION__);
+  if (isset($output)) {
+    return $output;
+  }
+
+  $output = '';
   if (!module_exists('lang_dropdown')) {
-    return '';
+    return $output;
   }
 
   if ($block = lang_dropdown_block_view()) {
-    return drupal_render($block['content']);
+    $output = drupal_render($block['content']);
   }
-  return '';
+  return $output;
 }
 
 /**
