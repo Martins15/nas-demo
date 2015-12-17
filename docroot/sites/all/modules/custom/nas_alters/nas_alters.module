@@ -779,7 +779,7 @@ function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
   // href of all translations is the same.
   $unset = TRUE;
   foreach ($links as $langcode => $link) {
-    if ($link['href'] != $path) {
+    if (isset($link['href']) && $link['href'] != $path) {
       $unset = FALSE;
     }
   }
