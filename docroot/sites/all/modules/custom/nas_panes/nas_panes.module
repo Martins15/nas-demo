@@ -1438,7 +1438,9 @@ function _nas_panes_save_panelizer($subtype, $node) {
  *   Array of node ojects and contextual_links.
  */
 function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
-  $context = array();
+  global $language;
+  $lang = $language->language == 'en' ? 'und' : $language->language;
+  $nodes = $context = array();
   // Check if pane renders within node.
   if ($context_node = menu_get_object('node')) {
     $context['node'] = $context_node;
@@ -1448,12 +1450,16 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     $context['tid'] = arg(2);
   }
 
-  $nodes = array();
   // Load all nodes from Engagement cards nodequeue.
   $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
   foreach ($all_nodes as $node) {
-    $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    // Add to array only nodes for current language.
+    if ($lang == $node->language) {
+      $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    }
   }
+
+  $all_nodes_positioned = array_combine(range(1, count($all_nodes_positioned)), array_values($all_nodes_positioned));
 
   // Check if there any URL query parameter exists.
   $uri = request_uri();
@@ -1565,7 +1571,9 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     }
     // Load card number 4 if manual override was not provided or context not matched.
     if (empty($nodes)) {
-      $nodes[] = $all_nodes_positioned[4];
+      if (isset($all_nodes_positioned[4])) {
+        $nodes[] = $all_nodes_positioned[4];
+      }
     }
     $cards_array['nodes'] = $nodes;
   }
