@@ -1217,10 +1217,10 @@ body {
 ul.secondary-nav {
   float: left;
 }
-.global-nav .mobile-nav .lang_dropdown_form .dd-selected label {
-  border-right: 1px solid #404040;
-}
 .global-nav .mobile-nav .lang_dropdown_form {
+  float: left;
+  padding-top: 6px;
+  padding-right: 12px;
   @include breakpoint(tiny-only) {
     display: none;
   }
@@ -1230,17 +1230,18 @@ ul.secondary-nav {
   @include breakpoint(medium-only) {
     display: none;
   }
-  float: left;
-  padding-top: 6px;
-  padding-right: 12px;
+}
+.global-header.dark-text {
+  @include breakpoint(large-up) {
+    .ddsDark .dd-select {
+      background: none repeat scroll 0 0 #000 !important;
+    }
+  }
 }
 
 .global-nav > .lang_dropdown_form.ddsDark {
   margin-left: -12.5px;
   margin-right: -12.5px;
-  @include breakpoint(small-up) {
-    display: none;
-  }
   .dd-container {
     padding-top: 0;
     width: 100% !important;
@@ -1259,5 +1260,8 @@ ul.secondary-nav {
     .dd-option {
       padding: 10px 0;
     }
+  }
+  @include breakpoint(small-up) {
+    display: none;
   }
 }
