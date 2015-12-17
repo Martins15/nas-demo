@@ -37,6 +37,6 @@ function nas_i18n_redirect_init() {
   }
   elseif ($language->language != $default_language->language) {
     nas_alters_show_language_message();
-    drupal_goto($path, array('language' => $default_language, 'query' => drupal_get_query_parameters()), 301);  
+    drupal_goto($path, array('language' => $default_language, 'query' => drupal_get_query_parameters()), 301);
   }
 }
