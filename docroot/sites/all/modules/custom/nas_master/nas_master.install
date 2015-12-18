@@ -3268,3 +3268,20 @@ function nas_master_update_7228() {
     }
   }
 }
+
+/**
+ * Add Social Media Photo for Articles.
+ */
+function nas_master_update_7228() {
+  module_enable('nas_social_media_photo');
+  features_revert(
+    array(
+      'nas_article_features' => array(
+        'field_group',
+      ),
+    )
+  );
+  $metatag = metatag_config_load('node:article');
+  $metatag->config['og:image'] = '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]';
+  metatag_config_save($metatag);
+}
