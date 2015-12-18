@@ -3272,7 +3272,7 @@ function nas_master_update_7228() {
 /**
  * Add Social Media Photo for Articles.
  */
-function nas_master_update_7228() {
+function nas_master_update_7229() {
   module_enable('nas_social_media_photo');
   features_revert(
     array(
