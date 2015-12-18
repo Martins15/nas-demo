@@ -128,9 +128,10 @@ function nas_article_feature_field_group_info() {
       0 => 'field_article_map',
       1 => 'field_color_mode',
       2 => 'field_hero_image',
-      3 => 'field_pressrelease_contact',
-      4 => 'field_editorial_card_image',
-      5 => 'field_credit_caption_map',
+      3 => 'field_social_media_photo',
+      4 => 'field_pressrelease_contact',
+      5 => 'field_editorial_card_image',
+      6 => 'field_credit_caption_map',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
