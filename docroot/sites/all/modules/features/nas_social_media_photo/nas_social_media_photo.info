@@ -1,0 +1,11 @@
+name = nas_social_media_photo
+core = 7.x
+package = Features
+dependencies[] = features
+dependencies[] = image
+dependencies[] = media
+dependencies[] = nas_article_feature
+features[features_api][] = api:2
+features[field_base][] = field_social_media_photo
+features[field_instance][] = node-article-field_social_media_photo
+features[image][] = social_media_photo

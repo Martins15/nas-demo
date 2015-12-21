@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the nas_social_media_photo feature.
+ */
+
+include_once 'nas_social_media_photo.features.inc';
