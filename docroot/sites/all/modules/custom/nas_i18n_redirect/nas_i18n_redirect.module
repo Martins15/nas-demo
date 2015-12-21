@@ -24,6 +24,9 @@ function nas_i18n_redirect_help($path, $arg) {
  * Implements hook_init()
  */
 function nas_i18n_redirect_init() {
+  global $theme;
+  $theme_default = variable_get('theme_default', 'bartik');
+
   $path = $_GET['q'];
   $language = i18n_language_interface();
   $default_language = language_default();
@@ -35,7 +38,7 @@ function nas_i18n_redirect_init() {
       drupal_goto($translations[$language->language]['href'], array('language' => $language), 301);
     }
   }
-  elseif ($language->language != $default_language->language) {
+  elseif ($theme_default == $theme && $language->language != $default_language->language) {
     nas_alters_show_language_message();
     drupal_goto($path, array('language' => $default_language, 'query' => drupal_get_query_parameters()), 301);
   }
