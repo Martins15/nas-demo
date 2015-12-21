@@ -3235,3 +3235,13 @@ function nas_master_update_7227() {
     }
   }
 }
+
+/**
+ * Enable NAS Language switcher feature.
+ */
+function nas_master_update_7228() {
+  module_enable(array('nas_language_switcher_feature'));
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}

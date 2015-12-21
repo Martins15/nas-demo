@@ -1,0 +1,27 @@
+#nas-language-message-modal .modal-content {
+  padding: 30px 50px;
+}
+
+#nas-language-message-modal p {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  text-align: left;
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-weight: 300;
+}
+#nas-language-message-modal p.title {
+  color: #e28700;
+  font-size: 40px;
+  line-height: 30px;
+  font-weight: 300;
+}
+
+#nas-language-message-modal a.close.button.large {
+  padding: 5px 15px;
+}
+
+#nas-language-message-modal img {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+}

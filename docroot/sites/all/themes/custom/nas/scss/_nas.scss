@@ -1212,3 +1212,63 @@ body {
 #admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
   right: auto;
 }
+
+/* Language dropdown styling */
+ul.secondary-nav {
+  float: left;
+}
+.global-nav .mobile-nav .lang_dropdown_form {
+  float: left;
+  padding-top: 6px;
+  padding-right: 12px;
+  @include breakpoint(tiny-only) {
+    display: none;
+  }
+  @include breakpoint(small-only) {
+    display: none;
+  }
+  @include breakpoint(medium-only) {
+    display: none;
+  }
+}
+.global-header.dark-text {
+  @include breakpoint(large-up) {
+    .ddsDark .dd-select label {
+      background: url(../img/earth-205-black.svg) left center no-repeat;
+      color: #000;
+    }
+    .ddsDark .dd-pointer-down {
+      border-color: #000 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    }
+    .ddsDark .dd-pointer-up {
+      border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000 !important;
+    }
+  }
+}
+
+.global-nav > .lang_dropdown_form.ddsDark {
+  margin-left: -12.5px;
+  margin-right: -12.5px;
+  .dd-container {
+    padding-top: 0;
+    width: 100% !important;
+    background: none repeat scroll 0 0 #414141 !important;
+  }
+  .dd-select {
+    margin: 0 auto;
+    padding: 10px 0;
+  }
+  .dd-options {
+    width: 100% !important;
+    text-align: center;
+    label {
+      padding-left: 0;
+    }
+    .dd-option {
+      padding: 10px 0;
+    }
+  }
+  @include breakpoint(small-up) {
+    display: none;
+  }
+}

@@ -44,6 +44,7 @@
           <li class="<?php print $item['li_class']; ?>"><?php print $item['link']; ?></li>
         <?php endforeach; ?>
       </ul>
+      <?php print nas_alters_lang_dropdown(); ?>
       <ul class="action-nav action-nav-desktop inline-list clearfix<?php print $cl_class; ?>">
         <?php foreach ($items['secondary_ta_desktop'] as $item) : ?>
           <li class="<?php print $item['li_class']; ?>">
@@ -81,6 +82,7 @@
               <a href="<?php print $searchpage_url; ?>" class=""><i class="icon-magnifier"></i></a>
           </li>
         </ul>
+        <?php print nas_alters_lang_dropdown(); ?>
         <ul class="secondary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['secondary_cl']; ?>
           <?php foreach ($items['secondary'] as $item) : ?>
