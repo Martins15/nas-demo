@@ -15239,10 +15239,23 @@ ul.secondary-nav {
   float: left;
 }
 
+@media only screen and (min-width: 768px) {
+  .global-header.dark-text .ddsDark .dd-select label {
+    background: url(../img/earth-205-black.svg) left center no-repeat;
+    color: #000;
+  }
+  .global-header.dark-text .ddsDark .dd-pointer-down {
+    border-color: #000 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+  }
+  .global-header.dark-text .ddsDark .dd-pointer-up {
+    border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000 !important;
+  }
+}
+
 .global-nav .mobile-nav .lang_dropdown_form {
   float: left;
   padding-top: 6px;
-  padding-right: 12px;
+  margin-right: -20px;
 }
 @media only screen and (max-width: 479px) {
   .global-nav .mobile-nav .lang_dropdown_form {
@@ -15257,19 +15270,6 @@ ul.secondary-nav {
 @media only screen and (min-width: 601px) and (max-width: 767px) {
   .global-nav .mobile-nav .lang_dropdown_form {
     display: none;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .global-header.dark-text .ddsDark .dd-select label {
-    background: url(../img/earth-205-black.svg) left center no-repeat;
-    color: #000;
-  }
-  .global-header.dark-text .ddsDark .dd-pointer-down {
-    border-color: #000 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-  }
-  .global-header.dark-text .ddsDark .dd-pointer-up {
-    border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000 !important;
   }
 }
 

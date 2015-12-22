@@ -10,6 +10,7 @@
     font-weight: bold;
     color: #fff;
     padding-left: 23px;
+    line-height: 30px;
 }
 .ddsDark .dd-select label {
     background: url(earth205.svg) left center no-repeat;
@@ -30,7 +31,6 @@
     text-decoration: none;
 }
 .ddsDark .dd-selected label {
-    line-height: 17px !important;
     color: #fff;
 }
 .ddsDark .dd-selected:hover {
@@ -105,7 +105,7 @@
     border-bottom: medium none;
 }
 .ddsDark .dd-option:hover {
-    background: none repeat scroll 0 0 #0c0c0c;
+    background: none repeat scroll 0 0 #ef5a3e;
     color: #fff;
 }
 .ddsDark .dd-selected-description-truncated {
@@ -128,7 +128,7 @@
 }
 .ddsDark .dd-container {
     position: relative;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 ​.ddsDark .dd-selected-text {
     font-weight: bold;
