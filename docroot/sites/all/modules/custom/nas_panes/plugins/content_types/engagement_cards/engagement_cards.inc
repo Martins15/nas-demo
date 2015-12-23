@@ -53,6 +53,12 @@ function engagement_cards_edit_form($form, &$form_state) {
       '#era_bundles' => array('engagement_cards'),
     );
   }
+  $form[$conf_key]['wrapper'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add wrapper'),
+    '#description' => t('This option adds some HTML-markup (.card-set wrapper), so the pane can be injected to non-"engagement cards" regions.'),
+    '#default_value' => isset($conf[$conf_key]['wrapper']) ? $conf[$conf_key]['wrapper'] : 0,
+  );
 
   return $form;
 }
@@ -140,6 +146,8 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
     $block->content = theme('engagement_cards', array(
       'title' => isset($data['title']) ? t($data['title']) : nas_panes_engagement_cards_default_title(),
       'teasers' => $teasers,
+      'prefix' => !empty($data['wrapper']) ? '<div class="card-set">' : '',
+      'suffix' => !empty($data['wrapper']) ? '</div>' : '',
       'contextual_links' => $contextual_links,
     ));
   }
