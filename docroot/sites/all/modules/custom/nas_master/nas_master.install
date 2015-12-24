@@ -3278,3 +3278,12 @@ function nas_master_update_7229() {
   $metatag->config['og:image']['value'] = '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]';
   metatag_config_save($metatag);
 }
+
+/**
+ * NAS-153: Make Editoral Section a multi-value field.
+ */
+function nas_master_update_7230() {
+  $field = field_info_field('field_custom_section');
+  $field['cardinality'] = -1;
+  field_update_field($field);
+}
