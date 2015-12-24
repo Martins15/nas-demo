@@ -3280,7 +3280,7 @@ function nas_master_update_7229() {
 }
 
 /**
- * NAS-153: Make Editoral Section a multi-value field.
+ * NAS-156: Make Editoral Section a multi-value field.
  */
 function nas_master_update_7230() {
   $field = field_info_field('field_custom_section');
