@@ -1217,20 +1217,6 @@ body {
 ul.secondary-nav {
   float: left;
 }
-.global-nav .mobile-nav .lang_dropdown_form {
-  float: left;
-  padding-top: 6px;
-  padding-right: 12px;
-  @include breakpoint(tiny-only) {
-    display: none;
-  }
-  @include breakpoint(small-only) {
-    display: none;
-  }
-  @include breakpoint(medium-only) {
-    display: none;
-  }
-}
 .global-header.dark-text {
   @include breakpoint(large-up) {
     .ddsDark .dd-select label {
@@ -1243,6 +1229,21 @@ ul.secondary-nav {
     .ddsDark .dd-pointer-up {
       border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000 !important;
     }
+  }
+}
+
+.global-nav .mobile-nav .lang_dropdown_form {
+  float: left;
+  padding-top: 6px;
+  margin-right: -20px;
+  @include breakpoint(tiny-only) {
+    display: none;
+  }
+  @include breakpoint(small-only) {
+    display: none;
+  }
+  @include breakpoint(medium-only) {
+    display: none;
   }
 }
 
