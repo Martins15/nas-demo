@@ -46,7 +46,7 @@
   bottom: 50px !important;
 }
 
-.hero-attribution {
+.curtain .hero-attribution {
   margin-bottom: 50px !important;
 }
 
@@ -63,7 +63,7 @@
     bottom: 10px !important;
   }
 
-  .hero-attribution {
+  .curtain .hero-attribution {
     margin-bottom: 0 !important;
   }
 
