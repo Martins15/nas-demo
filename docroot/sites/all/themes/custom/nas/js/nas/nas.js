@@ -132,7 +132,7 @@ var Nas = Nas || {};
         .trigger('after-height-change.fndth.equalizer');
       });
     }
-  }
+  };
 
   Drupal.behaviors.bird_in_this_story_see_all = {
     attach: function (context, settings) {
