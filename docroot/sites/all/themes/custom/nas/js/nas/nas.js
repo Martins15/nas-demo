@@ -119,6 +119,21 @@ var Nas = Nas || {};
     }
   };
 
+  // Prevent equalization if stacked.
+  Drupal.behaviors.frontpageEqualizer = {
+    attach: function (context, settings) {
+      $('.homepage-first-row', context).once('frontpage-equalizer', function () {
+        var $row = $(this)
+        .on('after-height-change.fndth.equalizer', function (e) {
+          if (StateManager.state === '' || StateManager.state == 'tiny' || StateManager.state == 'small') {
+            $('[data-equalizer-watch]', $(this)).removeAttr('style');
+          }
+        })
+        .trigger('after-height-change.fndth.equalizer');
+      });
+    }
+  }
+
   Drupal.behaviors.bird_in_this_story_see_all = {
     attach: function (context, settings) {
       $('.article-related-birds', context).once('article-related-birds', function () {

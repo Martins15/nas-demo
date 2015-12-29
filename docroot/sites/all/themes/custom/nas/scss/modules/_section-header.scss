@@ -33,7 +33,7 @@
 
   @include breakpoint(max-width, #{upper-bound($small-range)}) {
     h2, h3 {
-      text-align: center;
+      text-align: left;
     }
   }
 
