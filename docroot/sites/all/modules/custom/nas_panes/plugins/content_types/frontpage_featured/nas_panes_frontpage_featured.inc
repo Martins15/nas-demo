@@ -103,9 +103,30 @@ function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
     '#options' => array(
       'dark' => t('Dark'),
       'light' => t('Light'),
+      'none' => t('None'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['curtain_simple']['header_bg'] = array(
+    '#type' => 'radios',
+    '#title' => t('Shaded background'),
+    '#options' => array(
+      '1' => t('Yes'),
+      '-1' => t('No'),
+    ),
+    '#default_value' => !empty($_conf['header_bg']) ? $_conf['header_bg'] : '1',
+    '#description' => t('You can choose whether the text box will have a semitransparent background or not.'),
+  );
+  $form['curtain_simple']['header_position'] = array(
+    '#type' => 'radios',
+    '#title' => t('Box position'),
+    '#options' => array(
+      'left' => t('Left'),
+      'right' => t('Right'),
+    ),
+    '#default_value' => !empty($_conf['header_position']) ? $_conf['header_position'] : 'right',
+    '#description' => t('You can choose where the text box should be positioned on non-mobile dimensions.'),
   );
   $form['curtain_simple']['title'] = array(
     '#type' => 'textfield',
@@ -824,10 +845,18 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
   $title_link = l(t($conf['title']), $conf['title_link']);
   $blue_text_link = l(t($conf['blue_text']), $conf['blue_text_link'], array('attributes' => array('classes' => 'curtain-card-slug')));
 
+  // Legacy compatibility (options added later).
+  $conf += array(
+    'header_bg' => 1,
+    'header_position' => 'right',
+  );
+
   $class = &drupal_static('nas_header_class');
-  $class = 'dark-text light-bg transparent';
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
     $class = 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = 'dark-text light-bg transparent';
   }
 
   // Pass image url value to theme
@@ -839,6 +868,10 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
     'title_link' => $title_link,
     'blue_text_link' => $blue_text_link,
     'contextual_links' => $contextual_links,
+    'extra_options' => array(
+      'no_bg' => $conf['header_bg'] > 0 ? TRUE : FALSE,
+      'position' => $conf['header_position'],
+    ),
   ));
 
   // Pass mobile_content to theme
@@ -849,6 +882,9 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
     'title_link' => $title_link,
     'blue_text_link' => $blue_text_link,
     'contextual_links' => $contextual_links,
+    'extra_options' => array(
+      'no_bg' => $conf['header_bg'] > 0 ? TRUE : FALSE,
+    ),
   ));
 
   return $content;

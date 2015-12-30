@@ -1039,7 +1039,8 @@ function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
 function nas_panes_get_blue_text_link($node, $url = TRUE) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
-    $term = taxonomy_term_load($custom_section_item[0]['tid']);
+    $last = array_pop($custom_section_item);
+    $term = taxonomy_term_load($last['tid']);
     $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
     return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
