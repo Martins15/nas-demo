@@ -30,6 +30,7 @@ function nas_beans_feature_field_default_field_bases() {
         'left' => 'Left',
         'center' => 'Center',
         'right' => 'Right',
+        'full' => 'Full Width',
       ),
       'allowed_values_function' => '',
     ),
