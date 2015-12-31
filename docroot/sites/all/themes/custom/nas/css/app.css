@@ -10810,7 +10810,7 @@ body.black-bg .slide-caption {
 }
 
 .focal-bird-map {
-  background-color: #EBEBEB;
+  background-color: #E5E5E5;
   position: relative;
   overflow: hidden;
 }
@@ -10847,7 +10847,7 @@ body.black-bg .slide-caption {
 .focal-bird-map .map-canvas {
   position: absolute;
   width: 100%;
-  background-color: #EBEBEB;
+  background-color: #E5E5E5;
   text-align: center;
   overflow: visible;
 }
@@ -11034,7 +11034,7 @@ body.black-bg .slide-caption {
   display: none;
 }
 .focal-bird-map .map-elements,
-.focal-bird-map .map-header {
+.focal-bird-map .map-share {
   cursor: auto;
   -moz-transition: background-color 0.4s;
   -o-transition: background-color 0.4s;
@@ -11042,12 +11042,12 @@ body.black-bg .slide-caption {
   transition: background-color 0.4s;
 }
 .focal-bird-map .map-elements.black-bg,
-.focal-bird-map .map-header.black-bg {
+.focal-bird-map .map-share.black-bg {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
 }
 .focal-bird-map .map-elements.black-bg a:not(.blue),
-.focal-bird-map .map-header.black-bg a:not(.blue) {
+.focal-bird-map .map-share.black-bg a:not(.blue) {
   color: #fff;
 }
 .focal-bird-map .map-elements {
@@ -11081,20 +11081,35 @@ body.black-bg .slide-caption {
   padding-top: 5px;
 }
 .focal-bird-map .map-header {
-  position: absolute;
-  width: 250px;
   padding: 10px;
-  right: 0;
-  top: 0;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  background-color: #E5E5E5;
+}
+@media only screen and (min-width: 768px) {
+  .focal-bird-map .map-header {
+    margin-bottom: 45px;
+  }
+}
+.focal-bird-map .map-header .map-caption-left {
+  float: left;
+}
+.focal-bird-map .map-header .map-caption-right {
+  float: right;
+  margin-top: 14px;
+}
+.focal-bird-map .map-share {
+  padding: 10px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  float: right;
+  width: 250px;
 }
 @media only screen and (max-width: 600px) {
-  .focal-bird-map .map-header {
+  .focal-bird-map .map-share {
     width: 100%;
   }
 }
 @media only screen and (min-width: 768px) {
-  .focal-bird-map .map-header {
+  .focal-bird-map .map-share {
     top: 10px;
   }
 }

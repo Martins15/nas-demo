@@ -1,5 +1,5 @@
 .focal-bird-map {
-  background-color: #EBEBEB;
+  background-color: #E5E5E5;
   position: relative;
   overflow: hidden;
 
@@ -19,7 +19,7 @@
     position: relative;
   }
 
-  .map-canvas,  
+  .map-canvas,
   .container {
     height: 560px;
 
@@ -36,7 +36,7 @@
   .map-canvas {
     position: absolute;
     width: 100%;
-    background-color: #EBEBEB;
+    background-color: #E5E5E5;
     text-align: center;
     overflow: visible;
 
@@ -241,7 +241,7 @@
   }
 
   .map-elements,
-  .map-header {
+  .map-share {
     cursor: auto;
 
     @include transition(background-color 0.4s);
@@ -287,15 +287,31 @@
     }
   }
 
-  // Contains sharing and high description
   .map-header {
-    position: absolute;
-    width: 250px;
     padding: $size-space;
-    right: 0;
-    top: 0;
-
     font-family: $font-sans;
+    background-color: #E5E5E5;
+
+    @include breakpoint(large-up) {
+      margin-bottom: 45px;
+    }
+
+    .map-caption-left {
+      float: left;
+    }
+
+    .map-caption-right {
+      float: right;
+      margin-top: 14px;
+    }
+  }
+
+  .map-share {
+    padding: $size-space;
+    font-family: $font-sans;
+
+    float: right;
+    width: 250px;
 
     @include breakpoint(max-width, #{upper-bound($small-range)}) {
       width: 100%;
