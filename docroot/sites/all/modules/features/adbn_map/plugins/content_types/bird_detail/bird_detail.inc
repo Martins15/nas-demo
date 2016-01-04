@@ -163,7 +163,7 @@ function adbn_map_bird_detail_edit_form($form, &$form_state) {
     '#type' => 'text_format',
     '#format' => 'full_html',
     '#title' => t('Canvas text'),
-    '#default_value' => !empty($conf['canvas_text']) ? $conf['canvas_text'] : '',
+    '#default_value' => !empty($conf['canvas_text']['value']) ? $conf['canvas_text']['value'] : '',
   );
 
   return $form;
