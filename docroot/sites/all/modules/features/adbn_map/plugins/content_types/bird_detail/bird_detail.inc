@@ -116,12 +116,15 @@ function adbn_map_bird_detail_content_type_render($subtype, $conf, $panel_args, 
     '#theme' => 'bird_detail',
     '#css_path' => $map_css_path,
     '#popup_text' => $popup_text,
-    '#canvas_text' => isset($conf['canvas_text']) ? $conf['canvas_text'] : '',
     '#map_short_description_desktop' => $map_short_description_desktop,
     '#map_short_description_mobile' => $map_short_description_mobile,
     '#title' => $bird_name,
     '#bird_category' => $bird_category_output,
   );
+
+  if (isset($conf['canvas_text'])) {
+    $content['map']['#canvas_text'] = check_markup($conf['canvas_text']['value'], $conf['canvas_text']['format']);
+  }
 
   // Mark that search JS was attached.
   $is_attached = &drupal_static('adbn_map_search_attached', FALSE);
@@ -157,7 +160,8 @@ function adbn_map_bird_detail_content_type_theme(&$theme, $plugin) {
 function adbn_map_bird_detail_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['canvas_text'] = array(
-    '#type' => 'textfield',
+    '#type' => 'text_format',
+    '#format' => 'full_html',
     '#title' => t('Canvas text'),
     '#default_value' => !empty($conf['canvas_text']) ? $conf['canvas_text'] : '',
   );

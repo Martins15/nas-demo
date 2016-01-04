@@ -2,7 +2,7 @@
   <div class="map-caption-left">
     <h2><?php print t("How climate change could affect this bird's range"); ?></h2>
     <?php if (!empty($canvas_text)): ?>
-      <p><?php print $canvas_text; ?></p>
+      <?php print $canvas_text; ?>
     <?php endif; ?>
   </div>
   <div class="map-caption-right">
