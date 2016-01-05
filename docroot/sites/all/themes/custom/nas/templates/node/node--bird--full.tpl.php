@@ -95,8 +95,18 @@
     <?php endif; ?>
 
     <div id="node-<?php print $node->nid; ?>" class="bird-guide-card <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-      <?php if ($bird_priority): ?>
-      <div class="bird-guide-tag"><?php print t('Priority Bird'); ?></div>
+      <?php if ($bird_priority || $bird_threatened || $bird_endangered): ?>
+        <div class="bird-guide-tags">
+          <?php if ($bird_priority): ?>
+            <div class="bird-guide-tag bird-guide-tag-priority"><?php print t('Priority Bird'); ?></div>
+          <?php endif; ?>
+          <?php if ($bird_threatened): ?>
+            <div class="bird-guide-tag bird-guide-tag-threatened"><a href="<?php print $climate_url; ?>"><?php print t('Climate Threatened'); ?></a></div>
+          <?php endif; ?>
+          <?php if ($bird_endangered): ?>
+            <div class="bird-guide-tag bird-guide-tag-endangered"><a href="<?php print $climate_url; ?>"><?php print t('Climate Endangered'); ?></a></div>
+          <?php endif; ?>
+        </div>
       <?php endif; ?>
       <header class="bird-guide-header">
         <div class="row">

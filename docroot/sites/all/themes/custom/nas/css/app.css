@@ -8743,12 +8743,10 @@ body.black-bg .section-header a:hover {
   vertical-align: middle;
 }
 
-.bird-guide-tag {
+.bird-guide-tags {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 150px;
-  background-color: #F15936;
   color: #fff;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
@@ -8759,10 +8757,33 @@ body.black-bg .section-header a:hover {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 600px) {
-  .bird-guide-tag {
+  .bird-guide-tags {
     top: 0;
     left: 0;
   }
+}
+.bird-guide-tags .bird-guide-tag {
+  float: left;
+  width: 160px;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-priority {
+  background-color: #F15936;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-threatened {
+  background-color: #F2DA15;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-threatened a {
+  color: #000;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-endangered {
+  background-color: #FC2500;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-endangered a {
+  color: #fff;
+}
+.bird-guide-tags .bird-guide-tag a {
+  width: 100%;
+  display: block;
 }
 
 .bird-guide-header {
