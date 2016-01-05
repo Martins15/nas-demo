@@ -19,6 +19,27 @@
     position: relative;
   }
 
+  .open-bird-detail-popup, .map-button, .map-timeline-point, .map-zoom {
+    cursor: pointer;
+  }
+
+  .map-pause {
+    &:before {
+      content: "";
+      display: block;
+      background-image: url(../img/icon-pause.png);
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      height: 30px;
+      width: 30px;
+      background-position: center center;
+    }
+
+    &.active:before {
+      background-image: url(../img/icon-play.png);
+    }
+  }
+
   .map-canvas,
   .container {
     height: 560px;

@@ -7,9 +7,6 @@
 define('ADBN_MAP_AJAX_PATH', 'map-data/ajax');
 define('ADBN_MAP_JS_NAMESPACE', 'adbnMap');
 define('ADBN_MAP_BIRD_DETAIL_PATH', 'bird-code');
-define('ADBN_BIRD_PAGE_MAP_SHORT_DESCRIPTION', 'adbn_bird_page_map_short_description');
-define('ADBN_BIRD_PAGE_MAP_SHORT_DESCRIPTION_LINK', 'adbn_bird_page_map_short_description_link');
-define('ADBN_BIRD_PAGE_OVERLAY_DESCRIPTION', 'adbn_bird_page_overlay_description');
 
 include_once 'includes/adbn_map.utils.inc';
 include_once 'includes/adbn_map.states.inc';

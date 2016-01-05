@@ -28,12 +28,10 @@ function adbn_map_bird_detail_content_type_render($subtype, $conf, $panel_args, 
   $aggregated = TRUE;
   $content = array();
   $node = $context->data;
-  $bird_id_field_name = 'field_bird_id';
-  $language_code = $node->language;
 
   // Get the bird id if available.
-  if (isset($node->{$bird_id_field_name}[$language_code][0]['value'])) {
-    $bird_id = $node->{$bird_id_field_name}[$language_code][0]['value'];
+  if (isset($node->field_bird_id[LANGUAGE_NONE][0]['value'])) {
+    $bird_id = $node->field_bird_id[LANGUAGE_NONE][0]['value'];
   }
   else {
     return NULL;
@@ -51,31 +49,6 @@ function adbn_map_bird_detail_content_type_render($subtype, $conf, $panel_args, 
     $bird_category = $bird_category[0]['#markup'];
   }
   $bird_category_output = render($bird_category);
-
-  // Extract the popup text, and send it for display.
-  $popup_text = NULL;
-  $popup_array = adbn_map_get_bird_page_overlay_value();
-  if (!empty($popup_array['value'])) {
-    $popup_text = check_markup($popup_array['value'], $popup_array['format']);
-  }
-
-  // Extract the short map description text, and send it for display.
-  $map_short_description = NULL;
-  $map_short_description_array = adbn_map_get_bird_page_map_short_description_value();
-  if (!empty($map_short_description_array['value'])) {
-    $map_short_description = check_markup($map_short_description_array['value'], $map_short_description_array['format']);
-  }
-
-  // Extract the short map description link text, and send it for display.
-  $map_short_description_link_text = adbn_map_get_bird_page_map_short_description_link_value();
-  $map_short_description_link = '<a class="open-bird-detail-popup">' . $map_short_description_link_text . '</a>';
-
-  // For mobile, just replace the placeholder.
-  $map_short_description_mobile = str_replace('[popup_link]', $map_short_description_link, $map_short_description);
-
-  // For desktop remove placeholder, and append to the end.
-  $map_short_description_desktop = str_replace('[popup_link]', '', $map_short_description);
-  $map_short_description_desktop .= $map_short_description_link;
 
   // Get various asset paths.
   $module_path = adbn_map_get_module_path();
@@ -112,18 +85,21 @@ function adbn_map_bird_detail_content_type_render($subtype, $conf, $panel_args, 
   $content['#attached']['js'][] = $plugin_path . '/bird_detail.js';
 
   // Add the markup to be displayed.
+  $langcode = $node->language == 'es' ? 'es' : 'en';
+  $options = array('langcode' => $langcode);
   $content['map'] = array(
     '#theme' => 'bird_detail',
+    '#langcode' => $langcode,
     '#css_path' => $map_css_path,
-    '#popup_text' => $popup_text,
-    '#map_short_description_desktop' => $map_short_description_desktop,
-    '#map_short_description_mobile' => $map_short_description_mobile,
+    '#description' => t('The darker the color, the more favorable the climate conditions are for survival. The outlined areas represent approximate current range for each season.', array(), $options),
+    '#link_text' => t('More on reading these maps.', array(), $options),
+    '#img_path' => drupal_get_path('module', 'adbn_map') . '/img',
     '#title' => $bird_name,
     '#bird_category' => $bird_category_output,
   );
 
   if (isset($conf['canvas_text'])) {
-    $content['map']['#canvas_text'] = check_markup($conf['canvas_text']['value'], $conf['canvas_text']['format']);
+    $content['map']['#canvas_text'] = check_markup($conf['canvas_text'][$langcode]['value'], $conf['canvas_text'][$langcode]['format']);
   }
 
   // Mark that search JS was attached.
@@ -141,13 +117,14 @@ function adbn_map_bird_detail_content_type_render($subtype, $conf, $panel_args, 
 function adbn_map_bird_detail_content_type_theme(&$theme, $plugin) {
   $theme['bird_detail'] = array(
     'variables' => array(
+      'langcode' => 'en',
       'css_path' => NULL,
-      'popup_text' => NULL,
       'title' => NULL,
+      'description' => '',
+      'link_text' => '',
+      'img_path' => '',
       'canvas_text' => '',
       'bird_category' => NULL,
-      'map_short_description_mobile' => NULL,
-      'map_short_description_desktop' => NULL,
     ),
     'path' => $plugin['path'],
     'template' => 'bird-detail',
@@ -160,11 +137,32 @@ function adbn_map_bird_detail_content_type_theme(&$theme, $plugin) {
 function adbn_map_bird_detail_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['canvas_text'] = array(
-    '#type' => 'text_format',
-    '#format' => 'full_html',
+    '#type' => 'fieldset',
     '#title' => t('Canvas text'),
-    '#default_value' => !empty($conf['canvas_text']['value']) ? $conf['canvas_text']['value'] : '',
+    '#tree' => TRUE,
   );
+
+  foreach (language_list() as $language) {
+    $form['canvas_text'][$language->language] = array(
+      '#type' => 'text_format',
+      '#title' => $language->name,
+      '#format' => 'full_html',
+      '#default_value' => !empty($conf['canvas_text']) ? $conf['canvas_text'][$language->language]['value'] : '',
+    );
+  }
+
+  $form['#after_build'][] = 'adbn_map_bird_detail_edit_form_after_build';
+
+  return $form;
+}
+
+/**
+ * After build handler for Bird Detail edit form.
+ */
+function adbn_map_bird_detail_edit_form_after_build($form, &$form_state) {
+  foreach (element_children($form['canvas_text']) as $child) {
+    $form['canvas_text'][$child]['format']['#access'] = FALSE;
+  }
 
   return $form;
 }
