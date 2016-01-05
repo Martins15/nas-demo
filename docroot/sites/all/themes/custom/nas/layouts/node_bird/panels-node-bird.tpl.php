@@ -35,7 +35,12 @@
       </div>
     </div>
   </div>
-  <?php endif;?>
+  <?php endif; ?>
+  <?php if (!empty($content['focal_bird_map'])): ?>
+    <div class="focal-bird-map">
+      <?php print $content['focal_bird_map']; ?>
+    </div>
+  <?php endif; ?>
   <div id="in-the-news">
     <?php print $content['in_the_news']; ?>
   </div>

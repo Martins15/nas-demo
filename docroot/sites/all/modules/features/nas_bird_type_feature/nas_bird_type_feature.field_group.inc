@@ -30,6 +30,7 @@ function nas_bird_type_feature_field_group_info() {
       4 => 'field_bird_sci_name',
       5 => 'field_related_bird',
       6 => 'field_related_flyways',
+      7 => 'field_bird_id',
       8 => 'field_bird_threatened',
       9 => 'field_bird_endangered',
       10 => 'title',
