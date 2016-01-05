@@ -3287,3 +3287,17 @@ function nas_master_update_7230() {
   $field['cardinality'] = -1;
   field_update_field($field);
 }
+
+/**
+ * Creating bird map section.
+ */
+function nas_master_update_7231() {
+  module_enable(array('adbn_map'));
+  features_revert(array(
+    'nas_bird_type_feature' => array(
+      'field_base',
+      'field_instance',
+      'panelizer_defaults',
+    ),
+  ));
+}
