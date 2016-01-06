@@ -115,6 +115,20 @@ function nas_alters_node_prepare($node) {
 /**
  * Implements hook_form_FORM_ID_alter().
  *
+ * Alter config block form.
+ */
+function nas_alters_form_block_admin_configure_alter(&$form, &$form_state) {
+  if (strpos($form['delta']['#value'], 'nas_birds_guide-') === 0) {
+    $form['settings']['title']['#access'] = FALSE;
+    $form['regions']['#access'] = FALSE;
+    $form['visibility']['#access'] = FALSE;
+    $form['visibility_title']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
  * Alter the Bird node form.
  */
 function nas_alters_form_bird_node_form_alter(&$form, &$form_state) {

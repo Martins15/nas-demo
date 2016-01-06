@@ -3301,3 +3301,23 @@ function nas_master_update_7231() {
     ),
   ));
 }
+
+/**
+ * Set bird guide blocks default values.
+ */
+function nas_master_update_7232() {
+  $default_value = array(
+    'value' => '<p>Text © Kenn Kaufman, adapted from <br><a href="/kaufman"><em>Lives of North American Birds</em></a></p><p>Illustration © David Allen Sibley.<br><a href="/sibley">Learn more about these drawings.</a></p>',
+    'format' => 'full_html',
+  );
+
+  variable_set('nas_birds_guide-credits-content', array('en' => $default_value, 'es' => $default_value));
+
+  $img_path = drupal_get_path('theme', 'nas') . '/img';
+  $default_value = array(
+    'value' => '<h5>Download Our Bird Guide App</h5><p><a href="http://www.audubon.org/ios-app?utm_source=bird-guide&amp;utm_campaign=iosapp" target="_blank"><img src="' . url($img_path . '/apple-store.png') . '" width="110" title="Download the Audubon Bird Guide App on the App Store"></a> <a href="http://www.audubon.org/android-app?utm_source=bird-guide&amp;utm_campaign=android-app" target="_blank"><img src="' . url($img_path . '/google-play.png') . '" width="110" title="Get the Audubon Bird Guide App on Google Play"></a></p>',
+    'format' => 'full_html',
+  );
+
+  variable_set('nas_birds_guide-download-content', array('en' => $default_value, 'es' => $default_value));
+}
