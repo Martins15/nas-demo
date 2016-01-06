@@ -171,14 +171,9 @@
           </div>
           <div class="large-4 columns">
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
-              <p>
-                <?php print t('Text © Kenn Kaufman, adapted from'); ?> <br>
-                <?php print l('<em>' . t('Lives of North American Birds') . '</em>', 'kaufman', array('html' => TRUE)); ?>
-              </p>
-              <p>
-                <?php print t('Illustration © David Allen Sibley'); ?>.<br>
-                <?php print l(t('Learn more about these drawings.'), 'sibley'); ?>
-              </p>
+              <?php if (!empty($bird_guide_credits)): ?>
+                <?php print render($bird_guide_credits); ?>
+              <?php endif; ?>
             </section>
 
             <?php if (!empty($content['field_bird_migration'])): ?>
@@ -196,13 +191,9 @@
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
               <section class="bird-guide-section right-col small center">
-                <h5><?php print t('Download Our Bird Guide App');?></h5>
-                <p>
-                  <a href="http://www.audubon.org/ios-app?utm_source=bird-guide&utm_campaign=iosapp
-" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a>
-                  <a href="http://www.audubon.org/android-app?utm_source=bird-guide&utm_campaign=android-app
-" target="_blank"><img src="<?php print base_path() . path_to_theme() . '/img/'; ?>google-play.png" width="110" title="Get the Audubon Bird Guide App on Google Play"></a>
-                </p>
+                <?php if (!empty($bird_guide_download)): ?>
+                  <?php print render($bird_guide_download); ?>
+                <?php endif; ?>
               </section>
             </div>
 
