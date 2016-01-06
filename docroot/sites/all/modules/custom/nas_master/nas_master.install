@@ -3314,7 +3314,7 @@ function nas_master_update_7232() {
   variable_set('nas_birds_guide-credits-content', array('en' => $default_value, 'es' => $default_value));
 
   $default_value = array(
-    'value' => '<p><a href="http://www.audubon.org/ios-app?utm_source=bird-guide&amp;utm_campaign=iosapp" target="_blank"><img src="/sites/all/themes/custom/nas/img/apple-store.png" width="110" title="Download the Audubon Bird Guide App on the App Store"></a><a href="http://www.audubon.org/android-app?utm_source=bird-guide&amp;utm_campaign=android-app" target="_blank"><img src="/sites/all/themes/custom/nas/img/google-play.png" width="110" title="Get the Audubon Bird Guide App on Google Play"></a></p>',
+    'value' => '<p><a href="http://www.audubon.org/ios-app?utm_source=bird-guide&amp;utm_campaign=iosapp" target="_blank"><img src="' . url('sites/all/themes/custom/nas/img/apple-store.png') . '" width="110" title="Download the Audubon Bird Guide App on the App Store"></a> <a href="http://www.audubon.org/android-app?utm_source=bird-guide&amp;utm_campaign=android-app" target="_blank"><img src="' . url('sites/all/themes/custom/nas/img/google-play.png') . '" width="110" title="Get the Audubon Bird Guide App on Google Play"></a></p>',
     'format' => 'full_html',
   );
 
