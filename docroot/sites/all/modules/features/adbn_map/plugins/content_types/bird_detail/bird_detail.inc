@@ -99,7 +99,8 @@ function adbn_map_bird_detail_content_type_render($subtype, $conf, $panel_args, 
   );
 
   if (isset($conf['canvas_text'])) {
-    $content['map']['#canvas_text'] = check_markup($conf['canvas_text'][$langcode]['value'], $conf['canvas_text'][$langcode]['format']);
+    $value = token_replace($conf['canvas_text'][$langcode]['value'], array('node' => $node), array('clear' => TRUE));
+    $content['map']['#canvas_text'] = check_markup($value, $conf['canvas_text'][$langcode]['format']);
   }
 
   // Mark that search JS was attached.
@@ -150,6 +151,37 @@ function adbn_map_bird_detail_edit_form($form, &$form_state) {
       '#default_value' => !empty($conf['canvas_text']) ? $conf['canvas_text'][$language->language]['value'] : '',
     );
   }
+
+  $rows = array();
+  $rows[] = array(
+    'id' => 'bird',
+    'data' => array('Bird node', ''),
+    'class' => array('token-group'),
+  );
+
+  foreach (field_info_instances('node', 'bird') as $instance) {
+    $rows[] = array(
+      'parent' => 'bird',
+      'data' => array($instance['label'], '[node:' . $instance['field_name'] . ']'),
+    );
+  }
+
+  $form['tokens'] = array('#type' => 'fieldset', '#title' => t('Replacement patterns'));
+  $form['tokens']['tree'] = array(
+    '#theme' => 'tree_table',
+    '#header' => array(
+      t('Name'),
+      t('Token'),
+    ),
+    '#rows' => $rows,
+    '#attributes' => array('class' => array('token-tree')),
+    '#empty' => t('No tokens available'),
+    '#attached' => array(
+      'js' => array(drupal_get_path('module', 'token') . '/token.js'),
+      'css' => array(drupal_get_path('module', 'token') . '/token.css'),
+      'library' => array(array('token', 'treeTable')),
+    ),
+  );
 
   $form['#after_build'][] = 'adbn_map_bird_detail_edit_form_after_build';
 
