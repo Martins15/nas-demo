@@ -115,6 +115,58 @@ function nas_alters_node_prepare($node) {
 /**
  * Implements hook_form_FORM_ID_alter().
  *
+ * Alter the Bird node form.
+ */
+function nas_alters_form_bird_node_form_alter(&$form, &$form_state) {
+  $conds = array();
+  foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
+    $conds[':input[name="' . $field  . '[' . LANGUAGE_NONE . ']"]'] = array('checked' => FALSE);
+  }
+
+  $form['field_bird_climate_url'][LANGUAGE_NONE][0]['#pre_render'] = array('nas_alters_required_form_element_pre_render');
+  $form['field_bird_climate_url']['#states'] = array('invisible' => $conds);
+
+  $form['#validate'][] = 'nas_alters_form_bird_node_form_validate';
+}
+
+/**
+ * Pre render handler for required form elements.
+ */
+function nas_alters_required_form_element_pre_render($element) {
+  $element['#required'] = TRUE;
+  return $element;
+}
+
+/**
+ * Validate handler for Bird edit form.
+ */
+function nas_alters_form_bird_node_form_validate($form, &$form_state) {
+  $field_value = $form_state['values']['field_bird_climate_url'][LANGUAGE_NONE];
+
+  if (empty($field_value) || empty($field_value[0]['url'])) {
+    $required = FALSE;
+
+    foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
+      $field_value = $form_state['values'][$field][LANGUAGE_NONE];
+
+      if (!empty($field_value) && !empty($field_value[0]['value'])) {
+        $required = TRUE;
+        break;
+      }
+    }
+
+    // Climate URL field is required when field_bird_endangered or
+    // field_bird_threatened is checked.
+    if ($required) {
+      $field_name = $form['field_bird_climate_url'][LANGUAGE_NONE][0]['#title'];
+      form_set_error('field_bird_climate_url', t('%name is required.', array('%name' => $field_name)));
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
  * Alter the Magazine Issue node form.
  */
 function nas_alters_form_magazine_issue_node_form_alter(&$form, &$form_state, $form_id) {
