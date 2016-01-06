@@ -25,13 +25,11 @@ $guide-border: 1px solid #ececec;
 }
 
 // Tag in upper-left corner, says "PRIORITY BIRD" (so far)
-.bird-guide-tag {
+.bird-guide-tags {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 150px;
 
-  background-color: $color-tomato;
   color: $color-white;
 
   @include font-smoothing(off);
@@ -44,6 +42,34 @@ $guide-border: 1px solid #ececec;
   @include breakpoint(max-width, #{upper-bound($small-range)}) {
     top: 0;
     left: 0;
+  }
+
+  .bird-guide-tag {
+    float: left;
+    width: 160px;
+
+    &.bird-guide-tag-priority {
+      background-color: $color-tomato;
+    }
+    &.bird-guide-tag-threatened {
+      background-color: #F2DA15;
+
+      a {
+        color: $color-black;
+      }
+    }
+    &.bird-guide-tag-endangered {
+      background-color: #FC2500;
+
+      a {
+        color: $color-white;
+      }
+    }
+
+    a {
+      width: 100%;
+      display: block;
+    }
   }
 }
 

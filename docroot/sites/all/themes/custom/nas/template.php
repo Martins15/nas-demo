@@ -148,8 +148,17 @@ function nas_preprocess_node_bird(&$vars) {
     'group' => JS_THEME,
     'every_page' => FALSE,
   ));
-  $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
-  $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
+
+  $climate_url = field_get_items('node', $node, 'field_bird_climate_url');
+  if (!empty($climate_url) && !empty($climate_url[0]['url'])) {
+    $vars['climate_url'] = url($climate_url[0]['url']);
+  }
+
+  foreach (array('field_bird_priority', 'field_bird_threatened', 'field_bird_endangered') as $field) {
+    $value = field_get_items('node', $node, $field);
+    $vars[substr($field, 6)] = !empty($value) && !empty($value[0]['value']);
+  }
+
   // Get author of illustration.
   $get_field_bird_illustration_author = field_get_items('node', $node, 'field_bird_illustration');
   // We need the text until fields are not yet filled.
