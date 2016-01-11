@@ -133,7 +133,24 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->subtype = 'bird_detail';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'canvas_text' => array(
+        'en' => array(
+          'value' => '<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+',
+          'format' => 'full_html',
+        ),
+        'es' => array(
+          'value' => '<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+',
+          'format' => 'full_html',
+        ),
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,

@@ -155,26 +155,28 @@ function nas_alters_required_form_element_pre_render($element) {
  * Validate handler for Bird edit form.
  */
 function nas_alters_form_bird_node_form_validate($form, &$form_state) {
-  $field_value = $form_state['values']['field_bird_climate_url'][LANGUAGE_NONE];
+  $required = FALSE;
+  foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
+    $field_value = $form_state['values'][$field][LANGUAGE_NONE];
 
-  if (empty($field_value) || empty($field_value[0]['url'])) {
-    $required = FALSE;
-
-    foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
-      $field_value = $form_state['values'][$field][LANGUAGE_NONE];
-
-      if (!empty($field_value) && !empty($field_value[0]['value'])) {
-        $required = TRUE;
-        break;
-      }
+    if (!empty($field_value) && !empty($field_value[0]['value'])) {
+      $required = TRUE;
+      break;
     }
+  }
 
-    // Climate URL field is required when field_bird_endangered or
-    // field_bird_threatened is checked.
+  $field_value = $form_state['values']['field_bird_climate_url'][LANGUAGE_NONE];
+  if (empty($field_value) || empty($field_value[0]['url'])) {
     if ($required) {
+      // Climate URL field is required when field_bird_endangered or
+      // field_bird_threatened is checked.
       $field_name = $form['field_bird_climate_url'][LANGUAGE_NONE][0]['#title'];
       form_set_error('field_bird_climate_url', t('%name is required.', array('%name' => $field_name)));
     }
+  }
+  elseif (!$required) {
+    // Cleaning Climate URL field when it's not needed anymore.
+    $form_state['values']['field_bird_climate_url'][LANGUAGE_NONE] = array();
   }
 }
 
