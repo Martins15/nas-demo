@@ -1246,10 +1246,14 @@ ul.secondary-nav {
     display: none;
   }
 }
+.global-nav .mobile-nav .nas-small-header-lang-dropdown .lang_dropdown_form {
+  padding: 0;
+  margin: -5px 0 0 0;
+}
 
 .global-nav > .lang_dropdown_form.ddsDark {
-  margin-left: -12.5px;
-  margin-right: -12.5px;
+  margin-left: -25px;
+  margin-right: -25px;
   .dd-container {
     padding-top: 0;
     width: 100% !important;
@@ -1269,7 +1273,7 @@ ul.secondary-nav {
       padding: 10px 0;
     }
   }
-  @include breakpoint(small-up) {
+  @include breakpoint(large-up) {
     display: none;
   }
 }
