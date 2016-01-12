@@ -1213,12 +1213,14 @@ body {
   right: auto;
 }
 
-/* Language dropdown styling */
-ul.secondary-nav {
-  float: left;
+.element-invisible {
+  width: 1px;
 }
+
+/* Language dropdown styling */
+/* Inverted style */
 .global-header.dark-text {
-  @include breakpoint(large-up) {
+  @include breakpoint(min-width, 800px) {
     .ddsDark .dd-select label {
       background: url(../img/earth-205-black.svg) left center no-repeat;
       color: #000;
@@ -1232,24 +1234,24 @@ ul.secondary-nav {
   }
 }
 
-.global-nav .mobile-nav .lang_dropdown_form {
-  float: left;
-  padding-top: 6px;
-  margin-right: -20px;
-  @include breakpoint(tiny-only) {
-    display: none;
-  }
-  @include breakpoint(small-only) {
-    display: none;
-  }
-  @include breakpoint(medium-only) {
+.global-nav .nas-header-lang-dropdown {
+  @include breakpoint(max-width, 799px) {
     display: none;
   }
 }
+.nas-big-header-lang-dropdown {
+  float: right;
+  margin-top: 6px;
+  margin-right: -30px;
+}
+.nas-small-header-lang-dropdown {
+  margin: -5px 0 0 0;
+}
 
-.global-nav > .lang_dropdown_form.ddsDark {
-  margin-left: -12.5px;
-  margin-right: -12.5px;
+/* Gray bar for mobile and tablets */
+.nas-lang-dropdown-gray-bar {
+  margin-left: -25px;
+  margin-right: -25px;
   .dd-container {
     padding-top: 0;
     width: 100% !important;
@@ -1269,7 +1271,7 @@ ul.secondary-nav {
       padding: 10px 0;
     }
   }
-  @include breakpoint(small-up) {
+  @include breakpoint(min-width, 800px) {
     display: none;
   }
 }

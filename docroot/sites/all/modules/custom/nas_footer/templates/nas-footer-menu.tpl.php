@@ -51,7 +51,9 @@
           </li>
         <?php endforeach; ?>
       </ul>
-      <?php if ($key == $last_key) {print nas_alters_lang_dropdown();} ?>
+      <?php if ($key == $last_key && nas_alters_lang_dropdown()): ?>
+        <div class="nas-alters-lang-dropdown-footer"><?php print nas_alters_lang_dropdown(); ?></div>
+      <?php endif; ?>
     </div>
   <?php endif; ?>
 <?php endforeach; ?>

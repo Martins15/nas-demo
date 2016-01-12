@@ -44,7 +44,6 @@
           <li class="<?php print $item['li_class']; ?>"><?php print $item['link']; ?></li>
         <?php endforeach; ?>
       </ul>
-      <?php print nas_alters_lang_dropdown(); ?>
       <ul class="action-nav action-nav-desktop inline-list clearfix<?php print $cl_class; ?>">
         <?php foreach ($items['secondary_ta_desktop'] as $item) : ?>
           <li class="<?php print $item['li_class']; ?>">
@@ -61,6 +60,9 @@
           </li>
         <?php endforeach; ?>
       </ul>
+      <?php if (nas_alters_lang_dropdown()): ?>
+        <div class="nas-header-lang-dropdown nas-big-header-lang-dropdown"><?php print nas_alters_lang_dropdown(); ?></div>
+      <?php endif; ?>
       <div class="mobile-nav">
         <ul class="primary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['main_cl']; ?>
@@ -82,7 +84,6 @@
               <a href="<?php print $searchpage_url; ?>" class=""><i class="icon-magnifier"></i></a>
           </li>
         </ul>
-        <?php print nas_alters_lang_dropdown(); ?>
         <ul class="secondary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['secondary_cl']; ?>
           <?php foreach ($items['secondary'] as $item) : ?>
@@ -92,5 +93,10 @@
         <!-- @todo Add search bar -->
       </div>
     </div>
+  </div>
+  <div class="columns">
+    <?php if (nas_alters_lang_dropdown()): ?>
+      <div class="nas-lang-dropdown-gray-bar"><?php print nas_alters_lang_dropdown(); ?></div>
+    <?php endif; ?>
   </div>
 </div>

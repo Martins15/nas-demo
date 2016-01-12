@@ -15,6 +15,7 @@
     <h1 class="card-set-heading pea-green"><?php print $title; ?></h1>
   </div>
 </div>
+<?php print $prefix; ?>
 <div class="row card-set-wrapper">
   <div class="clearfix card-set-scroller">
   <?php foreach ($teasers as $teaser): ?>
@@ -31,6 +32,7 @@
     <div class="dot"></div>
   </div>
 </div>
+<?php print $suffix; ?>
 <div class="row">
   <div class="card-set-social social-sharing">
     <span class="social-sharing-caption"><?php print t('Spread the word. It’s the least you can do.'); ?></span>
