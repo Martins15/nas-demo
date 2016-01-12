@@ -50,10 +50,11 @@
       <?php print $form; ?>
     </div>
     <div class="global-nav">
-      <?php print nas_alters_lang_dropdown(); ?>
       <div class="mobile-nav">
         <ul class="primary-nav inline-list">
-          <li class="primary-nav-item nas-small-header-lang-dropdown"><?php print nas_alters_lang_dropdown(); ?></li>
+          <?php if (nas_alters_lang_dropdown()): ?>
+            <li class="primary-nav-item nas-header-lang-dropdown nas-small-header-lang-dropdown"><?php print nas_alters_lang_dropdown(); ?></li>
+          <?php endif; ?>
           <?php foreach ($items as $item): ?>
             <li class="primary-nav-item <?php print $item['li_class']; ?>">
               <a class="<?php if (!empty($item['#below'])): ?>primary-nav-toggler <?php endif; ?><?php print $item['a_class']; ?>" href="<?php print $item['url']; ?>"><?php print $item['title']; ?></a>
@@ -74,5 +75,10 @@
         </ul>
       </div>
     </div>
+  </div>
+  <div class="columns">
+    <?php if (nas_alters_lang_dropdown()): ?>
+      <div class="nas-lang-dropdown-gray-bar"><?php print nas_alters_lang_dropdown(); ?></div>
+    <?php endif; ?>
   </div>
 </div>
