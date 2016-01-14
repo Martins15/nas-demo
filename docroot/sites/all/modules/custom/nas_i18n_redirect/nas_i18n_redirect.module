@@ -21,25 +21,25 @@ function nas_i18n_redirect_help($path, $arg) {
 }
 
 /**
- * Implements hook_init()
+ * Implements hook_init().
  */
 function nas_i18n_redirect_init() {
+  global $theme;
+  $theme_default = variable_get('theme_default', 'bartik');
+
   $path = $_GET['q'];
   $language = i18n_language_interface();
+  $default_language = language_default();
   if (!$path || drupal_is_front_page()) {
     return;
   }
   elseif ($translations = i18n_get_path_translations($path)) {
-    // Prevent loop redirects.
-    if ($translations[$language->language]['href'] === $path) {
-      return;
+    if (isset($translations[$language->language]) && $translations[$language->language]['href'] != $path) {
+      drupal_goto($translations[$language->language]['href'], array('language' => $language), 301);
     }
-    // Lookup correct language for the path .
-    foreach ($translations as $langcode => $translation) {
-      if ($translation['href'] === $path && $language->language != $langcode) {
-        $target_language = $langcode == LANGUAGE_NONE ? language_default() : i18n_language_load($langcode);
-        drupal_goto($translation['href'], array('language' => $target_language), 301);
-      }
-    }
+  }
+  elseif ($theme_default == $theme && $language->language != $default_language->language) {
+    nas_alters_show_language_message();
+    drupal_goto($path, array('language' => $default_language, 'query' => drupal_get_query_parameters()), 301);
   }
 }

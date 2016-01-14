@@ -103,14 +103,15 @@ function static_cards_bird_guide_render($subtype, $conf, $args, $contexts) {
     $teasers[] = node_view($node, 'teaser');
   }
 
-  $content = theme('static_cards_bird_guide', array(
+  $block->content = '';
+  if (!empty($teasers)) {
+    $block->content = theme('static_cards_bird_guide', array(
       'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : '',
       'items' => $teasers,
       'links' => $links,
       'contextual_links' => $contextual_links,
     ));
-
-  $block->content = $content;
+  }
 
   return $block;
 }

@@ -60,6 +60,9 @@
           </li>
         <?php endforeach; ?>
       </ul>
+      <?php if (nas_alters_lang_dropdown()): ?>
+        <div class="nas-header-lang-dropdown nas-big-header-lang-dropdown"><?php print nas_alters_lang_dropdown(); ?></div>
+      <?php endif; ?>
       <div class="mobile-nav">
         <ul class="primary-nav inline-list<?php print $cl_class; ?>">
           <?php print $items['main_cl']; ?>
@@ -90,5 +93,10 @@
         <!-- @todo Add search bar -->
       </div>
     </div>
+  </div>
+  <div class="columns">
+    <?php if (nas_alters_lang_dropdown()): ?>
+      <div class="nas-lang-dropdown-gray-bar"><?php print nas_alters_lang_dropdown(); ?></div>
+    <?php endif; ?>
   </div>
 </div>
