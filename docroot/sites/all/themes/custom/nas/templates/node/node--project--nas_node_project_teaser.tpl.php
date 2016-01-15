@@ -87,7 +87,7 @@
 ?>
 
 <div class="columns large-4">
-  <div class="editorial-card collapse-minimal">
+  <div class="editorial-card">
     <div class="editorial-card-photo">
       <?php if (!empty($linked_image)) : ?>
         <?php print $linked_image; ?>

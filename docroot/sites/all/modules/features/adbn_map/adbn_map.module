@@ -1,0 +1,148 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+define('ADBN_MAP_AJAX_PATH', 'map-data/ajax');
+define('ADBN_MAP_JS_NAMESPACE', 'adbnMap');
+define('ADBN_MAP_BIRD_DETAIL_PATH', 'bird-code');
+
+include_once 'includes/adbn_map.utils.inc';
+include_once 'includes/adbn_map.states.inc';
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function adbn_map_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return "plugins/$plugin";
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function adbn_map_menu() {
+  $items = array();
+
+  $items[ADBN_MAP_AJAX_PATH . '/%'] = array(
+    'page callback' => 'adbn_map_data_ajax',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['admin/config/audubon/geo-search-settings'] = array(
+    'title' => 'Geographical Search Settings',
+    'description' => 'Contains Geographical Search settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('adbn_map_geo_search_settings'),
+    'access arguments' => array('administer site configuration'),
+    'weight' => 2,
+    'type' => MENU_NORMAL_ITEM | MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}
+
+/**
+ * Ajax callback for Stamen JSON data.
+ */
+function adbn_map_data_ajax($type) {
+  $error_object = new stdClass();
+  $error_object->status = 'error';
+  $error_object->message = 'invalid command';
+  $path = NULL;
+  $response = '';
+  $is_error = FALSE;
+
+  switch ($type) {
+    case 'data':
+      $path = adbn_map_get_map_data_path() . '/audubon-climate-model.json';
+      break;
+
+    case 'giphy':
+      $path = adbn_map_get_map_data_path() . '/giphy_manifest.json';
+      break;
+
+    case 'topology':
+      $path = adbn_map_get_map_data_path() . '/ne_50m_usa_canada.topojson';
+      break;
+
+    case 'all_states':
+      $path = adbn_map_get_map_data_path() . '/audubon-climate-model-st-consolidated.json';
+      break;
+
+    case 'states':
+      $area = arg(3);
+      $country_code = arg(4);
+      $audubon_id = arg(5);
+      if (
+        !empty($area)
+        && !empty($country_code)
+        && !empty($audubon_id)
+      ) {
+        // @TODO Is this a sec hole? Can directory traversal be applied here?
+        $path = adbn_map_get_map_data_path() . "/audubon-climate-model-st-$area-$country_code-$audubon_id.json";
+      }
+      else {
+        $error_object->message = 'invalid id';
+        $is_error = TRUE;
+      }
+      break;
+
+    default:
+      $is_error = TRUE;
+  }
+
+  // Try and load the file.
+  if (file_exists($path)) {
+    $response = file_get_contents($path);
+  }
+  else {
+    $is_error = TRUE;
+  }
+
+  // If an error occurred, return the json encoded error object.
+  if ($is_error) {
+    $error_response = drupal_json_encode($error_object);
+    $response = $error_response;
+  }
+
+  // Print the response + the content type header.
+  drupal_add_http_header('Content-Type', 'application/json');
+  print $response;
+
+  // Disable page compression for AJAX requests, because it breaks caching.
+  // Browsers don't seem to be able to decompress the return GZIPed json data.
+  global $conf;
+  $conf['page_compression'] = FALSE;
+
+  // Call this to cache the result of the ajax callback for anonymous users.
+  drupal_page_footer();
+
+  // Need to call exit as well, otherwise the html delivery callback will also
+  // be executed, and it will try to send headers after the content was sent.
+  exit();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function adbn_map_theme($existing, $type, $theme, $path) {
+  $items = array();
+
+  $items['adbn_bird_share_menu'] = array(
+    'template' => 'bird-share-menu',
+    'variables' => array(
+      'share_url' => NULL,
+      'mail_subject' => NULL,
+      'mail_body' => NULL,
+    ),
+    'path' => $path . '/templates'
+  );
+
+  return $items;
+}

@@ -124,6 +124,17 @@ function nas_preprocess_node(&$vars) {
 function nas_preprocess_node_bird(&$vars) {
   $node = $vars['node'];
   if ($vars['view_mode'] == 'full') {
+    foreach (array('credits', 'download') as $suffix) {
+      $block = block_load('nas_birds_guide', 'nas_birds_guide-' . $suffix);
+
+      $info = module_invoke($block->module, 'block_info');
+      $block->cache = isset($info['cache']) ? $info['cache'] : DRUPAL_CACHE_PER_ROLE;
+      $block->title = NULL;
+      $block->region = NULL;
+
+      $vars['bird_guide_' . $suffix] = _block_get_renderable_array(_block_render_blocks(array($block)));
+    }
+
     drupal_add_js(path_to_theme() . '/js/vendor/jquery.visible/jquery.visible.min.js', array(
       'group' => JS_THEME,
       'every_page' => FALSE,
@@ -137,8 +148,17 @@ function nas_preprocess_node_bird(&$vars) {
     'group' => JS_THEME,
     'every_page' => FALSE,
   ));
-  $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
-  $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
+
+  $climate_url = field_get_items('node', $node, 'field_bird_climate_url');
+  if (!empty($climate_url) && !empty($climate_url[0]['url'])) {
+    $vars['climate_url'] = url($climate_url[0]['url']);
+  }
+
+  foreach (array('field_bird_priority', 'field_bird_threatened', 'field_bird_endangered') as $field) {
+    $value = field_get_items('node', $node, $field);
+    $vars[substr($field, 6)] = !empty($value) && !empty($value[0]['value']);
+  }
+
   // Get author of illustration.
   $get_field_bird_illustration_author = field_get_items('node', $node, 'field_bird_illustration');
   // We need the text until fields are not yet filled.

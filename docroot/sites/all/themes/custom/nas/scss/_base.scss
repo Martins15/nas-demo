@@ -93,6 +93,12 @@ h2 {
     font-size: $size-text-h2;
     line-height: $size-line-h2;
   }
+  small a {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-size: 17px;
+    line-height: 25px;
+    color: #838078;
+  }
 }
 h3 {
   font-size: $size-text-h4;

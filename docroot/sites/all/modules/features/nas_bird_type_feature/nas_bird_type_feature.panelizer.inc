@@ -45,6 +45,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'in_the_news' => NULL,
       'card_set' => NULL,
       'across_audubon' => NULL,
+      'focal_bird_map' => NULL,
     ),
   );
   $display->cache = array();
@@ -125,6 +126,42 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->uuid = '449bfc00-7c71-49f9-bc11-d7e955ae9511';
     $display->content['new-449bfc00-7c71-49f9-bc11-d7e955ae9511'] = $pane;
     $display->panels['card_set'][0] = 'new-449bfc00-7c71-49f9-bc11-d7e955ae9511';
+    $pane = new stdClass();
+    $pane->pid = 'new-74edb2bc-f8f4-4282-9831-a354893ab7e7';
+    $pane->panel = 'focal_bird_map';
+    $pane->type = 'bird_detail';
+    $pane->subtype = 'bird_detail';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'canvas_text' => array(
+        'en' => array(
+          'value' => '<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+',
+          'format' => 'full_html',
+        ),
+        'es' => array(
+          'value' => '<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+',
+          'format' => 'full_html',
+        ),
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '74edb2bc-f8f4-4282-9831-a354893ab7e7';
+    $display->content['new-74edb2bc-f8f4-4282-9831-a354893ab7e7'] = $pane;
+    $display->panels['focal_bird_map'][0] = 'new-74edb2bc-f8f4-4282-9831-a354893ab7e7';
     $pane = new stdClass();
     $pane->pid = 'new-66d40dde-4f12-4242-be38-b8c936681a18';
     $pane->panel = 'header';
