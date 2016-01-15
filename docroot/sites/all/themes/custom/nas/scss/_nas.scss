@@ -736,6 +736,9 @@ body.node-type-slideshow {
   .editorial-card-3x {
     .section-header h2 {
       margin-top: 0;
+      small {
+        margin-top: 6px;
+      }
     }
     .card-set .editorial-card {
       min-height: 0 !important;
@@ -772,6 +775,9 @@ body.node-type-slideshow {
   .editorial-card-3x {
     .section-header h2 {
       margin-top: 0;
+      small {
+        margin-top: 6px;
+      }
     }
     .card-set .editorial-card {
       min-height: 0 !important;
