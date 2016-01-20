@@ -823,3 +823,62 @@ function nas_alters_form_system_site_information_settings_alter(&$form, &$form_s
     '#default_value' => variable_get('nas_birds_allow_dev_params', FALSE),
   );
 }
+
+/**
+ * Helper function to get language dropdown.
+ */
+function nas_alters_lang_dropdown() {
+  $output = &drupal_static(__FUNCTION__);
+  if (isset($output)) {
+    return $output;
+  }
+
+  $output = '';
+  if (!module_exists('lang_dropdown')) {
+    return $output;
+  }
+
+  if ($block = lang_dropdown_block_view()) {
+    $output = drupal_render($block['content']);
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_language_switch_links_alter().
+ */
+function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
+  // We want to remove language switcher if page has no translations - if the
+  // href of all translations is the same.
+  $unset = TRUE;
+  foreach ($links as $langcode => $link) {
+    if (isset($link['href']) && $link['href'] != $path) {
+      $unset = FALSE;
+    }
+  }
+
+  // We can't unset links cause of hreflang module, so we set the class that is
+  // used by lang_dropdown module to skip the link.
+  if ($unset) {
+    foreach ($links as $langcode => &$link) {
+      $link['attributes']['class'][] = 'locale-untranslated';
+    }
+  }
+  else {
+    foreach ($links as $langcode => $link) {
+      foreach ($links[$langcode]['attributes']['class'] as $key => $class) {
+        if ($class == 'locale-untranslated') {
+          unset($links[$langcode]['attributes']['class'][$key]);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to set a flag that we need to show language message.
+ */
+function nas_alters_show_language_message() {
+  global $base_path;
+  setcookie('nas_language_message', 1, NULL, $base_path);
+}

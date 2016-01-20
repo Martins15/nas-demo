@@ -3322,3 +3322,13 @@ function nas_master_update_7232() {
 
   variable_set('nas_birds_guide-download-content', array('en' => $default_value, 'es' => $default_value));
 }
+
+/**
+ * Enable NAS Language switcher feature.
+ */
+function nas_master_update_7233() {
+  module_enable(array('nas_language_switcher_feature'));
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
