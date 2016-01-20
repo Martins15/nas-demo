@@ -1,33 +1,27 @@
 #!/bin/bash
 
-echo 'Install apache'
-ansible-playbook /vagrant/puphpet/ansible/apache.yml
-echo 'Finished installing apache'
+export PYTHONUNBUFFERED=1
 
-echo 'Install php'
-ansible-playbook /vagrant/puphpet/ansible/php.yml
-echo 'Finished installing php'
+playbooks=(
+/vagrant/puphpet/ansible/apache.yml \
+/vagrant/puphpet/ansible/php.yml \
+/vagrant/puphpet/ansible/php-xdebug.yml \
+/vagrant/puphpet/ansible/mysql.yml \
+/vagrant/puphpet/ansible/memcached.yml \
+/vagrant/puphpet/ansible/composer.yml \
+/vagrant/puphpet/ansible/drush.yml \
+# /vagrant/puphpet/ansible/solr.yml \
+# /vagrant/puphpet/ansible/selenium.yml \
+)
 
-echo 'Install php xdebug'
-ansible-playbook /vagrant/puphpet/ansible/php-xdebug.yml
-echo 'Finished installing php xdebug'
-
-echo 'Install mysql'
-ansible-playbook /vagrant/puphpet/ansible/mysql.yml
-echo 'Finished installing mysql'
-
-echo 'Install memcached'
-ansible-playbook /vagrant/puphpet/ansible/memcached.yml
-echo 'Finished installing memcached'
-
-echo 'Install composer'
-ansible-playbook /vagrant/puphpet/ansible/composer.yml
-echo 'Finished installing composer'
-
-echo 'Install drush'
-ansible-playbook /vagrant/puphpet/ansible/drush.yml
-echo 'Finished installing drush'
-
-echo 'Install Apache Solr'
-ansible-playbook /vagrant/puphpet/ansible/solr.yml
-echo 'Finished installing Apache Solr'
+for i in "${playbooks[@]}"
+do
+   echo "Install "${i}
+   ansible-playbook -i 'localhost,' ${i} --connection=local
+   if [ "$?" == "0" ]; then
+    echo "Finished installing "${i}
+   else
+    echo "Failed installing "${i}
+    exit 1
+   fi
+done
