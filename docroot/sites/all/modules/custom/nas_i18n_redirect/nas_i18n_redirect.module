@@ -30,7 +30,7 @@ function nas_i18n_redirect_init() {
   $path = $_GET['q'];
   $language = i18n_language_interface();
   $default_language = language_default();
-  if (!$path || drupal_is_front_page()) {
+  if (!$path) {
     return;
   }
   elseif ($translations = i18n_get_path_translations($path)) {
