@@ -3322,3 +3322,10 @@ function nas_master_update_7232() {
 
   variable_set('nas_birds_guide-download-content', array('en' => $default_value, 'es' => $default_value));
 }
+
+/**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7233() {
+  features_revert_module('nas_site_template_feature');
+}
