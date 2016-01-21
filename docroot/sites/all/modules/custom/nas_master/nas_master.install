@@ -3324,8 +3324,18 @@ function nas_master_update_7232() {
 }
 
 /**
- * Revert NAS Site Template feature.
+ * Enable NAS Language switcher feature.
  */
 function nas_master_update_7233() {
+  module_enable(array('nas_language_switcher_feature'));
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
+
+/**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7234() {
   features_revert_module('nas_site_template_feature');
 }
