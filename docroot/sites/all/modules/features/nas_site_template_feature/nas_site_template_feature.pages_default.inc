@@ -30,10 +30,21 @@ function nas_site_template_feature_default_page_manager_handlers() {
     'relationships' => array(),
     'access' => array(
       'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'birds/bird-guide
+ -birds-of-america',
+          ),
+          'context' => 'argument_string_1',
+          'not' => FALSE,
+        ),
         1 => array(
           'name' => 'node_type',
           'settings' => array(
             'type' => array(
+              'bird' => 'bird',
               'slideshow' => 'slideshow',
               'video_page' => 'video_page',
             ),
