@@ -251,6 +251,10 @@
               </ul>
             </section>
             <?php endif; ?>
+            <?php
+            global $language;
+            // Remove this block for ES language for anonymous users.
+            if ($language->language != 'es' || user_is_logged_in()): ?>
             <section id="bird-songs-calls" class="bird-guide-section right-col small sans">
               <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
               <?php print render($content['field_bird_calls']); ?>
@@ -261,6 +265,7 @@
                 <a href="http://langelliott.com/audubon-bird-songs/"><em><?php print t('Learn more about this sound collection'); ?></em></a>.
               </section>
             </section>
+            <?php endif; ?>
           </div>
         </div>
       </section>

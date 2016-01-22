@@ -3337,5 +3337,7 @@ function nas_master_update_7233() {
  * Revert NAS Site Template feature.
  */
 function nas_master_update_7234() {
-  features_revert_module('nas_site_template_feature');
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
 }
