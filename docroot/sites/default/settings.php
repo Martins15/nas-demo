@@ -585,6 +585,10 @@ $conf['https'] = TRUE;
  * Override domain detection in Acquia Purge.
  */
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  // Setting memory limit for Acquia environments.
+  if (isset($_GET['q']) && strpos($_GET['q'], 'admin') === 0) {
+    ini_set('memory_limit', '512M');
+  }
   if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
     $conf['acquia_purge_domains'] = array(
       'www.audubon.org',
