@@ -1206,7 +1206,7 @@ function nas_preprocess_field_field_hero_image(&$variables) {
     foreach ($variables['items'] as &$item) {
       if (!empty($item['file'])) {
         $file = (object) $item['file']['#item'];
-        $item['#attributions'] = _nas_panes_format_image_attribution($file);dpm($item['#attributions']);
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
       }
     }
   }
