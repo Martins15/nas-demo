@@ -1173,6 +1173,12 @@ function nas_preprocess_field(&$variables, $hook) {
     $function_bundle_viewmode($variables);
   }
 
+  // When custom display is used, pass correct view_mode for Inline Hero image field.
+  if ($variables['element']['#field_name'] == 'field_hero_image' && $element['#view_mode'] == '_custom_display'
+    && isset($element['#pane_region']) && $element['#pane_region'] == 'inline_image') {
+    $element['#view_mode'] = 'inline_hero_photo';
+  }
+
   $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $element['#view_mode'];
   $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $bundle . '__' . $element['#view_mode'];
 
@@ -1200,7 +1206,7 @@ function nas_preprocess_field_field_hero_image(&$variables) {
     foreach ($variables['items'] as &$item) {
       if (!empty($item['file'])) {
         $file = (object) $item['file']['#item'];
-        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);dpm($item['#attributions']);
       }
     }
   }
