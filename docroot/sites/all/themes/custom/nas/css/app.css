@@ -3994,6 +3994,9 @@ body {
 body.black-bg {
   background-color: #000;
 }
+body.admin-menu {
+  margin-top: 29px !important;
+}
 
 @media only screen and (min-width: 480px) and (max-width: 1020px) {
   .row {
@@ -4064,6 +4067,12 @@ h2 {
     font-size: 33px;
     line-height: 38px;
   }
+}
+h2 small a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 17px;
+  line-height: 25px;
+  color: #838078;
 }
 
 h3 {
@@ -5487,6 +5496,504 @@ table.row-borders tbody td {
 
 .recaptcha_input_area {
   overflow: hidden;
+}
+
+.climate-flyway-map-container {
+  background-color: #E9E9E9;
+  overflow: hidden;
+  position: relative;
+  min-height: 400px;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .climate-flyway-map-container {
+    min-height: 540px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .climate-flyway-map-container {
+    height: 700px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .climate-flyway-map-container {
+    height: 800px;
+  }
+}
+
+.climate-flyway-map {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 20px;
+  bottom: 0;
+}
+@media only screen {
+  .climate-flyway-map {
+    height: 320px;
+    top: -20px;
+    -moz-transform: scale(0.4);
+    -ms-transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4);
+  }
+  .climate-flyway-map svg {
+    left: -415px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .climate-flyway-map {
+    height: 600px;
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    top: -100px;
+  }
+  .climate-flyway-map svg {
+    left: -270px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .climate-flyway-map {
+    -moz-transform: scale(0.85);
+    -ms-transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+    transform: scale(0.85);
+    top: -30px;
+  }
+  .climate-flyway-map svg {
+    left: -165px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .climate-flyway-map {
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    top: 40px;
+  }
+  .climate-flyway-map svg {
+    left: -100px;
+  }
+}
+.climate-flyway-map svg {
+  position: relative;
+  height: 768px;
+  width: 1024px;
+}
+.climate-flyway-map .defaultMap {
+  fill: #FBF9F7;
+}
+.climate-flyway-map .defaultMap:hover, .climate-flyway-map .defaultMap.hover {
+  fill: #f6f1ed;
+}
+.climate-flyway-map .Pacific {
+  fill: #cfccc4;
+}
+.climate-flyway-map .Pacific:hover, .climate-flyway-map .Pacific.hover {
+  fill: #c4c0b6;
+}
+.climate-flyway-map .Pacific.active {
+  fill: #b8b4a8;
+}
+.climate-flyway-map .Central {
+  fill: #f5da9d;
+}
+.climate-flyway-map .Central:hover, .climate-flyway-map .Central.hover {
+  fill: #f3d186;
+}
+.climate-flyway-map .Central.active {
+  fill: #f0c96f;
+}
+.climate-flyway-map .Mississippi {
+  fill: #ccda9b;
+}
+.climate-flyway-map .Mississippi:hover, .climate-flyway-map .Mississippi.hover {
+  fill: #c3d388;
+}
+.climate-flyway-map .Mississippi.active {
+  fill: #b9cc76;
+}
+.climate-flyway-map .Atlantic {
+  fill: #b9dde8;
+}
+.climate-flyway-map .Atlantic:hover, .climate-flyway-map .Atlantic.hover {
+  fill: #a6d4e2;
+}
+.climate-flyway-map .Atlantic.active {
+  fill: #93cadb;
+}
+.climate-flyway-map .state-boundary {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.25);
+  stroke-width: 0.5;
+}
+
+.climate-flyway-overlay {
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+  padding: 20px 12.5px;
+}
+.climate-flyway-overlay#bird-detail-popup {
+  float: right;
+  overflow: hidden;
+  padding: 20px 18px;
+  top: 0;
+  z-index: 4;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .climate-flyway-overlay#bird-detail-popup {
+    top: 75px;
+  }
+  .focal-bird-map .climate-flyway-overlay#bird-detail-popup {
+    padding-top: 13px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .climate-flyway-overlay {
+    float: none !important;
+  }
+  .climate-flyway-overlay#bird-detail-popup {
+    top: 65px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .focal-bird-map .climate-flyway-overlay {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .climate-flyway-overlay {
+    margin-left: -12.5px;
+    margin-right: -12.5px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .climate-flyway-overlay {
+    padding: 20px 25px;
+    min-height: 0;
+    max-height: 650px;
+    float: left;
+    top: 50px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .climate-flyway-overlay {
+    width: 370px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .focal-bird-map .climate-flyway-overlay {
+    width: 420px;
+    float: right !important;
+  }
+}
+.climate-flyway-overlay table {
+  margin-bottom: 0;
+}
+.climate-flyway-overlay .states-col {
+  float: left;
+  width: 50%;
+}
+.climate-flyway-overlay ul {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 17px;
+  list-style-type: none;
+  margin: 0;
+}
+.climate-flyway-overlay li {
+  color: #0AA8E3;
+  cursor: pointer;
+  margin-bottom: 7px;
+}
+.climate-flyway-overlay h5 {
+  margin: 21px 0 7px 0;
+  font-size: 15px;
+  line-height: 17px;
+}
+.climate-flyway-overlay h5:first-child {
+  margin-top: 0;
+}
+.climate-flyway-overlay th {
+  background-color: #eee;
+  position: relative;
+  vertical-align: middle;
+}
+.climate-flyway-overlay th span {
+  display: block;
+  color: #0aa8e3;
+}
+.climate-flyway-overlay th span.active-flyway-sort {
+  color: #111;
+}
+.climate-flyway-overlay th span:before,
+.climate-flyway-overlay th span:after {
+  content: "";
+  position: absolute;
+  border: 4px solid transparent;
+  top: 50%;
+  right: 7px;
+}
+.climate-flyway-overlay th span:after {
+  border-top: 4px solid #404040;
+}
+.climate-flyway-overlay td {
+  border: 1px solid #d4d4d4;
+  border-top: 0px;
+  vertical-align: middle;
+  padding: 3px 5px;
+}
+.climate-flyway-overlay td:first-child {
+  border-left: 0px;
+  padding-left: 0;
+}
+.climate-flyway-overlay td:last-child {
+  border-right: 0px;
+  padding-right: 0;
+}
+.climate-flyway-overlay tr:last-child td {
+  border-bottom: 0px;
+}
+.climate-flyway-overlay tr:first-child td {
+  padding-top: 5px;
+}
+.climate-flyway-overlay .scientific-name {
+  font-size: 13px;
+  color: #666;
+}
+.climate-flyway-overlay .flyway-description {
+  color: #555;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 25px;
+}
+.climate-flyway-overlay .flyway-description p:first-child {
+  padding-right: 20px;
+}
+.climate-flyway-overlay .flyway-description .flyway-img-left {
+  float: left;
+  margin-right: 15px;
+}
+.climate-flyway-overlay .flyway-description .flyway-img-right {
+  float: right;
+  margin-left: 15px;
+}
+.climate-flyway-overlay .close {
+  position: absolute;
+  top: 25px;
+  right: 12.5px;
+  cursor: pointer;
+  font-size: 32px;
+  color: #F15936;
+}
+.climate-flyway-overlay .close:before {
+  background-image: url(../img/icon-close.png);
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  content: "";
+}
+@media only screen and (min-width: 768px) {
+  .climate-flyway-overlay .close {
+    right: 25px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .climate-flyway-overlay table {
+    width: 100%;
+    margin: 0;
+  }
+  .climate-flyway-overlay table td, .climate-flyway-overlay table th {
+    padding: 4px 10px !important;
+    min-height: 30px;
+  }
+  .climate-flyway-overlay ul, .climate-flyway-overlay h5 {
+    font-size: 17px;
+    line-height: 20px;
+  }
+  .climate-flyway-overlay li, .climate-flyway-overlay h5 {
+    margin-bottom: 10px;
+  }
+}
+.climate-flyway-overlay#bird-detail-popup {
+  padding-bottom: 0;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description {
+  margin-bottom: 0;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description .focal-color-blue {
+  color: #30b2df;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description .focal-color-yellow {
+  color: #d6d206;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description .focal-color-green {
+  color: #72c470;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description img {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description img.bordered {
+  border: 1px solid #bbb;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description img[style*="float:"][style*="right;"] {
+  margin: 0 0 0 15px;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description img[style*="float:"][style*="left;"] {
+  margin: 0 15px 0 0;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description .focal-bird-map-guide-first {
+  font-size: 16px;
+  line-height: 120%;
+  margin-bottom: 12px;
+}
+.climate-flyway-overlay#bird-detail-popup .flyway-description .focal-bird-map-guide {
+  line-height: 125%;
+  margin-bottom: 12px;
+}
+
+.flyway-map-label {
+  position: relative;
+  top: 60px;
+  padding: 0 20px;
+  z-index: 2;
+}
+@media only screen and (max-width: 600px) {
+  .flyway-map-label {
+    top: 20px;
+  }
+}
+
+.flyway-label {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+@media only screen and (max-width: 600px) {
+  .flyway-label {
+    font-size: 15px;
+    line-height: 19px;
+  }
+}
+
+.flyway-pacific-label {
+  top: 60%;
+  left: 20%;
+}
+@media only screen and (min-width: 900px) {
+  .flyway-pacific-label {
+    left: 25%;
+  }
+}
+
+.flyway-central-label {
+  top: 48%;
+  left: 42%;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .flyway-central-label {
+    left: 38%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .flyway-central-label {
+    left: 40%;
+  }
+}
+
+.flyway-mississippi-label {
+  top: 66%;
+  right: 24%;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .flyway-mississippi-label {
+    right: 32%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .flyway-mississippi-label {
+    right: 35%;
+  }
+}
+
+.flyway-atlantic-label {
+  top: 48%;
+  right: 10%;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .flyway-atlantic-label {
+    right: 20%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .flyway-atlantic-label {
+    right: 25%;
+  }
+}
+
+.flyway-list-more {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 15px;
+}
+
+.flyway-list-sort-copy {
+  color: #262626;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 10px;
+}
+
+.flyway-list-sort {
+  position: relative;
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 18px;
+}
+.flyway-list-sort:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  left: -25px;
+  right: -25px;
+  top: 0;
+  background-color: #eee;
+  z-index: -1;
+}
+@media only screen and (max-width: 767px) {
+  .flyway-list-sort:before {
+    left: -12.5px;
+    right: -12.5px;
+  }
+}
+.flyway-list-sort th {
+  min-height: 30px;
+  padding: 5px 15px 5px 5px !important;
+  cursor: pointer;
+}
+.flyway-list-sort th:first-child {
+  padding-left: 0 !important;
+}
+
+#page-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  display: none;
+  cursor: pointer;
 }
 
 /* @todo refactor like crazy for more hero variations */
@@ -7174,8 +7681,6 @@ input.header-search-input,
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     background-color: #fff;
     color: #000;
-    padding-right: 15px;
-    margin-right: -5px;
     position: relative;
     z-index: 4;
   }
@@ -7418,6 +7923,50 @@ body.touch .primary-sub-nav-index {
   }
 }
 
+.action-nav-desktop .action-nav-item,
+.action-nav-desktop .action-nav-item:last-child, .action-navBody .action-nav-item,
+.action-navBody .action-nav-item:last-child {
+  margin-left: 16px;
+}
+.action-nav-desktop .button.tomato, .action-navBody .button.tomato {
+  background-color: #ef5a3e;
+}
+.action-nav-desktop .button.tomato:hover, .action-navBody .button.tomato:hover {
+  background-color: white;
+  border-radius: 0;
+  color: #ef5a3e !important;
+}
+.action-nav-desktop .button.tomatoDk, .action-navBody .button.tomatoDk {
+  background-color: #c93216;
+}
+.action-nav-desktop .button.tomatoDk:hover,
+.action-nav-desktop .button.tomatoDk.open, .action-navBody .button.tomatoDk:hover,
+.action-navBody .button.tomatoDk.open {
+  background-color: white;
+  border-radius: 0;
+  color: #c93216 !important;
+}
+.action-nav-desktop.contextual-links-region > li:last-child .primary-sub-nav, .action-navBody.contextual-links-region > li:last-child .primary-sub-nav {
+  right: 0;
+}
+.action-nav-desktop > li:last-child .primary-sub-nav, .action-navBody > li:last-child .primary-sub-nav {
+  right: 12px;
+}
+
+.action-nav-desktop {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .secondary-nav,
+  .action-nav {
+    display: none;
+  }
+
+  .action-nav-desktop {
+    display: block;
+  }
+}
 .social-sharing {
   text-align: center;
 }
@@ -8518,7 +9067,7 @@ body.touch .primary-sub-nav-index {
 }
 @media only screen and (max-width: 600px) {
   .section-header h2, .section-header h3 {
-    text-align: center;
+    text-align: left;
   }
 }
 body.black-bg .section-header h1, body.black-bg .section-header h2, body.black-bg .section-header h3 {
@@ -8692,12 +9241,10 @@ body.black-bg .section-header a:hover {
   vertical-align: middle;
 }
 
-.bird-guide-tag {
+.bird-guide-tags {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 150px;
-  background-color: #F15936;
   color: #fff;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
@@ -8708,10 +9255,33 @@ body.black-bg .section-header a:hover {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 600px) {
-  .bird-guide-tag {
+  .bird-guide-tags {
     top: 0;
     left: 0;
   }
+}
+.bird-guide-tags .bird-guide-tag {
+  float: left;
+  width: 160px;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-priority {
+  background-color: #F15936;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-threatened {
+  background-color: #F2DA15;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-threatened a {
+  color: #000;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-endangered {
+  background-color: #FC2500;
+}
+.bird-guide-tags .bird-guide-tag.bird-guide-tag-endangered a {
+  color: #fff;
+}
+.bird-guide-tags .bird-guide-tag a {
+  width: 100%;
+  display: block;
 }
 
 .bird-guide-header {
@@ -10115,6 +10685,10 @@ body.black-bg .slide-caption {
   font-style: normal;
 }
 
+.admin-menu .curtain {
+  margin-top: 29px;
+}
+
 .bg-egg {
   position: absolute;
   display: none;
@@ -10755,7 +11329,7 @@ body.black-bg .slide-caption {
 }
 
 .focal-bird-map {
-  background-color: #EBEBEB;
+  background-color: #E5E5E5;
   position: relative;
   overflow: hidden;
 }
@@ -10772,6 +11346,22 @@ body.black-bg .slide-caption {
 }
 .focal-bird-map .container {
   position: relative;
+}
+.focal-bird-map .open-bird-detail-popup, .focal-bird-map .map-button, .focal-bird-map .map-timeline-point, .focal-bird-map .map-zoom {
+  cursor: pointer;
+}
+.focal-bird-map .map-pause:before {
+  content: "";
+  display: block;
+  background-image: url(../img/icon-pause.png);
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  background-position: center center;
+}
+.focal-bird-map .map-pause.active:before {
+  background-image: url(../img/icon-play.png);
 }
 .focal-bird-map .map-canvas,
 .focal-bird-map .container {
@@ -10792,7 +11382,7 @@ body.black-bg .slide-caption {
 .focal-bird-map .map-canvas {
   position: absolute;
   width: 100%;
-  background-color: #EBEBEB;
+  background-color: #E5E5E5;
   text-align: center;
   overflow: visible;
 }
@@ -10979,7 +11569,7 @@ body.black-bg .slide-caption {
   display: none;
 }
 .focal-bird-map .map-elements,
-.focal-bird-map .map-header {
+.focal-bird-map .map-share {
   cursor: auto;
   -moz-transition: background-color 0.4s;
   -o-transition: background-color 0.4s;
@@ -10987,12 +11577,12 @@ body.black-bg .slide-caption {
   transition: background-color 0.4s;
 }
 .focal-bird-map .map-elements.black-bg,
-.focal-bird-map .map-header.black-bg {
+.focal-bird-map .map-share.black-bg {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
 }
 .focal-bird-map .map-elements.black-bg a:not(.blue),
-.focal-bird-map .map-header.black-bg a:not(.blue) {
+.focal-bird-map .map-share.black-bg a:not(.blue) {
   color: #fff;
 }
 .focal-bird-map .map-elements {
@@ -11026,20 +11616,35 @@ body.black-bg .slide-caption {
   padding-top: 5px;
 }
 .focal-bird-map .map-header {
-  position: absolute;
-  width: 250px;
   padding: 10px;
-  right: 0;
-  top: 0;
   font-family: "Source Sans Pro", Verdana, sans-serif;
+  background-color: #E5E5E5;
+}
+@media only screen and (min-width: 768px) {
+  .focal-bird-map .map-header {
+    margin-bottom: 45px;
+  }
+}
+.focal-bird-map .map-header .map-caption-left {
+  float: left;
+}
+.focal-bird-map .map-header .map-caption-right {
+  float: right;
+  margin-top: 14px;
+}
+.focal-bird-map .map-share {
+  padding: 10px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  float: right;
+  width: 250px;
 }
 @media only screen and (max-width: 600px) {
-  .focal-bird-map .map-header {
+  .focal-bird-map .map-share {
     width: 100%;
   }
 }
 @media only screen and (min-width: 768px) {
-  .focal-bird-map .map-header {
+  .focal-bird-map .map-share {
     top: 10px;
   }
 }
@@ -11562,416 +12167,6 @@ body.touch .sticky-wrapper {
   margin-top: 10px;
 }
 
-.climate-flyway-map-container {
-  background-color: #E9E9E9;
-  overflow: hidden;
-  position: relative;
-  min-height: 400px;
-}
-@media only screen and (min-width: 601px) and (max-width: 767px) {
-  .climate-flyway-map-container {
-    min-height: 540px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .climate-flyway-map-container {
-    height: 700px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .climate-flyway-map-container {
-    height: 800px;
-  }
-}
-
-.climate-flyway-map {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  top: 20px;
-  bottom: 0;
-}
-@media only screen {
-  .climate-flyway-map {
-    height: 320px;
-    top: -20px;
-    -moz-transform: scale(0.4);
-    -ms-transform: scale(0.4);
-    -webkit-transform: scale(0.4);
-    transform: scale(0.4);
-  }
-  .climate-flyway-map svg {
-    left: -415px;
-  }
-}
-@media only screen and (min-width: 601px) {
-  .climate-flyway-map {
-    height: 600px;
-    -moz-transform: scale(0.7);
-    -ms-transform: scale(0.7);
-    -webkit-transform: scale(0.7);
-    transform: scale(0.7);
-    top: -100px;
-  }
-  .climate-flyway-map svg {
-    left: -270px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .climate-flyway-map {
-    -moz-transform: scale(0.85);
-    -ms-transform: scale(0.85);
-    -webkit-transform: scale(0.85);
-    transform: scale(0.85);
-    top: -30px;
-  }
-  .climate-flyway-map svg {
-    left: -165px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .climate-flyway-map {
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    top: 40px;
-  }
-  .climate-flyway-map svg {
-    left: -100px;
-  }
-}
-.climate-flyway-map svg {
-  position: relative;
-  height: 768px;
-  width: 1024px;
-}
-.climate-flyway-map .defaultMap {
-  fill: #FBF9F7;
-}
-.climate-flyway-map .defaultMap:hover, .climate-flyway-map .defaultMap.hover {
-  fill: #f6f1ed;
-}
-.climate-flyway-map .Pacific {
-  fill: #cfccc4;
-}
-.climate-flyway-map .Pacific:hover, .climate-flyway-map .Pacific.hover {
-  fill: #c4c0b6;
-}
-.climate-flyway-map .Pacific.active {
-  fill: #b8b4a8;
-}
-.climate-flyway-map .Central {
-  fill: #f5da9d;
-}
-.climate-flyway-map .Central:hover, .climate-flyway-map .Central.hover {
-  fill: #f3d186;
-}
-.climate-flyway-map .Central.active {
-  fill: #f0c96f;
-}
-.climate-flyway-map .Mississippi {
-  fill: #ccda9b;
-}
-.climate-flyway-map .Mississippi:hover, .climate-flyway-map .Mississippi.hover {
-  fill: #c3d388;
-}
-.climate-flyway-map .Mississippi.active {
-  fill: #b9cc76;
-}
-.climate-flyway-map .Atlantic {
-  fill: #b9dde8;
-}
-.climate-flyway-map .Atlantic:hover, .climate-flyway-map .Atlantic.hover {
-  fill: #a6d4e2;
-}
-.climate-flyway-map .Atlantic.active {
-  fill: #93cadb;
-}
-.climate-flyway-map .state-boundary {
-  fill: none;
-  stroke: rgba(0, 0, 0, 0.25);
-  stroke-width: 0.5;
-}
-
-.climate-flyway-overlay {
-  background-color: #fff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-  overflow: auto;
-  position: relative;
-  z-index: 2;
-  padding: 20px 12.5px;
-  -webkit-tap-highlight-color: transparent;
-}
-@media only screen and (max-width: 767px) {
-  .climate-flyway-overlay {
-    float: none !important;
-    min-height: 480px;
-  }
-}
-@media only screen and (min-width: 601px) {
-  .climate-flyway-overlay {
-    min-height: 600px;
-  }
-}
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .climate-flyway-overlay {
-    margin-left: -12.5px;
-    margin-right: -12.5px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .climate-flyway-overlay {
-    padding: 20px 25px;
-    min-height: 0;
-    max-height: 600px;
-    float: left;
-    width: 320px;
-    top: 50px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .climate-flyway-overlay {
-    width: 370px;
-  }
-}
-.climate-flyway-overlay table {
-  margin-bottom: 0;
-}
-.climate-flyway-overlay ul {
-  -moz-columns: 2;
-  -webkit-columns: 2;
-  columns: 2;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 15px;
-  line-height: 17px;
-  list-style-type: none;
-  margin: 0;
-}
-.climate-flyway-overlay li {
-  color: #0AA8E3;
-  cursor: pointer;
-  margin-bottom: 7px;
-}
-.climate-flyway-overlay h5 {
-  margin: 21px 0 7px 0;
-  font-size: 15px;
-  line-height: 17px;
-}
-.climate-flyway-overlay h5:first-child {
-  margin-top: 0;
-}
-.climate-flyway-overlay th {
-  background-color: #eee;
-  position: relative;
-  vertical-align: middle;
-}
-.climate-flyway-overlay th span {
-  display: block;
-}
-.climate-flyway-overlay th span:hover {
-  color: #111;
-}
-.climate-flyway-overlay th span:before,
-.climate-flyway-overlay th span:after {
-  content: "";
-  position: absolute;
-  border: 4px solid transparent;
-  top: 50%;
-  right: 7px;
-}
-.climate-flyway-overlay th span:after {
-  border-top: 4px solid #404040;
-}
-.climate-flyway-overlay td {
-  border: 1px solid #d4d4d4;
-  border-top: 0px;
-  vertical-align: middle;
-  padding: 3px 5px;
-}
-.climate-flyway-overlay td:first-child {
-  border-left: 0px;
-  padding-left: 0;
-}
-.climate-flyway-overlay td:last-child {
-  border-right: 0px;
-  padding-right: 0;
-}
-.climate-flyway-overlay tr:last-child td {
-  border-bottom: 0px;
-}
-.climate-flyway-overlay tr:first-child td {
-  padding-top: 5px;
-}
-.climate-flyway-overlay .scientific-name {
-  font-size: 13px;
-  color: #666;
-}
-.climate-flyway-overlay .flyway-description {
-  color: #555;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 25px;
-}
-.climate-flyway-overlay .close {
-  position: absolute;
-  top: 25px;
-  right: 12.5px;
-  font-size: 32px;
-  color: #F15936;
-}
-.climate-flyway-overlay .close:before {
-  content: "×";
-}
-@media only screen and (min-width: 768px) {
-  .climate-flyway-overlay .close {
-    right: 25px;
-  }
-}
-@media only screen and (max-width: 767px) {
-  .climate-flyway-overlay table {
-    width: 100%;
-    margin: 0;
-  }
-  .climate-flyway-overlay table td, .climate-flyway-overlay table th {
-    padding: 4px 10px !important;
-    min-height: 30px;
-  }
-  .climate-flyway-overlay ul, .climate-flyway-overlay h5 {
-    font-size: 17px;
-    line-height: 20px;
-  }
-  .climate-flyway-overlay li, .climate-flyway-overlay h5 {
-    margin-bottom: 10px;
-  }
-}
-
-.flyway-map-label {
-  position: relative;
-  top: 60px;
-  padding: 0 20px;
-  z-index: 2;
-}
-@media only screen and (max-width: 600px) {
-  .flyway-map-label {
-    top: 20px;
-  }
-}
-
-.flyway-label {
-  position: absolute;
-  z-index: 2;
-  text-align: center;
-  pointer-events: none;
-}
-@media only screen and (max-width: 600px) {
-  .flyway-label {
-    font-size: 15px;
-    line-height: 19px;
-  }
-}
-
-.flyway-pacific-label {
-  top: 60%;
-  left: 20%;
-}
-@media only screen and (min-width: 900px) {
-  .flyway-pacific-label {
-    left: 25%;
-  }
-}
-
-.flyway-central-label {
-  top: 48%;
-  left: 42%;
-}
-@media only screen and (min-width: 601px) and (max-width: 767px) {
-  .flyway-central-label {
-    left: 38%;
-  }
-}
-@media only screen and (min-width: 900px) {
-  .flyway-central-label {
-    left: 40%;
-  }
-}
-
-.flyway-mississippi-label {
-  top: 66%;
-  right: 24%;
-}
-@media only screen and (min-width: 601px) and (max-width: 767px) {
-  .flyway-mississippi-label {
-    right: 32%;
-  }
-}
-@media only screen and (min-width: 900px) {
-  .flyway-mississippi-label {
-    right: 35%;
-  }
-}
-
-.flyway-atlantic-label {
-  top: 48%;
-  right: 10%;
-}
-@media only screen and (min-width: 601px) and (max-width: 767px) {
-  .flyway-atlantic-label {
-    right: 20%;
-  }
-}
-@media only screen and (min-width: 900px) {
-  .flyway-atlantic-label {
-    right: 25%;
-  }
-}
-
-.flyway-list-more {
-  font-family: "Noto Serif", Georgia, serif;
-  font-size: 13px;
-  line-height: 18px;
-  margin-bottom: 15px;
-}
-
-.flyway-list-sort-copy {
-  color: #aaa;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  margin-bottom: 10px;
-}
-
-.flyway-list-sort {
-  position: relative;
-  margin-bottom: 0;
-  font-size: 13px;
-  line-height: 18px;
-}
-.flyway-list-sort:before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  left: -25px;
-  right: -25px;
-  top: 0;
-  background-color: #eee;
-  z-index: -1;
-}
-@media only screen and (max-width: 767px) {
-  .flyway-list-sort:before {
-    left: -12.5px;
-    right: -12.5px;
-  }
-}
-.flyway-list-sort th {
-  min-height: 30px;
-  padding: 5px 15px 5px 5px !important;
-  cursor: pointer;
-}
-.flyway-list-sort th:first-child {
-  padding-left: 0 !important;
-}
-
 .microsite-bird-search,
 .twitter-typeahead {
   width: 100%;
@@ -12071,7 +12266,10 @@ body.touch .sticky-wrapper {
 .john-audubon-logo {
   max-width: 63px;
   position: absolute;
-  top: 38px;
+  bottom: 0;
+}
+.john-audubon-logo img {
+  display: block;
 }
 
 .page-birds-of-america .guide-bar-title {
@@ -15176,6 +15374,75 @@ body .slide .slide-img img {
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+#admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
+  right: auto;
+}
+
+.element-invisible {
+  width: 1px;
+}
+
+/* Language dropdown styling */
+/* Inverted style */
+@media only screen and (min-width: 800px) {
+  .global-header.dark-text .ddsDark .dd-select label {
+    background: url(../img/earth-205-black.svg) left center no-repeat;
+    color: #000;
+  }
+  .global-header.dark-text .ddsDark .dd-pointer-down {
+    border-color: #000 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+  }
+  .global-header.dark-text .ddsDark .dd-pointer-up {
+    border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #000 !important;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .global-nav .nas-header-lang-dropdown {
+    display: none;
+  }
+}
+
+.nas-big-header-lang-dropdown {
+  float: right;
+  margin-top: 6px;
+  margin-right: -30px;
+}
+
+.nas-small-header-lang-dropdown {
+  margin: -5px 0 0 0;
+}
+
+/* Gray bar for mobile and tablets */
+.nas-lang-dropdown-gray-bar {
+  margin-left: -25px;
+  margin-right: -25px;
+}
+.nas-lang-dropdown-gray-bar .dd-container {
+  padding-top: 0;
+  width: 100% !important;
+  background: none repeat scroll 0 0 #414141 !important;
+}
+.nas-lang-dropdown-gray-bar .dd-select {
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.nas-lang-dropdown-gray-bar .dd-options {
+  width: 100% !important;
+  text-align: center;
+}
+.nas-lang-dropdown-gray-bar .dd-options label {
+  padding-left: 0;
+}
+.nas-lang-dropdown-gray-bar .dd-options .dd-option {
+  padding: 10px 0;
+}
+@media only screen and (min-width: 800px) {
+  .nas-lang-dropdown-gray-bar {
+    display: none;
+  }
 }
 
 /**

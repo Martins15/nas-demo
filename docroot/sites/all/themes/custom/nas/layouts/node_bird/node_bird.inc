@@ -21,6 +21,7 @@ $plugin = array(
     'similar_birds' => t('Similar birds'),
     'in_action_top' => t('In Action Header'),
     'in_action_left' => t('In Action Left'),
+    'focal_bird_map' => t('Focal Bird Map'),
     'in_action_right' => t('In Action Right'),
     'in_the_news' => t('In the News'),
     'card_set' => t('Card set'),

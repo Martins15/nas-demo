@@ -133,6 +133,13 @@ function nas_content_administration_page_feature_views_default_views() {
       'override_label' => 0,
       'label' => '',
     ),
+    'action::nas_i18n_actions_create_spanish_translation_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
     'action::views_bulk_operations_delete_item' => array(
       'selected' => 1,
       'postpone_processing' => 0,
@@ -169,7 +176,7 @@ function nas_content_administration_page_feature_views_default_views() {
       'label' => '',
     ),
     'action::views_bulk_operations_modify_action' => array(
-      'selected' => 0,
+      'selected' => 1,
       'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
@@ -177,7 +184,9 @@ function nas_content_administration_page_feature_views_default_views() {
       'settings' => array(
         'show_all_tokens' => 1,
         'display_values' => array(
-          '_all_' => '_all_',
+          'article::field_custom_section' => 'article::field_custom_section',
+          'article::field_menu_section' => 'article::field_menu_section',
+          'boa::field_internal_tagging' => 'boa::field_internal_tagging',
         ),
       ),
     ),
@@ -277,6 +286,12 @@ function nas_content_administration_page_feature_views_default_views() {
   $handler->display->display_options['fields']['field_internal_tagging']['field'] = 'field_internal_tagging';
   $handler->display->display_options['fields']['field_internal_tagging']['label'] = 'Internal Tags';
   $handler->display->display_options['fields']['field_internal_tagging']['delta_offset'] = '0';
+  /* Field: Content: Menu Section */
+  $handler->display->display_options['fields']['field_menu_section']['id'] = 'field_menu_section';
+  $handler->display->display_options['fields']['field_menu_section']['table'] = 'field_data_field_menu_section';
+  $handler->display->display_options['fields']['field_menu_section']['field'] = 'field_menu_section';
+  $handler->display->display_options['fields']['field_menu_section']['type'] = 'taxonomy_term_reference_link';
+  $handler->display->display_options['fields']['field_menu_section']['delta_offset'] = '0';
   /* Field: Content: Published */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'node';
@@ -284,20 +299,6 @@ function nas_content_administration_page_feature_views_default_views() {
   $handler->display->display_options['fields']['status']['label'] = 'Status';
   $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
   $handler->display->display_options['fields']['status']['not'] = 0;
-  /* Field: Scheduler: Publish on */
-  $handler->display->display_options['fields']['publish_on']['id'] = 'publish_on';
-  $handler->display->display_options['fields']['publish_on']['table'] = 'scheduler';
-  $handler->display->display_options['fields']['publish_on']['field'] = 'publish_on';
-  $handler->display->display_options['fields']['publish_on']['label'] = 'Scheduler status(publish)';
-  $handler->display->display_options['fields']['publish_on']['date_format'] = 'short';
-  $handler->display->display_options['fields']['publish_on']['second_date_format'] = 'nas_date';
-  /* Field: Scheduler: Unpublish on */
-  $handler->display->display_options['fields']['unpublish_on']['id'] = 'unpublish_on';
-  $handler->display->display_options['fields']['unpublish_on']['table'] = 'scheduler';
-  $handler->display->display_options['fields']['unpublish_on']['field'] = 'unpublish_on';
-  $handler->display->display_options['fields']['unpublish_on']['label'] = 'Scheduler status(unpublish)';
-  $handler->display->display_options['fields']['unpublish_on']['date_format'] = 'short';
-  $handler->display->display_options['fields']['unpublish_on']['second_date_format'] = 'nas_date';
   /* Field: Content: Updated date */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -305,6 +306,10 @@ function nas_content_administration_page_feature_views_default_views() {
   $handler->display->display_options['fields']['changed']['label'] = 'Updated';
   $handler->display->display_options['fields']['changed']['date_format'] = 'short';
   $handler->display->display_options['fields']['changed']['second_date_format'] = 'nas_date';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Title */
@@ -355,6 +360,79 @@ function nas_content_administration_page_feature_views_default_views() {
   );
   $handler->display->display_options['filters']['field_internal_tagging_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_internal_tagging_tid']['vocabulary'] = 'internal_tagging';
+  /* Filter criterion: Content: Menu Section (field_menu_section) */
+  $handler->display->display_options['filters']['field_menu_section_tid']['id'] = 'field_menu_section_tid';
+  $handler->display->display_options['filters']['field_menu_section_tid']['table'] = 'field_data_field_menu_section';
+  $handler->display->display_options['filters']['field_menu_section_tid']['field'] = 'field_menu_section_tid';
+  $handler->display->display_options['filters']['field_menu_section_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['operator_id'] = 'field_menu_section_tid_op';
+  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['label'] = 'Menu Section';
+  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['operator'] = 'field_menu_section_tid_op';
+  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['identifier'] = 'field_menu_section_tid';
+  $handler->display->display_options['filters']['field_menu_section_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_menu_section_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_menu_section_tid']['vocabulary'] = 'menu_section';
+  $handler->display->display_options['filters']['field_menu_section_tid']['hierarchy'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 'All';
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+  );
+  /* Filter criterion: Content: Editorial Section (field_custom_section) */
+  $handler->display->display_options['filters']['field_custom_section_tid']['id'] = 'field_custom_section_tid';
+  $handler->display->display_options['filters']['field_custom_section_tid']['table'] = 'field_data_field_custom_section';
+  $handler->display->display_options['filters']['field_custom_section_tid']['field'] = 'field_custom_section_tid';
+  $handler->display->display_options['filters']['field_custom_section_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_custom_section_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_custom_section_tid']['expose']['operator_id'] = 'field_custom_section_tid_op';
+  $handler->display->display_options['filters']['field_custom_section_tid']['expose']['label'] = 'Editorial Section (field_custom_section)';
+  $handler->display->display_options['filters']['field_custom_section_tid']['expose']['operator'] = 'field_custom_section_tid_op';
+  $handler->display->display_options['filters']['field_custom_section_tid']['expose']['identifier'] = 'field_custom_section_tid';
+  $handler->display->display_options['filters']['field_custom_section_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+  );
+  $handler->display->display_options['filters']['field_custom_section_tid']['vocabulary'] = 'section';
+  /* Filter criterion: Content: Language */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'node';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    'und' => 'und',
+    'en' => 'en',
+    'es' => 'es',
+  );
+  $handler->display->display_options['filters']['language']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['language']['expose']['operator_id'] = 'language_op';
+  $handler->display->display_options['filters']['language']['expose']['label'] = 'Language';
+  $handler->display->display_options['filters']['language']['expose']['operator'] = 'language_op';
+  $handler->display->display_options['filters']['language']['expose']['identifier'] = 'language';
+  $handler->display->display_options['filters']['language']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    21 => 0,
+  );
+  $handler->display->display_options['filters']['language']['expose']['reduce'] = TRUE;
   $handler->display->display_options['path'] = 'admin/content/administration';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Content Administration';
@@ -362,6 +440,35 @@ function nas_content_administration_page_feature_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['content_administration'] = array(
+    t('Master'),
+    t('Content Administration'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Content'),
+    t('- Choose an operation -'),
+    t('Title'),
+    t('Type'),
+    t('Internal Tags'),
+    t('Menu Section'),
+    t('Status'),
+    t('Updated'),
+    t('Edit link'),
+    t('Published'),
+    t('Editorial Section (field_custom_section)'),
+    t('Language'),
+  );
   $export['content_administration'] = $view;
 
   return $export;

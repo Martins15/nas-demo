@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Language switcher feature.
+ */
+
+include_once 'nas_language_switcher_feature.features.inc';

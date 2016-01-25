@@ -1076,11 +1076,13 @@ function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
 /**
  * Get blue text link of the node (article).
  */
-function nas_panes_get_blue_text_link($node) {
+function nas_panes_get_blue_text_link($node, $url = TRUE) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
-    $term = taxonomy_term_load($custom_section_item[0]['tid']);
-    return array(check_plain(i18n_taxonomy_term_name($term)), url('taxonomy/term/' . $term->tid));
+    $last = array_pop($custom_section_item);
+    $term = taxonomy_term_load($last['tid']);
+    $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
+    return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
 
   $menu_section_item = field_get_items('node', $node, 'field_menu_section');
@@ -1107,7 +1109,8 @@ function nas_panes_get_blue_text_link($node) {
         break;
       }
     }
-    return array(check_plain(i18n_taxonomy_term_name($term)), url('taxonomy/term/' . $term->tid));
+    $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
+    return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
   return array(NULL, NULL);
 }
@@ -1476,7 +1479,9 @@ function _nas_panes_save_panelizer($subtype, $node) {
  *   Array of node ojects and contextual_links.
  */
 function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
-  $context = array();
+  global $language;
+  $lang = $language->language == 'en' ? 'und' : $language->language;
+  $nodes = $context = array();
   // Check if pane renders within node.
   if ($context_node = menu_get_object('node')) {
     $context['node'] = $context_node;
@@ -1486,12 +1491,16 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     $context['tid'] = arg(2);
   }
 
-  $nodes = array();
   // Load all nodes from Engagement cards nodequeue.
   $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
   foreach ($all_nodes as $node) {
-    $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    // Add to array only nodes for current language.
+    if ($lang == $node->language) {
+      $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    }
   }
+
+  $all_nodes_positioned = array_combine(range(1, count($all_nodes_positioned)), array_values($all_nodes_positioned));
 
   // Check if there any URL query parameter exists.
   $uri = request_uri();
@@ -1603,7 +1612,9 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     }
     // Load card number 4 if manual override was not provided or context not matched.
     if (empty($nodes)) {
-      $nodes[] = $all_nodes_positioned[4];
+      if (isset($all_nodes_positioned[4])) {
+        $nodes[] = $all_nodes_positioned[4];
+      }
     }
     $cards_array['nodes'] = $nodes;
   }
@@ -2491,7 +2502,13 @@ function nas_panes_get_site_info($node) {
     $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
       $parts_url['path'];
   }
-  $title = urlencode($node->title);
+
+  if (!empty($node)) {
+    $title = urlencode($node->title);
+  }
+  else {
+    $title = 'nil';
+  }
 
   $request_url = $url . 'export/local-bird/' . $title;
   if (array_key_exists('nid', $params)) {
@@ -2542,4 +2559,11 @@ function nas_panes_get_external_bird_headline($node) {
     return;
   }
   return t('!birdname around @sitename', array('!birdname' => $node->title, '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))));
+}
+
+/**
+ * Returns default engagement cards title in English.
+ */
+function nas_panes_engagement_cards_default_title() {
+  return variable_get('nas_panes_engagement_cards_default_title', 'How you can help, right now');
 }

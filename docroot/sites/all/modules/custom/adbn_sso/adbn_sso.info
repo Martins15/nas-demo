@@ -1,0 +1,13 @@
+name = Audubon SSO
+description = Provides SSO integration with the Audubon Authentication service.
+core = 7.x
+package = Audubon
+version = 7.x-1.0
+project = adbn_sso
+features[features_api][] = api:2
+
+dependencies[] = entity
+
+files[] = includes/adbn_sso.class.inc
+files[] = includes/adbn_sso.types.inc
+files[] = includes/adbn_sso.authorization_classes.inc

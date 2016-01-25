@@ -24,6 +24,11 @@
           Slideshow._resizeSlides($slides);
           Slideshow._setupIndicatorPosition($slides, $indicator);
           Slideshow._setupButtonPosition($slides, $buttons);
+
+          // Trigger possible resize on wrapper
+          $(scroll.wrapper).css({
+            height: $(scroll.wrapper).find(".slide:eq(" + (scroll.currentPage.pageX) + ")").height(),
+          });
         };
 
         Slideshow._resizeSlides = function ($slides) {
@@ -88,7 +93,8 @@
 
               $img.css({
                 position: "relative",
-                top: "50%"
+                top: "0",
+                transform: "translateY(0)",
               });
             });
 
@@ -108,13 +114,17 @@
             maxHeight = $(window).height() * 0.75 - 40 + "px";
 
             $slides.find("img").css({
-              "height": maxHeight,
-              "width": "auto"
+              height: maxHeight,
+              width: "auto",
+              top: "0",
+              transform: "translateY(0)",
             });
           }
-          $('.slide-img', $slides).css({
-            height: maxHeight
-          });
+          else { 
+            $('.slide-img', $slides).css({
+              height: maxHeight
+            });
+          }
         };
 
         Slideshow.setup = function () {
@@ -203,6 +213,11 @@
               $(".ss-icon.next", $indicator).addClass("inactive");
             }
 
+            // Trigger possible resize on wrapper
+            $(scroll.wrapper).css({
+              height: $(scroll.wrapper).find(".slide:eq(" + (scroll.currentPage.pageX) + ")").height(),
+            });
+
             // Preload image of next slide.
             var $next_image = $(scroll.wrapper)
               .find(".slide:eq(" + (scroll.currentPage.pageX + 1) + ") .slide-img img");
@@ -262,6 +277,11 @@
 
             // Update URI hash number.
             window.location.hash = scroll.currentPage.pageX + 1;
+
+            // Trigger possible resize on wrapper
+            $(scroll.wrapper).css({
+              height: $(scroll.wrapper).find(".slide:eq(" + (scroll.currentPage.pageX) + ")").height(),
+            });
 
             // Preload image of next slide.
             var $next_image = $(scroll.wrapper)

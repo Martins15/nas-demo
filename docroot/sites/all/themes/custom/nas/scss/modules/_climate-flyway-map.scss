@@ -21,7 +21,7 @@
   z-index: 1;
   width: 100%;
   top: 20px;
-  bottom: 0; 
+  bottom: 0;
 
   @include breakpoint(tiny-up) {
     height: 320px;
@@ -50,7 +50,7 @@
   @include breakpoint(min-width, 1000px) {
     @include transform(scale(1));
     top: 40px;
-    svg { 
+    svg {
       left: -100px;
     }
   }
@@ -61,15 +61,15 @@
     width: 1024px;
   }
 
-  .defaultMap { 
-    fill: #FBF9F7; 
+  .defaultMap {
+    fill: #FBF9F7;
     &:hover,
     &.hover {
       fill: darken(#FBF9F7, 3%);
     }
   }
-  .Pacific { 
-    fill: #cfccc4; 
+  .Pacific {
+    fill: #cfccc4;
     &:hover,
     &.hover {
       fill: darken(#cfccc4, 5%);
@@ -78,8 +78,8 @@
       fill: darken(#cfccc4, 10%);
     }
   }
-  .Central { 
-    fill: #f5da9d; 
+  .Central {
+    fill: #f5da9d;
     &:hover,
     &.hover {
       fill: darken(#f5da9d, 5%);
@@ -88,8 +88,8 @@
       fill: darken(#f5da9d, 10%);
     }
   }
-  .Mississippi { 
-    fill: #ccda9b; 
+  .Mississippi {
+    fill: #ccda9b;
     &:hover,
     &.hover {
       fill: darken(#ccda9b, 5%);
@@ -98,8 +98,8 @@
       fill: darken(#ccda9b, 10%);
     }
   }
-  .Atlantic { 
-    fill: #b9dde8; 
+  .Atlantic {
+    fill: #b9dde8;
     &:hover,
     &.hover {
       fill: darken(#b9dde8, 5%);
@@ -113,7 +113,6 @@
     stroke: rgba(0, 0, 0, 0.25);
     stroke-width: 0.5;
   }
-
 }
 
 .climate-flyway-overlay {
@@ -124,14 +123,32 @@
   z-index: 2;
   padding: 20px $column-gutter/2;
 
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  &#bird-detail-popup {
+    float: right;
+    overflow: hidden;
+    padding: 20px 18px;
+    top: 0;
+    z-index: 4;
+    @include breakpoint(large-only) {
+      top: 75px;
+      .focal-bird-map & {
+        padding-top: 13px;
+      }
+    }
+  }
 
   @include breakpoint(max-width, #{upper-bound($medium-range)}) {
     float: none !important;
-    min-height: 480px;
+    &#bird-detail-popup {
+      top: 65px;
+    }
+    //min-height: 480px;
   }
   @include breakpoint(medium-up) {
-    min-height: 600px;
+    //min-height: 600px;
+    .focal-bird-map & {
+      background-color: rgba($color-white, 0.7);
+    }
   }
   @include width-range(#{lower-bound($small-range)}, #{upper-bound($medium-range)}) {
     margin-left: -$column-gutter/2;
@@ -141,9 +158,9 @@
   @include breakpoint(large-up) {
     padding: 20px $column-gutter;
     min-height: 0;
-    max-height: 600px;
+    max-height: 650px;
     float: left;
-    width: 320px;
+    //width: 320px;
     top: 50px;
   }
 
@@ -151,12 +168,24 @@
     width: 370px;
   }
 
+  @include breakpoint(medium-up) {
+    .focal-bird-map & {
+      width: 420px;
+      float: right !important;
+    }
+  }
+
   table {
     margin-bottom: 0;
   }
 
+  .states-col{
+    float: left;
+    width: 50%;
+  }
+
   ul {
-    @include columns(2);
+//    @include columns(2);
     font-family: $font-sans;
     font-size: $size-text-small;
     line-height: 17px;
@@ -187,8 +216,9 @@
 
     span {
       display: block;
-      &:hover {
-        color: #111;
+      color: #0aa8e3;
+      &.active-flyway-sort{
+       color: #111;
       }
     }
 
@@ -212,12 +242,12 @@
     vertical-align: middle;
     padding: 3px 5px;
 
-    &:first-child { 
-      border-left: 0px; 
+    &:first-child {
+      border-left: 0px;
       padding-left: 0;
     }
-    &:last-child { 
-      border-right: 0px; 
+    &:last-child {
+      border-right: 0px;
       padding-right: 0;
     }
   }
@@ -239,18 +269,37 @@
     font-size: $size-text-small - 1px;
     line-height: $size-line-small;
     margin-bottom: $column-gutter;
+
+    p:first-child {
+      padding-right: 20px;
+    }
+
+    .flyway-img-left {
+      float: left;
+      margin-right: 15px;
+    }
+    .flyway-img-right {
+      float: right;
+      margin-left: 15px;
+    }
   }
 
   .close {
     position: absolute;
     top: 25px;
     right: 12.5px;
+    cursor: pointer;
 
     font-size: 32px;
     color: #F15936;
 
     &:before {
-      content: "×";
+      background-image: url(../img/icon-close.png);
+      background-size: 16px 16px;
+      width: 16px;
+      height: 16px;
+      display: block;
+      content: ""
     }
 
     @include breakpoint(large-up) {
@@ -258,13 +307,13 @@
     }
   }
 
-  @include breakpoint(max-width, #{upper-bound($medium-range)}) { 
+  @include breakpoint(max-width, #{upper-bound($medium-range)}) {
     table {
       width: 100%;
       margin: 0;
 
       td, th {
-        padding: 4px 10px !important; 
+        padding: 4px 10px !important;
         min-height: 30px;
       }
     }
@@ -273,12 +322,61 @@
       font-size: 17px;
       line-height: 20px;
     }
-    
+
     li, h5 {
       margin-bottom: 10px;
     }
   }
 
+  &#bird-detail-popup {
+    padding-bottom: 0;
+    .flyway-description {
+      margin-bottom: 0;
+      font-family: $font-sans;
+      .focal-color-blue{
+        color: #30b2df;
+      }
+      .focal-color-yellow{
+        color: #d6d206;
+      }
+      .focal-color-green{
+        color: #72c470;
+      }
+
+      img {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        &.bordered {
+          border: 1px solid #bbb;
+        }
+      }
+
+      // Because Drupal CSS aggregator destroys whitespace in quotes, we use
+      // this hack inspired from
+      // https://www.drupal.org/node/1996688#comment-8552205
+      // A proper way to fix this is still not committed intro Drupal
+      // https://www.drupal.org/node/936316
+
+//      img[style*="float: right"] {
+      img[style*="float:"][style*="right;"] {
+        margin: 0 0 0 15px;
+      }
+      img[style*="float:"][style*="left;"]{
+//      img[style*="float: left"] {
+        margin: 0 15px 0 0;
+      }
+
+      .focal-bird-map-guide-first {
+        font-size: 16px;
+        line-height: 120%;
+        margin-bottom: 12px;
+      }
+      .focal-bird-map-guide {
+        line-height: 125%;
+        margin-bottom: 12px;
+      }
+    }
+  }
 }
 
 .flyway-map-label {
@@ -288,8 +386,8 @@
   z-index: 2;
 
   @include breakpoint(max-width, #{upper-bound($small-range)}) {
-    top: 20px; 
-  } 
+    top: 20px;
+  }
 }
 
 .flyway-label {
@@ -305,7 +403,7 @@
 }
 
 .flyway-pacific-label {
-  top: 60%; 
+  top: 60%;
   left: 20%;
   @include breakpoint(min-width, 900px) { left: 25%; }
 }
@@ -339,7 +437,7 @@
 }
 
 .flyway-list-sort-copy {
-  color: $color-middle-gray;
+  color: #262626;
   font-family: $font-sans;
   font-size: 13px;
   line-height: 18px;
@@ -377,4 +475,14 @@
       padding-left: 0 !important;
     }
   }
+}
+
+#page-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  display: none;
+  cursor: pointer;
 }

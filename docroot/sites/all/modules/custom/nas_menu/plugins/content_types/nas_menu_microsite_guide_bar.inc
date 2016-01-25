@@ -32,7 +32,7 @@ function nas_menu_guide_bar_pane_edit_form($form, &$form_state) {
   $form['title'] = array(
     '#type' => 'textfield',
     '#title' => t('Guide Bar Title'),
-    '#description' => t('span tag is allowed'),
+    '#description' => t('span tag is allowed; You can use hide-for-tiny, hide-for-small, hide-for-medium, hide-for-large, hide-for-xlarge classes.'),
     '#default_value' => $conf['title'],
   );
 
@@ -88,7 +88,7 @@ function nas_menu_guide_bar_pane_edit_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
-  $title = filter_xss(t($conf['title']), array('span'));
+  $title = t(filter_xss($conf['title'], array('span')));
   $preamble = check_plain($conf['preamble']);
   $css_class = trim(check_plain($conf['css_class']));
   $css_background_style = check_plain($conf['css_background_style']);

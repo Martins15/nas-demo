@@ -115,6 +115,74 @@ function nas_alters_node_prepare($node) {
 /**
  * Implements hook_form_FORM_ID_alter().
  *
+ * Alter config block form.
+ */
+function nas_alters_form_block_admin_configure_alter(&$form, &$form_state) {
+  if (strpos($form['delta']['#value'], 'nas_birds_guide-') === 0) {
+    $form['settings']['title']['#access'] = FALSE;
+    $form['regions']['#access'] = FALSE;
+    $form['visibility']['#access'] = FALSE;
+    $form['visibility_title']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the Bird node form.
+ */
+function nas_alters_form_bird_node_form_alter(&$form, &$form_state) {
+  $conds = array();
+  foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
+    $conds[':input[name="' . $field  . '[' . LANGUAGE_NONE . ']"]'] = array('checked' => FALSE);
+  }
+
+  $form['field_bird_climate_url'][LANGUAGE_NONE][0]['#pre_render'] = array('nas_alters_required_form_element_pre_render');
+  $form['field_bird_climate_url']['#states'] = array('invisible' => $conds);
+
+  $form['#validate'][] = 'nas_alters_form_bird_node_form_validate';
+}
+
+/**
+ * Pre render handler for required form elements.
+ */
+function nas_alters_required_form_element_pre_render($element) {
+  $element['#required'] = TRUE;
+  return $element;
+}
+
+/**
+ * Validate handler for Bird edit form.
+ */
+function nas_alters_form_bird_node_form_validate($form, &$form_state) {
+  $required = FALSE;
+  foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
+    $field_value = $form_state['values'][$field][LANGUAGE_NONE];
+
+    if (!empty($field_value) && !empty($field_value[0]['value'])) {
+      $required = TRUE;
+      break;
+    }
+  }
+
+  $field_value = $form_state['values']['field_bird_climate_url'][LANGUAGE_NONE];
+  if (empty($field_value) || empty($field_value[0]['url'])) {
+    if ($required) {
+      // Climate URL field is required when field_bird_endangered or
+      // field_bird_threatened is checked.
+      $field_name = $form['field_bird_climate_url'][LANGUAGE_NONE][0]['#title'];
+      form_set_error('field_bird_climate_url', t('%name is required.', array('%name' => $field_name)));
+    }
+  }
+  elseif (!$required) {
+    // Cleaning Climate URL field when it's not needed anymore.
+    $form_state['values']['field_bird_climate_url'][LANGUAGE_NONE] = array();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
  * Alter the Magazine Issue node form.
  */
 function nas_alters_form_magazine_issue_node_form_alter(&$form, &$form_state, $form_id) {
@@ -764,4 +832,63 @@ function nas_alters_form_system_site_information_settings_alter(&$form, &$form_s
     production for checking how external content works on birds pages.'),
     '#default_value' => variable_get('nas_birds_allow_dev_params', FALSE),
   );
+}
+
+/**
+ * Helper function to get language dropdown.
+ */
+function nas_alters_lang_dropdown() {
+  $output = &drupal_static(__FUNCTION__);
+  if (isset($output)) {
+    return $output;
+  }
+
+  $output = '';
+  if (!module_exists('lang_dropdown')) {
+    return $output;
+  }
+
+  if ($block = lang_dropdown_block_view()) {
+    $output = drupal_render($block['content']);
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_language_switch_links_alter().
+ */
+function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
+  // We want to remove language switcher if page has no translations - if the
+  // href of all translations is the same.
+  $unset = TRUE;
+  foreach ($links as $langcode => $link) {
+    if (isset($link['href']) && $link['href'] != $path) {
+      $unset = FALSE;
+    }
+  }
+
+  // We can't unset links cause of hreflang module, so we set the class that is
+  // used by lang_dropdown module to skip the link.
+  if ($unset) {
+    foreach ($links as $langcode => &$link) {
+      $link['attributes']['class'][] = 'locale-untranslated';
+    }
+  }
+  else {
+    foreach ($links as $langcode => $link) {
+      foreach ($links[$langcode]['attributes']['class'] as $key => $class) {
+        if ($class == 'locale-untranslated') {
+          unset($links[$langcode]['attributes']['class'][$key]);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to set a flag that we need to show language message.
+ */
+function nas_alters_show_language_message() {
+  global $base_path;
+  setcookie('nas_language_message', 1, NULL, $base_path);
 }
