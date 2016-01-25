@@ -5,3 +5,94 @@
  */
 
 include_once 'nas_birds_guide_feature.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function nas_birds_guide_block_info() {
+  $blocks = array();
+
+  $blocks['nas_birds_guide-credits'] = array(
+    'info' => t('Bird guide: Credits'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
+  $blocks['nas_birds_guide-download'] = array(
+    'info' => t('Bird guide: Download'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function nas_birds_guide_block_view($delta = '') {
+  if ($delta && ($content = variable_get($delta . '-content', FALSE))) {
+    if ($node = menu_get_object()) {
+      $langcode = $node->language == 'es' ? $node->language : 'en';
+    }
+    else {
+      global $language;
+      $langcode = $language->language;
+    }
+
+    return array(
+      'subject' => NULL,
+      'content' => check_markup($content[$langcode]['value'], $content[$langcode]['format']),
+    );
+  }
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function nas_birds_guide_block_configure($delta = '') {
+  $form = array();
+
+  if ($delta) {
+    $defaults = variable_get($delta . '-content', array());
+    $form['content'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Content'),
+      '#tree' => TRUE,
+    );
+
+    foreach (language_list() as $language) {
+      $form['content'][$language->language] = array(
+        '#type' => 'text_format',
+        '#title' => $language->name,
+        '#format' => 'full_html',
+        '#rows' => 10,
+      );
+
+      if (isset($defaults[$language->language])) {
+        $form['content'][$language->language]['#format'] = $defaults[$language->language]['format'];
+        $form['content'][$language->language]['#default_value'] = $defaults[$language->language]['value'];
+      }
+    }
+
+    $form['#after_build'] = array('nas_birds_guide_block_after_build');
+  }
+
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function nas_birds_guide_block_save($delta = '', $edit = array()) {
+  variable_set($delta . '-content', $edit['content']);
+}
+
+/**
+ * After build handler for Bird Detail edit form.
+ */
+function nas_birds_guide_block_after_build($form, &$form_state) {
+  foreach (element_children($form['content']) as $child) {
+    $form['content'][$child]['format']['#access'] = FALSE;
+  }
+
+  return $form;
+}

@@ -30,21 +30,10 @@ function nas_site_template_feature_default_page_manager_handlers() {
     'relationships' => array(),
     'access' => array(
       'plugins' => array(
-        0 => array(
-          'name' => 'path_visibility',
-          'settings' => array(
-            'visibility_setting' => '1',
-            'paths' => 'birds/bird-guide
-birds-of-america',
-          ),
-          'context' => 'argument_string_1',
-          'not' => FALSE,
-        ),
         1 => array(
           'name' => 'node_type',
           'settings' => array(
             'type' => array(
-              'bird' => 'bird',
               'slideshow' => 'slideshow',
               'video_page' => 'video_page',
             ),
@@ -130,6 +119,34 @@ birds-of-america',
     $pane->uuid = '651ca440-8d50-4a19-9d92-9a64bdce62dc';
     $display->content['new-651ca440-8d50-4a19-9d92-9a64bdce62dc'] = $pane;
     $display->panels['footer'][1] = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
+    $pane = new stdClass();
+    $pane->pid = 'new-5195d0a3-c9f5-48ed-9df6-f20497fbae93';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_language_message';
+    $pane->subtype = 'nas_language_message';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '¡Atención!',
+      'override_title_text' => '¡Atención!',
+      'spanish_message' => 'La página que intenta visitar sólo está disponible en inglés. ¡Disculpa!',
+      'english_message' => 'The page you are about to visit is currently only available in English. Sorry!',
+      'image' => 0,
+      'form_build_id' => 'form-ByrCEuztLB_aLuoUb--A_sdwgn10CMSiFguvU2ivj9c',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '5195d0a3-c9f5-48ed-9df6-f20497fbae93';
+    $display->content['new-5195d0a3-c9f5-48ed-9df6-f20497fbae93'] = $pane;
+    $display->panels['footer'][2] = 'new-5195d0a3-c9f5-48ed-9df6-f20497fbae93';
     $pane = new stdClass();
     $pane->pid = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane->panel = 'header';
@@ -329,6 +346,34 @@ birds-of-america',
     $pane->uuid = '948c6438-31cc-4908-a4a5-ef83daa37351';
     $display->content['new-948c6438-31cc-4908-a4a5-ef83daa37351'] = $pane;
     $display->panels['footer'][1] = 'new-948c6438-31cc-4908-a4a5-ef83daa37351';
+    $pane = new stdClass();
+    $pane->pid = 'new-55a924a7-e2b0-4da5-a981-b9a784f92d7f';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_language_message';
+    $pane->subtype = 'nas_language_message';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '¡Atención!',
+      'override_title_text' => '¡Atención!',
+      'spanish_message' => 'La página que intenta visitar sólo está disponible en inglés. ¡Disculpa!',
+      'english_message' => 'The page you are about to visit is currently only available in English. Sorry!',
+      'image' => 0,
+      'form_build_id' => 'form-dGS-YzCIof2u1S1ll7zP4bSlwvF-ADXSD6KL_8DW5O8',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '55a924a7-e2b0-4da5-a981-b9a784f92d7f';
+    $display->content['new-55a924a7-e2b0-4da5-a981-b9a784f92d7f'] = $pane;
+    $display->panels['footer'][2] = 'new-55a924a7-e2b0-4da5-a981-b9a784f92d7f';
     $pane = new stdClass();
     $pane->pid = 'new-ebdace69-bae1-4910-99e5-a1fce56895af';
     $pane->panel = 'header';
@@ -591,6 +636,53 @@ birds-of-america/*',
     $display->content['new-651ca440-8d50-4a19-9d92-9a64bdce62dc'] = $pane;
     $display->panels['footer'][1] = 'new-651ca440-8d50-4a19-9d92-9a64bdce62dc';
     $pane = new stdClass();
+    $pane->pid = 'new-78efff6d-adb4-45fa-bc4d-b18db897c8d5';
+    $pane->panel = 'footer';
+    $pane->type = 'nas_language_message';
+    $pane->subtype = 'nas_language_message';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => '¡Atención!',
+      'override_title_text' => '¡Atención!',
+      'spanish_message' => 'La página que intenta visitar sólo está disponible en inglés. ¡Disculpa!',
+      'english_message' => 'The page you are about to visit is currently only available in English. Sorry!',
+      'image' => 0,
+      'form_build_id' => 'form-_Xex1TjXnwXbxLSBDZvGW6FjAeAXuycjZ_03Sgq31R4',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '78efff6d-adb4-45fa-bc4d-b18db897c8d5';
+    $display->content['new-78efff6d-adb4-45fa-bc4d-b18db897c8d5'] = $pane;
+    $display->panels['footer'][2] = 'new-78efff6d-adb4-45fa-bc4d-b18db897c8d5';
+    $pane = new stdClass();
+    $pane->pid = 'new-6c96a342-3f4d-4ea6-88e5-02b4d7225740';
+    $pane->panel = 'header';
+    $pane->type = 'asc_bird_top_bar';
+    $pane->subtype = 'asc_bird_top_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6c96a342-3f4d-4ea6-88e5-02b4d7225740';
+    $display->content['new-6c96a342-3f4d-4ea6-88e5-02b4d7225740'] = $pane;
+    $display->panels['header'][0] = 'new-6c96a342-3f4d-4ea6-88e5-02b4d7225740';
+    $pane = new stdClass();
     $pane->pid = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane->panel = 'header';
     $pane->type = 'nas_menu_header_small';
@@ -604,11 +696,11 @@ birds-of-america/*',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '84661503-5e89-4544-bf5b-25bb04044d1c';
     $display->content['new-84661503-5e89-4544-bf5b-25bb04044d1c'] = $pane;
-    $display->panels['header'][0] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
+    $display->panels['header'][1] = 'new-84661503-5e89-4544-bf5b-25bb04044d1c';
     $pane = new stdClass();
     $pane->pid = 'new-a0339ec9-9f49-4e9c-afc9-725b55382b74';
     $pane->panel = 'main';

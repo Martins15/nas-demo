@@ -841,7 +841,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -910,6 +910,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
@@ -954,7 +961,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => -2,
+      'weight' => 2,
     ),
   );
 
@@ -974,7 +981,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'text' => 'file_description',
         ),
         'type' => 'soundmanager2_inline_player',
-        'weight' => 21,
+        'weight' => 17,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1054,6 +1061,18 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'soundmanager2_inline_player',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'nas_soundmanager',
+        'settings' => array(
+          'audio_type' => 'default',
+          'pause' => 'pause',
+          'stream' => FALSE,
+          'text' => 'file_description',
+        ),
+        'type' => 'soundmanager2_inline_player',
+        'weight' => 17,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_audio',
@@ -1084,7 +1103,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -1100,7 +1119,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 42,
+        'weight' => 29,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1168,6 +1187,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 21,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 29,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_call_pattern',
@@ -1184,7 +1210,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 37,
+      'weight' => 38,
     ),
   );
 
@@ -1200,7 +1226,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 37,
+        'weight' => 24,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1268,6 +1294,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 20,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 24,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_call_type',
@@ -1300,7 +1333,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1368,6 +1401,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 19,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 12,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_calls',
@@ -1384,7 +1424,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 43,
+      'weight' => 44,
     ),
   );
 
@@ -1400,7 +1440,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 38,
+        'weight' => 25,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1468,6 +1508,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 17,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 25,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_category',
@@ -1484,7 +1531,116 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 33,
+      'weight' => 34,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_climate_url'
+  $field_instances['node-bird-field_bird_climate_url'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_plain',
+        'weight' => 6,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_plain',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_climate_url',
+    'label' => 'Climate URL',
+    'required' => 0,
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 1,
     ),
   );
 
@@ -1500,7 +1656,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 36,
+        'weight' => 23,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1568,6 +1724,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 18,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 23,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_color',
@@ -1600,7 +1763,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 47,
+        'weight' => 34,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1655,6 +1818,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 34,
       ),
     ),
     'entity_type' => 'node',
@@ -1718,7 +1888,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 19,
+        'weight' => 15,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1786,6 +1956,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 23,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_plain',
+        'weight' => 15,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_description',
@@ -1828,7 +2005,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 42,
+      'weight' => 43,
     ),
   );
 
@@ -1844,7 +2021,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 50,
+        'weight' => 37,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1899,6 +2076,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 37,
       ),
     ),
     'entity_type' => 'node',
@@ -1946,7 +2130,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 47,
+      'weight' => 48,
     ),
   );
 
@@ -1962,7 +2146,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 51,
+        'weight' => 38,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2018,6 +2202,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 38,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_eggs',
@@ -2064,7 +2255,105 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 48,
+      'weight' => 49,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_endangered'
+  $field_instances['node-bird-field_bird_endangered'] = array(
+    'bundle' => 'bird',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_endangered',
+    'label' => 'Climate Endangered Bird',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 0,
     ),
   );
 
@@ -2080,7 +2369,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2148,6 +2437,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 28,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 11,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_family',
@@ -2161,7 +2457,7 @@ function nas_bird_type_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 40,
+      'weight' => 41,
     ),
   );
 
@@ -2177,7 +2473,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 49,
+        'weight' => 36,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2233,6 +2529,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 36,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_feeding',
@@ -2279,7 +2582,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 46,
+      'weight' => 47,
     ),
   );
 
@@ -2295,7 +2598,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 18,
+        'weight' => 14,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2363,6 +2666,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 27,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_habitat',
@@ -2379,7 +2689,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 41,
+      'weight' => 42,
     ),
   );
 
@@ -2395,7 +2705,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 39,
+        'weight' => 26,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2463,6 +2773,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 26,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 26,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_habitat2',
@@ -2479,7 +2796,130 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 34,
+      'weight' => 35,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_id'
+  $field_instances['node-bird-field_bird_id'] = array(
+    'bundle' => 'bird',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 53,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 53,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_id',
+    'label' => 'Bird ID',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'full_html' => 'full_html',
+          'html' => 'html',
+          'map' => 'map',
+          'plain_text' => 'plain_text',
+          'video' => 'video',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'full_html' => array(
+              'weight' => 0,
+            ),
+            'html' => array(
+              'weight' => 0,
+            ),
+            'map' => array(
+              'weight' => -8,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+            'video' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -4,
     ),
   );
 
@@ -2496,7 +2936,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'file_view_mode' => 'bird_illustration',
         ),
         'type' => 'media',
-        'weight' => 25,
+        'weight' => 20,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2564,6 +3004,15 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 24,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'bird_illustration',
+        ),
+        'type' => 'media',
+        'weight' => 20,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_illustration',
@@ -2594,7 +3043,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -2610,7 +3059,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 40,
+        'weight' => 27,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2678,6 +3127,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 25,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 27,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_locomotion',
@@ -2694,7 +3150,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 35,
+      'weight' => 36,
     ),
   );
 
@@ -2710,7 +3166,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 48,
+        'weight' => 35,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2766,6 +3222,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 35,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_migration',
@@ -2812,7 +3275,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 45,
+      'weight' => 46,
     ),
   );
 
@@ -2828,7 +3291,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 8,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2896,6 +3359,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 16,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_nesting',
@@ -2912,7 +3382,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 0,
+      'weight' => 3,
     ),
   );
 
@@ -2929,7 +3399,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'file_view_mode' => 'preview',
         ),
         'type' => 'media',
-        'weight' => 20,
+        'weight' => 16,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2997,6 +3467,15 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 15,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'preview',
+        ),
+        'type' => 'media',
+        'weight' => 16,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_photo',
@@ -3027,7 +3506,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -3047,7 +3526,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3114,6 +3593,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 6,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'node',
@@ -3130,7 +3616,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => -3,
+      'weight' => -2,
     ),
   );
 
@@ -3146,7 +3632,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 9,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3213,6 +3699,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 7,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'node',
@@ -3230,7 +3723,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 
@@ -3247,7 +3740,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'file_view_mode' => 'default',
         ),
         'type' => 'media',
-        'weight' => 22,
+        'weight' => 18,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3314,6 +3807,15 @@ function nas_bird_type_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 5,
+      ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 18,
       ),
     ),
     'entity_type' => 'node',
@@ -3361,7 +3863,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3429,6 +3931,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 13,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_region',
@@ -3442,7 +3951,7 @@ function nas_bird_type_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 44,
+      'weight' => 45,
     ),
   );
 
@@ -3458,7 +3967,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3528,6 +4037,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_sci_name',
@@ -3544,7 +4060,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -4,
+      'weight' => -3,
     ),
   );
 
@@ -3560,7 +4076,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 34,
+        'weight' => 21,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3628,6 +4144,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 21,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_sec_species_name',
@@ -3660,7 +4183,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 41,
+        'weight' => 28,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3728,6 +4251,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 8,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 28,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_size',
@@ -3744,7 +4274,105 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 36,
+      'weight' => 37,
+    ),
+  );
+
+  // Exported field_instance: 'node-bird-field_bird_threatened'
+  $field_instances['node-bird-field_bird_threatened'] = array(
+    'bundle' => 'bird',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_bird_threatened',
+    'label' => 'Climate Threatened Bird',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => -1,
     ),
   );
 
@@ -3760,7 +4388,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 7,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3828,6 +4456,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 9,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_tip',
@@ -3844,7 +4479,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 39,
+      'weight' => 40,
     ),
   );
 
@@ -3865,7 +4500,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 44,
+        'weight' => 31,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3933,6 +4568,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 14,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 31,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_video',
@@ -3991,7 +4633,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 43,
+        'weight' => 30,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4059,6 +4701,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 13,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 30,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_wing_shape',
@@ -4075,7 +4724,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 38,
+      'weight' => 39,
     ),
   );
 
@@ -4091,7 +4740,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 52,
+        'weight' => 39,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4147,6 +4796,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 39,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_bird_young',
@@ -4193,7 +4849,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 49,
+      'weight' => 50,
     ),
   );
 
@@ -4213,7 +4869,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 35,
+        'weight' => 22,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4281,6 +4937,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 12,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 22,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_color_mode',
@@ -4311,7 +4974,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'file_view_mode' => 'default',
         ),
         'type' => 'media',
-        'weight' => 24,
+        'weight' => 19,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4382,6 +5045,15 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 10,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 19,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_hero_image',
@@ -4441,7 +5113,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 46,
+        'weight' => 33,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4497,6 +5169,13 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 33,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_internal_tagging',
@@ -4531,7 +5210,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 6,
+        'weight' => 10,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4599,6 +5278,15 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 11,
       ),
+      'token' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 10,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_related_bird',
@@ -4616,7 +5304,7 @@ function nas_bird_type_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 2,
+      'weight' => 5,
     ),
   );
 
@@ -4634,7 +5322,7 @@ function nas_bird_type_feature_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 45,
+        'weight' => 32,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4696,6 +5384,15 @@ function nas_bird_type_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'token' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 32,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_related_flyways',
@@ -4714,7 +5411,7 @@ function nas_bird_type_feature_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
@@ -4790,12 +5487,16 @@ function nas_bird_type_feature_field_default_field_instances() {
   t('Bird Category');
   t('Bird Color');
   t('Bird Habitat');
+  t('Bird ID');
   t('Bird Locomotion');
   t('Bird Size');
   t('Bird Wing Shape');
   t('Bird video');
   t('Body');
   t('Caption');
+  t('Climate Endangered Bird');
+  t('Climate Threatened Bird');
+  t('Climate URL');
   t('Color mode');
   t('Conservation status');
   t('Credit');

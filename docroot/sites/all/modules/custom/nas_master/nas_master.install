@@ -3122,11 +3122,239 @@ function nas_master_update_7223() {
   module_disable(array('l10n_client'));
 }
 
+/**
+ * Update bird node default panelizer.
+ */
+function nas_master_update_7224() {
+  features_revert(array('nas_bird_type_feature' => array('panelizer_defaults')));
+}
+
+/**
+ * Enable NAS theme.
+ */
+function nas_master_update_7225() {
+  theme_enable(array('nas'));
+}
+
+/**
+ * Add Action for creating Spanish translations.
+ */
+function nas_master_update_7226() {
+  module_enable(array('nas_i18n_actions'));
+  features_revert(array('nas_content_administration_page_feature' => array('views_view')));
+}
+
+/**
+ * Create new menu Donate | Take action and its items.
+ */
+function nas_master_update_7227() {
+  // Create new menu.
+  $menu_id = 'menu-header-big-dta-desktop';
+  $menu = array(
+    'menu_name' => $menu_id,
+    'title' => t('Header big donate | take action (desktop)'),
+    'description' => '',
+    'language' => LANGUAGE_NONE,
+    'i18n_mode' => I18N_MODE_MULTIPLE,
+  );
+  menu_save($menu);
+
+  // Define menu items.
+  $menu_items = array(
+    'Join' => array(
+      'url' => 'https://secure.audubon.org/site/Donation2?df_id=7140&7140.donation=form1&s_src=2015_AUDHP_topbanner-join_test&s_subsrc=website',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomato',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'Become a Member' => 'https://secure.audubon.org/site/Donation2?df_id=7140&7140.donation=form1&s_src=2015_AUDHP_topbanner-member_test&s_subsrc=website',
+        'Renew' => 'https://secure.audubon.org/site/Donation2?df_id=7900&7900.donation=form1&s_src=2015_AUDHP_topbanner-renew_test&s_subsrc=website',
+        'Gift Membership' => 'https://secure.audubon.org/site/Donation2?df_id=7320&7320.donation=form1&s_src=2015_AUDHP_topbanner-gift_test&s_subsrc=website',
+        'Audubon Near You' => 'audubon-near-you',
+      ),
+    ),
+    'Donate Now' => array(
+      'url' => 'https://secure.audubon.org/site/Donation2?df_id=6960&6960.donation=form1&s_src=2015_AUDHP_topbanner-donate_test&s_subsrc=website',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomatoDk',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'One-time Gift' => 'https://secure.audubon.org/site/Donation2?df_id=6960&6960.donation=form1&s_src=2015_AUDHP_topbanner-one-time_test&s_subsrc=website',
+        'Monthly' => 'https://audubon.secure-donor.com/cardinal/choose/?source=header',
+        'Online Store' => 'https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html&s_src=2015_AUDHP_topbanner-store_test&s_subsrc=website',
+        'More Ways to Give' => 'how-to-help',
+      ),
+    ),
+    'Take Action' => array(
+      'url' => 'takeaction',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomato',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'Prevent Needless Bird Deaths' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1829&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+        'Protect America\'s Open Spaces' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1945&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+        'Act for Greater Sage-Grouse' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1999&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+      ),
+    ),
+  );
+
+  $weight = 0;
+  foreach ($menu_items as $menu_item_title => $menu_item) {
+    $menu_link = array(
+      'link_title' => $menu_item_title,
+      'link_path' => $menu_item['url'],
+      'module' => 'menu',
+      'menu_name' => $menu_id,
+      'weight' => $weight,
+      'plid' => 0,
+    );
+    if (!empty($menu_item['class'])) {
+      $menu_link['options']['attributes']['class'] = $menu_item['class'];
+      $menu_link['options']['attributes']['liclass'] = $menu_item['liclass'];
+    }
+    $mlid = menu_link_save($menu_link);
+    $weight++;
+
+    if (empty($menu_item)) continue;
+
+    $inner_weight = -50;
+    foreach ($menu_item['children'] as $menu_child_item_title => $menu_child_item_url) {
+      $menu_link = array(
+        'link_title' => $menu_child_item_title,
+        'link_path' => $menu_child_item_url,
+        'module' => 'menu',
+        'menu_name' => $menu_id,
+        'weight' => $inner_weight,
+      );
+      $menu_link['plid'] = $mlid;
+      menu_link_save($menu_link);
+      $inner_weight++;
+    }
+  }
+}
+
+/**
+ * Update take action page.
+ */
+function nas_master_update_7228() {
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'task' => 'page',
+    'subtask' => 'action_center',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    // Look up pane.
+    $query = db_select('panels_pane', 'pp')
+      ->fields('pp', array('pid', 'configuration'))
+      ->condition('panel', 'main')
+      ->condition('subtype', 'engagement_cards')
+      ->condition('did', $handler->conf['did'])
+      ->execute();
+    while ($pane = $query->fetchObject()) {
+      // Update configuration
+      $pane->configuration = unserialize($pane->configuration);
+      $pane->configuration['default'] += array(
+        'wrapper' => 1,
+      );
+      // Save to DB.
+      db_update('panels_pane')
+        ->fields(array('configuration' => serialize($pane->configuration)))
+        ->condition('pid', $pane->pid)
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Add Social Media Photo for Articles.
+ */
+function nas_master_update_7229() {
+  module_enable(array('nas_social_media_photo'));
+  $metatag = metatag_config_load('node:article');
+  $metatag->config['og:image']['value'] = '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]';
+  metatag_config_save($metatag);
+}
+
+/**
+ * NAS-156: Make Editoral Section a multi-value field.
+ */
+function nas_master_update_7230() {
+  $field = field_info_field('field_custom_section');
+  $field['cardinality'] = -1;
+  field_update_field($field);
+}
+
+/**
+ * Creating bird map section.
+ */
+function nas_master_update_7231() {
+  module_enable(array('adbn_map'));
+  features_revert(array(
+    'nas_bird_type_feature' => array(
+      'field_base',
+      'field_instance',
+      'panelizer_defaults',
+      'variable',
+    ),
+  ));
+}
+
+/**
+ * Set bird guide blocks default values.
+ */
+function nas_master_update_7232() {
+  $default_value = array(
+    'value' => '<p>Text © Kenn Kaufman, adapted from <br><a href="/kaufman"><em>Lives of North American Birds</em></a></p><p>Illustration © David Allen Sibley.<br><a href="/sibley">Learn more about these drawings.</a></p>',
+    'format' => 'full_html',
+  );
+
+  variable_set('nas_birds_guide-credits-content', array('en' => $default_value, 'es' => $default_value));
+
+  $img_path = drupal_get_path('theme', 'nas') . '/img';
+  $default_value = array(
+    'value' => '<h5>Download Our Bird Guide App</h5><p><a href="http://www.audubon.org/ios-app?utm_source=bird-guide&amp;utm_campaign=iosapp" target="_blank"><img src="' . url($img_path . '/apple-store.png') . '" width="110" title="Download the Audubon Bird Guide App on the App Store"></a> <a href="http://www.audubon.org/android-app?utm_source=bird-guide&amp;utm_campaign=android-app" target="_blank"><img src="' . url($img_path . '/google-play.png') . '" width="110" title="Get the Audubon Bird Guide App on Google Play"></a></p>',
+    'format' => 'full_html',
+  );
+
+  variable_set('nas_birds_guide-download-content', array('en' => $default_value, 'es' => $default_value));
+}
+
+/**
+ * Enable NAS Language switcher feature.
+ */
+function nas_master_update_7233() {
+  module_enable(array('nas_language_switcher_feature'));
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
+
+/**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7234() {
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
 
 /**
  * Enable NAS IBA Import feature.
  */
-function nas_master_update_7224() {
+function nas_master_update_7235() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_import_feeds_feature'));
@@ -3135,7 +3363,7 @@ function nas_master_update_7224() {
 /**
  * Enable NAS IBA features.
  */
-function nas_master_update_7226() {
+function nas_master_update_7236() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
   module_enable(array('nas_iba_feature', 'nas_iba_state', 'nas_iba_import_feeds_feature'));

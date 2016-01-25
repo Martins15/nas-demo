@@ -64,7 +64,7 @@ function nas_bird_type_feature_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'revision' => array(
         'custom_settings' => FALSE,
@@ -87,60 +87,6 @@ function nas_bird_type_feature_strongarm() {
       'search_result' => array(
         'custom_settings' => FALSE,
       ),
-      'nas_node_teaser_small_state' => array(
-        'custom_settings' => TRUE,
-      ),
-      'nas_node_featured_small' => array(
-        'custom_settings' => TRUE,
-      ),
-      'nas_node_related_features' => array(
-        'custom_settings' => TRUE,
-      ),
-      'nas_node_teaser' => array(
-        'custom_settings' => TRUE,
-      ),
-      'nas_editorial_card' => array(
-        'custom_settings' => TRUE,
-      ),
-      'ical' => array(
-        'custom_settings' => FALSE,
-      ),
-      'editorial_card_3x' => array(
-        'custom_settings' => FALSE,
-      ),
-      'editorial_card_4x' => array(
-        'custom_settings' => FALSE,
-      ),
-      'teaser_author_page' => array(
-        'custom_settings' => FALSE,
-      ),
-      'nas_teaser_related_news' => array(
-        'custom_settings' => FALSE,
-      ),
-      'nas_teaser_from_network' => array(
-        'custom_settings' => FALSE,
-      ),
-      'nas_teaser_flyway_landing' => array(
-        'custom_settings' => FALSE,
-      ),
-      'static_page_related_teaser' => array(
-        'custom_settings' => FALSE,
-      ),
-      'boa_teaser' => array(
-        'custom_settings' => FALSE,
-      ),
-      'nas_node_project_teaser' => array(
-        'custom_settings' => FALSE,
-      ),
-      'conservation_strategy_featured_teaser' => array(
-        'custom_settings' => FALSE,
-      ),
-      'conservation_strategy_list_teaser' => array(
-        'custom_settings' => FALSE,
-      ),
-      'about_page_related_teaser' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -154,14 +100,7 @@ function nas_bird_type_feature_strongarm() {
           'weight' => '6',
         ),
       ),
-      'display' => array(
-        'language' => array(
-          'default' => array(
-            'weight' => '0',
-            'visible' => TRUE,
-          ),
-        ),
-      ),
+      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__bird'] = $strongarm;

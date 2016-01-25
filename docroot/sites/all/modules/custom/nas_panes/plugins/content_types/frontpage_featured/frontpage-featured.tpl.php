@@ -15,8 +15,8 @@
 <div class="curtain-content light-text">
   <div class="row space-bottom contextual-links-region">
     <?php print $contextual_links; ?>
-    <div class="column medium-6 medium-offset-6">
-      <div class="curtain-card">
+    <div class="column medium-6 <?php if ($extra_options['position'] == 'right') print 'medium-offset-6' ?>">
+      <div class="curtain-card <?php if (empty($extra_options['no_bg'])) print 'no-bg'?>">
         <?php print $blue_text_link; ?>
         <h2 class="curtain-card-headline"><?php print $title_link; ?></h2>
         <p class="curtain-card-blurb">
