@@ -23,7 +23,7 @@ define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
 define('NAS_IMPORT_FEEDS_IBA', 'iba_import');
 define('NAS_IMPORT_FEEDS_IBA_STATE', 'iba_states_import');
-define('NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT', 'http://netapp.audubon.org/IBARestSvcUAT/IBAService/Export/');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT', 'http://netapp.audubon.org/IBARestSvc/IBAService/Export/');
 define('NAS_IMPORT_FEEDS_IBA_IMPORT_ALL', 'All');
 define('NAS_IMPORT_FEEDS_IBA_IMPORT_UPDATES', 'Updates');
 define('NAS_IMPORT_FEEDS_IBA_IMPORT_ITEM', 'Site');
