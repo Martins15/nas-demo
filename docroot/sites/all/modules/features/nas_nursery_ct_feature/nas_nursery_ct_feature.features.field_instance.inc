@@ -102,20 +102,24 @@ function nas_nursery_ct_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-nursery-field_nursery_geolocation'
-  $field_instances['node-nursery-field_nursery_geolocation'] = array(
+  // Exported field_instance: 'node-nursery-field_nursery_address'
+  $field_instances['node-nursery-field_nursery_address'] = array(
     'bundle' => 'nursery',
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'geofield',
+        'module' => 'addressfield',
         'settings' => array(
-          'data' => 'full',
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
         ),
-        'type' => 'geofield_wkt',
-        'weight' => 2,
+        'type' => 'addressfield_default',
+        'weight' => 3,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -173,8 +177,104 @@ function nas_nursery_ct_feature_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_nursery_geolocation',
-    'label' => 'Geolocation',
+    'field_name' => 'field_nursery_address',
+    'label' => 'Address',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield',
+      'settings' => array(
+        'available_countries' => array(),
+        'default_country' => 'US',
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-country' => 'address-hide-country',
+          'organisation' => 'organisation',
+          'name-full' => 0,
+          'name-oneline' => 0,
+        ),
+      ),
+      'type' => 'addressfield_standard',
+      'weight' => 43,
+    ),
+  );
+
+  // Exported field_instance: 'node-nursery-field_nursery_geofield'
+  $field_instances['node-nursery-field_nursery_geofield'] = array(
+    'bundle' => 'nursery',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 4,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_nursery_geofield',
+    'label' => 'Geo Location',
     'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -184,7 +284,7 @@ function nas_nursery_ct_feature_field_default_field_instances() {
       'module' => 'geocoder',
       'settings' => array(
         'delta_handling' => 'default',
-        'geocoder_field' => 'field_nursery_location',
+        'geocoder_field' => 'field_nursery_address',
         'geocoder_handler' => 'google',
         'handler_settings' => array(
           'google' => array(
@@ -200,100 +300,15 @@ function nas_nursery_ct_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 42,
-    ),
-  );
-
-  // Exported field_instance: 'node-nursery-field_nursery_location'
-  $field_instances['node-nursery-field_nursery_location'] = array(
-    'bundle' => 'nursery',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location_default',
-        'weight' => 1,
-      ),
-      'nas_editorial_card' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_related_features' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_no_section_link' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small_state' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_nursery_location',
-    'label' => 'Location',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'location_cck',
-      'settings' => array(),
-      'type' => 'location',
-      'weight' => 41,
+      'weight' => 44,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Address');
   t('Body');
-  t('Geolocation');
-  t('Location');
+  t('Geo Location');
 
   return $field_instances;
 }
