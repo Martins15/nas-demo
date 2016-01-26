@@ -3349,6 +3349,5 @@ function nas_master_update_7235() {
   module_enable(array(
     'nas_nursery_ct_feature',
     'nas_nursery_import_feature',
-    'location_feeds',
   ));
 }
