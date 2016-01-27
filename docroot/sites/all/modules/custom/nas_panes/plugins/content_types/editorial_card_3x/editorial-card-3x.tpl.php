@@ -23,7 +23,7 @@
         <h2 class="thin">
           <?php print $title; ?>
           <?php if ($more_link): ?>
-            <small class="hide-for-large hide-for-xlarge"><?php print $more_link; ?></small>
+            <small class="hide-for-large hide-for-xlarge right"><?php print $more_link; ?></small>
           <?php endif; ?>
         </h2>
       </div>
