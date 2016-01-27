@@ -14942,6 +14942,9 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
   .editorial-card-3x .section-header h2 {
     margin-top: 0;
   }
+  .editorial-card-3x .section-header h2 small {
+    margin-top: 6px;
+  }
   .editorial-card-3x .card-set .editorial-card {
     min-height: 0 !important;
   }
@@ -14976,6 +14979,9 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 
   .editorial-card-3x .section-header h2 {
     margin-top: 0;
+  }
+  .editorial-card-3x .section-header h2 small {
+    margin-top: 6px;
   }
   .editorial-card-3x .card-set .editorial-card {
     min-height: 0 !important;
