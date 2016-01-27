@@ -69,11 +69,11 @@
         </div>
         <div class="map-legend">
           <div class="map-legend-point">
-            <span class="swatch image"></span>
+            <span class="swatch image point-winter"></span>
             <span><?php print t('Winter', array(), array('langcode' => $langcode)); ?></span>
           </div>
           <div class="map-legend-point">
-            <span class="swatch image"></span>
+            <span class="swatch image point-summer"></span>
             <span><?php print t('Summer', array(), array('langcode' => $langcode)); ?></span>
           </div>
           <br class="hide-for-large hide-for-xlarge">

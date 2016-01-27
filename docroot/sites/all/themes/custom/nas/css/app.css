@@ -11505,6 +11505,12 @@ body.black-bg .slide-caption {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.focal-bird-map .map-legend-point .swatch.point-winter {
+  background-image: url(../img/kappa-line-key-blue.png);
+}
+.focal-bird-map .map-legend-point .swatch.point-summer {
+  background-image: url(../img/kappa-line-key-yellow.png);
+}
 .focal-bird-map .map-legend-point .swatch:not(.image):after {
   content: "";
   position: absolute;
@@ -11619,18 +11625,35 @@ body.black-bg .slide-caption {
   padding: 10px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   background-color: #E5E5E5;
+  margin-top: 15px;
 }
 @media only screen and (min-width: 768px) {
   .focal-bird-map .map-header {
-    margin-bottom: 45px;
+    margin-bottom: 30px;
   }
 }
 .focal-bird-map .map-header .map-caption-left {
   float: left;
 }
+@media only screen and (min-width: 768px) {
+  .focal-bird-map .map-header .map-caption-left {
+    margin-bottom: 45px;
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .focal-bird-map .map-header .map-caption-left p {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
 .focal-bird-map .map-header .map-caption-right {
-  float: right;
   margin-top: 14px;
+}
+@media only screen and (min-width: 601px) {
+  .focal-bird-map .map-header .map-caption-right {
+    float: right;
+  }
 }
 .focal-bird-map .map-share {
   padding: 10px;

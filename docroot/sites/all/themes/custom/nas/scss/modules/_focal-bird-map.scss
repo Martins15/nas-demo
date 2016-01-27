@@ -187,6 +187,14 @@
       background-size: contain;
       background-repeat: no-repeat;
 
+      &.point-winter {
+        background-image: url(../img/kappa-line-key-blue.png);
+      }
+
+      &.point-summer {
+        background-image: url(../img/kappa-line-key-yellow.png);
+      }
+
       &:not(.image):after {
         content: "";
         position: absolute;
@@ -312,17 +320,33 @@
     padding: $size-space;
     font-family: $font-sans;
     background-color: #E5E5E5;
+    margin-top: 15px;
 
     @include breakpoint(large-up) {
-      margin-bottom: 45px;
+      margin-bottom: 30px;
     }
 
     .map-caption-left {
       float: left;
+
+      @include breakpoint(large-up) {
+        margin-bottom: 45px;
+        width: 70%;
+      }
+
+      p {
+        @include breakpoint(max-width, #{upper-bound($small-range)}) {
+          font-size: $size-text-small;
+          line-height: $size-line-small;
+        }
+      }
     }
 
     .map-caption-right {
-      float: right;
+      @include breakpoint(medium-up) {
+        float: right;
+      }
+
       margin-top: 14px;
     }
   }
