@@ -1,10 +1,10 @@
 <?php
 /**
  * @file
- * Query plugin for nas_views_json_query.
+ * Query plugin for nasnp_views_json_query.
  */
 
-class nas_views_json_query_plugin_query_json extends views_json_query_plugin_query_json {
+class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_query_json {
   /**
    * Fetch file.
    */
