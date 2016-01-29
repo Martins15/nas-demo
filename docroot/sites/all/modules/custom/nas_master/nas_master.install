@@ -3341,3 +3341,13 @@ function nas_master_update_7234() {
     array('nas_site_template_feature' => array('page_manager_handlers'))
   );
 }
+
+/**
+ * Enable Nursery CT and importer.
+ */
+function nas_master_update_7235() {
+  module_enable(array(
+    'nas_nursery_ct_feature',
+    'nas_nursery_import_feature',
+  ));
+}
