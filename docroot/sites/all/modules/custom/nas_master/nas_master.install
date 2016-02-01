@@ -3350,5 +3350,6 @@ function nas_master_update_7235() {
     'nas_nursery_ct_feature',
     'nas_nursery_import_feature',
     'nas_native_plants_search_page_feature',
+    'nas_permalink_et_feature',
   ));
 }
