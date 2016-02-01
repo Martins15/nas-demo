@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Native Plants Search page feature.
+ */
+
+include_once 'nas_native_plants_search_page_feature.features.inc';
