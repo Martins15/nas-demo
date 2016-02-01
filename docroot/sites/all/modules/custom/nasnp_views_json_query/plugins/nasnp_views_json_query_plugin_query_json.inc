@@ -5,7 +5,7 @@
  */
 
 class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_query_json {
-  function query($get_count = FALSE) {
+  public function query($get_count = FALSE) {
     $filters = array();
     if (isset($this->filter)) {
       foreach ($this->filter as $filter) {
@@ -22,7 +22,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
   /**
    * Fetch file.
    */
-  function fetch_file($uri) {
+  public function fetch_file($uri) {
     // Check for the zipcode value; do not request any data if no zipcode.
     $request = FALSE;
     if (isset($this->filter)) {
@@ -55,7 +55,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
   /**
    * Parse.
    */
-  function parse(&$view, $data) {
+  public function parse(&$view, $data) {
     // Audubon JSON needs double decoding.
     $decode = drupal_json_decode($data->contents);
     // Do not process if there was no request.
