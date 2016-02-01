@@ -14,7 +14,7 @@ function nas_permalink_et_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'auto_entitylabel_pattern_permalink_permalink';
-  $strongarm->value = '[permalink:field_email] [permalink:created:nas_date]';
+  $strongarm->value = '[permalink:email] [permalink:created:nas_date]';
   $export['auto_entitylabel_pattern_permalink_permalink'] = $strongarm;
 
   $strongarm = new stdClass();
