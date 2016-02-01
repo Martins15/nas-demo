@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Permalink Entity Type feature.
+ */
+
+include_once 'nas_permalink_et_feature.features.inc';
