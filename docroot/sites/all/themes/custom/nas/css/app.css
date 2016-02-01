@@ -11508,12 +11508,6 @@ body.black-bg .slide-caption {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.focal-bird-map .map-legend-point .swatch.point-winter {
-  background-image: url(../img/kappa-line-key-blue.png);
-}
-.focal-bird-map .map-legend-point .swatch.point-summer {
-  background-image: url(../img/kappa-line-key-yellow.png);
-}
 .focal-bird-map .map-legend-point .swatch:not(.image):after {
   content: "";
   position: absolute;

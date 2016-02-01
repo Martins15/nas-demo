@@ -191,14 +191,6 @@
       background-size: contain;
       background-repeat: no-repeat;
 
-      &.point-winter {
-        background-image: url(../img/kappa-line-key-blue.png);
-      }
-
-      &.point-summer {
-        background-image: url(../img/kappa-line-key-yellow.png);
-      }
-
       &:not(.image):after {
         content: "";
         position: absolute;
