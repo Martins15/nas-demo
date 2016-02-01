@@ -11492,6 +11492,9 @@ body.black-bg .slide-caption {
 .focal-bird-map .map-legend-point:last-child {
   margin-right: 0;
 }
+.focal-bird-map .map-legend-point.kappa-point .image {
+  border: 0;
+}
 .focal-bird-map .map-legend-point span {
   display: inline-block;
   vertical-align: middle;
@@ -11637,7 +11640,6 @@ body.black-bg .slide-caption {
 }
 @media only screen and (min-width: 768px) {
   .focal-bird-map .map-header .map-caption-left {
-    margin-bottom: 45px;
     width: 70%;
   }
 }
