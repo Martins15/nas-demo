@@ -23,14 +23,24 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
    * Fetch file.
    */
   function fetch_file($uri) {
+    // Check for the zipcode value; do not request any data if no zipcode.
+    $request = FALSE;
     if (isset($this->filter)) {
       foreach ($this->filter as $key => $filter) {
         if ($filter->options['key'] == 'zipcode') {
           $uri = str_replace('zipcode', $filter->value, $uri);
           unset($this->filter[$key]);
+          $request = TRUE;
         }
       }
     }
+
+    // Return empty string to terminate the parse step.
+    if (!$request) {
+      return drupal_json_encode('');
+    }
+
+    // Hard code caching - if there are saved results use them.
     $destination = 'public://views_json_query';
     $cache_file = 'views_json_query_' . md5($uri);
     $cache_file_uri = "$destination/$cache_file";
@@ -46,7 +56,13 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
    * Parse.
    */
   function parse(&$view, $data) {
-    $data->contents = json_decode($data->contents, FALSE);
-    parent::parse($view, $data);
+    // Audubon JSON needs double decoding.
+    $decode = drupal_json_decode($data->contents);
+    // Do not process if there was no request.
+    if ($decode === '') {
+      return TRUE;
+    }
+    $data->contents = $decode;
+    return parent::parse($view, $data);
   }
 }
