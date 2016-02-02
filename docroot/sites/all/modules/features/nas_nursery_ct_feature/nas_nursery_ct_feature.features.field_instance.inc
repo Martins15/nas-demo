@@ -188,7 +188,7 @@ function nas_nursery_ct_feature_field_default_field_instances() {
       'module' => 'addressfield',
       'settings' => array(
         'available_countries' => array(),
-        'default_country' => 'US',
+        'default_country' => '',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
