@@ -24,9 +24,6 @@ function nas_i18n_redirect_help($path, $arg) {
  * Implements hook_init().
  */
 function nas_i18n_redirect_init() {
-  global $theme;
-  $theme_default = variable_get('theme_default', 'bartik');
-
   $path = $_GET['q'];
   $language = i18n_language_interface();
   $default_language = language_default();
@@ -38,8 +35,8 @@ function nas_i18n_redirect_init() {
       drupal_goto($translations[$language->language]['href'], array('language' => $language, 'query' => drupal_get_query_parameters()), 301);
     }
   }
-  elseif ($theme_default == $theme && $language->language != $default_language->language && !_nas_i18n_redirect_prevent($path)) {
-    nas_alters_show_language_message();
+  elseif ($language->language != $default_language->language && !_nas_i18n_redirect_prevent($path)) {
+    _nas_i18n_redirect_show_language_message();
     if ($path == variable_get('site_frontpage', 'node')) {
       $path = '';
     }
@@ -47,7 +44,23 @@ function nas_i18n_redirect_init() {
   }
 }
 
+/**
+ * Helper function to check if we should prevent redirect.
+ */
 function _nas_i18n_redirect_prevent($path) {
+  // We should redirect only GET requests.
+  if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+    return TRUE;
+  }
+
+  // We should redirect only for the site default theme.
+  global $theme;
+  $theme_default = variable_get('theme_default', 'bartik');
+  if ($theme_default != $theme) {
+    return TRUE;
+  }
+
+  // Exclusions for special GET requests.
   $exclusions = array(
     'ajax/audubon-near-you',
   );
@@ -55,4 +68,12 @@ function _nas_i18n_redirect_prevent($path) {
     return TRUE;
   }
   return FALSE;
+}
+
+/**
+ * Helper function to set a flag that we need to show language message.
+ */
+function _nas_i18n_redirect_show_language_message() {
+  global $base_path;
+  setcookie('nas_language_message', 1, NULL, $base_path);
 }
