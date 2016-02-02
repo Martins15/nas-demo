@@ -66,6 +66,14 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['fields']['value_1']['field'] = 'value';
   $handler->display->display_options['fields']['value_1']['label'] = 'CommonName';
   $handler->display->display_options['fields']['value_1']['key'] = 'CommonName';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Links';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = 'Add local info';
+  $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['path'] = 'node/add/native-plant?edit[title]=[value_1] [value]';
   /* Filter criterion: zipcode: Value */
   $handler->display->display_options['filters']['value']['id'] = 'value';
   $handler->display->display_options['filters']['value']['table'] = 'nasnp_json';
@@ -110,6 +118,8 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('Enter your ZIP code.'),
     t('ScientificName'),
     t('CommonName'),
+    t('Links'),
+    t('Add local info'),
     t('ZIP'),
     t('Content pane'),
     t('View panes'),
