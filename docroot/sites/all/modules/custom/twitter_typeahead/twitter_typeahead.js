@@ -65,6 +65,17 @@
           if (field_settings[i].options !== undefined) {
             dataset = $.extend(dataset, field_settings[i].options);
           }
+
+          if (field_settings[i].templates !== undefined) {
+            dataset.templates = {};
+            for (var template in field_settings[i].templates) {
+              dataset.templates[template] = (function (settings, element) {
+                  return function() {
+                    return executeFunctionByName(field_settings[i].templates[template], window, arguments[0], settings, element);
+                  };
+                })(field_settings[i], element);
+            }
+          }
           datasets.push(dataset);
         }
         return datasets;

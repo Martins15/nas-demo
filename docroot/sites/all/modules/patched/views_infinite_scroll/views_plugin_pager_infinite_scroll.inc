@@ -60,19 +60,25 @@ class views_plugin_pager_infinite_scroll extends views_plugin_pager_full {
     switch ($this->view->plugin_name) {
       case 'default':
         $content_selector = 'div.view-content';
-        $items_selector = '.views-row';
+        if (isset($this->view->style_options['grouping']) && !empty($this->view->style_options['grouping'])) {
+          $items_selector = ' > *';
+        }
+        else {
+          $items_selector = '.views-row';
+        }
         break;
       case 'grid':
         $content_selector = 'div.view-content > table > tbody';
         $items_selector = 'tr';
         break;
       case 'list':
-       if (array_key_exists('wrapper_class', $style_options) && !empty($style_options['wrapper_class'])) {
-         $wrapper_class = '.' . $style_options['wrapper_class'];
-       } else {
-         $wrapper_class = '.item-list';
-       }
-       $content_selector = 'div.view-content>' . $wrapper_class . ' > *';
+        if (array_key_exists('wrapper_class', $style_options) && !empty($style_options['wrapper_class'])) {
+          $wrapper_class = '.' . $style_options['wrapper_class'];
+        }
+        else {
+          $wrapper_class = '.item-list';
+        }
+        $content_selector = 'div.view-content > ' . $wrapper_class . ' > *';
         $items_selector = '.views-row';
         break;
       case 'table':

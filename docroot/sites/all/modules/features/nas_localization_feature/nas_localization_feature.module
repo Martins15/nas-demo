@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Localization Feature feature.
+ */
+
+include_once 'nas_localization_feature.features.inc';

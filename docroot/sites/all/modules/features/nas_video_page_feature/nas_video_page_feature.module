@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Video Page feature feature.
+ */
+
+include_once 'nas_video_page_feature.features.inc';

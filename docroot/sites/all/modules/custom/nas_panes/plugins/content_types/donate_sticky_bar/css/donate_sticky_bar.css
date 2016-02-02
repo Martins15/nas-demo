@@ -1,0 +1,73 @@
+#OptimizelyDonationBar {
+  background-color: black;
+  bottom: 0;
+  height: 60px;
+  left: 0;
+  padding: 7pt;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+#OptimizelyDonationBar form {
+  display: inline-block;
+}
+
+#OptimizelyDonationBar input[type="submit"], #OptimizelyDonationBar a.buttonLink {
+  background-color: #ef5a3e;
+  border: none;
+  border-color: #dd360f;
+  border-radius: 3px;
+  color: white !important;
+  display: inline-block;
+  font: 16pt/1 "Source Sans Pro", Verdana, sans-serif;
+  height: 40px;
+  padding: 9px 10px;
+  width: 140px;
+}
+
+#OptimizelyDonationBar input[type="text"] {
+  display: inline-block;
+  font: 16pt/1 "Source Sans Pro", Verdana, sans-serif;
+  height: 40px;
+  margin: 0 10pt;
+  padding: 6pt;
+  width: 140px;
+}
+
+#OptimizelyDonationBar p {
+  color: white;
+  display: inline-block;
+  font: 16pt/1 "Source Sans Pro", Verdana, sans-serif;
+}
+
+.curtain-arrow {
+  bottom: 50px !important;
+}
+
+.curtain .hero-attribution {
+  margin-bottom: 50px !important;
+}
+
+.footer-copyright {
+  margin-bottom: 60px !important;
+}
+
+@media screen and (max-width: 900px) {
+  #OptimizelyDonationBar {
+    display: none;
+  }
+
+  .curtain-arrow {
+    bottom: 10px !important;
+  }
+
+  .curtain .hero-attribution {
+    margin-bottom: 0 !important;
+  }
+
+  .footer-copyright {
+    margin-bottom: 0 !important;
+  }
+}

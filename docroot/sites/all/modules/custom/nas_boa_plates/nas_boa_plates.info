@@ -1,0 +1,4 @@
+name = NAS Boa plates
+description = Helper module to show tiled BOA plates
+core = 7.x
+package = NAS

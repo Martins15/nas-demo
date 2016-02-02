@@ -15,6 +15,7 @@ $plugin = array(
   'icon' => 'site_template_small_header.png',
   'theme' => 'site_template_small_header',
   'regions' => array(
+    'top' => t('Top'),
     'header' => t('Header'),
     'main' => t('Main'),
     'footer' => t('Footer'),

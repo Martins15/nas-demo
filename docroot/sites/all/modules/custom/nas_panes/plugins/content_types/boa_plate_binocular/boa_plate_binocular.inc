@@ -60,7 +60,7 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
 
   $nodes = array();
   foreach ($conf['wrapper'] as $value) {
-    if ($value['entity_reference'] && $node = node_load($value['entity_reference']['entity_id'])) {
+    if ($value['entity_reference'] && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
       // Select nodes only with plate illustration.
       if ($get_field_boa_illustration = field_get_items('node', $node, 'field_boa_illustration')) {
         $image_color = '';

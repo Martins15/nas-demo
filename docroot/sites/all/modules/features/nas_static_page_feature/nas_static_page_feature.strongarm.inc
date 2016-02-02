@@ -107,10 +107,19 @@ function nas_static_page_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '4',
+          'weight' => '5',
+        ),
+        'locations' => array(
+          'weight' => '6',
+        ),
+        'metatags' => array(
+          'weight' => '8',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '7',
         ),
       ),
       'display' => array(),

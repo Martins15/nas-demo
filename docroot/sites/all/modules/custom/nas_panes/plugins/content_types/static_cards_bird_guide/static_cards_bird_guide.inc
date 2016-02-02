@@ -98,19 +98,20 @@ function static_cards_bird_guide_render($subtype, $conf, $args, $contexts) {
     }
   }
 
-  $nodes = node_load_multiple($nids);
+  $nodes = _i18n_node_load_multiple($nids);
   foreach ($nodes as $node) {
     $teasers[] = node_view($node, 'teaser');
   }
 
-  $content = theme('static_cards_bird_guide', array(
+  $block->content = '';
+  if (!empty($teasers)) {
+    $block->content = theme('static_cards_bird_guide', array(
       'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : '',
       'items' => $teasers,
       'links' => $links,
       'contextual_links' => $contextual_links,
     ));
-
-  $block->content = $content;
+  }
 
   return $block;
 }

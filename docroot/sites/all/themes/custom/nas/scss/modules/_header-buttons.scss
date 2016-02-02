@@ -89,7 +89,12 @@ header.global-header {
 body.node-type-bird {
   .large-8.columns{
     i:before {
-      display:none;
+      display: none;
+    }
+    .bird-guide-external {
+      i:before {
+        display: block;
+      }
     }
   }
   i.icon-info:before,i.icon-music:before{

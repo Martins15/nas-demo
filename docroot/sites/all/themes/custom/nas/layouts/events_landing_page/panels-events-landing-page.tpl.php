@@ -17,7 +17,7 @@
   </div>
 </div>
 <?php endif; ?>
-<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content">
+<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content ffw-hack-margin-top">
   <div class="row">
     <!-- BEGIN MAIN COLUMN -->
     <div class="large-8 columns index-list">

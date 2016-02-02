@@ -33,7 +33,7 @@ function nas_panes_press_contact_render($subtype, $conf, $args, $contexts) {
 
   $contacts = array();
   foreach ($press_contact_items as $press_contact_item) {
-    $press_contact = node_load($press_contact_item['target_id']);
+    $press_contact = _i18n_node_load($press_contact_item['target_id']);
 
     $name = check_plain($press_contact->title);
 

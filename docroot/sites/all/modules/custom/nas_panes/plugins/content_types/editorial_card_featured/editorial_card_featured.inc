@@ -137,7 +137,7 @@ function editorial_card_featured_render($subtype, $conf, $args, $contexts) {
   $blue_text_link = l(t($conf['blue_link_text']), $conf['blue_link_url'], array('attributes' => array('class' => array('editorial-card-slug'))));
 
   $date = '';
-  if ($conf['date']) {
+  if (isset($conf['date'])) {
     $date = format_date(strtotime($conf['date']), 'nas_date');
   }
 

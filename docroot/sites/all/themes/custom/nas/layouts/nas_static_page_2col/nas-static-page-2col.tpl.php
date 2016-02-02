@@ -54,6 +54,16 @@
         <p class="deck hide-for-large hide-for-xlarge"><?php print $content['subtitle']; ?></p>
       <?php endif; ?>
       <?php print $content['main']; ?>
+
+      <?php if(!empty($content['file_attachments'])): ?>
+      <div class="file-attachments">
+        <h3><?php print t('Downloadable Resources'); ?></h3>
+        <div class="files-list">
+          <?php print $content['file_attachments']; ?>
+        </div>
+      </div>
+      <?php endif;?>
+
     </div>
     <div class="large-4 columns sidebar">
       <?php print $content['right']; ?>

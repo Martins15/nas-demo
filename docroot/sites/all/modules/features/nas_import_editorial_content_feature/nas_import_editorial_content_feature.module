@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Import Editorial content Feature feature.
+ */
+
+include_once 'nas_import_editorial_content_feature.features.inc';

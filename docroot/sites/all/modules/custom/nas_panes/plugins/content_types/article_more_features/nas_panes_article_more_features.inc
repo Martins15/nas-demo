@@ -91,7 +91,7 @@ function nas_panes_article_more_features_render($subtype, $conf, $args, $context
   // Manual override.
   if (!$conf_is_empty) {
     foreach ($conf[$conf_key] as $value) {
-      if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+      if (!empty($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
         $news_nodes[] = $node;
       }
     }
@@ -100,7 +100,7 @@ function nas_panes_article_more_features_render($subtype, $conf, $args, $context
   else {
     $view_results = views_get_view_result('articles_more_features', 'default', $context_node->nid);
     foreach ($view_results as $result) {
-      $news_nodes[] = node_load($result->nid);
+      $news_nodes[] = _i18n_node_load($result->nid);
     }
   }
 
@@ -160,7 +160,7 @@ function nas_panes_article_more_features_build_contextual_links($subtype, $node)
     ctools_export_crud_save('panelizer_defaults', $panelizer);
 
     // Reload node cause panel is saved.
-    $cloned_node = node_load($node->nid, NULL, TRUE);
+    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
     $pid = nas_panes_article_more_features_lookup_pid($subtype, $cloned_node);
   }
   $page_manager = $node->panelizer['page_manager'];

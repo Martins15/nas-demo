@@ -87,8 +87,8 @@ function nas_footer_pane_custom_pane_edit_form_submit(&$form, &$form_state) {
  */
 function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
-  $footer_menu_tree = menu_tree_all_data(NAS_MENU_FOOTER_MENU, 2);
-  $footer_copyright_menu_tree = menu_tree_all_data(NAS_MENU_FOOTER_COPYRIGHT_MENU, 2);
+  $footer_menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_FOOTER_MENU));
+  $footer_copyright_menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_FOOTER_COPYRIGHT_MENU));
   foreach ($footer_copyright_menu_tree as $key => $value) {
     if ($value['link']['hidden'] == TRUE) {
       unset($footer_copyright_menu_tree[$key]);
@@ -101,9 +101,6 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
       }
     }
   }
-  $title = '';
-  $mission = '';
-  $copyright = '';
 
   $logo = '';
   $logo_path = filter_xss($conf['logo_path']);
@@ -138,9 +135,9 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
   $t_vars = array(
     'logo' => $logo,
-    'mission_title' => $title,
-    'mission' => $mission,
-    'copyright' => $copyright,
+    'mission_title' => t($title),
+    'mission' => t($mission),
+    'copyright' => t($copyright),
     'footer_menu' => $footer_menu,
     'footer_copyright_menu' => $footer_copyright_menu,
     'contextual_links' => $contextual_links
@@ -168,13 +165,13 @@ function nas_footer_pane_get_contextual_links() {
   ctools_add_js('ajax-responder');
 
   // Lookup pid.
-  $result = ctools_export_load_object('page_manager_handlers', 'conditions', array('name' => $pm_page['handler']->conf['panels_everywhere_site_template']));
-  $did = $result[$pm_page['handler']->conf['panels_everywhere_site_template']]->conf['did'];
-  $pm_page['handler']->conf['display'] = panels_load_display($did);
+  if (empty($pm_page['handler']->conf['display'])) {
+    $pm_page['handler']->conf['display'] = panels_load_display($pm_page['handler']->conf['did']);
+  }
   $pid = 0;
   // Get pid from loaded display.
   foreach ($pm_page['handler']->conf['display']->content as $_pid => $pane) {
-    if (($pane->subtype == 'nas_footer_pane') && isset($pane->did) == $did) {
+    if (($pane->subtype == 'nas_footer_pane')) {
       $pid = $_pid;
       break;
     }

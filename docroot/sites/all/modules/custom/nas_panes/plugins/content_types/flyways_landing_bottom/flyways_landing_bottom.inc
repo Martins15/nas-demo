@@ -145,14 +145,14 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
       // news article twice.
       foreach ($conf['flyway'][$i]['entity_reference'] as $value) {
         if (!empty($value['entity_id'])) {
-          $news_nodes[] = node_load($value['entity_id']);
+          $news_nodes[] = _i18n_node_load($value['entity_id']);
         }
       }
     }
     else {
       $view_results = views_get_view_result('nas_news', 'flyway_in_the_news', $condition);
       foreach ($view_results as $result) {
-        $news_nodes[] = node_load($result->nid);
+        $news_nodes[] = _i18n_node_load($result->nid);
       }
     }
 

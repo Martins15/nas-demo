@@ -868,6 +868,44 @@ function nas_fpp_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-nas_flyway_section-field_block_visibility'
+  $field_instances['fieldable_panels_pane-nas_flyway_section-field_block_visibility'] = array(
+    'bundle' => 'nas_flyway_section',
+    'default_value' => array(
+      0 => array(
+        'value' => 'flyways_events ',
+      ),
+      1 => array(
+        'value' => 'flyways_nearyou ',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check the block box to HIDE it.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 6,
+      ),
+    ),
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_block_visibility',
+    'label' => 'Block Visibility (Hide)',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-nas_flyway_section-field_flyway'
   $field_instances['fieldable_panels_pane-nas_flyway_section-field_flyway'] = array(
     'bundle' => 'nas_flyway_section',
@@ -1374,7 +1412,9 @@ function nas_fpp_feature_field_default_field_instances() {
   t('About the Flyways');
   t('Background Cover');
   t('Background Image');
+  t('Block Visibility (Hide)');
   t('Bottom links');
+  t('Check the block box to HIDE it.');
   t('Color mode');
   t('Column count');
   t('Description');

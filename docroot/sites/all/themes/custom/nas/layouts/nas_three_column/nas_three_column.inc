@@ -18,6 +18,7 @@ $plugin = array(
     'magazine_bar' => t('Magazine Bar'),
     'left' => t('Left'),
     'main' => t('Main'),
+    'file_attachments' => t('File attachments'),
     'right' => t('Right'),
     'header' => t('Header'),
     'card_set' => t('Card Set')

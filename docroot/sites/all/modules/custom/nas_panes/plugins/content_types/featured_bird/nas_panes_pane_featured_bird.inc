@@ -113,7 +113,7 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
     return $block;
   }
 
-  $node = node_load($conf['bird']['entity_id']);
+  $node = _i18n_node_load($conf['bird']['entity_id']);
 
   $hero_image_item = field_get_items('node', $node, 'field_hero_image');
 

@@ -5,7 +5,7 @@
  */
 ?>
 
-<div id="audubon-near-you--office-chapter--wrapper">
+<div id="audubon-near-you--office-chapter--wrapper"<?php if (!empty($top_offset)) print " class='{$top_offset}'"; ?>>
   <div class="large-6 columns">
     <h2 class="title-block"><?php print t('Offices & Chapters'); ?></h2>
     <?php if (empty($items)) : ?>

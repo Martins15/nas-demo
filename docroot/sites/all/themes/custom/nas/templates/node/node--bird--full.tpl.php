@@ -95,8 +95,18 @@
     <?php endif; ?>
 
     <div id="node-<?php print $node->nid; ?>" class="bird-guide-card <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-      <?php if ($bird_priority): ?>
-      <div class="bird-guide-tag"><?php print t('Priority Bird'); ?></div>
+      <?php if ($bird_priority || $bird_threatened || $bird_endangered): ?>
+        <div class="bird-guide-tags">
+          <?php if ($bird_priority): ?>
+            <div class="bird-guide-tag bird-guide-tag-priority"><?php print t('Priority Bird'); ?></div>
+          <?php endif; ?>
+          <?php if ($bird_threatened): ?>
+            <div class="bird-guide-tag bird-guide-tag-threatened"><a href="<?php print $climate_url; ?>"><?php print t('Climate Threatened'); ?></a></div>
+          <?php endif; ?>
+          <?php if ($bird_endangered): ?>
+            <div class="bird-guide-tag bird-guide-tag-endangered"><a href="<?php print $climate_url; ?>"><?php print t('Climate Endangered'); ?></a></div>
+          <?php endif; ?>
+        </div>
       <?php endif; ?>
       <header class="bird-guide-header">
         <div class="row">
@@ -127,7 +137,20 @@
                     <?php print render($content['field_bird_habitat']); ?>
                 </tbody>
               </table>
-              <div class="hide-for-tiny hide-for-small hide-for-medium "><?php print render($content['field_bird_description']); ?></div>
+              <div class="hide-for-tiny hide-for-small hide-for-medium ">
+                <?php print render($content['field_bird_description']); ?>
+              </div>
+              <?php if (!empty($external_content)): ?>
+                <div class="bird-guide-external">
+                  <div class="bird-guide-external-header">
+                    <?php print $external_headline; ?>
+                    <a onclick="jQuery('.bird-guide-external').fadeOut(200)" class="close"><i class="icon-delete"></i></a>
+                  </div>
+                  <div class="bird-guide-external-content">
+                    <?php print $external_content; ?>
+                  </div>
+                </div>
+              <?php endif; ?>
             </section>
             <section class="bird-guide-section left-col">
               <h5><i class="icon-camera"></i> <?php print t('Photo Gallery'); ?></h5>
@@ -158,14 +181,9 @@
           </div>
           <div class="large-4 columns">
             <section class="illustration-attribution bird-guide-section right-col small center hide-for-medium hide-for-small hide-for-tiny">
-              <p>
-                Text © Kenn Kaufman, adapted from <br>
-                <?php print l('<em>Lives of North American Birds</em>', 'kaufman', array('html' => TRUE)); ?>
-              </p>
-              <p>
-                Illustration © David Allen Sibley.<br>
-                <?php print l('Learn more about these drawings.', 'sibley'); ?>
-              </p>
+              <?php if (!empty($bird_guide_credits)): ?>
+                <?php print render($bird_guide_credits); ?>
+              <?php endif; ?>
             </section>
 
             <?php if (!empty($content['field_bird_migration'])): ?>
@@ -183,7 +201,9 @@
                 <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $title; ?>&body=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
               </section>
               <section class="bird-guide-section right-col small center">
-                <?php print $donate_link; ?>
+                <?php if (!empty($bird_guide_download)): ?>
+                  <?php print render($bird_guide_download); ?>
+                <?php endif; ?>
               </section>
             </div>
 
@@ -198,49 +218,54 @@
               <ul class="range-map-key">
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #7B7EB7"></span>
-                  <span class="key-label">All Seasons - Common</span>
+                  <span class="key-label"><?php print t('All Seasons - Common'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #BABADB"></span>
-                  <span class="key-label">All Seasons - Uncommon</span>
+                  <span class="key-label"><?php print t('All Seasons - Uncommon'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #FE1450"></span>
-                  <span class="key-label">Breeding - Common</span>
+                  <span class="key-label"><?php print t('Breeding - Common'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #FFAAA8"></span>
-                  <span class="key-label">Breeding - Uncommon</span>
+                  <span class="key-label"><?php print t('Breeding - Uncommon'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #00B0EB"></span>
-                  <span class="key-label">Winter - Common</span>
+                  <span class="key-label"><?php print t('Winter - Common'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #79D9F6"></span>
-                  <span class="key-label">Winter - Uncommon</span>
+                  <span class="key-label"><?php print t('Winter - Uncommon'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #D3D4C6"></span>
-                  <span class="key-label">Migration - Common</span>
+                  <span class="key-label"><?php print t('Migration - Common'); ?></span>
                 </li>
                 <li class="key-item">
                   <span class="key-swatch" style="background-color: #EDECDC"></span>
-                  <span class="key-label">Migration - Uncommon</span>
+                  <span class="key-label"><?php print t('Migration - Uncommon'); ?></span>
                 </li>
               </ul>
             </section>
             <?php endif; ?>
+            <?php
+            global $language;
+            // Remove this block for ES language for anonymous users.
+            if ($language->language != 'es' || user_is_logged_in()): ?>
             <section id="bird-songs-calls" class="bird-guide-section right-col small sans">
               <h5><i class="icon-music"></i> <?php print t('Songs and Calls'); ?></h5>
               <?php print render($content['field_bird_calls']); ?>
               <br />
               <?php print render($content['field_bird_audio']); ?>
               <section id="bird-songs-credits" class="sound-attribution bird-guide-section right-col small left hide-for-medium hide-for-small hide-for-tiny">
-                Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others.</br>
-                <a href="http://langelliott.com/audubon-bird-songs/"><em>Learn more about this sound collection</em></a>.            
+                <?php print t('Audio © Lang Elliott, Bob McGuire, Kevin Colver, Martyn Stewart and others.'); ?></br>
+                <a href="http://langelliott.com/audubon-bird-songs/"><em><?php print t('Learn more about this sound collection'); ?></em></a>.
               </section>
             </section>
+            <?php endif; ?>
           </div>
         </div>
       </section>

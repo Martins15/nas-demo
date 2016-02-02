@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Location View Feature feature.
+ */
+
+include_once 'nas_location_view_feature.features.inc';

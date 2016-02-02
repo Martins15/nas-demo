@@ -72,14 +72,14 @@ function frontpage_editorial_cards_pane_render($subtype, $conf, $args, $contexts
     // news article twice.
     foreach ($conf['entity'] as $value) {
       if (!empty($value['entity_reference']['entity_id'])) {
-        $news_nodes[] = node_load($value['entity_reference']['entity_id']);
+        $news_nodes[] = _i18n_node_load($value['entity_reference']['entity_id']);
       }
     }
   }
   else {
     $view_results = views_get_view_result('nas_news', $view_diplay_id);
     foreach ($view_results as $result) {
-      $news_nodes[] = node_load($result->nid);
+      $news_nodes[] = _i18n_node_load($result->nid);
     }
   }
 

@@ -152,6 +152,23 @@ function nas_slideshow_feature_field_default_field_bases() {
         'icon-video' => 'icon-video',
         'icon-youtube' => 'icon-youtube',
         'icon-zoom' => 'icon-zoom',
+        'icon-mail' => 'icon-mail',
+        'icon-facebook' => 'icon-facebook',
+        'icon-twitter' => 'icon-twitter',
+        'icon-youtube' => 'icon-youtube',
+        'icon-pinterest' => 'icon-pinterest',
+        'icon-quote' => 'icon-quote',
+        'icon-info' => 'icon-info',
+        'icon-spin-widdershins' => 'icon-spin-widdershins',
+        'icon-spin-clockwise' => 'icon-spin-clockwise',
+        'icon-home' => 'icon-home',
+        'icon-delete' => 'icon-delete',
+        'icon-chevron-right' => 'icon-chevron-right',
+        'icon-chevron-left' => 'icon-chevron-left',
+        'icon-music' => 'icon-music',
+        'icon-check' => 'icon-check',
+        'icon-arrow-right' => 'icon-arrow-right',
+        'icon-expand' => 'icon-expand',
       ),
       'allowed_values_function' => '',
     ),
@@ -187,6 +204,36 @@ function nas_slideshow_feature_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'image',
+  );
+
+  // Exported field_base: 'field_slideshow_redirect'
+  $field_bases['field_slideshow_redirect'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_slideshow_redirect',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'link',
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'rel' => '',
+        'target' => 'default',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+    ),
+    'translatable' => 0,
+    'type' => 'link_field',
   );
 
   // Exported field_base: 'field_slideshow_related_features'

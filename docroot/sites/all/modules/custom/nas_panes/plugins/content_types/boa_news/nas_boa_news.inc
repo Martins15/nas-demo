@@ -70,7 +70,7 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
 
   // Manual override.
   if (!empty($conf[$conf_key]['entity_reference']['entity_id'])) {
-    $node = node_load($conf[$conf_key]['entity_reference']['entity_id']);
+    $node = _i18n_node_load($conf[$conf_key]['entity_reference']['entity_id']);
   }
   // Default behaviour.
   else {
@@ -78,7 +78,7 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
     if (!empty($bird_view_results)) {
       $result = reset($bird_view_results);
       $nid = $result->field_related_bird_node_nid;
-      $node = node_load($nid);
+      $node = _i18n_node_load($nid);
     }
   }
 
@@ -135,7 +135,7 @@ function nas_boa_news_build_contextual_links($subtype, $node) {
     ctools_export_crud_save('panelizer_defaults', $panelizer);
 
     // Reload node cause panel is saved.
-    $cloned_node = node_load($node->nid, NULL, TRUE);
+    $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
     $pid = nas_boa_news_lookup_pid($subtype, $cloned_node);
   }
   $page_manager = $node->panelizer['page_manager'];

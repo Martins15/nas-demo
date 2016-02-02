@@ -92,6 +92,13 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   $conf_key = 'default';
   if (isset($context->empty) && !$context->empty && !empty($context->data->nid)) {
     $conf_key = $context->data->nid;
+    // Try config for source node if current configuration is empty.
+    if (empty($conf[$conf_key]) && $context->data->language != LANGUAGE_NONE) {
+      $translations = _i18n_translation_node_get_translations($conf_key);
+      if (isset($translations[LANGUAGE_NONE])) {
+        $conf_key = $translations[LANGUAGE_NONE]->nid;
+      }
+    }
   }
 
   // Get featured news.
@@ -109,7 +116,7 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
       }
 
       $featured_news_ids[] = $article['entity_reference']['entity_id'];
-      $nodes[] = node_load($article['entity_reference']['entity_id']);
+      $nodes[] = _i18n_node_load($article['entity_reference']['entity_id']);
     }
 
     foreach ($nodes as $node) {

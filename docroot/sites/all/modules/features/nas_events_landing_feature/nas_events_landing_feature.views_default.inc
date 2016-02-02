@@ -164,6 +164,57 @@ function nas_events_landing_feature_views_default_views() {
     ),
   );
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Upcoming Events */
+  $handler = $view->new_display('panel_pane', 'Upcoming Events', 'panel_pane_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Indexed Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
+  /* Field: Indexed Content: Event Date » Start date */
+  $handler->display->display_options['fields']['field_event_date_value']['id'] = 'field_event_date_value';
+  $handler->display->display_options['fields']['field_event_date_value']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['field_event_date_value']['field'] = 'field_event_date_value';
+  $handler->display->display_options['fields']['field_event_date_value']['label'] = '';
+  $handler->display->display_options['fields']['field_event_date_value']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_event_date_value']['date_format'] = 'long';
+  $handler->display->display_options['fields']['field_event_date_value']['second_date_format'] = 'nas_date';
+  $handler->display->display_options['fields']['field_event_date_value']['link_to_entity'] = 0;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Indexed Content: Event state */
+  $handler->display->display_options['arguments']['event_state']['id'] = 'event_state';
+  $handler->display->display_options['arguments']['event_state']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['event_state']['field'] = 'event_state';
+  $handler->display->display_options['arguments']['event_state']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['event_state']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['event_state']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['event_state']['not'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Event Date: End date (indexed) */
+  $handler->display->display_options['filters']['field_event_date_value2']['id'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'now';
   $export['events_listing'] = $view;
 
   return $export;

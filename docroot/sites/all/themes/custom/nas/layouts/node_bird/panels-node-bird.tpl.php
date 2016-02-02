@@ -13,7 +13,6 @@
     </div>
     <?php print $content['main']; ?>
   </div>
-  <?php print $content['similar_birds']; ?>
   <?php if (!empty($content['in_action_left'])): ?>
   <div id="in-action">
     <div class="row section-header">
@@ -36,15 +35,21 @@
       </div>
     </div>
   </div>
-  <?php endif;?>
+  <?php endif; ?>
+  <?php if (!empty($content['focal_bird_map'])): ?>
+    <div class="focal-bird-map">
+      <?php print $content['focal_bird_map']; ?>
+    </div>
+  <?php endif; ?>
   <div id="in-the-news">
     <?php print $content['in_the_news']; ?>
   </div>
+
   <div id="across-audubon">
     <?php print $content['across_audubon']; ?>
   </div>
 </section>
-
+<?php print $content['similar_birds']; ?>
 <section class="card-set bg-1">
   <?php print $content['card_set']; ?>
 </section>

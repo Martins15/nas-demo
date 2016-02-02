@@ -6,6 +6,6 @@
 ?>
 <div class="row text-container add-to-your-calendar">
   <div class="columns">
-   <?php echo $download_link; ?>
+    <?php print $download_link; ?>
   </div>
 </div>

@@ -29,7 +29,7 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
     'min_depth' => 1,
     'min_depth' => 1,
   );
-  $_links = menu_build_tree('boa', $parameters);
+  $_links = i18n_menu_localize_tree(menu_build_tree('boa', $parameters));
   $links = array();
   foreach ($_links as $link) {
     if ($link['link']['router_path'] === 'node/%') {
@@ -44,14 +44,14 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
 
   $prev_path = $links[$prev_key]['link_path'];
   list(, $nid) = explode('/', $prev_path);
-  $prev_node = node_load($nid);
+  $prev_node = _i18n_node_load($nid);
   $prev_title_link = l($prev_node->title, $prev_path);
   $prev_text_link = l(t('Previous Family'), $prev_path);
   $prev_link = l('', $prev_path, array('attributes' => array('class' => 'previous')));
 
   $next_path = $links[$next_key]['link_path'];
   list(, $nid) = explode('/', $next_path);
-  $next_node = node_load($nid);
+  $next_node = _i18n_node_load($nid);
   $next_title_link = l($next_node->title, $next_path);
   $next_text_link = l(t('Next Family'), $next_path);
   $next_link = l('', $next_path, array('attributes' => array('class' => 'next')));

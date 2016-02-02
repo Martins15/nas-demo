@@ -113,7 +113,7 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
     return $block;
   }
 
-  $node = node_load($conf['bird']['entity_id']);
+  $node = _i18n_node_load($conf['bird']['entity_id']);
 
   $hero_image = file_load($conf['image']);
   $hero_image_path = image_style_url('hero_image', $hero_image->uri);

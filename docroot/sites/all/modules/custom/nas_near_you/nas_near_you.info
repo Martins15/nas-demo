@@ -1,0 +1,4 @@
+name = NAS Near You
+description = "Provide a admin page for audubon-near-you listing."
+package = NAS
+core = 7.x

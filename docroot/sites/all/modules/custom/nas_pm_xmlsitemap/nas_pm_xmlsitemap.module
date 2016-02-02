@@ -1,0 +1,117 @@
+<?php
+/**
+ * @file
+ * Main XMLSitemap - Page manager integration module file.
+ */
+
+/**
+ * Helper function; Get Page manager page(s) by decimal conversion of MD5 hash.
+ */
+function nas_pm_xmlsitemap_load_pages($dec = NULL, $length = 9) {
+  $items = &drupal_static(__FUNCTION__, array());
+
+  // Build list of SIDs.
+  if (empty($items)) {
+    ctools_include('export');
+    $pages = ctools_export_crud_load_all('page_manager_pages');
+    foreach ($pages as $subtask_id => $subtask) {
+      // Do not process disabled pages.
+      if (!empty($subtask->disabled)) {
+        continue;
+      }
+      // Do not process dynamic pages.
+      if (mb_strpos($subtask->path, '!') !== FALSE || mb_strpos($subtask->path, '%') !== FALSE) {
+        continue;
+      }
+      $sid = nas_pm_xmlsitemap_machine_name_to_dec($subtask_id, $length);
+      $items[$sid] = array(
+        'id' => $sid,
+        'type' => 'page_manager',
+        'subtype' => 'page_manager',
+        'loc' => $subtask->path,
+        'access' => 1,
+        'status' => 1,
+        'status_override' => 0,
+        'lastmod' => 0,
+        'priority' => XMLSITEMAP_PRIORITY_DEFAULT,
+        'priority_override' => 0,
+        'changefreq' => 0,
+        'changecount' => 0,
+        'language' => LANGUAGE_NONE,
+      );
+    }
+  }
+
+  return !is_null($dec) && isset($items[$dec]) ? $items[$dec] : $items;
+}
+
+/**
+ * Helper function; Convert Page manager page machine name to a decimal
+ * conversion of the MD5 hash.
+ */
+function nas_pm_xmlsitemap_machine_name_to_dec($machine_name, $length = 10) {
+  // As not every subtask has a PID we need to convert the subtask id to a
+  // decimal reprisentation. I'm uncertain of whether the truncated decimal
+  // conversion of an MD5 hash is unique enough, but I have limited
+  // alternatives.
+  $md5 = md5($machine_name);
+  $dec = base_convert($md5, 16, 10);
+  return drupal_substr($dec, 0, $length);
+}
+
+/**
+ * Helper function; rebuild xmlsitemap records for page manager pages.
+ */
+function _nas_pm_xmlsitemap_rebuild() {
+  // Delete existing pages.
+  $conditions = array('type' => 'page_manager_page');
+  xmlsitemap_link_delete_multiple($conditions);
+
+  // Add all pages.
+  $links = nas_pm_xmlsitemap_load_pages();
+  foreach ($links as $link) {
+    xmlsitemap_link_save($link);
+  }
+
+  // Cache current links set.
+  _nas_pm_xmlsitemap_pages_links_cache_set($links);
+}
+
+/**
+ * Helper function; returns cached page manager pages links.
+ */
+function _nas_pm_xmlsitemap_pages_links_cache_get() {
+  $cache = cache_get('nas_pm_xmlsitemap');
+  if ($cache) {
+    return $cache->data;
+  }
+  return FALSE;
+}
+
+/**
+ * Helper function; sets cached page manager pages links.
+ */
+function _nas_pm_xmlsitemap_pages_links_cache_set($links) {
+  cache_set('nas_pm_xmlsitemap', $links);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function nas_pm_xmlsitemap_cron() {
+  // Trying to avoid possible race conditions, when there are more than one backend.
+  // The code below this one should run faster than 25 seconds.
+  // If it is not the lock will be automatically released.
+  if (!lock_acquire('nas_pm_xmlsitemap_cron', 25)) {
+    return;
+  }
+
+  $links = nas_pm_xmlsitemap_load_pages();
+  // Update records if cached listing isn't equal to current.
+  if ($links != _nas_pm_xmlsitemap_pages_links_cache_get()) {
+    _nas_pm_xmlsitemap_rebuild();
+  }
+
+  // Releasing the lock for ability to run this again at next crontab task.
+  lock_release('nas_pm_xmlsitemap_cron');
+}

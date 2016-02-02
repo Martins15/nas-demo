@@ -20,6 +20,7 @@ $plugin = array(
 function frontpage_conservation_section_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   $form['#tree'] = TRUE;
+  _nas_panes_hide_pane_title_field($form);
 
   $form['image'] = array(
     '#type' => 'media',
@@ -130,7 +131,7 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
       'node_url' => '',
     );
     if (!empty($item['reference']['entity_id'])) {
-      if ($node = node_load($item['reference']['entity_id'])) {
+      if ($node = _i18n_node_load($item['reference']['entity_id'])) {
         $content[$delta]['title'] = $node->title;
         $content[$delta]['nid'] = $node->nid;
         $content[$delta]['node_url'] = url('node/' . $node->nid, array('absolute' => TRUE));

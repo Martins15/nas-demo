@@ -5,10 +5,10 @@
  */
 ?>
 
-  <div class="bird-guide-zip-input">
+  <div class="near-you-form bird-guide-zip-input">
     <?php print drupal_render($form['zip_code']); ?>
   </div>
-  <div class="bird-guide-country">
+  <div class="near-you-form bird-guide-country">
     <?php print drupal_render($form['state']); ?>
   </div>
   <div class="btn-submint">

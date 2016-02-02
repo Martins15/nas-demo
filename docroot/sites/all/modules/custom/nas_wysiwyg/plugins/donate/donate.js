@@ -27,7 +27,7 @@
         template:
           '<div class="donate-bar">' +
             '<div class="donate-bar-caption">' +
-              'Remember that Audubon depends on your support to do the conservation work that we do.' +
+          Drupal.t('Remember that Audubon depends on your support to do the conservation work that we do.') +
             '</div>' +
             '<div class="donate-bar-button"><a href="/donate" class="button tomato large">Donate</a></div>' +
           '</div>',

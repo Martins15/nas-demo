@@ -85,14 +85,14 @@ function species_across_audubon_render($subtype, $conf, $args, $contexts) {
     // news article twice.
     foreach ($data as $value) {
       if (!empty($value['entity_reference']['entity_id'])) {
-        $nodes[] = node_load($value['entity_reference']['entity_id']);
+        $nodes[] = _i18n_node_load($value['entity_reference']['entity_id']);
       }
     }
   }
   else {
     $view_results = views_get_view_result('project_birds', 'nas_across_audubon', $context_node->nid);
     foreach ($view_results as $result) {
-      $nodes[$result->nid] = node_load($result->nid);
+      $nodes[$result->nid] = _i18n_node_load($result->nid);
     }
   }
 

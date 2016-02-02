@@ -37,7 +37,8 @@
  */
 ?>
 
-<?php foreach ($menu_tree as $menu_item) : ?>
+<?php end($menu_tree); $last_key = key($menu_tree); reset($menu_tree);
+  foreach ($menu_tree as $key => $menu_item) : ?>
   <?php if ($menu_item['below']) : ?>
     <?php $item_attr = drupal_attributes(array('class' => $menu_item['link']['options']['attributes']['class'])); ?>
     <div <?php print $item_attr; ?>>
@@ -45,11 +46,14 @@
         <?php foreach ($menu_item['below'] as $sub_menu_item) : ?>
           <li>
             <a href="<?php print url($sub_menu_item['link']['link_path']); ?>">
-              <?php print check_plain($sub_menu_item['link']['link_title']); ?>
+              <?php print check_plain($sub_menu_item['link']['title']); ?>
             </a>
           </li>
         <?php endforeach; ?>
       </ul>
+      <?php if ($key == $last_key && nas_alters_lang_dropdown()): ?>
+        <div class="nas-alters-lang-dropdown-footer"><?php print nas_alters_lang_dropdown(); ?></div>
+      <?php endif; ?>
     </div>
   <?php endif; ?>
 <?php endforeach; ?>

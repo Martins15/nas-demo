@@ -1,0 +1,40 @@
+.node-type-iba {
+  .text-container {
+    h4 {
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  .iba-photo-gallery {
+    h4 {
+      font-size: 23px;
+      font-weight: normal;
+      margin-bottom: 10px;
+
+      .icon-camera:before {
+        vertical-align: sub;
+      }
+    }
+
+    .thumb-strip {
+      .thumb-strip-prev, .thumb-strip-next {
+        cursor: pointer;
+      }
+      .icon-chevron-left:before {
+        margin-left: -3px;
+      }
+      .icon-chevron-right:before {
+        margin-left: -2px;
+      }
+      ul {
+        margin-left: 0;
+      }
+    }
+  }
+  .sidebar .social-sharing {
+    margin-bottom: 16px;
+    @include breakpoint(large-up) {
+      margin-top: -49px;
+    }
+  }
+}

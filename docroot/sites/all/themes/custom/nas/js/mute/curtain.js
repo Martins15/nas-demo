@@ -19,7 +19,12 @@
               self.reset();
             }
             else if(e.size == "large") {
-              self.setup();
+              if ($body.is('.force-curtain-fallback')) {
+                self.reset();
+              }
+              else {
+                self.setup();
+              }
             }
           });
 

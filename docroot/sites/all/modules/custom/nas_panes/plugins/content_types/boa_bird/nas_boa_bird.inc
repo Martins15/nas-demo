@@ -31,7 +31,7 @@ function nas_boa_bird_render($subtype, $conf, $args, $context) {
 
   $block = new stdClass();
 
-  $node = node_load($bird_items[0]['target_id']);
+  $node = _i18n_node_load($bird_items[0]['target_id']);
   if (!$node->status) {
     return $block;
   }
@@ -39,6 +39,7 @@ function nas_boa_bird_render($subtype, $conf, $args, $context) {
 
   $block->content = theme('boa_bird', array(
     'bird' => drupal_render($build),
+    'title' => t('In the Bird Guide'),
   ));
 
   return $block;

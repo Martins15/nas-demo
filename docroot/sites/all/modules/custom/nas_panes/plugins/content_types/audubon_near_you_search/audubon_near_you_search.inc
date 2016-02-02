@@ -8,12 +8,12 @@
 $plugin = array(
   'title' => t('Audubon Near You. Search'),
   'description' => t('Block with search form'),
-  'category' => 'NAS',
+  'category' => t('NAS'),
   'edit form' => 'audubon_near_you_search_settings_form',
   'render callback' => 'audubon_near_you_search_render',
   'defaults' => array(
-    'description' => 'Twenty-two state programs, 47 centers, 450+ local chapters, and countless events.',
-    'form_title' => 'Explore the Audubon network.',
+    'description' => t('Twenty-two state programs, 47 centers, 450+ local chapters, and countless events.'),
+    'form_title' => t('Explore the Audubon network.'),
   ),
 );
 
@@ -33,7 +33,7 @@ function audubon_near_you_search_settings_form($form, &$form_state) {
   $form['form_title'] = array(
     '#type' => 'textfield',
     '#title' => t('Form title'),
-    '#default_value' => $conf['form_title'],
+    '#default_value' => t($conf['form_title']),
   );
 
   return $form;
@@ -67,9 +67,9 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
 
   $form = drupal_get_form('audubon_near_you_search_form');
   $block->content = theme('audubon_near_you_search', array(
-    'title' => check_plain($conf['override_title_text']),
-    'description' => check_plain($conf['description']),
-    'form_title' => check_plain($conf['form_title']),
+    'title' => check_plain(t($conf['override_title_text'])),
+    'description' => check_plain(t($conf['description'])),
+    'form_title' => check_plain(t($conf['form_title'])),
     'form' => drupal_render($form),
     'contextual_links' => $contextual_links,
   ));
@@ -82,6 +82,19 @@ function audubon_near_you_search_render($subtype, $conf, $args, $context) {
  */
 function audubon_near_you_search_form($form, &$form_state) {
   $query = drupal_get_query_parameters();
+  // Check if module nas_near_you is enabled and zip database is set.
+  $nas_near_you = module_exists('nas_near_you');
+  $already_tried_zip = (isset($form_state['rebuild_info']['chid']) and $form_state['rebuild_info']['chid'] == 0) ? TRUE : FALSE;
+  if (!variable_get('nas_near_you_database_set', FALSE)) $nas_near_you = FALSE;
+
+  if ($nas_near_you and empty($query['state']) and !$already_tried_zip) {
+    $form['zip_code'] = array(
+      '#type' => 'textfield',
+      '#empty_option' => t('ZIP Code'),
+      '#default_value' => !empty($query['zip_code']) ? $query['zip_code'] : '',
+      '#attributes' => array('placeholder' => t('ZIP Code')),
+    );
+  }
 
   $form['state'] = array(
     '#type' => 'select',
@@ -89,6 +102,9 @@ function audubon_near_you_search_form($form, &$form_state) {
     '#options' => _audubon_near_you_states(),
     '#default_value' => !empty($query['state']) ? $query['state'] : '',
   );
+  if ($nas_near_you and empty($query['state']) and !$already_tried_zip) {
+    $form['state']['#attributes'] = array('class' => array('hide'));
+  }
 
   $form['submit'] = array(
     '#type' => 'submit',
@@ -103,20 +119,63 @@ function audubon_near_you_search_form($form, &$form_state) {
   );
 
   $form['#theme'] = 'audubon_near_you_search_form';
-
   return $form;
+}
+
+/**
+ * Validate handler for the search form.
+ */
+function audubon_near_you_search_form_validate($form, &$form_state) {
+  if (isset($form_state['values']['zip_code'])) {
+    $zip = check_zip($form_state['values']['zip_code']);
+    $nid = nas_get_chapter_by_zip($zip);
+    if (!is_numeric($zip) or strlen($zip) != 5) {
+      form_set_error('zip_code', t('This zip code is invalid. Please enter a valid zip code number.'));
+    }
+    elseif ($nid == NULL) {
+      // if zip code was not found, rebuild the form with state select
+      $form_state['rebuild'] = TRUE;
+      $form_state['rebuild_info']['chid'] = 0;
+      drupal_set_message(t("Sorry! This zip code is not on our database. Select your state."), 'error');
+    }
+    else {
+      // if no error is set, store chapter nid for submit handler
+      $_SESSION['audubon_near_you_chid'] = $nid;
+    }
+  }
 }
 
 /**
  * Submit handler for the search form.
  */
 function audubon_near_you_search_form_submit($form, &$form_state) {
+  global $user;
+  $nas_near_you = module_exists('nas_near_you');
   $query = array();
-
-  if (!empty($form_state['values']['state'])) {
-    $query['state'] = $form_state['values']['state'];
+  $debug = '';
+  if (!empty($form_state['values']['zip_code']) and $nas_near_you) {
+    $zip = $form_state['values']['zip_code'];
+    $debug .= 'zipcode if';
+    if (isset($_SESSION['audubon_near_you_chid'])) {
+      $nid = $_SESSION['audubon_near_you_chid'];
+      $debug .= ' session nid';
+    }
+    else {
+      $nid = nas_get_chapter_by_zip(check_zip($zip));
+      $debug .= ' function nid';
+    }
+    if (!$nid) return;
+    $node = _i18n_node_load($nid);
+    $field = field_get_items('node', $node, 'field_location_address');
+    // load node and get state of the node.
+    $query['state'] = $field[0]['administrative_area'];
+    $query['chid'] = $nid;
+    user_cookie_save(array('state' => $query['state'], 'chid' => $query['chid']));
   }
-
+  elseif (!empty($form_state['values']['state'])) {
+    $query['state'] = $form_state['values']['state'];
+    user_cookie_save(array('state' => $form_state['values']['state']));
+  }
   // Redirect to Audubon Near You page with activated filters.
   $form_state['redirect'] = array(
     'audubon-near-you',
@@ -124,6 +183,13 @@ function audubon_near_you_search_form_submit($form, &$form_state) {
       'query' => $query,
     ),
   );
+}
+
+function check_zip($zip) {
+  $plain = check_plain($zip);
+  $replaced = preg_replace( '/[^0-9]/', '', $plain );
+  $cut = substr($replaced, 0, 5);
+  return $cut;
 }
 
 /**

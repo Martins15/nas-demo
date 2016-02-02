@@ -88,9 +88,18 @@
 ?>
 
 <div class="columns large-4">
-  <div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
+  <div class="editorial-card <?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
     <div class="editorial-card-photo">
       <?php print $linked_image; ?>
+      <?php if ($editorial_extra_fields): ?>
+        <div class="editorial-card-banner gray overlap-banner">
+          <?php print $left_icon; ?>
+          <?php print $caption; ?>
+          <?php if (!empty($icon)): ?>
+            <div class="icon-wrapper"><?php print $icon; ?></div>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
     </div>
     <div class="editorial-card-content short">
       <?php if (!empty($blue_text_link_url)): ?>

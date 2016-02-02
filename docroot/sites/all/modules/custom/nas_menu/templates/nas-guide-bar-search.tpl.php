@@ -20,7 +20,7 @@
       <?php else : ?>
         <h2 class="guide-bar-title"><?php print $title; ?></h2>
       <?php endif; ?>
-      <a class="guide-bar-search toggle-bird-guide-search" href="#"><i class="icon-binoculars white"></i><i class="icon-binoculars black"></i> Find a Bird</a>
+      <a class="guide-bar-search toggle-bird-guide-search" href="#"><i class="icon-binoculars white"></i><i class="icon-binoculars black"></i> <?php print t('Find a Bird'); ?></a>
       <div class="guide-bar-attribution">
         <span class="preamble"><?php print $preamble; ?></span>
         <?php print $logo; ?>

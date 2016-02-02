@@ -70,6 +70,10 @@ function nas_fpp_entity_info_alter(&$entity_info) {
     'label' => t('Teaser small'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['nas_node_teaser_small_state'] = array(
+    'label' => t('Teaser small state'),
+    'custom settings' => TRUE,
+  );
   $entity_info['node']['view modes']['editorial_card_3x'] = array(
     'label' => t('Editorial card (3x) teaser'),
     'custom settings' => FALSE,
@@ -463,7 +467,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   }
 
   $vars['blue_text_link'] = '';
-  if ($node && $blue = nas_panes_get_blue_text_link($node)) {
+  if ($node && $blue = nas_panes_get_blue_text_link($node, FALSE)) {
     $vars['blue_text_link'] = l($blue[0], $blue[1], array('attributes' => array('class' => array('hero-slug'))));
   };
 
@@ -510,12 +514,12 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
  */
 function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
   $fpp = $vars['elements']['#fieldable_panels_pane'];
-  $vars['title'] = check_plain($fpp->title);
+  $vars['title'] = t(check_plain($fpp->title));
 
   $vars['links'] = array();
   if ($field_items = field_get_items('fieldable_panels_pane', $fpp, 'field_flyways')) {
     foreach ($field_items as $field_item) {
-      $node = node_load($field_item['target_id']);
+      $node = _i18n_node_load($field_item['target_id']);
       $path = 'node/' . $node->nid;
       $options = array();
       if ($_GET['q'] == $path) {
@@ -525,9 +529,24 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_nav(&$vars) {
     }
   }
   $vars['contextual_links'] = '';
-  if (user_access('edit NAS panes') && ($page_node = node_load(arg(1)))) {
+  if (user_access('edit NAS panes') && ($page_node = _i18n_node_load(arg(1)))) {
     $vars['contextual_links'] = _nas_panes_build_panelizer_contextual_links('uuid:' . $fpp->uuid, $page_node, 'flyway', 'default');
   }
+}
+
+/**
+ * Implements HOOK_menu().
+ */
+function nas_fpp_theme() {
+  return array(
+    'flyways_near_you_office_chapter' => array(
+      'variables' => array(
+        'items' => array(),
+      ),
+      'template' => 'flyways-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_fpp') . '/templates',
+    ),
+  );
 }
 
 /**
@@ -565,6 +584,37 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $vars['about_the_flyways'] = $get_field_about_the_flyways[0]['#markup'];
   $vars['about_link'] = l(t('About the Flyways'), 'flyways');
   $vars['learn_more'] = l(t('Learn More'), 'flyways', array('attributes' => array('class' => array('editorial-card-link'))));
+
+  $events = TRUE;
+  $near_you = TRUE;
+  if (isset($vars['field_block_visibility'])) {
+    $first = isset($vars['field_block_visibility'][0]['value']) ? $vars['field_block_visibility'][0]['value'] : FALSE;
+    $second = isset($vars['field_block_visibility'][1]['value']) ? $vars['field_block_visibility'][1]['value'] : FALSE;
+    if ($second) {
+      $events = FALSE;
+      $near_you = FALSE;
+    }
+    elseif ($first) {
+      if (is_numeric(strpos($first, 'flyways_events'))) $events = FALSE;
+      else $near_you = FALSE;
+    }
+  }
+
+  $vars['events'] = NULL;
+  if ($events && variable_get('events_frontpage_enabled', 0)) {
+    $events = theme('flyways_events', array(
+     'items' => _nas_events_get_events(),
+    ));
+    $vars['events'] = $events;
+  }
+
+  $vars['near_you'] = NULL;
+  if ($near_you) {
+    $near_you = theme('flyways_near_you_office_chapter', array(
+      'items' => _nas_panes_get_locations('all', 'office_chapter+office+chapter', NULL, 'locations_frontpage'),
+    ));
+    $vars['near_you'] = $near_you;
+  }
 
   $vars['contextual_links'] = '';
   if (!user_access('access contextual links') || !user_access('edit NAS panes')) {

@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * NAS Internationalization (i18n) module.
+ *
+ * Redirect to node language path when prefix is missed.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function nas_i18n_redirect_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/regional/i18n':
+      if (!module_exists('i18n_node')) {
+        $output = '<p>' . t('To have <em>Translation redirect</em> working with your content you should <a href="@admin_modules">enable the <em>Multilingual content</em> module</a>.', array('@admin_modules' => url('admin/modules'))) . '</p>';
+        return $output;
+      }
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function nas_i18n_redirect_init() {
+  global $theme;
+  $theme_default = variable_get('theme_default', 'bartik');
+
+  $path = $_GET['q'];
+  $language = i18n_language_interface();
+  $default_language = language_default();
+  if (!$path) {
+    return;
+  }
+  elseif ($translations = i18n_get_path_translations($path)) {
+    if (isset($translations[$language->language]) && $translations[$language->language]['href'] != $path) {
+      drupal_goto($translations[$language->language]['href'], array('language' => $language), 301);
+    }
+  }
+  elseif ($theme_default == $theme && $language->language != $default_language->language) {
+    nas_alters_show_language_message();
+    if ($path == variable_get('site_frontpage', 'node')) {
+      $path = '';
+    }
+    drupal_goto($path, array('language' => $default_language, 'query' => drupal_get_query_parameters()), 301);
+  }
+}

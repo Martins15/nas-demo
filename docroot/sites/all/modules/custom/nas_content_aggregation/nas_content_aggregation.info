@@ -1,0 +1,8 @@
+name = NAS Content Aggregation
+description = Provide possiblity grab content from States sites.
+core = 7.x
+package = NAS
+
+dependencies[] = taxonomy
+dependencies[] = nas_import
+dependencies[] = nas_import_editorial_content_feature

@@ -2,3 +2,5 @@ name = NAS Search
 description = Search refinements.
 core = 7.x
 package = NAS
+
+files[] = nas_search.entity.inc

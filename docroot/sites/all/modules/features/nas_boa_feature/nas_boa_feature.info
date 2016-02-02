@@ -58,5 +58,3 @@ features[variable][] = node_submitted_boa
 features[variable][] = panelizer_defaults_node_boa
 features[variable][] = scheduler_publish_enable_boa
 features[views_view][] = boa_news
-features[views_view][] = random_news
-mtime = 1420815174

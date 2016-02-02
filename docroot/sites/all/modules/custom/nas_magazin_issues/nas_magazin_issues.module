@@ -38,7 +38,7 @@ function nas_magazin_issues_preprocess_node(&$variables) {
     return;
   }
 
-  $r_node = node_load($r_nid);
+  $r_node = _i18n_node_load($r_nid);
 
   $variables['magazine_issue_article'] = array(
     '#theme' => 'link',

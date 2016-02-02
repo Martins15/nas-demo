@@ -193,7 +193,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     if (!is_array($value)) {
       continue;
     }
-    if (!$node = node_load($value['entity_reference']['entity_id'])) {
+    if (!$node = _i18n_node_load($value['entity_reference']['entity_id'])) {
       continue;
     }
 
@@ -244,7 +244,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
         $featured_nid = $view_results[0]->field_conservation_strategy_node_nid;
       }
     }
-    if ($featured_nid && $featured_node = node_load($featured_nid)) {
+    if ($featured_nid && $featured_node = _i18n_node_load($featured_nid)) {
       $nodes_array_to_show[$key]['featured_node']['hero_image'] = '';
       $field_items = field_get_items('node', $featured_node, 'field_hero_image');
       if (!empty($field_items[0]['fid']) && $file = file_load($field_items[0]['fid'])) {

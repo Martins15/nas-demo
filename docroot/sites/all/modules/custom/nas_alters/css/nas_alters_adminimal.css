@@ -61,3 +61,15 @@ div.ctools-modal-content .form-type-textarea.form-item label {
 input, select, textarea {
   font-size: 14px;
 }
+
+/**
+ * Uses in the Document file upload form
+ * so we could see 4th step of form, and edit filename.
+ */
+.field-name-field-fake-file-view {
+  display: none;
+}
+
+#campaign-node-form .field-name-field-campaign-url-parameter {
+  display: none;
+}

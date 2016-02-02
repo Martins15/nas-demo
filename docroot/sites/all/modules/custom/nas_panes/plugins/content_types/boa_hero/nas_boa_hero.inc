@@ -33,13 +33,15 @@ function nas_boa_hero_render($subtype, $conf, $args, $context) {
   $hero_image_path = image_style_url('boa_hero', $image_items[0]['uri']);
   $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
 
+  $boa_plate_path = url('node/' . $node->nid . '/plate');
+
   $next_nid = nas_panes_boa_next($node);
   $prev_nid = nas_panes_boa_previous($node);
 
   $block = new stdClass();
   $block->content = theme('boa_hero', array(
     'image_path' => $hero_image_path,
-    'lightbox_image_path' => $lightbox_image_path,
+    'boa_plate_path' => $boa_plate_path,
     'original_image_path' => file_create_url($image_items[0]['uri']),
     'next_url' => url('node/' . $next_nid),
     'prev_url' => url('node/' . $prev_nid),

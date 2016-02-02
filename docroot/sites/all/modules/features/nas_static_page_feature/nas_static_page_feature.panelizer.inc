@@ -46,6 +46,7 @@ function nas_static_page_feature_panelizer_defaults() {
       'nav_menu' => NULL,
       'header_no_image' => NULL,
       'related' => NULL,
+      'file_attachments' => NULL,
     ),
   );
   $display->cache = array();
@@ -96,6 +97,36 @@ function nas_static_page_feature_panelizer_defaults() {
     $pane->uuid = 'c909974d-ea31-4d80-a63d-58a134b3ae9a';
     $display->content['new-c909974d-ea31-4d80-a63d-58a134b3ae9a'] = $pane;
     $display->panels['card_set'][0] = 'new-c909974d-ea31-4d80-a63d-58a134b3ae9a';
+    $pane = new stdClass();
+    $pane->pid = 'new-e66ec009-5229-432b-a378-516227db73a3';
+    $pane->panel = 'file_attachments';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_file_attachments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'file_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => 'Downloadable Resources',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e66ec009-5229-432b-a378-516227db73a3';
+    $display->content['new-e66ec009-5229-432b-a378-516227db73a3'] = $pane;
+    $display->panels['file_attachments'][0] = 'new-e66ec009-5229-432b-a378-516227db73a3';
     $pane = new stdClass();
     $pane->pid = 'new-c927bbd8-d7c4-42c0-86fd-ce1e757a9263';
     $pane->panel = 'header';
@@ -469,6 +500,7 @@ function nas_static_page_feature_panelizer_defaults() {
       'nav_menu' => NULL,
       'related' => NULL,
       'header_no_image' => NULL,
+      'file_attachments' => NULL,
     ),
   );
   $display->cache = array();
@@ -519,6 +551,36 @@ function nas_static_page_feature_panelizer_defaults() {
     $pane->uuid = 'd4f9366d-7519-4b03-94cd-3bc7115bc240';
     $display->content['new-d4f9366d-7519-4b03-94cd-3bc7115bc240'] = $pane;
     $display->panels['card_set'][0] = 'new-d4f9366d-7519-4b03-94cd-3bc7115bc240';
+    $pane = new stdClass();
+    $pane->pid = 'new-df42fff1-211a-44a7-917d-f3b6e899aa01';
+    $pane->panel = 'file_attachments';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_file_attachments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'file_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => 'Downloadable Resources',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'df42fff1-211a-44a7-917d-f3b6e899aa01';
+    $display->content['new-df42fff1-211a-44a7-917d-f3b6e899aa01'] = $pane;
+    $display->panels['file_attachments'][0] = 'new-df42fff1-211a-44a7-917d-f3b6e899aa01';
     $pane = new stdClass();
     $pane->pid = 'new-ada7204a-16c5-4b19-acaa-6c8dfbfc7270';
     $pane->panel = 'header';

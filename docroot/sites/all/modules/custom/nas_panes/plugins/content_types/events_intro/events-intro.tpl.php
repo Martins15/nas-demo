@@ -13,7 +13,9 @@
 <?php if (!empty($address)): ?>
 <div class="location-details">
   <h4><?php print t('Location Details'); ?></h4>
-  <p class="additional"><?php print $additional; ?></p>
+  <?php if (!empty($location_name)): ?>
+    <p class="additional"><?php print $location_name; ?></p>
+  <?php endif; ?>
   <p><?php print $address; ?></p>
 </div>
 <?php endif; ?>

@@ -28,7 +28,7 @@ function nas_panes_static_page_menu_render($subtype, $conf, $args, $context) {
       'max_depth' => 3,
       'conditions' => array('plid' => $trail[2]['mlid']),
     );
-    $children = menu_build_tree('menu-header-big-main-menu', $parameters);
+    $children = i18n_menu_localize_tree(menu_build_tree('menu-header-big-main-menu', $parameters));
     foreach ($children as $item) {
       $options = array();
       if ($item['link']['link_path'] == $_GET['q']) {

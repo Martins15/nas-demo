@@ -585,6 +585,10 @@ $conf['https'] = TRUE;
  * Override domain detection in Acquia Purge.
  */
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  // Setting memory limit for Acquia environments.
+  if (isset($_GET['q']) && strpos($_GET['q'], 'admin') === 0) {
+    ini_set('memory_limit', '512M');
+  }
   if ($_ENV['AH_SITE_ENVIRONMENT'] == 'prod') {
     $conf['acquia_purge_domains'] = array(
       'www.audubon.org',
@@ -612,3 +616,6 @@ $conf['fast_404_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><titl
 
 # Call the extension checking now. This will skip any logging of 404s.
 fast_404_ext_check();
+
+# Change translations for Acquia hosting.
+$conf['l10n_update_download_store'] = $conf['file_temporary_path'];

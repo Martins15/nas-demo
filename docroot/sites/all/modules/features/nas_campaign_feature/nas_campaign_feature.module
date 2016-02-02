@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Campaign feature.
+ */
+
+include_once 'nas_campaign_feature.features.inc';

@@ -27,6 +27,9 @@ function nas_panes_boa_index_bar_render($subtype, $conf, $args, $context) {
       l(t('Alphabetical'), 'birds-of-america/alphabetical', array(
         'attributes' => array('class' => array('by-alphabetical')))
       ),
+      l(t('State Birds'), 'birds-of-america/state', array(
+        'attributes' => array('class' => array('by-state')))
+      ),
     ),
     'boa_url' => url('birds-of-america'),
   ));

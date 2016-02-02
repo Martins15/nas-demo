@@ -1,0 +1,22 @@
+name = "Deep Zoom"
+description = "Deep Zoom provides the ability to create interactively viewable high-resolution images."
+configure = admin/config/media/deepzoom
+core = 7.x
+
+
+
+; Core files.
+files[] = deepzoom.module
+
+
+
+; Deep Zoom Engines
+files[] = engines/openseadragon.inc
+files[] = engines/seadragon.inc
+
+; Information added by drupal.org packaging script on 2013-10-17
+version = "7.x-1.1+11-dev"
+core = "7.x"
+project = "deepzoom"
+datestamp = "1381970204"
+

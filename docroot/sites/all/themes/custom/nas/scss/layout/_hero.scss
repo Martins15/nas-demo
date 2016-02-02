@@ -27,8 +27,8 @@
   // Pull up behind header for transparency when needed
   .global-header.transparent + & {
     @include breakpoint(large-up) {
-//      top: -100px;
-//      margin-bottom: -100px;
+      top: -100px;
+      margin-bottom: -100px;
     }
   }
 
@@ -54,9 +54,9 @@
 
   @include breakpoint(large-up) {
     .hero:not(.expand) & img:not(.canon-logo) {
-      height: 465px;
+      min-height: 465px;
       max-width: none;
-      width: auto;
+      width: 100%;
     }
   }
 

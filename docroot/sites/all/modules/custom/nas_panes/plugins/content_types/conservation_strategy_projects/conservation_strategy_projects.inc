@@ -78,7 +78,7 @@ function conservation_strategy_projects_render($subtype, $conf, $args, $context)
   $nodes = array();
   $view_results = views_get_view_result('conservation_strategy_projects', 'default', $context_node->nid);
   foreach ($view_results as $result) {
-    $nodes[] = node_load($result->field_conservation_strategy_node_nid);
+    $nodes[] = _i18n_node_load($result->field_conservation_strategy_node_nid);
   }
   $teasers = array();
   foreach ($nodes as $node) {

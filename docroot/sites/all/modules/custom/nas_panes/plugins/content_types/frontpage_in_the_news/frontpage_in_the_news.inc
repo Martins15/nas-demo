@@ -22,8 +22,8 @@ function frontpage_in_the_news_render($subtype, $conf, $args, $contexts) {
   $teasers = array();
   $results = views_get_view_result('frontpage_birds_in_the_news');
   foreach ($results as $result) {
-    $bird_node = node_load($result->nid);
-    $article_node = node_load($result->field_related_bird_node_nid);
+    $bird_node = _i18n_node_load($result->nid);
+    $article_node = _i18n_node_load($result->field_related_bird_node_nid);
     list($blue_link_text, $blue_link_url) = nas_panes_get_blue_text_link($article_node);
     $build = node_view($bird_node, 'teaser');
     $teasers[] = array(

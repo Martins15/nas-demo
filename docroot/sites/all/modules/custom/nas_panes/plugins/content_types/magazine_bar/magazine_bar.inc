@@ -28,7 +28,7 @@ function magazine_bar_render($subtype, $conf, $args, $context) {
     return;
   }
 
-  $magazine_issue = node_load($node->field_magazine_issue[LANGUAGE_NONE][0]['target_id']);
+  $magazine_issue = _i18n_node_load($node->field_magazine_issue[LANGUAGE_NONE][0]['target_id']);
 
   if (!$magazine_issue) {
     return;

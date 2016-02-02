@@ -83,6 +83,16 @@ function nas_views_feature_views_default_views() {
     'static_page' => 'static_page',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+  $translatables['articles_more_features'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+  );
   $export['articles_more_features'] = $view;
 
   $view = new view();
@@ -102,6 +112,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
@@ -165,6 +178,18 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['field_bird_priority_value']['value'] = array(
     1 => '1',
   );
+  $translatables['audubon_near_you_birds'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('flyway'),
+    t('states'),
+    t('All'),
+  );
   $export['audubon_near_you_birds'] = $view;
 
   $view = new view();
@@ -183,6 +208,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -228,6 +256,16 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
+  $translatables['audubon_near_you_news'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+  );
   $export['audubon_near_you_news'] = $view;
 
   $view = new view();
@@ -246,6 +284,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -294,6 +335,18 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['nid']['not'] = TRUE;
+  $translatables['conservation_projects'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Other Conservation Projects'),
+    t('All'),
+    t('View panes'),
+  );
   $export['conservation_projects'] = $view;
 
   $view = new view();
@@ -312,6 +365,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
@@ -353,6 +409,23 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project' => 'project',
   );
+  $translatables['flyway_conservation_projects'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('All'),
+  );
   $export['flyway_conservation_projects'] = $view;
 
   $view = new view();
@@ -371,6 +444,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
@@ -492,6 +568,26 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
+  $translatables['magazin_issues'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Past magazine ussue'),
+    t('View panes'),
+    t('Most recent magazine issue articles'),
+    t('All'),
+  );
   $export['magazin_issues'] = $view;
 
   $view = new view();
@@ -510,6 +606,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
@@ -600,6 +699,28 @@ function nas_views_feature_views_default_views() {
     ),
   );
   $handler->display->display_options['inherit_panels_path'] = '1';
+  $translatables['nas_articles'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Articles by author'),
+    t('For Author page'),
+    t('Show more'),
+    t('<h2 class="thin">Articles by %1</h2>'),
+    t('All'),
+    t('View panes'),
+  );
   $export['nas_articles'] = $view;
 
   $view = new view();
@@ -728,6 +849,30 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['allow']['exposed_form'] = 0;
   $handler->display->display_options['allow']['fields_override'] = 0;
   $handler->display->display_options['inherit_panels_path'] = '1';
+  $translatables['nas_bird_guide'] = array(
+    t('Master'),
+    t('Some of Our Favorite Birds'),
+    t('more'),
+    t('Search'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Show More'),
+    t('Fulltext search'),
+    t('Taxonomic Family'),
+    t('Region'),
+    t('Matching Birds'),
+    t('No birds matching your search query were found'),
+    t('View panes'),
+  );
   $export['nas_bird_guide'] = $view;
 
   $view = new view();
@@ -746,6 +891,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -864,6 +1012,21 @@ function nas_views_feature_views_default_views() {
   );
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
+  $translatables['nas_birds_view'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+    t('Explore Similar Birds'),
+    t('field_related_bird'),
+    t('NAS'),
+    t('Audubon Bird Guide Random'),
+    t('The Audubon Bird Guide'),
+  );
   $export['nas_birds_view'] = $view;
 
   $view = new view();
@@ -883,6 +1046,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -936,6 +1102,13 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
+  /* Filter criterion: Content: Post date */
+  $handler->display->display_options['filters']['created']['id'] = 'created';
+  $handler->display->display_options['filters']['created']['table'] = 'node';
+  $handler->display->display_options['filters']['created']['field'] = 'created';
+  $handler->display->display_options['filters']['created']['operator'] = '>=';
+  $handler->display->display_options['filters']['created']['value']['value'] = '-30 days';
+  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
 
   /* Display: Most viewed articles */
   $handler = $view->new_display('panel_pane', 'Most viewed articles', 'nas_most_viewed_articles');
@@ -976,6 +1149,28 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['table'] = 'field_data_field_magazine_issue';
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['field'] = 'field_magazine_issue_target_id';
   $handler->display->display_options['filters']['field_magazine_issue_target_id']['operator'] = 'not empty';
+  /* Filter criterion: Content: Post date */
+  $handler->display->display_options['filters']['created']['id'] = 'created';
+  $handler->display->display_options['filters']['created']['table'] = 'node';
+  $handler->display->display_options['filters']['created']['field'] = 'created';
+  $handler->display->display_options['filters']['created']['operator'] = '>=';
+  $handler->display->display_options['filters']['created']['value']['value'] = '-30 days';
+  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
+  $translatables['nas_most_viewed_articles'] = array(
+    t('Master'),
+    t('Popular Stories'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+    t('Most viewed articles'),
+    t('View panes'),
+    t('Popular stories for news'),
+    t('Popular stories for Magazine issue'),
+  );
   $export['nas_most_viewed_articles'] = $view;
 
   $view = new view();
@@ -995,6 +1190,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -1172,13 +1370,19 @@ function nas_views_feature_views_default_views() {
 
   /* Display: Articles listing (top) */
   $handler = $view->new_display('panel_pane', 'Articles listing (top)', 'articles_list_top');
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
+  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
+  $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
+  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -1219,17 +1423,13 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['type'] = 'infinite_scroll';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['pager']['options']['offset'] = '6';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
-  $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
-  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -1311,12 +1511,11 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '6';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
+  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show me more';
   $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
   $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -1748,17 +1947,13 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['type'] = 'infinite_scroll';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show Me More';
-  $handler->display->display_options['pager']['options']['effects']['type'] = 'fade';
-  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -1816,6 +2011,109 @@ function nas_views_feature_views_default_views() {
       'label' => 'Taxonomy term: Term ID',
     ),
   );
+
+  /* Display: The latest news */
+  $handler = $view->new_display('panel_pane', 'The latest news', 'nas_the_latest_news');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Has taxonomy term ID (with depth) */
+  $handler->display->display_options['arguments']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['default_argument_options']['argument'] = 'News';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['term_node_tid_depth']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['validate_options']['vocabularies'] = array(
+    'menu_section' => 'menu_section',
+  );
+  $handler->display->display_options['arguments']['term_node_tid_depth']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['depth'] = '1';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'article' => 'article',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  $translatables['nas_news'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+    t('Bird in the News (default)'),
+    t('  <div class="row section-header">
+    <div class="columns">
+      <h2 class="thin">%1 in the News</h2>
+    </div>
+    <div class="columns">
+      <ul class="section-nav inline-list hide-for-small hide-for-tiny">
+        <li><a href="/news">More News »</a></li>
+      </ul>
+    </div>
+  </div>'),
+    t('View panes'),
+    t('Bird in the News'),
+    t('Page In the News'),
+    t('Articles listing (top)'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Show Me More'),
+    t('Articles listing (bot)'),
+    t('Show More'),
+    t('Articles listing (top) term'),
+    t('term'),
+    t('Articles listing (bot) term'),
+    t('Show me more'),
+    t('News from the Network'),
+    t('Flyway in the News'),
+    t('More headlines'),
+    t('Mag issue: Articles listing (top)'),
+    t('Mag issue: Articles listing (bot)'),
+    t('Mag issue: Articles listing NIDs'),
+    t('Conservation Project Related News'),
+    t('Related News'),
+    t('Articles listing term 10'),
+    t('The latest news'),
+  );
   $export['nas_news'] = $view;
 
   $view = new view();
@@ -1835,6 +2133,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -2119,6 +2420,32 @@ function nas_views_feature_views_default_views() {
       'label' => 'Content: Nid',
     ),
   );
+  $translatables['nas_similar_birds'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Content entity referenced from field_related_bird'),
+    t('<p class="scientific-name">[field_bird_sci_name-value]</p>'),
+    t('<figure class="bird-card">
+<div class="bird-card-illustration">
+<a href="[path]">[field_bird_illustration]</a>
+</div>
+<figcaption class="bird-card-caption">
+<h4 class="common-name">[title]</h4>
+[field_bird_sci_name]
+</figcaption>
+<div class="views-field-field-bird-audio">[field_bird_audio]</div>
+</figure>
+'),
+    t('All'),
+    t('Birds in This Story'),
+    t('View panes'),
+    t('Birds in This Story (list)'),
+  );
   $export['nas_similar_birds'] = $view;
 
   $view = new view();
@@ -2139,6 +2466,10 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -2193,9 +2524,6 @@ function nas_views_feature_views_default_views() {
   /* Display: Across Audubon */
   $handler = $view->new_display('panel_pane', 'Across Audubon', 'nas_across_audubon');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['defaults']['query'] = FALSE;
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_project_related_birds_target_id']['id'] = 'field_project_related_birds_target_id';
@@ -2250,6 +2578,22 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project' => 'project',
   );
+  $translatables['project_birds'] = array(
+    t('Master'),
+    t('Birds Native to This Area'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Birds'),
+    t('All'),
+    t('Across Audubon'),
+    t('Content entity referenced from field_project_related_birds'),
+    t('Content referencing Content from field_project_related_birds'),
+    t('View panes'),
+  );
   $export['project_birds'] = $view;
 
   $view = new view();
@@ -2269,6 +2613,9 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
@@ -2348,6 +2695,26 @@ function nas_views_feature_views_default_views() {
       'fixed' => '',
       'label' => 'Content: Related Flyways (field_related_flyways)',
     ),
+  );
+  $translatables['related_birds'] = array(
+    t('Master'),
+    t('Priority Birds'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('All'),
+    t('Flyway Related Birds'),
+    t('View panes'),
   );
   $export['related_birds'] = $view;
 

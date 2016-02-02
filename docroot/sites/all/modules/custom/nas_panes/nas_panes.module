@@ -41,6 +41,9 @@ function nas_panes_ctools_plugin_directory($owner, $plugin_type) {
  */
 function nas_panes_theme() {
   $theme = array(
+    'x_image_anchor' => array(
+      'render element' => 'element',
+    ),
     'article_more_features' => array(
       'variables' => array(
         'teasers' => NULL,
@@ -126,6 +129,8 @@ function nas_panes_theme() {
         'image_thumbnail' => NULL,
         'lightbox_image_path' => NULL,
         'original_image_path' => NULL,
+        'subscribe_link' => NULL,
+        'show_download_link' => FALSE,
         'link_title' => NULL,
         'link_url' => NULL,
       ),
@@ -143,6 +148,7 @@ function nas_panes_theme() {
     'boa_bird' => array(
       'variables' => array(
         'bird' => '',
+        'title' => '',
       ),
       'template' => 'boa-bird',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_bird',
@@ -159,7 +165,7 @@ function nas_panes_theme() {
       'variables' => array(
         'title' => '',
         'plate_number' => '',
-        'scientific_name' => ''
+        'scientific_name' => '',
       ),
       'template' => 'boa-header',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/boa_header',
@@ -184,7 +190,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'nas-featured-bird',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/featured_bird',
     ),
     'nas_bird_landing_featured' => array(
       'variables' => array(
@@ -201,7 +207,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'bird-landing-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_landing_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/bird_landing_featured',
     ),
     'nas_frontpage_featured' => array(
       'variables' => array(
@@ -211,9 +217,45 @@ function nas_panes_theme() {
         'title_link' => '',
         'blue_text_link' => '',
         'contextual_links' => '',
+        'extra_options' => array(),
       ),
       'template' => 'frontpage-featured',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__hero_image' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--hero-image',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_3stories' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_3stories_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-3stories-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_package' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_package_mobile' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-package-mobile',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_video' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-video',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
+    ),
+    'nas_frontpage_featured__curtain_html' => array(
+      'variables' => array(),
+      'template' => 'frontpage-featured--curtain-html',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
     'nas_frontpage_featured_mobile' => array(
       'variables' => array(
@@ -222,9 +264,10 @@ function nas_panes_theme() {
         'title_link' => '',
         'blue_text_link' => '',
         'contextual_links' => '',
+        'extra_options' => array(),
       ),
       'template' => 'frontpage-featured-mobile',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured',
     ),
     'nas_frontpage_featured_article' => array(
       'variables' => array(
@@ -236,7 +279,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'frontpage-featured-article',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured_article'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_featured_article',
     ),
     'nas_in_the_news' => array(
       'variables' => array(
@@ -244,7 +287,7 @@ function nas_panes_theme() {
         'title' => '',
       ),
       'template' => 'nas-in-the-news',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/in_the_news',
     ),
     'species_across_audubon' => array(
       'variables' => array(
@@ -253,7 +296,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'species-across-audubon',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/species_across_audubon'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/species_across_audubon',
     ),
     'flyway_in_the_news' => array(
       'variables' => array(
@@ -262,7 +305,7 @@ function nas_panes_theme() {
         'more_link' => '',
       ),
       'template' => 'flyway-in-the-news',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_in_the_news'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_in_the_news',
     ),
     'flyway_conservation_projects' => array(
       'variables' => array(
@@ -271,7 +314,7 @@ function nas_panes_theme() {
         'more_link' => '',
       ),
       'template' => 'flyway-conservation-projects',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_conservation_projects'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyway_conservation_projects',
     ),
     'nas_panes_pane_donate_button' => array(
       'variables' => array(
@@ -279,7 +322,7 @@ function nas_panes_theme() {
         'link' => '',
       ),
       'template' => 'nas-panes-pane-donate-button',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/donate_button',
     ),
     'donate_with_gradient' => array(
       'variables' => array(),
@@ -297,7 +340,7 @@ function nas_panes_theme() {
         'page_link' => '',
       ),
       'template' => 'nas-featured-social-in-article',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/block_in_article',
     ),
     'nas_panes_social_news_block' => array(
       'variables' => array(
@@ -306,16 +349,7 @@ function nas_panes_theme() {
         'caption' => '',
       ),
       'template' => 'nas-panes-social-news-block',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block'
-    ),
-    'events_social_block' => array(
-      'variables' => array(
-        'title' => '',
-        'page_link' => '',
-        'caption' => '',
-      ),
-      'template' => 'events_social_block',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_social_block'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/news_social_block',
     ),
     'nas_panes_press_contact' => array(
       'variables' => array(
@@ -323,7 +357,7 @@ function nas_panes_theme() {
         'contacts' => array(),
       ),
       'template' => 'nas-panes-press-contact',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_contact',
     ),
     'nas_panes_press_releases' => array(
       'variables' => array(
@@ -331,7 +365,7 @@ function nas_panes_theme() {
         'releases' => array(),
       ),
       'template' => 'nas-panes-press-releases',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_releases'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/press_releases',
     ),
     'nas_panes_article_section' => array(
       'variables' => array(
@@ -351,7 +385,7 @@ function nas_panes_theme() {
         'flyway' => '',
       ),
       'template' => 'flyways-landing-top',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_top'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_top',
     ),
     'nas_flyways_landing_middle' => array(
       'variables' => array(
@@ -359,7 +393,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'flyways-landing-middle',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_middle'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_middle',
     ),
     'nas_flyways_landing_bottom' => array(
       'variables' => array(
@@ -367,7 +401,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'flyways-landing-bottom',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_bottom'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_bottom',
     ),
     'nas_flyways_landing_three_columns' => array(
       'variables' => array(
@@ -375,7 +409,7 @@ function nas_panes_theme() {
         'contextual_links' => '',
       ),
       'template' => 'flyways-landing-three-columns',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_landing_three_columns',
     ),
     'frontpage_in_the_news' => array(
       'variables' => array(
@@ -385,7 +419,7 @@ function nas_panes_theme() {
         'bird_guide_title' => '',
       ),
       'template' => 'frontpage-in-the-news',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_in_the_news'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_in_the_news',
     ),
     'nas_flyways_partners' => array(
       'variables' => array(
@@ -395,15 +429,15 @@ function nas_panes_theme() {
         'read_more_link' => '',
       ),
       'template' => 'flyways-partners',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_partners'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/flyways_partners',
     ),
     'nas_get_outside' => array(
       'template' => 'nas-get-outside',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/get_outside'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/get_outside',
     ),
     'frontpage_editorial_cards' => array(
       'template' => 'frontpage-editorial-cards',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_editorial_cards'
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_editorial_cards',
     ),
     'static_page_menu' => array(
       'template' => 'static-page-menu',
@@ -799,8 +833,18 @@ function nas_panes_theme() {
         'title' => NULL,
         'items' => array(),
         'hide_empty_text' => NULL,
+        'top_offset' => NULL,
       ),
       'template' => 'audubon-near-you-office-chapter',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
+    'audubon_near_you_local_chapter' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-local-chapter',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
     'audubon_near_you_center_sanctuary' => array(
@@ -854,6 +898,8 @@ function nas_panes_theme() {
         'date_city_province' => NULL,
         'featured_image' => NULL,
         'address' => NULL,
+        'additional' => NULL,
+        'location_name' => NULL,
       ),
       'template' => 'events-intro',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_intro',
@@ -869,17 +915,35 @@ function nas_panes_theme() {
       'template' => 'events-reg-block',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_reg_block',
     ),
-    'calendar_download' => array(
-      'variables' => array(
-        'title' => NULL,
-        'download_link' => '',
-      ),
-      'template' => 'calendar-download',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/calendar_download'
-    ),
     'events_listing_featured' => array(
       'template' => 'events-listing-featured',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/events_listing_featured',
+    ),
+    'upcoming_events_block' => array(
+      'variables' => array(
+        'contextual_links' => NULL,
+        'title' => NULL,
+        'image' => NULL,
+        'bottom_link' => NULL,
+        'content' => NULL,
+      ),
+      'template' => 'upcoming-events-block',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
+    ),
+    'upcoming_events_block_content' => array(
+      'variables' => array(
+        'locations' => array(),
+      ),
+      'template' => 'upcoming-events-block-item',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/upcoming_events_block',
+    ),
+    'asc_bird_top_bar' => array(
+      'variables' => array(
+        'title' => '',
+        'url' => '',
+      ),
+      'template' => 'asc-bird-top-bar',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/asc_bird_top_bar',
     ),
   );
 
@@ -915,7 +979,7 @@ function nas_panes_ajax_render_alter(&$commands) {
       panels_save_display($cache->display);
 
       if (module_exists('entitycache')) {
-        list(,, $entity_id) = explode(':', $cache_key);
+        list(, , $entity_id) = explode(':', $cache_key);
         $ecc = new EntityCacheNodeController('node');
         $ecc->resetCache(array($entity_id));
       }
@@ -963,19 +1027,22 @@ function nas_panes_save_node_view_page() {
  * Remove "Edit Panel" contextual link form all panels pages.
  */
 function nas_panes_ctools_plugin_post_alter(&$plugin, &$info) {
-  if ($info['type'] == 'task_handlers') {
-    $plugin['contextual link'] = 'return';
+  if ($info['type'] == 'task_handlers' && !isset($plugin['contextual link'])) {
+    // 'ctools_task_handler_default_contextual_link' otherwise.
+    $plugin['contextual link'] = FALSE;
   }
 }
 
 /**
  * Get blue text link of the node (article).
  */
-function nas_panes_get_blue_text_link($node) {
+function nas_panes_get_blue_text_link($node, $url = TRUE) {
   $custom_section_item = field_get_items('node', $node, 'field_custom_section');
   if (!empty($custom_section_item)) {
-    $term = taxonomy_term_load($custom_section_item[0]['tid']);
-    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
+    $last = array_pop($custom_section_item);
+    $term = taxonomy_term_load($last['tid']);
+    $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
+    return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
 
   $menu_section_item = field_get_items('node', $node, 'field_menu_section');
@@ -1002,7 +1069,8 @@ function nas_panes_get_blue_text_link($node) {
         break;
       }
     }
-    return array(check_plain($term->name), url('taxonomy/term/' . $term->tid));
+    $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
+    return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
   return array(NULL, NULL);
 }
@@ -1049,7 +1117,7 @@ function nas_panes_nas_after_import() {
     ->range(0, 4)
     ->execute()->fetchAll();
   foreach ($article_results as $key => $result) {
-    $article = node_load($result->nid);
+    $article = _i18n_node_load($result->nid);
     $article->field_related_bird = array(
       LANGUAGE_NONE => array(
         array('target_id' => $bird_results[$key]->nid),
@@ -1239,10 +1307,14 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   if (!$display = panels_get_current_page_display()) {
     return;
   }
-  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
+  $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(
+    ':type' => $pane_type,
+    ':did' => $display->did))->fetchField();
   if (empty($pid)) {
     nas_panes_resave_panel($page_cache_key);
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(':type' => $pane_type, ':did' => $display->did))->fetchField();
+    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(
+      ':type' => $pane_type,
+      ':did' => $display->did))->fetchField();
   }
   $links = array(
     'edit' => array(
@@ -1268,6 +1340,7 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
 
 /**
  * Helper function to get Magazine issue's article node nids.
+ *
  * @param $node
  *  Node of type 'magazine_issue'.
  *
@@ -1283,7 +1356,7 @@ function _nas_panes_magazin_featured_articles($node) {
     $conf_is_empty = TRUE;
     if (!empty($conf[$node->nid])) {
       foreach ($conf[$node->nid] as $value) {
-        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+        if (!empty($value['entity_reference']['entity_id']) && _i18n_node_load($value['entity_reference']['entity_id'])) {
           $conf_is_empty = FALSE;
           break;
         }
@@ -1291,7 +1364,7 @@ function _nas_panes_magazin_featured_articles($node) {
     }
     if (!$conf_is_empty) {
       foreach ($conf[$node->nid] as $value) {
-        if (!empty($value['entity_reference']['entity_id']) && node_load($value['entity_reference']['entity_id'])) {
+        if (!empty($value['entity_reference']['entity_id']) && _i18n_node_load($value['entity_reference']['entity_id'])) {
           $articles_nids[] = $value['entity_reference']['entity_id'];
         }
       }
@@ -1349,7 +1422,7 @@ function _nas_panes_save_panelizer($subtype, $node) {
   }
 
   // Reload node cause panel is saved.
-  $cloned_node = node_load($node->nid, NULL, TRUE);
+  $cloned_node = _i18n_node_load($node->nid, NULL, TRUE);
   return _nas_panes_panelizer_lookup_pid($subtype, $cloned_node);
 }
 
@@ -1366,7 +1439,9 @@ function _nas_panes_save_panelizer($subtype, $node) {
  *   Array of node ojects and contextual_links.
  */
 function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
-  $context = array();
+  global $language;
+  $lang = $language->language == 'en' ? 'und' : $language->language;
+  $nodes = $context = array();
   // Check if pane renders within node.
   if ($context_node = menu_get_object('node')) {
     $context['node'] = $context_node;
@@ -1376,16 +1451,72 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     $context['tid'] = arg(2);
   }
 
-  $nodes = array();
   // Load all nodes from Engagement cards nodequeue.
   $all_nodes = nodequeue_load_nodes(1, FALSE, 0, 0);
   foreach ($all_nodes as $node) {
-    $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    // Add to array only nodes for current language.
+    if ($lang == $node->language) {
+      $all_nodes_positioned[nodequeue_subqueue_position(1, $node->nid)] = $node;
+    }
   }
+
+  $all_nodes_positioned = array_combine(range(1, count($all_nodes_positioned)), array_values($all_nodes_positioned));
+
+  // Check if there any URL query parameter exists.
+  $uri = request_uri();
+  $parsed_url = drupal_parse_url($uri);
+
+  if (!empty($parsed_url['query'])) {
+    $query = new EntityFieldQuery();
+
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'campaign')
+      ->propertyCondition('status', NODE_PUBLISHED);
+
+    $result = $query->execute();
+    if (isset($result['node'])) {
+      $campaign_nids = array_keys($result['node']);
+      $campaign_nodes = entity_load('node', $campaign_nids);
+
+      // Lets check if there any Campaign is equal one of the query parameters.
+      foreach ($campaign_nodes as $campaign_node) {
+        $get_field_campaign_url_parameter = field_get_items('node', $campaign_node, 'field_campaign_url_parameter');
+        if (isset($get_field_campaign_url_parameter[0]['value']) &&
+          in_array($get_field_campaign_url_parameter[0]['value'], array_keys($parsed_url['query']))
+        ) {
+          // We found necessary Campaign.
+          if ($campaign_cards = field_get_items('node', $campaign_node, 'field_related_eng_cards')) {
+            foreach ($campaign_cards as $card) {
+              if (!empty($card['target_id']) && $node = _i18n_node_load($card['target_id'])) {
+                $nodes[] = $node;
+              }
+            }
+            break;
+          }
+        }
+      }
+    }
+  }
+
   // Sidebar display card logic.
   if ($first) {
+    // Check if we have loaded cards from Campaign
+    // and pass 1st card for sidebar.
+    if (!empty($nodes) && isset($nodes[0])) {
+      $nodes = array($nodes[0]);
+      // Pass to js special var for unchecking First Time Visitors.
+      drupal_add_js(array(
+        'nas_panes' => array(
+          'ignore_first_time_visitor' => TRUE,
+        ),
+      ), 'setting'
+      );
+    }
     // Manual override.
-    if (!empty($data['references'][1]['entity_reference']['entity_id']) && $node = node_load($data['references'][1]['entity_reference']['entity_id'])) {
+    if (empty($nodes) &&
+      !empty($data['references'][1]['entity_reference']['entity_id']) &&
+      $node = _i18n_node_load($data['references'][1]['entity_reference']['entity_id'])
+    ) {
       $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
     }
     if (empty($nodes)) {
@@ -1441,16 +1572,26 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     }
     // Load card number 4 if manual override was not provided or context not matched.
     if (empty($nodes)) {
-      $nodes[] = $all_nodes_positioned[4];
+      if (isset($all_nodes_positioned[4])) {
+        $nodes[] = $all_nodes_positioned[4];
+      }
     }
     $cards_array['nodes'] = $nodes;
   }
   // Footer block display cards logic.
   else {
+    // Check if we have loaded cards from Campaign
+    // and pass 2,3,4 cards for footer.
+    if (!empty($nodes) && count($nodes) == 4) {
+      $nodes = array_slice($nodes, 1, 3);
+    }
+    else {
+      $nodes = array();
+    }
     // Manual override.
-    if (isset($data['references'])) {
+    if (empty($nodes) && isset($data['references'])) {
       foreach ($data['references'] as $value) {
-        if (isset($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+        if (isset($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
           $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
         }
       }
@@ -1492,7 +1633,9 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
   }
   $pid = _nas_panes_display_lookup_pid($subtype, $pm_page['handler']->conf['display'], $conf);
   // @todo sometimes cache_key is empty. We need build it manually.
-  $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  if (isset($pm_page['handler']->conf['display']->cache_key)) {
+    $cache_key = $pm_page['handler']->conf['display']->cache_key;
+  }
   if (empty($cache_key)) {
     $cache_key = $pm_page['handler']->handler . ':' . $pm_page['name'] . '::' . $pm_page['handler']->name . '::::';
   }
@@ -1597,6 +1740,38 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
 }
 
 /**
+ * Returns Upcoming events base on state.
+ *
+ * @param string $state
+ *   State/province. Two letters.
+ *
+ * @return array
+ *   View results.
+ */
+function _nas_panes_get_upcoming_events($state = 'all') {
+  $items = array();
+  $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
+  $count = 0;
+
+  foreach ($results as $result) {
+    $link = NULL;
+    $item = _i18n_node_load($result->entity);
+    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $items[$item->nid] = array(
+      'nid' => $item->nid,
+      'title' => $item->title,
+      'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
+      'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
+      'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'link' => $link,
+      'order' => $count,
+    );
+    $count = $count + 1;
+  }
+  return $items;
+}
+
+/**
  * Returns locations.
  *
  * @param string $state
@@ -1608,11 +1783,12 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
  * @return array
  *   View results.
  */
-function _nas_panes_get_locations($state = 'all', $type = 'all') {
+function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $view_name = 'locations') {
   $items = array();
-  $results = views_get_view_result('locations', 'default', $state, $type);
-
+  $results = views_get_view_result($view_name, 'default', $state, $type, $nid);
   foreach ($results as $item) {
+    $first_name = (!empty($item->_field_data['nid']['entity']->field_first_name)) ? $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'] : '';
+    $last_name = (!empty($item->_field_data['nid']['entity']->field_last_name)) ? $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'] : '';
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->node_title,
@@ -1622,8 +1798,8 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
       'body' => !empty($item->field_body[0]['rendered']['#markup']) ? $item->field_body[0]['rendered']['#markup'] : '',
       'subtitle' => '',
       'site_link' => '',
-      'first_name' => $item->_field_data['nid']['entity']->field_first_name['und']['0']['value'],
-      'last_name' => $item->_field_data['nid']['entity']->field_last_name['und']['0']['value'],
+      'first_name' => $first_name,
+      'last_name' => $last_name,
       'phone_email' => '',
       'address_label' => t("Address") . ":<br/>",
       'address' => $item->_field_data['nid']['entity']->field_location_address['und']['0'],
@@ -1640,8 +1816,13 @@ function _nas_panes_get_locations($state = 'all', $type = 'all') {
     }
     // Add site link.
     if (!empty($item->field_field_location_link[0]['raw']['url'])) {
-      $options = array('attributes' => array('target' => '_blank', 'class' => array('more-link')));
+      $options = array(
+        'attributes' => array(
+          'target' => '_blank',
+          'class' => array('more-link')));
+      $url = $item->field_field_location_link[0]['raw']['url'];
       $items[$item->nid]['site_link'] = l(t('View Website'), $item->field_field_location_link[0]['raw']['url'], $options);
+      $items[$item->nid]['site_address'] = (!empty($url)) ? $url : NULL;
     }
 
     // Add subtitle.
@@ -1671,7 +1852,7 @@ function _nas_panes_get_priority_birds($state = 'all') {
     $nids[] = $item->nid;
   }
   if (!empty($nids)) {
-    $nodes = node_load_multiple($nids);
+    $nodes = _i18n_node_load_multiple($nids);
     foreach ($nodes as $node) {
       $items[] = node_view($node, 'teaser');
     }
@@ -1688,6 +1869,12 @@ function nas_panes_menu() {
 
   $items['ajax/local-chapters-centers'] = array(
     'page callback' => 'nas_panes_local_chapters_centers_callback',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['ajax/upcoming-events'] = array(
+    'page callback' => 'nas_panes_upcoming_events_callback',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -1710,7 +1897,21 @@ function nas_panes_menu() {
     'page callback' => 'nas_panes_popular_stories_nodequeue_redirect',
     'weight' => 10,
   );
-
+  $items['admin/content/boa-mail-subscription'] = array(
+    'title' => 'BOA mail subscription settings',
+    'access arguments' => array('administer nodes'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array(
+      'nas_panes_boa_mail_subscription_settings_form',
+      2),
+    'weight' => 11,
+  );
+  $items['birds-of-america/%ctools_js/subscribe/%'] = array(
+    'page callback' => 'nas_panes_ctools_modal_boa_subscribe',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
   return $items;
 }
 
@@ -1746,6 +1947,26 @@ function nas_panes_local_chapters_centers_callback() {
   }
 
   print theme('local_chapters_centers_block_content', array('locations' => $locations));
+}
+
+/**
+ * Returns markup for Upcoming Events block.
+ */
+function nas_panes_upcoming_events_callback() {
+  $query = drupal_get_query_parameters();
+  $locations = array();
+
+  // Get locations by state.
+  if (!empty($query['state'])) {
+    $locations = _nas_panes_get_upcoming_events($query['state']);
+  }
+
+  // Display default behaviour.
+  if (empty($locations)) {
+    return;
+  }
+
+  print theme('upcoming_events_block_content', array('locations' => $locations));
 }
 
 /**
@@ -1846,20 +2067,43 @@ function _nas_panes_hide_pane_title_field(&$form) {
   unset($form['override_title']);
   unset($form['override_title_text']);
   unset($form['override_title_markup']);
+  $form['override_title_heading']['#access'] = FALSE;
 }
 
 /**
  * Returns options for menu section.
+ * @deprecated
+ * @see _nas_panes_get_taxonomy_options()
  */
 function _nas_panes_get_menu_section_options() {
-  $vocabulary = taxonomy_vocabulary_machine_name_load('menu_section');
-  $tree = taxonomy_get_tree($vocabulary->vid);
-  $options = array();
-  foreach ($tree as $item) {
-    $options[$item->tid] = str_repeat('-', $item->depth) . $item->name;
-  }
 
-  return $options;
+  return _nas_panes_get_taxonomy_options('menu_section');
+}
+
+/**
+ * Returns options for specified vocabulary.
+ *
+ * @param string $vocabulary_name
+ *   Vocabulary machine name.
+ *
+ * @param int $parent
+ *   Parent level number.
+ *
+ * @return array
+ *   Tree of terms.
+ */
+function _nas_panes_get_taxonomy_options($vocabulary_name, $parent = 0) {
+  $taxonomy_settings = array(
+    'settings' => array(
+      'allowed_values' => array(
+        array(
+          'vocabulary' => $vocabulary_name,
+          'parent' => $parent,
+        ),
+      ),
+    ),
+  );
+  return taxonomy_allowed_values($taxonomy_settings);
 }
 
 /**
@@ -1894,7 +2138,392 @@ function _nas_panes_format_image_attribution($file) {
     $parts[] = trim($items[0]['safe_value']);
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    $parts[] = 'Photo: ' . trim($items[0]['safe_value']);
+    $parts[] = t('Photo:') . ' ' . trim($items[0]['safe_value']);
   }
   return implode(' ', $parts);
+}
+
+/**
+ * Page callback for modal Download high-resolution file.
+ */
+function nas_panes_ctools_modal_boa_subscribe() {
+  ctools_include('modal');
+  ctools_include('ajax');
+  $form_state = array(
+    'title' => variable_get('boa_mail_subscription_settings_form_title', ''),
+    'ajax' => TRUE,
+    'nid' => arg(3),
+  );
+  $output = ctools_modal_form_wrapper('nas_panes_boa_mail_subscription_form', $form_state);
+  print ajax_render($output);
+}
+
+/**
+ * Form boa_mail_subscription_form.
+ */
+function nas_panes_boa_mail_subscription_form($form, &$form_state) {
+  $form['intro'] = array(
+    '#markup' => '<div class="intro">' . variable_get('boa_mail_subscription_settings_form_intro', '') . '</div>',
+  );
+  $form['first_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('First')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#title' => t('Name'),
+    '#required' => TRUE,
+    '#id' => 'nas-boa-mail-subscription-first-name',
+  );
+  $form['last_name'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('Last')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-last-name',
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('email')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#required' => TRUE,
+    '#title' => t('Email'),
+    '#id' => 'nas-boa-mail-subscription-email',
+  );
+  $form['zip_code'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t('ZIP')),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#title' => t('ZIP'),
+    '#required' => TRUE,
+    '#id' => 'nas-boa-mail-subscription-zip',
+  );
+  $form['submit'] = array(
+    '#prefix' => '<div class="actions">',
+    '#type' => 'submit',
+    '#value' => t('Sign Up'),
+    '#attributes' => array(
+      'class' => array('button', 'tomato', 'large'),
+    ),
+    '#id' => 'nas-boa-mail-subscription-submit',
+  );
+  $form['cancel'] = array(
+    '#type' => 'link',
+    '#title' => t('No thanks'),
+    '#attributes' => array(
+      'class' => array('cancel'),
+    ),
+  );
+  $form['privacy_policy'] = array(
+    '#suffix' => '</div>',
+    '#type' => 'link',
+    '#title' => t('Privacy policy'),
+    '#href' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
+    '#attributes' => array(),
+    '#attributes' => array(
+      'target' => '_blank',
+      'class' => array('privacy-policy'),
+    ),
+  );
+
+  if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
+    $form['#prefix'] = '<div class="featured-image">' . theme('image_style', array(
+        'style_name' => 'boa_mail_subscription',
+        'path' => $image->uri,
+      ));
+    if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
+      $form['#prefix'] .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
+    }
+    $form['#prefix'] .= '</div>';
+  }
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_form validation callback.
+ */
+function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
+  $email = strtolower(trim($form_state['values']['email']));
+  $first_name = $form_state['values']['first_name'];
+  $last_name = $form_state['values']['last_name'];
+  $zip_code = $form_state['values']['zip_code'];
+
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
+
+  $url = 'http://www.audubonaction.org/site/Survey';
+  $data = array(
+    'cons_email' => $email,
+    'cons_info_component' => 't',
+    'cons_mail_opt_in' => 't',
+    'cons_email_opt_in' => 1,
+    'cons_email_opt_in_requested' => 'true',
+    'cons_first_name' => $first_name,
+    'cons_last_name' => $last_name,
+    'cons_zip_code' => $zip_code,
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+    'SURVEY_ID' => '18260',
+    'denySubmit' => '',
+    "3340_18260_2_14661" => "1441",
+    "3340_18260_2_14661" => "1401",
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 60,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
+  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
+  // Set up cookie for showing download link of already subscribed users.
+  if (isset($result->code) && ($result->code == 200)) {
+    setcookie('show_download_link', 1, time() + (86400 * 365), '/');
+  }
+}
+
+/**
+ * boa_mail_subscription_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
+  $node = _i18n_node_load($form_state['nid']);
+  $image_items = field_get_items('node', $node, 'field_boa_illustration');
+  if (!empty($image_items[0]['filename'])) {
+    $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
+  }
+  $original_image_link = '<a class="download-link" href="' . $original_image_path . '" target="_blank">' . t('Download your image here.') . '</a>';
+  $content = '<p>' . variable_get('boa_mail_subscription_settings_form_after', '') . '</p>' . $original_image_link;
+  if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
+    $content .= '<div class="featured-image">' . theme('image_style', array(
+        'style_name' => 'boa_mail_subscription',
+        'path' => $image->uri,
+      ));
+    if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
+      $content .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
+    }
+  }
+  $content .= '</div>';
+  $commands[] = ctools_ajax_command_attr('#modalContent .close', 'class', 'close reload');
+  $commands[] = ctools_modal_command_display(variable_get('boa_mail_subscription_settings_form_title', ''), $content);
+  print ajax_render($commands);
+  drupal_exit();
+}
+
+/**
+ * Form boa_mail_subscription_settings_form.
+ */
+function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
+  $form['title'] = array(
+    '#title' => t('Title'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_title', ''),
+  );
+  $form['privacy_policy'] = array(
+    '#title' => t('Privacy policy URL'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_privacy_policy', ''),
+  );
+  $form['intro'] = array(
+    '#title' => t('Intro'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_intro', ''),
+  );
+  $form['image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_image', ''),
+    '#required' => FALSE,
+    '#pp_crop_styles' => array('boa_mail_subscription'),
+  );
+  $form['after'] = array(
+    '#title' => t('Text after form submit'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
+  );
+  $form['after_no'] = array(
+    '#title' => t('Text after No Thanks.'),
+    '#type' => 'textarea',
+    '#default_value' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  return $form;
+}
+
+/**
+ * boa_mail_subscription_settings_form submit callback.
+ */
+function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state) {
+  variable_set('boa_mail_subscription_settings_form_title', $form_state['values']['title']);
+  variable_set('boa_mail_subscription_settings_form_privacy_policy', $form_state['values']['privacy_policy']);
+  variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
+  variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
+  variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
+  variable_set('boa_mail_subscription_settings_form_after_no', $form_state['values']['after_no']);
+}
+
+/**
+ * Returns HTML for a 3x3 grid of radios for video cover placing handle.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: A render element containing radio buttons.
+ *
+ * @ingroup themeable
+ */
+function theme_x_image_anchor($variables) {
+  $element = $variables['element'];
+
+  $rows = array(
+    array('', '', ''),
+    array('', '', ''),
+    array('', '', ''),
+  );
+  foreach (element_children($element) as $key) {
+    $element[$key]['#attributes']['title'] = $element[$key]['#title'];
+    unset($element[$key]['#title']);
+    switch ($key) {
+      case 'center':
+        $rows[1][1] = drupal_render($element[$key]);
+        break;
+
+      case 'top-left':
+        $rows[0][0] = drupal_render($element[$key]);
+        break;
+
+      case 'top-right':
+        $rows[0][2] = drupal_render($element[$key]);
+        break;
+
+      case 'bottom-left':
+        $rows[2][0] = drupal_render($element[$key]);
+        break;
+
+      case 'bottom-right':
+        $rows[2][2] = drupal_render($element[$key]);
+        break;
+    }
+  }
+
+  return theme('table', array(
+    'header' => array(),
+    'rows' => $rows,
+    'attributes' => array('class' => array('x-image-anchor'))));
+}
+
+/**
+ * Get information about site by url params.
+ *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
+ * @return array|void
+ *   Site details.
+ */
+function nas_panes_get_site_info($node) {
+  $info = &drupal_static(__FUNCTION__, array());
+  if (!empty($info)) {
+    return $info;
+  }
+
+  $params = drupal_get_query_parameters();
+  if (!array_key_exists('site', $params)) {
+    return;
+  }
+
+  $url = 'http://' . $params['site'] . '.audubon.org/';
+  if (isset($params['dev']) &&
+    variable_get('nas_birds_allow_dev_params', FALSE)
+  ) {
+    $parts_url = parse_url($params['dev']);
+    $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
+      $parts_url['path'];
+  }
+
+  if (!empty($node)) {
+    $title = urlencode($node->title);
+  }
+  else {
+    $title = 'nil';
+  }
+
+  $request_url = $url . 'export/local-bird/' . $title;
+  if (array_key_exists('nid', $params)) {
+    $request_url .= '/' . $params['nid'];
+  }
+
+  $result = nas_import_send_request($request_url);
+  if (empty($result) || empty($result['title'])) {
+    return;
+  }
+  $result['url'] = $url;
+  if (array_key_exists('return_url', $result)) {
+    $result['url'] = $result['return_url'];
+  }
+  $info = $result;
+  return $result;
+}
+
+/**
+ * Get external information about birds from State&Center sites.
+ *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
+ * @return string
+ *   External content.
+ */
+function nas_panes_get_external_bird_content($node) {
+  $data = nas_panes_get_site_info($node);
+  if (!$data || empty($data['content'])) {
+    return;
+  }
+  return $data['content'];
+}
+
+/**
+ * Get external site title to display on injected Bird box from S&C site.
+ *
+ * @param object $node
+ *   Node object(Bird CT).
+ *
+ * @return string
+ *   The box headline.
+ */
+function nas_panes_get_external_bird_headline($node) {
+  $data = nas_panes_get_site_info($node);
+  if (!$data || empty($data['content'])) {
+    return;
+  }
+  return t('!birdname around @sitename', array('!birdname' => $node->title, '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))));
+}
+
+/**
+ * Returns default engagement cards title in English.
+ */
+function nas_panes_engagement_cards_default_title() {
+  return variable_get('nas_panes_engagement_cards_default_title', 'How you can help, right now');
 }
