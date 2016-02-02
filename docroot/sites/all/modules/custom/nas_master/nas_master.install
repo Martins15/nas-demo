@@ -3343,7 +3343,7 @@ function nas_master_update_7234() {
 }
 
 /**
- * Enable Nursery CT and importer.
+ * Enable Native Plants features.
  */
 function nas_master_update_7235() {
   module_enable(array(
@@ -3351,5 +3351,6 @@ function nas_master_update_7235() {
     'nas_nursery_import_feature',
     'nas_native_plants_search_page_feature',
     'nas_permalink_et_feature',
+    'nas_native_plant_ct_feature',
   ));
 }
