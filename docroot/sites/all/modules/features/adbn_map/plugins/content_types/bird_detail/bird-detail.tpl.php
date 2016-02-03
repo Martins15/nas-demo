@@ -68,12 +68,12 @@
           <?php print $description; ?> <a class="open-bird-detail-popup"><?php print $link_text; ?></a>
         </div>
         <div class="map-legend">
-          <div class="map-legend-point">
-            <span class="swatch image"></span>
+          <div class="map-legend-point kappa-point">
+            <span class="swatch image"><img src="/<?php print $img_path; ?>/kappa-line-key-blue.png" typeof="foaf:Image"></span>
             <span><?php print t('Winter', array(), array('langcode' => $langcode)); ?></span>
           </div>
-          <div class="map-legend-point">
-            <span class="swatch image"></span>
+          <div class="map-legend-point kappa-point">
+            <span class="swatch image"><img src="/<?php print $img_path; ?>/kappa-line-key-yellow.png" typeof="foaf:Image"></span>
             <span><?php print t('Summer', array(), array('langcode' => $langcode)); ?></span>
           </div>
           <br class="hide-for-large hide-for-xlarge">
