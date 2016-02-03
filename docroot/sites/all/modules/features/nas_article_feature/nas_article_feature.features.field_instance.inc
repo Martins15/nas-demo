@@ -4279,11 +4279,7 @@ function nas_article_feature_field_default_field_instances() {
   // Exported field_instance: 'node-article-field_menu_section'
   $field_instances['node-article-field_menu_section'] = array(
     'bundle' => 'article',
-    'default_value' => array(
-      0 => array(
-        'tid' => 0,
-      ),
-    ),
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.',
     'display' => array(
@@ -4444,6 +4440,7 @@ function nas_article_feature_field_default_field_instances() {
       'active' => 0,
       'module' => 'taxonomy_orderselect',
       'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
       'type' => 'taxonomy_orderselect',
