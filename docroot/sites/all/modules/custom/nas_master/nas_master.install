@@ -3343,12 +3343,8 @@ function nas_master_update_7234() {
 }
 
 /**
- * Enable NAS RSS views feature.
+ * Enable NAS RSS feature.
  */
 function nas_master_update_7235() {
   module_enable(array('nas_rss'));
-
-  foreach (array('nas_article_feature', 'nas_slideshow_feature') as $feature) {
-    features_revert(array($feature => array('field_base', 'field_group', 'field_instance')));
-  }
 }
