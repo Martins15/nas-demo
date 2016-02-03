@@ -11,7 +11,6 @@ playbooks=(
 /vagrant/puphpet/ansible/composer.yml \
 /vagrant/puphpet/ansible/drush.yml \
 /vagrant/puphpet/ansible/solr.yml \
-/vagrant/puphpet/ansible/selenium.yml \
 )
 
 for i in "${playbooks[@]}"
