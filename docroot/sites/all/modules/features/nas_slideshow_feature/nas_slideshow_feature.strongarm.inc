@@ -107,19 +107,16 @@ function nas_slideshow_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '5',
+          'weight' => '4',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '40',
         ),
         'xmlsitemap' => array(
-          'weight' => '7',
-        ),
-        'locations' => array(
-          'weight' => '6',
+          'weight' => '30',
         ),
       ),
       'display' => array(),

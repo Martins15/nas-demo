@@ -114,6 +114,12 @@ function nas_article_feature_strongarm() {
       'editorial_card_4x' => array(
         'custom_settings' => TRUE,
       ),
+      'nas_node_teaser_small_state' => array(
+        'custom_settings' => TRUE,
+      ),
+      'ical' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -121,19 +127,22 @@ function nas_article_feature_strongarm() {
           'weight' => '5',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '8',
         ),
         'locations' => array(
-          'weight' => '30',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '11',
         ),
         'xmlsitemap' => array(
-          'weight' => '30',
+          'weight' => '9',
+        ),
+        'language' => array(
+          'weight' => '1',
         ),
       ),
       'display' => array(
@@ -155,8 +164,18 @@ function nas_article_feature_strongarm() {
             'visible' => TRUE,
           ),
           'rss' => array(
-            'weight' => '19',
-            'visible' => FALSE,
+            'weight' => '1002',
+            'visible' => TRUE,
+          ),
+        ),
+        'language' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'rss' => array(
+            'weight' => '0',
+            'visible' => TRUE,
           ),
         ),
       ),
