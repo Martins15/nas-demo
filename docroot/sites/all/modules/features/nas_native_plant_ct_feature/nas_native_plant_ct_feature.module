@@ -7,36 +7,17 @@
 include_once 'nas_native_plant_ct_feature.features.inc';
 
 /**
- * Implements hook_form_FORM_ID_alter() for native_plant_node_form.
+ * Implements hook_node_presave().
  */
-function nas_native_plant_ct_feature_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
-  // Disable not editable fields.
-  $disabled_fields = array(
-    'title',
-    'field_native_plant_common_name',
-    'field_np_scientific_name',
-    'field_native_plant_family',
-    'field_native_plant_id',
-  );
-  foreach ($disabled_fields as $field) {
-    // TODO: need some way to disable editing on these fields, but to get their values.
-    // Looks like there is some compatibility issue with prepopulate.
-    // $form[$field]['#disabled'] = TRUE;
-    // $form[$field]['#type'] = 'hidden';
-    // $form[$field]['#access'] = FALSE;
+function nas_native_plant_ct_feature_node_presave($node) {
+  if ($node->type != 'native_plant') {
+    return;
   }
 
-  $form['#submit'][] = 'nas_native_plant_ct_feature_native_plant_node_form_submit';
-}
-
-/**
- * Submit callback for the native_plant_node_form.
- */
-function nas_native_plant_ct_feature_native_plant_node_form_submit($form, &$form_state) {
-  $form_state['values']['field_native_plant_id']['und'][0]['value'] = nas_native_plant_ct_feature_generate_plant_id(
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_native_plant_ct_feature_generate_plant_id(
     array(
-      $form_state['values']['field_np_scientific_name']['und'][0]['value'],
-      $form_state['values']['field_native_plant_family']['und'][0]['value'],
+      $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
+      $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
     )
   );
 }

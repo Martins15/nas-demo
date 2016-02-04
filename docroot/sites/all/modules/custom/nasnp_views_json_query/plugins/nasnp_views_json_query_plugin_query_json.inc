@@ -182,10 +182,13 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $local_node_wrapper = entity_metadata_wrapper('node', $local_node);
 
       $plant_id = $local_node_wrapper->field_native_plant_id->value();
-      if ($result_key = array_search($plant_id, $plant_ids)) {
+      $result_key = array_search($plant_id, $plant_ids);
+      if ($result_key !== FALSE) {
         $ret[$result_key]->Tier1 = TRUE;
-        $description = $local_node_wrapper->body->value->value();
-        $ret[$result_key]->Description = $description;
+        if ($local_node_wrapper->body->value()) {
+          $description = $local_node_wrapper->body->value->value();
+          $ret[$result_key]->Description = $description;
+        }
         $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
 
         $view->result_tier1[] = $ret[$result_key];
