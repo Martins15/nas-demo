@@ -158,6 +158,10 @@
     shell: "{{ php_env_vars }} drush -y vset file_temporary_path /tmp"
     when: workflow_type == "sql"
 
+  - name: Reset Private files folder
+    shell: "{{ php_env_vars }} drush -y vdel file_private_path"
+    when: workflow_type == "sql"
+
   - name: Updating database
     sudo: yes
     shell: "{{ php_env_vars }} drush -dvy updb -l {{ site_url }}"
