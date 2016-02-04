@@ -34,38 +34,20 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'value' => 'value',
-  );
-  $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'value' => array(
-      'sortable' => 0,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Unfiltered text */
   $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'Enter your ZIP code.';
-  /* Field: ScientificName: Value */
+  /* Field: CommonName: Value */
   $handler->display->display_options['fields']['value']['id'] = 'value';
   $handler->display->display_options['fields']['value']['table'] = 'nasnp_json';
   $handler->display->display_options['fields']['value']['field'] = 'value';
-  $handler->display->display_options['fields']['value']['label'] = 'ScientificName';
-  $handler->display->display_options['fields']['value']['key'] = 'ScientificName';
-  /* Field: CommonName: Value */
-  $handler->display->display_options['fields']['value_1']['id'] = 'value_1';
-  $handler->display->display_options['fields']['value_1']['table'] = 'nasnp_json';
-  $handler->display->display_options['fields']['value_1']['field'] = 'value';
-  $handler->display->display_options['fields']['value_1']['label'] = 'CommonName';
-  $handler->display->display_options['fields']['value_1']['key'] = 'CommonName';
+  $handler->display->display_options['fields']['value']['label'] = 'CommonName';
+  $handler->display->display_options['fields']['value']['key'] = 'CommonName';
   /* Filter criterion: zipcode: Value */
   $handler->display->display_options['filters']['value']['id'] = 'value';
   $handler->display->display_options['filters']['value']['table'] = 'nasnp_json';
@@ -108,7 +90,6 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Enter your ZIP code.'),
-    t('ScientificName'),
     t('CommonName'),
     t('ZIP'),
     t('Content pane'),

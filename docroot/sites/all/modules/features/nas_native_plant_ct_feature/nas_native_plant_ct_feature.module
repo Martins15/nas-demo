@@ -1,0 +1,31 @@
+<?php
+/**
+ * @file
+ * Code for the Native Plant CT feature.
+ */
+
+include_once 'nas_native_plant_ct_feature.features.inc';
+
+/**
+ * Implements hook_node_presave().
+ */
+function nas_native_plant_ct_feature_node_presave($node) {
+  if ($node->type != 'native_plant') {
+    return;
+  }
+
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_native_plant_ct_feature_generate_plant_id(
+    array(
+      $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
+      $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
+    )
+  );
+}
+
+/**
+ * Helper function to generate Plant ID.
+ */
+function nas_native_plant_ct_feature_generate_plant_id($params) {
+  $plant_id = md5(implode('-', $params));
+  return $plant_id;
+}
