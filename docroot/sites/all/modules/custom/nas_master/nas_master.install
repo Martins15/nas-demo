@@ -3341,3 +3341,10 @@ function nas_master_update_7234() {
     array('nas_site_template_feature' => array('page_manager_handlers'))
   );
 }
+
+/**
+ * Enable Acquia Search Multiple Indexes module.
+ */
+function nas_master_update_7235() {
+  module_enable(array('acquia_search_multi_subs'));
+}
