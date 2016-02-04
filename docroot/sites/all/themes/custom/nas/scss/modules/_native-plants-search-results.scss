@@ -72,6 +72,22 @@ $color-dark-green:              #025e02;
   .view-row {
     padding-bottom: 20px;
   }
+
+  .bird-card {
+
+    @include breakpoint(medium-only) {
+      padding: 5px 5px 35px 5px;
+    }
+
+    .bird-card-illustration {
+      height: 120px;
+
+      img {
+        max-height: 120px;
+        max-width: 92%;
+      }
+    }
+  }
 }
 
 .tier-1-plant-picture {
@@ -436,6 +452,38 @@ $color-dark-green:              #025e02;
     .native-plants-bottom-form-right {
       @include breakpoint(medium-up) {
         max-width: 280px;
+      }
+    }
+  }
+}
+
+.bird-card-carousel {
+
+  .owl-carousel {
+
+    .owl-wrapper-outer {
+      padding-top: 5px;
+    }
+
+    .owl-controls {
+      text-align: center;
+      color: #888;
+
+      .disabled i {
+        opacity: 0.4;
+      }
+
+      .owl-prev, .owl-next {
+        display: inline;
+        margin: 0 5px;
+      }
+    }
+
+    .owl-item {
+      padding: 0 12.5px;
+
+      @include breakpoint(medium-only) {
+        padding-right: 0;
       }
     }
   }

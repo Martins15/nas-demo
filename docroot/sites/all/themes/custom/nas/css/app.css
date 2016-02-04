@@ -14165,6 +14165,18 @@ h2.grey {
 .native-plants-search-results .view-row {
   padding-bottom: 20px;
 }
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .native-plants-search-results .bird-card {
+    padding: 5px 5px 35px 5px;
+  }
+}
+.native-plants-search-results .bird-card .bird-card-illustration {
+  height: 120px;
+}
+.native-plants-search-results .bird-card .bird-card-illustration img {
+  max-height: 120px;
+  max-width: 92%;
+}
 
 .tier-1-plant-picture {
   line-height: 0;
@@ -14469,6 +14481,29 @@ h2.grey {
 @media only screen and (min-width: 601px) {
   .native-plants-bottom .native-plants-bottom-form .native-plants-bottom-form-right {
     max-width: 280px;
+  }
+}
+
+.bird-card-carousel .owl-carousel .owl-wrapper-outer {
+  padding-top: 5px;
+}
+.bird-card-carousel .owl-carousel .owl-controls {
+  text-align: center;
+  color: #888;
+}
+.bird-card-carousel .owl-carousel .owl-controls .disabled i {
+  opacity: 0.4;
+}
+.bird-card-carousel .owl-carousel .owl-controls .owl-prev, .bird-card-carousel .owl-carousel .owl-controls .owl-next {
+  display: inline;
+  margin: 0 5px;
+}
+.bird-card-carousel .owl-carousel .owl-item {
+  padding: 0 12.5px;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .bird-card-carousel .owl-carousel .owl-item {
+    padding-right: 0;
   }
 }
 
