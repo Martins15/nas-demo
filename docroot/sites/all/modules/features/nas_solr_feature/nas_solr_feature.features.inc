@@ -211,6 +211,31 @@ function nas_solr_feature_default_search_api_index() {
  */
 function nas_solr_feature_default_search_api_server() {
   $items = array();
+  $items['acquia_search'] = entity_import('search_api_server', '{
+    "name" : "Acquia search",
+    "machine_name" : "acquia_search",
+    "description" : "",
+    "class" : "acquia_search_service",
+    "options" : {
+      "clean_ids" : true,
+      "site_hash" : true,
+      "scheme" : "http",
+      "host" : "useast1-c1.acquia-search.com",
+      "port" : "80",
+      "path" : "\\/solr\\/JTUW-64537",
+      "edismax" : 0,
+      "modify_acquia_connection" : 0,
+      "http_user" : "",
+      "http_pass" : "",
+      "excerpt" : 0,
+      "retrieve_data" : 0,
+      "highlight_data" : 0,
+      "skip_schema_check" : 0,
+      "solr_version" : "",
+      "http_method" : "AUTO"
+    },
+    "enabled" : "1"
+  }');
   $items['solr_4_x'] = entity_import('search_api_server', '{
     "name" : "solr-4.x",
     "machine_name" : "solr_4_x",
@@ -232,7 +257,7 @@ function nas_solr_feature_default_search_api_server() {
       "solr_version" : "4",
       "http_method" : "AUTO"
     },
-    "enabled" : "1"
+    "enabled" : "0"
   }');
   return $items;
 }
