@@ -14,6 +14,7 @@ function nas_solr_entity_load($entities, $type) {
   if ($type == 'search_api_server' && !empty($environment)) {
     foreach ($entities as &$entity) {
       $entity->options['path'] = '/solr/' . $environment;
+      $entity->enabled = TRUE;
     }
   }
 
