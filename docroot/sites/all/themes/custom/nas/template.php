@@ -55,19 +55,78 @@ function nas_html_head_alter(&$head_elements) {
     );
   }
 }
-function nas_preprocess_views_view_row_rss(&$vars) {
-  $nid = $vars['row']->nid;
-  $node = node_load($nid);
-  $uid = $node->uid;
-  $created = $node->created;
-  $user = user_load($uid);
-  $name = $user->name;
-  $created = format_date($created, $type = 'medium');
-  $name = check_plain("<b>Author: </b>".$name."</br>");
-  $created = check_plain("<b>Published: </b>".$created);
 
-  $vars['author'] = $name;
-  $vars['published'] = $created;
+/**
+ * Implements hook_preprocess_views_view_row_rss().
+ */
+function nas_preprocess_views_view_row_rss(&$vars) {
+  $node = node_load($vars['row']->nid);
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  $args[] = array(
+    'key' => 'guid',
+    'value' => $node->uuid,
+    'attributes' => array(
+      'isPermaLink' => 'false',
+    ),
+  );
+
+  $account = user_load($node->uid);
+  $args[] = array(
+    'key' => 'author',
+    'value' => $account->name,
+  );
+
+  $timestamp = $node->created;
+  if ($node->type == 'article') {
+    $subtitle_field = 'field_subtitle';
+
+    if ($value = $wrapper->field_article_date->value()) {
+      $timestamp = $value;
+    }
+  }
+  else {
+    $subtitle_field = 'field_slideshow_subtitle';
+  }
+
+  $args[] = array(
+    'key' => 'pubDate',
+    'value' => format_date($timestamp, 'custom', DATE_RSS),
+  );
+
+  if ($tids = $wrapper->field_menu_section->raw()) {
+    foreach ($tids as $tid) {
+      $trail = array();
+
+      foreach (array_reverse(taxonomy_get_parents_all($tid)) as $term) {
+        $trail[] = $term->name;
+      }
+
+      $args[] = array(
+        'key' => 'category',
+        'value' => implode('/', $trail),
+      );
+    }
+  }
+
+  $body = '';
+  if ($image = field_view_field('node', $node, 'field_editorial_card_image')) {
+    $body .= '<div class="editorial-card-image">' . render($image[0]) . '</div>';
+  }
+
+  if ($value = $wrapper->body->value()) {
+    $body .= '<div class="content-body">' . check_markup($value['value'], $value['format']) . '</div>';
+  }
+
+  if (!empty($body)) {
+    $args[] = array(
+      'key' => 'content:encoded',
+      'value' => '<![CDATA[' . $body . ']]>',
+      'encoded' => TRUE,
+    );
+  }
+
+  $vars['output'] = format_rss_item($vars['title'], $vars['link'], $wrapper->{$subtitle_field}->value(), $args);
 }
 /**
  * Implements hook_preprocess_node().

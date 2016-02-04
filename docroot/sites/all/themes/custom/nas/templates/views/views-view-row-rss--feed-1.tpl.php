@@ -7,13 +7,4 @@
  * @ingroup views_templates
  */
 ?>
-  <item>
-    <title><?php print $title; ?></title>
-    <link><?php print $link; ?></link>
-    <description>
-    	<?php print $author; ?>
-    	<?php print $published; ?>
-    	<?php print $description; ?>
-    </description>
-    <?php print $item_elements; ?>
-  </item>
+<?php print $output; ?>
