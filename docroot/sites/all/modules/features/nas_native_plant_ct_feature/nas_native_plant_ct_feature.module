@@ -5,3 +5,46 @@
  */
 
 include_once 'nas_native_plant_ct_feature.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter() for native_plant_node_form.
+ */
+function nas_native_plant_ct_feature_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
+  // Disable not editable fields.
+  $disabled_fields = array(
+    'title',
+    'field_native_plant_common_name',
+    'field_np_scientific_name',
+    'field_native_plant_family',
+    'field_native_plant_id',
+  );
+  foreach ($disabled_fields as $field) {
+    // TODO: need some way to disable editing on these fields, but to get their values.
+    // Looks like there is some compatibility issue with prepopulate.
+    // $form[$field]['#disabled'] = TRUE;
+    // $form[$field]['#type'] = 'hidden';
+    // $form[$field]['#access'] = FALSE;
+  }
+
+  $form['#submit'][] = 'nas_native_plant_ct_feature_native_plant_node_form_submit';
+}
+
+/**
+ * Submit callback for the native_plant_node_form.
+ */
+function nas_native_plant_ct_feature_native_plant_node_form_submit($form, &$form_state) {
+  $form_state['values']['field_native_plant_id']['und'][0]['value'] = nas_native_plant_ct_feature_generate_plant_id(
+    array(
+      $form_state['values']['field_np_scientific_name']['und'][0]['value'],
+      $form_state['values']['field_native_plant_family']['und'][0]['value'],
+    )
+  );
+}
+
+/**
+ * Helper function to generate Plant ID.
+ */
+function nas_native_plant_ct_feature_generate_plant_id($params) {
+  $plant_id = md5(implode('-', $params));
+  return $plant_id;
+}
