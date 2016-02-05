@@ -61,6 +61,7 @@ function nas_html_head_alter(&$head_elements) {
  */
 function nas_preprocess_views_view_rss(&$vars) {
   $vars['namespaces'] .= ' xmlns:content="http://purl.org/rss/1.0/modules/content/"';
+  $vars['css_url'] = url(drupal_get_path('theme', 'nas') . '/css/rss.css', array('absolute' => TRUE));
 }
 
 /**
@@ -70,23 +71,8 @@ function nas_preprocess_views_view_row_rss(&$vars) {
   $node = node_load($vars['row']->nid);
   $wrapper = entity_metadata_wrapper('node', $node);
 
-  $args = array();
-
   // GUID.
-  $args[] = array(
-    'key' => 'guid',
-    'value' => $node->uuid,
-    'attributes' => array(
-      'isPermaLink' => 'false',
-    ),
-  );
-
-  // Author.
-  $account = user_load($node->uid);
-  $args[] = array(
-    'key' => 'author',
-    'value' => $account->mail . ' (' . $account->name . ')',
-  );
+  $vars['guid'] = $node->uuid;
 
   $timestamp = $node->created;
   if ($node->type == 'article') {
@@ -95,55 +81,45 @@ function nas_preprocess_views_view_row_rss(&$vars) {
     if ($value = $wrapper->field_article_date->value()) {
       $timestamp = $value;
     }
+
+    // Author.
+    if ($contact_node = $wrapper->field_author->value()) {
+      $vars['author'] = $contact_node->title;
+    }
   }
   else {
     $subtitle_field = 'field_slideshow_subtitle';
   }
 
+  // Description.
+  $vars['description'] = $wrapper->{$subtitle_field}->value();
+
   // Publication date.
-  $args[] = array(
-    'key' => 'pubDate',
-    'value' => format_date($timestamp, 'custom', DATE_RSS),
-  );
+  $vars['pub_date'] = format_date($timestamp, 'custom', DATE_RSS);
 
   // Categories.
+  $vars['categories'] = array();
   if ($tids = $wrapper->field_menu_section->raw()) {
     foreach ($tids as $tid) {
       $trail = array();
 
       foreach (array_reverse(taxonomy_get_parents_all($tid)) as $term) {
-        $trail[] = $term->name;
+        $trail[] = check_plain($term->name);
       }
 
-      $args[] = array(
-        'key' => 'category',
-        'value' => implode('/', $trail),
-      );
+      $vars['categories'][] = implode('/', $trail);
     }
   }
 
-  $body = '';
-
-  // Image.
+  // Body content.
+  $vars['content'] = '';
   if ($image = field_view_field('node', $node, 'field_editorial_card_image')) {
-    $body .= '<div class="editorial-card-image">' . render($image[0]) . '</div>';
+    $vars['content'] .= '<div class="editorial-card-image">' . render($image[0]) . '</div>';
   }
 
-  // Body.
   if ($value = $wrapper->body->value()) {
-    $body .= '<div class="content-body">' . check_markup($value['value'], $value['format']) . '</div>';
+    $vars['content'] .= '<div class="content-body">' . check_markup($value['value'], $value['format']) . '</div>';
   }
-
-  // Full content (image + body).
-  if (!empty($body)) {
-    $args[] = array(
-      'key' => 'content:encoded',
-      'value' => '<![CDATA[' . $body . ']]>',
-      'encoded' => TRUE,
-    );
-  }
-
-  $vars['output'] = format_rss_item($vars['title'], $vars['link'], $wrapper->{$subtitle_field}->value(), $args);
 }
 
 /**

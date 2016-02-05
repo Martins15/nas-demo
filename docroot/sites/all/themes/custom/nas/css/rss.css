@@ -1,0 +1,4 @@
+.editorial-card-image img,
+.content-body img {
+  max-width: 100%;
+}

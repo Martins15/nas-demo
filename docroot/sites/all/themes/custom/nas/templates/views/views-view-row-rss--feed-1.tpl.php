@@ -7,4 +7,19 @@
  * @ingroup views_templates
  */
 ?>
-<?php print $output; ?>
+  <item>
+    <title><?php print $title; ?></title>
+    <link><?php print $link; ?></link>
+    <guid isPermaLink="false"><?php print $guid; ?></guid>
+    <?php if (!empty($author)): ?>
+      <dc:creator><?php print $author; ?></dc:creator>
+    <?php endif; ?>
+    <pubDate><?php print $pub_date; ?></pubDate>
+    <?php foreach ($categories as $category): ?>
+      <category><?php print $category; ?></category>
+    <?php endforeach; ?>
+    <description><?php print $description; ?></description>
+    <?php if (!empty($content)): ?>
+      <content:encoded><![CDATA[<?php print $content; ?>]]></content:encoded>
+    <?php endif; ?>
+  </item>
