@@ -1,0 +1,490 @@
+// Native plants colors
+$color-red:                     #cd1818;
+$color-light-red:               #f99090;
+$color-light-orange:            #ff9900;
+$color-light-green:             #52a04a;
+$color-dark-green:              #025e02;
+
+.np-dark-red { background-color: $color-red; }
+.npm-dark-red { color: $color-red; }
+
+.np-light-red { background-color: $color-light-red;}
+.npm-light-red { color: $color-light-red;}
+
+.np-light-orange { background-color: $color-light-orange; }
+.npm-light-orange { color: $color-light-orange; }
+
+.np-light-green { background-color: $color-light-green; }
+.npm-light-green { color: $color-light-green; }
+
+.np-dark-green { background-color: $color-dark-green; }
+.npm-dark-green { color: $color-dark-green; }
+
+.np-middle-grey { background-color: $color-middle-gray; }
+.npm-middle-grey { color: $color-middle-gray; }
+
+.native-plants-green-row {
+  color: $color-white;
+  font-size: 24px;
+  font-family: Source Sans Pro, Verdana, sans-serif;
+  font-weight: 300;
+  line-height: 50px;
+
+  @include breakpoint(medium-up) {
+    line-height: 56px;
+  }
+}
+
+.native-plants-search-form {
+
+  .native-plants-search-form--zip-code {
+    font-size: 19px;
+    height: 45px;
+    border-radius: 8px;
+
+    @include breakpoint(medium-up) {
+      width: 150px;
+      float: right;
+    }
+  }
+
+  .native-plants-search-form--submit {
+    font-size: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 8px;
+    width: 100%;
+
+    @include breakpoint(medium-up) {
+      width: 140px;
+    }
+  }
+}
+
+.native-plants-search-results {
+  margin-top: 20px;
+
+  h3 {
+    font-size: 26px;
+    margin-bottom: 13px;
+  }
+
+  .view-row {
+    padding-bottom: 20px;
+  }
+
+  .bird-card {
+
+    @include breakpoint(medium-only) {
+      padding: 5px 5px 35px 5px;
+    }
+
+    .bird-card-illustration {
+      height: 120px;
+
+      img {
+        max-height: 120px;
+        max-width: 92%;
+      }
+    }
+  }
+}
+
+.tier-1-plant-picture {
+  line-height: 0;
+}
+
+.tier-1-plant-picture-mobile {
+  img {
+    width: 100%;
+  }
+}
+
+.tier-1-plant {
+
+  .tier-1-plant--description {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .tier-1-plant--source {
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-family: Source Sans Pro, Verdana, sans-serif;
+  }
+
+  .tier-1-plant--add-to-list {
+    font-size: 19px;
+    margin-top: 13px;
+  }
+}
+
+.plant-attributes-list {
+  list-style: none;
+  margin: 0;
+
+  li {
+    display: block;
+    float: left;
+    list-style: none;
+    margin-bottom: 10px;
+    margin-right: 12px;
+
+    a, span {
+      border-radius: 8px;
+      color: #ffffff;
+      display: inline-block;
+      font-family: Source Sans Pro, Verdana, sans-serif;
+      font-size: 15px;
+      line-height: 32px;
+      text-align: center;
+      width: 85px;
+    }
+  }
+
+  &.plant-attributes-list-small {
+    li {
+      margin-bottom: 5px;
+      margin-right: 10px;
+
+      a, span {
+        line-height: 26px;
+        width: 78px;
+      }
+    }
+  }
+}
+
+.inner-filters-wrapper {
+
+  select {
+    width: 100%;
+  }
+
+  @include breakpoint(medium-up) {
+
+    select {
+      width: auto;
+    }
+  }
+}
+
+.mobile-results-total-wrapper {
+  padding-bottom: 1rem;;
+  overflow: hidden;
+
+  .mobile-results-total {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #e4e4e4;
+    border-top: 2px solid #e4e4e4;
+    font-size: 14px;
+    font-family: Source Sans Pro, Verdana, sans-serif;
+    line-height: 38px;
+  }
+}
+
+.native-plants-full-search-results {
+
+  table {
+    margin-bottom: 0;
+
+    th {
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 14px 17px;
+      line-height: 39px;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+
+    tr {
+      border-bottom: 1px solid $color-light-gray;
+
+      &:first-child {
+        border-top: 1px solid $color-light-gray;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      td {
+        padding: 10px 13px !important;
+        vertical-align: middle;
+
+        &:nth-child(2) {
+          text-align: center;
+        }
+        &:nth-child(3) {
+          padding-left: 0 !important;
+        }
+
+        .plant--add-to-list {
+
+          input {
+            margin-bottom: 0;
+          }
+
+          label {
+            font-size: 15px;
+            color: $color-text-gray;
+            margin-right: 4px;
+            display: inline;
+          }
+
+          .icon-camera {
+            font-size: 20px;
+            position: absolute;
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .mobile-search-full-results {
+    font-family: Source Sans Pro, Verdana, sans-serif;
+
+    .view-row {
+      border-bottom: 2px solid #cccccc;
+      padding-top: 10px;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      &:last-child {
+        border: none;
+      }
+
+      .mobile-search-full-results--label {
+        color: $color-warm-gray;
+      }
+
+      label {
+        font-size: 19px;
+      }
+    }
+
+  }
+
+  .search-results-total {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #cccccc;
+    border-top: 2px solid #cccccc;
+    clear: both;
+    font-size: 17px;
+    line-height: 39px;
+    font-family: Source Sans Pro, Verdana, sans-serif;
+    overflow: hidden;
+
+    @include breakpoint(medium-up) {
+      border-bottom-width: 1px;
+      border-top-width: 1px;
+    }
+
+    .pager {
+      text-align: center;
+      font-weight: bold;
+
+      .pager-prev {
+        float: left;
+        margin-left: 20px;
+        margin-right: 10px;
+
+        &:before {
+          content: '< ';
+        }
+      }
+      .pager-next {
+        float: right;
+        margin-left: 10px;
+        margin-right: 20px;
+
+        &:after {
+          content: ' >';
+        }
+      }
+
+      @include breakpoint(medium-up) {
+
+        .pager-prev {
+          float: none;
+        }
+
+        .pager-next {
+          float: none;
+        }
+      }
+    }
+  }
+}
+
+.native-plants-bottom {
+  font-family: Source Sans Pro, Verdana, sans-serif;
+
+  @include breakpoint(medium-up) {
+    margin-top: 84px;
+  }
+
+  .native-plants-bottom-plant-list {
+    background-color: #d8d8d8;
+    height: 70px;
+
+    @include breakpoint(medium-up) {
+      height: 96px;
+    }
+
+    .native-plants-bottom-plant-list-info {
+      text-align: center;
+      white-space: nowrap;
+
+      .native-plants-bottom--label {
+        color: #76736c;
+        font-size: 22px;
+        margin-bottom: 0;
+        margin-top: 7px;
+
+        @include breakpoint(medium-up) {
+          font-size: 25px;
+          line-height: 31px;
+          margin-top: 20px;
+        }
+      }
+
+      .native-plants-bottom--selected-count {
+        color: #1cace2;
+        font-size: 15px;
+        white-space: nowrap;
+      }
+    }
+
+    .native-plants-bottom-plant-list-items {
+      font-size: 19px;
+      color: #000;
+      line-height: 27px;
+      padding-top:22px;
+    }
+
+    .native-plants-bottom--button-container {
+      text-align: center;
+      padding-top: 11px;
+
+      @include breakpoint(medium-up) {
+        padding-top: 25px;
+      }
+
+      .native-plants-botton--get-list {
+        border-radius: 8px;
+        height: 45px;
+        white-space: nowrap;
+        width: 140px;
+
+        @include breakpoint(medium-up) {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .native-plants-bottom-form-title {
+    background-color: #66a122;
+    height: 80px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+
+    @include breakpoint(medium-up) {
+      height: 60px;
+      padding-top: 14px;
+
+      h2 {
+        font-size: 28px;
+        line-height: 31px;
+      }
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  .native-plants-bottom-form {
+    background-color: #85b44e;
+    color: $color-white;
+    padding-top: 15px;
+
+    p {
+      font-size: 20px;
+      line-height: 22px;
+      padding-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 11px;
+      height: 45px;
+      border-radius: 8px;
+    }
+
+    ul {
+      line-height: 18px;
+      padding-top: 10px;
+
+      li {
+        margin-bottom: 6px;
+      }
+    }
+
+    button, ul {
+      margin-bottom: 37px;
+    }
+
+    input {
+      height: 45px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+
+    .native-plants-bottom-form-right {
+      @include breakpoint(medium-up) {
+        max-width: 280px;
+      }
+    }
+  }
+}
+
+.bird-card-carousel {
+
+  .owl-carousel {
+
+    .owl-wrapper-outer {
+      padding-top: 5px;
+    }
+
+    .owl-controls {
+      text-align: center;
+      color: #888;
+
+      .disabled i {
+        opacity: 0.4;
+      }
+
+      .owl-prev, .owl-next {
+        display: inline;
+        margin: 0 5px;
+      }
+    }
+
+    .owl-item {
+      padding: 0 12.5px;
+
+      @include breakpoint(medium-only) {
+        padding-right: 0;
+      }
+    }
+  }
+}
