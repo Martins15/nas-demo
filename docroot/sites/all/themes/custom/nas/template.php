@@ -57,6 +57,13 @@ function nas_html_head_alter(&$head_elements) {
 }
 
 /**
+ * Implements hook_preprocess_views_view_rss().
+ */
+function nas_preprocess_views_view_rss(&$vars) {
+  $vars['namespaces'] .= ' xmlns:content="http://purl.org/rss/1.0/modules/content/"';
+}
+
+/**
  * Implements hook_preprocess_views_view_row_rss().
  */
 function nas_preprocess_views_view_row_rss(&$vars) {
@@ -78,7 +85,7 @@ function nas_preprocess_views_view_row_rss(&$vars) {
   $account = user_load($node->uid);
   $args[] = array(
     'key' => 'author',
-    'value' => $account->name,
+    'value' => $account->mail . ' (' . $account->name . ')',
   );
 
   $timestamp = $node->created;
