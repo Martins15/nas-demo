@@ -108,6 +108,12 @@ function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
   );
+  $form['curtain_simple']['disable_gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable gradient'),
+    '#default_value' => isset($_conf['disable_gradient']) ? $_conf['disable_gradient'] : '',
+    '#return_value' => 'disable',
+  );
   $form['curtain_simple']['header_bg'] = array(
     '#type' => 'radios',
     '#title' => t('Shaded background'),
@@ -657,6 +663,12 @@ function _frontpage_featured_curtain_html_form(&$form, $form_state, $conf) {
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
   );
+  $form['curtain_html']['disable_gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable gradient'),
+    '#default_value' => isset($_conf['disable_gradient']) ? $_conf['disable_gradient'] : '',
+    '#return_value' => 'disable',
+  );
   $form['curtain_html']['header_bg'] = array(
     '#type' => 'radios',
     '#title' => t('Shaded background'),
@@ -853,10 +865,10 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
 
   $class = &drupal_static('nas_header_class');
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
-    $class = 'light-text dark-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
   }
   elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
-    $class = 'dark-text light-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
   // Pass image url value to theme
@@ -1245,10 +1257,10 @@ function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
 
   $class = &drupal_static('nas_header_class');
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
-    $class = 'light-text dark-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
   }
   elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
-    $class = 'dark-text light-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
   $summary = _filter_htmlcorrector($conf['summary']);
