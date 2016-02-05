@@ -3343,8 +3343,15 @@ function nas_master_update_7234() {
 }
 
 /**
- * Enable NAS RSS feature.
+ * Enable Acquia Search Multiple Indexes module.
  */
 function nas_master_update_7235() {
+  module_enable(array('acquia_search_multi_subs'));
+}
+
+/**
+ * Enable NAS RSS feature.
+ */
+function nas_master_update_7236() {
   module_enable(array('nas_rss'));
 }

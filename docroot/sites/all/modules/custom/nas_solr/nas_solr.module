@@ -12,15 +12,17 @@ function nas_solr_entity_load($entities, $type) {
   // Variable nas_environment is set in settings.php of demo and staging sites.
   $environment = variable_get('pp_environment', '');
   if ($type == 'search_api_server' && !empty($environment)) {
-    foreach ($entities as &$enitity) {
-      $enitity->options['path'] = '/solr/' . $environment;
+    foreach ($entities as &$entity) {
+      $entity->options['path'] = '/solr/' . $environment;
+      $entity->enabled = TRUE;
     }
   }
 
-  // Use local server for default environment.
-  if ($type == 'search_api_index' && $environment == 'default') {
-    foreach ($entities as &$enitity) {
-      $enitity->server = 'solr_4_x';
+  // Use local server for all CI environments.
+  if ($type == 'search_api_index' && !isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+    foreach ($entities as &$entity) {
+      $entity->server = 'solr_4_x';
+      $entity->enabled = TRUE;
     }
   }
 }
