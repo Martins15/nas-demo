@@ -63,6 +63,9 @@ function nas_preprocess_views_view_row_rss(&$vars) {
   $node = node_load($vars['row']->nid);
   $wrapper = entity_metadata_wrapper('node', $node);
 
+  $args = array();
+
+  // GUID.
   $args[] = array(
     'key' => 'guid',
     'value' => $node->uuid,
@@ -71,6 +74,7 @@ function nas_preprocess_views_view_row_rss(&$vars) {
     ),
   );
 
+  // Author.
   $account = user_load($node->uid);
   $args[] = array(
     'key' => 'author',
@@ -89,11 +93,13 @@ function nas_preprocess_views_view_row_rss(&$vars) {
     $subtitle_field = 'field_slideshow_subtitle';
   }
 
+  // Publication date.
   $args[] = array(
     'key' => 'pubDate',
     'value' => format_date($timestamp, 'custom', DATE_RSS),
   );
 
+  // Categories.
   if ($tids = $wrapper->field_menu_section->raw()) {
     foreach ($tids as $tid) {
       $trail = array();
@@ -110,14 +116,18 @@ function nas_preprocess_views_view_row_rss(&$vars) {
   }
 
   $body = '';
+
+  // Image.
   if ($image = field_view_field('node', $node, 'field_editorial_card_image')) {
     $body .= '<div class="editorial-card-image">' . render($image[0]) . '</div>';
   }
 
+  // Body.
   if ($value = $wrapper->body->value()) {
     $body .= '<div class="content-body">' . check_markup($value['value'], $value['format']) . '</div>';
   }
 
+  // Full content (image + body).
   if (!empty($body)) {
     $args[] = array(
       'key' => 'content:encoded',
@@ -128,6 +138,7 @@ function nas_preprocess_views_view_row_rss(&$vars) {
 
   $vars['output'] = format_rss_item($vars['title'], $vars['link'], $wrapper->{$subtitle_field}->value(), $args);
 }
+
 /**
  * Implements hook_preprocess_node().
  */
