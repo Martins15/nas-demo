@@ -21,15 +21,14 @@ function nas_article_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Editorial card fields',
-    'weight' => '3',
+    'weight' => '4',
     'children' => array(
-      0 => 'field_editorial_card_image',
-      1 => 'field_editorial_card_subtitle',
-      2 => 'field_editorial_card_title',
+      0 => 'field_editorial_card_subtitle',
+      1 => 'field_editorial_card_title',
+      2 => 'field_editorial_card_caption',
       3 => 'field_editorial_card_icon',
       4 => 'field_editorial_card_icon_link',
-      5 => 'field_editorial_card_caption',
-      6 => 'field_editorial_card_left_icon',
+      5 => 'field_editorial_card_left_icon',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -90,7 +89,7 @@ function nas_article_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'field_custom_section',
       1 => 'field_flyway',
@@ -99,6 +98,7 @@ function nas_article_feature_field_group_info() {
       4 => 'field_menu_section',
       5 => 'field_related_bird',
       6 => 'field_conservation_project',
+      7 => 'field_is_this_a_press_release_',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -123,7 +123,7 @@ function nas_article_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Layout',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
       0 => 'field_article_map',
       1 => 'field_color_mode',
@@ -131,6 +131,7 @@ function nas_article_feature_field_group_info() {
       3 => 'field_pressrelease_contact',
       4 => 'field_editorial_card_image',
       5 => 'field_credit_caption_map',
+      6 => 'field_social_media_photo',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
