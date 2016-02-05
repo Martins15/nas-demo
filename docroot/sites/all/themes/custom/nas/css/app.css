@@ -14507,6 +14507,42 @@ h2.grey {
   }
 }
 
+input[type="checkbox"].np-checkbox {
+  display: none;
+}
+input[type="checkbox"].np-checkbox + label {
+  margin-left: 0;
+  padding-left: 26px;
+  padding-bottom: 10px;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input[type="checkbox"].np-checkbox + label:before {
+  background-image: url(../img/np-checkbox.png);
+  background-position: top right;
+  background-size: 42px 21px;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  margin-left: -26px;
+  margin-top: 3px;
+  height: 21px;
+  width: 21px;
+}
+input[type="checkbox"].np-checkbox:checked + label:before {
+  background-position: top left;
+}
+
+.native-plant-bird-category-link {
+  color: #404040;
+  text-decoration: underline;
+}
+.native-plant-bird-category-link:hover {
+  color: #909090;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
