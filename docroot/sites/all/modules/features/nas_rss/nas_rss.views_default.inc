@@ -95,6 +95,26 @@ function nas_rss_views_default_views() {
   $handler->display->display_options['row_options']['item_length'] = 'rss';
   $handler->display->display_options['path'] = 'rss.xml';
   $handler->display->display_options['sitename_title'] = 0;
+  $translatables['nas_rss'] = array(
+    t('Master'),
+    t('Audubon RSS'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Author'),
+    t('Editorial card image'),
+    t('Feed'),
+  );
   $export['nas_rss'] = $view;
 
   return $export;

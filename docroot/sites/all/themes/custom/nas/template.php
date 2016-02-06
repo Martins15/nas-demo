@@ -61,7 +61,6 @@ function nas_html_head_alter(&$head_elements) {
  */
 function nas_preprocess_views_view_rss(&$vars) {
   $vars['namespaces'] .= ' xmlns:content="http://purl.org/rss/1.0/modules/content/"';
-  $vars['css_url'] = url(drupal_get_path('theme', 'nas') . '/css/rss.css', array('absolute' => TRUE));
 }
 
 /**
@@ -113,8 +112,15 @@ function nas_preprocess_views_view_row_rss(&$vars) {
 
   // Body content.
   $vars['content'] = '';
-  if ($image = field_view_field('node', $node, 'field_editorial_card_image')) {
-    $vars['content'] .= '<div class="editorial-card-image">' . render($image[0]) . '</div>';
+  if ($image = field_get_items('node', $node, 'field_editorial_card_image')) {
+    $build = field_view_value('node', $node, 'field_editorial_card_image', $image[0], array(
+      'type' => 'image',
+      'settings' => array(
+        'image_style' => 'nas_rss',
+      ),
+    ));
+
+    $vars['content'] .= '<div class="editorial-card-image">' . render($build) . '</div>';
   }
 
   if ($value = $wrapper->body->value()) {
