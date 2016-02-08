@@ -42,6 +42,11 @@ function nas_token_token_info() {
     'description' => t('Custom alias based on title. Used for @ct CT.', array('@ct' => t('Slideshow'))),
   );
 
+  $info['tokens']['node']['nas-field_iba_state_link-title'] = array(
+    'name' => t('IBA State URL'),
+    'description' => t('URL for State link'),
+  );
+
   return $info;
 }
 
@@ -78,6 +83,10 @@ function nas_token_tokens($type, $tokens, array $data = array(), array $options 
 
         case 'nas-slideshow-title':
           $tokenized_value = _nas_tokens_simple($node, 'nas-slideshow-title');
+          break;
+
+        case 'nas-field_iba_state_link-title':
+          $tokenized_value = _nas_tokens_simple($node, 'nas-field_iba_state_link-title');
           break;
       }
 
@@ -202,6 +211,11 @@ function _nas_tokens_simple($node, $token_name) {
         nas_token_path_string_localize('photos'),
         $node->title,
       );
+      break;
+
+    case 'nas-field_iba_state_link-title':
+      $iba_state_node = node_load($node->field_iba_state[LANGUAGE_NONE][0]['target_id']);
+      $pattern = explode('/', base_path() . drupal_get_path_alias('node/' . $iba_state_node->nid));
       break;
 
     default:
