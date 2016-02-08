@@ -3397,5 +3397,5 @@ function nas_master_update_7236() {
  * Add label "Land Use" to IBA
  */
 function nas_master_update_7237() {
-  eatures_revert_module('nas_iba_feature');
+  features_revert_module('nas_iba_feature');
 }
