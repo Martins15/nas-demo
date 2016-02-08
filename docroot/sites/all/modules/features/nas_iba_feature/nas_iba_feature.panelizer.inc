@@ -344,7 +344,7 @@ function nas_iba_feature_panelizer_defaults() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'label' => 'title',
+      'label' => 'above',
       'formatter' => 'text_default',
       'delta_limit' => 0,
       'delta_offset' => '0',
