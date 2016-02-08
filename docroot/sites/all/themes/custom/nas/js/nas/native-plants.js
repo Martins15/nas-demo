@@ -28,7 +28,7 @@
     attach: function(context, settings) {
       $(".native-plants-bottom-plant-list").once('np-sticky-footer', function () {
         var $self = $(this), $w = $(window);
-        $(window).bind('scroll', function (e) {
+        $(window).bind('scroll resize', function (e) {
           $self.removeAttr('style');
           var s = $w.scrollTop() + $w.height();
           var offset = $('.native-plants-bottom-form-title').offset().top;
@@ -43,7 +43,7 @@
           else {
             $self.removeAttr('style');
           }
-        });
+        }).trigger('scroll');
 
         $('.native-plants-botton--get-list').click(function () {
           $self.removeAttr('style');
