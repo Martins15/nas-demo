@@ -14555,6 +14555,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   color: #909090;
 }
 
+.page-native-plants .hero {
+  z-index: 2;
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
