@@ -61,6 +61,18 @@ $color-dark-green:              #025e02;
   }
 }
 
+.try-these-first {
+
+  h2 {
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: $color-warm-gray;
+    font-family: Source Sans Pro, Verdana, sans-serif;
+  }
+}
+
 .native-plants-search-results {
   margin-top: 20px;
 
@@ -535,6 +547,19 @@ input[type="checkbox"].np-checkbox {
   &:hover {
     color: #909090;
 //    text-decoration: none;
+  }
+}
+
+.np-search-full-results {
+
+  h2 {
+    margin-bottom: 12px;
+  }
+
+  .filter-label {
+    font-family: Source Sans Pro, Verdana, sans-serif;
+    margin-bottom: 12px;
+    padding-left: 3px;
   }
 }
 

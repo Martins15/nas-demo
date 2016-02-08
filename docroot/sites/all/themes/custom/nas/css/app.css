@@ -14155,6 +14155,14 @@ h2.grey {
   }
 }
 
+.try-these-first h2 {
+  margin-bottom: 12px;
+}
+.try-these-first p {
+  color: #838078;
+  font-family: Source Sans Pro, Verdana, sans-serif;
+}
+
 .native-plants-search-results {
   margin-top: 20px;
 }
@@ -14553,6 +14561,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .native-plant-bird-category-link:hover {
   color: #909090;
+}
+
+.np-search-full-results h2 {
+  margin-bottom: 12px;
+}
+.np-search-full-results .filter-label {
+  font-family: Source Sans Pro, Verdana, sans-serif;
+  margin-bottom: 12px;
+  padding-left: 3px;
 }
 
 .page-native-plants .hero {
