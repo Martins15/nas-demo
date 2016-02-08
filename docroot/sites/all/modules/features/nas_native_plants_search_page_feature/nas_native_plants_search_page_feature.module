@@ -5,3 +5,67 @@
  */
 
 include_once 'nas_native_plants_search_page_feature.features.inc';
+
+function nas_native_plants_search_page_feature_preprocess_views_view_unformatted(&$vars) {
+  if ($vars['view']->name != 'native_plants_search') {
+    return;
+  }
+
+  $results = array();
+  foreach ($vars['view']->result as &$result) {
+    $results[] = &$result;
+  }
+  foreach ($vars['view']->result_tier1 as &$result) {
+    $results[] = &$result;
+  }
+  if (empty($results)) {
+    return;
+  }
+
+  $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
+  $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
+  $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
+  $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
+
+  $np_attr_term_wrappers = array();
+  $np_bird_types_term_wrappers = array();
+  foreach ($np_attr_terms as $term) {
+    $np_attr_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+  foreach ($np_bird_types_terms as $term) {
+    $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+
+  foreach ($results as &$result) {
+    // TODO: use rawurlecode() on the filename of the PlantImg URL.
+    $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
+    $result->Attributes = array();
+    $result->BirdTypes = array();
+
+    foreach ($np_attr_term_wrappers as $wrapper) {
+      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if ($result->$value == '1') {
+          $result->Attributes[] = array(
+            'name' => $wrapper->name->value(),
+            'color' => $wrapper->field_np_attr_color->value(),
+          );
+        }
+      }
+    }
+    foreach ($np_bird_types_term_wrappers as $wrapper) {
+      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if ($result->$value == '1') {
+          $result->BirdTypes[] = array(
+            'name' => $wrapper->name->value(),
+          );
+        }
+      }
+    }
+  }
+
+  if (TRUE) {
+
+  }
+}
