@@ -160,13 +160,23 @@ $color-dark-green:              #025e02;
 .inner-filters-wrapper {
 
   select {
+    background-position: 94% center;
+    border-radius: 8px;
+    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    height: 45px;
     width: 100%;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
+    padding-top: 10px;
+    padding-bottom: 11px;
   }
 
   @include breakpoint(medium-up) {
 
     select {
-      width: auto;
+      width: 246px;
+      margin-right: 28px;
     }
   }
 }
