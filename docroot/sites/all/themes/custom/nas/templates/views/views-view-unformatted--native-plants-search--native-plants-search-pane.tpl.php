@@ -70,7 +70,7 @@
                 <span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
               <?php endif; ?>
               <div class="tier-1-plant--description"><?php print $result->Description; ?></div>
-              <div class="tier-1-plant--source"><?php print('Source'); ?>: <a href="#">Wikipedia</a></div>
+              <div class="tier-1-plant--source"><?php print t('Source'); ?>: <a href="#">Wikipedia</a></div>
               <ul class="clearfix plant-attributes-list">
                 <?php foreach ($result->Attributes as $attribute): ?>
                   <li><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></li>
