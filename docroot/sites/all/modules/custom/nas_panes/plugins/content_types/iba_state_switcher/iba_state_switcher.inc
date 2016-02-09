@@ -36,6 +36,7 @@ function iba_state_switcher_render($subtype, $conf, $args, $context) {
     );
   }
 
+  // @codingStandardsIgnoreStart
   uasort($options, function($a, $b) {
     if ($a['default'] == TRUE) {
       return -1;
@@ -45,6 +46,7 @@ function iba_state_switcher_render($subtype, $conf, $args, $context) {
     }
     return strcmp($a['title'], $b['title']);
   });
+  // @codingStandardsIgnoreStop
 
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_state_switcher/iba_state_switcher.js');
 
