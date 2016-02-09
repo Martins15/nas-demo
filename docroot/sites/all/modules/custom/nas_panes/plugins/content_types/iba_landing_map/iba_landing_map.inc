@@ -24,8 +24,12 @@ function iba_landing_map_render($subtype, $conf, $args, $context) {
   $nodes = node_load_multiple(array(), array('type' => 'iba_state'));
 
   foreach ($nodes as $node) {
+    $default = FALSE;
+    if (isset($context->data->nid)) {
+      $default = $node->nid == $context->data->nid;
+    }
     $options[] = array(
-      'default' => $node->nid == $context->data->nid ?  TRUE : FALSE,
+      'default' => $default,
       'title' => $node->title,
       'path' => base_path() . drupal_get_path_alias('node/' . $node->nid),
     );
