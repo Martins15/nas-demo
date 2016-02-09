@@ -11,6 +11,7 @@ function nas_native_plants_search_page_feature_preprocess_views_view_unformatted
     return;
   }
 
+  // Construct the combined results array.
   $results = array();
   foreach ($vars['view']->result as &$result) {
     $results[] = &$result;
@@ -22,6 +23,7 @@ function nas_native_plants_search_page_feature_preprocess_views_view_unformatted
     return;
   }
 
+  // Load all available plant attributes and bird types.
   $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
   $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
   $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
@@ -36,6 +38,7 @@ function nas_native_plants_search_page_feature_preprocess_views_view_unformatted
     $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
   }
 
+  // Assign plant attributes and bird types.
   foreach ($results as &$result) {
     // TODO: use rawurlecode() on the filename of the PlantImg URL.
     $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
@@ -63,9 +66,5 @@ function nas_native_plants_search_page_feature_preprocess_views_view_unformatted
         }
       }
     }
-  }
-
-  if (TRUE) {
-
   }
 }
