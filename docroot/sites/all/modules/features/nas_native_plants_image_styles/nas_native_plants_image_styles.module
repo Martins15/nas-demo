@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Native Plants Image Styles feature.
+ */
+
+include_once 'nas_native_plants_image_styles.features.inc';
