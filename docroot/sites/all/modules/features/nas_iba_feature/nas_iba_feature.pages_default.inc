@@ -43,6 +43,14 @@ function nas_iba_feature_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'metatag_panels' => array(
+      'enabled' => 1,
+      'metatags' => array(
+        'title' => array(
+          'value' => 'Important Bird Areas | [site:name]',
+        ),
+      ),
+    ),
   );
   $display = new panels_display();
   $display->layout = 'nas_iba_landing';
