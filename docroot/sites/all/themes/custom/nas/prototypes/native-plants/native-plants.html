@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../../css/ie9.css" />
   <![endif]-->
 </head>
-  <body>
+  <body class="page-native-plants">
     <header class="global-header standard">
   <section class="dont-miss strip-nav small">
     <div class="row">
@@ -218,7 +218,7 @@
       <!-- /search form-->
 
       <!-- search results tier 1 -->
-      <div class="row">
+      <div class="row try-these-first">
         <div class="columns">
           <h2 class="thin">Try these first</h2>
           <p>These plants should be relatively easy to find and/or grow in your area. <a href="#">Read more.</a></p>
@@ -316,7 +316,7 @@
                   </ul>
 
                   <div class="tier-1-plant--add-to-list">
-                    <input type="checkbox" id="checkbox-1"/>
+                    <input type="checkbox" id="checkbox-1" class="np-checkbox"/>
                     <label for="checkbox-1">
                       Add to your plant list
                     </label>
@@ -398,7 +398,7 @@
                   </ul>
 
                   <div class="tier-1-plant--add-to-list">
-                    <input type="checkbox" id="checkbox-2"/>
+                    <input type="checkbox" id="checkbox-2" class="np-checkbox"/>
                     <label for="checkbox-2">
                       Add to your plant list
                     </label>
@@ -475,7 +475,7 @@
                   </ul>
 
                   <div class="tier-1-plant--add-to-list">
-                    <input type="checkbox" id="checkbox-3"/>
+                    <input type="checkbox" id="checkbox-3" class="np-checkbox"/>
                     <label for="checkbox-3">
                       Add to your plant list
                     </label>
@@ -493,7 +493,7 @@
       <!-- /search results tier 1 -->
 
 
-      <div class="row">
+      <div class="row np-search-full-results">
         <div class="mobile-results-total-wrapper hide-for-medium hide-for-large hide-for-xlarge">
           <div class="mobile-results-total columns">
             <strong>Full results:</strong> 326 plants
@@ -501,17 +501,17 @@
         </div>
         <div class="columns">
           <h2 class="thin hide-for-tiny hide-form-small">Full results</h2>
-          <p class="hide-for-tiny hide-for-small">Filter</p>
+          <p class="hide-for-tiny hide-for-small filter-label">Filter</p>
 
           <form action="#" class="inner-filters-wrapper">
             <select name="" id="s1" placeholder="All types of plants">
-              <option value="">option 1</option>
+              <option value="">All types of plants</option>
               <option value="">option 2</option>
               <option value="">option 3</option>
             </select>
 
             <select name="" id="s2" placeholder="Attracts: Any type of bird">
-              <option value="">option 1</option>
+              <option value="">Attracts: Any type of bird</option>
               <option value="">option 2</option>
               <option value="">option 3</option>
             </select>
@@ -533,7 +533,7 @@
                 <tr>
                   <td>
                     <div class="plant--add-to-list">
-                      <input type="checkbox" id="checkbox-f1"/>
+                      <input type="checkbox" id="checkbox-f1" class="np-checkbox"/>
                       <label for="checkbox-f1">Common juniper</label>
                       <a class="icon-camera" href="#" title="preview"></a>
                     </div>
@@ -553,15 +553,15 @@
                     </ul>
                   </td>
                   <td>
-                    <a href="#">Orioles</a>,
-                    <a href="#">Thrushes</a>,
-                    <a href="#">Crows & Jays</a>
+                    <a href="#" class="native-plant-bird-category-link">Orioles</a>,
+                    <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
+                    <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <div class="plant--add-to-list">
-                      <input type="checkbox" id="checkbox-f2"/>
+                      <input type="checkbox" id="checkbox-f2" class="np-checkbox"/>
                       <label for="checkbox-f2">Hooded blue violet</label>
                       <a class="icon-camera" href="#" title="preview"></a>
                     </div>
@@ -584,15 +584,15 @@
                     </ul>
                   </td>
                   <td>
-                    <a href="#">Orioles</a>,
-                    <a href="#">Thrushes</a>,
-                    <a href="#">Crows & Jays</a>
+                    <a href="#" class="native-plant-bird-category-link">Orioles</a>,
+                    <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
+                    <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <div class="plant--add-to-list">
-                      <input type="checkbox" id="checkbox-f3"/>
+                      <input type="checkbox" id="checkbox-f3" class="np-checkbox"/>
                       <label for="checkbox-f3">Eastern hemlock</label>
                       <a class="icon-camera" href="#" title="preview"></a>
                     </div>
@@ -612,9 +612,9 @@
                     </ul>
                   </td>
                   <td>
-                    <a href="#">Orioles</a>,
-                    <a href="#">Thrushes</a>,
-                    <a href="#">Crows & Jays</a>
+                    <a href="#" class="native-plant-bird-category-link">Orioles</a>,
+                    <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
+                    <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
                   </td>
                 </tr>
               </tbody>
@@ -638,7 +638,7 @@
                   <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
                 </div>
                 <div class="plant--add-to-list">
-                  <input type="checkbox" id="checkbox-f1-s"/>
+                  <input type="checkbox" id="checkbox-f1-s" class="np-checkbox"/>
                   <label for="checkbox-f1-s">Add to your plant list</label>
                 </div>
               </div>
@@ -660,7 +660,7 @@
                   <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
                 </div>
                 <div class="plant--add-to-list">
-                  <input type="checkbox" id="checkbox-f2-s"/>
+                  <input type="checkbox" id="checkbox-f2-s" class="np-checkbox"/>
                   <label for="checkbox-f2-s">Add to your plant list</label>
                 </div>
               </div>
@@ -682,7 +682,7 @@
                   <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
                 </div>
                 <div class="plant--add-to-list">
-                  <input type="checkbox" id="checkbox-f3-s"/>
+                  <input type="checkbox" id="checkbox-f3-s" class="np-checkbox"/>
                   <label for="checkbox-f3-s">Add to your plant list</label>
                 </div>
               </div>

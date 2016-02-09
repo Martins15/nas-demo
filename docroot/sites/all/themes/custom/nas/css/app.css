@@ -14155,6 +14155,14 @@ h2.grey {
   }
 }
 
+.try-these-first h2 {
+  margin-bottom: 12px;
+}
+.try-these-first p {
+  color: #838078;
+  font-family: Source Sans Pro, Verdana, sans-serif;
+}
+
 .native-plants-search-results {
   margin-top: 20px;
 }
@@ -14233,11 +14241,23 @@ h2.grey {
 }
 
 .inner-filters-wrapper select {
+  background-position: 94% center;
+  border-radius: 8px;
+  font-family: Source Sans Pro, Verdana, sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+  height: 45px;
   width: 100%;
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+  padding-bottom: 11px;
 }
 @media only screen and (min-width: 601px) {
   .inner-filters-wrapper select {
-    width: auto;
+    width: 246px;
+    margin-right: 28px;
   }
 }
 
@@ -14505,6 +14525,55 @@ h2.grey {
   .bird-card-carousel .owl-carousel .owl-item {
     padding-right: 0;
   }
+}
+
+input[type="checkbox"].np-checkbox {
+  display: none;
+}
+input[type="checkbox"].np-checkbox + label {
+  margin-left: 0;
+  padding-left: 26px;
+  padding-bottom: 10px;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input[type="checkbox"].np-checkbox + label:before {
+  background-image: url(../img/np-checkbox.png);
+  background-position: top right;
+  background-size: 42px 21px;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  margin-left: -26px;
+  margin-top: 3px;
+  height: 21px;
+  width: 21px;
+}
+input[type="checkbox"].np-checkbox:checked + label:before {
+  background-position: top left;
+}
+
+.native-plant-bird-category-link {
+  color: #404040;
+  text-decoration: underline;
+}
+.native-plant-bird-category-link:hover {
+  color: #909090;
+}
+
+.np-search-full-results h2 {
+  margin-bottom: 12px;
+}
+.np-search-full-results .filter-label {
+  font-family: Source Sans Pro, Verdana, sans-serif;
+  margin-bottom: 12px;
+  padding-left: 3px;
+}
+
+.page-native-plants .hero {
+  z-index: 2;
 }
 
 .sidebar, .article-sidebar {
