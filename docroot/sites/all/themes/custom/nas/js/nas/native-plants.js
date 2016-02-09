@@ -50,7 +50,7 @@
           }
 
           // Form isn't fully visible.
-          if (s < offset + $formTitle.outerHeight() + $form.outerHeight()) {
+          if (s < offset + $formTitle.outerHeight() + $form.outerHeight() - 10) {
             $button.removeClass('js-form-is-visible');
             // If form just became hidden, show button.
             if (!$button.hasClass('js-form-isnt-visible')) {
