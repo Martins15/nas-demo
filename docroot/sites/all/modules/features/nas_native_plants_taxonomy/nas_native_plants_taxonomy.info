@@ -33,4 +33,5 @@ features[uuid_term][] = 920ae4b1-93b4-4927-88a9-cc1641c8c408
 features[uuid_term][] = a93260cd-9361-4f41-8871-596444f5c56c
 features[uuid_term][] = bfe08f6d-0081-4aea-9999-fca06812bae4
 features[uuid_term][] = cac396a5-ca66-4a94-a63d-8f77440f7604
+features[uuid_term][] = e3b4b687-8b82-4c76-9287-acdd1ef7a2df
 project path = sites/all/modules/features

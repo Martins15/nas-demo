@@ -288,5 +288,52 @@ function nas_native_plants_taxonomy_uuid_features_default_terms() {
     ),
     'metatags' => array(),
   );
+  $terms[] = array(
+    'name' => 'Finches',
+    'description' => '',
+    'format' => 'plain_text',
+    'weight' => 0,
+    'uuid' => 'e3b4b687-8b82-4c76-9287-acdd1ef7a2df',
+    'language' => 'und',
+    'i18n_tsid' => 0,
+    'vocabulary_machine_name' => 'native_plant_bird_types',
+    'field_np_bird_type_image' => array(
+      'und' => array(
+        0 => array(
+          'fid' => '22722d14-7e5d-4f62-a0fe-64edfba2d514',
+          'filename' => '4995_sibl_9780307957900_art_r1.jpg',
+          'uri' => 'public://np_bird_types/4995_sibl_9780307957900_art_r1.jpg',
+          'filemime' => 'image/jpeg',
+          'filesize' => 14419,
+          'status' => 1,
+          'timestamp' => 1455010630,
+          'type' => 'image',
+          'uuid' => '22722d14-7e5d-4f62-a0fe-64edfba2d514',
+          'field_file_image_alt_text' => array(),
+          'field_file_image_title_text' => array(),
+          'field_file_caption' => array(),
+          'field_file_credit' => array(),
+          'metatags' => array(),
+          'metadata' => array(
+            'height' => 400,
+            'width' => 334,
+          ),
+          'alt' => NULL,
+          'title' => NULL,
+          'width' => 334,
+          'height' => 400,
+          'user_uuid' => '4bf1b159-87cc-4b07-b2fe-bff20b35eed2',
+        ),
+      ),
+    ),
+    'field_np_attr_machine_attributes' => array(
+      'und' => array(
+        0 => array(
+          'value' => 'NutsSeeds',
+        ),
+      ),
+    ),
+    'metatags' => array(),
+  );
   return $terms;
 }
