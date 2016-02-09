@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS UUID Features variables feature.
+ */
+
+include_once 'nas_uuid_features_variables_feature.features.inc';
