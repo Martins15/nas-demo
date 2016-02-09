@@ -447,7 +447,7 @@ function nas_iba_feature_panelizer_defaults() {
       'admin_title' => 'IBA Header',
       'title' => '',
       'body' => '<h1>%node:title</h1>
-<p class="deck">%node:field_iba_state</p>
+<p class="deck"><a href="%node:field_iba_state_link">%node:field_iba_state</a></p>
 ',
       'format' => 'html',
       'substitute' => 1,
