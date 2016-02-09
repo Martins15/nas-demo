@@ -22,14 +22,14 @@
               <div class="tier-1-plant-picture hide-for-tiny hide-for-small">
                 <?php print theme('imagecache_external', array(
                   'path' => $result->PlantImg,
-                  'style_name'=> 'thumbnail',
+                  'style_name'=> 'native_plant_desktop',
                   'alt' => $result->CommonName,
                 )); ?>
               </div>
               <div class="row tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
                 <?php print theme('imagecache_external', array(
                   'path' => $result->PlantImg,
-                  'style_name'=> 'thumbnail',
+                  'style_name'=> 'native_plant_mobile',
                   'alt' => $result->CommonName,
                 )); ?>
               </div>
