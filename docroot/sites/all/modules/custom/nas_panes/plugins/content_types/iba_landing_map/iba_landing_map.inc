@@ -35,6 +35,14 @@ function iba_landing_map_render($subtype, $conf, $args, $context) {
     );
   }
 
+  sort($options);
+  $top_option = array(
+    'default' => FALSE,
+    'title' => t('Select'),
+    'path' => '',
+  );
+  array_unshift($options, $top_option);
+
   $extent = '-120.7959,34.9153,-88.3423,49.0901';
 
   $query = array(
