@@ -5,6 +5,30 @@
  */
 
 /**
+ * Implements hook_node_presave().
+ */
+function nas_master_native_plants_node_presave($node) {
+  if ($node->type != 'native_plant') {
+    return;
+  }
+
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_master_native_plants_generate_plant_id(
+    array(
+      $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
+      $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
+    )
+  );
+}
+
+/**
+ * Helper function to generate Plant ID.
+ */
+function nas_master_native_plants_generate_plant_id($params) {
+  $plant_id = md5(implode('-', $params));
+  return $plant_id;
+}
+
+/**
  * Implements hook_preprocess_views_view_unformatted().
  */
 function nas_master_native_plants_preprocess_views_view_unformatted(&$vars) {

@@ -147,7 +147,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     $view->result_tier1 = array();
 
     foreach ($ret as $result_key => &$result) {
-      $plant_id = nas_native_plant_ct_feature_generate_plant_id(
+      $plant_id = nas_master_native_plants_generate_plant_id(
         array(
           $result->ScientificName,
           $result->Family,
