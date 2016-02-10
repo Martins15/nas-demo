@@ -191,7 +191,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         }
         $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
 
+        // Move this result to Tier1 results.
         $view->result_tier1[] = $ret[$result_key];
+        unset($ret[$result_key]);
       }
     }
   }
