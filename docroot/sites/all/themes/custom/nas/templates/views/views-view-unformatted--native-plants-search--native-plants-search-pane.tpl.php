@@ -66,7 +66,7 @@
                 <?php endforeach; ?>
               </ul>
               <div class="tier-1-plant--add-to-list">
-                <input type="checkbox" id="checkbox-<?php print $result->PlantID; ?>">
+                <input type="checkbox" id="checkbox-<?php print $result->PlantID; ?>"class="np-checkbox"/>
                 <label for="checkbox-<?php print $result->PlantID; ?>"><?php print t('Add to your plant list'); ?></label>
               </div>
             </div>
@@ -118,9 +118,11 @@
           <tr>
             <td>
               <div class="plant--add-to-list">
-                <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>">
+                <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>" class="np-checkbox"/>
                 <label for="checkbox-f<?php print $result->PlantID; ?>"><?php print $result->CommonName; ?></label>
-                <a class="icon-camera" href="#" title="<?php print t('Preview'); ?>"></a>
+                <?php if ($result->PlantImg): ?>
+                  <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
+                <?php endif; ?>
                 <?php if (user_access('administer nodes')): ?>
                   <br><span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
                 <?php endif; ?>
@@ -135,9 +137,11 @@
               </ul>
             </td>
             <td>
-              <a href="#">Orioles</a>,
-              <a href="#">Thrushes</a>,
-              <a href="#">Crows &amp; Jays</a>
+              <?php $attracts = array();
+              foreach ($result->BirdTypes as $bird_type):
+                $attracts[] = '<a href="#">' . $bird_type['name'] . '</a>';
+              endforeach;
+              print implode(', ', $attracts); ?>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -150,7 +154,10 @@
       <div class="clearfix view-row">
         <div class="columns">
           <div>
-            <span class="mobile-search-full-results--label"><?php print t('Plant'); ?>:</span> <?php print $result->CommonName; ?> <a href="#" class="icon-camera"></a>
+            <span class="mobile-search-full-results--label"><?php print t('Plant'); ?>:</span> <?php print $result->CommonName; ?>
+            <?php if ($result->PlantImg): ?>
+              <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
+            <?php endif; ?>
           </div>
           <div>
             <span class="mobile-search-full-results--label"><?php print t('Scientific name'); ?>:</span> <em><?php print $result->ScientificName; ?></em>
@@ -166,10 +173,15 @@
               ?>
           </div>
           <div>
-            <span class="mobile-search-full-results--label"><?php print t('Attracts'); ?>:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
+            <span class="mobile-search-full-results--label"><?php print t('Attracts'); ?>:</span>
+            <?php $attracts = array();
+            foreach ($result->BirdTypes as $bird_type):
+              $attracts[] = '<a href="#">' . $bird_type['name'] . '</a>';
+            endforeach;
+            print implode(', ', $attracts); ?>
           </div>
           <div class="plant--add-to-list">
-            <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>-s">
+            <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>-s" class="np-checkbox"/>
             <label for="checkbox-f<?php print $result->PlantID; ?>-s"><?php print t('Add to your plant list'); ?></label>
           </div>
         </div>
