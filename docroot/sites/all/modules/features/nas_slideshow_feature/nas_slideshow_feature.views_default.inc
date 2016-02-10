@@ -27,6 +27,9 @@ function nas_slideshow_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
@@ -85,6 +88,19 @@ function nas_slideshow_feature_views_default_views() {
     ),
   );
   $handler->display->display_options['inherit_panels_path'] = '0';
+  $translatables['slideshow_explore_more'] = array(
+    t('Master'),
+    t('Explore More Photography'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+    t('Content pane'),
+    t('NAS'),
+  );
   $export['slideshow_explore_more'] = $view;
 
   $view = new view();
@@ -104,6 +120,9 @@ function nas_slideshow_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '4';
@@ -251,6 +270,20 @@ function nas_slideshow_feature_views_default_views() {
   );
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
+  $translatables['slideshow_related_features'] = array(
+    t('Master'),
+    t('Related Features'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Related features'),
+    t('All'),
+    t('NAS'),
+    t('Featured section'),
+  );
   $export['slideshow_related_features'] = $view;
 
   return $export;
