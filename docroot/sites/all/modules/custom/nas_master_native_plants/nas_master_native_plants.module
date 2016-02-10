@@ -5,6 +5,22 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function nas_master_native_plants_menu() {
+  $items['admin/config/system/native-plants'] = array(
+    'title' => 'Native Plants',
+    'description' => 'Configure Native Plants settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_node_presave().
  */
 function nas_master_native_plants_node_presave($node) {
