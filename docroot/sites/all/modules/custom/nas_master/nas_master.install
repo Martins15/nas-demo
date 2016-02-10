@@ -3347,6 +3347,7 @@ function nas_master_update_7234() {
  */
 function nas_master_update_7235() {
   module_enable(array(
+    'nas_master_native_plants',
     'nas_native_plants_taxonomy',
     'nas_nursery_ct_feature',
     'nas_nursery_import_feature',

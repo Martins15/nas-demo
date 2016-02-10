@@ -1,0 +1,3 @@
+name = NAS master for Native Plants
+core = 7.x
+package = NAS
