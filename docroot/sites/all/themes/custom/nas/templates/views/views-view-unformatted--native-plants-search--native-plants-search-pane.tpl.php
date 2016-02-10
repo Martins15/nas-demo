@@ -38,30 +38,19 @@
               <h4><?php print t('Types of birds attracted'); ?></h4>
               <div class="bird-card-carousel">
                 <div class="row">
-                  <div class="owl-carousel np-owl-processed owl-theme" style="opacity: 1; display: block;">
-                    <!--<div class="bird-card-scroller">-->
-
-                    <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 668px; left: 0px; display: block;"><div class="owl-item" style="width: 167px;"><div id="node-452-3" class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div></div><div class="owl-item" style="width: 167px;"><div id="node-384-3" class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div></div></div></div>
-
-
-
-                    <div class="owl-controls clickable" style="display: none;"><div class="owl-buttons"><div class="owl-prev disabled"><i class="indicator-left icon-arrow-left"></i></div><div class="owl-next disabled"><i class="indicator-right icon-arrow-right"></i></div></div></div></div>
+                  <div class="owl-carousel">
+                    <?php foreach ($result->BirdTypes as $bird_type): ?>
+                    <div class="node node-bird node-teaser clearfix">
+                      <figure class="bird-card">
+                        <div class="bird-card-illustration">
+                          <a href="#"><img src="<?php print image_style_url('nas_bird_teaser_illustration', $bird_type['image']['uri']); ?>" alt=""></a></div>
+                        <figcaption class="bird-card-caption">
+                          <h4 class="common-name"><a href="#"><?php print $bird_type['name']; ?></a></h4>
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <?php endforeach; ?>
+                  </div>
                 </div>
               </div>
             </div>

@@ -45,6 +45,20 @@ function nas_master_native_plants_generate_plant_id($params) {
 }
 
 /**
+ * Implements hook_preprocess_views_view().
+ */
+function nas_master_native_plants_preprocess_views_view(&$vars) {
+  if ($vars['view']->name != 'native_plants_search') {
+    return;
+  }
+
+  $theme_path = drupal_get_path('theme', 'nas');
+  drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
+  drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
+  drupal_add_js($theme_path . '/js/nas/native-plants.js');
+}
+
+/**
  * Implements hook_preprocess_views_view_unformatted().
  */
 function nas_master_native_plants_preprocess_views_view_unformatted(&$vars) {
@@ -103,6 +117,7 @@ function nas_master_native_plants_preprocess_views_view_unformatted(&$vars) {
         if ($result->$value == '1') {
           $result->BirdTypes[] = array(
             'name' => $wrapper->name->value(),
+            'image' => $wrapper->field_np_bird_type_image->value(),
           );
         }
       }
