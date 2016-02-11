@@ -4550,6 +4550,9 @@ small {
   line-height: 17px;
   font-style: italic;
 }
+.bird-card-caption.bird-card-caption-long {
+  bottom: 0;
+}
 
 .bird-card-audio {
   color: #0AA8E3 !important;
@@ -10127,6 +10130,18 @@ body.black-bg .slide-caption {
 .breakout-section-content.dark-text {
   color: #404040;
 }
+.breakout-section-content.fade-to-black:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+}
+.breakout-section-content.fade-to-black > .row {
+  z-index: 2;
+  position: relative;
+}
 .breakout-section-hero + .breakout-section-content {
   padding-top: 150px;
   margin-top: -100px;
@@ -14572,8 +14587,106 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 3px;
 }
 
-.page-native-plants .hero {
-  z-index: 2;
+@media only screen and (max-width: 479px) {
+  .connect-audubon-near-you .breakout-section-box {
+    background: none;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .connect-audubon-near-you .breakout-section-box {
+    background: none;
+  }
+}
+.connect-audubon-near-you .connect-audubon-near-you--title {
+  margin-bottom: 0;
+}
+.connect-audubon-near-you .connect-audubon-near-you--address {
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 20px;
+  line-height: 27px;
+}
+.connect-audubon-near-you .button {
+  margin-top: 40px;
+}
+@media only screen and (min-width: 601px) {
+  .connect-audubon-near-you .connect-audubon-near-you--services {
+    padding-right: 60px;
+  }
+}
+.connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
+  margin-bottom: 30px;
+}
+@media only screen and (min-width: 601px) {
+  .connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 30px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
+    margin-bottom: 120px;
+  }
+}
+
+.grey-pane {
+  background-color: #d8d8d8;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  height: 70px;
+  padding-top: 4px;
+}
+.grey-pane h4 {
+  font-size: 22px;
+  line-height: 31px;
+  margin-bottom: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.grey-pane .grey-pane--list-items {
+  color: #000;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.share-pane {
+  font-size: 16px;
+  line-height: 22px;
+}
+.share-pane .share-pane--icons {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  color: #0AA8E3;
+  line-height: 20px;
+  padding-top: 8px;
+}
+
+.where-to-buy-section p {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 22px;
+}
+.where-to-buy-section .nursery {
+  line-height: 20px;
+  padding-bottom: 14px;
+  padding-top: 16px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  border-bottom: 1px solid #838078;
+}
+.where-to-buy-section .nursery:last-of-type {
+  border-bottom: none;
+}
+@media only screen and (min-width: 601px) {
+  .where-to-buy-section .nursery {
+    border-bottom: none;
+    padding-top: 0;
+  }
+}
+.where-to-buy-section .nursery p {
+  line-height: 18px;
+  margin-bottom: 6px;
+}
+.where-to-buy-section .nursery .label {
+  color: #838078;
 }
 
 .sidebar, .article-sidebar {

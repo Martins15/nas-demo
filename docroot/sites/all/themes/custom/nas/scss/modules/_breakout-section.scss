@@ -157,6 +157,22 @@
     color: $color-text-gray;
   }
 
+  &.fade-to-black {
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(rgba($color-black, 0.8), rgba($color-black, 0));
+    }
+
+    & > .row {
+      z-index: 2;
+      position: relative;
+    }
+  }
+
   .breakout-section-hero + & {
     padding-top: 150px;
     margin-top: -100px;
