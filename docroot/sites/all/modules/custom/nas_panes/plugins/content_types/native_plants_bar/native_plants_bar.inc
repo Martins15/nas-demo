@@ -82,12 +82,6 @@ function native_plants_bar_render($subtype, $conf, $args, $context) {
     '#background_color' => $conf['background_color'],
   );
 
-  $block->content['#attached'] = array(
-    'library' => array(
-      array('system', 'jquery.cookie'),
-    ),
-  );
-
   return $block;
 }
 
