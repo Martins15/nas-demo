@@ -82,6 +82,9 @@
     line-height: $size-text-tiny + 5px;
     font-style: italic;
   }
+  &.bird-card-caption-long {
+    bottom: 0;
+  }
 }
 
 .bird-card-audio {

@@ -5,7 +5,8 @@
   Drupal.behaviors.npOwl = {
     attach: function(context, settings) {
       $(".bird-card-carousel .owl-carousel").once('np-owl', function () {
-        $(this).owlCarousel({
+        var self = $(this);
+        self.owlCarousel({
           items: 2,
           itemsDesktop: false,
           itemsDesktopSmall: false,
@@ -16,6 +17,20 @@
           rewindNav: false,
           pagination: false,
           navigationText: ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"]
+        });
+
+        // Shift card title down if it gets split on several lines.
+        $(window).bind('resize', function (e) {
+          $(".bird-card-caption", self).each(function () {
+            var $caption = $(this);
+            var $header = $(this).find('h4');
+            if ($header.height() > parseInt($header.css('line-height')) + 2) {
+              $caption.addClass('bird-card-caption-long');
+            }
+            else {
+              $caption.removeClass('bird-card-caption-long');
+            }
+          });
         });
       });
     }
@@ -41,8 +56,7 @@
             $self.css({
               bottom: 0,
               position: 'fixed',
-              width: '100%',
-              zIndex: 1
+              width: '100%'
             });
           }
           else {
