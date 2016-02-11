@@ -106,7 +106,7 @@
                     <?php endforeach; ?>
                   </ul>
                   <div class="tier-1-plant--add-to-list">
-                    <input type="checkbox" id="checkbox-<?php print $result->PlantID; ?>"class="np-checkbox"/>
+                    <input type="checkbox" id="checkbox-<?php print $result->PlantID; ?>" class="np-checkbox" data-plant-id="<?php print $result->PlantID; ?>" data-plant-name="<?php print $result->CommonName; ?>"/>
                     <label for="checkbox-<?php print $result->PlantID; ?>"><?php print t('Add to your plant list'); ?></label>
                   </div>
                 </div>
@@ -158,7 +158,7 @@
               <tr>
                 <td>
                   <div class="plant--add-to-list">
-                    <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>" class="np-checkbox"/>
+                    <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>" class="np-checkbox" data-plant-id="<?php print $result->PlantID; ?>" data-plant-name="<?php print $result->CommonName; ?>"/>
                     <label for="checkbox-f<?php print $result->PlantID; ?>"><?php print $result->CommonName; ?></label>
                     <?php if ($result->PlantImg): ?>
                       <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
@@ -221,7 +221,7 @@
                   print implode(', ', $attracts); ?>
                 </div>
                 <div class="plant--add-to-list">
-                  <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>-s" class="np-checkbox"/>
+                  <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>-s" class="np-checkbox" data-plant-id="<?php print $result->PlantID; ?>" data-plant-name="<?php print $result->CommonName; ?>"/>
                   <label for="checkbox-f<?php print $result->PlantID; ?>-s"><?php print t('Add to your plant list'); ?></label>
                 </div>
               </div>
