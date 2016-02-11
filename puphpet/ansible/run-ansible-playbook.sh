@@ -3,6 +3,7 @@
 export PYTHONUNBUFFERED=1
 
 playbooks=(
+/vagrant/puphpet/ansible/misc.yml \
 /vagrant/puphpet/ansible/apache.yml \
 /vagrant/puphpet/ansible/php.yml \
 /vagrant/puphpet/ansible/php-xdebug.yml \
@@ -11,7 +12,6 @@ playbooks=(
 /vagrant/puphpet/ansible/composer.yml \
 /vagrant/puphpet/ansible/drush.yml \
 /vagrant/puphpet/ansible/solr.yml \
-/vagrant/puphpet/ansible/selenium.yml \
 )
 
 for i in "${playbooks[@]}"

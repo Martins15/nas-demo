@@ -80,6 +80,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -175,6 +181,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -301,6 +313,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -451,6 +469,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -584,6 +608,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -750,6 +780,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -760,7 +796,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_editorial_card_left_icon',
     'label' => 'Editorial Card Left Icon',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -838,6 +874,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 3,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -960,6 +1002,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 4,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1095,6 +1143,12 @@ function nas_slideshow_feature_field_default_field_instances() {
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
@@ -1247,6 +1301,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1350,6 +1410,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1376,114 +1442,6 @@ function nas_slideshow_feature_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-slideshow-field_slideshow_redirect'
-  $field_instances['node-slideshow-field_slideshow_redirect'] = array(
-    'bundle' => 'slideshow',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 13,
-      ),
-      'editorial_card_3x' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'editorial_card_4x' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_editorial_card' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_related_features' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_no_section_link' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_slideshow_redirect',
-    'label' => 'Redirect',
-    'required' => 0,
-    'settings' => array(
-      'attributes' => array(
-        'class' => '',
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'default',
-        'title' => '',
-      ),
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'rel_remove' => 'default',
-      'title' => 'none',
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 0,
-      'user_register_form' => FALSE,
-      'validate_url' => 1,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 3,
     ),
   );
 
@@ -1558,6 +1516,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 5,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1667,6 +1631,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1736,11 +1706,9 @@ function nas_slideshow_feature_field_default_field_instances() {
   t('Editorial card title');
   t('Editorial section');
   t('For external links, use the url with http://.');
-  t('If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.');
   t('Images');
   t('Internal tagging');
   t('Menu Section');
-  t('Redirect');
   t('Related features');
   t('Subtitle');
 
