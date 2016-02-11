@@ -57,6 +57,78 @@ function nas_html_head_alter(&$head_elements) {
 }
 
 /**
+ * Implements hook_preprocess_views_view_rss().
+ */
+function nas_preprocess_views_view_rss(&$vars) {
+  $vars['namespaces'] .= ' xmlns:content="http://purl.org/rss/1.0/modules/content/"';
+}
+
+/**
+ * Implements hook_preprocess_views_view_row_rss().
+ */
+function nas_preprocess_views_view_row_rss(&$vars) {
+  $node = node_load($vars['row']->nid);
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // GUID.
+  $vars['guid'] = $node->uuid;
+
+  $timestamp = $node->created;
+  if ($node->type == 'article') {
+    $subtitle_field = 'field_subtitle';
+
+    if ($value = $wrapper->field_article_date->value()) {
+      $timestamp = $value;
+    }
+
+    // Author.
+    if ($contact_node = $wrapper->field_author->value()) {
+      $vars['author'] = $contact_node->title;
+    }
+  }
+  else {
+    $subtitle_field = 'field_slideshow_subtitle';
+  }
+
+  // Description.
+  $vars['description'] = $wrapper->{$subtitle_field}->value();
+
+  // Publication date.
+  $vars['pub_date'] = format_date($timestamp, 'custom', DATE_RSS);
+
+  // Categories.
+  $vars['categories'] = array();
+  if ($tids = $wrapper->field_menu_section->raw()) {
+    foreach ($tids as $tid) {
+      $trail = array();
+
+      foreach (array_reverse(taxonomy_get_parents_all($tid)) as $term) {
+        $trail[] = check_plain($term->name);
+      }
+
+      $vars['categories'][] = implode('/', $trail);
+    }
+  }
+
+  // Body content.
+  $vars['content'] = '';
+  if ($image = field_get_items('node', $node, 'field_editorial_card_image')) {
+    $build = field_view_value('node', $node, 'field_editorial_card_image', $image[0], array(
+      'type' => 'image',
+      'settings' => array(
+        'image_style' => 'nas_rss',
+      ),
+    ));
+
+    $vars['content'] .= '<div class="editorial-card-image">' . render($build) . '</div>';
+  }
+
+  if ($value = $wrapper->body->value()) {
+    $vars['content'] .= '<div class="content-body">' . check_markup($value['value'], $value['format']) . '</div>';
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function nas_preprocess_node(&$vars) {
@@ -116,6 +188,14 @@ function nas_preprocess_node(&$vars) {
   if ($vars['type'] == 'campaign') {
     nas_preprocess_node_campaign($vars);
   }
+}
+
+/**
+ * theme_preprocess_node for RSS view mode.
+ */
+function nas_preprocess_node_rss(&$vars) {
+  $vars['author'] = $vars['user']->name;
+  $vars['published_date'] = $vars['date'];
 }
 
 /**

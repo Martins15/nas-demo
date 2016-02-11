@@ -1,0 +1,12 @@
+name = NAS RSS
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_rss
+dependencies[] = image
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[image][] = nas_rss
+features[views_view][] = nas_rss
+features_exclude[dependencies][ctools] = ctools
