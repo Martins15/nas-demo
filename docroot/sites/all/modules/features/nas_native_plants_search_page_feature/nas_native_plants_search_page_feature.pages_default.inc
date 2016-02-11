@@ -45,13 +45,15 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'nas_one_column';
+  $display->layout = 'native_plants_search';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'header' => NULL,
       'main' => NULL,
+      'top' => NULL,
+      'bottom' => NULL,
     ),
   );
   $display->cache = array();
@@ -59,6 +61,33 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $display->uuid = 'a91d9ccc-ed4c-4060-9db2-59e4fa943db3';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
+    $pane->panel = 'bottom';
+    $pane->type = 'native_plants_cart';
+    $pane->subtype = 'native_plants_cart';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Your plant list',
+      'override_title_text' => 'Your plant list',
+      'button_desktop' => 'Get your list & Join the sanctuary',
+      'button_mobile' => 'Get your list',
+      'form_build_id' => 'form-4LuB7cNFVy3WRVCMQfL6AAzLbdDSkg2n4H8BqOtRn1Y',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd4c292b4-8bf8-4f4a-991a-d70b42ee311f';
+    $display->content['new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f'] = $pane;
+    $display->panels['bottom'][0] = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
     $pane = new stdClass();
     $pane->pid = 'new-0779ab17-606c-4e8d-a457-a71ed1ad4cab';
     $pane->panel = 'main';
