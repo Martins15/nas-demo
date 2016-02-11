@@ -3343,9 +3343,16 @@ function nas_master_update_7234() {
 }
 
 /**
- * Enable Native Plants features.
+ * Enable Acquia Search Multiple Indexes module.
  */
 function nas_master_update_7235() {
+  module_enable(array('acquia_search_multi_subs'));
+}
+
+/**
+ * Enable Native Plants features.
+ */
+function nas_master_update_7236() {
   module_enable(array(
     'nas_master_native_plants',
     'nas_native_plants_taxonomy',
