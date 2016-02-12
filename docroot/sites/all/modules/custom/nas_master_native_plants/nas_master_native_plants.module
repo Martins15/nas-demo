@@ -1,0 +1,252 @@
+<?php
+/**
+ * @file
+ * Main file for the NAS Master Native Plants module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function nas_master_native_plants_menu() {
+  $items['admin/config/system/native-plants'] = array(
+    'title' => 'Native Plants',
+    'description' => 'Configure Native Plants settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function nas_master_native_plants_node_presave($node) {
+  if ($node->type != 'native_plant') {
+    return;
+  }
+
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_master_native_plants_generate_plant_id(
+    array(
+      $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
+      $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
+    )
+  );
+}
+
+/**
+ * Helper function to generate Plant ID.
+ */
+function nas_master_native_plants_generate_plant_id($params) {
+  $plant_id = md5(implode('-', $params));
+  return $plant_id;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_master_native_plants_theme($existing, $type, $theme, $path) {
+  $common_theme = drupal_common_theme();
+  $variables = $common_theme['pager']['variables'];
+  return array(
+    'nas_master_native_plants_pager' => array(
+      'variables' => $variables,
+      'template' => 'templates/nas-master-native-plants-pager',
+      'preprocess functions' => array('nas_master_native_plants_pager_preprocess'),
+    ),
+  );
+}
+
+/**
+ * Preprocess function for the nas_master_native_plants_pager.
+ */
+function nas_master_native_plants_pager_preprocess(&$variables) {
+  $tags = $variables['tags'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $quantity = $variables['quantity'];
+  global $pager_page_array, $pager_total, $pager_total_items;
+  $variables['total_items'] = $pager_total_items[$element];
+
+  // Calculate various markers within this pager piece:
+  // Middle is used to "center" pages around the current page.
+  $pager_middle = ceil($quantity / 2);
+  // current is the page we are currently paged to
+  $pager_current = $pager_page_array[$element] + 1;
+  // first is the first page listed by this pager piece (re quantity)
+  $pager_first = $pager_current - $pager_middle + 1;
+  // last is the last page listed by this pager piece (re quantity)
+  $pager_last = $pager_current + $quantity - $pager_middle;
+  // max is the maximum page number
+  $pager_max = $pager_total[$element];
+  // End of marker calculations.
+
+  // Prepare for generation loop.
+  $i = $pager_first;
+  if ($pager_last > $pager_max) {
+    // Adjust "center" if at end of query.
+    $i = $i + ($pager_max - $pager_last);
+    $pager_last = $pager_max;
+  }
+  if ($i <= 0) {
+    // Adjust "center" if at start of query.
+    $pager_last = $pager_last + (1 - $i);
+    $i = 1;
+  }
+  // End of generation loop preparation.
+
+  $li_first = theme('pager_first', array('text' => 1, 'element' => $element, 'parameters' => $parameters));
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => $pager_max, 'element' => $element, 'parameters' => $parameters));
+
+  if ($pager_total[$element] > 1) {
+    if ($li_first && $i > 1) {
+      $items['first'] = $li_first;
+    }
+    if ($li_previous) {
+      $items['previous'] = $li_previous;
+    }
+    else {
+      $items['previous'] = '<span class="pager-prev">' . (isset($tags[1]) ? $tags[1] : t('‹ previous')) . '</span>';
+    }
+
+    // When there is more than one page, create the pager list.
+    if ($i != $pager_max) {
+      if ($i > 1) {
+        $items[] = '<span>...</span>';
+      }
+      // Now generate the actual pager piece.
+      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
+        if ($i < $pager_current) {
+          $items[] = theme('pager_previous', array(
+            'text' => $i,
+            'element' => $element,
+            'interval' => ($pager_current - $i),
+            'parameters' => $parameters
+          ));
+        }
+        if ($i == $pager_current) {
+          $items[] = '<span>' . $i . '</span>';
+        }
+        if ($i > $pager_current) {
+          $items[] = theme('pager_next', array(
+            'text' => $i,
+            'element' => $element,
+            'interval' => ($i - $pager_current),
+            'parameters' => $parameters
+          ));
+        }
+      }
+      if ($i < $pager_max) {
+        $items[] = '<span>...</span>';
+      }
+    }
+    // End generation.
+    if ($li_next) {
+      $items['next'] = $li_next;
+    }
+    else {
+      $items['next'] = '<span class="pager-next">' . (isset($tags[3]) ? $tags[3] : t('next ›')) . '</span>';
+    }
+    if ($li_last && $i <= $pager_max) {
+      $items['last'] = $li_last;
+    }
+
+    $variables['items'] = $items;
+  }
+}
+
+/**
+ * Implements hook_views_plugins().
+ */
+function nas_master_native_plants_views_plugins() {
+  return array(
+    'pager' => array(
+      'nas_master_native_plants_views_pager_plugin' => array(
+        'title' => t('Paged output, NAS Master Native Plants pager'),
+        'short title' => t('NAS Master Native Plants pager'),
+        'handler' => 'nas_master_native_plants_views_pager_plugin',
+        'help' => t('Paged output, NAS Master Native Plants pager'),
+        'help topic' => 'pager-nas-master-native-plants-pager',
+        'uses options' => TRUE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function nas_master_native_plants_preprocess_views_view(&$vars) {
+  if ($vars['view']->name != 'native_plants_search') {
+    return;
+  }
+
+  // Add required assets.
+  $theme_path = drupal_get_path('theme', 'nas');
+  drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
+  drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
+  drupal_add_js($theme_path . '/js/nas/native-plants.js');
+  drupal_add_js(drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.js');
+
+  // Construct the combined results array.
+  $results = array();
+  foreach ($vars['view']->result as &$result) {
+    $results[] = &$result;
+  }
+  foreach ($vars['view']->result_tier1 as &$result) {
+    $results[] = &$result;
+  }
+  if (empty($results)) {
+    return;
+  }
+
+  // Load all available plant attributes and bird types.
+  $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
+  $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
+  $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
+  $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
+
+  $np_attr_term_wrappers = array();
+  $np_bird_types_term_wrappers = array();
+  foreach ($np_attr_terms as $term) {
+    $np_attr_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+  foreach ($np_bird_types_terms as $term) {
+    $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+
+  // Assign plant attributes and bird types.
+  foreach ($results as &$result) {
+    // TODO: use rawurlecode() on the filename of the PlantImg URL.
+    $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
+    $result->Attributes = array();
+    $result->BirdTypes = array();
+
+    foreach ($np_attr_term_wrappers as $wrapper) {
+      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if ($result->$value == '1') {
+          $result->Attributes[] = array(
+            'name' => $wrapper->name->value(),
+            'color' => $wrapper->field_np_attr_color->value(),
+          );
+        }
+      }
+    }
+    foreach ($np_bird_types_term_wrappers as $wrapper) {
+      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if ($result->$value == '1') {
+          $result->BirdTypes[] = array(
+            'name' => $wrapper->name->value(),
+            'image' => $wrapper->field_np_bird_type_image->value(),
+          );
+        }
+      }
+    }
+  }
+}

@@ -33,7 +33,13 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['query']['options']['show_errors'] = 0;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'nas_master_native_plants_views_pager_plugin';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = 'Previous page';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'Next page';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* No results behavior: Global: Unfiltered text */
@@ -86,8 +92,8 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('- All -'),
     t('Offset'),
     t('« first'),
-    t('‹ previous'),
-    t('next ›'),
+    t('Previous page'),
+    t('Next page'),
     t('last »'),
     t('Enter your ZIP code.'),
     t('CommonName'),
