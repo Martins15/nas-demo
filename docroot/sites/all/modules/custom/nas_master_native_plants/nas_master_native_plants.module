@@ -160,6 +160,53 @@ function nas_master_native_plants_pager_preprocess(&$variables) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_state['view']->name != 'native_plants_search') {
+    return;
+  }
+
+  // Unset the form theme functions to remove unneeded wrappers.
+  unset($form['#theme']);
+
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form',
+    ),
+  );
+
+  $form['zipcode']['#prefix'] = '<div class="row"><div class="column medium-6">';
+  $form['zipcode']['#suffix'] = '</div>';
+  $form['zipcode']['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form--zip-code',
+    ),
+    'placeholder' => t('ZIP code'),
+  );
+
+  $form['attribute']['#attributes'] = array(
+    'style' => 'display: none;',
+  );
+  $form['bird_type']['#attributes'] = array(
+    'style' => 'display: none;',
+  );
+  $form['attribute']['#options']['All'] = t('All types of plants');
+  $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
+
+  $form['submit']['#prefix'] = '<div class="column medium-6">';
+  $form['submit']['#suffix'] = '</div></div>';
+  $form['submit']['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form--submit',
+      'button',
+      'tomato',
+      'large',
+    ),
+  );
+}
+
+/**
  * Implements hook_views_plugins().
  */
 function nas_master_native_plants_views_plugins() {
@@ -231,6 +278,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         $value = $field_wrapper->value();
         if ($result->$value == '1') {
           $result->Attributes[] = array(
+            'tid' => $wrapper->tid->value(),
             'name' => $wrapper->name->value(),
             'color' => $wrapper->field_np_attr_color->value(),
           );
@@ -242,6 +290,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         $value = $field_wrapper->value();
         if ($result->$value == '1') {
           $result->BirdTypes[] = array(
+            'tid' => $wrapper->tid->value(),
             'name' => $wrapper->name->value(),
             'image' => $wrapper->field_np_bird_type_image->value(),
           );

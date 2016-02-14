@@ -83,6 +83,16 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           break;
         }
       }
+      // Check taxonomy filters.
+      foreach ($this->filter_taxonomy as $values) {
+        foreach ($values as $value) {
+          $l = is_object($row) ? $row->{$value} : $row[$value];
+          if ($l === "0") {
+            $check = FALSE;
+            break;
+          }
+        }
+      }
       if (!$check) {
         unset($ret[$k]);
       }
@@ -140,6 +150,46 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
   }
 
   /**
+   * Fake function required for taxonomy filters.
+   */
+  public function add_table($table, $relationship = NULL, $join = NULL, $alias = NULL) {
+    return 'taxonomy';
+  }
+
+  /**
+   * Fake function required for taxonomy filters.
+   */
+  public function add_relationship($alias, $join, $base, $link_point = NULL) {
+    return $alias;
+  }
+
+  /**
+   * Fake function required for taxonomy filters.
+   */
+  public function ensure_table($table, $relationship = NULL, $join = NULL) {
+    return 'taxonomy';
+  }
+
+  /**
+   * Add taxonomy filters to the query.
+   */
+  public function add_where($group, $field, $value = NULL, $operator = NULL) {
+    if ($term = taxonomy_term_load($value)) {
+      $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+      $values = array();
+      foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $values[] = $field_wrapper->value();
+      }
+      $this->filter_taxonomy[] = $values;
+    }
+  }
+
+  /**
+   * Fake function required for taxonomy filters.
+   */
+  public function add_tag($tag) {}
+
+  /**
    * Attach local data to the results.
    */
   public function add_local_data(&$ret, &$view) {
@@ -161,7 +211,8 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result->LocalLink = 'node/add/native-plant?edit[title]=' . $result->CommonName
         . '&edit[field_native_plant_common_name][und][0][value]=' . $result->CommonName
         . '&edit[field_np_scientific_name][und][0][value]=' . $result->ScientificName
-        . '&edit[field_native_plant_family][und][0][value]=' . $result->Family;
+        . '&edit[field_native_plant_family][und][0][value]=' . $result->Family
+        . '&edit[field_native_plant_id][und][0][value]=' . $result->PlantID;
     }
     if (empty($plant_ids)) {
       return;
