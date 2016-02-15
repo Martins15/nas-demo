@@ -20,7 +20,7 @@ function nas_master_native_plants_settings($form, &$form_state) {
 /**
  * Submit callback for nas_master_native_plants_settings.
  */
-function nas_master_native_plants_settings_submit($form, &$form_state) {
+function nas_master_native_plants_settings_submit() {
   global $user;
   $terms = _nas_master_native_plants_taxonomy_terms();
 

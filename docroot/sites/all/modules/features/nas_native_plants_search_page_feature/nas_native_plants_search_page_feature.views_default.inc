@@ -48,6 +48,12 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'Enter your ZIP code.';
+  /* Relationship: Taxonomy */
+  $handler->display->display_options['relationships']['value']['id'] = 'value';
+  $handler->display->display_options['relationships']['value']['table'] = 'nasnp_json';
+  $handler->display->display_options['relationships']['value']['field'] = 'value';
+  $handler->display->display_options['relationships']['value']['ui_name'] = 'Taxonomy';
+  $handler->display->display_options['relationships']['value']['label'] = 'Taxonomy';
   /* Field: CommonName: Value */
   $handler->display->display_options['fields']['value']['id'] = 'value';
   $handler->display->display_options['fields']['value']['table'] = 'nasnp_json';
@@ -60,7 +66,6 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['filters']['value']['field'] = 'value';
   $handler->display->display_options['filters']['value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['value']['expose']['operator_id'] = 'value_op';
-  $handler->display->display_options['filters']['value']['expose']['label'] = 'ZIP';
   $handler->display->display_options['filters']['value']['expose']['operator'] = 'value_op';
   $handler->display->display_options['filters']['value']['expose']['identifier'] = 'zipcode';
   $handler->display->display_options['filters']['value']['expose']['remember_roles'] = array(
@@ -74,6 +79,50 @@ function nas_native_plants_search_page_feature_views_default_views() {
     31 => 0,
   );
   $handler->display->display_options['filters']['value']['key'] = 'zipcode';
+  /* Filter criterion: Attributes */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'value';
+  $handler->display->display_options['filters']['tid']['ui_name'] = 'Attributes';
+  $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'attribute';
+  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    21 => 0,
+    26 => 0,
+    31 => 0,
+  );
+  $handler->display->display_options['filters']['tid']['type'] = 'select';
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'native_plant_attributes';
+  /* Filter criterion: Bird types */
+  $handler->display->display_options['filters']['tid_1']['id'] = 'tid_1';
+  $handler->display->display_options['filters']['tid_1']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['tid_1']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid_1']['relationship'] = 'value';
+  $handler->display->display_options['filters']['tid_1']['ui_name'] = 'Bird types';
+  $handler->display->display_options['filters']['tid_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid_1']['expose']['operator_id'] = 'tid_1_op';
+  $handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
+  $handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'bird_type';
+  $handler->display->display_options['filters']['tid_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    21 => 0,
+    26 => 0,
+    31 => 0,
+  );
+  $handler->display->display_options['filters']['tid_1']['type'] = 'select';
+  $handler->display->display_options['filters']['tid_1']['vocabulary'] = 'native_plant_bird_types';
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'native_plants_search_pane');
@@ -96,8 +145,8 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('Next page'),
     t('last »'),
     t('Enter your ZIP code.'),
+    t('Taxonomy'),
     t('CommonName'),
-    t('ZIP'),
     t('Content pane'),
     t('View panes'),
   );

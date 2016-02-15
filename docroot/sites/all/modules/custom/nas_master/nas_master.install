@@ -3363,4 +3363,8 @@ function nas_master_update_7236() {
     'nas_native_plants_search_page_feature',
     'nas_native_plants_image_styles',
   ));
+
+  // Create taxonomy terms.
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.admin');
+  nas_master_native_plants_settings_submit();
 }

@@ -102,7 +102,7 @@
                   <div class="tier-1-plant--source"><?php print t('Source'); ?>: <a href="#">Wikipedia</a></div>
                   <ul class="clearfix plant-attributes-list">
                     <?php foreach ($result->Attributes as $attribute): ?>
-                      <li><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></li>
+                      <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>"><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></a></li>
                     <?php endforeach; ?>
                   </ul>
                   <div class="tier-1-plant--add-to-list">
@@ -125,20 +125,9 @@
       </div>
       <div class="columns">
         <h2 class="thin hide-for-tiny hide-form-small"><?php print t('Full results'); ?></h2>
-        <p class="hide-for-tiny hide-for-small"><?php print t('Filter'); ?></p>
+        <p class="hide-for-tiny hide-for-small filter-label"><?php print t('Filter'); ?></p>
 
         <form action="#" class="inner-filters-wrapper">
-          <select name="" id="s1" placeholder="All types of plants">
-            <option value="">option 1</option>
-            <option value="">option 2</option>
-            <option value="">option 3</option>
-          </select>
-
-          <select name="" id="s2" placeholder="Attracts: Any type of bird">
-            <option value="">option 1</option>
-            <option value="">option 2</option>
-            <option value="">option 3</option>
-          </select>
         </form>
       </div>
 
@@ -172,7 +161,7 @@
                 <td>
                   <ul class="clearfix plant-attributes-list plant-attributes-list-small">
                     <?php foreach ($result->Attributes as $attribute): ?>
-                      <li><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></li>
+                      <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>"><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></a></li>
                     <?php endforeach; ?>
                   </ul>
                 </td>
@@ -207,7 +196,7 @@
                   <?php
                   $attributes = array();
                   foreach ($result->Attributes as $attribute):
-                    $attributes[] = '<span style="color: ' . $attribute['color'] . '">' . $attribute['name'] . '</span>';
+                    $attributes[] = '<a href="#" class="native-plants-attribute" data-tid="' . $attribute['tid'] . '"><span style="color: ' . $attribute['color'] . '">' . $attribute['name'] . '</span></a>';
                   endforeach;
                   print implode(', ', $attributes);
                   ?>
