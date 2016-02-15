@@ -84,12 +84,14 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         }
       }
       // Check taxonomy filters.
-      foreach ($this->filter_taxonomy as $values) {
-        foreach ($values as $value) {
-          $l = is_object($row) ? $row->{$value} : $row[$value];
-          if ($l === "0") {
-            $check = FALSE;
-            break;
+      if (isset($this->filter_taxonomy)) {
+        foreach ($this->filter_taxonomy as $values) {
+          foreach ($values as $value) {
+            $l = is_object($row) ? $row->{$value} : $row[$value];
+            if ($l === "0") {
+              $check = FALSE;
+              break;
+            }
           }
         }
       }

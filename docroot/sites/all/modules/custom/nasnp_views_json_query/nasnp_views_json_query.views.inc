@@ -34,6 +34,7 @@ function nasnp_views_json_query_views_data() {
     'relationship' => array(
       'handler' => 'views_handler_relationship',
       'base' => 'taxonomy_term_data',
+      'base field' => 'tid',
     ),
   );
 

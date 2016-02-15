@@ -102,6 +102,12 @@ function nas_master_native_plants_pager_preprocess(&$variables) {
   $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
   $li_last = theme('pager_last', array('text' => $pager_max, 'element' => $element, 'parameters' => $parameters));
 
+  $items = array(
+    'first' => '',
+    'previous' => '',
+    'next' => '',
+    'last' => '',
+  );
   if ($pager_total[$element] > 1) {
     if ($li_first && $i > 1) {
       $items['first'] = $li_first;
@@ -154,9 +160,8 @@ function nas_master_native_plants_pager_preprocess(&$variables) {
     if ($li_last && $i <= $pager_max) {
       $items['last'] = $li_last;
     }
-
-    $variables['items'] = $items;
   }
+  $variables['items'] = $items;
 }
 
 /**
@@ -244,8 +249,10 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   foreach ($vars['view']->result as &$result) {
     $results[] = &$result;
   }
-  foreach ($vars['view']->result_tier1 as &$result) {
-    $results[] = &$result;
+  if (isset($vars['view']->result_tier1)) {
+    foreach ($vars['view']->result_tier1 as &$result) {
+      $results[] = &$result;
+    }
   }
   if (empty($results)) {
     return;
