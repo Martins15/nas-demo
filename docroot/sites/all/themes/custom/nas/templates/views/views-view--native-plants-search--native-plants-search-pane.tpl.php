@@ -102,7 +102,7 @@
                 <div class="tier-1-plant--source"><?php print t('Source'); ?>: <a href="#">Wikipedia</a></div>
                 <ul class="clearfix plant-attributes-list">
                   <?php foreach ($result->Attributes as $attribute): ?>
-                    <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>"><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></a></li>
+                    <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>" style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></a></li>
                   <?php endforeach; ?>
                 </ul>
                 <div class="tier-1-plant--add-to-list">
@@ -162,7 +162,7 @@
               <td>
                 <ul class="clearfix plant-attributes-list plant-attributes-list-small">
                   <?php foreach ($result->Attributes as $attribute): ?>
-                    <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>"><span style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></span></a></li>
+                    <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>" style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></a></li>
                   <?php endforeach; ?>
                 </ul>
               </td>
@@ -195,11 +195,11 @@
               <div>
                 <span class="mobile-search-full-results--label"><?php print t('Attributes'); ?>:</span>
                 <?php
-                $attributes = array();
-                foreach ($result->Attributes as $attribute):
-                  $attributes[] = '<a href="#" class="native-plants-attribute" data-tid="' . $attribute['tid'] . '"><span style="color: ' . $attribute['color'] . '">' . $attribute['name'] . '</span></a>';
-                endforeach;
-                print implode(', ', $attributes);
+                  $attributes = array();
+                  foreach ($result->Attributes as $attribute) {
+                    $attributes[] = '<a href="#" class="native-plants-attribute" data-tid="' . $attribute['tid'] . '" style="color: ' . $attribute['color'] . '">' . $attribute['name'] . '</a>';
+                  }
+                  print implode(', ', $attributes);
                 ?>
               </div>
               <div>

@@ -215,8 +215,8 @@ $color-dark-green:              #025e02;
     th {
       background-color: #f4f4f4;
       text-align: center;
-      padding: 14px 17px;
-      line-height: 39px;
+      padding: 11px 17px !important;
+      line-height: 17px;
 
       &:first-child {
         text-align: left;
@@ -243,6 +243,12 @@ $color-dark-green:              #025e02;
         }
         &:nth-child(3) {
           padding-left: 0 !important;
+          padding-right: 0 !important;
+          width: 176px;
+
+          @include breakpoint(large-up) {
+            width: 264px;
+          }
         }
 
         .plant--add-to-list {
@@ -313,7 +319,7 @@ $color-dark-green:              #025e02;
       text-align: center;
       font-weight: bold;
 
-      .pager-prev {
+      & > :first-child {
         float: left;
         margin-left: 20px;
         margin-right: 10px;
@@ -322,7 +328,7 @@ $color-dark-green:              #025e02;
           content: '< ';
         }
       }
-      .pager-next {
+      & > :last-child {
         float: right;
         margin-left: 10px;
         margin-right: 20px;
@@ -334,11 +340,11 @@ $color-dark-green:              #025e02;
 
       @include breakpoint(medium-up) {
 
-        .pager-prev {
+        & > :first-child {
           float: none;
         }
 
-        .pager-next {
+        & > :last-child {
           float: none;
         }
       }
@@ -351,6 +357,10 @@ $color-dark-green:              #025e02;
 
   @include breakpoint(medium-up) {
     margin-top: 84px;
+  }
+
+  .native-plants-bottom-plant-list-placeholder {
+    display: none;
   }
 
   .native-plants-bottom-plant-list {
@@ -390,6 +400,8 @@ $color-dark-green:              #025e02;
       color: #000;
       line-height: 27px;
       padding-top:22px;
+      overflow: hidden;
+      height: 76px;
     }
 
     .native-plants-bottom--button-container {
@@ -475,6 +487,23 @@ $color-dark-green:              #025e02;
       @include breakpoint(medium-up) {
         max-width: 280px;
       }
+    }
+  }
+
+  &.native-plants-bottom-fixed {
+    .native-plants-bottom-plant-list-placeholder {
+      display: block;
+      height: 70px;
+      
+      @include breakpoint(medium-up) {
+        height: 96px;
+      }
+    }
+
+    .native-plants-bottom-plant-list {
+      bottom: 0;
+      position: fixed;
+      width: 100%;
     }
   }
 }
