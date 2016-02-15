@@ -83,6 +83,18 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           break;
         }
       }
+      // Check taxonomy filters.
+      if (isset($this->filter_taxonomy)) {
+        foreach ($this->filter_taxonomy as $values) {
+          foreach ($values as $value) {
+            $l = is_object($row) ? $row->{$value} : $row[$value];
+            if ($l === "0") {
+              $check = FALSE;
+              break;
+            }
+          }
+        }
+      }
       if (!$check) {
         unset($ret[$k]);
       }
@@ -140,6 +152,46 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
   }
 
   /**
+   * Fake function required for taxonomy filters.
+   */
+  public function add_table($table, $relationship = NULL, $join = NULL, $alias = NULL) {
+    return 'taxonomy';
+  }
+
+  /**
+   * Fake function required for taxonomy filters.
+   */
+  public function add_relationship($alias, $join, $base, $link_point = NULL) {
+    return $alias;
+  }
+
+  /**
+   * Fake function required for taxonomy filters.
+   */
+  public function ensure_table($table, $relationship = NULL, $join = NULL) {
+    return 'taxonomy';
+  }
+
+  /**
+   * Add taxonomy filters to the query.
+   */
+  public function add_where($group, $field, $value = NULL, $operator = NULL) {
+    if ($term = taxonomy_term_load($value)) {
+      $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+      $values = array();
+      foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $values[] = $field_wrapper->value();
+      }
+      $this->filter_taxonomy[] = $values;
+    }
+  }
+
+  /**
+   * Fake function required for taxonomy filters.
+   */
+  public function add_tag($tag) {}
+
+  /**
    * Attach local data to the results.
    */
   public function add_local_data(&$ret, &$view) {
@@ -147,7 +199,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     $view->result_tier1 = array();
 
     foreach ($ret as $result_key => &$result) {
-      $plant_id = nas_native_plant_ct_feature_generate_plant_id(
+      $plant_id = nas_master_native_plants_generate_plant_id(
         array(
           $result->ScientificName,
           $result->Family,
@@ -161,7 +213,8 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result->LocalLink = 'node/add/native-plant?edit[title]=' . $result->CommonName
         . '&edit[field_native_plant_common_name][und][0][value]=' . $result->CommonName
         . '&edit[field_np_scientific_name][und][0][value]=' . $result->ScientificName
-        . '&edit[field_native_plant_family][und][0][value]=' . $result->Family;
+        . '&edit[field_native_plant_family][und][0][value]=' . $result->Family
+        . '&edit[field_native_plant_id][und][0][value]=' . $result->PlantID;
     }
     if (empty($plant_ids)) {
       return;
@@ -170,7 +223,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'native_plant')
-      ->propertyCondition('status', NODE_PUBLISHED)
       ->fieldCondition('field_native_plant_id', 'value', $plant_ids, 'IN');
     $results = $query->execute();
     if (!isset($results['node'])) {
@@ -184,14 +236,21 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $plant_id = $local_node_wrapper->field_native_plant_id->value();
       $result_key = array_search($plant_id, $plant_ids);
       if ($result_key !== FALSE) {
+        $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
+        // Do not add info from not published nodes.
+        if ($local_node->status == NODE_NOT_PUBLISHED) {
+          continue;
+        }
+
         $ret[$result_key]->Tier1 = TRUE;
         if ($local_node_wrapper->body->value()) {
           $description = $local_node_wrapper->body->value->value();
           $ret[$result_key]->Description = $description;
         }
-        $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
 
+        // Move this result to Tier1 results.
         $view->result_tier1[] = $ret[$result_key];
+        unset($ret[$result_key]);
       }
     }
   }

@@ -30,6 +30,12 @@ function nasnp_views_json_query_views_data() {
     'sort' => array(
       'handler' => 'views_json_query_handler_sort',
     ),
+    // Fake relationship to the taxonomy terms, for the filters.
+    'relationship' => array(
+      'handler' => 'views_handler_relationship',
+      'base' => 'taxonomy_term_data',
+      'base field' => 'tid',
+    ),
   );
 
   return $data;
@@ -47,5 +53,16 @@ function nasnp_views_json_query_views_plugins() {
         'handler' => 'nasnp_views_json_query_plugin_query_json',
       ),
     ),
+  );
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function nasnp_views_json_query_views_data_alter(&$data) {
+  // Fake JOIN for the taxonomy filters.
+  $data['taxonomy_term_data']['table']['join']['nasnp_json'] = array(
+    'left_field' => 'tid',
+    'field' => 'tid',
   );
 }

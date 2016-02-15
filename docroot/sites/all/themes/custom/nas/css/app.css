@@ -11507,6 +11507,9 @@ body.black-bg .slide-caption {
 .focal-bird-map .map-legend-point:last-child {
   margin-right: 0;
 }
+.focal-bird-map .map-legend-point.kappa-point .image {
+  border: 0;
+}
 .focal-bird-map .map-legend-point span {
   display: inline-block;
   vertical-align: middle;
@@ -11634,18 +11637,34 @@ body.black-bg .slide-caption {
   padding: 10px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   background-color: #E5E5E5;
+  margin-top: 15px;
 }
 @media only screen and (min-width: 768px) {
   .focal-bird-map .map-header {
-    margin-bottom: 45px;
+    margin-bottom: 30px;
   }
 }
 .focal-bird-map .map-header .map-caption-left {
   float: left;
 }
+@media only screen and (min-width: 768px) {
+  .focal-bird-map .map-header .map-caption-left {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .focal-bird-map .map-header .map-caption-left p {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
 .focal-bird-map .map-header .map-caption-right {
-  float: right;
   margin-top: 14px;
+}
+@media only screen and (min-width: 601px) {
+  .focal-bird-map .map-header .map-caption-right {
+    float: right;
+  }
 }
 .focal-bird-map .map-share {
   padding: 10px;
@@ -13463,7 +13482,7 @@ body.touch .sticky-wrapper {
 }
 
 .near-you-form {
-  width: 50%;
+  width: 60%;
   float: left;
   padding: 0 10px;
 }

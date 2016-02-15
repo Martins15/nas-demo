@@ -45,13 +45,18 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'nas_one_column';
+  $display->layout = 'native_plants_search';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'header' => NULL,
       'main' => NULL,
+      'top' => NULL,
+      'bottom' => NULL,
+      'main_top' => NULL,
+      'search_form' => NULL,
+      'main_middle' => NULL,
     ),
   );
   $display->cache = array();
@@ -60,8 +65,135 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-0779ab17-606c-4e8d-a457-a71ed1ad4cab';
+    $pane->pid = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
+    $pane->panel = 'bottom';
+    $pane->type = 'native_plants_cart';
+    $pane->subtype = 'native_plants_cart';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Your plant list',
+      'override_title_text' => 'Your plant list',
+      'button_desktop' => 'Get your list & Join the sanctuary',
+      'button_mobile' => 'Get your list',
+      'form_build_id' => 'form-4LuB7cNFVy3WRVCMQfL6AAzLbdDSkg2n4H8BqOtRn1Y',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd4c292b4-8bf8-4f4a-991a-d70b42ee311f';
+    $display->content['new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f'] = $pane;
+    $display->panels['bottom'][0] = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
+    $pane = new stdClass();
+    $pane->pid = 'new-d29503e7-f994-4fa0-b56c-3c127e219fcc';
     $pane->panel = 'main';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'native_plants_search-native_plants_search_pane';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd29503e7-f994-4fa0-b56c-3c127e219fcc';
+    $display->content['new-d29503e7-f994-4fa0-b56c-3c127e219fcc'] = $pane;
+    $display->panels['main'][0] = 'new-d29503e7-f994-4fa0-b56c-3c127e219fcc';
+    $pane = new stdClass();
+    $pane->pid = 'new-222e4912-9a21-4b4b-9aca-1192a03d3a0d';
+    $pane->panel = 'main_middle';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Tier 1 plants description',
+      'title' => '',
+      'body' => '<h2 class="thin">Try these first</h2>
+<p>These plants should be relatively easy to find and/or grow in your area. <a href="#">Read more.</a></p>
+',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '222e4912-9a21-4b4b-9aca-1192a03d3a0d';
+    $display->content['new-222e4912-9a21-4b4b-9aca-1192a03d3a0d'] = $pane;
+    $display->panels['main_middle'][0] = 'new-222e4912-9a21-4b4b-9aca-1192a03d3a0d';
+    $pane = new stdClass();
+    $pane->pid = 'new-aef57084-2a8c-4715-9e2b-c2c54353a7a6';
+    $pane->panel = 'main_top';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Native Plants description',
+      'title' => '',
+      'body' => '<p>Native plants provide food and shelter for local birds and wildlife. Native plants also require less water and fewer chemicals to maintain, which makes them better for the environment. Best of all, they are beautiful!</p>
+
+<p>Audubon&#39;s native plant database is a searchable listing of nearly 3,000 plants and trees native to the United States.</p>
+',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'aef57084-2a8c-4715-9e2b-c2c54353a7a6';
+    $display->content['new-aef57084-2a8c-4715-9e2b-c2c54353a7a6'] = $pane;
+    $display->panels['main_top'][0] = 'new-aef57084-2a8c-4715-9e2b-c2c54353a7a6';
+    $pane = new stdClass();
+    $pane->pid = 'new-ec98291c-0a44-401e-90d4-bee62a1f6468';
+    $pane->panel = 'search_form';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Search form title',
+      'title' => '',
+      'body' => '<h2 class="thin centered hide-for-tiny hide-for-small">Enter your location below to start your native plant garden today.</h2>
+            <h2 class="thin hide-for-medium hide-for-large hide-for-xlarge">Search the database</h2>',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'ec98291c-0a44-401e-90d4-bee62a1f6468';
+    $display->content['new-ec98291c-0a44-401e-90d4-bee62a1f6468'] = $pane;
+    $display->panels['search_form'][0] = 'new-ec98291c-0a44-401e-90d4-bee62a1f6468';
+    $pane = new stdClass();
+    $pane->pid = 'new-0779ab17-606c-4e8d-a457-a71ed1ad4cab';
+    $pane->panel = 'search_form';
     $pane->type = 'block';
     $pane->subtype = 'views-46023c181e1aa6d7855e3fa8a1118597';
     $pane->shown = TRUE;
@@ -78,19 +210,50 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '0779ab17-606c-4e8d-a457-a71ed1ad4cab';
     $display->content['new-0779ab17-606c-4e8d-a457-a71ed1ad4cab'] = $pane;
-    $display->panels['main'][0] = 'new-0779ab17-606c-4e8d-a457-a71ed1ad4cab';
+    $display->panels['search_form'][1] = 'new-0779ab17-606c-4e8d-a457-a71ed1ad4cab';
     $pane = new stdClass();
-    $pane->pid = 'new-d29503e7-f994-4fa0-b56c-3c127e219fcc';
-    $pane->panel = 'main';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'native_plants_search-native_plants_search_pane';
+    $pane->pid = 'new-c25970d2-08ae-42f0-a445-ce475c070b5d';
+    $pane->panel = 'top';
+    $pane->type = 'native_plants_bar';
+    $pane->subtype = 'native_plants_bar';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'title_desktop' => 'Audubon Native Plants Database',
+      'title_mobile' => 'Native Plants Database',
+      'background_color' => '66a122',
+      'form_build_id' => 'form-JU19iahlVTIrg2UAV87jfvgP0C5dWpZPb79EM1sgAnk',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c25970d2-08ae-42f0-a445-ce475c070b5d';
+    $display->content['new-c25970d2-08ae-42f0-a445-ce475c070b5d'] = $pane;
+    $display->panels['top'][0] = 'new-c25970d2-08ae-42f0-a445-ce475c070b5d';
+    $pane = new stdClass();
+    $pane->pid = 'new-6a2e4ccf-0419-44bc-9dac-7652f2033e76';
+    $pane->panel = 'top';
+    $pane->type = 'native_plants_hero';
+    $pane->subtype = 'native_plants_hero';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'When you plant native plants, you help birds and the environment.',
+      'override_title_text' => 'When you plant native plants, you help birds and the environment.',
+      'image' => '73574',
+      'form_build_id' => 'form-3xCFuJF81wt4tA3ixRD5j0QAdtzd0m4QjOgdRUO6-08',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -99,9 +262,9 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'd29503e7-f994-4fa0-b56c-3c127e219fcc';
-    $display->content['new-d29503e7-f994-4fa0-b56c-3c127e219fcc'] = $pane;
-    $display->panels['main'][1] = 'new-d29503e7-f994-4fa0-b56c-3c127e219fcc';
+    $pane->uuid = '6a2e4ccf-0419-44bc-9dac-7652f2033e76';
+    $display->content['new-6a2e4ccf-0419-44bc-9dac-7652f2033e76'] = $pane;
+    $display->panels['top'][1] = 'new-6a2e4ccf-0419-44bc-9dac-7652f2033e76';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

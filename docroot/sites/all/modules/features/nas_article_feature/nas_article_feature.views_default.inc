@@ -27,6 +27,9 @@ function nas_article_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -92,6 +95,16 @@ function nas_article_feature_views_default_views() {
   $handler->display->display_options['filters']['tid']['group'] = 2;
   $handler->display->display_options['filters']['tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'menu_section';
+  $translatables['other_press_releases'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+  );
   $export['other_press_releases'] = $view;
 
   return $export;
