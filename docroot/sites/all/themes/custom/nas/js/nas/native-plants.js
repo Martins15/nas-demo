@@ -41,26 +41,30 @@
    */
   Drupal.behaviors.npStickyFooter = {
     attach: function(context, settings) {
-      $(".native-plants-bottom-plant-list").once('np-sticky-footer', function () {
+      $(".native-plants-bottom").once('np-sticky-footer', function () {
         var $self = $(this),
+          $list = $(".native-plants-bottom-plant-list"),
           $w = $(window),
           $button = $('.native-plants-botton--get-list'),
           $formTitle = $('.native-plants-bottom-form-title'),
           $form = $('.native-plants-bottom-form');
 
         $(window).bind('scroll resize', function (e) {
-          $self.removeAttr('style');
+//          $self.removeAttr('style');
+          $self.removeClass('native-plants-bottom-fixed');
           var s = $w.scrollTop() + $w.height();
           var offset = $formTitle.offset().top;
           if (s < offset) {
-            $self.css({
-              bottom: 0,
-              position: 'fixed',
-              width: '100%'
-            });
+            $self.addClass('native-plants-bottom-fixed');
+//            $self.css({
+//              bottom: 0,
+//              position: 'fixed',
+//              width: '100%'
+//            });
           }
           else {
-            $self.removeAttr('style');
+//            $self.removeAttr('style');
+            $self.removeClass('native-plants-bottom-fixed');
           }
 
           // Form isn't fully visible.

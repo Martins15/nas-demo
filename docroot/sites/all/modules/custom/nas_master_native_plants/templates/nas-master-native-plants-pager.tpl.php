@@ -14,11 +14,9 @@
         <?php print $items['previous']; ?>
         <span class="pager-inner">
           <?php print $items['first']; ?>
-          <?php foreach ($items as $key => $item):
-          if (is_int($key)):
-            print $item;
-          endif;
-          endforeach; ?>
+          <?php foreach ($items as $key => $item): ?>
+            <?php print is_int($key) ? $item : ''; ?>
+          <?php endforeach; ?>
           <?php print $items['last']; ?>
         </span>
         <?php print $items['next']; ?>
@@ -27,7 +25,7 @@
   </div>
 </div>
 
-<div class="search-results-total hide-for-medium hide-for-large hide-for-xlarge row">
+<div class="search-results-total hide-for-medium hide-for-large hide-for-xlarge">
   <div class="pager">
     <?php print $items['previous']; ?>
     <?php print $items['next']; ?>

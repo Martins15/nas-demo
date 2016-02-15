@@ -14314,8 +14314,8 @@ h2.grey {
 .native-plants-full-search-results table th {
   background-color: #f4f4f4;
   text-align: center;
-  padding: 14px 17px;
-  line-height: 39px;
+  padding: 11px 17px !important;
+  line-height: 17px;
 }
 .native-plants-full-search-results table th:first-child {
   text-align: left;
@@ -14338,6 +14338,13 @@ h2.grey {
 }
 .native-plants-full-search-results table tr td:nth-child(3) {
   padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 176px;
+}
+@media only screen and (min-width: 768px) {
+  .native-plants-full-search-results table tr td:nth-child(3) {
+    width: 264px;
+  }
 }
 .native-plants-full-search-results table tr td .plant--add-to-list input {
   margin-bottom: 0;
@@ -14392,27 +14399,27 @@ h2.grey {
   text-align: center;
   font-weight: bold;
 }
-.native-plants-full-search-results .search-results-total .pager .pager-prev {
+.native-plants-full-search-results .search-results-total .pager > :first-child {
   float: left;
   margin-left: 20px;
   margin-right: 10px;
 }
-.native-plants-full-search-results .search-results-total .pager .pager-prev:before {
+.native-plants-full-search-results .search-results-total .pager > :first-child:before {
   content: '< ';
 }
-.native-plants-full-search-results .search-results-total .pager .pager-next {
+.native-plants-full-search-results .search-results-total .pager > :last-child {
   float: right;
   margin-left: 10px;
   margin-right: 20px;
 }
-.native-plants-full-search-results .search-results-total .pager .pager-next:after {
+.native-plants-full-search-results .search-results-total .pager > :last-child:after {
   content: ' >';
 }
 @media only screen and (min-width: 601px) {
-  .native-plants-full-search-results .search-results-total .pager .pager-prev {
+  .native-plants-full-search-results .search-results-total .pager > :first-child {
     float: none;
   }
-  .native-plants-full-search-results .search-results-total .pager .pager-next {
+  .native-plants-full-search-results .search-results-total .pager > :last-child {
     float: none;
   }
 }
@@ -14424,6 +14431,9 @@ h2.grey {
   .native-plants-bottom {
     margin-top: 84px;
   }
+}
+.native-plants-bottom .native-plants-bottom-plant-list-placeholder {
+  display: none;
 }
 .native-plants-bottom .native-plants-bottom-plant-list {
   background-color: #d8d8d8;
@@ -14461,6 +14471,8 @@ h2.grey {
   color: #000;
   line-height: 27px;
   padding-top: 22px;
+  overflow: hidden;
+  height: 76px;
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container {
   text-align: center;
@@ -14536,6 +14548,20 @@ h2.grey {
   .native-plants-bottom .native-plants-bottom-form .native-plants-bottom-form-right {
     max-width: 280px;
   }
+}
+.native-plants-bottom.native-plants-bottom-fixed .native-plants-bottom-plant-list-placeholder {
+  display: block;
+  height: 70px;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-bottom.native-plants-bottom-fixed .native-plants-bottom-plant-list-placeholder {
+    height: 96px;
+  }
+}
+.native-plants-bottom.native-plants-bottom-fixed .native-plants-bottom-plant-list {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
 }
 
 .bird-card-carousel .owl-carousel .owl-wrapper-outer {

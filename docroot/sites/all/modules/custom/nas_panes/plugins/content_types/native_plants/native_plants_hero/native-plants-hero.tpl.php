@@ -12,13 +12,15 @@
     </div>
   </div>
 </div>
-<div class="hero-attribution row">
-  <p class="column"><?php print $image_attribution; ?></p>
+<div class="hero-attribution">
+  <p class="column">
+    <span class="hero-attribution-text"><?php print $image_attribution; ?></span>
+  </p>
 </div>
 <header class="row hide-for-large hide-for-xlarge">
   <div class="large-12 large-centered columns">
     <div class="clearfix">
-      <h1><?php print $title; ?></h1>
+      <h1 style="margin:0;"><?php print $title; ?></h1>
     </div>
   </div>
 </header>
