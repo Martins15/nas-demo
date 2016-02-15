@@ -312,3 +312,42 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
     }
   }
 }
+
+function nas_master_native_plants_email_form($form, &$form_state, $conf = array()) {
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-bottom-form-right',
+    ),
+  );
+  $form['email_address'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t(filter_xss($conf['email_address_placeholder'])),
+    ),
+  );
+  $form['zipcode'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+    ),
+  );
+  $form['square_feet'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => t(filter_xss($conf['square_feet_placeholder'])),
+    ),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t(filter_xss($conf['button_text'])),
+    '#attributes' => array(
+      'class' => array(
+        'button',
+        'large',
+        'tomato',
+      ),
+    ),
+  );
+
+  return $form;
+}
