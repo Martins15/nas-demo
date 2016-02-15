@@ -52,7 +52,7 @@
       event.preventDefault();
       $('#edit-attribute').val($(this).data('tid'));
       $('#edit-submit-native-plants-search').click();
-    })
+    });
   };
 
   // Hide Tier1 results description if there are no Tier1 results.
