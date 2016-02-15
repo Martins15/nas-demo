@@ -162,6 +162,12 @@ function nas_master_native_plants_pager_preprocess(&$variables) {
     }
   }
   $variables['items'] = $items;
+
+  // Define variable required for the template_process() function.
+  $variables['classes_array'] = array();
+  $variables['attributes_array'] = array();
+  $variables['title_attributes_array'] = array();
+  $variables['content_attributes_array'] = array();
 }
 
 /**
