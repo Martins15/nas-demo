@@ -83,18 +83,31 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           break;
         }
       }
+
       // Check taxonomy filters.
       if (isset($this->filter_taxonomy)) {
+        // Single taxonomy filter flag.
+        $tax_filter_check = TRUE;
         foreach ($this->filter_taxonomy as $values) {
+          $values_check = FALSE;
           foreach ($values as $value) {
             $l = is_object($row) ? $row->{$value} : $row[$value];
-            if ($l === "0") {
-              $check = FALSE;
+            // If at least one attribute of taxonomy term is satisfied, then
+            // this taxonomy filter is satisfied.
+            if ($l === "1") {
+              $values_check = TRUE;
               break;
             }
           }
+          if (!$values_check) {
+            $tax_filter_check = FALSE;
+          }
+        }
+        if (!$tax_filter_check) {
+          $check = FALSE;
         }
       }
+
       if (!$check) {
         unset($ret[$k]);
       }
