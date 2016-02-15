@@ -4,6 +4,7 @@
  * Template for the Native Plants cart.
  */
 ?>
+<div class="native-plants-bottom-plant-list-placeholder"> </div>
 <div class="native-plants-bottom-plant-list">
   <div class="row">
     <div class="column medium-3 large-3 tiny-6 native-plants-bottom-plant-list-info">

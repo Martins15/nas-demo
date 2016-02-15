@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="search-results-total hide-for-medium hide-for-large hide-for-xlarge row">
+<div class="search-results-total hide-for-medium hide-for-large hide-for-xlarge">
   <div class="pager">
     <?php print $items['previous']; ?>
     <?php print $items['next']; ?>
