@@ -66,6 +66,14 @@
     }
   };
 
+  // Hide view if there is no ZIP code value.
+  Drupal.behaviors.nas_master_native_plants_hide_view = {};
+  Drupal.behaviors.nas_master_native_plants_hide_view.attach = function() {
+    if ($('#edit-zipcode').val() === '') {
+      $('.view-native-plants-search').hide();
+    }
+  };
+
   /**
    * Modified Views function to ajaxify our pager links.
    */
