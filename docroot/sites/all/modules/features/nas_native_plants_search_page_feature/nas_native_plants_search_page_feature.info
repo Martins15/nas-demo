@@ -9,7 +9,6 @@ dependencies[] = imagecache_external
 dependencies[] = nas_master_native_plants
 dependencies[] = nasnp_views_json_query
 dependencies[] = page_manager
-dependencies[] = prepopulate
 dependencies[] = views
 dependencies[] = views_content
 features[ctools][] = page_manager:pages_default:1
