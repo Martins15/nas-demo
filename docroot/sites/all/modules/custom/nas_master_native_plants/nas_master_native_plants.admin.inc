@@ -22,5 +22,10 @@ function nas_master_native_plants_settings($form, &$form_state) {
  */
 function nas_master_native_plants_settings_submit() {
   $destination = 'public://views_json_query';
-  file_unmanaged_delete_recursive($destination);
+  if (file_unmanaged_delete_recursive($destination)) {
+    drupal_set_message('Cleared Native Plants cache.');
+  }
+  else {
+    drupal_set_message('Failed to clear native Plants cache.');
+  }
 }
