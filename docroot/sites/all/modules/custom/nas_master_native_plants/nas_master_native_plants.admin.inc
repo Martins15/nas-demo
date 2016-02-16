@@ -26,6 +26,6 @@ function nas_master_native_plants_settings_submit() {
     drupal_set_message('Cleared Native Plants cache.');
   }
   else {
-    drupal_set_message('Failed to clear native Plants cache.');
+    drupal_set_message('Failed to clear Native Plants cache.', 'error');
   }
 }
