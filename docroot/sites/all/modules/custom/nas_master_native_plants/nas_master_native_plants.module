@@ -389,7 +389,8 @@ function nas_master_native_plants_email_form_submit($form, &$form_state) {
     'type' => 'permalink',
     'email' => $form_state['values']['email_email_address'],
     'zip_code' => $form_state['values']['email_zipcode'],
-    'plants' => $_COOKIE['native_plants_cart'],
+    'plants_cart' => $_COOKIE['native_plants_cart'],
+    'square_feet' => $form_state['values']['email_square_feet'],
   );
   if ($permalink = entity_create('permalink', $values)) {
     entity_save('permalink', $permalink);
