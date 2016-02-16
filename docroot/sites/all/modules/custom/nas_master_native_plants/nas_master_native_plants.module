@@ -400,3 +400,23 @@ function nas_master_native_plants_email_form_submit($form, &$form_state) {
   // Redirect to permalink page.
   $form_state['redirect'] = entity_uri('permalink', $permalink);
 }
+
+/**
+ * Implements hook_eck_property_types().
+ */
+function nas_master_native_plants_eck_property_types() {
+  return array('big_text' => t('Big text'));
+}
+
+/**
+ * Implements hook_eck_property_type_schema_alter().
+ */
+function nas_master_native_plants_eck_property_type_schema_alter(&$schema, $type) {
+  if ($type == 'big_text') {
+    $schema = array(
+      'description' => 'Big text',
+      'type' => 'text',
+      'size' => 'normal',
+    );
+  }
+}
