@@ -7,5 +7,5 @@
     }).change(function() {
       $('.native-plants-bottom-form-right--zipcode', context).val($(this).val());
     });
-  }
+  };
 })(jQuery);
