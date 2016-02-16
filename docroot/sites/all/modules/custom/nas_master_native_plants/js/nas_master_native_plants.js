@@ -69,7 +69,7 @@
   // Hide view if there is no ZIP code value.
   Drupal.behaviors.nas_master_native_plants_hide_view = {};
   Drupal.behaviors.nas_master_native_plants_hide_view.attach = function() {
-    if ($('#edit-zipcode').val() === '') {
+    if ($('.native-plants-search-form--zip-code').val() === '') {
       $('.view-native-plants-search').hide();
     }
   };

@@ -14523,7 +14523,7 @@ h2.grey {
   line-height: 22px;
   padding-bottom: 10px;
 }
-.native-plants-bottom .native-plants-bottom-form button {
+.native-plants-bottom .native-plants-bottom-form .button {
   width: 100%;
   margin-top: 11px;
   height: 45px;
@@ -14536,7 +14536,7 @@ h2.grey {
 .native-plants-bottom .native-plants-bottom-form ul li {
   margin-bottom: 6px;
 }
-.native-plants-bottom .native-plants-bottom-form button, .native-plants-bottom .native-plants-bottom-form ul {
+.native-plants-bottom .native-plants-bottom-form .button, .native-plants-bottom .native-plants-bottom-form ul {
   margin-bottom: 37px;
 }
 .native-plants-bottom .native-plants-bottom-form input {
