@@ -61,14 +61,19 @@ function nas_permalink_et_feature_eck_entity_type_info() {
           'type' => 'text',
           'behavior' => '',
         ),
-        'plants' => array(
-          'label' => 'List of plants',
-          'type' => 'text',
-          'behavior' => '',
-        ),
         'zip_code' => array(
           'label' => 'ZIP code',
           'type' => 'text',
+          'behavior' => '',
+        ),
+        'plants_cart' => array(
+          'label' => 'Plants cart',
+          'type' => 'big_text',
+          'behavior' => '',
+        ),
+        'square_feet' => array(
+          'label' => 'Square feet',
+          'type' => 'integer',
           'behavior' => '',
         ),
       ),
