@@ -60,18 +60,38 @@
             <div class="row">
               <div class="column medium-3">
                 <div class="tier-1-plant-picture hide-for-tiny hide-for-small">
-                  <?php print theme('imagecache_external', array(
-                    'path' => $result->PlantImg,
-                    'style_name'=> 'native_plant_desktop',
-                    'alt' => $result->CommonName,
-                  )); ?>
+                  <?php
+                  if ($result->LocalPlantImg) {
+                    print theme('image_style', array(
+                      'path' => $result->LocalPlantImg,
+                      'style_name'=> 'native_plant_desktop',
+                      'alt' => $result->CommonName,
+                    ));
+                  }
+                  elseif ($result->PlantImg) {
+                    print theme('imagecache_external', array(
+                      'path' => $result->PlantImg,
+                      'style_name'=> 'native_plant_desktop',
+                      'alt' => $result->CommonName,
+                    ));
+                  } ?>
                 </div>
                 <div class="row tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
-                  <?php print theme('imagecache_external', array(
-                    'path' => $result->PlantImg,
-                    'style_name'=> 'native_plant_mobile',
-                    'alt' => $result->CommonName,
-                  )); ?>
+                  <?php
+                  if ($result->LocalPlantImg) {
+                    print theme('image_style', array(
+                      'path' => $result->LocalPlantImg,
+                      'style_name'=> 'native_plant_mobile',
+                      'alt' => $result->CommonName,
+                    ));
+                  }
+                  elseif ($result->PlantImg) {
+                    print theme('native_plant_mobile', array(
+                      'path' => $result->PlantImg,
+                      'style_name'=> 'native_plant_desktop',
+                      'alt' => $result->CommonName,
+                    ));
+                  } ?>
                 </div>
               </div>
               <div class="column medium-4 medium-push-5">
@@ -150,7 +170,7 @@
                 <div class="plant--add-to-list">
                   <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>" class="np-checkbox" data-plant-id="<?php print $result->PlantID; ?>" data-plant-name="<?php print $result->CommonName; ?>"/>
                   <label for="checkbox-f<?php print $result->PlantID; ?>"><?php print $result->CommonName; ?></label>
-                  <?php if ($result->PlantImg): ?>
+                  <?php if ($result->LocalPlantImg || $result->PlantImg): ?>
                     <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
                   <?php endif; ?>
                   <?php if (user_access('administer nodes')): ?>
@@ -185,7 +205,7 @@
             <div class="columns">
               <div>
                 <span class="mobile-search-full-results--label"><?php print t('Plant'); ?>:</span> <?php print $result->CommonName; ?>
-                <?php if ($result->PlantImg): ?>
+                <?php if ($result->LocalPlantImg || $result->PlantImg): ?>
                   <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
                 <?php endif; ?>
               </div>
