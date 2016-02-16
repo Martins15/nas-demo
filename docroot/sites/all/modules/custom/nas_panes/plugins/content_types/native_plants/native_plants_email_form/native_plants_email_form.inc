@@ -25,8 +25,8 @@ $plugin = array(
  */
 function native_plants_email_form_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
-  $block->content = $conf['button_desktop'];
+  $block->title = t('Native Plants email form');
+  $block->content = $conf['button_text'];
   return $block;
 }
 
