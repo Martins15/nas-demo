@@ -90,7 +90,19 @@ function native_plants_email_form_render($subtype, $conf, $args, $context) {
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();
-  $block->content = $rendered_form;
+  $block->content = array(
+    '#markup' => $rendered_form,
+  );
+
+  if (!$plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    return $block;
+  }
+
+  $block->content['#attached'] = array(
+    'js' => array(
+      $plugin['path'] . '/js/native_plants_email_form.js',
+    ),
+  );
 
   return $block;
 }

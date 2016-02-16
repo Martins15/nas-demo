@@ -313,31 +313,47 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 }
 
+/**
+ * Form building callback for Native Plants "Join the Sanctuary" form.
+ */
 function nas_master_native_plants_email_form($form, &$form_state, $conf = array()) {
   $form['#attributes'] = array(
     'class' => array(
       'native-plants-bottom-form-right',
     ),
   );
-  $form['email_address'] = array(
+  $form['email_email_address'] = array(
     '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['email_address_placeholder'])),
+    '#title_display' => 'invisible',
     '#attributes' => array(
       'placeholder' => t(filter_xss($conf['email_address_placeholder'])),
     ),
+    '#required' => TRUE,
+    '#default_value' => 'test@test.ru',
   );
-  $form['zipcode'] = array(
+  $form['email_zipcode'] = array(
     '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['zipcode_placeholder'])),
+    '#title_display' => 'invisible',
     '#attributes' => array(
+      'class' => array(
+        'native-plants-bottom-form-right--zipcode',
+      ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
     ),
+    '#required' => TRUE,
   );
-  $form['square_feet'] = array(
+  $form['email_square_feet'] = array(
     '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['square_feet_placeholder'])),
+    '#title_display' => 'invisible',
     '#attributes' => array(
       'placeholder' => t(filter_xss($conf['square_feet_placeholder'])),
     ),
+    '#element_validate' => array('element_validate_integer_positive'),
   );
-  $form['submit'] = array(
+  $form['email_submit'] = array(
     '#type' => 'submit',
     '#value' => t(filter_xss($conf['button_text'])),
     '#attributes' => array(
@@ -350,4 +366,38 @@ function nas_master_native_plants_email_form($form, &$form_state, $conf = array(
   );
 
   return $form;
+}
+
+/**
+ * Form validation callback.
+ */
+function nas_master_native_plants_email_form_validate($form, &$form_state) {
+  $email = &$form_state['values']['email_email_address'];
+  // Validate email address.
+  $email = strtolower(trim($email));
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
+}
+
+/**
+ * Form submit callback.
+ */
+function nas_master_native_plants_email_form_submit($form, &$form_state) {
+  // Create permalink entity.
+  $values = array(
+    'type' => 'permalink',
+    'email' => $form_state['values']['email_email_address'],
+    'zip_code' => $form_state['values']['email_zipcode'],
+    'plants' => $_COOKIE['native_plants_cart'],
+  );
+  if ($permalink = entity_create('permalink', $values)) {
+    entity_save('permalink', $permalink);
+  }
+
+  // TODO: integrations with Mandrill and Convio.
+
+  // Redirect to permalink page.
+  $form_state['redirect'] = entity_uri('permalink', $permalink);
 }
