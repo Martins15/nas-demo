@@ -330,7 +330,6 @@ function nas_master_native_plants_email_form($form, &$form_state, $conf = array(
       'placeholder' => t(filter_xss($conf['email_address_placeholder'])),
     ),
     '#required' => TRUE,
-    '#default_value' => 'test@test.ru',
   );
   $form['email_zipcode'] = array(
     '#type' => 'textfield',
