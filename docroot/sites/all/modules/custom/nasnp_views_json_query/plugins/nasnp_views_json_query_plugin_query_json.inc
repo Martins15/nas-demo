@@ -261,22 +261,21 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result_key = array_search($plant_id, $plant_ids);
       if ($result_key !== FALSE) {
         $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
-        // Do not add info from not published nodes.
-        if ($local_node->status == NODE_NOT_PUBLISHED) {
-          continue;
-        }
 
         if ($image = $local_node_wrapper->field_image->value()) {
           $ret[$result_key]->LocalPlantImg = $image['uri'];
         }
 
-        $ret[$result_key]->Tier1 = TRUE;
         if ($local_node_wrapper->body->value()) {
           $description = $local_node_wrapper->body->value->value();
           $ret[$result_key]->Description = $description;
         }
 
-        // Move this result to Tier1 results.
+        // Check if this is Tier1 result.
+        if (!$local_node_wrapper->field_native_plant_tier1->value()) {
+          continue;
+        }
+        $ret[$result_key]->Tier1 = TRUE;
         $view->result_tier1[] = $ret[$result_key];
         unset($ret[$result_key]);
       }
