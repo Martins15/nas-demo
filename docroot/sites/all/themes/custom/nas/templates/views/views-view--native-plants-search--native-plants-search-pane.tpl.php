@@ -103,9 +103,14 @@
                         <div class="node node-bird node-teaser clearfix">
                           <figure class="bird-card">
                             <div class="bird-card-illustration">
-                              <a href="<?php print $bird_type['url']; ?>"><img src="<?php print image_style_url('nas_bird_teaser_illustration', $bird_type['image']['uri']); ?>" alt=""></a></div>
+                              <?php print l(theme('image_style', array(
+                                'path' => $bird_type['image']['uri'],
+                                'style_name'=> 'nas_bird_teaser_illustration',
+                                'alt' => $bird_type['name'],
+                              )), $bird_type['url'], array('html' => TRUE)); ?>
+                            </div>
                             <figcaption class="bird-card-caption">
-                              <h4 class="common-name"><a href="<?php print $bird_type['url']; ?>"><?php print $bird_type['name']; ?></a></h4>
+                              <h4 class="common-name"><?php print l($bird_type['name'], $bird_type['url']); ?></h4>
                             </figcaption>
                           </figure>
                         </div>
@@ -189,7 +194,7 @@
               <td>
                 <?php $attracts = array();
                 foreach ($result->BirdTypes as $bird_type):
-                  $attracts[] = '<a href="' . $bird_type['url'] . '">' . $bird_type['name'] . '</a>';
+                  $attracts[] = l($bird_type['name'], $bird_type['url']);
                 endforeach;
                 print implode(', ', $attracts); ?>
               </td>
@@ -226,7 +231,7 @@
                 <span class="mobile-search-full-results--label"><?php print t('Attracts'); ?>:</span>
                 <?php $attracts = array();
                 foreach ($result->BirdTypes as $bird_type):
-                  $attracts[] = '<a href="' . $bird_type['url'] . '">' . $bird_type['name'] . '</a>';
+                  $attracts[] = l($bird_type['name'], $bird_type['url']);
                 endforeach;
                 print implode(', ', $attracts); ?>
               </div>

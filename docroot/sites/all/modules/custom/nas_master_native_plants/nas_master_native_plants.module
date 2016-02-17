@@ -309,7 +309,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         $url = $link['url'];
       }
       else {
-        $url = url();
+        $url = '';
       }
       foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
         $value = $field_wrapper->value();
