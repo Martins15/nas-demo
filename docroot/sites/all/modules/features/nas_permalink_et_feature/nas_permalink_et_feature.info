@@ -1,7 +1,7 @@
 name = Permalink Entity Type
 core = 7.x
 package = Native Plants
-version = 7.x-1.1
+version = 7.x-1.2
 project = nas_permalink_et_feature
 dependencies[] = auto_entitylabel
 dependencies[] = ctools
