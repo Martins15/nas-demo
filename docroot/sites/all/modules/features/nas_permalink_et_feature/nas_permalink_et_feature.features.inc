@@ -76,6 +76,11 @@ function nas_permalink_et_feature_eck_entity_type_info() {
           'type' => 'integer',
           'behavior' => '',
         ),
+        'uuid' => array(
+          'label' => 'UUID',
+          'type' => 'text',
+          'behavior' => 'uuid',
+        ),
       ),
     ),
   );
