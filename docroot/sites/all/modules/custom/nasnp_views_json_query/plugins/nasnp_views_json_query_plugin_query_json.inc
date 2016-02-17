@@ -227,7 +227,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result->Tier1 = FALSE;
       $result->Description = '';
       $result->LocalLink = '';
-      $result->LocalImg = '';
+      $result->LocalPlantImg = '';
       if (user_access('create native_plant content')) {
         $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
           'query' => array(
@@ -270,13 +270,16 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           $ret[$result_key]->LocalPlantImg = $image['uri'];
         }
 
-        $ret[$result_key]->Tier1 = TRUE;
         if ($local_node_wrapper->body->value()) {
           $description = $local_node_wrapper->body->value->value();
           $ret[$result_key]->Description = $description;
         }
 
-        // Move this result to Tier1 results.
+        // Check if this is Tier1 result.
+        if (!$local_node_wrapper->field_native_plant_tier1->value()) {
+          continue;
+        }
+        $ret[$result_key]->Tier1 = TRUE;
         $view->result_tier1[] = $ret[$result_key];
         unset($ret[$result_key]);
       }

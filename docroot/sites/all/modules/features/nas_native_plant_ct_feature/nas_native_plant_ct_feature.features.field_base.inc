@@ -97,6 +97,32 @@ function nas_native_plant_ct_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_native_plant_tier1'
+  $field_bases['field_native_plant_tier1'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_native_plant_tier1',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => '',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_np_scientific_name'
   $field_bases['field_np_scientific_name'] = array(
     'active' => 1,
