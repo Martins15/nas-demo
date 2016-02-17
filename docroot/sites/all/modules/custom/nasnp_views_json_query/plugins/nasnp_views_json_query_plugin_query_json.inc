@@ -227,7 +227,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result->Tier1 = FALSE;
       $result->Description = '';
       $result->LocalLink = '';
-      $result->LocalImg = '';
+      $result->LocalPlantImg = '';
       if (user_access('create native_plant content')) {
         $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
           'query' => array(
