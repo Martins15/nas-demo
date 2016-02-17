@@ -434,3 +434,12 @@ function nas_master_native_plants_eck_property_type_schema_alter(&$schema, $type
     );
   }
 }
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_master_native_plants_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'geocoder' && $plugin_type == 'geocoder_handler') {
+    return 'plugins/' . $plugin_type;
+  }
+}
