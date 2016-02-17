@@ -212,6 +212,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     $view->result_tier1 = array();
 
     foreach ($ret as $result_key => &$result) {
+      // TODO: use rawurlecode() on the filename of the PlantImg URL.
+      $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
+
       $plant_id = nas_master_native_plants_generate_plant_id(
         array(
           $result->ScientificName,
@@ -223,11 +226,19 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
       $result->Tier1 = FALSE;
       $result->Description = '';
-      $result->LocalLink = 'node/add/native-plant?edit[title]=' . $result->CommonName
-        . '&edit[field_native_plant_common_name][und][0][value]=' . $result->CommonName
-        . '&edit[field_np_scientific_name][und][0][value]=' . $result->ScientificName
-        . '&edit[field_native_plant_family][und][0][value]=' . $result->Family
-        . '&edit[field_native_plant_id][und][0][value]=' . $result->PlantID;
+      $result->LocalLink = '';
+      $result->LocalImg = '';
+      if (user_access('create native_plant content')) {
+        $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
+          'query' => array(
+            'CommonName' => $result->CommonName,
+            'ScientificName' => $result->ScientificName,
+            'Family' => $result->Family,
+            'PlantID' => $result->PlantID,
+            'PlantImg' => $result->PlantImg,
+          ),
+        ));
+      }
     }
     if (empty($plant_ids)) {
       return;
@@ -253,6 +264,10 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         // Do not add info from not published nodes.
         if ($local_node->status == NODE_NOT_PUBLISHED) {
           continue;
+        }
+
+        if ($image = $local_node_wrapper->field_image->value()) {
+          $ret[$result_key]->LocalPlantImg = $image['uri'];
         }
 
         $ret[$result_key]->Tier1 = TRUE;

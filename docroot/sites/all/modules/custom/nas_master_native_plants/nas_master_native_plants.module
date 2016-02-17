@@ -16,6 +16,13 @@ function nas_master_native_plants_menu() {
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
   );
+  $items['nas_master_native_plants/native_plant_create'] = array(
+    'title' => 'Create Native Plant',
+    'description' => 'Native Plant creation callback',
+    'page callback' => 'nas_master_native_plants_native_plant_create',
+    'access arguments' => array('create native_plant content'),
+    'file' => 'nas_master_native_plants.admin.inc',
+  );
 
   return $items;
 }
@@ -281,8 +288,6 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
 
   // Assign plant attributes and bird types.
   foreach ($results as &$result) {
-    // TODO: use rawurlecode() on the filename of the PlantImg URL.
-    $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
     $result->Attributes = array();
     $result->BirdTypes = array();
 
