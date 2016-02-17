@@ -43,8 +43,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $context)
  */
 function native_plants_audubon_near_you_theme(&$theme, $plugin) {
   $theme['native_plants_audubon_near_you'] = array(
-    'variables' => array(
-    ),
+    'variables' => array(),
     'template' => 'native-plants-audubon-near-you',
     'path' => $plugin['path'],
   );
