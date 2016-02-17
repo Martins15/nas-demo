@@ -3368,4 +3368,9 @@ function nas_master_update_7236() {
   // Create taxonomy terms.
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
   nas_master_native_plants_taxonomy_terms_create();
+
+  // Load US ZIP codes information.
+  $file = drupal_get_path('module', 'location') . '/database/zipcodes.us.mysql';
+  $query = file_get_contents($file);
+  db_query($query);
 }
