@@ -304,6 +304,13 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
       }
     }
     foreach ($np_bird_types_term_wrappers as $wrapper) {
+      $link = $wrapper->field_link->value();
+      if ($link) {
+        $url = $link['url'];
+      }
+      else {
+        $url = '';
+      }
       foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
         $value = $field_wrapper->value();
         if ($result->$value == '1') {
@@ -311,6 +318,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
             'tid' => $wrapper->tid->value(),
             'name' => $wrapper->name->value(),
             'image' => $wrapper->field_np_bird_type_image->value(),
+            'url' => $url,
           );
         }
       }
