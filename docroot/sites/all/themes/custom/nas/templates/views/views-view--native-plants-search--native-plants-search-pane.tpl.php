@@ -86,9 +86,9 @@
                     ));
                   }
                   elseif ($result->PlantImg) {
-                    print theme('native_plant_mobile', array(
+                    print theme('imagecache_external', array(
                       'path' => $result->PlantImg,
-                      'style_name'=> 'native_plant_desktop',
+                      'style_name'=> 'native_plant_mobile',
                       'alt' => $result->CommonName,
                     ));
                   } ?>
