@@ -224,14 +224,7 @@ function nas_solr_feature_default_search_api_server() {
       "port" : "80",
       "path" : "\\/solr\\/JTUW-64537",
       "edismax" : 0,
-      "modify_acquia_connection" : false,
-      "acquia_override_subscription" : {
-        "acquia_override_auto_switch" : 1,
-        "acquia_override_selector" : "default",
-        "acquia_override_subscription_id" : "JTUW-64537",
-        "acquia_override_subscription_key" : "cab37d95d904f774a1f5e3259a66b057",
-        "acquia_override_subscription_corename" : "JTUW-64537"
-      },
+      "modify_acquia_connection" : 0,
       "http_user" : "",
       "http_pass" : "",
       "excerpt" : 0,
@@ -240,6 +233,7 @@ function nas_solr_feature_default_search_api_server() {
       "skip_schema_check" : 0,
       "solr_version" : "",
       "http_method" : "AUTO",
+      "acquia_override_subscription" : { "acquia_override_subscription_corename" : "JTUW-64537" },
       "derived_key" : "ee036abfd7231c4dde6e7158a3ebaab1fab6f325"
     },
     "enabled" : "1"
