@@ -1,6 +1,6 @@
 <?php
 /**
- * $file
+ * @file
  * Native Plants Nurseries near you plugin.
  */
 
