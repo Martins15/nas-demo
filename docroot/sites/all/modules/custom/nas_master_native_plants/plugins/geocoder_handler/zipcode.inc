@@ -17,8 +17,13 @@ $plugin = array(
  * Geocode string with ZIP code.
  */
 function geocoder_zipcode($string, $options = array()) {
-  list($zipcode, $country) = explode(' ', $string);
-  if (!$country) {
+  $explode = explode(' ', $string);
+  if (count($explode) >= 2) {
+    $zipcode = $explode[0];
+    $country = $explode[1];
+  }
+  else {
+    $zipcode = $string;
     $country = 'us';
     $string .= ' ' . $country;
   }
