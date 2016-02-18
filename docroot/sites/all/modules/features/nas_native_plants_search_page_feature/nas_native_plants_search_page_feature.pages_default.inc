@@ -337,9 +337,14 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'title' => 'When you plant native plants, you help birds and the environment.',
       'override_title_text' => 'When you plant native plants, you help birds and the environment.',
       'image' => '73574',
-      'form_build_id' => 'form-3xCFuJF81wt4tA3ixRD5j0QAdtzd0m4QjOgdRUO6-08',
+      'form_build_id' => 'form-37FxQkSRFJj7qlRJvfBNRApre3w_civnU7CFHfE9LzQ',
       'override_title' => 0,
       'override_title_heading' => 'h2',
+      'title_desktop' => 'When you plant native plants, you help birds and the environment.',
+      'title_mobile' => 'When you plant native plants, you help birds and the environment.',
+      'title_mobile_shift' => 1,
+      'color_scheme' => 'dark',
+      'dark_gradient' => 1,
     );
     $pane->cache = array();
     $pane->style = array(
