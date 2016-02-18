@@ -3365,6 +3365,11 @@ function nas_master_update_7236() {
     'nas_native_plants_image_styles',
   ));
 
+  // Update "Default node index" settings.
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index'),
+  ));
+
   // Create taxonomy terms.
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
   nas_master_native_plants_taxonomy_terms_create();
