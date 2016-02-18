@@ -52,12 +52,14 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     'relationships' => array(),
   );
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'native_plants_thank_you';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'top' => NULL,
+      'main' => NULL,
     ),
   );
   $display->cache = array();
@@ -66,19 +68,13 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-5c836a6c-9168-45a5-a09f-34ab3bf3c09b';
-    $pane->panel = 'middle';
-    $pane->type = 'entity_field_extra';
-    $pane->subtype = 'permalink:title';
+    $pane->pid = 'new-95dcc514-64e8-4457-9490-84633907da1b';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_list_preview';
+    $pane->subtype = 'native_plants_list_preview';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'view_mode' => 'full',
-      'context' => 'argument_entity_id:permalink_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -87,22 +83,26 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '5c836a6c-9168-45a5-a09f-34ab3bf3c09b';
-    $display->content['new-5c836a6c-9168-45a5-a09f-34ab3bf3c09b'] = $pane;
-    $display->panels['middle'][0] = 'new-5c836a6c-9168-45a5-a09f-34ab3bf3c09b';
+    $pane->uuid = '95dcc514-64e8-4457-9490-84633907da1b';
+    $display->content['new-95dcc514-64e8-4457-9490-84633907da1b'] = $pane;
+    $display->panels['main'][0] = 'new-95dcc514-64e8-4457-9490-84633907da1b';
     $pane = new stdClass();
-    $pane->pid = 'new-9811c8ef-8ebd-496a-8133-ec4501f3cfcf';
-    $pane->panel = 'middle';
-    $pane->type = 'token';
-    $pane->subtype = 'permalink:title';
+    $pane->pid = 'new-6c407e97-bce5-45ea-a35c-ab36a3678b46';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_share';
+    $pane->subtype = 'native_plants_share';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'sanitize' => 1,
-      'context' => 'argument_entity_id:permalink_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
+      'text' => array(
+        'value' => '<p>By planting <strong>native plants</strong>, you will help birds and the environment both locally and across the continent.</p>
+',
+        'format' => 'full_html',
+      ),
+      'label_desktop' => 'Share your pledge',
+      'label_mobile' => 'Spread the word',
+      'form_build_id' => 'form-HEuL86MZZ-M1U6n-oGAh6XuHbb4cYrR5ovjOsB1dgQg',
+      'context' => 'argument_entity_uuid:permalink_1',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -112,23 +112,17 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '9811c8ef-8ebd-496a-8133-ec4501f3cfcf';
-    $display->content['new-9811c8ef-8ebd-496a-8133-ec4501f3cfcf'] = $pane;
-    $display->panels['middle'][1] = 'new-9811c8ef-8ebd-496a-8133-ec4501f3cfcf';
+    $pane->uuid = '6c407e97-bce5-45ea-a35c-ab36a3678b46';
+    $display->content['new-6c407e97-bce5-45ea-a35c-ab36a3678b46'] = $pane;
+    $display->panels['main'][1] = 'new-6c407e97-bce5-45ea-a35c-ab36a3678b46';
     $pane = new stdClass();
-    $pane->pid = 'new-02d1d246-5949-4f45-9035-2ee9bd5f5ad7';
-    $pane->panel = 'middle';
-    $pane->type = 'token';
-    $pane->subtype = 'permalink:id';
+    $pane->pid = 'new-340ca998-e0a3-4066-8bdb-d2db64505e11';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_audubon_near_you';
+    $pane->subtype = 'native_plants_audubon_near_you';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'sanitize' => 1,
-      'context' => 'argument_entity_uuid:permalink_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -137,11 +131,164 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = '02d1d246-5949-4f45-9035-2ee9bd5f5ad7';
-    $display->content['new-02d1d246-5949-4f45-9035-2ee9bd5f5ad7'] = $pane;
-    $display->panels['middle'][2] = 'new-02d1d246-5949-4f45-9035-2ee9bd5f5ad7';
+    $pane->uuid = '340ca998-e0a3-4066-8bdb-d2db64505e11';
+    $display->content['new-340ca998-e0a3-4066-8bdb-d2db64505e11'] = $pane;
+    $display->panels['main'][2] = 'new-340ca998-e0a3-4066-8bdb-d2db64505e11';
+    $pane = new stdClass();
+    $pane->pid = 'new-85f51e83-3006-4871-b843-5223a2f0419a';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_map';
+    $pane->subtype = 'native_plants_map';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'map' => array(
+        'value' => '<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//audubon.maps.arcgis.com/apps/Embed/index.html?webmap=6d4de5b3a14a4b90a214155db7f8cb7e&amp;extent=-129.5384,22.9645,-64.6311,52.567&amp;zoom=true&amp;scale=false&amp;theme=light"></iframe>',
+        'format' => 'map',
+      ),
+      'title' => 'Native Plant nurseries nationwide',
+      'override_title_text' => 'Native Plant nurseries nationwide',
+      'form_build_id' => 'form-RMQ2XIXB8tRPw2NjQWFVW_Ruxx3663ORYTYOxo5OWt0',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '85f51e83-3006-4871-b843-5223a2f0419a';
+    $display->content['new-85f51e83-3006-4871-b843-5223a2f0419a'] = $pane;
+    $display->panels['main'][3] = 'new-85f51e83-3006-4871-b843-5223a2f0419a';
+    $pane = new stdClass();
+    $pane->pid = 'new-c4043252-0ff4-431c-af00-721a8b7b2adb';
+    $pane->panel = 'main';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
+      'override_title' => 1,
+      'override_title_text' => 'More Audubon Native Plant resources',
+      'override_title_heading' => 'h2',
+      'preset' => 'manual_override',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 'top',
+        'bottom' => 'bottom',
+        'between' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
+        1 => array(
+          'reference' => array(
+            'entity_id' => '1121',
+            'entity_label' => 'ATTENTION GULF COAST BIRDERS!',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'reference' => array(
+            'entity_id' => '1131',
+            'entity_label' => 'Dr. G. Paul Kemp Joins National Audubon Society As Vice President And Director, Gulf Coast Initiative',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        3 => array(
+          'reference' => array(
+            'entity_id' => '1139',
+            'entity_label' => 'Supreme Court Strips Excuses For Epa Inaction On Global Warming',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-rj6P2JArmYiTLg9kYxY8Wqii1fICUn639YjTfs2qQxk',
+      'form_token' => 'X87aWCi1ZQXS48JP9jVPcBFbMYMNIeVvt-PfrH6KqeQ',
+      'form_id' => 'editorial_card_3x_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 4;
+    $pane->locks = array();
+    $pane->uuid = 'c4043252-0ff4-431c-af00-721a8b7b2adb';
+    $display->content['new-c4043252-0ff4-431c-af00-721a8b7b2adb'] = $pane;
+    $display->panels['main'][4] = 'new-c4043252-0ff4-431c-af00-721a8b7b2adb';
+    $pane = new stdClass();
+    $pane->pid = 'new-7e953eaf-6f88-40b5-91c3-1a4a62fa31e0';
+    $pane->panel = 'top';
+    $pane->type = 'native_plants_bar';
+    $pane->subtype = 'native_plants_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title_desktop' => 'Audubon Native Plants Database',
+      'title_mobile' => 'Native Plants Database',
+      'background_color' => '66a122',
+      'form_build_id' => 'form-VBQMdIf64e6N2TnEx0BbdAE8x2dRo__kL9hDOng2AMo',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7e953eaf-6f88-40b5-91c3-1a4a62fa31e0';
+    $display->content['new-7e953eaf-6f88-40b5-91c3-1a4a62fa31e0'] = $pane;
+    $display->panels['top'][0] = 'new-7e953eaf-6f88-40b5-91c3-1a4a62fa31e0';
+    $pane = new stdClass();
+    $pane->pid = 'new-d7da6a6b-7151-41ed-ba8c-9d58f2648538';
+    $pane->panel = 'top';
+    $pane->type = 'native_plants_hero';
+    $pane->subtype = 'native_plants_hero';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'When you plant native plants, you help birds and the environment.',
+      'override_title_text' => 'When you plant native plants, you help birds and the environment.',
+      'image' => '74336',
+      'form_build_id' => 'form-EoRYGOlX0QmUzPBLUWlr_5poUoP-AdN9NPqy9Pdpkcg',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+      'title_desktop' => 'Thanks for joining the world\'s largest bird sanctuary.',
+      'title_mobile' => 'Thank you!',
+      'title_mobile_shift' => 0,
+      'color_scheme' => 'dark',
+      'dark_gradient' => 1,
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'd7da6a6b-7151-41ed-ba8c-9d58f2648538';
+    $display->content['new-d7da6a6b-7151-41ed-ba8c-9d58f2648538'] = $pane;
+    $display->panels['top'][1] = 'new-d7da6a6b-7151-41ed-ba8c-9d58f2648538';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-5c836a6c-9168-45a5-a09f-34ab3bf3c09b';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['permalink_page'] = $page;
