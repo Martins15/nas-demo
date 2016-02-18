@@ -68,9 +68,15 @@ function native_plants_list_preview_theme(&$theme, $plugin) {
  */
 function nas_panes_preprocess_native_plants_list_preview(&$variables) {
   $variables['count'] = count($variables['list']);
-  if ($is_long = $variables['count'] > 6) {
-    $variables['list'] = array_slice($variables['list'], 0, 6);
+  $list = '';
+  foreach ($variables['list'] as $item) {
+    if (drupal_strlen($list) < 60) {
+      $list .= $list ? ', ' . filter_xss($item) : filter_xss($item);
+    }
+    else {
+      $list .= '...';
+      break;
+    }
   }
-  $variables['list'] = implode(', ', $variables['list']);
-  $variables['list'] .= $is_long ? '...' : '';
+  $variables['list'] = $list;
 }
