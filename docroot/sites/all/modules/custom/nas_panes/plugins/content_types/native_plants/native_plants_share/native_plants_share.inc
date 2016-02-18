@@ -8,6 +8,7 @@ $plugin = array(
   'title' => t('Native Plants Share'),
   'description' => t('Native Plants Share.'),
   'category' => 'Native Plants',
+  'admin info' => 'native_plants_share_admin_info',
   'edit form' => 'native_plants_share_edit_form',
   'render callback' => 'native_plants_share_render',
   'hook theme' => 'native_plants_share_theme',

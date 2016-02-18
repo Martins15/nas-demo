@@ -8,6 +8,7 @@ $plugin = array(
   'title' => t('Native Plants List preview'),
   'description' => t('Native Plants List preview.'),
   'category' => 'Native Plants',
+  'admin info' => 'native_plants_list_preview_admin_info',
   'render callback' => 'native_plants_list_preview_render',
   'hook theme' => 'native_plants_list_preview_theme',
   'no title override' => TRUE,

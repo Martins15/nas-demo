@@ -8,6 +8,7 @@ $plugin = array(
   'title' => t('Native Plants Audubon Near You'),
   'description' => t('Native Plants Audubon Near You.'),
   'category' => 'Native Plants',
+  'admin info' => 'native_plants_audubon_near_you_admin_info',
   'render callback' => 'native_plants_audubon_near_you_render',
   'hook theme' => 'native_plants_audubon_near_you_theme',
   'no title override' => TRUE,

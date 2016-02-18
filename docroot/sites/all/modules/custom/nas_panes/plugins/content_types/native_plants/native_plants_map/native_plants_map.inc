@@ -8,6 +8,7 @@ $plugin = array(
   'title' => t('Native Plants Nurseries Map'),
   'description' => t('Native Plants Nurseries Map.'),
   'category' => 'Native Plants',
+  'admin info' => 'native_plants_map_admin_info',
   'edit form' => 'native_plants_map_edit_form',
   'render callback' => 'native_plants_map_render',
   'hook theme' => 'native_plants_map_theme',
