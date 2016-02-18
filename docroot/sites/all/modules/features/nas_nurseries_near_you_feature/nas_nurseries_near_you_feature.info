@@ -1,0 +1,11 @@
+name = Nurseries near you
+core = 7.x
+package = Native Plants
+version = 7.x-1.0
+project = nas_nurseries_near_you_feature
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = nurseries_near_you
+features_exclude[dependencies][ctools] = ctools
+project path = sites/all/modules/features
