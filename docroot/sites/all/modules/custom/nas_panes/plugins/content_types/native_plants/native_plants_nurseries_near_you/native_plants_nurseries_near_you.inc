@@ -96,14 +96,19 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     $view_results = views_get_view_result('nurseries_near_you', 'default');
   }
 
-  $results = array_slice($view_results, 0, 3);
-  foreach ($results as $result) {
-    $nursery = node_load($result->entity);
+  // Prepare 3 nurseries.
+  foreach ($view_results as $result) {
+    if (!$nursery = node_load($result->entity)) {
+      continue;
+    }
     $nursery_wrapper = entity_metadata_wrapper('node', $nursery);
     $nurseries[] = array(
       'title' => $nursery_wrapper->title->value(),
       'address' => $nursery_wrapper->field_nursery_address->value(),
     );
+    if (count($nurseries) == 3) {
+      break;
+    }
   }
 
   $block = new stdClass();
