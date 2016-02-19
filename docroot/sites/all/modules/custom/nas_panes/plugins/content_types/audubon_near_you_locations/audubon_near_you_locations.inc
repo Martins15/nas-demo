@@ -51,7 +51,7 @@ function audubon_near_you_locations_render($subtype, $conf, $args, $context) {
 
   $block->content .= theme('audubon_near_you_upcoming_events', array(
     'items' => $filter_active ? _nas_panes_get_upcoming_events($state) : array(),
-    'hide_empty_text' => TRUE,
+    'hide_empty_text' => FALSE,
     'filter_active' => $filter_active,
   ));
 
