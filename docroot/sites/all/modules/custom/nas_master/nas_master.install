@@ -3366,7 +3366,12 @@ function nas_master_update_7235() {
 function nas_master_update_7236() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
-  module_enable(array('nas_iba_feature', 'nas_iba_state', 'nas_iba_import_feeds_feature'));
+  module_enable(array(
+    'nas_iba_feature',
+    'nas_iba_state',
+    'nas_iba_import_feeds_feature',
+    'nas_iba_redirect',
+  ));
   features_revert(array('nas_image_styles_feature'));
   features_revert_module('nas_solr_feature');
   features_revert_module('nas_url_aliases_feature');
