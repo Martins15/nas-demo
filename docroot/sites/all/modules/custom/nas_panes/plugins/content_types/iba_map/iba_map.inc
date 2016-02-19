@@ -37,7 +37,7 @@ function iba_map_render($subtype, $conf, $args, $context) {
       $long_field = 'field_iba_state_longitude';
       $level = 6;
       $get_level = field_get_items('node', $node, 'field_iba_state_map_level');
-      if (!empty($get_level)) {
+      if (!empty($get_level[0]['value'])) {
         $level = $get_level[0]['value'];
       }
       break;
@@ -54,6 +54,10 @@ function iba_map_render($subtype, $conf, $args, $context) {
   }
 
   $center = $long[0]['value'] . ',' . $lat[0]['value'];
+  // TODO: Remove this adjustment when the service is fixed.
+  if ($node->type == 'iba_state') {
+    $center = ($long[0]['value'] / 100000) . ',' . ($lat[0]['value'] / 100000);
+  }
 
   $query = array(
     'webmap=a93821755e634f0295ea30c4d1eefec0',
