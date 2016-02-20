@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Redirect for old IBA paths.
+ * nas_iba_redirect/Site/%
+ * nas_iba_redirect/State/%
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function nas_iba_redirect_menu() {
+  $items = array();
+  $items['nas_iba_redirect/%/%'] = array(
+    'page callback' => 'nas_iba_redirect_callback',
+    'page arguments' => array(1, 2),
+    'access callback' => TRUE,
+    'file' => 'nas_iba_redirect.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
