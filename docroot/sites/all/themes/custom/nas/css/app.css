@@ -16114,3 +16114,16 @@ body .slide .slide-img img {
     display: none;
   }
 }
+
+/* Foundation Clearing overrides. */
+ul.clearing-thumbs {
+  display: inline;
+}
+
+.clearing-assembled .clearing-container .visible-img {
+  height: 100% !important;
+}
+.clearing-assembled .clearing-container .clearing-main-prev.disabled,
+.clearing-assembled .clearing-container .clearing-main-next.disabled {
+  display: none;
+}
