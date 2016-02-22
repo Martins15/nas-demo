@@ -93,6 +93,7 @@ function native_plants_cart_render($subtype, $conf, $args, $context) {
     ),
     'js' => array(
       $plugin['path'] . '/js/native_plants_cart.js',
+      libraries_get_path('json2') . '/json2.js',
     ),
   );
 

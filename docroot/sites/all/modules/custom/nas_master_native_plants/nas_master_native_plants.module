@@ -295,7 +295,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
       foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
         $value = $field_wrapper->value();
         if ($result->$value == '1') {
-          $result->Attributes[] = array(
+          $result->Attributes[$wrapper->tid->value()] = array(
             'tid' => $wrapper->tid->value(),
             'name' => $wrapper->name->value(),
             'color' => $wrapper->field_np_attr_color->value(),
@@ -314,7 +314,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
       foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
         $value = $field_wrapper->value();
         if ($result->$value == '1') {
-          $result->BirdTypes[] = array(
+          $result->BirdTypes[$wrapper->tid->value()] = array(
             'tid' => $wrapper->tid->value(),
             'name' => $wrapper->name->value(),
             'image' => $wrapper->field_np_bird_type_image->value(),
@@ -323,6 +323,14 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         }
       }
     }
+  }
+
+  // Add Plant data attributes.
+  foreach ($results as &$result) {
+    $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
+      . 'data-plant-common-name="' . $result->CommonName . '" '
+      . 'data-plant-scientific-name="' . $result->ScientificName . '" '
+      . 'data-plant-bird-types="' . implode(',', array_keys($result->BirdTypes)) . '"';
   }
 }
 

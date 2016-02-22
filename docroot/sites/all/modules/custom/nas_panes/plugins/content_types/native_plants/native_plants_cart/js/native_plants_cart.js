@@ -2,14 +2,21 @@
   Drupal.behaviors.native_plants_cart = {};
   Drupal.behaviors.native_plants_cart.attach = function (context, settings) {
     Drupal.native_plants_cart.init();
-    $('body').once('native-plants-cart').bind('checkbox_change.native_plants_cart', function(event, plant_id, plant_name, checked) {
-        Drupal.native_plants_cart.update_cart(plant_id, plant_name, checked);
-      });
+    $('body').once('native-plants-cart').bind('checkbox_change.native_plants_cart', function(event) {
+      Drupal.native_plants_cart.update_cart(event);
+    });
 
     $('input:checkbox.np-checkbox', context).once('native-plants-cart').change(function() {
-      var $checkbox = $(this);
-      var plant_id = $checkbox.data('plantId'), plant_name = $checkbox.data('plantName'), checked = this.checked;
-      $('body').trigger('checkbox_change.native_plants_cart', [plant_id, plant_name, checked]);
+      var $checkbox = $(this), plant_id = $checkbox.data('plantId'), checked = this.checked;
+
+      var event = $.Event('checkbox_change.native_plants_cart');
+      event.plant_id = plant_id;
+      event.plant_common_name = $checkbox.data('plantCommonName');
+      event.plant_scientific_name = $checkbox.data('plantScientificName');
+      event.plant_bird_types = $checkbox.data('plantBirdTypes');
+      event.plant_checked = checked;
+      $('body').trigger(event);
+
       $('input:checkbox.np-checkbox[data-plant-id="' + plant_id + '"]').not($checkbox).each(function() {
         this.checked = checked;
       });
@@ -19,34 +26,34 @@
   Drupal.native_plants_cart = Drupal.native_plants_cart || {};
   Drupal.native_plants_cart.init = function() {
     var plants = Drupal.native_plants_cart.get_plants();
-    plants.forEach(function(plant) {
-      $('input:checkbox.np-checkbox[data-plant-id="' + plant[0] + '"]').each(function() {
+    $.each(plants, function(plant_id, plant) {
+      $('input:checkbox.np-checkbox[data-plant-id="' + plant_id + '"]').each(function() {
         this.checked = true;
       });
     });
     Drupal.native_plants_cart.update_cart_texts(plants);
   };
-  Drupal.native_plants_cart.update_cart = function(plant_id, plant_name, checked) {
+  Drupal.native_plants_cart.update_cart = function(event) {
     var plants = Drupal.native_plants_cart.get_plants();
-    if (checked) {
-      plants.push([plant_id, plant_name]);
+    if (event.plant_checked) {
+      plants[event.plant_id] = {
+        'CommonName': event.plant_common_name,
+        'ScientificName': event.plant_scientific_name,
+        'BirdTypes': event.plant_bird_types
+      };
     }
     else {
-      plants.forEach(function(plant, i) {
-        if (plant[0] === plant_id) {
-          plants.splice(i, 1);
-        }
-      });
+      delete plants[event.plant_id];
     }
     Drupal.native_plants_cart.set_plants(plants);
     Drupal.native_plants_cart.update_cart_texts(plants);
   };
   Drupal.native_plants_cart.update_cart_texts = function(plants) {
-    var count = plants.length;
+    var count = Object.keys(plants).length;
     var plants_string = '', limit = false;
-    plants.forEach(function(plant) {
+    $.each(plants, function(plant_id, plant) {
       if (plants_string.length < 60) {
-        plants_string += (plants_string ? ', ' + plant[1] : plant[1]);
+        plants_string += (plants_string ? ', ' + plant.CommonName : plant.CommonName);
       }
       else if (!limit) {
         limit = true;
@@ -63,24 +70,16 @@
     }
   };
   Drupal.native_plants_cart.set_plants = function(plants) {
-    var _plants = [];
-    plants.forEach(function(plant) {
-      _plants.push(plant.join(','));
-    });
-    var cart = _plants.join('|');
+    var cart = JSON.stringify(plants);
     $.cookie('native_plants_cart', cart, {expires: 7, path: Drupal.settings.basePath});
   };
   Drupal.native_plants_cart.get_plants = function() {
-    var plants = [];
+    var plants = {};
     var cart = $.cookie('native_plants_cart');
     if (!cart) {
       return plants;
     }
-
-    var _plants = cart.split('|');
-    _plants.forEach(function(_plant) {
-      plants.push(_plant.split(','));
-    });
+    plants = JSON.parse(cart);
     return plants;
   };
 })(jQuery);
