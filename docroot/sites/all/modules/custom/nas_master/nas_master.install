@@ -3375,6 +3375,7 @@ function nas_master_update_7236() {
     'nas_native_plants_image_styles',
     'nas_nurseries_near_you_feature',
     'nas_community_resource_ct_feature',
+    'nas_community_resources_near_you_feature',
   ));
 
   // Create taxonomy terms.
