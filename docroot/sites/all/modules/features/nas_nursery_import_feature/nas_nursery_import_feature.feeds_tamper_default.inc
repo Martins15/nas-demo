@@ -32,7 +32,7 @@ function nas_nursery_import_feature_feeds_tamper_default() {
   $feeds_tamper->importer = 'nurseries';
   $feeds_tamper->source = 'STATE_NAME';
   $feeds_tamper->plugin_id = 'state_to_abbrev';
-  $feeds_tamper->settings = '';
+  $feeds_tamper->settings = array();
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'Full state name to abbrev';
   $export['nurseries-state_name-state_to_abbrev'] = $feeds_tamper;
