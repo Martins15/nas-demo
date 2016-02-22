@@ -336,8 +336,8 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'title' => 'When you plant native plants, you help birds and the environment.',
       'override_title_text' => 'When you plant native plants, you help birds and the environment.',
-      'image' => '73574',
-      'form_build_id' => 'form-37FxQkSRFJj7qlRJvfBNRApre3w_civnU7CFHfE9LzQ',
+      'image' => 0,
+      'form_build_id' => 'form-rDEqLleB1xWc2tZ6YfDpHkFPBozgNL6NbAlNf8wIexc',
       'override_title' => 0,
       'override_title_heading' => 'h2',
       'title_desktop' => 'When you plant native plants, you help birds and the environment.',
