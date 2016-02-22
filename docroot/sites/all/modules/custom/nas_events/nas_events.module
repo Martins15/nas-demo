@@ -291,12 +291,17 @@ function _nas_events_get_events($state = 'all') {
     $items[$nid]['nid'] = $node->nid;
     $items[$nid]['title'] = $node->title;
     $items[$nid]['state'] = $state;
-    if (isset($node->field_event_description[LANGUAGE_NONE][0]['value'])) {
+
+    if (!empty($node->field_event_description[LANGUAGE_NONE])) {
       $items[$nid]['body'] = truncate_utf8($node->field_event_description[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
     }
-    else {
+    elseif (!empty($node->body[LANGUAGE_NONE])) {
       $items[$nid]['body'] = truncate_utf8($node->body[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
     }
+    else {
+      $items[$nid]['body'] = '';
+    }
+
     if (isset($node->field_event_date[LANGUAGE_NONE][0]['value'])) {
       $date = strtotime($node->field_event_date[LANGUAGE_NONE][0]['value']);
       $items[$nid]['start_date'] = date('l, F j, Y', $date);
