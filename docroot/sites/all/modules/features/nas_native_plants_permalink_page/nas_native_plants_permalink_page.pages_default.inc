@@ -135,6 +135,37 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $display->content['new-340ca998-e0a3-4066-8bdb-d2db64505e11'] = $pane;
     $display->panels['main'][2] = 'new-340ca998-e0a3-4066-8bdb-d2db64505e11';
     $pane = new stdClass();
+    $pane->pid = 'new-0b95add2-7dba-41eb-84c6-4b76c714ffe4';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_nurseries_near_you';
+    $pane->subtype = 'native_plants_nurseries_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Where to buy native plants near you',
+      'description' => array(
+        'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these nurseries.</p>
+',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '%permalink:zip-code',
+      'form_build_id' => 'form-lCRFgQ1dZxuml6XBjVq42jPBQnM6_eU-xz6vcMRPN6g',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '0b95add2-7dba-41eb-84c6-4b76c714ffe4';
+    $display->content['new-0b95add2-7dba-41eb-84c6-4b76c714ffe4'] = $pane;
+    $display->panels['main'][3] = 'new-0b95add2-7dba-41eb-84c6-4b76c714ffe4';
+    $pane = new stdClass();
     $pane->pid = 'new-85f51e83-3006-4871-b843-5223a2f0419a';
     $pane->panel = 'main';
     $pane->type = 'native_plants_map';
@@ -158,11 +189,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = '85f51e83-3006-4871-b843-5223a2f0419a';
     $display->content['new-85f51e83-3006-4871-b843-5223a2f0419a'] = $pane;
-    $display->panels['main'][3] = 'new-85f51e83-3006-4871-b843-5223a2f0419a';
+    $display->panels['main'][4] = 'new-85f51e83-3006-4871-b843-5223a2f0419a';
     $pane = new stdClass();
     $pane->pid = 'new-c4043252-0ff4-431c-af00-721a8b7b2adb';
     $pane->panel = 'main';
@@ -227,11 +258,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
     $pane->uuid = 'c4043252-0ff4-431c-af00-721a8b7b2adb';
     $display->content['new-c4043252-0ff4-431c-af00-721a8b7b2adb'] = $pane;
-    $display->panels['main'][4] = 'new-c4043252-0ff4-431c-af00-721a8b7b2adb';
+    $display->panels['main'][5] = 'new-c4043252-0ff4-431c-af00-721a8b7b2adb';
     $pane = new stdClass();
     $pane->pid = 'new-7e953eaf-6f88-40b5-91c3-1a4a62fa31e0';
     $pane->panel = 'top';

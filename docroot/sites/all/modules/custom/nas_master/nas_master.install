@@ -3353,6 +3353,16 @@ function nas_master_update_7235() {
  * Enable Native Plants features.
  */
 function nas_master_update_7236() {
+  // Update "Default node index" settings.
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index'),
+  ));
+
+  // Load US ZIP codes information.
+  $file = drupal_get_path('module', 'location') . '/database/zipcodes.us.mysql';
+  $query = file_get_contents($file);
+  db_query($query);
+
   module_enable(array(
     'nas_master_native_plants',
     'nas_native_plants_taxonomy',
@@ -3363,6 +3373,8 @@ function nas_master_update_7236() {
     'nas_native_plant_ct_feature',
     'nas_native_plants_search_page_feature',
     'nas_native_plants_image_styles',
+    'nas_nurseries_near_you_feature',
+    'nas_community_resource_ct_feature',
   ));
 
   // Create taxonomy terms.
