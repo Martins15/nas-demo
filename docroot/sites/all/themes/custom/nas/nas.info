@@ -16,6 +16,7 @@ regions[footer]  = 'Footer'
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/app.css
+stylesheets[all][] = js/vendor/foundation/clearing.css
 stylesheets[all][] = js/vendor/owl-carousel/owl.carousel.css
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -51,6 +52,7 @@ scripts[] = js/mute/expand-hero.js
 scripts[] = js/mute/placeholders.js
 scripts[] = js/mute/wrap-select.js
 scripts[] = js/vendor/foundation/foundation.min.js
+scripts[] = js/vendor/foundation/foundation.clearing.js
 scripts[] = js/vendor/jquery.highlight/jquery.highlight.js
 scripts[] = js/mute/foundation.js
 
