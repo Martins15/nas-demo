@@ -120,7 +120,7 @@ function native_plants_hero_render($subtype, $conf, $args, $context) {
   // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   $image_path = file_create_url('sites/all/themes/custom/nas/img/plants-background.jpg');
-  $image_attribution = '';
+  $image_attribution = 'Photo: Lazlo Ilyes, Flickr Creative Commons';
   if ($image = file_load($conf['image'])) {
     $image_path = image_style_url('hero_image', $image->uri);
     $image_attribution = _nas_panes_format_image_attribution($image);
