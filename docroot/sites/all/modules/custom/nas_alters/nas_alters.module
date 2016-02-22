@@ -848,8 +848,8 @@ function nas_alters_lang_dropdown() {
  * Implements hook_language_switch_links_alter().
  */
 function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
-  // We want to remove language switcher if page has no translations - if the
-  // href of all translations is the same.
+  // We want to remove language switcher and hreflang links if page has no
+  // translations - if the href of all links is the same.
   $unset = TRUE;
   foreach ($links as $langcode => $link) {
     if (isset($link['href']) && $link['href'] != $path) {
@@ -857,12 +857,8 @@ function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
     }
   }
 
-  // We can't unset links cause of hreflang module, so we set the class that is
-  // used by lang_dropdown module to skip the link.
   if ($unset) {
-    foreach ($links as $langcode => &$link) {
-      $link['attributes']['class'][] = 'locale-untranslated';
-    }
+    $links = array();
   }
   else {
     foreach ($links as $langcode => $link) {
