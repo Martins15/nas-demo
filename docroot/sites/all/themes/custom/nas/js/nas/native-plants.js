@@ -115,7 +115,7 @@
         $self.bind('click', function() {
           $self.parent().find('[data-clearing] a').trigger('click');
           return false;
-        })
+        });
       });
     }
   };
