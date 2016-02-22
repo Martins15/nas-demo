@@ -136,5 +136,23 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'field_community_resource_phone'
+  $field_bases['field_community_resource_phone'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_community_resource_phone',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'phone',
+    'settings' => array(
+      'country' => 'ca',
+    ),
+    'translatable' => 0,
+    'type' => 'phone',
+  );
+
   return $field_bases;
 }
