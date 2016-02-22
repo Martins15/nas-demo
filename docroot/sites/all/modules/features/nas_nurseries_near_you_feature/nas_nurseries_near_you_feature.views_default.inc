@@ -44,7 +44,6 @@ function nas_nurseries_near_you_feature_views_default_views() {
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['id'] = 'field_nursery_geofield_latlon';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['field'] = 'field_nursery_geofield_latlon';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['default_argument_options']['argument'] = '28.143377,-82.890540';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['summary']['format'] = 'default_summary';
