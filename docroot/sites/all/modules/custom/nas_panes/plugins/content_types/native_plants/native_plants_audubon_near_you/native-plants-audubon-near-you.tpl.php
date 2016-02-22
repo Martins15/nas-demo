@@ -15,7 +15,7 @@
             <h3 class="connect-audubon-near-you--title"><?php print $resource['title']; ?></h3>
             <p class="connect-audubon-near-you--address">
               <?php print $resource['address']['rendered']; ?>
-               (212) 779-3429
+               <?php print $resource['phone']; ?>
             </p>
             <?php print $resource['link']['rendered']; ?>
           </div>

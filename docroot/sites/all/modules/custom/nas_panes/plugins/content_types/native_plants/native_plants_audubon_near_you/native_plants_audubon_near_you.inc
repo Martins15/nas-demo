@@ -128,6 +128,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $context)
     $resource = array(
       'title' => $node_wrapper->title->value(),
       'address' => $node_wrapper->field_community_resource_address->value(),
+      'phone' => $node_wrapper->field_community_resource_phone->value(),
       'link' => $node_wrapper->field_community_resource_link->value(),
       'services' => array(),
     );
