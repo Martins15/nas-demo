@@ -32,10 +32,9 @@ function native_plants_list_preview_render($subtype, $conf, $args, $context) {
   $permalink = $context->data;
 
   $list = array();
-  $items = explode('|', $permalink->plants_cart);
-  foreach ($items as $item) {
-    list($id, $name) = explode(',', $item, 2);
-    $list[$id] = $name;
+  $items = drupal_json_decode($permalink->plants_cart);
+  foreach ($items as $plant_id => $item) {
+    $list[$plant_id] = $item['CommonName'];
   }
 
   $block = new stdClass();
