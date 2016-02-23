@@ -14632,6 +14632,30 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-left: 3px;
 }
 
+.native-plants-results-placeholder {
+  display: none;
+}
+
+.page-native-plants-initial .native-plants-results-placeholder {
+  display: block;
+  text-align: center;
+}
+.page-native-plants-initial .native-plants-results-placeholder .blue-point {
+  background-color: #0AA8E3;
+  display: inline-block;
+  height: 10px;
+  margin-right: 10px;
+  margin-top: 84px;
+  width: 10px;
+}
+.page-native-plants-initial .native-plants-results-placeholder .blue-point:last-child {
+  margin-right: 0;
+}
+.page-native-plants-initial .native-plants-bottom .native-plants-bottom-plant-list-placeholder,
+.page-native-plants-initial .native-plants-bottom .native-plants-bottom-plant-list {
+  display: none;
+}
+
 @media only screen and (max-width: 479px) {
   .connect-audubon-near-you .breakout-section-box {
     background: none;
