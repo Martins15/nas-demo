@@ -1,3 +1,4 @@
+window.Modernizr = window.Modernizr || {};
 Nav = {};
 var Nas = Nas || {};
 
