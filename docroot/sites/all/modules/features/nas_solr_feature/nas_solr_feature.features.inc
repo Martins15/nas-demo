@@ -102,6 +102,7 @@ function nas_solr_feature_default_search_api_index() {
         "field_bird_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_bird_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_bird_sci_name" : { "type" : "text" },
+        "field_community_res_geofield:latlon" : { "type" : "string", "real_type" : "location" },
         "field_event_date:value2" : { "type" : "date" },
         "field_event_description:value" : { "type" : "text" },
         "field_event_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },

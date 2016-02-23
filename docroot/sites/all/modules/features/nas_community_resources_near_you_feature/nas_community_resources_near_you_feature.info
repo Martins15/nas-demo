@@ -1,13 +1,13 @@
-name = Nurseries near you
+name = Community Resources near you
 core = 7.x
 package = Native Plants
-version = 7.x-1.1
-project = nas_nurseries_near_you_feature
+version = 7.x-1.0
+project = nas_community_resources_near_you_feature
 dependencies[] = ctools
 dependencies[] = search_api_location
 dependencies[] = search_api_location_views
 dependencies[] = views
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
-features[views_view][] = nurseries_near_you
+features[views_view][] = community_resources_near_you
 project path = sites/all/modules/features

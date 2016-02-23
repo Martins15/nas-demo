@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * nas_nurseries_near_you_feature.views_default.inc
+ * nas_community_resources_near_you_feature.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function nas_nurseries_near_you_feature_views_default_views() {
+function nas_community_resources_near_you_feature_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'nurseries_near_you';
+  $view->name = 'community_resources_near_you';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'search_api_index_default_node_index';
-  $view->human_name = 'Nurseries near you';
+  $view->human_name = 'Community resources near you';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -37,27 +37,26 @@ function nas_nurseries_near_you_feature_views_default_views() {
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   /* Sort criterion: Geo Location: LatLong Pair (indexed) */
-  $handler->display->display_options['sorts']['field_nursery_geofield_latlon']['id'] = 'field_nursery_geofield_latlon';
-  $handler->display->display_options['sorts']['field_nursery_geofield_latlon']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['sorts']['field_nursery_geofield_latlon']['field'] = 'field_nursery_geofield_latlon';
+  $handler->display->display_options['sorts']['field_community_res_geofield_latlon']['id'] = 'field_community_res_geofield_latlon';
+  $handler->display->display_options['sorts']['field_community_res_geofield_latlon']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['field_community_res_geofield_latlon']['field'] = 'field_community_res_geofield_latlon';
   /* Contextual filter: Geo Location: LatLong Pair (indexed) */
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['id'] = 'field_nursery_geofield_latlon';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['field'] = 'field_nursery_geofield_latlon';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['default_argument_options']['argument'] = '28.143377,-82.890540';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['not'] = 0;
-  $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['radius'] = '1000';
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['id'] = 'field_community_res_geofield_latlon';
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['field'] = 'field_community_res_geofield_latlon';
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['not'] = 0;
+  $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['radius'] = '1000';
   /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'nursery' => 'nursery',
+    'community_resource' => 'community_resource',
   );
-  $translatables['nurseries_near_you'] = array(
+  $translatables['community_resources_near_you'] = array(
     t('Master'),
     t('more'),
     t('Apply'),
@@ -70,7 +69,7 @@ function nas_nurseries_near_you_feature_views_default_views() {
     t(','),
     t('All'),
   );
-  $export['nurseries_near_you'] = $view;
+  $export['community_resources_near_you'] = $view;
 
   return $export;
 }
