@@ -14645,7 +14645,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: inline-block;
   height: 10px;
   margin-right: 10px;
-  margin-top: 84px;
+  margin-top: 40px;
   width: 10px;
 }
 .page-native-plants-initial .native-plants-results-placeholder .blue-point:last-child {
