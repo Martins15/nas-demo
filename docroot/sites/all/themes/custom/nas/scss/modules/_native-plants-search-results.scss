@@ -350,6 +350,18 @@ $color-dark-green:              #025e02;
       }
     }
   }
+
+  &.permalink-list {
+    table {
+      font-size: 17px;
+
+      tr {
+        td {
+          width: auto !important;
+        }
+      }
+    }
+  }
 }
 
 .native-plants-bottom {
@@ -589,5 +601,38 @@ input[type="checkbox"].np-checkbox {
     font-family: Source Sans Pro, Verdana, sans-serif;
     margin-bottom: 12px;
     padding-left: 3px;
+  }
+}
+
+.native-plants-results-placeholder {
+  display: none;
+}
+
+.page-native-plants-initial {
+
+  .native-plants-results-placeholder {
+    display: block;
+    text-align: center;
+
+    .blue-point {
+      background-color: $color-bright-blue;
+      display: inline-block;
+      height:10px;
+      margin-right: 10px;
+      margin-top: 40px;
+      width: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .native-plants-bottom {
+
+    .native-plants-bottom-plant-list-placeholder,
+    .native-plants-bottom-plant-list {
+      display: none;
+    }
   }
 }
