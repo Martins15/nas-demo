@@ -14423,6 +14423,12 @@ h2.grey {
     float: none;
   }
 }
+.native-plants-full-search-results.permalink-list table {
+  font-size: 17px;
+}
+.native-plants-full-search-results.permalink-list table tr td {
+  width: auto !important;
+}
 
 .native-plants-bottom {
   font-family: Source Sans Pro, Verdana, sans-serif;

@@ -350,6 +350,18 @@ $color-dark-green:              #025e02;
       }
     }
   }
+
+  &.permalink-list {
+    table {
+      font-size: 17px;
+
+      tr {
+        td {
+          width: auto !important;
+        }
+      }
+    }
+  }
 }
 
 .native-plants-bottom {
