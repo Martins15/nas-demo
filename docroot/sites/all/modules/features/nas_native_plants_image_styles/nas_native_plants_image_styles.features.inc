@@ -40,6 +40,27 @@ function nas_native_plants_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: native_plant_lightbox.
+  $styles['native_plant_lightbox'] = array(
+    'label' => 'Native Plant Lightbox',
+    'effects' => array(
+      43 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1200,
+          'height' => 800,
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+      44 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
+    ),
+  );
+
   // Exported image style: native_plant_mobile.
   $styles['native_plant_mobile'] = array(
     'label' => 'Native Plant Mobile',
