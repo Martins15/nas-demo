@@ -357,7 +357,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         'style_name'=> 'native_plant_desktop',
         'alt' => $result->CommonName,
       ));
-      $result->PlamtImgMobile = theme('image_style', array(
+      $result->PlantImgMobile = theme('image_style', array(
         'path' => $result->LocalPlantImg,
         'style_name'=> 'native_plant_mobile',
         'alt' => $result->CommonName,
@@ -370,7 +370,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         'style_name'=> 'native_plant_desktop',
         'alt' => $result->CommonName,
       ));
-      $result->PlamtImgMobile = theme('imagecache_external', array(
+      $result->PlantImgMobile = theme('imagecache_external', array(
         'path' => $result->PlantImg,
         'style_name'=> 'native_plant_mobile',
         'alt' => $result->CommonName,
