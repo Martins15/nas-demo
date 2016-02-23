@@ -123,8 +123,8 @@
                 <?php if (user_access('administer nodes')): ?>
                   <span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
                 <?php endif; ?>
-                <div class="tier-1-plant--description"><?php print $result->Description; ?></div>
-                <div class="tier-1-plant--source"><?php print t('Source'); ?>: <a href="#">Wikipedia</a></div>
+                <?php if ($result->Description): ?><div class="tier-1-plant--description"><?php print $result->Description; ?></div><?php endif; ?>
+                <?php if ($result->Source): ?><div class="tier-1-plant--source"><?php print t('Source') . ': ' . $result->Source; ?></div><?php endif; ?>
                 <ul class="clearfix plant-attributes-list">
                   <?php foreach ($result->Attributes as $attribute): ?>
                     <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>" style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></a></li>
