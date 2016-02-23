@@ -44,6 +44,21 @@ function nas_master_native_plants_node_presave($node) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
+  $disable_fields = array(
+    'field_native_plant_common_name',
+    'field_np_scientific_name',
+    'field_native_plant_family',
+    'field_native_plant_id',
+  );
+  foreach ($disable_fields as $field) {
+    $form[$field]['#access'] = FALSE;
+  }
+}
+
+/**
  * Helper function to generate Plant ID.
  */
 function nas_master_native_plants_generate_plant_id($params) {

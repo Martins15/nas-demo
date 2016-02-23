@@ -226,6 +226,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
       $result->Tier1 = FALSE;
       $result->Description = '';
+      $result->Source = '';
       $result->LocalLink = '';
       $result->LocalPlantImg = '';
       if (user_access('create native_plant content')) {
@@ -273,6 +274,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         if ($local_node_wrapper->body->value()) {
           $description = $local_node_wrapper->body->value->value();
           $ret[$result_key]->Description = $description;
+        }
+        if ($source = $local_node_wrapper->field_native_plant_source->value()) {
+          $ret[$result_key]->Source = l($source['title'], $source['url']);
         }
 
         // Check if this is Tier1 result.
