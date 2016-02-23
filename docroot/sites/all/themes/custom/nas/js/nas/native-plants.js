@@ -110,7 +110,8 @@
 
   Drupal.behaviors.npClearingFix = {
     attach: function(context, settings) {
-      $("a.clearing-attach").once('np-clearing-fix', function () {
+      $(document).foundation('clearing', 'reflow');
+      $('a.clearing-attach').once('np-clearing-fix', function () {
         var $self = $(this);
         $self.bind('click', function() {
           $self.parent().find('[data-clearing] a').trigger('click');

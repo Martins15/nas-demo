@@ -59,40 +59,19 @@
             <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
             <div class="row">
               <div class="column medium-3">
+                <?php if ($result->PlantImgDesktop): ?>
                 <div class="tier-1-plant-picture hide-for-tiny hide-for-small">
-                  <?php
-                  if ($result->LocalPlantImg) {
-                    print theme('image_style', array(
-                      'path' => $result->LocalPlantImg,
-                      'style_name'=> 'native_plant_desktop',
-                      'alt' => $result->CommonName,
-                    ));
-                  }
-                  elseif ($result->PlantImg) {
-                    print theme('imagecache_external', array(
-                      'path' => $result->PlantImg,
-                      'style_name'=> 'native_plant_desktop',
-                      'alt' => $result->CommonName,
-                    ));
-                  } ?>
+                  <a href="#" class="clearing-attach">
+                    <?php print $result->PlantImgDesktop; ?>
+                  </a>
+                  <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
                 </div>
+                <?php endif; ?>
+                <?php if ($result->PlantImgMobile): ?>
                 <div class="row tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
-                  <?php
-                  if ($result->LocalPlantImg) {
-                    print theme('image_style', array(
-                      'path' => $result->LocalPlantImg,
-                      'style_name'=> 'native_plant_mobile',
-                      'alt' => $result->CommonName,
-                    ));
-                  }
-                  elseif ($result->PlantImg) {
-                    print theme('imagecache_external', array(
-                      'path' => $result->PlantImg,
-                      'style_name'=> 'native_plant_mobile',
-                      'alt' => $result->CommonName,
-                    ));
-                  } ?>
+                  <?php print $result->PlantImgMobile; ?>
                 </div>
+                <?php endif; ?>
               </div>
               <div class="column medium-4 medium-push-5">
                 <h4><?php print t('Types of birds attracted'); ?></h4>
@@ -179,8 +158,9 @@
                 <div class="plant--add-to-list">
                   <input type="checkbox" id="checkbox-f<?php print $result->PlantID; ?>" class="np-checkbox" <?php print $result->PlantDataAttributes; ?>/>
                   <label for="checkbox-f<?php print $result->PlantID; ?>"><?php print $result->CommonName; ?></label>
-                  <?php if ($result->LocalPlantImg || $result->PlantImg): ?>
-                    <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
+                  <?php if ($result->PlantImgLightbox): ?>
+                    <a href="<?php print $result->PlantImgLightbox; ?>" class="icon-camera clearing-attach" title="<?php print t('Preview'); ?>"></a>
+                    <ul data-clearing class="clearing-thumbs"><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
                   <?php endif; ?>
                   <?php if (user_access('administer nodes')): ?>
                     <br><span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
@@ -214,8 +194,9 @@
             <div class="columns">
               <div>
                 <span class="mobile-search-full-results--label"><?php print t('Plant'); ?>:</span> <?php print $result->CommonName; ?>
-                <?php if ($result->LocalPlantImg || $result->PlantImg): ?>
-                  <a href="#" class="icon-camera" title="<?php print t('Preview'); ?>"></a>
+                <?php if ($result->PlantImgLightbox): ?>
+                  <a href="<?php print $result->PlantImgLightbox; ?>" class="icon-camera clearing-attach" title="<?php print t('Preview'); ?>"></a>
+                  <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
                 <?php endif; ?>
               </div>
               <div>
