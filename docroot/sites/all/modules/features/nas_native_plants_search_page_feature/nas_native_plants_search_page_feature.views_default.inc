@@ -47,7 +47,11 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results.';
+  $handler->display->display_options['empty']['area_text_custom']['content'] = '<div class="native-plants-results-placeholder">
+  <span class="blue-point"></span>
+  <span class="blue-point"></span>
+  <span class="blue-point"></span>
+</div>';
   /* Relationship: Taxonomy */
   $handler->display->display_options['relationships']['value']['id'] = 'value';
   $handler->display->display_options['relationships']['value']['table'] = 'nasnp_json';
@@ -144,7 +148,11 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('Previous page'),
     t('Next page'),
     t('last »'),
-    t('No results.'),
+    t('<div class="native-plants-results-placeholder">
+  <span class="blue-point"></span>
+  <span class="blue-point"></span>
+  <span class="blue-point"></span>
+</div>'),
     t('Taxonomy'),
     t('CommonName'),
     t('Content pane'),
