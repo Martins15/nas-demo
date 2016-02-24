@@ -1,15 +1,4 @@
 (function ($) {
-  Drupal.behaviors.nas_master_native_plants = {};
-  Drupal.behaviors.nas_master_native_plants.attach = function(context, settings) {
-    // Assign classes to the first and last pager items in pagers.
-    // TODO: change the CSS to use first/last child.
-    $('.search-results-total .pager', context).each(function() {
-      var $pager_items = $(this).children();
-      $pager_items.first().addClass('pager-prev');
-      $pager_items.last().addClass('pager-next');
-    });
-  };
-
   Drupal.behaviors.nas_master_native_plants_filters = {};
   Drupal.behaviors.nas_master_native_plants_filters.attach = function() {
     // Do not do anything if there is already cloned select.
@@ -70,7 +59,10 @@
   Drupal.behaviors.nas_master_native_plants_hide_view = {};
   Drupal.behaviors.nas_master_native_plants_hide_view.attach = function() {
     if ($('.native-plants-search-form--zip-code').val() === '') {
-      $('.view-native-plants-search').hide();
+      $('.view-native-plants-search').children().not('.view-empty').hide();
+    }
+    else {
+      $('body').removeClass('page-native-plants-initial');
     }
   };
 
