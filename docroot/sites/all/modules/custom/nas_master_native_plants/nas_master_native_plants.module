@@ -383,6 +383,22 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
 }
 
 /**
+ * Implements hook_views_ajax_data_alter().
+ */
+function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
+  if ($view->name != 'native_plants_search' || $view->current_display != 'native_plants_search_pane') {
+    return;
+  }
+
+  // Change scroll destination.
+  foreach ($commands as &$command) {
+    if ($command['command'] == 'viewsScrollTop') {
+      $command['selector'] = '.np-search-full-results';
+    }
+  }
+}
+
+/**
  * Form building callback for Native Plants "Join the Sanctuary" form.
  */
 function nas_master_native_plants_email_form($form, &$form_state, $conf = array()) {

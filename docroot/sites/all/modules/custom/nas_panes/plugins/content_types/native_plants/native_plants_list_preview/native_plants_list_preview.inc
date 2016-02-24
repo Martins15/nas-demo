@@ -69,7 +69,7 @@ function nas_panes_preprocess_native_plants_list_preview(&$variables) {
   $variables['count'] = count($variables['list']);
   $list = '';
   foreach ($variables['list'] as $item) {
-    if (drupal_strlen($list) < 60) {
+    if (drupal_strlen($list) < 110) {
       $list .= $list ? ', ' . filter_xss($item) : filter_xss($item);
     }
     else {
