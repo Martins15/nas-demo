@@ -7,7 +7,7 @@
 
 // Plugin definition.
 $plugin = array(
-  'title' => t('Native Plants search'),
+  'title' => t('Native Plants Search'),
   'category' => t('Native Plants'),
   'icon' => 'native_plants_search.png',
   'theme' => 'native_plants_search',
