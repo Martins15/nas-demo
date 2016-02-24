@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * List preview template.
+ * Native Plants Share template.
  */
 ?>
 

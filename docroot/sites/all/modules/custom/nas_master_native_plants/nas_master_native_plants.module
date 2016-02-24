@@ -484,7 +484,7 @@ function nas_master_native_plants_email_form_submit($form, &$form_state) {
   // TODO: integrations with Mandrill and Convio.
 
   // Redirect to permalink page.
-  $form_state['redirect'] = 'pl/' . $permalink->uuid;
+  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
 }
 
 /**

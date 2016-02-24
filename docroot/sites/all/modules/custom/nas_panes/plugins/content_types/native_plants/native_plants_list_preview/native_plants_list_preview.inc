@@ -41,7 +41,7 @@ function native_plants_list_preview_render($subtype, $conf, $args, $context) {
   $block->content = array(
     '#theme' => 'native_plants_list_preview',
     '#list' => $list,
-    '#permalink' => l(t('You can also access it here.'), 'pl/' . $permalink->uuid),
+    '#permalink' => l(t('You can also access it here.'), 'native-plants/list/' . $permalink->uuid),
   );
 
   return $block;

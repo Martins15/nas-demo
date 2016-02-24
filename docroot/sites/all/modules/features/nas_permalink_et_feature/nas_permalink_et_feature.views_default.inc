@@ -121,7 +121,7 @@ function nas_permalink_et_feature_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'eck_permalink';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['path'] = 'pl/[uuid]';
+  $handler->display->display_options['fields']['title']['alter']['path'] = 'native-plants/thank-you/[uuid]';
   /* Field: Permalink: Created */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'eck_permalink';
