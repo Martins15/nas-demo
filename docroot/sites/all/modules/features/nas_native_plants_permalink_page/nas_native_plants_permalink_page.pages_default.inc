@@ -15,10 +15,30 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Permalink page';
   $page->admin_description = '';
-  $page->path = 'pl/%permalink';
-  $page->access = array();
+  $page->path = 'native-plants/%type/%permalink';
+  $page->access = array(
+    'plugins' => array(
+      0 => array(
+        'name' => 'context_exists',
+        'settings' => array(
+          'exists' => '1',
+        ),
+        'context' => 'argument_entity_uuid:permalink_1',
+        'not' => FALSE,
+      ),
+    ),
+    'logic' => 'and',
+  );
   $page->menu = array();
   $page->arguments = array(
+    'type' => array(
+      'id' => 1,
+      'identifier' => 'Page type',
+      'name' => 'string',
+      'settings' => array(
+        'use_tail' => 0,
+      ),
+    ),
     'permalink' => array(
       'id' => 1,
       'identifier' => 'Permalink: UUID',
@@ -41,7 +61,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
-    'title' => 'Panel',
+    'title' => 'Thank you page',
     'no_blocks' => 0,
     'pipeline' => 'standard',
     'body_classes_to_remove' => '',
@@ -50,6 +70,21 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'string_equal',
+          'settings' => array(
+            'operator' => '=',
+            'value' => 'thank-you',
+            'case' => 0,
+          ),
+          'context' => 'argument_string_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'native_plants_thank_you';
@@ -328,6 +363,84 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->uuid = 'd7da6a6b-7151-41ed-ba8c-9d58f2648538';
     $display->content['new-d7da6a6b-7151-41ed-ba8c-9d58f2648538'] = $pane;
     $display->panels['top'][1] = 'new-d7da6a6b-7151-41ed-ba8c-9d58f2648538';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_permalink_page__plant_list_page';
+  $handler->task = 'page';
+  $handler->subtask = 'permalink_page';
+  $handler->handler = 'panel_context';
+  $handler->weight = 1;
+  $handler->conf = array(
+    'title' => 'Plant list page',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => 'plant_list_page',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'string_equal',
+          'settings' => array(
+            'operator' => '=',
+            'value' => 'list',
+            'case' => 0,
+          ),
+          'context' => 'argument_string_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'native_plants_thank_you';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'main' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%permalink:title';
+  $display->uuid = 'bd16a6dd-b390-401e-be3d-12085f1232e7';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-4e911b59-b652-43d0-8a5e-89cfd63f9088';
+    $pane->panel = 'top';
+    $pane->type = 'native_plants_bar';
+    $pane->subtype = 'native_plants_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title_desktop' => 'Audubon Native Plants Database',
+      'title_mobile' => 'Native Plants Database',
+      'background_color' => '66a122',
+      'form_build_id' => 'form-7ZANi0NZfp-PsKIhxovCzAdImC8ye3HSpvRfUCe5_dU',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4e911b59-b652-43d0-8a5e-89cfd63f9088';
+    $display->content['new-4e911b59-b652-43d0-8a5e-89cfd63f9088'] = $pane;
+    $display->panels['top'][0] = 'new-4e911b59-b652-43d0-8a5e-89cfd63f9088';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

@@ -82,7 +82,7 @@ function native_plants_share_admin_info($subtype, $conf, $context = NULL) {
 function native_plants_share_render($subtype, $conf, $args, $context) {
   $permalink = $context->data;
 
-  $permalink_url = url('pl/' . $permalink->uuid, array('absolute' => TRUE));
+  $permalink_url = url('native-plants/list/' . $permalink->uuid, array('absolute' => TRUE));
 
   $block = new stdClass();
   $block->content = array(
