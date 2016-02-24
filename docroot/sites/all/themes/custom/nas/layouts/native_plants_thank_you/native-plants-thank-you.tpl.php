@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Template for Native Plants search.
+ * Template for Native Plants Thank you.
  */
 ?>
 <?php print $content['top']; ?>
