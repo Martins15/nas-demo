@@ -270,31 +270,31 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'refs' => array(
         1 => array(
           'reference' => array(
-            'entity_id' => '1121',
-            'entity_label' => 'ATTENTION GULF COAST BIRDERS!',
+            'entity_id' => '2093',
+            'entity_label' => 'How to Identify a Dragonfly',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
           ),
         ),
         2 => array(
           'reference' => array(
-            'entity_id' => '1131',
-            'entity_label' => 'Dr. G. Paul Kemp Joins National Audubon Society As Vice President And Director, Gulf Coast Initiative',
+            'entity_id' => '42586',
+            'entity_label' => 'How To Begin Birding',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
           ),
         ),
         3 => array(
           'reference' => array(
-            'entity_id' => '1139',
-            'entity_label' => 'Supreme Court Strips Excuses For Epa Inaction On Global Warming',
+            'entity_id' => '2159',
+            'entity_label' => 'How To Draw a Bird',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
           ),
         ),
       ),
-      'form_build_id' => 'form-rj6P2JArmYiTLg9kYxY8Wqii1fICUn639YjTfs2qQxk',
-      'form_token' => 'X87aWCi1ZQXS48JP9jVPcBFbMYMNIeVvt-PfrH6KqeQ',
+      'form_build_id' => 'form-PIzN7CaXFbVWe3QqRXF1LjtqBmax02JPkyV-FJNeTas',
+      'form_token' => '2rfC_Z7DJuF9KvL9d3VBVbh90SS2l7x4872OOt8wiHU',
       'form_id' => 'editorial_card_3x_edit_form',
     );
     $pane->cache = array();
@@ -403,7 +403,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'native_plants_thank_you';
+  $display->layout = 'native_plants_plant_list';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -417,6 +417,133 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
   $display->uuid = 'bd16a6dd-b390-401e-be3d-12085f1232e7';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-06dbf437-760a-4a53-a9e9-488422690b4b';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_list_description';
+    $pane->subtype = 'native_plants_list_description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Your Native Plant List',
+      'override_title_text' => 'Your Native Plant List',
+      'text_top' => array(
+        'value' => '<p>Thanks for joining the world&#39;s largest bird sanctuary. Below you can find the plant list you selected from <a href="/native-plants">Audubon&#39;s Native Plants Database</a>.</p>
+
+<p>You can access this list on the web at any time using the following link:</p>
+',
+        'format' => 'full_html',
+      ),
+      'share_label' => 'Share your list',
+      'text_bottom' => array(
+        'value' => '<p>To access local resources and places to buy native plants in your area, visit our <a href="#">Native Plants Resources page</a> and enter your zip code.</p>
+',
+        'format' => 'full_html',
+      ),
+      'form_build_id' => 'form-E3pVIqiPBRsY75nJFuRGVnbTxt5_-t2ACQ7XKhQYIeI',
+      'context' => 'argument_entity_uuid:permalink_1',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '06dbf437-760a-4a53-a9e9-488422690b4b';
+    $display->content['new-06dbf437-760a-4a53-a9e9-488422690b4b'] = $pane;
+    $display->panels['main'][0] = 'new-06dbf437-760a-4a53-a9e9-488422690b4b';
+    $pane = new stdClass();
+    $pane->pid = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_list';
+    $pane->subtype = 'native_plants_list';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'b0e0091a-27f6-474f-a766-98b4d2cbe773';
+    $display->content['new-b0e0091a-27f6-474f-a766-98b4d2cbe773'] = $pane;
+    $display->panels['main'][1] = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
+    $pane = new stdClass();
+    $pane->pid = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
+    $pane->panel = 'main';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'empty',
+      'override_title' => 1,
+      'override_title_text' => 'More Audubon Native Plant resources',
+      'override_title_heading' => 'h2',
+      'preset' => 'manual_override',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 'top',
+        'bottom' => 'bottom',
+        'between' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
+        1 => array(
+          'reference' => array(
+            'entity_id' => '2093',
+            'entity_label' => 'How to Identify a Dragonfly',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        2 => array(
+          'reference' => array(
+            'entity_id' => '42586',
+            'entity_label' => 'How To Begin Birding',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+        3 => array(
+          'reference' => array(
+            'entity_id' => '2159',
+            'entity_label' => 'How To Draw a Bird',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
+        ),
+      ),
+      'form_build_id' => 'form-PeOYGTR7PFjqVEkehGDZ6jnw0COroV5XZaral-Zrzqg',
+      'form_token' => '2rfC_Z7DJuF9KvL9d3VBVbh90SS2l7x4872OOt8wiHU',
+      'form_id' => 'editorial_card_3x_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
+    $display->content['new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1'] = $pane;
+    $display->panels['main'][2] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane = new stdClass();
     $pane->pid = 'new-4e911b59-b652-43d0-8a5e-89cfd63f9088';
     $pane->panel = 'top';
