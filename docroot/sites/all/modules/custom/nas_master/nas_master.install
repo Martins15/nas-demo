@@ -3376,8 +3376,7 @@ function nas_master_update_7236() {
     'nas_nurseries_near_you_feature',
     'nas_community_resource_ct_feature',
     'nas_community_resources_near_you_feature',
-    'mailsystem',
-    'mandrill',
+    'nas_native_plants_mandrill_feature',
   ));
 
   // Create taxonomy terms.
