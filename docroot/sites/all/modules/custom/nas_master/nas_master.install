@@ -3382,4 +3382,10 @@ function nas_master_update_7236() {
   // Create taxonomy terms.
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
   nas_master_native_plants_taxonomy_terms_create();
+
+  // Revert features that somehow become overridden.
+  features_revert(array(
+    'nas_community_resource_ct_feature' => array('field_instance'),
+    'nas_native_plants_mandrill_feature' => array('variable'),
+  ));
 }
