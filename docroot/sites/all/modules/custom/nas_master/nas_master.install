@@ -3348,3 +3348,13 @@ function nas_master_update_7234() {
 function nas_master_update_7235() {
   module_enable(array('acquia_search_multi_subs'));
 }
+
+/**
+ * Fixes for similar birds on Spanish bird nodes.
+ */
+function nas_master_update_7236() {
+  module_enable(array('i18n_sync'));
+  features_revert(array(
+    'nas_bird_type_feature' => array('panelizer_defaults', 'variable'),
+  ));
+}
