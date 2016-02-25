@@ -136,12 +136,16 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->configuration = array(
       'canvas_text' => array(
         'en' => array(
-          'value' => '<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+          'value' => '<p>In the broadest and most detailed study of its kind, Audubon scientists have used hundreds of thousands of citizen-science observations and sophisticated climate models to predict how birds in the U.S. and Canada will react to climate change.</p>
+
+<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
 ',
           'format' => 'full_html',
         ),
         'es' => array(
-          'value' => '<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+          'value' => '<p>En el estudio más amplio y detallado de su tipo, los científicos Audubon han utilizado cientos de miles de observaciones de los ciudadanos en la ciencia y los modelos climáticos sofisticados para predecir cómo las aves en los E.U. y Canadá van a reaccionar al cambio climático.</p>
+
+<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
 ',
           'format' => 'full_html',
         ),
