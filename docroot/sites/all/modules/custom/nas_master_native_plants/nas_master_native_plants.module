@@ -401,13 +401,13 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
 /**
  * Form building callback for Native Plants "Join the Sanctuary" form.
  */
-function nas_master_native_plants_email_form($form, &$form_state, $conf = array()) {
+function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = array()) {
   $form['#attributes'] = array(
     'class' => array(
       'native-plants-bottom-form-right',
     ),
   );
-  $form['email_email_address'] = array(
+  $form['sanctuary_email_address'] = array(
     '#type' => 'textfield',
     '#title' => t(filter_xss($conf['email_address_placeholder'])),
     '#title_display' => 'invisible',
@@ -416,7 +416,7 @@ function nas_master_native_plants_email_form($form, &$form_state, $conf = array(
     ),
     '#required' => TRUE,
   );
-  $form['email_zipcode'] = array(
+  $form['sanctuary_zipcode'] = array(
     '#type' => 'textfield',
     '#title' => t(filter_xss($conf['zipcode_placeholder'])),
     '#title_display' => 'invisible',
@@ -428,7 +428,7 @@ function nas_master_native_plants_email_form($form, &$form_state, $conf = array(
     ),
     '#required' => TRUE,
   );
-  $form['email_square_feet'] = array(
+  $form['sanctuary_square_feet'] = array(
     '#type' => 'textfield',
     '#title' => t(filter_xss($conf['square_feet_placeholder'])),
     '#title_display' => 'invisible',
@@ -437,7 +437,7 @@ function nas_master_native_plants_email_form($form, &$form_state, $conf = array(
     ),
     '#element_validate' => array('element_validate_integer_positive'),
   );
-  $form['email_submit'] = array(
+  $form['sanctuary_submit'] = array(
     '#type' => 'submit',
     '#value' => t(filter_xss($conf['button_text'])),
     '#attributes' => array(
@@ -455,12 +455,12 @@ function nas_master_native_plants_email_form($form, &$form_state, $conf = array(
 /**
  * Form validation callback.
  */
-function nas_master_native_plants_email_form_validate($form, &$form_state) {
-  $email = &$form_state['values']['email_email_address'];
+function nas_master_native_plants_sanctuary_form_validate($form, &$form_state) {
+  $email = &$form_state['values']['sanctuary_email_address'];
   // Validate email address.
   $email = strtolower(trim($email));
   if (!$email || !valid_email_address($email)) {
-    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    form_set_error('sanctuary_email_address', t('The e-mail address you specified is not valid.'));
     return;
   }
 }
@@ -468,23 +468,59 @@ function nas_master_native_plants_email_form_validate($form, &$form_state) {
 /**
  * Form submit callback.
  */
-function nas_master_native_plants_email_form_submit($form, &$form_state) {
+function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
   // Create permalink entity.
   $values = array(
     'type' => 'permalink',
-    'email' => $form_state['values']['email_email_address'],
-    'zip_code' => $form_state['values']['email_zipcode'],
+    'email' => $form_state['values']['sanctuary_email_address'],
+    'zip_code' => $form_state['values']['sanctuary_zipcode'],
     'plants_cart' => $_COOKIE['native_plants_cart'],
-    'square_feet' => $form_state['values']['email_square_feet'],
+    'square_feet' => $form_state['values']['sanctuary_square_feet'],
   );
   if ($permalink = entity_create('permalink', $values)) {
     entity_save('permalink', $permalink);
   }
 
-  // TODO: integrations with Mandrill and Convio.
-
   // Redirect to permalink page.
   $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+
+  // Convio integration.
+  nas_master_native_plants_convio_integration($permalink);
+
+  //TODO: Mandrill integration.
+}
+
+/**
+ * Helper function for Convio integration.
+ */
+function nas_master_native_plants_convio_integration($permalink) {
+  // @see https://secure.audubon.org/site/SSurvey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=21409
+  $url = 'https://secure.audubon.org/site/SSurvey';
+  $data = array(
+    'cons_info_component' => 't',
+    'cons_email' => $permalink->email,
+    'cons_zip_code' => $permalink->zip_code,
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    // Square feet.
+    '3340_21409_2_18300' => $permalink->square_feet ? $permalink->square_feet : 0,
+    'denySubmit' => '',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
+    'SURVEY_ID' => '21409',
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 15,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('nas_master_native_plants', 'Convio integration - %email entered. Service answer was !answer',
+    array(
+      '%email' => $permalink->email,
+      '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+    )
+  );
 }
 
 /**

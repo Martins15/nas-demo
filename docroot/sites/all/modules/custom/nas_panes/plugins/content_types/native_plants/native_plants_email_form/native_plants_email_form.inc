@@ -86,7 +86,7 @@ function native_plants_email_form_edit_form_submit(&$form, &$form_state) {
 function native_plants_email_form_render($subtype, $conf, $args, $context) {
   // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
-  $form = drupal_get_form('nas_master_native_plants_email_form', $conf);
+  $form = drupal_get_form('nas_master_native_plants_sanctuary_form', $conf);
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();
