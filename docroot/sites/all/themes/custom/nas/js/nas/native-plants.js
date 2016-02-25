@@ -110,7 +110,6 @@
 
   Drupal.behaviors.npClearingFix = {
     attach: function(context, settings) {
-      $(document).foundation('clearing', 'reflow');
       $('a.clearing-attach').once('np-clearing-fix', function () {
         var $self = $(this);
         $self.bind('click', function() {
@@ -118,6 +117,7 @@
           return false;
         });
       });
+      $(document).foundation('clearing', 'reflow');
     }
   };
 })(jQuery);
