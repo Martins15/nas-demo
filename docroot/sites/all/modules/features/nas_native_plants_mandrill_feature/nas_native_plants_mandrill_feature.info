@@ -1,0 +1,14 @@
+name = Native Plants Mandrill
+core = 7.x
+package = Native Plants
+version = 7.x-1.0
+project = nas_native_plants_mandrill_feature
+dependencies[] = ctools
+dependencies[] = mailsystem
+dependencies[] = mandrill
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = mail_system
+features[variable][] = mandrill_api_key
+project path = sites/all/modules/features
