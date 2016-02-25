@@ -487,7 +487,8 @@ function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
   // Convio integration.
   nas_master_native_plants_convio_integration($permalink);
 
-  //TODO: Mandrill integration.
+  // Send plant list - it is set up to go through Mandrill.
+  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink));
 }
 
 /**
@@ -521,6 +522,17 @@ function nas_master_native_plants_convio_integration($permalink) {
       '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
     )
   );
+}
+
+/**
+ * Implements hook_mail().
+ */
+function nas_master_native_plants_mail($key, &$message, $params) {
+  if ($key != 'native_plants_list') {
+    return;
+  }
+
+  // TODO: prepare mail message.
 }
 
 /**
