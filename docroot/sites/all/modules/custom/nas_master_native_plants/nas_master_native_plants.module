@@ -463,40 +463,6 @@ function nas_master_native_plants_email_form_validate($form, &$form_state) {
     form_set_error('email_email_address', t('The e-mail address you specified is not valid.'));
     return;
   }
-
-  // @see https://secure.audubon.org/site/SSurvey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=21409
-  $url = 'https://secure.audubon.org/site/SSurvey';
-  $data = array(
-    'cons_info_component' => 't',
-    'cons_email' => $email,
-    'cons_zip_code' => $form_state['values']['email_zipcode'],
-
-    // 'cons_mail_opt_in' => 't',
-    // 'cons_email_opt_in' => 1,
-    // 'cons_email_opt_in_requested' => 'true',
-
-    's_rememberMe' => 0,
-    'remember_me_opt_in_requested' => 'true',
-    // Square feet.
-    '3340_21409_2_18300' => $form_state['values']['email_square_feet'],
-    'denySubmit' => '',
-    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
-    'SURVEY_ID' => '21409',
-  );
-  $options = array(
-    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-    'method' => 'POST',
-    'data' => http_build_query($data),
-    'timeout' => 30,
-  );
-  $result = drupal_http_request($url, $options);
-  watchdog('nas_master_native_plants', 'Email %email entered', array('%email' => $email));
-  watchdog('nas_master_native_plants', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
-
-  // TODO: debug the checks below.
-  if (!isset($result->redirect_code) || $result->redirect_code != 302 || !isset($result->redirect_url) || $result->redirect_url != 'http://www.audubon.org/thankyou') {
-    form_set_error('email_email_address', t('The e-mail address you specified is not valid.'));
-  }
 }
 
 /**
@@ -515,10 +481,46 @@ function nas_master_native_plants_email_form_submit($form, &$form_state) {
     entity_save('permalink', $permalink);
   }
 
-  // TODO: integrations with Mandrill and Convio.
-
   // Redirect to permalink page.
   $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+
+  // Convio integration.
+  nas_master_native_plants_convio_integration($permalink);
+
+  //TODO: Mandrill integration.
+}
+
+/**
+ * Helper function for Convio integration.
+ */
+function nas_master_native_plants_convio_integration($permalink) {
+  // @see https://secure.audubon.org/site/SSurvey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=21409
+  $url = 'https://secure.audubon.org/site/SSurvey';
+  $data = array(
+    'cons_info_component' => 't',
+    'cons_email' => $permalink->email,
+    'cons_zip_code' => $permalink->zip_code,
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    // Square feet.
+    '3340_21409_2_18300' => $permalink->square_feet ? $permalink->square_feet : 0,
+    'denySubmit' => '',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
+    'SURVEY_ID' => '21409',
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 15,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('nas_master_native_plants', 'Convio integration - %email entered. Service answer was !answer',
+    array(
+      '%email' => $permalink->email,
+      '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+    )
+  );
 }
 
 /**
