@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Native Plants Email feature.
+ */
+
+include_once 'nas_native_plants_email_feature.features.inc';

@@ -7,7 +7,7 @@
 /**
  * Implements hook_strongarm().
  */
-function nas_native_plants_mandrill_feature_strongarm() {
+function nas_native_plants_email_feature_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();
