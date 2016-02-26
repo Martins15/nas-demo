@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Native Plants list temaplte for mail message.
+ * Native Plants list template for mail message.
  */
 ?>
 <!doctype html>

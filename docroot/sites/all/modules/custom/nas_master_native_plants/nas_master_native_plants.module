@@ -538,7 +538,7 @@ function nas_master_native_plants_mail($key, &$message, $params) {
     return;
   }
 
-  // TODO: do we need to do anhything alse to send HTML correctly? modify headers?
+  // TODO: do we need to do anything else to send HTML correctly? modify headers?
   $message['subject'] = 'Audubon Native Plants list';
   $message['body'][] = theme('nas_master_native_plants_mail_native_plants_list', array(
     'permalink' => $params['permalink'],
