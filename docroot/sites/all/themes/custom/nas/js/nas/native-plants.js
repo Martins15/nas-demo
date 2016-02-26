@@ -108,9 +108,12 @@
     }
   };
 
+  /**
+   * Bind camera icon to clearing thumbs.
+   */
   Drupal.behaviors.npClearingFix = {
     attach: function(context, settings) {
-      $(document).foundation('clearing', 'reflow');
+      $(document).foundation();
       $('a.clearing-attach').once('np-clearing-fix', function () {
         var $self = $(this);
         $self.bind('click', function() {
