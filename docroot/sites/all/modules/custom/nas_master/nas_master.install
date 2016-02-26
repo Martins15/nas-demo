@@ -3350,9 +3350,19 @@ function nas_master_update_7235() {
 }
 
 /**
- * Enable Native Plants features.
+ * Fixes for similar birds on Spanish bird nodes.
  */
 function nas_master_update_7236() {
+  module_enable(array('i18n_sync'));
+  features_revert(array(
+    'nas_bird_type_feature' => array('panelizer_defaults', 'variable'),
+  ));
+}
+
+/**
+ * Enable Native Plants features.
+ */
+function nas_master_update_7237() {
   // Update "Default node index" settings.
   features_revert(array(
     'nas_solr_feature' => array('search_api_index'),
