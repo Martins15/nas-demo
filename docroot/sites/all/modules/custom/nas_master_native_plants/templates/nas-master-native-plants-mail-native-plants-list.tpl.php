@@ -105,6 +105,11 @@
       white-space: nowrap;
     }
 
+    .editorial-card-photo img {
+      width: 315px;
+      height: 200px;
+    }
+
   </style>
 </head>
 <body>
@@ -172,7 +177,7 @@
                 <td><?php print $plant['CommonName']; ?></td>
                 <td align="center"><em><?php print $plant['ScientificName']; ?></em></td>
                 <td width="180">
-                  <?php print implode(', ', $plant['BirdTypesDesktop']); ?>
+                  <?php print implode(', ', $plant['BirdTypesMail']); ?>
                 </td>
               </tr>
               <?php endforeach; ?>
@@ -188,35 +193,28 @@
 
             <table width="100%" border="0" style="border-collapse: collapse; border: none;" cellpadding="0" cellspacing="0">
               <tr border="0" style="border: none;">
-                <td width="315" valign="top" style="border: 1px solid #d4d4d4; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);">
-                  <div class="editorial-card-photo">
-                    <a href="#" title="How To Begin Birding">
-                      <img src="http://www.audubon.org/sites/default/files/styles/article_teaser/public/__Camilla_Cerea_CBC_12.jpg?itok=m8Tf_J_Z" alt="How To Begin Birding"  width="315">
-                    </a>
-                  </div>
-                  <div style="font-size: 14px;line-height: 20px;padding: 12px; min-height: 140px;">
-                    <a href="#" style="font-family: 'Source Sans Pro', Verdana, sans-serif;">News</a>
-                    <a href="#"><h3>How To Begin Birding</h3></a>
-                    <p>Like birds, but don’t know how to make the leap to becoming a birder? Here are three easy steps to get you into the field. </p>
-                    <p><em><a href="#">Read more »</a></em></p>
-                  </div>
-                </td>
+                <?php $first_card = TRUE;
+                foreach ($editorial_cards as $card):
+                if (!$first_card): ?>
                 <td width="20" border="0"  style="border-bottom: 1px solid #FFF;">
                   <img src="<?php print url(drupal_get_path('theme', 'nas') . '/img/email/transparent.gif', array('absolute' => TRUE)); ?>" alt="" width="20"/>
                 </td>
+                <?php endif;
+                $first_card = FALSE; ?>
                 <td width="315" valign="top" style="border: 1px solid #d4d4d4; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);">
                   <div class="editorial-card-photo">
-                    <a href="#" title="5 Great Winter Destinations">
-                      <img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/w1_winter_wonderlans.jpg?itok=Ahz5xahx" alt="5 Great Winter Destinations" width="315">
-                    </a>
+                    <?php print $card['linked_image']; ?>
                   </div>
                   <div style="font-size: 14px;line-height: 20px;padding: 12px; min-height: 140px;">
-                    <a href="#" style="font-family: 'Source Sans Pro', Verdana, sans-serif;">Travel</a>
-                    <a href="#"><h3>5 Great Winter Destinations</h3></a>
-                    <p>These national parks offer a host of unique activities when the nights grow long.</p>
-                    <p><em><a href="#">Read more »</a></em></p>
+                    <?php if ($card['blue_text_link_url']): ?>
+                    <a href="<?php print $card['blue_text_link_url']; ?>" style="font-family: 'Source Sans Pro', Verdana, sans-serif;"><?php print $card['blue_text_link_text']; ?></a>
+                    <?php endif; ?>
+                    <a href="<?php print $card['url']; ?>"><h3><?php print $card['title']; ?></h3></a>
+                    <p><?php print $card['subtitle']; ?></p>
+                    <p><em><a href="<?php print $card['url']; ?>"><?php print $card['custom_link_text']; ?> »</a></em></p>
                   </div>
                 </td>
+                <?php endforeach; ?>
               </tr>
               <tr  border="0" style="border: none;">
                 <td colspan="3" border="0" style="border: 0;">

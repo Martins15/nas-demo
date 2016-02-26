@@ -538,7 +538,7 @@ function nas_master_native_plants_mail($key, &$message, $params) {
     return;
   }
 
-  // TODO: prepare mail message.
+  // TODO: do we need to do anhything alse to send HTML correctly? modify headers?
   $message['subject'] = 'Audubon Native Plants list';
   $message['body'][] = theme('nas_master_native_plants_mail_native_plants_list', array(
     'permalink' => $params['permalink'],
@@ -551,6 +551,12 @@ function nas_master_native_plants_mail($key, &$message, $params) {
 function nas_master_native_plants_preprocess_nas_master_native_plants_mail_native_plants_list(&$variables) {
   $variables['plants'] = drupal_json_decode($variables['permalink']->plants_cart);
   _nas_master_native_plants_preprocess_plants_list($variables);
+  foreach ($variables['plants'] as &$plant) {
+    $plant['BirdTypesMail'] = array();
+    foreach ($plant['BirdTypesValues'] as $bird_type) {
+      $plant['BirdTypesMail'][] = l($bird_type['name'], $bird_type['url'], array('absolute' => TRUE, 'attributes' => array('class' => array('native-plant-bird-category-link'))));
+    }
+  }
   $variables['permalink_url'] = url('native-plants/list/' . $variables['permalink']->uuid, array('absolute' => TRUE));
 
   $page = page_manager_page_load('permalink_page');
@@ -593,13 +599,35 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
         $variables['editorial_cards'] = array();
         foreach ($pane->configuration['refs'] as $ref) {
           if (!empty($ref['reference']['entity_id']) && $node = node_load($ref['reference']['entity_id'])) {
-            // TODO: somehow get needed values.
-            $build = node_view($node, 'editorial_card_3x');
+            // Hackish way to get required node values.
+            $vars['node'] = $node;
+            $vars['type'] = $node->type;
+            $vars['view_mode'] = 'editorial_card_3x';
+            nas_preprocess_nodes_editorial_cards($vars);
+
+            $uri = entity_uri('node', $node);
+            $uri['options']['absolute'] = TRUE;
+            $image = theme('image_style', array(
+              'style_name' => 'article_teaser',
+              'path' => $vars['image_uri'],
+              'alt' => $node->title,
+            ));
+            $variables['editorial_cards'][] = array(
+              'url' => url($uri['path'], $uri['options']),
+              'title' => $vars['title'],
+              'subtitle' => $vars['subtitle'],
+              'image' => $image,
+              'linked_image' => l($image, $uri['path'], $uri['options'] + array('html' => TRUE, 'attributes' => array('title' => $node->title))),
+              'blue_text_link_url' => isset($vars['blue_text_link_url']) ? url(ltrim($vars['blue_text_link_url'], '/'), array('absolute' => TRUE)) : '',
+              'blue_text_link_text' => isset($vars['blue_text_link_text']) ? $vars['blue_text_link_text'] : '',
+              'custom_link_text' => $vars['custom_link_text'],
+            );
           }
           else {
             continue;
           }
         }
+        $variables['editorial_cards'] = array_slice($variables['editorial_cards'], 0, 2);
         break;
     }
   }
