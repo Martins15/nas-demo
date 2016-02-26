@@ -34,7 +34,6 @@
     </style>
     <?php endif; ?>
     <style type="text/css">
-
       body {
         background-color: #fff;
         color: #404040;
@@ -90,18 +89,6 @@
       table.list-table th {
         font-family: "Source Sans Pro", Verdana, sans-serif;
       }
-
-      a.native-plant-bird-category-link {
-        color: #404040;
-        text-decoration: underline;
-        white-space: nowrap;
-      }
-
-      .editorial-card-photo img {
-        width: 315px;
-        height: 200px;
-      }
-
     </style>
   </head>
   <body id="mimemail-body" <?php if ($module && $key): print 'class="'. $module .'-'. $key .'"'; endif; ?>>

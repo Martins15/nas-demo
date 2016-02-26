@@ -554,7 +554,12 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
   foreach ($variables['plants'] as &$plant) {
     $plant['BirdTypesMail'] = array();
     foreach ($plant['BirdTypesValues'] as $bird_type) {
-      $plant['BirdTypesMail'][] = l($bird_type['name'], $bird_type['url'], array('absolute' => TRUE, 'attributes' => array('class' => array('native-plant-bird-category-link'))));
+      $plant['BirdTypesMail'][] = l($bird_type['name'], $bird_type['url'], array(
+        'absolute' => TRUE,
+        'attributes' => array(
+          'style' => 'color: #404040; text-decoration: underline; white-space: nowrap;',
+        ),
+      ));
     }
   }
   $variables['permalink_url'] = url('native-plants/list/' . $variables['permalink']->uuid, array('absolute' => TRUE));
@@ -616,6 +621,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
               'url' => url($uri['path'], $uri['options']),
               'title' => $vars['title'],
               'subtitle' => $vars['subtitle'],
+              'image_url' => image_style_url('article_teaser', $vars['image_uri']),
               'image' => $image,
               'linked_image' => l($image, $uri['path'], $uri['options'] + array('html' => TRUE, 'attributes' => array('title' => $node->title))),
               'blue_text_link_url' => isset($vars['blue_text_link_url']) ? url(ltrim($vars['blue_text_link_url'], '/'), array('absolute' => TRUE)) : '',

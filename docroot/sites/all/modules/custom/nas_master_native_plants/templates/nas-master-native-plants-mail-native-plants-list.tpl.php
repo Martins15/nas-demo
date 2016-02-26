@@ -94,7 +94,9 @@
                 $first_card = FALSE; ?>
                 <td width="315" valign="top" style="border: 1px solid #d4d4d4; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);">
                   <div class="editorial-card-photo">
-                    <?php print $card['linked_image']; ?>
+                    <a href="<?php print $card['url']; ?>" title="<?php print $card['title']; ?>">
+                      <img src="<?php print $card['image_url']; ?>" alt="<?php print $card['title']; ?>" width="315" height="200" />
+                    </a>
                   </div>
                   <div style="font-size: 14px;line-height: 20px;padding: 12px; min-height: 140px;">
                     <?php if ($card['blue_text_link_url']): ?>
@@ -113,9 +115,6 @@
                 </td>
               </tr>
             </table>
-
-
-
 
           </td>
         </tr>
