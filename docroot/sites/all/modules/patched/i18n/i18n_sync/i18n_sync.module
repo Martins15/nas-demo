@@ -128,7 +128,7 @@ function i18n_sync_form_node_type_form_alter(&$form, &$form_state) {
  * Check whether this node is to be synced
  */
 function i18n_sync_node_check($node) {
-  return translation_supported_type($node->type) && i18n_object_langcode($node) && i18n_sync();
+  return translation_supported_type($node->type) && i18n_object_langcode($node, 'und') && i18n_sync();
 }
 
 /**
