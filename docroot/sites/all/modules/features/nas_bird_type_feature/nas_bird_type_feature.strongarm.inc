@@ -108,6 +108,29 @@ function nas_bird_type_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_extended_bird';
+  $strongarm->value = '1';
+  $export['i18n_node_extended_bird'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_bird';
+  $strongarm->value = array();
+  $export['i18n_node_options_bird'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_sync_node_type_bird';
+  $strongarm->value = array(
+    0 => 'field_related_bird',
+  );
+  $export['i18n_sync_node_type_bird'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_bird';
   $strongarm->value = '2';
   $export['language_content_type_bird'] = $strongarm;
@@ -160,57 +183,86 @@ function nas_bird_type_feature_strongarm() {
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
+        'substitute' => '',
         'default' => 1,
         'choice' => 1,
       ),
       'default' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
         'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser_no_section_link' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_featured' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_featured_small' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_related_features' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_editorial_card' => array(
         'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'token' => array(
+        'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
     ),
   );
   $export['panelizer_defaults_node_bird'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'panelizer_node:bird:page_manager_selection';
+  $strongarm->value = 'node:bird:default';
+  $export['panelizer_node:bird:page_manager_selection'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
