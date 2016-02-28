@@ -58,8 +58,8 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
   public function parse(&$view, $data) {
     // Audubon JSON needs double decoding.
     $decode = drupal_json_decode($data->contents);
-    // Do not process if there was no request.
-    if ($decode === '') {
+    // Do not process if there was no request or the result is empty.
+    if ($decode === '' || $decode === '[]') {
       return TRUE;
     }
     $data->contents = $decode;
