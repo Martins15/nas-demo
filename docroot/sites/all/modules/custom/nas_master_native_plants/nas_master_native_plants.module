@@ -427,6 +427,7 @@ function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = ar
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
     ),
     '#required' => TRUE,
+    '#element_validate' => array('element_validate_integer_positive'),
   );
   $form['sanctuary_square_feet'] = array(
     '#type' => 'textfield',
@@ -435,8 +436,7 @@ function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = ar
     '#attributes' => array(
       'placeholder' => t(filter_xss($conf['square_feet_placeholder'])),
     ),
-    // It doesn't work for the AJAX submission.
-    // '#element_validate' => array('element_validate_integer_positive'),
+    '#element_validate' => array('element_validate_integer_positive'),
   );
   $form['sanctuary_submit'] = array(
     '#type' => 'submit',
@@ -482,10 +482,6 @@ function nas_master_native_plants_sanctuary_form_validate($form, &$form_state) {
   if (!$email || !valid_email_address($email)) {
     form_error($form['sanctuary_email_address'], t('The e-mail address you specified is not valid.'));
   }
-
-  // Using '#element_validate' doesn't work when using AJAX submission.
-  // So we are calling it directly here.
-  element_validate_integer_positive($form['sanctuary_zipcode'], $form_state);
 }
 
 /**
