@@ -412,9 +412,12 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
   // Change scroll destination.
   foreach ($commands as &$command) {
     if ($command['command'] == 'viewsScrollTop') {
+      $selector = $command['selector'];
       $command['selector'] = '.np-search-full-results';
     }
   }
+  // Add validation errors.
+  $commands[] = ajax_command_prepend($selector, theme('status_messages'));
 }
 
 /**
