@@ -3386,9 +3386,15 @@ function nas_master_update_7237() {
     'nas_nurseries_near_you_feature',
     'nas_community_resource_ct_feature',
     'nas_community_resources_near_you_feature',
+    'nas_native_plants_email_feature',
   ));
 
   // Create taxonomy terms.
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
   nas_master_native_plants_taxonomy_terms_create();
+
+  // Revert features that somehow become overridden.
+  features_revert(array(
+    'nas_native_plants_email_feature' => array('variable'),
+  ));
 }

@@ -1,4 +1,4 @@
 name = NAS master for Native Plants
 core = 7.x
-package = NAS
+package = Native Plants
 files[] = plugins/views/nas_master_native_plants.views.pager.inc
