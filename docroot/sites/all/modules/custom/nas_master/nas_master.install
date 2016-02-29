@@ -3374,6 +3374,7 @@ function nas_master_update_7237() {
   db_query($query);
 
   module_enable(array(
+    'postal_code_validation',
     'nas_master_native_plants',
     'nas_native_plants_taxonomy',
     'nas_nursery_ct_feature',
