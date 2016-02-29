@@ -449,7 +449,7 @@ function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = ar
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
     ),
     '#required' => TRUE,
-    '#element_validate' => array('element_validate_integer_positive'),
+    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
   );
   $form['sanctuary_square_feet'] = array(
     '#type' => 'textfield',
