@@ -244,12 +244,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
-  if ($element['#value'] == '') {
-    return;
-  }
-
-  if (!module_exists('postal_code_validation')) {
-    element_validate_integer_positive($element, $form_state);
+  if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
     return;
   }
 
