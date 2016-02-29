@@ -223,6 +223,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     ),
     'placeholder' => t('ZIP code'),
   );
+  $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
 
   $form['attribute']['#attributes'] = array(
     'style' => 'display: none;',
@@ -243,6 +244,20 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
       'large',
     ),
   );
+}
+
+/**
+ * Helper function to validate form element for US ZIP code.
+ */
+function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
+  if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
+    return;
+  }
+
+  $validation = postal_code_validation_validate($element['#value'], 'US');
+  if ($validation['error']) {
+    form_error($element, $validation['error']);
+  }
 }
 
 /**
@@ -277,6 +292,11 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
   drupal_add_js($theme_path . '/js/nas/native-plants.js');
   drupal_add_js(drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.js');
+
+  $vars['total_items'] = 0;
+  if (isset($vars['view']->query->pager)) {
+    $vars['total_items'] = $vars['view']->query->pager->total_items;
+  }
 
   // Construct the combined results array.
   $results = array();
@@ -399,9 +419,12 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
   // Change scroll destination.
   foreach ($commands as &$command) {
     if ($command['command'] == 'viewsScrollTop') {
+      $selector = $command['selector'];
       $command['selector'] = '.np-search-full-results';
     }
   }
+  // Add validation errors.
+  $commands[] = ajax_command_prepend($selector, theme('status_messages'));
 }
 
 /**
@@ -433,7 +456,7 @@ function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = ar
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
     ),
     '#required' => TRUE,
-    '#element_validate' => array('element_validate_integer_positive'),
+    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
   );
   $form['sanctuary_square_feet'] = array(
     '#type' => 'textfield',

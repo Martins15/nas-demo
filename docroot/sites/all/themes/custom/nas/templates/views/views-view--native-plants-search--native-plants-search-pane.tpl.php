@@ -128,7 +128,7 @@
   <div class="row np-search-full-results">
     <div class="mobile-results-total-wrapper hide-for-medium hide-for-large hide-for-xlarge">
       <div class="mobile-results-total columns">
-        <strong><?php print t('Full results'); ?>:</strong> <?php print format_plural($view->query->pager->total_items, '1 plant', '@count plants'); ?>
+        <strong><?php print t('Full results'); ?>:</strong> <?php print format_plural($total_items, '1 plant', '@count plants'); ?>
       </div>
     </div>
     <div class="columns">
