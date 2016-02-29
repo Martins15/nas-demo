@@ -217,6 +217,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     ),
     'placeholder' => t('ZIP code'),
   );
+  $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
 
   $form['attribute']['#attributes'] = array(
     'style' => 'display: none;',
@@ -237,6 +238,24 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
       'large',
     ),
   );
+}
+
+/**
+ * Helper function to validate form element for US ZIP code.
+ */
+function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
+  if (!module_exists('postal_code_validation')) {
+    return;
+  }
+
+  $value = $element['#value'];
+  if ($value == '') {
+    return;
+  }
+  $validation = postal_code_validation_validate($value, 'US');
+  if ($validation['error']) {
+    form_error($element, $validation['error']);
+  }
 }
 
 /**
