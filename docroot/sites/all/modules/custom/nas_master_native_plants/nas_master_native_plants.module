@@ -707,7 +707,7 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
     $plant['BirdTypesMobile'] = array();
 
     foreach ($plant['BirdTypes'] as $bird_type_tid) {
-      if (!array_key_exists($bird_type_tid, $np_bird_types_term_wrappers)) {
+      if (!isset($np_bird_types_term_wrappers[$bird_type_tid])) {
         continue;
       }
 
