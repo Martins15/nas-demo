@@ -691,43 +691,34 @@ function nas_master_native_plants_ctools_plugin_directory($owner, $plugin_type) 
  * Helper function to preprocess plants list.
  */
 function _nas_master_native_plants_preprocess_plants_list(&$variables) {
-  foreach ($variables['plants'] as &$plant) {
-    $plant['BirdTypes'] = explode(',', $plant['BirdTypes']);
-    $plant['BirdTypesValues'] = array();
-  }
-
+  // Prepare bird types wrappers.
   $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
   $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
   $np_bird_types_term_wrappers = array();
   foreach ($np_bird_types_terms as $term) {
-    $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+    $np_bird_types_term_wrappers[$term->tid] = entity_metadata_wrapper('taxonomy_term', $term);
   }
 
-  foreach ($np_bird_types_term_wrappers as $wrapper) {
-    $link = $wrapper->field_link->value();
-    if ($link) {
-      $url = $link['url'];
-    }
-    else {
-      $url = '';
-    }
-
-    foreach ($variables['plants'] as &$plant) {
-      if (in_array($wrapper->tid->value(), $plant['BirdTypes'])) {
-        $plant['BirdTypesValues'][$wrapper->tid->value()] = array(
-          'tid' => $wrapper->tid->value(),
-          'name' => $wrapper->name->value(),
-          'image' => $wrapper->field_np_bird_type_image->value(),
-          'url' => $url,
-        );
-      }
-    }
-  }
-
+  // Cycle through each plant and add bird types values.
   foreach ($variables['plants'] as &$plant) {
+    $plant['BirdTypes'] = explode(',', $plant['BirdTypes']);
+    $plant['BirdTypesValues'] = array();
     $plant['BirdTypesDesktop'] = array();
     $plant['BirdTypesMobile'] = array();
-    foreach ($plant['BirdTypesValues'] as $bird_type) {
+
+    foreach ($plant['BirdTypes'] as $bird_type_tid) {
+      if (!array_key_exists($bird_type_tid, $np_bird_types_term_wrappers)) {
+        continue;
+      }
+
+      $wrapper = $np_bird_types_term_wrappers[$bird_type_tid];
+      $bird_type = array(
+        'tid' => $wrapper->tid->value(),
+        'name' => $wrapper->name->value(),
+        'image' => $wrapper->field_np_bird_type_image->value(),
+        'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : '',
+      );
+      $plant['BirdTypesValues'][$wrapper->tid->value()] = $bird_type;
       $plant['BirdTypesDesktop'][] = l($bird_type['name'], $bird_type['url'], array('attributes' => array('class' => array('native-plant-bird-category-link'))));
       $plant['BirdTypesMobile'][] = l($bird_type['name'], $bird_type['url']);
     }
