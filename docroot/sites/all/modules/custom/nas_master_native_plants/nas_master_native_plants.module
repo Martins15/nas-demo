@@ -244,15 +244,16 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
-  if (!module_exists('postal_code_validation')) {
+  if ($element['#value'] == '') {
     return;
   }
 
-  $value = $element['#value'];
-  if ($value == '') {
+  if (!module_exists('postal_code_validation')) {
+    element_validate_integer_positive($element, $form_state);
     return;
   }
-  $validation = postal_code_validation_validate($value, 'US');
+
+  $validation = postal_code_validation_validate($element['#value'], 'US');
   if ($validation['error']) {
     form_error($element, $validation['error']);
   }
