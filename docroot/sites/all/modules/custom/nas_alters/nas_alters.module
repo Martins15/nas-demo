@@ -839,7 +839,6 @@ function nas_alters_lang_dropdown() {
   }
 
   if ($block = _nas_alters_lang_dropdown_block_view()) {
-  // if ($block = lang_dropdown_block_view()) {
     $output = drupal_render($block['content']);
   }
   return $output;
