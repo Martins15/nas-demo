@@ -838,10 +838,28 @@ function nas_alters_lang_dropdown() {
     return $output;
   }
 
-  if ($block = lang_dropdown_block_view()) {
+  if ($block = _nas_alters_lang_dropdown_block_view()) {
+  // if ($block = lang_dropdown_block_view()) {
     $output = drupal_render($block['content']);
   }
   return $output;
+}
+
+/**
+ * Modified lang_dropdown_block_view().
+ * @see lang_dropdown_block_view().
+ */
+function _nas_alters_lang_dropdown_block_view($type = 'language') {
+  if (drupal_multilingual()) {
+    $path = $_GET['q'];
+    $languages = language_negotiation_get_switch_links($type, $path);
+
+    if (!empty($languages->links)) {
+      $block['content'] = drupal_get_form('lang_dropdown_form', $languages, $type);
+      $block['subject'] = t('Languages');
+      return $block;
+    }
+  }
 }
 
 /**
@@ -854,6 +872,9 @@ function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
   foreach ($links as $langcode => $link) {
     if (isset($link['href']) && $link['href'] != $path) {
       $unset = FALSE;
+    }
+    if ($link['href'] == i18n_variable_get('site_frontpage', $langcode)) {
+      $links[$langcode]['href'] = '<front>';
     }
   }
 
