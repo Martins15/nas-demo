@@ -404,6 +404,10 @@ $color-dark-green:              #025e02;
         color: #1cace2;
         font-size: 15px;
         white-space: nowrap;
+
+        .native-plants-bottom--clear-plants-list{
+          cursor: pointer;
+        }
       }
     }
 
