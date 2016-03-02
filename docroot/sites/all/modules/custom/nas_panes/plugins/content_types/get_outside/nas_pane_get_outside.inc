@@ -116,6 +116,7 @@ function nas_pane_get_outside_edit_form_submit(&$form, &$form_state) {
 function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
+  $hero_image_path = '';
   $attribution = '';
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
@@ -128,39 +129,7 @@ function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
     $color_classes = 'dark-text';
   }
 
-  $contextual_links = '';
-  if (user_access('access contextual links') && user_access('edit NAS panes')) {
-    ctools_include('modal');
-    ctools_modal_add_js();
-    // Add ajax-responder so ctools_ajax_command_reload() will work.
-    ctools_add_js('ajax-responder');
-    // We expect Get outside pane to be only on Frontpage. If this is not
-    // the case we will need to change this select query.
-    $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_pane_get_outside'))->fetchField();
-    if (empty($pid)) {
-      nas_panes_resave_panel(NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY);
-      $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type', array(':type' => 'nas_pane_get_outside'))->fetchField();
-    }
-    $links = array(
-      'edit' => array(
-        'title' => t('Edit'),
-        'href' => 'panels/ajax/editor/edit-pane/panel_context:' . NAS_PANES_FRONTPAGE_PAGE_MANAGER_CACHE_KEY . '::page_frontpage2_panel_context::::/' . $pid,
-        'query' => array('reload' => 'true', 'nas-panes-from-page' => 'true'),
-        'attributes' => array('class' => array('ctools-use-modal')),
-      ),
-    );
-    $build = array(
-      '#prefix' => '<div class="contextual-links-wrapper">',
-      '#suffix' => '</div>',
-      '#theme' => 'links__contextual',
-      '#links' => $links,
-      '#attributes' => array('class' => array('contextual-links')),
-      '#attached' => array(
-        'library' => array(array('contextual', 'contextual-links')),
-      ),
-    );
-    $contextual_links = drupal_render($build);
-  }
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $content = theme('nas_get_outside', array(
     'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
