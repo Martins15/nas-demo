@@ -28,8 +28,8 @@ $plugin = array(
  */
 function native_plants_hero_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
-  $block->content = $conf['title'];
+  $block->title = $conf['title_desktop'];
+  $block->content = $conf['title_desktop'];
   return $block;
 }
 
