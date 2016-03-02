@@ -21,6 +21,7 @@
     # This variable will be used for variable_get('environment'). Can be overridden by CI server.
     # development = 'default', demo = 'demo', staging = 'staging', production = 'production'.
     pp_environment: 'default'
+    solr_core: 'default'
     # This variable allows select type of installation. Can be overridden by CI server.
     # From installation profile = 'profile', from sql dump = 'sql'.
     workflow_type: 'sql'
@@ -132,6 +133,11 @@
   - name: Adding environment variable to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
+    ignore_errors: yes
+
+  - name: Adding Solr variable to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"solr_core\"] = \"{{ solr_core }}\";'
     ignore_errors: yes
 
   - name: Check if registry_rebuild is installed
