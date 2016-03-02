@@ -14472,6 +14472,9 @@ h2.grey {
   font-size: 15px;
   white-space: nowrap;
 }
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom-plant-list-info .native-plants-bottom--selected-count .native-plants-bottom--clear-plants-list {
+  cursor: pointer;
+}
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom-plant-list-items {
   font-size: 19px;
   color: #000;

@@ -21,13 +21,23 @@
         this.checked = checked;
       });
     });
+
+    $('.native-plants-bottom--clear-plants-list', context).once('native-plants-cart').click(function(event) {
+      event.preventDefault();
+      var plants = {};
+      Drupal.native_plants_cart.set_plants(plants);
+      Drupal.native_plants_cart.init();
+    });
   };
 
   Drupal.native_plants_cart = Drupal.native_plants_cart || {};
   Drupal.native_plants_cart.init = function() {
     var plants = Drupal.native_plants_cart.get_plants();
+    $('.np-checkbox').each(function() {
+      this.checked = false;
+    });
     $.each(plants, function(plant_id, plant) {
-      $('input:checkbox.np-checkbox[data-plant-id="' + plant_id + '"]').each(function() {
+      $('.np-checkbox[data-plant-id="' + plant_id + '"]').each(function() {
         this.checked = true;
       });
     });
@@ -61,12 +71,16 @@
       }
     });
     if (count > 0) {
-      $('.native-plants-bottom--selected-count').html(Drupal.formatPlural(count, '1 plant selected', '@count plants selected'));
+      $('.native-plants-bottom--selected-count .plants-counter').html(Drupal.formatPlural(count, '1 plant', '@count plants'));
       $('.native-plants-bottom-plant-list-items').html(plants_string);
+      // Show clear list link.
+      $('.native-plants-bottom--selected-count .clear-plants-list').show();
     }
     else {
-      $('.native-plants-bottom--selected-count').html(Drupal.t('No plants selected'));
+      $('.native-plants-bottom--selected-count .plants-counter').html(Drupal.t('No plants selected'));
       $('.native-plants-bottom-plant-list-items').html(Drupal.t('No plants yet'));
+      // Hide clear list link.
+      $('.native-plants-bottom--selected-count .clear-plants-list').hide();
     }
   };
   Drupal.native_plants_cart.set_plants = function(plants) {
