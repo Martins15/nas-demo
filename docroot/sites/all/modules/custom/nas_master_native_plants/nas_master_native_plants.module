@@ -428,6 +428,84 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
 }
 
 /**
+ * Form building callback for Native Plants "ZIP code search" form.
+ */
+function nas_master_native_plants_zipcode_form($form, &$form_state, $conf = array()) {
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form',
+    ),
+  );
+  $form['zipcode'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['zipcode_placeholder'])),
+    '#title_display' => 'invisible',
+    '#default_value' => $conf['zipcode_default_value'],
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-search-form--zip-code',
+      ),
+      'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+    ),
+    '#required' => TRUE,
+    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
+    '#prefix' => '<div class="row"><div class="column medium-6">',
+    '#suffix' => '</div>',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t(filter_xss($conf['button_text'])),
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-search-form--submit',
+        'button',
+        'large',
+        'tomato',
+      ),
+    ),
+    '#ajax' => array(
+      'callback' => '_nas_master_native_plants_zipcode_form_ajax_callback',
+      'wrapper' => 'nas-master-native-plants-zipcode-form',
+    ),
+    '#prefix' => '<div class="column medium-6">',
+    '#suffix' => '</div></div>',
+  );
+  if (empty($conf['zipcode_default_value'])) {
+    $form['placeholder'] = array(
+      '#markup' => '<div class="native-plants-results-placeholder"><span class="blue-point"></span> <span class="blue-point"></span> <span class="blue-point"></span></div>',
+    );
+  }
+
+  return $form;
+}
+
+/**
+ * AJAX callback for Native Plants "ZIP code search" form.
+ */
+function _nas_master_native_plants_zipcode_form_ajax_callback($form, $form_state) {
+  if (!$form_state['redirect']) {
+    return $form;
+  }
+
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * Form submit callback for Native Plants "ZIP code search" form.
+ */
+function nas_master_native_plants_zipcode_form_submit($form, &$form_state) {
+  // Redirect to resources per ZIP code page.
+  $form_state['redirect'] = 'native-plants-resources/' . $form_state['values']['zipcode'];
+}
+
+/**
  * Form building callback for Native Plants "Join the Sanctuary" form.
  */
 function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = array()) {
@@ -486,6 +564,9 @@ function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = ar
   return $form;
 }
 
+/**
+ * AJAX callback for Native Plants "Join the Sanctuary" form.
+ */
 function _nas_master_native_plants_sanctuary_form_ajax_callback($form, $form_state) {
   if (!$form_state['redirect']) {
     return $form;
@@ -502,7 +583,7 @@ function _nas_master_native_plants_sanctuary_form_ajax_callback($form, $form_sta
 }
 
 /**
- * Form validation callback.
+ * Form validation callback for Native Plants "Join the Sanctuary" form.
  */
 function nas_master_native_plants_sanctuary_form_validate($form, &$form_state) {
   $email = &$form_state['values']['sanctuary_email_address'];
@@ -514,7 +595,7 @@ function nas_master_native_plants_sanctuary_form_validate($form, &$form_state) {
 }
 
 /**
- * Form submit callback.
+ * Form submit callback for Native Plants "Join the Sanctuary" form.
  */
 function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
   // Create permalink entity.
