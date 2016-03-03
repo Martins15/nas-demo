@@ -14645,11 +14645,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none;
 }
 
-.page-native-plants-initial .native-plants-results-placeholder {
+.native-plants-results-placeholder {
   display: block;
   text-align: center;
 }
-.page-native-plants-initial .native-plants-results-placeholder .blue-point {
+.native-plants-results-placeholder .blue-point {
   background-color: #0AA8E3;
   display: inline-block;
   height: 10px;
@@ -14657,9 +14657,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   margin-top: 40px;
   width: 10px;
 }
-.page-native-plants-initial .native-plants-results-placeholder .blue-point:last-child {
+.native-plants-results-placeholder .blue-point:last-child {
   margin-right: 0;
 }
+
 .page-native-plants-initial .native-plants-bottom .native-plants-bottom-plant-list-placeholder,
 .page-native-plants-initial .native-plants-bottom .native-plants-bottom-plant-list {
   display: none;

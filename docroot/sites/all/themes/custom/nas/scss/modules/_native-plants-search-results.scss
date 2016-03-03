@@ -612,26 +612,25 @@ input[type="checkbox"].np-checkbox {
   display: none;
 }
 
-.page-native-plants-initial {
+.native-plants-results-placeholder {
+  display: block;
+  text-align: center;
 
-  .native-plants-results-placeholder {
-    display: block;
-    text-align: center;
+  .blue-point {
+    background-color: $color-bright-blue;
+    display: inline-block;
+    height:10px;
+    margin-right: 10px;
+    margin-top: 40px;
+    width: 10px;
 
-    .blue-point {
-      background-color: $color-bright-blue;
-      display: inline-block;
-      height:10px;
-      margin-right: 10px;
-      margin-top: 40px;
-      width: 10px;
-
-      &:last-child {
-        margin-right: 0;
-      }
+    &:last-child {
+      margin-right: 0;
     }
   }
+}
 
+.page-native-plants-initial {
   .native-plants-bottom {
 
     .native-plants-bottom-plant-list-placeholder,
