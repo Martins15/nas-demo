@@ -3360,9 +3360,19 @@ function nas_master_update_7236() {
 }
 
 /**
- * Enable Native Plants features.
+ * Fixes for the Language Switcher on front page.
  */
 function nas_master_update_7237() {
+  variable_set('variable_realm_list_language',
+    array('site_name', 'site_slogan', 'site_404', 'site_frontpage'));
+  variable_store_set('language', 'en', 'site_frontpage', 'frontpage');
+  variable_store_set('language', 'es', 'site_frontpage', 'inicio');
+}
+
+/**
+ * Enable Native Plants features.
+ */
+function nas_master_update_7238() {
   // Update "Default node index" settings.
   features_revert(array(
     'nas_solr_feature' => array('search_api_index'),
