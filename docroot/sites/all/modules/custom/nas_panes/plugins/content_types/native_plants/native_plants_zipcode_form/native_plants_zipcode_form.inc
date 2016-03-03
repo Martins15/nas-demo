@@ -14,8 +14,10 @@ $plugin = array(
   'no title override' => TRUE,
   'defaults' => array(
     'zipcode_placeholder' => 'US ZIP code',
+    'zipcode_default_value' => '',
     'button_text' => 'Search',
   ),
+  'all contexts' => TRUE,
 );
 
 /**
@@ -40,6 +42,12 @@ function native_plants_zipcode_form_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('ZIP code placeholder'),
     '#default_value' => $conf['zipcode_placeholder'],
+    '#size' => 100,
+  );
+  $form['zipcode_default_value'] = array(
+    '#type' => 'textfield',
+    '#title' => t('ZIP code default value'),
+    '#default_value' => $conf['zipcode_default_value'],
     '#size' => 100,
   );
   $form['button_text'] = array(
@@ -72,6 +80,7 @@ function native_plants_zipcode_form_edit_form_submit(&$form, &$form_state) {
 function native_plants_zipcode_form_render($subtype, $conf, $args, $context) {
   // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
+  $conf['zipcode_default_value'] = ctools_context_keyword_substitute($conf['zipcode_default_value'], array(), $context);
   $form = drupal_get_form('nas_master_native_plants_zipcode_form', $conf);
   $rendered_form = drupal_render($form);
 
