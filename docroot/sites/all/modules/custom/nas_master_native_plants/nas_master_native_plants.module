@@ -431,9 +431,6 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
  * Form building callback for Native Plants "ZIP code search" form.
  */
 function nas_master_native_plants_zipcode_form($form, &$form_state, $conf = array()) {
-  // Unset the form theme functions to remove unneeded wrappers.
-  unset($form['#theme']);
-
   $form['#attributes'] = array(
     'class' => array(
       'native-plants-search-form',
