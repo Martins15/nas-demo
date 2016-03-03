@@ -15,16 +15,16 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Native Plants Resources';
   $page->admin_description = '';
-  $page->path = 'native-plants/resources/!input';
+  $page->path = 'native-plants-resources/!zipcode';
   $page->access = array(
     'plugins' => array(),
     'logic' => 'or',
   );
   $page->menu = array();
   $page->arguments = array(
-    'input' => array(
+    'zipcode' => array(
       'id' => 1,
-      'identifier' => 'String',
+      'identifier' => 'ZIP code',
       'name' => 'string',
       'settings' => array(
         'use_tail' => 0,
@@ -341,10 +341,13 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
     $pane->configuration = array(
       'zipcode_placeholder' => 'US ZIP code',
       'button_text' => 'Search',
-      'form_build_id' => 'form-PJHDV_42BhSr67nt0XTwkQrHuLLgudiNFkLQ0fLcKeo',
+      'form_build_id' => 'form-I5gO5vRfylHI_EgjsFB5PH62d0XNjdjU-s4TST7iNwQ',
+      'zipcode_default_value' => '%zipcode',
     );
     $pane->cache = array();
-    $pane->style = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
