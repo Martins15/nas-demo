@@ -17,7 +17,7 @@ function nasnp_views_json_query_views_api() {
 /**
  * Helper function to store unfiltered results.
  */
-function nasnp_view_json_query_results_unfiltered($results = array()) {
+function nasnp_views_json_query_results_unfiltered($results = array()) {
   $stored = &drupal_static(__FUNCTION__);
   if ($results) {
     $stored = $results;

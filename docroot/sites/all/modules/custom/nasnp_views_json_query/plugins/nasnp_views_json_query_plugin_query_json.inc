@@ -72,7 +72,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     // Get rows.
     $ret = $this->apath($this->options['row_apath'], $ret);
-    nasnp_view_json_query_results_unfiltered($ret);
+    nasnp_views_json_query_results_unfiltered($ret);
 
     // Filter.
     foreach ($ret as $k => $row) {
