@@ -425,6 +425,14 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
   }
   // Add validation errors.
   $commands[] = ajax_command_prepend($selector, theme('status_messages'));
+
+  // Refresh exposed form.
+  $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
+  if ($view->display_handler->get_option('exposed_block')) {
+    $form = $exposed_block_plugin->render_exposed_form(TRUE);
+    $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
+    array_unshift($commands, ajax_command_replace($id, $form));
+  }
 }
 
 /**
