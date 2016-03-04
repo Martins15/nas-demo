@@ -170,6 +170,12 @@ function nas_iba_import_feeds_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '23',
           ),
+          'ispublic' => array(
+            'name' => 'IsPublic',
+            'value' => 'IsPublic',
+            'debug' => 0,
+            'weight' => '24',
+          ),
         ),
         'context' => array(
           'value' => '.',
