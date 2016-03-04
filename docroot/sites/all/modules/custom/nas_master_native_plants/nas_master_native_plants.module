@@ -244,6 +244,73 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
       'large',
     ),
   );
+
+  // Remove filter values that will produce no results with already set other filters.
+  if (!$results_unfiltered = nasnp_view_json_query_results_unfiltered()) {
+    return;
+  }
+
+  $combinations = array(
+    'attribute' => array('bird_type'),
+    'bird_type' => array('attribute'),
+  );
+  foreach ($combinations as $filter_to_filter => $filters) {
+    $results_filtered = $results_unfiltered;
+
+    // Filter the unfiltered results by the value of all other filters.
+    foreach ($filters as $filter) {
+      $machine_values = array();
+      if (isset($form_state['input'][$filter]) && $term = taxonomy_term_load($form_state['input'][$filter])) {
+        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+        foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+          $machine_values[] = $field_wrapper->value();
+        }
+      }
+      if ($machine_values) {
+        foreach ($results_filtered as $key => $result) {
+          $unset = TRUE;
+          foreach ($machine_values as $value) {
+            if ($result->$value) {
+              $unset = FALSE;
+            }
+          }
+          if ($unset) {
+            unset($results_filtered[$key]);
+          }
+        }
+      }
+    }
+
+    // Determine our filter allowed values using the collection of keys present
+    // in the result set filtered by all other filters.
+    $collection = array();
+    foreach ($results_filtered as $result) {
+      foreach ($result as $key => $value) {
+        if ($value & !isset($collection[$key])) {
+          $collection[$key] = $key;
+        }
+      }
+    }
+
+    foreach ($form[$filter_to_filter]['#options'] as $term_tid => $term_name) {
+      if (!$term = taxonomy_term_load($term_tid)) {
+        continue;
+      }
+      $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+
+      $unset = TRUE;
+      foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if (isset($collection[$value])) {
+          $unset = FALSE;
+        }
+      }
+
+      if ($unset) {
+        unset($form[$filter_to_filter]['#options'][$term_tid]);
+      }
+    }
+  }
 }
 
 /**
