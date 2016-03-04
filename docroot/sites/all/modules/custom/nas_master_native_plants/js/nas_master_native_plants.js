@@ -1,10 +1,9 @@
 (function ($) {
   Drupal.behaviors.nas_master_native_plants_filters = {};
   Drupal.behaviors.nas_master_native_plants_filters.attach = function() {
-    // Do not do anything if there is already cloned select.
-    if ($('#edit-attribute-clone').length) {
-      return;
-    }
+    // Remove the clones.
+    $('#edit-attribute-clone').remove();
+    $('#edit-bird-type-clone').remove();
 
     // We can't use context here as pager links do not update the exposed form in block.
     var $attributes = $('#edit-attribute'),

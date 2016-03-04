@@ -13,3 +13,15 @@ function nasnp_views_json_query_views_api() {
     // 'path' => drupal_get_path('module', 'nasnp_views_json_query'),
   );
 }
+
+/**
+ * Helper function to store unfiltered results.
+ */
+function nasnp_views_json_query_results_unfiltered($results = array()) {
+  $stored = &drupal_static(__FUNCTION__);
+  if ($results) {
+    $stored = $results;
+  }
+
+  return $stored;
+}
