@@ -10,6 +10,7 @@
       <strong><?php print t('Results'); ?>:</strong> <?php print format_plural($total_items, '1 plant', '@count plants'); ?>
     </div>
     <div class="column medium-8">
+      <?php if (count($items) > 4): ?>
       <div class="pager">
         <?php print $items['previous']; ?>
         <span class="pager-inner">
@@ -21,6 +22,7 @@
         </span>
         <?php print $items['next']; ?>
       </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>
