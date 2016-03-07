@@ -692,7 +692,7 @@ function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
   nas_master_native_plants_convio_integration($permalink);
 
   // Send plant list - it is set up to go through Mandrill.
-  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink));
+  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
 }
 
 /**
@@ -769,6 +769,14 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
     if ($handler->name === 'page_permalink_page__plant_list_page') {
       break;
     }
+  }
+
+  // Load display if it is empty.
+  if (empty($handler->conf['display']) && !empty($handler->conf['did'])) {
+    $handler->conf['display'] = panels_load_display($handler->conf['did']);
+  }
+  if (empty($handler->conf['display']->content)) {
+    return;
   }
 
   foreach ($handler->conf['display']->content as $pane) {

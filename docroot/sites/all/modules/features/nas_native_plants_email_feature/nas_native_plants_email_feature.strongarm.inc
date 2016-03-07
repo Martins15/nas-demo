@@ -46,7 +46,7 @@ function nas_native_plants_email_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'mandrill_from';
-  $strongarm->value = 'web@audubon.org';
+  $strongarm->value = 'no-reply@np.audubon.org';
   $export['mandrill_from'] = $strongarm;
 
   $strongarm = new stdClass();

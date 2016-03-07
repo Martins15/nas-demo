@@ -12,7 +12,9 @@ $plugin = array(
   'edit form' => 'native_plants_list_description_edit_form',
   'render callback' => 'native_plants_list_description_render',
   'hook theme' => 'native_plants_list_description_theme',
-  'required context' => new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  'required context' => array(
+    new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  ),
   'defaults' => array(
     'title'=> 'Your Native Plant List',
     'override_title_text' => 'Your Native Plant List',
@@ -85,17 +87,22 @@ function native_plants_list_description_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_list_description_render($subtype, $conf, $args, $context) {
+function native_plants_list_description_render($subtype, $conf, $args, $contexts) {
   // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
-  $permalink = $context->data;
+  $permalink = reset($contexts)->data;
   $permalink_url = url('native-plants/list/' . $permalink->uuid, array('absolute' => TRUE));
+
+  $text_top = ctools_context_keyword_substitute($conf['text_top']['value'], array(), $contexts);
+  $text_top = check_markup($text_top, $conf['text_top']['format']);
+  $text_bottom = ctools_context_keyword_substitute($conf['text_bottom']['value'], array(), $contexts);
+  $text_bottom = check_markup($text_bottom, $conf['text_bottom']['format']);
 
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_list_description',
     '#title' => t(filter_xss($conf['title'])),
-    '#text_top' => check_markup($conf['text_top']['value'], $conf['text_top']['format']),
+    '#text_top' => $text_top,
     '#share_label' => t(filter_xss($conf['share_label'])),
     '#permalink' => $permalink_url,
     '#twitter_url' => url('http://twitter.com/share', array(
@@ -105,7 +112,7 @@ function native_plants_list_description_render($subtype, $conf, $args, $context)
         'url' => $permalink_url,
       ),
     )),
-    '#text_bottom' => check_markup($conf['text_bottom']['value'], $conf['text_bottom']['format']),
+    '#text_bottom' => $text_bottom,
   );
 
   return $block;

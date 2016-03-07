@@ -163,8 +163,8 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'image' => 0,
       'services_title_desktop' => 'Services provided at !resource_name',
       'services_title_mobile' => 'Native plant services provided:',
-      'zipcode' => '33556',
-      'form_build_id' => 'form-G7CZyaMgP0LgRNTvJqidbAmxqG2BfP4MLnGh5X5L28M',
+      'zipcode' => '%permalink:zip-code',
+      'form_build_id' => 'form-G0p9mRd_JCs76pb3kvCQrrLxYqSzfxIT-5zY2-pPsy4',
       'override_title' => 0,
       'override_title_heading' => 'h2',
     );
@@ -436,11 +436,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       ),
       'share_label' => 'Share your list',
       'text_bottom' => array(
-        'value' => '<p>To access local resources and places to buy native plants in your area, visit our <a href="#">Native Plants Resources page</a> and enter your zip code.</p>
+        'value' => '<p>To access local resources and places to buy native plants in your area, visit our <a href="/native-plants-resources/%permalink:zip-code">Native Plants Resources page</a> and enter your zip code.</p>
 ',
         'format' => 'full_html',
       ),
-      'form_build_id' => 'form-E3pVIqiPBRsY75nJFuRGVnbTxt5_-t2ACQ7XKhQYIeI',
+      'form_build_id' => 'form-cIZ6s6emzP1xcXgn1-4saTxw0a8VooR9RmTjf4VMoJ4',
       'context' => 'argument_entity_uuid:permalink_1',
       'override_title' => 0,
       'override_title_heading' => 'h2',
