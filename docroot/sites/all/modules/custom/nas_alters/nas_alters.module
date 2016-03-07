@@ -838,31 +838,47 @@ function nas_alters_lang_dropdown() {
     return $output;
   }
 
-  if ($block = lang_dropdown_block_view()) {
+  if ($block = _nas_alters_lang_dropdown_block_view()) {
     $output = drupal_render($block['content']);
   }
   return $output;
 }
 
 /**
+ * Modified lang_dropdown_block_view().
+ * @see lang_dropdown_block_view().
+ */
+function _nas_alters_lang_dropdown_block_view($type = 'language') {
+  if (drupal_multilingual()) {
+    $path = $_GET['q'];
+    $languages = language_negotiation_get_switch_links($type, $path);
+
+    if (!empty($languages->links)) {
+      $block['content'] = drupal_get_form('lang_dropdown_form', $languages, $type);
+      $block['subject'] = t('Languages');
+      return $block;
+    }
+  }
+}
+
+/**
  * Implements hook_language_switch_links_alter().
  */
 function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
-  // We want to remove language switcher if page has no translations - if the
-  // href of all translations is the same.
+  // We want to remove language switcher and hreflang links if page has no
+  // translations - if the href of all links is the same.
   $unset = TRUE;
   foreach ($links as $langcode => $link) {
     if (isset($link['href']) && $link['href'] != $path) {
       $unset = FALSE;
     }
+    if ($link['href'] == i18n_variable_get('site_frontpage', $langcode)) {
+      $links[$langcode]['href'] = '<front>';
+    }
   }
 
-  // We can't unset links cause of hreflang module, so we set the class that is
-  // used by lang_dropdown module to skip the link.
   if ($unset) {
-    foreach ($links as $langcode => &$link) {
-      $link['attributes']['class'][] = 'locale-untranslated';
-    }
+    $links = array();
   }
   else {
     foreach ($links as $langcode => $link) {

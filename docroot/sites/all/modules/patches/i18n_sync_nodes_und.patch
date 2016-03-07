@@ -1,0 +1,25 @@
+From ad09167b7723358992589e3cc7d6ca1b9e91b85d Mon Sep 17 00:00:00 2001
+From: Andrew Berezovsky <andrew.berezovsky@gmail.com>
+Date: Thu, 25 Feb 2016 16:39:58 +0300
+Subject: [PATCH] [NAS-177] Patched i18n_sync to work with LANGUAGE_NONE nodes.
+
+---
+ docroot/sites/all/modules/patched/i18n/i18n_sync/i18n_sync.module | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/docroot/sites/all/modules/patched/i18n/i18n_sync/i18n_sync.module b/docroot/sites/all/modules/patched/i18n/i18n_sync/i18n_sync.module
+index 8aaadbe..e07f0bd 100644
+--- a/docroot/sites/all/modules/patched/i18n/i18n_sync/i18n_sync.module
++++ b/docroot/sites/all/modules/patched/i18n/i18n_sync/i18n_sync.module
+@@ -128,7 +128,7 @@ function i18n_sync_form_node_type_form_alter(&$form, &$form_state) {
+  * Check whether this node is to be synced
+  */
+ function i18n_sync_node_check($node) {
+-  return translation_supported_type($node->type) && i18n_object_langcode($node) && i18n_sync();
++  return translation_supported_type($node->type) && i18n_object_langcode($node, 'und') && i18n_sync();
+ }
+ 
+ /**
+-- 
+2.2.1
+
