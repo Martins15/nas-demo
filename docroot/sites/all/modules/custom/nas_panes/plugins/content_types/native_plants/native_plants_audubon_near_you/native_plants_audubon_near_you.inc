@@ -98,10 +98,10 @@ function native_plants_audubon_near_you_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_audubon_near_you_render($subtype, $conf, $args, $context) {
+function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts) {
   // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $context);
+  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   ctools_include('plugins');
   $geometry = array();
   if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
