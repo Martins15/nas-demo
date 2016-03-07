@@ -771,6 +771,14 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
     }
   }
 
+  // Load display if it is empty.
+  if (empty($handler->conf['display']) && !empty($handler->conf['did'])) {
+    $handler->conf['display'] = panels_load_display($handler->conf['did']);
+  }
+  if (!empty($handler->conf['display']->content)) {
+    return;
+  }
+
   foreach ($handler->conf['display']->content as $pane) {
     switch ($pane->subtype) {
       case 'native_plants_bar':
