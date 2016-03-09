@@ -12,7 +12,9 @@ $plugin = array(
   'render callback' => 'native_plants_list_preview_render',
   'hook theme' => 'native_plants_list_preview_theme',
   'no title override' => TRUE,
-  'required context' => new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  'required context' => array(
+    new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  ),
 );
 
 /**
@@ -28,13 +30,17 @@ function native_plants_list_preview_admin_info($subtype, $conf, $context = NULL)
 /**
  * Render callback.
  */
-function native_plants_list_preview_render($subtype, $conf, $args, $context) {
-  $permalink = $context->data;
+function native_plants_list_preview_render($subtype, $conf, $args, $contexts) {
+  $permalink = reset($contexts)->data;
 
   $list = array();
-  $items = drupal_json_decode($permalink->plants_cart);
-  foreach ($items as $plant_id => $item) {
-    $list[$plant_id] = $item['CommonName'];
+  if ($items = drupal_json_decode($permalink->plants_cart)) {
+    foreach ($items as $plant_id => $item) {
+      $list[$plant_id] = $item['CommonName'];
+    }
+  }
+  else {
+    return;
   }
 
   $block = new stdClass();
