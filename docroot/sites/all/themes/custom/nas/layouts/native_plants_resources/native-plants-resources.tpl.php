@@ -11,10 +11,5 @@
       <?php print $content['main_top']; ?>
     </div>
   </div>
-  <div class="row">
-    <div class="columns">
-      <?php print $content['search_form']; ?>
-    </div>
-  </div>
   <?php print $content['main']; ?>
 </section>

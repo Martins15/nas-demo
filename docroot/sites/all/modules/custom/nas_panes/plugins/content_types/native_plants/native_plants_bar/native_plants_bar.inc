@@ -71,8 +71,8 @@ function native_plants_bar_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_bar_render($subtype, $conf, $args, $context) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+function native_plants_bar_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $block = new stdClass();
   $block->content = array(
@@ -80,6 +80,7 @@ function native_plants_bar_render($subtype, $conf, $args, $context) {
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
     '#background_color' => $conf['background_color'],
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -94,6 +95,7 @@ function native_plants_bar_theme(&$theme, $plugin) {
       'title_desktop' => '',
       'title_mobile' => '',
       'background_color' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-bar',
     'path' => $plugin['path'],

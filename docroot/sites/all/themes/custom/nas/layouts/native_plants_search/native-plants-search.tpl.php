@@ -24,30 +24,5 @@
   <?php print $content['main']; ?>
 </section>
 <div class="native-plants-bottom">
-  <div class="native-plants-bottom-plant-list-placeholder"> </div>
-  <div class="native-plants-bottom-plant-list">
-    <div class="row">
-      <?php print $content['bottom_cart']; ?>
-    </div>
-  </div>
-
-  <div class="native-plants-bottom-form-title">
-    <div class="row">
-      <div class="column tiny-12">
-        <?php print $content['bottom_form_title']; ?>
-      </div>
-    </div>
-  </div>
-
-  <div class="native-plants-bottom-form">
-    <div class="row">
-      <div class="column medium-7">
-        <?php print $content['bottom_form_description']; ?>
-      </div>
-      <div class="column medium-5">
-        <?php print $content['bottom_form']; ?>
-      </div>
-    </div>
-  </div>
-
+  <?php print $content['bottom']; ?>
 </div>

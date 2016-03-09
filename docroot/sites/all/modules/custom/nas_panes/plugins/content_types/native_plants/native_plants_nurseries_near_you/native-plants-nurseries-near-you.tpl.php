@@ -4,7 +4,8 @@
  * Template for the Native Plants Nurseries near you.
  */
 ?>
-<div class="row space-top where-to-buy-section">
+<div class="row space-top where-to-buy-section<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+  <?php print $context_links; ?>
   <div class="column medium-4">
     <h3 class="thin"><?php print $title; ?></h3>
     <?php print $description; ?>

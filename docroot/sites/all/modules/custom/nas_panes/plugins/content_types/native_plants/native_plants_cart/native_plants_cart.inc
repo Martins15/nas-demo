@@ -25,7 +25,7 @@ $plugin = array(
  */
 function native_plants_cart_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
+  $block->title = $conf['override_title_text'];
   $block->content = $conf['button_desktop'];
   return $block;
 }
@@ -72,15 +72,16 @@ function native_plants_cart_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_cart_render($subtype, $conf, $args, $context) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+function native_plants_cart_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_cart',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#button_desktop' => t(filter_xss($conf['button_desktop'])),
     '#button_mobile' => t(filter_xss($conf['button_mobile'])),
+    '#context_links' => $contextual_links,
   );
 
   if (!$plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
@@ -109,6 +110,7 @@ function native_plants_cart_theme(&$theme, $plugin) {
       'title' => '',
       'button_desktop' => '',
       'button_mobile' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-cart',
     'path' => $plugin['path'],

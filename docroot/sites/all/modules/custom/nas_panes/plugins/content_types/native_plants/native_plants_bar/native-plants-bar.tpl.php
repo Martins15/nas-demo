@@ -4,7 +4,8 @@
  * Template for Native Plants bar.
  */
 ?>
-<div style="background-color: #<?php print $background_color; ?>;">
+<div class="<?php print !empty($context_links) ? 'contextual-links-region' : ''; ?>" style="background-color: #<?php print $background_color; ?>;">
+  <?php print $context_links; ?>
   <div class="row">
     <div class="columns">
       <div class="native-plants-green-row">

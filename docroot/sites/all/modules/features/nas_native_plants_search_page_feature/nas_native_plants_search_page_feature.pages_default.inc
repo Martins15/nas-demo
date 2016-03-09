@@ -70,7 +70,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
-    $pane->panel = 'bottom_cart';
+    $pane->panel = 'bottom';
     $pane->type = 'native_plants_cart';
     $pane->subtype = 'native_plants_cart';
     $pane->shown = TRUE;
@@ -94,10 +94,10 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->locks = array();
     $pane->uuid = 'd4c292b4-8bf8-4f4a-991a-d70b42ee311f';
     $display->content['new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f'] = $pane;
-    $display->panels['bottom_cart'][0] = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
+    $display->panels['bottom'][0] = 'new-d4c292b4-8bf8-4f4a-991a-d70b42ee311f';
     $pane = new stdClass();
     $pane->pid = 'new-c8fe85e9-c2b9-4362-a338-b73a3965b327';
-    $pane->panel = 'bottom_form';
+    $pane->panel = 'bottom';
     $pane->type = 'native_plants_email_form';
     $pane->subtype = 'native_plants_email_form';
     $pane->shown = TRUE;
@@ -107,7 +107,23 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'zipcode_placeholder' => 'US ZIP code',
       'square_feet_placeholder' => 'Sq. feet you will plant (optional)',
       'button_text' => 'Join the Sanctuary',
-      'form_build_id' => 'form--MzcFIVC5M-6yBKQeSOH0eG1p2XO3aerYc5ndJ7J-XA',
+      'form_build_id' => 'form-bori18XNDfCqLHyv9Q0OaddJwh1x2UsLL-JcJQ1urgo',
+      'title_desktop' => 'Become a part of the world\'s largest bird sanctuary',
+      'title_mobile' => 'Find your plants & join the movement',
+      'description' => array(
+        'value' => '<p class="hide-for-tiny hide-for-small">Audubon is creating the world&#39;s largest bird sanctuary&mdash;one backyard, patch of yard, or container garden at a time. Pledge to join the effort and you&#39;ll receive:</p>
+
+<p class="hide-for-medium hide-for-large hide-for-xlarge">Audubon is creating the world&#39;s largest bird sanctuary. Join the effort and you&#39;ll receive:</p>
+
+<ul>
+	<li>A printable list of the plants you&#39;ve selected, emailed you</li>
+	<li>Customized planting tips to help your plants thrive</li>
+	<li>A connection to resources and events in your community</li>
+	<li>And more!</li>
+</ul>
+',
+        'format' => 'full_html',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -115,69 +131,11 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'c8fe85e9-c2b9-4362-a338-b73a3965b327';
     $display->content['new-c8fe85e9-c2b9-4362-a338-b73a3965b327'] = $pane;
-    $display->panels['bottom_form'][0] = 'new-c8fe85e9-c2b9-4362-a338-b73a3965b327';
-    $pane = new stdClass();
-    $pane->pid = 'new-e24c3f37-46c9-44fa-b80a-781cb2768569';
-    $pane->panel = 'bottom_form_description';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Bottom form description',
-      'title' => '',
-      'body' => '<p class="hide-for-tiny hide-for-small">Audubon is creating the world\'s largest bird sanctuary&mdash;one backyard, patch of yard, or container garden at a time. Pledge to join the effort and you\'ll receive:</p>
-<p class="hide-for-medium hide-for-large hide-for-xlarge">Audubon is creating the world\'s largest bird sanctuary. Join the effort and you\'ll receive:</p>
-<ul>
-  <li>A printable list of the plants you\'ve selected, emailed&nbsp;you</li>
-  <li>Customized planting tips to help your plants thrive</li>
-  <li>A connection to resources and events in your community</li>
-  <li>And more!</li>
-</ul>',
-      'format' => 'full_html',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'e24c3f37-46c9-44fa-b80a-781cb2768569';
-    $display->content['new-e24c3f37-46c9-44fa-b80a-781cb2768569'] = $pane;
-    $display->panels['bottom_form_description'][0] = 'new-e24c3f37-46c9-44fa-b80a-781cb2768569';
-    $pane = new stdClass();
-    $pane->pid = 'new-53624a8f-181a-4f51-ae95-a994c4cb11d4';
-    $pane->panel = 'bottom_form_title';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Bottom form title',
-      'title' => '',
-      'body' => '<h2 class="thin hide-for-tiny hide-for-small" style="color: white;">Become a part of the world\'s largest bird sanctuary</h2>
-<h2 class="thin hide-for-medium hide-for-large hide-for-xlarge" style="color: white;">Find your plants & join the movement</h2>',
-      'format' => 'full_html',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '53624a8f-181a-4f51-ae95-a994c4cb11d4';
-    $display->content['new-53624a8f-181a-4f51-ae95-a994c4cb11d4'] = $pane;
-    $display->panels['bottom_form_title'][0] = 'new-53624a8f-181a-4f51-ae95-a994c4cb11d4';
+    $display->panels['bottom'][1] = 'new-c8fe85e9-c2b9-4362-a338-b73a3965b327';
     $pane = new stdClass();
     $pane->pid = 'new-d29503e7-f994-4fa0-b56c-3c127e219fcc';
     $pane->panel = 'main';
@@ -337,7 +295,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'title' => 'When you plant native plants, you help birds and the environment.',
       'override_title_text' => 'When you plant native plants, you help birds and the environment.',
       'image' => 0,
-      'form_build_id' => 'form-rDEqLleB1xWc2tZ6YfDpHkFPBozgNL6NbAlNf8wIexc',
+      'form_build_id' => 'form-iJKa5dBb6LA7Scjxg6dFBwG-WoqGd1cCZUKO_LYYbcU',
       'override_title' => 0,
       'override_title_heading' => 'h2',
       'title_desktop' => 'When you plant native plants, you help birds and the environment.',

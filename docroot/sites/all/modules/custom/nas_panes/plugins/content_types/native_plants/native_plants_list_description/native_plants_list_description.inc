@@ -35,7 +35,7 @@ $plugin = array(
  */
 function native_plants_list_description_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
+  $block->title = $conf['override_title_text'];
   $block->content = check_markup($conf['text_top']['value'], $conf['text_top']['format']);
   return $block;
 }
@@ -88,7 +88,7 @@ function native_plants_list_description_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function native_plants_list_description_render($subtype, $conf, $args, $contexts) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $permalink = reset($contexts)->data;
   $permalink_url = url('native-plants/list/' . $permalink->uuid, array('absolute' => TRUE));
@@ -101,7 +101,7 @@ function native_plants_list_description_render($subtype, $conf, $args, $contexts
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_list_description',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#text_top' => $text_top,
     '#share_label' => t(filter_xss($conf['share_label'])),
     '#permalink' => $permalink_url,
@@ -113,6 +113,7 @@ function native_plants_list_description_render($subtype, $conf, $args, $contexts
       ),
     )),
     '#text_bottom' => $text_bottom,
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -130,6 +131,7 @@ function native_plants_list_description_theme(&$theme, $plugin) {
       'permalink' => '',
       'twitter_url' => '',
       'text_bottom' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-list-description',
     'path' => $plugin['path'],

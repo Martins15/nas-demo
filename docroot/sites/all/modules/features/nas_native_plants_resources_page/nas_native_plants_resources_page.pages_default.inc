@@ -79,6 +79,30 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
+    $pane->pid = 'new-4042e628-c962-4246-af7b-1809294432cc';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_zipcode_form';
+    $pane->subtype = 'native_plants_zipcode_form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'zipcode_placeholder' => 'US ZIP code',
+      'button_text' => 'Search',
+      'form_build_id' => 'form-I5gO5vRfylHI_EgjsFB5PH62d0XNjdjU-s4TST7iNwQ',
+      'zipcode_default_value' => '%zipcode',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4042e628-c962-4246-af7b-1809294432cc';
+    $display->content['new-4042e628-c962-4246-af7b-1809294432cc'] = $pane;
+    $display->panels['main'][0] = 'new-4042e628-c962-4246-af7b-1809294432cc';
+    $pane = new stdClass();
     $pane->pid = 'new-67df23dd-cab1-47eb-954c-3aed5149571f';
     $pane->panel = 'main';
     $pane->type = 'native_plants_audubon_near_you';
@@ -115,11 +139,11 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '67df23dd-cab1-47eb-954c-3aed5149571f';
     $display->content['new-67df23dd-cab1-47eb-954c-3aed5149571f'] = $pane;
-    $display->panels['main'][0] = 'new-67df23dd-cab1-47eb-954c-3aed5149571f';
+    $display->panels['main'][1] = 'new-67df23dd-cab1-47eb-954c-3aed5149571f';
     $pane = new stdClass();
     $pane->pid = 'new-5856f768-2fcf-45e0-a0dd-c3bcd8a03535';
     $pane->panel = 'main';
@@ -159,11 +183,11 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '5856f768-2fcf-45e0-a0dd-c3bcd8a03535';
     $display->content['new-5856f768-2fcf-45e0-a0dd-c3bcd8a03535'] = $pane;
-    $display->panels['main'][1] = 'new-5856f768-2fcf-45e0-a0dd-c3bcd8a03535';
+    $display->panels['main'][2] = 'new-5856f768-2fcf-45e0-a0dd-c3bcd8a03535';
     $pane = new stdClass();
     $pane->pid = 'new-96831442-d5f5-49c0-a4fc-3416905a7ed7';
     $pane->panel = 'main';
@@ -201,11 +225,11 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '96831442-d5f5-49c0-a4fc-3416905a7ed7';
     $display->content['new-96831442-d5f5-49c0-a4fc-3416905a7ed7'] = $pane;
-    $display->panels['main'][2] = 'new-96831442-d5f5-49c0-a4fc-3416905a7ed7';
+    $display->panels['main'][3] = 'new-96831442-d5f5-49c0-a4fc-3416905a7ed7';
     $pane = new stdClass();
     $pane->pid = 'new-db113a51-ce7a-40d1-ba98-20c820a42dfd';
     $pane->panel = 'main';
@@ -270,11 +294,11 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = 'db113a51-ce7a-40d1-ba98-20c820a42dfd';
     $display->content['new-db113a51-ce7a-40d1-ba98-20c820a42dfd'] = $pane;
-    $display->panels['main'][3] = 'new-db113a51-ce7a-40d1-ba98-20c820a42dfd';
+    $display->panels['main'][4] = 'new-db113a51-ce7a-40d1-ba98-20c820a42dfd';
     $pane = new stdClass();
     $pane->pid = 'new-20d1387a-e61e-44c9-b46e-72adb19022c7';
     $pane->panel = 'main_top';
@@ -303,58 +327,6 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
     $pane->uuid = '20d1387a-e61e-44c9-b46e-72adb19022c7';
     $display->content['new-20d1387a-e61e-44c9-b46e-72adb19022c7'] = $pane;
     $display->panels['main_top'][0] = 'new-20d1387a-e61e-44c9-b46e-72adb19022c7';
-    $pane = new stdClass();
-    $pane->pid = 'new-19b739e1-4b14-486d-9b8b-f823d36f5663';
-    $pane->panel = 'search_form';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Search form title',
-      'title' => '',
-      'body' => '<h2 class="thin centered hide-for-tiny hide-for-small">Enter your ZIP code below to find native plant resources near you:</h2>
-
-<h2 class="thin hide-for-medium hide-for-large hide-for-xlarge">Search the database</h2>
-',
-      'format' => 'full_html',
-      'substitute' => 0,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '19b739e1-4b14-486d-9b8b-f823d36f5663';
-    $display->content['new-19b739e1-4b14-486d-9b8b-f823d36f5663'] = $pane;
-    $display->panels['search_form'][0] = 'new-19b739e1-4b14-486d-9b8b-f823d36f5663';
-    $pane = new stdClass();
-    $pane->pid = 'new-4042e628-c962-4246-af7b-1809294432cc';
-    $pane->panel = 'search_form';
-    $pane->type = 'native_plants_zipcode_form';
-    $pane->subtype = 'native_plants_zipcode_form';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'zipcode_placeholder' => 'US ZIP code',
-      'button_text' => 'Search',
-      'form_build_id' => 'form-I5gO5vRfylHI_EgjsFB5PH62d0XNjdjU-s4TST7iNwQ',
-      'zipcode_default_value' => '%zipcode',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '4042e628-c962-4246-af7b-1809294432cc';
-    $display->content['new-4042e628-c962-4246-af7b-1809294432cc'] = $pane;
-    $display->panels['search_form'][1] = 'new-4042e628-c962-4246-af7b-1809294432cc';
     $pane = new stdClass();
     $pane->pid = 'new-8f98e3e3-fdef-40cc-a037-1a6d965ccd7e';
     $pane->panel = 'top';

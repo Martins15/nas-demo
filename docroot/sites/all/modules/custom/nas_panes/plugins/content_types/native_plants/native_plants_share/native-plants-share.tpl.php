@@ -5,7 +5,8 @@
  */
 ?>
 
-<div class="row share-pane space-top space-bottom">
+<div class="row share-pane space-top space-bottom<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+  <?php print $context_links; ?>
   <div class="column large-push-1 medium-8 large-6">
     <?php print $text; ?>
   </div>

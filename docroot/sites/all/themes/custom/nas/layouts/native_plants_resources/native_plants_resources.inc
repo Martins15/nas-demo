@@ -14,8 +14,6 @@ $plugin = array(
   'regions' => array(
     'top' => t('Top'),
     'main_top' => t('Main top'),
-    'search_form' => t('Search form'),
-    'main_middle' => t('Main middle'),
     'main' => t('Main'),
   ),
 );

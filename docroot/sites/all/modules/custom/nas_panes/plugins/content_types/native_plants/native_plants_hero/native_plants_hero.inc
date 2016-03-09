@@ -116,8 +116,8 @@ function native_plants_hero_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_hero_render($subtype, $conf, $args, $context) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+function native_plants_hero_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $image_path = file_create_url('sites/all/themes/custom/nas/img/plants-background.jpg');
   $image_attribution = 'Photo: Lazlo Ilyes, Flickr Creative Commons';
@@ -132,10 +132,11 @@ function native_plants_hero_render($subtype, $conf, $args, $context) {
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
     '#title_mobile_shift' => $conf['title_mobile_shift'],
-    '#color_scheme' => $conf['color_scheme'],
-    '#dark_gradient' => $conf['dark_gradient'],
     '#image_path' => $image_path,
     '#image_attribution' => $image_attribution,
+    '#color_scheme' => $conf['color_scheme'],
+    '#dark_gradient' => $conf['dark_gradient'],
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -154,6 +155,7 @@ function native_plants_hero_theme(&$theme, $plugin) {
       'image_attribution' => '',
       'color_scheme' => '',
       'dark_gradient' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-hero',
     'path' => $plugin['path'],

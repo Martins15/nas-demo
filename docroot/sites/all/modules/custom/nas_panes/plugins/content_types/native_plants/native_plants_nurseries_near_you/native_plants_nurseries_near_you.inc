@@ -29,7 +29,7 @@ $plugin = array(
  */
 function native_plants_nurseries_near_you_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
+  $block->title = $conf['override_title_text'];
   $block->content = check_markup($conf['description']['value'], $conf['description']['format']);
   return $block;
 }
@@ -75,10 +75,10 @@ function native_plants_nurseries_near_you_edit_form_submit(&$form, &$form_state)
 /**
  * Render callback.
  */
-function native_plants_nurseries_near_you_render($subtype, $conf, $args, $context) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $context);
+  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   ctools_include('plugins');
   $geometry = array();
   if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
@@ -114,9 +114,10 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_nurseries_near_you',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
     '#nurseries' => $nurseries,
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -131,6 +132,7 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
       'title' => '',
       'description' => '',
       'nurseries' => array(),
+      'context_links' => '',
     ),
     'template' => 'native-plants-nurseries-near-you',
     'path' => $plugin['path'],
