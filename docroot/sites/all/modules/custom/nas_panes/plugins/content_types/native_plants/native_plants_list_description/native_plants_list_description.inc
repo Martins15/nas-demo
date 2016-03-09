@@ -88,7 +88,7 @@ function native_plants_list_description_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function native_plants_list_description_render($subtype, $conf, $args, $contexts) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $permalink = reset($contexts)->data;
   $permalink_url = url('native-plants/list/' . $permalink->uuid, array('absolute' => TRUE));
@@ -113,6 +113,7 @@ function native_plants_list_description_render($subtype, $conf, $args, $contexts
       ),
     )),
     '#text_bottom' => $text_bottom,
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -130,6 +131,7 @@ function native_plants_list_description_theme(&$theme, $plugin) {
       'permalink' => '',
       'twitter_url' => '',
       'text_bottom' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-list-description',
     'path' => $plugin['path'],
