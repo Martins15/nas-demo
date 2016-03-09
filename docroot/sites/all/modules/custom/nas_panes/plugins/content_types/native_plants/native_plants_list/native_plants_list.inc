@@ -10,16 +10,16 @@ $plugin = array(
   'category' => 'Native Plants',
   'render callback' => 'native_plants_list_render',
   'hook theme' => 'native_plants_list_theme',
-  'required context' => new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  'required context' => array(
+    new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  ),
 );
 
 /**
  * Render callback.
  */
-function native_plants_list_render($subtype, $conf, $args, $context) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
-
-  $permalink = $context->data;
+function native_plants_list_render($subtype, $conf, $args, $contexts) {
+  $permalink = reset($contexts)->data;
   $plants = drupal_json_decode($permalink->plants_cart);
 
   $block = new stdClass();
