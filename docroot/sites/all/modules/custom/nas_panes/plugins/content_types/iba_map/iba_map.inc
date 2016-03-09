@@ -37,7 +37,7 @@ function iba_map_render($subtype, $conf, $args, $context) {
       $long_field = 'field_iba_state_longitude';
       $level = 6;
       $get_level = field_get_items('node', $node, 'field_iba_state_map_level');
-      if (!empty($get_level)) {
+      if (!empty($get_level[0]['value'])) {
         $level = $get_level[0]['value'];
       }
       break;
