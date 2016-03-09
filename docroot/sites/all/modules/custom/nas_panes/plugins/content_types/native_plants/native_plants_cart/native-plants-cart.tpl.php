@@ -5,7 +5,7 @@
  */
 ?>
 <div class="native-plants-bottom-plant-list-placeholder"> </div>
-<div class="native-plants-bottom-plant-list<?php print !empty($context_links) ? ' contextual-links-region' : ' '; ?>">
+<div class="native-plants-bottom-plant-list<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
   <?php print $context_links; ?>
   <div class="row">
     <div class="column medium-3 large-3 tiny-6 native-plants-bottom-plant-list-info">

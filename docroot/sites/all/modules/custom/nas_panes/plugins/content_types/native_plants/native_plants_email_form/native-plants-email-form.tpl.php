@@ -4,7 +4,7 @@
  * Native Plants Email form template.
  */
 ?>
-<div class="native-plants-bottom-form-title contextual-links-region">
+<div class="native-plants-bottom-form-title<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
   <?php print $context_links; ?>
   <div class="row">
     <div class="column tiny-12">

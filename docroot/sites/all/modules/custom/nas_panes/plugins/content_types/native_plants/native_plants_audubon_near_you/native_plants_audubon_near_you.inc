@@ -99,7 +99,7 @@ function native_plants_audubon_near_you_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   ctools_include('plugins');
@@ -159,6 +159,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
     '#services_title_mobile' => t(filter_xss($conf['services_title_mobile'])),
     '#resource' => $resource,
     '#image_path' => $image_path,
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -175,6 +176,7 @@ function native_plants_audubon_near_you_theme(&$theme, $plugin) {
       'services_title_mobile' => '',
       'resource' => array(),
       'image_path' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-audubon-near-you',
     'path' => $plugin['path'],
