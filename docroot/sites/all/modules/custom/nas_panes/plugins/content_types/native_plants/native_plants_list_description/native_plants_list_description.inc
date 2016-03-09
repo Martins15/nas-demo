@@ -35,7 +35,7 @@ $plugin = array(
  */
 function native_plants_list_description_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
+  $block->title = $conf['override_title_text'];
   $block->content = check_markup($conf['text_top']['value'], $conf['text_top']['format']);
   return $block;
 }
@@ -101,7 +101,7 @@ function native_plants_list_description_render($subtype, $conf, $args, $contexts
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_list_description',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#text_top' => $text_top,
     '#share_label' => t(filter_xss($conf['share_label'])),
     '#permalink' => $permalink_url,

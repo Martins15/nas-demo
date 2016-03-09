@@ -73,7 +73,7 @@ function native_plants_map_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_map',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#map' => check_markup($conf['map']['value'], $conf['map']['format']),
     '#context_links' => $contextual_links,
   );

@@ -29,7 +29,7 @@ $plugin = array(
  */
 function native_plants_nurseries_near_you_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
+  $block->title = $conf['override_title_text'];
   $block->content = check_markup($conf['description']['value'], $conf['description']['format']);
   return $block;
 }
@@ -114,7 +114,7 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_nurseries_near_you',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
     '#nurseries' => $nurseries,
     '#context_links' => $contextual_links,

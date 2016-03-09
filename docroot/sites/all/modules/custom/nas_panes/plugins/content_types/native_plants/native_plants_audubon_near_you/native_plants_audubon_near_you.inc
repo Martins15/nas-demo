@@ -28,7 +28,7 @@ $plugin = array(
  */
 function native_plants_audubon_near_you_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['title'];
+  $block->title = $conf['override_title_text'];
   $block->content = $conf['services_title_desktop'];
   return $block;
 }
@@ -153,7 +153,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_audubon_near_you',
-    '#title' => t(filter_xss($conf['title'])),
+    '#title' => t(filter_xss($conf['override_title_text'])),
     '#services_title_desktop' => t(filter_xss($conf['services_title_desktop']),
       array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>')),
     '#services_title_mobile' => t(filter_xss($conf['services_title_mobile'])),
