@@ -13,7 +13,9 @@ $plugin = array(
   'render callback' => 'native_plants_share_render',
   'hook theme' => 'native_plants_share_theme',
   'no title override' => TRUE,
-  'required context' => new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  'required context' => array(
+    new ctools_context_required(t('Permalink'), 'entity:permalink'),
+  ),
   'defaults' => array(
     'text' => array(
       'value' => '<p>By planting native plants, you will help birds and the environment both locally and across the continent.</p>',
@@ -79,8 +81,10 @@ function native_plants_share_admin_info($subtype, $conf, $context = NULL) {
 /**
  * Render callback.
  */
-function native_plants_share_render($subtype, $conf, $args, $context) {
-  $permalink = $context->data;
+function native_plants_share_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  $permalink = reset($contexts)->data;
 
   $permalink_url = url('native-plants/list/' . $permalink->uuid, array('absolute' => TRUE));
 
@@ -98,6 +102,7 @@ function native_plants_share_render($subtype, $conf, $args, $context) {
         'url' => $permalink_url,
       ),
     )),
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -114,6 +119,7 @@ function native_plants_share_theme(&$theme, $plugin) {
       'label_desktop' => '',
       'permalink' => '',
       'twitter_url' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-share',
     'path' => $plugin['path'],
