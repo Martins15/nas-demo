@@ -5,7 +5,8 @@
  */
 ?>
 
-<div class="breakout-section">
+<div class="breakout-section<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+  <?php print $context_links; ?>
   <div class="row">
     <div class="column">
       <h3 class="thin"><?php print $title; ?></h3>

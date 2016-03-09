@@ -13,14 +13,24 @@ $plugin = array(
   'render callback' => 'native_plants_map_render',
   'hook theme' => 'native_plants_map_theme',
   'defaults' => array(
+    'title' => 'Native Plant nurseries nationwide',
+    'override_title_text' => 'Native Plant nurseries nationwide',
     'map' => array(
       'value' => '<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//audubon.maps.arcgis.com/apps/Embed/index.html?webmap=6d4de5b3a14a4b90a214155db7f8cb7e&amp;extent=-129.5384,22.9645,-64.6311,52.567&amp;zoom=true&amp;scale=false&amp;theme=light"></iframe>',
       'format' => 'map',
     ),
-    'title' => 'Native Plant nurseries nationwide',
-    'override_title_text' => 'Native Plant nurseries nationwide',
   ),
 );
+
+/**
+ * Administrative info callback.
+ */
+function native_plants_map_admin_info($subtype, $conf, $context = NULL) {
+  $block = new stdClass();
+  $block->title = t('Nurseries Map');
+  $block->content = t('Nurseries Map');
+  return $block;
+}
 
 /**
  * Configuration form.
@@ -55,24 +65,17 @@ function native_plants_map_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Administrative info callback.
- */
-function native_plants_map_admin_info($subtype, $conf, $context = NULL) {
-  $block = new stdClass();
-  $block->title = t('Nurseries Map');
-  $block->content = t('Nurseries Map');
-  return $block;
-}
-
-/**
  * Render callback.
  */
-function native_plants_map_render($subtype, $conf, $args, $context) {
+function native_plants_map_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_map',
     '#title' => t(filter_xss($conf['title'])),
     '#map' => check_markup($conf['map']['value'], $conf['map']['format']),
+    '#context_links' => $contextual_links,
   );
 
   return $block;
@@ -86,6 +89,7 @@ function native_plants_map_theme(&$theme, $plugin) {
     'variables' => array(
       'title' => '',
       'map' => '',
+      'context_links' => '',
     ),
     'template' => 'native-plants-map',
     'path' => $plugin['path'],
