@@ -13417,6 +13417,11 @@ body.touch .sticky-wrapper {
 .blocks-events article {
   margin-top: 35px;
 }
+.blocks-events article .title-prefix {
+  color: #838078;
+  margin-bottom: 5px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
 .blocks-events article .title-article {
   font-size: 24px;
   font-weight: normal;
