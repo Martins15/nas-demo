@@ -3375,3 +3375,16 @@ function nas_master_update_7238() {
   variable_store_set('language', 'en', 'site_frontpage', 'frontpage');
   variable_store_set('language', 'es', 'site_frontpage', 'inicio');
 }
+
+/**
+ * Enables events display.
+ */
+function nas_master_update_7239() {
+  // Enabling events page.
+  $page = page_manager_cache_load('page-events_landing_page');
+  page_manager_page_enable($page, FALSE);
+  menu_rebuild();
+
+  // Enabling events block on home.
+  variable_set('events_frontpage_enabled', 1);
+}
