@@ -11,7 +11,7 @@
  */
 function nas_iba_redirect_menu() {
   $items = array();
-  $items['nas_iba_redirect/%/%'] = array(
+  $items['iba/%/%'] = array(
     'page callback' => 'nas_iba_redirect_callback',
     'page arguments' => array(1, 2),
     'access callback' => TRUE,

@@ -5,16 +5,18 @@
  */
 
 /**
- * Menu item callback for nas_iba_redirect/%/%.
+ * Menu item callback for iba/%/%.
  */
 function nas_iba_redirect_callback($type, $value) {
   switch ($type) {
     case 'Site':
+    case 'site':
       $bundle = 'iba';
       $field = 'field_iba_id';
       break;
 
     case 'State':
+    case 'state':
       $bundle = 'iba_state';
       $field = 'field_iba_state_iso';
       break;
