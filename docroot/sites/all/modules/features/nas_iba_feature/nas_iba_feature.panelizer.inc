@@ -409,7 +409,7 @@ function nas_iba_feature_panelizer_defaults() {
     $pane->panel = 'sidebar';
     $pane->type = 'local_chapters_centers_block';
     $pane->subtype = 'local_chapters_centers_block';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 0,
@@ -436,6 +436,49 @@ function nas_iba_feature_panelizer_defaults() {
     $pane->uuid = 'e3ab3bd2-1772-4b73-8db8-12c2850ca3aa';
     $display->content['new-e3ab3bd2-1772-4b73-8db8-12c2850ca3aa'] = $pane;
     $display->panels['sidebar'][2] = 'new-e3ab3bd2-1772-4b73-8db8-12c2850ca3aa';
+    $pane = new stdClass();
+    $pane->pid = 'new-3045a970-ce17-4617-8515-7226f8a7cadd';
+    $pane->panel = 'sidebar';
+    $pane->type = 'engagement_cards_sidebar';
+    $pane->subtype = 'engagement_cards_sidebar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'override_title_heading' => 'h2',
+      'default' => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      'form_build_id' => 'form-kVNZkl7CzeIM3IKG89PKadacBj5lED41Y5qMQU4-CxY',
+      'form_token' => '4h6pp21KNh8g_yaBkXj-LNb2HeZepaOXeAyQzDKWPsE',
+      'form_id' => 'engagement_cards_sidebar_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '3045a970-ce17-4617-8515-7226f8a7cadd';
+    $display->content['new-3045a970-ce17-4617-8515-7226f8a7cadd'] = $pane;
+    $display->panels['sidebar'][3] = 'new-3045a970-ce17-4617-8515-7226f8a7cadd';
     $pane = new stdClass();
     $pane->pid = 'new-aea62e00-b94a-45e6-8be5-d38a7e0e2f91';
     $pane->panel = 'top';
