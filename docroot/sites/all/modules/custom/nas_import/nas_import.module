@@ -622,8 +622,12 @@ function nas_import_feeds_presave_iba_import(FeedsSource $source, $entity, $item
   foreach ($fields as $field) {
     if (isset($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
       $entity->{$field}[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['value']);
-      if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
-        $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+    }
+    if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
+      $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+      // Use summary if value is empty.
+      if (empty($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
+        $entity->{$field}[LANGUAGE_NONE][0]['value'] = $entity->{$field}[LANGUAGE_NONE][0]['summary'];
       }
     }
   }
