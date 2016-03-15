@@ -1590,20 +1590,32 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
         }
       }
       // Not Manual overrides, not Birds references were provided.
-      if (empty($nodes)) {
-        if (isset($context_node)) {
-          if (isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
-            $current_page_sections = array();
+      if (empty($nodes) && isset($context_node)
+        && isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
+        $current_page_sections = array();
+        foreach ($field_menu_section_items as $value) {
+          $current_page_sections[] = $value['tid'];
+        }
+        foreach ($all_nodes_positioned as $node) {
+          if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
             foreach ($field_menu_section_items as $value) {
-              $current_page_sections[] = $value['tid'];
+              if (in_array($value['tid'], $current_page_sections)) {
+                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+              }
             }
-            foreach ($all_nodes_positioned as $node) {
-              if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
-                foreach ($field_menu_section_items as $value) {
-                  if (in_array($value['tid'], $current_page_sections)) {
-                    $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-                  }
-                }
+          }
+        }
+      }
+
+      // Check engagement cards for 'Important Bird Areas' internal tag for IBA nodes.
+      if (empty($nodes) && isset($context_node) && $context_node->type == 'iba') {
+        $internal_tag = taxonomy_get_term_by_name('Important Bird Areas', 'internal_tagging');
+        $current_page_internal_tags = array(reset($internal_tag)->tid);
+        foreach ($all_nodes_positioned as $node) {
+          if ($node->field_internal_tagging && $field_internal_tagging = field_get_items('node', $node, 'field_internal_tagging')) {
+            foreach ($field_internal_tagging as $value) {
+              if (in_array($value['tid'], $current_page_internal_tags)) {
+                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
               }
             }
           }

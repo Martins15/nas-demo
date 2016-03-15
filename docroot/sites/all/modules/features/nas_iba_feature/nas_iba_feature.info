@@ -1,6 +1,8 @@
 name = IBA
 core = 7.x
 package = NAS
+version = 7.x-1.0
+project = nas_iba_feature
 dependencies[] = ctools
 dependencies[] = entityreference
 dependencies[] = features
@@ -70,3 +72,4 @@ features[variable][] = panelizer_defaults_node_iba
 features[variable][] = panelizer_node:iba:page_manager_selection
 features[views_view][] = iba_native_birds
 features_exclude[dependencies][metatag] = metatag
+project path = sites/all/modules/features
