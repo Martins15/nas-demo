@@ -3388,3 +3388,29 @@ function nas_master_update_7239() {
   // Enabling events block on home.
   variable_set('events_frontpage_enabled', 1);
 }
+
+/**
+ * Entity translation for FPPs.
+ */
+function nas_master_update_7240() {
+  module_enable(array('entity_translation', 'title'));
+
+  // Entity translation variables.
+  variable_set('locale_field_language_fallback', 1);
+  variable_set('entity_translation_shared_labels', 1);
+  variable_set('entity_translation_entity_types', array(
+    'fieldable_panels_pane' => 'fieldable_panels_pane',
+    'node' => 0,
+    'taxonomy_term' => 0,
+    'bean' => 0,
+    'file' => 0,
+    'user' => 0,
+  ));
+  variable_set('entity_translation_settings_fieldable_panels_pane__nas_flyway_section', array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 1,
+  ));
+}
