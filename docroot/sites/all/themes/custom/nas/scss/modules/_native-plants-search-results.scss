@@ -104,11 +104,15 @@ $color-dark-green:              #025e02;
 
 .tier-1-plant-picture {
   line-height: 0;
+  img {
+    height: auto;
+  }
 }
 
 .tier-1-plant-picture-mobile {
   img {
     width: 100%;
+    height: auto;
   }
 }
 
