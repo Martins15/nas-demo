@@ -1,11 +1,12 @@
 name = Native Plant CT
 core = 7.x
 package = Native Plants
-version = 7.x-1.4
+version = 7.x-1.5
 project = nas_native_plant_ct_feature
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = image
+dependencies[] = link
 dependencies[] = list
 dependencies[] = media
 dependencies[] = options

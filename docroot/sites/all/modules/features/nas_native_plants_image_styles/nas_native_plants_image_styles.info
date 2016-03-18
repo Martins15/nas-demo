@@ -1,7 +1,7 @@
 name = Native Plants Image Styles
 core = 7.x
 package = Native Plants
-version = 7.x-1.1
+version = 7.x-1.2
 project = nas_native_plants_image_styles
 dependencies[] = ctools
 dependencies[] = strongarm

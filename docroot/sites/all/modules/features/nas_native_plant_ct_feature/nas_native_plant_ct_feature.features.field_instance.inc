@@ -236,6 +236,8 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,
           'nas_birds_landing_epsacrop_mobile' => 0,
+          'native_plant_desktop' => 'native_plant_desktop',
+          'native_plant_mobile' => 'native_plant_mobile',
           'slideshow_sidebar' => 0,
           'social_media_photo' => 0,
           'static_cards_two_columns' => 0,
