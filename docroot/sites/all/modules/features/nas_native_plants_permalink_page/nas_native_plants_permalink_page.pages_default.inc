@@ -98,7 +98,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '%permalink:title';
+  $display->title = 'Your Plant List';
   $display->uuid = '868bd577-cbd0-48cd-8922-27ef20086381';
   $display->content = array();
   $display->panels = array();
@@ -413,7 +413,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     ),
   );
   $display->cache = array();
-  $display->title = '%permalink:title';
+  $display->title = 'Your Plant List';
   $display->uuid = 'bd16a6dd-b390-401e-be3d-12085f1232e7';
   $display->content = array();
   $display->panels = array();
