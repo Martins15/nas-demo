@@ -568,14 +568,14 @@ input[type="checkbox"].np-checkbox {
     &:before {
       background-image: url(../img/np-checkbox.png);
       background-position: top right;
-      background-size: 42px 21px;
+      background-size: 36px 18px;
       content: " ";
       display: inline-block;
       position: absolute;
       margin-left: -26px;
       margin-top: 3px;
-      height: 21px;
-      width: 21px;
+      height: 18px;
+      width: 18px;
     }
   }
   &:checked+label {
