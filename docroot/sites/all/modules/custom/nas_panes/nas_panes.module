@@ -2527,3 +2527,67 @@ function nas_panes_get_external_bird_headline($node) {
 function nas_panes_engagement_cards_default_title() {
   return variable_get('nas_panes_engagement_cards_default_title', 'How you can help, right now');
 }
+
+/**
+ * Implements hook_ctools_plugin_pre_alter().
+ */
+function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
+  if ($info['type'] == 'content_types' && $plugin['name'] == 'custom') {
+    // Adding form_build_id to use it for "NAS-style" contextual link.
+    $plugin['defaults']['form_build_id'] = '';
+    $plugin['render callback'] = '_nas_panes_ctools_custom_content_type_render';
+    $plugin['hook theme'] = '_nas_panes_ctools_custom_content_type_theme';
+  }
+}
+
+/**
+ * Render callback for custom content_type.
+ */
+function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+  $settings = ctools_custom_content_type_get_conf(ctools_custom_content_type_content_type($subtype), $conf);
+
+  static $delta = 0;
+
+  $block          = new stdClass();
+  $block->subtype = ++$delta;
+  $block->title   = filter_xss_admin($settings['title']);
+
+  // Add keyword substitutions if we were configured to do so.
+  $content = $settings['body'];
+  if (!empty($contexts) && !empty($settings['substitute'])) {
+    $content = ctools_context_keyword_substitute($content, array(), $contexts);
+  }
+
+  $block->content = array(
+    '#theme' => 'nas_panes_ctools_custom_content_type',
+    '#markup' => check_markup($content, $settings['format']),
+    '#context_links' => $contextual_links,
+  );
+  if ($settings['custom_type'] == 'fixed' && user_access('administer custom content')) {
+    $block->admin_links = array(
+      array(
+        'title' => t('Configure content pane'),
+        'alt' => t("Configure this pane in administer >> structure >> custom content panes"),
+        'href' => 'admin/structure/ctools-content/list/' . $settings['content']->name . '/edit',
+        'query' => drupal_get_destination(),
+      ),
+    );
+  }
+
+  return $block;
+}
+
+/**
+ * Delegated implementation of hook_theme().
+ */
+function _nas_panes_ctools_custom_content_type_theme(&$theme, $plugin) {
+  $theme['nas_panes_ctools_custom_content_type'] = array(
+    'variables' => array(
+      'markup' => '',
+      'context_links' => '',
+    ),
+    'template' => 'nas-panes-ctools-custom-content-type',
+    'path' => drupal_get_path('module', 'nas_panes') . '/templates',
+  );
+}
