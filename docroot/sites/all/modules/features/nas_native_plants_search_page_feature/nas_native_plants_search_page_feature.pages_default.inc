@@ -166,10 +166,12 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'admin_title' => 'Tier 1 plants description',
       'title' => '',
       'body' => '<h2 class="thin">Try these first</h2>
+
 <p>These plants should be relatively easy to find and/or grow in your area. <a href="#">Read more.</a></p>
 ',
       'format' => 'full_html',
       'substitute' => TRUE,
+      'form_build_id' => 'form-W5UXWFL4v2faZqCta23nDJ06ans4kvnx_sOMpD96Kmk',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -198,6 +200,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
 ',
       'format' => 'full_html',
       'substitute' => TRUE,
+      'form_build_id' => 'form-AAYAmdguzjz4JdkaKTe8wRsG1xMTrZi66-peFNJM-aI',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -221,9 +224,12 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'admin_title' => 'Search form title',
       'title' => '',
       'body' => '<h2 class="thin centered hide-for-tiny hide-for-small">Enter your location below to start your native plant garden today.</h2>
-            <h2 class="thin hide-for-medium hide-for-large hide-for-xlarge">Search the database</h2>',
+
+<h2 class="thin hide-for-medium hide-for-large hide-for-xlarge">Search the database</h2>
+',
       'format' => 'full_html',
       'substitute' => TRUE,
+      'form_build_id' => 'form-aGm9vkWxSM_-JxXQExEzWhP1mCg9mZhZkFblfFHYqUQ',
     );
     $pane->cache = array();
     $pane->style = array(
