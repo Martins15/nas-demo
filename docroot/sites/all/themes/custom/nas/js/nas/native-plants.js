@@ -113,7 +113,11 @@
    */
   Drupal.behaviors.npClearingFix = {
     attach: function(context, settings) {
-      $(document).foundation();
+      $(document).foundation({
+        clearing: {
+          close_selectors: '.clearing-close, div.clearing-blackout, div.visible-img, img'
+        }
+      });
       $('a.clearing-attach').once('np-clearing-fix', function () {
         var $self = $(this);
         $self.bind('click', function() {
