@@ -574,8 +574,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     $vars['attribution'] = _nas_panes_format_image_attribution($image);
   }
 
-  $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
-  $vars['title'] = $get_field_flyway[0]['entity']->title;
+  $vars['title'] = reset($vars['title_field'])['safe_value'];
   $get_field_flyway_description = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_description');
   $vars['flyway_description'] = $get_field_flyway_description[0]['#markup'];
   $get_field_flyway_includes = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_includes');
@@ -623,6 +622,10 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   }
 
   $vars['contextual_links'] = '';
+  // The code below generates the link to edit English values of FPP even on
+  // Spanish page (frontpage); so we are not using it until it is fixed.
+  return;
+
   if (!user_access('access contextual links') || !user_access('edit NAS panes')) {
     return;
   }
