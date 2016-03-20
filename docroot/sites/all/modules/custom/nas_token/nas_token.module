@@ -102,7 +102,7 @@ function _nas_token_article($node) {
   switch ($news_type) {
     case 'press-release':
       $pattern = array(
-        nas_token_path_string_localize('press-release'),
+        nas_token_path_string_localize('press-release', $node->language),
         $node->title,
       );
       break;
@@ -110,7 +110,7 @@ function _nas_token_article($node) {
     case 'magazine-article':
       $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
       $pattern = array(
-        nas_token_path_string_localize('magazine'),
+        nas_token_path_string_localize('magazine', $node->language),
       );
 
       if (!empty($magazine_items[0]['target_id'])) {
@@ -125,7 +125,7 @@ function _nas_token_article($node) {
 
     default:
       $pattern = array(
-        nas_token_path_string_localize('news'),
+        nas_token_path_string_localize('news', $node->language),
         $node->title,
       );
   }
@@ -160,7 +160,7 @@ function _nas_token_menu_section($node) {
     return;
   }
 
-  return nas_token_path_string_localize($path);
+  return nas_token_path_string_localize($path, $node->language);
 }
 
 /**
