@@ -85,6 +85,25 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       ),
       'logic' => 'and',
     ),
+    'metatag_panels' => array(
+      'enabled' => 1,
+      'metatags' => array(
+        'robots' => array(
+          'value' => array(
+            'noindex' => 'noindex',
+            'index' => 0,
+            'follow' => 0,
+            'nofollow' => 0,
+            'noarchive' => 0,
+            'nosnippet' => 0,
+            'noodp' => 0,
+            'noydir' => 0,
+            'noimageindex' => 0,
+            'notranslate' => 0,
+          ),
+        ),
+      ),
+    ),
   );
   $display = new panels_display();
   $display->layout = 'native_plants_thank_you';
@@ -400,6 +419,25 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
         ),
       ),
       'logic' => 'and',
+    ),
+    'metatag_panels' => array(
+      'enabled' => 1,
+      'metatags' => array(
+        'robots' => array(
+          'value' => array(
+            'noindex' => 'noindex',
+            'index' => 0,
+            'follow' => 0,
+            'nofollow' => 0,
+            'noarchive' => 0,
+            'nosnippet' => 0,
+            'noodp' => 0,
+            'noydir' => 0,
+            'noimageindex' => 0,
+            'notranslate' => 0,
+          ),
+        ),
+      ),
     ),
   );
   $display = new panels_display();
