@@ -3385,6 +3385,7 @@ function nas_master_update_7238() {
 
   module_enable(array(
     'postal_code_validation',
+    'views_ajax_history',
     'nas_master_native_plants',
     'nas_native_plants_taxonomy',
     'nas_nursery_ct_feature',
