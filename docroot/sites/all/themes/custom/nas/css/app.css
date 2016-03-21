@@ -14223,9 +14223,13 @@ h2.grey {
 .tier-1-plant-picture {
   line-height: 0;
 }
+.tier-1-plant-picture img {
+  height: auto;
+}
 
 .tier-1-plant-picture-mobile img {
   width: 100%;
+  height: auto;
 }
 
 .tier-1-plant .tier-1-plant--description {

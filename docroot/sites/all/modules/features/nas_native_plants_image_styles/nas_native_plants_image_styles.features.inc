@@ -23,19 +23,33 @@ function nas_native_plants_image_styles_image_default_styles() {
   $styles['native_plant_desktop'] = array(
     'label' => 'Native Plant Desktop',
     'effects' => array(
-      43 => array(
-        'name' => 'image_scale',
+      45 => array(
+        'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 225,
-          'height' => 225,
-          'upscale' => 0,
+          'width' => 900,
+          'height' => 900,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
         ),
-        'weight' => 2,
+        'weight' => -10,
       ),
-      44 => array(
+      46 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 450,
+          'height' => 450,
+        ),
+        'weight' => -9,
+      ),
+      43 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );
@@ -65,19 +79,33 @@ function nas_native_plants_image_styles_image_default_styles() {
   $styles['native_plant_mobile'] = array(
     'label' => 'Native Plant Mobile',
     'effects' => array(
-      45 => array(
-        'name' => 'image_scale',
+      50 => array(
+        'name' => 'epsacrop_crop',
         'data' => array(
-          'width' => 425,
-          'height' => 300,
-          'upscale' => 0,
+          'width' => 1275,
+          'height' => 900,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
         ),
-        'weight' => 2,
+        'weight' => -10,
       ),
-      46 => array(
+      49 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 850,
+          'height' => 600,
+        ),
+        'weight' => -9,
+      ),
+      48 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );
