@@ -379,7 +379,16 @@ function _nas_search_node_get_event_state($entity, $options, $name, $entity_type
  *  - rgs: An array of species bird region field's values.
  */
 function _nas_search_get_tt_species() {
-  if ($cache = cache_get('nas_search_tt_species')) {
+  global $language;
+  $langcode = $language->language;
+  $default_langcode = language_default('language');
+  $langcodes = array($langcode);
+  if ($langcode == $default_langcode) {
+    $langcodes[] = 'und';
+  }
+
+  $cache_key = 'nas_search_tt_species_' . $langcode;
+  if ($cache = cache_get($cache_key)) {
     $species = $cache->data;
   }
   else {
@@ -399,6 +408,7 @@ function _nas_search_get_tt_species() {
     $query->addExpression('GROUP_CONCAT(DISTINCT field_bird_region_tid)', 'rgs');
     $query->condition('n.type', 'bird');
     $query->condition('n.status', NODE_PUBLISHED);
+    $query->condition('n.language', $langcodes);
     $query->groupBy('n.nid');
     $query->orderBy('n.title');
     $species = $query->execute()->fetchAll();
@@ -409,10 +419,11 @@ function _nas_search_get_tt_species() {
       if (!$item->alias) {
         $item->alias = 'node/' . $item->nid;
       }
+      $item->alias = url($item->alias, array('alias' => TRUE));
       unset($item->nid);
     }
 
-    cache_set('nas_search_tt_species', $species, 'cache', time() + 3600);
+    cache_set($cache_key, $species, 'cache', time() + 3600);
   }
 
   return $species;
