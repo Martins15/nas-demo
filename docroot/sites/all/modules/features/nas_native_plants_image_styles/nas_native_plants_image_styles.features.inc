@@ -41,8 +41,8 @@ function nas_native_plants_image_styles_image_default_styles() {
       46 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 225,
-          'height' => 225,
+          'width' => 450,
+          'height' => 450,
         ),
         'weight' => -9,
       ),
@@ -97,8 +97,8 @@ function nas_native_plants_image_styles_image_default_styles() {
       49 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 425,
-          'height' => 300,
+          'width' => 850,
+          'height' => 600,
         ),
         'weight' => -9,
       ),
