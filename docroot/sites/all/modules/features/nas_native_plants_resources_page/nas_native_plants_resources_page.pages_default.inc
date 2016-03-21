@@ -315,6 +315,7 @@ function nas_native_plants_resources_page_default_page_manager_pages() {
 ',
       'format' => 'full_html',
       'substitute' => 1,
+      'form_build_id' => 'form-yc1DP39Ri7ZOqco6Vl847Y2MufgC9WnJQWcxJ6zGMP4',
     );
     $pane->cache = array();
     $pane->style = array(
