@@ -22,7 +22,7 @@ function nas_rss_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Audubon RSS';
+  $handler->display->display_options['title'] = 'Audubon';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -98,11 +98,11 @@ function nas_rss_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['row_options']['item_length'] = 'rss';
-  $handler->display->display_options['path'] = 'rss.xml';
+  $handler->display->display_options['path'] = 'feed.xml';
   $handler->display->display_options['sitename_title'] = 0;
   $translatables['nas_rss'] = array(
     t('Master'),
-    t('Audubon RSS'),
+    t('Audubon'),
     t('more'),
     t('Apply'),
     t('Reset'),

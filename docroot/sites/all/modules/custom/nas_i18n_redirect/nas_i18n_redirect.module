@@ -64,6 +64,7 @@ function _nas_i18n_redirect_prevent($path) {
   $exclusions = array(
     'ajax/audubon-near-you',
     'rss.xml',
+    'feed.xml',
   );
   if (in_array($path, $exclusions)) {
     return TRUE;
