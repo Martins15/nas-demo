@@ -3350,16 +3350,9 @@ function nas_master_update_7235() {
 }
 
 /**
- * Enable NAS RSS feature.
- */
-function nas_master_update_7236() {
-  module_enable(array('nas_rss'));
-}
-
-/**
  * Fixes for similar birds on Spanish bird nodes.
  */
-function nas_master_update_7237() {
+function nas_master_update_7236() {
   module_enable(array('i18n_sync'));
   features_revert(array(
     'nas_bird_type_feature' => array('panelizer_defaults', 'variable'),
@@ -3369,11 +3362,18 @@ function nas_master_update_7237() {
 /**
  * Fixes for the Language Switcher on front page.
  */
-function nas_master_update_7238() {
+function nas_master_update_7237() {
   variable_set('variable_realm_list_language',
     array('site_name', 'site_slogan', 'site_404', 'site_frontpage'));
   variable_store_set('language', 'en', 'site_frontpage', 'frontpage');
   variable_store_set('language', 'es', 'site_frontpage', 'inicio');
+}
+
+/**
+ * Enable NAS RSS feature.
+ */
+function nas_master_update_7238() {
+  module_enable(array('nas_rss'));
 }
 
 /**

@@ -22,11 +22,14 @@ function nas_rss_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Audubon RSS';
+  $handler->display->display_options['title'] = 'Audubon';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'localize',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -90,14 +93,16 @@ function nas_rss_views_default_views() {
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
   $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['row_options']['item_length'] = 'rss';
-  $handler->display->display_options['path'] = 'rss.xml';
+  $handler->display->display_options['path'] = 'feed.xml';
   $handler->display->display_options['sitename_title'] = 0;
   $translatables['nas_rss'] = array(
     t('Master'),
-    t('Audubon RSS'),
+    t('Audubon'),
     t('more'),
     t('Apply'),
     t('Reset'),

@@ -29,6 +29,10 @@ function nas_alters_init() {
       }
     }
   }
+
+  if (drupal_is_front_page()) {
+    drupal_add_feed('feed.xml', 'Audubon');
+  }
 }
 
 /**
