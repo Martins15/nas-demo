@@ -3386,6 +3386,7 @@ function nas_master_update_7238() {
   module_enable(array(
     'postal_code_validation',
     'views_ajax_history',
+    'ajax_screen_lock',
     'nas_master_native_plants',
     'nas_native_plants_taxonomy',
     'nas_nursery_ct_feature',
@@ -3410,4 +3411,10 @@ function nas_master_update_7238() {
   features_revert(array(
     'nas_native_plants_email_feature' => array('variable'),
   ));
+
+  // Set AJAX Screen Lock variables.
+  variable_set('ajax_screen_lock_popup_timeout', 300000);
+  variable_set('ajax_screen_lock_throbber_hide', 1);
+  variable_set('ajax_screen_lock_disable_in_admin', 1);
+  variable_set('ajax_screen_lock_pages_path', 'native-plants*');
 }
