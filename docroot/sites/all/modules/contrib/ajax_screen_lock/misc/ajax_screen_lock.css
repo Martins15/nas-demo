@@ -8,7 +8,7 @@
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  background: #0072b9 url(/misc/progress.gif);
+  background: #0072b9 url(progress.gif);
   width: auto;
   height: 15px;
 }

@@ -20,6 +20,9 @@ function ajax_screen_lock_settings_form($form, $form_state) {
 		'#title' => t('Timeout of displaying screen lock popup in ms'),
 		'#type' => 'textfield',
 		'#default_value' => variable_get('ajax_screen_lock_popup_timeout', 10000),
+		'#element_validate' => array(
+			'element_validate_integer_positive',
+		)
 	);
 
 	$form['ajax_screen_lock_throbber_hide'] = array(
@@ -95,14 +98,4 @@ function ajax_screen_lock_settings_form($form, $form_state) {
 	);
 
 	return system_settings_form($form);
-}
-
-/**
- * Validation function for ajax_screen_lock_settings_form().
- */
-function ajax_screen_lock_settings_form_validate(&$form, &$form_state) {
-	$timeout = $form_state['values']['ajax_screen_lock_popup_timeout'];
-	if (!is_numeric($timeout) && $timeout >= 0) {
-		form_set_error('ajax_screen_lock_popup_timeout', t('The field Timeout must contain positive numeric value'));
-	}
 }

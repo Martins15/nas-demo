@@ -20,7 +20,7 @@ Popup appears automatically when AJAX query is sent.
 2. INSTALLATION
 ===============
 
-1. Install as usual, see http://drupal.org/node/70151 for further information.
+1. Install as usual, see https://www.drupal.org/documentation/install/modules-themes/modules-7 for further information.
 2. Go to the configure page admin/config/user-interface/ajax-screen-lock and configure module.
 3. Install library jquery.blockUI.js into directory sites/all/libraries/jQuery.blockUI/jquery.blockUI.js
 

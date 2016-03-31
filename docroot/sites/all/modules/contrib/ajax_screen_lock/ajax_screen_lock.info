@@ -5,9 +5,9 @@ configure = admin/config/user-interface/ajax-screen-lock
 
 dependencies[] = libraries
 
-; Information added by Drupal.org packaging script on 2016-03-28
-version = "7.x-1.7"
+; Information added by Drupal.org packaging script on 2016-03-30
+version = "7.x-1.7+5-dev"
 core = "7.x"
 project = "ajax_screen_lock"
-datestamp = "1459178941"
+datestamp = "1459364940"
 
