@@ -30,9 +30,6 @@ function drush_nas_master_search_server_local() {
   $entity->save();
 
   // Move indexes to the solr_4_x server.
-  // db_update('search_api_index')
-  //   ->fields(array('server' => 'solr_4_x'))
-  //   ->execute();
   foreach (entity_load('search_api_index') as $entity) {
     $entity->server = $server;
     $entity->save();
