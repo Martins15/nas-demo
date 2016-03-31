@@ -21,7 +21,7 @@ function nas_master_drush_command() {
  *
  * Callback for nas-master-acquia-search-disable Drush command.
  */
-function drush_nas_master_nas_master_search_server_local() {
+function drush_nas_master_search_server_local() {
   $server = 'solr_4_x';
   // Enable the local SOLR search server.
   $entities = entity_load('search_api_server', FALSE, array('machine_name' => $server));
