@@ -197,6 +197,11 @@
     shell: "{{ php_env_vars }} drush user-password {{ drupal_user }} --password={{ drupal_pass }}"
     when: pp_environment == "demo" or pp_environment == "default"
 
+  - name: Change search server to the local one
+    sudo: yes
+    shell: "{{ php_env_vars }} drush nas-master-search-server-local"
+    when: pp_environment == "default" or pp_environment == "demo"
+
   - name: Solr - clearing index
     sudo: yes
     shell: "{{ php_env_vars }} drush -y search-api-clear -l {{ site_url }}"
