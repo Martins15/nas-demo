@@ -790,6 +790,10 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
         $variables['list_title'] = $pane->configuration['override_title_text'];
         $variables['list_text_top'] = check_markup($pane->configuration['text_top']['value'], $pane->configuration['text_top']['format']);
         $variables['list_text_bottom'] = check_markup($pane->configuration['text_bottom']['value'], $pane->configuration['text_bottom']['format']);
+        // Convert to absolute URLs.
+        $variables['list_text_top'] = check_markup($variables['list_text_top'], 'absolute_urls');
+        $variables['list_text_bottom'] = check_markup($variables['list_text_bottom'], 'absolute_urls');
+
         $variables['list_share_label'] = $pane->configuration['share_label'];
         $variables['twitter_url'] = url('http://twitter.com/share', array(
           'query' => array(
