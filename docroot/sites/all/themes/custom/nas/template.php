@@ -651,7 +651,7 @@ function nas_preprocess_node_article(&$vars) {
     $vars['by_line'] = '';
     if ($field_items = field_get_items('node', $node, 'field_author')) {
       $author_node = node_load($field_items[0]['target_id']);
-      $vars['by_line'] = t('By') . ' ' . $author_node->title;
+      $vars['by_line'] = t('By @name', array('@name' => $author_node->title));
     }
   }
 
