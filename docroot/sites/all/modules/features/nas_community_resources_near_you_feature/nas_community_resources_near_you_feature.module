@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Community Resources near you feature.
+ */
+
+include_once 'nas_community_resources_near_you_feature.features.inc';

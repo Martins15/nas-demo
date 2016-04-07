@@ -1,0 +1,116 @@
+.connect-audubon-near-you {
+
+  .breakout-section-box {
+
+    @include breakpoint(tiny-only) {
+      background: none;
+    }
+
+    @include breakpoint(small-only) {
+      background: none;
+    }
+  }
+
+  .connect-audubon-near-you--title {
+    margin-bottom: 0;
+  }
+
+  .connect-audubon-near-you--address {
+    font-family: $font-serif;
+    font-size: 20px;
+    line-height: 27px;
+  }
+
+  .button {
+    margin-top: 40px;
+  }
+
+  .connect-audubon-near-you--services {
+
+    @include breakpoint(medium-up) {
+      padding-right: 60px;
+    }
+
+    .connect-audubon-near-you--services-list {
+      margin-bottom: 30px;
+
+      @include breakpoint (medium-up) {
+        font-size: 20px;
+        line-height: 24px;
+        margin-top: 30px;
+      }
+
+      @include breakpoint (large-up) {
+        margin-bottom: 120px;
+      }
+    }
+  }
+}
+
+.grey-pane {
+  background-color: #d8d8d8;
+  font-family: $font-sans;
+  height: 70px;
+  padding-top: 4px;
+
+  h4 {
+    font-size: 22px;
+    line-height: 31px;
+    margin-bottom: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .grey-pane--list-items {
+    color: $color-black;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.share-pane {
+  font-size: 16px;
+  line-height: 22px;
+
+  .share-pane--icons {
+    font-family: $font-sans;
+    color: $color-bright-blue;
+    line-height: 20px;
+    padding-top: 8px;
+  }
+}
+
+.where-to-buy-section {
+  p {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 22px;
+  }
+
+  .nursery {
+    line-height: 20px;
+    padding-bottom: 14px;
+    padding-top: 16px;
+    font-family: $font-sans;
+    border-bottom: 1px solid $color-warm-gray;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    @include breakpoint(medium-up) {
+      border-bottom: none;
+      padding-top: 0;
+    }
+
+    p {
+      line-height: 18px;
+      margin-bottom: 6px;
+    }
+
+    .label {
+      color: $color-warm-gray;
+    }
+  }
+}
