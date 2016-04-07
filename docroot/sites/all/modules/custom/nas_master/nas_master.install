@@ -3387,6 +3387,7 @@ function nas_master_update_7238() {
     'postal_code_validation',
     'views_ajax_history',
     'ajax_screen_lock',
+    'protected_pages',
     'nas_master_native_plants',
     'nas_native_plants_taxonomy',
     'nas_nursery_ct_feature',
@@ -3417,4 +3418,21 @@ function nas_master_update_7238() {
   variable_set('ajax_screen_lock_throbber_hide', 1);
   variable_set('ajax_screen_lock_disable_in_admin', 1);
   variable_set('ajax_screen_lock_pages_path', 'native-plants*');
+
+  // Protect Native Plants pages with password.
+  $form = array();
+  $form_state = array(
+    'values' => array(
+      'path' => 'native-plants',
+      'password' => 'nativeplants',
+    ),
+  );
+  $paths = array(
+    'native-plants',
+    'native-plants-resources',
+  );
+  foreach ($paths as $path) {
+    $form_state['values']['path'] = $path;
+    protected_pages_configure_submit_callback($form, $form_state);
+  }
 }
