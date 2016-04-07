@@ -669,6 +669,7 @@ function nas_preprocess_node_article(&$vars) {
  */
 function nas_preprocess_nodes_editorial_cards(&$vars) {
   $node = $vars['node'];
+  $vars['image_uri'] = '';
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
   $image_uri = FALSE;
@@ -682,6 +683,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
+    $vars['image_uri'] = $image_uri;
     $image = theme('image', array(
       'path' => image_style_url('article_teaser', $image_uri),
       'alt' => $node->title,
@@ -1171,6 +1173,12 @@ function nas_preprocess_field(&$variables, $hook) {
   }
   if (function_exists($function_bundle_viewmode)) {
     $function_bundle_viewmode($variables);
+  }
+
+  // When custom display is used, pass correct view_mode for Inline Hero image field.
+  if ($variables['element']['#field_name'] == 'field_hero_image' && $element['#view_mode'] == '_custom_display'
+    && isset($element['#pane_region']) && $element['#pane_region'] == 'inline_image') {
+    $element['#view_mode'] = 'inline_hero_photo';
   }
 
   $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $element['#view_mode'];

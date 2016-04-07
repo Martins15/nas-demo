@@ -3332,3 +3332,108 @@ function nas_master_update_7233() {
     array('nas_site_template_feature' => array('page_manager_handlers'))
   );
 }
+
+/**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7234() {
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
+
+/**
+ * Enable Acquia Search Multiple Indexes module.
+ */
+function nas_master_update_7235() {
+  module_enable(array('acquia_search_multi_subs'));
+}
+
+/**
+ * Fixes for similar birds on Spanish bird nodes.
+ */
+function nas_master_update_7236() {
+  module_enable(array('i18n_sync'));
+  features_revert(array(
+    'nas_bird_type_feature' => array('panelizer_defaults', 'variable'),
+  ));
+}
+
+/**
+ * Fixes for the Language Switcher on front page.
+ */
+function nas_master_update_7237() {
+  variable_set('variable_realm_list_language',
+    array('site_name', 'site_slogan', 'site_404', 'site_frontpage'));
+  variable_store_set('language', 'en', 'site_frontpage', 'frontpage');
+  variable_store_set('language', 'es', 'site_frontpage', 'inicio');
+}
+
+/**
+ * Enable Native Plants features.
+ */
+function nas_master_update_7238() {
+  // Update "Default node index" settings.
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index'),
+  ));
+
+  // Load US ZIP codes information.
+  $file = drupal_get_path('module', 'location') . '/database/zipcodes.us.mysql';
+  $query = file_get_contents($file);
+  db_query($query);
+
+  module_enable(array(
+    'postal_code_validation',
+    'views_ajax_history',
+    'ajax_screen_lock',
+    'protected_pages',
+    'nas_master_native_plants',
+    'nas_native_plants_taxonomy',
+    'nas_nursery_ct_feature',
+    'nas_nursery_import_feature',
+    'nas_permalink_et_feature',
+    'nas_native_plants_permalink_page',
+    'nas_native_plant_ct_feature',
+    'nas_native_plants_search_page_feature',
+    'nas_native_plants_image_styles',
+    'nas_nurseries_near_you_feature',
+    'nas_community_resource_ct_feature',
+    'nas_community_resources_near_you_feature',
+    'nas_native_plants_email_feature',
+    'nas_native_plants_resources_page',
+  ));
+
+  // Create taxonomy terms.
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
+  nas_master_native_plants_taxonomy_terms_create();
+
+  // Revert features that somehow become overridden.
+  features_revert(array(
+    'nas_native_plants_email_feature' => array('variable'),
+  ));
+
+  // Set AJAX Screen Lock variables.
+  variable_set('ajax_screen_lock_popup_timeout', 300000);
+  variable_set('ajax_screen_lock_throbber_hide', 1);
+  variable_set('ajax_screen_lock_disable_in_admin', 1);
+  variable_set('ajax_screen_lock_pages_path', 'native-plants*');
+
+  // Protect Native Plants pages with password.
+  module_load_include('inc', 'protected_pages', 'protected_pages.admin');
+  $form = array();
+  $form_state = array(
+    'values' => array(
+      'path' => 'native-plants',
+      'password' => 'nativeplants',
+    ),
+  );
+  $paths = array(
+    'native-plants',
+    'native-plants-resources',
+  );
+  foreach ($paths as $path) {
+    $form_state['values']['path'] = $path;
+    protected_pages_configure_submit_callback($form, $form_state);
+  }
+}

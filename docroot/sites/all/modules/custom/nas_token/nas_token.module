@@ -176,30 +176,30 @@ function _nas_tokens_simple($node, $token_name) {
 
     case 'nas-guide-bird-title':
       $pattern = array(
-        nas_token_path_string_localize('field-guide'),
-        nas_token_path_string_localize('bird'),
+        nas_token_path_string_localize('field-guide', $node->language),
+        nas_token_path_string_localize('bird', $node->language),
         $node->title,
       );
       break;
 
     case 'nas-conservation-project-title':
       $pattern = array(
-        nas_token_path_string_localize('conservation'),
-        nas_token_path_string_localize('project'),
+        nas_token_path_string_localize('conservation', $node->language),
+        nas_token_path_string_localize('project', $node->language),
         $node->title,
       );
       break;
 
     case 'nas-magazine-issue-title':
       $pattern = array(
-        nas_token_path_string_localize('magazine'),
+        nas_token_path_string_localize('magazine', $node->language),
         $node->title,
       );
       break;
 
     case 'nas-slideshow-title':
       $pattern = array(
-        nas_token_path_string_localize('photos'),
+        nas_token_path_string_localize('photos', $node->language),
         $node->title,
       );
       break;
@@ -246,6 +246,6 @@ function nas_token_pathauto_alias_alter(&$alias, array &$context) {
 /**
  * Helper function to localize path strings.
  */
-function nas_token_path_string_localize($string) {
-  return t($string, array(), array('context' => NAS_TOKEN_PATH_LOCALIZATION_CONTEXT));
+function nas_token_path_string_localize($string, $language) {
+  return t($string, array(), array('context' => NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'langcode' => $language));
 }

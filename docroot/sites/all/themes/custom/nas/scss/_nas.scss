@@ -736,6 +736,9 @@ body.node-type-slideshow {
   .editorial-card-3x {
     .section-header h2 {
       margin-top: 0;
+      small {
+        margin-top: 6px;
+      }
     }
     .card-set .editorial-card {
       min-height: 0 !important;
@@ -772,6 +775,9 @@ body.node-type-slideshow {
   .editorial-card-3x {
     .section-header h2 {
       margin-top: 0;
+      small {
+        margin-top: 6px;
+      }
     }
     .card-set .editorial-card {
       min-height: 0 !important;
@@ -1273,5 +1279,23 @@ body {
   }
   @include breakpoint(min-width, 800px) {
     display: none;
+  }
+}
+
+/* Foundation Clearing overrides. */
+ul.clearing-thumbs {
+  display: inline;
+}
+
+.clearing-assembled {
+  .clearing-container {
+    .visible-img {
+      height: 100% !important;
+    }
+
+    .clearing-main-prev.disabled,
+    .clearing-main-next.disabled {
+      display: none;
+    }
   }
 }

@@ -16,6 +16,7 @@ regions[footer]  = 'Footer'
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/app.css
+stylesheets[all][] = js/vendor/foundation/clearing.css
 stylesheets[all][] = js/vendor/owl-carousel/owl.carousel.css
 
 ;;;;;;;;;;;;;;;;;;;;;
