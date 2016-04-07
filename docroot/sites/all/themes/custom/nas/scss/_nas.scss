@@ -1281,3 +1281,21 @@ body {
     display: none;
   }
 }
+
+/* Foundation Clearing overrides. */
+ul.clearing-thumbs {
+  display: inline;
+}
+
+.clearing-assembled {
+  .clearing-container {
+    .visible-img {
+      height: 100% !important;
+    }
+
+    .clearing-main-prev.disabled,
+    .clearing-main-next.disabled {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,917 @@
+<?php
+/**
+ * @file
+ * Main file for the NAS Master Native Plants module.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function nas_master_native_plants_menu() {
+  $items['admin/config/system/native-plants'] = array(
+    'title' => 'Native Plants',
+    'description' => 'Configure Native Plants settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+  );
+  $items['nas_master_native_plants/native_plant_create'] = array(
+    'title' => 'Create Native Plant',
+    'description' => 'Native Plant creation callback',
+    'page callback' => 'nas_master_native_plants_native_plant_create',
+    'access arguments' => array('create native_plant content'),
+    'file' => 'nas_master_native_plants.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function nas_master_native_plants_node_presave($node) {
+  if ($node->type != 'native_plant') {
+    return;
+  }
+
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_master_native_plants_generate_plant_id(
+    array(
+      $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
+      $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
+    )
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
+  $disable_fields = array(
+    'field_native_plant_common_name',
+    'field_np_scientific_name',
+    'field_native_plant_family',
+    'field_native_plant_id',
+  );
+  foreach ($disable_fields as $field) {
+    $form[$field]['#access'] = FALSE;
+  }
+}
+
+/**
+ * Helper function to generate Plant ID.
+ */
+function nas_master_native_plants_generate_plant_id($params) {
+  $plant_id = md5(implode('-', $params));
+  return $plant_id;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_master_native_plants_theme($existing, $type, $theme, $path) {
+  $common_theme = drupal_common_theme();
+  $variables = $common_theme['pager']['variables'];
+  return array(
+    'nas_master_native_plants_pager' => array(
+      'variables' => $variables,
+      'template' => 'templates/nas-master-native-plants-pager',
+      'preprocess functions' => array('nas_master_native_plants_pager_preprocess'),
+    ),
+    'nas_master_native_plants_mail_native_plants_list' => array(
+      'variables' => array(
+        'permalink' => NULL,
+      ),
+      'template' => 'templates/nas-master-native-plants-mail-native-plants-list',
+    ),
+  );
+}
+
+/**
+ * Preprocess function for the nas_master_native_plants_pager.
+ */
+function nas_master_native_plants_pager_preprocess(&$variables) {
+  $tags = $variables['tags'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $quantity = $variables['quantity'];
+  global $pager_page_array, $pager_total, $pager_total_items;
+  $variables['total_items'] = $pager_total_items[$element];
+
+  // Calculate various markers within this pager piece:
+  // Middle is used to "center" pages around the current page.
+  $pager_middle = ceil($quantity / 2);
+  // current is the page we are currently paged to
+  $pager_current = $pager_page_array[$element] + 1;
+  // first is the first page listed by this pager piece (re quantity)
+  $pager_first = $pager_current - $pager_middle + 1;
+  // last is the last page listed by this pager piece (re quantity)
+  $pager_last = $pager_current + $quantity - $pager_middle;
+  // max is the maximum page number
+  $pager_max = $pager_total[$element];
+  // End of marker calculations.
+
+  // Prepare for generation loop.
+  $i = $pager_first;
+  if ($pager_last > $pager_max) {
+    // Adjust "center" if at end of query.
+    $i = $i + ($pager_max - $pager_last);
+    $pager_last = $pager_max;
+  }
+  if ($i <= 0) {
+    // Adjust "center" if at start of query.
+    $pager_last = $pager_last + (1 - $i);
+    $i = 1;
+  }
+  // End of generation loop preparation.
+
+  $li_first = theme('pager_first', array('text' => 1, 'element' => $element, 'parameters' => $parameters));
+  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
+  $li_last = theme('pager_last', array('text' => $pager_max, 'element' => $element, 'parameters' => $parameters));
+
+  $items = array(
+    'first' => '',
+    'previous' => '',
+    'next' => '',
+    'last' => '',
+  );
+  if ($pager_total[$element] > 1) {
+    if ($li_first && $i > 1) {
+      $items['first'] = $li_first;
+    }
+    if ($li_previous) {
+      $items['previous'] = $li_previous;
+    }
+    else {
+      $items['previous'] = '<span class="pager-prev">' . (isset($tags[1]) ? $tags[1] : t('‹ previous')) . '</span>';
+    }
+
+    // When there is more than one page, create the pager list.
+    if ($i != $pager_max) {
+      if ($i > 1) {
+        $items[] = '<span>...</span>';
+      }
+      // Now generate the actual pager piece.
+      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
+        if ($i < $pager_current) {
+          $items[] = theme('pager_previous', array(
+            'text' => $i,
+            'element' => $element,
+            'interval' => ($pager_current - $i),
+            'parameters' => $parameters
+          ));
+        }
+        if ($i == $pager_current) {
+          $items[] = '<span>' . $i . '</span>';
+        }
+        if ($i > $pager_current) {
+          $items[] = theme('pager_next', array(
+            'text' => $i,
+            'element' => $element,
+            'interval' => ($i - $pager_current),
+            'parameters' => $parameters
+          ));
+        }
+      }
+      if ($i < $pager_max) {
+        $items[] = '<span>...</span>';
+      }
+    }
+    // End generation.
+    if ($li_next) {
+      $items['next'] = $li_next;
+    }
+    else {
+      $items['next'] = '<span class="pager-next">' . (isset($tags[3]) ? $tags[3] : t('next ›')) . '</span>';
+    }
+    if ($li_last && $i <= $pager_max) {
+      $items['last'] = $li_last;
+    }
+  }
+  $variables['items'] = $items;
+
+  // Define variable required for the template_process() function.
+  $variables['classes_array'] = array();
+  $variables['attributes_array'] = array();
+  $variables['title_attributes_array'] = array();
+  $variables['content_attributes_array'] = array();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_state['view']->name != 'native_plants_search') {
+    return;
+  }
+
+  // Unset the form theme functions to remove unneeded wrappers.
+  unset($form['#theme']);
+
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form',
+    ),
+  );
+
+  $form['zipcode']['#prefix'] = '<div class="row"><div class="column medium-6">';
+  $form['zipcode']['#suffix'] = '</div>';
+  $form['zipcode']['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form--zip-code',
+    ),
+    'placeholder' => t('ZIP code'),
+  );
+  $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
+
+  $form['attribute']['#attributes'] = array(
+    'style' => 'display: none;',
+  );
+  $form['bird_type']['#attributes'] = array(
+    'style' => 'display: none;',
+  );
+  $form['attribute']['#options']['All'] = t('All types of plants');
+  $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
+
+  $form['submit']['#prefix'] = '<div class="column medium-6">';
+  $form['submit']['#suffix'] = '</div></div>';
+  $form['submit']['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form--submit',
+      'button',
+      'tomato',
+      'large',
+    ),
+  );
+
+  // Remove filter values that will produce no results with already set other filters.
+  if (!$results_unfiltered = nasnp_views_json_query_results_unfiltered()) {
+    return;
+  }
+
+  $combinations = array(
+    'attribute' => array('bird_type'),
+    'bird_type' => array('attribute'),
+  );
+  foreach ($combinations as $filter_to_filter => $filters) {
+    $results_filtered = $results_unfiltered;
+
+    // Filter the unfiltered results by the value of all other filters.
+    foreach ($filters as $filter) {
+      $machine_values = array();
+      if (isset($form_state['input'][$filter]) && $term = taxonomy_term_load($form_state['input'][$filter])) {
+        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+        foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+          $machine_values[] = $field_wrapper->value();
+        }
+      }
+      if ($machine_values) {
+        foreach ($results_filtered as $key => $result) {
+          $unset = TRUE;
+          foreach ($machine_values as $value) {
+            if ($result->$value) {
+              $unset = FALSE;
+            }
+          }
+          if ($unset) {
+            unset($results_filtered[$key]);
+          }
+        }
+      }
+    }
+
+    // Determine our filter allowed values using the collection of keys present
+    // in the result set filtered by all other filters.
+    $collection = array();
+    foreach ($results_filtered as $result) {
+      foreach ($result as $key => $value) {
+        if ($value & !isset($collection[$key])) {
+          $collection[$key] = $key;
+        }
+      }
+    }
+
+    foreach ($form[$filter_to_filter]['#options'] as $term_tid => $term_name) {
+      if (!$term = taxonomy_term_load($term_tid)) {
+        continue;
+      }
+      $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+
+      $unset = TRUE;
+      foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if (isset($collection[$value])) {
+          $unset = FALSE;
+        }
+      }
+
+      if ($unset) {
+        unset($form[$filter_to_filter]['#options'][$term_tid]);
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to validate form element for US ZIP code.
+ */
+function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
+  if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
+    return;
+  }
+
+  $validation = postal_code_validation_validate($element['#value'], 'US');
+  if ($validation['error']) {
+    form_error($element, $validation['error']);
+  }
+}
+
+/**
+ * Implements hook_views_plugins().
+ */
+function nas_master_native_plants_views_plugins() {
+  return array(
+    'pager' => array(
+      'nas_master_native_plants_views_pager_plugin' => array(
+        'title' => t('Paged output, NAS Master Native Plants pager'),
+        'short title' => t('NAS Master Native Plants pager'),
+        'handler' => 'nas_master_native_plants_views_pager_plugin',
+        'help' => t('Paged output, NAS Master Native Plants pager'),
+        'help topic' => 'pager-nas-master-native-plants-pager',
+        'uses options' => TRUE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function nas_master_native_plants_preprocess_views_view(&$vars) {
+  if ($vars['view']->name != 'native_plants_search') {
+    return;
+  }
+
+  // Add required assets.
+  $theme_path = drupal_get_path('theme', 'nas');
+  drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
+  drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
+  drupal_add_js($theme_path . '/js/nas/native-plants.js');
+  drupal_add_js(drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.js');
+
+  $vars['total_items'] = 0;
+  if (isset($vars['view']->query->pager)) {
+    $vars['total_items'] = $vars['view']->query->pager->total_items;
+  }
+
+  // Construct the combined results array.
+  $results = array();
+  foreach ($vars['view']->result as &$result) {
+    $results[] = &$result;
+  }
+  if (isset($vars['view']->result_tier1)) {
+    foreach ($vars['view']->result_tier1 as &$result) {
+      $results[] = &$result;
+    }
+  }
+  if (empty($results)) {
+    return;
+  }
+
+  // Load all available plant attributes and bird types.
+  $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
+  $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
+  $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
+  $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
+
+  $np_attr_term_wrappers = array();
+  $np_bird_types_term_wrappers = array();
+  foreach ($np_attr_terms as $term) {
+    $np_attr_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+  foreach ($np_bird_types_terms as $term) {
+    $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+
+  // Assign plant attributes and bird types.
+  foreach ($results as &$result) {
+    $result->Attributes = array();
+    $result->BirdTypes = array();
+
+    foreach ($np_attr_term_wrappers as $wrapper) {
+      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if ($result->$value == '1') {
+          $result->Attributes[$wrapper->tid->value()] = array(
+            'tid' => $wrapper->tid->value(),
+            'name' => $wrapper->name->value(),
+            'color' => $wrapper->field_np_attr_color->value(),
+          );
+        }
+      }
+    }
+    foreach ($np_bird_types_term_wrappers as $wrapper) {
+      $link = $wrapper->field_link->value();
+      if ($link) {
+        $url = $link['url'];
+      }
+      else {
+        $url = '';
+      }
+      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+        $value = $field_wrapper->value();
+        if ($result->$value == '1') {
+          $result->BirdTypes[$wrapper->tid->value()] = array(
+            'tid' => $wrapper->tid->value(),
+            'name' => $wrapper->name->value(),
+            'image' => $wrapper->field_np_bird_type_image->value(),
+            'url' => $url,
+          );
+        }
+      }
+    }
+  }
+
+  foreach ($results as &$result) {
+    // Add Plant data attributes.
+    $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
+      . 'data-plant-common-name="' . $result->CommonName . '" '
+      . 'data-plant-scientific-name="' . $result->ScientificName . '" '
+      . 'data-plant-bird-types="' . implode(',', array_keys($result->BirdTypes)) . '"';
+
+    // Prepare images.
+    $result->PlantImgDesktop = '';
+    $result->PlantImgMobile = '';
+    $result->PlantImgLightbox = '';
+    if ($result->LocalPlantImg) {
+      $result->PlantImgDesktop = theme('image_style', array(
+        'path' => $result->LocalPlantImg,
+        'style_name'=> 'native_plant_desktop',
+        'alt' => $result->CommonName,
+      ));
+      $result->PlantImgMobile = theme('image_style', array(
+        'path' => $result->LocalPlantImg,
+        'style_name'=> 'native_plant_mobile',
+        'alt' => $result->CommonName,
+      ));
+      $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $result->LocalPlantImg);
+    }
+    elseif ($result->PlantImg) {
+      $result->PlantImgDesktop = theme('imagecache_external', array(
+        'path' => $result->PlantImg,
+        'style_name'=> 'native_plant_desktop',
+        'alt' => $result->CommonName,
+      ));
+      $result->PlantImgMobile = theme('imagecache_external', array(
+        'path' => $result->PlantImg,
+        'style_name'=> 'native_plant_mobile',
+        'alt' => $result->CommonName,
+      ));
+      if ($path =imagecache_external_generate_path($result->PlantImg)) {
+        $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $path);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_ajax_data_alter().
+ */
+function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
+  if ($view->name != 'native_plants_search' || $view->current_display != 'native_plants_search_pane') {
+    return;
+  }
+
+  // Change scroll destination.
+  foreach ($commands as &$command) {
+    if ($command['command'] == 'viewsScrollTop') {
+      $selector = $command['selector'];
+      $command['selector'] = '.np-search-full-results';
+    }
+  }
+  // Add validation errors.
+  $commands[] = ajax_command_prepend($selector, theme('status_messages'));
+
+  // Refresh exposed form.
+  $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
+  if ($view->display_handler->get_option('exposed_block')) {
+    $form = $exposed_block_plugin->render_exposed_form(TRUE);
+    $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
+    array_unshift($commands, ajax_command_replace($id, $form));
+  }
+}
+
+/**
+ * Form building callback for Native Plants "ZIP code search" form.
+ */
+function nas_master_native_plants_zipcode_form($form, &$form_state, $conf = array()) {
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-search-form',
+    ),
+  );
+  $form['zipcode'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['zipcode_placeholder'])),
+    '#title_display' => 'invisible',
+    '#default_value' => $conf['zipcode_default_value'],
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-search-form--zip-code',
+      ),
+      'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+    ),
+    '#required' => TRUE,
+    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
+    '#prefix' => '<div class="row"><div class="column medium-6">',
+    '#suffix' => '</div>',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t(filter_xss($conf['button_text'])),
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-search-form--submit',
+        'button',
+        'large',
+        'tomato',
+      ),
+    ),
+    '#ajax' => array(
+      'callback' => '_nas_master_native_plants_zipcode_form_ajax_callback',
+      'wrapper' => 'nas-master-native-plants-zipcode-form',
+    ),
+    '#prefix' => '<div class="column medium-6">',
+    '#suffix' => '</div></div>',
+  );
+  if (empty($conf['zipcode_default_value'])) {
+    $form['placeholder'] = array(
+      '#markup' => '<div class="native-plants-results-placeholder"><span class="blue-point"></span> <span class="blue-point"></span> <span class="blue-point"></span></div>',
+    );
+  }
+
+  return $form;
+}
+
+/**
+ * AJAX callback for Native Plants "ZIP code search" form.
+ */
+function _nas_master_native_plants_zipcode_form_ajax_callback($form, $form_state) {
+  if (!$form_state['redirect']) {
+    return $form;
+  }
+
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * Form submit callback for Native Plants "ZIP code search" form.
+ */
+function nas_master_native_plants_zipcode_form_submit($form, &$form_state) {
+  // Redirect to resources per ZIP code page.
+  $form_state['redirect'] = 'native-plants-resources/' . $form_state['values']['zipcode'];
+}
+
+/**
+ * Form building callback for Native Plants "Join the Sanctuary" form.
+ */
+function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = array()) {
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-bottom-form-right',
+    ),
+  );
+  $form['sanctuary_email_address'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['email_address_placeholder'])),
+    '#title_display' => 'invisible',
+    '#attributes' => array(
+      'placeholder' => t(filter_xss($conf['email_address_placeholder'])),
+    ),
+    '#required' => TRUE,
+  );
+  $form['sanctuary_zipcode'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['zipcode_placeholder'])),
+    '#title_display' => 'invisible',
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-bottom-form-right--zipcode',
+      ),
+      'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+    ),
+    '#required' => TRUE,
+    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
+  );
+  $form['sanctuary_square_feet'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['square_feet_placeholder'])),
+    '#title_display' => 'invisible',
+    '#attributes' => array(
+      'placeholder' => t(filter_xss($conf['square_feet_placeholder'])),
+    ),
+    '#element_validate' => array('element_validate_integer_positive'),
+  );
+  $form['sanctuary_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t(filter_xss($conf['button_text'])),
+    '#attributes' => array(
+      'class' => array(
+        'button',
+        'large',
+        'tomato',
+      ),
+    ),
+    '#ajax' => array(
+      'callback' => '_nas_master_native_plants_sanctuary_form_ajax_callback',
+      'wrapper' => 'nas-master-native-plants-sanctuary-form',
+    ),
+  );
+
+  return $form;
+}
+
+/**
+ * AJAX callback for Native Plants "Join the Sanctuary" form.
+ */
+function _nas_master_native_plants_sanctuary_form_ajax_callback($form, $form_state) {
+  if (!$form_state['redirect']) {
+    return $form;
+  }
+
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * Form validation callback for Native Plants "Join the Sanctuary" form.
+ */
+function nas_master_native_plants_sanctuary_form_validate($form, &$form_state) {
+  $email = &$form_state['values']['sanctuary_email_address'];
+  // Validate email address.
+  $email = strtolower(trim($email));
+  if (!$email || !valid_email_address($email)) {
+    form_error($form['sanctuary_email_address'], t('The e-mail address you specified is not valid.'));
+  }
+}
+
+/**
+ * Form submit callback for Native Plants "Join the Sanctuary" form.
+ */
+function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
+  // Create permalink entity.
+  $values = array(
+    'type' => 'permalink',
+    'email' => $form_state['values']['sanctuary_email_address'],
+    'zip_code' => $form_state['values']['sanctuary_zipcode'],
+    'plants_cart' => $_COOKIE['native_plants_cart'],
+    'square_feet' => $form_state['values']['sanctuary_square_feet'],
+  );
+  if ($permalink = entity_create('permalink', $values)) {
+    entity_save('permalink', $permalink);
+  }
+
+  // Redirect to permalink page.
+  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+
+  // Convio integration.
+  nas_master_native_plants_convio_integration($permalink);
+
+  // Send plant list - it is set up to go through Mandrill.
+  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
+}
+
+/**
+ * Helper function for Convio integration.
+ */
+function nas_master_native_plants_convio_integration($permalink) {
+  // @see https://secure.audubon.org/site/SSurvey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=21409
+  $url = 'https://secure.audubon.org/site/SSurvey';
+  $data = array(
+    'cons_info_component' => 't',
+    'cons_email' => $permalink->email,
+    'cons_zip_code' => $permalink->zip_code,
+    's_rememberMe' => 0,
+    'remember_me_opt_in_requested' => 'true',
+    // Square feet.
+    '3340_21409_2_18300' => $permalink->square_feet ? $permalink->square_feet : 0,
+    'denySubmit' => '',
+    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
+    'SURVEY_ID' => '21409',
+  );
+  $options = array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query($data),
+    'timeout' => 15,
+  );
+  $result = drupal_http_request($url, $options);
+  watchdog('nas_master_native_plants', 'Convio integration - %email entered. Service answer was !answer',
+    array(
+      '%email' => $permalink->email,
+      '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+    )
+  );
+}
+
+/**
+ * Implements hook_mail().
+ */
+function nas_master_native_plants_mail($key, &$message, $params) {
+  if ($key != 'native_plants_list') {
+    return;
+  }
+
+  // TODO: do we need to do anything else to send HTML correctly? modify headers?
+  $message['subject'] = 'Audubon Native Plants list';
+  $message['body'][] = theme('nas_master_native_plants_mail_native_plants_list', array(
+    'permalink' => $params['permalink'],
+  ));
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for nas_master_native_plants_mail_native_plants_list.
+ */
+function nas_master_native_plants_preprocess_nas_master_native_plants_mail_native_plants_list(&$variables) {
+  $variables['plants'] = drupal_json_decode($variables['permalink']->plants_cart);
+  _nas_master_native_plants_preprocess_plants_list($variables);
+  foreach ($variables['plants'] as &$plant) {
+    $plant['BirdTypesMail'] = array();
+    foreach ($plant['BirdTypesValues'] as $bird_type) {
+      $plant['BirdTypesMail'][] = l($bird_type['name'], $bird_type['url'], array(
+        'absolute' => TRUE,
+        'attributes' => array(
+          'style' => 'color: #404040; text-decoration: underline; white-space: nowrap;',
+        ),
+      ));
+    }
+  }
+  $variables['permalink_url'] = url('native-plants/list/' . $variables['permalink']->uuid, array('absolute' => TRUE));
+
+  $page = page_manager_page_load('permalink_page');
+  $task = page_manager_get_task($page->task);
+  $handlers = page_manager_load_task_handlers($task, $page->name);
+  foreach ($handlers as $handler) {
+    if ($handler->name === 'page_permalink_page__plant_list_page') {
+      break;
+    }
+  }
+
+  // Load display if it is empty.
+  if (empty($handler->conf['display']) && !empty($handler->conf['did'])) {
+    $handler->conf['display'] = panels_load_display($handler->conf['did']);
+  }
+  if (empty($handler->conf['display']->content)) {
+    return;
+  }
+
+  foreach ($handler->conf['display']->content as $pane) {
+    switch ($pane->subtype) {
+      case 'native_plants_bar':
+        $variables['bar_title'] = $pane->configuration['title_desktop'];
+        $variables['bar_background_color'] = $pane->configuration['background_color'];
+        break;
+
+      case 'native_plants_list_description':
+        $variables['list_title'] = $pane->configuration['override_title_text'];
+        $variables['list_text_top'] = check_markup($pane->configuration['text_top']['value'], $pane->configuration['text_top']['format']);
+        $variables['list_text_bottom'] = check_markup($pane->configuration['text_bottom']['value'], $pane->configuration['text_bottom']['format']);
+        // Convert to absolute URLs.
+        $variables['list_text_top'] = check_markup($variables['list_text_top'], 'absolute_urls');
+        $variables['list_text_bottom'] = check_markup($variables['list_text_bottom'], 'absolute_urls');
+
+        $variables['list_share_label'] = $pane->configuration['share_label'];
+        $variables['twitter_url'] = url('http://twitter.com/share', array(
+          'query' => array(
+            'text' => '',
+            'via' => 'audubonsociety',
+            'url' => $variables['permalink_url'],
+          ),
+        ));
+        $variables['facebook_url'] = url('http://www.facebook.com/sharer/sharer.php', array(
+          'query' => array(
+            'u' => $variables['permalink_url'],
+          ),
+        ));
+        break;
+
+      case 'editorial_card_3x':
+        $variables['editorial_cards_title'] = $pane->configuration['override_title_text'];
+        $variables['editorial_cards'] = array();
+        foreach ($pane->configuration['refs'] as $ref) {
+          if (!empty($ref['reference']['entity_id']) && $node = node_load($ref['reference']['entity_id'])) {
+            // Hackish way to get required node values.
+            $vars['node'] = $node;
+            $vars['type'] = $node->type;
+            $vars['view_mode'] = 'editorial_card_3x';
+            nas_preprocess_nodes_editorial_cards($vars);
+
+            $uri = entity_uri('node', $node);
+            $uri['options']['absolute'] = TRUE;
+            $image = theme('image_style', array(
+              'style_name' => 'article_teaser',
+              'path' => $vars['image_uri'],
+              'alt' => $node->title,
+            ));
+            $variables['editorial_cards'][] = array(
+              'url' => url($uri['path'], $uri['options']),
+              'title' => $vars['title'],
+              'subtitle' => $vars['subtitle'],
+              'image_url' => image_style_url('article_teaser', $vars['image_uri']),
+              'image' => $image,
+              'linked_image' => l($image, $uri['path'], $uri['options'] + array('html' => TRUE, 'attributes' => array('title' => $node->title))),
+              'blue_text_link_url' => isset($vars['blue_text_link_url']) ? url(ltrim($vars['blue_text_link_url'], '/'), array('absolute' => TRUE)) : '',
+              'blue_text_link_text' => isset($vars['blue_text_link_text']) ? $vars['blue_text_link_text'] : '',
+              'custom_link_text' => $vars['custom_link_text'],
+            );
+          }
+          else {
+            continue;
+          }
+        }
+        $variables['editorial_cards'] = array_slice($variables['editorial_cards'], 0, 2);
+        break;
+    }
+  }
+}
+
+/**
+ * Implements hook_eck_property_types().
+ */
+function nas_master_native_plants_eck_property_types() {
+  return array('big_text' => t('Big text'));
+}
+
+/**
+ * Implements hook_eck_property_type_schema_alter().
+ */
+function nas_master_native_plants_eck_property_type_schema_alter(&$schema, $type) {
+  if ($type == 'big_text') {
+    $schema = array(
+      'description' => 'Big text',
+      'type' => 'text',
+      'size' => 'normal',
+    );
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_master_native_plants_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'geocoder' && $plugin_type == 'geocoder_handler') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Helper function to preprocess plants list.
+ */
+function _nas_master_native_plants_preprocess_plants_list(&$variables) {
+  // Prepare bird types wrappers.
+  $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
+  $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
+  $np_bird_types_term_wrappers = array();
+  foreach ($np_bird_types_terms as $term) {
+    $np_bird_types_term_wrappers[$term->tid] = entity_metadata_wrapper('taxonomy_term', $term);
+  }
+
+  // Cycle through each plant and add bird types values.
+  foreach ($variables['plants'] as &$plant) {
+    $plant['BirdTypes'] = explode(',', $plant['BirdTypes']);
+    $plant['BirdTypesValues'] = array();
+    $plant['BirdTypesDesktop'] = array();
+    $plant['BirdTypesMobile'] = array();
+
+    foreach ($plant['BirdTypes'] as $bird_type_tid) {
+      if (!isset($np_bird_types_term_wrappers[$bird_type_tid])) {
+        continue;
+      }
+
+      $wrapper = $np_bird_types_term_wrappers[$bird_type_tid];
+      $bird_type = array(
+        'tid' => $wrapper->tid->value(),
+        'name' => $wrapper->name->value(),
+        'image' => $wrapper->field_np_bird_type_image->value(),
+        'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : '',
+      );
+      $plant['BirdTypesValues'][$wrapper->tid->value()] = $bird_type;
+      $plant['BirdTypesDesktop'][] = l($bird_type['name'], $bird_type['url'], array('attributes' => array('class' => array('native-plant-bird-category-link'))));
+      $plant['BirdTypesMobile'][] = l($bird_type['name'], $bird_type['url']);
+    }
+  }
+}
