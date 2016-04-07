@@ -102,7 +102,7 @@ function _nas_token_article($node) {
   switch ($news_type) {
     case 'press-release':
       $pattern = array(
-        nas_token_path_string_localize('press-release'),
+        nas_token_path_string_localize('press-release', $node->language),
         $node->title,
       );
       break;
@@ -110,7 +110,7 @@ function _nas_token_article($node) {
     case 'magazine-article':
       $magazine_items = field_get_items('node', $node, 'field_magazine_issue');
       $pattern = array(
-        nas_token_path_string_localize('magazine'),
+        nas_token_path_string_localize('magazine', $node->language),
       );
 
       if (!empty($magazine_items[0]['target_id'])) {
@@ -125,7 +125,7 @@ function _nas_token_article($node) {
 
     default:
       $pattern = array(
-        nas_token_path_string_localize('news'),
+        nas_token_path_string_localize('news', $node->language),
         $node->title,
       );
   }
@@ -160,7 +160,7 @@ function _nas_token_menu_section($node) {
     return;
   }
 
-  return nas_token_path_string_localize($path);
+  return nas_token_path_string_localize($path, $node->language);
 }
 
 /**
@@ -176,30 +176,30 @@ function _nas_tokens_simple($node, $token_name) {
 
     case 'nas-guide-bird-title':
       $pattern = array(
-        nas_token_path_string_localize('field-guide'),
-        nas_token_path_string_localize('bird'),
+        nas_token_path_string_localize('field-guide', $node->language),
+        nas_token_path_string_localize('bird', $node->language),
         $node->title,
       );
       break;
 
     case 'nas-conservation-project-title':
       $pattern = array(
-        nas_token_path_string_localize('conservation'),
-        nas_token_path_string_localize('project'),
+        nas_token_path_string_localize('conservation', $node->language),
+        nas_token_path_string_localize('project', $node->language),
         $node->title,
       );
       break;
 
     case 'nas-magazine-issue-title':
       $pattern = array(
-        nas_token_path_string_localize('magazine'),
+        nas_token_path_string_localize('magazine', $node->language),
         $node->title,
       );
       break;
 
     case 'nas-slideshow-title':
       $pattern = array(
-        nas_token_path_string_localize('photos'),
+        nas_token_path_string_localize('photos', $node->language),
         $node->title,
       );
       break;
@@ -246,6 +246,6 @@ function nas_token_pathauto_alias_alter(&$alias, array &$context) {
 /**
  * Helper function to localize path strings.
  */
-function nas_token_path_string_localize($string) {
-  return t($string, array(), array('context' => NAS_TOKEN_PATH_LOCALIZATION_CONTEXT));
+function nas_token_path_string_localize($string, $language) {
+  return t($string, array(), array('context' => NAS_TOKEN_PATH_LOCALIZATION_CONTEXT, 'langcode' => $language));
 }

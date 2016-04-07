@@ -30,6 +30,11 @@ function nas_rss_image_default_styles() {
         ),
         'weight' => 2,
       ),
+      47 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
     ),
   );
 

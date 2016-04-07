@@ -63,8 +63,7 @@ function events_social_block_render($subtype, $conf, $args, $contexts) {
   $default_conf = _events_social_block_defaults();
   $conf = array_merge($default_conf, $conf);
 
-  global $base_root;
-  $page_link = $base_root . '/' . request_uri();
+  $page_link = url(drupal_get_path_alias(), array('absolute' => TRUE, 'alias' => TRUE));
   $title = drupal_get_title();
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page(
