@@ -3420,6 +3420,7 @@ function nas_master_update_7238() {
   variable_set('ajax_screen_lock_pages_path', 'native-plants*');
 
   // Protect Native Plants pages with password.
+  module_load_include('inc', 'protected_pages', 'protected_pages.admin');
   $form = array();
   $form_state = array(
     'values' => array(
