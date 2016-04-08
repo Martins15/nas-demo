@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Native Plants Permalink Panel page feature.
+ */
+
+include_once 'nas_native_plants_permalink_page.features.inc';

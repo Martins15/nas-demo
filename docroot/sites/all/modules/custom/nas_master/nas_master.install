@@ -3370,16 +3370,85 @@ function nas_master_update_7237() {
 }
 
 /**
- * Enable NAS RSS feature.
+ * Enable Native Plants features.
  */
 function nas_master_update_7238() {
+  // Update "Default node index" settings.
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index'),
+  ));
+
+  // Load US ZIP codes information.
+  $file = drupal_get_path('module', 'location') . '/database/zipcodes.us.mysql';
+  $query = file_get_contents($file);
+  db_query($query);
+
+  module_enable(array(
+    'postal_code_validation',
+    'views_ajax_history',
+    'ajax_screen_lock',
+    'protected_pages',
+    'nas_master_native_plants',
+    'nas_native_plants_taxonomy',
+    'nas_nursery_ct_feature',
+    'nas_nursery_import_feature',
+    'nas_permalink_et_feature',
+    'nas_native_plants_permalink_page',
+    'nas_native_plant_ct_feature',
+    'nas_native_plants_search_page_feature',
+    'nas_native_plants_image_styles',
+    'nas_nurseries_near_you_feature',
+    'nas_community_resource_ct_feature',
+    'nas_community_resources_near_you_feature',
+    'nas_native_plants_email_feature',
+    'nas_native_plants_resources_page',
+  ));
+
+  // Create taxonomy terms.
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
+  nas_master_native_plants_taxonomy_terms_create();
+
+  // Revert features that somehow become overridden.
+  features_revert(array(
+    'nas_native_plants_email_feature' => array('variable'),
+  ));
+
+  // Set AJAX Screen Lock variables.
+  variable_set('ajax_screen_lock_popup_timeout', 300000);
+  variable_set('ajax_screen_lock_throbber_hide', 1);
+  variable_set('ajax_screen_lock_disable_in_admin', 1);
+  variable_set('ajax_screen_lock_pages_path', 'native-plants*');
+
+  // Protect Native Plants pages with password.
+  module_load_include('inc', 'protected_pages', 'protected_pages.admin');
+  $form = array();
+  $form_state = array(
+    'values' => array(
+      'path' => 'native-plants',
+      'password' => 'nativeplants',
+    ),
+  );
+  $paths = array(
+    'native-plants',
+    'native-plants-resources',
+  );
+  foreach ($paths as $path) {
+    $form_state['values']['path'] = $path;
+    protected_pages_configure_submit_callback($form, $form_state);
+  }
+}
+
+/**
+ * Enable NAS RSS feature.
+ */
+function nas_master_update_7239() {
   module_enable(array('nas_rss'));
 }
 
 /**
  * Enables events display.
  */
-function nas_master_update_7239() {
+function nas_master_update_7240() {
   // Enabling events page.
   $page = page_manager_cache_load('page-events_landing_page');
   page_manager_page_enable($page, FALSE);
@@ -3392,7 +3461,7 @@ function nas_master_update_7239() {
 /**
  * Entity translation for FPPs.
  */
-function nas_master_update_7240() {
+function nas_master_update_7241() {
   module_enable(array('entity_translation', 'title'));
 
   // Entity translation variables.
