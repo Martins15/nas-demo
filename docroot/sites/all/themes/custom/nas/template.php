@@ -749,6 +749,7 @@ function nas_preprocess_node_article(&$vars) {
  */
 function nas_preprocess_nodes_editorial_cards(&$vars) {
   $node = $vars['node'];
+  $vars['image_uri'] = '';
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
   $image_uri = FALSE;
@@ -762,6 +763,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
+    $vars['image_uri'] = $image_uri;
     $image = theme('image', array(
       'path' => image_style_url('article_teaser', $image_uri),
       'alt' => $node->title,

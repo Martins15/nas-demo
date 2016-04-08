@@ -1,0 +1,11 @@
+name = NAS Native Plants Views Json Query Plugin
+description = Adds a views backend to query Audubon Native Plants service.
+package = Views
+dependencies[] = views_json_query
+core = 7.x
+
+files[] = plugins/nasnp_views_json_query_plugin_query_json.inc
+; Handlers
+;files[] = handlers/views_json_query_handler_field.inc
+;files[] = handlers/views_json_query_handler_filter.inc
+;files[] = handlers/views_json_query_handler_sort.inc
