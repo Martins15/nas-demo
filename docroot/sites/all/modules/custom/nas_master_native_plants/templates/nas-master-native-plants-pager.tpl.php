@@ -4,6 +4,7 @@
  * Template file for the NAS Master Native Plants pager.
  */
 ?>
+<?php if (!$total_items): return; endif; ?>
 <div class="columns">
   <div class="search-results-total hide-for-tiny hide-for-small">
     <div class="column medium-4">
