@@ -358,7 +358,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
   drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
   drupal_add_js($theme_path . '/js/nas/native-plants.js');
-  drupal_add_js(drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.js');
+  drupal_add_js(drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.js', array('scope' => 'footer'));
 
   $vars['total_items'] = 0;
   if (isset($vars['view']->query->pager)) {
