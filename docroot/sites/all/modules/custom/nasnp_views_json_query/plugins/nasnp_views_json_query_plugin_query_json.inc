@@ -289,5 +289,11 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         unset($ret[$result_key]);
       }
     }
+
+    // Check if we should return Tier 1 results.
+    // TODO: We should probably add option to query settings to return Tier 1 results.
+    if ($view->current_display == 'native_plants_search_pane_tier1') {
+      $ret = $view->result_tier1;
+    }
   }
 }
