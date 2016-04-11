@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Nurseries near you feature.
+ */
+
+include_once 'nas_nurseries_near_you_feature.features.inc';

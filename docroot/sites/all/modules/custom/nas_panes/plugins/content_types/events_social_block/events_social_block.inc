@@ -14,7 +14,10 @@ $plugin = array(
   'no title override' => TRUE,
   'all contexts' => TRUE,
   'hook theme' => 'events_social_block_theme',
-  'defaults' => _events_social_block_defaults(),
+  'defaults' => array(
+    'caption' => t('Share this event'),
+    'twitter_account' => 'audubonsociety',
+  ),
 );
 
 /**
@@ -60,8 +63,9 @@ function events_social_block_edit_form_submit(&$form, &$form_state) {
 function events_social_block_render($subtype, $conf, $args, $contexts) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
-  $default_conf = _events_social_block_defaults();
-  $conf = array_merge($default_conf, $conf);
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
+  }
 
   $page_link = url(drupal_get_path_alias(), array('absolute' => TRUE, 'alias' => TRUE));
   $title = drupal_get_title();
@@ -107,15 +111,5 @@ function events_social_block_theme(&$theme, $plugin) {
     ),
     'template' => 'events-social-block',
     'path' => $plugin['path'],
-  );
-}
-
-/**
- * Helper function to return block defaults.
- */
-function _events_social_block_defaults() {
-  return array(
-    'caption' => t('Share this event'),
-    'twitter_account' => 'audubonsociety',
   );
 }

@@ -98,7 +98,7 @@ function nas_rss_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'node_rss';
   $handler->display->display_options['row_options']['item_length'] = 'rss';
-  $handler->display->display_options['path'] = 'feed.xml';
+  $handler->display->display_options['path'] = 'rss.xml';
   $handler->display->display_options['sitename_title'] = 0;
   $translatables['nas_rss'] = array(
     t('Master'),
