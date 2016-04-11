@@ -14207,6 +14207,10 @@ h2.grey {
   font-family: Source Sans Pro, Verdana, sans-serif;
 }
 
+.view-native-plants-search {
+  margin-bottom: 20px;
+}
+
 .native-plants-search-results {
   margin-top: 20px;
 }
@@ -14409,7 +14413,14 @@ h2.grey {
 .native-plants-full-search-results .mobile-search-full-results .view-row label {
   font-size: 19px;
 }
-.native-plants-full-search-results .search-results-total {
+.native-plants-full-search-results.permalink-list table {
+  font-size: 17px;
+}
+.native-plants-full-search-results.permalink-list table tr td {
+  width: auto !important;
+}
+
+.search-results-total {
   background-color: #f4f4f4;
   border-bottom: 2px solid #cccccc;
   border-top: 2px solid #cccccc;
@@ -14420,44 +14431,38 @@ h2.grey {
   overflow: hidden;
 }
 @media only screen and (min-width: 601px) {
-  .native-plants-full-search-results .search-results-total {
+  .search-results-total {
     border-bottom-width: 1px;
     border-top-width: 1px;
   }
 }
-.native-plants-full-search-results .search-results-total .pager {
+.search-results-total .pager {
   text-align: center;
   font-weight: bold;
 }
-.native-plants-full-search-results .search-results-total .pager > :first-child {
+.search-results-total .pager > :first-child {
   float: left;
   margin-left: 20px;
   margin-right: 10px;
 }
-.native-plants-full-search-results .search-results-total .pager > :first-child:before {
+.search-results-total .pager > :first-child:before {
   content: '< ';
 }
-.native-plants-full-search-results .search-results-total .pager > :last-child {
+.search-results-total .pager > :last-child {
   float: right;
   margin-left: 10px;
   margin-right: 20px;
 }
-.native-plants-full-search-results .search-results-total .pager > :last-child:after {
+.search-results-total .pager > :last-child:after {
   content: ' >';
 }
 @media only screen and (min-width: 601px) {
-  .native-plants-full-search-results .search-results-total .pager > :first-child {
+  .search-results-total .pager > :first-child {
     float: none;
   }
-  .native-plants-full-search-results .search-results-total .pager > :last-child {
+  .search-results-total .pager > :last-child {
     float: none;
   }
-}
-.native-plants-full-search-results.permalink-list table {
-  font-size: 17px;
-}
-.native-plants-full-search-results.permalink-list table tr td {
-  width: auto !important;
 }
 
 .native-plants-bottom {
