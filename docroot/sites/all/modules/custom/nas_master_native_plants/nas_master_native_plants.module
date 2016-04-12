@@ -334,7 +334,7 @@ function nas_master_native_plants_element_validate_zipcode_us($element, &$form_s
  * Helper function to convert ZIP code into County FIPS code.
  */
 function nas_master_native_plants_element_validate_zipfips($element, &$form_state) {
-  if (!module_exists('nas_native_plants_zipfips_feature')) {
+  if ($element['#value'] == '' || !module_exists('nas_native_plants_zipfips_feature')) {
     return;
   }
 
