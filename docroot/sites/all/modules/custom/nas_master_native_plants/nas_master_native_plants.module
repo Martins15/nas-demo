@@ -224,6 +224,9 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     'placeholder' => t('ZIP code'),
   );
   $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
+  if (module_exists('nas_native_plants_zipfips_feature')) {
+    $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
+  }
 
   $form['attribute']['#attributes'] = array(
     'style' => 'display: none;',
@@ -325,6 +328,34 @@ function nas_master_native_plants_element_validate_zipcode_us($element, &$form_s
   if ($validation['error']) {
     form_error($element, $validation['error']);
   }
+}
+
+/**
+ * Helper function to convert ZIP code into County FIPS code.
+ */
+function nas_master_native_plants_element_validate_zipfips($element, &$form_state) {
+  if ($element['#value'] == '' || !module_exists('nas_native_plants_zipfips_feature')) {
+    return;
+  }
+
+  // Find County FIPS code for the entered ZIP code.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'zipfips')
+    ->entityCondition('bundle', 'zipfips')
+    ->propertyCondition('zip_code', $element['#value'])
+    ->propertyCondition('prevalent_county_flag', 'Y');
+  $results = $query->execute();
+
+  if (!isset($results['zipfips'])) {
+    form_error($element, t("Sorry, we couldn't find any data for this ZIP code."));
+    watchdog('nas_master_native_plants', 'Failed to find County FIPS code for ZIP code @zipcode.', array('@zipcode' => $element['#value']));
+    return;
+  }
+
+  $zipfips_id = reset($results['zipfips'])->id;
+  $zipfips = entity_load('zipfips', array($zipfips_id));
+  $county_fips_code = reset($zipfips)->county_fips_code;
+  form_set_value($element, $county_fips_code, $form_state);
 }
 
 /**
@@ -487,11 +518,13 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
   foreach ($commands as &$command) {
     if ($command['command'] == 'viewsScrollTop') {
       $selector = $command['selector'];
-      $command['selector'] = '.np-search-full-results';
+      $command['selector'] = $selector . ' .np-search-full-results';
     }
   }
   // Add validation errors.
-  $commands[] = ajax_command_prepend($selector, theme('status_messages'));
+  if ($messages = theme('status_messages')) {
+    $commands[] = ajax_command_prepend($selector, '<div class="row">' . $messages . '</div>');
+  }
 
   // Refresh exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');

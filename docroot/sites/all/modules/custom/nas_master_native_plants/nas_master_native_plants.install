@@ -12,3 +12,10 @@ function nas_master_native_plants_update_7001() {
     'nas_native_plants_search_page_feature' => array('views_view'),
   ));
 }
+
+/**
+ * Enable Native Plants ZIP code to County FIPS code conversion.
+ */
+function nas_master_native_plants_update_7002() {
+  module_enable(array('nas_native_plants_zipfips_feature'));
+}
