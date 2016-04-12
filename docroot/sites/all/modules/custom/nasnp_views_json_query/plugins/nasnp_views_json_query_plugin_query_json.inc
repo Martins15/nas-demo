@@ -252,6 +252,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       ->fieldCondition('field_native_plant_id', 'value', $plant_ids, 'IN');
     $results = $query->execute();
     if (!isset($results['node'])) {
+      if ($view->current_display == 'native_plants_search_pane_tier1') {
+        $ret = array();
+      }
       return;
     }
 
@@ -288,6 +291,12 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         $view->result_tier1[] = $ret[$result_key];
         unset($ret[$result_key]);
       }
+    }
+
+    // Check if we should return Tier 1 results.
+    // TODO: We should probably add option to query settings to return Tier 1 results.
+    if ($view->current_display == 'native_plants_search_pane_tier1') {
+      $ret = $view->result_tier1;
     }
   }
 }
