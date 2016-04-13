@@ -92,6 +92,6 @@
       },
       timeout: Drupal.settings.ajaxScreenLock.timeout
     });
-  }
+  };
 
 })(jQuery);
