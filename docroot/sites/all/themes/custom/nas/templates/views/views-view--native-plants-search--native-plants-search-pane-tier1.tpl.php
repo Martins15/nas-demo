@@ -50,24 +50,71 @@
         <?php if (isset($view->result_tier1)):
           foreach ($view->result as $result): ?>
             <div class="view-row columns">
-              <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
               <div class="row">
-                <div class="column medium-3">
+                <div class="column medium-<?php print $result->PlantImgDesktop ? '8' : '5'; ?>">
+                  <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
                   <?php if ($result->PlantImgDesktop): ?>
-                    <div class="tier-1-plant-picture hide-for-tiny hide-for-small">
-                      <a href="#" class="clearing-attach">
-                        <?php print $result->PlantImgDesktop; ?>
-                      </a>
-                      <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
+                    <div class="column medium-5 tier-1-plant-picture hide-for-tiny hide-for-small">
+                      <div class="row">
+                        <a href="#" class="clearing-attach">
+                          <?php print $result->PlantImgDesktop; ?>
+                        </a>
+                        <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
+                      </div>
                     </div>
                   <?php endif; ?>
                   <?php if ($result->PlantImgMobile): ?>
-                    <div class="row tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
+                    <div class="medium-7 row tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
                       <?php print $result->PlantImgMobile; ?>
                     </div>
                   <?php endif; ?>
+                  <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                    <h4><?php print t('Types of birds attracted'); ?></h4>
+                    <div class="bird-card-carousel">
+                      <div class="row">
+                        <div class="owl-carousel">
+                          <?php foreach ($result->BirdTypes as $bird_type): ?>
+                            <div class="node node-bird node-teaser clearfix">
+                              <figure class="bird-card">
+                                <div class="bird-card-illustration">
+                                  <?php print l(theme('image_style', array(
+                                    'path' => $bird_type['image']['uri'],
+                                    'style_name'=> 'nas_bird_teaser_illustration',
+                                    'alt' => $bird_type['name'],
+                                  )), $bird_type['url'], array('html' => TRUE)); ?>
+                                </div>
+                                <figcaption class="bird-card-caption">
+                                  <h4 class="common-name"><?php print l($bird_type['name'], $bird_type['url']); ?></h4>
+                                </figcaption>
+                              </figure>
+                            </div>
+                          <?php endforeach; ?>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column medium-<?php print $result->PlantImgDesktop ? '7' : '12'; ?> tier-1-plant">
+                      <?php if (user_access('administer nodes')): ?>
+                        <span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
+                      <?php endif; ?>
+                      <?php if ($result->Description): ?>
+                        <div class="tier-1-plant--description"><?php print $result->Description; ?></div>
+                        <?php if ($result->Source): ?>
+                          <div class="tier-1-plant--source"><?php print t('Source') . ': ' . $result->Source; ?></div>
+                        <?php endif; ?>
+                      <?php endif; ?>
+                      <ul class="clearfix plant-attributes-list">
+                        <?php foreach ($result->Attributes as $attribute): ?>
+                          <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>" style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></a></li>
+                        <?php endforeach; ?>
+                      </ul>
+                      <div class="tier-1-plant--add-to-list">
+                        <input type="checkbox" id="checkbox-<?php print $result->PlantID; ?>" class="np-checkbox" <?php print $result->PlantDataAttributes; ?>/>
+                        <label for="checkbox-<?php print $result->PlantID; ?>"><?php print t('Add to your plant list'); ?></label>
+                      </div>
+                    </div>
                 </div>
-                <div class="column medium-4 medium-push-5">
+                <div class="column medium-4 hide-for-tiny hide-for-small">
                   <h4><?php print t('Types of birds attracted'); ?></h4>
                   <div class="bird-card-carousel">
                     <div class="row">
@@ -90,26 +137,6 @@
                         <?php endforeach; ?>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="column medium-5 medium-pull-4 tier-1-plant">
-                  <?php if (user_access('administer nodes')): ?>
-                    <span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
-                  <?php endif; ?>
-                  <?php if ($result->Description): ?>
-                    <div class="tier-1-plant--description"><?php print $result->Description; ?></div>
-                    <?php if ($result->Source): ?>
-                      <div class="tier-1-plant--source"><?php print t('Source') . ': ' . $result->Source; ?></div>
-                    <?php endif; ?>
-                  <?php endif; ?>
-                  <ul class="clearfix plant-attributes-list">
-                    <?php foreach ($result->Attributes as $attribute): ?>
-                      <li><a href="#" class="native-plants-attribute" data-tid="<?php print $attribute['tid']; ?>" style="background-color: <?php print $attribute['color']; ?>;"><?php print $attribute['name']; ?></a></li>
-                    <?php endforeach; ?>
-                  </ul>
-                  <div class="tier-1-plant--add-to-list">
-                    <input type="checkbox" id="checkbox-<?php print $result->PlantID; ?>" class="np-checkbox" <?php print $result->PlantDataAttributes; ?>/>
-                    <label for="checkbox-<?php print $result->PlantID; ?>"><?php print t('Add to your plant list'); ?></label>
                   </div>
                 </div>
               </div>
