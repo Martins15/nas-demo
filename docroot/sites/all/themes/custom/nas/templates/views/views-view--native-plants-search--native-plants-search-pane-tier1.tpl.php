@@ -52,48 +52,49 @@
             <div class="view-row columns">
               <div class="row">
                 <div class="column medium-<?php print $result->PlantImgDesktop ? '8' : '5'; ?>">
-                  <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
-                  <?php if ($result->PlantImgDesktop): ?>
-                    <div class="column medium-5 tier-1-plant-picture hide-for-tiny hide-for-small">
-                      <div class="row">
+                  <div class="row">
+                    <div class="column medium-12">
+                      <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
+                    </div>
+                    <?php if ($result->PlantImgDesktop): ?>
+                      <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small">
                         <a href="#" class="clearing-attach">
                           <?php print $result->PlantImgDesktop; ?>
                         </a>
                         <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
                       </div>
-                    </div>
-                  <?php endif; ?>
-                  <?php if ($result->PlantImgMobile): ?>
-                    <div class="medium-7 row tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
-                      <?php print $result->PlantImgMobile; ?>
-                    </div>
-                  <?php endif; ?>
-                  <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
-                    <h4><?php print t('Types of birds attracted'); ?></h4>
-                    <div class="bird-card-carousel">
-                      <div class="row">
-                        <div class="owl-carousel">
-                          <?php foreach ($result->BirdTypes as $bird_type): ?>
-                            <div class="node node-bird node-teaser clearfix">
-                              <figure class="bird-card">
-                                <div class="bird-card-illustration">
-                                  <?php print l(theme('image_style', array(
-                                    'path' => $bird_type['image']['uri'],
-                                    'style_name'=> 'nas_bird_teaser_illustration',
-                                    'alt' => $bird_type['name'],
-                                  )), $bird_type['url'], array('html' => TRUE)); ?>
-                                </div>
-                                <figcaption class="bird-card-caption">
-                                  <h4 class="common-name"><?php print l($bird_type['name'], $bird_type['url']); ?></h4>
-                                </figcaption>
-                              </figure>
-                            </div>
-                          <?php endforeach; ?>
+                    <?php endif; ?>
+                    <?php if ($result->PlantImgMobile): ?>
+                      <div class="tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
+                        <?php print $result->PlantImgMobile; ?>
+                      </div>
+                    <?php endif; ?>
+                    <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                      <h4><?php print t('Types of birds attracted'); ?></h4>
+                      <div class="bird-card-carousel">
+                        <div class="row">
+                          <div class="owl-carousel">
+                            <?php foreach ($result->BirdTypes as $bird_type): ?>
+                              <div class="node node-bird node-teaser clearfix">
+                                <figure class="bird-card">
+                                  <div class="bird-card-illustration">
+                                    <?php print l(theme('image_style', array(
+                                      'path' => $bird_type['image']['uri'],
+                                      'style_name'=> 'nas_bird_teaser_illustration',
+                                      'alt' => $bird_type['name'],
+                                    )), $bird_type['url'], array('html' => TRUE)); ?>
+                                  </div>
+                                  <figcaption class="bird-card-caption">
+                                    <h4 class="common-name"><?php print l($bird_type['name'], $bird_type['url']); ?></h4>
+                                  </figcaption>
+                                </figure>
+                              </div>
+                            <?php endforeach; ?>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="column medium-<?php print $result->PlantImgDesktop ? '7' : '12'; ?> tier-1-plant">
+                    <div class="column medium-<?php print $result->PlantImgDesktop ? '8' : '12'; ?> tier-1-plant">
                       <?php if (user_access('administer nodes')): ?>
                         <span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
                       <?php endif; ?>
@@ -113,6 +114,7 @@
                         <label for="checkbox-<?php print $result->PlantID; ?>"><?php print t('Add to your plant list'); ?></label>
                       </div>
                     </div>
+                  </div>
                 </div>
                 <div class="column medium-4 hide-for-tiny hide-for-small">
                   <h4><?php print t('Types of birds attracted'); ?></h4>
