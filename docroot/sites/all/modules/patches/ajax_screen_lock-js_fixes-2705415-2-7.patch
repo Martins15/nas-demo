@@ -1,0 +1,137 @@
+From 759a4533080b3e72fc2e2ae4f62943622822397e Mon Sep 17 00:00:00 2001
+From: Andrew Berezovsky <andrew.berezovsky@gmail.com>
+Date: Wed, 13 Apr 2016 14:39:25 +0300
+Subject: [PATCH] Fixed JS code standards and make it overridable.
+
+---
+ misc/ajax_screen_lock.js | 112 +++++++++++++++++++++++------------------------
+ 1 file changed, 56 insertions(+), 56 deletions(-)
+
+diff --git a/misc/ajax_screen_lock.js b/misc/ajax_screen_lock.js
+index 2a49617..ca83a20 100755
+--- a/misc/ajax_screen_lock.js
++++ b/misc/ajax_screen_lock.js
+@@ -1,63 +1,63 @@
+ (function ($) {
+-	var unblock;
+-	$(document).ajaxSend(function (event, jqxhr, settings) {
+-		if (!unblock) {
+-			var target = ajaxScreenLock.getUrlPath(settings.url);
+-			var pages = Drupal.settings.ajaxScreenLock.pages;
+-			var visibility = Drupal.settings.ajaxScreenLock.visibility;
++  $(document).ajaxSend(function (event, jqxhr, settings) {
++    if (!Drupal.ajaxScreenLock.unblock) {
++      var target = Drupal.ajaxScreenLock.getUrlPath(settings.url);
++      var pages = Drupal.settings.ajaxScreenLock.pages;
++      var visibility = Drupal.settings.ajaxScreenLock.visibility;
+ 
+-			// Handle for certain pages.
+-			if (!$.isEmptyObject(pages)) {
+-				$.each(pages, function (num, page) {
+-					page = ajaxScreenLock.getUrlPath(page);
+-					if (target.length >= page.trim().length) {
+-						if (target.substr(0, page.trim().length) == page.trim() && visibility == 1) {
+-							ajaxScreenLock.blockUI();
+-						}
+-						else if (visibility == 0 && target.substr(0, page.trim().length) != page.trim()) {
+-							ajaxScreenLock.blockUI();
+-						}
+-					}
+-				});
+-			}
+-			// Lock for all.
+-			else {
+-				ajaxScreenLock.blockUI();
+-			}
+-		}
+-	});
++      // Handle for certain pages.
++      if (!$.isEmptyObject(pages)) {
++        $.each(pages, function (num, page) {
++          page = Drupal.ajaxScreenLock.getUrlPath(page);
++          if (target.length >= page.trim().length) {
++            if (target.substr(0, page.trim().length) == page.trim() && visibility == 1) {
++              Drupal.ajaxScreenLock.blockUI();
++            }
++            else if (visibility == 0 && target.substr(0, page.trim().length) != page.trim()) {
++              Drupal.ajaxScreenLock.blockUI();
++            }
++          }
++        });
++      }
++      // Lock for all.
++      else {
++        Drupal.ajaxScreenLock.blockUI();
++      }
++    }
++  });
+ 
+-	$(document).ajaxStop(function (r, s) {
+-		if (unblock) {
+-			$.unblockUI();
+-			unblock = false;
+-		}
+-	});
++  $(document).ajaxStop(function (r, s) {
++    if (Drupal.ajaxScreenLock.unblock) {
++      $.unblockUI();
++      Drupal.ajaxScreenLock.unblock = false;
++    }
++  });
+ 
++  Drupal.ajaxScreenLock = {
++    // Grab path from AJAX url.
++    getUrlPath: function (ajaxUrl) {
++      var url = document.createElement("a");
++      url.href = ajaxUrl;
++      return url.pathname;
++    },
+ 
+-	var ajaxScreenLock = {
+-		// Grab path from AJAX url.
+-		getUrlPath: function (ajaxUrl) {
+-			var url = document.createElement("a");
+-			url.href = ajaxUrl;
+-			return url.pathname;
+-		},
++    blockUI: function () {
++      Drupal.ajaxScreenLock.unblock = true;
++      if (Drupal.settings.ajaxScreenLock.throbber_hide) {
++        $('.ajax-progress-throbber').hide();
++      }
+ 
+-		blockUI: function () {
+-			unblock = true;
+-			if (Drupal.settings.ajaxScreenLock.throbber_hide) {
+-				$('.ajax-progress-throbber').hide();
+-			}
++      $.blockUI({
++        message: Drupal.settings.ajaxScreenLock.message,
++        css: {
++          top: ($(window).height() - 400) / 2 + 'px',
++          left: ($(window).width() - 400) / 2 + 'px',
++          width: '400px'
++        },
++        timeout: Drupal.settings.ajaxScreenLock.timeout
++      });
++    },
+ 
+-			$.blockUI({
+-				message: Drupal.settings.ajaxScreenLock.message,
+-				css: {
+-					top: ($(window).height() - 400) / 2 + 'px',
+-					left: ($(window).width() - 400) / 2 + 'px',
+-					width: '400px'
+-				},
+-				timeout: Drupal.settings.ajaxScreenLock.timeout
+-			});
+-		}
+-	}
+-}(jQuery));
+\ No newline at end of file
++    unblock: false
++  }
++}(jQuery));
+-- 
+2.2.1
+

@@ -664,3 +664,16 @@ input[type="checkbox"].np-checkbox {
     }
   }
 }
+
+.page-native-plants {
+  .ajax-screen-lock-popup {
+    padding: 10px;
+    .ajax-screen-lock-progress {
+      background: url(../img/native-plants-preloader.gif) no-repeat;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+      height: 64px;
+    }
+  }
+}
