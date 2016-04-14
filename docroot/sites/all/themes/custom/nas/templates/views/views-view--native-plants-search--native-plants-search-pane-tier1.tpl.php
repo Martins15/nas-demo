@@ -50,12 +50,17 @@
         <?php if (isset($view->result_tier1)):
           foreach ($view->result as $result): ?>
             <div class="view-row columns">
+              <div class="row" style="position: relative;">
+                <div class="column medium-8">
+                  <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
+                </div>
+                <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
+                  <h4><?php print t('Types of birds attracted'); ?></h4>
+                </div>
+              </div>
               <div class="row">
-                <div class="column medium-<?php print $result->PlantImgDesktop ? '8' : '5'; ?>">
+                <div class="column medium-8">
                   <div class="row">
-                    <div class="column medium-12">
-                      <h3><?php print $result->CommonName; ?> (<em><?php print $result->ScientificName; ?></em>)</h3>
-                    </div>
                     <?php if ($result->PlantImgDesktop): ?>
                       <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small">
                         <a href="#" class="clearing-attach">
@@ -117,7 +122,6 @@
                   </div>
                 </div>
                 <div class="column medium-4 hide-for-tiny hide-for-small">
-                  <h4><?php print t('Types of birds attracted'); ?></h4>
                   <div class="bird-card-carousel">
                     <div class="row">
                       <div class="owl-carousel">
