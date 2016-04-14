@@ -14218,6 +14218,10 @@ h2.grey {
   font-size: 26px;
   margin-bottom: 13px;
 }
+.native-plants-search-results h4 {
+  font-size: 20px;
+  margin-bottom: 13px;
+}
 @media only screen and (max-width: 479px) {
   .native-plants-search-results h4 {
     margin: 10px 0px;
@@ -14300,7 +14304,6 @@ h2.grey {
   margin: 0;
 }
 .plant-attributes-list.plant-attributes-list-small li {
-  margin-bottom: 5px;
   margin-right: 10px;
 }
 .plant-attributes-list.plant-attributes-list-small li a, .plant-attributes-list.plant-attributes-list-small li span {
