@@ -14159,6 +14159,10 @@ h2.grey {
   font-weight: 300;
   line-height: 50px;
 }
+.native-plants-green-row a {
+  color: #fff;
+  cursor: pointer;
+}
 @media only screen and (min-width: 601px) {
   .native-plants-green-row {
     line-height: 56px;
