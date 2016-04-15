@@ -14708,10 +14708,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none;
 }
 
-.page-native-plants .ajax-screen-lock-popup {
+.page-native-plants .ajax-screen-lock-popup, .page-native-plants-resources .ajax-screen-lock-popup {
   padding: 10px;
 }
-.page-native-plants .ajax-screen-lock-popup .ajax-screen-lock-progress {
+.page-native-plants .ajax-screen-lock-popup .ajax-screen-lock-progress, .page-native-plants-resources .ajax-screen-lock-popup .ajax-screen-lock-progress {
   background: url(../img/native-plants-preloader.gif) no-repeat;
   border: none;
   border-radius: 0;
