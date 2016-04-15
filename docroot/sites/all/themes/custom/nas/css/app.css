@@ -14755,11 +14755,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     margin-top: 30px;
   }
 }
-@media only screen and (min-width: 768px) {
-  .connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
-    margin-bottom: 120px;
-  }
-}
 
 .grey-pane {
   background-color: #d8d8d8;
