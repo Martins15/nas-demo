@@ -514,17 +514,19 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     return;
   }
 
+  $selector = '';
   // Modify scrolling behavior.
   foreach ($commands as $key => $command) {
     if ($command['command'] == 'viewsScrollTop') {
-      $command['command'] = 'nasMasterNativePlantsScroll';
       $selector = $command['selector'];
-      $command['selector'] = $selector . ' .np-search-full-results';
+      // Remove the 'viewsScrollTop' command.
+      unset($commands[$key]);
       break;
     }
   }
-  // Remove the 'viewsScrollTop' command and add our version.
-  unset($commands[$key]);
+  // Add our version of scroll behavior.
+  $command['command'] = 'nasMasterNativePlantsScroll';
+  $command['selector'] = $selector . ' .np-search-full-results';
   $commands[] = $command;
 
   // Add validation errors.
