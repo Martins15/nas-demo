@@ -1,0 +1,9 @@
+name = Feeds ECK Processor
+description = Feeds processor for Entity Construction Kit provided entities
+core = 7.x
+package = Feeds
+
+dependencies[] = feeds
+dependencies[] = eck
+
+files[] = plugins/FeedsECKprocessor.inc

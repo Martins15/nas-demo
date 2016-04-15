@@ -14212,11 +14212,19 @@ h2.grey {
   font-family: Source Sans Pro, Verdana, sans-serif;
 }
 
+.view-native-plants-search {
+  margin-bottom: 20px;
+}
+
 .native-plants-search-results {
   margin-top: 20px;
 }
 .native-plants-search-results h3 {
   font-size: 26px;
+  margin-bottom: 13px;
+}
+.native-plants-search-results h4 {
+  font-size: 20px;
   margin-bottom: 13px;
 }
 @media only screen and (max-width: 479px) {
@@ -14301,7 +14309,6 @@ h2.grey {
   margin: 0;
 }
 .plant-attributes-list.plant-attributes-list-small li {
-  margin-bottom: 5px;
   margin-right: 10px;
 }
 .plant-attributes-list.plant-attributes-list-small li a, .plant-attributes-list.plant-attributes-list-small li span {
@@ -14414,7 +14421,14 @@ h2.grey {
 .native-plants-full-search-results .mobile-search-full-results .view-row label {
   font-size: 19px;
 }
-.native-plants-full-search-results .search-results-total {
+.native-plants-full-search-results.permalink-list table {
+  font-size: 17px;
+}
+.native-plants-full-search-results.permalink-list table tr td {
+  width: auto !important;
+}
+
+.search-results-total {
   background-color: #f4f4f4;
   border-bottom: 2px solid #cccccc;
   border-top: 2px solid #cccccc;
@@ -14425,44 +14439,38 @@ h2.grey {
   overflow: hidden;
 }
 @media only screen and (min-width: 601px) {
-  .native-plants-full-search-results .search-results-total {
+  .search-results-total {
     border-bottom-width: 1px;
     border-top-width: 1px;
   }
 }
-.native-plants-full-search-results .search-results-total .pager {
+.search-results-total .pager {
   text-align: center;
   font-weight: bold;
 }
-.native-plants-full-search-results .search-results-total .pager > :first-child {
+.search-results-total .pager > :first-child {
   float: left;
   margin-left: 20px;
   margin-right: 10px;
 }
-.native-plants-full-search-results .search-results-total .pager > :first-child:before {
+.search-results-total .pager > :first-child:before {
   content: '< ';
 }
-.native-plants-full-search-results .search-results-total .pager > :last-child {
+.search-results-total .pager > :last-child {
   float: right;
   margin-left: 10px;
   margin-right: 20px;
 }
-.native-plants-full-search-results .search-results-total .pager > :last-child:after {
+.search-results-total .pager > :last-child:after {
   content: ' >';
 }
 @media only screen and (min-width: 601px) {
-  .native-plants-full-search-results .search-results-total .pager > :first-child {
+  .search-results-total .pager > :first-child {
     float: none;
   }
-  .native-plants-full-search-results .search-results-total .pager > :last-child {
+  .search-results-total .pager > :last-child {
     float: none;
   }
-}
-.native-plants-full-search-results.permalink-list table {
-  font-size: 17px;
-}
-.native-plants-full-search-results.permalink-list table tr td {
-  width: auto !important;
 }
 
 .native-plants-bottom {
@@ -14699,6 +14707,17 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .page-native-plants-initial .native-plants-bottom .native-plants-bottom-plant-list-placeholder,
 .page-native-plants-initial .native-plants-bottom .native-plants-bottom-plant-list {
   display: none;
+}
+
+.page-native-plants .ajax-screen-lock-popup {
+  padding: 10px;
+}
+.page-native-plants .ajax-screen-lock-popup .ajax-screen-lock-progress {
+  background: url(../img/native-plants-preloader.gif) no-repeat;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  height: 64px;
 }
 
 @media only screen and (max-width: 479px) {
