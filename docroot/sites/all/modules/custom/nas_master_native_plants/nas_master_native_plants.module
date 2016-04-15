@@ -586,11 +586,6 @@ function nas_master_native_plants_zipcode_form($form, &$form_state, $conf = arra
     '#prefix' => '<div class="column medium-6">',
     '#suffix' => '</div></div>',
   );
-  if (empty($conf['zipcode_default_value'])) {
-    $form['placeholder'] = array(
-      '#markup' => '<div class="native-plants-results-placeholder"><span class="blue-point"></span> <span class="blue-point"></span> <span class="blue-point"></span></div>',
-    );
-  }
 
   return $form;
 }
