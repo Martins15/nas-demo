@@ -6,7 +6,7 @@
 ?>
 <div class="breakout-section connect-audubon-near-you<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>" style="background-image: url(<?php print $image_path; ?>);">
   <?php print $context_links; ?>
-  <div class="breakout-section-content fade-to-black light-text" data-equalizer>
+  <div class="breakout-section-content fade-to-black light-text" data-equalizer data-equalizer-mq="medium-up">
     <div class="row">
       <div class="column medium-6" data-equalizer-watch>
         <div class="row space-top space-bottom">
