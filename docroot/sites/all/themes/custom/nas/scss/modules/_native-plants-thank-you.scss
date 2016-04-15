@@ -102,6 +102,10 @@
     @include breakpoint(medium-up) {
       border-bottom: none;
       padding-top: 0;
+
+      &:nth-of-type(odd) {
+        clear:both;
+      }
     }
 
     p {

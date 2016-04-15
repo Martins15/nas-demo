@@ -14812,6 +14812,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     border-bottom: none;
     padding-top: 0;
   }
+  .where-to-buy-section .nursery:nth-of-type(odd) {
+    clear: both;
+  }
 }
 .where-to-buy-section .nursery p {
   line-height: 18px;
