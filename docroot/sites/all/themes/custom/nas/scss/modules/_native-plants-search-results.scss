@@ -30,6 +30,11 @@ $color-dark-green:              #025e02;
   font-weight: 300;
   line-height: 50px;
 
+  a {
+    color: $color-white;
+    cursor: pointer;
+  }
+
   @include breakpoint(medium-up) {
     line-height: 56px;
   }
@@ -668,7 +673,7 @@ input[type="checkbox"].np-checkbox {
   }
 }
 
-.page-native-plants {
+.page-native-plants, .page-native-plants-resources {
   .ajax-screen-lock-popup {
     padding: 10px;
     .ajax-screen-lock-progress {

@@ -16,6 +16,7 @@ $plugin = array(
   'defaults' => array(
     'title_desktop' => 'Audubon Native Plants Database',
     'title_mobile' => 'Native Plants Database',
+    'title_link' => 'native-plants',
     'background_color' => '66a122',
   ),
 );
@@ -50,6 +51,13 @@ function native_plants_bar_edit_form($form, &$form_state) {
     '#default_value' => $conf['title_mobile'],
     '#size' => 100,
   );
+  $form['title_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Bar text link'),
+    '#description' => t('Relative or absolute link.'),
+    '#default_value' => $conf['title_link'],
+    '#size' => 100,
+  );
 
   return $form;
 }
@@ -72,6 +80,12 @@ function native_plants_bar_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function native_plants_bar_render($subtype, $conf, $args, $contexts) {
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
+  }
+
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $block = new stdClass();
@@ -79,6 +93,7 @@ function native_plants_bar_render($subtype, $conf, $args, $contexts) {
     '#theme' => 'native_plants_bar',
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
+    '#title_link' => url(check_plain($conf['title_link'])),
     '#background_color' => $conf['background_color'],
     '#context_links' => $contextual_links,
   );
@@ -94,6 +109,7 @@ function native_plants_bar_theme(&$theme, $plugin) {
     'variables' => array(
       'title_desktop' => '',
       'title_mobile' => '',
+      'title_link' => '',
       'background_color' => '',
       'context_links' => '',
     ),

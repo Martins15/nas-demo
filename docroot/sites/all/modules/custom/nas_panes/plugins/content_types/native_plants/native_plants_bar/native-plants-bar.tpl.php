@@ -9,8 +9,8 @@
   <div class="row">
     <div class="columns">
       <div class="native-plants-green-row">
-        <span class="hide-for-tiny hide-for-small"><?php print $title_desktop; ?></span>
-        <span class="hide-for-medium hide-for-large hide-for-xlarge"><?php print $title_mobile; ?></span>
+        <a href="<?php print $title_link; ?>" class="hide-for-tiny hide-for-small"><?php print $title_desktop; ?></a>
+        <a href="<?php print $title_link; ?>" class="hide-for-medium hide-for-large hide-for-xlarge"><?php print $title_mobile; ?></a>
       </div>
     </div>
   </div>
