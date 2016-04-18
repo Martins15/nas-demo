@@ -391,24 +391,14 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   drupal_add_js($theme_path . '/js/nas/native-plants.js');
   $module_path = drupal_get_path('module', 'nas_master_native_plants');
   drupal_add_js($module_path . '/js/nas_master_native_plants.js', array('scope' => 'footer'));
-  drupal_add_js($module_path . '/js/nas_master_native_plant.ajax_screen_lock.js', array('scope' => 'footer'));
+  drupal_add_js($module_path . '/js/nas_master_native_plants.ajax_screen_lock.js', array('scope' => 'footer'));
 
   $vars['total_items'] = 0;
   if (isset($vars['view']->query->pager)) {
     $vars['total_items'] = $vars['view']->query->pager->total_items;
   }
 
-  // Construct the combined results array.
-  $results = array();
-  foreach ($vars['view']->result as &$result) {
-    $results[] = &$result;
-  }
-  if (isset($vars['view']->result_tier1)) {
-    foreach ($vars['view']->result_tier1 as &$result) {
-      $results[] = &$result;
-    }
-  }
-  if (empty($results)) {
+  if (empty($vars['view']->result)) {
     return;
   }
 
@@ -428,7 +418,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 
   // Assign plant attributes and bird types.
-  foreach ($results as &$result) {
+  foreach ($vars['view']->result as &$result) {
     $result->Attributes = array();
     $result->BirdTypes = array();
 
@@ -466,7 +456,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
     }
   }
 
-  foreach ($results as &$result) {
+  foreach ($vars['view']->result as &$result) {
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '
