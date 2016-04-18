@@ -516,10 +516,11 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
       break;
     }
   }
-  // Add our version of scroll behavior.
-  $command['command'] = 'nasMasterNativePlantsScroll';
-  $command['selector'] = $selector . ' .np-search-full-results';
-  $commands[] = $command;
+  // Add the 'viewsScrollTop' command to the end of commands array.
+  if ($selector) {
+    $command['selector'] = $selector . ' .np-search-full-results';
+    $commands[] = $command;
+  }
 
   // Add validation errors.
   if ($messages = theme('status_messages')) {
