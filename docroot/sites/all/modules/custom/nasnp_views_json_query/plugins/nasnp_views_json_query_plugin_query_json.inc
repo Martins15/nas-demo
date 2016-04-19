@@ -264,13 +264,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
       $plant_id = $local_node_wrapper->field_native_plant_id->value();
       $result_key = array_search($plant_id, $plant_ids);
-      if ($result_key !== FALSE) {
-        $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
-        // Do not add info from not published nodes.
-        if ($local_node->status == NODE_NOT_PUBLISHED) {
-          continue;
-        }
-
+      if ($result_key !== FALSE && $local_node->status == NODE_PUBLISHED) {
         if ($image = $local_node_wrapper->field_image->value()) {
           $ret[$result_key]->LocalPlantImg = $image['uri'];
         }

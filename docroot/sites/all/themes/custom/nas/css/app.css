@@ -14164,6 +14164,10 @@ h2.grey {
   font-weight: 300;
   line-height: 50px;
 }
+.native-plants-green-row a {
+  color: #fff;
+  cursor: pointer;
+}
 @media only screen and (min-width: 601px) {
   .native-plants-green-row {
     line-height: 56px;
@@ -14709,10 +14713,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none;
 }
 
-.page-native-plants .ajax-screen-lock-popup {
+.page-native-plants .ajax-screen-lock-popup, .page-native-plants-resources .ajax-screen-lock-popup {
   padding: 10px;
 }
-.page-native-plants .ajax-screen-lock-popup .ajax-screen-lock-progress {
+.page-native-plants .ajax-screen-lock-popup .ajax-screen-lock-progress, .page-native-plants-resources .ajax-screen-lock-popup .ajax-screen-lock-progress {
   background: url(../img/native-plants-preloader.gif) no-repeat;
   border: none;
   border-radius: 0;
@@ -14754,11 +14758,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     font-size: 20px;
     line-height: 24px;
     margin-top: 30px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
-    margin-bottom: 120px;
   }
 }
 
@@ -14812,6 +14811,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .where-to-buy-section .nursery {
     border-bottom: none;
     padding-top: 0;
+  }
+  .where-to-buy-section .nursery:nth-of-type(odd) {
+    clear: both;
   }
 }
 .where-to-buy-section .nursery p {
