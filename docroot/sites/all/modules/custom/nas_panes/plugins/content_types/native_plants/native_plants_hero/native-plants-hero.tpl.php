@@ -1,6 +1,6 @@
 <?php
 ?>
-<div class="bg-respond hero expand small<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>">
+<div class="bg-respond hero small<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>">
   <?php print $context_links; ?>
   <div class="hero-image">
     <img src="<?php print $image_path; ?>" alt="" >

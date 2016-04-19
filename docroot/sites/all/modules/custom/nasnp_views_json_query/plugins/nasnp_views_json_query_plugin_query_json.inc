@@ -252,6 +252,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       ->fieldCondition('field_native_plant_id', 'value', $plant_ids, 'IN');
     $results = $query->execute();
     if (!isset($results['node'])) {
+      if ($view->current_display == 'native_plants_search_pane_tier1') {
+        $ret = array();
+      }
       return;
     }
 
@@ -261,13 +264,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
       $plant_id = $local_node_wrapper->field_native_plant_id->value();
       $result_key = array_search($plant_id, $plant_ids);
-      if ($result_key !== FALSE) {
-        $ret[$result_key]->LocalLink = 'node/' . $node_info->nid . '/edit';
-        // Do not add info from not published nodes.
-        if ($local_node->status == NODE_NOT_PUBLISHED) {
-          continue;
-        }
-
+      if ($result_key !== FALSE && $local_node->status == NODE_PUBLISHED) {
         if ($image = $local_node_wrapper->field_image->value()) {
           $ret[$result_key]->LocalPlantImg = $image['uri'];
         }
@@ -288,6 +285,12 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         $view->result_tier1[] = $ret[$result_key];
         unset($ret[$result_key]);
       }
+    }
+
+    // Check if we should return Tier 1 results.
+    // TODO: We should probably add option to query settings to return Tier 1 results.
+    if ($view->current_display == 'native_plants_search_pane_tier1') {
+      $ret = $view->result_tier1;
     }
   }
 }

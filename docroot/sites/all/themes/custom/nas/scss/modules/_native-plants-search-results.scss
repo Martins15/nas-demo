@@ -30,6 +30,11 @@ $color-dark-green:              #025e02;
   font-weight: 300;
   line-height: 50px;
 
+  a {
+    color: $color-white;
+    cursor: pointer;
+  }
+
   @include breakpoint(medium-up) {
     line-height: 56px;
   }
@@ -79,11 +84,19 @@ $color-dark-green:              #025e02;
   }
 }
 
+.view-native-plants-search {
+  margin-bottom: 20px;
+}
+
 .native-plants-search-results {
   margin-top: 20px;
 
   h3 {
     font-size: 26px;
+    margin-bottom: 13px;
+  }
+  h4 {
+    font-size: 20px;
     margin-bottom: 13px;
   }
 
@@ -179,7 +192,6 @@ $color-dark-green:              #025e02;
   &.plant-attributes-list-small {
     margin: 0;
     li {
-      margin-bottom: 5px;
       margin-right: 10px;
 
       a, span {
@@ -321,57 +333,6 @@ $color-dark-green:              #025e02;
 
   }
 
-  .search-results-total {
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #cccccc;
-    border-top: 2px solid #cccccc;
-    clear: both;
-    font-size: 17px;
-    line-height: 39px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
-    overflow: hidden;
-
-    @include breakpoint(medium-up) {
-      border-bottom-width: 1px;
-      border-top-width: 1px;
-    }
-
-    .pager {
-      text-align: center;
-      font-weight: bold;
-
-      & > :first-child {
-        float: left;
-        margin-left: 20px;
-        margin-right: 10px;
-
-        &:before {
-          content: '< ';
-        }
-      }
-      & > :last-child {
-        float: right;
-        margin-left: 10px;
-        margin-right: 20px;
-
-        &:after {
-          content: ' >';
-        }
-      }
-
-      @include breakpoint(medium-up) {
-
-        & > :first-child {
-          float: none;
-        }
-
-        & > :last-child {
-          float: none;
-        }
-      }
-    }
-  }
-
   &.permalink-list {
     table {
       font-size: 17px;
@@ -380,6 +341,57 @@ $color-dark-green:              #025e02;
         td {
           width: auto !important;
         }
+      }
+    }
+  }
+}
+
+.search-results-total {
+  background-color: #f4f4f4;
+  border-bottom: 2px solid #cccccc;
+  border-top: 2px solid #cccccc;
+  clear: both;
+  font-size: 17px;
+  line-height: 39px;
+  font-family: Source Sans Pro, Verdana, sans-serif;
+  overflow: hidden;
+
+  @include breakpoint(medium-up) {
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+  }
+
+  .pager {
+    text-align: center;
+    font-weight: bold;
+
+    & > :first-child {
+      float: left;
+      margin-left: 20px;
+      margin-right: 10px;
+
+      &:before {
+        content: '< ';
+      }
+    }
+    & > :last-child {
+      float: right;
+      margin-left: 10px;
+      margin-right: 20px;
+
+      &:after {
+        content: ' >';
+      }
+    }
+
+    @include breakpoint(medium-up) {
+
+      & > :first-child {
+        float: none;
+      }
+
+      & > :last-child {
+        float: none;
       }
     }
   }
@@ -657,6 +669,19 @@ input[type="checkbox"].np-checkbox {
     .native-plants-bottom-plant-list-placeholder,
     .native-plants-bottom-plant-list {
       display: none;
+    }
+  }
+}
+
+.page-native-plants, .page-native-plants-resources {
+  .ajax-screen-lock-popup {
+    padding: 10px;
+    .ajax-screen-lock-progress {
+      background: url(../img/native-plants-preloader.gif) no-repeat;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+      height: 64px;
     }
   }
 }

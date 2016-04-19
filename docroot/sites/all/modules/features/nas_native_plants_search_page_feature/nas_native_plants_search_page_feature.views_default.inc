@@ -47,11 +47,6 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area_text_custom']['content'] = '<div class="native-plants-results-placeholder">
-  <span class="blue-point"></span>
-  <span class="blue-point"></span>
-  <span class="blue-point"></span>
-</div>';
   /* Relationship: Taxonomy */
   $handler->display->display_options['relationships']['value']['id'] = 'value';
   $handler->display->display_options['relationships']['value']['table'] = 'nasnp_json';
@@ -128,10 +123,31 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['filters']['tid_1']['type'] = 'select';
   $handler->display->display_options['filters']['tid_1']['vocabulary'] = 'native_plant_bird_types';
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'native_plants_search_pane');
+  /* Display: Full results */
+  $handler = $view->new_display('panel_pane', 'Full results', 'native_plants_search_pane');
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: View area */
+  $handler->display->display_options['header']['view']['id'] = 'view';
+  $handler->display->display_options['header']['view']['table'] = 'views';
+  $handler->display->display_options['header']['view']['field'] = 'view';
+  $handler->display->display_options['header']['view']['label'] = 'Tier 1 results';
+  $handler->display->display_options['header']['view']['view_to_insert'] = 'native_plants_search:native_plants_search_pane_tier1';
+  $handler->display->display_options['header']['view']['inherit_arguments'] = TRUE;
   $handler->display->display_options['inherit_panels_path'] = '1';
+
+  /* Display: Tier 1 results */
+  $handler = $view->new_display('panel_pane', 'Tier 1 results', 'native_plants_search_pane_tier1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Native Plants Search Tier 1';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'nas_master_native_plants_views_pager_plugin';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '1';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = 'Previous page';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'Next page';
   $translatables['native_plants_search'] = array(
     t('Master'),
     t('Native Plants Search'),
@@ -148,15 +164,12 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('Previous page'),
     t('Next page'),
     t('last »'),
-    t('<div class="native-plants-results-placeholder">
-  <span class="blue-point"></span>
-  <span class="blue-point"></span>
-  <span class="blue-point"></span>
-</div>'),
     t('Taxonomy'),
     t('CommonName'),
-    t('Content pane'),
+    t('Full results'),
+    t('Tier 1 results'),
     t('View panes'),
+    t('Native Plants Search Tier 1'),
   );
   $export['native_plants_search'] = $view;
 

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Native Plants ZIP FIPS feature.
+ */
+
+include_once 'nas_native_plants_zipfips_feature.features.inc';
