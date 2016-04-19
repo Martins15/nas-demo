@@ -34,10 +34,11 @@ function nas_master_native_plants_settings_submit() {
  * Page callback for the Native Plant creation menu item.
  */
 function nas_master_native_plants_native_plant_create() {
+  global $user;
   $values = drupal_get_query_parameters();
   $values = array_map('check_plain', $values);
 
-  // Safe check if there is native_plant with this PlantID.
+  // Check if there is native_plant with this PlantID.
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'native_plant')
@@ -45,10 +46,38 @@ function nas_master_native_plants_native_plant_create() {
   $results = $query->execute();
   if (isset($results['node'])) {
     $node_info = reset($results['node']);
-    drupal_goto('node/' . $node_info->nid . '/edit');
+    $edit_link = 'node/' . $node_info->nid . '/edit';
+
+    // If there is no PlantImg or it is not fetchable.
+    if (!$values['PlantImg'] || !$image_path = imagecache_external_generate_path($values['PlantImg'])) {
+      drupal_goto($edit_link);
+    }
+
+    $node = node_load($node_info->nid);
+    $node_wrapper = entity_metadata_wrapper('node', $node);
+    // If there is already some image in this node.
+    if ($node_wrapper->field_image->value()) {
+      drupal_goto($edit_link);
+    }
+
+    $source = new stdClass();
+    $source->uri = $image_path;
+    $source->uid = $user->uid;
+    $source->filemime = 'image/' . pathinfo($image_path, PATHINFO_EXTENSION);
+    $source->filename = basename($image_path);
+
+    $destination_dir = file_default_scheme() . '://native_plants';
+    file_prepare_directory($destination_dir, FILE_CREATE_DIRECTORY);
+    $destination = $destination_dir . '/' . basename($image_path);
+
+    if ($file = file_copy($source, $destination)) {
+      $node_wrapper->field_image->set((array) $file);
+    }
+    $node_wrapper->save();
+    drupal_goto($edit_link);
   }
 
-  global $user;
+  // Create new Native Plant node.
   $node = entity_create('node', array('type' => 'native_plant'));
   $node_wrapper = entity_metadata_wrapper('node', $node);
   $node_wrapper->status->set(NODE_PUBLISHED);

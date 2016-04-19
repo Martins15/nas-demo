@@ -389,24 +389,16 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
   drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
   drupal_add_js($theme_path . '/js/nas/native-plants.js');
-  drupal_add_js(drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.js', array('scope' => 'footer'));
+  $module_path = drupal_get_path('module', 'nas_master_native_plants');
+  drupal_add_js($module_path . '/js/nas_master_native_plants.js', array('scope' => 'footer'));
+  drupal_add_js($module_path . '/js/nas_master_native_plants.ajax_screen_lock.js', array('scope' => 'footer'));
 
   $vars['total_items'] = 0;
   if (isset($vars['view']->query->pager)) {
     $vars['total_items'] = $vars['view']->query->pager->total_items;
   }
 
-  // Construct the combined results array.
-  $results = array();
-  foreach ($vars['view']->result as &$result) {
-    $results[] = &$result;
-  }
-  if (isset($vars['view']->result_tier1)) {
-    foreach ($vars['view']->result_tier1 as &$result) {
-      $results[] = &$result;
-    }
-  }
-  if (empty($results)) {
+  if (empty($vars['view']->result)) {
     return;
   }
 
@@ -426,7 +418,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 
   // Assign plant attributes and bird types.
-  foreach ($results as &$result) {
+  foreach ($vars['view']->result as &$result) {
     $result->Attributes = array();
     $result->BirdTypes = array();
 
@@ -464,7 +456,7 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
     }
   }
 
-  foreach ($results as &$result) {
+  foreach ($vars['view']->result as &$result) {
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '
@@ -514,13 +506,22 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     return;
   }
 
-  // Change scroll destination.
-  foreach ($commands as &$command) {
+  $selector = '';
+  // Modify scrolling behavior.
+  foreach ($commands as $key => $command) {
     if ($command['command'] == 'viewsScrollTop') {
       $selector = $command['selector'];
-      $command['selector'] = $selector . ' .np-search-full-results';
+      // Remove the 'viewsScrollTop' command.
+      unset($commands[$key]);
+      break;
     }
   }
+  // Add the 'viewsScrollTop' command to the end of commands array.
+  if ($selector) {
+    $command['selector'] = $selector . ' .np-search-full-results';
+    $commands[] = $command;
+  }
+
   // Add validation errors.
   if ($messages = theme('status_messages')) {
     $commands[] = ajax_command_prepend($selector, '<div class="row">' . $messages . '</div>');
@@ -578,11 +579,10 @@ function nas_master_native_plants_zipcode_form($form, &$form_state, $conf = arra
     '#prefix' => '<div class="column medium-6">',
     '#suffix' => '</div></div>',
   );
-  if (empty($conf['zipcode_default_value'])) {
-    $form['placeholder'] = array(
-      '#markup' => '<div class="native-plants-results-placeholder"><span class="blue-point"></span> <span class="blue-point"></span> <span class="blue-point"></span></div>',
-    );
-  }
+
+  $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
+    'scope' => 'footer',
+  );
 
   return $form;
 }
