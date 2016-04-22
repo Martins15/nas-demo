@@ -47,33 +47,14 @@ function nas_master_native_plants_native_plant_create() {
   if (isset($results['node'])) {
     $node_info = reset($results['node']);
     $edit_link = 'node/' . $node_info->nid . '/edit';
-
-    // If there is no PlantImg or it is not fetchable.
-    if (!$values['PlantImg'] || !$image_path = imagecache_external_generate_path($values['PlantImg'])) {
-      drupal_goto($edit_link);
-    }
-
     $node = node_load($node_info->nid);
     $node_wrapper = entity_metadata_wrapper('node', $node);
-    // If there is already some image in this node.
-    if ($node_wrapper->field_image->value()) {
-      drupal_goto($edit_link);
+
+    if (nas_master_native_plants_native_plant_check_image($node_wrapper, $values['PlantImg'])
+      || nas_master_native_plants_native_plant_check_title($node_wrapper, $values['CommonName'])) {
+      $node_wrapper->save();
     }
 
-    $source = new stdClass();
-    $source->uri = $image_path;
-    $source->uid = $user->uid;
-    $source->filemime = 'image/' . pathinfo($image_path, PATHINFO_EXTENSION);
-    $source->filename = basename($image_path);
-
-    $destination_dir = file_default_scheme() . '://native_plants';
-    file_prepare_directory($destination_dir, FILE_CREATE_DIRECTORY);
-    $destination = $destination_dir . '/' . basename($image_path);
-
-    if ($file = file_copy($source, $destination)) {
-      $node_wrapper->field_image->set((array) $file);
-    }
-    $node_wrapper->save();
     drupal_goto($edit_link);
   }
 
@@ -105,4 +86,50 @@ function nas_master_native_plants_native_plant_create() {
   $node_wrapper->save();
 
   drupal_goto('node/' . $node_wrapper->nid->value() . '/edit');
+}
+
+/**
+ * Helper function to check Native Plants node image.
+ */
+function nas_master_native_plants_native_plant_check_image($node_wrapper, $PlantImg) {
+  global $user;
+  // If there is no PlantImg or it is not fetchable.
+  if (!$PlantImg || !$image_path = imagecache_external_generate_path($PlantImg)) {
+    return FALSE;
+  }
+
+  // If there is already some image in this node.
+  if ($node_wrapper->field_image->value()) {
+    return FALSE;
+  }
+
+  $source = new stdClass();
+  $source->uri = $image_path;
+  $source->uid = $user->uid;
+  $source->filemime = 'image/' . pathinfo($image_path, PATHINFO_EXTENSION);
+  $source->filename = basename($image_path);
+
+  $destination_dir = file_default_scheme() . '://native_plants';
+  file_prepare_directory($destination_dir, FILE_CREATE_DIRECTORY);
+  $destination = $destination_dir . '/' . basename($image_path);
+
+  if ($file = file_copy($source, $destination)) {
+    $node_wrapper->field_image->set((array) $file);
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Helper function to check Native Plant node title and common name.
+ */
+function nas_master_native_plants_native_plant_check_title($node_wrapper, $CommonName) {
+  if ($node_wrapper->title->value() != $CommonName
+    || $node_wrapper->field_native_plant_common_name->value() != $CommonName) {
+    $node_wrapper->title->set($CommonName);
+    $node_wrapper->field_native_plant_common_name->set($CommonName);
+    return TRUE;
+  }
+
+  return FALSE;
 }
