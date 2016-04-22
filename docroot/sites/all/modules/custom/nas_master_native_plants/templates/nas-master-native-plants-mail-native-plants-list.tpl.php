@@ -83,7 +83,7 @@
           <table align="center" width="650" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td height="129" style="height:129px; vertical-align: middle;" valign="middle">
-                <a href="http://www.audubon.org">
+                <a href="<?php print url('<front>', array('absolute' => TRUE)); ?>">
                   <img src="<?php print url(drupal_get_path('theme', 'nas') . '/img/wordmark-white.png', array('absolute' => TRUE)); ?>" alt="" width="236" style="width:236px;"/>
                 </a>
               </td>
@@ -96,7 +96,9 @@
           <table align="center" width="650" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td height="56" style="height:56px; vertical-align: middle;" valign="middle">
-                <h1><?php print $bar_title; ?></h1>
+                <h1 style="font-family: Verdana, sans-serif; font-size: 33px; font-weight: 300; color: #FFF; margin: 0;">
+                  <a href="<?php print url($bar_link, array('absolute' => TRUE)); ?>" style="color: #FFF; text-decoration: none;"><?php print $bar_title; ?></a>
+                </h1>
               </td>
             </tr>
           </table>
@@ -107,7 +109,9 @@
           <table align="center" width="650" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>
-                <h2><?php print $list_title; ?></h2>
+                <h2 style="font-family: Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
+                  <?php print $list_title; ?>
+                </h2>
                 <?php print $list_text_top; ?>
                 <p><?php print l($permalink_url, $permalink_url); ?></p>
 
@@ -153,7 +157,9 @@
             <tr>
               <td>
 
-                <h2><?php print $editorial_cards_title; ?></h2>
+                <h2 style="font-family: Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
+                  <?php print $editorial_cards_title; ?>
+                </h2>
 
                 <table width="100%" border="0" style="border-collapse: collapse; border: none;" cellpadding="0" cellspacing="0">
                   <tr border="0" style="border: none;">
@@ -175,7 +181,11 @@
                         <?php if ($card['blue_text_link_url']): ?>
                         <a href="<?php print $card['blue_text_link_url']; ?>" style="font-family: 'Source Sans Pro', Verdana, sans-serif;"><?php print $card['blue_text_link_text']; ?></a>
                         <?php endif; ?>
-                        <a href="<?php print $card['url']; ?>"><h3><?php print $card['title']; ?></h3></a>
+                        <h3 style="color: #262626; font-family: Verdana, sans-serif; font-size: 24px; font-weight: normal; line-height: 28px; margin: 0 0 10px 0;">
+                          <a href="<?php print $card['url']; ?>" style="color: #262626; text-decoration: none;">
+                          <?php print $card['title']; ?>
+                            </a>
+                        </h3>
                         <p><?php print $card['subtitle']; ?></p>
                         <p><em><a href="<?php print $card['url']; ?>"><?php print $card['custom_link_text']; ?> »</a></em></p>
                       </div>
@@ -203,21 +213,15 @@
                 <table width="100%">
                   <tr>
                     <td width="260" valign="top" align="right" style="border-right: 1px solid #4e4e4e; padding-right: 15px;">
-                      <a href="#"><img src="<?php print url(drupal_get_path('theme', 'nas') . '/img/email/footer-logo.png', array('absolute' => TRUE)); ?>" width="144" alt=""/></a>
+                      <a href="<?php print url('<front>', array('absolute' => TRUE)); ?>">
+                        <img src="<?php print url(drupal_get_path('theme', 'nas') . '/img/email/footer-logo.png', array('absolute' => TRUE)); ?>" width="144" alt=""/>
+                      </a>
                     </td>
                     <td width="" valign="center" style="padding-left: 15px;">
                       <p color="#FFF" style="color:#fff;font-family: Arial; font-weight: bold; font-size: 13px; line-height: 17px;">
                         225 Varick Street, 7th Floor, New York, NY 10014<br>
                         <a href="mailto:AudubonConnect@audubon.org">AudubonConnect@audubon.org</a>
                       </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" align="center" style="color:#FFF; font-family: Arial; font-weight: bold; font-size: 13px; padding-top: 15px;">
-                      <a href="#">Donate</a> |
-                      <a href="#">Change contact information</a> |
-                      <a href="#">Manage your communications</a> |
-                      <a href="#">Unsubscribe</a>
                     </td>
                   </tr>
                 </table>
