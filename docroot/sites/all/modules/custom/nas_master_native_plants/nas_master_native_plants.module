@@ -47,6 +47,8 @@ function nas_master_native_plants_node_presave($node) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['title']['#attributes']['disabled'] = TRUE;
+  // Disable fields that shouldn't be changed.
   $disable_fields = array(
     'field_native_plant_common_name',
     'field_np_scientific_name',
@@ -54,7 +56,7 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
     'field_native_plant_id',
   );
   foreach ($disable_fields as $field) {
-    $form[$field]['#access'] = FALSE;
+    $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['disabled'] = TRUE;
   }
 }
 
