@@ -816,6 +816,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
     switch ($pane->subtype) {
       case 'native_plants_bar':
         $variables['bar_title'] = $pane->configuration['title_desktop'];
+        $variables['bar_link'] = $pane->configuration['title_link'];
         $variables['bar_background_color'] = $pane->configuration['background_color'];
         break;
 
