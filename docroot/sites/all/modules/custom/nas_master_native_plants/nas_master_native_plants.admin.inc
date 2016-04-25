@@ -50,8 +50,9 @@ function nas_master_native_plants_native_plant_create() {
     $node = node_load($node_info->nid);
     $node_wrapper = entity_metadata_wrapper('node', $node);
 
-    if (nas_master_native_plants_native_plant_check_image($node_wrapper, $values['PlantImg'])
-      || nas_master_native_plants_native_plant_check_title($node_wrapper, $values['CommonName'])) {
+    $image_check = nas_master_native_plants_native_plant_check_image($node_wrapper, $values['PlantImg']);
+    $title_check = nas_master_native_plants_native_plant_check_title($node_wrapper, $values['CommonName']);
+    if ($image_check || $title_check) {
       $node_wrapper->save();
     }
 
@@ -68,21 +69,8 @@ function nas_master_native_plants_native_plant_create() {
   $node_wrapper->field_np_scientific_name->set($values['ScientificName']);
   $node_wrapper->field_native_plant_family->set($values['Family']);
   $node_wrapper->field_native_plant_id->set($values['PlantID']);
-  if ($values['PlantImg'] && $image_path = imagecache_external_generate_path($values['PlantImg'])) {
-    $source = new stdClass();
-    $source->uri = $image_path;
-    $source->uid = $user->uid;
-    $source->filemime = 'image/' . pathinfo($image_path, PATHINFO_EXTENSION);
-    $source->filename = basename($image_path);
 
-    $destination_dir = file_default_scheme() . '://native_plants';
-    file_prepare_directory($destination_dir, FILE_CREATE_DIRECTORY);
-    $destination = $destination_dir . '/' . basename($image_path);
-
-    if ($file = file_copy($source, $destination)) {
-      $node_wrapper->field_image->set((array) $file);
-    }
-  }
+  nas_master_native_plants_native_plant_check_image($node_wrapper, $values['PlantImg']);
   $node_wrapper->save();
 
   drupal_goto('node/' . $node_wrapper->nid->value() . '/edit');
