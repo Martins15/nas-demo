@@ -50,8 +50,9 @@ function nas_master_native_plants_native_plant_create() {
     $node = node_load($node_info->nid);
     $node_wrapper = entity_metadata_wrapper('node', $node);
 
-    if (nas_master_native_plants_native_plant_check_image($node_wrapper, $values['PlantImg'])
-      || nas_master_native_plants_native_plant_check_title($node_wrapper, $values['CommonName'])) {
+    $image_check = nas_master_native_plants_native_plant_check_image($node_wrapper, $values['PlantImg']);
+    $title_check = nas_master_native_plants_native_plant_check_title($node_wrapper, $values['CommonName']);
+    if ($image_check || $title_check) {
       $node_wrapper->save();
     }
 
