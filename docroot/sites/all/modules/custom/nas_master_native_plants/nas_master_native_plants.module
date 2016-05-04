@@ -456,6 +456,11 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
         }
       }
     }
+
+    // Randomize bird type cards ordering for Tier1 display.
+    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
+      shuffle($result->BirdTypes);
+    }
   }
 
   foreach ($vars['view']->result as &$result) {
