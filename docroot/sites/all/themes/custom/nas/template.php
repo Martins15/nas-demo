@@ -67,6 +67,10 @@ function nas_preprocess_views_view_rss(&$vars) {
  * Implements hook_preprocess_views_view_row_rss().
  */
 function nas_preprocess_views_view_row_rss(&$vars) {
+  // Facebook RSS.
+  $params = drupal_get_query_parameters();
+  $vars['facebook_rss'] = !empty($params['fbia']);
+
   $node = node_load($vars['row']->nid);
   $wrapper = entity_metadata_wrapper('node', $node);
 
