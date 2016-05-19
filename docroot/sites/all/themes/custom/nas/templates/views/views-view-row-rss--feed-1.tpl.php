@@ -12,7 +12,11 @@
     <link><?php print $link; ?></link>
     <guid isPermaLink="false"><?php print $guid; ?></guid>
     <?php if (!empty($author)): ?>
-      <dc:creator><?php print $author; ?></dc:creator>
+      <?php if ($facebook_rss): ?>
+        <author><?php print $author; ?></author>
+      <?php else: ?>
+        <dc:creator><?php print $author; ?></dc:creator>
+      <?php endif; ?>
     <?php endif; ?>
     <pubDate><?php print $pub_date; ?></pubDate>
     <?php foreach ($categories as $category): ?>
