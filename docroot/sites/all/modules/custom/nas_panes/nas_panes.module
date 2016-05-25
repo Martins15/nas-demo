@@ -856,6 +856,15 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-center-sanctuary',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
+    'audubon_near_you_upcoming_events' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-upcoming-events',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
     'audubon_near_you_bird_guide' => array(
       'variables' => array(
         'links' => array(),
@@ -1756,14 +1765,25 @@ function _nas_panes_get_upcoming_events($state = 'all') {
   foreach ($results as $result) {
     $link = NULL;
     $item = _i18n_node_load($result->entity);
-    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $path = 'node/' . $item->nid;
+    $link = l($item->title, $path, array('attributes' => array('target' => '_blank')));
+    $alter = array(
+      'max_length' => 150,
+      'word_boundary' => TRUE,
+      'ellipsis' => TRUE,
+      'html' => TRUE,
+    );
+    $details_link = l(t('Details'), $path, array('attributes' => array('class' => array('more-link'))));
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->title,
       'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
       'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
       'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'location_name' => $item->field_event_location_name[LANGUAGE_NONE][0]['safe_value'],
       'link' => $link,
+      'details_link' => $details_link,
+      'body' => views_trim_text($alter, $item->body[LANGUAGE_NONE][0]['safe_value']),
       'order' => $count,
     );
     $count = $count + 1;
