@@ -6,7 +6,7 @@
 ?>
 
 <div id="audubon-near-you--center-sanctuary--wrapper">
-  <div class="large-6 columns">
+  <div class="large-4 columns">
     <h2 class="title-block"><?php print t('Centers & Sanctuaries'); ?></h2>
     <?php if (empty($items)) : ?>
       <?php if (empty($hide_empty_text) && empty($filter_active)) : ?>
