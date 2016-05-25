@@ -603,9 +603,7 @@ var Nas = Nas || {};
             url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/frontpage-flyways/events/'+stateIsoCode,
             dataType: 'html',
             success: function (data) {
-              if (data !== '') {
-                $('.flyways-events-ajax-wrapper').once().html(data);
-              }
+              $('.flyways-events-ajax-wrapper').once().html(data);
               $('.flyways-events-ajax-wrapper').addClass('state-code-' + stateIsoCode);
             }
           });
