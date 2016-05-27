@@ -13432,6 +13432,11 @@ body.touch .sticky-wrapper {
 .blocks-events article {
   margin-top: 35px;
 }
+.blocks-events article .title-prefix {
+  color: #838078;
+  margin-bottom: 5px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
 .blocks-events article .title-article {
   font-size: 24px;
   font-weight: normal;
@@ -13482,7 +13487,7 @@ body.touch .sticky-wrapper {
 }
 
 .near-you-form {
-  width: 60%;
+  width: 50%;
   float: left;
   padding: 0 10px;
 }
