@@ -2015,6 +2015,14 @@ function nas_panes_audubon_near_you_elements_callback() {
         'center_sanctuary',
       ),
     ),
+    'upcoming-events' => array(
+      'wrapper' => 'audubon-near-you--upcoming-events--wrapper',
+      'callback' => '_nas_panes_get_upcoming_events',
+      'theme' => 'audubon_near_you_upcoming_events',
+      'view_args' => array(
+        $query['state'],
+      ),
+    ),
     'birds' => array(
       'wrapper' => 'audubon-near-you--birds--wrapper',
       'callback' => '_nas_panes_get_priority_birds',
