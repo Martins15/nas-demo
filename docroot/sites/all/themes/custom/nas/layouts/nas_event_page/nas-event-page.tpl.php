@@ -20,6 +20,14 @@
         <div class="row space-top">
           <div class="columns text-container">
             <?php print $content['description']; ?>
+            <?php if (!empty($content['file_attachments'])): ?>
+              <div class="file-attachments">
+                <h3><?php print t('Downloadable Resources'); ?></h3>
+                <div class="files-list">
+                  <?php print $content['file_attachments']; ?>
+                </div>
+              </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
