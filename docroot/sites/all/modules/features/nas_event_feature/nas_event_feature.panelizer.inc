@@ -369,6 +369,7 @@ function nas_event_feature_panelizer_defaults() {
       'sidebar' => NULL,
       'other_upcoming_events' => NULL,
       'cards_set' => NULL,
+      'file_attachments' => NULL,
     ),
   );
   $display->cache = array();
@@ -445,6 +446,36 @@ function nas_event_feature_panelizer_defaults() {
     $pane->uuid = 'acfe668f-480e-4a90-b357-ee088dc9ca02';
     $display->content['new-acfe668f-480e-4a90-b357-ee088dc9ca02'] = $pane;
     $display->panels['description'][0] = 'new-acfe668f-480e-4a90-b357-ee088dc9ca02';
+    $pane = new stdClass();
+    $pane->pid = 'new-4e2783df-faa5-486a-831e-d7d59d61d67c';
+    $pane->panel = 'file_attachments';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_file_attachments';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'hidden',
+      'formatter' => 'file_default',
+      'delta_limit' => '0',
+      'delta_offset' => '0',
+      'delta_reversed' => 0,
+      'formatter_settings' => array(),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4e2783df-faa5-486a-831e-d7d59d61d67c';
+    $display->content['new-4e2783df-faa5-486a-831e-d7d59d61d67c'] = $pane;
+    $display->panels['file_attachments'][0] = 'new-4e2783df-faa5-486a-831e-d7d59d61d67c';
     $pane = new stdClass();
     $pane->pid = 'new-ad2b3caa-0548-443d-8347-47a03b7cf928';
     $pane->panel = 'header';

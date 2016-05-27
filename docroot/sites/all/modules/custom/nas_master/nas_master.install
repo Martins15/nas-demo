@@ -3483,3 +3483,17 @@ function nas_master_update_7241() {
     'shared_fields_original_only' => 1,
   ));
 }
+
+/**
+ * Enable attachments on events.
+ */
+function nas_master_update_7242() {
+  module_enable(array('remote_stream_wrapper'));
+  features_revert(array(
+    'nas_event_feature' => array(
+      'feeds_importer',
+      'field_instance',
+      'panelizer_defaults',
+    ),
+  ));
+}
