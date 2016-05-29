@@ -212,8 +212,23 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     $plant_ids = array();
     $view->result_tier1 = array();
 
+    // Load all available plant attributes and bird types.
+    $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
+    $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
+    $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
+    $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
+
+    $np_attr_term_wrappers = array();
+    $np_bird_types_term_wrappers = array();
+    foreach ($np_attr_terms as $term) {
+      $np_attr_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+    }
+    foreach ($np_bird_types_terms as $term) {
+      $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+    }
+
     foreach ($ret as $result_key => &$result) {
-      // TODO: use rawurlecode() on the filename of the PlantImg URL.
+      // TODO: use rawurlencode() on the filename of the PlantImg URL.
       $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
 
       $plant_id = nas_master_native_plants_generate_plant_id(
@@ -241,7 +256,51 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           ),
         ));
       }
+
+      // Assign plant attributes and bird types; and weight results based on
+      // the lightest attribute.
+      $result->Attributes = array();
+      $result->BirdTypes = array();
+      $result->Weight = 100;
+      foreach ($np_attr_term_wrappers as $wrapper) {
+        foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+          $value = $field_wrapper->value();
+          if ($result->$value == '1') {
+            $result->Attributes[$wrapper->tid->value()] = array(
+              'tid' => $wrapper->tid->value(),
+              'name' => $wrapper->name->value(),
+              'color' => $wrapper->field_np_attr_color->value(),
+            );
+
+            $weight = $wrapper->weight->value();
+            if ($result->Weight > $weight) {
+              $result->Weight = $weight;
+            }
+          }
+        }
+      }
+      foreach ($np_bird_types_term_wrappers as $wrapper) {
+        $link = $wrapper->field_link->value();
+        if ($link) {
+          $url = $link['url'];
+        }
+        else {
+          $url = '';
+        }
+        foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+          $value = $field_wrapper->value();
+          if ($result->$value == '1') {
+            $result->BirdTypes[$wrapper->tid->value()] = array(
+              'tid' => $wrapper->tid->value(),
+              'name' => $wrapper->name->value(),
+              'image' => $wrapper->field_np_bird_type_image->value(),
+              'url' => $url,
+            );
+          }
+        }
+      }
     }
+
     if (empty($plant_ids)) {
       return;
     }
@@ -292,5 +351,11 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     if ($view->current_display == 'native_plants_search_pane_tier1') {
       $ret = $view->result_tier1;
     }
+
+    // Sort the results according to weights and then common names inside the
+    // same weight group.
+    uasort($ret, function($a, $b) {
+      return ($a->Weight - $b->Weight) ? ($a->Weight - $b->Weight) : strcmp($a->CommonName, $b->CommonName);
+    });
   }
 }
