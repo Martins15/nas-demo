@@ -100,6 +100,7 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
         $files = file_load_multiple(array(), array('uri' => $uri));
         if (!$file = reset($files)) {
           $file = remote_stream_wrapper_file_create_by_uri($uri);
+          $file->filename = urldecode($file->filename);
           file_save($file);
         }
         $entity->field_file_attachments[LANGUAGE_NONE][] = array(
