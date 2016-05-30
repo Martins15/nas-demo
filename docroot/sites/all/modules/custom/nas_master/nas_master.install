@@ -3488,13 +3488,11 @@ function nas_master_update_7241() {
  * Enable attachments on events.
  */
 function nas_master_update_7242() {
-  ini_set('memory_limit', '1024M');
   module_enable(array('remote_stream_wrapper'));
   features_revert(array(
     'nas_event_feature' => array(
       'feeds_importer',
       'field_instance',
-      'panelizer_defaults',
     ),
   ));
 }
@@ -3503,5 +3501,10 @@ function nas_master_update_7242() {
  * Enabling events block on home.
  */
 function nas_master_update_7243() {
+  features_revert(array(
+    'nas_event_feature' => array(
+      'panelizer_defaults',
+    ),
+  ));
   variable_set('events_frontpage_enabled', 1);
 }
