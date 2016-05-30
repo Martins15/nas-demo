@@ -3493,7 +3493,6 @@ function nas_master_update_7242() {
     'nas_event_feature' => array(
       'feeds_importer',
       'field_instance',
-      'panelizer_defaults',
     ),
   ));
 }
@@ -3502,5 +3501,10 @@ function nas_master_update_7242() {
  * Enabling events block on home.
  */
 function nas_master_update_7243() {
+  features_revert(array(
+    'nas_event_feature' => array(
+      'panelizer_defaults',
+    ),
+  ));
   variable_set('events_frontpage_enabled', 1);
 }
