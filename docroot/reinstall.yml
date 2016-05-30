@@ -202,6 +202,11 @@
     shell: "{{ php_env_vars }} drush nas-master-search-server-local"
     when: pp_environment == "default" or pp_environment == "demo"
 
+  - name: Download fresh MaxMindDB
+    sudo: yes
+    shell: "{{ php_env_vars }} drush nas-master-updated-geoip-db"
+    when: pp_environment == "default" or pp_environment == "demo"
+
   - name: Solr - clearing index
     sudo: yes
     shell: "{{ php_env_vars }} drush -y search-api-clear -l {{ site_url }}"
