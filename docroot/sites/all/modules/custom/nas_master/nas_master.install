@@ -3501,6 +3501,7 @@ function nas_master_update_7242() {
  * Enabling events block on home.
  */
 function nas_master_update_7243() {
+  ini_set('memory_limit', '1024M');
   features_revert(array(
     'nas_event_feature' => array(
       'panelizer_defaults',
