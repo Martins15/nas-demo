@@ -13,6 +13,9 @@ function nas_master_drush_command() {
   $items['nas-master-search-server-local'] = array(
     'description' => 'Change search server to the local one.',
   );
+  $items['nas-master-update-geoip-db'] = array(
+    'description' => 'Downloads fresh MaxMindDB.',
+  );
   return $items;
 }
 
@@ -45,4 +48,16 @@ function drush_nas_master_search_server_local() {
   //   ->execute();
   // Disable Acquia search related modules.
   // module_disable(array('acquia_search_multi_subs', 'search_api_acquia'));
+}
+
+/**
+ * Implements drush_hook_COMMAND().
+ *
+ * Callback for nas-master-acquia-search-disable Drush command.
+ */
+function drush_nas_master_update_geoip_db() {
+  $remote = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
+  $local = 'public://GeoLite2-City.mmdb';
+  file_put_contents($local, gzdecode(file_get_contents($remote)));
+  drush_log(dt("The database has been updated", array()), 'ok');
 }
