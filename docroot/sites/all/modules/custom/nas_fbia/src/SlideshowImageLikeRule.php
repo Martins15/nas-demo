@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\nas_fbia\SlideshowImageLikeRule.
+ */
+
 namespace Drupal\nas_fbia;
 
 use Facebook\InstantArticles\Elements\Image;
@@ -32,8 +37,7 @@ class SlideshowImageLikeRule extends SlideshowImageRule {
   /**
    * {@inheritdoc}
    */
-  public static function createFrom($configuration)
-  {
+  public static function createFrom($configuration) {
     $image_rule = self::create();
     $image_rule->withSelector($configuration['selector']);
 

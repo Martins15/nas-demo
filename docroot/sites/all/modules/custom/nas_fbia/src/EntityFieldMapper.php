@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\fb_instant_articles_display\EntityFieldMapper.
+ * Contains \Drupal\nas_fbia\EntityFieldMapper.
  */
 
 namespace Drupal\nas_fbia;
@@ -30,7 +30,8 @@ use Facebook\InstantArticles\Elements\Video;
 
 /**
  * Class EntityFieldMapper
- * @package Drupal\fb_instant_articles_display
+ *
+ * @package Drupal\nas_fbia
  */
 class EntityFieldMapper extends OriginEntityFieldMapper {
 
@@ -78,7 +79,7 @@ class EntityFieldMapper extends OriginEntityFieldMapper {
     switch ($display['type']) {
       case 'fbia_media_formatter':
         // Images are only allowed in the header and body.
-        $pass_region = null;
+        $pass_region = NULL;
         if ($active_region === 'header') {
           $pass_region = $header;
         }
