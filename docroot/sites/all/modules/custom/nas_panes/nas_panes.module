@@ -2163,10 +2163,11 @@ function _nas_panes_format_image_attribution($file) {
 
   $parts = array();
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
-    $parts[] = trim($items[0]['safe_value']);
+    $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    $parts[] = t('Photo:') . ' ' . trim($items[0]['safe_value']);
+    $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
+    $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
   }
   return implode(' ', $parts);
 }
