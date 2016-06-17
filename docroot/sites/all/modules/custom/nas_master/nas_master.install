@@ -3515,9 +3515,13 @@ function nas_master_update_7243() {
  */
 function nas_master_update_7244() {
   module_enable(array(
+    'composer_manager',
     'nas_fbia',
     'fb_instant_articles_display',
     'fb_instant_articles_views',
     'nas_fb_instant_articles_feature',
   ), TRUE);
+
+  // Fix somehow damaged schema cache.
+  drupal_get_schema(NULL, TRUE);
 }
