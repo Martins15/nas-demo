@@ -3509,3 +3509,15 @@ function nas_master_update_7243() {
   ));
   variable_set('events_frontpage_enabled', 1);
 }
+
+/**
+ * Enable FBIA integration.
+ */
+function nas_master_update_7244() {
+  module_enable(array(
+    'nas_fbia',
+    'fb_instant_articles_display',
+    'fb_instant_articles_views',
+    'nas_fb_instant_articles_feature',
+  ), TRUE);
+}
