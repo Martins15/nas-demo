@@ -1078,6 +1078,9 @@ function nas_panes_get_blue_text_link($node, $url = TRUE) {
         break;
       }
     }
+    if (empty($term->tid)) {
+      return array(NULL, NULL);
+    }
     $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
     return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
