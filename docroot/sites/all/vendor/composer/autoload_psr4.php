@@ -10,6 +10,6 @@ return array(
     'Facebook\\InstantArticles\\' => array($vendorDir . '/facebook/facebook-instant-articles-sdk-php/src/Facebook/InstantArticles'),
     'Facebook\\' => array($vendorDir . '/facebook/php-sdk-v4/src/Facebook'),
     'Drupal\\nas_fbia\\' => array($baseDir . '/../../../all/modules/custom/nas_fbia/src'),
-    'Drupal\\fb_instant_articles_display\\' => array($baseDir . '/../../../all/modules/contrib/fb_instant_articles/modules/fb_instant_articles_display/src'),
-    'Drupal\\fb_instant_articles\\' => array($baseDir . '/../../../all/modules/contrib/fb_instant_articles/src'),
+    'Drupal\\fb_instant_articles_display\\' => array($baseDir . '/../../../all/modules/patched/fb_instant_articles/modules/fb_instant_articles_display/src'),
+    'Drupal\\fb_instant_articles\\' => array($baseDir . '/../../../all/modules/patched/fb_instant_articles/src'),
 );

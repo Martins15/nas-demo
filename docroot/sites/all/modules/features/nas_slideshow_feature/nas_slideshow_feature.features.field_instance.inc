@@ -38,6 +38,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 3,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -104,6 +110,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Editorial section',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -139,6 +146,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -234,6 +247,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -271,6 +285,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -338,6 +358,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -422,6 +443,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -517,6 +544,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -566,6 +594,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 8,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -633,6 +667,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -738,6 +773,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -798,6 +839,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Editorial Card Left Icon',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -836,6 +878,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 7,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -923,6 +971,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -964,6 +1013,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 6,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1051,6 +1106,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1099,6 +1155,21 @@ function nas_slideshow_feature_field_default_field_instances() {
           'image_style' => 'slideshow',
         ),
         'type' => 'image',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'nas_fbia',
+        'settings' => array(
+          'author' => '',
+          'caption' => 1,
+          'comments' => 0,
+          'credit' => 1,
+          'fullscreen' => 1,
+          'likes' => 1,
+          'style' => 'hero_mobile',
+        ),
+        'type' => 'fbia_media_slideshow_formatter',
         'weight' => 0,
       ),
       'nas_editorial_card' => array(
@@ -1177,6 +1248,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -1259,6 +1331,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 4,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1325,6 +1403,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Internal tagging',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1366,6 +1445,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1434,6 +1519,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Menu Section',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1478,6 +1564,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1545,6 +1637,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Related features',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1587,6 +1680,13 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'fb_instant_articles_display',
+        'settings' => array(),
+        'type' => 'fbia_subtitle_formatter',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1681,6 +1781,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
