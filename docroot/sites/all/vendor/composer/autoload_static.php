@@ -41,7 +41,7 @@ class ComposerStaticInitComposerManager
         ),
         'Drupal\\fb_instant_articles\\' => 
         array (
-            0 => __DIR__ . '/../../..'.'/default/files/composer' . '/../../../all/modules/contrib/fb_instant_articles/src',
+            0 => __DIR__ . '/../../..'.'/default/files/composer' . '/../../../all/modules/patched/fb_instant_articles/src',
         ),
     );
 
