@@ -124,6 +124,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Fake file view',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
       'wysiwyg_override' => 1,
     ),
@@ -176,6 +177,13 @@ function nas_article_feature_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'fb_instant_articles_display',
+        'settings' => array(),
+        'type' => 'fbia_transformer_formatter',
         'weight' => 0,
       ),
       'nas_editorial_card' => array(
@@ -343,6 +351,7 @@ function nas_article_feature_field_default_field_instances() {
         ),
       ),
       'display_summary' => TRUE,
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -421,6 +430,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 12,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -576,6 +591,7 @@ function nas_article_feature_field_default_field_instances() {
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -635,6 +651,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 14,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -746,6 +768,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Legacy',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -800,6 +823,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 13,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -941,6 +970,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -988,6 +1018,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 19,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1091,6 +1127,7 @@ function nas_article_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'none',
       'title_maxlength' => 128,
@@ -1156,6 +1193,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1277,6 +1320,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Author',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1336,6 +1380,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_default',
         'weight' => 16,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1447,6 +1497,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Color mode',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1506,6 +1557,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 18,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1615,6 +1672,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Conservation Project',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1626,7 +1684,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 12,
     ),
   );
 
@@ -1657,6 +1715,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -1783,6 +1847,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1837,6 +1902,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 8,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1954,6 +2025,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Editorial Section',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1964,7 +2036,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -1995,6 +2067,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2121,6 +2199,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -2164,6 +2243,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2265,6 +2350,7 @@ function nas_article_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -2355,6 +2441,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -2481,6 +2573,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -2536,6 +2629,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 22,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2633,6 +2732,7 @@ function nas_article_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -2731,6 +2831,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2822,6 +2928,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Editorial Card Left Icon',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -2866,6 +2973,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 21,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -2984,6 +3097,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -3031,6 +3145,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 20,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3149,6 +3269,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -3189,6 +3310,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -3286,6 +3413,7 @@ function nas_article_feature_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
+      'entity_translation_sync' => FALSE,
       'file_directory' => '',
       'file_extensions' => 'txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp',
       'max_filesize' => '',
@@ -3366,6 +3494,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 17,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3481,6 +3615,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Flyway',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -3542,6 +3677,21 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'media',
         'weight' => 9,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'nas_fbia',
+        'settings' => array(
+          'author' => '',
+          'caption' => 1,
+          'comments' => 0,
+          'credit' => 1,
+          'fullscreen' => 1,
+          'likes' => 1,
+          'style' => 'hero_mobile',
+        ),
+        'type' => 'fbia_media_formatter',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3687,6 +3837,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Hero Image',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 'article_featured',
@@ -3769,6 +3920,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 4,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -3887,6 +4045,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Internal tagging',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -3897,7 +4056,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -3941,6 +4100,12 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 15,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4078,6 +4243,7 @@ function nas_article_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -4140,6 +4306,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 6,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4261,6 +4433,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Magazine issue',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -4316,6 +4489,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 7,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4434,6 +4614,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Menu Section',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -4444,7 +4625,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_orderselect',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -4500,6 +4681,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 10,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4621,6 +4808,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Press release contact',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -4684,6 +4872,12 @@ function nas_article_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 3,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4805,6 +4999,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Birds In This Story',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -4860,6 +5055,13 @@ function nas_article_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'fb_instant_articles_display',
+        'settings' => array(),
+        'type' => 'fbia_subtitle_formatter',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -4977,6 +5179,7 @@ function nas_article_feature_field_default_field_instances() {
     'label' => 'Subtitle',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),

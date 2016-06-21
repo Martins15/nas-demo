@@ -3509,3 +3509,26 @@ function nas_master_update_7243() {
   ));
   variable_set('events_frontpage_enabled', 1);
 }
+
+/**
+ * Enable FBIA integration.
+ */
+function nas_master_update_7244() {
+  // Prevent rebuilding composer.json.
+  variable_set('composer_manager_autobuild_packages', 0);
+
+  // Enable modules
+  module_enable(array(
+    'nas_fbia',
+    'fb_instant_articles_display',
+    'fb_instant_articles_views',
+    'nas_fb_instant_articles_feature',
+  ), TRUE);
+
+  // Revert features.
+  features_revert(array(
+    'nas_article_feature' => array('field_instance'),
+    'nas_slideshow_feature' => array('field_instance'),
+    'nas_fbia' => array('views_view'),
+  ));
+}
