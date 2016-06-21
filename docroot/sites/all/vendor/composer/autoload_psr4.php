@@ -9,7 +9,7 @@ return array(
     'Symfony\\Component\\CssSelector\\' => array($vendorDir . '/symfony/css-selector'),
     'Facebook\\InstantArticles\\' => array($vendorDir . '/facebook/facebook-instant-articles-sdk-php/src/Facebook/InstantArticles'),
     'Facebook\\' => array($vendorDir . '/facebook/php-sdk-v4/src/Facebook'),
-    'Drupal\\nas_fbia\\' => array($baseDir . '/../../../all/modules/custom/nas_fbia/src'),
-    'Drupal\\fb_instant_articles_display\\' => array($baseDir . '/../../../all/modules/patched/fb_instant_articles/modules/fb_instant_articles_display/src'),
-    'Drupal\\fb_instant_articles\\' => array($baseDir . '/../../../all/modules/patched/fb_instant_articles/src'),
+    'Drupal\\nas_fbia\\' => array($vendorDir . '/../all/modules/custom/nas_fbia/src'),
+    'Drupal\\fb_instant_articles_display\\' => array($vendorDir . '/../all/modules/patched/fb_instant_articles/modules/fb_instant_articles_display/src'),
+    'Drupal\\fb_instant_articles\\' => array($vendorDir . '/..//modules/patched/fb_instant_articles/src'),
 );
