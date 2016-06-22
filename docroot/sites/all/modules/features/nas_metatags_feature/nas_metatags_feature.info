@@ -14,5 +14,4 @@ features[metatag][] = node:slideshow
 features[metatag][] = node:static_page
 features[metatag][] = taxonomy_term
 features[metatag][] = user
-mtime = 1421936333
 project path = sites/all/modules/features
