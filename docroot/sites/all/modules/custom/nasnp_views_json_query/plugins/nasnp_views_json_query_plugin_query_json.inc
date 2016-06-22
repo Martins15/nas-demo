@@ -319,7 +319,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     global $native_plants_zipcode;
     $user_state_code = _nas_master_native_plants_zipcode_to_state($native_plants_zipcode);
-    
+
     foreach ($results['node'] as $node_info) {
       $local_node = node_load($node_info->nid);
       $local_node_wrapper = entity_metadata_wrapper('node', $local_node);
