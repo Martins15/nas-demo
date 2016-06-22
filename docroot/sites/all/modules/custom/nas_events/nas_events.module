@@ -92,6 +92,23 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
       if (!empty($item['sites'])) {
         $entity->field_sites[LANGUAGE_NONE][0]['value'] = drupal_json_encode($item['sites']);
       }
+
+      // Attachments.
+      $entity->field_file_attachments[LANGUAGE_NONE] = array();
+      foreach ($item['resources'] as $resource) {
+        $uri = $resource['uri'];
+        $files = file_load_multiple(array(), array('uri' => $uri));
+        if (!$file = reset($files)) {
+          $file = remote_stream_wrapper_file_create_by_uri($uri);
+          $file->filename = urldecode($file->filename);
+          file_save($file);
+        }
+        $entity->field_file_attachments[LANGUAGE_NONE][] = array(
+          'fid' => $file->fid,
+          'display' => $resource['display'],
+          'description' => $resource['description'],
+        );
+      }
       break;
   }
 }

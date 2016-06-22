@@ -621,11 +621,12 @@ function nas_preprocess_node_event(&$vars) {
   // Event type taxonomy term reference.
   $vars['event_type'] = '';
   if ($field_items = field_get_items('node', $node, 'field_event_type')) {
-    if ($term = taxonomy_term_load($field_items[0]['tid'])) {
+    if (($term = taxonomy_term_load($field_items[0]['tid'])) && $term->name) {
       $vars['event_type'] = l($term->name, 'taxonomy/term/' . $term->tid, array(
           'attributes' => array(
             'class' => array('event-type'),
           )));
+      $vars['event_type'] .= ' | ';
     }
   }
 
