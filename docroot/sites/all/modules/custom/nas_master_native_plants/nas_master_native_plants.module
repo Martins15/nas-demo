@@ -322,6 +322,9 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
+  global $native_plants_zipcode;
+  $native_plants_zipcode = $element['#value'];
+
   if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
     return;
   }
@@ -901,4 +904,25 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
       $plant['BirdTypesMobile'][] = l($bird_type['name'], $bird_type['url']);
     }
   }
+}
+
+/**
+ * Helper function to convert zipcode into state.
+ */
+function _nas_master_native_plants_zipcode_to_state($zipcode) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'zipfips')
+    ->entityCondition('bundle', 'zipfips')
+    ->propertyCondition('zip_code', $zipcode)
+    ->propertyCondition('prevalent_county_flag', 'Y');
+  $results = $query->execute();
+
+  if (!isset($results['zipfips'])) {
+    return '';
+  }
+
+  $zipfips_id = reset($results['zipfips'])->id;
+  $zipfips = entity_load('zipfips', array($zipfips_id));
+
+  return reset($zipfips)->state_code;
 }

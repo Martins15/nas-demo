@@ -317,6 +317,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       return;
     }
 
+    global $native_plants_zipcode;
+    $user_state_code = _nas_master_native_plants_zipcode_to_state($native_plants_zipcode);
+    
     foreach ($results['node'] as $node_info) {
       $local_node = node_load($node_info->nid);
       $local_node_wrapper = entity_metadata_wrapper('node', $local_node);
@@ -336,10 +339,24 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           $ret[$result_key]->Source = l($source['title'], $source['url']);
         }
 
-        // Check if this is Tier1 result.
+        // Check if this is Tier 1 result.
         if (!$local_node_wrapper->field_native_plant_tier1->value()) {
           continue;
         }
+        // Check for Tier 1 states.
+        $tier1_states = $local_node_wrapper->field_native_plant_tier1_states->value();
+        if (!empty($tier1_states) && $user_state_code) {
+          $tier1_state_codes = array();
+          foreach ($tier1_states as $state_term) {
+            $term_state_code = field_get_items('taxonomy_term', $state_term, 'field_iso_code');
+            $tier1_state_codes[] = reset($term_state_code)['value'];
+          }
+
+          if (!in_array($user_state_code, $tier1_state_codes)) {
+            continue;
+          }
+        }
+
         $ret[$result_key]->Tier1 = TRUE;
         $view->result_tier1[] = $ret[$result_key];
         unset($ret[$result_key]);
