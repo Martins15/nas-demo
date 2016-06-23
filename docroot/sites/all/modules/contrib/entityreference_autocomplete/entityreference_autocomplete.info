@@ -3,9 +3,10 @@ description = "A Form API element type to reference arbitrary entities through a
 core = 7.x
 
 dependencies[] = entity
-; Information added by Drupal.org packaging script on 2014-07-24
-version = "7.x-1.5+3-dev"
+
+; Information added by Drupal.org packaging script on 2016-03-25
+version = "7.x-1.11"
 core = "7.x"
 project = "entityreference_autocomplete"
-datestamp = "1406233454"
+datestamp = "1458928140"
 
