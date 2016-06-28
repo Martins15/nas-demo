@@ -1078,6 +1078,9 @@ function nas_panes_get_blue_text_link($node, $url = TRUE) {
         break;
       }
     }
+    if (empty($term->tid)) {
+      return array(NULL, NULL);
+    }
     $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
     return array(check_plain(i18n_taxonomy_term_name($term)), $path);
   }
@@ -2015,6 +2018,14 @@ function nas_panes_audubon_near_you_elements_callback() {
         'center_sanctuary',
       ),
     ),
+    'upcoming-events' => array(
+      'wrapper' => 'audubon-near-you--upcoming-events--wrapper',
+      'callback' => '_nas_panes_get_upcoming_events',
+      'theme' => 'audubon_near_you_upcoming_events',
+      'view_args' => array(
+        $query['state'],
+      ),
+    ),
     'birds' => array(
       'wrapper' => 'audubon-near-you--birds--wrapper',
       'callback' => '_nas_panes_get_priority_birds',
@@ -2148,17 +2159,30 @@ function _nas_panes_default_social_pages_url() {
  * @return string
  *   Image caption and credit formatted like "[Caption] Photo: [Credit]".
  */
-function _nas_panes_format_image_attribution($file) {
+function _nas_panes_format_image_attribution($file, $plain = FALSE) {
   if (!$file) {
     return '';
   }
 
   $parts = array();
+
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
-    $parts[] = trim($items[0]['safe_value']);
+    if ($plain) {
+      $parts[] = trim($items[0]['safe_value']);
+    }
+    else {
+      $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
+    }
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    $parts[] = t('Photo:') . ' ' . trim($items[0]['safe_value']);
+    if ($plain) {
+      $parts[] = t('Photo:');
+      $parts[] = trim($items[0]['safe_value']);
+    }
+    else {
+      $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
+      $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
+    }
   }
   return implode(' ', $parts);
 }

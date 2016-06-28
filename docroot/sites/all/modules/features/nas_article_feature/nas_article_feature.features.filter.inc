@@ -22,7 +22,7 @@ function nas_article_feature_filter_default_formats() {
         'weight' => -10,
         'status' => 1,
         'settings' => array(
-          'allowed_html' => '<iframe>',
+          'allowed_html' => '<iframe><img><video><script><style><source src><source>',
           'filter_html_help' => 0,
           'filter_html_nofollow' => 0,
         ),

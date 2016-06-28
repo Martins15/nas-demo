@@ -18,6 +18,7 @@ $plugin = array(
     'header' => t('Header'),
     'location' => t('Location'),
     'description' => t('Description'),
+    'file_attachments' => t('File attachments'),
     'registration' => t('Registration'),
     'sidebar' => t('Sidebar'),
     'other_upcoming_events' => t('Other upcoming events'),
