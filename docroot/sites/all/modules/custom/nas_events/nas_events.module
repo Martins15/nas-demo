@@ -92,6 +92,23 @@ function nas_events_feeds_presave(FeedsSource $source, $entity, $item) {
       if (!empty($item['sites'])) {
         $entity->field_sites[LANGUAGE_NONE][0]['value'] = drupal_json_encode($item['sites']);
       }
+
+      // Attachments.
+      $entity->field_file_attachments[LANGUAGE_NONE] = array();
+      foreach ($item['resources'] as $resource) {
+        $uri = $resource['uri'];
+        $files = file_load_multiple(array(), array('uri' => $uri));
+        if (!$file = reset($files)) {
+          $file = remote_stream_wrapper_file_create_by_uri($uri);
+          $file->filename = urldecode($file->filename);
+          file_save($file);
+        }
+        $entity->field_file_attachments[LANGUAGE_NONE][] = array(
+          'fid' => $file->fid,
+          'display' => $resource['display'],
+          'description' => $resource['description'],
+        );
+      }
       break;
   }
 }
@@ -265,43 +282,53 @@ function nas_events_ajax_flyways_events($state) {
  * Helper function to GET Events (3) ready to theme with flyways_events.
  */
 function _nas_events_get_events($state = 'all') {
+  $items = array();
+
   $query = db_select('location', 'lc');
   if (!empty($state) and $state != 'all') {
     $query->condition('lc.province', $state, '=');
   }
-  $results = $query->fields('lc', array('lid', 'province'))
-    ->range(0, 2)
-    ->orderRandom()
+
+  $lids = $query->fields('lc', array('lid'))
     ->execute()
-    ->fetchAll();
-  $lids = array();
-  foreach ($results as $result) {
-    $lids[] = $result->lid;
+    ->fetchCol();
+
+  if (!empty($lids)) {
+    $query = new EntityFieldQuery();
+    $results = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'event')
+      ->propertyCondition('status', 1)
+      ->fieldCondition('field_event_location', 'lid', $lids, 'IN')
+      ->fieldCondition('field_event_date', 'value', format_date(REQUEST_TIME, 'custom', 'Y-m-d'), '>')
+      ->fieldOrderBy('field_event_date', 'value')
+      ->range(0, 3)
+      ->execute();
+
+    if (!empty($results['node'])) {
+      foreach (array_keys($results['node']) as $nid) {
+        $node = _i18n_node_load($nid);
+        $items[$nid]['nid'] = $node->nid;
+        $items[$nid]['title'] = $node->title;
+        $items[$nid]['state'] = $state;
+
+        if (!empty($node->field_event_description[LANGUAGE_NONE])) {
+          $items[$nid]['body'] = truncate_utf8($node->field_event_description[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
+        }
+        elseif (!empty($node->body[LANGUAGE_NONE])) {
+          $items[$nid]['body'] = truncate_utf8($node->body[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
+        }
+        else {
+          $items[$nid]['body'] = '';
+        }
+
+        if (isset($node->field_event_date[LANGUAGE_NONE][0]['value'])) {
+          $date = strtotime($node->field_event_date[LANGUAGE_NONE][0]['value']);
+          $items[$nid]['start_date'] = date('l, F j, Y', $date);
+        }
+      }
+    }
   }
-  if (empty($lids)) return array();
-  $entities = db_select('field_data_field_event_location', 'el')
-      ->fields('el', array('entity_id', 'field_event_location_lid'))
-      ->condition('field_event_location_lid', $lids, 'IN')
-      ->execute()
-      ->fetchAll();
-  $items = array();
-  foreach ($entities as $entity) {
-    $nid = $entity->entity_id;
-    $node = _i18n_node_load($nid);
-    $items[$nid]['nid'] = $node->nid;
-    $items[$nid]['title'] = $node->title;
-    $items[$nid]['state'] = $state;
-    if (isset($node->field_event_description[LANGUAGE_NONE][0]['value'])) {
-      $items[$nid]['body'] = truncate_utf8($node->field_event_description[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
-    }
-    else {
-      $items[$nid]['body'] = truncate_utf8($node->body[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
-    }
-    if (isset($node->field_event_date[LANGUAGE_NONE][0]['value'])) {
-      $date = strtotime($node->field_event_date[LANGUAGE_NONE][0]['value']);
-      $items[$nid]['start_date'] = date('l, F j, Y', $date);
-    }
-  }
+
   return $items;
 }
 

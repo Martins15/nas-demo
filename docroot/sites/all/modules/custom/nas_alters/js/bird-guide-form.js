@@ -21,7 +21,7 @@
         $input.bind('typeahead:selected', function (e, obj, dataset) {
           // If species selected.
           if (dataset == 'species') {
-            window.location.href = settings.basePath + settings.pathPrefix + obj.alias;
+            window.location.href = obj.alias;
           }
           // If family selected.
           else if (dataset == 'families') {

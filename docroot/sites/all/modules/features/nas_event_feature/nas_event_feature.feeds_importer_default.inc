@@ -158,6 +158,12 @@ function nas_event_feature_feeds_importer_default() {
             'debug' => 0,
             'weight' => '34',
           ),
+          'resources' => array(
+            'name' => 'resources',
+            'value' => 'resources',
+            'debug' => 0,
+            'weight' => '35',
+          ),
         ),
         'context' => array(
           'value' => '$.*',

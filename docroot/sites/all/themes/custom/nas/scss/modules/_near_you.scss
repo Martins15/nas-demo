@@ -25,6 +25,12 @@
   }
   article {
     margin-top: 35px;
+    .title-prefix {
+      color: $color-warm-gray;
+      margin-bottom: 5px;
+      font-family: "Source Sans Pro", Verdana, sans-serif;
+    }
+
     .title-article {
       font-size: 24px;
       font-weight: normal;
@@ -79,7 +85,7 @@
   }
 }
 .near-you-form {
-  width: 60%;
+  width: 50%;
   float: left;
   padding: 0 10px;
   select {
