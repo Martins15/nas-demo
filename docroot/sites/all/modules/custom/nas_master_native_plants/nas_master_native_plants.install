@@ -19,3 +19,12 @@ function nas_master_native_plants_update_7001() {
 function nas_master_native_plants_update_7002() {
   module_enable(array('nas_native_plants_zipfips_feature'));
 }
+
+/**
+ * Add states taxonomy to Native Plant CT.
+ */
+function nas_master_native_plants_update_7003() {
+  features_revert(array(
+    'nas_native_plant_ct_feature' => array('field_base', 'field_instance', 'variable'),
+  ));
+}
