@@ -19,22 +19,22 @@ function nas_native_plant_ct_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '13',
+          'weight' => '14',
         ),
         'metatags' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '9',
-        ),
-        'redirect' => array(
           'weight' => '10',
         ),
+        'redirect' => array(
+          'weight' => '11',
+        ),
         'xmlsitemap' => array(
-          'weight' => '12',
+          'weight' => '13',
         ),
       ),
       'display' => array(),
