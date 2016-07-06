@@ -1,8 +1,9 @@
 name = IBA State
 core = 7.x
-package = NAS
+package = IBA
+version = 7.x-1.1
+project = nas_iba_state
 dependencies[] = field_collection
-dependencies[] = link
 dependencies[] = nas_bird_type_feature
 features[ctools][] = panelizer:panelizer:1
 features[ctools][] = strongarm:strongarm:1
@@ -44,3 +45,4 @@ features[variable][] = panelizer_defaults_node_iba_state
 features[views_view][] = iba_search_state_page
 features_exclude[dependencies][views] = views
 features_exclude[dependencies][views_content] = views_content
+project path = sites/all/modules/features
