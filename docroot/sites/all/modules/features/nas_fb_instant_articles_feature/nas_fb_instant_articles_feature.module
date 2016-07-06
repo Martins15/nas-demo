@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FB Instant Articles feature feature.
+ */
+
+include_once 'nas_fb_instant_articles_feature.features.inc';

@@ -854,6 +854,15 @@ function nas_panes_theme() {
       'template' => 'audubon-near-you-center-sanctuary',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
     ),
+    'audubon_near_you_upcoming_events' => array(
+      'variables' => array(
+        'title' => NULL,
+        'items' => array(),
+        'hide_empty_text' => NULL,
+      ),
+      'template' => 'audubon-near-you-upcoming-events',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/audubon_near_you_locations',
+    ),
     'audubon_near_you_bird_guide' => array(
       'variables' => array(
         'links' => array(),
@@ -1108,6 +1117,9 @@ function nas_panes_get_blue_text_link($node, $url = TRUE) {
         $term = $term_name_keyed[$menu_item['title']];
         break;
       }
+    }
+    if (empty($term->tid)) {
+      return array(NULL, NULL);
     }
     $path = $url ? url('taxonomy/term/' . $term->tid) : 'taxonomy/term/' . $term->tid;
     return array(check_plain(i18n_taxonomy_term_name($term)), $path);
@@ -1808,14 +1820,25 @@ function _nas_panes_get_upcoming_events($state = 'all') {
   foreach ($results as $result) {
     $link = NULL;
     $item = _i18n_node_load($result->entity);
-    $link = l($item->title, 'node/' . $item->nid, array('attributes' => array('target' => '_blank')));
+    $path = 'node/' . $item->nid;
+    $link = l($item->title, $path, array('attributes' => array('target' => '_blank')));
+    $alter = array(
+      'max_length' => 150,
+      'word_boundary' => TRUE,
+      'ellipsis' => TRUE,
+      'html' => TRUE,
+    );
+    $details_link = l(t('Details'), $path, array('attributes' => array('class' => array('more-link'))));
     $items[$item->nid] = array(
       'nid' => $item->nid,
       'title' => $item->title,
       'time' => date("l, M d, Y", strtotime($item->field_event_date[LANGUAGE_NONE][0]['value'])),
       'state' => $item->field_event_location[LANGUAGE_NONE][0]['province'],
       'city' => $item->field_event_location[LANGUAGE_NONE][0]['city'],
+      'location_name' => $item->field_event_location_name[LANGUAGE_NONE][0]['safe_value'],
       'link' => $link,
+      'details_link' => $details_link,
+      'body' => views_trim_text($alter, $item->body[LANGUAGE_NONE][0]['safe_value']),
       'order' => $count,
     );
     $count = $count + 1;
@@ -2047,6 +2070,14 @@ function nas_panes_audubon_near_you_elements_callback() {
         'center_sanctuary',
       ),
     ),
+    'upcoming-events' => array(
+      'wrapper' => 'audubon-near-you--upcoming-events--wrapper',
+      'callback' => '_nas_panes_get_upcoming_events',
+      'theme' => 'audubon_near_you_upcoming_events',
+      'view_args' => array(
+        $query['state'],
+      ),
+    ),
     'birds' => array(
       'wrapper' => 'audubon-near-you--birds--wrapper',
       'callback' => '_nas_panes_get_priority_birds',
@@ -2180,17 +2211,30 @@ function _nas_panes_default_social_pages_url() {
  * @return string
  *   Image caption and credit formatted like "[Caption] Photo: [Credit]".
  */
-function _nas_panes_format_image_attribution($file) {
+function _nas_panes_format_image_attribution($file, $plain = FALSE) {
   if (!$file) {
     return '';
   }
 
   $parts = array();
+
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
-    $parts[] = trim($items[0]['safe_value']);
+    if ($plain) {
+      $parts[] = trim($items[0]['safe_value']);
+    }
+    else {
+      $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
+    }
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    $parts[] = t('Photo:') . ' ' . trim($items[0]['safe_value']);
+    if ($plain) {
+      $parts[] = t('Photo:');
+      $parts[] = trim($items[0]['safe_value']);
+    }
+    else {
+      $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
+      $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
+    }
   }
   return implode(' ', $parts);
 }
@@ -2578,4 +2622,46 @@ function nas_panes_get_external_bird_headline($node) {
  */
 function nas_panes_engagement_cards_default_title() {
   return variable_get('nas_panes_engagement_cards_default_title', 'How you can help, right now');
+}
+
+/**
+ * Implements hook_ctools_plugin_pre_alter().
+ */
+function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
+  if ($info['type'] == 'content_types' && $plugin['name'] == 'custom') {
+    // Adding form_build_id to use it for "NAS-style" contextual link.
+    $plugin['defaults']['form_build_id'] = '';
+    $plugin['render callback'] = '_nas_panes_ctools_custom_content_type_render';
+    $plugin['hook theme'] = '_nas_panes_ctools_custom_content_type_theme';
+  }
+}
+
+/**
+ * Render callback for custom content_type.
+ */
+function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $contexts) {
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  $block = ctools_custom_content_type_render($subtype, $conf, $args, $contexts);
+  $block->content = array(
+    '#theme' => 'nas_panes_ctools_custom_content_type',
+    '#markup' => $block->content,
+    '#context_links' => $contextual_links,
+  );
+
+  return $block;
+}
+
+/**
+ * Delegated implementation of hook_theme().
+ */
+function _nas_panes_ctools_custom_content_type_theme(&$theme, $plugin) {
+  $theme['nas_panes_ctools_custom_content_type'] = array(
+    'variables' => array(
+      'markup' => '',
+      'context_links' => '',
+    ),
+    'template' => 'nas-panes-ctools-custom-content-type',
+    'path' => drupal_get_path('module', 'nas_panes') . '/templates',
+  );
 }

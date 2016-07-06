@@ -40,6 +40,9 @@ function views_infinite_scroll_theme() {
  * Implements hook_views_ajax_data_alter().
  */
 function views_infinite_scroll_views_ajax_data_alter(&$commands, $view) {
+  if (!isset($view->query->pager)) {
+    return;
+  }
   switch ($view->query->pager->plugin_name) {
     case 'infinite_scroll':
       // Trigger the views_infinite_scroll_ajax_loaded event.

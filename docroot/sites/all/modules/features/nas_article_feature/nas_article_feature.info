@@ -106,6 +106,7 @@ features[variable][] = node_options_article
 features[variable][] = node_preview_article
 features[variable][] = node_submitted_article
 features[variable][] = panelizer_defaults_node_article
+features[variable][] = panelizer_node:article:page_manager_selection
 features[variable][] = save_continue_article
 features[variable][] = scheduler_expand_fieldset_article
 features[variable][] = scheduler_publish_enable_article

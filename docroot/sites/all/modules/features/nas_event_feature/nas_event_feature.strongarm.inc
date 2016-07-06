@@ -118,6 +118,9 @@ function nas_event_feature_strongarm() {
         'locations' => array(
           'weight' => '12',
         ),
+        'language' => array(
+          'weight' => '0',
+        ),
       ),
       'display' => array(
         'language' => array(
@@ -211,6 +214,12 @@ function nas_event_feature_strongarm() {
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,

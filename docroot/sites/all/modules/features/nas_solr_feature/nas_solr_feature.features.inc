@@ -102,12 +102,14 @@ function nas_solr_feature_default_search_api_index() {
         "field_bird_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_bird_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_bird_sci_name" : { "type" : "text" },
+        "field_community_res_geofield:latlon" : { "type" : "string", "real_type" : "location" },
         "field_event_date:value2" : { "type" : "date" },
         "field_event_description:value" : { "type" : "text" },
         "field_event_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_iba_priority" : { "type" : "string" },
         "field_iba_state" : { "type" : "integer", "entity_type" : "node" },
         "field_iba_status" : { "type" : "string" },
+        "field_nursery_geofield:latlon" : { "type" : "string", "real_type" : "location" },
         "month" : { "type" : "integer" },
         "nid" : { "type" : "integer" },
         "node_date" : { "type" : "date" },
@@ -228,14 +230,7 @@ function nas_solr_feature_default_search_api_server() {
       "port" : "80",
       "path" : "\\/solr\\/JTUW-64537",
       "edismax" : 0,
-      "modify_acquia_connection" : false,
-      "acquia_override_subscription" : {
-        "acquia_override_auto_switch" : 1,
-        "acquia_override_selector" : "default",
-        "acquia_override_subscription_id" : "JTUW-64537",
-        "acquia_override_subscription_key" : "cab37d95d904f774a1f5e3259a66b057",
-        "acquia_override_subscription_corename" : "JTUW-64537"
-      },
+      "modify_acquia_connection" : 0,
       "http_user" : "",
       "http_pass" : "",
       "excerpt" : 0,
@@ -244,6 +239,7 @@ function nas_solr_feature_default_search_api_server() {
       "skip_schema_check" : 0,
       "solr_version" : "",
       "http_method" : "AUTO",
+      "acquia_override_subscription" : { "acquia_override_subscription_corename" : "JTUW-64537" },
       "derived_key" : "ee036abfd7231c4dde6e7158a3ebaab1fab6f325"
     },
     "enabled" : "1"

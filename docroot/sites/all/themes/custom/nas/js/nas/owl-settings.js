@@ -7,7 +7,7 @@
         'navigation': true,
         'rewindNav': false,
         'pagination': false,
-        'navigationText': ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"],
+        'navigationText': ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"]
       });
     }
   };
