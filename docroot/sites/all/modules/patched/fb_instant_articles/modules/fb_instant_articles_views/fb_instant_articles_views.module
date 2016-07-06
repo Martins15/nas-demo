@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Facebook Instant Articles Views module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function fb_instant_articles_views_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#fb_instant_articles_views':
+      $filepath = dirname(__FILE__) . '/README.md';
+      if (file_exists($filepath)) {
+        $string = file_get_contents($filepath);
+        if ($processed = fb_instant_articles_help_markdown($string)) {
+          return $processed;
+        }
+        return '<pre>' . $string . '</pre>';
+      }
+  }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function fb_instant_articles_views_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'fb_instant_articles_views') . '/views',
+  );
+}

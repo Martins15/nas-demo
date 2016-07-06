@@ -11,14 +11,16 @@
             MAXSCROLL = parseInt($(".bird-guide-container").css("padding-top")) + 1;
 
         var scroll = function(e, $container, cardPadding, delta) {
+          var scrollSize = $(document).height() * 0.01;
+
           if(ISWINDOWS && ISWEBKIT || ISWINDOWS && ISFIREFOX) {
-            delta = delta * 15;
+            delta = delta * scrollSize;
           } else if (ISOSX) {
             delta = delta;
           } else if(ISWEBKIT || ISFIREFOX) {
-            delta = delta * 15;
+            delta = delta * scrollSize;
           } else {
-            delta = delta * 15;
+            delta = delta * scrollSize;
           }
 
           var newPos = cardPadding + delta ;

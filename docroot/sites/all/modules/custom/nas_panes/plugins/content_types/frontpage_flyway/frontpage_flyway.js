@@ -15,7 +15,7 @@
     attach: function(context, settings) {
       var onSuccess = function(stateIsoCode) {
         if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
-          stateIsoCode = 'default';
+          return;
         }
         var fpp_class_to_show = '',
           all_fpp_classes = [],
@@ -26,12 +26,10 @@
           }
           all_fpp_classes.push(key);
         }
-        if (fpp_class_to_show !== '') {
-          class_to_show = '.' + fpp_class_to_show;
-        } else {
-          var randKey = Math.floor((Math.random() * all_fpp_classes.length));
-          class_to_show = '.' + all_fpp_classes[randKey];
+        if (fpp_class_to_show === '') {
+          return;
         }
+        class_to_show = '.' + fpp_class_to_show;
         $(class_to_show).show();
         var $boSection = $(class_to_show).find(".breakout-section");
         $boSection.css({backgroundImage: 'url(' + $boSection.data("background") + ')'});

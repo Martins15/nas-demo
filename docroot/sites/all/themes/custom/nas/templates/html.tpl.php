@@ -65,6 +65,7 @@ global $base_url;
     <link rel="stylesheet" href="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie9.css" />
   <![endif]-->
   <?php print $scripts; ?>
+  <meta property="fb:pages" content="18709174006" />
 
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes;?>>
