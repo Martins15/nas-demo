@@ -84,7 +84,7 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
 
   // Assign all states if no states selected yet.
   if (!$states['#default_value']) {
-    foreach(array_keys($states['#options']) as $tid) {
+    foreach (array_keys($states['#options']) as $tid) {
       $states['#default_value'][] = $tid;
     }
   }
