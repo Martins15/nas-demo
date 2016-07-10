@@ -47,8 +47,8 @@ function nas_master_native_plants_node_presave($node) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['title']['#attributes']['disabled'] = TRUE;
   // Disable fields that shouldn't be changed.
+  $form['title']['#attributes']['disabled'] = TRUE;
   $disable_fields = array(
     'field_native_plant_common_name',
     'field_np_scientific_name',
@@ -57,6 +57,36 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
   );
   foreach ($disable_fields as $field) {
     $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['disabled'] = TRUE;
+  }
+
+  // Remove Canada states.
+  $canada_states = array(
+    'Ontario',
+    'Quebec',
+    'Nova Scotia',
+    'New Brunswick',
+    'Manitoba',
+    'British Columbia',
+    'Prince Edward Island',
+    'Saskatchewan',
+    'Alberta',
+    'Newfoundland and Labrador',
+    'Northwest Territories',
+    'Yukon',
+    'Nunavut',
+  );
+  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
+  foreach ($states['#options'] as $tid => $name) {
+    if (in_array($name, $canada_states)) {
+      unset($states['#options'][$tid]);
+    }
+  }
+
+  // Assign all states if no states selected yet.
+  if (!$states['#default_value']) {
+    foreach (array_keys($states['#options']) as $tid) {
+      $states['#default_value'][] = $tid;
+    }
   }
 }
 
