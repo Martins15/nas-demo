@@ -12,10 +12,25 @@ function nas_master_native_plants_menu() {
     'title' => 'Native Plants',
     'description' => 'Configure Native Plants settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_master_native_plants_settings'),
+    'page arguments' => array('nas_master_native_plants_cache_clear'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
   );
+  $items['admin/config/system/native-plants/cache-clear'] = array(
+    'title' => 'Cache clear',
+    'description' => 'Clear Native Plants cache',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/config/system/native-plants/common-name-update'] = array(
+    'title' => 'Update common names',
+    'description' => 'Update Native Plant common names',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_common_name_update'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+
   $items['nas_master_native_plants/native_plant_create'] = array(
     'title' => 'Create Native Plant',
     'description' => 'Native Plant creation callback',
