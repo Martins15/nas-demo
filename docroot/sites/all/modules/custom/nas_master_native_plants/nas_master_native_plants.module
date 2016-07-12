@@ -12,10 +12,25 @@ function nas_master_native_plants_menu() {
     'title' => 'Native Plants',
     'description' => 'Configure Native Plants settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_master_native_plants_settings'),
+    'page arguments' => array('nas_master_native_plants_cache_clear'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
   );
+  $items['admin/config/system/native-plants/cache-clear'] = array(
+    'title' => 'Cache clear',
+    'description' => 'Clear Native Plants cache',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/config/system/native-plants/common-name-update'] = array(
+    'title' => 'Update common names',
+    'description' => 'Update Native Plant common names',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_common_name_update'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+
   $items['nas_master_native_plants/native_plant_create'] = array(
     'title' => 'Create Native Plant',
     'description' => 'Native Plant creation callback',
@@ -47,8 +62,8 @@ function nas_master_native_plants_node_presave($node) {
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['title']['#attributes']['disabled'] = TRUE;
   // Disable fields that shouldn't be changed.
+  $form['title']['#attributes']['disabled'] = TRUE;
   $disable_fields = array(
     'field_native_plant_common_name',
     'field_np_scientific_name',
@@ -57,6 +72,36 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
   );
   foreach ($disable_fields as $field) {
     $form[$field][LANGUAGE_NONE][0]['value']['#attributes']['disabled'] = TRUE;
+  }
+
+  // Remove Canada states.
+  $canada_states = array(
+    'Ontario',
+    'Quebec',
+    'Nova Scotia',
+    'New Brunswick',
+    'Manitoba',
+    'British Columbia',
+    'Prince Edward Island',
+    'Saskatchewan',
+    'Alberta',
+    'Newfoundland and Labrador',
+    'Northwest Territories',
+    'Yukon',
+    'Nunavut',
+  );
+  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
+  foreach ($states['#options'] as $tid => $name) {
+    if (in_array($name, $canada_states)) {
+      unset($states['#options'][$tid]);
+    }
+  }
+
+  // Assign all states if no states selected yet.
+  if (!$states['#default_value']) {
+    foreach (array_keys($states['#options']) as $tid) {
+      $states['#default_value'][] = $tid;
+    }
   }
 }
 
@@ -322,6 +367,9 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
+  global $native_plants_zipcode;
+  $native_plants_zipcode = $element['#value'];
+
   if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
     return;
   }
@@ -404,66 +452,12 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
     return;
   }
 
-  // Load all available plant attributes and bird types.
-  $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
-  $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
-  $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
-  $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
-
-  $np_attr_term_wrappers = array();
-  $np_bird_types_term_wrappers = array();
-  foreach ($np_attr_terms as $term) {
-    $np_attr_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
-  }
-  foreach ($np_bird_types_terms as $term) {
-    $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
-  }
-
-  // Assign plant attributes and bird types.
   foreach ($vars['view']->result as &$result) {
-    $result->Attributes = array();
-    $result->BirdTypes = array();
-
-    foreach ($np_attr_term_wrappers as $wrapper) {
-      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
-        $value = $field_wrapper->value();
-        if ($result->$value == '1') {
-          $result->Attributes[$wrapper->tid->value()] = array(
-            'tid' => $wrapper->tid->value(),
-            'name' => $wrapper->name->value(),
-            'color' => $wrapper->field_np_attr_color->value(),
-          );
-        }
-      }
-    }
-    foreach ($np_bird_types_term_wrappers as $wrapper) {
-      $link = $wrapper->field_link->value();
-      if ($link) {
-        $url = $link['url'];
-      }
-      else {
-        $url = '';
-      }
-      foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
-        $value = $field_wrapper->value();
-        if ($result->$value == '1') {
-          $result->BirdTypes[$wrapper->tid->value()] = array(
-            'tid' => $wrapper->tid->value(),
-            'name' => $wrapper->name->value(),
-            'image' => $wrapper->field_np_bird_type_image->value(),
-            'url' => $url,
-          );
-        }
-      }
-    }
-
     // Randomize bird type cards ordering for Tier1 display.
     if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
       shuffle($result->BirdTypes);
     }
-  }
 
-  foreach ($vars['view']->result as &$result) {
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '
@@ -955,4 +949,25 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
       $plant['BirdTypesMobile'][] = l($bird_type['name'], $bird_type['url']);
     }
   }
+}
+
+/**
+ * Helper function to convert zipcode into state.
+ */
+function _nas_master_native_plants_zipcode_to_state($zipcode) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'zipfips')
+    ->entityCondition('bundle', 'zipfips')
+    ->propertyCondition('zip_code', $zipcode)
+    ->propertyCondition('prevalent_county_flag', 'Y');
+  $results = $query->execute();
+
+  if (!isset($results['zipfips'])) {
+    return '';
+  }
+
+  $zipfips_id = reset($results['zipfips'])->id;
+  $zipfips = entity_load('zipfips', array($zipfips_id));
+
+  return reset($zipfips)->state_code;
 }
