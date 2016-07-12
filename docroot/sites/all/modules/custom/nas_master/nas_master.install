@@ -3556,5 +3556,5 @@ function nas_master_update_7246() {
     ),
   ));
 
-  module_enable(['nas_engagement_cards']);
+  module_enable(array('nas_engagement_cards'));
 }
