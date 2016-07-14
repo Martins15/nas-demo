@@ -8,7 +8,8 @@
 /**
  * Implements callback_batch_operation().
  */
-function nas_master_native_plants_common_name_update_callback($uri, &$context) {
+function nas_master_native_plants_csv_update_callback($uri, &$context) {
+  global $user;
   $keys = array('Family', 'ScientificName', 'Commonname');
 
   $handle = fopen($uri, 'r');
@@ -32,6 +33,9 @@ function nas_master_native_plants_common_name_update_callback($uri, &$context) {
     foreach ($keys as $key) {
       $context['sandbox']['keys'][$key] = array_search($key, $context['sandbox']['headers']);
     }
+
+    $context['results']['node_updated'] = 0;
+    $context['results']['node_created'] = 0;
   }
 
   // Set file position.
@@ -48,11 +52,12 @@ function nas_master_native_plants_common_name_update_callback($uri, &$context) {
   $context['sandbox']['position'] = ftell($handle);
 
   foreach ($lines as $line) {
+    $context['sandbox']['progress']++;
     if (!$line) {
       continue;
     }
-    $context['sandbox']['progress']++;
 
+    // Try to find the node to update.
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'native_plant')
@@ -70,10 +75,25 @@ function nas_master_native_plants_common_name_update_callback($uri, &$context) {
 
       if ($title_check) {
         $node_wrapper->save();
-        $context['results']['node_count']++;
+        $context['results']['node_updated']++;
       }
+      continue;
     }
+
+    // Create new Native Plant node.
+    $node = entity_create('node', array('type' => 'native_plant'));
+    $node_wrapper = entity_metadata_wrapper('node', $node);
+    $node_wrapper->status->set(NODE_NOT_PUBLISHED);
+    $node_wrapper->author->set($user);
+    $node_wrapper->title->set($line[$context['sandbox']['keys']['Commonname']]);
+    $node_wrapper->field_native_plant_common_name->set($line[$context['sandbox']['keys']['Commonname']]);
+    $node_wrapper->field_np_scientific_name->set($line[$context['sandbox']['keys']['ScientificName']]);
+    $node_wrapper->field_native_plant_family->set($line[$context['sandbox']['keys']['Family']]);
+
+    $node_wrapper->save();
+    $context['results']['node_created']++;
   }
+
   $context['results']['count'] = $context['sandbox']['progress'];
 
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
@@ -84,10 +104,11 @@ function nas_master_native_plants_common_name_update_callback($uri, &$context) {
 /**
  * Implements callback_batch_finished().
  */
-function nas_master_native_plants_common_name_update_finished_callback($success, $results, $operations) {
+function nas_master_native_plants_csv_update_finished_callback($success, $results, $operations) {
   if ($success) {
     drupal_set_message(format_plural($results['count'], 'One line processed.', '@count lines processed.'));
-    drupal_set_message(format_plural($results['node_count'], 'One node updated.', '@count nodes updated.'));
+    drupal_set_message(format_plural($results['node_updated'], 'One node updated.', '@count nodes updated.'));
+    drupal_set_message(format_plural($results['node_created'], 'One node created.', '@count nodes created.'));
   }
   else {
     drupal_set_message(t('Finished with an error.'));
