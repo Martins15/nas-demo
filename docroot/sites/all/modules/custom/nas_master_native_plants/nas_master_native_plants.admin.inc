@@ -34,10 +34,11 @@ function nas_master_native_plants_cache_clear_submit() {
 /**
  * Native Plants Common names update form.
  */
-function nas_master_native_plants_common_name_update($form, &$form_state) {
+function nas_master_native_plants_csv_update($form, &$form_state) {
   $form['file'] = array(
     '#type' => 'managed_file',
-    '#title' => t('Choose file'),
+    '#title' => t('CSV file'),
+    '#description' => t('Choose file with at least 3 columns: Family, ScientificName and Commonname'),
     '#upload_validators' => array(
       'file_validate_extensions' => array('csv'),
     ),
@@ -54,17 +55,17 @@ function nas_master_native_plants_common_name_update($form, &$form_state) {
 /**
  * Submit callback for nas_master_native_plants_common_name_update().
  */
-function nas_master_native_plants_common_name_update_submit($form, &$form_state) {
+function nas_master_native_plants_csv_update_submit($form, &$form_state) {
   $file = file_load($form_state['values']['file']);
 
   $operations = array(
-    array('nas_master_native_plants_common_name_update_callback', [$file->uri]),
+    array('nas_master_native_plants_csv_update_callback', [$file->uri]),
   );
 
   $batch = array(
     'title' => t('Updating Native Plants Common names'),
     'operations' => $operations,
-    'finished' => 'nas_master_native_plants_common_name_update_finished_callback',
+    'finished' => 'nas_master_native_plants_csv_update_finished_callback',
     'file' => drupal_get_path('module', 'nas_master_native_plants') . '/nas_master_native_plants.batch.inc',
   );
   batch_set($batch);
