@@ -52,10 +52,10 @@ function nas_master_native_plants_csv_update_callback($uri, &$context) {
   $context['sandbox']['position'] = ftell($handle);
 
   foreach ($lines as $line) {
+    $context['sandbox']['progress']++;
     if (!$line) {
       continue;
     }
-    $context['sandbox']['progress']++;
 
     // Try to find the node to update.
     $query = new EntityFieldQuery();
