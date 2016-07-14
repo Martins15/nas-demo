@@ -21,11 +21,11 @@ function nas_master_native_plants_menu() {
     'description' => 'Clear Native Plants cache',
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
-  $items['admin/config/system/native-plants/common-name-update'] = array(
-    'title' => 'Update common names',
-    'description' => 'Update Native Plant common names',
+  $items['admin/config/system/native-plants/csv-update'] = array(
+    'title' => 'CSV update',
+    'description' => 'Update Native Plants nodes',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_master_native_plants_common_name_update'),
+    'page arguments' => array('nas_master_native_plants_csv_update'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
     'type' => MENU_LOCAL_TASK,
