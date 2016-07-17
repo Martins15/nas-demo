@@ -24,6 +24,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -149,6 +155,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -295,6 +307,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -413,6 +431,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -533,6 +557,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -652,6 +682,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'type' => 'link_default',
         'weight' => 7,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -759,6 +795,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'type' => 'list_default',
         'weight' => 6,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -847,6 +889,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'type' => 'i18n_taxonomy_term_reference_link',
         'weight' => 8,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -907,13 +955,21 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
     'label' => 'Tier 1 states',
     'required' => 0,
     'settings' => array(
+      'checkall' => array(
+        'checkall' => 1,
+        'checkall-check-all' => 1,
+        'checkall-toggle' => 0,
+        'checkall-uncheck-all' => 1,
+      ),
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 2,
     ),
@@ -932,6 +988,12 @@ function nas_native_plant_ct_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 3,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
