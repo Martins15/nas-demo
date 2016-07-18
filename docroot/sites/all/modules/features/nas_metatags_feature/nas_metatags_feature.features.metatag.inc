@@ -90,7 +90,13 @@ function nas_metatags_feature_metatag_export_default() {
     'instance' => 'global:frontpage',
     'config' => array(
       'title' => array(
-        'value' => '[site:name]',
+        'value' => 'National Audubon Society',
+      ),
+      'description' => array(
+        'value' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
+      ),
+      'abstract' => array(
+        'value' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
       ),
       'canonical' => array(
         'value' => '[site:url]',
@@ -98,17 +104,35 @@ function nas_metatags_feature_metatag_export_default() {
       'shortlink' => array(
         'value' => '[site:url]',
       ),
-      'og:description' => array(
-        'value' => '[site:slogan]',
-      ),
-      'og:title' => array(
-        'value' => '[site:name]',
+      'og:site_name' => array(
+        'value' => 'National Audubon Society',
       ),
       'og:type' => array(
         'value' => 'website',
       ),
       'og:url' => array(
         'value' => '[site:url]',
+      ),
+      'og:title' => array(
+        'value' => 'National Audubon Society',
+      ),
+      'og:determiner' => array(
+        'value' => 'the',
+      ),
+      'og:description' => array(
+        'value' => 'Audubon’s mission is to conserve and restore natural ecosystems, focusing on birds, other wildlife, and their habitats for the benefit of humanity and the earth\'s biological diversity.',
+      ),
+      'og:image' => array(
+        'value' => 'https://www.audubon.org/sites/default/files/sartore_FB.jpg',
+      ),
+      'og:image:type' => array(
+        'value' => 'image/jpeg',
+      ),
+      'og:image:width' => array(
+        'value' => 1200,
+      ),
+      'og:image:height' => array(
+        'value' => 630,
       ),
     ),
   );
@@ -149,19 +173,54 @@ function nas_metatags_feature_metatag_export_default() {
     'instance' => 'node:article',
     'config' => array(
       'description' => array(
-        'value' => '[node:editorial_card_subtitle]',
+        'value' => '[node:field_subtitle]',
+      ),
+      'robots' => array(
+        'value' => array(
+          'notranslate' => 'notranslate',
+          'index' => 0,
+          'follow' => 0,
+          'noindex' => 0,
+          'nofollow' => 0,
+          'noarchive' => 0,
+          'nosnippet' => 0,
+          'noodp' => 0,
+          'noydir' => 0,
+          'noimageindex' => 0,
+        ),
+      ),
+      'amphtml' => array(
+        'value' => 'https://mercury.postlight.com/amp?url=[current-page:encoded-url]',
       ),
       'og:title' => array(
         'value' => '[node:editorial_card_title]',
       ),
       'og:description' => array(
-        'value' => '[node:editorial_card_subtitle]',
+        'value' => '[node:field_subtitle]',
       ),
       'og:image' => array(
-        'value' => '[node:editorial_card_image:hero_mobile]',
+        'value' => '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]',
       ),
       'article:published_time' => array(
         'value' => '[node:field_article_date]',
+      ),
+      'twitter:card' => array(
+        'value' => 'summary_large_image',
+      ),
+      'twitter:creator' => array(
+        'value' => '@audubonsociety',
+      ),
+      'twitter:url' => array(
+        'value' => '[current-page:url:absolute]',
+      ),
+      'twitter:title' => array(
+        'value' => '[node:editorial_card_title]',
+      ),
+      'twitter:description' => array(
+        'value' => '[node:field_subtitle]',
+      ),
+      'twitter:image:src' => array(
+        'value' => '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]',
       ),
     ),
   );
@@ -210,6 +269,9 @@ function nas_metatags_feature_metatag_export_default() {
     'config' => array(
       'description' => array(
         'value' => '[node:editorial_card_subtitle]',
+      ),
+      'amphtml' => array(
+        'value' => 'https://mercury.postlight.com/amp?url=[current-page:encoded-url]',
       ),
       'og:title' => array(
         'value' => '[node:editorial_card_title]',

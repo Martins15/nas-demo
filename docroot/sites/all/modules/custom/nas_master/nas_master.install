@@ -3532,3 +3532,14 @@ function nas_master_update_7244() {
     'nas_fbia' => array('views_view'),
   ));
 }
+
+/**
+ * Enabling Google AMP link tag.
+ */
+function nas_master_update_7245() {
+  features_revert(array(
+    'nas_metatags_feature' => array(
+      'metatag',
+    ),
+  ));
+}
