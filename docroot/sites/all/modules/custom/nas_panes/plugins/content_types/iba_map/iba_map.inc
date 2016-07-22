@@ -29,21 +29,24 @@ function iba_map_render($subtype, $conf, $args, $context) {
     case 'iba':
       $lat_field = 'field_iba_lat';
       $long_field = 'field_iba_long';
+      $map_zoom_level_field = 'field_iba_map_zoom_level';
       $level = 12;
       break;
 
     case 'iba_state':
       $lat_field = 'field_iba_state_latitude';
       $long_field = 'field_iba_state_longitude';
+      $map_zoom_level_field = 'field_iba_state_map_zoom_level';
       $level = 6;
-      $get_level = field_get_items('node', $node, 'field_iba_state_map_level');
-      if (!empty($get_level[0]['value'])) {
-        $level = $get_level[0]['value'];
-      }
       break;
 
     default:
       return;
+  }
+
+  $get_level = field_get_items('node', $node, $map_zoom_level_field);
+  if (!empty($get_level[0]['value'])) {
+    $level = $get_level[0]['value'];
   }
 
   $lat = field_get_items('node', $node, $lat_field);

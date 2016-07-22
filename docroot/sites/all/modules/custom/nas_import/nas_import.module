@@ -598,8 +598,8 @@ function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity
   if (isset($item['longitudestate'])) {
     $entity->field_iba_state_longitude[LANGUAGE_NONE][0]['value'] = $item['longitudestate'];
   }
-  if (isset($item['maplevelstate'])) {
-    $entity->field_iba_state_map_level[LANGUAGE_NONE][0]['value'] = $item['maplevelstate'];
+  if (isset($item['maplevelstate']) && is_int($item['maplevelstate'])) {
+    $entity->field_iba_state_map_zoom_level[LANGUAGE_NONE][0]['value'] = (int) $item['maplevelstate'];
   }
 }
 

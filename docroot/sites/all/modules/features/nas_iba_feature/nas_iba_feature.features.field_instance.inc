@@ -131,7 +131,7 @@ function nas_iba_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 17,
     ),
   );
 
@@ -479,7 +479,7 @@ function nas_iba_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 18,
     ),
   );
 
@@ -1207,7 +1207,7 @@ function nas_iba_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 15,
     ),
   );
 
@@ -1332,7 +1332,7 @@ function nas_iba_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 14,
     ),
   );
 
@@ -1457,7 +1457,99 @@ function nas_iba_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 14,
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-iba-field_iba_map_zoom_level'
+  $field_instances['node-iba-field_iba_map_zoom_level'] = array(
+    'bundle' => 'iba',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Zoom level is integer from 0 to 19. Read more at http://wiki.openstreetmap.org/wiki/Zoom_levels',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 21,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_iba_map_zoom_level',
+    'label' => 'Map zoom level',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 13,
     ),
   );
 
@@ -2079,11 +2171,13 @@ function nas_iba_feature_field_default_field_instances() {
   t('Latitude');
   t('Longitude');
   t('Map');
+  t('Map zoom level');
   t('Ornithological Summary');
   t('Ownership');
   t('Priority');
   t('State');
   t('Status');
+  t('Zoom level is integer from 0 to 19. Read more at http://wiki.openstreetmap.org/wiki/Zoom_levels');
 
   return $field_instances;
 }
