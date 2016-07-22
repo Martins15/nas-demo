@@ -584,6 +584,8 @@ function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $e
 function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity, $item) {
   list(, $title) = explode('-', $entity->title);
   $entity->title = trim($title);
+  // Remove line breaks - see https://propeople-us.atlassian.net/browse/NAS-225.
+  $entity->body[LANGUAGE_NONE][0]['value'] = trim(preg_replace('/\s+/', ' ', $entity->body[LANGUAGE_NONE][0]['value']));
   // Convert line breaks using Drupal core filter.
   $entity->body[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->body[LANGUAGE_NONE][0]['value']);
 
