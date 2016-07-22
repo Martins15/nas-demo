@@ -3544,12 +3544,14 @@ function nas_master_update_7244() {
 }
 
 /**
- * Enable NAS IBA Import feature.
+ * Enabling Google AMP link tag.
  */
 function nas_master_update_7245() {
-  // Clear cache to discover new Feeds parser plugin.
-  cache_clear_all();
-  module_enable(array('nas_iba_import_feeds_feature'));
+  features_revert(array(
+    'nas_metatags_feature' => array(
+      'metatag',
+    ),
+  ));
 }
 
 /**

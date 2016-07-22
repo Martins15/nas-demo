@@ -904,3 +904,18 @@ function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
     }
   }
 }
+
+/**
+ * Implements hook_metatag_info().
+ */
+function nas_alters_metatag_info() {
+  $info['tags']['amphtml'] = array(
+    'label' => t('Google AMP'),
+    'description' => t('Defines url to be used to generate amp-fit page url'),
+    'class' => 'DrupalLinkMetaTag',
+    'group' => 'advanced',
+    'weight' => 1,
+  );
+
+  return $info;
+}
