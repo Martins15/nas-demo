@@ -831,7 +831,7 @@ function nas_iba_state_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -1065,23 +1065,23 @@ function nas_iba_state_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
-  // Exported field_instance: 'node-iba_state-field_iba_state_map_level'
-  $field_instances['node-iba_state-field_iba_state_map_level'] = array(
+  // Exported field_instance: 'node-iba_state-field_iba_state_map_zoom_level'
+  $field_instances['node-iba_state-field_iba_state_map_zoom_level'] = array(
     'bundle' => 'iba_state',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Zoom level is integer from 0 to 19. Read more at http://wiki.openstreetmap.org/wiki/Zoom_levels',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 10,
+        'type' => 'list_default',
+        'weight' => 14,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1145,52 +1145,19 @@ function nas_iba_state_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_iba_state_map_level',
-    'label' => 'Map Level',
+    'field_name' => 'field_iba_state_map_zoom_level',
+    'label' => 'Map zoom level',
     'required' => 0,
     'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'full_html' => 'full_html',
-          'html' => 'html',
-          'map' => 'map',
-          'plain_text' => 'plain_text',
-          'video' => 'video',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'full_html' => array(
-              'weight' => 0,
-            ),
-            'html' => array(
-              'weight' => 0,
-            ),
-            'map' => array(
-              'weight' => -8,
-            ),
-            'plain_text' => array(
-              'weight' => 10,
-            ),
-            'video' => array(
-              'weight' => 0,
-            ),
-          ),
-        ),
-      ),
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 12,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 13,
     ),
   );
 
@@ -1302,10 +1269,11 @@ function nas_iba_state_field_default_field_instances() {
   t('ISO');
   t('Latitude');
   t('Longitude');
-  t('Map Level');
+  t('Map zoom level');
   t('Overview');
   t('Priority');
   t('State priorities');
+  t('Zoom level is integer from 0 to 19. Read more at http://wiki.openstreetmap.org/wiki/Zoom_levels');
 
   return $field_instances;
 }

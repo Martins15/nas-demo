@@ -38,7 +38,7 @@ function nas_iba_feature_field_group_info() {
       12 => 'field_iba_ownership',
       13 => 'field_iba_priority',
       14 => 'field_iba_status',
-      15 => 'field_iba_map_level',
+      15 => 'field_iba_map_zoom_level',
       16 => 'title',
     ),
     'format_type' => 'tab',
