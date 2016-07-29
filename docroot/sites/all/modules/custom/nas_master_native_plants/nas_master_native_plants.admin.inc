@@ -1,13 +1,14 @@
 <?php
+
 /**
  * @file
  * Administration pages for the NAS Master Native Plants module.
  */
 
 /**
- * Administration settings form.
+ * Native Plants cache clear form.
  */
-function nas_master_native_plants_settings($form, &$form_state) {
+function nas_master_native_plants_cache_clear($form, &$form_state) {
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',
@@ -18,9 +19,9 @@ function nas_master_native_plants_settings($form, &$form_state) {
 }
 
 /**
- * Submit callback for nas_master_native_plants_settings.
+ * Submit callback for nas_master_native_plants_cache_clear().
  */
-function nas_master_native_plants_settings_submit() {
+function nas_master_native_plants_cache_clear_submit() {
   $destination = 'public://views_json_query';
   if (file_unmanaged_delete_recursive($destination)) {
     drupal_set_message('Cleared Native Plants cache.');
@@ -28,6 +29,46 @@ function nas_master_native_plants_settings_submit() {
   else {
     drupal_set_message('Failed to clear Native Plants cache.', 'error');
   }
+}
+
+/**
+ * Native Plants Common names update form.
+ */
+function nas_master_native_plants_csv_update($form, &$form_state) {
+  $form['file'] = array(
+    '#type' => 'managed_file',
+    '#title' => t('CSV file'),
+    '#description' => t('Choose file with at least 3 columns: Family, ScientificName and Commonname'),
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('csv'),
+    ),
+    '#required' => TRUE,
+  );
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Process'),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for nas_master_native_plants_common_name_update().
+ */
+function nas_master_native_plants_csv_update_submit($form, &$form_state) {
+  $file = file_load($form_state['values']['file']);
+
+  $operations = array(
+    array('nas_master_native_plants_csv_update_callback', [$file->uri]),
+  );
+
+  $batch = array(
+    'title' => t('Updating Native Plants Common names'),
+    'operations' => $operations,
+    'finished' => 'nas_master_native_plants_csv_update_finished_callback',
+    'file' => drupal_get_path('module', 'nas_master_native_plants') . '/nas_master_native_plants.batch.inc',
+  );
+  batch_set($batch);
 }
 
 /**
