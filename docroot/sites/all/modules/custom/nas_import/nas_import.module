@@ -23,7 +23,7 @@ define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
 define('NAS_IMPORT_FEEDS_IBA', 'iba_import');
 define('NAS_IMPORT_FEEDS_IBA_STATE', 'iba_states_import');
-define('NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT', 'http://netapp.audubon.org/IBARestSvcUAT/IBAService/Export/');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT', 'http://netapp.audubon.org/IBARestSvc/IBAService/Export/');
 define('NAS_IMPORT_FEEDS_IBA_IMPORT_ALL', 'All');
 define('NAS_IMPORT_FEEDS_IBA_IMPORT_UPDATES', 'Updates');
 define('NAS_IMPORT_FEEDS_IBA_IMPORT_ITEM', 'Site');
@@ -584,6 +584,8 @@ function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $e
 function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity, $item) {
   list(, $title) = explode('-', $entity->title);
   $entity->title = trim($title);
+  // Remove line breaks - see https://propeople-us.atlassian.net/browse/NAS-225.
+  $entity->body[LANGUAGE_NONE][0]['value'] = trim(preg_replace('/\s+/', ' ', $entity->body[LANGUAGE_NONE][0]['value']));
   // Convert line breaks using Drupal core filter.
   $entity->body[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->body[LANGUAGE_NONE][0]['value']);
 
@@ -598,8 +600,8 @@ function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity
   if (isset($item['longitudestate'])) {
     $entity->field_iba_state_longitude[LANGUAGE_NONE][0]['value'] = $item['longitudestate'];
   }
-  if (isset($item['maplevelstate'])) {
-    $entity->field_iba_state_map_level[LANGUAGE_NONE][0]['value'] = $item['maplevelstate'];
+  if (isset($item['maplevelstate']) && is_int($item['maplevelstate'])) {
+    $entity->field_iba_state_map_zoom_level[LANGUAGE_NONE][0]['value'] = (int) $item['maplevelstate'];
   }
 }
 
@@ -607,6 +609,12 @@ function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity
  * hook_feeds_presave() for iba importer.
  */
 function nas_import_feeds_presave_iba_import(FeedsSource $source, $entity, $item) {
+  // Skip non-public IBAs.
+  if ($item['ispublic'] == 'False') {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
+
   // Convert line breaks using Drupal core filter.
   $fields = array(
     'field_iba_description',
@@ -616,8 +624,12 @@ function nas_import_feeds_presave_iba_import(FeedsSource $source, $entity, $item
   foreach ($fields as $field) {
     if (isset($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
       $entity->{$field}[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['value']);
-      if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
-        $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+    }
+    if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
+      $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+      // Use summary if value is empty.
+      if (empty($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
+        $entity->{$field}[LANGUAGE_NONE][0]['value'] = $entity->{$field}[LANGUAGE_NONE][0]['summary'];
       }
     }
   }

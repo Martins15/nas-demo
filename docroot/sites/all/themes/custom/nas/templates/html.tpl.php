@@ -44,9 +44,9 @@
  */
 global $base_url;
 ?><!doctype html>
-<html lang="en">
+<html lang="<?php print $language->language; ?>">
   <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
   <title><?php print $head_title; ?></title>
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
   <?php print $head; ?>
@@ -65,6 +65,7 @@ global $base_url;
     <link rel="stylesheet" href="<?php print $base_url . '/' . drupal_get_path('theme', 'nas'); ?>/css/ie9.css" />
   <![endif]-->
   <?php print $scripts; ?>
+  <meta property="fb:pages" content="18709174006" />
 
   </head>
   <body class="<?php print $classes; ?>" <?php print $attributes;?>>

@@ -57,6 +57,82 @@ function nas_html_head_alter(&$head_elements) {
 }
 
 /**
+ * Implements hook_preprocess_views_view_rss().
+ */
+function nas_preprocess_views_view_rss(&$vars) {
+  $vars['namespaces'] .= ' xmlns:content="http://purl.org/rss/1.0/modules/content/"';
+}
+
+/**
+ * Implements hook_preprocess_views_view_row_rss().
+ */
+function nas_preprocess_views_view_row_rss(&$vars) {
+  // Facebook RSS.
+  $params = drupal_get_query_parameters();
+  $vars['facebook_rss'] = !empty($params['fbia']);
+
+  $node = node_load($vars['row']->nid);
+  $wrapper = entity_metadata_wrapper('node', $node);
+
+  // GUID.
+  $vars['guid'] = $node->uuid;
+
+  $timestamp = $node->created;
+  if ($node->type == 'article') {
+    $subtitle_field = 'field_subtitle';
+
+    if ($value = $wrapper->field_article_date->value()) {
+      $timestamp = $value;
+    }
+
+    // Author.
+    if ($contact_node = $wrapper->field_author->value()) {
+      $vars['author'] = $contact_node->title;
+    }
+  }
+  else {
+    $subtitle_field = 'field_slideshow_subtitle';
+  }
+
+  // Description.
+  $vars['description'] = $wrapper->{$subtitle_field}->value();
+
+  // Publication date.
+  $vars['pub_date'] = format_date($timestamp, 'custom', DATE_RSS);
+
+  // Categories.
+  $vars['categories'] = array();
+  if ($tids = $wrapper->field_menu_section->raw()) {
+    foreach ($tids as $tid) {
+      $trail = array();
+
+      foreach (array_reverse(taxonomy_get_parents_all($tid)) as $term) {
+        $trail[] = check_plain($term->name);
+      }
+
+      $vars['categories'][] = implode('/', $trail);
+    }
+  }
+
+  // Body content.
+  $vars['content'] = '';
+  if ($image = field_get_items('node', $node, 'field_editorial_card_image')) {
+    $build = field_view_value('node', $node, 'field_editorial_card_image', $image[0], array(
+      'type' => 'image',
+      'settings' => array(
+        'image_style' => 'nas_rss',
+      ),
+    ));
+
+    $vars['content'] .= '<div class="editorial-card-image">' . render($build) . '</div>';
+  }
+
+  if ($value = $wrapper->body->value()) {
+    $vars['content'] .= '<div class="content-body">' . check_markup($value['value'], $value['format']) . '</div>';
+  }
+}
+
+/**
  * Implements hook_preprocess_node().
  */
 function nas_preprocess_node(&$vars) {
@@ -119,11 +195,30 @@ function nas_preprocess_node(&$vars) {
 }
 
 /**
+ * theme_preprocess_node for RSS view mode.
+ */
+function nas_preprocess_node_rss(&$vars) {
+  $vars['author'] = $vars['user']->name;
+  $vars['published_date'] = $vars['date'];
+}
+
+/**
  * theme_preprocess_node for bird content type.
  */
 function nas_preprocess_node_bird(&$vars) {
   $node = $vars['node'];
   if ($vars['view_mode'] == 'full') {
+    foreach (array('credits', 'download') as $suffix) {
+      $block = block_load('nas_birds_guide', 'nas_birds_guide-' . $suffix);
+
+      $info = module_invoke($block->module, 'block_info');
+      $block->cache = isset($info['cache']) ? $info['cache'] : DRUPAL_CACHE_PER_ROLE;
+      $block->title = NULL;
+      $block->region = NULL;
+
+      $vars['bird_guide_' . $suffix] = _block_get_renderable_array(_block_render_blocks(array($block)));
+    }
+
     drupal_add_js(path_to_theme() . '/js/vendor/jquery.visible/jquery.visible.min.js', array(
       'group' => JS_THEME,
       'every_page' => FALSE,
@@ -137,8 +232,17 @@ function nas_preprocess_node_bird(&$vars) {
     'group' => JS_THEME,
     'every_page' => FALSE,
   ));
-  $get_field_bird_priority = field_get_items('node', $node, 'field_bird_priority');
-  $vars['bird_priority'] = (bool) $get_field_bird_priority[0]['value'];
+
+  $climate_url = field_get_items('node', $node, 'field_bird_climate_url');
+  if (!empty($climate_url) && !empty($climate_url[0]['url'])) {
+    $vars['climate_url'] = url($climate_url[0]['url']);
+  }
+
+  foreach (array('field_bird_priority', 'field_bird_threatened', 'field_bird_endangered') as $field) {
+    $value = field_get_items('node', $node, $field);
+    $vars[substr($field, 6)] = !empty($value) && !empty($value[0]['value']);
+  }
+
   // Get author of illustration.
   $get_field_bird_illustration_author = field_get_items('node', $node, 'field_bird_illustration');
   // We need the text until fields are not yet filled.
@@ -517,11 +621,12 @@ function nas_preprocess_node_event(&$vars) {
   // Event type taxonomy term reference.
   $vars['event_type'] = '';
   if ($field_items = field_get_items('node', $node, 'field_event_type')) {
-    if ($term = taxonomy_term_load($field_items[0]['tid'])) {
+    if (($term = taxonomy_term_load($field_items[0]['tid'])) && $term->name) {
       $vars['event_type'] = l($term->name, 'taxonomy/term/' . $term->tid, array(
           'attributes' => array(
             'class' => array('event-type'),
           )));
+      $vars['event_type'] .= ' | ';
     }
   }
 
@@ -551,7 +656,7 @@ function nas_preprocess_node_article(&$vars) {
     $vars['by_line'] = '';
     if ($field_items = field_get_items('node', $node, 'field_author')) {
       $author_node = node_load($field_items[0]['target_id']);
-      $vars['by_line'] = 'By ' . $author_node->title;
+      $vars['by_line'] = t('By @name', array('@name' => $author_node->title));
     }
   }
 
@@ -649,6 +754,7 @@ function nas_preprocess_node_article(&$vars) {
  */
 function nas_preprocess_nodes_editorial_cards(&$vars) {
   $node = $vars['node'];
+  $vars['image_uri'] = '';
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
   $image_uri = FALSE;
@@ -662,6 +768,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
+    $vars['image_uri'] = $image_uri;
     $image = theme('image', array(
       'path' => image_style_url('article_teaser', $image_uri),
       'alt' => $node->title,
@@ -1151,6 +1258,12 @@ function nas_preprocess_field(&$variables, $hook) {
   }
   if (function_exists($function_bundle_viewmode)) {
     $function_bundle_viewmode($variables);
+  }
+
+  // When custom display is used, pass correct view_mode for Inline Hero image field.
+  if ($variables['element']['#field_name'] == 'field_hero_image' && $element['#view_mode'] == '_custom_display'
+    && isset($element['#pane_region']) && $element['#pane_region'] == 'inline_image') {
+    $element['#view_mode'] = 'inline_hero_photo';
   }
 
   $variables['theme_hook_suggestions'][] = $hook . '__' . $element['#field_name'] . '__' . $element['#view_mode'];

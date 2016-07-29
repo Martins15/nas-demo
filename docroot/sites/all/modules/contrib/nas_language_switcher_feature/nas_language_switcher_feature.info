@@ -1,0 +1,12 @@
+name = NAS Language switcher
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = nas_language_switcher_feature
+dependencies[] = ctools
+dependencies[] = lang_dropdown
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = lang_dropdown_language
+project path = sites/all/modules/features

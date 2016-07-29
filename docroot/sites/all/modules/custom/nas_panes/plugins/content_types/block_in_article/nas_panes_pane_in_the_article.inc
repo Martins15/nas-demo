@@ -19,7 +19,6 @@ $plugin = array(
  * Run-time rendering of the body of the block (content type).
  */
 function nas_panes_pane_in_the_article_render($subtype, $conf, $args, $contexts) {
-  global $base_url;
   if (!empty($contexts)) {
     $data = reset($contexts)->data;
     if ($data->type !== 'article') {
@@ -27,7 +26,7 @@ function nas_panes_pane_in_the_article_render($subtype, $conf, $args, $contexts)
     }
   }
   $title = $contexts['panelizer']->data->title;
-  $page_link = $base_url . '/' . drupal_get_path_alias();
+  $page_link = url(drupal_get_path_alias(), array('absolute' => TRUE, 'alias' => TRUE));
 
   $block = new stdClass();
   $content = theme('nas_featured_social_in_article', array(

@@ -33,6 +33,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -62,6 +63,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -104,7 +106,9 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
   );
@@ -132,6 +136,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -161,6 +166,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -189,7 +195,9 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_with_summary',
   );
@@ -216,7 +224,9 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
   );
@@ -232,7 +242,9 @@ function nas_iba_feature_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'number',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'number_integer',
   );
@@ -259,7 +271,9 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
   );
@@ -287,6 +301,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -316,6 +331,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -344,9 +360,56 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_iba_map_zoom_level'
+  $field_bases['field_iba_map_zoom_level'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_iba_map_zoom_level',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 0,
+        1 => 1,
+        2 => 2,
+        3 => 3,
+        4 => 4,
+        5 => 5,
+        6 => 6,
+        7 => 7,
+        8 => 8,
+        9 => 9,
+        10 => 10,
+        11 => 11,
+        12 => 12,
+        13 => 13,
+        14 => 14,
+        15 => 15,
+        16 => 16,
+        17 => 17,
+        18 => 18,
+        19 => 19,
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_integer',
   );
 
   // Exported field_base: 'field_iba_ornithological'
@@ -371,7 +434,9 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_with_summary',
   );
@@ -398,7 +463,9 @@ function nas_iba_feature_field_default_field_bases() {
     ),
     'locked' => 0,
     'module' => 'text',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'text_long',
   );
@@ -426,6 +493,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,
@@ -455,6 +523,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -498,6 +567,7 @@ function nas_iba_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
     'translatable' => 0,

@@ -1,0 +1,182 @@
+<?php
+/**
+ * @file
+ * Install file for SSO module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function adbn_sso_install() {
+  // Set the wsdl paths for production and test environments.
+  $wsdl_path = adbn_sso_get_default_test_wsdl_path();
+  variable_set(ADBN_SSO_TEST_WSDL_VARIABLE, $wsdl_path);
+
+  $wsdl_path = adbn_sso_get_default_production_wsdl_path();
+  variable_set(ADBN_SSO_PRODUCTION_WSDL_VARIABLE, $wsdl_path);
+
+  // Create default authorization type.
+  $type = entity_create(ADBN_SSO_AUTH_ENTITY_TYPE, array(
+    'type' => ADBN_SSO_AUTH_ENTITY_TYPE_MAIN,
+    'label' => st('Main'),
+  ));
+  /* @var $type AdbnSSOAuthorizationType */
+  $type->save();
+
+  // Save the custom locale string overrides for certain messages.
+  adbn_sso_save_custom_locale_strings();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function adbn_sso_uninstall() {
+  // Load the module file, so we get the constant names.
+  drupal_load('module', 'adbn_sso');
+
+  $vars_to_delete = array(
+    ADBN_SSO_TEST_WSDL_VARIABLE,
+    ADBN_SSO_PRODUCTION_WSDL_VARIABLE,
+    ADBN_SSO_USE_PRODUCTION_WSDL_VARIABLE,
+    ADBN_SSO_LAST_CACHE_TIME,
+    'adbn_sso_use_registration_code',
+    'adbn_sso_registration_code',
+    'adbn_sso_create_account_in_sso',
+    'adbn_sso_allow_sso_login',
+    'adbn_sso_allow_local_login',
+    'adbn_sso_sso_login_has_priority',
+    'adbn_sso_local_login_create_sso_account',
+    'adbn_sso_force_one_time_login',
+    'adbn_sso_user_field_mappings',
+  );
+  foreach ($vars_to_delete as $var) {
+    variable_del($var);
+  }
+
+  // Remove any user defined messages in the database.
+  $messages = adbn_sso_get_message_list();
+  foreach ($messages as $key => $message) {
+    $variable_name = adbn_sso_get_message_variable_name($key);
+    variable_del($variable_name);
+  }
+
+  // Bypass entity_load() as we cannot use it here.
+  $types = db_select('adbn_sso_authorization_type', 'at')
+    ->fields('at')
+    ->execute()
+    ->fetchAllAssoc('type');
+
+  // Remove all fields that were attached to different bundles.
+  foreach ($types as $name => $type) {
+    field_attach_delete_bundle(ADBN_SSO_AUTH_ENTITY, $name);
+  }
+
+  // Remove custom locale string overrides.
+  adbn_sso_remove_custom_locale_strings();
+}
+
+/**
+ * Set the variable with the WSDL file path.
+ */
+function adbn_sso_update_7001() {
+  $wsdl_path = adbn_sso_get_default_test_wsdl_path();
+  variable_set(ADBN_SSO_TEST_WSDL_VARIABLE, $wsdl_path);
+}
+
+/**
+ * Update the variable with the test WSDL file path.
+ */
+function adbn_sso_update_7002() {
+  $wsdl_path = adbn_sso_get_default_test_wsdl_path();
+  variable_set(ADBN_SSO_TEST_WSDL_VARIABLE, $wsdl_path);
+}
+
+/**
+ * Save the custom locale string overrides.
+ */
+function adbn_sso_update_7003() {
+  adbn_sso_save_custom_locale_strings();
+}
+
+/**
+ * Implements hook_schema().
+ */
+function adbn_sso_schema() {
+  $schema = array();
+
+  $schema['adbn_sso_authorization'] = array(
+    'description' => 'Stores SSO authorization items.',
+    'fields' => array(
+      'aid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'created' => array(
+        'description' => 'Created timestamp',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+      'changed' => array(
+        'description' => 'Changed timestamp',
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+    ),
+    'indexes' => array(),
+    'primary key' => array('aid'),
+  );
+
+  $schema['adbn_sso_authorization_type'] = array(
+    'description' => 'Stores information about all defined authorization types.',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
+      'label' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'status' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        // Set the default to ENTITY_CUSTOM without using the constant as it is
+        // not safe to use it at this point.
+        'default' => 0x01,
+        'size' => 'tiny',
+        'description' => 'The exportable status of the entity.',
+      ),
+      'module' => array(
+        'description' => 'The name of the providing module if the entity has been defined in code.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+    'unique keys' => array(
+      'type' => array('type'),
+    ),
+  );
+
+  return $schema;
+}

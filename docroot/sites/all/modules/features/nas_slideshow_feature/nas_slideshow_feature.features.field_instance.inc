@@ -38,6 +38,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 3,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -80,6 +86,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -98,6 +110,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Editorial section',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -133,6 +146,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -175,6 +194,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -222,6 +247,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -259,6 +285,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -306,6 +338,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -320,6 +358,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -409,6 +448,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -446,6 +491,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -493,6 +544,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -543,6 +595,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'image',
         'weight' => 8,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -589,6 +647,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -603,6 +667,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -708,6 +773,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -750,6 +821,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -760,8 +837,9 @@ function nas_slideshow_feature_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_editorial_card_left_icon',
     'label' => 'Editorial Card Left Icon',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -800,6 +878,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 7,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -843,6 +927,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -881,6 +971,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -922,6 +1013,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 6,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -965,6 +1062,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1003,6 +1106,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1053,6 +1157,21 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'image',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'nas_fbia',
+        'settings' => array(
+          'author' => '',
+          'caption' => 1,
+          'comments' => 0,
+          'credit' => 1,
+          'fullscreen' => 1,
+          'likes' => 1,
+          'style' => 'hero_mobile',
+        ),
+        'type' => 'fbia_media_slideshow_formatter',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1099,6 +1218,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1123,6 +1248,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -1205,6 +1331,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 4,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1247,6 +1379,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1265,6 +1403,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Internal tagging',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1306,6 +1445,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1350,6 +1495,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1368,6 +1519,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Menu Section',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1376,114 +1528,6 @@ function nas_slideshow_feature_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-slideshow-field_slideshow_redirect'
-  $field_instances['node-slideshow-field_slideshow_redirect'] = array(
-    'bundle' => 'slideshow',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 13,
-      ),
-      'editorial_card_3x' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'editorial_card_4x' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_editorial_card' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_featured_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_related_features' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_no_section_link' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'nas_node_teaser_small' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_slideshow_redirect',
-    'label' => 'Redirect',
-    'required' => 0,
-    'settings' => array(
-      'attributes' => array(
-        'class' => '',
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'default',
-        'title' => '',
-      ),
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'rel_remove' => 'default',
-      'title' => 'none',
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 0,
-      'user_register_form' => FALSE,
-      'validate_url' => 1,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 3,
     ),
   );
 
@@ -1520,6 +1564,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -1563,6 +1613,12 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_node_teaser_wo_date' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1581,6 +1637,7 @@ function nas_slideshow_feature_field_default_field_instances() {
     'label' => 'Related features',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1624,6 +1681,13 @@ function nas_slideshow_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'fb_instant_article' => array(
+        'label' => 'hidden',
+        'module' => 'fb_instant_articles_display',
+        'settings' => array(),
+        'type' => 'fbia_subtitle_formatter',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1663,6 +1727,12 @@ function nas_slideshow_feature_field_default_field_instances() {
       ),
       'nas_node_teaser_small' => array(
         'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
@@ -1711,6 +1781,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1736,11 +1807,9 @@ function nas_slideshow_feature_field_default_field_instances() {
   t('Editorial card title');
   t('Editorial section');
   t('For external links, use the url with http://.');
-  t('If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.');
   t('Images');
   t('Internal tagging');
   t('Menu Section');
-  t('Redirect');
   t('Related features');
   t('Subtitle');
 

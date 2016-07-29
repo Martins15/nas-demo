@@ -1,0 +1,150 @@
+***************
+*** 6,47 ****
+  function ga_stats_auth_settings() {
+    $form = array();
+  
+    $form['ga_stats_login'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Google Analytics Login Information'),
+      '#collapsible' => TRUE,
+      '#collapsed' => ga_stats_is_ready(),
+    );
+- 
+-   $form['ga_stats_login']['ga_stats_email'] = array(
+      '#type' => 'textfield',
+-     '#title' => t('Account Email'),
+-     '#description' => t('The email account you use to log in to Google Analytics.'),
+-     '#default_value' => variable_get('ga_stats_email', ''),
+    );
+- 
+-   $form['ga_stats_login']['ga_stats_password'] = array(
+-     '#type' => 'password',
+-     '#title' => t('Account Password'),
+-     '#description' => t('The password you use to log in to Google Analytics. This is not displayed once set.'),
+    );
+- 
+-   $form['ga_stats_login']['ga_stats_acct_type'] = array(
+-     '#type' => 'select',
+-     '#title' => t('Account Type'),
+-     '#description' => t('The account type you use to log in to Google Analytics.'),
+-     '#options' => array(
+-       'GOOGLE' => t('Google'),
+-       'HOSTED' => t('Hosted'),
+-     ),
+-     '#default_value' => variable_get('ga_stats_acct_type', NULL),
+    );
+- 
+-   $form['#validate'][] = 'ga_stats_auth_form_validate';
+  
+    return system_settings_form($form);
+  }
+  
+  
+  /**
+   * Callback for the GA Stats admin form.
+--- 6,65 ----
+  function ga_stats_auth_settings() {
+    $form = array();
+  
++   $private_path = variable_get('file_private_path', FALSE);
++   if (empty($private_path)) {
++     drupal_set_message(t('Your need to set the private file system path. Visit the !filesystem to configure it.',
++         array('!filesystem' => l(t('File system config page'), 'admin/config/media/file-system'))), 'error');
++       $form['#disabled'] = TRUE;
++   }
+    $form['ga_stats_login'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Google Analytics Login Information'),
+      '#collapsible' => TRUE,
+      '#collapsed' => ga_stats_is_ready(),
+    );
++   
++   $form['ga_stats_login']['ga_stats_app_name'] = array(
+      '#type' => 'textfield',
++     '#title' => t('App Name'),
++     '#description' => t('The name of your app on google'),
++     '#default_value' => variable_get('ga_stats_app_name', '')
+    );
++   
++   $form['ga_stats_login']['ga_stats_email'] = array(
++     '#type' => 'textfield',
++     '#title' => t('Google App Email'),
++     '#description' => t('The email address which was provided when you created App API credentials'),
++     '#default_value' => variable_get('ga_stats_email', '')
+    );
++   
++   $private_key_path = variable_get('ga_stats_private_key_p12');
++   $form['ga_stats_login']['private_key'] = array(
++     '#type' => 'file',
++     '#title' => t('Private Key'),
++     '#description' => empty($private_key_path) ? 'No file uploaded. Please upload. (Allowed extensions: p12)' : 'The key file is uploaded. Uploading another file will override the existing one. (Allowed extensions: p12)',
++     '#upload_validators'  => array('file_validate_extensions' => array('p12')),
+    );
++   $form['#submit'][] = 'ga_stats_custom_form_submit';
+  
+    return system_settings_form($form);
+  }
+  
++ /**
++  * Custom form submit callback.
++  */
++ function ga_stats_custom_form_submit($form, &$form_state) {
++   $validators = array('file_validate_extensions' => array('p12'));
++   if ($file = file_save_upload('private_key', $validators, 'private://')) {
++     // Renaming the file, so that every uploaded key would override the existing key.
++     $file = file_move($file, 'private://ga_stats_p12_key.p12', FILE_EXISTS_REPLACE);
++     // Make the file permanent.
++     $file->status = 1;
++     file_save($file);
++     // Save the file uri.
++     variable_set('ga_stats_private_key_p12', $file->uri);
++   }
++ }
+  
+  /**
+   * Callback for the GA Stats admin form.
+***************
+*** 71,77 ****
+    if (!empty($accounts) && is_array($accounts)) {
+      foreach ($accounts as $id => $value) {
+        $acc = $value->getProperties();
+-       $options[$acc['profileId']] = "{$acc['title']} ({$acc['webPropertyId']})";
+      }
+  
+      $form['ga_stats_accounts']['ga_stats_profile'] = array(
+--- 89,99 ----
+    if (!empty($accounts) && is_array($accounts)) {
+      foreach ($accounts as $id => $value) {
+        $acc = $value->getProperties();
++       foreach ($acc as $key => $val) {
++         foreach($val['profiles'] as $k => $v) {
++           $options[$v['id']] = $v['name'];
++         }
++       }
+      }
+  
+      $form['ga_stats_accounts']['ga_stats_profile'] = array(
+***************
+*** 134,148 ****
+  }
+  
+  /**
+-  *  Just set the password if we already have one and the form field was ignored.
+-  */
+- function ga_stats_auth_form_validate($form, &$form_state) {
+-   if (!$form_state['values']['ga_stats_password']) {
+-     $form_state['values']['ga_stats_password'] = variable_get('ga_stats_password', '');
+-   }
+- }
+- 
+- /**
+   * Submit callback to update the statistics data.
+   */
+  function ga_stats_update_counts_submit($form, &$form_state) {
+--- 156,161 ----
+  }
+  
+  /**
+   * Submit callback to update the statistics data.
+   */
+  function ga_stats_update_counts_submit($form, &$form_state) {

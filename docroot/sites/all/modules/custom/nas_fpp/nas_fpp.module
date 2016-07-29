@@ -467,7 +467,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
   }
 
   $vars['blue_text_link'] = '';
-  if ($node && $blue = nas_panes_get_blue_text_link($node)) {
+  if ($node && $blue = nas_panes_get_blue_text_link($node, FALSE)) {
     $vars['blue_text_link'] = l($blue[0], $blue[1], array('attributes' => array('class' => array('hero-slug'))));
   };
 
@@ -574,8 +574,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     $vars['attribution'] = _nas_panes_format_image_attribution($image);
   }
 
-  $get_field_flyway = field_get_items('fieldable_panels_pane', $fpp, 'field_flyway');
-  $vars['title'] = $get_field_flyway[0]['entity']->title;
+  $vars['title'] = reset($vars['title_field'])['safe_value'];
   $get_field_flyway_description = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_description');
   $vars['flyway_description'] = $get_field_flyway_description[0]['#markup'];
   $get_field_flyway_includes = field_view_field('fieldable_panels_pane', $fpp, 'field_flyway_includes');
@@ -610,13 +609,23 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
 
   $vars['near_you'] = NULL;
   if ($near_you) {
-    $near_you = theme('flyways_near_you_office_chapter', array(
-      'items' => _nas_panes_get_locations('all', 'office_chapter+office+chapter', NULL, 'locations_frontpage'),
-    ));
-    $vars['near_you'] = $near_you;
+    $items = _nas_panes_get_locations('all', 'office_chapter+office+chapter', NULL, 'locations_frontpage');
+    if (empty($items)) {
+      $vars['near_you'] = NULL;
+    }
+    else {
+      $near_you = theme('flyways_near_you_office_chapter', array(
+        'items' => $items,
+      ));
+      $vars['near_you'] = $near_you;
+    }
   }
 
   $vars['contextual_links'] = '';
+  // The code below generates the link to edit English values of FPP even on
+  // Spanish page (frontpage); so we are not using it until it is fixed.
+  return;
+
   if (!user_access('access contextual links') || !user_access('edit NAS panes')) {
     return;
   }

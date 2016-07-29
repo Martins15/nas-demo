@@ -1,0 +1,40 @@
+<?php
+/**
+ * @file
+ * Native Plants hook_update_X functions.
+ */
+
+/**
+ * Update Native Plants Search page feature views.
+ */
+function nas_master_native_plants_update_7001() {
+  features_revert(array(
+    'nas_native_plants_search_page_feature' => array('views_view'),
+  ));
+}
+
+/**
+ * Enable Native Plants ZIP code to County FIPS code conversion.
+ */
+function nas_master_native_plants_update_7002() {
+  module_enable(array('nas_native_plants_zipfips_feature'));
+}
+
+/**
+ * Add states taxonomy to Native Plant CT.
+ */
+function nas_master_native_plants_update_7003() {
+  features_revert(array(
+    'nas_native_plant_ct_feature' => array('field_base', 'field_instance', 'variable'),
+  ));
+}
+
+/**
+ * Add checkall behavior to NP Tier 1 states checkboxes.
+ */
+function nas_master_native_plants_update_7004() {
+  module_enable(array('checkall'));
+  features_revert(array(
+    'nas_native_plant_ct_feature' => array('field_instance'),
+  ));
+}

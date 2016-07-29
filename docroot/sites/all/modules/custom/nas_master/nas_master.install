@@ -3122,23 +3122,450 @@ function nas_master_update_7223() {
   module_disable(array('l10n_client'));
 }
 
-
 /**
- * Enable NAS IBA Import feature.
+ * Update bird node default panelizer.
  */
 function nas_master_update_7224() {
-  // Clear cache to discover new Feeds parser plugin.
-  cache_clear_all();
-  module_enable(array('nas_iba_import_feeds_feature'));
+  features_revert(array('nas_bird_type_feature' => array('panelizer_defaults')));
+}
+
+/**
+ * Enable NAS theme.
+ */
+function nas_master_update_7225() {
+  theme_enable(array('nas'));
+}
+
+/**
+ * Add Action for creating Spanish translations.
+ */
+function nas_master_update_7226() {
+  module_enable(array('nas_i18n_actions'));
+  features_revert(array('nas_content_administration_page_feature' => array('views_view')));
+}
+
+/**
+ * Create new menu Donate | Take action and its items.
+ */
+function nas_master_update_7227() {
+  // Create new menu.
+  $menu_id = 'menu-header-big-dta-desktop';
+  $menu = array(
+    'menu_name' => $menu_id,
+    'title' => t('Header big donate | take action (desktop)'),
+    'description' => '',
+    'language' => LANGUAGE_NONE,
+    'i18n_mode' => I18N_MODE_MULTIPLE,
+  );
+  menu_save($menu);
+
+  // Define menu items.
+  $menu_items = array(
+    'Join' => array(
+      'url' => 'https://secure.audubon.org/site/Donation2?df_id=7140&7140.donation=form1&s_src=2015_AUDHP_topbanner-join_test&s_subsrc=website',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomato',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'Become a Member' => 'https://secure.audubon.org/site/Donation2?df_id=7140&7140.donation=form1&s_src=2015_AUDHP_topbanner-member_test&s_subsrc=website',
+        'Renew' => 'https://secure.audubon.org/site/Donation2?df_id=7900&7900.donation=form1&s_src=2015_AUDHP_topbanner-renew_test&s_subsrc=website',
+        'Gift Membership' => 'https://secure.audubon.org/site/Donation2?df_id=7320&7320.donation=form1&s_src=2015_AUDHP_topbanner-gift_test&s_subsrc=website',
+        'Audubon Near You' => 'audubon-near-you',
+      ),
+    ),
+    'Donate Now' => array(
+      'url' => 'https://secure.audubon.org/site/Donation2?df_id=6960&6960.donation=form1&s_src=2015_AUDHP_topbanner-donate_test&s_subsrc=website',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomatoDk',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'One-time Gift' => 'https://secure.audubon.org/site/Donation2?df_id=6960&6960.donation=form1&s_src=2015_AUDHP_topbanner-one-time_test&s_subsrc=website',
+        'Monthly' => 'https://audubon.secure-donor.com/cardinal/choose/?source=header',
+        'Online Store' => 'https://secure.audubon.org/site/SPageNavigator/2014_Adoption_Catalog_Homepage.html&s_src=2015_AUDHP_topbanner-store_test&s_subsrc=website',
+        'More Ways to Give' => 'how-to-help',
+      ),
+    ),
+    'Take Action' => array(
+      'url' => 'takeaction',
+      'class' => array(
+        'action-nav-link',
+        'button',
+        'small',
+        'tomato',
+      ),
+      'liclass' => 'action-nav-item',
+      'children' => array(
+        'Prevent Needless Bird Deaths' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1829&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+        'Protect America\'s Open Spaces' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1945&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+        'Act for Greater Sage-Grouse' => 'https://secure.audubon.org/site/Advocacy?cmd=display&page=UserAction&id=1999&s_src=2015_AUDHP_topbanner_test&s_subsrc=website',
+      ),
+    ),
+  );
+
+  $weight = 0;
+  foreach ($menu_items as $menu_item_title => $menu_item) {
+    $menu_link = array(
+      'link_title' => $menu_item_title,
+      'link_path' => $menu_item['url'],
+      'module' => 'menu',
+      'menu_name' => $menu_id,
+      'weight' => $weight,
+      'plid' => 0,
+    );
+    if (!empty($menu_item['class'])) {
+      $menu_link['options']['attributes']['class'] = $menu_item['class'];
+      $menu_link['options']['attributes']['liclass'] = $menu_item['liclass'];
+    }
+    $mlid = menu_link_save($menu_link);
+    $weight++;
+
+    if (empty($menu_item)) continue;
+
+    $inner_weight = -50;
+    foreach ($menu_item['children'] as $menu_child_item_title => $menu_child_item_url) {
+      $menu_link = array(
+        'link_title' => $menu_child_item_title,
+        'link_path' => $menu_child_item_url,
+        'module' => 'menu',
+        'menu_name' => $menu_id,
+        'weight' => $inner_weight,
+      );
+      $menu_link['plid'] = $mlid;
+      menu_link_save($menu_link);
+      $inner_weight++;
+    }
+  }
+}
+
+/**
+ * Update take action page.
+ */
+function nas_master_update_7228() {
+  ctools_include('export');
+  $handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'task' => 'page',
+    'subtask' => 'action_center',
+  ));
+  if ($handlers) {
+    $handler = reset($handlers);
+    // Look up pane.
+    $query = db_select('panels_pane', 'pp')
+      ->fields('pp', array('pid', 'configuration'))
+      ->condition('panel', 'main')
+      ->condition('subtype', 'engagement_cards')
+      ->condition('did', $handler->conf['did'])
+      ->execute();
+    while ($pane = $query->fetchObject()) {
+      // Update configuration
+      $pane->configuration = unserialize($pane->configuration);
+      $pane->configuration['default'] += array(
+        'wrapper' => 1,
+      );
+      // Save to DB.
+      db_update('panels_pane')
+        ->fields(array('configuration' => serialize($pane->configuration)))
+        ->condition('pid', $pane->pid)
+        ->execute();
+    }
+  }
+}
+
+/**
+ * Add Social Media Photo for Articles.
+ */
+function nas_master_update_7229() {
+  module_enable(array('nas_social_media_photo'));
+  $metatag = metatag_config_load('node:article');
+  $metatag->config['og:image']['value'] = '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]';
+  metatag_config_save($metatag);
+}
+
+/**
+ * NAS-156: Make Editoral Section a multi-value field.
+ */
+function nas_master_update_7230() {
+  $field = field_info_field('field_custom_section');
+  $field['cardinality'] = -1;
+  field_update_field($field);
+}
+
+/**
+ * Creating bird map section.
+ */
+function nas_master_update_7231() {
+  module_enable(array('adbn_map'));
+  features_revert(array(
+    'nas_bird_type_feature' => array(
+      'field_base',
+      'field_instance',
+      'panelizer_defaults',
+      'variable',
+    ),
+  ));
+}
+
+/**
+ * Set bird guide blocks default values.
+ */
+function nas_master_update_7232() {
+  $default_value = array(
+    'value' => '<p>Text © Kenn Kaufman, adapted from <br><a href="/kaufman"><em>Lives of North American Birds</em></a></p><p>Illustration © David Allen Sibley.<br><a href="/sibley">Learn more about these drawings.</a></p>',
+    'format' => 'full_html',
+  );
+
+  variable_set('nas_birds_guide-credits-content', array('en' => $default_value, 'es' => $default_value));
+
+  $img_path = drupal_get_path('theme', 'nas') . '/img';
+  $default_value = array(
+    'value' => '<h5>Download Our Bird Guide App</h5><p><a href="http://www.audubon.org/ios-app?utm_source=bird-guide&amp;utm_campaign=iosapp" target="_blank"><img src="' . url($img_path . '/apple-store.png') . '" width="110" title="Download the Audubon Bird Guide App on the App Store"></a> <a href="http://www.audubon.org/android-app?utm_source=bird-guide&amp;utm_campaign=android-app" target="_blank"><img src="' . url($img_path . '/google-play.png') . '" width="110" title="Get the Audubon Bird Guide App on Google Play"></a></p>',
+    'format' => 'full_html',
+  );
+
+  variable_set('nas_birds_guide-download-content', array('en' => $default_value, 'es' => $default_value));
+}
+
+/**
+ * Enable NAS Language switcher feature.
+ */
+function nas_master_update_7233() {
+  module_enable(array('nas_language_switcher_feature'));
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
+
+/**
+ * Revert NAS Site Template feature.
+ */
+function nas_master_update_7234() {
+  features_revert(
+    array('nas_site_template_feature' => array('page_manager_handlers'))
+  );
+}
+
+
+/**
+ * Enable Acquia Search Multiple Indexes module.
+ */
+function nas_master_update_7235() {
+  module_enable(array('acquia_search_multi_subs'));
+}
+
+/**
+ * Fixes for similar birds on Spanish bird nodes.
+ */
+function nas_master_update_7236() {
+  module_enable(array('i18n_sync'));
+  features_revert(array(
+    'nas_bird_type_feature' => array('panelizer_defaults', 'variable'),
+  ));
+}
+
+/**
+ * Fixes for the Language Switcher on front page.
+ */
+function nas_master_update_7237() {
+  variable_set('variable_realm_list_language',
+    array('site_name', 'site_slogan', 'site_404', 'site_frontpage'));
+  variable_store_set('language', 'en', 'site_frontpage', 'frontpage');
+  variable_store_set('language', 'es', 'site_frontpage', 'inicio');
+}
+
+/**
+ * Enable Native Plants features.
+ */
+function nas_master_update_7238() {
+  // Update "Default node index" settings.
+  features_revert(array(
+    'nas_solr_feature' => array('search_api_index'),
+  ));
+
+  // Load US ZIP codes information.
+  $file = drupal_get_path('module', 'location') . '/database/zipcodes.us.mysql';
+  $query = file_get_contents($file);
+  db_query($query);
+
+  module_enable(array(
+    'postal_code_validation',
+    'views_ajax_history',
+    'ajax_screen_lock',
+    'protected_pages',
+    'nas_master_native_plants',
+    'nas_native_plants_taxonomy',
+    'nas_nursery_ct_feature',
+    'nas_nursery_import_feature',
+    'nas_permalink_et_feature',
+    'nas_native_plants_permalink_page',
+    'nas_native_plant_ct_feature',
+    'nas_native_plants_search_page_feature',
+    'nas_native_plants_image_styles',
+    'nas_nurseries_near_you_feature',
+    'nas_community_resource_ct_feature',
+    'nas_community_resources_near_you_feature',
+    'nas_native_plants_email_feature',
+    'nas_native_plants_resources_page',
+  ));
+
+  // Create taxonomy terms.
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.terms');
+  nas_master_native_plants_taxonomy_terms_create();
+
+  // Revert features that somehow become overridden.
+  features_revert(array(
+    'nas_native_plants_email_feature' => array('variable'),
+  ));
+
+  // Set AJAX Screen Lock variables.
+  variable_set('ajax_screen_lock_popup_timeout', 300000);
+  variable_set('ajax_screen_lock_throbber_hide', 1);
+  variable_set('ajax_screen_lock_disable_in_admin', 1);
+  variable_set('ajax_screen_lock_pages_path', 'native-plants*');
+
+  // Protect Native Plants pages with password.
+  module_load_include('inc', 'protected_pages', 'protected_pages.admin');
+  $form = array();
+  $form_state = array(
+    'values' => array(
+      'path' => 'native-plants',
+      'password' => 'nativeplants',
+    ),
+  );
+  $paths = array(
+    'native-plants',
+    'native-plants-resources',
+  );
+  foreach ($paths as $path) {
+    $form_state['values']['path'] = $path;
+    protected_pages_configure_submit_callback($form, $form_state);
+  }
+}
+
+/**
+ * Enable NAS RSS feature.
+ */
+function nas_master_update_7239() {
+  module_enable(array('nas_rss'));
+}
+
+/**
+ * Enables events display.
+ */
+function nas_master_update_7240() {
+  // Enabling events page.
+  $page = page_manager_cache_load('page-events_landing_page');
+  page_manager_page_enable($page, FALSE);
+  menu_rebuild();
+
+  // Enabling events block on home.
+  variable_set('events_frontpage_enabled', 1);
+}
+
+/**
+ * Entity translation for FPPs.
+ */
+function nas_master_update_7241() {
+  module_enable(array('entity_translation', 'title'));
+
+  // Entity translation variables.
+  variable_set('locale_field_language_fallback', 1);
+  variable_set('entity_translation_shared_labels', 1);
+  variable_set('entity_translation_entity_types', array(
+    'fieldable_panels_pane' => 'fieldable_panels_pane',
+    'node' => 0,
+    'taxonomy_term' => 0,
+    'bean' => 0,
+    'file' => 0,
+    'user' => 0,
+  ));
+  variable_set('entity_translation_settings_fieldable_panels_pane__nas_flyway_section', array(
+    'default_language' => 'xx-et-default',
+    'hide_language_selector' => 0,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 1,
+  ));
+}
+
+/**
+ * Enable attachments on events.
+ */
+function nas_master_update_7242() {
+  module_enable(array('remote_stream_wrapper'));
+  features_revert(array(
+    'nas_event_feature' => array(
+      'feeds_importer',
+      'field_instance',
+    ),
+  ));
+}
+
+/**
+ * Enabling events block on home.
+ */
+function nas_master_update_7243() {
+  ini_set('memory_limit', '1024M');
+  features_revert(array(
+    'nas_event_feature' => array(
+      'panelizer_defaults',
+    ),
+  ));
+  variable_set('events_frontpage_enabled', 1);
+}
+
+/**
+ * Enable FBIA integration.
+ */
+function nas_master_update_7244() {
+  // Prevent rebuilding composer.json.
+  variable_set('composer_manager_autobuild_packages', 0);
+
+  // Enable modules
+  module_enable(array(
+    'nas_fbia',
+    'fb_instant_articles_display',
+    'fb_instant_articles_views',
+    'nas_fb_instant_articles_feature',
+  ), TRUE);
+
+  // Revert features.
+  features_revert(array(
+    'nas_article_feature' => array('field_instance'),
+    'nas_slideshow_feature' => array('field_instance'),
+    'nas_fbia' => array('views_view'),
+  ));
+}
+
+/**
+ * Enabling Google AMP link tag.
+ */
+function nas_master_update_7245() {
+  features_revert(array(
+    'nas_metatags_feature' => array(
+      'metatag',
+    ),
+  ));
 }
 
 /**
  * Enable NAS IBA features.
  */
-function nas_master_update_7226() {
+function nas_master_update_7246() {
   // Clear cache to discover new Feeds parser plugin.
   cache_clear_all();
-  module_enable(array('nas_iba_feature', 'nas_iba_state', 'nas_iba_import_feeds_feature'));
+  module_enable(array(
+    'nas_iba_feature',
+    'nas_iba_state',
+    'nas_iba_import_feeds_feature',
+    'nas_iba_redirect',
+  ));
   features_revert(array('nas_image_styles_feature'));
   features_revert_module('nas_solr_feature');
   features_revert_module('nas_url_aliases_feature');

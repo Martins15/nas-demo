@@ -1,5 +1,5 @@
 .focal-bird-map {
-  background-color: #EBEBEB;
+  background-color: #E5E5E5;
   position: relative;
   overflow: hidden;
 
@@ -19,7 +19,28 @@
     position: relative;
   }
 
-  .map-canvas,  
+  .open-bird-detail-popup, .map-button, .map-timeline-point, .map-zoom {
+    cursor: pointer;
+  }
+
+  .map-pause {
+    &:before {
+      content: "";
+      display: block;
+      background-image: url(../img/icon-pause.png);
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      height: 30px;
+      width: 30px;
+      background-position: center center;
+    }
+
+    &.active:before {
+      background-image: url(../img/icon-play.png);
+    }
+  }
+
+  .map-canvas,
   .container {
     height: 560px;
 
@@ -36,7 +57,7 @@
   .map-canvas {
     position: absolute;
     width: 100%;
-    background-color: #EBEBEB;
+    background-color: #E5E5E5;
     text-align: center;
     overflow: visible;
 
@@ -152,6 +173,10 @@
       margin-right: 0;
     }
 
+    &.kappa-point .image {
+      border: 0;
+    }
+
     span {
       display: inline-block;
       vertical-align: middle;
@@ -241,7 +266,7 @@
   }
 
   .map-elements,
-  .map-header {
+  .map-share {
     cursor: auto;
 
     @include transition(background-color 0.4s);
@@ -287,15 +312,46 @@
     }
   }
 
-  // Contains sharing and high description
   .map-header {
-    position: absolute;
-    width: 250px;
     padding: $size-space;
-    right: 0;
-    top: 0;
-
     font-family: $font-sans;
+    background-color: #E5E5E5;
+    margin-top: 15px;
+
+    @include breakpoint(large-up) {
+      margin-bottom: 30px;
+    }
+
+    .map-caption-left {
+      float: left;
+
+      @include breakpoint(large-up) {
+        width: 70%;
+      }
+
+      p {
+        @include breakpoint(max-width, #{upper-bound($small-range)}) {
+          font-size: $size-text-small;
+          line-height: $size-line-small;
+        }
+      }
+    }
+
+    .map-caption-right {
+      @include breakpoint(medium-up) {
+        float: right;
+      }
+
+      margin-top: 14px;
+    }
+  }
+
+  .map-share {
+    padding: $size-space;
+    font-family: $font-sans;
+
+    float: right;
+    width: 250px;
 
     @include breakpoint(max-width, #{upper-bound($small-range)}) {
       width: 100%;

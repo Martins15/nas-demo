@@ -102,12 +102,14 @@ function nas_solr_feature_default_search_api_index() {
         "field_bird_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
         "field_bird_region" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_bird_sci_name" : { "type" : "text" },
+        "field_community_res_geofield:latlon" : { "type" : "string", "real_type" : "location" },
         "field_event_date:value2" : { "type" : "date" },
         "field_event_description:value" : { "type" : "text" },
         "field_event_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_iba_priority" : { "type" : "string" },
         "field_iba_state" : { "type" : "integer", "entity_type" : "node" },
         "field_iba_status" : { "type" : "string" },
+        "field_nursery_geofield:latlon" : { "type" : "string", "real_type" : "location" },
         "month" : { "type" : "integer" },
         "nid" : { "type" : "integer" },
         "node_date" : { "type" : "date" },
@@ -215,6 +217,33 @@ function nas_solr_feature_default_search_api_index() {
  */
 function nas_solr_feature_default_search_api_server() {
   $items = array();
+  $items['acquia_search'] = entity_import('search_api_server', '{
+    "name" : "Acquia search",
+    "machine_name" : "acquia_search",
+    "description" : "",
+    "class" : "acquia_search_service",
+    "options" : {
+      "clean_ids" : true,
+      "site_hash" : true,
+      "scheme" : "http",
+      "host" : "useast1-c1.acquia-search.com",
+      "port" : "80",
+      "path" : "\\/solr\\/JTUW-64537",
+      "edismax" : 0,
+      "modify_acquia_connection" : 0,
+      "http_user" : "",
+      "http_pass" : "",
+      "excerpt" : 0,
+      "retrieve_data" : 0,
+      "highlight_data" : 0,
+      "skip_schema_check" : 0,
+      "solr_version" : "",
+      "http_method" : "AUTO",
+      "acquia_override_subscription" : { "acquia_override_subscription_corename" : "JTUW-64537" },
+      "derived_key" : "ee036abfd7231c4dde6e7158a3ebaab1fab6f325"
+    },
+    "enabled" : "1"
+  }');
   $items['solr_4_x'] = entity_import('search_api_server', '{
     "name" : "solr-4.x",
     "machine_name" : "solr_4_x",
@@ -236,7 +265,7 @@ function nas_solr_feature_default_search_api_server() {
       "solr_version" : "4",
       "http_method" : "AUTO"
     },
-    "enabled" : "1"
+    "enabled" : "0"
   }');
   return $items;
 }

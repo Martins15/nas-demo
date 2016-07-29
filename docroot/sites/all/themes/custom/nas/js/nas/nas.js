@@ -1,3 +1,4 @@
+window.Modernizr = window.Modernizr || {};
 Nav = {};
 var Nas = Nas || {};
 
@@ -116,6 +117,21 @@ var Nas = Nas || {};
         $(".bean-welcome-to-audubon").addClass('hide');
         $('.hide-for-firsttime-visitors').removeClass('hide-for-firsttime-visitors');
       }
+    }
+  };
+
+  // Prevent equalization if stacked.
+  Drupal.behaviors.frontpageEqualizer = {
+    attach: function (context, settings) {
+      $('.homepage-first-row', context).once('frontpage-equalizer', function () {
+        var $row = $(this)
+        .on('after-height-change.fndth.equalizer', function (e) {
+          if (StateManager.state === '' || StateManager.state == 'tiny' || StateManager.state == 'small') {
+            $('[data-equalizer-watch]', $(this)).removeAttr('style');
+          }
+        })
+        .trigger('after-height-change.fndth.equalizer');
+      });
     }
   };
 
@@ -587,9 +603,7 @@ var Nas = Nas || {};
             url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/frontpage-flyways/events/'+stateIsoCode,
             dataType: 'html',
             success: function (data) {
-              if (data !== '') {
-                $('.flyways-events-ajax-wrapper').once().html(data);
-              }
+              $('.flyways-events-ajax-wrapper').once().html(data);
               $('.flyways-events-ajax-wrapper').addClass('state-code-' + stateIsoCode);
             }
           });
@@ -640,6 +654,38 @@ var Nas = Nas || {};
           }
         });
       });
+    }
+  };
+
+  Drupal.behaviors.fullVideo = {
+    attach: function(context, settings) {
+      if ($(context).find('.article-video-container.full').length) {
+        $(window).bind("resize", function () {
+          var $body = $('body');
+          var $video = $(".article-video-container.full");
+
+          var body_width = $body.width();
+          $video.removeAttr('style');
+          var diff_width = body_width - $video.width();
+          var margin = 0;
+          if (diff_width > 0) {
+            margin = diff_width / 2;
+          }
+          var negative_margin = margin * (-1);
+          $video.css({
+            width: body_width,
+            "text-align": "center",
+            'margin-left': negative_margin,
+            'margin-right': negative_margin
+          });
+          if ($video.offset().left !== 0) {
+            $video.css({
+              'margin-left': (margin + $video.offset().left) * (-1),
+              'margin-right': (margin - $video.offset().left) * (-1)
+            });
+          }
+        });
+      }
     }
   };
 

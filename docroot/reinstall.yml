@@ -21,6 +21,7 @@
     # This variable will be used for variable_get('environment'). Can be overridden by CI server.
     # development = 'default', demo = 'demo', staging = 'staging', production = 'production'.
     pp_environment: 'default'
+    solr_core: 'default'
     # This variable allows select type of installation. Can be overridden by CI server.
     # From installation profile = 'profile', from sql dump = 'sql'.
     workflow_type: 'sql'
@@ -134,6 +135,11 @@
     lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
     ignore_errors: yes
 
+  - name: Adding Solr variable to settings.php
+    sudo: yes
+    lineinfile: dest='sites/default/settings.php' line='$conf[\"solr_core\"] = \"{{ solr_core }}\";'
+    ignore_errors: yes
+
   - name: Check if registry_rebuild is installed
     shell: "{{ php_env_vars }} drush | grep -c registry_rebuild"
     register: registry_rebuild_installed
@@ -156,6 +162,10 @@
 
   - name: Setting CI tmp dir
     shell: "{{ php_env_vars }} drush -y vset file_temporary_path /tmp"
+    when: workflow_type == "sql"
+
+  - name: Reset Private files folder
+    shell: "{{ php_env_vars }} drush -y vdel file_private_path"
     when: workflow_type == "sql"
 
   - name: Updating database
@@ -186,6 +196,16 @@
   - name: Update admin credentials
     shell: "{{ php_env_vars }} drush user-password {{ drupal_user }} --password={{ drupal_pass }}"
     when: pp_environment == "demo" or pp_environment == "default"
+
+  - name: Change search server to the local one
+    sudo: yes
+    shell: "{{ php_env_vars }} drush nas-master-search-server-local"
+    when: pp_environment == "default" or pp_environment == "demo"
+
+  - name: Download fresh MaxMindDB
+    sudo: yes
+    shell: "{{ php_env_vars }} drush nas-master-update-geoip-db"
+    when: pp_environment == "default" or pp_environment == "demo"
 
   - name: Solr - clearing index
     sudo: yes

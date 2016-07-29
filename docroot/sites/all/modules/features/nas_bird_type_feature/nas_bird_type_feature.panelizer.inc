@@ -45,6 +45,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'in_the_news' => NULL,
       'card_set' => NULL,
       'across_audubon' => NULL,
+      'focal_bird_map' => NULL,
     ),
   );
   $display->cache = array();
@@ -125,6 +126,46 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->uuid = '449bfc00-7c71-49f9-bc11-d7e955ae9511';
     $display->content['new-449bfc00-7c71-49f9-bc11-d7e955ae9511'] = $pane;
     $display->panels['card_set'][0] = 'new-449bfc00-7c71-49f9-bc11-d7e955ae9511';
+    $pane = new stdClass();
+    $pane->pid = 'new-74edb2bc-f8f4-4282-9831-a354893ab7e7';
+    $pane->panel = 'focal_bird_map';
+    $pane->type = 'bird_detail';
+    $pane->subtype = 'bird_detail';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'canvas_text' => array(
+        'en' => array(
+          'value' => '<p>In the broadest and most detailed study of its kind, Audubon scientists have used hundreds of thousands of citizen-science observations and sophisticated climate models to predict how birds in the U.S. and Canada will react to climate change.</p>
+
+<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+',
+          'format' => 'full_html',
+        ),
+        'es' => array(
+          'value' => '<p>En el estudio más amplio y detallado de su tipo, los científicos Audubon han utilizado cientos de miles de observaciones de los ciudadanos en la ciencia y los modelos climáticos sofisticados para predecir cómo las aves en los E.U. y Canadá van a reaccionar al cambio climático.</p>
+
+<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+',
+          'format' => 'full_html',
+        ),
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '74edb2bc-f8f4-4282-9831-a354893ab7e7';
+    $display->content['new-74edb2bc-f8f4-4282-9831-a354893ab7e7'] = $pane;
+    $display->panels['focal_bird_map'][0] = 'new-74edb2bc-f8f4-4282-9831-a354893ab7e7';
     $pane = new stdClass();
     $pane->pid = 'new-66d40dde-4f12-4242-be38-b8c936681a18';
     $pane->panel = 'header';
@@ -225,28 +266,13 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-ea1d7836-e445-4d47-8b95-9ec8aa7e887c'] = $pane;
     $display->panels['in_action_right'][0] = 'new-ea1d7836-e445-4d47-8b95-9ec8aa7e887c';
     $pane = new stdClass();
-    $pane->pid = 'new-93301a46-a012-4c42-86ac-edda31fedea6';
+    $pane->pid = 'new-f333f966-774c-430e-8c06-d259cb7ab064';
     $pane->panel = 'in_action_top';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
+    $pane->type = 'bird_in_action_header';
+    $pane->subtype = 'bird_in_action_header';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => 'Header In Action',
-      'title' => '',
-      'body' => '<div class="columns">
-	<h2 class="thin">%node:title in Action</h2>
-</div>
-
-<div class="columns">
-	<ul class="section-nav inline-list hide-for-small hide-for-tiny">
-		<li><a href="#">More Video »</a></li>
-	</ul>
-</div>
-',
-      'format' => 'full_html',
-      'substitute' => 1,
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -255,9 +281,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '93301a46-a012-4c42-86ac-edda31fedea6';
-    $display->content['new-93301a46-a012-4c42-86ac-edda31fedea6'] = $pane;
-    $display->panels['in_action_top'][0] = 'new-93301a46-a012-4c42-86ac-edda31fedea6';
+    $pane->uuid = 'f333f966-774c-430e-8c06-d259cb7ab064';
+    $display->content['new-f333f966-774c-430e-8c06-d259cb7ab064'] = $pane;
+    $display->panels['in_action_top'][0] = 'new-f333f966-774c-430e-8c06-d259cb7ab064';
     $pane = new stdClass();
     $pane->pid = 'new-e026676d-dc97-415f-b572-c3ba054966a4';
     $pane->panel = 'in_the_news';
@@ -274,7 +300,7 @@ function nas_bird_type_feature_panelizer_defaults() {
       'override_title' => 0,
       'override_title_text' => '%node:title In the News',
       'preset' => 'bird_in_the_news',
-      'more_link_text' => 'More News »',
+      'more_link_text' => 'More News',
       'more_link_url' => 'news',
       'refs' => array(
         1 => array(
@@ -287,19 +313,20 @@ function nas_bird_type_feature_panelizer_defaults() {
           'reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-B2AXHH4KWXFwM7Xn-BMbtixGsJGMAspiT2pSETYaOTo',
-      'form_token' => 'qZrrx9gW0Lkfe5U2hHNLccUyrBD-CgThetlERUDa1FQ',
+      'form_build_id' => 'form-MUHpSPWAA4Y_5aAFLYVD0RNTggPOrBM3PDpOcKNOUqM',
+      'form_token' => 'h5QcLpB6LFOmTEQQijvCVS8y2NkEsQ5KuPBsxLpaHhA',
       'form_id' => 'editorial_card_3x_edit_form',
       'additional_classes' => '',
       'paddings' => array(
-        'double-bottom' => 'double-bottom',
         'top' => 0,
         'between' => 0,
         'bottom' => 0,
+        'double-bottom' => 0,
       ),
       'count' => '3',
       'update_count' => 'Update count',
       'nas_panes_resave_panel' => TRUE,
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -342,17 +369,13 @@ function nas_bird_type_feature_panelizer_defaults() {
     $display->content['new-26560f62-8a80-49c9-97c4-3b286dc5b5e7'] = $pane;
     $display->panels['main'][0] = 'new-26560f62-8a80-49c9-97c4-3b286dc5b5e7';
     $pane = new stdClass();
-    $pane->pid = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
+    $pane->pid = 'new-dd96fe4c-9642-4ae3-825b-6ef5c75af6c9';
     $pane->panel = 'similar_birds';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'nas_birds_view-explore_similar_birds';
+    $pane->type = 'bird_similar_birds';
+    $pane->subtype = 'bird_similar_birds';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'context' => array(
-        0 => 'panelizer',
-      ),
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -361,9 +384,9 @@ function nas_bird_type_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
-    $display->content['new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c'] = $pane;
-    $display->panels['similar_birds'][0] = 'new-1f364d01-e183-4f94-a7c9-2bc541ea2f8c';
+    $pane->uuid = 'dd96fe4c-9642-4ae3-825b-6ef5c75af6c9';
+    $display->content['new-dd96fe4c-9642-4ae3-825b-6ef5c75af6c9'] = $pane;
+    $display->panels['similar_birds'][0] = 'new-dd96fe4c-9642-4ae3-825b-6ef5c75af6c9';
     $pane = new stdClass();
     $pane->pid = 'new-70f5b69d-dff0-4106-a0de-f593dd071a0f';
     $pane->panel = 'top';
