@@ -81,11 +81,6 @@ class Image extends Audible implements Container
     private $audio;
 
     /**
-     * @var Cite The credit for the Image
-     */
-    private $credit;
-
-    /**
      * Private constructor.
      * @see Image::create();.
      */
@@ -233,22 +228,6 @@ class Image extends Audible implements Container
     }
 
     /**
-     * This sets figcaption's cite tag as documentation. It overrides all sets
-     * made with Credit.
-     *
-     * @param Cite $credit the credit the image will have
-     *
-     * @return $this
-     */
-    public function withCredit($credit)
-    {
-        Type::enforce($credit, Cite::getClassName());
-        $this->credit = $credit;
-
-        return $this;
-    }
-
-    /**
      * @return Caption gets the caption obj
      */
     public function getCaption()
@@ -309,14 +288,6 @@ class Image extends Audible implements Container
     }
 
     /**
-     * @return Cite the cite object
-     */
-    public function getCredit()
-    {
-        return $this->credit;
-    }
-
-    /**
      * Structure and create the full Image in a XML format DOMElement.
      *
      * @param \DOMDocument $document where this element will be appended. Optional
@@ -371,11 +342,6 @@ class Image extends Audible implements Container
         // Audio markup optional
         if ($this->audio) {
             $element->appendChild($this->audio->toDOMElement($document));
-        }
-
-        // Audio markup optional
-        if ($this->credit) {
-            $element->appendChild($this->credit->toDOMElement($document));
         }
 
         return $element;
