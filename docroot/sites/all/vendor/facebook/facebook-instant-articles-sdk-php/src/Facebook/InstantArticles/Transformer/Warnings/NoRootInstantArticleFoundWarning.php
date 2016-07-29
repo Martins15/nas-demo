@@ -11,7 +11,7 @@ namespace Facebook\InstantArticles\Transformer\Warnings;
 use Facebook\InstantArticles\Elements\Element;
 use Facebook\InstantArticles\Validators\Type;
 
-class ValidatorWarning
+class NoRootInstantArticleFoundWarning
 {
     /**
      * @var Element
@@ -64,17 +64,7 @@ class ValidatorWarning
 
     private function formatWarningMessage()
     {
-        $object = Type::stringify($this->element);
-        if (!$this->configuration) {
-            $this->configuration = parse_ini_file("validator_warning_messages.ini", true);
-        }
-        $simple_class_name = substr(strrchr($this->element->getClassName(), '\\'), 1);
-
-        if (!isset($this->configuration['warning_messages'][$simple_class_name])) {
-            $message = 'Invalid content on the object.';
-        } else {
-            $message = $this->configuration['warning_messages'][$simple_class_name];
-        }
-        return $message;
+        $node_string = $this->node->ownerDocument->saveHtml($this->node);
+        return "No instant article was informed in the context for Transformer. This element will be lost during transformation: " . $node_string;
     }
 }
