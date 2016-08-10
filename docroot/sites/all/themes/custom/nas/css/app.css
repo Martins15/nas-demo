@@ -10198,7 +10198,7 @@ body.black-bg .slide-caption {
 }
 
 .inline-map-canvas {
-  background-color: #FBFAF6;
+  background-color: transparent;
   max-width: 100%;
   overflow: hidden;
   position: relative;
