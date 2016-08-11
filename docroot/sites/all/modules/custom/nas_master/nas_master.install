@@ -3543,3 +3543,10 @@ function nas_master_update_7245() {
     ),
   ));
 }
+
+/**
+ * Enable nas_panels_ipe module.
+ */
+function nas_master_update_7246() {
+  module_enable(array('nas_panels_ipe'));
+}
