@@ -1,0 +1,38 @@
+/* Inline Panels Editor custom styles */
+.panels-ipe-display-container {
+  .asc-panels-ipe-collapsible-button {
+    padding: 10px;
+    text-align: center;
+
+    a {
+      background-color: #f15936;
+      border-color: #dd360f;
+      color: white !important;
+      border-radius: 3px;
+      padding: 5px;
+      font-size: 19px;
+
+      &:hover {
+        background-color: #dd360f;
+      }
+    }
+  }
+  &:not(.panels-ipe-editing) {
+    .panels-ipe-empty-pane {
+      display: none !important;
+    }
+  }
+  &.panels-ipe-editing {
+    .hero-header {
+      position: relative;
+    }
+    .hero-attribution .column,
+    .hero-attribution-fullscreen .column {
+      position: relative;
+      top: 0;
+    }
+    section.card-set {
+      clear: both;
+    }
+  }
+}

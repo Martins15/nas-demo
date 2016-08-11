@@ -3742,7 +3742,7 @@ ul.pagination li {
   -webkit-box-sizing: content-box;
 }
 
-/* 
+/*
     User Style:
     Change the following styles to modify the appearance of Colorbox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
@@ -3899,7 +3899,7 @@ ul.pagination li {
 
 /* Foundation v2.1.4 http://foundation.zurb.com */
 /* Artfully masterminded by ZURB  */
-/* -------------------------------------------------- 
+/* --------------------------------------------------
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
@@ -14825,6 +14825,37 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .where-to-buy-section .nursery .label {
   color: #838078;
+}
+
+/* Inline Panels Editor custom styles */
+.panels-ipe-display-container .asc-panels-ipe-collapsible-button {
+  padding: 10px;
+  text-align: center;
+}
+.panels-ipe-display-container .asc-panels-ipe-collapsible-button a {
+  background-color: #f15936;
+  border-color: #dd360f;
+  color: white !important;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 19px;
+}
+.panels-ipe-display-container .asc-panels-ipe-collapsible-button a:hover {
+  background-color: #dd360f;
+}
+.panels-ipe-display-container:not(.panels-ipe-editing) .panels-ipe-empty-pane {
+  display: none !important;
+}
+.panels-ipe-display-container.panels-ipe-editing .hero-header {
+  position: relative;
+}
+.panels-ipe-display-container.panels-ipe-editing .hero-attribution .column, .panels-ipe-display-container.panels-ipe-editing .hero-attribution-fullscreen .column,
+.panels-ipe-display-container.panels-ipe-editing .hero-attribution-fullscreen .column {
+  position: relative;
+  top: 0;
+}
+.panels-ipe-display-container.panels-ipe-editing section.card-set {
+  clear: both;
 }
 
 .sidebar, .article-sidebar {
