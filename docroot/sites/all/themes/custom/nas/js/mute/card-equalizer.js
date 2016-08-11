@@ -10,8 +10,8 @@
        *   Engagement cards.
        */
       function equalizeCards($cardsEd, $cardsEng) {
-        $cardsEd.not(".skip-asc-equalization").removeAttr("style");
-        $cardsEng.not(".skip-asc-equalization").removeAttr("style");
+        $cardsEd.not(".skip-nas-equalization").removeAttr("style");
+        $cardsEng.not(".skip-nas-equalization").removeAttr("style");
         var $contentsEng = $cardsEng.find(".engagement-card-content"),
           cardEdHeights = [],
           contentsEngHeights = [];
