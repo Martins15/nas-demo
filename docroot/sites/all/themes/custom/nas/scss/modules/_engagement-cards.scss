@@ -133,3 +133,18 @@
     }
   }
 }
+
+.ec-mailing-list-form {
+
+  .form-item-email {
+    display: inline-block;
+    //max-width: 80%;
+
+    .mailing-list-input {
+      min-width: 0;
+      margin: 0;
+      padding: 0.5rem 0.75rem;
+      height: 2.125rem;
+    }
+  }
+}
