@@ -1,6 +1,6 @@
 /* Inline Panels Editor custom styles */
 .panels-ipe-display-container {
-  .asc-panels-ipe-collapsible-button {
+  .nas-panels-ipe-collapsible-button {
     padding: 10px;
     text-align: center;
 
@@ -34,5 +34,19 @@
     section.card-set {
       clear: both;
     }
+    .panels-ipe-portlet-content {
+      #OptimizelyDonationBar {
+        position: relative;
+      }
+    }
+    .bird-card-set {
+      overflow: visible;
+    }
+    #OptimizelyDonationBar {
+      bottom: 60px;
+    }
+  }
+  .contextual-links-wrapper {
+    display: none !important;
   }
 }

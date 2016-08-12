@@ -1,21 +1,40 @@
-(function($) {
-  $(document).bind("respond", function(e) {
+(function ($) {
+
+  /**
+   * Move hero section block in DOM, change background.
+   */
+  Drupal.bg_respond = function (event_size) {
     var size = "";
- 
-    if(e.size == "tiny" || e.size == "small") {
+
+    if (event_size == "tiny" || event_size == "small") {
       size = "small";
       $(".hero-text-container .column").append($(".hero-text"));
     }
-    if(e.size == "medium" || e.size == "large") {
+    if (event_size == "medium" || event_size == "large") {
       size = "large";
       $(".hero-header .column").append($(".hero-text"));
     }
- 
-    $(".bg-respond").each(function() {
+
+    $(".bg-respond").each(function () {
       var newSrc = $(this).attr("data-bg-" + size);
-      if(newSrc) {
+      if (newSrc) {
         $(this).css("background-image", "url(" + newSrc + ")");
       }
     });
+  };
+
+  /**
+   * When IPE editing is finished, we need to update hero section.
+   */
+  Drupal.behaviors.bg_respond = {
+    attach: function (context, settings) {
+      $(document).bind('endIPE', function () {
+        Drupal.bg_respond(StateManager.state);
+      });
+    }
+  };
+
+  $(document).bind("respond", function (e) {
+    Drupal.bg_respond(e.size);
   });
 })(jQuery);
