@@ -253,6 +253,8 @@ function nas_events_landing_feature_default_page_manager_pages() {
   $page->conf = array(
     'admin_paths' => FALSE,
   );
+  $page->language = 'und';
+  $page->tpid = 0;
   $page->default_handlers = array();
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
@@ -406,24 +408,14 @@ function nas_events_landing_feature_default_page_manager_pages() {
       'override_title_heading' => 'h2',
       'events' => array(
         1 => array(
-          'entity_reference' => array(
-            'entity_id' => '47367',
-            'entity_label' => 'asdf',
-            'entity_type' => 'node',
-            'entity_bundle' => 'event',
-          ),
+          'entity_reference' => FALSE,
         ),
         2 => array(
-          'entity_reference' => array(
-            'entity_id' => '47366',
-            'entity_label' => 'event',
-            'entity_type' => 'node',
-            'entity_bundle' => 'event',
-          ),
+          'entity_reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-LvdV06aKt6l3OxmiNRWVdPH21ve-gwv2E1mTCtCQ0U8',
-      'form_token' => 'x0SGhVb35yvZ5jjCCQfrA8R51486XFoOnK_0yXpdbdI',
+      'form_build_id' => 'form-af4fdOVu8BZ0zQEmj5ukWb2Ukr1EvzBrIuR0uq4PiYQ',
+      'form_token' => 'lGh9QaopZ5MMX46oB9kdJNFd0Y4XsoYrjSL6Hrm2KzQ',
       'form_id' => 'events_listing_featured_edit_form',
       'nas_panes_resave_panel' => TRUE,
     );
