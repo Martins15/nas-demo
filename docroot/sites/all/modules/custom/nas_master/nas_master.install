@@ -3558,3 +3558,17 @@ function nas_master_update_7246() {
 
   module_enable(array('nas_engagement_cards'));
 }
+
+/**
+ * Enable Search API DB module and events index.
+ */
+function nas_master_update_7247() {
+  module_enable(array('search_api_db'));
+  features_revert(array(
+    'nas_events_landing_page_feature' => array('views_view'),
+    'nas_event_feature' => array(
+      'search_api_index',
+      'search_api_server',
+    ),
+  ));
+}
