@@ -1762,7 +1762,7 @@ function _nas_panes_get_local_chapters_centers($state = 'all', $postal_code = 'a
  */
 function _nas_panes_get_upcoming_events($state = 'all') {
   $items = array();
-  $results = views_get_view_result('events_listing', 'panel_pane_1', $state);
+  $results = views_get_view_result('events_listing_db', 'panel_pane_1', $state);
   $count = 0;
 
   foreach ($results as $result) {

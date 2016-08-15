@@ -3539,9 +3539,36 @@ function nas_master_update_7244() {
 function nas_master_update_7245() {
   features_revert(array(
     'nas_metatags_feature' => array(
-      'frontpage2',
-      'frontpage',
-      'frontpage2_es_kwbg'
+      'metatag',
+    ),
+  ));
+}
+
+/**
+ * Engagement card with form element.
+ */
+function nas_master_update_7246() {
+  features_revert(array(
+    'nas_engagement_cards_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+    ),
+  ));
+
+  module_enable(array('nas_engagement_cards'));
+}
+
+/**
+ * Enable Search API DB module and events index.
+ */
+function nas_master_update_7247() {
+  module_enable(array('search_api_db'));
+  features_revert(array(
+    'nas_events_landing_page_feature' => array('views_view'),
+    'nas_event_feature' => array(
+      'search_api_index',
+      'search_api_server',
     ),
   ));
 }
@@ -3549,16 +3576,18 @@ function nas_master_update_7245() {
 /**
  * Enable nas_panels_ipe module.
  */
-function nas_master_update_7246() {
+function nas_master_update_7248() {
   module_enable(array('nas_panels_ipe'));
 }
 
 /**
  * Enable IPE for some pages created via page manager.
  */
-function nas_master_update_7248() {
+function nas_master_update_7249() {
   $exclude = array(
-    'birds_landing',
+    'frontpage2',
+    'frontpage',
+    'frontpage2_es_kwbg',
   );
   $task = page_manager_get_task('page');
   $handlers = page_manager_load_task_handlers($task);

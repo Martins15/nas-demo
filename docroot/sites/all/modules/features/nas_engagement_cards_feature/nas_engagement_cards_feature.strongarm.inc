@@ -98,13 +98,35 @@ function nas_engagement_cards_feature_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '6',
+        ),
+        'language' => array(
+          'weight' => '0',
+        ),
+        'locations' => array(
+          'weight' => '7',
+        ),
+        'metatags' => array(
+          'weight' => '8',
+        ),
+        'redirect' => array(
+          'weight' => '5',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '4',
         ),
       ),
       'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__engagement_cards'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_engagement_cards';
+  $strongarm->value = '2';
+  $export['language_content_type_engagement_cards'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -133,7 +155,7 @@ function nas_engagement_cards_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_engagement_cards';
-  $strongarm->value = '0';
+  $strongarm->value = '2';
   $export['node_preview_engagement_cards'] = $strongarm;
 
   $strongarm = new stdClass();

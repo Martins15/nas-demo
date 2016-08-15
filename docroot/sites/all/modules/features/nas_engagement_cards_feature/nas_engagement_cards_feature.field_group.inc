@@ -21,12 +21,16 @@ function nas_engagement_cards_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Main content',
-    'weight' => '0',
+    'weight' => '1',
     'children' => array(
       0 => 'body',
       1 => 'field_image',
       2 => 'field_link',
-      3 => 'title',
+      3 => 'field_engagement_card_type',
+      4 => 'field_placeholder_text',
+      5 => 'field_destination',
+      6 => 'field_convio_url',
+      7 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -51,7 +55,7 @@ function nas_engagement_cards_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '1',
+    'weight' => '3',
     'children' => array(
       0 => 'field_custom_section',
       1 => 'field_menu_section',
