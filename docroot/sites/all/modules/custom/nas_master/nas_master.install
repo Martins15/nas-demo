@@ -3539,7 +3539,9 @@ function nas_master_update_7244() {
 function nas_master_update_7245() {
   features_revert(array(
     'nas_metatags_feature' => array(
-      'metatag',
+      'frontpage2',
+      'frontpage',
+      'frontpage2_es_kwbg'
     ),
   ));
 }
@@ -3549,4 +3551,22 @@ function nas_master_update_7245() {
  */
 function nas_master_update_7246() {
   module_enable(array('nas_panels_ipe'));
+}
+
+/**
+ * Enable IPE for some pages created via page manager.
+ */
+function nas_master_update_7247() {
+  $exclude = array(
+    'birds_landing',
+  );
+  $task = page_manager_get_task('page');
+  $handlers = page_manager_load_task_handlers($task);
+  foreach ($handlers as $handler) {
+    if ($handler->handler != 'panel_context' || in_array($handler->subtask, $exclude)) {
+      continue;
+    }
+    $handler->conf['pipeline'] = 'ipe';
+    page_manager_save_task_handler($handler);
+  }
 }

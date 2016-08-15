@@ -14846,6 +14846,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 .panels-ipe-display-container:not(.panels-ipe-editing) .panels-ipe-empty-pane {
   display: none !important;
 }
+.panels-ipe-display-container #OptimizelyDonationBar {
+  bottom: 60px;
+}
 .panels-ipe-display-container.panels-ipe-editing .hero-header {
   position: relative;
 }
@@ -14859,12 +14862,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .panels-ipe-display-container.panels-ipe-editing .panels-ipe-portlet-content #OptimizelyDonationBar {
   position: relative;
+  bottom: 0;
 }
 .panels-ipe-display-container.panels-ipe-editing .bird-card-set {
   overflow: visible;
-}
-.panels-ipe-display-container.panels-ipe-editing #OptimizelyDonationBar {
-  bottom: 60px;
 }
 .panels-ipe-display-container .contextual-links-wrapper {
   display: none !important;

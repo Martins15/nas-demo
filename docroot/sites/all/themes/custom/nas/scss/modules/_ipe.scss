@@ -22,6 +22,9 @@
       display: none !important;
     }
   }
+  #OptimizelyDonationBar {
+    bottom: 60px;
+  }
   &.panels-ipe-editing {
     .hero-header {
       position: relative;
@@ -37,13 +40,11 @@
     .panels-ipe-portlet-content {
       #OptimizelyDonationBar {
         position: relative;
+        bottom: 0;
       }
     }
     .bird-card-set {
       overflow: visible;
-    }
-    #OptimizelyDonationBar {
-      bottom: 60px;
     }
   }
   .contextual-links-wrapper {
