@@ -1,9 +1,3 @@
-// Native plants colors
-$color-red:                     #cd1818;
-$color-light-red:               #f99090;
-$color-light-orange:            #ff9900;
-$color-light-green:             #52a04a;
-$color-dark-green:              #025e02;
 
 .np-dark-red { background-color: $color-red; }
 .npm-dark-red { color: $color-red; }
@@ -26,7 +20,7 @@ $color-dark-green:              #025e02;
 .native-plants-green-row {
   color: $color-white;
   font-size: 24px;
-  font-family: Source Sans Pro, Verdana, sans-serif;
+  font-family: $font-sans;
   font-weight: 300;
   line-height: 50px;
 
@@ -40,16 +34,44 @@ $color-dark-green:              #025e02;
   }
 }
 
-.native-plants-search-form {
+.native-plants-hero-title {
+  margin-bottom: 28px;
 
-  .native-plants-search-form--zip-code {
+  @include breakpoint(medium-up) {
+    margin-bottom: 42px;
+    text-align: center;
+  }
+}
+
+.native-plants-search-form {
+  @include breakpoint(large-up) {
+    margin-bottom: 24px;
+  }
+
+  .form-text {
+    border-radius: 8px;
     font-size: 19px;
     height: 45px;
-    border-radius: 8px;
+    margin-bottom: 12px;
 
+    @include breakpoint(large-up) {
+      margin-bottom: 16px;
+    }
+  }
+
+  .native-plants-search-form--email {
     @include breakpoint(medium-up) {
-      width: 150px;
+      max-width: 324px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .native-plants-search-form--zip-code {
+    @include breakpoint(medium-up) {
       float: right;
+      max-width: 150px;
+      width: 100%;
     }
   }
 
@@ -61,15 +83,74 @@ $color-dark-green:              #025e02;
     width: 100%;
 
     @include breakpoint(medium-up) {
+      margin-left: 10px;
       width: 140px;
     }
   }
 }
 
+.native-plants-hero {
+  .hero-image {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      height: 484px;
+
+      img {
+        @include translateX(-50%);
+        max-width: none;
+        max-height: 100%;
+        margin-left: 50%;
+      }
+    }
+  }
+}
+
+.native-plants-hero-text {
+  font-family: $font-sans;
+  padding-top: 18px;
+  font-size: 18px;
+  line-height: 26px;
+  clear: both;
+
+  @include breakpoint(large-up) {
+    color: $color-white;
+    line-height: 28px;
+    padding-top: 0;
+  }
+
+  @include breakpoint(large-only) {
+    width: 100%;
+  }
+
+  @include breakpoint(xlarge-up) {
+    margin-bottom: 30px;
+  }
+
+  a {
+    color: $color-text-gray;
+    text-decoration: underline;
+  }
+
+  p {
+    margin-bottom: 12px;
+  }
+
+  & + .hero-attribution {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      background: transparent;
+      color: $color-middle-gray;
+      clear: both;
+      line-height: 20px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+
 .try-these-first {
   @include breakpoint(tiny-only) {
     padding-top: 15px;
   }
+
   @include breakpoint(small-only) {
     padding-top: 15px;
   }
@@ -80,7 +161,7 @@ $color-dark-green:              #025e02;
 
   p {
     color: $color-warm-gray;
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
   }
 }
 
@@ -95,6 +176,7 @@ $color-dark-green:              #025e02;
     font-size: 26px;
     margin-bottom: 13px;
   }
+
   h4 {
     font-size: 20px;
     margin-bottom: 13px;
@@ -102,10 +184,11 @@ $color-dark-green:              #025e02;
 
   h4 {
     @include breakpoint(tiny-only) {
-      margin: 10px 0px;
+      margin: 10px 0;
     }
+
     @include breakpoint(small-only) {
-      margin: 10px 0px;
+      margin: 10px 0;
     }
   }
 
@@ -117,7 +200,7 @@ $color-dark-green:              #025e02;
     margin-bottom: 10px;
 
     @include breakpoint(medium-only) {
-      padding: 5px 5px 35px 5px;
+      padding: 5px 5px 35px;
     }
 
     .bird-card-illustration {
@@ -133,6 +216,7 @@ $color-dark-green:              #025e02;
 
 .tier-1-plant-picture {
   line-height: 0;
+
   img {
     height: auto;
   }
@@ -146,7 +230,6 @@ $color-dark-green:              #025e02;
 }
 
 .tier-1-plant {
-
   .tier-1-plant--description {
     font-size: 16px;
     line-height: 22px;
@@ -155,9 +238,9 @@ $color-dark-green:              #025e02;
   .tier-1-plant--source {
     font-size: 15px;
     line-height: 20px;
+    font-family: $font-sans;
     margin-bottom: 20px;
     margin-top: 10px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
   }
 
   .tier-1-plant--add-to-list {
@@ -168,7 +251,7 @@ $color-dark-green:              #025e02;
 
 .plant-attributes-list {
   list-style: none;
-  margin: 10px 0 0 0;
+  margin: 10px 0 0;
 
   li {
     display: block;
@@ -179,9 +262,9 @@ $color-dark-green:              #025e02;
 
     a, span {
       border-radius: 8px;
-      color: #ffffff;
+      color: $color-white;
       display: inline-block;
-      font-family: Source Sans Pro, Verdana, sans-serif;
+      font-family: $font-sans;
       font-size: 15px;
       line-height: 32px;
       text-align: center;
@@ -191,6 +274,7 @@ $color-dark-green:              #025e02;
 
   &.plant-attributes-list-small {
     margin: 0;
+
     li {
       margin-right: 10px;
 
@@ -203,22 +287,20 @@ $color-dark-green:              #025e02;
 }
 
 .inner-filters-wrapper {
-
   select {
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
     background-position: 94% center;
     border-radius: 8px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
     font-size: 19px;
     font-weight: 300;
     height: 45px;
     width: 100%;
-    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
     padding-top: 10px;
     padding-bottom: 11px;
   }
 
   @include breakpoint(medium-up) {
-
     select {
       width: 246px;
       margin-right: 28px;
@@ -227,7 +309,7 @@ $color-dark-green:              #025e02;
 }
 
 .mobile-results-total-wrapper {
-  padding-bottom: 1rem;;
+  padding-bottom: 1rem;
   overflow: hidden;
 
   .mobile-results-total {
@@ -235,13 +317,12 @@ $color-dark-green:              #025e02;
     border-bottom: 2px solid #e4e4e4;
     border-top: 2px solid #e4e4e4;
     font-size: 14px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
     line-height: 38px;
   }
 }
 
 .native-plants-full-search-results {
-
   table {
     margin-bottom: 0;
 
@@ -274,6 +355,7 @@ $color-dark-green:              #025e02;
         &:nth-child(2) {
           text-align: center;
         }
+
         &:nth-child(3) {
           padding-left: 0 !important;
           padding-right: 0 !important;
@@ -285,7 +367,6 @@ $color-dark-green:              #025e02;
         }
 
         .plant--add-to-list {
-
           input {
             margin-bottom: 0;
           }
@@ -293,8 +374,8 @@ $color-dark-green:              #025e02;
           label {
             font-size: 15px;
             color: $color-text-gray;
-            margin-right: 4px;
             display: inline;
+            margin-right: 4px;
           }
 
           .icon-camera {
@@ -308,7 +389,7 @@ $color-dark-green:              #025e02;
   }
 
   .mobile-search-full-results {
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
 
     .view-row {
       border-bottom: 2px solid #cccccc;
@@ -330,7 +411,6 @@ $color-dark-green:              #025e02;
         font-size: 19px;
       }
     }
-
   }
 
   &.permalink-list {
@@ -353,7 +433,7 @@ $color-dark-green:              #025e02;
   clear: both;
   font-size: 17px;
   line-height: 39px;
-  font-family: Source Sans Pro, Verdana, sans-serif;
+  font-family: $font-sans;
   overflow: hidden;
 
   @include breakpoint(medium-up) {
@@ -385,7 +465,6 @@ $color-dark-green:              #025e02;
     }
 
     @include breakpoint(medium-up) {
-
       & > :first-child {
         float: none;
       }
@@ -398,7 +477,7 @@ $color-dark-green:              #025e02;
 }
 
 .native-plants-bottom {
-  font-family: Source Sans Pro, Verdana, sans-serif;
+  font-family: $font-sans;
 
   @include breakpoint(medium-up) {
     margin-top: 84px;
@@ -558,9 +637,7 @@ $color-dark-green:              #025e02;
 }
 
 .bird-card-carousel {
-
   .owl-carousel {
-
     .owl-wrapper-outer {
       padding-top: 5px;
     }
@@ -593,10 +670,10 @@ input[type="checkbox"].np-checkbox {
   display: none;
 
   &+label {
+    @include user-select(none);
     margin-left: 0;
     padding-left: 26px;
     padding-bottom: 10px;
-    @include user-select(none);
 
     &:before {
       background-image: url(../img/np-checkbox.png);
@@ -611,7 +688,8 @@ input[type="checkbox"].np-checkbox {
       width: 18px;
     }
   }
-  &:checked+label {
+
+  &:checked + label {
     &:before {
       background-position: top left;
     }
@@ -619,23 +697,21 @@ input[type="checkbox"].np-checkbox {
 }
 
 .native-plant-bird-category-link {
-  color: #404040;
+  color: $color-text-gray;
   text-decoration: underline;
 
   &:hover {
     color: #909090;
-//    text-decoration: none;
   }
 }
 
 .np-search-full-results {
-
   h2 {
     margin-bottom: 12px;
   }
 
   .filter-label {
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
     margin-bottom: 12px;
     padding-left: 3px;
   }
@@ -665,7 +741,6 @@ input[type="checkbox"].np-checkbox {
 
 .page-native-plants-initial {
   .native-plants-bottom {
-
     .native-plants-bottom-plant-list-placeholder,
     .native-plants-bottom-plant-list {
       display: none;
@@ -676,6 +751,7 @@ input[type="checkbox"].np-checkbox {
 .page-native-plants, .page-native-plants-resources {
   .ajax-screen-lock-popup {
     padding: 10px;
+
     .ajax-screen-lock-progress {
       background: url(../img/native-plants-preloader.gif) no-repeat;
       border: none;
