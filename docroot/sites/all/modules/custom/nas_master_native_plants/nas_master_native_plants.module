@@ -12,14 +12,23 @@ function nas_master_native_plants_menu() {
     'title' => 'Native Plants',
     'description' => 'Configure Native Plants settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_master_native_plants_cache_clear'),
+    'page arguments' => array('nas_master_native_plants_settings'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
+  );
+  $items['admin/config/system/native-plants/settings'] = array(
+    'title' => 'Settings',
+    'description' => 'Native Plants settings',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/cache-clear'] = array(
     'title' => 'Cache clear',
     'description' => 'Clear Native Plants cache',
-    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_cache_clear'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/csv-update'] = array(
     'title' => 'CSV update',
@@ -271,7 +280,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     'placeholder' => t('ZIP code'),
   );
   $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
-  if (module_exists('nas_native_plants_zipfips_feature')) {
+  if (variable_get('nas_master_native_plants_zip_fips', 0)) {
     $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
   }
 
@@ -384,7 +393,7 @@ function nas_master_native_plants_element_validate_zipcode_us($element, &$form_s
  * Helper function to convert ZIP code into County FIPS code.
  */
 function nas_master_native_plants_element_validate_zipfips($element, &$form_state) {
-  if ($element['#value'] == '' || !module_exists('nas_native_plants_zipfips_feature')) {
+  if ($element['#value'] == '' || !variable_get('nas_master_native_plants_zip_fips', 0)) {
     return;
   }
 
