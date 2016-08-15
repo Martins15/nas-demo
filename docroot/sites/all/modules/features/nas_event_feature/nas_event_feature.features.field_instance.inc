@@ -24,6 +24,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'ical' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -127,6 +133,7 @@ function nas_event_feature_field_default_field_instances() {
         ),
       ),
       'display_summary' => 1,
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -160,6 +167,12 @@ function nas_event_feature_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 1,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -238,6 +251,7 @@ function nas_event_feature_field_default_field_instances() {
       'default_value2' => 'same',
       'default_value_code' => '',
       'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -270,6 +284,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 6,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -367,6 +387,7 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -394,6 +415,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'location_default',
         'weight' => 12,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -461,6 +488,7 @@ function nas_event_feature_field_default_field_instances() {
     'label' => 'Event Location',
     'required' => FALSE,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -484,6 +512,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 10,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -581,6 +615,7 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -608,6 +643,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 15,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -705,6 +746,7 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -732,6 +774,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 7,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -810,6 +858,7 @@ function nas_event_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_maxlength' => 128,
@@ -840,6 +889,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 11,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -937,6 +992,7 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -964,6 +1020,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -1031,6 +1093,7 @@ function nas_event_feature_field_default_field_instances() {
     'label' => 'Event Type',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1055,6 +1118,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'file_default',
         'weight' => 16,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -1155,6 +1224,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'geofield_wkt',
         'weight' => 13,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'ical' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1221,6 +1296,7 @@ function nas_event_feature_field_default_field_instances() {
     'label' => 'Geolocation',
     'required' => FALSE,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1246,6 +1322,12 @@ function nas_event_feature_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -1315,6 +1397,7 @@ function nas_event_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -1391,6 +1474,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 14,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'ical' => array(
         'label' => 'above',
@@ -1488,6 +1577,7 @@ function nas_event_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),

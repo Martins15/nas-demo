@@ -1,0 +1,284 @@
+<?php
+
+/**
+ * @file
+ * Contains Engagement cards related logic.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the Editorial Card node form.
+ */
+function nas_engagement_cards_form_engagement_cards_node_form_alter(&$form, &$form_state, $form_id) {
+  // Default engagement card type.
+  $form['field_engagement_card_type'][LANGUAGE_NONE]['#options']['_none'] = t('Default');
+  // Fields visibility.
+  $states = array(
+    'visible' => array(
+      '#edit-field-engagement-card-type-und' => array('value' => 'simple_form'),
+    ),
+  );
+  $form['field_destination']['#states'] = $states;
+  $form['field_placeholder_text']['#states'] = $states;
+  $form['field_placeholder_text']['#states']['visible'] += array(
+    array(
+      array(
+        '#edit-field-destination-und' => array('value' => 'convio'),
+      ),
+      'or',
+      array(
+        '#edit-field-destination-und' => array('value' => 'other'),
+      ),
+    ),
+  );
+  $form['field_convio_url']['#states'] = $states;
+  $form['field_convio_url']['#states']['visible'] += array(
+    '#edit-field-destination-und' => array('value' => 'convio'),
+  );
+  $form['#validate'][] = 'nas_engagement_cards_engagement_cards_node_form_validate';
+}
+
+/**
+ * Custom form validation callback.
+ */
+function nas_engagement_cards_engagement_cards_node_form_validate(&$form, &$form_state) {
+  $values = $form_state['values'];
+  if ($values['field_engagement_card_type'][LANGUAGE_NONE][0]['value'] !== 'simple_form') {
+    return;
+  }
+  if ($values['field_destination'][LANGUAGE_NONE][0]['value'] !== 'convio') {
+    return;
+  }
+  if (empty($values['field_convio_url'][LANGUAGE_NONE][0]['value'])) {
+    form_set_error('field_convio_url][und][0][value', t('Convio URL must be specified.'));
+    return;
+  }
+  $url = $values['field_convio_url'][LANGUAGE_NONE][0]['value'];
+  $parsed = parse_url($url);
+  if (!isset($parsed['query'])) {
+    form_set_error('field_convio_url][und][0][value', t('SURVEY_ID parameter must be specified.'));
+    return;
+  }
+  parse_str($parsed['query'], $query);
+  if (empty($query['SURVEY_ID'])) {
+    form_set_error('field_convio_url][und][0][value', t('SURVEY_ID parameter must be specified.'));
+    return;
+  }
+}
+
+/**
+ * Implements hook_forms().
+ */
+function nas_engagement_cards_forms($form_id, $args) {
+  $forms = array();
+  if (preg_match("/nas_ec_subscription_form_.*/", $form_id)) {
+    if (!empty($args[0]['id']) && $form_id == 'nas_ec_subscription_form_' . $args[0]['id']) {
+      $forms[$form_id] = array(
+        'callback' => 'nas_engagement_cards_subscription_form',
+      );
+    }
+  }
+  return $forms;
+}
+
+/**
+ * Form for mail subscription.
+ */
+function nas_engagement_cards_subscription_form($form, &$form_state, $config = array()) {
+  $form_state['config'] = $config;
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#attributes' => array(
+      'placeholder' => array(t($config['placeholder'])),
+      'class' => array('mailing-list-input', 'radius'),
+    ),
+    '#size' => '',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('OK'),
+    '#attributes' => array(
+      'class' => array('button', 'tomato', 'large'),
+    ),
+  );
+  $form['#attributes']['class'] = array('ec-mailing-list-form');
+  $form['form_id'] = $form_state['build_info']['base_form_id'] . $config['id'];
+
+  return $form;
+}
+
+/**
+ * Custom validation callback.
+ */
+function nas_engagement_cards_subscription_form_validate(&$form, &$form_state) {
+  // Validate email address.
+  $email = strtolower(trim($form_state['values']['email']));
+  $form_state['values']['email'] = $email;
+  if (!$email || !valid_email_address($email)) {
+    form_set_error('email', t('The e-mail address you specified is not valid.'));
+    return;
+  }
+
+  // Run validation per provider.
+  $provider = $form_state['config']['provider'];
+  switch ($provider) {
+    case 'convio':
+      $url = 'http://www.audubonaction.org/site/Survey';
+      $data = array(
+        'cons_email' => $email,
+        'cons_info_component' => 't',
+        'cons_mail_opt_in' => 't',
+        'cons_email_opt_in' => 1,
+        'cons_email_opt_in_requested' => 'true',
+        's_rememberMe' => 0,
+        'remember_me_opt_in_requested' => 'true',
+        'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+        'SURVEY_ID' => '17180',
+        'denySubmit' => '',
+        "3340_17180_2_14661" => "1441",
+        "3340_17180_2_14661" => "1401",
+      );
+      $options = array(
+        'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+        'method' => 'POST',
+        'data' => http_build_query($data),
+        'timeout' => 15,
+      );
+      $result = drupal_http_request($url, $options);
+      watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
+      watchdog('email_subscribe', 'Service answer was !answer', array(
+        '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+      ));
+
+      if (!isset($result->redirect_code) || $result->redirect_code != 302 ||
+        !isset($result->redirect_url) ||
+        $result->redirect_url != 'http://www.audubon.org/thankyou'
+      ) {
+        form_set_error('email', t('The e-mail address you specified is not valid.'));
+      }
+      break;
+
+    // TODO: Implement.
+    case 'emill':
+    case 'cc':
+    case 'mailchimp':
+      break;
+  }
+}
+
+/**
+ * Custom submit callback.
+ */
+function nas_engagement_cards_subscription_form_submit(&$form, &$form_state) {
+  $email = $form_state['values']['email'];
+
+  // Run submission per provider.
+  $url = $form_state['config']['convio_url'];
+  switch ($form_state['config']['provider']) {
+    case 'convio':
+      $form_path = parse_url($url);
+      $query = array();
+      parse_str($form_path['query'], $query);
+      $url = $form_path['scheme'] . '://' . $form_path['host'] . $form_path['path'];
+      $data = array(
+        'cons_info_component' => 't',
+        'cons_title' => '',
+        'cons_first_name' => '',
+        'cons_last_name' => '',
+        'cons_email' => $email,
+        'cons_street1' => '',
+        'cons_city' => '',
+        'cons_state' => '',
+        'cons_zip_code' => '',
+        'cons_mail_opt_in' => 't',
+        'cons_email_opt_in' => 'on',
+        'cons_email_opt_in_requested' => 'true',
+        'remember_me_opt_in_requested' => 'true',
+        '3340_1420_3_1520' => 1201,
+        '3340_1420_3_1520' => 1104,
+        '3340_1420_3_1520' => 1137,
+        'denySubmit' => '',
+        'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+        'SURVEY_ID' => $query['SURVEY_ID'],
+      );
+
+      $options = array(
+        'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+        'method' => 'POST',
+        'data' => http_build_query($data),
+        'timeout' => 15,
+      );
+      $result = drupal_http_request($url, $options);
+      watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
+      watchdog('email_subscribe', 'Service answer was !answer', array(
+        '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+      ));
+
+      if (!isset($result->redirect_code) || $result->redirect_code != 302 ||
+        !isset($result->redirect_url)
+      ) {
+        form_set_error('email', t('The e-mail address you specified is not valid.'));
+      }
+      break;
+
+    // TODO: Implement.
+    case 'emill':
+    case 'cc':
+    case 'mailchimp':
+      break;
+  }
+
+  // Redirect to the Thank you page.
+  $form_state['redirect'] = variable_get('email_submission_redirect_url', 'thankyou');
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function nas_engagement_cards_preprocess_node(&$variables) {
+  if ($config = _nas_engagement_cards_get_config($variables['node'])) {
+    $variables['form'] = drupal_get_form('nas_ec_subscription_form_' . $config['id'], $config);
+  }
+}
+
+/**
+ * Helper function; returns EC subscription config.
+ *
+ * @param object $node
+ *   Any node.
+ *
+ * @return mixed
+ *   associative array of config variables - for engagement cards set up with
+ * a form element;
+ *   FALSE - for any other nodes.
+ */
+function _nas_engagement_cards_get_config($node) {
+  if ($node->type !== 'engagement_cards') {
+    return FALSE;
+  }
+  if (empty($node->field_engagement_card_type[LANGUAGE_NONE][0]['value'])) {
+    return FALSE;
+  }
+  if ($node->field_engagement_card_type[LANGUAGE_NONE][0]['value'] != 'simple_form') {
+    return FALSE;
+  }
+  if (empty($node->field_destination[LANGUAGE_NONE][0]['value'])) {
+    return FALSE;
+  }
+
+  $config = array(
+    'id' => 'node_' . $node->nid,
+    'placeholder' => '',
+    'provider' => $node->field_destination[LANGUAGE_NONE][0]['value'],
+    'convio_url' => '',
+  );
+  if (!empty($node->field_placeholder_text[LANGUAGE_NONE][0]['safe_value'])) {
+    $config['placeholder'] = $node->field_placeholder_text[LANGUAGE_NONE][0]['safe_value'];
+  }
+  if (!empty($node->field_convio_url[LANGUAGE_NONE][0]['value'])) {
+    $config['convio_url'] = $node->field_convio_url[LANGUAGE_NONE][0]['value'];
+  }
+
+  return $config;
+}

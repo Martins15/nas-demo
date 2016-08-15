@@ -92,10 +92,14 @@
       <h3 class="engagement-card-headline"><?php print $title; ?></h3>
     <?php endif; ?>
     <?php print render($content['body']); ?>
-    <?php if (isset($button)): ?>
-    <div class="engagement-card-cta">
-      <?php print $button; ?>
-    </div>
+    <?php if (isset($form)): ?>
+      <div class="engagement-card-cta">
+        <?php print render($form); ?>
+      </div>
+    <?php elseif (isset($button)): ?>
+      <div class="engagement-card-cta">
+        <?php print $button; ?>
+      </div>
     <?php endif; ?>
   </div>
   <div class="engagement-card-photo">

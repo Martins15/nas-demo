@@ -4719,6 +4719,16 @@ small {
     width: 100%;
   }
 }
+.ec-mailing-list-form .form-item-email {
+  display: inline-block;
+}
+.ec-mailing-list-form .form-item-email .mailing-list-input {
+  min-width: 0;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  height: 2.125rem;
+}
+
 /* @todo Add a markup example */
 .editorial-card-banner.fixed {
   position: absolute;
