@@ -3556,7 +3556,7 @@ function nas_master_update_7246() {
 /**
  * Enable IPE for some pages created via page manager.
  */
-function nas_master_update_7247() {
+function nas_master_update_7248() {
   $exclude = array(
     'birds_landing',
   );
