@@ -30,6 +30,7 @@
   }
 
   @include breakpoint(medium-up) {
+    font-size: 32px;
     line-height: 56px;
   }
 }
@@ -85,6 +86,74 @@
     @include breakpoint(medium-up) {
       margin-left: 10px;
       width: 140px;
+    }
+  }
+}
+
+// Search region under header, collapsible on mobile.
+.native-plants-search-form-inline {
+  @include transition(max-height 0.5s);
+  clear: both;
+  overflow: hidden;
+  max-height: 500px;
+
+  .form-submit {
+    margin-bottom: 14px;
+  }
+
+  @include breakpoint(medium-up) {
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    h2,
+    .form-text,
+    .form-submit {
+      float: left;
+    }
+
+    h2 {
+      color: $color-light-text-gray;
+      font-size: 30px;
+      line-height: 45px;
+      margin-bottom: 0;
+      margin-right: 28px;
+    }
+
+    .form-submit {
+      margin-left: 30px;
+    }
+  }
+
+  &.collapsed {
+    max-height: 0;
+
+    @include breakpoint(medium-up) {
+      max-height: none;
+    }
+  }
+}
+
+.native-plants-search-icon {
+  float: right;
+  color: $color-white;
+  cursor: pointer;
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+  visibility: visible;
+  margin: -50px 0 10px;
+
+  &.open {
+    display: none;
+  }
+
+  .collapsed & {
+    &.open {
+      display: block;
+    }
+
+    &.close {
+      display: none;
     }
   }
 }
@@ -145,7 +214,6 @@
   }
 }
 
-
 .try-these-first {
   @include breakpoint(tiny-only) {
     padding-top: 15px;
@@ -170,30 +238,41 @@
 }
 
 .native-plants-search-results {
-  margin-top: 20px;
-
   h3 {
-    font-size: 26px;
-    margin-bottom: 13px;
-  }
+    color: $color-light-text-gray;
+    font-size: 18px;
+    margin-bottom: 7px;
 
-  h4 {
-    font-size: 20px;
-    margin-bottom: 13px;
-  }
-
-  h4 {
-    @include breakpoint(tiny-only) {
-      margin: 10px 0;
+    @include breakpoint(medium-up) {
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: 0;
+      margin-bottom: 13px;
     }
+  }
 
-    @include breakpoint(small-only) {
-      margin: 10px 0;
+  h4 {
+    color: $color-light-text-gray;
+    font-size: 14px;
+    margin: 15px 0 9px;
+
+    @include breakpoint(medium-up) {
+      font-size: 20px;
+      margin: 0 0 7px;
     }
   }
 
   .view-row {
-    padding-bottom: 20px;
+    color: $color-light-text-gray;
+    padding-bottom: 12px;
+
+    @include breakpoint(medium-up) {
+      padding-bottom: 30px;
+
+      > .row:first-child {
+        margin-bottom: 5px;
+      }
+    }
   }
 
   .bird-card {
@@ -223,6 +302,8 @@
 }
 
 .tier-1-plant-picture-mobile {
+  line-height: 0;
+
   img {
     width: 100%;
     height: auto;
@@ -231,27 +312,47 @@
 
 .tier-1-plant {
   .tier-1-plant--description {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 19px;
+
+    @include breakpoint(medium-up) {
+      font-size: 16px;
+      line-height: 22px;
+    }
   }
 
   .tier-1-plant--source {
     font-size: 15px;
     line-height: 20px;
     font-family: $font-sans;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-top: 8px;
+
+    @include breakpoint(medium-up) {
+      margin-bottom: 20px;
+    }
   }
 
   .tier-1-plant--add-to-list {
-    font-size: 19px;
-    margin-top: 13px;
+    margin-top: 2px;
+
+    @include breakpoint(medium-up) {
+      margin-top: 4px;
+    }
+
+    label {
+      font-size: 19px;
+    }
   }
 }
 
 .plant-attributes-list {
   list-style: none;
-  margin: 10px 0 0;
+  margin: 15px 0 0;
+
+  @include breakpoint(medium-up) {
+    margin-top: 10px;
+  }
 
   li {
     display: block;
@@ -286,28 +387,6 @@
   }
 }
 
-.inner-filters-wrapper {
-  select {
-    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
-    background-position: 94% center;
-    border-radius: 8px;
-    font-family: $font-sans;
-    font-size: 19px;
-    font-weight: 300;
-    height: 45px;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 11px;
-  }
-
-  @include breakpoint(medium-up) {
-    select {
-      width: 246px;
-      margin-right: 28px;
-    }
-  }
-}
-
 .mobile-results-total-wrapper {
   padding-bottom: 1rem;
   overflow: hidden;
@@ -319,6 +398,143 @@
     font-size: 14px;
     font-family: $font-sans;
     line-height: 38px;
+  }
+}
+
+.current-location h3 {
+  color: $color-light-text-gray;
+
+  @include width-range(0px, #{upper-bound($small-range)}) {
+    line-height: 22px;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0;
+    margin-bottom: 0;
+    padding-left: 33px;
+    position: relative;
+  }
+
+  @include breakpoint(medium-up) {
+    padding-left: 28px;
+  }
+
+  .icon {
+    font-size: 31px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+
+    @include breakpoint(medium-up) {
+      font-size: 33px;
+      left: 7px;
+      top: 0;
+    }
+  }
+}
+
+// Tabs
+.native-plants-tabs {
+  margin-top: 16px;
+
+  .tab-nav {
+    font-family: $font-sans;
+    margin: 0;
+
+    &:before {
+      background: $color-middle-gray;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1px;
+      position: absolute;
+      left: 5px;
+      width: calc(100% - 5px);
+    }
+
+    li {
+      font-size: 24px;
+      float: left;
+      list-style-type: none;
+      text-transform: capitalize;
+
+      @include breakpoint(xlarge-up) {
+        font-size: 28px;
+      }
+    }
+
+    a {
+      padding: 7px 10px;
+      display: block;
+
+      @include breakpoint(xlarge-up) {
+        padding-left: 27px;
+        padding-right: 27px;
+      }
+    }
+
+    .active a {
+      border: 1px solid $color-middle-gray;
+      border-bottom-color: $color-white;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+    }
+  }
+
+  .tab-select {
+    @extend  %native-plants-large-select;
+    margin-bottom: 10px;
+
+  }
+
+  .tab-content {
+    clear: both;
+  }
+
+  .tab-pane {
+    display: none;
+
+    @include breakpoint(medium-up) {
+      padding-top: 22px;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .view-header {
+    color: $color-light-text-gray;
+    font-size: 16px;
+    font-family: $font-sans;
+    line-height: normal;
+    margin-bottom: 22px;
+
+    @include breakpoint(medium-up) {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 27px;
+    }
+  }
+
+  .view-filters {
+    select {
+      @extend %native-plants-large-select;
+
+      @include breakpoint(medium-up) {
+        margin-left: 28px;
+        max-width: 246px;
+
+        &:first-child {
+          margin-left:0;
+        }
+      }
+    }
+  }
+
+  .view-content {
+    @include breakpoint(medium-up) {
+      margin-top: 10px;
+    }
   }
 }
 
@@ -392,7 +608,7 @@
     font-family: $font-sans;
 
     .view-row {
-      border-bottom: 2px solid #cccccc;
+      border-bottom: 2px solid #ccc;
       padding-top: 10px;
 
       &:first-child {
@@ -428,39 +644,54 @@
 
 .search-results-total {
   background-color: #f4f4f4;
-  border-bottom: 2px solid #cccccc;
-  border-top: 2px solid #cccccc;
   clear: both;
   font-size: 17px;
-  line-height: 39px;
+  line-height: 40px;
   font-family: $font-sans;
   overflow: hidden;
+  border-top: 2px solid $color-light-gray;
+
+  @include breakpoint(medium-only) {
+    text-align: center;
+  }
 
   @include breakpoint(medium-up) {
-    border-bottom-width: 1px;
-    border-top-width: 1px;
+    border: none;
   }
 
   .pager {
-    text-align: center;
     font-weight: bold;
+
+    @include breakpoint(large-up) {
+      text-align: right;
+    }
 
     & > :first-child {
       float: left;
-      margin-left: 20px;
-      margin-right: 10px;
+      margin-right: 14px;
 
       &:before {
         content: '< ';
+
+        @include breakpoint(medium-up) {
+          display: none;
+        }
       }
     }
     & > :last-child {
       float: right;
-      margin-left: 10px;
-      margin-right: 20px;
+      margin-left: 20px;
 
       &:after {
         content: ' >';
+
+        @include breakpoint(medium-up) {
+          display: none;
+        }
+      }
+
+      @include breakpoint(large-up) {
+        margin-right: 52px;
       }
     }
 
@@ -472,6 +703,20 @@
       & > :last-child {
         float: none;
       }
+    }
+  }
+
+  .pager-inner {
+    text-align: center;
+
+    a, span {
+      display: inline-block;
+      width: 16px;
+    }
+
+    .text--blue {
+      margin-left: 4px;
+      margin-right: 4px;
     }
   }
 }
@@ -513,7 +758,7 @@
       }
 
       .native-plants-bottom--selected-count {
-        color: #1cace2;
+        color: $color-bright-blue;
         font-size: 15px;
         white-space: nowrap;
 
@@ -638,10 +883,6 @@
 
 .bird-card-carousel {
   .owl-carousel {
-    .owl-wrapper-outer {
-      padding-top: 5px;
-    }
-
     .owl-controls {
       text-align: center;
       color: #888;
@@ -663,6 +904,13 @@
         padding-right: 0;
       }
     }
+  }
+
+  .common-name {
+    font-size: 18px;
+    letter-spacing: 0;
+    margin-bottom: 5px;
+    margin-left: 7px;
   }
 }
 

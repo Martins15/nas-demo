@@ -3688,6 +3688,18 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   text-align: justify;
 }
 
+.text--blue {
+  color: #0AA8E3;
+}
+
+.native-plants-tabs .tab-select, .native-plants-tabs .view-filters select {
+  font-weight: 300;
+  border-radius: 7px;
+  font-size: 19px;
+  height: 45px;
+  width: 100%;
+}
+
 /*
     Colorbox Core Style:
     The following CSS is consistent between example themes and should not be altered.
@@ -14185,6 +14197,7 @@ h2.grey {
 }
 @media only screen and (min-width: 601px) {
   .native-plants-green-row {
+    font-size: 32px;
     line-height: 56px;
   }
 }
@@ -14241,6 +14254,68 @@ h2.grey {
     margin-left: 10px;
     width: 140px;
   }
+}
+
+.native-plants-search-form-inline {
+  -moz-transition: max-height 0.5s;
+  -o-transition: max-height 0.5s;
+  -webkit-transition: max-height 0.5s;
+  transition: max-height 0.5s;
+  clear: both;
+  overflow: hidden;
+  max-height: 500px;
+}
+.native-plants-search-form-inline .form-submit {
+  margin-bottom: 14px;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-form-inline {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .native-plants-search-form-inline h2,
+  .native-plants-search-form-inline .form-text,
+  .native-plants-search-form-inline .form-submit {
+    float: left;
+  }
+  .native-plants-search-form-inline h2 {
+    color: #626262;
+    font-size: 30px;
+    line-height: 45px;
+    margin-bottom: 0;
+    margin-right: 28px;
+  }
+  .native-plants-search-form-inline .form-submit {
+    margin-left: 30px;
+  }
+}
+.native-plants-search-form-inline.collapsed {
+  max-height: 0;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-form-inline.collapsed {
+    max-height: none;
+  }
+}
+
+.native-plants-search-icon {
+  float: right;
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+  visibility: visible;
+  margin: -50px 0 10px;
+}
+.native-plants-search-icon.open {
+  display: none;
+}
+.collapsed .native-plants-search-icon.open {
+  display: block;
+}
+.collapsed .native-plants-search-icon.close {
+  display: none;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
@@ -14321,29 +14396,41 @@ h2.grey {
   margin-bottom: 20px;
 }
 
-.native-plants-search-results {
-  margin-top: 20px;
-}
 .native-plants-search-results h3 {
-  font-size: 26px;
-  margin-bottom: 13px;
+  color: #626262;
+  font-size: 18px;
+  margin-bottom: 7px;
 }
-.native-plants-search-results h4 {
-  font-size: 20px;
-  margin-bottom: 13px;
-}
-@media only screen and (max-width: 479px) {
-  .native-plants-search-results h4 {
-    margin: 10px 0;
+@media only screen and (min-width: 601px) {
+  .native-plants-search-results h3 {
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0;
+    margin-bottom: 13px;
   }
 }
-@media only screen and (min-width: 480px) and (max-width: 600px) {
+.native-plants-search-results h4 {
+  color: #626262;
+  font-size: 14px;
+  margin: 15px 0 9px;
+}
+@media only screen and (min-width: 601px) {
   .native-plants-search-results h4 {
-    margin: 10px 0;
+    font-size: 20px;
+    margin: 0 0 7px;
   }
 }
 .native-plants-search-results .view-row {
-  padding-bottom: 20px;
+  color: #626262;
+  padding-bottom: 12px;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-results .view-row {
+    padding-bottom: 30px;
+  }
+  .native-plants-search-results .view-row > .row:first-child {
+    margin-bottom: 5px;
+  }
 }
 .native-plants-search-results .bird-card {
   margin-bottom: 10px;
@@ -14368,30 +14455,56 @@ h2.grey {
   height: auto;
 }
 
+.tier-1-plant-picture-mobile {
+  line-height: 0;
+}
 .tier-1-plant-picture-mobile img {
   width: 100%;
   height: auto;
 }
 
 .tier-1-plant .tier-1-plant--description {
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 14px;
+  line-height: 19px;
+}
+@media only screen and (min-width: 601px) {
+  .tier-1-plant .tier-1-plant--description {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 .tier-1-plant .tier-1-plant--source {
   font-size: 15px;
   line-height: 20px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  margin-bottom: 20px;
-  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-top: 8px;
+}
+@media only screen and (min-width: 601px) {
+  .tier-1-plant .tier-1-plant--source {
+    margin-bottom: 20px;
+  }
 }
 .tier-1-plant .tier-1-plant--add-to-list {
+  margin-top: 2px;
+}
+@media only screen and (min-width: 601px) {
+  .tier-1-plant .tier-1-plant--add-to-list {
+    margin-top: 4px;
+  }
+}
+.tier-1-plant .tier-1-plant--add-to-list label {
   font-size: 19px;
-  margin-top: 13px;
 }
 
 .plant-attributes-list {
   list-style: none;
-  margin: 10px 0 0;
+  margin: 15px 0 0;
+}
+@media only screen and (min-width: 601px) {
+  .plant-attributes-list {
+    margin-top: 10px;
+  }
 }
 .plant-attributes-list li {
   display: block;
@@ -14421,27 +14534,6 @@ h2.grey {
   width: 78px;
 }
 
-.inner-filters-wrapper select {
-  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  background-position: 94% center;
-  border-radius: 8px;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 19px;
-  font-weight: 300;
-  height: 45px;
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 11px;
-}
-@media only screen and (min-width: 601px) {
-  .inner-filters-wrapper select {
-    width: 246px;
-    margin-right: 28px;
-  }
-}
-
 .mobile-results-total-wrapper {
   padding-bottom: 1rem;
   overflow: hidden;
@@ -14453,6 +14545,129 @@ h2.grey {
   font-size: 14px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   line-height: 38px;
+}
+
+.current-location h3 {
+  color: #626262;
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .current-location h3 {
+    line-height: 22px;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0;
+    margin-bottom: 0;
+    padding-left: 33px;
+    position: relative;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .current-location h3 {
+    padding-left: 28px;
+  }
+}
+.current-location h3 .icon {
+  font-size: 31px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+@media only screen and (min-width: 601px) {
+  .current-location h3 .icon {
+    font-size: 33px;
+    left: 7px;
+    top: 0;
+  }
+}
+
+.native-plants-tabs {
+  margin-top: 16px;
+}
+.native-plants-tabs .tab-nav {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin: 0;
+}
+.native-plants-tabs .tab-nav:before {
+  background: #aaa;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 1px;
+  position: absolute;
+  left: 5px;
+  width: calc(100% - 5px);
+}
+.native-plants-tabs .tab-nav li {
+  font-size: 24px;
+  float: left;
+  list-style-type: none;
+  text-transform: capitalize;
+}
+@media only screen and (min-width: 1280px) {
+  .native-plants-tabs .tab-nav li {
+    font-size: 28px;
+  }
+}
+.native-plants-tabs .tab-nav a {
+  padding: 7px 10px;
+  display: block;
+}
+@media only screen and (min-width: 1280px) {
+  .native-plants-tabs .tab-nav a {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+}
+.native-plants-tabs .tab-nav .active a {
+  border: 1px solid #aaa;
+  border-bottom-color: #fff;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+.native-plants-tabs .tab-select {
+  margin-bottom: 10px;
+}
+.native-plants-tabs .tab-content {
+  clear: both;
+}
+.native-plants-tabs .tab-pane {
+  display: none;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-tabs .tab-pane {
+    padding-top: 22px;
+  }
+}
+.native-plants-tabs .tab-pane.active {
+  display: block;
+}
+.native-plants-tabs .view-header {
+  color: #626262;
+  font-size: 16px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  line-height: normal;
+  margin-bottom: 22px;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-tabs .view-header {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 27px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-tabs .view-filters select {
+    margin-left: 28px;
+    max-width: 246px;
+  }
+  .native-plants-tabs .view-filters select:first-child {
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-tabs .view-content {
+    margin-top: 10px;
+  }
 }
 
 .native-plants-full-search-results table {
@@ -14511,7 +14726,7 @@ h2.grey {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 .native-plants-full-search-results .mobile-search-full-results .view-row {
-  border-bottom: 2px solid #cccccc;
+  border-bottom: 2px solid #ccc;
   padding-top: 10px;
 }
 .native-plants-full-search-results .mobile-search-full-results .view-row:first-child {
@@ -14535,39 +14750,59 @@ h2.grey {
 
 .search-results-total {
   background-color: #f4f4f4;
-  border-bottom: 2px solid #cccccc;
-  border-top: 2px solid #cccccc;
   clear: both;
   font-size: 17px;
-  line-height: 39px;
+  line-height: 40px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   overflow: hidden;
+  border-top: 2px solid #d4d4d4;
+}
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .search-results-total {
+    text-align: center;
+  }
 }
 @media only screen and (min-width: 601px) {
   .search-results-total {
-    border-bottom-width: 1px;
-    border-top-width: 1px;
+    border: none;
   }
 }
 .search-results-total .pager {
-  text-align: center;
   font-weight: bold;
+}
+@media only screen and (min-width: 768px) {
+  .search-results-total .pager {
+    text-align: right;
+  }
 }
 .search-results-total .pager > :first-child {
   float: left;
-  margin-left: 20px;
-  margin-right: 10px;
+  margin-right: 14px;
 }
 .search-results-total .pager > :first-child:before {
   content: '< ';
 }
+@media only screen and (min-width: 601px) {
+  .search-results-total .pager > :first-child:before {
+    display: none;
+  }
+}
 .search-results-total .pager > :last-child {
   float: right;
-  margin-left: 10px;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 .search-results-total .pager > :last-child:after {
   content: ' >';
+}
+@media only screen and (min-width: 601px) {
+  .search-results-total .pager > :last-child:after {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .search-results-total .pager > :last-child {
+    margin-right: 52px;
+  }
 }
 @media only screen and (min-width: 601px) {
   .search-results-total .pager > :first-child {
@@ -14576,6 +14811,17 @@ h2.grey {
   .search-results-total .pager > :last-child {
     float: none;
   }
+}
+.search-results-total .pager-inner {
+  text-align: center;
+}
+.search-results-total .pager-inner a, .search-results-total .pager-inner span {
+  display: inline-block;
+  width: 16px;
+}
+.search-results-total .pager-inner .text--blue {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .native-plants-bottom {
@@ -14616,7 +14862,7 @@ h2.grey {
   }
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom-plant-list-info .native-plants-bottom--selected-count {
-  color: #1cace2;
+  color: #0AA8E3;
   font-size: 15px;
   white-space: nowrap;
 }
@@ -14721,9 +14967,6 @@ h2.grey {
   width: 100%;
 }
 
-.bird-card-carousel .owl-carousel .owl-wrapper-outer {
-  padding-top: 5px;
-}
 .bird-card-carousel .owl-carousel .owl-controls {
   text-align: center;
   color: #888;
@@ -14742,6 +14985,12 @@ h2.grey {
   .bird-card-carousel .owl-carousel .owl-item {
     padding-right: 0;
   }
+}
+.bird-card-carousel .common-name {
+  font-size: 18px;
+  letter-spacing: 0;
+  margin-bottom: 5px;
+  margin-left: 7px;
 }
 
 input[type="checkbox"].np-checkbox {

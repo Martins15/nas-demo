@@ -17,3 +17,17 @@
 .text-justify {
   text-align: justify;
 }
+
+%text--blue,
+.text--blue {
+  color: $color-bright-blue;
+}
+
+// Native Plants
+%native-plants-large-select {
+  font-weight: 300;
+  border-radius: 7px;
+  font-size: 19px;
+  height: 45px;
+  width: 100%;
+}
