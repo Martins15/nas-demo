@@ -14583,11 +14583,11 @@ h2.grey {
 .native-plants-tabs {
   margin-top: 16px;
 }
-.native-plants-tabs .tab-nav {
+.native-plants-tabs .tabs {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin: 0;
 }
-.native-plants-tabs .tab-nav:before {
+.native-plants-tabs .tabs:before {
   background: #aaa;
   bottom: 0;
   content: '';
@@ -14597,28 +14597,28 @@ h2.grey {
   left: 5px;
   width: calc(100% - 5px);
 }
-.native-plants-tabs .tab-nav li {
+.native-plants-tabs .tabs li {
   font-size: 24px;
   float: left;
   list-style-type: none;
   text-transform: capitalize;
 }
 @media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tab-nav li {
+  .native-plants-tabs .tabs li {
     font-size: 28px;
   }
 }
-.native-plants-tabs .tab-nav a {
+.native-plants-tabs .tabs a {
   padding: 7px 10px;
   display: block;
 }
 @media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tab-nav a {
+  .native-plants-tabs .tabs a {
     padding-left: 27px;
     padding-right: 27px;
   }
 }
-.native-plants-tabs .tab-nav .active a {
+.native-plants-tabs .tabs .active a {
   border: 1px solid #aaa;
   border-bottom-color: #fff;
   border-radius: 10px 10px 0 0;
@@ -14870,8 +14870,8 @@ h2.grey {
   cursor: pointer;
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom-plant-list-items {
+  color: #626262;
   font-size: 19px;
-  color: #000;
   line-height: 27px;
   padding-top: 22px;
   overflow: hidden;
@@ -14895,61 +14895,6 @@ h2.grey {
 @media only screen and (min-width: 601px) {
   .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container .native-plants-botton--get-list {
     width: auto;
-  }
-}
-.native-plants-bottom .native-plants-bottom-form-title {
-  background-color: #66a122;
-  height: 80px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-}
-@media only screen and (min-width: 601px) {
-  .native-plants-bottom .native-plants-bottom-form-title {
-    height: 60px;
-    padding-top: 14px;
-  }
-  .native-plants-bottom .native-plants-bottom-form-title h2 {
-    font-size: 28px;
-    line-height: 31px;
-  }
-}
-.native-plants-bottom .native-plants-bottom-form-title h2 {
-  margin-bottom: 0;
-}
-.native-plants-bottom .native-plants-bottom-form {
-  background-color: #85b44e;
-  color: #fff;
-  padding-top: 15px;
-}
-.native-plants-bottom .native-plants-bottom-form p {
-  font-size: 20px;
-  line-height: 22px;
-  padding-bottom: 10px;
-}
-.native-plants-bottom .native-plants-bottom-form .button {
-  width: 100%;
-  margin-top: 11px;
-  height: 45px;
-  border-radius: 8px;
-}
-.native-plants-bottom .native-plants-bottom-form ul {
-  line-height: 18px;
-  padding-top: 10px;
-}
-.native-plants-bottom .native-plants-bottom-form ul li {
-  margin-bottom: 6px;
-}
-.native-plants-bottom .native-plants-bottom-form .button, .native-plants-bottom .native-plants-bottom-form ul {
-  margin-bottom: 37px;
-}
-.native-plants-bottom .native-plants-bottom-form input {
-  height: 45px;
-  border-radius: 8px;
-  margin-bottom: 4px;
-}
-@media only screen and (min-width: 601px) {
-  .native-plants-bottom .native-plants-bottom-form .native-plants-bottom-form-right {
-    max-width: 280px;
   }
 }
 .native-plants-bottom.native-plants-bottom-fixed .native-plants-bottom-plant-list-placeholder {

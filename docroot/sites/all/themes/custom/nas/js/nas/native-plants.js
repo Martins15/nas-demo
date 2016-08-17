@@ -159,17 +159,8 @@
     attach: function(context, settings) {
       var $jsTabs = $('.js-tabs');
 
-      // Make sure page dosn't jump on tab click.
-      $jsTabs.once('tab').on('click',function() {
-        var x = window.pageXOffset,
-          y = window.pageYOffset;
-        $(window).one('scroll', function () {
-          window.scrollTo(x, y);
-        })
-      });
-
       // Generate a select box of tab items to display on mobile.
-      var $select = $('<select class="js-tab-select tab-select hide-for-large hide-for-xlarge"></select>');
+      var $select = $('<select class="js-tabs-select tab-select hide-for-large hide-for-xlarge"></select>');
 
       $jsTabs.each(function () {
         $(this).find('li a').each(function() {
@@ -183,16 +174,14 @@
       $jsTabs.find('a').click(function (e) {
         e.preventDefault();
 
-        $(this).tab('show');
-
-        var $mobileMenu = $(this).closest($jsTabs).siblings('.js-tab-select');
+        var $mobileMenu = $(this).closest($jsTabs).siblings('.js-tabs-select');
 
         $mobileMenu.find("option").removeAttr("selected")
           .siblings('option:contains(' + $(this).text() + ')').attr("selected","selected");
       });
 
       // Synchronise the tab elements on 'select' click.
-      $('.js-tab-select').on('click',function(){
+      $('.js-tabs-select').on('click',function(){
         $(this).siblings($jsTabs).find("li a:contains(" + $(this).val() + ")").click();
       });
     }

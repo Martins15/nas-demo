@@ -196,17 +196,17 @@
     <!-- Search results tabs -->
     <div class="row native-plants-tabs">
       <div class="columns">
-        <ul class="tab-nav js-tabs hide-for-tiny hide-for-small hide-for-medium">
-          <li class="active">
+        <ul class="tabs js-tabs hide-for-tiny hide-for-small hide-for-medium" data-tab>
+          <li class="tab-title active">
             <a href="#tab-0" class="js-ajax-tab js-tab">Best results</a>
           </li>
-          <li>
+          <li class="tab-title">
             <a href="#tab-1" class="js-ajax-tab js-tab">Full results</a>
           </li>
-          <li>
+          <li class="tab-title">
             <a href="#tab-2" class="js-ajax-tab js-tab">Local results</a>
           </li>
-          <li>
+          <li class="tab-title">
             <a href="#tab-3" class="js-ajax-tab js-tab">Join the movement</a>
           </li>
         </ul>
@@ -217,10 +217,10 @@
           <div class="view native-plants-search-results clearfix">
 
             <!--View Header-->
-            <p class="view-header columns">
+            <div class="view-header">
               The best result for your area have been hand-selected by Audubon experts in the region.
               They should be relatively easy to grow and easy to find at your local native plants nursery.
-            </p>
+            </div>
 
             <!--View Filters-->
             <div class="view-filters hide-for-tiny hide-for-small">
@@ -791,7 +791,6 @@
     <script src="../../js/mute/custom.modernizr.js"></script>
     <script src="../../js/vendor/foundation/foundation.min.js"></script>
     <script src="../../js/mute/foundation.js"></script>
-    <script src="../../js/vendor/tabs/tab.js"></script>
     <script src="../../js/nas/native-plants.js"></script>
   </body>
 </html>

@@ -436,7 +436,7 @@
 .native-plants-tabs {
   margin-top: 16px;
 
-  .tab-nav {
+  .tabs {
     font-family: $font-sans;
     margin: 0;
 
@@ -769,8 +769,8 @@
     }
 
     .native-plants-bottom-plant-list-items {
+      color: $color-light-text-gray;
       font-size: 19px;
-      color: #000;
       line-height: 27px;
       padding-top:22px;
       overflow: hidden;
@@ -794,71 +794,6 @@
         @include breakpoint(medium-up) {
           width: auto;
         }
-      }
-    }
-  }
-
-  .native-plants-bottom-form-title {
-    background-color: #66a122;
-    height: 80px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-
-    @include breakpoint(medium-up) {
-      height: 60px;
-      padding-top: 14px;
-
-      h2 {
-        font-size: 28px;
-        line-height: 31px;
-      }
-    }
-
-    h2 {
-      margin-bottom: 0;
-    }
-  }
-
-  .native-plants-bottom-form {
-    background-color: #85b44e;
-    color: $color-white;
-    padding-top: 15px;
-
-    p {
-      font-size: 20px;
-      line-height: 22px;
-      padding-bottom: 10px;
-    }
-
-    .button {
-      width: 100%;
-      margin-top: 11px;
-      height: 45px;
-      border-radius: 8px;
-    }
-
-    ul {
-      line-height: 18px;
-      padding-top: 10px;
-
-      li {
-        margin-bottom: 6px;
-      }
-    }
-
-    .button, ul {
-      margin-bottom: 37px;
-    }
-
-    input {
-      height: 45px;
-      border-radius: 8px;
-      margin-bottom: 4px;
-    }
-
-    .native-plants-bottom-form-right {
-      @include breakpoint(medium-up) {
-        max-width: 280px;
       }
     }
   }
