@@ -1,0 +1,156 @@
+<?php
+
+/**
+ * @file
+ * NAS Panels IPE modifications
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function nas_panels_ipe_theme() {
+  return array(
+    'nas_panels_ipe_collapsible_button' => array(),
+  );
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function nas_panels_ipe_theme_registry_alter(&$theme_registry) {
+  $theme_registry['panels_ipe_pane_wrapper']['preprocess functions'][] = 'nas_panels_ipe_template_preprocess_pane_wrapper';
+  // Change theme function for panels_ipe_toolbar.
+  $theme_registry['panels_ipe_toolbar']['function'] = 'theme_nas_panels_ipe_theme_panels_ipe_toolbar';
+  $theme_registry['panels_ipe_toolbar']['theme path'] = drupal_get_path('module', 'nas_panels_ipe');
+}
+
+/**
+ * Implements hook_panels_ipe_pane_links_alter().
+ */
+function nas_panels_ipe_panels_ipe_pane_links_alter(&$links, &$context) {
+  unset($links['style']);
+}
+
+/**
+ * Implements hook_panels_ipe_region_links_alter().
+ */
+function nas_panels_ipe_panels_ipe_region_links_alter(&$links, &$context) {
+  unset($links['style']);
+}
+
+/**
+ * Preprocess for theme_panels_ipe_pane_wrapper().
+ *
+ * @param array $vars
+ *   List of available variables.
+ *
+ * @throws \Exception
+ */
+function nas_panels_ipe_template_preprocess_pane_wrapper(&$vars) {
+  $collapsible_button = theme('nas_panels_ipe_collapsible_button');
+  if (!empty($collapsible_button)) {
+    // We need to ensure our behavior runs later than PanelsIPE.
+    drupal_add_js(drupal_get_path('module', 'nas_panels_ipe') . '/nas_panels_ipe.js', array(
+      'scope' => 'footer',
+      'weight' => 100,
+    ));
+    $output = '<div class="nas-panels-ipe-collapsible-wrapper">';
+    $output .= $collapsible_button;
+    $output .= $vars['output'];
+    $output .= '</div>';
+    $vars['output'] = $output;
+  }
+}
+
+/**
+ * Theme function for button, which will provide possibility show or hide pane content.
+ *
+ * @param array $vars
+ *   List of available variables.
+ *
+ * @return string
+ *   Html for button.
+ */
+function theme_nas_panels_ipe_collapsible_button($vars) {
+  $output = '<div style="display:none" class="nas-panels-ipe-collapsible-button open">';
+  $output .= '<a href="javascript:void(0);" class="nas-panels-ipe-button">' . t('Hide content') . '</a>';
+  $output .= '</div>';
+  return $output;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nas_panels_ipe_form_panels_ipe_edit_control_form_alter(&$form, &$form_state) {
+  // Remove "Save as default" button completely so editors and admins won't be
+  // able to change defaults for panelizer using IPE.
+  unset($form['buttons']['save_default']);
+}
+
+/**
+ * Implements hook_permission().
+ */
+function nas_panels_ipe_permission() {
+  return array(
+    'nas_panels_ipe IPE customize this page static_page' => array(
+      'title' => t('Use IPE "Customize this page" button for Static Page content type'),
+      'description' => t('Allows a user to customize Static Page with the Panels In-Place Editor.'),
+    ),
+  );
+}
+
+/**
+ * Implements template_preprocess_panels_ipe_toolbar().
+ */
+function nas_panels_ipe_preprocess_panels_ipe_toolbar(&$variables) {
+  if (user_access('nas_panels_ipe IPE customize this page static_page')) {
+    return;
+  }
+
+  foreach ($variables['buttons'] as $key => $values) {
+    $nid = preg_replace('/^panelizer-node-([0-9]+).*$/', '$1', $key);
+    $node = node_load($nid);
+    if ($node && $node->type == 'static_page') {
+      unset($variables['buttons'][$key]['panels-ipe-startedit']);
+    }
+  }
+  // Clean-up buttons array.
+  foreach ($variables['buttons'] as $key => $values) {
+    if (empty($values)) {
+      unset($variables['buttons'][$key]);
+    }
+  }
+}
+
+/**
+ * Modified theme function for panels_ipe_toolbar.
+ *
+ * @see theme_panels_ipe_toolbar()
+ */
+function theme_nas_panels_ipe_theme_panels_ipe_toolbar($vars) {
+  $buttons = $vars['buttons'];
+  if (empty($buttons)) {
+    return '';
+  }
+
+  $output = "<div id='panels-ipe-control-container' class='clearfix'>";
+  foreach ($buttons as $key => $ipe_buttons) {
+    $output .= "<div id='panels-ipe-control-$key' class='panels-ipe-control'>";
+
+    // Controls in this container will appear when the IPE is not on.
+    $output .= '<div class="panels-ipe-button-container clearfix">';
+    foreach ($ipe_buttons as $button) {
+      $output .= is_string($button) ? $button : drupal_render($button);
+    }
+    $output .= '</div>';
+
+    // Controls in this container will appear when the IPE is on. It is usually
+    // filled via AJAX.
+    $output .= '<div class="panels-ipe-form-container clearfix"></div>';
+    $output .= '</div>';
+  }
+
+  $output .= '</div>';
+
+  return $output;
+}
