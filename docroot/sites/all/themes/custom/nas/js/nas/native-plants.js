@@ -45,16 +45,16 @@
         var $self = $(this),
           $list = $(".native-plants-bottom-plant-list"),
           $w = $(window),
+          $formTitle = '',
           $button = $('.native-plants-botton--get-list'),
           $form = $('.native-plants-bottom-form');
 
         // Find which is the next element to determine from where the scroll starts.
         if ($list.next().length == 1) {
-          var $formTitle = $list.next();
+          $formTitle = $list.next();
         } else {
-          var $formTitle = $list.parent().next();
+          $formTitle = $list.parent().next();
         }
-
 
         $(window).bind('scroll resize', function (e) {
           $self.removeClass('native-plants-bottom-fixed');
@@ -140,7 +140,7 @@
 
       $open.on('click', function (){
         $form.removeClass('collapsed');
-        $buttonWrapper.removeClass('collapsed')
+        $buttonWrapper.removeClass('collapsed');
       });
 
       $close.on('click', function (){
@@ -148,7 +148,7 @@
         $buttonWrapper.delay(500).queue(function(){
           $(this).addClass('collapsed').dequeue();
         });
-      })
+      });
     }
   };
 
