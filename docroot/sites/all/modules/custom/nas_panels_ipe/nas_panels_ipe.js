@@ -3,7 +3,7 @@
    * Hide content when we are in edit mode for better visualization, and provide possibility display content
    * using a button.
    */
-  Drupal.NasPanelsIPECustomization = function (key, ipe) {
+  Drupal.nasPanelsIPECustomization = function (key, ipe, context) {
     var show_text = Drupal.t('Show content');
     var hide_text = Drupal.t('Hide content');
     Drupal.PanelsIPE.editors[key].saveEditing = function () {
@@ -96,7 +96,7 @@
     attach: function (context, settings) {
       for (var i in settings.PanelsIPECacheKeys) {
         var key = settings.PanelsIPECacheKeys[i];
-        Drupal.NasPanelsIPECustomization(key, Drupal.PanelsIPE.editors[key]);
+        Drupal.nasPanelsIPECustomization(key, Drupal.PanelsIPE.editors[key], context);
       }
     }
   };
