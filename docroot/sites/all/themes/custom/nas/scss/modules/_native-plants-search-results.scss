@@ -341,7 +341,12 @@
     }
 
     label {
-      font-size: 19px;
+      font-size: 18px;
+      font-weight: 300;
+
+      @include breakpoint(medium-up) {
+        font-size: 19px;
+      }
     }
   }
 }
@@ -351,7 +356,7 @@
   margin: 15px 0 0;
 
   @include breakpoint(medium-up) {
-    margin-top: 10px;
+    margin-top: 7px;
   }
 
   li {
@@ -359,7 +364,11 @@
     float: left;
     list-style: none;
     margin-bottom: 10px;
-    margin-right: 12px;
+    margin-right: 6px;
+
+    @include breakpoint(medium-up) {
+      margin-right: 12px;
+    }
 
     a, span {
       border-radius: 8px;
@@ -384,20 +393,6 @@
         width: 78px;
       }
     }
-  }
-}
-
-.mobile-results-total-wrapper {
-  padding-bottom: 1rem;
-  overflow: hidden;
-
-  .mobile-results-total {
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #e4e4e4;
-    border-top: 2px solid #e4e4e4;
-    font-size: 14px;
-    font-family: $font-sans;
-    line-height: 38px;
   }
 }
 
@@ -541,12 +536,13 @@
 .native-plants-full-search-results {
   table {
     margin-bottom: 0;
+    font-size: 17px;
 
     th {
-      background-color: #f4f4f4;
-      text-align: center;
-      padding: 11px 17px !important;
+      background-color: $color-lighter-gray;
       line-height: 17px;
+      padding: 11px 17px !important;
+      text-align: center;
 
       &:first-child {
         text-align: left;
@@ -565,6 +561,7 @@
       }
 
       td {
+        height: 94px;
         padding: 10px 13px !important;
         vertical-align: middle;
 
@@ -581,31 +578,14 @@
             width: 264px;
           }
         }
-
-        .plant--add-to-list {
-          input {
-            margin-bottom: 0;
-          }
-
-          label {
-            font-size: 15px;
-            color: $color-text-gray;
-            display: inline;
-            margin-right: 4px;
-          }
-
-          .icon-camera {
-            font-size: 20px;
-            position: absolute;
-            margin-top: 6px;
-          }
-        }
       }
     }
   }
 
   .mobile-search-full-results {
     font-family: $font-sans;
+    font-size: 16px;
+    line-height: 25px;
 
     .view-row {
       border-bottom: 2px solid #ccc;
@@ -622,9 +602,41 @@
       .mobile-search-full-results--label {
         color: $color-warm-gray;
       }
+    }
+  }
 
-      label {
-        font-size: 19px;
+  .plant--add-to-list {
+    input {
+      @include breakpoint(medium-up) {
+        margin-bottom: 0;
+      }
+    }
+
+    label {
+      font-size: 18px;
+      padding-top: 5px;
+
+      @include breakpoint(medium-up) {
+        font-size: 17px;
+        color: $color-text-gray;
+        display: inline;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .icon-camera {
+    &:before {
+      color: $color-violet;
+      display: inline-block;
+      font-size: 24px;
+      height: 22px;
+      vertical-align: middle;
+
+      @include breakpoint(medium-up) {
+        font-size: 28px;
+        height: auto;
+        vertical-align: middle;
       }
     }
   }
@@ -643,7 +655,7 @@
 }
 
 .search-results-total {
-  background-color: #f4f4f4;
+  background-color: $color-lighter-gray;
   clear: both;
   font-size: 17px;
   line-height: 40px;
@@ -657,7 +669,14 @@
 
   @include breakpoint(medium-up) {
     border: none;
+
+    .native-plants-full-results & {
+      margin: 0;
+      border-top: 1px solid $color-light-gray;
+      border-bottom: 1px solid $color-light-gray;
+    }
   }
+
 
   .pager {
     font-weight: bold;
@@ -886,22 +905,6 @@ input[type="checkbox"].np-checkbox {
   &:hover {
     color: #909090;
   }
-}
-
-.np-search-full-results {
-  h2 {
-    margin-bottom: 12px;
-  }
-
-  .filter-label {
-    font-family: $font-sans;
-    margin-bottom: 12px;
-    padding-left: 3px;
-  }
-}
-
-.native-plants-results-placeholder {
-  display: none;
 }
 
 .native-plants-results-placeholder {
