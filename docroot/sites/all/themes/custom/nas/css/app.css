@@ -4386,6 +4386,30 @@ ul.small-list li {
   padding: 0 12.5px 0 6.25px;
 }
 
+.vertical-spacing--top {
+  padding-top: 25px;
+}
+
+.vertical-spacing--top--double {
+  padding-top: 50px;
+}
+
+.vertical-spacing--top--half {
+  padding-top: 12.5px;
+}
+
+.vertical-spacing--bottom {
+  padding-bottom: 25px;
+}
+
+.vertical-spacing--top--bottom {
+  padding-bottom: 50px;
+}
+
+.vertical-spacing--bottom--half {
+  padding-bottom: 12.5px;
+}
+
 .deck {
   font-style: italic;
 }
@@ -14218,6 +14242,8 @@ h2.grey {
   }
 }
 .native-plants-search-form .form-text {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
   border-radius: 8px;
   font-size: 19px;
   height: 45px;
@@ -14243,10 +14269,12 @@ h2.grey {
   }
 }
 .native-plants-search-form .native-plants-search-form--submit {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   font-size: 20px;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-radius: 8px;
   width: 100%;
 }
 @media only screen and (min-width: 601px) {
@@ -14525,6 +14553,8 @@ h2.grey {
   }
 }
 .plant-attributes-list li a, .plant-attributes-list li span {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
   border-radius: 8px;
   color: #fff;
   display: inline-block;
@@ -14619,6 +14649,8 @@ h2.grey {
 .native-plants-tabs .tabs .active a {
   border: 1px solid #aaa;
   border-bottom-color: #fff;
+  -moz-border-radius: 10px 10px 0 0;
+  -webkit-border-radius: 10px;
   border-radius: 10px 10px 0 0;
   position: relative;
 }
@@ -14714,7 +14746,7 @@ h2.grey {
   line-height: 25px;
 }
 .native-plants-full-search-results .mobile-search-full-results .view-row {
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #aaa;
   padding-top: 10px;
 }
 .native-plants-full-search-results .mobile-search-full-results .view-row:first-child {
@@ -14908,6 +14940,8 @@ h2.grey {
   }
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container .native-plants-botton--get-list {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
   border-radius: 8px;
   height: 45px;
   white-space: nowrap;
@@ -15020,114 +15054,171 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding: 10px;
 }
 .page-native-plants .ajax-screen-lock-popup .ajax-screen-lock-progress, .page-native-plants-resources .ajax-screen-lock-popup .ajax-screen-lock-progress {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
   background: url(../img/native-plants-preloader.gif) no-repeat;
   border: none;
-  border-radius: 0;
   margin: 0;
   height: 64px;
 }
 
-.connect-audubon-near-you {
-  margin-top: 25px;
+.native-plants-local-results {
+  color: #626262;
 }
-@media only screen and (max-width: 479px) {
-  .connect-audubon-near-you .breakout-section-box {
-    background: none;
+.native-plants-local-results h2, .native-plants-local-results h3 {
+  color: #626262;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-local-results h2 {
+    line-height: 30px;
+    font-size: 28px;
   }
 }
-@media only screen and (min-width: 480px) and (max-width: 600px) {
-  .connect-audubon-near-you .breakout-section-box {
-    background: none;
+
+@media only screen and (min-width: 601px) {
+  .connect-audubon-near-you h2, .connect-audubon-near-you h3 {
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 38px;
+    margin-bottom: 5px;
   }
-}
-.connect-audubon-near-you .connect-audubon-near-you--title {
-  margin-bottom: 0;
-}
-.connect-audubon-near-you .connect-audubon-near-you--address {
-  font-family: "Noto Serif", Georgia, serif;
-  font-size: 20px;
-  line-height: 27px;
 }
 .connect-audubon-near-you .button {
-  margin-top: 40px;
-}
-@media only screen and (min-width: 601px) {
-  .connect-audubon-near-you .connect-audubon-near-you--services {
-    padding-right: 60px;
-  }
-}
-.connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
-  margin-bottom: 30px;
-}
-@media only screen and (min-width: 601px) {
-  .connect-audubon-near-you .connect-audubon-near-you--services .connect-audubon-near-you--services-list {
-    font-size: 20px;
-    line-height: 24px;
-    margin-top: 30px;
-  }
-}
-
-.grey-pane {
-  background-color: #d8d8d8;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  height: 70px;
-  padding-top: 4px;
-}
-.grey-pane h4 {
-  font-size: 22px;
-  line-height: 31px;
-  margin-bottom: 0;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.grey-pane .grey-pane--list-items {
-  color: #000;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
   font-size: 20px;
-  line-height: 28px;
-}
-
-.share-pane {
-  font-size: 16px;
-  line-height: 22px;
-}
-.share-pane .share-pane--icons {
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  color: #0AA8E3;
-  line-height: 20px;
-  padding-top: 8px;
-}
-
-.where-to-buy-section p {
-  font-size: 16px;
-  line-height: 22px;
-  margin-bottom: 22px;
-}
-.where-to-buy-section .nursery {
-  line-height: 20px;
-  padding-bottom: 14px;
-  padding-top: 16px;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  border-bottom: 1px solid #838078;
-}
-.where-to-buy-section .nursery:last-of-type {
-  border-bottom: none;
+  line-height: 34px;
+  margin-top: 20px;
 }
 @media only screen and (min-width: 601px) {
-  .where-to-buy-section .nursery {
-    border-bottom: none;
+  .connect-audubon-near-you .button {
+    margin-top: 24px;
+    max-width: 142px;
+  }
+}
+
+.connect-audubon-near-you--address {
+  font-size: 16px;
+  line-height: 21px;
+  overflow: hidden;
+  padding-left: 57px;
+  position: relative;
+}
+.connect-audubon-near-you--address i {
+  position: absolute;
+  top: 9px;
+  left: -3px;
+  font-size: 46px;
+}
+@media only screen and (min-width: 601px) {
+  .connect-audubon-near-you--address i {
+    top: 16px;
+    left: -8px;
+    font-size: 60px;
+  }
+}
+
+.connect-audubon-near-you--services {
+  margin-top: 18px;
+}
+@media only screen and (min-width: 601px) {
+  .connect-audubon-near-you--services {
+    margin-top: 0;
+  }
+}
+.connect-audubon-near-you--services ul {
+  font-size: 15px;
+  line-height: 23px;
+}
+@media only screen and (min-width: 601px) {
+  .connect-audubon-near-you--services ul {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.where-to-buy__section h2 {
+  letter-spacing: 0;
+  margin-bottom: 14px;
+}
+@media only screen and (min-width: 601px) {
+  .where-to-buy__section h2 {
+    line-height: 30px;
+    font-size: 28px;
+  }
+}
+.where-to-buy__section p {
+  font-size: 16px;
+  line-height: 22px;
+}
+.where-to-buy__section .label {
+  color: #838078;
+}
+
+.where-to-buy__section__row {
+  border-top: 2px solid #aaa;
+}
+@media only screen and (min-width: 601px) {
+  .where-to-buy__section__row {
+    border-top-width: 1px;
+    padding: 40px 0 10px;
+  }
+}
+.where-to-buy__section__row + .where-to-buy__section__row {
+  margin-top: 15px;
+}
+
+.where-to-buy__nurseries {
+  padding-top: 7px;
+}
+@media only screen and (min-width: 601px) {
+  .where-to-buy__nurseries {
     padding-top: 0;
   }
-  .where-to-buy-section .nursery:nth-of-type(odd) {
+}
+
+.where-to-buy__nursery__row {
+  border-bottom: 2px solid #aaa;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  padding-top: 10px;
+  padding-bottom: 12px;
+}
+@media only screen and (min-width: 601px) {
+  .where-to-buy__nursery__row {
+    border: none;
+    padding-top: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .where-to-buy__nursery__row:nth-child(2n+1) {
     clear: both;
   }
 }
-.where-to-buy-section .nursery p {
-  line-height: 18px;
-  margin-bottom: 6px;
+.where-to-buy__nursery__row:last-child {
+  border: none;
 }
-.where-to-buy-section .nursery .label {
-  color: #838078;
+.where-to-buy__nursery__row p {
+  line-height: 20px;
+}
+.where-to-buy__nursery__row .row {
+  padding-bottom: 5px;
+}
+
+.native-plans-map iframe {
+  display: block;
+}
+.native-plans-map .inline-map {
+  padding-top: 15px;
+}
+
+.add-other-nurseries {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .sidebar, .article-sidebar {
