@@ -50,7 +50,7 @@
   }
 
   .form-text {
-    border-radius: 8px;
+    @include border-radius(8px);
     font-size: 19px;
     height: 45px;
     margin-bottom: 12px;
@@ -77,10 +77,10 @@
   }
 
   .native-plants-search-form--submit {
+    @include border-radius(8px);
     font-size: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
-    border-radius: 8px;
     width: 100%;
 
     @include breakpoint(medium-up) {
@@ -371,7 +371,7 @@
     }
 
     a, span {
-      border-radius: 8px;
+      @include border-radius(8px);
       color: $color-white;
       display: inline-block;
       font-family: $font-sans;
@@ -470,7 +470,7 @@
     .active a {
       border: 1px solid $color-middle-gray;
       border-bottom-color: $color-white;
-      border-radius: 10px 10px 0 0;
+      @include border-radius(10px 10px 0 0);
       position: relative;
     }
   }
@@ -588,7 +588,7 @@
     line-height: 25px;
 
     .view-row {
-      border-bottom: 2px solid #ccc;
+      border-bottom: 2px solid $color-middle-gray;
       padding-top: 10px;
 
       &:first-child {
@@ -805,7 +805,7 @@
       }
 
       .native-plants-botton--get-list {
-        border-radius: 8px;
+        @include border-radius(8px);
         height: 45px;
         white-space: nowrap;
         width: 140px;
@@ -914,7 +914,7 @@ input[type="checkbox"].np-checkbox {
   .blue-point {
     background-color: $color-bright-blue;
     display: inline-block;
-    height:10px;
+    height: 10px;
     margin-right: 10px;
     margin-top: 40px;
     width: 10px;
@@ -939,11 +939,182 @@ input[type="checkbox"].np-checkbox {
     padding: 10px;
 
     .ajax-screen-lock-progress {
+      @include border-radius(0);
       background: url(../img/native-plants-preloader.gif) no-repeat;
       border: none;
-      border-radius: 0;
       margin: 0;
       height: 64px;
     }
   }
+}
+
+// Local results tab
+.native-plants-local-results {
+  color: $color-light-text-gray;
+
+  h2, h3 {
+    color: $color-light-text-gray;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    @include breakpoint(medium-up) {
+      line-height: 30px;
+      font-size: 28px;
+    }
+  }
+}
+
+// Connect Audubon Section
+.connect-audubon-near-you {
+  @include breakpoint(medium-up) {
+    h2, h3 {
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 38px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .button {
+    @include border-radius(7px);
+    font-size: 20px;
+    line-height: 34px;
+    margin-top: 20px;
+
+    @include breakpoint(medium-up) {
+      margin-top: 24px;
+      max-width: 142px;
+    }
+  }
+}
+
+.connect-audubon-near-you--address {
+  font-size: 16px;
+  line-height: 21px;
+  overflow: hidden;
+  padding-left: 57px;
+  position: relative;
+
+  i {
+    position: absolute;
+    top: 9px;
+    left: -3px;
+    font-size: 46px;
+
+    @include breakpoint(medium-up) {
+      top: 16px;
+      left: -8px;
+      font-size: 60px;
+    }
+  }
+}
+
+.connect-audubon-near-you--services {
+  margin-top: 18px;
+
+  @include breakpoint(medium-up) {
+    margin-top: 0;
+  }
+
+  ul {
+    font-size: 15px;
+    line-height: 23px;
+
+    @include breakpoint(medium-up) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}
+
+// Nurseries list
+.where-to-buy__section {
+  h2 {
+    letter-spacing: 0;
+    margin-bottom: 14px;
+
+    @include breakpoint(medium-up) {
+      line-height: 30px;
+      font-size: 28px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .label {
+    color: $color-warm-gray;
+  }
+}
+
+.where-to-buy__section__row {
+  border-top: 2px solid $color-middle-gray;
+
+  @include breakpoint(medium-up) {
+    border-top-width: 1px;
+    padding: 40px 0 10px;
+  }
+
+  + .where-to-buy__section__row {
+    margin-top: 15px;
+  }
+}
+
+.where-to-buy__nurseries {
+  padding-top: 7px;
+
+  @include breakpoint(medium-up) {
+    padding-top: 0;
+  }
+}
+
+.where-to-buy__nursery__row {
+  border-bottom: 2px solid $color-middle-gray;
+  font-family: $font-sans;
+  padding-top: 10px;
+  padding-bottom: 12px;
+
+  @include breakpoint(medium-up) {
+    border: none;
+    padding-top: 0;
+  }
+
+  @include breakpoint(large-up) {
+    &:nth-child(2n+1) {
+      clear: both;
+    }
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+  p {
+    line-height: 20px;
+  }
+
+  .row {
+    padding-bottom: 5px;
+  }
+}
+
+// Map section
+.native-plans-map {
+  iframe {
+    display: block;
+  }
+
+  .inline-map {
+    padding-top: 15px;
+  }
+}
+
+.add-other-nurseries {
+  font-family: $font-sans;
+  font-size: 16px;
+  line-height: 22px;
 }
