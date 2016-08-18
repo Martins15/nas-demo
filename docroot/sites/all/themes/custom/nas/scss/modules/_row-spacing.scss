@@ -43,10 +43,10 @@
   padding-bottom: $column-gutter;
 }
 
-.vertical-spacing--top--bottom {
+.vertical-spacing--bottom--double {
   padding-bottom: $column-gutter*2;
 }
-
 .vertical-spacing--bottom--half {
+
   padding-bottom: $column-gutter/2;
 }
