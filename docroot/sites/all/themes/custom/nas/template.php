@@ -15,6 +15,7 @@ include_once 'theme/pager.inc';
  */
 function nas_preprocess_html(&$variables) {
   $variables['jquery'] = &drupal_static('nas_jquery');
+  drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.9.1/jquery.scrolldepth.min.js', 'external');
 }
 
 /**
@@ -1042,7 +1043,6 @@ function nas_preprocess_node_engagement_cards(&$vars) {
  */
 function nas_preprocess_page(&$vars) {
   $vars['header_classes'] = 'global-header';
-  drupal_add_js('http://cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.9.1/jquery.scrolldepth.min.js', 'external');
   if (drupal_is_front_page()) {
     $vars['header_classes'] .= ' transparent dark-text light-bg';
   }
