@@ -49,7 +49,6 @@ global $base_url;
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
   <title><?php print $head_title; ?></title>
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.9.1/jquery.scrolldepth.min.js"></script>
   <?php print $head; ?>
   <?php print $styles; ?>
   <?php print $jquery; ?>
