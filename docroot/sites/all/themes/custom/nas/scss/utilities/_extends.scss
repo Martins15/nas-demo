@@ -24,10 +24,46 @@
 }
 
 // Native Plants
-%native-plants-large-select {
+%native-plants-large-input {
+  @include border-radius(8px);
   font-weight: 300;
-  border-radius: 7px;
   font-size: 19px;
   height: 45px;
   width: 100%;
+}
+
+%native-plants-search-form {
+  @include breakpoint(large-up) {
+    margin-bottom: 24px;
+  }
+
+  .form-text {
+    @extend %native-plants-large-input;
+    margin-bottom: 12px;
+
+    @include breakpoint(large-up) {
+      margin-bottom: 16px;
+    }
+  }
+
+  .native-plants-search-form--submit {
+    @extend %native-plants-large-input;
+  }
+}
+
+%header--orange,
+.header--orange {
+  color: $color-orange;
+  font-size: 36px;
+  letter-spacing: 0;
+  margin-bottom: 14px;
+  text-transform: capitalize;
+
+  @include breakpoint(medium-up) {
+    font-size: 50px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+  }
 }

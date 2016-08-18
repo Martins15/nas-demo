@@ -45,20 +45,7 @@
 }
 
 .native-plants-search-form {
-  @include breakpoint(large-up) {
-    margin-bottom: 24px;
-  }
-
-  .form-text {
-    @include border-radius(8px);
-    font-size: 19px;
-    height: 45px;
-    margin-bottom: 12px;
-
-    @include breakpoint(large-up) {
-      margin-bottom: 16px;
-    }
-  }
+  @extend %native-plants-search-form;
 
   .native-plants-search-form--email {
     @include breakpoint(medium-up) {
@@ -77,10 +64,6 @@
   }
 
   .native-plants-search-form--submit {
-    @include border-radius(8px);
-    font-size: 20px;
-    padding-bottom: 10px;
-    padding-top: 10px;
     width: 100%;
 
     @include breakpoint(medium-up) {
@@ -212,29 +195,6 @@
       margin-bottom: 30px;
     }
   }
-}
-
-.try-these-first {
-  @include breakpoint(tiny-only) {
-    padding-top: 15px;
-  }
-
-  @include breakpoint(small-only) {
-    padding-top: 15px;
-  }
-
-  h2 {
-    margin-bottom: 12px;
-  }
-
-  p {
-    color: $color-warm-gray;
-    font-family: $font-sans;
-  }
-}
-
-.view-native-plants-search {
-  margin-bottom: 20px;
 }
 
 .native-plants-search-results {
@@ -460,6 +420,7 @@
     a {
       padding: 7px 10px;
       display: block;
+      border: 1px solid $color-white;
 
       @include breakpoint(xlarge-up) {
         padding-left: 27px;
@@ -468,17 +429,16 @@
     }
 
     .active a {
+      @include border-radius(10px 10px 0 0);
       border: 1px solid $color-middle-gray;
       border-bottom-color: $color-white;
-      @include border-radius(10px 10px 0 0);
       position: relative;
     }
   }
 
   .tab-select {
-    @extend  %native-plants-large-select;
+    @extend  %native-plants-large-input;
     margin-bottom: 10px;
-
   }
 
   .tab-content {
@@ -513,7 +473,7 @@
 
   .view-filters {
     select {
-      @extend %native-plants-large-select;
+      @extend %native-plants-large-input;
 
       @include breakpoint(medium-up) {
         margin-left: 28px;
@@ -1117,4 +1077,63 @@ input[type="checkbox"].np-checkbox {
   font-family: $font-sans;
   font-size: 16px;
   line-height: 22px;
+}
+
+// Next Steps
+.native-plants-contact {
+  h1 {
+    @extend %header--orange;
+  }
+
+  .social-sharing-block {
+    text-align: center;
+
+    @include breakpoint(medium-up) {
+      text-align: left;
+      padding-top: 10px;
+    }
+  }
+
+  .social-sharing-icon {
+    display: inline-block;
+    font-size: 66px;
+    margin: 0;
+
+    @include breakpoint(medium-up) {
+      font-size: 102px;
+    }
+  }
+
+  .icon-facebook {
+    color: $color-facebook;
+  }
+
+  .icon-twitter {
+    color: $color-twitter;
+  }
+}
+
+.native-plants__socials {
+  textarea {
+    resize: none;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 12px 8px;
+  }
+}
+
+.native-plants__connect {
+  @include breakpoint(medium-up) {
+    padding-bottom: 0;
+    padding-top: 75px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.native-plants-connect-form {
+  @extend %native-plants-search-form;
 }
