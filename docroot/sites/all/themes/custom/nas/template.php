@@ -15,6 +15,7 @@ include_once 'theme/pager.inc';
  */
 function nas_preprocess_html(&$variables) {
   $variables['jquery'] = &drupal_static('nas_jquery');
+  drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.9.1/jquery.scrolldepth.min.js', 'external');
 }
 
 /**
