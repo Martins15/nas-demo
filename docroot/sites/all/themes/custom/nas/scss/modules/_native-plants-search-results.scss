@@ -1146,8 +1146,8 @@ input[type="checkbox"].np-checkbox {
   }
 
   .half--black {
-    @include breakpoint(large-up) {
-      &:before {
+    &:before {
+      @include breakpoint(large-up) {
         background-color: $color-black;
         content: '';
         height: 100%;
@@ -1157,11 +1157,15 @@ input[type="checkbox"].np-checkbox {
         width: 52%;
         z-index: 1;
       }
+
+      @include breakpoint(large-only) {
+        display: none;
+      }
     }
   }
 
   .hero-image {
-    max-height: 552px;
+    max-height: 580px;
 
     @include width-range(0px, #{upper-bound($small-range)}) {
       height: 350px;
@@ -1229,6 +1233,13 @@ input[type="checkbox"].np-checkbox {
     @include breakpoint(xlarge-up) {
       margin-bottom: 70px;
     }
+  }
+}
+
+.engagement-hero__column {
+  @include breakpoint(large-only) {
+    width: 80%;
+    left: 10%;
   }
 }
 

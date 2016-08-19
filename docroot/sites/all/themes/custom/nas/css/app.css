@@ -15273,8 +15273,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     z-index: 1;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .engagement-hero .half--black:before {
+    display: none;
+  }
+}
 .engagement-hero .hero-image {
-  max-height: 552px;
+  max-height: 580px;
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .engagement-hero .hero-image {
@@ -15342,6 +15347,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 1280px) {
   .engagement-hero__content .native-plants-hero-text {
     margin-bottom: 70px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .engagement-hero__column {
+    width: 80%;
+    left: 10%;
   }
 }
 
