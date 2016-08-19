@@ -861,6 +861,10 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
               'style_name' => 'article_teaser',
               'path' => $vars['image_uri'],
               'alt' => $node->title,
+              'style' => 'width: 315px; height: 201px;',
+              'attributes' => array(
+                'style' => 'width: 315px; height: 201px;',
+              ),
             ));
             $variables['editorial_cards'][] = array(
               'url' => url($uri['path'], $uri['options']),
