@@ -194,78 +194,158 @@
     </div>
 
     <!-- Search results tabs -->
-    <div class="row native-plants-tabs">
-      <div class="columns">
-        <ul class="tabs js-tabs hide-for-tiny hide-for-small hide-for-medium" data-tab>
-          <li class="tab-title active">
-            <a href="#tab-0" class="js-ajax-tab js-tab">Best results
-              <span class=" hide-for-medium hide-for-large hide-for-xlarge">: 326 Plants</span>
-            </a>
-          </li>
-          <li class="tab-title">
-            <a href="#tab-1" class="js-ajax-tab js-tab">Full results</a>
-          </li>
-          <li class="tab-title">
-            <a href="#tab-2" class="js-ajax-tab js-tab">Local results</a>
-          </li>
-          <li class="tab-title">
-            <a href="#tab-3" class="js-ajax-tab js-tab">Next steps</a>
-          </li>
-        </ul>
+    <div class="native-plants-tabs">
+      <div class="row">
+        <div class="columns">
+          <ul class="tabs js-tabs hide-for-tiny hide-for-small hide-for-medium" data-tab>
+            <li class="tab-title active">
+              <a href="#tab-0" class="js-ajax-tab js-tab">Best results</a>
+            </li>
+            <li class="tab-title">
+              <a href="#tab-1" class="js-ajax-tab js-tab">Full results</a>
+            </li>
+            <li class="tab-title">
+              <a href="#tab-2" class="js-ajax-tab js-tab">Local results</a>
+            </li>
+            <li class="tab-title">
+              <a href="#tab-3" class="js-ajax-tab js-tab">Next steps</a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="tab-content columns">
+      <div class="tab-content">
         <div class="tab-pane active" id='tab-0'>
 
           <!--Best Results-->
-          <div class="view native-plants-search-results clearfix">
+          <div class="row">
+            <div class="columns">
+              <div class="view native-plants-search-results clearfix">
 
-            <!--View Header-->
-            <div class="view-header">
-              The best result for your area have been hand-selected by Audubon experts in the region.
-              They should be relatively easy to grow and easy to find at your local native plants nursery.
-            </div>
-
-            <!--View Filters-->
-            <div class="view-filters hide-for-tiny hide-for-small">
-              <select>
-                <option>All types of plants</option>
-                <option>Some types of plants</option>
-              </select>
-
-              <select>
-                <option>Attracts: Any type of bird</option>
-                <option>Attracts: Other</option>
-              </select>
-            </div>
-
-            <!--View Content-->
-            <div class="view-content row">
-              <!-- View row -->
-              <div class="view-row columns">
-                <div class="row" style="position: relative;">
-                  <div class="column medium-8">
-                    <h3>Speckled Alder (<em>Alnus incana</em>) Extremely long plant name wraps the next line</h3>
-                  </div>
-                  <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
-                    <h4>Types of birds attracted</h4>
-                  </div>
+                <!--View Header-->
+                <div class="view-header">
+                  The best result for your area have been hand-selected by Audubon experts in the region.
+                  They should be relatively easy to grow and easy to find at your local native plants nursery.
                 </div>
 
-                <div class="row">
-                  <div class="column medium-8">
-                    <div class="row">
-                      <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small">
-                        <a href="#" class="clearing-attach"><img src="../../img/plant-1.jpg" alt=""/></a>
-                        <ul data-clearing><li><a href="../../img/plant-1.jpg"></a></li></ul>
-                      </div>
+                <!--View Filters-->
+                <div class="view-filters hide-for-tiny hide-for-small">
+                  <select>
+                    <option>All types of plants</option>
+                    <option>Some types of plants</option>
+                  </select>
 
-                      <div class="tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
-                        <img src="../../img/plant-1-mob.jpg" alt=""/>
-                      </div>
+                  <select>
+                    <option>Attracts: Any type of bird</option>
+                    <option>Attracts: Other</option>
+                  </select>
+                </div>
 
-                      <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                <!--View Content-->
+                <div class="view-content row">
+                  <!-- View row -->
+                  <div class="view-row columns">
+                    <div class="row" style="position: relative;">
+                      <div class="column medium-8">
+                        <h3>Speckled Alder (<em>Alnus incana</em>) Extremely long plant name wraps the next line</h3>
+                      </div>
+                      <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
                         <h4>Types of birds attracted</h4>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="column medium-8">
+                        <div class="row">
+                          <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small">
+                            <a href="#" class="clearing-attach"><img src="../../img/plant-1.jpg" alt=""/></a>
+                            <ul data-clearing><li><a href="../../img/plant-1.jpg"></a></li></ul>
+                          </div>
+
+                          <div class="tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
+                            <img src="../../img/plant-1-mob.jpg" alt=""/>
+                          </div>
+
+                          <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                            <h4>Types of birds attracted</h4>
+                            <div class="bird-card-carousel">
+                              <div class="row">
+                                <div class="owl-carousel">
+                                  <!--<div class="bird-card-scroller">-->
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <!--<a href="/field-guide/bird/american-crow">-->
+                                        <img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/4534_Sibl_9780307957900_art_r1.jpg?itok=3ztChuvG" alt="">
+                                        <!--</a>-->
+                                      </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/american-crow">Crows</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/bald-eagle"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/971_Sibl_9780307957900_art_r1.jpg?itok=iPLFRTLU" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/bald-eagle">Eagles</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="column medium-8 tier-1-plant">
+                            <p class="tier-1-plant--description">
+                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                            </p>
+
+                            <div class="tier-1-plant--source">
+                              Source: <a href="#">Wikipedia</a>
+                            </div>
+
+                            <ul class="clearfix plant-attributes-list">
+                              <li><span class="np-dark-green">Tree</span></li>
+                              <li><span class="np-light-green">Nuts</span></li>
+                              <li><span class="np-light-orange">Fruit</span></li>
+                            </ul>
+
+                            <div class="tier-1-plant--add-to-list">
+                              <input type="checkbox" id="checkbox-1" class="np-checkbox"/>
+                              <label for="checkbox-1">
+                                Add to your plant list
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column medium-4 hide-for-tiny hide-for-small">
                         <div class="bird-card-carousel">
                           <div class="row">
                             <div class="owl-carousel">
@@ -318,112 +398,100 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="column medium-8 tier-1-plant">
-                        <p class="tier-1-plant--description">
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                        </p>
-
-                        <div class="tier-1-plant--source">
-                          Source: <a href="#">Wikipedia</a>
-                        </div>
-
-                        <ul class="clearfix plant-attributes-list">
-                          <li><span class="np-dark-green">Tree</span></li>
-                          <li><span class="np-light-green">Nuts</span></li>
-                          <li><span class="np-light-orange">Fruit</span></li>
-                        </ul>
-
-                        <div class="tier-1-plant--add-to-list">
-                          <input type="checkbox" id="checkbox-1" class="np-checkbox"/>
-                          <label for="checkbox-1">
-                            Add to your plant list
-                          </label>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="column medium-4 hide-for-tiny hide-for-small">
-                    <div class="bird-card-carousel">
-                      <div class="row">
-                        <div class="owl-carousel">
-                          <!--<div class="bird-card-scroller">-->
+                  <!-- /View row -->
 
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <!--<a href="/field-guide/bird/american-crow">-->
-                                <img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/4534_Sibl_9780307957900_art_r1.jpg?itok=3ztChuvG" alt="">
-                                <!--</a>-->
-                              </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/american-crow">Crows</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/bald-eagle"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/971_Sibl_9780307957900_art_r1.jpg?itok=iPLFRTLU" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/bald-eagle">Eagles</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                        </div>
+                  <!-- View row -->
+                  <div class="view-row columns">
+                    <div class="row" style="position: relative;">
+                      <div class="column medium-8">
+                        <h3>Hooded Blue Violet (<em>Viola sororia</em>)</h3>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /View row -->
-
-              <!-- View row -->
-              <div class="view-row columns">
-                <div class="row" style="position: relative;">
-                  <div class="column medium-8">
-                    <h3>Hooded Blue Violet (<em>Viola sororia</em>)</h3>
-                  </div>
-                  <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
-                    <h4>Types of birds attracted</h4>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="column medium-8">
-                    <div class="row">
-                      <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small">
-                        <a href="#" class="clearing-attach"><img src="../../img/plant-3.jpg" alt=""/></a>
-                        <ul data-clearing><li><a href="../../img/plant-3.jpg"></a></li></ul>
-                      </div>
-
-                      <div class="tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
-                        <img src="../../img/plant-3-mob.jpg" alt=""/>
-                      </div>
-
-                      <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                      <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
                         <h4>Types of birds attracted</h4>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column medium-8">
+                        <div class="row">
+                          <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small">
+                            <a href="#" class="clearing-attach"><img src="../../img/plant-3.jpg" alt=""/></a>
+                            <ul data-clearing><li><a href="../../img/plant-3.jpg"></a></li></ul>
+                          </div>
+
+                          <div class="tier-1-plant-picture-mobile hide-for-medium hide-for-large hide-for-xlarge">
+                            <img src="../../img/plant-3-mob.jpg" alt=""/>
+                          </div>
+
+                          <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                            <h4>Types of birds attracted</h4>
+                            <div class="bird-card-carousel">
+                              <div class="row">
+                                <div class="owl-carousel">
+                                  <!--<div class="bird-card-scroller">-->
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <!--<a href="/field-guide/bird/american-crow">-->
+                                        <img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/4534_Sibl_9780307957900_art_r1.jpg?itok=3ztChuvG" alt="">
+                                        <!--</a>-->
+                                      </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/american-crow">Crows</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="column medium-8 tier-1-plant">
+
+                            <div class="tier-1-plant--source">
+                              Source: <a href="#">Wikipedia</a>
+                            </div>
+
+                            <ul class="clearfix plant-attributes-list">
+                              <li><span class="np-dark-green">Tree</span></li>
+                              <li><span class="np-light-green">Nuts</span></li>
+                              <li><span class="np-dark-green">Tree</span></li>
+                              <li><span class="np-light-green">Nuts</span></li>
+                            </ul>
+
+                            <div class="tier-1-plant--add-to-list">
+                              <input type="checkbox" id="checkbox-2" class="np-checkbox"/>
+                              <label for="checkbox-2">
+                                Add to your plant list
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column medium-4 hide-for-tiny hide-for-small">
                         <div class="bird-card-carousel">
                           <div class="row">
                             <div class="owl-carousel">
@@ -445,9 +513,9 @@
                               <div class="node node-bird node-teaser clearfix">
                                 <figure class="bird-card">
                                   <div class="bird-card-illustration">
-                                    <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
+                                    <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
                                   <figcaption class="bird-card-caption">
-                                    <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
+                                    <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
                                   </figcaption>
                                 </figure>
                               </div>
@@ -455,9 +523,9 @@
                               <div class="node node-bird node-teaser clearfix">
                                 <figure class="bird-card">
                                   <div class="bird-card-illustration">
-                                    <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
+                                    <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
                                   <figcaption class="bird-card-caption">
-                                    <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
+                                    <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
                                   </figcaption>
                                 </figure>
                               </div>
@@ -466,91 +534,81 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="column medium-8 tier-1-plant">
-
-                        <div class="tier-1-plant--source">
-                          Source: <a href="#">Wikipedia</a>
-                        </div>
-
-                        <ul class="clearfix plant-attributes-list">
-                          <li><span class="np-dark-green">Tree</span></li>
-                          <li><span class="np-light-green">Nuts</span></li>
-                          <li><span class="np-dark-green">Tree</span></li>
-                          <li><span class="np-light-green">Nuts</span></li>
-                        </ul>
-
-                        <div class="tier-1-plant--add-to-list">
-                          <input type="checkbox" id="checkbox-2" class="np-checkbox"/>
-                          <label for="checkbox-2">
-                            Add to your plant list
-                          </label>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="column medium-4 hide-for-tiny hide-for-small">
-                    <div class="bird-card-carousel">
-                      <div class="row">
-                        <div class="owl-carousel">
-                          <!--<div class="bird-card-scroller">-->
+                  <!-- /View row -->
 
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <!--<a href="/field-guide/bird/american-crow">-->
-                                <img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/4534_Sibl_9780307957900_art_r1.jpg?itok=3ztChuvG" alt="">
-                                <!--</a>-->
-                              </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/american-crow">Crows</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                        </div>
+                  <!-- View row -->
+                  <div class="view-row columns">
+                    <div class="row" style="position: relative;">
+                      <div class="column medium-8">
+                        <h3>Eastern hemlock (<em>Tsuga canadensis</em>)</h3>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /View row -->
-
-              <!-- View row -->
-              <div class="view-row columns">
-                <div class="row" style="position: relative;">
-                  <div class="column medium-8">
-                    <h3>Eastern hemlock (<em>Tsuga canadensis</em>)</h3>
-                  </div>
-                  <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
-                    <h4>Types of birds attracted</h4>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="column medium-8">
-                    <div class="row">
-                      <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                      <div class="column medium-4 hide-for-tiny hide-for-small" style="position: absolute; bottom: 0; right: 0;">
                         <h4>Types of birds attracted</h4>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="column medium-8">
+                        <div class="row">
+                          <div class="column medium-4 hide-for-medium hide-for-large hide-for-xlarge">
+                            <h4>Types of birds attracted</h4>
+                            <div class="bird-card-carousel">
+                              <div class="row">
+                                <div class="owl-carousel">
+                                  <!--<div class="bird-card-scroller">-->
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                  <div class="node node-bird node-teaser clearfix">
+                                    <figure class="bird-card">
+                                      <div class="bird-card-illustration">
+                                        <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
+                                      <figcaption class="bird-card-caption">
+                                        <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures & Drones</a></h4>
+                                      </figcaption>
+                                    </figure>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="column medium-12 tier-1-plant">
+                            <p class="tier-1-plant--description">
+                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                            </p>
+
+                            <div class="tier-1-plant--source">
+                              Source: <a href="#">Wikipedia</a>
+                            </div>
+
+                            <ul class="clearfix plant-attributes-list">
+                              <li><span class="np-dark-green">Tree</span></li>
+                              <li><span class="np-light-green">Nuts</span></li>
+                              <li><span class="np-light-red">Butterflies</span></li>
+                              <li><span class="np-dark-red">Nectar</span></li>
+                            </ul>
+
+                            <div class="tier-1-plant--add-to-list">
+                              <input type="checkbox" id="checkbox-3" class="np-checkbox"/>
+                              <label for="checkbox-3">
+                                Add to your plant list
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column medium-4 hide-for-tiny hide-for-small">
                         <div class="bird-card-carousel">
                           <div class="row">
                             <div class="owl-carousel">
@@ -580,75 +638,19 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="column medium-12 tier-1-plant">
-                        <p class="tier-1-plant--description">
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                        </p>
-
-                        <div class="tier-1-plant--source">
-                          Source: <a href="#">Wikipedia</a>
-                        </div>
-
-                        <ul class="clearfix plant-attributes-list">
-                          <li><span class="np-dark-green">Tree</span></li>
-                          <li><span class="np-light-green">Nuts</span></li>
-                          <li><span class="np-light-red">Butterflies</span></li>
-                          <li><span class="np-dark-red">Nectar</span></li>
-                        </ul>
-
-                        <div class="tier-1-plant--add-to-list">
-                          <input type="checkbox" id="checkbox-3" class="np-checkbox"/>
-                          <label for="checkbox-3">
-                            Add to your plant list
-                          </label>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="column medium-4 hide-for-tiny hide-for-small">
-                    <div class="bird-card-carousel">
-                      <div class="row">
-                        <div class="owl-carousel">
-                          <!--<div class="bird-card-scroller">-->
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/snowy-owl"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/1780_Sibl_9780307957900_art_r1.jpg?itok=dHlp_lXa" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/snowy-owl">Owls</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                          <div class="node node-bird node-teaser clearfix">
-                            <figure class="bird-card">
-                              <div class="bird-card-illustration">
-                                <a href="/field-guide/bird/turkey-vulture"><img src="https://www.audubon.org/sites/default/files/styles/nas_bird_teaser_illustration/public/2322_Sibl_9780307957900_art_r1.jpg?itok=YPXZqjSe" alt=""></a>    </div>
-                              <figcaption class="bird-card-caption">
-                                <h4 class="common-name"><a href="/field-guide/bird/turkey-vulture">Vultures & Drones</a></h4>
-                              </figcaption>
-                            </figure>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <!-- /View row -->
                 </div>
-              </div>
-              <!-- /View row -->
-            </div>
 
-            <!--Pager-->
-            <div class="search-results-total row">
-              <div class="column medium-12 large-3 hide-for-tiny hide-for-small">
-                <strong>Results:</strong> 38 plants
-              </div>
-              <div class="column medium-12 large-9">
-                <div class="pager">
-                  <span class="pager-prev">Previous page</span>
+                <!--Pager-->
+                <div class="search-results-total row">
+                  <div class="column medium-12 large-3 hide-for-tiny hide-for-small">
+                    <strong>Results:</strong> 38 plants
+                  </div>
+                  <div class="column medium-12 large-9">
+                    <div class="pager">
+                      <span class="pager-prev">Previous page</span>
                     <span class="pager-inner hide-for-tiny hide-for-small">
                       <span>1</span>
                       <a title="Go to page 2" href="#">2</a>
@@ -662,7 +664,79 @@
                       <span class="text--blue">...</span>
                       <a title="Go to page 2" href="#">14</a>
                     </span>
-                  <a href="/native-plants?zipcode=83702&amp;attribute=All&amp;bird_type=All&amp;page=0%2C1">Next page</a>
+                      <a href="/native-plants?zipcode=83702&amp;attribute=All&amp;bird_type=All&amp;page=0%2C1">Next page</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Engagement Card-->
+          <div class="engagement-hero">
+
+            <div class="bg-respond hero native-plants-hero">
+              <div class="hero-image">
+                <img src="../../img/native-plants-background.jpg" alt="" >
+
+                <!--Content that shows up on top of the image for small screens-->
+                <div class="engagement-hero__content hide-for-large hide-for-xlarge">
+                  <div class="row">
+                    <div class="columns engagement-hero__column">
+                      <h1 class="header--orange">This Goldfinch Says: Buy a Sign!</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row hero-attribution">
+                <p class="column">
+        <span class="hero-attribution-text">
+          <span class="image-caption">American Coldfinch perched on a TK NAME flower</span>
+          <span class="credit-intro">Photo:</span>
+          <span class="credit-value">John Mahoney</span>
+        </span>
+                </p>
+              </div>
+
+              <!--Content that shows up under the image for small screens and on top for large screens-->
+              <div class="engagement-hero__content below-image">
+                <div class="row">
+                  <div class="columns large-6 large-push-6 engagement-hero__column">
+                    <h1 class="header--orange hide-for-tiny hide-for-small hide-for-medium">This Goldfinch Says: Buy a Sign!</h1>
+
+                    <div class="native-plants-hero-text">
+                      Provide your email address to join Audubon's network of supporters protecting birds around the world.
+                      You'll receive a customized shopping list of the native plants you choose.
+                      <a href="#">Privacy Policy</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="columns large-4 large-push-6 engagement-hero__column">
+
+                    <!-- search form-->
+                    <form action="#" class="engagement-hero-form">
+                      <div class="row">
+                        <div class="columns">
+                          <input type="text" value="" class="form-text native-plants-search-form--email" placeholder="Your Email Address"/>
+                        </div>
+
+                        <div class="columns medium-6">
+                          <input type="text" value="" class="form-text native-plants-search-form--zip-code" placeholder="U.S. ZIP Code"/>
+                        </div>
+
+                        <div class="columns medium-6">
+                          <button type="submit" class="native-plants-search-form--submit button tomato large">
+                            <span>Search</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- /search form-->
+                  </div>
                 </div>
               </div>
             </div>
@@ -671,234 +745,307 @@
 
         <!--Tab 2-->
         <div class="tab-pane" id='tab-1'>
-
           <!--Full Results-->
-          <div class="view native-plants-full-results clearfix">
-            <!--View Header-->
-            <div class="view-header">
-              The best result for your area have been hand-selected by Audubon experts in the region.
-              They should be relatively easy to grow and easy to find at your local native plants nursery.
-            </div>
-
-            <!--View Filters-->
-            <div class="view-filters">
-              <select>
-                <option>All types of plants</option>
-                <option>Some types of plants</option>
-              </select>
-
-              <select>
-                <option>Attracts: Any type of bird</option>
-                <option>Attracts: Other</option>
-              </select>
-            </div>
-
-            <!--View Content-->
-            <div class="view-content row">
-
-              <div class="native-plants-full-search-results">
-                <div class="columns">
-                  <table class="hide-for-tiny hide-for-small">
-                    <thead>
-                    <tr>
-                      <th>Plant name</th>
-                      <th>Scientific Name</th>
-                      <th>Attributes</th>
-                      <th>May attract</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>
-                        <div class="plant--add-to-list">
-                          <input type="checkbox" id="checkbox-f1" class="np-checkbox"/>
-                          <label for="checkbox-f1">Common juniper</label>
-                          <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
-                          <ul data-clearing class="clearing-thumbs"><li><a href="../../img/breakout-section-1.jpg"></a></li></ul>
-                        </div>
-                      </td>
-                      <td><em>Juniper communis</em></td>
-                      <td>
-                        <ul class="clearfix plant-attributes-list plant-attributes-list-small">
-                          <li>
-                            <span class="np-dark-green">Tree</span>
-                          </li>
-                          <li>
-                            <span class="np-light-green">Nuts</span>
-                          </li>
-                          <li>
-                            <span class="np-light-orange">Fruit</span>
-                          </li>
-                        </ul>
-                      </td>
-                      <td>
-                        <a href="#" class="native-plant-bird-category-link">Orioles</a>,
-                        <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
-                        <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="plant--add-to-list">
-                          <input type="checkbox" id="checkbox-f2" class="np-checkbox"/>
-                          <label for="checkbox-f2">Yellow Giant-Hyssop</label>
-                          <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
-                          <ul data-clearing class="clearing-thumbs"><li><a href="../../img/conservation-img-1.jpg"></a></li></ul>
-                        </div>
-                      </td>
-                      <td><em>Viola sororia</em></td>
-                      <td>
-                        <ul class="clearfix plant-attributes-list plant-attributes-list-small">
-                          <li>
-                            <span class="np-dark-red">Nectar</span>
-                          </li>
-                          <li>
-                            <span class="np-light-red">Butterflies</span>
-                          </li>
-                          <li>
-                            <span class="np-middle-grey">Shrub</span>
-                          </li>
-                          <li>
-                            <span class="np-light-orange">Fruit</span>
-                          </li>
-                        </ul>
-                      </td>
-                      <td>
-                        <a href="#" class="native-plant-bird-category-link">Orioles</a>,
-                        <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
-                        <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="plant--add-to-list">
-                          <input type="checkbox" id="checkbox-f3" class="np-checkbox"/>
-                          <label for="checkbox-f3">Eastern hemlock</label>
-                          <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
-                          <ul data-clearing class="clearing-thumbs"><li><a href="../../img/plants-background.jpg"></a></li></ul>
-                        </div>
-                      </td>
-                      <td><em>Tsuga canadensis</em></td>
-                      <td>
-                        <ul class="clearfix plant-attributes-list plant-attributes-list-small">
-                          <li>
-                            <span class="np-dark-green">Tree</span>
-                          </li>
-                          <li>
-                            <span class="np-light-green">Nuts</span>
-                          </li>
-                          <li>
-                            <span class="np-light-orange">Fruit</span>
-                          </li>
-                        </ul>
-                      </td>
-                      <td>
-                        <a href="#" class="native-plant-bird-category-link">Orioles</a>,
-                        <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
-                        <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
+          <div class="row">
+            <div class="columns">
+              <div class="view native-plants-full-results clearfix">
+                <!--View Header-->
+                <div class="view-header">
+                  The best result for your area have been hand-selected by Audubon experts in the region.
+                  They should be relatively easy to grow and easy to find at your local native plants nursery.
                 </div>
 
-                <div class="mobile-search-full-results hide-for-medium hide-for-large hide-for-xlarge">
-                  <div class="clearfix view-row">
-                    <div class="columns">
-                      <div>
-                        <span class="mobile-search-full-results--label">Plant:</span> Common juniper
-                        <a href="../../img/breakout-section-4.jpg" class="icon-camera clearing-attach"></a>
-                        <ul data-clearing><li><a href="../../img/breakout-section-4.jpg"></a></li></ul>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Scientific name:</span> <em>Juniperus communis</em>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Attributes:</span>
-                        <span class="npm-light-red">Butterflies</span>, <span class="npm-dark-red">Flowering</span>, <span class="npm-dark-green">Tree</span>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
-                      </div>
-                      <div class="plant--add-to-list">
-                        <input type="checkbox" id="checkbox-f1-s" class="np-checkbox"/>
-                        <label for="checkbox-f1-s">Add to your plant list</label>
-                      </div>
-                    </div>
-                  </div>
+                <!--View Filters-->
+                <div class="view-filters">
+                  <select>
+                    <option>All types of plants</option>
+                    <option>Some types of plants</option>
+                  </select>
 
-                  <div class="clearfix view-row">
-                    <div class="columns">
-                      <div>
-                        <span class="mobile-search-full-results--label">Plant:</span> Common juniper <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
-                        <ul data-clearing><li><a href="../../img/engagement-card-1.jpg"></a></li></ul>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Scientific name:</span> <em>Juniperus communis</em>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Attributes:</span>
-                        <span class="npm-light-red">Butterflies</span>, <span class="npm-dark-red">Flowering</span>, <span class="npm-dark-green">Tree</span>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
-                      </div>
-                      <div class="plant--add-to-list">
-                        <input type="checkbox" id="checkbox-f2-s" class="np-checkbox"/>
-                        <label for="checkbox-f2-s">Add to your plant list</label>
-                      </div>
-                    </div>
-                  </div>
+                  <select>
+                    <option>Attracts: Any type of bird</option>
+                    <option>Attracts: Other</option>
+                  </select>
+                </div>
 
-                  <div class="clearfix view-row">
+                <!--View Content-->
+                <div class="view-content row">
+
+                  <div class="native-plants-full-search-results">
                     <div class="columns">
-                      <div>
-                        <span class="mobile-search-full-results--label">Plant:</span> Common juniper <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
-                        <ul data-clearing><li><a href="../../img/boa_card_mini.jpg"></a></li></ul>
+                      <table class="hide-for-tiny hide-for-small">
+                        <thead>
+                        <tr>
+                          <th>Plant name</th>
+                          <th>Scientific Name</th>
+                          <th>Attributes</th>
+                          <th>May attract</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>
+                            <div class="plant--add-to-list">
+                              <input type="checkbox" id="checkbox-f1" class="np-checkbox"/>
+                              <label for="checkbox-f1">Common juniper</label>
+                              <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
+                              <ul data-clearing class="clearing-thumbs"><li><a href="../../img/breakout-section-1.jpg"></a></li></ul>
+                            </div>
+                          </td>
+                          <td><em>Juniper communis</em></td>
+                          <td>
+                            <ul class="clearfix plant-attributes-list plant-attributes-list-small">
+                              <li>
+                                <span class="np-dark-green">Tree</span>
+                              </li>
+                              <li>
+                                <span class="np-light-green">Nuts</span>
+                              </li>
+                              <li>
+                                <span class="np-light-orange">Fruit</span>
+                              </li>
+                            </ul>
+                          </td>
+                          <td>
+                            <a href="#" class="native-plant-bird-category-link">Orioles</a>,
+                            <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
+                            <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="plant--add-to-list">
+                              <input type="checkbox" id="checkbox-f2" class="np-checkbox"/>
+                              <label for="checkbox-f2">Yellow Giant-Hyssop</label>
+                              <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
+                              <ul data-clearing class="clearing-thumbs"><li><a href="../../img/conservation-img-1.jpg"></a></li></ul>
+                            </div>
+                          </td>
+                          <td><em>Viola sororia</em></td>
+                          <td>
+                            <ul class="clearfix plant-attributes-list plant-attributes-list-small">
+                              <li>
+                                <span class="np-dark-red">Nectar</span>
+                              </li>
+                              <li>
+                                <span class="np-light-red">Butterflies</span>
+                              </li>
+                              <li>
+                                <span class="np-middle-grey">Shrub</span>
+                              </li>
+                              <li>
+                                <span class="np-light-orange">Fruit</span>
+                              </li>
+                            </ul>
+                          </td>
+                          <td>
+                            <a href="#" class="native-plant-bird-category-link">Orioles</a>,
+                            <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
+                            <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="plant--add-to-list">
+                              <input type="checkbox" id="checkbox-f3" class="np-checkbox"/>
+                              <label for="checkbox-f3">Eastern hemlock</label>
+                              <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
+                              <ul data-clearing class="clearing-thumbs"><li><a href="../../img/plants-background.jpg"></a></li></ul>
+                            </div>
+                          </td>
+                          <td><em>Tsuga canadensis</em></td>
+                          <td>
+                            <ul class="clearfix plant-attributes-list plant-attributes-list-small">
+                              <li>
+                                <span class="np-dark-green">Tree</span>
+                              </li>
+                              <li>
+                                <span class="np-light-green">Nuts</span>
+                              </li>
+                              <li>
+                                <span class="np-light-orange">Fruit</span>
+                              </li>
+                            </ul>
+                          </td>
+                          <td>
+                            <a href="#" class="native-plant-bird-category-link">Orioles</a>,
+                            <a href="#" class="native-plant-bird-category-link">Thrushes</a>,
+                            <a href="#" class="native-plant-bird-category-link">Crows & Jays</a>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="mobile-search-full-results hide-for-medium hide-for-large hide-for-xlarge">
+                      <div class="clearfix view-row">
+                        <div class="columns">
+                          <div>
+                            <span class="mobile-search-full-results--label">Plant:</span> Common juniper
+                            <a href="../../img/breakout-section-4.jpg" class="icon-camera clearing-attach"></a>
+                            <ul data-clearing><li><a href="../../img/breakout-section-4.jpg"></a></li></ul>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Scientific name:</span> <em>Juniperus communis</em>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Attributes:</span>
+                            <span class="npm-light-red">Butterflies</span>, <span class="npm-dark-red">Flowering</span>, <span class="npm-dark-green">Tree</span>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
+                          </div>
+                          <div class="plant--add-to-list">
+                            <input type="checkbox" id="checkbox-f1-s" class="np-checkbox"/>
+                            <label for="checkbox-f1-s">Add to your plant list</label>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Scientific name:</span> <em>Juniperus communis</em>
+
+                      <div class="clearfix view-row">
+                        <div class="columns">
+                          <div>
+                            <span class="mobile-search-full-results--label">Plant:</span> Common juniper <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
+                            <ul data-clearing><li><a href="../../img/engagement-card-1.jpg"></a></li></ul>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Scientific name:</span> <em>Juniperus communis</em>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Attributes:</span>
+                            <span class="npm-light-red">Butterflies</span>, <span class="npm-dark-red">Flowering</span>, <span class="npm-dark-green">Tree</span>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
+                          </div>
+                          <div class="plant--add-to-list">
+                            <input type="checkbox" id="checkbox-f2-s" class="np-checkbox"/>
+                            <label for="checkbox-f2-s">Add to your plant list</label>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Attributes:</span>
-                        <span class="npm-light-red">Butterflies</span>, <span class="npm-dark-red">Flowering</span>, <span class="npm-dark-green">Tree</span>
-                      </div>
-                      <div>
-                        <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
-                      </div>
-                      <div class="plant--add-to-list">
-                        <input type="checkbox" id="checkbox-f3-s" class="np-checkbox"/>
-                        <label for="checkbox-f3-s">Add to your plant list</label>
+
+                      <div class="clearfix view-row">
+                        <div class="columns">
+                          <div>
+                            <span class="mobile-search-full-results--label">Plant:</span> Common juniper <a href="../../img/plants-background.jpg" class="icon-camera clearing-attach"></a>
+                            <ul data-clearing><li><a href="../../img/boa_card_mini.jpg"></a></li></ul>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Scientific name:</span> <em>Juniperus communis</em>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Attributes:</span>
+                            <span class="npm-light-red">Butterflies</span>, <span class="npm-dark-red">Flowering</span>, <span class="npm-dark-green">Tree</span>
+                          </div>
+                          <div>
+                            <span class="mobile-search-full-results--label">Attracts:</span> <a href="#">Insectivores</a>, <a href="#">Seed eaters</a>
+                          </div>
+                          <div class="plant--add-to-list">
+                            <input type="checkbox" id="checkbox-f3-s" class="np-checkbox"/>
+                            <label for="checkbox-f3-s">Add to your plant list</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
 
+                <!--Pager-->
+                <div class="search-results-total row">
+                  <div class="column medium-12 large-3 hide-for-tiny hide-for-small">
+                    <strong>Results:</strong> 38 plants
+                  </div>
+                  <div class="column medium-12 large-9">
+                    <div class="pager">
+                      <span class="pager-prev">Previous page</span>
+                        <span class="pager-inner hide-for-tiny hide-for-small">
+                          <span>1</span>
+                          <a title="Go to page 2" href="#">2</a>
+                          <a title="Go to page 3" href="#">3</a>
+                          <a title="Go to page 4" href="#">4</a>
+                          <a title="Go to page 4" href="#">5</a>
+                          <a title="Go to page 4" href="#">6</a>
+                          <a title="Go to page 4" href="#">7</a>
+                          <a title="Go to page 4" href="#">8</a>
+                          <a title="Go to page 4" href="#">9</a>
+                          <span class="text--blue">...</span>
+                          <a title="Go to page 2" href="#">14</a>
+                        </span>
+                      <a href="#">Next page</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!--Pager-->
-            <div class="search-results-total row">
-              <div class="column medium-12 large-3 hide-for-tiny hide-for-small">
-                <strong>Results:</strong> 38 plants
+          <!--Engagement Card-->
+          <div class="engagement-hero">
+
+            <div class="bg-respond hero native-plants-hero">
+              <div class="hero-image half--black">
+                <img src="../../img/native-plants-background.jpg" alt="" >
+
+                <!--Content that shows up on top of the image for small screens-->
+                <div class="engagement-hero__content hide-for-large hide-for-xlarge">
+                  <div class="row">
+                    <div class="columns engagement-hero__column">
+                      <h1 class="header--orange">The Bird Has Had One Too Many Native Spicebrush Berries</h1>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="column medium-12 large-9">
-                <div class="pager">
-                  <span class="pager-prev">Previous page</span>
-                    <span class="pager-inner hide-for-tiny hide-for-small">
-                      <span>1</span>
-                      <a title="Go to page 2" href="#">2</a>
-                      <a title="Go to page 3" href="#">3</a>
-                      <a title="Go to page 4" href="#">4</a>
-                      <a title="Go to page 4" href="#">5</a>
-                      <a title="Go to page 4" href="#">6</a>
-                      <a title="Go to page 4" href="#">7</a>
-                      <a title="Go to page 4" href="#">8</a>
-                      <a title="Go to page 4" href="#">9</a>
-                      <span class="text--blue">...</span>
-                      <a title="Go to page 2" href="#">14</a>
-                    </span>
-                  <a href="#">Next page</a>
+
+              <div class="row hero-attribution">
+                <p class="column">
+        <span class="hero-attribution-text">
+          <span class="image-caption">American Coldfinch perched on a TK NAME flower</span>
+          <span class="credit-intro">Photo:</span>
+          <span class="credit-value">John Mahoney</span>
+        </span>
+                </p>
+              </div>
+
+              <!--Content that shows up under the image for small screens and on top for large screens-->
+              <div class="engagement-hero__content below-image">
+                <div class="row">
+                  <div class="columns large-6 large-push-6 engagement-hero__column">
+                    <h1 class="header--orange hide-for-tiny hide-for-small hide-for-medium">The Bird Has Had One Too Many Native Spicebrush Berries</h1>
+
+                    <div class="native-plants-hero-text">
+                      Provide your email address to join Audubon's network of supporters protecting birds around the world.
+                      You'll receive a customized shopping list of the native plants you choose.
+                      <a href="#">Privacy Policy</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="columns large-4 large-push-6 engagement-hero__column">
+
+                    <!-- search form-->
+                    <form action="#" class="engagement-hero-form">
+                      <div class="row">
+                        <div class="columns">
+                          <input type="text" value="" class="form-text native-plants-search-form--email" placeholder="Your Email Address"/>
+                        </div>
+
+                        <div class="columns medium-6">
+                          <input type="text" value="" class="form-text native-plants-search-form--zip-code" placeholder="U.S. ZIP Code"/>
+                        </div>
+
+                        <div class="columns medium-6">
+                          <button type="submit" class="native-plants-search-form--submit button tomato large">
+                            <span>Search</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- /search form-->
+                  </div>
                 </div>
               </div>
             </div>
@@ -907,300 +1054,305 @@
 
         <!--Tab 3-->
         <div class="tab-pane" id='tab-2'>
-          <!--Local Results-->
-          <div class="native-plants-local-results clearfix">
-            <!--View Header-->
-            <div class="view-header">
-              The best result for your area have been hand-selected by Audubon experts in the region.
-              They should be relatively easy to grow and easy to find at your local native plants nursery.
-            </div>
 
-            <div class="connect-audubon-near-you row">
-              <div class=" vertical-spacing--bottom clearfix">
-                <div class="column medium-4">
-                  <h2 class="connect-audubon-near-you--title text--blue">New York Audubon</h2>
-                  <p class="connect-audubon-near-you--address">
-                    <i class="icon-map"></i>
-                    415 Heavenly Way <br/>
-                    Brooklyn, NY 11238<br/>
-                    (212) 779-3429
-                  </p>
-                  <a href="#" class="button xlarge expand pea-green">
-                    Visit Site
-                  </a>
+        <!--Local Results-->
+          <div class="row">
+            <div class="columns">
+              <div class="native-plants-local-results clearfix">
+                <!--View Header-->
+                <div class="view-header">
+                  The best result for your area have been hand-selected by Audubon experts in the region.
+                  They should be relatively easy to grow and easy to find at your local native plants nursery.
                 </div>
-                <div class="column medium-8 connect-audubon-near-you--services">
-                  <h3 class="thin">Services provided at New York Audubon</h3>
-                  <ul class="connect-audubon-near-you--services-list">
-                    <li>Habitat recognition/certification</li>
-                    <li>Advice to individual property owners about improving habitat</li>
-                    <li>Education programs & presentations about native plants</li>
-                    <li>Native plant sales</li>
-                    <li>Habitat installation/restoration projects</li>
-                  </ul>
-                </div>
-              </div>
 
-              <div class=" vertical-spacing--bottom clearfix">
-                <div class="column medium-4">
-                  <h2 class="connect-audubon-near-you--title text--blue">New York Audubon</h2>
-                  <p class="connect-audubon-near-you--address">
-                    <i class="icon-map"></i>
-                    415 Heavenly Way <br/>
-                    Brooklyn, NY 11238<br/>
-                    (212) 779-3429
-                  </p>
-                  <a href="#" class="button xlarge expand pea-green">
-                    Visit Site
-                  </a>
-                </div>
-                <div class="column medium-8 connect-audubon-near-you--services">
-                  <h3 class="thin">Services provided at New York Audubon</h3>
-                  <ul class="connect-audubon-near-you--services-list">
-                    <li>Habitat recognition/certification</li>
-                    <li>Advice to individual property owners about improving habitat</li>
-                    <li>Education programs & presentations about native plants</li>
-                    <li>Native plant sales</li>
-                    <li>Habitat installation/restoration projects</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+                <div class="connect-audubon-near-you row">
+                  <div class=" vertical-spacing--bottom clearfix">
+                    <div class="column medium-4">
+                      <h2 class="connect-audubon-near-you--title text--blue">New York Audubon</h2>
+                      <p class="connect-audubon-near-you--address">
+                        <i class="icon-map"></i>
+                        415 Heavenly Way <br/>
+                        Brooklyn, NY 11238<br/>
+                        (212) 779-3429
+                      </p>
+                      <a href="#" class="button xlarge expand pea-green">
+                        Visit Site
+                      </a>
+                    </div>
+                    <div class="column medium-8 connect-audubon-near-you--services">
+                      <h3 class="thin">Services provided at New York Audubon</h3>
+                      <ul class="connect-audubon-near-you--services-list">
+                        <li>Habitat recognition/certification</li>
+                        <li>Advice to individual property owners about improving habitat</li>
+                        <li>Education programs & presentations about native plants</li>
+                        <li>Native plant sales</li>
+                        <li>Habitat installation/restoration projects</li>
+                      </ul>
+                    </div>
+                  </div>
 
-            <div class="where-to-buy__section row">
-              <div class="clearfix where-to-buy__section__row vertical-spacing--top--half">
-                <div class="column medium-4">
-                  <h2 class="thin">Where to buy native plants near you</h2>
-                  <p>The native plants movement is just beginning. Your mileage may vary with these nurseries. Disclaimer statement TK. </p>
+                  <div class=" vertical-spacing--bottom clearfix">
+                    <div class="column medium-4">
+                      <h2 class="connect-audubon-near-you--title text--blue">New York Audubon</h2>
+                      <p class="connect-audubon-near-you--address">
+                        <i class="icon-map"></i>
+                        415 Heavenly Way <br/>
+                        Brooklyn, NY 11238<br/>
+                        (212) 779-3429
+                      </p>
+                      <a href="#" class="button xlarge expand pea-green">
+                        Visit Site
+                      </a>
+                    </div>
+                    <div class="column medium-8 connect-audubon-near-you--services">
+                      <h3 class="thin">Services provided at New York Audubon</h3>
+                      <ul class="connect-audubon-near-you--services-list">
+                        <li>Habitat recognition/certification</li>
+                        <li>Advice to individual property owners about improving habitat</li>
+                        <li>Education programs & presentations about native plants</li>
+                        <li>Native plant sales</li>
+                        <li>Habitat installation/restoration projects</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div class="column medium-8 where-to-buy__nurseries">
+
+                <div class="where-to-buy__section row">
+                  <div class="clearfix where-to-buy__section__row vertical-spacing--top--half">
+                    <div class="column medium-4">
+                      <h2 class="thin">Where to buy native plants near you</h2>
+                      <p>The native plants movement is just beginning. Your mileage may vary with these nurseries. Disclaimer statement TK. </p>
+                    </div>
+                    <div class="column medium-8 where-to-buy__nurseries">
+                      <div class="row">
+                        <div class="column large-6 where-to-buy__nursery__row">
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Nursery</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>Bob Petty’s NATIVES ONLY</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Address</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                636 Magnolia Way<br/>
+                                Denver, CO 80456
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Website</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                <a href="#">bobsnatives.com</a>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column large-6 where-to-buy__nursery__row">
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Nursery</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>Bob Petty’s NATIVES ONLY</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Address</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                636 Magnolia Way<br/>
+                                Denver, CO 80456
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column large-6 where-to-buy__nursery__row">
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Nursery</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>Bob Petty’s NATIVES ONLY</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Address</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                636 Magnolia Way<br/>
+                                Denver, CO 80456
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix where-to-buy__section__row vertical-spacing--top--half">
+                    <div class="column medium-4">
+                      <h2 class="thin">Where to buy native plants near you</h2>
+                      <p>The native plants movement is just beginning. Your mileage may vary with these nurseries. Disclaimer statement TK. </p>
+                    </div>
+                    <div class="column medium-8 where-to-buy__nurseries">
+                      <div class="row">
+                        <div class="column large-6 where-to-buy__nursery__row">
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Nursery</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>Bob Petty’s NATIVES ONLY</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Address</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                636 Magnolia Way<br/>
+                                Denver, CO 80456
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Website</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                <a href="#">bobsnatives.com</a>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column large-6 where-to-buy__nursery__row">
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Nursery</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>Bob Petty’s NATIVES ONLY</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Address</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                636 Magnolia Way<br/>
+                                Denver, CO 80456
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column large-6 where-to-buy__nursery__row">
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Nursery</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>Bob Petty’s NATIVES ONLY</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="column tiny-3">
+                              <p class="label">Address</p>
+                            </div>
+                            <div class="column tiny-9">
+                              <p>
+                                636 Magnolia Way<br/>
+                                Denver, CO 80456
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="native-plans-map clearfix vertical-spacing--top--half">
                   <div class="row">
-                    <div class="column large-6 where-to-buy__nursery__row">
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Nursery</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>Bob Petty’s NATIVES ONLY</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Address</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            636 Magnolia Way<br/>
-                            Denver, CO 80456
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Website</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            <a href="#">bobsnatives.com</a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column large-6 where-to-buy__nursery__row">
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Nursery</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>Bob Petty’s NATIVES ONLY</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Address</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            636 Magnolia Way<br/>
-                            Denver, CO 80456
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column large-6 where-to-buy__nursery__row">
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Nursery</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>Bob Petty’s NATIVES ONLY</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Address</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            636 Magnolia Way<br/>
-                            Denver, CO 80456
-                          </p>
-                        </div>
-                      </div>
+                    <div class="column">
+                      <h2 class="thin">Native Plant nurseries nationwide</h2>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="clearfix where-to-buy__section__row vertical-spacing--top--half">
-                <div class="column medium-4">
-                  <h2 class="thin">Where to buy native plants near you</h2>
-                  <p>The native plants movement is just beginning. Your mileage may vary with these nurseries. Disclaimer statement TK. </p>
-                </div>
-                <div class="column medium-8 where-to-buy__nurseries">
-                  <div class="row">
-                    <div class="column large-6 where-to-buy__nursery__row">
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Nursery</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>Bob Petty’s NATIVES ONLY</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Address</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            636 Magnolia Way<br/>
-                            Denver, CO 80456
-                          </p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Website</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            <a href="#">bobsnatives.com</a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column large-6 where-to-buy__nursery__row">
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Nursery</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>Bob Petty’s NATIVES ONLY</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Address</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            636 Magnolia Way<br/>
-                            Denver, CO 80456
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="column large-6 where-to-buy__nursery__row">
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Nursery</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>Bob Petty’s NATIVES ONLY</p>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="column tiny-3">
-                          <p class="label">Address</p>
-                        </div>
-                        <div class="column tiny-9">
-                          <p>
-                            636 Magnolia Way<br/>
-                            Denver, CO 80456
-                          </p>
-                        </div>
-                      </div>
+                  <div class="inline-map row">
+                    <div class="inline-map-canvas">
+                      <div class="inline-map-mask"></div>
+                      <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//audubon.maps.arcgis.com/apps/Embed/index.html?webmap=6d4de5b3a14a4b90a214155db7f8cb7e&amp;extent=-129.5384,22.9645,-64.6311,52.567&amp;zoom=true&amp;scale=false&amp;theme=light"></iframe>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="native-plans-map clearfix vertical-spacing--top--half">
-              <div class="row">
-                <div class="column">
-                  <h2 class="thin">Native Plant nurseries nationwide</h2>
-                </div>
-              </div>
-              <div class="inline-map row">
-                <div class="inline-map-canvas">
-                  <div class="inline-map-mask"></div>
-                  <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//audubon.maps.arcgis.com/apps/Embed/index.html?webmap=6d4de5b3a14a4b90a214155db7f8cb7e&amp;extent=-129.5384,22.9645,-64.6311,52.567&amp;zoom=true&amp;scale=false&amp;theme=light"></iframe>
-                </div>
-              </div>
-
-              <div class="add-other-nurseries row column vertical-spacing--top--half">
-                <a href="#">Have a nursery we should included in our directory? Let us know.</a>
-              </div>
-            </div>
-
-            <div class="editorial-card-3x contextual-links-region vertical-spacing--top">
-              <div class="row section-header">
-                <div class="column">
-                  <h2 class="thin">More Audubon Native Plant resources</h2>
-                </div>
-              </div>
-
-              <div class="row card-set space-bottom">
-
-                <div class="columns large-4">
-                  <div class="editorial-card ">
-                    <div class="editorial-card-photo">
-                      <a href="/news/how-begin-birding" title="How To Begin Birding"><img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/__Camilla_Cerea_CBC_12.jpg?itok=m8Tf_J_Z" alt="How To Begin Birding"></a>
-                    </div>
-                    <div class="editorial-card-content short">
-                      <a href="/menu/news" class="editorial-card-slug">News</a>
-                      <h4 class="editorial-card-title"><a href="/news/how-begin-birding">How To Begin Birding</a></h4>
-                      <p class="editorial-card-subtitle">Like birds, but don’t know how to make the leap to becoming a birder? Here are three easy steps to get you into the field. </p>
-                      <p><em><a href="/news/how-begin-birding" class="editorial-card-link">Read more</a></em></p>
-                    </div>
+                  <div class="add-other-nurseries row column vertical-spacing--top--half">
+                    <a href="#">Have a nursery we should included in our directory? Let us know.</a>
                   </div>
                 </div>
 
-                <div class="columns large-4">
-                  <div class="editorial-card ">
-                    <div class="editorial-card-photo">
-                      <a href="/magazine/january-february-2013/5-great-winter-destinations" title="5 Great Winter Destinations"><img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/w1_winter_wonderlans.jpg?itok=Ahz5xahx" alt="5 Great Winter Destinations"></a>
-                    </div>
-                    <div class="editorial-card-content short">
-                      <a href="/menu/travel" class="editorial-card-slug">Travel</a>
-                      <h4 class="editorial-card-title"><a href="/magazine/january-february-2013/5-great-winter-destinations">5 Great Winter Destinations</a></h4>
-                      <p class="editorial-card-subtitle">These national parks offer a host of unique activities when the nights grow long.</p>
-                      <p><em><a href="/magazine/january-february-2013/5-great-winter-destinations" class="editorial-card-link">Read more</a></em></p>
+                <div class="editorial-card-3x contextual-links-region vertical-spacing--top">
+                  <div class="row section-header">
+                    <div class="column">
+                      <h2 class="thin">More Audubon Native Plant resources</h2>
                     </div>
                   </div>
-                </div>
 
-                <div class="columns large-4">
-                  <div class="editorial-card ">
-                    <div class="editorial-card-photo">
-                      <a href="/magazine/may-june-2012/bird-talk-jane-alexander" title="Bird Talk with Jane Alexander"><img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/editorial-card-images/article/Jane-Alexander_janes_headshots_001.jpg?itok=u10xsmP1" alt="Bird Talk with Jane Alexander"></a>
+                  <div class="row card-set space-bottom">
+
+                    <div class="columns large-4">
+                      <div class="editorial-card ">
+                        <div class="editorial-card-photo">
+                          <a href="/news/how-begin-birding" title="How To Begin Birding"><img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/__Camilla_Cerea_CBC_12.jpg?itok=m8Tf_J_Z" alt="How To Begin Birding"></a>
+                        </div>
+                        <div class="editorial-card-content short">
+                          <a href="/menu/news" class="editorial-card-slug">News</a>
+                          <h4 class="editorial-card-title"><a href="/news/how-begin-birding">How To Begin Birding</a></h4>
+                          <p class="editorial-card-subtitle">Like birds, but don’t know how to make the leap to becoming a birder? Here are three easy steps to get you into the field. </p>
+                          <p><em><a href="/news/how-begin-birding" class="editorial-card-link">Read more</a></em></p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="editorial-card-content short">
-                      <a href="/tag/why-im-birder" class="editorial-card-slug">Why I'm A Birder</a>
-                      <h4 class="editorial-card-title"><a href="/magazine/may-june-2012/bird-talk-jane-alexander">Jane Alexander</a></h4>
-                      <p class="editorial-card-subtitle">For this Tony Award-winning actress, avian conservation is a big part of being a birder. </p>
-                      <p><em><a href="/magazine/may-june-2012/bird-talk-jane-alexander" class="editorial-card-link">Read more</a></em></p>
+
+                    <div class="columns large-4">
+                      <div class="editorial-card ">
+                        <div class="editorial-card-photo">
+                          <a href="/magazine/january-february-2013/5-great-winter-destinations" title="5 Great Winter Destinations"><img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/w1_winter_wonderlans.jpg?itok=Ahz5xahx" alt="5 Great Winter Destinations"></a>
+                        </div>
+                        <div class="editorial-card-content short">
+                          <a href="/menu/travel" class="editorial-card-slug">Travel</a>
+                          <h4 class="editorial-card-title"><a href="/magazine/january-february-2013/5-great-winter-destinations">5 Great Winter Destinations</a></h4>
+                          <p class="editorial-card-subtitle">These national parks offer a host of unique activities when the nights grow long.</p>
+                          <p><em><a href="/magazine/january-february-2013/5-great-winter-destinations" class="editorial-card-link">Read more</a></em></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="columns large-4">
+                      <div class="editorial-card ">
+                        <div class="editorial-card-photo">
+                          <a href="/magazine/may-june-2012/bird-talk-jane-alexander" title="Bird Talk with Jane Alexander"><img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/editorial-card-images/article/Jane-Alexander_janes_headshots_001.jpg?itok=u10xsmP1" alt="Bird Talk with Jane Alexander"></a>
+                        </div>
+                        <div class="editorial-card-content short">
+                          <a href="/tag/why-im-birder" class="editorial-card-slug">Why I'm A Birder</a>
+                          <h4 class="editorial-card-title"><a href="/magazine/may-june-2012/bird-talk-jane-alexander">Jane Alexander</a></h4>
+                          <p class="editorial-card-subtitle">For this Tony Award-winning actress, avian conservation is a big part of being a birder. </p>
+                          <p><em><a href="/magazine/may-june-2012/bird-talk-jane-alexander" class="editorial-card-link">Read more</a></em></p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1212,65 +1364,130 @@
         <!--Tab 4-->
         <div class="tab-pane" id='tab-3'>
           <!--Join-->
-          <div class="native-plants-contact">
-            <!--View Header-->
-            <div class="view-header">
-              The best result for your area have been hand-selected by Audubon experts in the region.
-              They should be relatively easy to grow and easy to find at your local native plants nursery.
-            </div>
-
-            <div class="native-plants__socials vertical-spacing--bottom--half">
-              <div class="row">
-                <div class="column medium-10">
-                  <h1 class="">Tell your friends?</h1>
+          <div class="row">
+            <div class="columns">
+              <div class="native-plants-contact">
+                <!--View Header-->
+                <div class="view-header">
+                  The best result for your area have been hand-selected by Audubon experts in the region.
+                  They should be relatively easy to grow and easy to find at your local native plants nursery.
                 </div>
 
-                <div class="column medium-6">
-                  <textarea cols="30" rows="2"></textarea>
+                <div class="native-plants__socials vertical-spacing--bottom--half">
+                  <div class="row">
+                    <div class="column medium-10">
+                      <h1 class="">Tell your friends?</h1>
+                    </div>
+
+                    <div class="column medium-6">
+                      <textarea cols="30" rows="2"></textarea>
+                    </div>
+                    <div class="column medium-6 social-sharing-block">
+                      <a class="social-sharing-icon blue small" target="_blank" href="#"><i class="icon-facebook"></i></a>
+                      <a class="social-sharing-icon blue small" target="_blank" href="#"><i class="icon-twitter"></i></a>
+                    </div>
+                  </div>
                 </div>
-                <div class="column medium-6 social-sharing-block">
-                  <a class="social-sharing-icon blue small" target="_blank" href="#"><i class="icon-facebook"></i></a>
-                  <a class="social-sharing-icon blue small" target="_blank" href="#"><i class="icon-twitter"></i></a>
+
+                <div class="native-plants__connect vertical-spacing--top vertical-spacing--bottom--double">
+                  <div class="row">
+                    <div class="column medium-6">
+                      <h1 class="">How many plants will you put in the ground?</h1>
+                    </div>
+                    <div class="column medium-6">
+                      <p>Provide your email address to join Audubon's network of supporters protecting birds around the world.
+                        You'll receive a customized shopping list of the native plants you choose.</p>
+
+                      <form action="#" class="native-plants-connect-form vertical-spacing--top">
+                        <div class="row">
+                          <div class="columns medium-10">
+                            <div class="row">
+                              <div class="columns medium-6">
+                                <input type="text" value="" class="form-text native-plants-search-form--how-many" placeholder="How Many?"/>
+                              </div>
+                              <div class="columns medium-6">
+                                <input type="text" value="" class="form-text native-plants-search-form--zip-code" placeholder="U.S. ZIP Code"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="columns medium-10">
+                            <input type="text" value="" class="form-text native-plants-search-form--email" placeholder="Your Email Address"/>
+                          </div>
+
+                          <div class="columns medium-10 large-2">
+                            <button type="submit" class="native-plants-search-form--submit button tomato large">
+                              <span>OK</span>
+                            </button>
+                          </div>
+
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="native-plants__connect vertical-spacing--top vertical-spacing--bottom--double">
-              <div class="row">
-                <div class="column medium-6">
-                  <h1 class="">How many plants will you put in the ground?</h1>
+          <!--Engagement Card-->
+          <div class="engagement-hero">
+            <div class="bg-respond hero native-plants-hero">
+              <div class="hero-image half--black">
+                <img src="../../img/native-plants-background.jpg" alt="" >
+
+                <!--Content that shows up on top of the image for small screens-->
+                <div class="engagement-hero__content hide-for-large hide-for-xlarge">
+                  <div class="row">
+                    <div class="columns engagement-hero__column">
+                      <h1 class="header--orange">Can We interest you in one of these signs?</h1>
+                    </div>
+                  </div>
                 </div>
-                <div class="column medium-6">
-                  <p>Provide your email address to join Audubon's network of supporters protecting birds around the world.
-                    You'll receive a customized shopping list of the native plants you choose.</p>
+              </div>
 
-                  <form action="#" class="native-plants-connect-form vertical-spacing--top">
-                    <div class="row">
-                      <div class="columns medium-10">
-                        <div class="row">
-                          <div class="columns medium-6">
-                            <input type="text" value="" class="form-text native-plants-search-form--how-many" placeholder="How Many?"/>
-                          </div>
-                          <div class="columns medium-6">
-                            <input type="text" value="" class="form-text native-plants-search-form--zip-code" placeholder="U.S. ZIP Code"/>
-                          </div>
+              <div class="row hero-attribution">
+                <p class="column">
+                  <span class="hero-attribution-text">
+                    <span class="image-caption">American Coldfinch perched on a TK NAME flower</span>
+                    <span class="credit-intro">Photo:</span>
+                    <span class="credit-value">John Mahoney</span>
+                  </span>
+                </p>
+              </div>
+
+              <!--Content that shows up under the image for small screens and on top for large screens-->
+              <div class="engagement-hero__content below-image">
+                <div class="row">
+                  <div class="columns large-6 large-push-6 engagement-hero__column">
+                    <h1 class="header--orange hide-for-tiny hide-for-small hide-for-medium">Perhaps buy this sign to show off</h1>
+
+                    <div class="native-plants-hero-text">
+                      Provide your email address to join Audubon's network of supporters protecting birds around the world.
+                      You'll receive a customized shopping list of the native plants you choose.
+                      <a href="#">Privacy Policy</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="columns large-6 large-push-6 engagement-hero__column">
+
+                    <!-- search form-->
+                    <form action="#" class="engagement-hero-form">
+                      <div class="row">
+                        <div class="columns medium-7 medium-push-2 large-7 large-push-2">
+                          <button type="submit" class="native-plants-search-form--submit button tomato large">
+                            <span>Get your sign here</span>
+                          </button>
                         </div>
                       </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="columns medium-10">
-                        <input type="text" value="" class="form-text native-plants-search-form--email" placeholder="Your Email Address"/>
-                      </div>
-
-                      <div class="columns medium-10 large-2">
-                        <button type="submit" class="native-plants-search-form--submit button tomato large">
-                          <span>OK</span>
-                        </button>
-                      </div>
-
-                    </div>
-                  </form>
+                    </form>
+                    <!-- /search form-->
+                  </div>
                 </div>
               </div>
             </div>
@@ -1305,8 +1522,8 @@
 
         <div class="column medium-3 large-4 tiny-6 native-plants-bottom--button-container">
           <button type="submit" class="tomato large native-plants-botton--get-list js-form-isnt-visible" style="opacity: 1; display: block;">
-            <span class="hide-for-tiny hide-for-small hide-for-medium">Get your list & Join the sanctuary</span>
-            <span class="hide-for-large hide-for-xlarge">Get your list</span>
+            <span class="hide-for-tiny hide-for-small hide-for-medium hide-for-large">Get your list & Join the sanctuary</span>
+            <span class="hide-for-xlarge">Get your list</span>
           </button>
         </div>
       </div>

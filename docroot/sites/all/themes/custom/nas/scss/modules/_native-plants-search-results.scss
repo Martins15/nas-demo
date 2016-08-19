@@ -65,6 +65,7 @@
 
   .native-plants-search-form--submit {
     width: 100%;
+    text-transform: capitalize;
 
     @include breakpoint(medium-up) {
       margin-left: 10px;
@@ -703,10 +704,6 @@
 .native-plants-bottom {
   font-family: $font-sans;
 
-  @include breakpoint(medium-up) {
-    margin-top: 84px;
-  }
-
   .native-plants-bottom-plant-list-placeholder {
     display: none;
   }
@@ -791,6 +788,7 @@
       bottom: 0;
       position: fixed;
       width: 100%;
+      z-index: 3;
     }
   }
 }
@@ -1124,8 +1122,11 @@ input[type="checkbox"].np-checkbox {
 
 .native-plants__connect {
   @include breakpoint(medium-up) {
-    padding-bottom: 0;
     padding-top: 75px;
+  }
+
+  @include breakpoint(large-up) {
+    padding-bottom: 0;
   }
 
   p {
@@ -1136,4 +1137,122 @@ input[type="checkbox"].np-checkbox {
 
 .native-plants-connect-form {
   @extend %native-plants-search-form;
+}
+
+// Footer hero blocks
+.engagement-hero {
+  @include breakpoint(large-up) {
+    margin-top: 60px;
+  }
+
+  .half--black {
+    &:before {
+      @include breakpoint(large-up) {
+        background-color: $color-black;
+        content: '';
+        height: 100%;
+        left: 48%;
+        position: absolute;
+        top: 0;
+        width: 52%;
+        z-index: 1;
+      }
+
+      @include breakpoint(large-only) {
+        display: none;
+      }
+    }
+  }
+
+  .hero-image {
+    max-height: 580px;
+
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      height: 350px;
+    }
+  }
+
+  .hero-attribution {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      background: transparent;
+      color: $color-warm-gray;
+      font-size: 12px;
+    }
+
+    @include breakpoint(large-up) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.engagement-hero__content {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 25px;
+
+  @include breakpoint(large-up){
+    bottom: initial;
+    top: 15px;
+    padding-bottom: 50px;
+  }
+
+  &.below-image {
+    @include breakpoint(medium-up) {
+      padding-top: 20px;
+    }
+
+    @include width-range(0px, #{upper-bound($medium-range)}) {
+      position: static;
+    }
+  }
+
+  h1 {
+    @include breakpoint(large-up) {
+      margin-bottom: 36px;
+    }
+  }
+
+  .native-plants-hero-text {
+    font-size: 17px;
+    line-height: 22px;
+    padding-top: 0;
+
+    a {
+      @include breakpoint(large-up) {
+        color: $color-white;
+      }
+    }
+
+    @include breakpoint(large-up) {
+      margin-bottom: 20px;
+    }
+
+    @include breakpoint(xlarge-up) {
+      margin-bottom: 70px;
+    }
+  }
+}
+
+.engagement-hero__column {
+  @include breakpoint(large-only) {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+.engagement-hero-form {
+  @extend %native-plants-search-form;
+  margin-top: 16px;
+
+  @include breakpoint(large-up) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(xlarge-up) {
+    margin-bottom: 40px;
+  }
 }

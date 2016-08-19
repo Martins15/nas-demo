@@ -3692,7 +3692,7 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   color: #0AA8E3;
 }
 
-.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .native-plants-search-form .native-plants-search-form--submit, .native-plants-connect-form .native-plants-search-form--submit, .native-plants-tabs .tab-select, .native-plants-tabs .view-filters select {
+.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text, .native-plants-search-form .native-plants-search-form--submit, .native-plants-connect-form .native-plants-search-form--submit, .engagement-hero-form .native-plants-search-form--submit, .native-plants-tabs .tab-select, .native-plants-tabs .view-filters select {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
@@ -3703,15 +3703,15 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
 }
 
 @media only screen and (min-width: 768px) {
-  .native-plants-search-form, .native-plants-connect-form {
+  .native-plants-search-form, .native-plants-connect-form, .engagement-hero-form {
     margin-bottom: 24px;
   }
 }
-.native-plants-search-form .form-text, .native-plants-connect-form .form-text {
+.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text {
   margin-bottom: 12px;
 }
 @media only screen and (min-width: 768px) {
-  .native-plants-search-form .form-text, .native-plants-connect-form .form-text {
+  .native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text {
     margin-bottom: 16px;
   }
 }
@@ -14287,6 +14287,7 @@ h2.grey {
 }
 .native-plants-search-form .native-plants-search-form--submit {
   width: 100%;
+  text-transform: capitalize;
 }
 @media only screen and (min-width: 601px) {
   .native-plants-search-form .native-plants-search-form--submit {
@@ -14870,11 +14871,6 @@ h2.grey {
 .native-plants-bottom {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
-@media only screen and (min-width: 601px) {
-  .native-plants-bottom {
-    margin-top: 84px;
-  }
-}
 .native-plants-bottom .native-plants-bottom-plant-list-placeholder {
   display: none;
 }
@@ -14955,6 +14951,7 @@ h2.grey {
   bottom: 0;
   position: fixed;
   width: 100%;
+  z-index: 3;
 }
 
 .bird-card-carousel .owl-carousel .owl-controls {
@@ -15246,13 +15243,133 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 @media only screen and (min-width: 601px) {
   .native-plants__connect {
-    padding-bottom: 0;
     padding-top: 75px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .native-plants__connect {
+    padding-bottom: 0;
   }
 }
 .native-plants__connect p {
   font-size: 16px;
   line-height: 22px;
+}
+
+@media only screen and (min-width: 768px) {
+  .engagement-hero {
+    margin-top: 60px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero .half--black:before {
+    background-color: #000;
+    content: '';
+    height: 100%;
+    left: 48%;
+    position: absolute;
+    top: 0;
+    width: 52%;
+    z-index: 1;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .engagement-hero .half--black:before {
+    display: none;
+  }
+}
+.engagement-hero .hero-image {
+  max-height: 580px;
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .engagement-hero .hero-image {
+    height: 350px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .engagement-hero .hero-attribution, .engagement-hero .hero-attribution-fullscreen {
+    background: transparent;
+    color: #838078;
+    font-size: 12px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero .hero-attribution, .engagement-hero .hero-attribution-fullscreen {
+    padding-bottom: 0;
+  }
+}
+
+.engagement-hero__content {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 25px;
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero__content {
+    bottom: initial;
+    top: 15px;
+    padding-bottom: 50px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .engagement-hero__content.below-image {
+    padding-top: 20px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .engagement-hero__content.below-image {
+    position: static;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero__content h1 {
+    margin-bottom: 36px;
+  }
+}
+.engagement-hero__content .native-plants-hero-text {
+  font-size: 17px;
+  line-height: 22px;
+  padding-top: 0;
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero__content .native-plants-hero-text a {
+    color: #fff;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero__content .native-plants-hero-text {
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .engagement-hero__content .native-plants-hero-text {
+    margin-bottom: 70px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .engagement-hero__column {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+.engagement-hero-form {
+  margin-top: 16px;
+}
+@media only screen and (min-width: 768px) {
+  .engagement-hero-form {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .engagement-hero-form {
+    margin-bottom: 40px;
+  }
 }
 
 .sidebar, .article-sidebar {
