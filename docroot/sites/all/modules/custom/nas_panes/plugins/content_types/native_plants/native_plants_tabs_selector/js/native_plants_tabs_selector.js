@@ -19,7 +19,6 @@
 
     // Synchronise the tab elements on 'nav' click.
     $jsTabs.on('toggled', function (event, tab) {
-      console.log(tab);
       var $mobileMenu = $(this).closest($jsTabs).siblings('.js-tabs-select');
 
       $mobileMenu.find('option').removeAttr('selected')
