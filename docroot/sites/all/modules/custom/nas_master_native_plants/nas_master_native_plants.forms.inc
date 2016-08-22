@@ -273,7 +273,7 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
 function nas_master_native_plants_initial_form_submit($form, &$form_state) {
   // Redirect to main Native Plants search by ZIP code page.
   $form_state['redirect'] = array(
-    'native-plants-search',
+    'native-plants/search',
     array(
       'query' => array(
         'zipcode' => $form_state['values']['zipcode'],

@@ -11,25 +11,23 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = 'native_plants_2_0_search';
+  $page->name = 'native_plants_search';
   $page->task = 'page';
-  $page->admin_title = 'Native Plants 2.0 Plants Search';
-  $page->admin_description = 'Search for Native Plants 2.0';
-  $page->path = 'native-plants-search';
+  $page->admin_title = 'Native Plants Search page';
+  $page->admin_description = 'Search for Native Plants';
+  $page->path = 'native-plants/!type';
   $page->access = array();
-  $page->menu = array(
-    'type' => 'none',
-    'title' => '',
-    'name' => 'navigation',
-    'weight' => '0',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
+  $page->menu = array();
+  $page->arguments = array(
+    'type' => array(
+      'id' => 1,
+      'identifier' => 'Type',
+      'name' => 'string',
+      'settings' => array(
+        'use_tail' => 0,
+      ),
     ),
   );
-  $page->arguments = array();
   $page->conf = array(
     'admin_paths' => FALSE,
   );
@@ -39,9 +37,119 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'page_native_plants_search__panel_context_ec0ecb01-4728-434b-8dcb-3ce0d6eba58a';
+  $handler->task = 'page';
+  $handler->subtask = 'native_plants_search';
+  $handler->handler = 'panel_context';
+  $handler->weight = -30;
+  $handler->conf = array(
+    'title' => 'Native Plants 2.0 Initial page',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => '',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'string_equal',
+          'settings' => array(
+            'operator' => '=',
+            'value' => '',
+            'case' => 0,
+          ),
+          'context' => 'argument_string_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'native_plants';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'main_top' => NULL,
+      'search_form' => NULL,
+      'main_middle' => NULL,
+      'main' => NULL,
+      'bottom' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = 'Native Plants';
+  $display->uuid = 'b1a76467-d212-4d04-bfd8-d0ebde3ee843';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-00452ca0-27ec-41af-a199-dbb4dd9c59ef';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_initial_form';
+    $pane->subtype = 'native_plants_initial_form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title_desktop' => 'Find bird-friendly plants for your area',
+      'title_mobile' => 'Find bird-friendly plants for your area',
+      'email_placeholder' => 'Email Address',
+      'zipcode_placeholder' => 'U.S. ZIP code',
+      'button_text' => 'Search',
+      'form_build_id' => 'form-i6KcfHQPYhWc-0h-sSGPui6wHh633T-agqRXTxPu-NQ',
+      'image' => '57641',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '00452ca0-27ec-41af-a199-dbb4dd9c59ef';
+    $display->content['new-00452ca0-27ec-41af-a199-dbb4dd9c59ef'] = $pane;
+    $display->panels['main'][0] = 'new-00452ca0-27ec-41af-a199-dbb4dd9c59ef';
+    $pane = new stdClass();
+    $pane->pid = 'new-d1a287ef-924e-4d2c-9769-970a806bba92';
+    $pane->panel = 'top';
+    $pane->type = 'native_plants_bar';
+    $pane->subtype = 'native_plants_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title_desktop' => 'Audubon Native Plants Database',
+      'title_mobile' => 'Native Plants Database',
+      'title_link' => 'native-plants',
+      'background_color' => '66a122',
+      'form_build_id' => 'form-NaqcVLyEkddj4Jt1XHQIGvIV_Aea-4-Ao0h-SnMQzy0',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd1a287ef-924e-4d2c-9769-970a806bba92';
+    $display->content['new-d1a287ef-924e-4d2c-9769-970a806bba92'] = $pane;
+    $display->panels['top'][0] = 'new-d1a287ef-924e-4d2c-9769-970a806bba92';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'page_native_plants_2_0_search__panel_context_5a590ea1-8f07-40a8-a341-2c2eb7f9fead';
   $handler->task = 'page';
-  $handler->subtask = 'native_plants_2_0_search';
+  $handler->subtask = 'native_plants_search';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
@@ -54,6 +162,21 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     'css' => '',
     'contexts' => array(),
     'relationships' => array(),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'string_equal',
+          'settings' => array(
+            'operator' => '=',
+            'value' => 'search',
+            'case' => 0,
+          ),
+          'context' => 'argument_string_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
   );
   $display = new panels_display();
   $display->layout = 'native_plants_tabs';
@@ -604,124 +727,6 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->uuid = 'f0570dbe-e90b-4a21-8e5f-15a65e8ad8cb';
     $display->content['new-f0570dbe-e90b-4a21-8e5f-15a65e8ad8cb'] = $pane;
     $display->panels['top'][0] = 'new-f0570dbe-e90b-4a21-8e5f-15a65e8ad8cb';
-  $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
-  $pages['native_plants_2_0_search'] = $page;
-
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'native_plants_search';
-  $page->task = 'page';
-  $page->admin_title = 'Native Plants Search Initial page';
-  $page->admin_description = 'Search for Native Plants';
-  $page->path = 'native-plants';
-  $page->access = array();
-  $page->menu = array();
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->language = 'und';
-  $page->tpid = 0;
-  $page->default_handlers = array();
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
-  $handler->name = 'page_native_plants_search__panel_context_ec0ecb01-4728-434b-8dcb-3ce0d6eba58a';
-  $handler->task = 'page';
-  $handler->subtask = 'native_plants_search';
-  $handler->handler = 'panel_context';
-  $handler->weight = -30;
-  $handler->conf = array(
-    'title' => 'Native Plants 2.0 Initial page',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
-    'css_id' => '',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'name' => '',
-    'access' => array(
-      'plugins' => array(),
-      'logic' => 'and',
-    ),
-  );
-  $display = new panels_display();
-  $display->layout = 'native_plants';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'top' => NULL,
-      'main_top' => NULL,
-      'search_form' => NULL,
-      'main_middle' => NULL,
-      'main' => NULL,
-      'bottom' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = 'Native Plants';
-  $display->uuid = 'b1a76467-d212-4d04-bfd8-d0ebde3ee843';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-00452ca0-27ec-41af-a199-dbb4dd9c59ef';
-    $pane->panel = 'main';
-    $pane->type = 'native_plants_initial_form';
-    $pane->subtype = 'native_plants_initial_form';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'title_desktop' => 'Find bird-friendly plants for your area',
-      'title_mobile' => 'Find bird-friendly plants for your area',
-      'email_placeholder' => 'Email Address',
-      'zipcode_placeholder' => 'U.S. ZIP code',
-      'button_text' => 'Search',
-      'form_build_id' => 'form-i6KcfHQPYhWc-0h-sSGPui6wHh633T-agqRXTxPu-NQ',
-      'image' => '57641',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '00452ca0-27ec-41af-a199-dbb4dd9c59ef';
-    $display->content['new-00452ca0-27ec-41af-a199-dbb4dd9c59ef'] = $pane;
-    $display->panels['main'][0] = 'new-00452ca0-27ec-41af-a199-dbb4dd9c59ef';
-    $pane = new stdClass();
-    $pane->pid = 'new-d1a287ef-924e-4d2c-9769-970a806bba92';
-    $pane->panel = 'top';
-    $pane->type = 'native_plants_bar';
-    $pane->subtype = 'native_plants_bar';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'title_desktop' => 'Audubon Native Plants Database',
-      'title_mobile' => 'Native Plants Database',
-      'title_link' => 'native-plants',
-      'background_color' => '66a122',
-      'form_build_id' => 'form-NaqcVLyEkddj4Jt1XHQIGvIV_Aea-4-Ao0h-SnMQzy0',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'd1a287ef-924e-4d2c-9769-970a806bba92';
-    $display->content['new-d1a287ef-924e-4d2c-9769-970a806bba92'] = $pane;
-    $display->panels['top'][0] = 'new-d1a287ef-924e-4d2c-9769-970a806bba92';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

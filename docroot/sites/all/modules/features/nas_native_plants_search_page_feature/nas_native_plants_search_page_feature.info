@@ -14,7 +14,6 @@ dependencies[] = views_content
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
-features[page_manager_pages][] = native_plants_2_0_search
 features[page_manager_pages][] = native_plants_search
 features[views_view][] = native_plants_search
 project path = sites/all/modules/features
