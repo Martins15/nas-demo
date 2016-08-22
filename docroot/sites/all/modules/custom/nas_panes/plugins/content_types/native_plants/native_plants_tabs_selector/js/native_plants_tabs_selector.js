@@ -2,8 +2,8 @@
   /**
    * Tabs.
    */
-  Drupal.behaviors.tabs = {};
-  Drupal.behaviors.tabs.attach = function(context, settings) {
+  Drupal.behaviors.native_plants_tabs_selector = {};
+  Drupal.behaviors.native_plants_tabs_selector.attach = function(context, settings) {
     var $jsTabs = $('.js-tabs', context);
 
     // Generate a select box of tab items to display on mobile.
@@ -18,17 +18,16 @@
     });
 
     // Synchronise the tab elements on 'nav' click.
-    $jsTabs.find('a').click(function (e) {
-      e.preventDefault();
-
+    $jsTabs.on('toggled', function (event, tab) {
+      console.log(tab);
       var $mobileMenu = $(this).closest($jsTabs).siblings('.js-tabs-select');
 
-      $mobileMenu.find("option").removeAttr("selected")
-        .siblings('option:contains(' + $(this).text() + ')').attr("selected","selected");
+      $mobileMenu.find('option').removeAttr('selected')
+        .siblings('option:contains(' + tab.find('a').text() + ')').attr('selected', 'selected');
     });
 
-    // Synchronise the tab elements on 'select' click.
-    $('.js-tabs-select').on('click',function(){
+    // Synchronise the tab elements on 'select' change.
+    $('.js-tabs-select').on('change', function() {
       $(this).siblings($jsTabs).find("li a:contains(" + $(this).val() + ")").click();
     });
   };
