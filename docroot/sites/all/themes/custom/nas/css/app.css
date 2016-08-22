@@ -14606,7 +14606,7 @@ h2.grey {
   margin: 0;
 }
 .native-plants-tabs .tabs:before {
-  background: #aaa;
+  border-bottom: 1px solid #aaa;
   bottom: 0;
   content: '';
   display: block;
