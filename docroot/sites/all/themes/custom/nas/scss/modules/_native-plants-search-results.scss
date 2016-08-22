@@ -397,7 +397,7 @@
     margin: 0;
 
     &:before {
-      background: $color-middle-gray;
+      border-bottom: 1px solid $color-middle-gray;
       bottom: 0;
       content: '';
       display: block;
