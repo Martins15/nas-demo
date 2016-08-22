@@ -38,3 +38,15 @@ function nas_master_native_plants_update_7004() {
     'nas_native_plant_ct_feature' => array('field_instance'),
   ));
 }
+
+/**
+ * Update for Native Plants 2.0.
+ */
+function nas_master_native_plants_update_7005() {
+  features_revert(array(
+    'nas_native_plants_search_page_feature' => array(
+      'page_manager_pages',
+      'views_view',
+    ),
+  ));
+}

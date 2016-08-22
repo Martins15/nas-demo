@@ -73,4 +73,88 @@
       .each(jQuery.proxy(this.attachPagerLinkAjax, this));
   };
 
+  /**
+   * Birds Carousel on Native plants search results page.
+   */
+  Drupal.behaviors.npOwl = {
+    attach: function(context, settings) {
+      $(".bird-card-carousel .owl-carousel").once('np-owl', function () {
+        var self = $(this);
+        self.owlCarousel({
+          items: 2,
+          itemsDesktop: false,
+          itemsDesktopSmall: false,
+          itemsTablet: false,
+          itemsMobile: false,
+          paginationSpeed: 100,
+          navigation: true,
+          rewindNav: false,
+          pagination: false,
+          navigationText: ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"]
+        });
+
+        // Shift card title down if it gets split on several lines.
+        $(window).bind('resize', function (e) {
+          $(".bird-card-caption", self).each(function () {
+            var $caption = $(this);
+            var $header = $(this).find('h4');
+            if ($header.height() > parseInt($header.css('line-height')) + 2) {
+              $caption.addClass('bird-card-caption-long');
+            }
+            else {
+              $caption.removeClass('bird-card-caption-long');
+            }
+          });
+        });
+      });
+    }
+  };
+
+  /**
+   * Bind camera icon to clearing thumbs.
+   */
+  Drupal.behaviors.npClearingFix = {
+    attach: function(context, settings) {
+      if (typeof Foundation === 'undefined') {
+        return;
+      }
+      $(document).foundation({
+        clearing: {
+          close_selectors: '.clearing-close, div.clearing-blackout, div.visible-img, img'
+        }
+      });
+      $('a.clearing-attach').once('np-clearing-fix', function () {
+        var $self = $(this);
+        $self.bind('click', function() {
+          $self.parent().find('[data-clearing] a').trigger('click');
+          return false;
+        });
+      });
+    }
+  };
+
+  /**
+   * Content search on native plants page.
+   */
+  Drupal.behaviors.contentSearch = {
+    attach: function(context, settings) {
+      var $buttonWrapper = $('.js-native-plants-search-button'),
+        $open = $buttonWrapper.find('.js-open'),
+        $close = $buttonWrapper.find('.js-close'),
+        $form = $buttonWrapper.next('.js-search-collapsible');
+
+      $open.on('click', function (){
+        $form.removeClass('collapsed');
+        $buttonWrapper.removeClass('collapsed');
+      });
+
+      $close.on('click', function (){
+        $form.addClass('collapsed');
+        $buttonWrapper.delay(500).queue(function(){
+          $(this).addClass('collapsed').dequeue();
+        });
+      });
+    }
+  };
+
 })(jQuery);

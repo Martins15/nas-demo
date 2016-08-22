@@ -127,13 +127,6 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Full results', 'native_plants_search_pane');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: View area */
-  $handler->display->display_options['header']['view']['id'] = 'view';
-  $handler->display->display_options['header']['view']['table'] = 'views';
-  $handler->display->display_options['header']['view']['field'] = 'view';
-  $handler->display->display_options['header']['view']['label'] = 'Tier 1 results';
-  $handler->display->display_options['header']['view']['view_to_insert'] = 'native_plants_search:native_plants_search_pane_tier1';
-  $handler->display->display_options['header']['view']['inherit_arguments'] = TRUE;
   $handler->display->display_options['inherit_panels_path'] = '1';
 
   /* Display: Tier 1 results */
@@ -167,8 +160,8 @@ function nas_native_plants_search_page_feature_views_default_views() {
     t('Taxonomy'),
     t('CommonName'),
     t('Full results'),
-    t('Tier 1 results'),
     t('View panes'),
+    t('Tier 1 results'),
     t('Native Plants Search Tier 1'),
   );
   $export['native_plants_search'] = $view;

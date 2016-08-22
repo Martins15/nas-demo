@@ -1,24 +1,30 @@
 <?php
 /**
  * @file
- * Native Plants ZIP code form plugin.
+ * Native Plants initial form plugin.
  */
 
 $plugin = array(
-  'title' => t('Native Plants ZIP code form'),
-  'description' => t('Native Plants form get ZIP code for community resources search.'),
+  'title' => t('Native Plants pledge form'),
+  'description' => t('Native Plants pledge form.'),
   'category' => 'Native Plants',
-  'admin info' => 'native_plants_zipcode_form_admin_info',
-  'edit form' => 'native_plants_zipcode_form_edit_form',
-  'render callback' => 'native_plants_zipcode_form_render',
-  'hook theme' => 'native_plants_zipcode_form_theme',
+  'admin info' => 'native_plants_pledge_form_admin_info',
+  'edit form' => 'native_plants_pledge_form_edit_form',
+  'render callback' => 'native_plants_pledge_form_render',
+  'hook theme' => 'native_plants_pledge_form_theme',
   'no title override' => TRUE,
   'defaults' => array(
-    'title_desktop' => 'Enter your ZIP code below to find native plant resources near you:',
-    'title_mobile' => 'Search the database',
-    'zipcode_placeholder' => 'US ZIP code',
-    'zipcode_default_value' => '',
-    'button_text' => 'Search',
+    'title_desktop' => 'How many plants will you put in the ground?',
+    'title_mobile' => 'How many plants will you put in the ground?',
+    'quantity_placeholder' => 'How Many?',
+    'zipcode_placeholder' => 'U.S. ZIP code',
+    'email_placeholder' => 'Email Address',
+    'button_text' => 'OK',
+    'description' => array(
+      'value' => "<p>Provide your email address to join Audubon's network of supporters protecting birds around the world.
+        You'll receive a customized shopping list of the native plants you choose.</p>",
+      'format' => 'full_html',
+    ),
   ),
   'all contexts' => TRUE,
 );
@@ -26,17 +32,17 @@ $plugin = array(
 /**
  * Administrative info callback.
  */
-function native_plants_zipcode_form_admin_info($subtype, $conf, $context = NULL) {
+function native_plants_pledge_form_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = t('Native Plants ZIP code form');
-  $block->content = $conf['button_text'];
+  $block->title = $conf['title_desktop'];
+  $block->content = check_markup($conf['description']['value'], $conf['description']['format']);
   return $block;
 }
 
 /**
  * Configuration form.
  */
-function native_plants_zipcode_form_edit_form($form, &$form_state) {
+function native_plants_pledge_form_edit_form($form, &$form_state) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
@@ -51,16 +57,22 @@ function native_plants_zipcode_form_edit_form($form, &$form_state) {
     '#title' => t('Mobile title'),
     '#default_value' => $conf['title_mobile'],
   );
+  $form['quantity_placeholder'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Quantity placeholder'),
+    '#default_value' => $conf['quantity_placeholder'],
+    '#size' => 100,
+  );
   $form['zipcode_placeholder'] = array(
     '#type' => 'textfield',
     '#title' => t('ZIP code placeholder'),
     '#default_value' => $conf['zipcode_placeholder'],
     '#size' => 100,
   );
-  $form['zipcode_default_value'] = array(
+  $form['email_placeholder'] = array(
     '#type' => 'textfield',
-    '#title' => t('ZIP code default value'),
-    '#default_value' => $conf['zipcode_default_value'],
+    '#title' => t('Email address placeholder'),
+    '#default_value' => $conf['email_placeholder'],
     '#size' => 100,
   );
   $form['button_text'] = array(
@@ -69,6 +81,12 @@ function native_plants_zipcode_form_edit_form($form, &$form_state) {
     '#default_value' => $conf['button_text'],
     '#size' => 100,
   );
+  $form['description'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Description'),
+    '#default_value' => $conf['description']['value'],
+    '#format' => $conf['description']['format'],
+  );
 
   return $form;
 }
@@ -76,7 +94,7 @@ function native_plants_zipcode_form_edit_form($form, &$form_state) {
 /**
  * Submit handler for configuration.
  */
-function native_plants_zipcode_form_edit_form_submit(&$form, &$form_state) {
+function native_plants_pledge_form_edit_form_submit(&$form, &$form_state) {
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     if (array_key_exists($key, $form_state['values'])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -90,7 +108,7 @@ function native_plants_zipcode_form_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_zipcode_form_render($subtype, $conf, $args, $contexts) {
+function native_plants_pledge_form_render($subtype, $conf, $args, $contexts) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
@@ -99,15 +117,15 @@ function native_plants_zipcode_form_render($subtype, $conf, $args, $contexts) {
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
-  $conf['zipcode_default_value'] = ctools_context_keyword_substitute($conf['zipcode_default_value'], array(), $contexts);
-  $form = drupal_get_form('nas_master_native_plants_zipcode_form', $conf);
+  $form = drupal_get_form('nas_master_native_plants_pledge_form', $conf);
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();
   $block->content = array(
-    '#theme' => 'native_plants_zipcode_form',
+    '#theme' => 'native_plants_pledge_form',
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
+    '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
     '#form' => $rendered_form,
     '#context_links' => $contextual_links,
   );
@@ -118,15 +136,16 @@ function native_plants_zipcode_form_render($subtype, $conf, $args, $contexts) {
 /**
  * Delegated implementation of hook_theme().
  */
-function native_plants_zipcode_form_theme(&$theme, $plugin) {
-  $theme['native_plants_zipcode_form'] = array(
+function native_plants_pledge_form_theme(&$theme, $plugin) {
+  $theme['native_plants_pledge_form'] = array(
     'variables' => array(
       'title_desktop' => '',
       'title_mobile' => '',
+      'description' => '',
       'form' => '',
       'context_links' => '',
     ),
-    'template' => 'native-plants-zipcode-form',
+    'template' => 'native-plants-pledge-form',
     'path' => $plugin['path'],
   );
 }

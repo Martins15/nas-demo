@@ -19,7 +19,7 @@ $plugin = array(
       'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these nurseries.</p>',
       'format' => 'full_html',
     ),
-    'zipcode' => '33556',
+    'zipcode' => '',
   ),
   'all contexts' => TRUE,
 );
@@ -78,6 +78,10 @@ function native_plants_nurseries_near_you_edit_form_submit(&$form, &$form_state)
 function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
+  if (empty($conf['zipcode'])) {
+    $query_params = drupal_get_query_parameters();
+    $conf['zipcode'] = $query_params['zipcode'];
+  }
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   ctools_include('plugins');
   $geometry = array();
@@ -137,4 +141,17 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
     'template' => 'native-plants-nurseries-near-you',
     'path' => $plugin['path'],
   );
+}
+
+/**
+ * Preprocess function.
+ */
+function nas_panes_preprocess_native_plants_nurseries_near_you(&$variables) {
+  foreach ($variables['nurseries'] as &$res) {
+    $res['address']['rendered'] = '';
+    $res['address']['rendered'] .= $res['address']['thoroughfare'] ? $res['address']['thoroughfare'] . '<br/>' : '';
+    $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
+    $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
+    $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
+  }
 }
