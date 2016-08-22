@@ -136,21 +136,21 @@
   /**
    * Content search on native plants page.
    */
-  Drupal.behaviors.contentSearch = {
+  Drupal.behaviors.nas_master_native_plants_contentSearch = {
     attach: function(context, settings) {
       var $buttonWrapper = $('.js-native-plants-search-button'),
         $open = $buttonWrapper.find('.js-open'),
         $close = $buttonWrapper.find('.js-close'),
         $form = $buttonWrapper.next('.js-search-collapsible');
 
-      $open.on('click', function (){
+      $open.on('click', function () {
         $form.removeClass('collapsed');
         $buttonWrapper.removeClass('collapsed');
       });
 
-      $close.on('click', function (){
+      $close.on('click', function () {
         $form.addClass('collapsed');
-        $buttonWrapper.delay(500).queue(function(){
+        $buttonWrapper.delay(500).queue(function() {
           $(this).addClass('collapsed').dequeue();
         });
       });
