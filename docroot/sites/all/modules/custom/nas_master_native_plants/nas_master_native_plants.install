@@ -40,9 +40,16 @@ function nas_master_native_plants_update_7004() {
 }
 
 /**
- * Update for Native Plants 2.0.
+ *  * Set default ZIP to FIPS variable state.
  */
 function nas_master_native_plants_update_7005() {
+  variable_set('nas_master_native_plants_zip_fips', 1);
+}
+
+/**
+ * Update for Native Plants 2.0.
+ */
+function nas_master_native_plants_update_7006() {
   features_revert(array(
     'nas_site_template_feature' => array(
       'page_manager_handlers',
