@@ -302,6 +302,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       ),
       'placeholder' => t(filter_xss($conf['quantity_placeholder'])),
     ),
+    '#required' => TRUE,
     '#element_validate' => array('element_validate_integer_positive'),
     '#prefix' => '<div class="row"><div class="columns medium-10"><div class="row"><div class="columns medium-6">',
     '#suffix' => '</div>',
@@ -331,6 +332,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
     ),
+    '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
     '#prefix' => '<div class="row"><div class="columns medium-10">',
     '#suffix' => '</div>',
@@ -353,6 +355,10 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     '#prefix' => '<div class="columns medium-10 large-2">',
     '#suffix' => '</div></div>',
   );
+  $form['redirect'] = array(
+    '#type' => 'value',
+    '#value' => $conf['redirect'],
+  );
 
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
@@ -372,7 +378,7 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
   ctools_include('ajax');
   ctools_add_js('ajax-responder');
   $commands = array();
-  $commands[] = ctools_ajax_command_redirect($form_state['redirect'][0], 0, $form_state['redirect'][1]);
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
@@ -384,12 +390,5 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
  */
 function nas_master_native_plants_pledge_form_submit($form, &$form_state) {
   // Redirect to main Native Plants search by ZIP code page.
-  $form_state['redirect'] = array(
-    'native-plants-search',
-    array(
-      'query' => array(
-        'zipcode' => $form_state['values']['zipcode'],
-      ),
-    ),
-  );
+  $form_state['redirect'] = $form_state['values']['redirect'];
 }

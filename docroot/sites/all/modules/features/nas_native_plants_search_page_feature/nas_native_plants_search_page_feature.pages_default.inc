@@ -664,7 +664,8 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
 ',
         'format' => 'full_html',
       ),
-      'form_build_id' => 'form-LGIvfeIxnLADh3bS6wNNePsc_jR18ZKbFgNnbWsvSDc',
+      'form_build_id' => 'form-Cp2XDrLuwPVctJiEPQBTD0ZUiz46OirYNVesikdUVdg',
+      'redirect' => 'native-plants',
     );
     $pane->cache = array();
     $pane->style = array(

@@ -25,6 +25,7 @@ $plugin = array(
         You'll receive a customized shopping list of the native plants you choose.</p>",
       'format' => 'full_html',
     ),
+    'redirect' => 'native-plants',
   ),
   'all contexts' => TRUE,
 );
@@ -86,6 +87,12 @@ function native_plants_pledge_form_edit_form($form, &$form_state) {
     '#title' => t('Description'),
     '#default_value' => $conf['description']['value'],
     '#format' => $conf['description']['format'],
+  );
+  $form['redirect'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Redirect path or URL'),
+    '#default_value' => $conf['redirect'],
+    '#size' => 100,
   );
 
   return $form;
