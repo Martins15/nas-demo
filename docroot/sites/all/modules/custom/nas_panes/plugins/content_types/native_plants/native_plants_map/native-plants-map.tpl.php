@@ -18,8 +18,4 @@
       <?php print $map; ?>
     </div>
   </div>
-
-  <div class="add-other-nurseries row column vertical-spacing--top--half">
-    <a href="#">Have a nursery we should included in our directory? Let us know.</a>
-  </div>
 </div>
