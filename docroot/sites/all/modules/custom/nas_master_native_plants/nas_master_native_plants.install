@@ -44,6 +44,9 @@ function nas_master_native_plants_update_7004() {
  */
 function nas_master_native_plants_update_7005() {
   features_revert(array(
+    'nas_site_template_feature' => array(
+      'page_manager_handlers',
+    ),
     'nas_native_plants_search_page_feature' => array(
       'page_manager_pages',
       'views_view',
