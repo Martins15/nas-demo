@@ -189,6 +189,10 @@ function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
  * Form building callback for Native Plants initial form.
  */
 function nas_master_native_plants_initial_form($form, &$form_state, $conf = array()) {
+  if (isset($conf['form_theme'])) {
+    $form['#theme'] = $conf['form_theme'];
+  }
+
   $form['#attributes'] = array(
     'class' => array(
       'native-plants-search-form',
@@ -280,6 +284,10 @@ function nas_master_native_plants_initial_form_submit($form, &$form_state) {
  * Form building callback for Native Plants pledge form.
  */
 function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array()) {
+  if (isset($conf['form_theme'])) {
+    $form['#theme'] = $conf['form_theme'];
+  }
+
   $form['#attributes'] = array(
     'class' => array(
       'native-plants-connect-form',

@@ -162,8 +162,8 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
     $image_attribution = _nas_panes_format_image_attribution($image);
   }
 
+  $conf['form_theme'] = 'native_plants_initial_form';
   $form = drupal_get_form('nas_master_native_plants_initial_form', $conf);
-  $form['#theme'] = 'native_plants_initial_form';
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();

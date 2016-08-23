@@ -124,8 +124,8 @@ function native_plants_pledge_form_render($subtype, $conf, $args, $contexts) {
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
+  $conf['form_theme'] = 'native_plants_pledge_form';
   $form = drupal_get_form('nas_master_native_plants_pledge_form', $conf);
-  $form['#theme'] = 'native_plants_pledge_form';
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();

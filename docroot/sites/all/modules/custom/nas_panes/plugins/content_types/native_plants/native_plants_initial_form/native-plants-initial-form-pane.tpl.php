@@ -15,7 +15,9 @@
       <h1 class="native-plants-hero-title hero-title column hide-for-medium hide-for-small hide-for-tiny"><?php print $title_desktop; ?></h1>
       <h1 class="native-plants-hero-title hero-title column hide-for-large hide-for-xlarge"><?php print $title_mobile; ?></h1>
       <!-- search form-->
-      <?php print $form; ?>
+      <div class="columns">
+        <?php print $form; ?>
+      </div>
       <!-- /search form-->
 
       <div class="native-plants-hero-text columns large-9 large-centered hide-for-medium hide-for-small hide-for-tiny">
