@@ -125,11 +125,12 @@ function native_plants_pledge_form_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $form = drupal_get_form('nas_master_native_plants_pledge_form', $conf);
+  $form['#theme'] = 'native_plants_pledge_form';
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();
   $block->content = array(
-    '#theme' => 'native_plants_pledge_form',
+    '#theme' => 'native_plants_pledge_form_pane',
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
@@ -144,7 +145,7 @@ function native_plants_pledge_form_render($subtype, $conf, $args, $contexts) {
  * Delegated implementation of hook_theme().
  */
 function native_plants_pledge_form_theme(&$theme, $plugin) {
-  $theme['native_plants_pledge_form'] = array(
+  $theme['native_plants_pledge_form_pane'] = array(
     'variables' => array(
       'title_desktop' => '',
       'title_mobile' => '',
@@ -152,6 +153,11 @@ function native_plants_pledge_form_theme(&$theme, $plugin) {
       'form' => '',
       'context_links' => '',
     ),
+    'template' => 'native-plants-pledge-form-pane',
+    'path' => $plugin['path'],
+  );
+  $theme['native_plants_pledge_form'] = array(
+    'render element' => 'form',
     'template' => 'native-plants-pledge-form',
     'path' => $plugin['path'],
   );

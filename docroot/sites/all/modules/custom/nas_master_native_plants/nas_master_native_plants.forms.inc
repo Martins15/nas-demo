@@ -298,8 +298,6 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     ),
     '#required' => TRUE,
     '#element_validate' => array('element_validate_integer_positive'),
-    '#prefix' => '<div class="row"><div class="columns medium-10"><div class="row"><div class="columns medium-6">',
-    '#suffix' => '</div>',
   );
   $form['zipcode'] = array(
     '#type' => 'textfield',
@@ -313,8 +311,6 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
-    '#prefix' => '<div class="columns medium-6">',
-    '#suffix' => '</div></div></div></div>',
   );
   $form['email'] = array(
     '#type' => 'textfield',
@@ -328,8 +324,6 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
-    '#prefix' => '<div class="row"><div class="columns medium-10">',
-    '#suffix' => '</div>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -346,8 +340,6 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       'callback' => '_nas_master_native_plants_pledge_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-pledge-form',
     ),
-    '#prefix' => '<div class="columns medium-10 large-2">',
-    '#suffix' => '</div></div>',
   );
   $form['redirect'] = array(
     '#type' => 'value',
