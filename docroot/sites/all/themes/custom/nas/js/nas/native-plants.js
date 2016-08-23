@@ -113,6 +113,9 @@
    */
   Drupal.behaviors.npClearingFix = {
     attach: function(context, settings) {
+      if (typeof Foundation === 'undefined') {
+        return;
+      }
       $(document).foundation({
         clearing: {
           close_selectors: '.clearing-close, div.clearing-blackout, div.visible-img, img'
