@@ -163,11 +163,12 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
   }
 
   $form = drupal_get_form('nas_master_native_plants_initial_form', $conf);
+  $form['#theme'] = 'native_plants_initial_form';
   $rendered_form = drupal_render($form);
 
   $block = new stdClass();
   $block->content = array(
-    '#theme' => 'native_plants_initial_form',
+    '#theme' => 'native_plants_initial_form_pane',
     '#title_desktop' => t(filter_xss($conf['title_desktop'])),
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
     '#image_path' => $image_path,
@@ -186,7 +187,7 @@ function native_plants_initial_form_render($subtype, $conf, $args, $contexts) {
  * Delegated implementation of hook_theme().
  */
 function native_plants_initial_form_theme(&$theme, $plugin) {
-  $theme['native_plants_initial_form'] = array(
+  $theme['native_plants_initial_form_pane'] = array(
     'variables' => array(
       'title_desktop' => '',
       'title_mobile' => '',
@@ -198,6 +199,11 @@ function native_plants_initial_form_theme(&$theme, $plugin) {
       'form' => '',
       'context_links' => '',
     ),
+    'template' => 'native-plants-initial-form-pane',
+    'path' => $plugin['path'],
+  );
+  $theme['native_plants_initial_form'] = array(
+    'render element' => 'form',
     'template' => 'native-plants-initial-form',
     'path' => $plugin['path'],
   );
@@ -206,7 +212,7 @@ function native_plants_initial_form_theme(&$theme, $plugin) {
 /**
  * Preprocess function.
  */
-function nas_panes_preprocess_native_plants_initial_form(&$variables) {
+function nas_panes_preprocess_native_plants_initial_form_pane(&$variables) {
   switch ($variables['color_scheme']) {
     case 'dark':
       $variables['classes_array'][] = 'light-text';

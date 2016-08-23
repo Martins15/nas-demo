@@ -205,8 +205,6 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
     ),
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
-    '#prefix' => '<div class="row"><div class="columns">',
-    '#suffix' => '</div></div>',
   );
   $form['zipcode'] = array(
     '#type' => 'textfield',
@@ -220,8 +218,6 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
-    '#prefix' => '<div class="row"><div class="columns medium-6">',
-    '#suffix' => '</div>',
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -238,8 +234,6 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
       'callback' => '_nas_master_native_plants_initial_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-initial-form',
     ),
-    '#prefix' => '<div class="columns medium-6">',
-    '#suffix' => '</div></div>',
   );
 
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
