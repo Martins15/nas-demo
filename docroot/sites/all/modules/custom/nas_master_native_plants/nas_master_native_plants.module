@@ -142,6 +142,10 @@ function nas_master_native_plants_theme($existing, $type, $theme, $path) {
       ),
       'template' => 'templates/nas-master-native-plants-mail-native-plants-list',
     ),
+    'nas_master_native_plants_views_exposed_form' => array(
+      'render element' => 'form',
+      'template' => 'templates/nas-master-native-plants-views-exposed-form',
+    ),
   );
 }
 
@@ -266,6 +270,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
 
   // Unset the form theme functions to remove unneeded wrappers.
   unset($form['#theme']);
+  $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
 
   $form['#prefix'] = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">
       <div class="native-plants-search-icon icon-magnifier open js-open"></div>
@@ -281,8 +286,6 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     ),
   );
 
-  $form['zipcode']['#prefix'] = '<div class="row"><div class="columns"><h2 class="thin hide-for-tiny hide-for-small">' . t('Search') . '</h2>';
-  // $form['zipcode']['#suffix'] = '</div>';
   $form['zipcode']['#attributes'] = array(
     'class' => array(
       'native-plants-search-form--zip-code',
@@ -303,8 +306,6 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
   $form['attribute']['#options']['All'] = t('All types of plants');
   $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
 
-  // $form['submit']['#prefix'] = '<div class="column medium-6">';
-  $form['submit']['#suffix'] = '</div></div>';
   $form['submit']['#attributes'] = array(
     'class' => array(
       'native-plants-search-form--submit',
