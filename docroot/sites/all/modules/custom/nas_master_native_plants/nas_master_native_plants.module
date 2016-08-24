@@ -584,7 +584,10 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
 
   // Add validation errors.
   if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend($selector, '<div class="row">' . $messages . '</div>');
+    $commands[] = ajax_command_prepend(
+      '#views-exposed-form-native-plants-search-native-plants-search-pane',
+      '<div class="row">' . $messages . '</div>'
+    );
   }
 
   // Refresh exposed form.

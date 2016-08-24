@@ -54,33 +54,16 @@
   // Click on the attribute filters the view.
   Drupal.behaviors.nas_master_native_plants_attributes = {};
   Drupal.behaviors.nas_master_native_plants_attributes.attach = function(context, settings) {
-    $('.native-plants-attribute', context).click(function(event) {
+    $('.native-plants-full-search-results .native-plants-attribute', context).click(function(event) {
       event.preventDefault();
       $('#edit-attribute').val($(this).data('tid'));
       $('#edit-submit-native-plants-search').click();
     });
-  };
-
-  // Hide Tier1 results description if there are no Tier1 results.
-  Drupal.behaviors.nas_master_native_plants_tier1 = {};
-  Drupal.behaviors.nas_master_native_plants_tier1.attach = function() {
-    if ($('.native-plants-search-results .view-row').length === 0) {
-      $('.try-these-first').hide();
-    }
-    else {
-      $('.try-these-first').show();
-    }
-  };
-
-  // Hide view if there is no ZIP code value.
-  Drupal.behaviors.nas_master_native_plants_hide_view = {};
-  Drupal.behaviors.nas_master_native_plants_hide_view.attach = function() {
-    if ($('.native-plants-search-form--zip-code').val() === '') {
-      $('.view-native-plants-search').children().not('.view-empty').hide();
-    }
-    else {
-      $('body').removeClass('page-native-plants-initial');
-    }
+    $('.native-plants-search-results .native-plants-attribute', context).click(function(event) {
+      event.preventDefault();
+      $('#edit-attribute-tier1').val($(this).data('tid'));
+      $('#edit-submit-native-plants-search-tier1').click();
+    });
   };
 
   /**
