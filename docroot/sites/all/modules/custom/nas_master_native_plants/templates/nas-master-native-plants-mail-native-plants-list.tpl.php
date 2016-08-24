@@ -41,11 +41,12 @@
       }
 
       h2 {
+        color: #404040;
         font-family: "Source Sans Pro", Verdana, sans-serif;
         font-size: 28px;
-        line-height: 31px;
         font-weight: 300;
-        color: #404040;
+        line-height: 31px;
+        margin: 24px 0 24px 0;
       }
 
       h3 {
@@ -96,7 +97,7 @@
           <table align="center" width="650" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td height="56" style="height:56px; vertical-align: middle;" valign="middle">
-                <h1 style="font-family: Verdana, sans-serif; font-size: 33px; font-weight: 300; color: #FFF; margin: 0;">
+                <h1 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 33px; font-weight: 300; color: #FFF; margin: 0;">
                   <a href="<?php print url($bar_link, array('absolute' => TRUE)); ?>" style="color: #FFF; text-decoration: none;"><?php print $bar_title; ?></a>
                 </h1>
               </td>
@@ -109,7 +110,7 @@
           <table align="center" width="650" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>
-                <h2 style="font-family: Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
+                <h2 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
                   <?php print $list_title; ?>
                 </h2>
                 <?php print $list_text_top; ?>
@@ -121,10 +122,10 @@
                       <span style="margin-right: 30px;line-height: 21px;" valign="middle"><?php print $list_share_label; ?></span>
                     </td>
                     <td>
-                      <a target="_blank" href="<?php print $twitter_url; ?>"><?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/twitter.png', 'width' => 21, 'height' => 21, 'attributes' => array('style' => 'padding-right: 10px;'))); ?></a>
+                      <a target="_blank" href="<?php print $twitter_url; ?>"><?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/twitter.png', 'width' => 21, 'height' => 21, 'attributes' => array('style' => 'padding-right: 10px; width: 21px; height: 21px;'))); ?></a>
                     </td>
                     <td>
-                      <a target="_blank" href="<?php print $facebook_url; ?>"><?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/twitter.png', 'width' => 21, 'height' => 21)); ?></a>
+                      <a target="_blank" href="<?php print $facebook_url; ?>"><?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/facebook.png', 'width' => 21, 'height' => 21, 'attributes' => array('style' => 'padding-right: 10px; width: 21px; height: 21px;'))); ?></a>
                     </td>
                   </tr>
                 </table>
@@ -157,7 +158,7 @@
             <tr>
               <td>
 
-                <h2 style="font-family: Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
+                <h2 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
                   <?php print $editorial_cards_title; ?>
                 </h2>
 
@@ -174,14 +175,24 @@
                     <td width="315" valign="top" style="border: 1px solid #d4d4d4; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);">
                       <div class="editorial-card-photo">
                         <a href="<?php print $card['url']; ?>" title="<?php print $card['title']; ?>">
-                          <?php print theme('image', array('path' => $card['image_url'], 'alt' => $card['title'], 'width' => 315, 'height' => 200)); ?>
+                          <?php print theme('image', array(
+                            'path' => $card['image_url'],
+                            'alt' => $card['title'],
+                            'width' => 315,
+                            'height' => 200,
+                            'attributes' => array(
+                              'width' => 315,
+                              'height' => 200,
+                              'style' => 'width: 315px; height: 200px;',
+                            ),
+                          )); ?>
                         </a>
                       </div>
                       <div style="font-size: 14px;line-height: 20px;padding: 12px; min-height: 140px;">
                         <?php if ($card['blue_text_link_url']): ?>
                         <a href="<?php print $card['blue_text_link_url']; ?>" style="font-family: 'Source Sans Pro', Verdana, sans-serif;"><?php print $card['blue_text_link_text']; ?></a>
                         <?php endif; ?>
-                        <h3 style="color: #262626; font-family: Verdana, sans-serif; font-size: 24px; font-weight: normal; line-height: 28px; margin: 0 0 10px 0;">
+                        <h3 style="color: #262626; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 24px; font-weight: normal; line-height: 28px; margin: 0 0 10px 0;">
                           <a href="<?php print $card['url']; ?>" style="color: #262626; text-decoration: none;">
                             <?php print $card['title']; ?>
                           </a>
@@ -194,7 +205,7 @@
                   </tr>
                   <tr  border="0" style="border: none;">
                     <td colspan="3" border="0" style="border: 0;">
-                      <?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/transparent.gif', 'alt' => '', 'height' => 70)); ?>
+                      <?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/transparent.gif', 'alt' => '', 'height' => 70, 'attributes' => array('style' => 'height: 70px;', 'height' => '70'))); ?>
                     </td>
                   </tr>
                 </table>
