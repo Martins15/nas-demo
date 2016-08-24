@@ -359,7 +359,8 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
         $ret[$result_key]->Tier1 = TRUE;
         $view->result_tier1[] = $ret[$result_key];
-        unset($ret[$result_key]);
+        // Remove Tier 1 results from all results.
+        // unset($ret[$result_key]);
       }
     }
 
