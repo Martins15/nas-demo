@@ -72,6 +72,10 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     // Get rows.
     $ret = $this->apath($this->options['row_apath'], $ret);
+
+    // MODIFICATIONS: Add local data to the results.
+    $this->add_local_data($ret, $view);
+
     nasnp_views_json_query_results_unfiltered($ret);
 
     // Filter.
@@ -113,9 +117,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         unset($ret[$k]);
       }
     }
-
-    // MODIFICATIONS: Add local data to the results.
-    $this->add_local_data($ret, $view);
 
     try {
       if ($this->pager->use_count_query() || !empty($view->get_total_rows)) {

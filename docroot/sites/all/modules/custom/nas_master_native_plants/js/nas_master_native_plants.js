@@ -4,10 +4,12 @@
     // Remove the clones.
     $('#edit-attribute-clone').remove();
     $('#edit-bird-type-clone').remove();
+    $('#edit-attribute-tier1-clone').remove();
+    $('#edit-bird-type-tier1-clone').remove();
 
     // We can't use context here as pager links do not update the exposed form in block.
-    var $attributes = $('#edit-attribute'),
-      $bird_types = $('#edit-bird-type');
+    var $attributes = $('#edit-attribute'), $bird_types = $('#edit-bird-type'),
+      $attributes_tier1 = $('#edit-attribute-tier1'), $bird_types_tier1 = $('#edit-bird-type-tier1');
     if ($attributes.length === 0) {
       return;
     }
@@ -21,6 +23,14 @@
       .attr({'id': $bird_types.attr('id') + '-clone', 'name': $bird_types.attr('name') + '-clone'})
       .val($bird_types.val())
       .appendTo('.inner-filters-wrapper').show();
+    var $attributes_tier1_clone = $attributes_tier1.clone()
+      .attr({'id': $attributes_tier1.attr('id') + '-clone', 'name': $attributes_tier1.attr('name') + '-clone'})
+      .val($attributes_tier1.val())
+      .appendTo('.inner-filters-wrapper-tier1').show();
+    var $bird_types_tier1_clone = $bird_types_tier1.clone()
+      .attr({'id': $bird_types_tier1.attr('id') + '-clone', 'name': $bird_types_tier1.attr('name') + '-clone'})
+      .val($bird_types_tier1.val())
+      .appendTo('.inner-filters-wrapper-tier1').show();
 
     // Update the source select values upon changes on the clones and submit the form.
     $attributes_clone.change(function() {
@@ -30,6 +40,14 @@
     $bird_types_clone.change(function() {
       $bird_types.val($bird_types_clone.val());
       $('#edit-submit-native-plants-search').click();
+    });
+    $attributes_tier1_clone.change(function() {
+      $attributes_tier1.val($attributes_tier1_clone.val());
+      $('#edit-submit-native-plants-search-tier1').click();
+    });
+    $bird_types_tier1_clone.change(function() {
+      $bird_types_tier1.val($bird_types_tier1_clone.val());
+      $('#edit-submit-native-plants-search-tier1').click();
     });
   };
 

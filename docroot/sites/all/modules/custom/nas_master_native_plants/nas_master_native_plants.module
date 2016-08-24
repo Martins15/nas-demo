@@ -268,52 +268,71 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     return;
   }
 
-  // Unset the form theme functions to remove unneeded wrappers.
-  unset($form['#theme']);
-  $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
+  switch ($form_state['view']->current_display) {
+    case 'native_plants_search_pane':
+      $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
 
-  $form['#prefix'] = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">
+      $form['#prefix'] = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">
       <div class="native-plants-search-icon icon-magnifier open js-open"></div>
       <div class="native-plants-search-icon icon-delete close js-close"></div>
     </div>';
 
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form',
-      'native-plants-search-form-inline',
-      'js-search-collapsible',
-      'collapsed',
-    ),
-  );
+      $form['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form',
+          'native-plants-search-form-inline',
+          'js-search-collapsible',
+          'collapsed',
+        ),
+      );
 
-  $form['zipcode']['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form--zip-code',
-    ),
-    'placeholder' => t('U.S. ZIP code'),
-  );
-  $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
+      $form['zipcode']['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form--zip-code',
+        ),
+        'placeholder' => t('U.S. ZIP code'),
+      );
+
+      $form['zipcode']['#element_validate'] = array(
+        'nas_master_native_plants_element_validate_zipcode_global',
+        'nas_master_native_plants_element_validate_zipcode_us',
+      );
+
+      $form['attribute']['#options']['All'] = t('All types of plants');
+      $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
+
+      $form['submit']['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form--submit',
+          'button',
+          'tomato',
+          'large',
+        ),
+      );
+
+      break;
+
+    case 'native_plants_search_pane_tier1':
+      $form['#attributes'] = array(
+        'style' => array(
+          'display: none;',
+        ),
+      );
+      $form['zipcode']['#element_validate'] = array(
+        'nas_master_native_plants_element_validate_zipcode_global',
+      );
+
+      $form['attribute_tier1']['#options']['All'] = t('All types of plants');
+      $form['bird_type_tier1']['#options']['All'] = t('Attracts: Any type of bird');
+
+      $form['submit']['#id'] = 'edit-submit-native-plants-search-tier1';
+
+      break;
+  }
+
   if (variable_get('nas_master_native_plants_zip_fips', 0)) {
     $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
   }
-
-  $form['attribute']['#attributes'] = array(
-    'style' => 'display: none;',
-  );
-  $form['bird_type']['#attributes'] = array(
-    'style' => 'display: none;',
-  );
-  $form['attribute']['#options']['All'] = t('All types of plants');
-  $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
-
-  $form['submit']['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form--submit',
-      'button',
-      'tomato',
-      'large',
-    ),
-  );
 
   // Remove filter values that will produce no results with already set other filters.
   if (!$results_unfiltered = nasnp_views_json_query_results_unfiltered()) {
@@ -384,12 +403,17 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
 }
 
 /**
+ * Helper function to set ZIP code as global variable.
+ */
+function nas_master_native_plants_element_validate_zipcode_global($element, &$form_state) {
+  global $native_plants_zipcode;
+  $native_plants_zipcode = $element['#value'];
+}
+
+/**
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
-  global $native_plants_zipcode;
-  $native_plants_zipcode = $element['#value'];
-
   if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
     return;
   }
