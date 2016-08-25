@@ -86,6 +86,36 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
   }
 
   // Remove Canada states.
+  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_remove_canada_states($states);
+
+  // Assign all states if no states selected yet.
+  if (!$states['#default_value']) {
+    foreach (array_keys($states['#options']) as $tid) {
+      $states['#default_value'][] = $tid;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_nursery_node_form_alter(&$form, &$form_state, $form_id) {
+  // Remove Canada states.
+  $states = &$form['field_nursery_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_remove_canada_states($states);
+
+  // Show states checkboxes only if Nursery is online one.
+  $states['#states'] = array(
+    'visible' => array(
+      'input[name^="field_nursery_online"]' => array(
+        'checked' => TRUE,
+      ),
+    ),
+  );
+}
+
+function _nas_master_native_plants_remove_canada_states(&$states) {
   $canada_states = array(
     'Ontario',
     'Quebec',
@@ -101,17 +131,9 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
     'Yukon',
     'Nunavut',
   );
-  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
   foreach ($states['#options'] as $tid => $name) {
     if (in_array($name, $canada_states)) {
       unset($states['#options'][$tid]);
-    }
-  }
-
-  // Assign all states if no states selected yet.
-  if (!$states['#default_value']) {
-    foreach (array_keys($states['#options']) as $tid) {
-      $states['#default_value'][] = $tid;
     }
   }
 }
