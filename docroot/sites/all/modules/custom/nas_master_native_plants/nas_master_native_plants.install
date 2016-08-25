@@ -68,5 +68,9 @@ function nas_master_native_plants_update_7006() {
       'field_instance',
       'variable',
     ),
+    'nas_nursery_import_feature' => array(
+      'feeds_importer',
+      'feeds_tamper',
+    ),
   ));
 }
