@@ -58,5 +58,15 @@ function nas_master_native_plants_update_7006() {
       'page_manager_pages',
       'views_view',
     ),
+    'nas_nursery_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
   ));
 }
