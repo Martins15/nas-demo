@@ -141,6 +141,68 @@ function nas_native_plants_search_page_feature_views_default_views() {
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['pager']['options']['tags']['previous'] = 'Previous page';
   $handler->display->display_options['pager']['options']['tags']['next'] = 'Next page';
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: zipcode: Value */
+  $handler->display->display_options['filters']['value']['id'] = 'value';
+  $handler->display->display_options['filters']['value']['table'] = 'nasnp_json';
+  $handler->display->display_options['filters']['value']['field'] = 'value';
+  $handler->display->display_options['filters']['value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['value']['expose']['operator_id'] = 'value_op';
+  $handler->display->display_options['filters']['value']['expose']['operator'] = 'value_op';
+  $handler->display->display_options['filters']['value']['expose']['identifier'] = 'zipcode';
+  $handler->display->display_options['filters']['value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    21 => 0,
+    26 => 0,
+    31 => 0,
+  );
+  $handler->display->display_options['filters']['value']['key'] = 'zipcode';
+  /* Filter criterion: Attributes */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['relationship'] = 'value';
+  $handler->display->display_options['filters']['tid']['ui_name'] = 'Attributes';
+  $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'attribute_tier1';
+  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    31 => 0,
+  );
+  $handler->display->display_options['filters']['tid']['type'] = 'select';
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'native_plant_attributes';
+  /* Filter criterion: Bird types */
+  $handler->display->display_options['filters']['tid_1']['id'] = 'tid_1';
+  $handler->display->display_options['filters']['tid_1']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['tid_1']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid_1']['relationship'] = 'value';
+  $handler->display->display_options['filters']['tid_1']['ui_name'] = 'Bird types';
+  $handler->display->display_options['filters']['tid_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid_1']['expose']['operator_id'] = 'tid_1_op';
+  $handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
+  $handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'bird_type_tier1';
+  $handler->display->display_options['filters']['tid_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    6 => 0,
+    16 => 0,
+    31 => 0,
+  );
+  $handler->display->display_options['filters']['tid_1']['type'] = 'select';
+  $handler->display->display_options['filters']['tid_1']['vocabulary'] = 'native_plant_bird_types';
   $translatables['native_plants_search'] = array(
     t('Master'),
     t('Native Plants Search'),

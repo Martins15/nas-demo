@@ -254,6 +254,30 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $display->content['new-d28be64d-4477-444d-8ac6-c26fad61e4d3'] = $pane;
     $display->panels['main'][0] = 'new-d28be64d-4477-444d-8ac6-c26fad61e4d3';
     $pane = new stdClass();
+    $pane->pid = 'new-00b56ccf-b989-4819-889b-a1b1a10e5f07';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'views-41895ca1091fe175dd5cb341812d4368';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '00b56ccf-b989-4819-889b-a1b1a10e5f07';
+    $display->content['new-00b56ccf-b989-4819-889b-a1b1a10e5f07'] = $pane;
+    $display->panels['main'][1] = 'new-00b56ccf-b989-4819-889b-a1b1a10e5f07';
+    $pane = new stdClass();
     $pane->pid = 'new-710eaee6-53c7-406a-9460-22f800b67fbc';
     $pane->panel = 'main';
     $pane->type = 'native_plants_you_near_audubon';
@@ -275,11 +299,11 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '710eaee6-53c7-406a-9460-22f800b67fbc';
     $display->content['new-710eaee6-53c7-406a-9460-22f800b67fbc'] = $pane;
-    $display->panels['main'][1] = 'new-710eaee6-53c7-406a-9460-22f800b67fbc';
+    $display->panels['main'][2] = 'new-710eaee6-53c7-406a-9460-22f800b67fbc';
     $pane = new stdClass();
     $pane->pid = 'new-daa05fab-333e-44d2-b9b7-af497a2bcc9f';
     $pane->panel = 'tab1';
