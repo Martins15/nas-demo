@@ -115,6 +115,9 @@ function nas_master_native_plants_form_nursery_node_form_alter(&$form, &$form_st
   );
 }
 
+/**
+ * Helper function to remove Canada states.
+ */
 function _nas_master_native_plants_remove_canada_states(&$states) {
   $canada_states = array(
     'Ontario',
@@ -778,6 +781,9 @@ function nas_master_native_plants_eck_property_type_schema_alter(&$schema, $type
 function nas_master_native_plants_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'geocoder' && $plugin_type == 'geocoder_handler') {
     return 'plugins/' . $plugin_type;
+  }
+  if ($owner == 'feeds_tamper' && $plugin_type == 'plugins') {
+    return 'plugins/feeds_tamper';
   }
 }
 
