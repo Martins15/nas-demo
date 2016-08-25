@@ -129,6 +129,16 @@ function native_plants_you_near_audubon_render($subtype, $conf, $args, $contexts
     '#context_links' => $contextual_links,
   );
 
+  if (!$plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    return $block;
+  }
+
+  $block->content['#attached'] = array(
+    'js' => array(
+      $plugin['path'] . '/js/native_plants_you_near_audubon.js',
+    ),
+  );
+
   return $block;
 }
 
