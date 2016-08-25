@@ -15,6 +15,7 @@ include_once 'theme/pager.inc';
  */
 function nas_preprocess_html(&$variables) {
   $variables['jquery'] = &drupal_static('nas_jquery');
+  drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.9.1/jquery.scrolldepth.min.js', 'external');
 }
 
 /**
@@ -1191,7 +1192,7 @@ function nas_image($variables) {
       $attributes['src'] = file_create_url($variables['path']);
     }
 
-    foreach (array('width', 'height', 'alt', 'title') as $key) {
+    foreach (array('width', 'height', 'alt', 'title', 'style') as $key) {
       if (isset($variables[$key])) {
         $attributes[$key] = $variables[$key];
       }
