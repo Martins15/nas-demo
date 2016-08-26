@@ -35,7 +35,7 @@ function sc_editorial_card_2x_plus_admin_title($subtype, $conf, $context = NULL)
 function sc_editorial_card_2x_edit_form($form, &$form_state) {
   $conf = $form_state['conf']['config'];
   ctools_form_include($form_state, 'content');
-  ctools_form_include($form_state, 'sc_editorial_card_2x', 'nas_panes', 'plugins/content_types/sc_editorial_card_2x');
+  ctools_form_include($form_state, 'sc_editorial_card_2x', 'nas_panes', 'plugins/content_types/state_center/sc_editorial_card_2x');
   $form['#tree'] = TRUE;
 
   for ($i = 0; $i < 2; $i++) {
