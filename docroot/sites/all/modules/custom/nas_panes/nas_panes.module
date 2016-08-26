@@ -2102,6 +2102,18 @@ function _nas_panes_hide_pane_title_field(&$form) {
 }
 
 /**
+ * Hide title field for panes migated from S&C.
+ */
+function _nas_sc_panes_hide_pane_title_field(&$form) {
+  unset($form['aligner_start']);
+  unset($form['override_title']);
+  unset($form['override_title_heading']);
+  unset($form['override_title_text']);
+  unset($form['aligner_stop']);
+  unset($form['override_title_markup']);
+}
+
+/**
  * Returns options for menu section.
  * @deprecated
  * @see _nas_panes_get_taxonomy_options()
