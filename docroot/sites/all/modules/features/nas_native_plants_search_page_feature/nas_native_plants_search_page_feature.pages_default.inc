@@ -656,7 +656,9 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'title_desktop' => 'Tell your friends',
       'title_mobile' => 'Tell your friends',
       'text' => 'Join me in planting bird-friendly native plants as part of Audubon\'s Plants For Birds program...',
-      'form_build_id' => 'form-lZZw4HtsTQUfm_E0w7Mn-jy4R7X64TihdMEo_G2MHf8',
+      'form_build_id' => 'form-XX_--42e8s28bnwGrGVX59lvFkvIe_GvdndCUV39Dl0',
+      'share_text' => 'Join me in planting bird-friendly native plants as part of Audubon\'s Plants For Birds program...',
+      'share_url' => 'native-plants',
     );
     $pane->cache = array();
     $pane->style = array(
