@@ -10,6 +10,7 @@ $plugin = array(
   'title' => t('Editorial card (2x)'),
   'description' => t('Provides "Editorial card (2x)" pane'),
   'category' => 'S&C Panes',
+  'no title override' => TRUE,
   'edit form' => 'sc_editorial_card_2x_edit_form',
   'render callback' => 'sc_editorial_card_2x_render',
   'admin title' => 'sc_editorial_card_2x_plus_admin_title',
@@ -35,7 +36,6 @@ function sc_editorial_card_2x_edit_form($form, &$form_state) {
   $conf = $form_state['conf']['config'];
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'sc_editorial_card_2x', 'nas_panes', 'plugins/content_types/sc_editorial_card_2x');
-  _nas_sc_panes_hide_pane_title_field($form);
   $form['#tree'] = TRUE;
 
   for ($i = 0; $i < 2; $i++) {
