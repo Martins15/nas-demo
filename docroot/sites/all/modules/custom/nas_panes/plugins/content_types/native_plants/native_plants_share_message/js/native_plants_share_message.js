@@ -5,12 +5,12 @@
       $textarea = $socials.find('textarea'),
       $twitter_link = $socials.find('a.social-sharing-icon.twitter'),
       twitter_url = settings.native_plants_share_message.twitter_url
-        .replace('share_text_placeholder', $textarea.val());
+        .replace('share_text_placeholder', encodeURIComponent($textarea.val()));
     $twitter_link.attr('href', twitter_url);
 
     $textarea.on('change', function() {
       var twitter_url = settings.native_plants_share_message.twitter_url
-        .replace('share_text_placeholder', $textarea.val());
+        .replace('share_text_placeholder', encodeURIComponent($textarea.val()));
       $twitter_link.attr('href', twitter_url);
     });
   };

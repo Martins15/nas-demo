@@ -85,6 +85,13 @@ function native_plants_share_message_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $share_url = url($conf['share_url'], array('absolute' => TRUE));
+  $twitter_url = url('http://twitter.com/share', array(
+    'query' => array(
+      'text' => 'share_text_placeholder',
+      'via' => 'audubonsociety',
+      'url' => $share_url,
+    ),
+  ));
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_share_message',
@@ -92,13 +99,7 @@ function native_plants_share_message_render($subtype, $conf, $args, $contexts) {
     '#title_mobile' => t(filter_xss($conf['title_mobile'])),
     '#share_text' => $conf['share_text'],
     '#share_url' => $share_url,
-    '#twitter_url' => url('http://twitter.com/share', array(
-      'query' => array(
-        'text' => $conf['share_text'],
-        'via' => 'audubonsociety',
-        'url' => $share_url,
-      ),
-    )),
+    '#twitter_url' => $twitter_url,
     '#context_links' => $contextual_links,
   );
 
@@ -112,13 +113,7 @@ function native_plants_share_message_render($subtype, $conf, $args, $contexts) {
       array(
         'data' => array(
           'native_plants_share_message' => array(
-            'twitter_url' => url('http://twitter.com/share', array(
-              'query' => array(
-                'text' => 'share_text_placeholder',
-                'via' => 'audubonsociety',
-                'url' => $share_url,
-              ),
-            )),
+            'twitter_url' => $twitter_url,
           ),
         ),
         'type' => 'setting',
