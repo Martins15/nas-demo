@@ -12,11 +12,11 @@
       <h1 class="hide-for-large hide-for-xlarge"><?php print $title_mobile; ?></h1>
     </div>
     <div class="column medium-6">
-      <textarea cols="30" rows="2"><?php print $text; ?></textarea>
+      <textarea cols="30" rows="2"><?php print $share_text; ?></textarea>
     </div>
     <div class="column medium-6 social-sharing-block">
-      <a class="social-sharing-icon blue small" target="_blank" href="#"><i class="icon-facebook"></i></a>
-      <a class="social-sharing-icon blue small" target="_blank" href="#"><i class="icon-twitter"></i></a>
+      <a class="social-sharing-icon blue small facebook" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $share_url; ?>"><i class="icon-facebook"></i></a>
+      <a class="social-sharing-icon blue small twitter" target="_blank" href="<?php print $twitter_url; ?>"><i class="icon-twitter"></i></a>
     </div>
   </div>
 </div>
