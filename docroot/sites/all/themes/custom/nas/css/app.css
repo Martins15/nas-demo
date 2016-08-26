@@ -14881,6 +14881,108 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none !important;
 }
 
+.social-bar {
+  position: relative;
+  background-color: #FBFAF6;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: left;
+  padding: 25px 12.5px;
+  margin: 0 12.5px;
+}
+@media only screen and (min-width: 601px) {
+  .social-bar {
+    padding: 25px;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 840px) {
+  .social-bar {
+    font-size: 17px;
+  }
+}
+.social-bar.double {
+  text-align: left !important;
+}
+@media only screen and (min-width: 768px) {
+  .social-bar.double {
+    margin-top: 62.5px;
+  }
+}
+.social-bar.double:after {
+  content: "";
+  display: block;
+  background-size: 164px 124px;
+  width: 164px;
+  height: 124px;
+  position: relative;
+  bottom: -25px;
+  left: 50%;
+  margin-left: -82px;
+}
+@media only screen and (min-width: 768px) {
+  .social-bar.double:after {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.social-bar-button {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+}
+@media only screen and (min-width: 768px) {
+  .social-bar-button {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+  }
+}
+
+.social-bar-link {
+  color: #838078;
+  font-style: italic;
+  display: inline-block;
+  margin-bottom: 12.5px;
+  padding-left: 32px;
+  position: relative;
+}
+.social-bar-link:hover {
+  color: #404040;
+}
+.social-bar-link:before {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  font-size: 24px;
+}
+.social-bar-link.icon-twitter:before {
+  color: #4DA9E4;
+}
+.social-bar-link.icon-facebook:before {
+  color: #3F5E97;
+}
+@media only screen and (min-width: 601px) {
+  .social-bar-link {
+    margin-bottom: 0;
+    padding-left: 48px;
+  }
+  .social-bar-link:before {
+    font-size: 32px;
+    top: 8px;
+  }
+  .social-bar.double .social-bar-link {
+    padding-left: 64px;
+  }
+  .social-bar.double .social-bar-link:before {
+    top: 20px;
+    font-size: 48px;
+  }
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
