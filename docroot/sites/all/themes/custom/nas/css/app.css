@@ -14116,6 +14116,12 @@ h2.grey {
   }
 }
 
+.svg-throbber {
+  background-image: url(../img/throbber.svg);
+  background-size: contain;
+  position: absolute;
+}
+
 .np-dark-red {
   background-color: #cd1818;
 }
