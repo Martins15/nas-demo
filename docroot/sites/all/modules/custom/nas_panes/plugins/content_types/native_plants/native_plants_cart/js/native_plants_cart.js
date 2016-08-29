@@ -100,72 +100,71 @@
   /**
    * Sticky footer on Native plants search results page.
    */
-  Drupal.behaviors.npStickyFooter = {
-    attach: function(context, settings) {
-      $(".native-plants-bottom").once('np-sticky-footer', function () {
-        var $self = $(this),
-          $list = $(".native-plants-bottom-plant-list"),
-          $w = $(window),
-          $formTitle = '',
-          $button = $('.native-plants-botton--get-list'),
-          $form = $('.native-plants-bottom-form');
+  Drupal.behaviors.npStickyFooter = {};
+  Drupal.behaviors.npStickyFooter.attach = function(context, settings) {
+    $('.native-plants-bottom', context).once('np-sticky-footer', function () {
+      var $self = $(this),
+        $list = $('.native-plants-bottom-plant-list'),
+        $w = $(window),
+        $formTitle = '',
+        $button = $('.native-plants-botton--get-list'),
+        $form = $('.native-plants-bottom-form');
 
-        // Find which is the next element to determine from where the scroll starts.
-        if ($list.next().length == 1) {
-          $formTitle = $list.next();
-        } else {
-          $formTitle = $list.parent().next();
+      // Find which is the next element to determine from where the scroll starts.
+      if ($list.next().length == 1) {
+        $formTitle = $list.next();
+      } else {
+        $formTitle = $list.parent().next();
+      }
+
+      $(window).bind('scroll resize', function (e) {
+        $self.removeClass('native-plants-bottom-fixed');
+        var s = $w.scrollTop() + $w.height();
+        var offset = $formTitle.offset().top;
+        if (s < offset) {
+          $self.addClass('native-plants-bottom-fixed');
+        }
+        else {
+          $self.removeClass('native-plants-bottom-fixed');
         }
 
-        $(window).bind('scroll resize', function (e) {
-          $self.removeClass('native-plants-bottom-fixed');
-          var s = $w.scrollTop() + $w.height();
-          var offset = $formTitle.offset().top;
-          if (s < offset) {
-            $self.addClass('native-plants-bottom-fixed');
+        // Form isn't fully visible.
+        if (s < offset + $formTitle.outerHeight() + $form.outerHeight() - 10) {
+          $button.removeClass('js-form-is-visible');
+          // If form just became hidden, show button.
+          if (!$button.hasClass('js-form-isnt-visible')) {
+            $button.stop().css({display: 'block'}).animate({opacity: 1});
           }
-          else {
-            $self.removeClass('native-plants-bottom-fixed');
+          // Mark button as it knows that form isn't visible.
+          $button.addClass('js-form-isnt-visible');
+        }
+        // Form is fully visible.
+        else {
+          $button.removeClass('js-form-isnt-visible');
+          // Form just became visible, hide button.
+          if (!$button.hasClass('js-form-is-visible')) {
+            $button.stop().animate({opacity: 0}, function () {
+              $(this).css({display: 'none'});
+            });
           }
+          // Mark button as it knows that form is visible.
+          $button.addClass('js-form-is-visible');
+        }
 
-          // Form isn't fully visible.
-          if (s < offset + $formTitle.outerHeight() + $form.outerHeight() - 10) {
-            $button.removeClass('js-form-is-visible');
-            // If form just became hidden, show button.
-            if (!$button.hasClass('js-form-isnt-visible')) {
-              $button.stop().css({display: 'block'}).animate({opacity: 1});
-            }
-            // Mark button as it knows that form isn't visible.
-            $button.addClass('js-form-isnt-visible');
-          }
-          // Form is fully visible.
-          else {
-            $button.removeClass('js-form-isnt-visible');
-            // Form just became visible, hide button.
-            if (!$button.hasClass('js-form-is-visible')) {
-              $button.stop().animate({opacity: 0}, function () {
-                $(this).css({display: 'none'});
-              });
-            }
-            // Mark button as it knows that form is visible.
-            $button.addClass('js-form-is-visible');
-          }
+      }).trigger('scroll');
 
-        }).trigger('scroll');
-
-        // Button click handler.
-        $button.click(function () {
-          // Remove styles to properly calculate offsets.
-          var style = $self.attr('style');
-          $self.removeAttr('style');
-          var offset = $formTitle.offset().top;
-          var h = $formTitle.outerHeight() + $form.outerHeight();
-          var s =  h + offset - $w.height();
-          // Apply styles back in order to prevent blinking.
-          $self.attr({ style: style });
-          $('html, body').animate({ scrollTop: s });
-        });
+      // Button click handler.
+      $button.click(function () {
+        // Remove styles to properly calculate offsets.
+        var style = $self.attr('style');
+        $self.removeAttr('style');
+        var offset = $formTitle.offset().top;
+        var h = $formTitle.outerHeight() + $form.outerHeight();
+        var s =  h + offset - $w.height();
+        // Apply styles back in order to prevent blinking.
+        $self.attr({ style: style });
+        $('html, body').animate({ scrollTop: s });
       });
-    }
+    });
   };
 })(jQuery);
