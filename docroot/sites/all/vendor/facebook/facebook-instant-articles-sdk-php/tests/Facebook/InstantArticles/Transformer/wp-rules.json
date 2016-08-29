@@ -59,9 +59,9 @@
     }, {
         "class": "PassThroughRule",
         "selector": "blockquote p"
-    },{
+    }, {
         "class": "ImageRule",
-        "selector": "img",
+        "selector": "//p[img]",
         "properties": {
             "image.url": {
                 "type": "string",
@@ -69,8 +69,8 @@
                 "attribute": "src"
             }
         }
-    }, {
-        "class": "ImageInsideParagraphRule",
+    },{
+        "class": "ImageRule",
         "selector": "img",
         "properties": {
             "image.url": {
@@ -118,6 +118,51 @@
         "class": "H2Rule",
         "selector" : "h3,h4,h5,h6"
     }, {
+        "class": "SocialEmbedRule",
+        "selector" : "iframe",
+        "properties" : {
+            "socialembed.url" : {
+                "type" : "string",
+                "selector" : "iframe",
+                "attribute": "src"
+            },
+            "socialembed.iframe" : {
+                "type" : "children",
+                "selector" : "iframe"
+            },
+            "socialembed.caption" : {
+                "type" : "element",
+                "selector" : "figcaption"
+            }
+        }
+    }, {
+        "class": "SocialEmbedRule",
+        "selector" : "//p[iframe]",
+        "properties" : {
+            "socialembed.url" : {
+                "type" : "string",
+                "selector" : "iframe",
+                "attribute": "src"
+            },
+            "socialembed.iframe" : {
+                "type" : "children",
+                "selector" : "iframe"
+            },
+            "socialembed.caption" : {
+                "type" : "element",
+                "selector" : "figcaption"
+            }
+        }
+    }, {
+        "class": "SocialEmbedRule",
+        "selector" : "div.embed",
+        "properties" : {
+            "socialembed.iframe" : {
+                "type" : "children",
+                "selector" : "div.embed"
+            }
+        }
+    }, {
         "class": "InteractiveRule",
         "selector" : "div.interactive",
         "properties" : {
@@ -136,12 +181,32 @@
             }
         }
     }, {
+        "class": "SocialEmbedRule",
+        "selector" : "//div[@class='embed' and iframe]",
+        "properties" : {
+            "socialembed.url" : {
+                "type" : "string",
+                "selector" : "iframe",
+                "attribute": "src"
+            }
+        }
+    }, {
         "class": "InteractiveRule",
         "selector" : "//div[@class='interactive' and iframe]",
         "properties" : {
             "interactive.url" : {
                 "type" : "string",
                 "selector" : "iframe",
+                "attribute": "src"
+            }
+        }
+    }, {
+        "class": "ImageRule",
+        "selector": "//p[a[img]]|//a[img]",
+        "properties": {
+            "image.url": {
+                "type": "string",
+                "selector": "img",
                 "attribute": "src"
             }
         }
@@ -193,13 +258,13 @@
             }
         }
     }, {
-        "class": "InteractiveRule",
-        "selector" : "table",
-        "properties" : {
-            "interactive.iframe" : {
-                "type" : "element",
-                "selector" : "table"
-            }
-        }
-    }]
+		"class": "InteractiveRule",
+		"selector" : "table",
+		"properties" : {
+			"interactive.iframe" : {
+				"type" : "element",
+				"selector" : "table"
+			}
+		}
+	}]
 }
