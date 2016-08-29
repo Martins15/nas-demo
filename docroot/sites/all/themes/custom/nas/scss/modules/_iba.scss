@@ -53,3 +53,17 @@
   background-size: contain;
   position: absolute;
 }
+
+.iba-state-contacts {
+  padding-bottom: 15px;
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+  a {
+    display: block;
+    font-family: $font-sans;
+    margin-bottom: 14px;
+  }
+}

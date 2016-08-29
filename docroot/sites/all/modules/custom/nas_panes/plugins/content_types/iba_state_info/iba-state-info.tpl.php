@@ -11,18 +11,19 @@
  */
 ?>
 
-<p>
-<?php if (!empty($contact_name)): ?> 
-  <strong><?php print $contact_name; ?></strong><br>
+<?php if ($contact_name || $state_link): ?>
+<div class="iba-state-contacts">
+  <?php if (!empty($contact_name)): ?>
+    <h4><?php print $state_title . ' ' . t('IBA Contact'); ?></h4>
+    <?php print $contact_name; ?>
+  <?php endif; ?>
+  <?php if (!empty($state_link)): ?>
+    <h4><?php print t('More info'); ?></h4>
+    <?php print $state_link; ?>
+  <?php endif; ?>
+</div>
 <?php endif; ?>
-<?php if (!empty($contact_title)): ?> 
-  <?php print $contact_title; ?><br>
-<?php endif; ?>
-<?php if (!empty($state_link)): ?>
-  <?php print $state_link; ?><br>
-<?php endif; ?>
-</p>
-<br>
+
 <h4><?php print $state_title . ' ' . t('IBAs by Type'); ?></h4>
 <table class="data">
   <thead>

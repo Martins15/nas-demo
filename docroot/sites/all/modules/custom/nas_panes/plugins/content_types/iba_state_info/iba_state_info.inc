@@ -25,16 +25,36 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
     return;
   }
 
-  $contact_name = field_view_field('node', $node, 'field_iba_state_contact_name');
   $contact_title = field_view_field('node', $node, 'field_iba_state_contact_title');
+
+  $contact_name_value = '';
+  $contact_email_value = '';
+  if ($contact_name_items = field_get_items('node', $node, 'field_iba_state_contact_name')) {
+    $contact_name_value = $contact_name_items[0]['value'];
+  }
+  if ($contact_email_items = field_get_items('node', $node, 'field_iba_state_contact_email')) {
+    $contact_email_value = $contact_email_items[0]['email'];
+    if (!$contact_name_value) {
+      $contact_name_value = $contact_email_value;
+    }
+  }
+  $contact_name = '';
+  if ($contact_name_value) {
+    if ($contact_email_value) {
+      $contact_name = l($contact_name_value, 'mailto:' . $contact_email_value);
+    }
+    else {
+      $contact_name = check_plain($contact_name);
+    }
+  }
 
   $state_link = '';
   if ($link_field = field_get_items('node', $node, 'field_iba_state_link')) {
     // 'Important Bird Areas of California'
     $link_field_value = reset($link_field);
     // Check for empty title.
-    if (empty($link_field_value['title']) || strpos($link_field_value['url'], $link_field_value['title']) !== FALSE) {
-      $link_field_value['title'] = t('Important Bird Areas of @state', array('@state' => $node->title));
+    if (empty($link_field_value['title'])) {
+      $link_field_value['title'] = $link_field_value['url'];
     }
     $link_view = field_view_value('node', $node, 'field_iba_state_link', $link_field_value);
     $state_link = drupal_render($link_view);
@@ -74,7 +94,7 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = '';
   $block->content = theme('iba_state_info', array(
-    'contact_name' => !empty($contact_name[0]['#markup']) ? $contact_name[0]['#markup'] : '',
+    'contact_name' =>  $contact_name,
     'contact_title' => !empty($contact_title[0]['#markup']) ? $contact_title[0]['#markup'] :'',
     'state_link' => $state_link,
     'priorities_data' => $priorities_data,
