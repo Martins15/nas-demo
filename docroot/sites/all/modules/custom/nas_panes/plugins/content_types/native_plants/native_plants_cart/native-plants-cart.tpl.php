@@ -19,6 +19,7 @@
       <?php print t('No plants yet'); ?>
     </div>
     <div class="column medium-3 large-4 tiny-6 native-plants-bottom--button-container">
+      <?php print $form; ?>
       <button type="submit" class="tomato large native-plants-botton--get-list">
         <span class="hide-for-tiny hide-for-small hide-for-medium"><?php print $button_desktop; ?></span>
         <span class="hide-for-large hide-for-xlarge"><?php print $button_mobile; ?></span>

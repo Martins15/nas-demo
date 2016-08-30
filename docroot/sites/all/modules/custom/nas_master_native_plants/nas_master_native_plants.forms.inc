@@ -380,9 +380,83 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
 }
 
 /**
- * Form submit callback for Native Plants initial form.
+ * Form submit callback for Native Plants pledge form.
  */
 function nas_master_native_plants_pledge_form_submit($form, &$form_state) {
   // Redirect to main Native Plants search by ZIP code page.
   $form_state['redirect'] = $form_state['values']['redirect'];
+}
+
+/**
+ * Form building callback for Native Plants get list form.
+ */
+function nas_master_native_plants_get_list_form($form, &$form_state, $conf = array()) {
+  if (isset($conf['form_theme'])) {
+    $form['#theme'] = $conf['form_theme'];
+  }
+
+  $form['#attributes'] = array(
+    'class' => array(
+      'native-plants-get-list-form',
+    ),
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['email_placeholder'])),
+    '#title_display' => 'invisible',
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-search-form--email',
+      ),
+      'placeholder' => t(filter_xss($conf['email_placeholder'])),
+    ),
+    '#required' => TRUE,
+    '#element_validate' => array('nas_master_native_plants_element_validate_email'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t(filter_xss($conf['get_list_button_text'])),
+    '#attributes' => array(
+      'class' => array(
+        'button',
+        'large',
+        'tomato',
+      ),
+    ),
+    '#ajax' => array(
+      'callback' => '_nas_master_native_plants_get_list_form_ajax_callback',
+      'wrapper' => 'nas-master-native-plants-get-list-form',
+    ),
+  );
+
+  $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
+    'scope' => 'footer',
+  );
+
+  return $form;
+}
+
+/**
+ * AJAX callback for Native Plants get list form.
+ */
+function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_state) {
+  // TODO.
+  return $form;
+
+
+//  ctools_include('ajax');
+//  ctools_add_js('ajax-responder');
+//  $commands = array();
+//  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+//  return array(
+//    '#type' => 'ajax',
+//    '#commands' => $commands,
+//  );
+}
+
+/**
+ * Form submit callback for Native Plants get list form.
+ */
+function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
+  // TODO.
 }
