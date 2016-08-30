@@ -14115,6 +14115,9 @@ h2.grey {
     margin-top: -49px;
   }
 }
+.node-type-iba .sidebar .sidebar-section, .node-type-iba .article-sidebar .sidebar-section, .node-type-iba .sidebar .article-sidebar-section, .node-type-iba .article-sidebar .article-sidebar-section {
+  margin-bottom: 16px;
+}
 
 .svg-throbber {
   background-image: url(../img/throbber.svg);
@@ -14132,6 +14135,14 @@ h2.grey {
   display: block;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin-bottom: 14px;
+}
+
+.iba-site-report-link-pane a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+}
+.sidebar-section + .iba-site-report-link-pane, .article-sidebar-section + .iba-site-report-link-pane {
+  margin-top: -7px;
 }
 
 .np-dark-red {

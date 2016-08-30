@@ -40,10 +40,18 @@
       }
     }
   }
-  .sidebar .social-sharing {
-    margin-bottom: 16px;
-    @include breakpoint(large-up) {
-      margin-top: -49px;
+  .sidebar {
+
+    .social-sharing {
+      margin-bottom: 16px;
+
+      @include breakpoint(large-up) {
+        margin-top: -49px;
+      }
+    }
+
+    .sidebar-section {
+      margin-bottom: 16px;
     }
   }
 }
@@ -65,5 +73,17 @@
     display: block;
     font-family: $font-sans;
     margin-bottom: 14px;
+  }
+}
+
+.iba-site-report-link-pane {
+
+  a {
+    font-family: $font-sans;
+    font-size: 18px;
+  }
+
+  .sidebar-section + & {
+    margin-top: -7px;
   }
 }

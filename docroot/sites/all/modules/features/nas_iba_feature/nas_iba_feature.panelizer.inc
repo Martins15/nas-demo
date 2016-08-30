@@ -405,6 +405,25 @@ function nas_iba_feature_panelizer_defaults() {
     $display->content['new-3985db8d-3030-44cd-be9e-d667a1ea49a6'] = $pane;
     $display->panels['sidebar'][1] = 'new-3985db8d-3030-44cd-be9e-d667a1ea49a6';
     $pane = new stdClass();
+    $pane->pid = 'new-3fcfeb0b-aebf-4000-b1e4-80fbc30a6cac';
+    $pane->panel = 'sidebar';
+    $pane->type = 'iba_site_report_link';
+    $pane->subtype = 'iba_site_report_link';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '3fcfeb0b-aebf-4000-b1e4-80fbc30a6cac';
+    $display->content['new-3fcfeb0b-aebf-4000-b1e4-80fbc30a6cac'] = $pane;
+    $display->panels['sidebar'][2] = 'new-3fcfeb0b-aebf-4000-b1e4-80fbc30a6cac';
+    $pane = new stdClass();
     $pane->pid = 'new-e3ab3bd2-1772-4b73-8db8-12c2850ca3aa';
     $pane->panel = 'sidebar';
     $pane->type = 'local_chapters_centers_block';
@@ -431,11 +450,11 @@ function nas_iba_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = 'e3ab3bd2-1772-4b73-8db8-12c2850ca3aa';
     $display->content['new-e3ab3bd2-1772-4b73-8db8-12c2850ca3aa'] = $pane;
-    $display->panels['sidebar'][2] = 'new-e3ab3bd2-1772-4b73-8db8-12c2850ca3aa';
+    $display->panels['sidebar'][3] = 'new-e3ab3bd2-1772-4b73-8db8-12c2850ca3aa';
     $pane = new stdClass();
     $pane->pid = 'new-3045a970-ce17-4617-8515-7226f8a7cadd';
     $pane->panel = 'sidebar';
@@ -474,11 +493,11 @@ function nas_iba_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = '3045a970-ce17-4617-8515-7226f8a7cadd';
     $display->content['new-3045a970-ce17-4617-8515-7226f8a7cadd'] = $pane;
-    $display->panels['sidebar'][3] = 'new-3045a970-ce17-4617-8515-7226f8a7cadd';
+    $display->panels['sidebar'][4] = 'new-3045a970-ce17-4617-8515-7226f8a7cadd';
     $pane = new stdClass();
     $pane->pid = 'new-aea62e00-b94a-45e6-8be5-d38a7e0e2f91';
     $pane->panel = 'top';
