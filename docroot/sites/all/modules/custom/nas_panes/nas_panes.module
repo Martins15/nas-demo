@@ -2495,13 +2495,11 @@ function nas_panes_get_site_info($node) {
 
   $params = drupal_get_query_parameters();
   if (!array_key_exists('site', $params)) {
-    return;
+    return FALSE;
   }
 
   $url = 'http://' . $params['site'] . '.audubon.org/';
-  if (isset($params['dev']) &&
-    variable_get('nas_birds_allow_dev_params', FALSE)
-  ) {
+  if (isset($params['dev']) && variable_get('nas_birds_allow_dev_params', FALSE)) {
     $parts_url = parse_url($params['dev']);
     $url = $parts_url['scheme'] . '://audubon:audubon@' . $parts_url['host'] .
       $parts_url['path'];
@@ -2521,12 +2519,18 @@ function nas_panes_get_site_info($node) {
 
   $result = nas_import_send_request($request_url);
   if (empty($result) || empty($result['title'])) {
-    return;
+    return FALSE;
   }
   $result['url'] = $url;
   if (array_key_exists('return_url', $result)) {
     $result['url'] = $result['return_url'];
   }
+
+  // Use return path if provided.
+  if (array_key_exists('section', $params)) {
+    $result['url'] = $url . $params['section'];
+  }
+
   $info = $result;
   return $result;
 }
