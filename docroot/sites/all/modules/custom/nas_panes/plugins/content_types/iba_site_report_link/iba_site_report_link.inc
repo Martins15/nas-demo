@@ -33,9 +33,10 @@ function iba_site_report_link_render($subtype, $conf, $args, $context) {
   $url = 'http://netapp.audubon.org/iba/Reports/' . $iba_id;
 
   $block = new stdClass();
-  $block->content = theme('iba_site_report_link', array(
-    'link' => l(t('Download Site Report'), $url),
-  ));
+  $block->content = array(
+    '#theme' => 'iba_site_report_link',
+    '#link' => l(t('Download Site Report'), $url),
+  );
 
   return $block;
 }
