@@ -1256,8 +1256,14 @@ body {
 
 /* Gray bar for mobile and tablets */
 .nas-lang-dropdown-gray-bar {
-  margin-left: -25px;
-  margin-right: -25px;
+  margin-left: -($column-gutter/2);
+  margin-right: -($column-gutter/2);
+
+  @include breakpoint(small-up) {
+    margin-left: -$column-gutter;
+    margin-right: -$column-gutter;
+  }
+
   .dd-container {
     padding-top: 0;
     width: 100% !important;
