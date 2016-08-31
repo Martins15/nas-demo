@@ -5,10 +5,10 @@
  */
 ?>
 <div class="row">
-  <div class="columns tiny-8 large-10">
+  <div class="columns tiny-9">
     <?php print render($form['email']); ?>
   </div>
-  <div class="columns tiny-4 large-2">
+  <div class="columns tiny-3">
     <?php print render($form['submit']); ?>
   </div>
 </div>

@@ -395,18 +395,13 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
     $form['#theme'] = $conf['form_theme'];
   }
 
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-get-list-form',
-    ),
-  );
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => t(filter_xss($conf['email_placeholder'])),
     '#title_display' => 'invisible',
     '#attributes' => array(
       'class' => array(
-        'native-plants-search-form--email',
+        'native-plants-get-list-form--email',
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
     ),
@@ -421,6 +416,7 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
         'button',
         'large',
         'tomato',
+        'native-plants-get-list-form--submit',
       ),
     ),
     '#ajax' => array(

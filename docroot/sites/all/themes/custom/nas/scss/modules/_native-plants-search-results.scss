@@ -715,6 +715,15 @@
     background-color: #d8d8d8;
     height: 70px;
 
+    &.native-plants-bottom-plant-list-form-show {
+      .native-plants-botton--get-list {
+        display: none;
+      }
+      .native-plants-get-list-form {
+        display: block;
+      }
+    }
+
     @include breakpoint(medium-up) {
       height: 96px;
     }
@@ -754,6 +763,26 @@
       padding-top:22px;
       overflow: hidden;
       height: 76px;
+    }
+
+    .native-plants-get-list-form {
+      display: none;
+      text-align: center;
+      padding-top: 11px;
+
+      @include breakpoint(medium-up) {
+        padding-top: 25px;
+      }
+
+      .form-text {
+        @extend %native-plants-large-input;
+      }
+
+      .native-plants-get-list-form--submit {
+        @include border-radius(8px);
+        height: 45px;
+        width: 100%;
+      }
     }
 
     .native-plants-bottom--button-container {

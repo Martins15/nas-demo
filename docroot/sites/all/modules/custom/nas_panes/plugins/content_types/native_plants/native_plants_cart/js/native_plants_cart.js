@@ -106,12 +106,10 @@
     $('.native-plants-bottom', context).once('np-sticky-footer', function () {
       var $self = $(this),
         $list = $('.native-plants-bottom-plant-list'),
+        $list_info = $('.native-plants-bottom-plant-list-info'),
         $w = $(window),
         $anchor = '',
-        $button = $('.native-plants-botton--get-list'),
-        $form = $('.native-plants-get-list-form');
-      // Hide the form.
-      $form.hide();
+        $button = $('.native-plants-botton--get-list');
 
       // Hide cart if there are no plants selected.
       if ($.isEmptyObject(Drupal.native_plants_cart.get_plants())) {
@@ -134,7 +132,7 @@
         $anchor = $list.parent().next();
       }
 
-      $(window).bind('scroll resize', function (e) {
+      $w.bind('scroll resize', function (e) {
         $self.removeClass('native-plants-bottom-fixed');
         var s = $w.scrollTop() + $w.height();
         var offset = $anchor.offset().top;
@@ -149,9 +147,19 @@
       // Button click handler.
       $button.click(function () {
         $button.stop().animate({opacity: 0}, function () {
-          $(this).hide();
-          $form.show();
+          $list.addClass('native-plants-bottom-plant-list-form-show');
+          if (Foundation.utils.is_small_only()) {
+            $list_info.hide();
+          }
         });
+      });
+      $w.bind('resize', function () {
+        if ($list.hasClass('native-plants-bottom-plant-list-form-show') && Foundation.utils.is_small_only()) {
+          $list_info.hide();
+        }
+        else {
+          $list_info.show();
+        }
       });
     });
   };
