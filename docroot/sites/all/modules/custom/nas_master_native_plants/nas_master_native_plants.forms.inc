@@ -444,25 +444,45 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
  * AJAX callback for Native Plants get list form.
  */
 function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_state) {
-  // TODO.
-  return $form;
+  if (!$form_state['redirect']) {
+    return $form;
+  }
 
-
-//  ctools_include('ajax');
-//  ctools_add_js('ajax-responder');
-//  $commands = array();
-//  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
-//  return array(
-//    '#type' => 'ajax',
-//    '#commands' => $commands,
-//  );
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
 }
 
 /**
  * Form submit callback for Native Plants get list form.
  */
 function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
-  // TODO.
+  $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
+  // Create permalink entity.
+  $values = array(
+    'type' => 'permalink',
+    'email' => $form_state['values']['email'],
+    'zip_code' => $fields['zipcode'],
+    'plants_cart' => $_COOKIE['native_plants_cart'],
+    'square_feet' => 0,
+  );
+  if ($permalink = entity_create('permalink', $values)) {
+    entity_save('permalink', $permalink);
+  }
+
+  // Convio integration.
+  nas_master_native_plants_convio_integration($permalink);
+
+  // Send plant list - it is set up to go through Mandrill.
+  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
+
+  // Redirect to permalink page.
+  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
 }
 
 /**
