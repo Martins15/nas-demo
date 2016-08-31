@@ -207,6 +207,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
         'native-plants-search-form--email',
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
+      'data-native-plants-fields-sync' => 'email',
     ),
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
   );
@@ -219,6 +220,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
         'native-plants-search-form--zip-code',
       ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+      'data-native-plants-fields-sync' => 'zipcode',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
@@ -240,6 +242,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
     ),
   );
 
+  _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
   );
@@ -316,6 +319,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
         'native-plants-search-form--zip-code',
       ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+      'data-native-plants-fields-sync' => 'zipcode',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
@@ -329,6 +333,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
         'native-plants-search-form--email',
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
+      'data-native-plants-fields-sync' => 'email',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
@@ -354,6 +359,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     '#value' => $conf['redirect'],
   );
 
+  _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
   );
@@ -404,6 +410,7 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
         'native-plants-get-list-form--email',
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
+      'data-native-plants-fields-sync' => 'email',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
@@ -425,6 +432,7 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
     ),
   );
 
+  _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
   );
@@ -455,4 +463,13 @@ function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_stat
  */
 function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   // TODO.
+}
+
+/**
+ * Helper function to add fields sync JS.
+ */
+function _nas_master_native_plants_attach_fields_sync(&$form) {
+  $form['#attached']['library'][] = array('system', 'jquery.cookie');
+  $form['#attached']['js'][] = libraries_get_path('json2') . '/json2.js';
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.fields_sync.js';
 }
