@@ -16216,8 +16216,14 @@ body .slide .slide-img img {
 
 /* Gray bar for mobile and tablets */
 .nas-lang-dropdown-gray-bar {
-  margin-left: -25px;
-  margin-right: -25px;
+  margin-left: -12.5px;
+  margin-right: -12.5px;
+}
+@media only screen and (min-width: 480px) {
+  .nas-lang-dropdown-gray-bar {
+    margin-left: -25px;
+    margin-right: -25px;
+  }
 }
 .nas-lang-dropdown-gray-bar .dd-container {
   padding-top: 0;
