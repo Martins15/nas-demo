@@ -4,9 +4,11 @@
     var $inputs = $('input[data-native-plants-fields-sync]', context);
     $inputs.on('input', function() {
       var fields = Drupal.native_plants_fields_sync.get_fields(),
-        key = $(this).data('native-plants-fields-sync');
-      fields[key] = $(this).val();
+        key = $(this).data('native-plants-fields-sync'),
+        value = $(this).val();
+      fields[key] = value;
       Drupal.native_plants_fields_sync.set_fields(fields);
+      $inputs.not(this).filter('[data-native-plants-fields-sync="' + key + '"]').val(value);
     });
 
     var fields = Drupal.native_plants_fields_sync.get_fields();
@@ -17,7 +19,7 @@
     $inputs.each(function () {
       var key = $(this).data('native-plants-fields-sync');
       $(this).val(fields[key]);
-    })
+    });
   };
 
   Drupal.native_plants_fields_sync = Drupal.native_plants_fields_sync || {};

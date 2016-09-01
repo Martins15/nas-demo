@@ -7,7 +7,7 @@
     var $triggers = $('.native-plants-you-near-audubon .text--blue', context);
 
     $triggers.on('click', function() {
-      $('ul.tabs li a[href="#local_results"]').click();
+      $('ul.tabs li a[href="#local_resources"]').click();
     });
   };
 })(jQuery);

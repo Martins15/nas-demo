@@ -4,7 +4,7 @@
  * Template for the Native Plants Nurseries near you.
  */
 ?>
-<div class="clearfix where-to-buy__section__row vertical-spacing--top--half<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+<div class="native-plants-nurseries-near-you clearfix where-to-buy__section__row vertical-spacing--top--half<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
   <?php print $context_links; ?>
   <div class="column medium-4">
     <h2 class="thin"><?php print $title; ?></h2>
@@ -32,16 +32,18 @@
               </p>
             </div>
           </div>
-          <div class="row">
-            <div class="column tiny-3">
-              <p class="label"><?php print t('Website'); ?></p>
+          <?php if ($nursery['link']): ?>
+            <div class="row">
+              <div class="column tiny-3">
+                <p class="label"><?php print t('Website'); ?></p>
+              </div>
+              <div class="column tiny-9">
+                <p>
+                  <a href="<?php print $nursery['link']; ?>"><?php print $nursery['link']; ?></a>
+                </p>
+              </div>
             </div>
-            <div class="column tiny-9">
-              <p>
-                <a href="https://google.com">https://google.com</a>
-              </p>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
       <?php endforeach; ?>
     </div>

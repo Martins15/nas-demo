@@ -37,7 +37,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_native_plants_search__panel_context_ec0ecb01-4728-434b-8dcb-3ce0d6eba58a';
+  $handler->name = 'page_native_plants_search__native_plants_initial_page';
   $handler->task = 'page';
   $handler->subtask = 'native_plants_search';
   $handler->handler = 'panel_context';
@@ -147,7 +147,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_native_plants_2_0_search__panel_context_5a590ea1-8f07-40a8-a341-2c2eb7f9fead';
+  $handler->name = 'page_native_plants_search__native_plants_search_page';
   $handler->task = 'page';
   $handler->subtask = 'native_plants_search';
   $handler->handler = 'panel_context';
@@ -714,7 +714,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'tab1_title' => 'Best results',
       'tab2_title' => 'Full results',
-      'tab3_title' => 'Local results',
+      'tab3_title' => 'Local resources',
       'tab4_title' => 'Next steps',
       'form_build_id' => 'form-Yc1JoZ6DjCDCCMrlycAiZZrndX2d4T3rRoz_BSKcmsA',
     );
