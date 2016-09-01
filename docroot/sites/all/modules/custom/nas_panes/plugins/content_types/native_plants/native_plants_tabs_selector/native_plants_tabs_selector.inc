@@ -16,7 +16,7 @@ $plugin = array(
   'defaults' => array(
     'tab1_title' => 'Best results',
     'tab2_title' => 'Full results',
-    'tab3_title' => 'Local results',
+    'tab3_title' => 'Local resources',
     'tab4_title' => 'Next steps',
   ),
   'all contexts' => TRUE,

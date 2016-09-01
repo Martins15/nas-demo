@@ -13,7 +13,7 @@
       <div class="tab-pane active" id='best_results'>
         <div class="row">
           <div class="columns">
-            <div class="view native-plants-search-results clearfix">
+            <div class="native-plants-search-results clearfix">
               <?php print $content['tab1']; ?>
             </div>
           </div>
@@ -22,13 +22,13 @@
       <div class="tab-pane" id='full_results'>
         <div class="row">
           <div class="columns">
-            <div class="view native-plants-full-results clearfix">
+            <div class="native-plants-full-results clearfix">
               <?php print $content['tab2']; ?>
             </div>
           </div>
         </div>
       </div>
-      <div class="tab-pane" id='local_results'>
+      <div class="tab-pane" id='local_resources'>
         <div class="row">
           <div class="columns">
             <div class="native-plants-local-results clearfix">

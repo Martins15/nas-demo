@@ -3692,7 +3692,7 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   color: #0AA8E3;
 }
 
-.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text, .native-plants-search-form .native-plants-search-form--submit, .native-plants-connect-form .native-plants-search-form--submit, .engagement-hero-form .native-plants-search-form--submit, .native-plants-tabs .tab-select, .native-plants-tabs .view-filters select {
+.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text, .native-plants-search-form .native-plants-search-form--submit, .native-plants-connect-form .native-plants-search-form--submit, .engagement-hero-form .native-plants-search-form--submit, .native-plants-tabs .tab-select, .native-plants-tabs .view-filters select, .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .form-text {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
@@ -14248,7 +14248,9 @@ h2.grey {
   font-size: 24px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-weight: 300;
+  height: 50px;
   line-height: 50px;
+  overflow: hidden;
 }
 .native-plants-green-row a {
   color: #fff;
@@ -14257,6 +14259,7 @@ h2.grey {
 @media only screen and (min-width: 601px) {
   .native-plants-green-row {
     font-size: 32px;
+    height: 56px;
     line-height: 56px;
   }
 }
@@ -14878,6 +14881,12 @@ h2.grey {
   background-color: #d8d8d8;
   height: 70px;
 }
+.native-plants-bottom .native-plants-bottom-plant-list.native-plants-bottom-plant-list-form-show .native-plants-botton--get-list {
+  display: none;
+}
+.native-plants-bottom .native-plants-bottom-plant-list.native-plants-bottom-plant-list-form-show .native-plants-get-list-form {
+  display: block;
+}
 @media only screen and (min-width: 601px) {
   .native-plants-bottom .native-plants-bottom-plant-list {
     height: 96px;
@@ -14915,6 +14924,23 @@ h2.grey {
   padding-top: 22px;
   overflow: hidden;
   height: 76px;
+}
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form {
+  display: none;
+  text-align: center;
+  padding-top: 11px;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form {
+    padding-top: 25px;
+  }
+}
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .native-plants-get-list-form--submit {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  height: 45px;
+  width: 100%;
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container {
   text-align: center;
@@ -15369,6 +15395,50 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 1280px) {
   .engagement-hero-form {
     margin-bottom: 40px;
+  }
+}
+
+.sponsor-attribution {
+  float: right;
+  line-height: 44px;
+}
+@media only screen and (min-width: 601px) {
+  .sponsor-attribution {
+    line-height: 54px;
+  }
+}
+.sponsor-attribution .sponsor-wrapper {
+  display: inline-block;
+  line-height: 24px;
+  font-size: 24px;
+  vertical-align: middle;
+}
+.sponsor-attribution .preamble {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 11px;
+  text-align: center;
+}
+@media only screen and (min-width: 601px) {
+  .sponsor-attribution .preamble {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+.sponsor-attribution img {
+  display: inline-block;
+  height: 20px;
+  margin-left: 5px;
+  width: auto;
+  vertical-align: middle;
+}
+@media only screen and (min-width: 601px) {
+  .sponsor-attribution img {
+    height: 30px;
   }
 }
 
@@ -16725,8 +16795,14 @@ body .slide .slide-img img {
 
 /* Gray bar for mobile and tablets */
 .nas-lang-dropdown-gray-bar {
-  margin-left: -25px;
-  margin-right: -25px;
+  margin-left: -12.5px;
+  margin-right: -12.5px;
+}
+@media only screen and (min-width: 480px) {
+  .nas-lang-dropdown-gray-bar {
+    margin-left: -25px;
+    margin-right: -25px;
+  }
 }
 .nas-lang-dropdown-gray-bar .dd-container {
   padding-top: 0;

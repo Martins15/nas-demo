@@ -167,6 +167,10 @@ function nas_master_native_plants_theme($existing, $type, $theme, $path) {
       ),
       'template' => 'templates/nas-master-native-plants-mail-native-plants-list',
     ),
+    'nas_master_native_plants_views_exposed_form' => array(
+      'render element' => 'form',
+      'template' => 'templates/nas-master-native-plants-views-exposed-form',
+    ),
   );
 }
 
@@ -289,55 +293,73 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     return;
   }
 
-  // Unset the form theme functions to remove unneeded wrappers.
-  unset($form['#theme']);
+  switch ($form_state['view']->current_display) {
+    case 'native_plants_search_pane':
+      $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
 
-  $form['#prefix'] = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">
+      $form['#prefix'] = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">
       <div class="native-plants-search-icon icon-magnifier open js-open"></div>
       <div class="native-plants-search-icon icon-delete close js-close"></div>
     </div>';
 
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form',
-      'native-plants-search-form-inline',
-      'js-search-collapsible',
-      'collapsed',
-    ),
-  );
+      $form['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form',
+          'native-plants-search-form-inline',
+          'js-search-collapsible',
+          'collapsed',
+        ),
+      );
 
-  $form['zipcode']['#prefix'] = '<div class="row"><div class="columns"><h2 class="thin hide-for-tiny hide-for-small">' . t('Search') . '</h2>';
-  // $form['zipcode']['#suffix'] = '</div>';
-  $form['zipcode']['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form--zip-code',
-    ),
-    'placeholder' => t('U.S. ZIP code'),
-  );
-  $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
+      $form['zipcode']['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form--zip-code',
+        ),
+        'placeholder' => t('U.S. ZIP code'),
+        'data-native-plants-fields-sync' => 'zipcode',
+      );
+      _nas_master_native_plants_attach_fields_sync($form);
+
+      $form['zipcode']['#element_validate'] = array(
+        'nas_master_native_plants_element_validate_zipcode_global',
+        'nas_master_native_plants_element_validate_zipcode_us',
+      );
+
+      $form['attribute']['#options']['All'] = t('All types of plants');
+      $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
+
+      $form['submit']['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form--submit',
+          'button',
+          'tomato',
+          'large',
+        ),
+      );
+
+      break;
+
+    case 'native_plants_search_pane_tier1':
+      $form['#attributes'] = array(
+        'style' => array(
+          'display: none;',
+        ),
+      );
+      $form['zipcode']['#element_validate'] = array(
+        'nas_master_native_plants_element_validate_zipcode_global',
+      );
+
+      $form['attribute_tier1']['#options']['All'] = t('All types of plants');
+      $form['bird_type_tier1']['#options']['All'] = t('Attracts: Any type of bird');
+
+      $form['submit']['#id'] = 'edit-submit-native-plants-search-tier1';
+
+      break;
+  }
+
   if (variable_get('nas_master_native_plants_zip_fips', 0)) {
     $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
   }
-
-  $form['attribute']['#attributes'] = array(
-    'style' => 'display: none;',
-  );
-  $form['bird_type']['#attributes'] = array(
-    'style' => 'display: none;',
-  );
-  $form['attribute']['#options']['All'] = t('All types of plants');
-  $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
-
-  // $form['submit']['#prefix'] = '<div class="column medium-6">';
-  $form['submit']['#suffix'] = '</div></div>';
-  $form['submit']['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form--submit',
-      'button',
-      'tomato',
-      'large',
-    ),
-  );
 
   // Remove filter values that will produce no results with already set other filters.
   if (!$results_unfiltered = nasnp_views_json_query_results_unfiltered()) {
@@ -408,12 +430,17 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
 }
 
 /**
+ * Helper function to set ZIP code as global variable.
+ */
+function nas_master_native_plants_element_validate_zipcode_global($element, &$form_state) {
+  global $native_plants_zipcode;
+  $native_plants_zipcode = $element['#value'];
+}
+
+/**
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
-  global $native_plants_zipcode;
-  $native_plants_zipcode = $element['#value'];
-
   if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
     return;
   }
@@ -582,10 +609,11 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     $commands[] = $command;
   }
 
-  // Add validation errors.
-  if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend($selector, '<div class="row">' . $messages . '</div>');
-  }
+  // Update best results view.
+  $best_results_view = views_embed_view('native_plants_search', 'native_plants_search_pane_tier1');
+  $selector = '.view-display-id-native_plants_search_pane_tier1';
+  $command = ajax_command_replace($selector, $best_results_view);
+  array_unshift($commands, $command);
 
   // Refresh exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
@@ -593,6 +621,100 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     $form = $exposed_block_plugin->render_exposed_form(TRUE);
     $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
     array_unshift($commands, ajax_command_replace($id, $form));
+  }
+
+  // Load the page and find handler.
+  $page = page_manager_page_load('native_plants_search');
+  $task = page_manager_get_task($page->task);
+  $handlers = page_manager_load_task_handlers($task, $page->name);
+  foreach ($handlers as $handler) {
+    if ($handler->name === 'page_native_plants_search__native_plants_search_page') {
+      break;
+    }
+  }
+
+  // Load display if it is empty.
+  if (empty($handler->conf['display']) && !empty($handler->conf['did'])) {
+    $handler->conf['display'] = panels_load_display($handler->conf['did']);
+  }
+  if (empty($handler->conf['display']->content)) {
+    return;
+  }
+
+  // Update panes.
+  foreach ($handler->conf['display']->content as $pane) {
+    $selector = '';
+    switch ($pane->subtype) {
+      case 'native_plants_you_near_audubon':
+        $selector = '.native-plants-you-near-audubon';
+        break;
+
+      case 'native_plants_audubon_near_you':
+        $selector = '.native-plants-audubon-near-you';
+        break;
+
+      case 'native_plants_nurseries_near_you':
+        $selector = '.native-plants-nurseries-near-you';
+        break;
+    }
+
+    if ($selector) {
+      $output = _nas_master_native_plants_render_pane($pane, $handler->conf['display']);
+      $command = ajax_command_replace($selector, $output);
+      array_unshift($commands, $command);
+    }
+  }
+
+  // Add validation errors.
+  if ($messages = theme('status_messages')) {
+    $commands[] = ajax_command_prepend(
+      '#views-exposed-form-native-plants-search-native-plants-search-pane',
+      '<div class="row">' . $messages . '</div>'
+    );
+  }
+}
+
+/**
+ * Helper function to render pane.
+ */
+function _nas_master_native_plants_render_pane(&$pane, $display) {
+  module_invoke_all('panels_pane_prerender', $pane);
+  ctools_include('content');
+  $content = ctools_content_render($pane->type, $pane->subtype, $pane->configuration, array(), $display->args, $display->context);
+
+  foreach (module_implements('panels_pane_content_alter') as $module) {
+    $function = $module . '_panels_pane_content_alter';
+    $function($content, $pane, $display->args, $display->context, $this, $display);
+  }
+
+  // If there's content, check if we've css configuration to add.
+  if (!empty($content)) {
+    // Pass long the css_id that is usually available.
+    if (!empty($pane->css['css_id'])) {
+      $content->css_id = check_plain($pane->css['css_id']);
+    }
+
+    // Pass long the css_class that is usually available.
+    if (!empty($pane->css['css_class'])) {
+      $content->css_class = check_plain($pane->css['css_class']);
+    }
+  }
+
+  if (!empty($content->content)) {
+    if (!empty($pane->style['style'])) {
+      $style = panels_get_style($pane->style['style']);
+
+      if (isset($style) && isset($style['render pane'])) {
+        $output = theme($style['render pane'], array('content' => $content, 'pane' => $pane, 'display' => $display, 'style' => $style, 'settings' => $pane->style['settings']));
+
+        // This could be null if no theme function existed.
+        if (isset($output)) {
+          return $output;
+        }
+      }
+    }
+
+    return theme('panels_pane', array('content' => $content, 'pane' => $pane, 'display' => $display));
   }
 }
 

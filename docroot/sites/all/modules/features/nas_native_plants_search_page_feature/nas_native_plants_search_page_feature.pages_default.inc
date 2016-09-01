@@ -37,7 +37,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_native_plants_search__panel_context_ec0ecb01-4728-434b-8dcb-3ce0d6eba58a';
+  $handler->name = 'page_native_plants_search__native_plants_initial_page';
   $handler->task = 'page';
   $handler->subtask = 'native_plants_search';
   $handler->handler = 'panel_context';
@@ -147,7 +147,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
-  $handler->name = 'page_native_plants_2_0_search__panel_context_5a590ea1-8f07-40a8-a341-2c2eb7f9fead';
+  $handler->name = 'page_native_plants_search__native_plants_search_page';
   $handler->task = 'page';
   $handler->subtask = 'native_plants_search';
   $handler->handler = 'panel_context';
@@ -254,6 +254,30 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $display->content['new-d28be64d-4477-444d-8ac6-c26fad61e4d3'] = $pane;
     $display->panels['main'][0] = 'new-d28be64d-4477-444d-8ac6-c26fad61e4d3';
     $pane = new stdClass();
+    $pane->pid = 'new-00b56ccf-b989-4819-889b-a1b1a10e5f07';
+    $pane->panel = 'main';
+    $pane->type = 'block';
+    $pane->subtype = 'views-41895ca1091fe175dd5cb341812d4368';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'inherit_path' => 1,
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '00b56ccf-b989-4819-889b-a1b1a10e5f07';
+    $display->content['new-00b56ccf-b989-4819-889b-a1b1a10e5f07'] = $pane;
+    $display->panels['main'][1] = 'new-00b56ccf-b989-4819-889b-a1b1a10e5f07';
+    $pane = new stdClass();
     $pane->pid = 'new-710eaee6-53c7-406a-9460-22f800b67fbc';
     $pane->panel = 'main';
     $pane->type = 'native_plants_you_near_audubon';
@@ -275,11 +299,11 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '710eaee6-53c7-406a-9460-22f800b67fbc';
     $display->content['new-710eaee6-53c7-406a-9460-22f800b67fbc'] = $pane;
-    $display->panels['main'][1] = 'new-710eaee6-53c7-406a-9460-22f800b67fbc';
+    $display->panels['main'][2] = 'new-710eaee6-53c7-406a-9460-22f800b67fbc';
     $pane = new stdClass();
     $pane->pid = 'new-daa05fab-333e-44d2-b9b7-af497a2bcc9f';
     $pane->panel = 'tab1';
@@ -632,7 +656,9 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
       'title_desktop' => 'Tell your friends',
       'title_mobile' => 'Tell your friends',
       'text' => 'Join me in planting bird-friendly native plants as part of Audubon\'s Plants For Birds program...',
-      'form_build_id' => 'form-lZZw4HtsTQUfm_E0w7Mn-jy4R7X64TihdMEo_G2MHf8',
+      'form_build_id' => 'form-XX_--42e8s28bnwGrGVX59lvFkvIe_GvdndCUV39Dl0',
+      'share_text' => 'Join me in planting bird-friendly native plants as part of Audubon\'s Plants For Birds program...',
+      'share_url' => 'native-plants',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -688,7 +714,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'tab1_title' => 'Best results',
       'tab2_title' => 'Full results',
-      'tab3_title' => 'Local results',
+      'tab3_title' => 'Local resources',
       'tab4_title' => 'Next steps',
       'form_build_id' => 'form-Yc1JoZ6DjCDCCMrlycAiZZrndX2d4T3rRoz_BSKcmsA',
     );

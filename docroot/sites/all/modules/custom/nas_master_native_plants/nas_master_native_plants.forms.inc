@@ -207,6 +207,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
         'native-plants-search-form--email',
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
+      'data-native-plants-fields-sync' => 'email',
     ),
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
   );
@@ -219,6 +220,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
         'native-plants-search-form--zip-code',
       ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+      'data-native-plants-fields-sync' => 'zipcode',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
@@ -240,6 +242,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
     ),
   );
 
+  _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
   );
@@ -316,6 +319,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
         'native-plants-search-form--zip-code',
       ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
+      'data-native-plants-fields-sync' => 'zipcode',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
@@ -329,6 +333,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
         'native-plants-search-form--email',
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
+      'data-native-plants-fields-sync' => 'email',
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
@@ -354,6 +359,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     '#value' => $conf['redirect'],
   );
 
+  _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
   );
@@ -380,9 +386,110 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
 }
 
 /**
- * Form submit callback for Native Plants initial form.
+ * Form submit callback for Native Plants pledge form.
  */
 function nas_master_native_plants_pledge_form_submit($form, &$form_state) {
   // Redirect to main Native Plants search by ZIP code page.
   $form_state['redirect'] = $form_state['values']['redirect'];
+}
+
+/**
+ * Form building callback for Native Plants get list form.
+ */
+function nas_master_native_plants_get_list_form($form, &$form_state, $conf = array()) {
+  if (isset($conf['form_theme'])) {
+    $form['#theme'] = $conf['form_theme'];
+  }
+
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t(filter_xss($conf['email_placeholder'])),
+    '#title_display' => 'invisible',
+    '#attributes' => array(
+      'class' => array(
+        'native-plants-get-list-form--email',
+      ),
+      'placeholder' => t(filter_xss($conf['email_placeholder'])),
+      'data-native-plants-fields-sync' => 'email',
+    ),
+    '#required' => TRUE,
+    '#element_validate' => array('nas_master_native_plants_element_validate_email'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t(filter_xss($conf['get_list_button_text'])),
+    '#attributes' => array(
+      'class' => array(
+        'button',
+        'large',
+        'tomato',
+        'native-plants-get-list-form--submit',
+      ),
+    ),
+    '#ajax' => array(
+      'callback' => '_nas_master_native_plants_get_list_form_ajax_callback',
+      'wrapper' => 'nas-master-native-plants-get-list-form',
+    ),
+  );
+
+  _nas_master_native_plants_attach_fields_sync($form);
+  $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
+    'scope' => 'footer',
+  );
+
+  return $form;
+}
+
+/**
+ * AJAX callback for Native Plants get list form.
+ */
+function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_state) {
+  if (!$form_state['redirect']) {
+    return $form;
+  }
+
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+}
+
+/**
+ * Form submit callback for Native Plants get list form.
+ */
+function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
+  $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
+  // Create permalink entity.
+  $values = array(
+    'type' => 'permalink',
+    'email' => $form_state['values']['email'],
+    'zip_code' => $fields['zipcode'],
+    'plants_cart' => $_COOKIE['native_plants_cart'],
+    'square_feet' => 0,
+  );
+  if ($permalink = entity_create('permalink', $values)) {
+    entity_save('permalink', $permalink);
+  }
+
+  // Convio integration.
+  nas_master_native_plants_convio_integration($permalink);
+
+  // Send plant list - it is set up to go through Mandrill.
+  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
+
+  // Redirect to permalink page.
+  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+}
+
+/**
+ * Helper function to add fields sync JS.
+ */
+function _nas_master_native_plants_attach_fields_sync(&$form) {
+  $form['#attached']['library'][] = array('system', 'jquery.cookie');
+  $form['#attached']['js'][] = libraries_get_path('json2') . '/json2.js';
+  $form['#attached']['js'][] = drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.fields_sync.js';
 }

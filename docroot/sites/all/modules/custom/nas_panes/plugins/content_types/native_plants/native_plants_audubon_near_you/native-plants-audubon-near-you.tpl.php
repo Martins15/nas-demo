@@ -4,7 +4,7 @@
  * Native Plants Audubon near you template.
  */
 ?>
-<div class="connect-audubon-near-you row<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+<div class="native-plants-audubon-near-you connect-audubon-near-you row<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
   <?php print $context_links; ?>
   <?php foreach ($resources as $resource): ?>
     <div class=" vertical-spacing--bottom clearfix">
