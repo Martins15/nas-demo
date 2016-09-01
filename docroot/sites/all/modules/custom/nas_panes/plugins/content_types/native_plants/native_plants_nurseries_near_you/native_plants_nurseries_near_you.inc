@@ -109,6 +109,7 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     $nurseries[] = array(
       'title' => $nursery_wrapper->title->value(),
       'address' => $nursery_wrapper->field_nursery_address->value(),
+      'link' => '',
     );
     if (count($nurseries) == 4) {
       break;

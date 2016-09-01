@@ -32,16 +32,18 @@
               </p>
             </div>
           </div>
-          <div class="row">
-            <div class="column tiny-3">
-              <p class="label"><?php print t('Website'); ?></p>
+          <?php if ($nursery['link']): ?>
+            <div class="row">
+              <div class="column tiny-3">
+                <p class="label"><?php print t('Website'); ?></p>
+              </div>
+              <div class="column tiny-9">
+                <p>
+                  <a href="<?php print $nursery['link']; ?>"><?php print $nursery['link']; ?></a>
+                </p>
+              </div>
             </div>
-            <div class="column tiny-9">
-              <p>
-                <a href="https://google.com">https://google.com</a>
-              </p>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
       <?php endforeach; ?>
     </div>
