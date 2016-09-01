@@ -18,7 +18,7 @@
           <small><?php print t('Browse by State'); ?></small>
           <select>
             <?php foreach ($options as $option): ?>
-              <option <?php $option['default'] ? print 'secleted="selected"' : ''; ?> value="<?php print $option['path']; ?>"><?php print $option['title']; ?></option>
+              <option <?php print $option['default'] ? 'secleted="selected"' : ''; ?> value="<?php print $option['path']; ?>"><?php print $option['title']; ?></option>
             <?php endforeach; ?>
           </select>
         </li>

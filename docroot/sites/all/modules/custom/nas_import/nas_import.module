@@ -593,6 +593,7 @@ function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity
     $contact = reset($item['statecontacts']);
     $entity->field_iba_state_contact_name[LANGUAGE_NONE][0]['value'] = $contact['Name'];
     $entity->field_iba_state_contact_title[LANGUAGE_NONE][0]['value'] = $contact['Title'];
+    $entity->field_iba_state_contact_email[LANGUAGE_NONE][0]['email'] = $contact['Email'];
   }
   if (isset($item['latitudestate'])) {
     $entity->field_iba_state_latitude[LANGUAGE_NONE][0]['value'] = $item['latitudestate'];

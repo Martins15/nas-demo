@@ -8,7 +8,7 @@
 $plugin = array(
   'single' => TRUE,
   'title' => t('IBA Individual Native Birds'),
-  'description' => t('Provides "Birds native to this area" pane'),
+  'description' => t('Provides "Birds in This Area" pane'),
   'category' => 'NAS',
   'render callback' => 'iba_individual_native_birds_render',
   'required context' => new ctools_context_required(t('Node'), 'node'),
@@ -53,7 +53,7 @@ function iba_individual_native_birds_render($subtype, $conf, $args, $context) {
   if (!empty($results)) {
     $block->content = theme('iba_individual_native_birds', array(
       'teasers' => $results,
-      'title' => t('Birds Native to This Area'),
+      'title' => t('Birds in This Area'),
       'first_column_last' => $first_column_last,
     ));
   }

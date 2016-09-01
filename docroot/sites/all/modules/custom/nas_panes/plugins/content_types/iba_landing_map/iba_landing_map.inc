@@ -58,10 +58,11 @@ function iba_landing_map_render($subtype, $conf, $args, $context) {
   $src = '//audubon.maps.arcgis.com/apps/Embed/index.html?' . implode('&amp;', $query);
 
   $block = new stdClass();
-  $block->content = theme('iba_landing_map', array(
-    'src' => $src,
-    'options' => $options,
-  ));
+  $block->content = array(
+    '#theme' => 'iba_landing_map',
+    '#src' => $src,
+    '#options' => $options,
+  );
 
   return $block;
 }
@@ -72,8 +73,9 @@ function iba_landing_map_render($subtype, $conf, $args, $context) {
 function iba_landing_map_theme(&$theme, $plugin) {
   $theme['iba_landing_map'] = array(
     'variables' => array(
-        'options' => '',
-      ),
+      'options' => '',
+      'src' => '',
+    ),
     'template' => 'iba-landing-map',
     'path' => $plugin['path'],
   );
