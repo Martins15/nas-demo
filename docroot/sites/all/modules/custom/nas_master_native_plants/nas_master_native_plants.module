@@ -291,7 +291,9 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
           'native-plants-search-form--zip-code',
         ),
         'placeholder' => t('U.S. ZIP code'),
+        'data-native-plants-fields-sync' => 'zipcode',
       );
+      _nas_master_native_plants_attach_fields_sync($form);
 
       $form['zipcode']['#element_validate'] = array(
         'nas_master_native_plants_element_validate_zipcode_global',
