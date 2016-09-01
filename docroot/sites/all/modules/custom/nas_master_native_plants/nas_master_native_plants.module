@@ -598,7 +598,7 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     array_unshift($commands, ajax_command_replace($id, $form));
   }
 
-  // Update panes.
+  // Load the page and find handler.
   $page = page_manager_page_load('native_plants_search');
   $task = page_manager_get_task($page->task);
   $handlers = page_manager_load_task_handlers($task, $page->name);
@@ -616,6 +616,7 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     return;
   }
 
+  // Update panes.
   foreach ($handler->conf['display']->content as $pane) {
     $selector = '';
     switch ($pane->subtype) {
