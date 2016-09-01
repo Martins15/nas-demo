@@ -714,7 +714,7 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
     $pane->configuration = array(
       'tab1_title' => 'Best results',
       'tab2_title' => 'Full results',
-      'tab3_title' => 'Local results',
+      'tab3_title' => 'Local resources',
       'tab4_title' => 'Next steps',
       'form_build_id' => 'form-Yc1JoZ6DjCDCCMrlycAiZZrndX2d4T3rRoz_BSKcmsA',
     );

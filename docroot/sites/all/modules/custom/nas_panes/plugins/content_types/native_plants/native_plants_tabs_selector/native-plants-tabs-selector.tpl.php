@@ -15,7 +15,7 @@
         <a href="#full_results" class="js-ajax-tab js-tab"><?php print $tab2_title; ?></a>
       </li>
       <li class="tab-title">
-        <a href="#local_results" class="js-ajax-tab js-tab"><?php print $tab3_title; ?></a>
+        <a href="#local_resources" class="js-ajax-tab js-tab"><?php print $tab3_title; ?></a>
       </li>
       <li class="tab-title">
         <a href="#next_steps" class="js-ajax-tab js-tab"><?php print $tab4_title; ?></a>

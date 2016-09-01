@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane" id='local_results'>
+      <div class="tab-pane" id='local_resources'>
         <div class="row">
           <div class="columns">
             <div class="native-plants-local-results clearfix">
