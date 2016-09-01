@@ -584,13 +584,11 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     $commands[] = $command;
   }
 
-  // Add validation errors.
-  if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend(
-      '#views-exposed-form-native-plants-search-native-plants-search-pane',
-      '<div class="row">' . $messages . '</div>'
-    );
-  }
+  // Update best results view.
+  $best_results_view = views_embed_view('native_plants_search', 'native_plants_search_pane_tier1');
+  $selector = '.view-display-id-native_plants_search_pane_tier1';
+  $command = ajax_command_replace($selector, $best_results_view);
+  array_unshift($commands, $command);
 
   // Refresh exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
@@ -598,6 +596,14 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     $form = $exposed_block_plugin->render_exposed_form(TRUE);
     $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
     array_unshift($commands, ajax_command_replace($id, $form));
+  }
+
+  // Add validation errors.
+  if ($messages = theme('status_messages')) {
+    $commands[] = ajax_command_prepend(
+      '#views-exposed-form-native-plants-search-native-plants-search-pane',
+      '<div class="row">' . $messages . '</div>'
+    );
   }
 }
 
