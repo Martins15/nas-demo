@@ -967,3 +967,17 @@ function _nas_master_native_plants_zipcode_to_state($zipcode) {
 
   return reset($zipfips)->state_code;
 }
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_master_native_plants_feeds_presave(FeedsSource $source, $entity, $item) {
+  switch ($entity->feeds_item->id) {
+    case 'nurseries':
+      $entity->field_nursery_online[LANGUAGE_NONE][0]['value'] = 0;
+      if (!empty($item['supply area'][0])) {
+        $entity->field_nursery_online[LANGUAGE_NONE][0]['value'] = 1;
+      }
+      break;
+  }
+}
