@@ -86,6 +86,39 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
   }
 
   // Remove Canada states.
+  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_remove_canada_states($states);
+
+  // Assign all states if no states selected yet.
+  if (!$states['#default_value']) {
+    foreach (array_keys($states['#options']) as $tid) {
+      $states['#default_value'][] = $tid;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_nursery_node_form_alter(&$form, &$form_state, $form_id) {
+  // Remove Canada states.
+  $states = &$form['field_nursery_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_remove_canada_states($states);
+
+  // Show states checkboxes only if Nursery is online one.
+  $states['#states'] = array(
+    'visible' => array(
+      'input[name^="field_nursery_online"]' => array(
+        'checked' => TRUE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Helper function to remove Canada states.
+ */
+function _nas_master_native_plants_remove_canada_states(&$states) {
   $canada_states = array(
     'Ontario',
     'Quebec',
@@ -101,17 +134,9 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
     'Yukon',
     'Nunavut',
   );
-  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
   foreach ($states['#options'] as $tid => $name) {
     if (in_array($name, $canada_states)) {
       unset($states['#options'][$tid]);
-    }
-  }
-
-  // Assign all states if no states selected yet.
-  if (!$states['#default_value']) {
-    foreach (array_keys($states['#options']) as $tid) {
-      $states['#default_value'][] = $tid;
     }
   }
 }
@@ -629,7 +654,12 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
         break;
 
       case 'native_plants_nurseries_near_you':
-        $selector = '.native-plants-nurseries-near-you';
+        if ($pane->configuration['online']) {
+          $selector = '.native-plants-nurseries-near-you-online';
+        }
+        else {
+          $selector = '.native-plants-nurseries-near-you-offline';
+        }
         break;
     }
 
@@ -879,6 +909,9 @@ function nas_master_native_plants_ctools_plugin_directory($owner, $plugin_type) 
   if ($owner == 'geocoder' && $plugin_type == 'geocoder_handler') {
     return 'plugins/' . $plugin_type;
   }
+  if ($owner == 'feeds_tamper' && $plugin_type == 'plugins') {
+    return 'plugins/feeds_tamper';
+  }
 }
 
 /**
@@ -938,4 +971,18 @@ function _nas_master_native_plants_zipcode_to_state($zipcode) {
   $zipfips = entity_load('zipfips', array($zipfips_id));
 
   return reset($zipfips)->state_code;
+}
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_master_native_plants_feeds_presave(FeedsSource $source, $entity, $item) {
+  switch ($entity->feeds_item->id) {
+    case 'nurseries':
+      $entity->field_nursery_online[LANGUAGE_NONE][0]['value'] = 0;
+      if (!empty($item['supply area'][0])) {
+        $entity->field_nursery_online[LANGUAGE_NONE][0]['value'] = 1;
+      }
+      break;
+  }
 }

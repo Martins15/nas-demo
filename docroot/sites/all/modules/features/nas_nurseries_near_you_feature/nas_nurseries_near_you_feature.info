@@ -1,7 +1,7 @@
 name = Nurseries near you
 core = 7.x
 package = Native Plants
-version = 7.x-1.1
+version = 7.x-1.2
 project = nas_nurseries_near_you_feature
 dependencies[] = ctools
 dependencies[] = search_api_location
