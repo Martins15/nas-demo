@@ -569,9 +569,11 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
         'format' => 'full_html',
       ),
       'zipcode' => '',
-      'form_build_id' => 'form-72pgu9TcE4S8Y5gIfK7oPFBiB4wPxOOrD-KE0z3clPA',
+      'form_build_id' => 'form-D1EKkhmZukVxHwSqHC4-XDsoxF5sLsmGCA5zobY10ak',
       'override_title' => 0,
       'override_title_heading' => 'h2',
+      'online' => 0,
+      'quantity' => '4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -600,9 +602,11 @@ function nas_native_plants_search_page_feature_default_page_manager_pages() {
         'format' => 'full_html',
       ),
       'zipcode' => '',
-      'form_build_id' => 'form-x9k9dU8hcUn22LnLw62iz0UdEhqmrQyvP-Sx4_g5Zc0',
+      'form_build_id' => 'form-rR_yNSb_hCcx04eEo8ezKDEAMf-auaxCMdELiA_Zr2k',
       'override_title' => 1,
       'override_title_heading' => 'h2',
+      'online' => 1,
+      'quantity' => '4',
     );
     $pane->cache = array();
     $pane->style = array(

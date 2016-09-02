@@ -39,7 +39,7 @@
               </div>
               <div class="column tiny-9">
                 <p>
-                  <a href="<?php print $nursery['link']; ?>"><?php print $nursery['link']; ?></a>
+                  <a href="<?php print $nursery['link']['url']; ?>"><?php print $nursery['link']['print']; ?></a>
                 </p>
               </div>
             </div>

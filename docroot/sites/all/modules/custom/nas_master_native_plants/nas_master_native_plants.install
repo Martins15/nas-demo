@@ -51,6 +51,9 @@ function nas_master_native_plants_update_7005() {
  */
 function nas_master_native_plants_update_7006() {
   features_revert(array(
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
     'nas_site_template_feature' => array(
       'page_manager_handlers',
     ),
@@ -72,8 +75,8 @@ function nas_master_native_plants_update_7006() {
       'feeds_importer',
       'feeds_tamper',
     ),
-    'nas_solr_feature' => array(
-      'search_api_index',
+    'nas_nurseries_near_you_feature' => array(
+      'views_view',
     ),
   ));
 }
