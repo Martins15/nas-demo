@@ -13,6 +13,7 @@ features[features_api][] = api:2
 features[feeds_importer][] = nurseries
 features[feeds_tamper][] = nurseries-country-country_to_code
 features[feeds_tamper][] = nurseries-country-default_value
+features[feeds_tamper][] = nurseries-country-find_replace
 features[feeds_tamper][] = nurseries-state_name-state_to_abbrev
 features[feeds_tamper][] = nurseries-supply_area-abbrev_to_state
 features[feeds_tamper][] = nurseries-supply_area-explode
