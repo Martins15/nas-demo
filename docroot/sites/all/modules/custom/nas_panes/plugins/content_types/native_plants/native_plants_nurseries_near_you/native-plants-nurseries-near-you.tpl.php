@@ -4,7 +4,7 @@
  * Template for the Native Plants Nurseries near you.
  */
 ?>
-<div class="native-plants-nurseries-near-you clearfix where-to-buy__section__row vertical-spacing--top--half<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+<div class="<?php print $classes; ?> clearfix where-to-buy__section__row vertical-spacing--top--half<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
   <?php print $context_links; ?>
   <div class="column medium-4">
     <h2 class="thin"><?php print $title; ?></h2>

@@ -654,7 +654,12 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
         break;
 
       case 'native_plants_nurseries_near_you':
-        $selector = '.native-plants-nurseries-near-you';
+        if ($pane->configuration['online']) {
+          $selector = '.native-plants-nurseries-near-you-online';
+        }
+        else {
+          $selector = '.native-plants-nurseries-near-you-offline';
+        }
         break;
     }
 

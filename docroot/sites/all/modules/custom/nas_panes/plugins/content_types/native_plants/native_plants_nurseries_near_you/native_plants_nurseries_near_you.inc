@@ -148,6 +148,7 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     '#theme' => 'native_plants_nurseries_near_you',
     '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
+    '#online' => $conf['online'],
     '#nurseries' => $nurseries,
     '#context_links' => $contextual_links,
   );
@@ -163,6 +164,7 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
     'variables' => array(
       'title' => '',
       'description' => '',
+      'online' => 0,
       'nurseries' => array(),
       'context_links' => '',
     ),
@@ -187,5 +189,11 @@ function nas_panes_preprocess_native_plants_nurseries_near_you(&$variables) {
         $res['link']['print'] = drupal_substr($res['link']['url'], 0, 22) . '&hellip;';
       }
     }
+  }
+  if ($variables['online']) {
+    $variables['classes_array'][] = 'native-plants-nurseries-near-you-online';
+  }
+  else {
+    $variables['classes_array'][] = 'native-plants-nurseries-near-you-offline';
   }
 }
