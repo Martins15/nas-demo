@@ -72,5 +72,8 @@ function nas_master_native_plants_update_7006() {
       'feeds_importer',
       'feeds_tamper',
     ),
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
   ));
 }
