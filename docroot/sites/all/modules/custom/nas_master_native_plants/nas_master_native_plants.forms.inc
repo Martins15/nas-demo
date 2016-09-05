@@ -179,7 +179,12 @@ function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
   $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
 
   // Convio integration.
-  nas_master_native_plants_convio_integration($permalink);
+  $values = array(
+    'email' => $form_state['values']['sanctuary_email_address'],
+    'zipcode' => $form_state['values']['sanctuary_zipcode'],
+    'square_feet' => $form_state['values']['sanctuary_square_feet'],
+  );
+  nas_master_native_plants_convio_integration($values);
 
   // Send plant list - it is set up to go through Mandrill.
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
@@ -272,6 +277,16 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
  * Form submit callback for Native Plants initial form.
  */
 function nas_master_native_plants_initial_form_submit($form, &$form_state) {
+  // Convio integration.
+  if (!empty($form_state['values']['email'])) {
+    $values = array(
+      'email' => $form_state['values']['email'],
+      'zipcode' => $form_state['values']['zipcode'],
+      'square_feet' => 0,
+    );
+    nas_master_native_plants_convio_integration($values);
+  }
+
   // Redirect to main Native Plants search by ZIP code page.
   $form_state['redirect'] = array(
     'native-plants/search',
@@ -389,7 +404,15 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
  * Form submit callback for Native Plants pledge form.
  */
 function nas_master_native_plants_pledge_form_submit($form, &$form_state) {
-  // Redirect to main Native Plants search by ZIP code page.
+  // Convio integration.
+  $values = array(
+    'email' => $form_state['values']['email'],
+    'zipcode' => $form_state['values']['zipcode'],
+    'square_feet' => $form_state['values']['quantity'],
+  );
+  nas_master_native_plants_convio_integration($values);
+
+  // Redirect to configured redirect page.
   $form_state['redirect'] = $form_state['values']['redirect'];
 }
 
@@ -476,7 +499,12 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   }
 
   // Convio integration.
-  nas_master_native_plants_convio_integration($permalink);
+  $values = array(
+    'email' => $form_state['values']['email'],
+    'zipcode' => $fields['zipcode'],
+    'square_feet' => 0,
+  );
+  nas_master_native_plants_convio_integration($values);
 
   // Send plant list - it is set up to go through Mandrill.
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
