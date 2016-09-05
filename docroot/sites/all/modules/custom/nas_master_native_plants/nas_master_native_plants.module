@@ -539,16 +539,16 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 
   foreach ($vars['view']->result as &$result) {
-    // Randomize bird type cards ordering for Tier1 display.
-    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
-      shuffle($result->BirdTypes);
-    }
-
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '
       . 'data-plant-scientific-name="' . $result->ScientificName . '" '
       . 'data-plant-bird-types="' . implode(',', array_keys($result->BirdTypes)) . '"';
+
+    // Randomize bird type cards ordering for Tier1 display.
+    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
+      shuffle($result->BirdTypes);
+    }
 
     // Prepare images.
     $result->PlantImgDesktop = '';
