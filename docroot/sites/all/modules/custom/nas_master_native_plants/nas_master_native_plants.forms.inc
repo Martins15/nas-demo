@@ -179,7 +179,12 @@ function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
   $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
 
   // Convio integration.
-  nas_master_native_plants_convio_integration($permalink);
+  $values = array(
+    'email' => $form_state['values']['sanctuary_email_address'],
+    'zipcode' => $form_state['values']['sanctuary_zipcode'],
+    'square_feet' => $form_state['values']['sanctuary_square_feet'],
+  );
+  nas_master_native_plants_convio_integration($values);
 
   // Send plant list - it is set up to go through Mandrill.
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
@@ -476,7 +481,12 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   }
 
   // Convio integration.
-  nas_master_native_plants_convio_integration($permalink);
+  $values = array(
+    'email' => $form_state['values']['email'],
+    'zipcode' => $fields['zipcode'],
+    'square_feet' => 0,
+  );
+  nas_master_native_plants_convio_integration($values);
 
   // Send plant list - it is set up to go through Mandrill.
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
