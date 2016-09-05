@@ -277,6 +277,16 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
  * Form submit callback for Native Plants initial form.
  */
 function nas_master_native_plants_initial_form_submit($form, &$form_state) {
+  // Convio integration.
+  if (!empty($form_state['values']['email'])) {
+    $values = array(
+      'email' => $form_state['values']['email'],
+      'zipcode' => $form_state['values']['zipcode'],
+      'square_feet' => 0,
+    );
+    nas_master_native_plants_convio_integration($values);
+  }
+
   // Redirect to main Native Plants search by ZIP code page.
   $form_state['redirect'] = array(
     'native-plants/search',
@@ -394,7 +404,15 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
  * Form submit callback for Native Plants pledge form.
  */
 function nas_master_native_plants_pledge_form_submit($form, &$form_state) {
-  // Redirect to main Native Plants search by ZIP code page.
+  // Convio integration.
+  $values = array(
+    'email' => $form_state['values']['email'],
+    'zipcode' => $form_state['values']['zipcode'],
+    'square_feet' => $form_state['values']['quantity'],
+  );
+  nas_master_native_plants_convio_integration($values);
+
+  // Redirect to configured redirect page.
   $form_state['redirect'] = $form_state['values']['redirect'];
 }
 
