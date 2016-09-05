@@ -369,8 +369,14 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
   $combinations = array(
     'attribute' => array('bird_type'),
     'bird_type' => array('attribute'),
+    'attribute_tier1' => array('bird_type_tier1'),
+    'bird_type_tier1' => array('attribute_tier1'),
   );
   foreach ($combinations as $filter_to_filter => $filters) {
+    if (!isset($form[$filter_to_filter])) {
+      continue;
+    }
+
     $results_filtered = $results_unfiltered;
 
     // Filter the unfiltered results by the value of all other filters.
@@ -593,33 +599,27 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     return;
   }
 
-  $selector = '';
-  // Modify scrolling behavior.
-  foreach ($commands as $key => $command) {
-    if ($command['command'] == 'viewsScrollTop') {
-      $selector = $command['selector'];
-      // Remove the 'viewsScrollTop' command.
-      unset($commands[$key]);
-      break;
-    }
-  }
-  // Add the 'viewsScrollTop' command to the end of commands array.
-  if ($selector) {
-    $command['selector'] = $selector . ' .np-search-full-results';
-    $commands[] = $command;
-  }
-
   // Update best results view.
   $best_results_view = views_embed_view('native_plants_search', 'native_plants_search_pane_tier1');
   $selector = '.view-display-id-native_plants_search_pane_tier1';
   $command = ajax_command_replace($selector, $best_results_view);
   array_unshift($commands, $command);
 
-  // Refresh exposed form.
+  // Refresh full results exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
   if ($view->display_handler->get_option('exposed_block')) {
     $form = $exposed_block_plugin->render_exposed_form(TRUE);
     $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
+    array_unshift($commands, ajax_command_replace($id, $form));
+  }
+
+  // Refresh best results exposed form.
+  $br_view = views_get_view('native_plants_search');
+  $br_view->set_display('native_plants_search_pane_tier1');
+  $exposed_block_plugin = $br_view->display_handler->get_plugin('exposed_form');
+  if ($br_view->display_handler->get_option('exposed_block')) {
+    $form = $exposed_block_plugin->render_exposed_form(TRUE);
+    $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $br_view->name . '-' . $br_view->display_handler->display->id);
     array_unshift($commands, ajax_command_replace($id, $form));
   }
 
