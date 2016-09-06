@@ -807,6 +807,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
     return;
   }
 
+  $order = 1;
   foreach ($handler->conf['display']->content as $pane) {
     switch ($pane->subtype) {
       case 'native_plants_bar':
@@ -816,26 +817,16 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
         break;
 
       case 'native_plants_list_description':
-        $variables['list_title'] = $pane->configuration['override_title_text'];
-        $variables['list_text_top'] = check_markup($pane->configuration['text_top']['value'], $pane->configuration['text_top']['format']);
-        $variables['list_text_bottom'] = check_markup($pane->configuration['text_bottom']['value'], $pane->configuration['text_bottom']['format']);
+        $variables['list_title_' . $order] = $pane->configuration['override_title_text'];
+        $variables['list_text_' . $order] = check_markup($pane->configuration['text']['value'], $pane->configuration['text']['format']);
+        $variables['list_text_' . $order] = strtr(
+          $variables['list_text_' . $order],
+          array('!permalink' => l($variables['permalink_url'], $variables['permalink_url']))
+        );
         // Convert to absolute URLs.
-        $variables['list_text_top'] = check_markup($variables['list_text_top'], 'absolute_urls');
-        $variables['list_text_bottom'] = check_markup($variables['list_text_bottom'], 'absolute_urls');
+        $variables['list_text_' . $order] = check_markup($variables['list_text_' . $order], 'absolute_urls');
+        $order++;
 
-        $variables['list_share_label'] = $pane->configuration['share_label'];
-        $variables['twitter_url'] = url('http://twitter.com/share', array(
-          'query' => array(
-            'text' => '',
-            'via' => 'audubonsociety',
-            'url' => $variables['permalink_url'],
-          ),
-        ));
-        $variables['facebook_url'] = url('http://www.facebook.com/sharer/sharer.php', array(
-          'query' => array(
-            'u' => $variables['permalink_url'],
-          ),
-        ));
         break;
 
       case 'editorial_card_3x':
