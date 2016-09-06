@@ -113,6 +113,27 @@ function native_plants_bar_edit_form_submit(&$form, &$form_state) {
 
   // Form build ID is required for contextual links.
   $form_state['conf']['form_build_id'] = $form_state['values']['form_build_id'];
+
+  // Update pane configuration site-wide.
+  $panel_type = 'native_plants_bar';
+  $configs = db_select('panels_pane', 'pp')
+    ->fields('pp', array('pid', 'configuration'))
+    ->condition('pp.type', $panel_type)
+    ->execute()
+    ->fetchAll();
+
+  foreach ($configs as $config_data) {
+    $config = unserialize($config_data->configuration);
+    foreach (array_keys($form_state['plugin']['defaults']) as $key) {
+      $config[$key] = $form_state['values'][$key];
+    }
+
+    db_update('panels_pane')
+      ->fields(array('configuration' => serialize($config)))
+      ->condition('type', $panel_type)
+      ->condition('pid', $config_data->pid)
+      ->execute();
+  }
 }
 
 /**
