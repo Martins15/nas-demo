@@ -22,6 +22,8 @@ class ComposerStaticInitComposerManager
         ),
         'D' => 
         array (
+            'Drupal\\nas_fbia\\' => 16,
+            'Drupal\\fb_instant_articles_display\\' => 35,
             'Drupal\\fb_instant_articles\\' => 27,
         ),
     );
@@ -39,9 +41,17 @@ class ComposerStaticInitComposerManager
         array (
             0 => __DIR__ . '/..' . '/facebook/php-sdk-v4/src/Facebook',
         ),
+        'Drupal\\nas_fbia\\' => 
+        array (
+            0 => __DIR__ . '/../../modules/custom/nas_fbia/src',
+        ),
+        'Drupal\\fb_instant_articles_display\\' => 
+        array (
+            0 => __DIR__ . '/../../modules/patched/fb_instant_articles/modules/fb_instant_articles_display/src',
+        ),
         'Drupal\\fb_instant_articles\\' => 
         array (
-            0 => __DIR__ . '/../../../all/modules/patched/fb_instant_articles/src',
+            0 => __DIR__ . '/../../modules/patched/fb_instant_articles/src',
         ),
     );
 

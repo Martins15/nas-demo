@@ -1,0 +1,288 @@
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.header-wrap {
+  background-color: $color-black;
+  padding: 0 $global-padding;
+}
+
+.footer-wrap {
+  background-color: $color-text-gray; //#3A3A3A;
+  padding: $global-padding*2 $global-padding 0 $global-padding;
+
+  .footer-container {
+    width: 100%;
+
+    .footer-logo {
+      display: inline-block;
+      margin-left: -10px;
+      width: 144px;
+
+      @media screen and (min-width: $global-breakpoint+1) {
+        margin: 0 !important;
+      }
+    }
+
+    a {
+      &,
+      &:active,
+      &:hover,
+      &:visited {
+        color: $color-lighter-blue;
+        text-decoration: underline;
+      }
+    }
+
+    th.large-7.last {
+      @media screen and (min-width: $global-breakpoint+1) {
+        border-left: 1px solid $color-light-text-gray !important;
+        padding-top: 16px !important;
+      }
+    }
+
+    .footer-column-logo {
+      th {
+        text-align: center;
+
+        @media screen and (min-width: $global-breakpoint+1) {
+          padding-right: 8px !important;
+          text-align: right !important;
+        }
+      }
+    }
+    
+    .footer-column-address {
+      th {
+        text-align: center;
+        vertical-align: middle;
+
+        @media screen and (min-width: $global-breakpoint+1) {
+          padding-left: 8px !important;
+
+          .address {
+            text-align: left !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+a {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+
+  &,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $color-bright-blue;
+    text-decoration: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+  a {
+
+    &,
+    &:visited,
+    &:hover,
+    &:active {
+      color: inherit !important;
+    }
+  }
+}
+
+h2 {
+  color: $font-black;
+  font-family: $font-sans;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 31px;
+  margin-top: 30px;
+
+  &.plants-list-title {
+    margin-bottom: 0;
+  }
+}
+
+.green-bar-wrap {
+  background-color: $color-pea-green; //#66a122;
+  padding: 0 $global-padding;
+}
+
+.button {
+  background-color: $color-tomato;
+  border-radius: 8px;
+  display: inline-block;
+  font-family: $font-sans;
+  font-size: 20px;
+  height: 45px;
+  line-height: 45px;
+  margin: 9px 0 9px 0;
+  padding: 0 35px 0 35px;
+
+  &,
+  &:active,
+  &:visited,
+  &:hover {
+    color: $color-white;
+  }
+}
+
+.green-bar {
+
+  h1 {
+    color: $white;
+    font-family: $font-sans;
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0 !important;
+
+    a {
+      color: $white;
+    }
+
+    @media only screen and (min-width: $global-breakpoint+1) {
+      font-size: 33px !important;
+    }
+  }
+}
+
+.container {
+  .plants-list {
+    font-family: $font-sans;
+    font-size: 17px !important;
+    margin-bottom: 40px;
+    line-height: 28px !important;
+
+    .view-row {
+      border-bottom: 2px solid $color-middle-gray;
+      padding-bottom: 10px;
+      padding-top: 10px;
+
+      .mobile-search-full-results--label {
+        color: $color-warm-gray;
+      }
+    }
+  }
+}
+
+.editorial-cards {
+  td, th {
+    &.large-6 {
+      width: 309px; //($global-breakpoint - ($global-padding*3)) / 2;
+    }
+  }
+}
+
+.editorial-card {
+  border: 1px solid $color-light-gray;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+  .editorial-card-photo img {
+    width: 100%;
+  }
+
+  &-content {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 12px 12px 0 12px;
+
+    @media only screen and (min-width: $global-breakpoint+1) {
+      min-height: 170px !important;
+    }
+  }
+
+  &-slug {
+    font-family: $font-sans;
+    font-size: 15px;
+  }
+
+  h3 {
+    color: $color-dark-gray;
+    font-family: $font-sans;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 28px;
+    margin: 0 0 10px 0;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 15px 0;
+  }
+}
+
+.address {
+  color: $color-white;
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: -0.6px;
+  line-height: 17px;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.list-table {
+  border-collapse: collapse;
+  margin-top: 31px;
+
+  thead {
+    tr {
+      border-bottom: 1px solid $color-light-gray;
+      border-top: 1px solid $color-light-gray;
+      background-color: $color-lighter-gray;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $color-light-gray;
+      border-top: 1px solid $color-light-gray;
+    }
+  }
+
+  th {
+    padding: 8px 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  td {
+    color: $font-black;
+    padding: 12px;
+  }
+
+  td,
+  th {
+    font-family: $font-sans;
+    letter-spacing: -0.5px;
+    vertical-align: middle;
+  }
+
+  .native-plant-bird-category-link {
+    color: $font-black;
+    text-decoration: underline;
+    white-space: nowrap;
+  }
+
+  .plant-name-cell {
+    text-align: left;
+  }
+
+  .scientific-name-cell {
+    text-align: center;
+  }
+
+  .may-attract-cell {
+    width: 160px;
+    line-height: 26px;
+  }
+}
