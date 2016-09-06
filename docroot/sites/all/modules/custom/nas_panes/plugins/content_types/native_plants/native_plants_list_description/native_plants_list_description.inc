@@ -18,13 +18,9 @@ $plugin = array(
   'defaults' => array(
     'title'=> 'Your Native Plant List',
     'override_title_text' => 'Your Native Plant List',
-    'text_top' => array(
-      'value' => '<p>Thanks for joining the world\'s largest bird sanctuary. Below you can find the plant list you selected from <a href="/native-plants">Audubon\'s Native Plants Database</a>.</p><p>You can access this list on the web at any time using the following link:</p>',
-      'format' => 'full_html',
-    ),
-    'share_label' => 'Share your list',
-    'text_bottom' => array(
-      'value' => '<p>To access local resources and places to buy native plants in your area, visit our <a href="#">Native Plants Resources page</a> and enter your zip code.</p>',
+    'text' => array(
+      'value' => '<p>Thank you for planting for birds. With your help, we can grow 1 million bird-friendly plants.&nbsp;Below you can find the plant list you selected from <a href="/native-plants">Audubon&#39;s Native Plants Database</a>.</p>
+<p>You can access this list on the web at any time using the following link:</p>',
       'format' => 'full_html',
     ),
   ),
@@ -36,7 +32,7 @@ $plugin = array(
 function native_plants_list_description_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
   $block->title = $conf['override_title_text'];
-  $block->content = check_markup($conf['text_top']['value'], $conf['text_top']['format']);
+  $block->content = check_markup($conf['text']['value'], $conf['text']['format']);
   return $block;
 }
 
@@ -49,22 +45,11 @@ function native_plants_list_description_edit_form($form, &$form_state) {
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
   $form['override_title_heading']['#access'] = FALSE;
-  $form['text_top'] = array(
+  $form['text'] = array(
     '#type' => 'text_format',
-    '#title' => t('Text top'),
-    '#default_value' => $conf['text_top']['value'],
-    '#format' => $conf['text_top']['format'],
-  );
-  $form['share_label'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Share label'),
-    '#default_value' => $conf['share_label'],
-  );
-  $form['text_bottom'] = array(
-    '#type' => 'text_format',
-    '#title' => t('Text bottom'),
-    '#default_value' => $conf['text_bottom']['value'],
-    '#format' => $conf['text_bottom']['format'],
+    '#title' => t('Text'),
+    '#default_value' => $conf['text']['value'],
+    '#format' => $conf['text']['format'],
   );
 
   return $form;
@@ -93,26 +78,16 @@ function native_plants_list_description_render($subtype, $conf, $args, $contexts
   $permalink = reset($contexts)->data;
   $permalink_url = url('native-plants/list/' . $permalink->uuid, array('absolute' => TRUE));
 
-  $text_top = ctools_context_keyword_substitute($conf['text_top']['value'], array(), $contexts);
-  $text_top = check_markup($text_top, $conf['text_top']['format']);
-  $text_bottom = ctools_context_keyword_substitute($conf['text_bottom']['value'], array(), $contexts);
-  $text_bottom = check_markup($text_bottom, $conf['text_bottom']['format']);
+  $text = ctools_context_keyword_substitute($conf['text']['value'], array(), $contexts);
+  $text = check_markup($text, $conf['text']['format']);
+  $text = strtr($text, array('!permalink' => l($permalink_url, $permalink_url)));
 
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_list_description',
     '#title' => t(filter_xss($conf['override_title_text'])),
-    '#text_top' => $text_top,
-    '#share_label' => t(filter_xss($conf['share_label'])),
+    '#text' => $text,
     '#permalink' => $permalink_url,
-    '#twitter_url' => url('http://twitter.com/share', array(
-      'query' => array(
-        'text' => '',
-        'via' => 'audubonsociety',
-        'url' => $permalink_url,
-      ),
-    )),
-    '#text_bottom' => $text_bottom,
     '#context_links' => $contextual_links,
   );
 
@@ -126,11 +101,8 @@ function native_plants_list_description_theme(&$theme, $plugin) {
   $theme['native_plants_list_description'] = array(
     'variables' => array(
       'title' => '',
-      'text_top' => '',
-      'share_label' => '',
+      'text' => '',
       'permalink' => '',
-      'twitter_url' => '',
-      'text_bottom' => '',
       'context_links' => '',
     ),
     'template' => 'native-plants-list-description',
