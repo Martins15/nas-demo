@@ -1,5 +1,7 @@
 #Email templates.
 
+Look native-plants-emails/README.md
+
 ## Dependencies
 
 ### Installing NPM
@@ -23,3 +25,8 @@ Go to theme folder and exec:
 ## Updating email template for existing projects:
 
 `foundation watch`
+
+
+## Building (inlining)
+
+npm run build
