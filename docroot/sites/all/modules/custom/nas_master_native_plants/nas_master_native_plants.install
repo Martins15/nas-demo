@@ -78,5 +78,8 @@ function nas_master_native_plants_update_7006() {
     'nas_nurseries_near_you_feature' => array(
       'views_view',
     ),
+    'nas_native_plants_permalink_page' => array(
+      'page_manager_pages',
+    ),
   ));
 }

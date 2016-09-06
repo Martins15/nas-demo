@@ -545,16 +545,16 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 
   foreach ($vars['view']->result as &$result) {
-    // Randomize bird type cards ordering for Tier1 display.
-    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
-      shuffle($result->BirdTypes);
-    }
-
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '
       . 'data-plant-scientific-name="' . $result->ScientificName . '" '
       . 'data-plant-bird-types="' . implode(',', array_keys($result->BirdTypes)) . '"';
+
+    // Randomize bird type cards ordering for Tier1 display.
+    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
+      shuffle($result->BirdTypes);
+    }
 
     // Prepare images.
     $result->PlantImgDesktop = '';
@@ -726,17 +726,17 @@ function _nas_master_native_plants_render_pane(&$pane, $display) {
 /**
  * Helper function for Convio integration.
  */
-function nas_master_native_plants_convio_integration($permalink) {
+function nas_master_native_plants_convio_integration($values) {
   // @see https://secure.audubon.org/site/SSurvey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=21409
   $url = 'https://secure.audubon.org/site/SSurvey';
   $data = array(
     'cons_info_component' => 't',
-    'cons_email' => $permalink->email,
-    'cons_zip_code' => $permalink->zip_code,
+    'cons_email' => $values['email'],
+    'cons_zip_code' => $values['zipcode'],
     's_rememberMe' => 0,
     'remember_me_opt_in_requested' => 'true',
     // Square feet.
-    '3340_21409_2_18300' => $permalink->square_feet ? $permalink->square_feet : 0,
+    '3340_21409_2_18300' => $values['square_feet'] ? $values['square_feet'] : 0,
     'denySubmit' => '',
     'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
     'SURVEY_ID' => '21409',
@@ -750,7 +750,7 @@ function nas_master_native_plants_convio_integration($permalink) {
   $result = drupal_http_request($url, $options);
   watchdog('nas_master_native_plants', 'Convio integration - %email entered. Service answer was !answer',
     array(
-      '%email' => $permalink->email,
+      '%email' => $values['email'],
       '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
     )
   );
@@ -807,6 +807,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
     return;
   }
 
+  $order = 1;
   foreach ($handler->conf['display']->content as $pane) {
     switch ($pane->subtype) {
       case 'native_plants_bar':
@@ -816,26 +817,16 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
         break;
 
       case 'native_plants_list_description':
-        $variables['list_title'] = $pane->configuration['override_title_text'];
-        $variables['list_text_top'] = check_markup($pane->configuration['text_top']['value'], $pane->configuration['text_top']['format']);
-        $variables['list_text_bottom'] = check_markup($pane->configuration['text_bottom']['value'], $pane->configuration['text_bottom']['format']);
+        $variables['list_title_' . $order] = $pane->configuration['override_title_text'];
+        $variables['list_text_' . $order] = check_markup($pane->configuration['text']['value'], $pane->configuration['text']['format']);
+        $variables['list_text_' . $order] = strtr(
+          $variables['list_text_' . $order],
+          array('!permalink' => l($variables['permalink_url'], $variables['permalink_url']))
+        );
         // Convert to absolute URLs.
-        $variables['list_text_top'] = check_markup($variables['list_text_top'], 'absolute_urls');
-        $variables['list_text_bottom'] = check_markup($variables['list_text_bottom'], 'absolute_urls');
+        $variables['list_text_' . $order] = check_markup($variables['list_text_' . $order], 'absolute_urls');
+        $order++;
 
-        $variables['list_share_label'] = $pane->configuration['share_label'];
-        $variables['twitter_url'] = url('http://twitter.com/share', array(
-          'query' => array(
-            'text' => '',
-            'via' => 'audubonsociety',
-            'url' => $variables['permalink_url'],
-          ),
-        ));
-        $variables['facebook_url'] = url('http://www.facebook.com/sharer/sharer.php', array(
-          'query' => array(
-            'u' => $variables['permalink_url'],
-          ),
-        ));
         break;
 
       case 'editorial_card_3x':

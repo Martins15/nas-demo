@@ -15282,6 +15282,16 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   line-height: 22px;
 }
 
+.native-plants-connect-form .flexbox-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+.native-plants-connect-form .field-prefix {
+  white-space: nowrap;
+  margin-right: 16px;
+}
+
 @media only screen and (min-width: 768px) {
   .engagement-hero {
     margin-top: 60px;

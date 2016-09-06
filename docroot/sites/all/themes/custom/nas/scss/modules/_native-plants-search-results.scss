@@ -1169,6 +1169,16 @@ input[type="checkbox"].np-checkbox {
 
 .native-plants-connect-form {
   @extend %native-plants-search-form;
+
+  .flexbox-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+  }
+  .field-prefix {
+    white-space: nowrap;
+    margin-right: 16px;
+  }
 }
 
 // Footer hero blocks

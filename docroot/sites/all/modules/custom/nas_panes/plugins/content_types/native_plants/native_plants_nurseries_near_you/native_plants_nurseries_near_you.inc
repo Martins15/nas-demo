@@ -91,6 +91,12 @@ function native_plants_nurseries_near_you_edit_form_submit(&$form, &$form_state)
  * Render callback.
  */
 function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contexts) {
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
+  }
+
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   if (empty($conf['zipcode'])) {
