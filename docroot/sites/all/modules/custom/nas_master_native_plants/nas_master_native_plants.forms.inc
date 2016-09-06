@@ -306,12 +306,9 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     $form['#theme'] = $conf['form_theme'];
   }
 
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-connect-form',
-      'vertical-spacing--top',
-    ),
-  );
+  if (isset($conf['form_attributes'])) {
+    $form['#attributes'] = $conf['form_attributes'];
+  }
   $form['quantity'] = array(
     '#type' => 'textfield',
     '#title' => t(filter_xss($conf['quantity_placeholder'])),
@@ -373,6 +370,13 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     '#type' => 'value',
     '#value' => $conf['redirect'],
   );
+
+  if (isset($conf['quantity_prefix'])) {
+    $form['quantity']['#prefix'] = '<div class="field-prefix"><h3 class="thin">' . $conf['quantity_prefix'] . '</h3></div>';
+  }
+  if (isset($conf['zipcode_prefix'])) {
+    $form['zipcode']['#prefix'] = '<div class="field-prefix"><h3 class="thin">' . $conf['zipcode_prefix'] . '</h3></div>';
+  }
 
   _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
