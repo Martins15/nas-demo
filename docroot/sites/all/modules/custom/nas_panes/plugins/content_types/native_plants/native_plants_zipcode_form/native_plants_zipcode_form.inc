@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Native Plants email form plugin.
+ * Native Plants ZIP code form plugin.
  */
 
 $plugin = array(

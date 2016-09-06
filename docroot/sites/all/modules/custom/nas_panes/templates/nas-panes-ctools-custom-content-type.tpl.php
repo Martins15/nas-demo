@@ -5,7 +5,7 @@
  */
 ?>
 <?php if (!empty($context_links)): ?>
-<div class="contextual-links-region">
+<div class="<?php print $classes; ?> contextual-links-region">
 <?php endif; ?>
   <?php print $context_links; ?>
   <?php print $markup; ?>

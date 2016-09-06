@@ -55,6 +55,7 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
     'module' => 'geofield',
     'settings' => array(
       'backend' => 'default',
+      'entity_translation_sync' => FALSE,
       'srid' => 4326,
     ),
     'translatable' => 0,
@@ -85,6 +86,7 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
         'habitat_install' => 'Habitat installation/restoration projects',
       ),
       'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
@@ -101,7 +103,9 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
     'indexes' => array(),
     'locked' => 0,
     'module' => 'addressfield',
-    'settings' => array(),
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
     'translatable' => 0,
     'type' => 'addressfield',
   );
@@ -127,6 +131,7 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
@@ -149,6 +154,7 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
     'module' => 'phone',
     'settings' => array(
       'country' => 'ca',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'phone',

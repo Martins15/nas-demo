@@ -101,22 +101,22 @@ function nas_nursery_ct_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '30',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '11',
         ),
         'title' => array(
-          'weight' => '-5',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '9',
         ),
         'xmlsitemap' => array(
-          'weight' => '30',
+          'weight' => '8',
         ),
       ),
       'display' => array(),
