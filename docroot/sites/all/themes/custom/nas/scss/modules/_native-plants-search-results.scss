@@ -1,9 +1,3 @@
-// Native plants colors
-$color-red:                     #cd1818;
-$color-light-red:               #f99090;
-$color-light-orange:            #ff9900;
-$color-light-green:             #52a04a;
-$color-dark-green:              #025e02;
 
 .np-dark-red { background-color: $color-red; }
 .npm-dark-red { color: $color-red; }
@@ -26,9 +20,11 @@ $color-dark-green:              #025e02;
 .native-plants-green-row {
   color: $color-white;
   font-size: 24px;
-  font-family: Source Sans Pro, Verdana, sans-serif;
+  font-family: $font-sans;
   font-weight: 300;
+  height: 50px;
   line-height: 50px;
+  overflow: hidden;
 
   a {
     color: $color-white;
@@ -36,88 +32,218 @@ $color-dark-green:              #025e02;
   }
 
   @include breakpoint(medium-up) {
+    font-size: 32px;
+    height: 56px;
     line-height: 56px;
   }
 }
 
+.native-plants-hero-title {
+  margin-bottom: 28px;
+
+  @include breakpoint(medium-up) {
+    margin-bottom: 42px;
+    text-align: center;
+  }
+}
+
 .native-plants-search-form {
+  @extend %native-plants-search-form;
+
+  .native-plants-search-form--email {
+    @include breakpoint(medium-up) {
+      max-width: 324px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 
   .native-plants-search-form--zip-code {
-    font-size: 19px;
-    height: 45px;
-    border-radius: 8px;
-
     @include breakpoint(medium-up) {
-      width: 150px;
       float: right;
+      max-width: 150px;
+      width: 100%;
     }
   }
 
   .native-plants-search-form--submit {
-    font-size: 20px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-radius: 8px;
     width: 100%;
+    text-transform: capitalize;
 
     @include breakpoint(medium-up) {
+      margin-left: 10px;
       width: 140px;
     }
   }
 }
 
-.try-these-first {
-  @include breakpoint(tiny-only) {
-    padding-top: 15px;
-  }
-  @include breakpoint(small-only) {
-    padding-top: 15px;
+// Search region under header, collapsible on mobile.
+.native-plants-search-form-inline {
+  @include transition(max-height 0.5s);
+  clear: both;
+  overflow: hidden;
+  max-height: 500px;
+
+  .form-submit {
+    margin-bottom: 14px;
   }
 
-  h2 {
-    margin-bottom: 12px;
+  @include breakpoint(medium-up) {
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    h2,
+    .form-text,
+    .form-submit {
+      float: left;
+    }
+
+    h2 {
+      color: $color-light-text-gray;
+      font-size: 30px;
+      line-height: 45px;
+      margin-bottom: 0;
+      margin-right: 28px;
+    }
+
+    .form-submit {
+      margin-left: 30px;
+    }
+  }
+
+  &.collapsed {
+    max-height: 0;
+
+    @include breakpoint(medium-up) {
+      max-height: none;
+    }
+  }
+}
+
+.native-plants-search-icon {
+  float: right;
+  color: $color-white;
+  cursor: pointer;
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+  visibility: visible;
+  margin: -50px 0 10px;
+
+  &.open {
+    display: none;
+  }
+
+  .collapsed & {
+    &.open {
+      display: block;
+    }
+
+    &.close {
+      display: none;
+    }
+  }
+}
+
+.native-plants-hero {
+  .hero-image {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      height: 484px;
+
+      img {
+        @include translateX(-50%);
+        max-width: none;
+        max-height: 100%;
+        margin-left: 50%;
+      }
+    }
+  }
+}
+
+.native-plants-hero-text {
+  font-family: $font-sans;
+  padding-top: 18px;
+  font-size: 18px;
+  line-height: 26px;
+  clear: both;
+
+  @include breakpoint(large-up) {
+    color: $color-white;
+    line-height: 28px;
+    padding-top: 0;
+  }
+
+  @include breakpoint(large-only) {
+    width: 100%;
+  }
+
+  @include breakpoint(xlarge-up) {
+    margin-bottom: 30px;
+  }
+
+  a {
+    color: $color-text-gray;
+    text-decoration: underline;
   }
 
   p {
-    color: $color-warm-gray;
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    margin-bottom: 12px;
   }
-}
 
-.view-native-plants-search {
-  margin-bottom: 20px;
+  & + .hero-attribution {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      background: transparent;
+      color: $color-middle-gray;
+      clear: both;
+      line-height: 20px;
+      margin-bottom: 30px;
+    }
+  }
 }
 
 .native-plants-search-results {
-  margin-top: 20px;
-
   h3 {
-    font-size: 26px;
-    margin-bottom: 13px;
-  }
-  h4 {
-    font-size: 20px;
-    margin-bottom: 13px;
+    color: $color-light-text-gray;
+    font-size: 18px;
+    margin-bottom: 7px;
+
+    @include breakpoint(medium-up) {
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: 0;
+      margin-bottom: 13px;
+    }
   }
 
   h4 {
-    @include breakpoint(tiny-only) {
-      margin: 10px 0px;
-    }
-    @include breakpoint(small-only) {
-      margin: 10px 0px;
+    color: $color-light-text-gray;
+    font-size: 14px;
+    margin: 15px 0 9px;
+
+    @include breakpoint(medium-up) {
+      font-size: 20px;
+      margin: 0 0 7px;
     }
   }
 
   .view-row {
-    padding-bottom: 20px;
+    color: $color-light-text-gray;
+    padding-bottom: 12px;
+
+    @include breakpoint(medium-up) {
+      padding-bottom: 30px;
+
+      > .row:first-child {
+        margin-bottom: 5px;
+      }
+    }
   }
 
   .bird-card {
     margin-bottom: 10px;
 
     @include breakpoint(medium-only) {
-      padding: 5px 5px 35px 5px;
+      padding: 5px 5px 35px;
     }
 
     .bird-card-illustration {
@@ -133,12 +259,15 @@ $color-dark-green:              #025e02;
 
 .tier-1-plant-picture {
   line-height: 0;
+
   img {
     height: auto;
   }
 }
 
 .tier-1-plant-picture-mobile {
+  line-height: 0;
+
   img {
     width: 100%;
     height: auto;
@@ -146,42 +275,70 @@ $color-dark-green:              #025e02;
 }
 
 .tier-1-plant {
-
   .tier-1-plant--description {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 19px;
+
+    @include breakpoint(medium-up) {
+      font-size: 16px;
+      line-height: 22px;
+    }
   }
 
   .tier-1-plant--source {
     font-size: 15px;
     line-height: 20px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
+    margin-bottom: 15px;
+    margin-top: 8px;
+
+    @include breakpoint(medium-up) {
+      margin-bottom: 20px;
+    }
   }
 
   .tier-1-plant--add-to-list {
-    font-size: 19px;
-    margin-top: 13px;
+    margin-top: 2px;
+
+    @include breakpoint(medium-up) {
+      margin-top: 4px;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 300;
+
+      @include breakpoint(medium-up) {
+        font-size: 19px;
+      }
+    }
   }
 }
 
 .plant-attributes-list {
   list-style: none;
-  margin: 10px 0 0 0;
+  margin: 15px 0 0;
+
+  @include breakpoint(medium-up) {
+    margin-top: 7px;
+  }
 
   li {
     display: block;
     float: left;
     list-style: none;
     margin-bottom: 10px;
-    margin-right: 12px;
+    margin-right: 6px;
+
+    @include breakpoint(medium-up) {
+      margin-right: 12px;
+    }
 
     a, span {
-      border-radius: 8px;
-      color: #ffffff;
+      @include border-radius(8px);
+      color: $color-white;
       display: inline-block;
-      font-family: Source Sans Pro, Verdana, sans-serif;
+      font-family: $font-sans;
       font-size: 15px;
       line-height: 32px;
       text-align: center;
@@ -191,6 +348,7 @@ $color-dark-green:              #025e02;
 
   &.plant-attributes-list-small {
     margin: 0;
+
     li {
       margin-right: 10px;
 
@@ -202,54 +360,153 @@ $color-dark-green:              #025e02;
   }
 }
 
-.inner-filters-wrapper {
+.current-location h3 {
+  color: $color-light-text-gray;
 
-  select {
-    background-position: 94% center;
-    border-radius: 8px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
-    font-size: 19px;
-    font-weight: 300;
-    height: 45px;
-    width: 100%;
-    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
-    padding-top: 10px;
-    padding-bottom: 11px;
+  @include width-range(0px, #{upper-bound($small-range)}) {
+    line-height: 22px;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0;
+    margin-bottom: 0;
+    padding-left: 33px;
+    position: relative;
   }
 
   @include breakpoint(medium-up) {
+    padding-left: 28px;
+  }
 
-    select {
-      width: 246px;
-      margin-right: 28px;
+  .icon {
+    font-size: 31px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+
+    @include breakpoint(medium-up) {
+      font-size: 33px;
+      left: 7px;
+      top: 0;
     }
   }
 }
 
-.mobile-results-total-wrapper {
-  padding-bottom: 1rem;;
-  overflow: hidden;
+// Tabs
+.native-plants-tabs {
+  margin-top: 16px;
 
-  .mobile-results-total {
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #e4e4e4;
-    border-top: 2px solid #e4e4e4;
-    font-size: 14px;
-    font-family: Source Sans Pro, Verdana, sans-serif;
-    line-height: 38px;
+  .tabs {
+    font-family: $font-sans;
+    margin: 0;
+
+    &:before {
+      border-bottom: 1px solid $color-middle-gray;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1px;
+      position: absolute;
+      left: 5px;
+      width: calc(100% - 5px);
+    }
+
+    li {
+      font-size: 24px;
+      float: left;
+      list-style-type: none;
+      text-transform: capitalize;
+
+      @include breakpoint(xlarge-up) {
+        font-size: 28px;
+      }
+    }
+
+    a {
+      padding: 7px 10px;
+      display: block;
+      border: 1px solid $color-white;
+
+      @include breakpoint(xlarge-up) {
+        padding-left: 27px;
+        padding-right: 27px;
+      }
+    }
+
+    .active a {
+      @include border-radius(10px 10px 0 0);
+      border: 1px solid $color-middle-gray;
+      border-bottom-color: $color-white;
+      position: relative;
+    }
+  }
+
+  .tab-select {
+    @extend  %native-plants-large-input;
+    margin-bottom: 10px;
+  }
+
+  .tab-content {
+    clear: both;
+  }
+
+  .tab-pane {
+    display: none;
+
+    @include breakpoint(medium-up) {
+      padding-top: 22px;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .view-header {
+    color: $color-light-text-gray;
+    font-size: 16px;
+    font-family: $font-sans;
+    line-height: normal;
+    margin-bottom: 22px;
+
+    @include breakpoint(medium-up) {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 27px;
+    }
+  }
+
+  .view-filters {
+    select {
+      @extend %native-plants-large-input;
+
+      @include breakpoint(medium-up) {
+        margin-left: 28px;
+        max-width: 246px;
+
+        &:first-child {
+          margin-left:0;
+        }
+      }
+    }
+  }
+
+  .view-content {
+    @include breakpoint(medium-up) {
+      margin-top: 10px;
+    }
   }
 }
 
 .native-plants-full-search-results {
-
   table {
     margin-bottom: 0;
+    font-size: 17px;
 
     th {
-      background-color: #f4f4f4;
-      text-align: center;
-      padding: 11px 17px !important;
+      background-color: $color-lighter-gray;
       line-height: 17px;
+      padding: 11px 17px !important;
+      text-align: center;
 
       &:first-child {
         text-align: left;
@@ -268,12 +525,14 @@ $color-dark-green:              #025e02;
       }
 
       td {
+        height: 94px;
         padding: 10px 13px !important;
         vertical-align: middle;
 
         &:nth-child(2) {
           text-align: center;
         }
+
         &:nth-child(3) {
           padding-left: 0 !important;
           padding-right: 0 !important;
@@ -283,35 +542,17 @@ $color-dark-green:              #025e02;
             width: 264px;
           }
         }
-
-        .plant--add-to-list {
-
-          input {
-            margin-bottom: 0;
-          }
-
-          label {
-            font-size: 15px;
-            color: $color-text-gray;
-            margin-right: 4px;
-            display: inline;
-          }
-
-          .icon-camera {
-            font-size: 20px;
-            position: absolute;
-            margin-top: 6px;
-          }
-        }
       }
     }
   }
 
   .mobile-search-full-results {
-    font-family: Source Sans Pro, Verdana, sans-serif;
+    font-family: $font-sans;
+    font-size: 16px;
+    line-height: 25px;
 
     .view-row {
-      border-bottom: 2px solid #cccccc;
+      border-bottom: 2px solid $color-middle-gray;
       padding-top: 10px;
 
       &:first-child {
@@ -325,12 +566,43 @@ $color-dark-green:              #025e02;
       .mobile-search-full-results--label {
         color: $color-warm-gray;
       }
+    }
+  }
 
-      label {
-        font-size: 19px;
+  .plant--add-to-list {
+    input {
+      @include breakpoint(medium-up) {
+        margin-bottom: 0;
       }
     }
 
+    label {
+      font-size: 18px;
+      padding-top: 5px;
+
+      @include breakpoint(medium-up) {
+        font-size: 17px;
+        color: $color-text-gray;
+        display: inline;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .icon-camera {
+    &:before {
+      color: $color-violet;
+      display: inline-block;
+      font-size: 24px;
+      height: 22px;
+      vertical-align: middle;
+
+      @include breakpoint(medium-up) {
+        font-size: 28px;
+        height: auto;
+        vertical-align: middle;
+      }
+    }
   }
 
   &.permalink-list {
@@ -347,45 +619,66 @@ $color-dark-green:              #025e02;
 }
 
 .search-results-total {
-  background-color: #f4f4f4;
-  border-bottom: 2px solid #cccccc;
-  border-top: 2px solid #cccccc;
+  background-color: $color-lighter-gray;
   clear: both;
   font-size: 17px;
-  line-height: 39px;
-  font-family: Source Sans Pro, Verdana, sans-serif;
+  line-height: 40px;
+  font-family: $font-sans;
   overflow: hidden;
+  border-top: 2px solid $color-light-gray;
 
-  @include breakpoint(medium-up) {
-    border-bottom-width: 1px;
-    border-top-width: 1px;
+  @include breakpoint(medium-only) {
+    text-align: center;
   }
 
+  @include breakpoint(medium-up) {
+    border: none;
+
+    .native-plants-full-results & {
+      margin: 0;
+      border-top: 1px solid $color-light-gray;
+      border-bottom: 1px solid $color-light-gray;
+    }
+  }
+
+
   .pager {
-    text-align: center;
     font-weight: bold;
+
+    @include breakpoint(large-up) {
+      text-align: right;
+    }
 
     & > :first-child {
       float: left;
-      margin-left: 20px;
-      margin-right: 10px;
+      margin-right: 14px;
 
       &:before {
         content: '< ';
+
+        @include breakpoint(medium-up) {
+          display: none;
+        }
       }
     }
     & > :last-child {
       float: right;
-      margin-left: 10px;
-      margin-right: 20px;
+      margin-left: 20px;
 
       &:after {
         content: ' >';
+
+        @include breakpoint(medium-up) {
+          display: none;
+        }
+      }
+
+      @include breakpoint(large-up) {
+        margin-right: 52px;
       }
     }
 
     @include breakpoint(medium-up) {
-
       & > :first-child {
         float: none;
       }
@@ -395,14 +688,24 @@ $color-dark-green:              #025e02;
       }
     }
   }
+
+  .pager-inner {
+    text-align: center;
+
+    a, span {
+      display: inline-block;
+      width: 16px;
+    }
+
+    .text--blue {
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+  }
 }
 
 .native-plants-bottom {
-  font-family: Source Sans Pro, Verdana, sans-serif;
-
-  @include breakpoint(medium-up) {
-    margin-top: 84px;
-  }
+  font-family: $font-sans;
 
   .native-plants-bottom-plant-list-placeholder {
     display: none;
@@ -411,6 +714,15 @@ $color-dark-green:              #025e02;
   .native-plants-bottom-plant-list {
     background-color: #d8d8d8;
     height: 70px;
+
+    &.native-plants-bottom-plant-list-form-show {
+      .native-plants-botton--get-list {
+        display: none;
+      }
+      .native-plants-get-list-form {
+        display: block;
+      }
+    }
 
     @include breakpoint(medium-up) {
       height: 96px;
@@ -434,7 +746,7 @@ $color-dark-green:              #025e02;
       }
 
       .native-plants-bottom--selected-count {
-        color: #1cace2;
+        color: $color-bright-blue;
         font-size: 15px;
         white-space: nowrap;
 
@@ -445,12 +757,32 @@ $color-dark-green:              #025e02;
     }
 
     .native-plants-bottom-plant-list-items {
+      color: $color-light-text-gray;
       font-size: 19px;
-      color: #000;
       line-height: 27px;
       padding-top:22px;
       overflow: hidden;
       height: 76px;
+    }
+
+    .native-plants-get-list-form {
+      display: none;
+      text-align: center;
+      padding-top: 11px;
+
+      @include breakpoint(medium-up) {
+        padding-top: 25px;
+      }
+
+      .form-text {
+        @extend %native-plants-large-input;
+      }
+
+      .native-plants-get-list-form--submit {
+        @include border-radius(8px);
+        height: 45px;
+        width: 100%;
+      }
     }
 
     .native-plants-bottom--button-container {
@@ -462,7 +794,7 @@ $color-dark-green:              #025e02;
       }
 
       .native-plants-botton--get-list {
-        border-radius: 8px;
+        @include border-radius(8px);
         height: 45px;
         white-space: nowrap;
         width: 140px;
@@ -470,71 +802,6 @@ $color-dark-green:              #025e02;
         @include breakpoint(medium-up) {
           width: auto;
         }
-      }
-    }
-  }
-
-  .native-plants-bottom-form-title {
-    background-color: #66a122;
-    height: 80px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-
-    @include breakpoint(medium-up) {
-      height: 60px;
-      padding-top: 14px;
-
-      h2 {
-        font-size: 28px;
-        line-height: 31px;
-      }
-    }
-
-    h2 {
-      margin-bottom: 0;
-    }
-  }
-
-  .native-plants-bottom-form {
-    background-color: #85b44e;
-    color: $color-white;
-    padding-top: 15px;
-
-    p {
-      font-size: 20px;
-      line-height: 22px;
-      padding-bottom: 10px;
-    }
-
-    .button {
-      width: 100%;
-      margin-top: 11px;
-      height: 45px;
-      border-radius: 8px;
-    }
-
-    ul {
-      line-height: 18px;
-      padding-top: 10px;
-
-      li {
-        margin-bottom: 6px;
-      }
-    }
-
-    .button, ul {
-      margin-bottom: 37px;
-    }
-
-    input {
-      height: 45px;
-      border-radius: 8px;
-      margin-bottom: 4px;
-    }
-
-    .native-plants-bottom-form-right {
-      @include breakpoint(medium-up) {
-        max-width: 280px;
       }
     }
   }
@@ -553,18 +820,13 @@ $color-dark-green:              #025e02;
       bottom: 0;
       position: fixed;
       width: 100%;
+      z-index: 3;
     }
   }
 }
 
 .bird-card-carousel {
-
   .owl-carousel {
-
-    .owl-wrapper-outer {
-      padding-top: 5px;
-    }
-
     .owl-controls {
       text-align: center;
       color: #888;
@@ -587,16 +849,23 @@ $color-dark-green:              #025e02;
       }
     }
   }
+
+  .common-name {
+    font-size: 18px;
+    letter-spacing: 0;
+    margin-bottom: 5px;
+    margin-left: 7px;
+  }
 }
 
 input[type="checkbox"].np-checkbox {
   display: none;
 
   &+label {
+    @include user-select(none);
     margin-left: 0;
     padding-left: 26px;
     padding-bottom: 10px;
-    @include user-select(none);
 
     &:before {
       background-image: url(../img/np-checkbox.png);
@@ -611,7 +880,8 @@ input[type="checkbox"].np-checkbox {
       width: 18px;
     }
   }
-  &:checked+label {
+
+  &:checked + label {
     &:before {
       background-position: top left;
     }
@@ -619,30 +889,12 @@ input[type="checkbox"].np-checkbox {
 }
 
 .native-plant-bird-category-link {
-  color: #404040;
+  color: $color-text-gray;
   text-decoration: underline;
 
   &:hover {
     color: #909090;
-//    text-decoration: none;
   }
-}
-
-.np-search-full-results {
-
-  h2 {
-    margin-bottom: 12px;
-  }
-
-  .filter-label {
-    font-family: Source Sans Pro, Verdana, sans-serif;
-    margin-bottom: 12px;
-    padding-left: 3px;
-  }
-}
-
-.native-plants-results-placeholder {
-  display: none;
 }
 
 .native-plants-results-placeholder {
@@ -652,7 +904,7 @@ input[type="checkbox"].np-checkbox {
   .blue-point {
     background-color: $color-bright-blue;
     display: inline-block;
-    height:10px;
+    height: 10px;
     margin-right: 10px;
     margin-top: 40px;
     width: 10px;
@@ -665,7 +917,6 @@ input[type="checkbox"].np-checkbox {
 
 .page-native-plants-initial {
   .native-plants-bottom {
-
     .native-plants-bottom-plant-list-placeholder,
     .native-plants-bottom-plant-list {
       display: none;
@@ -676,12 +927,418 @@ input[type="checkbox"].np-checkbox {
 .page-native-plants, .page-native-plants-resources {
   .ajax-screen-lock-popup {
     padding: 10px;
+
     .ajax-screen-lock-progress {
+      @include border-radius(0);
       background: url(../img/native-plants-preloader.gif) no-repeat;
       border: none;
-      border-radius: 0;
       margin: 0;
       height: 64px;
+    }
+  }
+}
+
+// Local results tab
+.native-plants-local-results {
+  color: $color-light-text-gray;
+
+  h2, h3 {
+    color: $color-light-text-gray;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    @include breakpoint(medium-up) {
+      line-height: 30px;
+      font-size: 28px;
+    }
+  }
+}
+
+// Connect Audubon Section
+.connect-audubon-near-you {
+  @include breakpoint(medium-up) {
+    h2, h3 {
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 38px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .button {
+    @include border-radius(7px);
+    font-size: 20px;
+    line-height: 34px;
+    margin-top: 20px;
+
+    @include breakpoint(medium-up) {
+      margin-top: 24px;
+      max-width: 142px;
+    }
+  }
+}
+
+.connect-audubon-near-you--address {
+  font-size: 16px;
+  line-height: 21px;
+  overflow: hidden;
+  padding-left: 57px;
+  position: relative;
+
+  i {
+    position: absolute;
+    top: 9px;
+    left: -3px;
+    font-size: 46px;
+
+    @include breakpoint(medium-up) {
+      top: 16px;
+      left: -8px;
+      font-size: 60px;
+    }
+  }
+}
+
+.connect-audubon-near-you--services {
+  margin-top: 18px;
+
+  @include breakpoint(medium-up) {
+    margin-top: 0;
+  }
+
+  ul {
+    font-size: 15px;
+    line-height: 23px;
+
+    @include breakpoint(medium-up) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}
+
+// Nurseries list
+.where-to-buy__section {
+  h2 {
+    letter-spacing: 0;
+    margin-bottom: 14px;
+
+    @include breakpoint(medium-up) {
+      line-height: 30px;
+      font-size: 28px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .label {
+    color: $color-warm-gray;
+  }
+}
+
+.where-to-buy__section__row {
+  border-top: 2px solid $color-middle-gray;
+
+  @include breakpoint(medium-up) {
+    border-top-width: 1px;
+    padding: 40px 0 10px;
+  }
+
+  + .where-to-buy__section__row {
+    margin-top: 15px;
+  }
+}
+
+.where-to-buy__nurseries {
+  padding-top: 7px;
+
+  @include breakpoint(medium-up) {
+    padding-top: 0;
+  }
+}
+
+.where-to-buy__nursery__row {
+  border-bottom: 2px solid $color-middle-gray;
+  font-family: $font-sans;
+  padding-top: 10px;
+  padding-bottom: 12px;
+
+  @include breakpoint(medium-up) {
+    border: none;
+    padding-top: 0;
+  }
+
+  @include breakpoint(large-up) {
+    &:nth-child(2n+1) {
+      clear: both;
+    }
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+  p {
+    line-height: 20px;
+  }
+
+  .row {
+    padding-bottom: 5px;
+  }
+}
+
+// Map section
+.native-plans-map {
+  iframe {
+    display: block;
+  }
+
+  .inline-map {
+    padding-top: 15px;
+  }
+}
+
+.add-other-nurseries {
+  font-family: $font-sans;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+// Next Steps
+.native-plants-contact {
+  h1 {
+    @extend %header--orange;
+  }
+
+  .social-sharing-block {
+    text-align: center;
+
+    @include breakpoint(medium-up) {
+      text-align: left;
+      padding-top: 10px;
+    }
+  }
+
+  .social-sharing-icon {
+    display: inline-block;
+    font-size: 66px;
+    margin: 0;
+
+    @include breakpoint(medium-up) {
+      font-size: 102px;
+    }
+  }
+
+  .icon-facebook {
+    color: $color-facebook;
+  }
+
+  .icon-twitter {
+    color: $color-twitter;
+  }
+}
+
+.native-plants__socials {
+  textarea {
+    resize: none;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 12px 8px;
+  }
+}
+
+.native-plants__connect {
+  @include breakpoint(medium-up) {
+    padding-top: 75px;
+  }
+
+  @include breakpoint(large-up) {
+    padding-bottom: 0;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.native-plants-connect-form {
+  @extend %native-plants-search-form;
+
+  .flexbox-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+  }
+  .field-prefix {
+    white-space: nowrap;
+    margin-right: 16px;
+  }
+}
+
+// Footer hero blocks
+.engagement-hero {
+  @include breakpoint(large-up) {
+    margin-top: 60px;
+  }
+
+  .half--black {
+    &:before {
+      @include breakpoint(large-up) {
+        background-color: $color-black;
+        content: '';
+        height: 100%;
+        left: 48%;
+        position: absolute;
+        top: 0;
+        width: 52%;
+        z-index: 1;
+      }
+
+      @include breakpoint(large-only) {
+        display: none;
+      }
+    }
+  }
+
+  .hero-image {
+    max-height: 580px;
+
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      height: 350px;
+    }
+  }
+
+  .hero-attribution {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      background: transparent;
+      color: $color-warm-gray;
+      font-size: 12px;
+    }
+
+    @include breakpoint(large-up) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.engagement-hero__content {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 25px;
+
+  @include breakpoint(large-up){
+    bottom: initial;
+    top: 15px;
+    padding-bottom: 50px;
+  }
+
+  &.below-image {
+    @include breakpoint(medium-up) {
+      padding-top: 20px;
+    }
+
+    @include width-range(0px, #{upper-bound($medium-range)}) {
+      position: static;
+    }
+  }
+
+  h1 {
+    @include breakpoint(large-up) {
+      margin-bottom: 36px;
+    }
+  }
+
+  .native-plants-hero-text {
+    font-size: 17px;
+    line-height: 22px;
+    padding-top: 0;
+
+    a {
+      @include breakpoint(large-up) {
+        color: $color-white;
+      }
+    }
+
+    @include breakpoint(large-up) {
+      margin-bottom: 20px;
+    }
+
+    @include breakpoint(xlarge-up) {
+      margin-bottom: 70px;
+    }
+  }
+}
+
+.engagement-hero__column {
+  @include breakpoint(large-only) {
+    width: 80%;
+    left: 10%;
+  }
+}
+
+.engagement-hero-form {
+  @extend %native-plants-search-form;
+  margin-top: 16px;
+
+  @include breakpoint(large-up) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(xlarge-up) {
+    margin-bottom: 40px;
+  }
+}
+
+.sponsor-attribution {
+  float: right;
+  line-height: 44px;
+
+  @include breakpoint(medium-up) {
+    line-height: 54px;
+  }
+
+  .sponsor-wrapper {
+    display: inline-block;
+    line-height: 24px;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+
+  .preamble {
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 11px;
+    text-align: center;
+
+    @include breakpoint(medium-up) {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 26px;
+      text-align: left;
+      vertical-align: middle;
+    }
+  }
+
+  img {
+    display: inline-block;
+    height: 20px;
+    margin-left: 5px;
+    width: auto;
+    vertical-align: middle;
+
+    @include breakpoint(medium-up) {
+      height: 30px;
     }
   }
 }

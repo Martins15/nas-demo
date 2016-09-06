@@ -45,6 +45,10 @@
   <?php endif; ?>
 
   <div class="row">
+    <div class="columns">
+      <div class="inner-filters-wrapper-tier1 view-filters">
+      </div>
+    </div>
     <div class="view native-plants-search-results">
       <div class="view-content">
         <?php if (isset($view->result_tier1)):

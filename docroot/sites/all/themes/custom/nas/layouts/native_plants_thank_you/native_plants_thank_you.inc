@@ -13,6 +13,8 @@ $plugin = array(
   'theme' => 'native_plants_thank_you',
   'regions' => array(
     'top' => t('Top'),
-    'main' => t('Main'),
+    'main_top' => t('Main top'),
+    'main_where_to_buy' => t('Main where to buy'),
+    'main_bottom' => t('Main bottom'),
   ),
 );

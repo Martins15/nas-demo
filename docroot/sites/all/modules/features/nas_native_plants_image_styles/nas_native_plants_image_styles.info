@@ -1,7 +1,7 @@
 name = Native Plants Image Styles
 core = 7.x
 package = Native Plants
-version = 7.x-1.2
+version = 7.x-1.3
 project = nas_native_plants_image_styles
 dependencies[] = ctools
 dependencies[] = strongarm
@@ -10,6 +10,7 @@ features[features_api][] = api:2
 features[image][] = native_plant_desktop
 features[image][] = native_plant_lightbox
 features[image][] = native_plant_mobile
+features[image][] = native_plants_sponsor_logo
 features[variable][] = imagecache_external_hosts
 features[variable][] = imagecache_external_management
 features[variable][] = imagecache_external_use_whitelist
