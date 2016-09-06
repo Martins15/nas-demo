@@ -118,7 +118,7 @@
                   <?php print $list_title_2; ?>
                 </h2>
                 <?php print $list_text_2; ?>
-                <a href="<?php print $permalink_url; ?>" class="button" style="Margin:0;background-color:#F15936;border-radius:8px;color:#fff;display:inline-block;font-family:'Source Sans Pro',Verdana,sans-serif;font-size:20px;font-weight:inherit;height:45px;line-height:45px;margin:9px 0 9px 0;padding:0 35px 0 35px;text-align:left;text-decoration:none">How Many Will You Plant?</a>
+                <a href="<?php print $permalink_url; ?>" class="button" style="Margin:0;background-color:#F15936;border-radius:8px;color:#fff;display:inline-block;font-family:'Source Sans Pro',Verdana,sans-serif;font-size:20px;font-weight:inherit;height:45px;line-height:45px;margin:9px 0 9px 0;padding:0 35px 0 35px;text-align:left;text-decoration:none"><?php print t('How Many Will You Plant?'); ?></a>
 
                 <table width="100%" border="0" cellspacing="0" cellpadding="12" class="list-table" style="border-collapse: collapse;">
                   <thead>
