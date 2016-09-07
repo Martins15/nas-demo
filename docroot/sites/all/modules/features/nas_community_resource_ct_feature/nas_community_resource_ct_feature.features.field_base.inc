@@ -79,11 +79,13 @@ function nas_community_resource_ct_feature_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'habitat_recognize' => 'Habitat recognition/certification',
-        'advice' => 'Advice to individual property owners about improving habitat',
-        'education' => 'Education programs & presentations about native plants',
-        'sales' => 'Native plant sales',
+        'education' => 'Education programs & presentations',
+        'training' => 'Habitat Ambassador volunteer training',
         'habitat_install' => 'Habitat installation/restoration projects',
+        'habitat_recognize' => 'Habitat recognition/certification',
+        'habitat_consultation' => 'Municipal & corporate habitat planning & consultation',
+        'sales' => 'Native plant sales',
+        'advice' => 'Residential habitat improvement consultation',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

@@ -110,3 +110,15 @@ function nas_master_native_plants_update_7007() {
       ->execute();
   }
 }
+
+/**
+ * Update community resource services list.
+ */
+function nas_master_native_plants_update_7008() {
+  features_revert(array(
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
