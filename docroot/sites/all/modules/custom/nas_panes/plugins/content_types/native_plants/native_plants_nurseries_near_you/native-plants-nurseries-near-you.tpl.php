@@ -32,7 +32,7 @@
               </p>
             </div>
           </div>
-          <?php if ($nursery['link']): ?>
+          <?php if (!empty($nursery['link']['url'])): ?>
             <div class="row">
               <div class="column tiny-3">
                 <p class="label"><?php print t('Website'); ?></p>
