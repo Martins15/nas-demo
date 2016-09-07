@@ -30,7 +30,7 @@
     make_backup: false
     reindex_solr: false
     # URL to the source database. Can be overridden by CI server.
-    source_database: http://{{ backup_user }}:{{ backup_pass }}@nas.wearepropeople.md/backup/latest.sql.gz
+    source_database: http://{{ backup_user }}:{{ backup_pass }}@nas.ffwua.com/backup/latest.sql.gz
 
   tasks:
 
