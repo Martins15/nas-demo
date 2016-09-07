@@ -15118,7 +15118,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .connect-audubon-near-you h2, .connect-audubon-near-you h3 {
     font-size: 23px;
     font-weight: 400;
-    line-height: 38px;
+    margin-top: 8px;
     margin-bottom: 5px;
   }
 }

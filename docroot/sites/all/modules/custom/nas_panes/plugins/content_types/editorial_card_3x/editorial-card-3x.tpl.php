@@ -39,7 +39,7 @@
   <?php endif; ?>
 
   <?php foreach ($chunks as $teasers): ?>
-    <div class="row card-set space-bottom">
+    <div class="row card-set space-bottom" data-equalizer data-equalizer-mq="large-up">
     <?php foreach ($teasers as $teaser): ?>
       <?php print $teaser; ?>
     <?php endforeach; ?>

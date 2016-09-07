@@ -83,3 +83,42 @@ function nas_master_native_plants_update_7006() {
     ),
   ));
 }
+
+/**
+ * Restoring default background color of Native Plants bar.
+ */
+function nas_master_native_plants_update_7007() {
+  $panel_type = 'native_plants_bar';
+  ctools_include('context');
+  ctools_include('plugins');
+  $plugin = ctools_get_plugins('ctools', 'content_types', $panel_type);
+
+  $configs = db_select('panels_pane', 'pp')
+    ->fields('pp', array('pid', 'configuration'))
+    ->condition('pp.type', $panel_type)
+    ->execute()
+    ->fetchAll();
+
+  foreach ($configs as $config_data) {
+    $config = unserialize($config_data->configuration);
+    $config['background_color'] = $plugin['defaults']['background_color'];
+
+    db_update('panels_pane')
+      ->fields(array('configuration' => serialize($config)))
+      ->condition('type', $panel_type)
+      ->condition('pid', $config_data->pid)
+      ->execute();
+  }
+}
+
+/**
+ * Update community resource services list.
+ */
+function nas_master_native_plants_update_7008() {
+  features_revert(array(
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
