@@ -2312,7 +2312,12 @@ select::-ms-expand {
   }
 
   select:hover {
-    background: #f7f7f7;
+    background-color: #f7f7f7;
+  }
+
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
   }
 }
 /* Attach elements to the beginning or end of an input */
@@ -3576,7 +3581,7 @@ ul.pagination li {
 }
 
 .-wrap-select select {
-  -moz-appearance: window;
+  -moz-appearance: none;
   margin-bottom: 0 !important;
   border: 0;
 }
@@ -3700,6 +3705,9 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   font-size: 19px;
   height: 45px;
   width: 100%;
+}
+.-wrap-select .native-plants-search-form .form-text, .native-plants-search-form .-wrap-select .form-text, .-wrap-select .native-plants-connect-form .form-text, .native-plants-connect-form .-wrap-select .form-text, .-wrap-select .engagement-hero-form .form-text, .engagement-hero-form .-wrap-select .form-text, .-wrap-select .native-plants-search-form .native-plants-search-form--submit, .native-plants-search-form .-wrap-select .native-plants-search-form--submit, .-wrap-select .native-plants-connect-form .native-plants-search-form--submit, .native-plants-connect-form .-wrap-select .native-plants-search-form--submit, .-wrap-select .engagement-hero-form .native-plants-search-form--submit, .engagement-hero-form .-wrap-select .native-plants-search-form--submit, .-wrap-select .native-plants-tabs .-wrap-select, .native-plants-tabs .-wrap-select .-wrap-select, .-wrap-select .native-plants-tabs .tab-select, .native-plants-tabs .-wrap-select .tab-select, .-wrap-select .native-plants-tabs .view-filters select, .native-plants-tabs .view-filters .-wrap-select select, .-wrap-select .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .form-text, .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .-wrap-select .form-text {
+  height: 43px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -4220,7 +4228,7 @@ ul.small-list li {
 }
 
 select {
-  -moz-appearance: window;
+  -moz-appearance: none;
 }
 
 .global-header {
@@ -13979,6 +13987,12 @@ h2.grey {
 .events-search-form select {
   width: 100%;
   margin: 12.5px 0 0 0;
+}
+.events-search-form .-wrap-select {
+  margin: 12.5px 0 0 0;
+}
+.events-search-form .-wrap-select select {
+  margin-top: 0;
 }
 
 .bird-guide-search-input {
