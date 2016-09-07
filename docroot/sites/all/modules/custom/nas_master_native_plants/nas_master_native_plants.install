@@ -87,7 +87,7 @@ function nas_master_native_plants_update_7006() {
 /**
  * Restoring default background color of Native Plants bar.
  */
-function nas_master_update_7007() {
+function nas_master_native_plants_update_7007() {
   $panel_type = 'native_plants_bar';
   ctools_include('context');
   ctools_include('plugins');
