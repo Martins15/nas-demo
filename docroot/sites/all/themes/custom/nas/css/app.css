@@ -3692,7 +3692,7 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   color: #0AA8E3;
 }
 
-.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text, .native-plants-search-form .native-plants-search-form--submit, .native-plants-connect-form .native-plants-search-form--submit, .engagement-hero-form .native-plants-search-form--submit, .native-plants-tabs .tab-select, .native-plants-tabs .view-filters select, .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .form-text {
+.native-plants-search-form .form-text, .native-plants-connect-form .form-text, .engagement-hero-form .form-text, .native-plants-search-form .native-plants-search-form--submit, .native-plants-connect-form .native-plants-search-form--submit, .engagement-hero-form .native-plants-search-form--submit, .native-plants-tabs .-wrap-select, .native-plants-tabs .tab-select, .native-plants-tabs .view-filters .-wrap-select, .native-plants-tabs .view-filters select, .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .form-text {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
@@ -4217,6 +4217,10 @@ ul.small-list li {
   font-size: 15px;
   line-height: 17px;
   margin-bottom: 6px;
+}
+
+select {
+  -moz-appearance: window;
 }
 
 .global-header {
@@ -7021,6 +7025,9 @@ input.header-search-input,
 .bird-guide-search-form select {
   width: 100%;
   margin: 12.5px 0 0 0;
+}
+.bird-guide-search-form .-wrap-select select {
+  margin: 0;
 }
 
 .bird-guide-search-input {
@@ -14651,6 +14658,9 @@ h2.grey {
 .native-plants-tabs .tab-select {
   margin-bottom: 10px;
 }
+.native-plants-tabs .native-plants-tabs-selector .-wrap-select {
+  margin-bottom: 10px;
+}
 .native-plants-tabs .tab-content {
   clear: both;
 }
@@ -14677,6 +14687,19 @@ h2.grey {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 27px;
+  }
+}
+.native-plants-tabs .view-filters .-wrap-select {
+  display: inline-block;
+  margin: 0 0 1rem 0;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-tabs .view-filters .-wrap-select {
+    margin-left: 28px;
+    max-width: 246px;
+  }
+  .native-plants-tabs .view-filters .-wrap-select:first-child {
+    margin-left: 0;
   }
 }
 @media only screen and (min-width: 601px) {
