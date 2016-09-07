@@ -1,11 +1,13 @@
 (function ($) {
   Drupal.behaviors.nas_master_native_plants_filters = {};
-  Drupal.behaviors.nas_master_native_plants_filters.attach = function() {
+  Drupal.behaviors.nas_master_native_plants_filters.attach = function(context, settings) {
     // Remove the clones.
+    var wrappers = $('#edit-attribute-clone, #edit-bird-type-clone, #edit-attribute-tier1-clone, #edit-bird-type-tier1-clone').parent('.-wrap-select');
     $('#edit-attribute-clone').remove();
     $('#edit-bird-type-clone').remove();
     $('#edit-attribute-tier1-clone').remove();
     $('#edit-bird-type-tier1-clone').remove();
+    wrappers.remove();
 
     // We can't use context here as pager links do not update the exposed form in block.
     var $attributes = $('#edit-attribute'), $bird_types = $('#edit-bird-type'),
@@ -49,6 +51,8 @@
       $bird_types_tier1.val($bird_types_tier1_clone.val());
       $('#edit-submit-native-plants-search-tier1').click();
     });
+
+    Drupal.behaviors.wrap_select.attach(context, settings);
   };
 
   // Click on the attribute filters the view.
