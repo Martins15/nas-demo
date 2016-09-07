@@ -393,6 +393,10 @@
 
 // Tabs
 .native-plants-tabs {
+  .-wrap-select {
+    @extend %native-plants-large-input;
+  }
+
   margin-top: 16px;
 
   .tabs {
@@ -445,6 +449,12 @@
     margin-bottom: 10px;
   }
 
+  .native-plants-tabs-selector {
+    .-wrap-select {
+      margin-bottom: 10px;
+    }
+  }
+
   .tab-content {
     clear: both;
   }
@@ -476,6 +486,22 @@
   }
 
   .view-filters {
+
+    .-wrap-select {
+      @extend %native-plants-large-input;
+      display: inline-block;
+      margin: 0 0 1rem 0;
+
+      @include breakpoint(medium-up) {
+        margin-left: 28px;
+        max-width: 246px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+
     select {
       @extend %native-plants-large-input;
 
@@ -962,7 +988,7 @@ input[type="checkbox"].np-checkbox {
     h2, h3 {
       font-size: 23px;
       font-weight: 400;
-      line-height: 38px;
+      margin-top: 8px;
       margin-bottom: 5px;
     }
   }
