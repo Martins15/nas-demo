@@ -64,6 +64,12 @@ function native_plants_bar_edit_form($form, &$form_state) {
     '#default_value' => $conf['title_link'],
     '#size' => 100,
   );
+  $form['background_color'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Background color'),
+    '#default_value' => $conf['background_color'],
+    '#size' => 100,
+  );
 
   $form['sponsor'] = array(
     '#type' => 'fieldset',
@@ -125,7 +131,9 @@ function native_plants_bar_edit_form_submit(&$form, &$form_state) {
   foreach ($configs as $config_data) {
     $config = unserialize($config_data->configuration);
     foreach (array_keys($form_state['plugin']['defaults']) as $key) {
-      $config[$key] = $form_state['values'][$key];
+      if (array_key_exists($key, $form_state['values'])) {
+        $config[$key] = $form_state['values'][$key];
+      }
     }
 
     db_update('panels_pane')

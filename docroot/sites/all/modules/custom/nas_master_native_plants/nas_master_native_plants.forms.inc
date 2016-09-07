@@ -514,7 +514,7 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
 
   // Redirect to permalink page.
-  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+  $form_state['redirect'] = 'native-plants/list/' . $permalink->uuid;
 }
 
 /**

@@ -329,6 +329,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
     'label' => 'Services',
     'required' => 0,
     'settings' => array(
+      'checkall' => array(
+        'checkall' => 0,
+        'checkall-check-all' => 1,
+        'checkall-toggle' => 1,
+        'checkall-uncheck-all' => 1,
+      ),
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
