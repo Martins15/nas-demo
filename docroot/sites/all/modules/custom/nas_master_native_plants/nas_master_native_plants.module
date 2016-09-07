@@ -437,7 +437,10 @@ function nas_master_native_plants_element_validate_zipcode_global($element, &$fo
   $native_plants_zipcode = $element['#value'];
 
   // Set zipcode value to the cookie.
-  $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
+  $fields = array();
+  if (isset($_COOKIE['native_plants_fields_sync'])) {
+    $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
+  }
   $fields['zipcode'] = $native_plants_zipcode;
   setcookie('native_plants_fields_sync', drupal_json_encode($fields), REQUEST_TIME + 7 * 24 * 3600, $base_path);
 }
