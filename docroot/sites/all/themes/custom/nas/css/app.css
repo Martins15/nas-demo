@@ -13988,6 +13988,12 @@ h2.grey {
   width: 100%;
   margin: 12.5px 0 0 0;
 }
+.events-search-form .-wrap-select {
+  margin: 12.5px 0 0 0;
+}
+.events-search-form .-wrap-select select {
+  margin-top: 0;
+}
 
 .bird-guide-search-input {
   float: left;
