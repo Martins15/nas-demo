@@ -14972,7 +14972,24 @@ h2.grey {
   -webkit-border-radius: 8px;
   border-radius: 8px;
   height: 45px;
-  width: 100%;
+  width: 80px;
+  margin-left: 10px;
+}
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .flexbox-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .messages.error {
+  background-image: none;
+  font-size: 14px;
+  margin-top: -25px;
+  padding: 0;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .messages.error {
+    margin-top: -35px;
+  }
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container {
   text-align: center;
@@ -14989,7 +15006,6 @@ h2.grey {
   border-radius: 8px;
   height: 45px;
   white-space: nowrap;
-  width: 140px;
 }
 @media only screen and (min-width: 601px) {
   .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container .native-plants-botton--get-list {
