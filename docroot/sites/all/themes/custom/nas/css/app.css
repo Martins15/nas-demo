@@ -14626,6 +14626,9 @@ h2.grey {
   margin-top: 16px;
 }
 .native-plants-tabs .tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin: 0;
 }
@@ -14640,26 +14643,15 @@ h2.grey {
   width: calc(100% - 5px);
 }
 .native-plants-tabs .tabs li {
-  font-size: 24px;
+  font-size: 28px;
   float: left;
   list-style-type: none;
   text-transform: capitalize;
 }
-@media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tabs li {
-    font-size: 28px;
-  }
-}
 .native-plants-tabs .tabs a {
-  padding: 7px 10px;
+  padding: 7px 12px;
   display: block;
   border: 1px solid #fff;
-}
-@media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tabs a {
-    padding-left: 27px;
-    padding-right: 27px;
-  }
 }
 .native-plants-tabs .tabs .active a {
   -moz-border-radius: 10px 10px 0 0;
