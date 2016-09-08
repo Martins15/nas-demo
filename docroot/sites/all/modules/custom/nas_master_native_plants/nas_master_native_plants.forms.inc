@@ -213,6 +213,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
       'data-native-plants-fields-sync' => 'email',
+      'data-native-plants-fields-sync-override' => 0,
     ),
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
   );
@@ -226,6 +227,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
       ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
       'data-native-plants-fields-sync' => 'zipcode',
+      'data-native-plants-fields-sync-override' => 0,
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
@@ -245,6 +247,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
       'callback' => '_nas_master_native_plants_initial_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-initial-form',
     ),
+    '#id' => 'nas-master-native-plants-initial-form-submit',
   );
 
   _nas_master_native_plants_attach_fields_sync($form);
@@ -267,6 +270,8 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
   ctools_add_js('ajax-responder');
   $commands = array();
   $commands[] = ctools_ajax_command_redirect($form_state['redirect'][0], 0, $form_state['redirect'][1]);
+  // Do not remove the screen lock.
+  $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
@@ -332,6 +337,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       ),
       'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
       'data-native-plants-fields-sync' => 'zipcode',
+      'data-native-plants-fields-sync-override' => 0,
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
@@ -346,6 +352,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
       'data-native-plants-fields-sync' => 'email',
+      'data-native-plants-fields-sync-override' => 0,
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
@@ -365,6 +372,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       'callback' => '_nas_master_native_plants_pledge_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-pledge-form',
     ),
+    '#id' => 'nas-master-native-plants-pledge-form-submit',
   );
   $form['redirect'] = array(
     '#type' => 'value',
@@ -438,6 +446,7 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
       ),
       'placeholder' => t(filter_xss($conf['email_placeholder'])),
       'data-native-plants-fields-sync' => 'email',
+      'data-native-plants-fields-sync-override' => 0,
     ),
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
@@ -457,6 +466,7 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
       'callback' => '_nas_master_native_plants_get_list_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-get-list-form',
     ),
+    '#id' => 'nas-master-native-plants-get-list-form-submit',
   );
 
   _nas_master_native_plants_attach_fields_sync($form);
@@ -479,6 +489,8 @@ function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_stat
   ctools_add_js('ajax-responder');
   $commands = array();
   $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  // Do not remove the screen lock.
+  $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
@@ -514,7 +526,7 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
 
   // Redirect to permalink page.
-  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+  $form_state['redirect'] = 'native-plants/list/' . $permalink->uuid;
 }
 
 /**

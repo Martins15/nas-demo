@@ -125,10 +125,10 @@
   color: $color-white;
   cursor: pointer;
   font-size: 30px;
-  height: 50px;
-  line-height: 50px;
+  height: 36px;
+  line-height: 30px;
+  margin: -36px 0 10px;
   visibility: visible;
-  margin: -50px 0 10px;
 
   &.open {
     display: none;
@@ -142,6 +142,10 @@
     &.close {
       display: none;
     }
+  }
+
+  &:before {
+    vertical-align: top;
   }
 }
 
@@ -393,9 +397,16 @@
 
 // Tabs
 .native-plants-tabs {
+  .-wrap-select {
+    @extend %native-plants-large-input;
+  }
+
   margin-top: 16px;
 
   .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
     font-family: $font-sans;
     margin: 0;
 
@@ -411,25 +422,16 @@
     }
 
     li {
-      font-size: 24px;
+      font-size: 28px;
       float: left;
       list-style-type: none;
       text-transform: capitalize;
-
-      @include breakpoint(xlarge-up) {
-        font-size: 28px;
-      }
     }
 
     a {
-      padding: 7px 10px;
+      padding: 7px 12px;
       display: block;
       border: 1px solid $color-white;
-
-      @include breakpoint(xlarge-up) {
-        padding-left: 27px;
-        padding-right: 27px;
-      }
     }
 
     .active a {
@@ -443,6 +445,12 @@
   .tab-select {
     @extend  %native-plants-large-input;
     margin-bottom: 10px;
+  }
+
+  .native-plants-tabs-selector {
+    .-wrap-select {
+      margin-bottom: 10px;
+    }
   }
 
   .tab-content {
@@ -476,6 +484,22 @@
   }
 
   .view-filters {
+
+    .-wrap-select {
+      @extend %native-plants-large-input;
+      display: inline-block;
+      margin: 0 0 1rem 0;
+
+      @include breakpoint(medium-up) {
+        margin-left: 28px;
+        max-width: 246px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+
     select {
       @extend %native-plants-large-input;
 
@@ -781,7 +805,24 @@
       .native-plants-get-list-form--submit {
         @include border-radius(8px);
         height: 45px;
-        width: 100%;
+        width: 80px;
+        margin-left: 10px;
+      }
+
+      .flexbox-container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: baseline;
+      }
+
+      .messages.error {
+        background-image: none;
+        font-size: 14px;
+        margin-top: -25px;
+        padding: 0;
+        @include breakpoint(medium-up) {
+          margin-top: -35px;
+        }
       }
     }
 
@@ -797,7 +838,6 @@
         @include border-radius(8px);
         height: 45px;
         white-space: nowrap;
-        width: 140px;
 
         @include breakpoint(medium-up) {
           width: auto;
@@ -962,7 +1002,7 @@ input[type="checkbox"].np-checkbox {
     h2, h3 {
       font-size: 23px;
       font-weight: 400;
-      line-height: 38px;
+      margin-top: 8px;
       margin-bottom: 5px;
     }
   }
@@ -1043,14 +1083,11 @@ input[type="checkbox"].np-checkbox {
 
 .where-to-buy__section__row {
   border-top: 2px solid $color-middle-gray;
+  margin-top: 15px;
 
   @include breakpoint(medium-up) {
     border-top-width: 1px;
     padding: 40px 0 10px;
-  }
-
-  + .where-to-buy__section__row {
-    margin-top: 15px;
   }
 }
 
@@ -1301,10 +1338,12 @@ input[type="checkbox"].np-checkbox {
 
 .sponsor-attribution {
   float: right;
+  margin-right: 30px;
   line-height: 44px;
 
   @include breakpoint(medium-up) {
     line-height: 54px;
+    margin-right: 0;
   }
 
   .sponsor-wrapper {

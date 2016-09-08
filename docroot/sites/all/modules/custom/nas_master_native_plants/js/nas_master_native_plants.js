@@ -1,11 +1,13 @@
 (function ($) {
   Drupal.behaviors.nas_master_native_plants_filters = {};
-  Drupal.behaviors.nas_master_native_plants_filters.attach = function() {
+  Drupal.behaviors.nas_master_native_plants_filters.attach = function(context, settings) {
     // Remove the clones.
+    var wrappers = $('#edit-attribute-clone, #edit-bird-type-clone, #edit-attribute-tier1-clone, #edit-bird-type-tier1-clone').parent('.-wrap-select');
     $('#edit-attribute-clone').remove();
     $('#edit-bird-type-clone').remove();
     $('#edit-attribute-tier1-clone').remove();
     $('#edit-bird-type-tier1-clone').remove();
+    wrappers.remove();
 
     // We can't use context here as pager links do not update the exposed form in block.
     var $attributes = $('#edit-attribute'), $bird_types = $('#edit-bird-type'),
@@ -49,6 +51,8 @@
       $bird_types_tier1.val($bird_types_tier1_clone.val());
       $('#edit-submit-native-plants-search-tier1').click();
     });
+
+    Drupal.behaviors.wrap_select.attach(context, settings);
   };
 
   // Click on the attribute filters the view.
@@ -139,20 +143,31 @@
    */
   Drupal.behaviors.nas_master_native_plants_contentSearch = {
     attach: function(context, settings) {
-      var $buttonWrapper = $('.js-native-plants-search-button'),
-        $open = $buttonWrapper.find('.js-open'),
-        $close = $buttonWrapper.find('.js-close'),
-        $form = $buttonWrapper.next('.js-search-collapsible');
+      var form_prefix = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">' +
+        '<div class="native-plants-search-icon icon-magnifier open js-open"></div>' +
+        '<div class="native-plants-search-icon icon-delete close js-close"></div>' +
+        '</div>';
 
-      $open.on('click', function () {
-        $form.removeClass('collapsed');
-        $buttonWrapper.removeClass('collapsed');
-      });
+      $('.js-search-collapsible').once('search-collapsible', function () {
+        var prev = $(this).prev();
+        if (prev.hasClass('js-native-plants-search-button')) {
+          prev.remove();
+        }
+        var $buttonWrapper = $(form_prefix).insertBefore($(this)),
+          $open = $buttonWrapper.find('.js-open'),
+          $close = $buttonWrapper.find('.js-close'),
+          $form = $buttonWrapper.next('.js-search-collapsible');
 
-      $close.on('click', function () {
-        $form.addClass('collapsed');
-        $buttonWrapper.delay(500).queue(function() {
-          $(this).addClass('collapsed').dequeue();
+        $open.on('click', function () {
+          $form.removeClass('collapsed');
+          $buttonWrapper.removeClass('collapsed');
+        });
+
+        $close.on('click', function () {
+          $form.addClass('collapsed');
+          $buttonWrapper.delay(500).queue(function() {
+            $(this).addClass('collapsed').dequeue();
+          });
         });
       });
     }

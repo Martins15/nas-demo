@@ -145,10 +145,6 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     }
   }
 
-  if (!$nurseries) {
-    return '';
-  }
-
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_nurseries_near_you',
@@ -189,7 +185,7 @@ function nas_panes_preprocess_native_plants_nurseries_near_you(&$variables) {
     $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
     $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
     $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
-    if ($res['link']) {
+    if (!empty($res['link']['url'])) {
       $res['link']['print'] = $res['link']['url'];
       if (drupal_strlen($res['link']['url']) > 25) {
         $res['link']['print'] = drupal_substr($res['link']['url'], 0, 22) . '&hellip;';

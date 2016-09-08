@@ -4,30 +4,37 @@
    */
   Drupal.behaviors.native_plants_tabs_selector = {};
   Drupal.behaviors.native_plants_tabs_selector.attach = function(context, settings) {
-    var $jsTabs = $('.js-tabs', context);
+    $(".js-tabs-select-wrapper", context).remove();
+    $('.js-tabs', context).once('tabs-selector').each(function() {
+      var $jsTabs = $(this);
 
-    // Generate a select box of tab items to display on mobile.
-    var $select = $('<select class="js-tabs-select tab-select hide-for-large hide-for-xlarge"></select>');
+      // Generate a select box of tab items to display on mobile.
+      var $select = $('<select class="js-tabs-select tab-select"></select>');
+      var $selectWrapper = $select
+        .wrap('<div class="js-tabs-select-wrapper hide-for-large hide-for-xlarge"></div>')
+        .parent();
+      $selectWrapper.insertAfter('.js-tabs');
 
-    $jsTabs.each(function () {
-      $(this).find('li a').each(function() {
+      $jsTabs.find('li a').each(function() {
         $select.append('<option>' + $(this).text() + '</option>');
       });
 
-      $select.insertAfter('.js-tabs');
-    });
+      // Synchronise the tab elements on 'nav' click.
+      $jsTabs.on('toggled', function (event, tab) {
+        $select.find('option').removeAttr('selected')
+          .siblings('option:contains(' + tab.find('a').text() + ')').attr('selected', 'selected');
 
-    // Synchronise the tab elements on 'nav' click.
-    $jsTabs.on('toggled', function (event, tab) {
-      var $mobileMenu = $(this).closest($jsTabs).siblings('.js-tabs-select');
+        var content_selector = $(tab).find('a.js-tab').attr('href');
+        if ($(content_selector).find('[data-equalizer]').size()) {
+          $(window).trigger('resize');
+        }
+      });
 
-      $mobileMenu.find('option').removeAttr('selected')
-        .siblings('option:contains(' + tab.find('a').text() + ')').attr('selected', 'selected');
+      // Synchronise the tab elements on 'select' change.
+      $select.on('change', function() {
+        $jsTabs.find("li a:contains(" + $(this).val() + ")").click();
+      });
     });
-
-    // Synchronise the tab elements on 'select' change.
-    $('.js-tabs-select').on('change', function() {
-      $(this).siblings($jsTabs).find("li a:contains(" + $(this).val() + ")").click();
-    });
+    Drupal.behaviors.wrap_select.attach(context, settings);
   };
 })(jQuery);

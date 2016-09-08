@@ -4,12 +4,8 @@
  * Template for Native Plants get list form.
  */
 ?>
-<div class="row">
-  <div class="columns tiny-9">
-    <?php print render($form['email']); ?>
-  </div>
-  <div class="columns tiny-3">
-    <?php print render($form['submit']); ?>
-  </div>
+<div class="flexbox-container">
+  <?php print render($form['email']); ?>
+  <?php print render($form['submit']); ?>
 </div>
 <?php print drupal_render_children($form); ?>
