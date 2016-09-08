@@ -297,11 +297,6 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     case 'native_plants_search_pane':
       $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
 
-      $form['#prefix'] = '<div class="row columns js-native-plants-search-button hide-for-medium hide-for-large hide-for-xlarge collapsed">
-      <div class="native-plants-search-icon icon-magnifier open js-open"></div>
-      <div class="native-plants-search-icon icon-delete close js-close"></div>
-    </div>';
-
       $form['#attributes'] = array(
         'class' => array(
           'native-plants-search-form',

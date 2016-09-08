@@ -125,10 +125,10 @@
   color: $color-white;
   cursor: pointer;
   font-size: 30px;
-  height: 50px;
-  line-height: 50px;
+  height: 36px;
+  line-height: 30px;
+  margin: -36px 0 10px;
   visibility: visible;
-  margin: -50px 0 10px;
 
   &.open {
     display: none;
@@ -142,6 +142,10 @@
     &.close {
       display: none;
     }
+  }
+
+  &:before {
+    vertical-align: top;
   }
 }
 
@@ -1318,10 +1322,12 @@ input[type="checkbox"].np-checkbox {
 
 .sponsor-attribution {
   float: right;
+  margin-right: 30px;
   line-height: 44px;
 
   @include breakpoint(medium-up) {
     line-height: 54px;
+    margin-right: 0;
   }
 
   .sponsor-wrapper {
