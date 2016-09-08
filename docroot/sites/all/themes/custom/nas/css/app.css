@@ -14367,10 +14367,10 @@ h2.grey {
   color: #fff;
   cursor: pointer;
   font-size: 30px;
-  height: 50px;
-  line-height: 50px;
+  height: 36px;
+  line-height: 30px;
+  margin: -36px 0 10px;
   visibility: visible;
-  margin: -50px 0 10px;
 }
 .native-plants-search-icon.open {
   display: none;
@@ -14380,6 +14380,9 @@ h2.grey {
 }
 .collapsed .native-plants-search-icon.close {
   display: none;
+}
+.native-plants-search-icon:before {
+  vertical-align: top;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
@@ -15447,11 +15450,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .sponsor-attribution {
   float: right;
+  margin-right: 30px;
   line-height: 44px;
 }
 @media only screen and (min-width: 601px) {
   .sponsor-attribution {
     line-height: 54px;
+    margin-right: 0;
   }
 }
 .sponsor-attribution .sponsor-wrapper {
