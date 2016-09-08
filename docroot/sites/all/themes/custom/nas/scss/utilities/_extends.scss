@@ -30,6 +30,10 @@
   font-size: 19px;
   height: 45px;
   width: 100%;
+
+  .-wrap-select & {
+    height: 43px;
+  }
 }
 
 %native-plants-search-form {
