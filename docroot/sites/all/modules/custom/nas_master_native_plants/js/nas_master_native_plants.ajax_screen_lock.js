@@ -23,7 +23,6 @@
 
   // Add Jquery method to modify unblock variable.
   $.fn.ajaxScreenLockSetUnblock = function(value) {
-    console.log(value);
     Drupal.ajaxScreenLock.unblock = value;
   };
 
