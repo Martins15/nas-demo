@@ -247,6 +247,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
       'callback' => '_nas_master_native_plants_initial_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-initial-form',
     ),
+    '#id' => 'nas-master-native-plants-initial-form-submit',
   );
 
   _nas_master_native_plants_attach_fields_sync($form);
@@ -371,6 +372,7 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
       'callback' => '_nas_master_native_plants_pledge_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-pledge-form',
     ),
+    '#id' => 'nas-master-native-plants-pledge-form-submit',
   );
   $form['redirect'] = array(
     '#type' => 'value',
@@ -464,6 +466,7 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
       'callback' => '_nas_master_native_plants_get_list_form_ajax_callback',
       'wrapper' => 'nas-master-native-plants-get-list-form',
     ),
+    '#id' => 'nas-master-native-plants-get-list-form-submit',
   );
 
   _nas_master_native_plants_attach_fields_sync($form);
@@ -486,6 +489,8 @@ function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_stat
   ctools_add_js('ajax-responder');
   $commands = array();
   $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
+  // Do not remove the screen lock.
+  $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,

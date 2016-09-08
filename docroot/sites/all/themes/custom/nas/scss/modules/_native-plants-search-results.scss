@@ -805,7 +805,24 @@
       .native-plants-get-list-form--submit {
         @include border-radius(8px);
         height: 45px;
-        width: 100%;
+        width: 80px;
+        margin-left: 10px;
+      }
+
+      .flexbox-container {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: baseline;
+      }
+
+      .messages.error {
+        background-image: none;
+        font-size: 14px;
+        margin-top: -25px;
+        padding: 0;
+        @include breakpoint(medium-up) {
+          margin-top: -35px;
+        }
       }
     }
 
@@ -821,7 +838,6 @@
         @include border-radius(8px);
         height: 45px;
         white-space: nowrap;
-        width: 140px;
 
         @include breakpoint(medium-up) {
           width: auto;
