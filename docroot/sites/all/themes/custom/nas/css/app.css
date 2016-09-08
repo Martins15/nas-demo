@@ -14629,6 +14629,9 @@ h2.grey {
   margin-top: 16px;
 }
 .native-plants-tabs .tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin: 0;
 }
@@ -14643,26 +14646,15 @@ h2.grey {
   width: calc(100% - 5px);
 }
 .native-plants-tabs .tabs li {
-  font-size: 24px;
+  font-size: 28px;
   float: left;
   list-style-type: none;
   text-transform: capitalize;
 }
-@media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tabs li {
-    font-size: 28px;
-  }
-}
 .native-plants-tabs .tabs a {
-  padding: 7px 10px;
+  padding: 7px 12px;
   display: block;
   border: 1px solid #fff;
-}
-@media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tabs a {
-    padding-left: 27px;
-    padding-right: 27px;
-  }
 }
 .native-plants-tabs .tabs .active a {
   -moz-border-radius: 10px 10px 0 0;
@@ -15214,15 +15206,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .where-to-buy__section__row {
   border-top: 2px solid #aaa;
+  margin-top: 15px;
 }
 @media only screen and (min-width: 601px) {
   .where-to-buy__section__row {
     border-top-width: 1px;
     padding: 40px 0 10px;
   }
-}
-.where-to-buy__section__row + .where-to-buy__section__row {
-  margin-top: 15px;
 }
 
 .where-to-buy__nurseries {

@@ -145,10 +145,6 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     }
   }
 
-  if (!$nurseries) {
-    return '';
-  }
-
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_nurseries_near_you',

@@ -404,6 +404,9 @@
   margin-top: 16px;
 
   .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
     font-family: $font-sans;
     margin: 0;
 
@@ -419,25 +422,16 @@
     }
 
     li {
-      font-size: 24px;
+      font-size: 28px;
       float: left;
       list-style-type: none;
       text-transform: capitalize;
-
-      @include breakpoint(xlarge-up) {
-        font-size: 28px;
-      }
     }
 
     a {
-      padding: 7px 10px;
+      padding: 7px 12px;
       display: block;
       border: 1px solid $color-white;
-
-      @include breakpoint(xlarge-up) {
-        padding-left: 27px;
-        padding-right: 27px;
-      }
     }
 
     .active a {
@@ -1073,14 +1067,11 @@ input[type="checkbox"].np-checkbox {
 
 .where-to-buy__section__row {
   border-top: 2px solid $color-middle-gray;
+  margin-top: 15px;
 
   @include breakpoint(medium-up) {
     border-top-width: 1px;
     padding: 40px 0 10px;
-  }
-
-  + .where-to-buy__section__row {
-    margin-top: 15px;
   }
 }
 

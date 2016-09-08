@@ -312,6 +312,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
         ),
         'placeholder' => t('U.S. ZIP code'),
         'data-native-plants-fields-sync' => 'zipcode',
+        'data-native-plants-fields-sync-override' => 1,
       );
       _nas_master_native_plants_attach_fields_sync($form);
 
@@ -340,6 +341,13 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
           'display: none;',
         ),
       );
+
+      $form['zipcode']['#attributes'] = array(
+        'data-native-plants-fields-sync' => 'zipcode',
+        'data-native-plants-fields-sync-override' => 1,
+      );
+      _nas_master_native_plants_attach_fields_sync($form);
+
       $form['zipcode']['#element_validate'] = array(
         'nas_master_native_plants_element_validate_zipcode_global',
       );
@@ -428,16 +436,8 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
  * Helper function to set ZIP code as global variable.
  */
 function nas_master_native_plants_element_validate_zipcode_global($element, &$form_state) {
-  global $native_plants_zipcode, $base_path;
+  global $native_plants_zipcode;
   $native_plants_zipcode = $element['#value'];
-
-  // Set zipcode value to the cookie.
-  $fields = array();
-  if (isset($_COOKIE['native_plants_fields_sync'])) {
-    $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
-  }
-  $fields['zipcode'] = $native_plants_zipcode;
-  setcookie('native_plants_fields_sync', drupal_json_encode($fields), REQUEST_TIME + 7 * 24 * 3600, $base_path);
 }
 
 /**
