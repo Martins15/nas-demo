@@ -269,6 +269,8 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
   ctools_add_js('ajax-responder');
   $commands = array();
   $commands[] = ctools_ajax_command_redirect($form_state['redirect'][0], 0, $form_state['redirect'][1]);
+  // Do not remove the screen lock.
+  $commands[] = ajax_command_invoke(NULL, 'ajaxScreenLockSetUnblock', array(FALSE));
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
