@@ -15211,15 +15211,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .where-to-buy__section__row {
   border-top: 2px solid #aaa;
+  margin-top: 15px;
 }
 @media only screen and (min-width: 601px) {
   .where-to-buy__section__row {
     border-top-width: 1px;
     padding: 40px 0 10px;
   }
-}
-.where-to-buy__section__row + .where-to-buy__section__row {
-  margin-top: 15px;
 }
 
 .where-to-buy__nurseries {
