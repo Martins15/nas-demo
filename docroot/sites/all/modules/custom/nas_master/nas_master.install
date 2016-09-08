@@ -3599,3 +3599,10 @@ function nas_master_update_7249() {
     page_manager_save_task_handler($handler);
   }
 }
+
+/**
+ * Enable dfw module.
+ */
+function nas_master_update_7250() {
+  module_enable(array('dfw', 'drupal_firewall_settings_feature'));
+}
