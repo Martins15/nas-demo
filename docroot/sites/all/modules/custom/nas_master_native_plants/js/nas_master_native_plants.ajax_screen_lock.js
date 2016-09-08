@@ -21,9 +21,9 @@
     });
   };
 
-  // Add Jquery method to modify unblock variable.
-  $.fn.ajaxScreenLockSetUnblock = function(value) {
-    Drupal.ajaxScreenLock.unblock = value;
-  };
+  // Add function to prevent screen lock unblock.
+  Drupal.ajax.prototype.commands.ajaxScreenLockSetUnblockFalse =  function(ajax, response, status) {
+    Drupal.ajaxScreenLock.unblock = false;
+  }
 
 })(jQuery);
