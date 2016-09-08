@@ -14628,7 +14628,7 @@ h2.grey {
 .native-plants-tabs .tabs {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin: 0;
 }
