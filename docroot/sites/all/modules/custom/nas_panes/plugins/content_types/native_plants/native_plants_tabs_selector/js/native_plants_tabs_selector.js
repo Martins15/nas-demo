@@ -23,6 +23,11 @@
       $jsTabs.on('toggled', function (event, tab) {
         $select.find('option').removeAttr('selected')
           .siblings('option:contains(' + tab.find('a').text() + ')').attr('selected', 'selected');
+
+        var content_selector = $(tab).find('a.js-tab').attr('href');
+        if ($(content_selector).find('[data-equalizer]').size()) {
+          $(window).trigger('resize');
+        }
       });
 
       // Synchronise the tab elements on 'select' change.

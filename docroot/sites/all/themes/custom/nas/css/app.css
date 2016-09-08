@@ -2312,7 +2312,12 @@ select::-ms-expand {
   }
 
   select:hover {
-    background: #f7f7f7;
+    background-color: #f7f7f7;
+  }
+
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
   }
 }
 /* Attach elements to the beginning or end of an input */
@@ -3576,7 +3581,7 @@ ul.pagination li {
 }
 
 .-wrap-select select {
-  -moz-appearance: window;
+  -moz-appearance: none;
   margin-bottom: 0 !important;
   border: 0;
 }
@@ -3700,6 +3705,9 @@ h1.centered, h2.centered, h3.centered, h4.centered, h5.centered,
   font-size: 19px;
   height: 45px;
   width: 100%;
+}
+.-wrap-select .native-plants-search-form .form-text, .native-plants-search-form .-wrap-select .form-text, .-wrap-select .native-plants-connect-form .form-text, .native-plants-connect-form .-wrap-select .form-text, .-wrap-select .engagement-hero-form .form-text, .engagement-hero-form .-wrap-select .form-text, .-wrap-select .native-plants-search-form .native-plants-search-form--submit, .native-plants-search-form .-wrap-select .native-plants-search-form--submit, .-wrap-select .native-plants-connect-form .native-plants-search-form--submit, .native-plants-connect-form .-wrap-select .native-plants-search-form--submit, .-wrap-select .engagement-hero-form .native-plants-search-form--submit, .engagement-hero-form .-wrap-select .native-plants-search-form--submit, .-wrap-select .native-plants-tabs .-wrap-select, .native-plants-tabs .-wrap-select .-wrap-select, .-wrap-select .native-plants-tabs .tab-select, .native-plants-tabs .-wrap-select .tab-select, .-wrap-select .native-plants-tabs .view-filters select, .native-plants-tabs .view-filters .-wrap-select select, .-wrap-select .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .form-text, .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .-wrap-select .form-text {
+  height: 43px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -4220,7 +4228,7 @@ ul.small-list li {
 }
 
 select {
-  -moz-appearance: window;
+  -moz-appearance: none;
 }
 
 .global-header {
@@ -13980,6 +13988,12 @@ h2.grey {
   width: 100%;
   margin: 12.5px 0 0 0;
 }
+.events-search-form .-wrap-select {
+  margin: 12.5px 0 0 0;
+}
+.events-search-form .-wrap-select select {
+  margin-top: 0;
+}
 
 .bird-guide-search-input {
   float: left;
@@ -14353,10 +14367,10 @@ h2.grey {
   color: #fff;
   cursor: pointer;
   font-size: 30px;
-  height: 50px;
-  line-height: 50px;
+  height: 36px;
+  line-height: 30px;
+  margin: -36px 0 10px;
   visibility: visible;
-  margin: -50px 0 10px;
 }
 .native-plants-search-icon.open {
   display: none;
@@ -14366,6 +14380,9 @@ h2.grey {
 }
 .collapsed .native-plants-search-icon.close {
   display: none;
+}
+.native-plants-search-icon:before {
+  vertical-align: top;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
@@ -14612,6 +14629,9 @@ h2.grey {
   margin-top: 16px;
 }
 .native-plants-tabs .tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   margin: 0;
 }
@@ -14626,26 +14646,15 @@ h2.grey {
   width: calc(100% - 5px);
 }
 .native-plants-tabs .tabs li {
-  font-size: 24px;
+  font-size: 28px;
   float: left;
   list-style-type: none;
   text-transform: capitalize;
 }
-@media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tabs li {
-    font-size: 28px;
-  }
-}
 .native-plants-tabs .tabs a {
-  padding: 7px 10px;
+  padding: 7px 12px;
   display: block;
   border: 1px solid #fff;
-}
-@media only screen and (min-width: 1280px) {
-  .native-plants-tabs .tabs a {
-    padding-left: 27px;
-    padding-right: 27px;
-  }
 }
 .native-plants-tabs .tabs .active a {
   -moz-border-radius: 10px 10px 0 0;
@@ -14963,7 +14972,24 @@ h2.grey {
   -webkit-border-radius: 8px;
   border-radius: 8px;
   height: 45px;
-  width: 100%;
+  width: 80px;
+  margin-left: 10px;
+}
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .flexbox-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+.native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .messages.error {
+  background-image: none;
+  font-size: 14px;
+  margin-top: -25px;
+  padding: 0;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .messages.error {
+    margin-top: -35px;
+  }
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container {
   text-align: center;
@@ -14980,7 +15006,6 @@ h2.grey {
   border-radius: 8px;
   height: 45px;
   white-space: nowrap;
-  width: 140px;
 }
 @media only screen and (min-width: 601px) {
   .native-plants-bottom .native-plants-bottom-plant-list .native-plants-bottom--button-container .native-plants-botton--get-list {
@@ -15197,15 +15222,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .where-to-buy__section__row {
   border-top: 2px solid #aaa;
+  margin-top: 15px;
 }
 @media only screen and (min-width: 601px) {
   .where-to-buy__section__row {
     border-top-width: 1px;
     padding: 40px 0 10px;
   }
-}
-.where-to-buy__section__row + .where-to-buy__section__row {
-  margin-top: 15px;
 }
 
 .where-to-buy__nurseries {
@@ -15433,11 +15456,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .sponsor-attribution {
   float: right;
+  margin-right: 30px;
   line-height: 44px;
 }
 @media only screen and (min-width: 601px) {
   .sponsor-attribution {
     line-height: 54px;
+    margin-right: 0;
   }
 }
 .sponsor-attribution .sponsor-wrapper {
