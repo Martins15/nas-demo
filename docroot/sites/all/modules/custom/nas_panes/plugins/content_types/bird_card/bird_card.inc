@@ -12,6 +12,7 @@ $plugin = array(
   'category' => t('Basic Modules'),
   'edit form' => 'bird_card_edit_form',
   'render callback' => 'bird_card_render',
+  'hook theme' => 'bird_card_theme',
   'tags' => array('full_width'),
 );
 
@@ -79,7 +80,7 @@ function bird_card_edit_form($form, &$form_state) {
       '#type' => 'entityreference',
       '#default_value' => !empty($conf['refs'][$i]['reference']['entity_id']) ? $conf['refs'][$i]['reference']['entity_id'] : 0,
       '#era_entity_type' => 'node',
-      '#era_bundles' => array('local_bird'),
+      '#era_bundles' => array('bird', 'boa'),
     );
     $form['refs'][$i]['weight'] = array(
       '#type' => 'weight',
@@ -236,4 +237,19 @@ function bird_card_render_references(&$form, $table_id) {
     'rows' => $rows,
     'attributes' => array('id' => $table_id),
   ));
+}
+
+/**
+ * Implements theme hook.
+ */
+function bird_card_theme(&$theme, $plugin) {
+  $theme['bird_card'] = array(
+    'variables' => array(
+      'teasers' => NULL,
+      'title' => NULL,
+      'more_link' => NULL,
+    ),
+    'template' => 'bird-card',
+    'path' => $plugin['path'],
+  );
 }
