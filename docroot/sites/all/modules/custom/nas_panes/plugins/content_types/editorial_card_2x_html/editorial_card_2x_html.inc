@@ -104,12 +104,8 @@ function editorial_card_2x_html_edit_form($form, &$form_state) {
       '#era_bundles' => array(
         'article',
         'event',
-        'pressrelease',
         'static_page',
         'slideshow',
-        'program',
-        'landing_page',
-        'short_article',
       ),
     );
   }
