@@ -292,6 +292,10 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
   if ($form_state['view']->name != 'native_plants_search') {
     return;
   }
+  // Do not process cloned view.
+  if (isset($form_state['view']->nas_master_native_plants_cloned) && $form_state['view']->nas_master_native_plants_cloned) {
+    return;
+  }
 
   switch ($form_state['view']->current_display) {
     case 'native_plants_search_pane':
@@ -364,8 +368,19 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
   }
 
+  // We need to execute the view to get the array of results to apply filters to.
+  $view = $form_state['view']->clone_view();
+  $view->nas_master_native_plants_cloned = TRUE;
+  $view->execute($form_state['view']->current_display);
+
   // Remove filter values that will produce no results with already set other filters.
-  if (!$results_unfiltered = nasnp_views_json_query_results_unfiltered()) {
+  $results_unfiltered = array();
+  if (isset($view->result_unfiltered)) {
+    $results_unfiltered = $view->result_unfiltered;
+  }
+  $view->destroy();
+
+  if (!$results_unfiltered) {
     return;
   }
 
@@ -598,17 +613,42 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
  * Implements hook_views_ajax_data_alter().
  */
 function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
-  if ($view->name != 'native_plants_search' || $view->current_display != 'native_plants_search_pane') {
+  if ($view->name != 'native_plants_search') {
     return;
   }
 
-  // Update best results view.
-  $best_results_view = views_embed_view('native_plants_search', 'native_plants_search_pane_tier1');
-  $selector = '.view-display-id-native_plants_search_pane_tier1';
-  $command = ajax_command_replace($selector, $best_results_view);
-  array_unshift($commands, $command);
+  // Add validation errors.
+  if ($messages = theme('status_messages')) {
+    $commands[] = ajax_command_prepend(
+      '#views-exposed-form-native-plants-search-native-plants-search-pane',
+      '<div class="row">' . $messages . '</div>'
+    );
+  }
 
-  // Refresh full results exposed form.
+  // Handle best results view refresh.
+  if ($view->current_display == 'native_plants_search_pane_tier1') {
+    foreach ($commands as &$cmd) {
+      $cmd['selector'] = '.view-display-id-native_plants_search_pane_tier1';
+    }
+
+    // Refresh exposed form.
+    $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
+    if ($view->display_handler->get_option('exposed_block')) {
+      $form = $exposed_block_plugin->render_exposed_form(TRUE);
+      $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
+      array_unshift($commands, ajax_command_replace($id, $form));
+    }
+  }
+
+  // Handle full results view refresh.
+  if ($view->current_display != 'native_plants_search_pane') {
+    return;
+  }
+  foreach ($commands as &$cmd) {
+    $cmd['selector'] = '.view-display-id-native_plants_search_pane';
+  }
+
+  // Refresh exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
   if ($view->display_handler->get_option('exposed_block')) {
     $form = $exposed_block_plugin->render_exposed_form(TRUE);
@@ -616,8 +656,13 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     array_unshift($commands, ajax_command_replace($id, $form));
   }
 
-  // Refresh best results exposed form.
+  // Update best results view.
   $br_view = views_get_view('native_plants_search');
+  $br_view_html = $br_view->preview('native_plants_search_pane_tier1');
+  $selector = '.view-display-id-native_plants_search_pane_tier1';
+  $command = ajax_command_replace($selector, $br_view_html);
+  array_unshift($commands, $command);
+  // Refresh best results exposed form.
   $br_view->set_display('native_plants_search_pane_tier1');
   $exposed_block_plugin = $br_view->display_handler->get_plugin('exposed_form');
   if ($br_view->display_handler->get_option('exposed_block')) {
@@ -671,14 +716,6 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
       $command = ajax_command_replace($selector, $output);
       array_unshift($commands, $command);
     }
-  }
-
-  // Add validation errors.
-  if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend(
-      '#views-exposed-form-native-plants-search-native-plants-search-pane',
-      '<div class="row">' . $messages . '</div>'
-    );
   }
 }
 
