@@ -75,8 +75,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     // MODIFICATIONS: Add local data to the results.
     $this->add_local_data($ret, $view);
-
-    nasnp_views_json_query_results_unfiltered($ret);
+    $view->result_unfiltered = $ret;
 
     // Filter.
     foreach ($ret as $k => $row) {
