@@ -656,6 +656,12 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     array_unshift($commands, ajax_command_replace($id, $form));
   }
 
+  // Update best results view and panes only if there was ZIP code change.
+  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
+  if (!isset($_COOKIE['native_plants_zipcode_changed'])) {
+    return;
+  }
+
   // Update best results view.
   $br_view = views_get_view('native_plants_search');
   $br_view_html = $br_view->preview('native_plants_search_pane_tier1');
@@ -671,7 +677,7 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     array_unshift($commands, ajax_command_replace($id, $form));
   }
 
-  // Load the page and find handler.
+  // Load the page and find handler to update the panes.
   $page = page_manager_page_load('native_plants_search');
   $task = page_manager_get_task($page->task);
   $handlers = page_manager_load_task_handlers($task, $page->name);
