@@ -24,7 +24,7 @@ function nas_master_native_plants_menu() {
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/cache-clear'] = array(
-    'title' => 'Cache clear',
+    'title' => 'Cache',
     'description' => 'Clear Native Plants cache',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_master_native_plants_cache_clear'),
@@ -37,6 +37,15 @@ function nas_master_native_plants_menu() {
     'description' => 'Update Native Plants nodes',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_master_native_plants_csv_update'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['admin/config/system/native-plants/plant-id-update'] = array(
+    'title' => 'Plant ID',
+    'description' => 'Update Native Plants IDs',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_plant_id_update'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
     'type' => MENU_LOCAL_TASK,
