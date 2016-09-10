@@ -145,6 +145,9 @@ function _nas_master_native_plants_remove_canada_states(&$states) {
  * Helper function to generate Plant ID.
  */
 function nas_master_native_plants_generate_plant_id($params) {
+  foreach ($params as &$param) {
+    $param = trim($param);
+  }
   $plant_id = md5(implode('-', $params));
   return $plant_id;
 }
