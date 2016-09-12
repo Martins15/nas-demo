@@ -1191,7 +1191,7 @@ function nas_image($variables) {
       $attributes['src'] = file_create_url($variables['path']);
     }
 
-    foreach (array('width', 'height', 'alt', 'title') as $key) {
+    foreach (array('width', 'height', 'alt', 'title', 'style') as $key) {
       if (isset($variables[$key])) {
         $attributes[$key] = $variables[$key];
       }

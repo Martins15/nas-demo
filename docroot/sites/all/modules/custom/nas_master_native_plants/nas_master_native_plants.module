@@ -4,6 +4,8 @@
  * Main file for the NAS Master Native Plants module.
  */
 
+require_once dirname(__FILE__) . '/nas_master_native_plants.forms.inc';
+
 /**
  * Implements hook_menu().
  */
@@ -12,14 +14,23 @@ function nas_master_native_plants_menu() {
     'title' => 'Native Plants',
     'description' => 'Configure Native Plants settings',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('nas_master_native_plants_cache_clear'),
+    'page arguments' => array('nas_master_native_plants_settings'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
+  );
+  $items['admin/config/system/native-plants/settings'] = array(
+    'title' => 'Settings',
+    'description' => 'Native Plants settings',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/cache-clear'] = array(
     'title' => 'Cache clear',
     'description' => 'Clear Native Plants cache',
-    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_cache_clear'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/csv-update'] = array(
     'title' => 'CSV update',
@@ -75,6 +86,39 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
   }
 
   // Remove Canada states.
+  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_remove_canada_states($states);
+
+  // Assign all states if no states selected yet.
+  if (!$states['#default_value']) {
+    foreach (array_keys($states['#options']) as $tid) {
+      $states['#default_value'][] = $tid;
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_nursery_node_form_alter(&$form, &$form_state, $form_id) {
+  // Remove Canada states.
+  $states = &$form['field_nursery_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_remove_canada_states($states);
+
+  // Show states checkboxes only if Nursery is online one.
+  $states['#states'] = array(
+    'visible' => array(
+      'input[name^="field_nursery_online"]' => array(
+        'checked' => TRUE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Helper function to remove Canada states.
+ */
+function _nas_master_native_plants_remove_canada_states(&$states) {
   $canada_states = array(
     'Ontario',
     'Quebec',
@@ -90,17 +134,9 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
     'Yukon',
     'Nunavut',
   );
-  $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
   foreach ($states['#options'] as $tid => $name) {
     if (in_array($name, $canada_states)) {
       unset($states['#options'][$tid]);
-    }
-  }
-
-  // Assign all states if no states selected yet.
-  if (!$states['#default_value']) {
-    foreach (array_keys($states['#options']) as $tid) {
-      $states['#default_value'][] = $tid;
     }
   }
 }
@@ -130,6 +166,10 @@ function nas_master_native_plants_theme($existing, $type, $theme, $path) {
         'permalink' => NULL,
       ),
       'template' => 'templates/nas-master-native-plants-mail-native-plants-list',
+    ),
+    'nas_master_native_plants_views_exposed_form' => array(
+      'render element' => 'form',
+      'template' => 'templates/nas-master-native-plants-views-exposed-form',
     ),
   );
 }
@@ -253,47 +293,76 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     return;
   }
 
-  // Unset the form theme functions to remove unneeded wrappers.
-  unset($form['#theme']);
+  switch ($form_state['view']->current_display) {
+    case 'native_plants_search_pane':
+      $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
 
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form',
-    ),
-  );
+      $form['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form',
+          'native-plants-search-form-inline',
+          'js-search-collapsible',
+          'collapsed',
+        ),
+      );
 
-  $form['zipcode']['#prefix'] = '<div class="row"><div class="column medium-6">';
-  $form['zipcode']['#suffix'] = '</div>';
-  $form['zipcode']['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form--zip-code',
-    ),
-    'placeholder' => t('ZIP code'),
-  );
-  $form['zipcode']['#element_validate'] = array('nas_master_native_plants_element_validate_zipcode_us');
-  if (module_exists('nas_native_plants_zipfips_feature')) {
-    $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
+      $form['zipcode']['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form--zip-code',
+        ),
+        'placeholder' => t('U.S. ZIP code'),
+        'data-native-plants-fields-sync' => 'zipcode',
+        'data-native-plants-fields-sync-override' => 1,
+      );
+      _nas_master_native_plants_attach_fields_sync($form);
+
+      $form['zipcode']['#element_validate'] = array(
+        'nas_master_native_plants_element_validate_zipcode_global',
+        'nas_master_native_plants_element_validate_zipcode_us',
+      );
+
+      $form['attribute']['#options']['All'] = t('All types of plants');
+      $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
+
+      $form['submit']['#attributes'] = array(
+        'class' => array(
+          'native-plants-search-form--submit',
+          'button',
+          'tomato',
+          'large',
+        ),
+      );
+
+      break;
+
+    case 'native_plants_search_pane_tier1':
+      $form['#attributes'] = array(
+        'style' => array(
+          'display: none;',
+        ),
+      );
+
+      $form['zipcode']['#attributes'] = array(
+        'data-native-plants-fields-sync' => 'zipcode',
+        'data-native-plants-fields-sync-override' => 1,
+      );
+      _nas_master_native_plants_attach_fields_sync($form);
+
+      $form['zipcode']['#element_validate'] = array(
+        'nas_master_native_plants_element_validate_zipcode_global',
+      );
+
+      $form['attribute_tier1']['#options']['All'] = t('All types of plants');
+      $form['bird_type_tier1']['#options']['All'] = t('Attracts: Any type of bird');
+
+      $form['submit']['#id'] = 'edit-submit-native-plants-search-tier1';
+
+      break;
   }
 
-  $form['attribute']['#attributes'] = array(
-    'style' => 'display: none;',
-  );
-  $form['bird_type']['#attributes'] = array(
-    'style' => 'display: none;',
-  );
-  $form['attribute']['#options']['All'] = t('All types of plants');
-  $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
-
-  $form['submit']['#prefix'] = '<div class="column medium-6">';
-  $form['submit']['#suffix'] = '</div></div>';
-  $form['submit']['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form--submit',
-      'button',
-      'tomato',
-      'large',
-    ),
-  );
+  if (variable_get('nas_master_native_plants_zip_fips', 0)) {
+    $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
+  }
 
   // Remove filter values that will produce no results with already set other filters.
   if (!$results_unfiltered = nasnp_views_json_query_results_unfiltered()) {
@@ -364,12 +433,17 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
 }
 
 /**
+ * Helper function to set ZIP code as global variable.
+ */
+function nas_master_native_plants_element_validate_zipcode_global($element, &$form_state) {
+  global $native_plants_zipcode;
+  $native_plants_zipcode = $element['#value'];
+}
+
+/**
  * Helper function to validate form element for US ZIP code.
  */
 function nas_master_native_plants_element_validate_zipcode_us($element, &$form_state) {
-  global $native_plants_zipcode;
-  $native_plants_zipcode = $element['#value'];
-
   if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
     return;
   }
@@ -381,10 +455,26 @@ function nas_master_native_plants_element_validate_zipcode_us($element, &$form_s
 }
 
 /**
+ * Helper function to validate form element value is a valid email address.
+ */
+function nas_master_native_plants_element_validate_email($element, &$form_state) {
+  $email = &$element['#value'];
+  $email = strtolower(trim($email));
+  if (empty($email)) {
+    return;
+  }
+
+  // Validate email address.
+  if (!valid_email_address($email)) {
+    form_error($element, t('The e-mail address you specified is not valid.'));
+  }
+}
+
+/**
  * Helper function to convert ZIP code into County FIPS code.
  */
 function nas_master_native_plants_element_validate_zipfips($element, &$form_state) {
-  if ($element['#value'] == '' || !module_exists('nas_native_plants_zipfips_feature')) {
+  if ($element['#value'] == '' || !variable_get('nas_master_native_plants_zip_fips', 0)) {
     return;
   }
 
@@ -438,7 +528,6 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   $theme_path = drupal_get_path('theme', 'nas');
   drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
   drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
-  drupal_add_js($theme_path . '/js/nas/native-plants.js');
   $module_path = drupal_get_path('module', 'nas_master_native_plants');
   drupal_add_js($module_path . '/js/nas_master_native_plants.js', array('scope' => 'footer'));
   drupal_add_js($module_path . '/js/nas_master_native_plants.ajax_screen_lock.js', array('scope' => 'footer'));
@@ -453,16 +542,16 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 
   foreach ($vars['view']->result as &$result) {
-    // Randomize bird type cards ordering for Tier1 display.
-    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
-      shuffle($result->BirdTypes);
-    }
-
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '
       . 'data-plant-scientific-name="' . $result->ScientificName . '" '
       . 'data-plant-bird-types="' . implode(',', array_keys($result->BirdTypes)) . '"';
+
+    // Randomize bird type cards ordering for Tier1 display.
+    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
+      shuffle($result->BirdTypes);
+    }
 
     // Prepare images.
     $result->PlantImgDesktop = '';
@@ -523,10 +612,11 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     $commands[] = $command;
   }
 
-  // Add validation errors.
-  if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend($selector, '<div class="row">' . $messages . '</div>');
-  }
+  // Update best results view.
+  $best_results_view = views_embed_view('native_plants_search', 'native_plants_search_pane_tier1');
+  $selector = '.view-display-id-native_plants_search_pane_tier1';
+  $command = ajax_command_replace($selector, $best_results_view);
+  array_unshift($commands, $command);
 
   // Refresh exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
@@ -535,214 +625,121 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
     array_unshift($commands, ajax_command_replace($id, $form));
   }
-}
 
-/**
- * Form building callback for Native Plants "ZIP code search" form.
- */
-function nas_master_native_plants_zipcode_form($form, &$form_state, $conf = array()) {
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-search-form',
-    ),
-  );
-  $form['zipcode'] = array(
-    '#type' => 'textfield',
-    '#title' => t(filter_xss($conf['zipcode_placeholder'])),
-    '#title_display' => 'invisible',
-    '#default_value' => $conf['zipcode_default_value'],
-    '#attributes' => array(
-      'class' => array(
-        'native-plants-search-form--zip-code',
-      ),
-      'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
-    ),
-    '#required' => TRUE,
-    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
-    '#prefix' => '<div class="row"><div class="column medium-6">',
-    '#suffix' => '</div>',
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t(filter_xss($conf['button_text'])),
-    '#attributes' => array(
-      'class' => array(
-        'native-plants-search-form--submit',
-        'button',
-        'large',
-        'tomato',
-      ),
-    ),
-    '#ajax' => array(
-      'callback' => '_nas_master_native_plants_zipcode_form_ajax_callback',
-      'wrapper' => 'nas-master-native-plants-zipcode-form',
-    ),
-    '#prefix' => '<div class="column medium-6">',
-    '#suffix' => '</div></div>',
-  );
-
-  $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
-    'scope' => 'footer',
-  );
-
-  return $form;
-}
-
-/**
- * AJAX callback for Native Plants "ZIP code search" form.
- */
-function _nas_master_native_plants_zipcode_form_ajax_callback($form, $form_state) {
-  if (!$form_state['redirect']) {
-    return $form;
+  // Load the page and find handler.
+  $page = page_manager_page_load('native_plants_search');
+  $task = page_manager_get_task($page->task);
+  $handlers = page_manager_load_task_handlers($task, $page->name);
+  foreach ($handlers as $handler) {
+    if ($handler->name === 'page_native_plants_search__native_plants_search_page') {
+      break;
+    }
   }
 
-  ctools_include('ajax');
-  ctools_add_js('ajax-responder');
-  $commands = array();
-  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
-  return array(
-    '#type' => 'ajax',
-    '#commands' => $commands,
-  );
-}
-
-/**
- * Form submit callback for Native Plants "ZIP code search" form.
- */
-function nas_master_native_plants_zipcode_form_submit($form, &$form_state) {
-  // Redirect to resources per ZIP code page.
-  $form_state['redirect'] = 'native-plants-resources/' . $form_state['values']['zipcode'];
-}
-
-/**
- * Form building callback for Native Plants "Join the Sanctuary" form.
- */
-function nas_master_native_plants_sanctuary_form($form, &$form_state, $conf = array()) {
-  $form['#attributes'] = array(
-    'class' => array(
-      'native-plants-bottom-form-right',
-    ),
-  );
-  $form['sanctuary_email_address'] = array(
-    '#type' => 'textfield',
-    '#title' => t(filter_xss($conf['email_address_placeholder'])),
-    '#title_display' => 'invisible',
-    '#attributes' => array(
-      'placeholder' => t(filter_xss($conf['email_address_placeholder'])),
-    ),
-    '#required' => TRUE,
-  );
-  $form['sanctuary_zipcode'] = array(
-    '#type' => 'textfield',
-    '#title' => t(filter_xss($conf['zipcode_placeholder'])),
-    '#title_display' => 'invisible',
-    '#attributes' => array(
-      'class' => array(
-        'native-plants-bottom-form-right--zipcode',
-      ),
-      'placeholder' => t(filter_xss($conf['zipcode_placeholder'])),
-    ),
-    '#required' => TRUE,
-    '#element_validate' => array('nas_master_native_plants_element_validate_zipcode_us'),
-  );
-  $form['sanctuary_square_feet'] = array(
-    '#type' => 'textfield',
-    '#title' => t(filter_xss($conf['square_feet_placeholder'])),
-    '#title_display' => 'invisible',
-    '#attributes' => array(
-      'placeholder' => t(filter_xss($conf['square_feet_placeholder'])),
-    ),
-    '#element_validate' => array('element_validate_integer_positive'),
-  );
-  $form['sanctuary_submit'] = array(
-    '#type' => 'submit',
-    '#value' => t(filter_xss($conf['button_text'])),
-    '#attributes' => array(
-      'class' => array(
-        'button',
-        'large',
-        'tomato',
-      ),
-    ),
-    '#ajax' => array(
-      'callback' => '_nas_master_native_plants_sanctuary_form_ajax_callback',
-      'wrapper' => 'nas-master-native-plants-sanctuary-form',
-    ),
-  );
-
-  return $form;
-}
-
-/**
- * AJAX callback for Native Plants "Join the Sanctuary" form.
- */
-function _nas_master_native_plants_sanctuary_form_ajax_callback($form, $form_state) {
-  if (!$form_state['redirect']) {
-    return $form;
+  // Load display if it is empty.
+  if (empty($handler->conf['display']) && !empty($handler->conf['did'])) {
+    $handler->conf['display'] = panels_load_display($handler->conf['did']);
+  }
+  if (empty($handler->conf['display']->content)) {
+    return;
   }
 
-  ctools_include('ajax');
-  ctools_add_js('ajax-responder');
-  $commands = array();
-  $commands[] = ctools_ajax_command_redirect($form_state['redirect']);
-  return array(
-    '#type' => 'ajax',
-    '#commands' => $commands,
-  );
-}
+  // Update panes.
+  foreach ($handler->conf['display']->content as $pane) {
+    $selector = '';
+    switch ($pane->subtype) {
+      case 'native_plants_you_near_audubon':
+        $selector = '.native-plants-you-near-audubon';
+        break;
 
-/**
- * Form validation callback for Native Plants "Join the Sanctuary" form.
- */
-function nas_master_native_plants_sanctuary_form_validate($form, &$form_state) {
-  $email = &$form_state['values']['sanctuary_email_address'];
-  // Validate email address.
-  $email = strtolower(trim($email));
-  if (!$email || !valid_email_address($email)) {
-    form_error($form['sanctuary_email_address'], t('The e-mail address you specified is not valid.'));
+      case 'native_plants_audubon_near_you':
+        $selector = '.native-plants-audubon-near-you';
+        break;
+
+      case 'native_plants_nurseries_near_you':
+        if ($pane->configuration['online']) {
+          $selector = '.native-plants-nurseries-near-you-online';
+        }
+        else {
+          $selector = '.native-plants-nurseries-near-you-offline';
+        }
+        break;
+    }
+
+    if ($selector) {
+      $output = _nas_master_native_plants_render_pane($pane, $handler->conf['display']);
+      $command = ajax_command_replace($selector, $output);
+      array_unshift($commands, $command);
+    }
+  }
+
+  // Add validation errors.
+  if ($messages = theme('status_messages')) {
+    $commands[] = ajax_command_prepend(
+      '#views-exposed-form-native-plants-search-native-plants-search-pane',
+      '<div class="row">' . $messages . '</div>'
+    );
   }
 }
 
 /**
- * Form submit callback for Native Plants "Join the Sanctuary" form.
+ * Helper function to render pane.
  */
-function nas_master_native_plants_sanctuary_form_submit($form, &$form_state) {
-  // Create permalink entity.
-  $values = array(
-    'type' => 'permalink',
-    'email' => $form_state['values']['sanctuary_email_address'],
-    'zip_code' => $form_state['values']['sanctuary_zipcode'],
-    'plants_cart' => $_COOKIE['native_plants_cart'],
-    'square_feet' => $form_state['values']['sanctuary_square_feet'],
-  );
-  if ($permalink = entity_create('permalink', $values)) {
-    entity_save('permalink', $permalink);
+function _nas_master_native_plants_render_pane(&$pane, $display) {
+  module_invoke_all('panels_pane_prerender', $pane);
+  ctools_include('content');
+  $content = ctools_content_render($pane->type, $pane->subtype, $pane->configuration, array(), $display->args, $display->context);
+
+  foreach (module_implements('panels_pane_content_alter') as $module) {
+    $function = $module . '_panels_pane_content_alter';
+    $function($content, $pane, $display->args, $display->context, $this, $display);
   }
 
-  // Redirect to permalink page.
-  $form_state['redirect'] = 'native-plants/thank-you/' . $permalink->uuid;
+  // If there's content, check if we've css configuration to add.
+  if (!empty($content)) {
+    // Pass long the css_id that is usually available.
+    if (!empty($pane->css['css_id'])) {
+      $content->css_id = check_plain($pane->css['css_id']);
+    }
 
-  // Convio integration.
-  nas_master_native_plants_convio_integration($permalink);
+    // Pass long the css_class that is usually available.
+    if (!empty($pane->css['css_class'])) {
+      $content->css_class = check_plain($pane->css['css_class']);
+    }
+  }
 
-  // Send plant list - it is set up to go through Mandrill.
-  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
+  if (!empty($content->content)) {
+    if (!empty($pane->style['style'])) {
+      $style = panels_get_style($pane->style['style']);
+
+      if (isset($style) && isset($style['render pane'])) {
+        $output = theme($style['render pane'], array('content' => $content, 'pane' => $pane, 'display' => $display, 'style' => $style, 'settings' => $pane->style['settings']));
+
+        // This could be null if no theme function existed.
+        if (isset($output)) {
+          return $output;
+        }
+      }
+    }
+
+    return theme('panels_pane', array('content' => $content, 'pane' => $pane, 'display' => $display));
+  }
 }
 
 /**
  * Helper function for Convio integration.
  */
-function nas_master_native_plants_convio_integration($permalink) {
+function nas_master_native_plants_convio_integration($values) {
   // @see https://secure.audubon.org/site/SSurvey?ACTION_REQUIRED=URI_ACTION_USER_REQUESTS&SURVEY_ID=21409
   $url = 'https://secure.audubon.org/site/SSurvey';
   $data = array(
     'cons_info_component' => 't',
-    'cons_email' => $permalink->email,
-    'cons_zip_code' => $permalink->zip_code,
+    'cons_email' => $values['email'],
+    'cons_zip_code' => $values['zipcode'],
     's_rememberMe' => 0,
     'remember_me_opt_in_requested' => 'true',
     // Square feet.
-    '3340_21409_2_18300' => $permalink->square_feet ? $permalink->square_feet : 0,
+    '3340_21409_2_18300' => $values['square_feet'] ? $values['square_feet'] : 0,
     'denySubmit' => '',
     'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
     'SURVEY_ID' => '21409',
@@ -756,7 +753,7 @@ function nas_master_native_plants_convio_integration($permalink) {
   $result = drupal_http_request($url, $options);
   watchdog('nas_master_native_plants', 'Convio integration - %email entered. Service answer was !answer',
     array(
-      '%email' => $permalink->email,
+      '%email' => $values['email'],
       '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
     )
   );
@@ -813,6 +810,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
     return;
   }
 
+  $order = 1;
   foreach ($handler->conf['display']->content as $pane) {
     switch ($pane->subtype) {
       case 'native_plants_bar':
@@ -822,26 +820,16 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
         break;
 
       case 'native_plants_list_description':
-        $variables['list_title'] = $pane->configuration['override_title_text'];
-        $variables['list_text_top'] = check_markup($pane->configuration['text_top']['value'], $pane->configuration['text_top']['format']);
-        $variables['list_text_bottom'] = check_markup($pane->configuration['text_bottom']['value'], $pane->configuration['text_bottom']['format']);
+        $variables['list_title_' . $order] = $pane->configuration['override_title_text'];
+        $variables['list_text_' . $order] = check_markup($pane->configuration['text']['value'], $pane->configuration['text']['format']);
+        $variables['list_text_' . $order] = strtr(
+          $variables['list_text_' . $order],
+          array('!permalink' => l($variables['permalink_url'], $variables['permalink_url']))
+        );
         // Convert to absolute URLs.
-        $variables['list_text_top'] = check_markup($variables['list_text_top'], 'absolute_urls');
-        $variables['list_text_bottom'] = check_markup($variables['list_text_bottom'], 'absolute_urls');
+        $variables['list_text_' . $order] = check_markup($variables['list_text_' . $order], 'absolute_urls');
+        $order++;
 
-        $variables['list_share_label'] = $pane->configuration['share_label'];
-        $variables['twitter_url'] = url('http://twitter.com/share', array(
-          'query' => array(
-            'text' => '',
-            'via' => 'audubonsociety',
-            'url' => $variables['permalink_url'],
-          ),
-        ));
-        $variables['facebook_url'] = url('http://www.facebook.com/sharer/sharer.php', array(
-          'query' => array(
-            'u' => $variables['permalink_url'],
-          ),
-        ));
         break;
 
       case 'editorial_card_3x':
@@ -861,6 +849,10 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
               'style_name' => 'article_teaser',
               'path' => $vars['image_uri'],
               'alt' => $node->title,
+              'style' => 'width: 315px; height: 201px;',
+              'attributes' => array(
+                'style' => 'width: 315px; height: 201px;',
+              ),
             ));
             $variables['editorial_cards'][] = array(
               'url' => url($uri['path'], $uri['options']),
@@ -910,6 +902,9 @@ function nas_master_native_plants_eck_property_type_schema_alter(&$schema, $type
 function nas_master_native_plants_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'geocoder' && $plugin_type == 'geocoder_handler') {
     return 'plugins/' . $plugin_type;
+  }
+  if ($owner == 'feeds_tamper' && $plugin_type == 'plugins') {
+    return 'plugins/feeds_tamper';
   }
 }
 
@@ -970,4 +965,18 @@ function _nas_master_native_plants_zipcode_to_state($zipcode) {
   $zipfips = entity_load('zipfips', array($zipfips_id));
 
   return reset($zipfips)->state_code;
+}
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function nas_master_native_plants_feeds_presave(FeedsSource $source, $entity, $item) {
+  switch ($entity->feeds_item->id) {
+    case 'nurseries':
+      $entity->field_nursery_online[LANGUAGE_NONE][0]['value'] = 0;
+      if (!empty($item['supply area'][0])) {
+        $entity->field_nursery_online[LANGUAGE_NONE][0]['value'] = 1;
+      }
+      break;
+  }
 }

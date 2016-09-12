@@ -20,7 +20,7 @@ function nas_nursery_import_feature_feeds_importer_default() {
     'fetcher' => array(
       'plugin_key' => 'FeedsFileFetcher',
       'config' => array(
-        'allowed_extensions' => 'txt csv tsv xml opml',
+        'allowed_extensions' => 'csv',
         'direct' => 0,
         'directory' => 'public://feeds',
         'allowed_schemes' => array(
@@ -80,6 +80,16 @@ function nas_nursery_import_feature_feeds_importer_default() {
           7 => array(
             'source' => 'STREET',
             'target' => 'field_nursery_address:thoroughfare',
+            'unique' => FALSE,
+          ),
+          8 => array(
+            'source' => 'URL',
+            'target' => 'field_nursery_link:url',
+            'unique' => FALSE,
+          ),
+          9 => array(
+            'source' => 'Supply Area',
+            'target' => 'field_nursery_states',
             'unique' => FALSE,
           ),
         ),

@@ -57,11 +57,8 @@
       </div>
     </div>
     <div class="columns">
-      <h2 class="thin hide-for-tiny hide-form-small"><?php print t('Full results'); ?></h2>
-      <p class="hide-for-tiny hide-for-small filter-label"><?php print t('Filter'); ?></p>
-
-      <form action="#" class="inner-filters-wrapper">
-      </form>
+      <div class="inner-filters-wrapper view-filters">
+      </div>
     </div>
 
     <?php if ($rows): ?>

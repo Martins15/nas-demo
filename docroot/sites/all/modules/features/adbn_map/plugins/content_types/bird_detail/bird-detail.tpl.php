@@ -6,7 +6,7 @@
     <?php endif; ?>
   </div>
   <div class="map-caption-right">
-    <small><?php print t('Read more: !link', array('!link' => l('climate.audubon.org', '//climate.audobon.org')), array('langcode' => $langcode)); ?></small>
+    <small><?php print t('Read more: !link', array('!link' => l('climate.audubon.org', '//climate.audubon.org')), array('langcode' => $langcode)); ?></small>
   </div>
 </div>
 <div class="map-canvas">

@@ -302,7 +302,20 @@ function nas_site_template_feature_default_page_manager_handlers() {
     $pane->type = 'nas_stay_abreast_pane';
     $pane->subtype = 'nas_stay_abreast_pane';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '0',
+            'paths' => 'native-plants
+native-plants/*',
+          ),
+          'context' => 'argument_string_1',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'headline' => 'Stay abreast of Audubon',
       'caption' => 'Our email newsletter shares the latest programs and initiatives.',
