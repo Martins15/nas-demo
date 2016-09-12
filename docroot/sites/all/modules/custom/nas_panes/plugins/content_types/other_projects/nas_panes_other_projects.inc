@@ -13,22 +13,34 @@ $plugin = array(
   'edit form' => 'nas_panes_other_projects_edit_form',
   'render callback' => 'nas_panes_other_projects_render',
   'required context' => new ctools_context_required(t('Node'), 'node'),
+  'defaults' => array(
+    'title' => 'Explore More Conservation Projects',
+    'title_heading' => 'h2',
+  ),
+  'hook theme' => 'nas_panes_other_projects_theme',
 );
 
 /**
- * An edit form for the pane's settings.
+ * An edit form for the pane settings.
  */
 function nas_panes_other_projects_edit_form($form, &$form_state) {
-  $conf = $form_state['conf'];
-  $form['#tree'] = TRUE;
-  _nas_panes_hide_pane_title_field($form);
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
+  $form['#tree'] = TRUE;
   $context = reset($form_state['display']->context);
-  // Not on default panel, not article.
-  if (!$context->empty && $context->data->type !== 'project') {
+  // Not on default panel, not project, not IBA.
+  if (!$context->empty && $context->data->type != 'project' && $context->data->type != 'iba') {
     return $form;
   }
-  $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
+
+  // We should save into default settings for IBA.
+  $conf_key = 'default';
+  if ($context->data->type != 'iba') {
+    $conf_key = $form_state['display']->context['panelizer']->empty ? 'default' : $context->data->nid;
+  }
+
   $form[$conf_key] = array(
     '#type' => 'fieldset',
     '#title' => t('Explore More Conservation Projects'),
@@ -61,15 +73,25 @@ function nas_panes_other_projects_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type).
- * See ctools_plugin_examples for more advanced info.
+ * Render callback.
  */
 function nas_panes_other_projects_render($subtype, $conf, $args, $context) {
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
+  }
+
   $context_node = $context->data;
-  if ($context_node->type !== 'project') {
+  if ($context_node->type != 'project' && $context_node->type != 'iba') {
     return;
   }
-  $conf_key = $context_node->nid;
+
+  // Load default configuration for IBA.
+  $conf_key = 'default';
+  if ($context_node->type != 'iba') {
+    $conf_key = $context_node->nid;
+  }
 
   // Check if configuration for current node is empty.
   $conf_is_empty = TRUE;
@@ -105,7 +127,7 @@ function nas_panes_other_projects_render($subtype, $conf, $args, $context) {
     $teasers[] = drupal_render($build);
   }
 
-  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
   $vars['contextual_links'] = $contextual_links;
 
   $block = new stdClass();
@@ -113,10 +135,25 @@ function nas_panes_other_projects_render($subtype, $conf, $args, $context) {
   if (!empty($teasers)) {
     $block->content = theme('other_projects', array(
       'teasers' => $teasers,
-      'title' => t('Explore More Conservation Projects'),
+      'title' => t($conf['title']),
       'contextual_links' => $contextual_links,
     ));
   }
 
   return $block;
+}
+
+/**
+ * Delegated implementation of hook_theme().
+ */
+function nas_panes_other_projects_theme(&$theme, $plugin) {
+  $theme['other_projects'] = array(
+    'variables' => array(
+      'title' => NULL,
+      'teasers' => NULL,
+      'contextual_links' => NULL,
+    ),
+    'template' => 'other-projects',
+    'path' => $plugin['path'],
+  );
 }
