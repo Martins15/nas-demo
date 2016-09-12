@@ -2680,6 +2680,14 @@ function nas_master_update_7186() {
 }
 
 /**
+ * Enable IBA feature.
+ */
+function nas_master_update_7187() {
+  module_enable(array('nas_iba_feature'));
+  features_revert(array('nas_image_styles_feature'));
+}
+
+/**
  * Install multilanguage stack.
  */
 function nas_master_update_7190() {
@@ -2856,7 +2864,7 @@ function nas_master_update_7204() {
 }
 
 /**
- * Revert nas_boa_index_feature .
+ * Revert nas_boa_index_feature.
  */
 function nas_master_update_7205() {
   features_revert(array(
@@ -2961,7 +2969,8 @@ function nas_master_update_7211() {
   registry_rebuild();
 }
 
-/**
+
+/*
  * Update Event CT feature.
  */
 function nas_master_update_7212() {
@@ -3342,6 +3351,7 @@ function nas_master_update_7234() {
   );
 }
 
+
 /**
  * Enable Acquia Search Multiple Indexes module.
  */
@@ -3531,4 +3541,53 @@ function nas_master_update_7244() {
     'nas_slideshow_feature' => array('field_instance'),
     'nas_fbia' => array('views_view'),
   ));
+}
+
+/**
+ * Enabling Google AMP link tag.
+ */
+function nas_master_update_7245() {
+  features_revert(array(
+    'nas_metatags_feature' => array(
+      'metatag',
+    ),
+  ));
+}
+
+/**
+ * Enable NAS IBA features.
+ */
+function nas_master_update_7246() {
+  // Clear cache to discover new Feeds parser plugin.
+  cache_clear_all();
+  module_enable(array(
+    'nas_iba_feature',
+    'nas_iba_state',
+    'nas_iba_import_feeds_feature',
+    'nas_iba_redirect',
+  ));
+  features_revert(array('nas_image_styles_feature'));
+  features_revert_module('nas_solr_feature');
+  features_revert_module('nas_url_aliases_feature');
+
+  // Delete old redirect for IBA page.
+  db_delete('redirect')
+    ->condition('source', 'important-bird-areas')
+    ->execute();
+
+  // Add redirects for IBA.
+  $redirect = new stdClass();
+
+  redirect_object_prepare(
+    $redirect,
+    array(
+      'source' => 'iba',
+      'source_options' => array(),
+      'redirect' => 'important-bird-areas',
+      'redirect_options' => array(),
+      'language' => LANGUAGE_NONE,
+    )
+  );
+
+  redirect_save($redirect);
 }
