@@ -1,7 +1,7 @@
 name = Native Plants Permalink Panel page
 core = 7.x
 package = Native Plants
-version = 7.x-1.8
+version = 7.x-1.9
 project = nas_native_plants_permalink_page
 dependencies[] = ctools
 dependencies[] = page_manager

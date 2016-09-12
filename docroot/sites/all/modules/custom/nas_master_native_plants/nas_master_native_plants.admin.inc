@@ -6,6 +6,20 @@
  */
 
 /**
+ * Native Plants settings form.
+ */
+function nas_master_native_plants_settings($form, &$form_state) {
+  $form['nas_master_native_plants_zip_fips'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Convert ZIP into FIPS'),
+    '#description' => t('Convert ZIP into FIPS and send FIPS county code to the service.'),
+    '#default_value' => variable_get('nas_master_native_plants_zip_fips', 0),
+  );
+
+  return system_settings_form($form);
+}
+
+/**
  * Native Plants cache clear form.
  */
 function nas_master_native_plants_cache_clear($form, &$form_state) {

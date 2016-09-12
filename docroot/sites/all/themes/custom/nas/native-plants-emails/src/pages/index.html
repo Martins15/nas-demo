@@ -1,0 +1,103 @@
+{{!-- Email body --}}
+<container>
+
+  <row>
+
+    <columns small="12" large="12">
+      <h2 style="
+                color: #404040;
+                font-family: 'Source Sans Pro', Verdana, sans-serif;
+                font-size: 28px;
+                font-weight: 300;
+                line-height: 31px;
+                margin-top: 35px;
+                ">
+        Your Native Plant List
+      </h2>
+      <p>
+        Thank you for joining Audubon's bird-friendly plants effort.
+        Below you can find the plant list you selected from
+        <a href="#">the Audubon Native Plants Database</a>.
+      </p>
+      <p>
+        You can access this list on the web at any time using the following link:
+      </p>
+      <p>
+        <a href="#" style="font-family: 'Source Sans Pro', Verdana, sans-serif;">
+          http://audubon.org/plantlist/A3AB4m6546
+        </a>
+      </p>
+
+      <h2 style="
+                color: #404040;
+                font-family: 'Source Sans Pro', Verdana, sans-serif;
+                font-size: 28px;
+                font-weight: 300;
+                line-height: 31px;">
+        Tell us about your plants
+      </h2>
+
+      <p>
+        Our goal is to put a million bird-friendly plants in the ground.
+        Tell us how many plants you intend to plant to help us quantify
+        the positive impact we're having for birds.
+      </p>
+      <a href="#" class="button">How Many Will You Plant?</a>
+    </columns>
+
+  </row>
+
+  {{!-- Plants list --}}
+  {{> plants-list-desktop}}
+  {{> plants-list-mobile}}
+
+  {{!-- Editorial cards --}}
+  <row>
+    <columns small="12" larget="12">
+      <h2 class="editorial-cards-title">
+        More Audubon Native Plant resources
+      </h2>
+    </columns>
+  </row>
+  <row class="editorial-cards">
+    {{!-- Card 1 --}}
+    <columns small="12" large="6">
+      <div class="editorial-card">
+        <div class="editorial-card-photo">
+          <a href="#" title="How To Begin Birding">
+            <img src="http://www.audubon.org/sites/default/files/styles/article_teaser/public/__Camilla_Cerea_CBC_12.jpg?itok=m8Tf_J_Z" alt="How To Begin Birding"  width="315" />
+          </a>
+        </div>
+        <div class="editorial-card-content">
+          <a href="#" class="editorial-card-slug">News</a>
+          <h3>
+            <a href="#">How To Begin Birding</a>
+          </h3>
+          <p>Like birds, but don’t know how to make the leap to becoming a birder? Here are three easy steps to get you into the field. </p>
+          <p><em><a href="#">Read more »</a></em></p>
+        </div>
+      </div>
+    </columns>
+
+    {{!-- Card 2 --}}
+    <columns small="12" large="6">
+      <div class="editorial-card">
+        <div class="editorial-card-photo">
+          <a href="#" title="5 Great Winter Destinations">
+            <img src="https://www.audubon.org/sites/default/files/styles/article_teaser/public/w1_winter_wonderlans.jpg?itok=Ahz5xahx" alt="5 Great Winter Destinations" width="315">
+          </a>
+        </div>
+        <div class="editorial-card-content">
+          <a href="#" class="editorial-card-slug">Travel</a>
+          <h3>
+            <a href="#">5 Great Winter Destinations</a>
+          </h3>
+          <p>These national parks offer a host of unique activities when the nights grow long.</p>
+          <p><em><a href="#">Read more »</a></em></p>
+        </div>
+      </div>
+    </columns>
+
+  </row>
+
+</container>

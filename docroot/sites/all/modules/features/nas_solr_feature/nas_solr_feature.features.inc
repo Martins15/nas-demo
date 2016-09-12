@@ -110,6 +110,8 @@ function nas_solr_feature_default_search_api_index() {
         "field_iba_state" : { "type" : "integer", "entity_type" : "node" },
         "field_iba_status" : { "type" : "string" },
         "field_nursery_geofield:latlon" : { "type" : "string", "real_type" : "location" },
+        "field_nursery_online" : { "type" : "boolean" },
+        "field_nursery_states:field_iso_code" : { "type" : "list\\u003Cstring\\u003E" },
         "month" : { "type" : "integer" },
         "nid" : { "type" : "integer" },
         "node_date" : { "type" : "date" },
