@@ -19,18 +19,15 @@ $plugin = array(
  */
 function hero_image_section_form($form, &$form_state) {
   $conf = $form_state['conf'];
-  _nas_panes_hide_pane_title_field($form);
+  $form['override_title']['#default_value'] = 1;
+  $form['override_title']['#access'] = FALSE;
+  $form['override_title_heading']['#access'] = FALSE;
+  $form['override_title_markup']['#access'] = FALSE;
 
   $form['slug'] = array(
     '#type' => 'textfield',
     '#title' => 'Above title',
     '#default_value' => !empty($conf['slug']) ? $conf['slug'] : '',
-  );
-
-  $form['title'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Title',
-    '#default_value' => !empty($conf['title']) ? $conf['title'] : '',
   );
 
   $form['subtitle'] = array(

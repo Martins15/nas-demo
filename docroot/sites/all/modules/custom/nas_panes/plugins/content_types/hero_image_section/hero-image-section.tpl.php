@@ -25,7 +25,7 @@
       <?php print $contextual_links; ?>
       <div class="column">
         <img class="hero-icon" src="<?php print $hero_icon; ?>" alt="" />
-        <h4 class="hero-slug"><?php print $slug; ?></h2>
+        <h4 class="hero-slug"><?php print $slug; ?></h4>
         <h2 class="hero-title big <?php print !empty($hero_icon) ? 'with-icon' : ''; ?>"><?php print $title; ?></h2>
         <p class="hero-blurb"><?php print $subtitle; ?></p>
       </div>
