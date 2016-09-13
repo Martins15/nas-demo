@@ -11,6 +11,10 @@
       fields[key] = value;
       Drupal.native_plants_fields_sync.set_fields(fields);
       $inputs.not(this).filter('[data-native-plants-fields-sync="' + key + '"]').val(value);
+      // Set cookie that ZIP code was changed.
+      if (key == 'zipcode') {
+        $.cookie('native_plants_zipcode_changed', 1, {expires: 1, path: Drupal.settings.basePath});
+      }
     });
 
     // Get fields values from cookie.
@@ -52,5 +56,10 @@
     fields = JSON.parse(storage);
     return fields;
   };
+
+  // Add function to remove native_plants_zipcode_changed cookie.
+  Drupal.ajax.prototype.commands.nas_master_native_plants_zipcode_changed_cookie_remove =  function(ajax, response, status) {
+    $.cookie('native_plants_zipcode_changed', null, {path: Drupal.settings.basePath});
+  }
 
 })(jQuery);
