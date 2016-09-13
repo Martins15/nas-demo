@@ -272,6 +272,7 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
   $commands[] = ctools_ajax_command_redirect($form_state['redirect'][0], 0, $form_state['redirect'][1]);
   // Do not remove the screen lock.
   $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
+  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
