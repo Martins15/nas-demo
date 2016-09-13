@@ -602,6 +602,16 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
       ),
     );
   }
+
+  if ($form['#id'] == 'views-exposed-form-iba-search-state-page-iba-search-state-page') {
+    $form['field_iba_status']['#options']['All'] = t('Filter by Status');
+    $form['priority']['#options']['All'] = t('Filter by Priority');
+    $form['search_api_views_fulltext']['#placeholder'] = t('Search for a specific site...');
+    $form['submit']['#attributes']['class'][] = 'table-sort-button';
+    $form['submit']['#attributes']['class'][] = 'large';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $form['submit']['#attributes']['class'][] = 'pea-green';
+  }
 }
 
 /**
@@ -709,8 +719,8 @@ function nas_alters_form_alter(&$form, &$form_state, $form_id) {
   $query = drupal_get_query_parameters();
   if ((!empty($query['nas-panes-from-page']) || !empty($query['nas_panes_resave_panel'])) && isset($form['override_title_text'])) {
     // Hide "Override title" field and add label to title field.
+    $form['override_title']['#type'] = 'hidden';
     $form['override_title']['#default_value'] = 1;
-    $form['override_title']['#access'] = FALSE;
     $form['override_title_text']['#title'] = t('Title');
   }
 }
@@ -893,4 +903,19 @@ function nas_alters_language_switch_links_alter(array &$links, $type, $path) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_metatag_info().
+ */
+function nas_alters_metatag_info() {
+  $info['tags']['amphtml'] = array(
+    'label' => t('Google AMP'),
+    'description' => t('Defines url to be used to generate amp-fit page url'),
+    'class' => 'DrupalLinkMetaTag',
+    'group' => 'advanced',
+    'weight' => 1,
+  );
+
+  return $info;
 }
