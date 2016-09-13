@@ -1,0 +1,16 @@
+name = NAS IBA Import
+core = 7.x
+package = IBA
+version = 7.x-1.1
+project = nas_iba_import_feeds_feature
+dependencies[] = ctools
+dependencies[] = feeds
+dependencies[] = feeds_ex
+dependencies[] = nas_iba_feature
+dependencies[] = nas_iba_state
+dependencies[] = nas_import
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:2
+features[feeds_importer][] = iba_import
+features[feeds_importer][] = iba_states_import
+project path = sites/all/modules/features

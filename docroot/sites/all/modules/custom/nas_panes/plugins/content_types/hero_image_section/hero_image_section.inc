@@ -21,6 +21,12 @@ function hero_image_section_form($form, &$form_state) {
   $conf = $form_state['conf'];
   _nas_panes_hide_pane_title_field($form);
 
+  $form['slug'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Above title',
+    '#default_value' => !empty($conf['slug']) ? $conf['slug'] : '',
+  );
+
   $form['title'] = array(
     '#type' => 'textfield',
     '#title' => 'Title',
@@ -31,6 +37,23 @@ function hero_image_section_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => 'Subtitle',
     '#default_value' => !empty($conf['subtitle']) ? $conf['subtitle'] : '',
+  );
+
+  $form['icon'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Icon'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($conf['icon']) ? $conf['icon'] : 0,
+    '#required' => TRUE,
   );
 
   $form['image'] = array(
@@ -100,6 +123,11 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   $hero_image_mobile = '';
   $attribution = '';
 
+  if (!empty($conf['icon'])) {
+    $hero_icon_object = file_load($conf['icon']);
+    $hero_icon = image_style_url('hero_icon', $hero_icon_object->uri);
+  }
+
   if (!empty($conf['image'])) {
     $hero_image_object = file_load($conf['image']);
     $hero_image = image_style_url('hero_image', $hero_image_object->uri);
@@ -124,8 +152,10 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('hero_image_section', array(
+      'slug' => $conf['slug'],
       'title' => $conf['title'],
       'subtitle' => $conf['subtitle'],
+      'hero_icon' => $hero_icon,
       'hero_image' => $hero_image,
       'hero_image_mobile' => $hero_image_mobile,
       'credit' => $attribution,
