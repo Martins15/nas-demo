@@ -657,10 +657,10 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
   }
 
   // Update best results view and panes only if there was ZIP code change.
-  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
   if (!isset($_COOKIE['native_plants_zipcode_changed'])) {
     return;
   }
+  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
 
   // Update best results view.
   $br_view = views_get_view('native_plants_search');
