@@ -19,6 +19,10 @@ $plugin = array(
     'button_mobile' => 'Get your list',
     'email_placeholder' => 'Email address',
     'get_list_button_text' => 'OK',
+    'nas_external_integration' => array(
+      'provider' => 'convio',
+      'id' => '',
+    ),
   ),
 );
 
@@ -66,6 +70,7 @@ function native_plants_cart_edit_form($form, &$form_state) {
     '#size' => 100,
   );
 
+  $form = nas_external_integration_settings_form($form, $conf);
   return $form;
 }
 

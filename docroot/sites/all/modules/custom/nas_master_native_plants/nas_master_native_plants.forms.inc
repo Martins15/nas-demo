@@ -477,6 +477,10 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
     ),
     '#id' => 'nas-master-native-plants-get-list-form-submit',
   );
+  $form['nas_external_integration'] = array(
+    '#type' => 'value',
+    '#value' => $conf['nas_external_integration'],
+  );
 
   _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
@@ -523,13 +527,13 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
     entity_save('permalink', $permalink);
   }
 
-  // Convio integration.
+  // External integration.
   $values = array(
     'email' => $form_state['values']['email'],
     'zipcode' => $fields['zipcode'],
     'square_feet' => 0,
   );
-  nas_master_native_plants_convio_integration($values);
+  nas_external_integration_process_form_submission($values, $form_state['values']['nas_external_integration']);
 
   // Send plant list - it is set up to go through Mandrill.
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
