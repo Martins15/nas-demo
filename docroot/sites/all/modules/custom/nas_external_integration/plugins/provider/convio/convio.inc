@@ -40,7 +40,7 @@ function nas_external_integration_provider_convio_form_submission_callback($valu
   watchdog('nas_external_integration', 'Convio integration - %email entered. Service answer was !answer',
     array(
       '%email' => $values['email'],
-      '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+      '!answer' => '<pre>' . htmlspecialchars(print_r($result, TRUE)) . '</pre>',
     )
   );
 }

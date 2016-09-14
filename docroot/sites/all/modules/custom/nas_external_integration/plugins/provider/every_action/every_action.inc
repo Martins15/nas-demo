@@ -44,7 +44,7 @@ function nas_external_integration_provider_every_action_form_submission_callback
   watchdog('nas_external_integration', 'Every Action integration - %email entered. Service answer was !answer',
     array(
       '%email' => $values['email'],
-      '!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>',
+      '!answer' => '<pre>' . htmlspecialchars(print_r($result, TRUE)) . '</pre>',
     )
   );
 }
