@@ -249,6 +249,10 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
     ),
     '#id' => 'nas-master-native-plants-initial-form-submit',
   );
+  $form['nas_external_integration'] = array(
+    '#type' => 'value',
+    '#value' => $conf['nas_external_integration'],
+  );
 
   _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
@@ -283,14 +287,14 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
  * Form submit callback for Native Plants initial form.
  */
 function nas_master_native_plants_initial_form_submit($form, &$form_state) {
-  // Convio integration.
+  // External integration.
   if (!empty($form_state['values']['email'])) {
     $values = array(
       'email' => $form_state['values']['email'],
       'zipcode' => $form_state['values']['zipcode'],
       'square_feet' => 0,
     );
-    nas_master_native_plants_convio_integration($values);
+    nas_external_integration_process_form_submission($values, $form_state['values']['nas_external_integration']);
   }
 
   // Redirect to main Native Plants search by ZIP code page.
