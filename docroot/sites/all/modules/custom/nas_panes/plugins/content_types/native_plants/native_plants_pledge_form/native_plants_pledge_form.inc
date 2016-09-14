@@ -28,7 +28,7 @@ $plugin = array(
     'redirect' => 'native-plants',
     'nas_external_integration' => array(
       'provider' => 'convio',
-      'id' => '',
+      'id' => '21409',
     ),
   ),
   'all contexts' => TRUE,

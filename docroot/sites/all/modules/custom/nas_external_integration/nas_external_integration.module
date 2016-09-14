@@ -48,7 +48,7 @@ function nas_external_integration_settings_form($form, $conf) {
     '#type' => 'fieldset',
     '#title' => t('External integration'),
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
     '#tree' => TRUE,
   );
 
