@@ -9,11 +9,6 @@
  */
 function nas_external_integration_ctools_plugin_type() {
   return array(
-    'icon_pack' => array(
-      'cache' => TRUE,
-      // Themes can offer this plugin.
-      'load themes' => TRUE,
-    ),
     'provider' => array(
       'cache' => TRUE,
     ),
