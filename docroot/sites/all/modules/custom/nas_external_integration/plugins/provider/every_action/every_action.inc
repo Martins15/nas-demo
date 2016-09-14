@@ -30,6 +30,9 @@ function nas_external_integration_provider_every_action_form_submission_callback
   if (!empty($values['email'])) {
     $data['EmailAddress'] = $values['email'];
   }
+  if (!empty($values['square_feet'])) {
+    $data['CustomField_31'] = $values['square_feet'];
+  }
 
   $options = array(
     'headers' => array(
