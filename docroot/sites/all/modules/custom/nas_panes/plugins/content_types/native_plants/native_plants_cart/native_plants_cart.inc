@@ -21,7 +21,7 @@ $plugin = array(
     'get_list_button_text' => 'OK',
     'nas_external_integration' => array(
       'provider' => 'convio',
-      'id' => '',
+      'id' => '21409',
     ),
   ),
 );

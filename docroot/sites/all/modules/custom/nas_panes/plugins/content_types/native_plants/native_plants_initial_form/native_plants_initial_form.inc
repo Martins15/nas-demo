@@ -31,7 +31,7 @@ $plugin = array(
     ),
     'nas_external_integration' => array(
       'provider' => 'convio',
-      'id' => '',
+      'id' => '21409',
     ),
   ),
   'all contexts' => TRUE,
