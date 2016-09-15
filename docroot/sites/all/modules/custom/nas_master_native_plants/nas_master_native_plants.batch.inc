@@ -114,3 +114,53 @@ function nas_master_native_plants_csv_update_finished_callback($success, $result
     drupal_set_message(t('Finished with an error.'));
   }
 }
+
+/**
+ * Implements callback_batch_operation().
+ */
+function nas_master_native_plants_plant_id_update_callback(&$context) {
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['progress'] = 0;
+
+    // Count Native Plant nodes.
+    $count = db_select('node', 'n')
+      ->condition('n.type', 'native_plant')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    $context['sandbox']['max'] = $count;
+  }
+
+  // Process next $limit nodes.
+  $limit = 5;
+  $node_ids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('n.type', 'native_plant')
+    ->orderBy('n.nid')
+    ->range($context['sandbox']['progress'], $limit)
+    ->execute();
+  foreach ($node_ids as $node_id) {
+    $context['sandbox']['progress']++;
+    $node = node_load($node_id->nid);
+    node_save($node);
+  }
+
+  $context['results']['count'] = $context['sandbox']['progress'];
+
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+/**
+ * Implements callback_batch_finished().
+ */
+function nas_master_native_plants_plant_id_update_finished_callback($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(format_plural($results['count'], 'One node processed.', '@count nodes processed.'));
+  }
+  else {
+    drupal_set_message(t('Finished with an error.'));
+  }
+}
