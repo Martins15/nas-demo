@@ -122,3 +122,10 @@ function nas_master_native_plants_update_7008() {
     ),
   ));
 }
+
+/**
+ * Enable external integration module.
+ */
+function nas_master_native_plants_update_7009() {
+  module_enable(array('nas_external_integration'));
+}
