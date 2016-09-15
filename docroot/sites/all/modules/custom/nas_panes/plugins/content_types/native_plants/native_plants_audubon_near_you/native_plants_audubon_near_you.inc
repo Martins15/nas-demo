@@ -81,7 +81,9 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
 
   if (empty($conf['zipcode'])) {
     $query_params = drupal_get_query_parameters();
-    $conf['zipcode'] = $query_params['zipcode'];
+    if (isset($query_params['zipcode'])) {
+      $conf['zipcode'] = $query_params['zipcode'];
+    }
   }
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   ctools_include('plugins');

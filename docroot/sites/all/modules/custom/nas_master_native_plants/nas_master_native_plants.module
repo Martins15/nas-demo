@@ -24,7 +24,7 @@ function nas_master_native_plants_menu() {
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/cache-clear'] = array(
-    'title' => 'Cache clear',
+    'title' => 'Cache',
     'description' => 'Clear Native Plants cache',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_master_native_plants_cache_clear'),
@@ -37,6 +37,15 @@ function nas_master_native_plants_menu() {
     'description' => 'Update Native Plants nodes',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_master_native_plants_csv_update'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['admin/config/system/native-plants/plant-id-update'] = array(
+    'title' => 'Plant ID',
+    'description' => 'Update Native Plants IDs',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_plant_id_update'),
     'access arguments' => array('administer site configuration'),
     'file' => 'nas_master_native_plants.admin.inc',
     'type' => MENU_LOCAL_TASK,
@@ -145,6 +154,7 @@ function _nas_master_native_plants_remove_canada_states(&$states) {
  * Helper function to generate Plant ID.
  */
 function nas_master_native_plants_generate_plant_id($params) {
+  $params = array_map('trim', $params);
   $plant_id = md5(implode('-', $params));
   return $plant_id;
 }
@@ -292,6 +302,10 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
   if ($form_state['view']->name != 'native_plants_search') {
     return;
   }
+  // Do not process cloned view.
+  if (isset($form_state['view']->nas_master_native_plants_cloned) && $form_state['view']->nas_master_native_plants_cloned) {
+    return;
+  }
 
   switch ($form_state['view']->current_display) {
     case 'native_plants_search_pane':
@@ -364,16 +378,33 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
   }
 
+  // We need to execute the view to get the array of results to apply filters to.
+  $view = $form_state['view']->clone_view();
+  $view->nas_master_native_plants_cloned = TRUE;
+  $view->execute($form_state['view']->current_display);
+
   // Remove filter values that will produce no results with already set other filters.
-  if (!$results_unfiltered = nasnp_views_json_query_results_unfiltered()) {
+  $results_unfiltered = array();
+  if (isset($view->result_unfiltered)) {
+    $results_unfiltered = $view->result_unfiltered;
+  }
+  $view->destroy();
+
+  if (!$results_unfiltered) {
     return;
   }
 
   $combinations = array(
     'attribute' => array('bird_type'),
     'bird_type' => array('attribute'),
+    'attribute_tier1' => array('bird_type_tier1'),
+    'bird_type_tier1' => array('attribute_tier1'),
   );
   foreach ($combinations as $filter_to_filter => $filters) {
+    if (!isset($form[$filter_to_filter])) {
+      continue;
+    }
+
     $results_filtered = $results_unfiltered;
 
     // Filter the unfiltered results by the value of all other filters.
@@ -592,31 +623,40 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
  * Implements hook_views_ajax_data_alter().
  */
 function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
-  if ($view->name != 'native_plants_search' || $view->current_display != 'native_plants_search_pane') {
+  if ($view->name != 'native_plants_search') {
     return;
   }
 
-  $selector = '';
-  // Modify scrolling behavior.
-  foreach ($commands as $key => $command) {
-    if ($command['command'] == 'viewsScrollTop') {
-      $selector = $command['selector'];
-      // Remove the 'viewsScrollTop' command.
-      unset($commands[$key]);
-      break;
-    }
-  }
-  // Add the 'viewsScrollTop' command to the end of commands array.
-  if ($selector) {
-    $command['selector'] = $selector . ' .np-search-full-results';
-    $commands[] = $command;
+  // Add validation errors.
+  if ($messages = theme('status_messages')) {
+    $commands[] = ajax_command_prepend(
+      '#views-exposed-form-native-plants-search-native-plants-search-pane',
+      '<div class="row">' . $messages . '</div>'
+    );
   }
 
-  // Update best results view.
-  $best_results_view = views_embed_view('native_plants_search', 'native_plants_search_pane_tier1');
-  $selector = '.view-display-id-native_plants_search_pane_tier1';
-  $command = ajax_command_replace($selector, $best_results_view);
-  array_unshift($commands, $command);
+  // Handle best results view refresh.
+  if ($view->current_display == 'native_plants_search_pane_tier1') {
+    foreach ($commands as &$cmd) {
+      $cmd['selector'] = '.view-display-id-native_plants_search_pane_tier1';
+    }
+
+    // Refresh exposed form.
+    $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
+    if ($view->display_handler->get_option('exposed_block')) {
+      $form = $exposed_block_plugin->render_exposed_form(TRUE);
+      $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
+      array_unshift($commands, ajax_command_replace($id, $form));
+    }
+  }
+
+  // Handle full results view refresh.
+  if ($view->current_display != 'native_plants_search_pane') {
+    return;
+  }
+  foreach ($commands as &$cmd) {
+    $cmd['selector'] = '.view-display-id-native_plants_search_pane';
+  }
 
   // Refresh exposed form.
   $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
@@ -626,7 +666,28 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     array_unshift($commands, ajax_command_replace($id, $form));
   }
 
-  // Load the page and find handler.
+  // Update best results view and panes only if there was ZIP code change.
+  if (!isset($_COOKIE['native_plants_zipcode_changed'])) {
+    return;
+  }
+  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
+
+  // Update best results view.
+  $br_view = views_get_view('native_plants_search');
+  $br_view_html = $br_view->preview('native_plants_search_pane_tier1');
+  $selector = '.view-display-id-native_plants_search_pane_tier1';
+  $command = ajax_command_replace($selector, $br_view_html);
+  array_unshift($commands, $command);
+  // Refresh best results exposed form.
+  $br_view->set_display('native_plants_search_pane_tier1');
+  $exposed_block_plugin = $br_view->display_handler->get_plugin('exposed_form');
+  if ($br_view->display_handler->get_option('exposed_block')) {
+    $form = $exposed_block_plugin->render_exposed_form(TRUE);
+    $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $br_view->name . '-' . $br_view->display_handler->display->id);
+    array_unshift($commands, ajax_command_replace($id, $form));
+  }
+
+  // Load the page and find handler to update the panes.
   $page = page_manager_page_load('native_plants_search');
   $task = page_manager_get_task($page->task);
   $handlers = page_manager_load_task_handlers($task, $page->name);
@@ -671,14 +732,6 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
       $command = ajax_command_replace($selector, $output);
       array_unshift($commands, $command);
     }
-  }
-
-  // Add validation errors.
-  if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend(
-      '#views-exposed-form-native-plants-search-native-plants-search-pane',
-      '<div class="row">' . $messages . '</div>'
-    );
   }
 }
 
