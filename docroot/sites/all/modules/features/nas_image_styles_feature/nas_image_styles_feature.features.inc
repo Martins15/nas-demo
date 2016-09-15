@@ -618,6 +618,42 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: hero_icon.
+  $styles['hero_icon'] = array(
+    'label' => 'Hero icon',
+    'effects' => array(
+      32 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 205,
+          'height' => 200,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 1,
+          ),
+        ),
+        'weight' => 2,
+      ),
+      34 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 205,
+          'height' => 200,
+          'upscale' => 0,
+        ),
+        'weight' => 3,
+      ),
+      35 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 4,
+      ),
+    ),
+  );
+
   // Exported image style: hero_image.
   $styles['hero_image'] = array(
     'label' => 'Hero image',
@@ -927,7 +963,7 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['slideshow_sidebar'] = array(
     'label' => 'Slideshow sidebar',
     'effects' => array(
-      1 => array(
+      29 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 629,
@@ -942,7 +978,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      2 => array(
+      30 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
           'width' => 629,
@@ -950,7 +986,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
-      3 => array(
+      31 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 3,

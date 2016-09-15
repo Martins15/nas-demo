@@ -29,6 +29,10 @@ $plugin = array(
         <a href=\"https://audubon.org/privacy-policy\">Privacy Policy</a></p>",
       'format' => 'full_html',
     ),
+    'nas_external_integration' => array(
+      'provider' => 'convio',
+      'id' => '21409',
+    ),
   ),
   'all contexts' => TRUE,
 );
@@ -38,8 +42,8 @@ $plugin = array(
  */
 function native_plants_initial_form_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = t('Native Plants initial form');
-  $block->content = $conf['button_text'];
+  $block->title = $conf['title_desktop'];
+  $block->content = check_markup($conf['description']['value'], $conf['description']['format']);
   return $block;
 }
 
@@ -126,6 +130,7 @@ function native_plants_initial_form_edit_form($form, &$form_state) {
     '#format' => $conf['description']['format'],
   );
 
+  $form = nas_external_integration_settings_form($form, $conf);
   return $form;
 }
 

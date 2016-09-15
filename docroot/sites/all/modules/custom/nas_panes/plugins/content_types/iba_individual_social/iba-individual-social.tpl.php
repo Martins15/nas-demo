@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * BOA social block template file.
+ *
+ * Available variables:
+ * - $page_link: url node.
+ * - $caption: static text.
+ */
+?>
+<section class="social-sharing small center no-caption">
+  <span class="social-sharing-caption small"><?php print $caption; ?></span>
+  <a class="social-sharing-icon blue small" href="<?php print $twitter_url; ?>"><i class="icon-twitter"></i></a>
+  <a class="social-sharing-icon blue small" href="http://www.facebook.com/sharer/sharer.php?u=<?php print $page_link; ?>"><i class="icon-facebook"></i></a>
+  <a class="social-sharing-icon blue small" href="mailto:?subject=<?php print $page_link; ?>"><i class="icon-mail"></i></a>
+</section>
