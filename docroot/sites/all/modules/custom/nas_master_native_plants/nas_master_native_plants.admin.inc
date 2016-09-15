@@ -176,3 +176,32 @@ function nas_master_native_plants_native_plant_check_title($node_wrapper, $Commo
 
   return FALSE;
 }
+
+/**
+ * Native Plants Plant IDs update form.
+ */
+function nas_master_native_plants_plant_id_update($form, &$form_state) {
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update Plant IDs'),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for nas_master_native_plants_plant_id_update().
+ */
+function nas_master_native_plants_plant_id_update_submit($form, &$form_state) {
+  $operations = array(
+    array('nas_master_native_plants_plant_id_update_callback', array()),
+  );
+
+  $batch = array(
+    'title' => t('Updating Native Plants Plant IDs'),
+    'operations' => $operations,
+    'finished' => 'nas_master_native_plants_plant_id_update_finished_callback',
+    'file' => drupal_get_path('module', 'nas_master_native_plants') . '/nas_master_native_plants.batch.inc',
+  );
+  batch_set($batch);
+}

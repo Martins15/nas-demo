@@ -21,4 +21,9 @@
     });
   };
 
+  // Add function to prevent screen lock unblock.
+  Drupal.ajax.prototype.commands.ajaxScreenLockSetUnblockFalse =  function(ajax, response, status) {
+    Drupal.ajaxScreenLock.unblock = false;
+  }
+
 })(jQuery);

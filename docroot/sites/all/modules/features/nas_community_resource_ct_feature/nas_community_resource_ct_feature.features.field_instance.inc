@@ -24,6 +24,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -118,6 +124,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         ),
       ),
       'display_summary' => 1,
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -129,7 +136,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
+      'weight' => 1,
     ),
   );
 
@@ -147,6 +154,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         ),
         'type' => 'geofield_wkt',
         'weight' => 2,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -208,6 +221,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
     'label' => 'Geo Location',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -231,7 +245,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 8,
+      'weight' => 3,
     ),
   );
 
@@ -248,6 +262,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_default',
         'weight' => 4,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -309,14 +329,23 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
     'label' => 'Services',
     'required' => 0,
     'settings' => array(
+      'checkall' => array(
+        'checkall' => 0,
+        'checkall-check-all' => 1,
+        'checkall-toggle' => 1,
+        'checkall-uncheck-all' => 1,
+      ),
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
-      'weight' => 11,
+      'weight' => 6,
     ),
   );
 
@@ -338,6 +367,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         ),
         'type' => 'addressfield_default',
         'weight' => 1,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -399,6 +434,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
     'label' => 'Address',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -406,7 +442,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
       'module' => 'addressfield',
       'settings' => array(
         'available_countries' => array(),
-        'default_country' => 'site_default',
+        'default_country' => '',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
@@ -419,7 +455,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 7,
+      'weight' => 2,
     ),
   );
 
@@ -436,6 +472,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'link_default',
         'weight' => 3,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -508,6 +550,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'none',
       'title_maxlength' => 128,
@@ -521,7 +564,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 10,
+      'weight' => 5,
     ),
   );
 
@@ -538,6 +581,12 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'phone',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -601,6 +650,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
     'settings' => array(
       'ca_phone_parentheses' => 1,
       'ca_phone_separator' => '-',
+      'entity_translation_sync' => FALSE,
       'phone_country_code' => 0,
       'phone_default_country_code' => 1,
       'phone_int_max_length' => 15,
@@ -611,7 +661,7 @@ function nas_community_resource_ct_feature_field_default_field_instances() {
       'module' => 'phone',
       'settings' => array(),
       'type' => 'phone_textfield',
-      'weight' => 9,
+      'weight' => 4,
     ),
   );
 

@@ -29,6 +29,14 @@
     width: 100%;
     margin: $column-gutter/2 0 0 0;
   }
+
+  .-wrap-select {
+    margin: $column-gutter/2 0 0 0;
+
+    select {
+      margin-top: 0;
+    }
+  }
 }
 
 .bird-guide-search-input {

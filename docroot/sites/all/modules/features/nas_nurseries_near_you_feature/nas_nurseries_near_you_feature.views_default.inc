@@ -40,6 +40,14 @@ function nas_nurseries_near_you_feature_views_default_views() {
   $handler->display->display_options['sorts']['field_nursery_geofield_latlon']['id'] = 'field_nursery_geofield_latlon';
   $handler->display->display_options['sorts']['field_nursery_geofield_latlon']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['sorts']['field_nursery_geofield_latlon']['field'] = 'field_nursery_geofield_latlon';
+  /* Contextual filter: Indexed Content: Online */
+  $handler->display->display_options['arguments']['field_nursery_online']['id'] = 'field_nursery_online';
+  $handler->display->display_options['arguments']['field_nursery_online']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['field_nursery_online']['field'] = 'field_nursery_online';
+  $handler->display->display_options['arguments']['field_nursery_online']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_nursery_online']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_nursery_online']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_nursery_online']['not'] = 0;
   /* Contextual filter: Geo Location: LatLong Pair (indexed) */
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['id'] = 'field_nursery_geofield_latlon';
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['table'] = 'search_api_index_default_node_index';
@@ -50,6 +58,14 @@ function nas_nurseries_near_you_feature_views_default_views() {
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['not'] = 0;
   $handler->display->display_options['arguments']['field_nursery_geofield_latlon']['radius'] = '1000';
+  /* Contextual filter: Supply area: ISO (indexed) */
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['id'] = 'field_nursery_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['field'] = 'field_nursery_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_nursery_states_field_iso_code']['not'] = 0;
   /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';

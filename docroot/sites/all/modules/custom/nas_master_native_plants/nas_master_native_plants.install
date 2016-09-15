@@ -45,3 +45,87 @@ function nas_master_native_plants_update_7004() {
 function nas_master_native_plants_update_7005() {
   variable_set('nas_master_native_plants_zip_fips', 1);
 }
+
+/**
+ * Update for Native Plants 2.0.
+ */
+function nas_master_native_plants_update_7006() {
+  features_revert(array(
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
+    'nas_site_template_feature' => array(
+      'page_manager_handlers',
+    ),
+    'nas_native_plants_search_page_feature' => array(
+      'page_manager_pages',
+      'views_view',
+    ),
+    'nas_nursery_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+    'nas_nursery_import_feature' => array(
+      'feeds_importer',
+      'feeds_tamper',
+    ),
+    'nas_nurseries_near_you_feature' => array(
+      'views_view',
+    ),
+    'nas_native_plants_permalink_page' => array(
+      'page_manager_pages',
+    ),
+  ));
+}
+
+/**
+ * Restoring default background color of Native Plants bar.
+ */
+function nas_master_native_plants_update_7007() {
+  $panel_type = 'native_plants_bar';
+  ctools_include('context');
+  ctools_include('plugins');
+  $plugin = ctools_get_plugins('ctools', 'content_types', $panel_type);
+
+  $configs = db_select('panels_pane', 'pp')
+    ->fields('pp', array('pid', 'configuration'))
+    ->condition('pp.type', $panel_type)
+    ->execute()
+    ->fetchAll();
+
+  foreach ($configs as $config_data) {
+    $config = unserialize($config_data->configuration);
+    $config['background_color'] = $plugin['defaults']['background_color'];
+
+    db_update('panels_pane')
+      ->fields(array('configuration' => serialize($config)))
+      ->condition('type', $panel_type)
+      ->condition('pid', $config_data->pid)
+      ->execute();
+  }
+}
+
+/**
+ * Update community resource services list.
+ */
+function nas_master_native_plants_update_7008() {
+  features_revert(array(
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+    ),
+  ));
+}
+
+/**
+ * Enable external integration module.
+ */
+function nas_master_native_plants_update_7009() {
+  module_enable(array('nas_external_integration'));
+}

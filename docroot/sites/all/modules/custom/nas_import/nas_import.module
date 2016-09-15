@@ -21,6 +21,14 @@ define('NAS_DEFAULT_ILLUSTRATION', 'default_illustration.png');
 define('NAS_DEFAULT_BACK_COVER', 'default_background_cover.jpg');
 define('NAS_DEFAULT_ARTICLE_HERO', 'default_article_hero.jpg');
 
+define('NAS_IMPORT_FEEDS_IBA', 'iba_import');
+define('NAS_IMPORT_FEEDS_IBA_STATE', 'iba_states_import');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT', 'http://netapp.audubon.org/IBARestSvc/IBAService/Export/');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ALL', 'All');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_UPDATES', 'Updates');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_ITEM', 'Site');
+define('NAS_IMPORT_FEEDS_IBA_IMPORT_KEY', '49204D21-A952-402C-A51D-3A1A86B8AA29');
+
 /**
  * Implements hook_ctools_plugin_api().
  */
@@ -34,6 +42,7 @@ function nas_import_ctools_plugin_api($owner, $api) {
  * Implements hook_feeds_plugins().
  */
 function nas_import_feeds_plugins() {
+  $path = drupal_get_path('module', 'nas_import');
   $info = array();
   $info['NASFeedsHTTPFetcher'] = array(
     'name' => 'NAS Feeds HTTP Fetcher',
@@ -43,7 +52,17 @@ function nas_import_feeds_plugins() {
       'parent' => 'FeedsHTTPFetcher',
       'class' => 'NASFeedsHTTPFetcher',
       'file' => 'NASFeedsHTTPFetcher.inc',
-      'path' => drupal_get_path('module', 'nas_import'),
+      'path' => $path,
+    ),
+  );
+  $info['NASFeedsExJsonPath'] = array(
+    'name' => 'NAS JSON JSONPath parser',
+    'description' => 'Parse JSON with JSONPath, double decode.',
+    'handler' => array(
+      'parent' => 'FeedsExJsonPath',
+      'class' => 'NASFeedsExJsonPath',
+      'file' => 'NASFeedsExJsonPath.inc',
+      'path' => $path,
     ),
   );
   return $info;
@@ -107,6 +126,14 @@ function nas_import_feeds_presave(FeedsSource $source, $entity, $item) {
 
     case 'static_pages_import':
       nas_import_feeds_presave_static_pages_import($source, $entity, $item);
+      break;
+
+    case 'iba_states_import':
+      nas_import_feeds_presave_iba_states_import($source, $entity, $item);
+      break;
+
+    case 'iba_import':
+      nas_import_feeds_presave_iba_import($source, $entity, $item);
       break;
   }
 }
@@ -552,6 +579,69 @@ function nas_import_feeds_presave_magazine_issues_import(FeedsSource $source, $e
 }
 
 /**
+ * hook_feeds_presave() for iba_states importer.
+ */
+function nas_import_feeds_presave_iba_states_import(FeedsSource $source, $entity, $item) {
+  list(, $title) = explode('-', $entity->title);
+  $entity->title = trim($title);
+  // Remove line breaks - see https://propeople-us.atlassian.net/browse/NAS-225.
+  $entity->body[LANGUAGE_NONE][0]['value'] = trim(preg_replace('/\s+/', ' ', $entity->body[LANGUAGE_NONE][0]['value']));
+  // Convert line breaks using Drupal core filter.
+  $entity->body[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->body[LANGUAGE_NONE][0]['value']);
+
+  if (isset($item['statecontacts'])) {
+    $contact = reset($item['statecontacts']);
+    $entity->field_iba_state_contact_name[LANGUAGE_NONE][0]['value'] = $contact['Name'];
+    $entity->field_iba_state_contact_title[LANGUAGE_NONE][0]['value'] = $contact['Title'];
+    $entity->field_iba_state_contact_email[LANGUAGE_NONE][0]['email'] = $contact['Email'];
+  }
+  if (isset($item['latitudestate'])) {
+    $entity->field_iba_state_latitude[LANGUAGE_NONE][0]['value'] = $item['latitudestate'];
+  }
+  if (isset($item['longitudestate'])) {
+    $entity->field_iba_state_longitude[LANGUAGE_NONE][0]['value'] = $item['longitudestate'];
+  }
+  if (isset($item['maplevelstate']) && is_int($item['maplevelstate'])) {
+    $entity->field_iba_state_map_zoom_level[LANGUAGE_NONE][0]['value'] = (int) $item['maplevelstate'];
+  }
+  else {
+    $entity->field_iba_state_map_zoom_level[LANGUAGE_NONE][0]['value'] = 6;
+  }
+}
+
+/**
+ * hook_feeds_presave() for iba importer.
+ */
+function nas_import_feeds_presave_iba_import(FeedsSource $source, $entity, $item) {
+  // Skip non-public IBAs.
+  if ($item['ispublic'] == 'False') {
+    $entity->feeds_item->skip = TRUE;
+    return;
+  }
+
+  // Convert line breaks using Drupal core filter.
+  $fields = array(
+    'field_iba_description',
+    'field_iba_ornithological',
+    'field_iba_conservation_issues',
+  );
+  foreach ($fields as $field) {
+    if (isset($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
+      $entity->{$field}[LANGUAGE_NONE][0]['value'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['value']);
+    }
+    if (isset($entity->{$field}[LANGUAGE_NONE][0]['summary'])) {
+      $entity->{$field}[LANGUAGE_NONE][0]['summary'] = _filter_autop($entity->{$field}[LANGUAGE_NONE][0]['summary']);
+      // Use summary if value is empty.
+      if (empty($entity->{$field}[LANGUAGE_NONE][0]['value'])) {
+        $entity->{$field}[LANGUAGE_NONE][0]['value'] = $entity->{$field}[LANGUAGE_NONE][0]['summary'];
+      }
+    }
+  }
+
+  $entity->field_iba_map_zoom_level[LANGUAGE_NONE][0]['value'] = 12;
+}
+
+/**
  * Implements hook_feeds_after_save().
  */
 function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entity_id) {
@@ -630,6 +720,103 @@ function nas_import_feeds_after_save(FeedsSource $source, $entity, $item, $entit
       $nas_magazine_issues_nids_mapping = variable_get('nas_magazine_issues_nids_mapping', '');
       $nas_magazine_issues_nids_mapping[$item['nid']] = $entity->nid;
       variable_set('nas_magazine_issues_nids_mapping', $nas_magazine_issues_nids_mapping);
+      break;
+
+    case 'iba_states_import':
+      $entity_save = FALSE;
+      if (isset($item['statepriorities'])) {
+        $priorities = $item['statepriorities'];
+
+        // Check for already existing priorities field collections.
+        $entity_wrapper = entity_metadata_wrapper('node', $entity);
+        $fc = $entity_wrapper->field_iba_state_priorities->value();
+        foreach ($fc as $fc_item) {
+          $fc_item_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
+          $fc_item_priority = $fc_item_wrapper->field_iba_state_priority->value();
+          foreach ($priorities as $key => $priority) {
+            if ($fc_item_priority == $priority['Priority']) {
+              $fc_item_wrapper->field_iba_state_iba_count->set($priority['IBACount']);
+              $fc_item_wrapper->field_iba_state_acres->set($priority['Acres']);
+              $fc_item_wrapper->save(TRUE);
+              unset($priorities[$key]);
+            }
+          }
+        }
+
+        // Create new field collections for new priorities.
+        if (!empty($priorities)) {
+          foreach ($priorities as $priority) {
+            $fc_item = entity_create('field_collection_item', array('field_name' => 'field_iba_state_priorities'));
+            $fc_item->setHostEntity('node', $entity);
+            $fc_item_wrapper = entity_metadata_wrapper('field_collection_item', $fc_item);
+            $fc_item_wrapper->field_iba_state_priority->set($priority['Priority']);
+            $fc_item_wrapper->field_iba_state_iba_count->set($priority['IBACount']);
+            $fc_item_wrapper->field_iba_state_acres->set($priority['Acres']);
+            $fc_item_wrapper->save(TRUE);
+            $entity_save = TRUE;
+          }
+        }
+      }
+
+      if ($entity_save) {
+        entity_save('node', $entity);
+      }
+      break;
+
+    case 'iba_import':
+      $entity_save = FALSE;
+      // IBA State entity reference.
+      if (isset($item['sitestate2'])) {
+        // Trying to find IBA State.
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'node')
+          ->entityCondition('bundle', 'iba_state')
+          ->propertyCondition('status', NODE_PUBLISHED)
+          ->fieldCondition('field_iba_state_iso', 'value', $item['sitestate2'], '=');
+        $result = $query->execute();
+
+        if (isset($result['node'])) {
+          $state = reset($result['node']);
+          $entity->field_iba_state[LANGUAGE_NONE][0]['target_id'] = $state->nid;
+          $entity_save = TRUE;
+        }
+      }
+      // Birds entity references.
+      if (isset($item['birds'])) {
+        foreach ($item['birds'] as $bird) {
+          $query = new EntityFieldQuery();
+          $query->entityCondition('entity_type', 'node')
+            ->entityCondition('bundle', 'bird')
+            ->propertyCondition('status', NODE_PUBLISHED)
+            ->propertyCondition('title', $bird['Name']);
+          $result = $query->execute();
+          if (isset($result['node'])) {
+            $fbird = reset($result['node']);
+            // Check that this bird is not referenced yet.
+            $referenced = FALSE;
+            if (isset($entity->field_iba_birds)) {
+              foreach ($entity->field_iba_birds[LANGUAGE_NONE] as $reference) {
+                if ($reference['target_id'] == $fbird->nid) {
+                  $referenced = TRUE;
+                  break;
+                }
+              }
+            }
+
+            if (!$referenced) {
+              $entity->field_iba_birds[LANGUAGE_NONE][]['target_id'] = $fbird->nid;
+              $entity_save = TRUE;
+            }
+          }
+          else {
+            watchdog('nas_import', 'Failed to find Bird node for "@bird_name".', array('@bird_name' => $bird['Name']));
+          }
+        }
+      }
+
+      if ($entity_save) {
+        entity_save('node', $entity);
+      }
       break;
   }
 }
@@ -790,6 +977,24 @@ function nas_import_menu() {
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
+
+  $items['admin/content/nas_import'] = array(
+    'title' => 'NAS imports',
+    'description' => 'Import UI for content.',
+    'page callback' => 'nas_import_list_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'nas_import.admin.inc',
+  );
+  $items['admin/content/nas_import/iba'] = array(
+    'title' => 'Important Bird Areas',
+    'description' => 'Import UI for IBA.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_import_iba_ct_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'nas_import.admin.inc',
+    'type' => MENU_LOCAL_ACTION,
+  );
+
   return $items;
 }
 
@@ -1690,4 +1895,161 @@ function nas_import_send_request($url) {
     return drupal_json_decode($response->data);
   }
   return NULL;
+}
+
+/**
+ * Import nodes from external IBA source.
+ */
+function nas_import_iba_nodes($url, $limit = NULL) {
+  $ibas = nas_import_iba_get_iba_keys($url);
+  if ($limit) {
+    $ibas = array_slice($ibas, 0, $limit);
+  }
+
+  $operations = array();
+  foreach (array_chunk($ibas, 5) as $ibas_chunk) {
+    $operations[] = array(
+      'nas_import_iba_batch',
+      array($ibas_chunk),
+    );
+  }
+
+  $batch = array(
+    'operations' => $operations,
+    'title' => t('IBA import'),
+    'finished' => 'nas_import_iba_batch_finished_callback',
+  );
+
+  batch_set($batch);
+  return $batch;
+}
+
+/**
+ * Batch operation to process IBAs.
+ */
+function nas_import_iba_batch($ibas, &$context) {
+  foreach ($ibas as $iba) {
+    nas_import_iba_node($iba);
+    $context['results'][] = $iba['Id'];
+  }
+  // Suppress messages from Feeds importer.
+  drupal_get_messages();
+}
+
+/**
+ * Finish callback for the IBAs batch import.
+ */
+function nas_import_iba_batch_finished_callback($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(t('IBA import has finished. Processed @count IBAs.', array('@count' => count($results))));
+  }
+  else {
+    drupal_set_message(t('The import process has encountered an error.'));
+  }
+}
+
+/**
+ * Helper function to get keys of IBAs to update.
+ */
+function nas_import_iba_get_iba_keys($url) {
+  $result = nas_import_send_request($url);
+
+  // Sometimes JSON from source comes double-encoded.
+  if (!is_array($result)) {
+    $result = drupal_json_decode($result);
+  }
+
+  return $result;
+}
+
+/**
+ * Helper function to import single IBA node.
+ */
+function nas_import_iba_node($iba) {
+  $iba_url = NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT . NAS_IMPORT_FEEDS_IBA_IMPORT_ITEM . '/' . $iba['Id'] . '/' . NAS_IMPORT_FEEDS_IBA_IMPORT_KEY;
+
+  // Import State from IBA.
+  $source_state = feeds_source(NAS_IMPORT_FEEDS_IBA_STATE);
+  $config = array(
+    $source_state->importer->config['fetcher']['plugin_key'] => array(
+      'source' => $iba_url,
+    ),
+  );
+  $source_state->addConfig($config);
+  $source_state->save();
+  $source_state->import();
+  $source_state->state(FEEDS_FETCH);
+  $source_state->state(FEEDS_PROCESS);
+  $source_state->state(FEEDS_PROCESS_CLEAR);
+
+  // Import IBA.
+  $source = feeds_source(NAS_IMPORT_FEEDS_IBA);
+  $config = array(
+    $source->importer->config['fetcher']['plugin_key'] => array(
+      'source' => $iba_url,
+    ),
+  );
+  $source->addConfig($config);
+  $source->save();
+  $source->import();
+  $source->state(FEEDS_FETCH);
+  $source->state(FEEDS_PROCESS);
+  $source->state(FEEDS_PROCESS_CLEAR);
+}
+
+/**
+ * Implements hook_cron_job_scheduler_info().
+ */
+function nas_import_cron_job_scheduler_info() {
+  $info = array();
+
+  $url = NAS_IMPORT_FEEDS_IBA_IMPORT_ENDPOINT . NAS_IMPORT_FEEDS_IBA_IMPORT_UPDATES . '/' . NAS_IMPORT_FEEDS_IBA_IMPORT_KEY;
+  $info['iba_import'] = array(
+    'worker callback' => 'nas_import_iba_job_scheduler_worker',
+    'jobs' => array(
+      array(
+        'url' => $url,
+        'crontab' => '0 0 * * *',
+        'periodic' => TRUE,
+      ),
+    ),
+  );
+
+  return $info;
+}
+
+/**
+ * Worker callback for job scheduler.
+ *
+ * @see nas_import_cron_job_scheduler_info()
+ */
+function nas_import_iba_job_scheduler_worker($job) {
+  // Populate NAS import IBA queue.
+  $ibas = nas_import_iba_get_iba_keys($job['url']);
+  if (!$ibas) {
+    return;
+  }
+
+  $queue = DrupalQueue::get('nas_import_iba_queue');
+  foreach ($ibas as $item) {
+    $queue->createItem($item);
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function nas_import_cron_queue_info() {
+  $queues['nas_import_iba_queue'] = array(
+    'worker callback' => 'nas_import_iba_queue_item_process',
+    'time' => 60,
+  );
+  return $queues;
+}
+
+/**
+ * NAS import IBA queue worker callback.
+ */
+function nas_import_iba_queue_item_process($item) {
+  nas_import_iba_node($item);
 }

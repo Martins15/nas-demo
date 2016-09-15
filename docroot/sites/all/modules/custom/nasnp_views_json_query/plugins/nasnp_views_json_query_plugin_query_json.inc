@@ -72,7 +72,10 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     // Get rows.
     $ret = $this->apath($this->options['row_apath'], $ret);
-    nasnp_views_json_query_results_unfiltered($ret);
+
+    // MODIFICATIONS: Add local data to the results.
+    $this->add_local_data($ret, $view);
+    $view->result_unfiltered = $ret;
 
     // Filter.
     foreach ($ret as $k => $row) {
@@ -113,9 +116,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         unset($ret[$k]);
       }
     }
-
-    // MODIFICATIONS: Add local data to the results.
-    $this->add_local_data($ret, $view);
 
     try {
       if ($this->pager->use_count_query() || !empty($view->get_total_rows)) {
@@ -359,7 +359,8 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
         $ret[$result_key]->Tier1 = TRUE;
         $view->result_tier1[] = $ret[$result_key];
-        unset($ret[$result_key]);
+        // Remove Tier 1 results from all results.
+        // unset($ret[$result_key]);
       }
     }
 
