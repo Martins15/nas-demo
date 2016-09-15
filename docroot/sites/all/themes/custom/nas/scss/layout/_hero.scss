@@ -13,7 +13,7 @@
     position: relative;
   }
 
-  &.dark-gradient-bottom:before {
+  &.dark-gradient-bottom .hero-image:before {
     content: "";
     position: absolute;
     z-index: 2;
@@ -95,6 +95,7 @@
   z-index: 2;
   position: absolute;
   bottom: 0;
+  left: 0;
   padding-bottom: $column-gutter;
 
   @include breakpoint(medium-up) {

@@ -40,6 +40,7 @@ function native_plants_map_edit_form($form, &$form_state) {
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
+  $form['override_title_heading']['#access'] = FALSE;
   $form['map'] = array(
     '#type' => 'text_format',
     '#title' => t('Map embed code'),

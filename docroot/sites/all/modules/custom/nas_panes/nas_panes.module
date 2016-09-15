@@ -459,10 +459,6 @@ function nas_panes_theme() {
       'template' => 'project-birds',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/project_birds',
     ),
-    'other_projects' => array(
-      'template' => 'other-projects',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/other_projects',
-    ),
     'conservation_strategy_top' => array(
       'variables' => array(
         'hero_image' => NULL,
@@ -719,6 +715,8 @@ function nas_panes_theme() {
     ),
     'hero_image_section' => array(
       'variables' => array(
+        'slug' => NULL,
+        'hero_icon' => NULL,
         'hero_image' => NULL,
         'hero_image_mobile' => NULL,
         'title' => NULL,
@@ -954,6 +952,36 @@ function nas_panes_theme() {
       'template' => 'asc-bird-top-bar',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/asc_bird_top_bar',
     ),
+    'iba_landing_body' => array(
+      'variables' => array(
+        'body' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'iba-landing-body',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_landing_body',
+    ),
+    'iba_individual_gallery' => array(
+      'variables' => array(
+        'images' => NULL,
+      ),
+      'template' => 'iba-individual-gallery',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_gallery',
+    ),
+    'iba_individual_native_birds' => array(
+      'variables' => array(
+        'teasers' => NULL,
+      ),
+      'template' => 'iba-individual-native-birds',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_native_birds',
+    ),
+    'iba_individual_social' => array(
+      'variables' => array(
+        'caption' => '',
+        'page_link' => '',
+      ),
+      'template' => 'iba-individual-social',
+      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/iba_individual_social',
+    ),
   );
 
   for ($i = 1; $i <= NAS_FLYWAYS_NUMBER; $i++) {
@@ -986,11 +1014,23 @@ function nas_panes_ajax_render_alter(&$commands) {
       $cache = panels_edit_cache_get($cache_key);
       // Write it to DB.
       panels_save_display($cache->display);
+      // Clear CTools object cache.
+      panels_edit_cache_clear($cache);
 
       if (module_exists('entitycache')) {
-        list(, , $entity_id) = explode(':', $cache_key);
-        $ecc = new EntityCacheNodeController('node');
-        $ecc->resetCache(array($entity_id));
+        list(, $entity_type, $entity_id) = explode(':', $cache_key);
+        $ids = array($entity_id);
+        // If we deal with a default panelizer display then we need to clear
+        // entity cache of each entity using the same panelizer display.
+        if (!empty($cache->display->context['panelizer']->data->panelizer['page_manager']->pnid)) {
+          $panelizer = $cache->display->context['panelizer']->data->panelizer['page_manager'];
+          $query = db_select('panelizer_entity', 'ep')
+            ->fields('ep', array('entity_id'))
+            ->condition('entity_type', $entity_type)
+            ->condition('name', $panelizer->name);
+          $ids = $query->execute()->fetchAllKeyed(0, 0);
+        }
+        entity_get_controller($entity_type)->resetCache($ids);
       }
     }
 
@@ -1562,20 +1602,32 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
         }
       }
       // Not Manual overrides, not Birds references were provided.
-      if (empty($nodes)) {
-        if (isset($context_node)) {
-          if (isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
-            $current_page_sections = array();
+      if (empty($nodes) && isset($context_node)
+        && isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
+        $current_page_sections = array();
+        foreach ($field_menu_section_items as $value) {
+          $current_page_sections[] = $value['tid'];
+        }
+        foreach ($all_nodes_positioned as $node) {
+          if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
             foreach ($field_menu_section_items as $value) {
-              $current_page_sections[] = $value['tid'];
+              if (in_array($value['tid'], $current_page_sections)) {
+                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+              }
             }
-            foreach ($all_nodes_positioned as $node) {
-              if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
-                foreach ($field_menu_section_items as $value) {
-                  if (in_array($value['tid'], $current_page_sections)) {
-                    $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-                  }
-                }
+          }
+        }
+      }
+
+      // Check engagement cards for 'Important Bird Areas' internal tag for IBA nodes.
+      if (empty($nodes) && isset($context_node) && $context_node->type == 'iba') {
+        $internal_tag = taxonomy_get_term_by_name('Important Bird Areas', 'internal_tagging');
+        $current_page_internal_tags = array(reset($internal_tag)->tid);
+        foreach ($all_nodes_positioned as $node) {
+          if ($node->field_internal_tagging && $field_internal_tagging = field_get_items('node', $node, 'field_internal_tagging')) {
+            foreach ($field_internal_tagging as $value) {
+              if (in_array($value['tid'], $current_page_internal_tags)) {
+                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
               }
             }
           }

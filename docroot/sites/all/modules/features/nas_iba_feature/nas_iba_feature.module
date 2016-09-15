@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the IBA feature.
+ */
+
+include_once 'nas_iba_feature.features.inc';

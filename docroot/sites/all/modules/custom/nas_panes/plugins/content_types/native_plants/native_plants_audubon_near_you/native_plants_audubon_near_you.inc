@@ -12,13 +12,11 @@ $plugin = array(
   'edit form' => 'native_plants_audubon_near_you_edit_form',
   'render callback' => 'native_plants_audubon_near_you_render',
   'hook theme' => 'native_plants_audubon_near_you_theme',
+  'no title override' => TRUE,
   'defaults' => array(
-    'title' => 'Connect with Audubon near you for help with your native plants:',
-    'override_title_text' => 'Connect with Audubon near you for help with your native plants:',
-    'image' => 0,
     'services_title_desktop' => 'Services provided at !resource_name',
     'services_title_mobile' => 'Native plant services provided:',
-    'zipcode' => '33556',
+    'zipcode' => '',
   ),
   'all contexts' => TRUE,
 );
@@ -28,7 +26,7 @@ $plugin = array(
  */
 function native_plants_audubon_near_you_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = $conf['override_title_text'];
+  $block->title = t('Native Plants Audubon Near You');
   $block->content = $conf['services_title_desktop'];
   return $block;
 }
@@ -40,26 +38,6 @@ function native_plants_audubon_near_you_edit_form($form, &$form_state) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
-
-  ctools_form_include($form_state, 'content');
-  ctools_form_include($form_state, 'native_plants_audubon_near_you', 'nas_panes', 'plugins/content_types/native_plants/native_plants_audubon_near_you');
-
-  $form['override_title_heading']['#access'] = FALSE;
-  $form['image'] = array(
-    '#type' => 'media',
-    '#tree' => TRUE,
-    '#title' => t('Image'),
-    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
-    '#media_options' => array(
-      'global' => array(
-        'file_extensions' => 'png jpg jpeg gif',
-        'max_filesize' => '20 MB',
-        'file_directory' => '',
-        'types' => array('image'),
-      ),
-    ),
-    '#default_value' => $conf['image'],
-  );
 
   $form['services_title_desktop'] = array(
     '#type' => 'textfield',
@@ -101,6 +79,12 @@ function native_plants_audubon_near_you_edit_form_submit(&$form, &$form_state) {
 function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
+  if (empty($conf['zipcode'])) {
+    $query_params = drupal_get_query_parameters();
+    if (isset($query_params['zipcode'])) {
+      $conf['zipcode'] = $query_params['zipcode'];
+    }
+  }
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   ctools_include('plugins');
   $geometry = array();
@@ -110,7 +94,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
     }
   }
 
-  $resource = array();
+  $resources = array();
   if ($geometry) {
     $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
     $view_results = views_get_view_result('community_resources_near_you', 'default', $latlon);
@@ -136,29 +120,26 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
     foreach ($node_wrapper->field_community_res_services->value() as $key) {
       $resource['services'][] = $field['settings']['allowed_values'][$key];
     }
-    break;
+
+    $resource['services_title_desktop'] = strtr($conf['services_title_desktop'],
+      array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>'));
+    $resource['services_title_mobile'] = strtr($conf['services_title_mobile'],
+      array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>'));
+
+    $resources[] = $resource;
+    if (count($resources) >= 2) {
+      break;
+    }
   }
 
-  if (!$resource) {
+  if (!$resources) {
     return '';
-  }
-
-  // Use fallback image or the configured one.
-  $image_path = file_create_url('sites/all/themes/custom/nas/img/np-thank-you-bg-1.jpg');
-  if ($image = file_load($conf['image'])) {
-    // TODO: do we need specific image style here?
-    $image_path = image_style_url('hero_image', $image->uri);
   }
 
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_audubon_near_you',
-    '#title' => t(filter_xss($conf['override_title_text'])),
-    '#services_title_desktop' => t(filter_xss($conf['services_title_desktop']),
-      array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>')),
-    '#services_title_mobile' => t(filter_xss($conf['services_title_mobile'])),
-    '#resource' => $resource,
-    '#image_path' => $image_path,
+    '#resources' => $resources,
     '#context_links' => $contextual_links,
   );
 
@@ -171,11 +152,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
 function native_plants_audubon_near_you_theme(&$theme, $plugin) {
   $theme['native_plants_audubon_near_you'] = array(
     'variables' => array(
-      'title' => '',
-      'services_title_desktop' => '',
-      'services_title_mobile' => '',
-      'resource' => array(),
-      'image_path' => '',
+      'resources' => array(),
       'context_links' => '',
     ),
     'template' => 'native-plants-audubon-near-you',
@@ -187,25 +164,25 @@ function native_plants_audubon_near_you_theme(&$theme, $plugin) {
  * Preprocess function.
  */
 function nas_panes_preprocess_native_plants_audubon_near_you(&$variables) {
-  $res = &$variables['resource'];
-  $res['link']['rendered'] = l(t('Visit Site'),
-    $res['link']['url'],
-    array('attributes' => array('class' => array('button', 'pea-green'))));
-  $res['address']['rendered'] = '';
-  $res['address']['rendered'] .= $res['address']['thoroughfare'] ? $res['address']['thoroughfare'] . '<br/>' : '';
-  $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
-  $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
-  $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
-  $res['address']['rendered'] .= $res['address']['rendered'] ? '<br/>' : '';
+  foreach ($variables['resources'] as &$res) {
+    $res['link']['rendered'] = l(t('Visit Site'),
+      $res['link']['url'],
+      array('attributes' => array('class' => array('button', 'xlarge', 'expand', 'pea-green'))));
+    $res['address']['rendered'] = '';
+    $res['address']['rendered'] .= $res['address']['thoroughfare'] ? $res['address']['thoroughfare'] . '<br/>' : '';
+    $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
+    $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
+    $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
 
-  $services_list = array(
-    '#theme' => 'item_list',
-    '#items' => $res['services'],
-    '#attributes' => array(
-      'class' => array(
-        'connect-audubon-near-you--services-list'
+    $services_list = array(
+      '#theme' => 'item_list',
+      '#items' => $res['services'],
+      '#attributes' => array(
+        'class' => array(
+          'connect-audubon-near-you--services-list'
+        ),
       ),
-    ),
-  );
-  $res['services']['rendered'] = drupal_render($services_list);
+    );
+    $res['services']['rendered'] = drupal_render($services_list);
+  }
 }

@@ -1,0 +1,85 @@
+<?php
+/**
+ * @file
+ * Main file for the NAS External Integration module.
+ */
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function nas_external_integration_ctools_plugin_type() {
+  return array(
+    'provider' => array(
+      'cache' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_external_integration_ctools_plugin_directory($module, $type) {
+  if ($module == 'nas_external_integration' && $type == 'provider') {
+    return 'plugins/' . $type;
+  }
+}
+
+/**
+ * Load metadata for a single provider without loading all providers.
+ */
+function nas_external_integration_get_provider($name) {
+  ctools_include('plugins');
+  return ctools_get_plugins('nas_external_integration', 'provider', $name);
+}
+
+/**
+ * Load metadata for all providers.
+ */
+function nas_external_integration_get_providers() {
+  ctools_include('plugins');
+  return ctools_get_plugins('nas_external_integration', 'provider');
+}
+
+/**
+ * Add external integration configuration options to the form.
+ */
+function nas_external_integration_settings_form($form, $conf) {
+  $form['nas_external_integration'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('External integration'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#tree' => TRUE,
+  );
+
+  $form['nas_external_integration']['provider'] = array(
+    '#type' => 'radios',
+    '#title' => t('External integration provider'),
+    '#options' => array(),
+    '#default_value' => $conf['nas_external_integration']['provider'],
+  );
+  $providers = nas_external_integration_get_providers();
+  foreach ($providers as $provider) {
+    $form['nas_external_integration']['provider']['#options'][$provider['name']] = $provider['title'];
+  }
+
+  $form['nas_external_integration']['id'] = array(
+    '#type' => 'textfield',
+    '#title' => t('External ID'),
+    '#description' => t('Some external providers require ID.'),
+    '#default_value' => $conf['nas_external_integration']['id'],
+  );
+
+  return $form;
+}
+
+/**
+ * Process external integration.
+ */
+function nas_external_integration_process_form_submission($values, $settings) {
+  if ($provider = nas_external_integration_get_provider($settings['provider'])) {
+    if ($function = ctools_plugin_get_function($provider, 'form_submission_callback')) {
+      $function($values, $settings);
+    }
+  }
+}

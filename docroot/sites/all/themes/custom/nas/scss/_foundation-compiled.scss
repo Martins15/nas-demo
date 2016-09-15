@@ -1253,7 +1253,11 @@ select::-ms-expand {
     background: white; }
 
   select:hover {
-    background: #f7f7f7; } }
+    background-color: #f7f7f7; }
+
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000; } }
 
 /* Attach elements to the beginning or end of an input */
 .prefix,
@@ -2130,7 +2134,7 @@ ul.pagination {
   outline: none;
 }
 .-wrap-select select {
-  -moz-appearance: window;
+  -moz-appearance: none;
   margin-bottom: 0 !important;
   border: 0;
 }
