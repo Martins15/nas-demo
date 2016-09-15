@@ -249,6 +249,10 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
     ),
     '#id' => 'nas-master-native-plants-initial-form-submit',
   );
+  $form['nas_external_integration'] = array(
+    '#type' => 'value',
+    '#value' => $conf['nas_external_integration'],
+  );
 
   _nas_master_native_plants_attach_fields_sync($form);
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
@@ -272,6 +276,7 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
   $commands[] = ctools_ajax_command_redirect($form_state['redirect'][0], 0, $form_state['redirect'][1]);
   // Do not remove the screen lock.
   $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
+  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
   return array(
     '#type' => 'ajax',
     '#commands' => $commands,
@@ -282,14 +287,14 @@ function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state
  * Form submit callback for Native Plants initial form.
  */
 function nas_master_native_plants_initial_form_submit($form, &$form_state) {
-  // Convio integration.
+  // External integration.
   if (!empty($form_state['values']['email'])) {
     $values = array(
       'email' => $form_state['values']['email'],
       'zipcode' => $form_state['values']['zipcode'],
       'square_feet' => 0,
     );
-    nas_master_native_plants_convio_integration($values);
+    nas_external_integration_process_form_submission($values, $form_state['values']['nas_external_integration']);
   }
 
   // Redirect to main Native Plants search by ZIP code page.
@@ -378,6 +383,10 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     '#type' => 'value',
     '#value' => $conf['redirect'],
   );
+  $form['nas_external_integration'] = array(
+    '#type' => 'value',
+    '#value' => $conf['nas_external_integration'],
+  );
 
   if (isset($conf['quantity_prefix'])) {
     $form['quantity']['#prefix'] = '<div class="field-prefix"><h3 class="thin">' . $conf['quantity_prefix'] . '</h3></div>';
@@ -416,13 +425,13 @@ function _nas_master_native_plants_pledge_form_ajax_callback($form, $form_state)
  * Form submit callback for Native Plants pledge form.
  */
 function nas_master_native_plants_pledge_form_submit($form, &$form_state) {
-  // Convio integration.
+  // External integration.
   $values = array(
     'email' => $form_state['values']['email'],
     'zipcode' => $form_state['values']['zipcode'],
     'square_feet' => $form_state['values']['quantity'],
   );
-  nas_master_native_plants_convio_integration($values);
+  nas_external_integration_process_form_submission($values, $form_state['values']['nas_external_integration']);
 
   // Redirect to configured redirect page.
   $form_state['redirect'] = $form_state['values']['redirect'];
@@ -467,6 +476,10 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
       'wrapper' => 'nas-master-native-plants-get-list-form',
     ),
     '#id' => 'nas-master-native-plants-get-list-form-submit',
+  );
+  $form['nas_external_integration'] = array(
+    '#type' => 'value',
+    '#value' => $conf['nas_external_integration'],
   );
 
   _nas_master_native_plants_attach_fields_sync($form);
@@ -514,13 +527,13 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
     entity_save('permalink', $permalink);
   }
 
-  // Convio integration.
+  // External integration.
   $values = array(
     'email' => $form_state['values']['email'],
     'zipcode' => $fields['zipcode'],
     'square_feet' => 0,
   );
-  nas_master_native_plants_convio_integration($values);
+  nas_external_integration_process_form_submission($values, $form_state['values']['nas_external_integration']);
 
   // Send plant list - it is set up to go through Mandrill.
   drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');

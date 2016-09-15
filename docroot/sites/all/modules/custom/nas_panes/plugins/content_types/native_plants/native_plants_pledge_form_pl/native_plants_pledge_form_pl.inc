@@ -21,6 +21,10 @@ $plugin = array(
     'email_placeholder' => 'Email Address',
     'button_text' => 'OK',
     'redirect' => 'native-plants',
+    'nas_external_integration' => array(
+      'provider' => 'convio',
+      'id' => '21409',
+    ),
   ),
   'all contexts' => TRUE,
 );
@@ -84,6 +88,7 @@ function native_plants_pledge_form_pl_edit_form($form, &$form_state) {
     '#size' => 100,
   );
 
+  $form = nas_external_integration_settings_form($form, $conf);
   return $form;
 }
 

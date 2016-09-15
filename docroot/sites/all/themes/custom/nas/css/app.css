@@ -14183,6 +14183,13 @@ h2.grey {
   margin-left: 1px;
 }
 
+.node-type-iba h1 {
+  margin: 0 0 5px 0;
+}
+.node-type-iba .deck {
+  font-style: normal;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
 .node-type-iba .text-container h4 {
   font-size: 22px;
   font-weight: bold;
@@ -14214,6 +14221,35 @@ h2.grey {
   .node-type-iba .sidebar .social-sharing, .node-type-iba .article-sidebar .social-sharing {
     margin-top: -49px;
   }
+}
+.node-type-iba .sidebar .sidebar-section, .node-type-iba .article-sidebar .sidebar-section, .node-type-iba .sidebar .article-sidebar-section, .node-type-iba .article-sidebar .article-sidebar-section {
+  margin-bottom: 16px;
+}
+
+.svg-throbber {
+  background-image: url(../img/throbber.svg);
+  background-size: contain;
+  position: absolute;
+}
+
+.iba-state-contacts {
+  padding-bottom: 15px;
+}
+.iba-state-contacts h4 {
+  margin-bottom: 0;
+}
+.iba-state-contacts a {
+  display: block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  margin-bottom: 14px;
+}
+
+.iba-site-report-link-pane a {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 18px;
+}
+.sidebar-section + .iba-site-report-link-pane, .article-sidebar-section + .iba-site-report-link-pane {
+  margin-top: -7px;
 }
 
 .np-dark-red {
@@ -16898,4 +16934,185 @@ ul.clearing-thumbs {
 .clearing-assembled .clearing-container .clearing-main-prev.disabled,
 .clearing-assembled .clearing-container .clearing-main-next.disabled {
   display: none;
+}
+
+/**
+ * IBA State page exposed form.
+ */
+#views-exposed-form-iba-search-state-page-iba-search-state-page label {
+  display: none;
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page select {
+  width: 100%;
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page #edit-field-iba-status-wrapper {
+  float: none;
+  padding: 0;
+}
+@media only screen and (min-width: 601px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-field-iba-status-wrapper {
+    padding: 0 12.5px 0 0;
+    float: left;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-field-iba-status-wrapper {
+    padding: 0 12.5px 0 0;
+    float: left;
+    width: 25%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page #edit-priority-wrapper {
+  float: none;
+  padding: 0;
+}
+@media only screen and (min-width: 601px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-priority-wrapper {
+    float: left;
+    padding: 0 0 0 12.5px;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-priority-wrapper {
+    float: left;
+    padding: 0 12.5px;
+    width: 25%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page #edit-search-api-views-fulltext-wrapper {
+  padding: 0 12.5px 0 0;
+  width: 86%;
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page #edit-search-api-views-fulltext-wrapper {
+    padding: 0 12.5px 0 0;
+    width: 42%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button {
+  padding: 0 0 0 12.5px;
+  width: 14%;
+}
+@media only screen and (max-width: 320px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button {
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button {
+    padding: 0;
+    width: 8%;
+  }
+}
+#views-exposed-form-iba-search-state-page-iba-search-state-page .views-submit-button input {
+  margin: 0;
+  height: 40px;
+  width: 100%;
+}
+
+.view-iba-search-state-page ul.pager {
+  display: block;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  height: 40px;
+  margin: 0 0 5px;
+}
+.view-iba-search-state-page ul.pager .ajax-progress-throbber {
+  display: inline-block;
+  margin-left: 5px;
+}
+.view-iba-search-state-page ul.pager .ajax-progress-throbber * {
+  display: inline-block;
+}
+.view-iba-search-state-page ul.pager li {
+  height: 30px;
+  color: #222222;
+  font-size: 17px;
+  margin-left: 5px;
+  display: inline-block;
+}
+.view-iba-search-state-page ul.pager li.pager-next, .view-iba-search-state-page ul.pager li.pager-previous {
+  display: none;
+}
+.view-iba-search-state-page ul.pager li a {
+  display: inline-block;
+  padding: 1px 5px 1px;
+  color: #0aa8e3;
+  border-radius: 3px;
+}
+.view-iba-search-state-page ul.pager li:hover a,
+.view-iba-search-state-page ul.pager li a:focus {
+  background: transparent;
+}
+.view-iba-search-state-page ul.pager li.unavailable a {
+  cursor: default;
+  color: #d4d4d4;
+}
+.view-iba-search-state-page ul.pager li.unavailable a:hover a, .view-iba-search-state-page ul.pager li.unavailable a:focus {
+  background: transparent;
+}
+.view-iba-search-state-page ul.pager li.current {
+  background: transparent;
+  color: black;
+  font-weight: 600;
+  cursor: default;
+}
+.view-iba-search-state-page ul.pager li.current:hover,
+.view-iba-search-state-page ul.pager li.current a:focus {
+  background: transparent;
+}
+
+@media only screen and (width: 768px) {
+  .node-type-iba .social-sharing-caption.small {
+    display: block;
+  }
+}
+
+#admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
+  right: auto;
+}
+
+.iba-landing-map .embed-container {
+  position: relative;
+  padding-bottom: 500px;
+  height: 0;
+  max-width: 100%;
+}
+.iba-landing-map .embed-container iframe,
+.iba-landing-map .embed-container object,
+.iba-landing-map .embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+}
+
+.iba-map.embed-container {
+  position: relative;
+  padding-bottom: 300px;
+  height: 0;
+  max-width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .iba-map.embed-container {
+    padding-bottom: 500px;
+  }
+}
+.iba-map.embed-container iframe,
+.iba-map.embed-container object,
+.iba-map.embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 280px;
+}
+@media only screen and (min-width: 768px) {
+  .iba-map.embed-container iframe,
+  .iba-map.embed-container object,
+  .iba-map.embed-container iframe {
+    height: 500px;
+  }
 }
