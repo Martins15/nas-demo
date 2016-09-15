@@ -1264,13 +1264,9 @@ input[type="checkbox"].np-checkbox {
       z-index: 2;
 
       @include breakpoint(large-up) {
-        background: linear-gradient(to top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.5) 66%, rgba(0, 0, 0, 0.7) 100%);
         bottom: auto;
         height: 100%;
         top: 0;
-      }
-
-      @include breakpoint(xlarge-up) {
         width: 66%;
         background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.5) 66%, rgba(0, 0, 0, 0.7) 100%);
         background-position: right center;
@@ -1288,6 +1284,12 @@ input[type="checkbox"].np-checkbox {
     @include breakpoint(large-up) {
       padding-bottom: 0;
     }
+  }
+}
+
+.engagement-hero__column {
+  @include breakpoint(large-up) {
+    min-width: 333px;
   }
 }
 
@@ -1339,13 +1341,6 @@ input[type="checkbox"].np-checkbox {
     @include breakpoint(xlarge-up) {
       margin-bottom: 70px;
     }
-  }
-}
-
-.engagement-hero__column {
-  @include breakpoint(large-only) {
-    width: 80%;
-    left: 10%;
   }
 }
 

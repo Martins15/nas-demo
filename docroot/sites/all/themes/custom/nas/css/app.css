@@ -15419,14 +15419,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 @media only screen and (min-width: 768px) {
   .engagement-hero .hero-image:before {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.5) 66%, rgba(0, 0, 0, 0.7) 100%);
     bottom: auto;
     height: 100%;
     top: 0;
-  }
-}
-@media only screen and (min-width: 1280px) {
-  .engagement-hero .hero-image:before {
     width: 66%;
     background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.5) 66%, rgba(0, 0, 0, 0.7) 100%);
     background-position: right center;
@@ -15445,6 +15440,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .engagement-hero__column {
+    min-width: 333px;
+  }
+}
 .engagement-hero__content {
   width: 100%;
   z-index: 2;
@@ -15493,13 +15493,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 1280px) {
   .engagement-hero__content .native-plants-hero-text {
     margin-bottom: 70px;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1279px) {
-  .engagement-hero__column {
-    width: 80%;
-    left: 10%;
   }
 }
 
