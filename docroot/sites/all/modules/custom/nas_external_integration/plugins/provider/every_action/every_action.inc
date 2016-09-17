@@ -44,10 +44,5 @@ function nas_external_integration_provider_every_action_form_submission_callback
     'timeout' => 15,
   );
   $result = drupal_http_request($url, $options);
-  watchdog('nas_external_integration', 'Every Action integration - %email entered. Service answer was !answer',
-    array(
-      '%email' => $values['email'],
-      '!answer' => '<pre>' . htmlspecialchars(print_r($result, TRUE)) . '</pre>',
-    )
-  );
+  _nas_external_integration_submission_log('Every Action', $values['email'], $result);
 }
