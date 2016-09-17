@@ -99,7 +99,7 @@ function native_plants_pledge_form_edit_form($form, &$form_state) {
     '#size' => 100,
   );
 
-  $form = nas_external_integration_settings_form($form, $conf);
+  $form = nas_external_integration_settings_form($form, $form_state, $conf['nas_external_integration']);
   return $form;
 }
 
