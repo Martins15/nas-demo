@@ -21,6 +21,7 @@
       - sites/all/themes/circle
       - sites/all/modules/custom/adbn_sso/vendor
       - sites/all/modules/custom/adbn_sso
+      - sites/all/modules/custom/nas_external_integration/vendor
     composer_global_require:
       - squizlabs/php_codesniffer=1.5.6
       - drupal/coder:dev-7.x-2.x
