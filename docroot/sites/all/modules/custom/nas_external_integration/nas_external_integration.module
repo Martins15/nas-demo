@@ -43,7 +43,18 @@ function nas_external_integration_get_providers() {
 /**
  * Add external integration configuration options to the form.
  */
-function nas_external_integration_settings_form($form, $conf) {
+function nas_external_integration_settings_form($form, &$form_state, $conf = array()) {
+  $conf = array_merge(nas_external_integration_default_conf(), $conf);
+
+  // Update conf values if it was AJAX submission.
+  if (isset($form_state['values']['nas_external_integration'])) {
+    foreach (array_keys($conf) as $key) {
+      if (isset($form_state['values']['nas_external_integration'][$key])) {
+        $conf[$key] = $form_state['values']['nas_external_integration'][$key];
+      }
+    }
+  }
+
   $form['nas_external_integration'] = array(
     '#type' => 'fieldset',
     '#title' => t('External integration'),
@@ -53,10 +64,12 @@ function nas_external_integration_settings_form($form, $conf) {
   );
 
   $form['nas_external_integration']['provider'] = array(
-    '#type' => 'radios',
-    '#title' => t('External integration provider'),
-    '#options' => array(),
-    '#default_value' => $conf['nas_external_integration']['provider'],
+    '#type' => 'select',
+    '#title' => t('Provider'),
+    '#options' => array(
+      'none' => t('None'),
+    ),
+    '#default_value' => $conf['provider'],
   );
   $providers = nas_external_integration_get_providers();
   foreach ($providers as $provider) {
@@ -66,11 +79,171 @@ function nas_external_integration_settings_form($form, $conf) {
   $form['nas_external_integration']['id'] = array(
     '#type' => 'textfield',
     '#title' => t('External ID'),
-    '#description' => t('Some external providers require ID.'),
-    '#default_value' => $conf['nas_external_integration']['id'],
+    '#description' => t('Some external providers require ID - SURVEY_ID for Convio, form ID for Every Action.'),
+    '#default_value' => $conf['id'],
+    '#states' => array(
+      'visible' => array(
+        ':input[name="nas_external_integration[provider]"]' => array(
+          array('value' => 'convio'),
+          array('value' => 'every_action'),
+        ),
+      ),
+    ),
+  );
+
+  $form['nas_external_integration']['apikey'] = array(
+    '#type' => 'textfield',
+    '#title' => t('API key'),
+    '#description' => t('API key for external provider integration.'),
+    '#default_value' => $conf['apikey'],
+    '#states' => array(
+      'visible' => array(
+        ':input[name="nas_external_integration[provider]"]' => array(
+          array('value' => 'constant_contact'),
+          array('value' => 'mailchimp'),
+        ),
+      ),
+    ),
+  );
+
+  $form['nas_external_integration']['token'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Access token'),
+    '#description' => t('Access token for external provider integration.'),
+    '#default_value' => $conf['token'],
+    '#states' => array(
+      'visible' => array(
+        ':input[name="nas_external_integration[provider]"]' => array(
+          array('value' => 'constant_contact'),
+        ),
+      ),
+    ),
+  );
+
+  $form['nas_external_integration']['listid'] = array(
+    '#type' => 'item',
+    '#title' => t('Mailing list'),
+    '#description' => t('Press the Get mailing lists button below.'),
+    '#default_value' => isset($conf['listid']) ? $conf['listid'] : '',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="nas_external_integration[provider]"]' => array(
+          array('value' => 'constant_contact'),
+          array('value' => 'mailchimp'),
+        ),
+      ),
+    ),
+    '#prefix' => '<div id="nas-external-integration-listid-wrapper">',
+    '#suffix' => '</div>',
+  );
+
+  $list_options = array();
+  switch ($conf['provider']) {
+    case 'constant_contact':
+      if ($conf['apikey'] && $conf['token']) {
+        $cc = _nas_external_integration_cc_api_init($conf['apikey']);
+        try {
+          $lists = $cc->listService->getLists($conf['token']);
+
+          foreach ($lists as $list) {
+            $list_options[$list->id] = $list->name . ' (' . $list->status . ')';
+          }
+        }
+        catch (Ctct\Exceptions\CtctException $ex) {
+          foreach ($ex->getErrors() as $error) {
+            watchdog('nas_external_integration', $error->error_key . ': ' . $error->error_message);
+          }
+        }
+      }
+      break;
+
+    case 'mailchimp':
+      if ($conf['apikey']) {
+        $api_endpoint = _nas_external_integration_mailchimp_api_init($conf['apikey']);
+        $api_endpoint .= '/lists/';
+
+        $options = array(
+          'headers' => array('Accept' => 'application/vnd.api+json', 'Content-Type' => 'application/vnd.api+json'),
+          'timeout' => 15,
+        );
+        $result = drupal_http_request($api_endpoint, $options);
+        if ($result->code == 200) {
+          $lists = drupal_json_decode($result->data)['lists'];
+          foreach ($lists as $list) {
+            $list_options[$list['id']] = $list['name'];
+          }
+        }
+      }
+      break;
+  }
+
+  if ($list_options) {
+    $form['nas_external_integration']['listid']['#type'] = 'select';
+    $form['nas_external_integration']['listid']['#description'] = t('Select external provider mailing list to add emails to.');
+    $form['nas_external_integration']['listid']['#options'] = $list_options;
+  }
+
+  $form['nas_external_integration']['get_lists'] = array(
+    '#type' => 'submit',
+    '#value' => t('Get mailing lists from external provider'),
+    '#submit' => array('nas_external_integration_get_lists_submit'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="nas_external_integration[provider]"]' => array(
+          array('value' => 'constant_contact'),
+          array('value' => 'mailchimp'),
+        ),
+      ),
+    ),
+    '#ajax' => array(
+      'callback' => 'nas_external_integration_get_lists_ajax',
+      'wrapper' => 'nas-external-integration-listid-wrapper',
+    ),
+    '#limit_validation_errors' => array(array('nas_external_integration')),
   );
 
   return $form;
+}
+
+/**
+ * Submit callback to rebuild the form.
+ */
+function nas_external_integration_get_lists_submit($form, &$form_state) {
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * AJAX callback to return the select of available mailing lists.
+ */
+function nas_external_integration_get_lists_ajax($form, &$form_state) {
+  return $form['nas_external_integration']['listid'];
+}
+
+/**
+ * Helper function to initialize Constant Contact API.
+ */
+function _nas_external_integration_cc_api_init($apikey) {
+  // $path = drupal_get_path('module', 'nas_external_integration');
+  $path = drupal_get_path('module', 'nas_external_integration');
+  require_once $path . '/vendor/constantcontact/constantcontact/src/Ctct/autoload.php';
+  require_once $path . '/vendor/autoload.php';
+
+  $cc = new Ctct\ConstantContact($apikey);
+  return $cc;
+}
+
+/**
+ * Helper function to initialize MailChimp API.
+ */
+function _nas_external_integration_mailchimp_api_init($apikey) {
+  $api_endpoint = 'https://audubon:<passwd>@<dc>.api.mailchimp.com/3.0';
+  $datacenter = '';
+  $values = explode('-', $apikey);
+  if (isset($values[1])) {
+    $datacenter = $values[1];
+  }
+  $api_endpoint = str_replace(array('<passwd>', '<dc>'), array($apikey, $datacenter), $api_endpoint);
+  return $api_endpoint;
 }
 
 /**
@@ -82,4 +255,29 @@ function nas_external_integration_process_form_submission($values, $settings) {
       $function($values, $settings);
     }
   }
+}
+
+/**
+ * Default configuration for external integration.
+ */
+function nas_external_integration_default_conf() {
+  return array(
+    'provider' => '',
+    'id' => '',
+    'apikey' => '',
+    'token' => '',
+    'listid' => '',
+  );
+}
+
+/**
+ * Helper function to log external submission.
+ */
+function _nas_external_integration_submission_log($provider, $email, $answer) {
+  watchdog('nas_external_integration', $provider . ' integration - %email entered. Service answer was !answer',
+    array(
+      '%email' => $email,
+      '!answer' => '<pre>' . htmlspecialchars(print_r($answer, TRUE)) . '</pre>',
+    )
+  );
 }
