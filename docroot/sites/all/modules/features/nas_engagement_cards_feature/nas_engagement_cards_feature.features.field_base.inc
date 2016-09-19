@@ -10,13 +10,40 @@
 function nas_engagement_cards_feature_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_convio_url'
-  $field_bases['field_convio_url'] = array(
+  // Exported field_base: 'field_engagement_card_type'
+  $field_bases['field_engagement_card_type'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_convio_url',
+    'field_name' => 'field_engagement_card_type',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'default' => 'Default',
+        'simple_form' => 'Engagement card with form element',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_nas_external_integration'
+  $field_bases['field_nas_external_integration'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_nas_external_integration',
     'foreign keys' => array(
       'format' => array(
         'columns' => array(
@@ -37,59 +64,6 @@ function nas_engagement_cards_feature_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_destination'
-  $field_bases['field_destination'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_destination',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'convio' => 'Convio',
-        'other' => 'Preconfigured Mailchimp/Constant contact',
-      ),
-      'allowed_values_function' => '',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
-  // Exported field_base: 'field_engagement_card_type'
-  $field_bases['field_engagement_card_type'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_engagement_card_type',
-    'foreign keys' => array(),
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'simple_form' => 'Engagement card with form element',
-      ),
-      'allowed_values_function' => '',
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
   );
 
   // Exported field_base: 'field_placeholder_text'
