@@ -3647,3 +3647,17 @@ function nas_master_update_7250() {
     page_manager_save_task_handler($handler);
   }
 }
+
+/**
+ * Update Engagement cards CT feature.
+ */
+function nas_master_update_7251() {
+  features_revert(array(
+    'nas_engagement_cards_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'variable',
+    ),
+  ));
+}
