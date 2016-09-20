@@ -1036,6 +1036,11 @@ function nas_preprocess_node_engagement_cards(&$vars) {
     ));
     $vars['link'] = url($field_link_items[0]['url']);
   }
+  if ($field_image_items = field_get_items('node', $node, 'field_image')) {
+    $image = reset($field_image_items);
+    $file = file_load($image['fid']);
+    $vars['image_attribution'] = _nas_panes_format_image_attribution($file);
+  }
 }
 
 /**
