@@ -153,6 +153,30 @@
           }
         });
       });
+
+      $w.on('click', function (event) {
+        if ($list.hasClass('native-plants-bottom-plant-list-form-show')) {
+          // If the click event came not from the form, throw a lost-focus event.
+          if (!$(event.target).parents('.native-plants-get-list-form').size()) {
+            $list.trigger('focus-lost');
+          }
+        }
+      });
+
+      // Throw a lost-focus event on tab switches.
+      $('.js-tabs').on('toggled', function (event, tab) {
+        if ($list.hasClass('native-plants-bottom-plant-list-form-show')) {
+          $list.trigger('focus-lost');
+        }
+      });
+
+      // Hide the form and show button on a lost-focus event.
+      $list.on('focus-lost', function (e) {
+        $list.removeClass('native-plants-bottom-plant-list-form-show');
+        $w.trigger('resize');
+        $button.stop().animate({opacity: 1});
+      });
+
       $w.bind('resize', function () {
         if ($list.hasClass('native-plants-bottom-plant-list-form-show') && Foundation.utils.is_small_only()) {
           $list_info.hide();

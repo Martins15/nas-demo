@@ -44,7 +44,7 @@ function nas_stay_abreast_pane_custom_pane_edit_form($form, &$form_state) {
     '#default_value' => $conf['caption'],
   );
 
-  $form = nas_external_integration_settings_form($form, $conf);
+  $form = nas_external_integration_settings_form($form, $form_state, $conf['nas_external_integration']);
   return $form;
 }
 
