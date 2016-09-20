@@ -31,7 +31,7 @@ function nas_external_integration_provider_convio_form_submission_callback($valu
         '3340_21409_2_18300' => $values['square_feet'] ? $values['square_feet'] : 0,
         'denySubmit' => '',
         'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Submit Survey',
-        'SURVEY_ID' => '21409',
+        'SURVEY_ID' => $settings['id'],
       );
       break;
 
@@ -47,9 +47,32 @@ function nas_external_integration_provider_convio_form_submission_callback($valu
         'remember_me_opt_in_requested' => 'true',
         'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
         'denySubmit' => '',
-        'SURVEY_ID' => '17180',
+        'SURVEY_ID' => $settings['id'],
         '3340_17180_2_14661' => '1441',
       );
+      break;
+
+    default:
+      $data = array(
+        'cons_info_component' => 't',
+        'cons_title' => '',
+        'cons_first_name' => '',
+        'cons_last_name' => '',
+        'cons_email' => $values['email'],
+        'cons_street1' => '',
+        'cons_city' => '',
+        'cons_state' => '',
+        'cons_zip_code' => '',
+        'cons_mail_opt_in' => 't',
+        'cons_email_opt_in' => 'on',
+        'cons_email_opt_in_requested' => 'true',
+        'remember_me_opt_in_requested' => 'true',
+        '3340_1420_3_1520' => '1137',
+        'denySubmit' => '',
+        'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
+        'SURVEY_ID' => $settings['id'],
+      );
+
       break;
   }
 
@@ -60,10 +83,5 @@ function nas_external_integration_provider_convio_form_submission_callback($valu
     'timeout' => 15,
   );
   $result = drupal_http_request($url, $options);
-  watchdog('nas_external_integration', 'Convio integration - %email entered. Service answer was !answer',
-    array(
-      '%email' => $values['email'],
-      '!answer' => '<pre>' . htmlspecialchars(print_r($result, TRUE)) . '</pre>',
-    )
-  );
+  _nas_external_integration_submission_log('Convio', $values['email'], $result);
 }
