@@ -2680,6 +2680,14 @@ function nas_master_update_7186() {
 }
 
 /**
+ * Enable IBA feature.
+ */
+function nas_master_update_7187() {
+  module_enable(array('nas_iba_feature'));
+  features_revert(array('nas_image_styles_feature'));
+}
+
+/**
  * Install multilanguage stack.
  */
 function nas_master_update_7190() {
@@ -2856,7 +2864,7 @@ function nas_master_update_7204() {
 }
 
 /**
- * Revert nas_boa_index_feature .
+ * Revert nas_boa_index_feature.
  */
 function nas_master_update_7205() {
   features_revert(array(
@@ -2961,7 +2969,8 @@ function nas_master_update_7211() {
   registry_rebuild();
 }
 
-/**
+
+/*
  * Update Event CT feature.
  */
 function nas_master_update_7212() {
@@ -3342,6 +3351,7 @@ function nas_master_update_7234() {
   );
 }
 
+
 /**
  * Enable Acquia Search Multiple Indexes module.
  */
@@ -3545,9 +3555,47 @@ function nas_master_update_7245() {
 }
 
 /**
- * Engagement card with form element.
+ * Enable NAS IBA features.
  */
 function nas_master_update_7246() {
+  // Clear cache to discover new Feeds parser plugin.
+  cache_clear_all();
+  module_enable(array(
+    'nas_iba_feature',
+    'nas_iba_state',
+    'nas_iba_import_feeds_feature',
+    'nas_iba_redirect',
+  ));
+  features_revert(array('nas_image_styles_feature'));
+  features_revert_module('nas_solr_feature');
+  features_revert_module('nas_url_aliases_feature');
+
+  // Delete old redirect for IBA page.
+  db_delete('redirect')
+    ->condition('source', 'important-bird-areas')
+    ->execute();
+
+  // Add redirects for IBA.
+  $redirect = new stdClass();
+
+  redirect_object_prepare(
+    $redirect,
+    array(
+      'source' => 'iba',
+      'source_options' => array(),
+      'redirect' => 'important-bird-areas',
+      'redirect_options' => array(),
+      'language' => LANGUAGE_NONE,
+    )
+  );
+
+  redirect_save($redirect);
+}
+
+/**
+ * Engagement card with form element.
+ */
+function nas_master_update_7247() {
   features_revert(array(
     'nas_engagement_cards_feature' => array(
       'field_base',
@@ -3562,7 +3610,7 @@ function nas_master_update_7246() {
 /**
  * Enable Search API DB module and events index.
  */
-function nas_master_update_7247() {
+function nas_master_update_7248() {
   module_enable(array('search_api_db'));
   features_revert(array(
     'nas_events_landing_page_feature' => array('views_view'),
@@ -3576,14 +3624,14 @@ function nas_master_update_7247() {
 /**
  * Enable nas_panels_ipe module.
  */
-function nas_master_update_7248() {
+function nas_master_update_7249() {
   module_enable(array('nas_panels_ipe'));
 }
 
 /**
  * Enable IPE for some pages created via page manager.
  */
-function nas_master_update_7249() {
+function nas_master_update_7250() {
   $exclude = array(
     'frontpage2',
     'frontpage',
@@ -3603,6 +3651,20 @@ function nas_master_update_7249() {
 /**
  * Enable dfw module.
  */
-function nas_master_update_7250() {
+function nas_master_update_7251() {
   module_enable(array('dfw', 'drupal_firewall_settings_feature'));
+}
+
+/**
+ * Update Engagement cards CT feature.
+ */
+function nas_master_update_7252() {
+  features_revert(array(
+    'nas_engagement_cards_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'variable',
+    ),
+  ));
 }

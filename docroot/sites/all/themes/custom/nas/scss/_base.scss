@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5 {
     font-weight: 300;
   }
   &.centered {
-    text-align: center;
+    @extend %text-center;
   }
 }
 h1 {
@@ -185,4 +185,8 @@ ul.small-list {
     line-height: 17px;
     margin-bottom: 6px;
   }
+}
+
+select {
+  -moz-appearance: none;
 }

@@ -72,7 +72,17 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     // Get rows.
     $ret = $this->apath($this->options['row_apath'], $ret);
-    nasnp_views_json_query_results_unfiltered($ret);
+
+    // MODIFICATIONS: Add local data to the results.
+    $this->add_local_data($ret, $view);
+
+    // Check if we should return Tier 1 results - find only Tier1 results.
+    if ($view->current_display == 'native_plants_search_pane_tier1') {
+      $ret = array_filter($ret, function($result) {
+        return $result->Tier1;
+      });
+    }
+    $view->result_unfiltered = $ret;
 
     // Filter.
     foreach ($ret as $k => $row) {
@@ -113,9 +123,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         unset($ret[$k]);
       }
     }
-
-    // MODIFICATIONS: Add local data to the results.
-    $this->add_local_data($ret, $view);
 
     try {
       if ($this->pager->use_count_query() || !empty($view->get_total_rows)) {
@@ -209,8 +216,13 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
    * Attach local data to the results.
    */
   public function add_local_data(&$ret, &$view) {
+    $cache = &drupal_static(__METHOD__, array());
+    if (isset($cache[$view->name])) {
+      $ret = $cache[$view->name]['ret'];
+      return;
+    }
+
     $plant_ids = array();
-    $view->result_tier1 = array();
 
     // Load all available plant attributes and bird types.
     $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
@@ -302,6 +314,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     }
 
     if (empty($plant_ids)) {
+      $cache[$view->name]['ret'] = $ret;
       return;
     }
 
@@ -311,9 +324,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       ->fieldCondition('field_native_plant_id', 'value', $plant_ids, 'IN');
     $results = $query->execute();
     if (!isset($results['node'])) {
-      if ($view->current_display == 'native_plants_search_pane_tier1') {
-        $ret = array();
-      }
+      $cache[$view->name]['ret'] = $ret;
       return;
     }
 
@@ -358,15 +369,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         }
 
         $ret[$result_key]->Tier1 = TRUE;
-        $view->result_tier1[] = $ret[$result_key];
-        unset($ret[$result_key]);
       }
-    }
-
-    // Check if we should return Tier 1 results.
-    // TODO: We should probably add option to query settings to return Tier 1 results.
-    if ($view->current_display == 'native_plants_search_pane_tier1') {
-      $ret = $view->result_tier1;
     }
 
     // Sort the results according to weights and then common names inside the
@@ -374,5 +377,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     uasort($ret, function($a, $b) {
       return ($a->Weight - $b->Weight) ? ($a->Weight - $b->Weight) : strcmp($a->CommonName, $b->CommonName);
     });
+
+    $cache[$view->name]['ret'] = $ret;
   }
 }

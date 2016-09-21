@@ -45,10 +45,13 @@
   <?php endif; ?>
 
   <div class="row">
+    <div class="columns">
+      <div class="inner-filters-wrapper-tier1 view-filters">
+      </div>
+    </div>
     <div class="view native-plants-search-results">
       <div class="view-content">
-        <?php if (isset($view->result_tier1)):
-          foreach ($view->result as $result): ?>
+        <?php foreach ($view->result as $result): ?>
             <div class="view-row columns">
               <div class="row" style="position: relative;">
                 <div class="column medium-8">
@@ -147,7 +150,7 @@
                 </div>
               </div>
             </div>
-          <?php endforeach; endif; ?>
+          <?php endforeach; ?>
       </div>
 
       <?php if ($pager): ?>

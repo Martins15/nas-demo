@@ -98,22 +98,22 @@ function nas_engagement_cards_feature_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '30',
         ),
         'language' => array(
           'weight' => '0',
         ),
         'locations' => array(
-          'weight' => '7',
+          'weight' => '30',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '40',
         ),
         'redirect' => array(
-          'weight' => '5',
+          'weight' => '30',
         ),
         'xmlsitemap' => array(
-          'weight' => '4',
+          'weight' => '30',
         ),
       ),
       'display' => array(),

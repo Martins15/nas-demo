@@ -28,9 +28,8 @@ function nas_engagement_cards_feature_field_group_info() {
       2 => 'field_link',
       3 => 'field_engagement_card_type',
       4 => 'field_placeholder_text',
-      5 => 'field_destination',
-      6 => 'field_convio_url',
-      7 => 'title',
+      5 => 'field_nas_external_integration',
+      6 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
