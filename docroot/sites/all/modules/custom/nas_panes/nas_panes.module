@@ -24,6 +24,7 @@ define('NAS_GET_OUTSIDE_IMAGE_STYLE', 'get_outside');
 
 define('NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE', 'article_featured');
 
+define('NAS_BIRD_CARDS_NUMBER', 4);
 define('NAS_FLYWAYS_NUMBER', 4);
 define('NAS_PANES_MAIN_MENU_NAME', 'menu-header-big-main-menu');
 
