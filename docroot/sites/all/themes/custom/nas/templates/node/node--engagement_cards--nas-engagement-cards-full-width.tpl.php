@@ -82,7 +82,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="hero-image half--black">
+<div class="hero-image">
   <?php print render($content['field_image']); ?>
   <div class="engagement-hero__content hide-for-large hide-for-xlarge">
     <div class="row">
@@ -117,7 +117,11 @@
         <?php if (isset($form)): ?>
           <?php print render($form); ?>
         <?php elseif (isset($button)): ?>
-          <?php print $button; ?>
+          <div class="row">
+            <div class="columns medium-7 medium-push-2 large-7 large-push-2">
+              <?php print $button; ?>
+            </div>
+          </div>
         <?php endif; ?>
       </div>
     </div>
