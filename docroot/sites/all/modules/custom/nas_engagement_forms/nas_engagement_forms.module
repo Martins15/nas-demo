@@ -47,20 +47,19 @@ function nas_engagement_forms_get_engagement_forms() {
 function nas_engagement_forms_forms($form_id, $args) {
   $forms = array();
   if (preg_match('/nas_engagement_forms_engagement_form_.*/', $form_id)) {
-    if (!empty($args[0]['id']) && $form_id == 'nas_engagement_forms_engagement_form_' . $args[0]['id']) {
-      $forms[$form_id] = array(
-        'callback' => 'nas_engagement_forms_engagement_form',
-      );
-    }
+    $forms[$form_id] = array(
+      'callback' => 'nas_engagement_forms_engagement_form',
+    );
   }
   return $forms;
 }
 
 /**
- * Form for mail subscription.
+ * Form builder for engagement forms.
  */
 function nas_engagement_forms_engagement_form($form, &$form_state, $conf = array()) {
   $form_state['nas_external_integration'] = $conf['nas_external_integration'];
+  $form_state['nas_engagement_forms'] = $conf['nas_engagement_forms'];
   $conf['nas_engagement_forms'] = array_merge(nas_engagement_forms_default_conf(), $conf['nas_engagement_forms']);
 
   if ($engagement_form = nas_engagement_forms_get_engagement_form($conf['nas_engagement_forms']['engagement_form'])) {
@@ -69,9 +68,18 @@ function nas_engagement_forms_engagement_form($form, &$form_state, $conf = array
     }
   }
 
-  $form['form_id'] = $form_state['build_info']['base_form_id'] . $conf['id'];
-
   return $form;
+}
+
+/**
+ * Engagement form submit callback.
+ */
+function nas_engagement_forms_engagement_form_submit(&$form, &$form_state) {
+  if ($engagement_form = nas_engagement_forms_get_engagement_form($form_state['nas_engagement_forms']['engagement_form'])) {
+    if ($function = ctools_plugin_get_function($engagement_form, 'submit_callback')) {
+      $form = $function($form, $form_state);
+    }
+  }
 }
 
 /**

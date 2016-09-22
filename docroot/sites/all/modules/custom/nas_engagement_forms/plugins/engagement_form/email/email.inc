@@ -11,6 +11,7 @@ $plugin = array(
   'title' => t('Email form'),
   'settings_callback' => 'nas_engagement_forms_email_settings_callback',
   'builder_callback' => 'nas_engagement_forms_email_builder_callback',
+  'submit_callback' => 'nas_engagement_forms_email_submit_callback',
 );
 
 /**
@@ -59,6 +60,22 @@ function nas_engagement_forms_email_builder_callback($form, $form_state, $conf) 
   );
 
   return $form;
+}
+
+/**
+ * Submit callback.
+ */
+function nas_engagement_forms_email_submit_callback(&$form, &$form_state) {
+  // External integration.
+  if (module_exists('nas_external_integration')) {
+    $values = array(
+      'email' => $form_state['values']['email'],
+    );
+    nas_external_integration_process_form_submission($values, $form_state['nas_external_integration']);
+  }
+
+  // Redirect to the Thank you page.
+  $form_state['redirect'] = variable_get('email_submission_redirect_url', 'thankyou');
 }
 
 /**
