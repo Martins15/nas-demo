@@ -82,7 +82,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="hero-image">
+<div class="hero-image<?php print $engagement_card_layout == 'half_black' ? ' half--black' : ''; ?>">
   <?php print render($content['field_image']); ?>
   <div class="engagement-hero__content hide-for-large hide-for-xlarge">
     <div class="row">

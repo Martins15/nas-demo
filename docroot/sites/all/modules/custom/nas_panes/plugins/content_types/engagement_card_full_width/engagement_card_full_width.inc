@@ -14,6 +14,7 @@ $plugin = array(
   'no title override' => TRUE,
   'defaults' => array(
     'reference' => array(),
+    'layout' => 'default',
   ),
 );
 
@@ -25,10 +26,19 @@ function engagement_card_full_width_edit_form($form, &$form_state) {
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
+  $form['layout'] = array(
+    '#type' => 'radios',
+    '#title' => t('Engagement card'),
+    '#options' => array(
+      'default' => t('Default'),
+      'half_black' => t('Half-black'),
+    ),
+    '#default_value' => $conf['layout'],
+  );
   $form['reference'] = array(
     '#type' => 'entityreference',
-    '#default_value' => $conf['reference'],
     '#title' => t('Engagement card'),
+    '#default_value' => $conf['reference'],
     '#era_entity_type' => 'node',
     '#era_bundles' => array('engagement_cards'),
   );
@@ -67,6 +77,7 @@ function engagement_card_full_width_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $node = node_load($conf['reference']['entity_id']);
+  $node->engagement_card_layout = $conf['layout'];
   $node_build = node_view($node, 'nas_engagement_cards_full_width');
   $engagement_card = drupal_render($node_build);
 

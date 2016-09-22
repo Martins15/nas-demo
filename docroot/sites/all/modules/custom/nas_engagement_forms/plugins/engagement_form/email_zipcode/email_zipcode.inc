@@ -113,6 +113,6 @@ function _nas_engagement_forms_email_zipcode_default_conf() {
   return array(
     'email_placeholder' => 'Email address',
     'zipcode_placeholder' => 'U.S. ZIP code',
-    'button_text' => 'OK',
+    'button_text' => 'Search',
   );
 }
