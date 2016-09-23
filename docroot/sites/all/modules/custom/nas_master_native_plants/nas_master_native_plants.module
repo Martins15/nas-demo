@@ -331,7 +331,6 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
       _nas_master_native_plants_attach_fields_sync($form);
 
       $form['zipcode']['#element_validate'] = array(
-        'nas_master_native_plants_element_validate_zipcode_global',
         'nas_master_native_plants_element_validate_zipcode_us',
       );
 
@@ -361,10 +360,6 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
         'data-native-plants-fields-sync-override' => 1,
       );
       _nas_master_native_plants_attach_fields_sync($form);
-
-      $form['zipcode']['#element_validate'] = array(
-        'nas_master_native_plants_element_validate_zipcode_global',
-      );
 
       $form['attribute_tier1']['#options']['All'] = t('All types of plants');
       $form['bird_type_tier1']['#options']['All'] = t('Attracts: Any type of bird');
@@ -461,14 +456,6 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
       }
     }
   }
-}
-
-/**
- * Helper function to set ZIP code as global variable.
- */
-function nas_master_native_plants_element_validate_zipcode_global($element, &$form_state) {
-  global $native_plants_zipcode;
-  $native_plants_zipcode = $element['#value'];
 }
 
 /**
@@ -1014,7 +1001,18 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
 /**
  * Helper function to convert zipcode into state.
  */
-function _nas_master_native_plants_zipcode_to_state($zipcode) {
+function _nas_master_native_plants_zipcode_to_state($zipcode = '') {
+  if (empty($zipcode)) {
+    $query_params = drupal_get_query_parameters();
+    if (isset($query_params['zipcode'])) {
+      $zipcode = $query_params['zipcode'];
+    }
+  }
+
+  if (empty($zipcode)) {
+    return '';
+  }
+
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'zipfips')
     ->entityCondition('bundle', 'zipfips')
