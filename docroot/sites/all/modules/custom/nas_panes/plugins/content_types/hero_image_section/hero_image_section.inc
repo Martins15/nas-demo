@@ -50,7 +50,7 @@ function hero_image_section_form($form, &$form_state) {
       ),
     ),
     '#default_value' => !empty($conf['icon']) ? $conf['icon'] : 0,
-    '#required' => TRUE,
+    '#required' => FALSE,
   );
 
   $form['image'] = array(
