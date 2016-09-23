@@ -573,6 +573,18 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
   }
 
   foreach ($vars['view']->result as &$result) {
+    if (user_access('create native_plant content')) {
+      $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
+        'query' => array(
+          'CommonName' => $result->CommonName,
+          'ScientificName' => $result->ScientificName,
+          'Family' => $result->Family,
+          'PlantID' => $result->PlantID,
+          'PlantImg' => $result->PlantImg,
+        ),
+      ));
+    }
+
     // Add Plant data attributes.
     $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
       . 'data-plant-common-name="' . $result->CommonName . '" '

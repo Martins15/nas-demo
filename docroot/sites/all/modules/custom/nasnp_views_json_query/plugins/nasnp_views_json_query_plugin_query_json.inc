@@ -250,18 +250,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
       if ($cached_plant = cache_get('native_plants_' . $plant_id)) {
         $result = $cached_plant->data;
-        $result->LocalLink = '';
-        if (user_access('create native_plant content')) {
-          $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
-            'query' => array(
-              'CommonName' => $result->CommonName,
-              'ScientificName' => $result->ScientificName,
-              'Family' => $result->Family,
-              'PlantID' => $plant_id,
-              'PlantImg' => $result->PlantImg,
-            ),
-          ));
-        }
         continue;
       }
 
@@ -275,17 +263,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result->Source = '';
       $result->LocalLink = '';
       $result->LocalPlantImg = '';
-      if (user_access('create native_plant content')) {
-        $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
-          'query' => array(
-            'CommonName' => $result->CommonName,
-            'ScientificName' => $result->ScientificName,
-            'Family' => $result->Family,
-            'PlantID' => $plant_id,
-            'PlantImg' => $result->PlantImg,
-          ),
-        ));
-      }
 
       // Assign plant attributes and bird types; and weight results based on
       // the lightest attribute.
