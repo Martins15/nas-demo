@@ -17,6 +17,12 @@ $plugin = array(
     'override_title_text' => 'Your plant list',
     'button_desktop' => 'Get your list & Join the sanctuary',
     'button_mobile' => 'Get your list',
+    'email_placeholder' => 'Email address',
+    'get_list_button_text' => 'OK',
+    'nas_external_integration' => array(
+      'provider' => 'convio',
+      'id' => '21409',
+    ),
   ),
 );
 
@@ -51,7 +57,20 @@ function native_plants_cart_edit_form($form, &$form_state) {
     '#default_value' => $conf['button_mobile'],
     '#size' => 100,
   );
+  $form['email_placeholder'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address placeholder'),
+    '#default_value' => $conf['email_placeholder'],
+    '#size' => 100,
+  );
+  $form['get_list_button_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address submit button text'),
+    '#default_value' => $conf['get_list_button_text'],
+    '#size' => 100,
+  );
 
+  $form = nas_external_integration_settings_form($form, $form_state, $conf['nas_external_integration']);
   return $form;
 }
 
@@ -73,7 +92,17 @@ function native_plants_cart_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function native_plants_cart_render($subtype, $conf, $args, $contexts) {
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
+  }
+
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  $conf['form_theme'] = 'native_plants_cart_get_list_form';
+  $form = drupal_get_form('nas_master_native_plants_get_list_form', $conf);
+  $rendered_form = drupal_render($form);
 
   $block = new stdClass();
   $block->content = array(
@@ -81,6 +110,7 @@ function native_plants_cart_render($subtype, $conf, $args, $contexts) {
     '#title' => t(filter_xss($conf['override_title_text'])),
     '#button_desktop' => t(filter_xss($conf['button_desktop'])),
     '#button_mobile' => t(filter_xss($conf['button_mobile'])),
+    '#form' => $rendered_form,
     '#context_links' => $contextual_links,
   );
 
@@ -110,9 +140,15 @@ function native_plants_cart_theme(&$theme, $plugin) {
       'title' => '',
       'button_desktop' => '',
       'button_mobile' => '',
+      'form' => '',
       'context_links' => '',
     ),
     'template' => 'native-plants-cart',
+    'path' => $plugin['path'],
+  );
+  $theme['native_plants_cart_get_list_form'] = array(
+    'render element' => 'form',
+    'template' => 'native-plants-cart-get-list-form',
     'path' => $plugin['path'],
   );
 }

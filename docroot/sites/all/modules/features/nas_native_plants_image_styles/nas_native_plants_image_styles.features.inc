@@ -110,5 +110,26 @@ function nas_native_plants_image_styles_image_default_styles() {
     ),
   );
 
+  // Exported image style: native_plants_sponsor_logo.
+  $styles['native_plants_sponsor_logo'] = array(
+    'label' => 'Native Plants Sponsor logo',
+    'effects' => array(
+      43 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '',
+          'height' => 60,
+          'upscale' => 0,
+        ),
+        'weight' => -9,
+      ),
+      44 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }

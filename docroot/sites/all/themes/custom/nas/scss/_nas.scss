@@ -289,7 +289,7 @@ textarea {
 /**
  * CTools popup forms refinements.
  */
- #modalContent .ctools-modal-content {
+#modalContent .ctools-modal-content {
   .description {
     color: #333;
     font-size: 13px;
@@ -1256,8 +1256,14 @@ body {
 
 /* Gray bar for mobile and tablets */
 .nas-lang-dropdown-gray-bar {
-  margin-left: -25px;
-  margin-right: -25px;
+  margin-left: -($column-gutter/2);
+  margin-right: -($column-gutter/2);
+
+  @include breakpoint(small-up) {
+    margin-left: -$column-gutter;
+    margin-right: -$column-gutter;
+  }
+
   .dd-container {
     padding-top: 0;
     width: 100% !important;
@@ -1296,6 +1302,193 @@ ul.clearing-thumbs {
     .clearing-main-prev.disabled,
     .clearing-main-next.disabled {
       display: none;
+    }
+  }
+}
+
+/**
+ * IBA State page exposed form.
+ */
+#views-exposed-form-iba-search-state-page-iba-search-state-page {
+  label {
+    display: none;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  #edit-field-iba-status-wrapper {
+    float: none;
+    padding: 0;
+    @media only screen and (min-width: 601px) {
+      padding: 0 12.5px 0 0;
+      float: left;
+      width: 50%;
+    }
+    @media only screen and (min-width: 768px) {
+      padding: 0 12.5px 0 0;
+      float: left;
+      width: 25%;
+    }
+  }
+
+  #edit-priority-wrapper {
+    float: none;
+    padding: 0;
+    @media only screen and (min-width: 601px) {
+      float: left;
+      padding: 0 0 0 12.5px;
+      width: 50%;
+    }
+    @media only screen and (min-width: 768px) {
+      float: left;
+      padding: 0 12.5px;
+      width: 25%;
+    }
+  }
+
+  #edit-search-api-views-fulltext-wrapper {
+    padding: 0 12.5px 0 0;
+    width: 86%;
+    @media only screen and (min-width: 768px) {
+      padding: 0 12.5px 0 0;
+      width: 42%;
+    }
+  }
+
+  .views-submit-button {
+    padding: 0 0 0 12.5px;
+    width: 14%;
+    @media only screen and (max-width: 320px) {
+      padding: 0;
+    }
+    @media only screen and (min-width: 768px) {
+      padding: 0;
+      width: 8%;
+    }
+
+    input {
+      margin: 0;
+      height: 40px;
+      width: 100%;
+    }
+  }
+}
+
+.view-iba-search-state-page {
+  ul.pager {
+    display: block;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    height: 40px;
+    margin: 0 0 5px;
+
+    .ajax-progress-throbber {
+      display: inline-block;
+      margin-left: 5px;
+      * {
+        display: inline-block;
+      }
+    }
+
+    li {
+      height: 30px;
+      color: #222222;
+      font-size: 17px;
+      margin-left: 5px;
+      display: inline-block;
+
+      &.pager-next,
+      &.pager-previous {
+        display: none;
+      }
+
+      a {
+        display: inline-block;
+        padding: 1px 5px 1px;
+        color: #0aa8e3;
+        border-radius: 3px;
+      }
+
+      &:hover a,
+      a:focus {
+        background: transparent;
+      }
+
+      &.unavailable a {
+        cursor: default;
+        color: $color-light-gray;
+        &:hover a,
+        &:focus {
+          background: transparent;
+        }
+      }
+
+      &.current {
+        background: transparent;
+        color: black;
+        font-weight: 600;
+        cursor: default;
+
+        &:hover,
+        a:focus {
+          background: transparent;
+        }
+      }
+    }
+  }
+}
+
+.node-type-iba .social-sharing-caption.small {
+  @include breakpoint(width, 768px) {
+    display: block;
+  }
+}
+
+#admin-menu #i18n_pc_contextual_links.dropdown li.admin-menu-action:hover ul {
+  right: auto;
+}
+
+.iba-landing-map {
+  .embed-container {
+    position: relative;
+    padding-bottom: 500px;
+    height: 0;
+    max-width: 100%;
+
+    iframe,
+    object,
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 500px;
+    }
+  }
+}
+
+.iba-map.embed-container {
+  position: relative;
+  padding-bottom: 300px;
+  height: 0;
+  max-width: 100%;
+
+  @include breakpoint(large-up) {
+    padding-bottom: 500px;
+  }
+
+  iframe,
+  object,
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 280px;
+
+    @include breakpoint(large-up) {
+      height: 500px;
     }
   }
 }

@@ -1,7 +1,7 @@
 name = Community Resource CT
 core = 7.x
 package = Native Plants
-version = 7.x-1.1
+version = 7.x-1.3
 project = nas_community_resource_ct_feature
 dependencies[] = addressfield
 dependencies[] = ctools

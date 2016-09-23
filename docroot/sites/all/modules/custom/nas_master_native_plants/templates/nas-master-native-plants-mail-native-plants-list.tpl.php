@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0;" />
     <title>National Audubon Society</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
-    <?php if ($css): ?>
+    <?php if (!empty($css)): ?>
       <style type="text/css">
         <!--
         <?php print $css ?>
@@ -111,26 +111,14 @@
             <tr>
               <td>
                 <h2 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
-                  <?php print $list_title; ?>
+                  <?php print $list_title_1; ?>
                 </h2>
-                <?php print $list_text_top; ?>
-                <p><?php print l($permalink_url, $permalink_url); ?></p>
-
-                <table cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <td>
-                      <span style="margin-right: 30px;line-height: 21px;" valign="middle"><?php print $list_share_label; ?></span>
-                    </td>
-                    <td>
-                      <a target="_blank" href="<?php print $twitter_url; ?>"><?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/twitter.png', 'width' => 21, 'height' => 21, 'attributes' => array('style' => 'padding-right: 10px; width: 21px; height: 21px;'))); ?></a>
-                    </td>
-                    <td>
-                      <a target="_blank" href="<?php print $facebook_url; ?>"><?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/facebook.png', 'width' => 21, 'height' => 21, 'attributes' => array('style' => 'padding-right: 10px; width: 21px; height: 21px;'))); ?></a>
-                    </td>
-                  </tr>
-                </table>
-
-                <?php print $list_text_bottom; ?>
+                <?php print $list_text_1; ?>
+                <h2 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
+                  <?php print $list_title_2; ?>
+                </h2>
+                <?php print $list_text_2; ?>
+                <a href="<?php print $permalink_url; ?>" class="button" style="Margin:0;background-color:#F15936;border-radius:8px;color:#fff;display:inline-block;font-family:'Source Sans Pro',Verdana,sans-serif;font-size:20px;font-weight:inherit;height:45px;line-height:45px;margin:9px 0 9px 0;padding:0 35px 0 35px;text-align:left;text-decoration:none"><?php print t('How Many Will You Plant?'); ?></a>
 
                 <table width="100%" border="0" cellspacing="0" cellpadding="12" class="list-table" style="border-collapse: collapse;">
                   <thead>

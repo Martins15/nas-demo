@@ -25,3 +25,28 @@
     }
   }
 }
+
+// Non row related vertical spacing classes
+.vertical-spacing--top {
+  padding-top: $column-gutter;
+}
+
+.vertical-spacing--top--double {
+  padding-top: $column-gutter*2;
+}
+
+.vertical-spacing--top--half {
+  padding-top: $column-gutter/2;
+}
+
+.vertical-spacing--bottom {
+  padding-bottom: $column-gutter;
+}
+
+.vertical-spacing--bottom--double {
+  padding-bottom: $column-gutter*2;
+}
+.vertical-spacing--bottom--half {
+
+  padding-bottom: $column-gutter/2;
+}

@@ -311,11 +311,11 @@ function _nas_events_get_events($state = 'all') {
         $items[$nid]['title'] = $node->title;
         $items[$nid]['state'] = $state;
 
-        if (!empty($node->field_event_description[LANGUAGE_NONE])) {
-          $items[$nid]['body'] = truncate_utf8($node->field_event_description[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
+        if (!empty($node->field_event_description[LANGUAGE_NONE][0])) {
+          $items[$nid]['body'] = check_markup(text_summary($node->field_event_description[LANGUAGE_NONE][0]['value'], $node->field_event_description[LANGUAGE_NONE][0]['format'], 100));
         }
-        elseif (!empty($node->body[LANGUAGE_NONE])) {
-          $items[$nid]['body'] = truncate_utf8($node->body[LANGUAGE_NONE][0]['value'], 100, TRUE, FALSE, 4);
+        elseif (!empty($node->body[LANGUAGE_NONE][0])) {
+          $items[$nid]['body'] = check_markup(text_summary($node->body[LANGUAGE_NONE][0]['value'], $node->body[LANGUAGE_NONE][0]['format'], 100));
         }
         else {
           $items[$nid]['body'] = '';
