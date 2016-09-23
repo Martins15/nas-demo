@@ -216,9 +216,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
    * Attach local data to the results.
    */
   public function add_local_data(&$ret, &$view) {
-    $cache = &drupal_static(__METHOD__, array());
-    if (isset($cache[$view->name])) {
-      $ret = $cache[$view->name]['ret'];
+    $static_cache = &drupal_static(__METHOD__, array());
+    if (isset($static_cache[$view->name])) {
+      $ret = $static_cache[$view->name];
       return;
     }
 
@@ -229,7 +229,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
     $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
     $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
-
     $np_attr_term_wrappers = array();
     $np_bird_types_term_wrappers = array();
     foreach ($np_attr_terms as $term) {
@@ -246,19 +245,20 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           $result->Family,
         )
       );
-      $plant_ids[$result_key] = $plant_id;
 
       if ($cached_plant = cache_get('native_plants_' . $plant_id)) {
         $result = $cached_plant->data;
         continue;
       }
 
+      $plant_ids[$result_key] = $plant_id;
       $result->PlantID = $plant_id;
 
       // TODO: use rawurlencode() on the filename of the PlantImg URL.
       $result->PlantImg = str_replace(' ', '%20', $result->PlantImg);
 
       $result->Tier1 = FALSE;
+      $result->Tier1StateCodes = array();
       $result->Description = '';
       $result->Source = '';
       $result->LocalLink = '';
@@ -310,23 +310,17 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       cache_set('native_plants_' . $plant_id, $result, 'cache', CACHE_TEMPORARY);
     }
 
-    if (empty($plant_ids)) {
-      $cache[$view->name]['ret'] = $ret;
-      return;
+    $results['node'] = array();
+    if (!empty($plant_ids)) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'native_plant')
+        ->fieldCondition('field_native_plant_id', 'value', $plant_ids, 'IN');
+      $results = $query->execute();
+      if (!isset($results['node'])) {
+        $results['node'] = array();
+      }
     }
-
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'native_plant')
-      ->fieldCondition('field_native_plant_id', 'value', $plant_ids, 'IN');
-    $results = $query->execute();
-    if (!isset($results['node'])) {
-      $cache[$view->name]['ret'] = $ret;
-      return;
-    }
-
-    global $native_plants_zipcode;
-    $user_state_code = _nas_master_native_plants_zipcode_to_state($native_plants_zipcode);
 
     foreach ($results['node'] as $node_info) {
       $local_node = node_load($node_info->nid);
@@ -349,23 +343,33 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
         // Check if this is Tier 1 result.
         if (!$local_node_wrapper->field_native_plant_tier1->value()) {
+          cache_set('native_plants_' . $plant_id, $ret[$result_key], 'cache', CACHE_TEMPORARY);
           continue;
         }
+        $ret[$result_key]->Tier1 = TRUE;
         // Check for Tier 1 states.
         $tier1_states = $local_node_wrapper->field_native_plant_tier1_states->value();
-        if (!empty($tier1_states) && $user_state_code) {
+        if (!empty($tier1_states)) {
           $tier1_state_codes = array();
           foreach ($tier1_states as $state_term) {
             $term_state_code = field_get_items('taxonomy_term', $state_term, 'field_iso_code');
             $tier1_state_codes[] = reset($term_state_code)['value'];
           }
+          $ret[$result_key]->Tier1StateCodes = $tier1_state_codes;
+        }
+        cache_set('native_plants_' . $plant_id, $ret[$result_key], 'cache', CACHE_TEMPORARY);
+      }
+    }
 
-          if (!in_array($user_state_code, $tier1_state_codes)) {
-            continue;
+    // Check Tier 1 plants by user state code.
+    $user_state_code = _nas_master_native_plants_zipcode_to_state();
+    if (!empty($user_state_code)) {
+      foreach ($ret as &$result) {
+        if ($result->Tier1 && !empty($result->Tier1StateCodes)) {
+          if (!in_array($user_state_code, $result->Tier1StateCodes)) {
+            $result->Tier1 = FALSE;
           }
         }
-
-        $ret[$result_key]->Tier1 = TRUE;
       }
     }
 
@@ -375,6 +379,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       return ($a->Weight - $b->Weight) ? ($a->Weight - $b->Weight) : strcmp($a->CommonName, $b->CommonName);
     });
 
-    $cache[$view->name]['ret'] = $ret;
+    $static_cache[$view->name] = $ret;
   }
 }
