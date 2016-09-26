@@ -24,9 +24,15 @@ function nas_master_native_plants_settings($form, &$form_state) {
  */
 function nas_master_native_plants_cache_clear($form, &$form_state) {
   $form['actions'] = array('#type' => 'actions');
-  $form['actions']['submit'] = array(
+  $form['actions']['cache_api'] = array(
     '#type' => 'submit',
-    '#value' => t('Clear Native Plants cache'),
+    '#value' => t('Clear API cache'),
+    '#name' => 'native_plants_cache_api',
+  );
+  $form['actions']['cache_local_data'] = array(
+    '#type' => 'submit',
+    '#value' => t('Clear local data cache'),
+    '#name' => 'native_plants_cache_local_data',
   );
 
   return $form;
@@ -35,13 +41,22 @@ function nas_master_native_plants_cache_clear($form, &$form_state) {
 /**
  * Submit callback for nas_master_native_plants_cache_clear().
  */
-function nas_master_native_plants_cache_clear_submit() {
-  $destination = 'public://views_json_query';
-  if (file_unmanaged_delete_recursive($destination)) {
-    drupal_set_message('Cleared Native Plants cache.');
-  }
-  else {
-    drupal_set_message('Failed to clear Native Plants cache.', 'error');
+function nas_master_native_plants_cache_clear_submit($form, &$form_state) {
+  switch ($form_state['triggering_element']['#name']) {
+    case 'native_plants_cache_api':
+      $destination = 'public://views_json_query';
+      if (file_unmanaged_delete_recursive($destination)) {
+        drupal_set_message('Cleared Native Plants API cache.');
+      }
+      else {
+        drupal_set_message('Failed to clear Native Plants API cache.', 'error');
+      }
+      break;
+
+    case 'native_plants_cache_local_data':
+      cache_clear_all('native_plants_*', 'cache', TRUE);
+      drupal_set_message('Cleared Native Plants local data cache.');
+      break;
   }
 }
 
