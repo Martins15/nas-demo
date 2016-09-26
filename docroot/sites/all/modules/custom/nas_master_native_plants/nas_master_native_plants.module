@@ -70,12 +70,14 @@ function nas_master_native_plants_node_presave($node) {
     return;
   }
 
-  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_master_native_plants_generate_plant_id(
+  $plant_id = nas_master_native_plants_generate_plant_id(
     array(
       $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
       $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
     )
   );
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = $plant_id;
+  cache_clear_all('native_plants_' . $plant_id, 'cache');
 }
 
 /**
