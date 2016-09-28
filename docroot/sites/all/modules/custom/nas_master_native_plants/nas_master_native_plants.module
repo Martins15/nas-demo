@@ -640,6 +640,7 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     ctools_include('ajax');
     $commands[] = ctools_ajax_command_redirect('/native-plants/hawaii');
     $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
+    return;
   }
 
   // Handle best results view refresh.
