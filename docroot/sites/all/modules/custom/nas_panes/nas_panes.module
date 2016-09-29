@@ -1567,8 +1567,8 @@ function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
     // Manual override.
     if (empty($nodes) &&
       !empty($data['references'][1]['entity_reference']['entity_id']) &&
-      $node = _i18n_node_load($data['references'][1]['entity_reference']['entity_id'])
-    ) {
+      node_load($data['references'][1]['entity_reference']['entity_id'])->status == NODE_PUBLISHED &&
+      $node = _i18n_node_load($data['references'][1]['entity_reference']['entity_id'])) {
       $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
     }
     if (empty($nodes)) {
