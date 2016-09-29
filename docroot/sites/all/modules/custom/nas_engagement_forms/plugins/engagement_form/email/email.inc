@@ -38,26 +38,42 @@ function nas_engagement_forms_email_settings_callback($conf) {
  * Form builder callback.
  */
 function nas_engagement_forms_email_builder_callback($form, $form_state, $conf) {
-  $form['#attributes']['class'][] = 'ec-mailing-list-form';
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => t($conf['email_placeholder']),
     '#title_display' => 'invisible',
     '#attributes' => array(
       'placeholder' => t($conf['email_placeholder']),
-      'class' => array('mailing-list-input', 'radius'),
+      'class' => array(
+        'mailing-list-input',
+        'radius',
+      ),
     ),
     '#size' => '',
     '#required' => TRUE,
-    '#element_validate' => array('nas_engagement_forms_element_validate_email'),
+    '#element_validate' => array(
+      'nas_engagement_forms_element_validate_email',
+    ),
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t($conf['button_text']),
     '#attributes' => array(
-      'class' => array('button', 'tomato', 'large'),
+      'class' => array(
+        'button',
+        'tomato',
+        'large',
+      ),
     ),
   );
+
+  if (isset($conf['form_theme']) && $conf['form_theme'] == 'full_width') {
+    $form['#theme'] = 'nas_engagement_forms_email_full_width';
+    $form['#attributes']['class'][] = 'engagement-hero-form';
+  }
+  else {
+    $form['#attributes']['class'][] = 'ec-mailing-list-form';
+  }
 
   return $form;
 }

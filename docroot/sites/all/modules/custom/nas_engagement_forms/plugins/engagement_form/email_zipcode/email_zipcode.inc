@@ -43,19 +43,21 @@ function nas_engagement_forms_email_zipcode_settings_callback($conf) {
  * Form builder callback.
  */
 function nas_engagement_forms_email_zipcode_builder_callback($form, $form_state, $conf) {
-  $form['#theme'] = 'nas_engagement_forms_email_zipcode';
-  $form['#attributes']['class'][] = 'engagement-hero-form';
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => t($conf['email_placeholder']),
     '#title_display' => 'invisible',
     '#attributes' => array(
       'placeholder' => t($conf['email_placeholder']),
-      'class' => array('native-plants-search-form--email'),
+      'class' => array(
+        'native-plants-search-form--email',
+      ),
     ),
     '#size' => '',
     '#required' => TRUE,
-    '#element_validate' => array('nas_engagement_forms_element_validate_email'),
+    '#element_validate' => array(
+      'nas_engagement_forms_element_validate_email',
+    ),
   );
   $form['zipcode'] = array(
     '#type' => 'textfield',
@@ -64,13 +66,13 @@ function nas_engagement_forms_email_zipcode_builder_callback($form, $form_state,
     '#attributes' => array(
       'placeholder' => t($conf['zipcode_placeholder']),
       'class' => array(
-        'native-plants-search-form--zip-code'
+        'native-plants-search-form--zip-code',
       ),
     ),
     '#size' => '',
     '#required' => TRUE,
     '#element_validate' => array(
-      'nas_engagement_forms_element_validate_zipcode_us'
+      'nas_engagement_forms_element_validate_zipcode_us',
     ),
   );
   $form['submit'] = array(
@@ -85,6 +87,11 @@ function nas_engagement_forms_email_zipcode_builder_callback($form, $form_state,
       ),
     ),
   );
+
+  if (isset($conf['form_theme']) && $conf['form_theme'] == 'full_width') {
+    $form['#theme'] = 'nas_engagement_forms_email_zipcode_full_width';
+    $form['#attributes']['class'][] = 'engagement-hero-form';
+  }
 
   return $form;
 }

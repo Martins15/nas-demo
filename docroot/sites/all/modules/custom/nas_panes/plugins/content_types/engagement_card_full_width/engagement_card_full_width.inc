@@ -28,7 +28,7 @@ function engagement_card_full_width_edit_form($form, &$form_state) {
 
   $form['layout'] = array(
     '#type' => 'radios',
-    '#title' => t('Engagement card'),
+    '#title' => t('Layout'),
     '#options' => array(
       'default' => t('Default'),
       'half_black' => t('Half-black'),

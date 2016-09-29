@@ -112,7 +112,7 @@
   </div>
 
   <div class="row">
-    <div class="columns large-4 large-push-6 engagement-hero__column">
+    <div class="columns large-6 large-push-6 engagement-hero__column">
       <div class="engagement-hero-form">
         <?php if (isset($form)): ?>
           <?php print render($form); ?>

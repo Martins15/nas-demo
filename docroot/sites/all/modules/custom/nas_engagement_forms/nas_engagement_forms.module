@@ -210,9 +210,13 @@ function nas_engagement_forms_element_validate_zipcode_us($element, &$form_state
  */
 function nas_engagement_forms_theme($existing, $type, $theme, $path) {
   return array(
-    'nas_engagement_forms_email_zipcode' => array(
+    'nas_engagement_forms_email_zipcode_full_width' => array(
       'render element' => 'form',
-      'template' => 'templates/nas-engagement-forms-email-zipcode',
+      'template' => 'templates/nas-engagement-forms-email-zipcode-full-width',
+    ),
+    'nas_engagement_forms_email_full_width' => array(
+      'render element' => 'form',
+      'template' => 'templates/nas-engagement-forms-email-full-width',
     ),
   );
 }
