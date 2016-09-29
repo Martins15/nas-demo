@@ -24,7 +24,6 @@ features[image][] = conservation_strategy_icon
 features[image][] = conservation_strategy_slideshow
 features[image][] = default_teaser_image
 features[image][] = donate_banner_bg
-features[image][] = engagement_card_full_width
 features[image][] = featured_frontpage
 features[image][] = featured_frontpage_hero_image
 features[image][] = front_flyway_image

@@ -1,7 +1,7 @@
 name = Engagement cards
 core = 7.x
 package = NAS
-version = 7.x-1.2
+version = 7.x-1.3
 project = nas_engagement_cards_feature
 dependencies[] = ctools
 dependencies[] = entityreference
@@ -39,6 +39,7 @@ features[field_instance][] = node-engagement_cards-field_nas_engagement_forms
 features[field_instance][] = node-engagement_cards-field_nas_external_integration
 features[field_instance][] = node-engagement_cards-field_related_bird
 features[image][] = engagement_card
+features[image][] = engagement_card_full_width
 features[node][] = engagement_cards
 features[variable][] = field_bundle_settings_node__engagement_cards
 features[variable][] = language_content_type_engagement_cards
