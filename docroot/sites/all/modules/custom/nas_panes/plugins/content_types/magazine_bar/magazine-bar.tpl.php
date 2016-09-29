@@ -14,9 +14,9 @@
       </h2>
       <div class="guide-bar-date">
         <?php if ($first_month_part_1 && $sec_month_part_1 && $year): ?>
-        <a href="<?php print $link; ?>"><?php print $first_month_part_1; ?><span class="hide-for-small hide-for-tiny"><?php print $first_month_part_2; ?></span>– <?php print $sec_month_part_1; ?><span class="hide-for-small hide-for-tiny"><?php print $sec_month_part_2; ?></span> <?php print $year; ?></a>
+          <a href="<?php print $link; ?>"><?php print $first_month_part_1; ?><span class="hide-for-small hide-for-tiny"><?php print $first_month_part_2; ?></span>– <?php print $sec_month_part_1; ?><span class="hide-for-small hide-for-tiny"><?php print $sec_month_part_2; ?></span> <?php print $year; ?></a>
         <?php else: ?>
-        <a href="<?php print $link; ?>"><?php print $origin; ?></a>
+          <a href="<?php print $link; ?>"><?php print $origin; ?></a>
         <?php endif; ?>
       </div>
     </div>
