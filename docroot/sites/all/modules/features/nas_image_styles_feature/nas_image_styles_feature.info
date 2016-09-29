@@ -1,6 +1,8 @@
 name = NAS Image Styles
 core = 7.x
 package = NAS
+version = 7.x-1.1
+project = nas_image_styles_feature
 dependencies[] = image
 features[features_api][] = api:2
 features[image][] = about_page_success_section
@@ -22,6 +24,7 @@ features[image][] = conservation_strategy_icon
 features[image][] = conservation_strategy_slideshow
 features[image][] = default_teaser_image
 features[image][] = donate_banner_bg
+features[image][] = engagement_card_full_width
 features[image][] = featured_frontpage
 features[image][] = featured_frontpage_hero_image
 features[image][] = front_flyway_image
