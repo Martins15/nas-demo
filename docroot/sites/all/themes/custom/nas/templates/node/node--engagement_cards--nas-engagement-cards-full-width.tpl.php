@@ -118,7 +118,7 @@
           <?php print render($form); ?>
         <?php elseif (isset($button)): ?>
           <div class="row">
-            <div class="columns medium-7 medium-push-2 large-7 large-push-2">
+            <div class="columns medium-7 medium-push-2">
               <?php print $button; ?>
             </div>
           </div>
