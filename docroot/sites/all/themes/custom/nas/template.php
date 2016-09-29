@@ -1804,17 +1804,26 @@ function _nas_related_features_attach_menu_section_class(&$field) {
  */
 function nas_extract_magazine_date($string) {
   // @todo should be improved.
-  $data = array();
-  $str = $string;
+  $str = check_plain($string);
+  $data = array(
+    'origin' => $str,
+    'first_month_part_1' => '',
+    'first_month_part_2' => '',
+    'sec_month_part_1' => '',
+    'sec_month_part_2' => '',
+    'year' => '',
+  );
   $str = explode('-', trim($str));
-  $first_month = $str[0];
-  $str[1] = explode(' ', trim($str[1]));
-  $second_month = $str[1][0];
-  $data['first_month_part_1'] = substr($first_month, 0, 3);
-  $data['first_month_part_2'] = substr($first_month, 3);
-  $data['sec_month_part_1'] = substr($second_month, 0, 3);
-  $data['sec_month_part_2'] = substr($second_month, 3);
-  $data['year'] = $str[1][1];
+  if (count($str) == 2) {
+    $first_month = $str[0];
+    $str[1] = explode(' ', trim($str[1]));
+    $second_month = $str[1][0];
+    $data['first_month_part_1'] = substr($first_month, 0, 3);
+    $data['first_month_part_2'] = substr($first_month, 3);
+    $data['sec_month_part_1'] = substr($second_month, 0, 3);
+    $data['sec_month_part_2'] = substr($second_month, 3);
+    $data['year'] = $str[1][1];
+  }
 
   return $data;
 }
