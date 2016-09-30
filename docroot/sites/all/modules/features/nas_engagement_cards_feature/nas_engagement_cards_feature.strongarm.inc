@@ -91,6 +91,27 @@ function nas_engagement_cards_feature_strongarm() {
       'about_page_related_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'fb_instant_article' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_engagement_cards_full_width' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'custom_settings' => TRUE,
+      ),
+      'ical' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_card_3x' => array(
+        'custom_settings' => FALSE,
+      ),
+      'editorial_card_4x' => array(
+        'custom_settings' => FALSE,
+      ),
+      'nas_teaser_related_news' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -116,7 +137,18 @@ function nas_engagement_cards_feature_strongarm() {
           'weight' => '30',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'language' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'nas_engagement_cards_full_width' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__engagement_cards'] = $strongarm;

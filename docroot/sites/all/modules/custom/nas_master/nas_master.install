@@ -3668,3 +3668,19 @@ function nas_master_update_7252() {
     ),
   ));
 }
+
+/**
+ * Enable NAS Engagement forms, update Engagement cards CT feature.
+ */
+function nas_master_update_7253() {
+  module_enable(array('nas_engagement_forms'));
+  features_revert(array(
+    'nas_engagement_cards_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+      'variable',
+      'image',
+    ),
+  ));
+}
