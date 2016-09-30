@@ -1,0 +1,222 @@
+<?php
+
+/**
+ * @file
+ * Different engagement forms.
+ */
+
+/**
+ * Implements hook_ctools_plugin_type().
+ */
+function nas_engagement_forms_ctools_plugin_type() {
+  return array(
+    'engagement_form' => array(
+      'cache' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_engagement_forms_ctools_plugin_directory($module, $type) {
+  if ($module == 'nas_engagement_forms' && $type == 'engagement_form') {
+    return 'plugins/' . $type;
+  }
+}
+
+/**
+ * Load metadata for a single provider without loading all providers.
+ */
+function nas_engagement_forms_get_engagement_form($name) {
+  ctools_include('plugins');
+  return ctools_get_plugins('nas_engagement_forms', 'engagement_form', $name);
+}
+
+/**
+ * Load metadata for all providers.
+ */
+function nas_engagement_forms_get_engagement_forms() {
+  ctools_include('plugins');
+  return ctools_get_plugins('nas_engagement_forms', 'engagement_form');
+}
+
+/**
+ * Implements hook_forms().
+ */
+function nas_engagement_forms_forms($form_id, $args) {
+  $forms = array();
+  if (preg_match('/nas_engagement_forms_engagement_form_.*/', $form_id)) {
+    $forms[$form_id] = array(
+      'callback' => 'nas_engagement_forms_engagement_form',
+    );
+  }
+  return $forms;
+}
+
+/**
+ * Form builder for engagement forms.
+ */
+function nas_engagement_forms_engagement_form($form, &$form_state, $conf = array()) {
+  $form_state['nas_external_integration'] = $conf['nas_external_integration'];
+  $form_state['nas_engagement_forms'] = $conf['nas_engagement_forms'];
+  $conf['nas_engagement_forms'] = array_merge(nas_engagement_forms_default_conf(), $conf['nas_engagement_forms']);
+
+  if ($engagement_form = nas_engagement_forms_get_engagement_form($conf['nas_engagement_forms']['engagement_form'])) {
+    if ($function = ctools_plugin_get_function($engagement_form, 'builder_callback')) {
+      $form = $function($form, $form_state, $conf['nas_engagement_forms']['engagement_form_settings']);
+    }
+  }
+
+  return $form;
+}
+
+/**
+ * Engagement form submit callback.
+ */
+function nas_engagement_forms_engagement_form_submit(&$form, &$form_state) {
+  if ($engagement_form = nas_engagement_forms_get_engagement_form($form_state['nas_engagement_forms']['engagement_form'])) {
+    if ($function = ctools_plugin_get_function($engagement_form, 'submit_callback')) {
+      $form = $function($form, $form_state);
+    }
+  }
+}
+
+/**
+ * Add engagement forms configuration options to the form.
+ */
+function nas_engagement_forms_settings_form($form, $form_state, $conf = array()) {
+  $conf = array_merge(nas_engagement_forms_default_conf(), $conf);
+
+  // Update conf values if it was AJAX submission.
+  if (isset($form_state['values']['nas_engagement_forms'])) {
+    $conf = array_merge($conf, $form_state['values']['nas_engagement_forms']);
+  }
+
+  $form['nas_engagement_forms'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Engagement forms'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+    '#tree' => TRUE,
+    '#prefix' => '<div id="nas-engagement-forms-wrapper">',
+    '#suffix' => '</div>',
+  );
+
+  $form['nas_engagement_forms']['engagement_form'] = array(
+    '#type' => 'select',
+    '#title' => t('Engagement form'),
+    '#empty_option' => t('None'),
+    '#default_value' => $conf['engagement_form'],
+    '#ajax' => array(
+      'callback' => '',
+      'wrapper' => 'nas-engagement-forms-wrapper',
+      'trigger_as' => array('name' => 'get_engagement_form_settings'),
+    ),
+  );
+  $engagement_forms = nas_engagement_forms_get_engagement_forms();
+  foreach ($engagement_forms as $engagement_form) {
+    $form['nas_engagement_forms']['engagement_form']['#options'][$engagement_form['name']] = $engagement_form['title'];
+  }
+
+  if ($engagement_form = nas_engagement_forms_get_engagement_form($conf['engagement_form'])) {
+    if ($function = ctools_plugin_get_function($engagement_form, 'settings_callback')) {
+      $form['nas_engagement_forms']['engagement_form_settings'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Engagement form settings'),
+        '#collapsible' => FALSE,
+      );
+      $form['nas_engagement_forms']['engagement_form_settings'] = array_merge(
+        $form['nas_engagement_forms']['engagement_form_settings'],
+        $function($conf['engagement_form_settings'])
+      );
+    }
+  }
+
+  $form['nas_engagement_forms']['get_engagement_form_settings'] = array(
+    '#type' => 'submit',
+    '#name' => 'get_engagement_form_settings',
+    '#value' => t('Get engagement form settings'),
+    '#submit' => array('_nas_engagement_forms_ajax_submit'),
+    '#ajax' => array(
+      'callback' => '_nas_engagement_forms_ajax_callback',
+      'wrapper' => 'nas-engagement-forms-wrapper',
+    ),
+    '#limit_validation_errors' => array(array('nas_engagement_forms')),
+    '#attributes' => array(
+      'class' => array('js-hide'),
+    ),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback to rebuild the form.
+ */
+function _nas_engagement_forms_ajax_submit($form, &$form_state) {
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * AJAX callback to return the select of available mailing lists.
+ */
+function _nas_engagement_forms_ajax_callback($form, &$form_state) {
+  return $form['nas_engagement_forms'];
+}
+
+/**
+ * Default configuration for engagement forms.
+ */
+function nas_engagement_forms_default_conf() {
+  return array(
+    'engagement_form' => '',
+    'engagement_form_settings' => array(),
+  );
+}
+
+/**
+ * Helper function to validate form element value is a valid email address.
+ */
+function nas_engagement_forms_element_validate_email($element, &$form_state) {
+  $email = &$element['#value'];
+  $email = strtolower(trim($email));
+  if (empty($email)) {
+    return;
+  }
+
+  // Validate email address.
+  if (!valid_email_address($email)) {
+    form_error($element, t('The e-mail address you specified is not valid.'));
+  }
+}
+
+/**
+ * Helper function to validate form element for US ZIP code.
+ */
+function nas_engagement_forms_element_validate_zipcode_us($element, &$form_state) {
+  if ($element['#value'] == '' || !module_exists('postal_code_validation')) {
+    return;
+  }
+
+  $validation = postal_code_validation_validate($element['#value'], 'US');
+  if ($validation['error']) {
+    form_error($element, $validation['error']);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nas_engagement_forms_theme($existing, $type, $theme, $path) {
+  return array(
+    'nas_engagement_forms_email_zipcode_full_width' => array(
+      'render element' => 'form',
+      'template' => 'templates/nas-engagement-forms-email-zipcode-full-width',
+    ),
+    'nas_engagement_forms_email_full_width' => array(
+      'render element' => 'form',
+      'template' => 'templates/nas-engagement-forms-email-full-width',
+    ),
+  );
+}
