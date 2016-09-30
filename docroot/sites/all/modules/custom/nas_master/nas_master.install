@@ -3668,3 +3668,14 @@ function nas_master_update_7252() {
     ),
   ));
 }
+
+/**
+ * Update Static page CT feature.
+ */
+function nas_master_update_7253() {
+  features_revert(array(
+    'nas_static_page_feature' => array(
+      'field_base',
+    ),
+  ));
+}
