@@ -21,6 +21,9 @@ function nas_solr_entity_load($entities, $type) {
   // Use local server for all CI environments.
   if ($type == 'search_api_index' && !isset($_ENV['AH_SITE_ENVIRONMENT'])) {
     foreach ($entities as &$entity) {
+      if ($entity->machine_name == 'events') {
+        continue;
+      }
       $entity->server = 'solr_4_x';
       $entity->enabled = TRUE;
     }

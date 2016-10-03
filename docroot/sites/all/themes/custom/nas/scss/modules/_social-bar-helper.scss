@@ -1,0 +1,23 @@
+@mixin owl {
+  $owl-width: 164px;
+  $owl-height: 124px;
+
+  content: "";
+  display: block;
+
+  background-size: $owl-width $owl-height;
+
+  width: $owl-width;
+  height: $owl-height;
+
+  position: relative;
+  bottom: -$column-gutter;
+  left: 50%;
+
+  margin-left: ($owl-width/2 * -1);
+
+  @include breakpoint(large-up) {
+    position: absolute;
+    bottom: 0;
+  }
+}

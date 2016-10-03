@@ -70,12 +70,14 @@ function nas_master_native_plants_node_presave($node) {
     return;
   }
 
-  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = nas_master_native_plants_generate_plant_id(
+  $plant_id = nas_master_native_plants_generate_plant_id(
     array(
       $node->field_np_scientific_name[LANGUAGE_NONE][0]['value'],
       $node->field_native_plant_family[LANGUAGE_NONE][0]['value'],
     )
   );
+  $node->field_native_plant_id[LANGUAGE_NONE][0]['value'] = $plant_id;
+  cache_clear_all('native_plants_' . $plant_id, 'cache');
 }
 
 /**
@@ -634,6 +636,13 @@ function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
     );
   }
 
+  if (!empty($view->filter['value']->value) && _nas_master_native_plants_zipcode_is_hawaii($view->filter['value']->value)) {
+    ctools_include('ajax');
+    $commands[] = ctools_ajax_command_redirect('/native-plants/hawaii');
+    $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
+    return;
+  }
+
   // Handle best results view refresh.
   if ($view->current_display == 'native_plants_search_pane_tier1') {
     foreach ($commands as &$cmd) {
@@ -1028,6 +1037,19 @@ function _nas_master_native_plants_zipcode_to_state($zipcode = '') {
   $zipfips = entity_load('zipfips', array($zipfips_id));
 
   return reset($zipfips)->state_code;
+}
+
+/**
+ * Helper function to check if a zipcode relates to Hawaii state.
+ *
+ * @param string $zipcode
+ *   The zipcode.
+ *
+ * @return bool
+ *   The zipcode relates to Hawaii states.
+ */
+function _nas_master_native_plants_zipcode_is_hawaii($zipcode = '') {
+  return _nas_master_native_plants_zipcode_to_state($zipcode) == 'HI';
 }
 
 /**

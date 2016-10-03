@@ -40,7 +40,7 @@ function nas_master_native_plants_update_7004() {
 }
 
 /**
- *  * Set default ZIP to FIPS variable state.
+ * Set default ZIP to FIPS variable state.
  */
 function nas_master_native_plants_update_7005() {
   variable_set('nas_master_native_plants_zip_fips', 1);

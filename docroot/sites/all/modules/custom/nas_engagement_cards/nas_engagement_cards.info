@@ -1,0 +1,4 @@
+name = NAS Engagement cards
+description = Contains Engagement cards related logic.
+core = 7.x
+package = NAS

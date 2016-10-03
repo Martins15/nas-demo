@@ -4816,6 +4816,16 @@ small {
     width: 100%;
   }
 }
+.ec-mailing-list-form .form-item-email {
+  display: inline-block;
+}
+.ec-mailing-list-form .form-item-email .mailing-list-input {
+  min-width: 0;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  height: 2.125rem;
+}
+
 /* @todo Add a markup example */
 .editorial-card-banner.fixed {
   position: absolute;
@@ -10299,7 +10309,7 @@ body.black-bg .slide-caption {
 }
 
 .inline-map-canvas {
-  background-color: #FBFAF6;
+  background-color: transparent;
   max-width: 100%;
   overflow: hidden;
   position: relative;
@@ -15554,6 +15564,152 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 @media only screen and (min-width: 601px) {
   .sponsor-attribution img {
     height: 30px;
+  }
+}
+
+/* Inline Panels Editor custom styles */
+.panels-ipe-display-container .nas-panels-ipe-collapsible-button {
+  padding: 10px;
+  text-align: center;
+}
+.panels-ipe-display-container .nas-panels-ipe-collapsible-button a {
+  background-color: #f15936;
+  border-color: #dd360f;
+  color: white !important;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 19px;
+}
+.panels-ipe-display-container .nas-panels-ipe-collapsible-button a:hover {
+  background-color: #dd360f;
+}
+.panels-ipe-display-container:not(.panels-ipe-editing) .panels-ipe-empty-pane {
+  display: none !important;
+}
+.panels-ipe-display-container #OptimizelyDonationBar {
+  bottom: 60px;
+}
+.panels-ipe-display-container.panels-ipe-editing .hero-header {
+  position: relative;
+}
+.panels-ipe-display-container.panels-ipe-editing .hero-attribution .column, .panels-ipe-display-container.panels-ipe-editing .hero-attribution-fullscreen .column,
+.panels-ipe-display-container.panels-ipe-editing .hero-attribution-fullscreen .column {
+  position: relative;
+  top: 0;
+}
+.panels-ipe-display-container.panels-ipe-editing section.card-set {
+  clear: both;
+}
+.panels-ipe-display-container.panels-ipe-editing .panels-ipe-portlet-content #OptimizelyDonationBar {
+  position: relative;
+  bottom: 0;
+}
+.panels-ipe-display-container.panels-ipe-editing .bird-card-set {
+  overflow: visible;
+}
+.panels-ipe-display-container .contextual-links-wrapper {
+  display: none !important;
+}
+
+.social-bar {
+  position: relative;
+  background-color: #FBFAF6;
+  color: #838078;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: left;
+  padding: 25px 12.5px;
+  margin: 0 12.5px;
+}
+@media only screen and (min-width: 601px) {
+  .social-bar {
+    padding: 25px;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 840px) {
+  .social-bar {
+    font-size: 17px;
+  }
+}
+.social-bar.double {
+  text-align: left !important;
+}
+@media only screen and (min-width: 768px) {
+  .social-bar.double {
+    margin-top: 62.5px;
+  }
+}
+.social-bar.double:after {
+  content: "";
+  display: block;
+  background-size: 164px 124px;
+  width: 164px;
+  height: 124px;
+  position: relative;
+  bottom: -25px;
+  left: 50%;
+  margin-left: -82px;
+}
+@media only screen and (min-width: 768px) {
+  .social-bar.double:after {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.social-bar-button {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+}
+@media only screen and (min-width: 768px) {
+  .social-bar-button {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+  }
+}
+
+.social-bar-link {
+  color: #838078;
+  font-style: italic;
+  display: inline-block;
+  margin-bottom: 12.5px;
+  padding-left: 32px;
+  position: relative;
+}
+.social-bar-link:hover {
+  color: #404040;
+}
+.social-bar-link:before {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  font-size: 24px;
+}
+.social-bar-link.icon-twitter:before {
+  color: #4DA9E4;
+}
+.social-bar-link.icon-facebook:before {
+  color: #3F5E97;
+}
+@media only screen and (min-width: 601px) {
+  .social-bar-link {
+    margin-bottom: 0;
+    padding-left: 48px;
+  }
+  .social-bar-link:before {
+    font-size: 32px;
+    top: 8px;
+  }
+  .social-bar.double .social-bar-link {
+    padding-left: 64px;
+  }
+  .social-bar.double .social-bar-link:before {
+    top: 20px;
+    font-size: 48px;
   }
 }
 

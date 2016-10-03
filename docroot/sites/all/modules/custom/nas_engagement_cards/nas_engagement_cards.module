@@ -1,0 +1,145 @@
+<?php
+
+/**
+ * @file
+ * Contains Engagement cards related logic.
+ */
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function nas_engagement_cards_entity_info_alter(&$entity_info) {
+  // Adding view mode for full width engagement card.
+  $entity_info['node']['view modes']['nas_engagement_cards_full_width'] = array(
+    'label' => t('Engagement cards - Full width'),
+    'custom settings' => FALSE,
+  );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the Engagement Cards node form.
+ */
+function nas_engagement_cards_form_engagement_cards_node_form_alter(&$form, &$form_state, $form_id) {
+  // Fields visibility.
+  $states = array(
+    'visible' => array(
+      '#edit-field-engagement-card-type-und' => array('value' => 'simple_form'),
+    ),
+  );
+
+  // Engagement forms integration.
+  if (module_exists('nas_engagement_forms')) {
+    $conf = array();
+    if (!empty($form['#node']->nas_engagement_forms)) {
+      $conf = $form['#node']->nas_engagement_forms;
+    }
+    $form = nas_engagement_forms_settings_form($form, $form_state, $conf);
+    $form['#group_children']['nas_engagement_forms'] = 'group_main_content';
+    $form['nas_engagement_forms']['#states'] = $states;
+
+    // Hide field with JSON config.
+    $form['field_nas_engagement_forms']['#access'] = FALSE;
+  }
+
+  // External integration.
+  if (module_exists('nas_external_integration')) {
+    $conf = array();
+    if (!empty($form['#node']->nas_external_integration)) {
+      $conf = $form['#node']->nas_external_integration;
+    }
+    $form = nas_external_integration_settings_form($form, $form_state, $conf);
+    $form['#group_children']['nas_external_integration'] = 'group_main_content';
+    $form['nas_external_integration']['#states'] = $states;
+
+    // Hide field with JSON config.
+    $form['field_nas_external_integration']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_field_attach_submit().
+ */
+function nas_engagement_cards_field_attach_submit($entity_type, $entity, $form, &$form_state) {
+  // Save nas_engagement_forms as JSON string.
+  $values = drupal_array_get_nested_value($form_state['values'], $form['#parents']);
+  if (!empty($values['nas_engagement_forms'])) {
+    $entity->field_nas_engagement_forms[LANGUAGE_NONE][0]['value'] = drupal_json_encode($values['nas_engagement_forms']);
+  }
+
+  // Save nas_external_configuration as JSON string.
+  $values = drupal_array_get_nested_value($form_state['values'], $form['#parents']);
+  if (!empty($values['nas_external_integration'])) {
+    $entity->field_nas_external_integration[LANGUAGE_NONE][0]['value'] = drupal_json_encode($values['nas_external_integration']);
+  }
+}
+
+/**
+ * Implements hook_node_load().
+ */
+function nas_engagement_cards_node_load($nodes, $types) {
+  if (!in_array('engagement_cards', $types)) {
+    return;
+  }
+
+  foreach ($nodes as $node) {
+    if ($node->type !== 'engagement_cards') {
+      continue;
+    }
+
+    $node->nas_engagement_forms = array();
+    if ($values = field_get_items('node', $node, 'field_nas_engagement_forms')) {
+      $value = reset($values)['value'];
+      $node->nas_engagement_forms = drupal_json_decode($value);
+    }
+
+    $node->nas_external_integration = array();
+    if ($values = field_get_items('node', $node, 'field_nas_external_integration')) {
+      $value = reset($values)['value'];
+      $node->nas_external_integration = drupal_json_decode($value);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function nas_engagement_cards_preprocess_node(&$variables) {
+  if ($conf = _nas_engagement_cards_get_config($variables['node'])) {
+    $conf['nas_engagement_forms']['engagement_form_settings']['form_theme'] = 'full_width';
+    $variables['form'] = drupal_get_form('nas_engagement_forms_engagement_form_' . $conf['id'], $conf);
+  }
+}
+
+/**
+ * Helper function; returns EC subscription config.
+ *
+ * @param object $node
+ *   Any node.
+ *
+ * @return mixed
+ *   associative array of config variables - for engagement cards set up with
+ * a form element;
+ *   FALSE - for any other nodes.
+ */
+function _nas_engagement_cards_get_config($node) {
+  if ($node->type !== 'engagement_cards') {
+    return FALSE;
+  }
+  if (!$card_type_values = field_get_items('node', $node, 'field_engagement_card_type')) {
+    return FALSE;
+  }
+  $card_type = reset($card_type_values)['value'];
+  if ($card_type != 'simple_form') {
+    return FALSE;
+  }
+
+  $conf = array(
+    'id' => 'node_' . $node->nid,
+    'nas_engagement_forms' => $node->nas_engagement_forms,
+    'nas_external_integration' => $node->nas_external_integration,
+  );
+
+  return $conf;
+}
