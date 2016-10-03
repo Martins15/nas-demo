@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Drupal Firewall Settings Feature feature.
+ */
+
+include_once 'drupal_firewall_settings_feature.features.inc';

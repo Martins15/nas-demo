@@ -1,0 +1,98 @@
+@import "social-bar-helper";
+
+.social-bar {
+  position: relative;
+
+  background-color: $color-bone-white;
+
+  color: $color-warm-gray;
+  font-family: $font-sans;
+  font-size: $size-text-small;
+  line-height: $size-line-small;
+  text-align: left;
+
+  padding: $column-gutter $column-gutter/2;
+  margin: 0 $column-gutter/2;
+
+  // Breakpoints
+  @include breakpoint(medium-up) {
+    padding: $column-gutter;
+    text-align: center;
+  }
+
+  @include breakpoint(min-width, 840px) {
+    font-size: $size-text-base;
+  }
+
+  &.double {
+    text-align: left !important;
+
+    @include breakpoint(large-up) {
+      margin-top: $column-gutter*2.5;
+    }
+
+    &:after {
+      @include owl;
+    }
+  }
+}
+
+.social-bar-button {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+
+  @include breakpoint(large-up) {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+  }
+}
+
+.social-bar-link {
+  color: $color-warm-gray;
+  font-style: italic;
+  display: inline-block;
+  margin-bottom: $column-gutter/2;
+  padding-left: 32px;
+  position: relative;
+
+  &:hover {
+    color: $color-text-gray;
+  }
+
+  // Icon
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    font-size: 24px;
+  }
+
+  &.icon-twitter:before {
+    color: #4DA9E4;
+  }
+  &.icon-facebook:before {
+    color: #3F5E97;
+  }
+
+  @include breakpoint(medium-up) {
+    margin-bottom: 0;
+    padding-left: 48px;
+
+    &:before {
+      font-size: 32px;
+      top: 8px;
+    }
+
+    // Larger icons for the two-service design
+    .social-bar.double & {
+      padding-left: 64px;
+
+      &:before {
+        top: 20px;
+        font-size: 48px;
+      }
+    }
+  }
+}

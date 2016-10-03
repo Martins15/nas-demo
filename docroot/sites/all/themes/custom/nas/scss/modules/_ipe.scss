@@ -1,0 +1,53 @@
+/* Inline Panels Editor custom styles */
+.panels-ipe-display-container {
+  .nas-panels-ipe-collapsible-button {
+    padding: 10px;
+    text-align: center;
+
+    a {
+      background-color: #f15936;
+      border-color: #dd360f;
+      color: white !important;
+      border-radius: 3px;
+      padding: 5px;
+      font-size: 19px;
+
+      &:hover {
+        background-color: #dd360f;
+      }
+    }
+  }
+  &:not(.panels-ipe-editing) {
+    .panels-ipe-empty-pane {
+      display: none !important;
+    }
+  }
+  #OptimizelyDonationBar {
+    bottom: 60px;
+  }
+  &.panels-ipe-editing {
+    .hero-header {
+      position: relative;
+    }
+    .hero-attribution .column,
+    .hero-attribution-fullscreen .column {
+      position: relative;
+      top: 0;
+    }
+    section.card-set {
+      clear: both;
+    }
+    .panels-ipe-portlet-content {
+      #OptimizelyDonationBar {
+        position: relative;
+        bottom: 0;
+      }
+    }
+    .bird-card-set {
+      overflow: visible;
+    }
+  }
+  .contextual-links-wrapper {
+    display: none !important;
+  }
+}

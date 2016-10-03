@@ -1,0 +1,14 @@
+name = Drupal Firewall Settings Feature
+description = The settings which are helpful for development.
+core = 7.x
+package = NAS
+version = 7.x-1.0
+project = drupal_firewall_settings_feature
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = dfw_token
+features[variable][] = dfw_vars_cron
+features[variable][] = dfw_vars_field_update_forbid
+features[variable][] = dfw_vars_menu

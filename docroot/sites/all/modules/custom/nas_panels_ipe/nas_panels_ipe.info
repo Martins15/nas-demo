@@ -1,0 +1,5 @@
+name = NAS Panels IPE
+description = Add specific modifications to Panels IPE
+core = 7.x
+package = NAS
+dependencies[] = panels_ipe

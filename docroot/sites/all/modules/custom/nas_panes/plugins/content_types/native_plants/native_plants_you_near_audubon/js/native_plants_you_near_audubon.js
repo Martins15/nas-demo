@@ -6,6 +6,7 @@
   Drupal.behaviors.you_near_audubon.attach = function(context, settings) {
     var $triggers = $('.native-plants-you-near-audubon .text--blue', context);
 
+    $triggers.css('cursor', 'pointer');
     $triggers.on('click', function() {
       $('ul.tabs li a[href="#local_resources"]').click();
     });

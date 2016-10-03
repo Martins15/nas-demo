@@ -15,6 +15,7 @@ include_once 'theme/pager.inc';
  */
 function nas_preprocess_html(&$variables) {
   $variables['jquery'] = &drupal_static('nas_jquery');
+  drupal_add_js('//cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.9.1/jquery.scrolldepth.min.js', 'external');
 }
 
 /**
@@ -1024,16 +1025,21 @@ function nas_preprocess_node_article_news_from_network(&$vars) {
 function nas_preprocess_node_engagement_cards(&$vars) {
   $node = $vars['node'];
   if ($field_link_items = field_get_items('node', $node, 'field_link')) {
+    $classes = array('button', 'tomato', 'large');
+    if ($vars['view_mode'] == 'nas_engagement_cards_full_width') {
+      $classes[] = 'native-plants-search-form--submit';
+    }
     $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(
       'attributes' => array(
-        'class' => array(
-          'button',
-          'tomato',
-          'large',
-        ),
+        'class' => $classes,
       ),
     ));
     $vars['link'] = url($field_link_items[0]['url']);
+  }
+  if ($field_image_items = field_get_items('node', $node, 'field_image')) {
+    $image = reset($field_image_items);
+    $file = file_load($image['fid']);
+    $vars['image_attribution'] = _nas_panes_format_image_attribution($file);
   }
 }
 
