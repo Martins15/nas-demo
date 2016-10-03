@@ -32,6 +32,10 @@
   bottom: $column-gutter;
   width: 100%;
 
+  &--form {
+    position: static;
+  }
+
   .button {
     font-size: $size-text-base;
   }
