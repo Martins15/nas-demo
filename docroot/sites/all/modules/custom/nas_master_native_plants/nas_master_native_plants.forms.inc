@@ -306,6 +306,11 @@ function nas_master_native_plants_initial_form_submit($form, &$form_state) {
       ),
     ),
   );
+
+  // If Hawaiian zipcode was submitted, redirect to a specific page.
+  if (_nas_master_native_plants_zipcode_is_hawaii($form_state['values']['zipcode'])) {
+    $form_state['redirect'] = array('/native-plants/hawaii', array());
+  }
 }
 
 /**
