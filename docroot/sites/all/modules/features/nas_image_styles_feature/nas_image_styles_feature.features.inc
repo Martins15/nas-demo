@@ -14,7 +14,7 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['about_page_success_section'] = array(
     'label' => 'About page success section',
     'effects' => array(
-      15 => array(
+      31 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 2400,
@@ -29,7 +29,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      16 => array(
+      36 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
           'width' => 2400,
@@ -37,7 +37,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
-      17 => array(
+      41 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 3,
@@ -658,7 +658,7 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['hero_image'] = array(
     'label' => 'Hero image',
     'effects' => array(
-      6 => array(
+      42 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 2400,
@@ -667,7 +667,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      7 => array(
+      43 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 2,

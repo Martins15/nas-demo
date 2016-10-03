@@ -125,12 +125,11 @@
       });
 
       // Find which is the next element to determine from where the scroll starts.
-      if ($list.next().length == 1) {
-        $anchor = $list.next();
+      var $test_elem = $list;
+      while ($test_elem.next().length != 1) {
+        $test_elem = $test_elem.parent();
       }
-      else {
-        $anchor = $list.parent().next();
-      }
+      $anchor = $test_elem.next();
 
       $w.bind('scroll resize', function (e) {
         $self.removeClass('native-plants-bottom-fixed');
