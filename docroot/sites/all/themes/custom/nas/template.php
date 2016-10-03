@@ -1041,6 +1041,11 @@ function nas_preprocess_node_engagement_cards(&$vars) {
     $file = file_load($image['fid']);
     $vars['image_attribution'] = _nas_panes_format_image_attribution($file);
   }
+
+  if ($engagement_form = field_get_items('node', $node, 'field_nas_engagement_forms')) {
+    $config = json_decode(reset($engagement_form)['value']);
+    $vars['engagement_form'] = $config->engagement_form;
+  }
 }
 
 /**
@@ -1166,6 +1171,7 @@ function nas_image($variables) {
     'magazine_issue_cover',
     'our_leadership',
     'boa_mail_subscription',
+    'engagement_card_full_width',
   );
   // List of styles for not applying of lazyloader.
   $exclude_lazyloader_styles = array(
