@@ -850,7 +850,7 @@
     .native-plants-bottom-plant-list-placeholder {
       display: block;
       height: 70px;
-      
+
       @include breakpoint(medium-up) {
         height: 96px;
       }
@@ -1355,6 +1355,10 @@ input[type="checkbox"].np-checkbox {
 
   @include breakpoint(xlarge-up) {
     margin-bottom: 40px;
+  }
+  .native-plants-search-form--submit {
+    font-weight: 400;
+    font-size: 24px;
   }
 }
 
