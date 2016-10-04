@@ -108,10 +108,10 @@
       $(document).bind("ready", function (e) {
         equalizeCardsInit();
       });
-      // Remove exist events and initialize equalizer when triggered endIPE event.
-      $(document).unbind('endIPE');
-      $(document).bind("endIPE", function (e) {
-        equalizeCardsInit();
+      $('body').once("equalize-endIPE", function (e) {
+        $('body.panels-ipe').bind('endIPE', function () {
+          equalizeCardsInit();
+        });
       });
     }
   };
