@@ -35,9 +35,6 @@ function nas_static_page_feature_field_default_field_bases() {
     'settings' => array(
       'display_default' => 0,
       'display_field' => 0,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,
@@ -67,7 +64,6 @@ function nas_static_page_feature_field_default_field_bases() {
     'locked' => 0,
     'module' => 'entityreference',
     'settings' => array(
-      'entity_translation_sync' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
         'behaviors' => array(
@@ -80,7 +76,6 @@ function nas_static_page_feature_field_default_field_bases() {
         ),
         'target_bundles' => array(
           'article' => 'article',
-          'event' => 'event',
           'static_page' => 'static_page',
         ),
       ),
@@ -111,7 +106,6 @@ function nas_static_page_feature_field_default_field_bases() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
-      'entity_translation_sync' => FALSE,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
