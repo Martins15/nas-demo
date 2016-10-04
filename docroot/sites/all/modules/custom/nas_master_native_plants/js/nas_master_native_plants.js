@@ -173,4 +173,18 @@
     }
   };
 
+  /**
+   * Update results after completing editing content via IPE.
+   */
+  Drupal.behaviors.nativePlantsEndIPE = {
+    attach: function(context, settings) {
+      $(document).bind('endIPE', function () {
+        if ($('.view-native-plants-search').length == 0) {
+          return;
+        }
+        $('.view-filters .form-select:first', $('.view-native-plants-search')).trigger('change');
+      });
+    }
+  };
+
 })(jQuery);

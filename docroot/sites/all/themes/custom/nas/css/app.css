@@ -15531,6 +15531,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     margin-bottom: 40px;
   }
 }
+.engagement-hero-form .native-plants-search-form--submit {
+  font-weight: 400;
+  font-size: 24px;
+}
 
 .sponsor-attribution {
   float: right;
