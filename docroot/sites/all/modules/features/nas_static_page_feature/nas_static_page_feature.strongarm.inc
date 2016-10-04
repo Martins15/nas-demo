@@ -107,25 +107,32 @@ function nas_static_page_feature_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
         'redirect' => array(
-          'weight' => '5',
+          'weight' => '4',
         ),
         'locations' => array(
-          'weight' => '6',
+          'weight' => '30',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '40',
         ),
         'xmlsitemap' => array(
-          'weight' => '7',
+          'weight' => '30',
         ),
       ),
       'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__static_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_static_page';
+  $strongarm->value = '2';
+  $export['language_content_type_static_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -175,77 +182,104 @@ function nas_static_page_feature_strongarm() {
     'view modes' => array(
       'page_manager' => array(
         'status' => 1,
+        'substitute' => '',
         'default' => 0,
         'choice' => 1,
       ),
       'default' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'search_result' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser_small' => array(
         'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'editorial_card_3x' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'editorial_card_4x' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser_no_section_link' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_featured' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_featured_small' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_related_features' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_node_teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'static_page_related_teaser' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
       'nas_editorial_card' => array(
         'status' => 0,
+        'substitute' => 0,
         'default' => 0,
         'choice' => 0,
       ),
     ),
   );
   $export['panelizer_defaults_node_static_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'panelizer_node:static_page:page_manager_selection';
+  $strongarm->value = 'node:static_page:static_page_1_column';
+  $export['panelizer_node:static_page:page_manager_selection'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

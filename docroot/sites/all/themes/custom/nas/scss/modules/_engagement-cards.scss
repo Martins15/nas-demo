@@ -32,6 +32,10 @@
   bottom: $column-gutter;
   width: 100%;
 
+  &--form {
+    position: static;
+  }
+
   .button {
     font-size: $size-text-base;
   }
@@ -58,6 +62,14 @@
   letter-spacing: -1px;
   line-height: $size-text-h3 + 3px;
   margin-bottom: $size-space;
+
+  &:before {
+    content: "A content long enough to stretch a card";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+  }
 
   @include breakpoint(min-width, 900px) {
     font-size: $size-text-engagement;
