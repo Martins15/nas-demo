@@ -28,10 +28,8 @@
    */
   Drupal.behaviors.bg_respond = {
     attach: function (context, settings) {
-      $('body').once("bg_respond-endIPE", function (e) {
-        $('body.panels-ipe').bind('endIPE', function () {
-          Drupal.bg_respond(StateManager.state);
-        });
+      $(document).bind('endIPE', function () {
+        Drupal.bg_respond(StateManager.state);
       });
     }
   };

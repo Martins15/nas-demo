@@ -107,9 +107,7 @@ function nas_engagement_cards_node_load($nodes, $types) {
  */
 function nas_engagement_cards_preprocess_node(&$variables) {
   if ($conf = _nas_engagement_cards_get_config($variables['node'])) {
-    if ($variables['view_mode'] == 'nas_engagement_cards_full_width') {
-      $conf['nas_engagement_forms']['engagement_form_settings']['form_theme'] = 'full_width';
-    }
+    $conf['nas_engagement_forms']['engagement_form_settings']['form_theme'] = 'full_width';
     $variables['form'] = drupal_get_form('nas_engagement_forms_engagement_form_' . $conf['id'], $conf);
   }
 }
