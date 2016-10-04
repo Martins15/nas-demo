@@ -773,6 +773,23 @@ function nas_static_page_feature_panelizer_defaults() {
     $display->content['new-a6afd2c8-1071-4dc3-8939-d1e01197da0c'] = $pane;
     $display->panels['hero_image'][0] = 'new-a6afd2c8-1071-4dc3-8939-d1e01197da0c';
     $pane = new stdClass();
+    $pane->pid = 'new-6720bfe7-aeac-4af8-bc82-f0fc5b1f8596';
+    $pane->panel = 'hero_image';
+    $pane->type = 'magazine_bar';
+    $pane->subtype = 'magazine_bar';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array();
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '6720bfe7-aeac-4af8-bc82-f0fc5b1f8596';
+    $display->content['new-6720bfe7-aeac-4af8-bc82-f0fc5b1f8596'] = $pane;
+    $display->panels['hero_image'][1] = 'new-6720bfe7-aeac-4af8-bc82-f0fc5b1f8596';
+    $pane = new stdClass();
     $pane->pid = 'new-746159a6-4fc6-4e78-8f80-f3d0d3624349';
     $pane->panel = 'main';
     $pane->type = 'entity_field';
@@ -833,8 +850,8 @@ function nas_static_page_feature_panelizer_defaults() {
         'cancel' => 'Cancel',
       ),
       'context' => 'panelizer',
-      'override_title' => 1,
-      'override_title_text' => 'Related',
+      'override_title' => 0,
+      'override_title_text' => 'Related Stories ',
       'preset' => 'static_page_related',
       'more_link_text' => '',
       'more_link_url' => '',
@@ -843,36 +860,41 @@ function nas_static_page_feature_panelizer_defaults() {
       'update_count' => 'Update count',
       'refs' => array(
         1 => array(
-          'image' => 0,
-          'category' => '',
-          'category_url' => '',
-          'title' => '',
-          'url' => '',
-          'excerpt' => '',
-          'readmore_label' => '',
+          'reference' => array(
+            'entity_id' => '52656',
+            'entity_label' => 'What Three Days in Denver Taught Me about Hope and Climate Change',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
         ),
         2 => array(
-          'image' => 0,
-          'category' => '',
-          'category_url' => '',
-          'title' => '',
-          'url' => '',
-          'excerpt' => '',
-          'readmore_label' => '',
+          'reference' => array(
+            'entity_id' => '48161',
+            'entity_label' => 'The Art of Waste Management',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
         ),
         3 => array(
-          'image' => 0,
-          'category' => '',
-          'category_url' => '',
-          'title' => '',
-          'url' => '',
-          'excerpt' => '',
-          'readmore_label' => '',
+          'reference' => array(
+            'entity_id' => '46316',
+            'entity_label' => 'An Old Chicago Neighborhood Is Now a New National Monument',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+          ),
         ),
       ),
-      'form_build_id' => 'form-LDX1wEBN763K8EEoLBykscMjFb0V0RujlaVSObkddZ0',
-      'form_token' => 'Pu_VnTcDjktXfpOUXrEgITE2aSXYE7hu77P00PrCevk',
+      'form_build_id' => 'form-biKHv2nB9EQKXOfm2Fd9KTIfx6doFgiYTKFS-3D4Kdo',
+      'form_token' => 'pNXIpAKwfmB-nndr7xHRDBQyBHNFiNMTW11tvI8PO08',
       'form_id' => 'editorial_card_3x_edit_form',
+      'override_title_heading' => 'h2',
+      'paddings' => array(
+        'double-bottom' => 'double-bottom',
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 0,
+      ),
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -906,9 +928,152 @@ function nas_static_page_feature_panelizer_defaults() {
           ),
         ),
       ),
-      'form_build_id' => 'form-YFeH87rhnAJFXOUdglCUxFxF-KrMRahxbCGuMh0d-uw',
-      'form_token' => 'IH_AhYBDrVzJjskNMwprLZV2Lcf2flroRxyXXLWifvE',
+      'form_build_id' => 'form-k3N_AlFOKZw6WX9TR_ZRJJpf2h8c-wRYeExII-3UANY',
+      'form_token' => 'cWGtfaehQnj-QGX62Q8G2cudFskpBVTPXQYGBM0PL1c',
       'form_id' => 'engagement_cards_sidebar_edit_form',
+      'override_title_heading' => 'h2',
+      45231 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '50781',
+              'entity_label' => 'Coming Soon!',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      'nas_panes_resave_panel' => TRUE,
+      61956 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '62001',
+              'entity_label' => '2016 Audubon Photography Awards',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      63706 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '64576',
+              'entity_label' => 'Register for the 2016 Women in Conservation Luncheon',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      64571 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '64576',
+              'entity_label' => 'Register for the 2016 Women in Conservation Luncheon',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      8826 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      44636 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '53186',
+              'entity_label' => 'Become an Audubon Member',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      27876 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '73891',
+              'entity_label' => 'Audubon Summer Camps',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '6c1db9d2-6fef-4ddb-a093-dce4eb2f9732',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
     );
     $pane->cache = array();
     $pane->style = array(

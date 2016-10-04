@@ -4725,6 +4725,9 @@ small {
   bottom: 25px;
   width: 100%;
 }
+.engagement-card-cta--form {
+  position: static;
+}
 .engagement-card-cta .button {
   font-size: 17px;
 }
@@ -4749,6 +4752,13 @@ small {
   letter-spacing: -1px;
   line-height: 31px;
   margin-bottom: 10px;
+}
+.engagement-card-headline:before {
+  content: "A content long enough to stretch a card";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  position: relative;
 }
 @media only screen and (min-width: 900px) {
   .engagement-card-headline {
@@ -15455,6 +15465,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     min-width: 333px;
   }
 }
+
 .engagement-hero__content {
   width: 100%;
   z-index: 2;
@@ -15519,6 +15530,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .engagement-hero-form {
     margin-bottom: 40px;
   }
+}
+.engagement-hero-form .native-plants-search-form--submit {
+  font-weight: 400;
+  font-size: 24px;
 }
 
 .sponsor-attribution {
