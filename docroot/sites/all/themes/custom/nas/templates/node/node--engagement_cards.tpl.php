@@ -93,11 +93,11 @@
     <?php endif; ?>
     <?php print render($content['body']); ?>
     <?php if (isset($form)): ?>
-      <div class="engagement-card-cta">
+      <div class="engagement-card-cta engagement-card-cta--form engagement-card-cta--form--<?php print $engagement_form; ?>">
         <?php print render($form); ?>
       </div>
     <?php elseif (isset($button)): ?>
-      <div class="engagement-card-cta">
+      <div class="engagement-card-cta engagement-card-cta--button">
         <?php print $button; ?>
       </div>
     <?php endif; ?>

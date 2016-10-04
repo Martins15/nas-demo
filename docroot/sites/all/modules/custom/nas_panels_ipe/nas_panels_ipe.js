@@ -44,7 +44,7 @@
 
       $('.panels-ipe-editing').removeClass('panels-ipe-editing');
       $('div.panels-ipe-sort-container.ui-sortable', ipe.topParent).sortable("destroy");
-      $(document).trigger('endIPE');
+      $('body.panels-ipe').trigger('endIPE');
     };
     if (Drupal.PanelsIPE.editors[key].editing) {
       // Disable the Leave Page dialog warning.
