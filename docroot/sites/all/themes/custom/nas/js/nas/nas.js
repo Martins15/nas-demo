@@ -580,31 +580,61 @@ var Nas = Nas || {};
   Drupal.behaviors.frontpage_flyway_ajax = {
     attach: function(context, settings) {
       // Replace block only once.
+      var flyways_nearyou = false;
+      var flyways_events = false;
       $('body.page-frontpage').once('flyways-ajax', function() {
         var onSuccess = function(stateIsoCode) {
           if (typeof(stateIsoCode) === 'undefined' || stateIsoCode === null || stateIsoCode === '') {
             return;
           }
+          // Show or hide middle block.
+          var show_hide_flyways_middle_block = function () {
+            var $block = $('.flyways-nearyou-ajax-wrapper').parent();
+            if (!flyways_nearyou && !flyways_events) {
+              $block.hide();
+              $('.flyways-nearyou-ajax-wrapper', $block).hide();
+              $('.flyways-events-ajax-wrapper', $block).hide();
+              return;
+            }
+            // Show block if one of sub blocks has a content,
+            $block.show();
+            // Show sub block "Near You" if there is a content.
+            if (flyways_nearyou) {
+              $('.flyways-nearyou-ajax-wrapper', $block).show();
+            }
+            // Show sub block "Events" if there is a content.
+            if (flyways_events) {
+              $('.flyways-events-ajax-wrapper', $block).show();
+            }
+          };
+          // By default hide block, and display it if there is a content for it.
+          show_hide_flyways_middle_block();
           // Replace default block with Audubon Near You content filtered by state.
           $.ajax({
             type: 'GET',
-            url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/frontpage-flyways/audubon-near-you/'+stateIsoCode,
+            url: Drupal.settings.basePath + Drupal.settings.pathPrefix + 'ajax/frontpage-flyways/audubon-near-you/' + stateIsoCode,
             dataType: 'html',
             success: function (data) {
               if (data !== '') {
-                $('.flyways-nearyou-ajax-wrapper').once().html(data);
+                flyways_nearyou = true;
               }
+              $('.flyways-nearyou-ajax-wrapper').once().html(data);
               $('.flyways-nearyou-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+              show_hide_flyways_middle_block();
             }
           });
           // Replace default block with Event content filtered by state.
           $.ajax({
             type: 'GET',
-            url: Drupal.settings.basePath + Drupal.settings.pathPrefix  + 'ajax/frontpage-flyways/events/'+stateIsoCode,
+            url: Drupal.settings.basePath + Drupal.settings.pathPrefix + 'ajax/frontpage-flyways/events/' + stateIsoCode,
             dataType: 'html',
             success: function (data) {
+              if (data !== '') {
+                flyways_events = true;
+              }
               $('.flyways-events-ajax-wrapper').once().html(data);
               $('.flyways-events-ajax-wrapper').addClass('state-code-' + stateIsoCode);
+              show_hide_flyways_middle_block();
             }
           });
         };
