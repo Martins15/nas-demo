@@ -3701,7 +3701,7 @@ function nas_master_update_7254() {
  */
 function nas_master_update_7255() {
   features_revert(array(
-    'nas_bird_family_feature' => array(
+    'nas_birds_family_feature' => array(
       'page_manager_handlers',
       'views_view',
     ),
