@@ -12,7 +12,7 @@ $plugin = array(
   'category' => 'NAS Header/Footer',
   'edit form' => 'nas_menu_guide_bar_search_pane_edit_form',
   'render callback' => 'nas_menu_guide_bar_search_pane_render',
-  'required context' => new ctools_context_required(t('Node'), 'node'),
+  'required context' => new ctools_context_optional(t('Node'), 'node'),
 );
 
 /**
@@ -26,7 +26,7 @@ function nas_menu_guide_bar_search_pane_edit_form($form, &$form_state) {
 
   $form[$conf_key] = array(
     '#type' => 'fieldset',
-    '#title' => t('Related News settings'),
+    '#title' => t('Settings'),
     '#tree' => TRUE,
   );
 
@@ -117,7 +117,7 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context)
   $contextual_links = '';
   if (user_access('edit NAS panes')) {
     if ($conf_key == 'default') {
-      $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+      $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
     }
     else {
       $contextual_links = _nas_panes_build_panelizer_contextual_links($subtype, $context->data, 'strategy', 'default');
@@ -140,7 +140,6 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context)
     'link' => $link,
   );
   $content = theme('nas_guide_bar_search', $t_vars);
-  $block->title = t('Footer');
   $block->content = $content;
 
   return $block;
