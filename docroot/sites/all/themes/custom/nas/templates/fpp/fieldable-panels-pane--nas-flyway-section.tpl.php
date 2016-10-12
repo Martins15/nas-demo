@@ -30,14 +30,18 @@
         </div>
       </div>
       <div class="columns large-4">
-		<?php if ($near_you or $events): ?>
+        <?php if ($near_you or $events): ?>
           <div class="breakout-section-box">
-            <?php if ($near_you): ?>
-              <div class="flyways-nearyou-ajax-wrapper"><?php print $near_you; ?></div>
-            <?php endif; ?>
-            <?php if ($events): ?>
-              <div class="flyways-events-ajax-wrapper"><?php print $events; ?></div>
-            <?php endif; ?>
+            <div class="flyways-nearyou-ajax-wrapper">
+              <?php if ($near_you): ?>
+                <?php print $near_you; ?>
+              <?php endif; ?>
+            </div>
+            <div class="flyways-events-ajax-wrapper">
+              <?php if ($events): ?>
+                <?php print $events; ?>
+              <?php endif; ?>
+            </div>
           </div>
         <?php endif; ?>
       </div>
