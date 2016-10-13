@@ -1,10 +1,14 @@
 <?php
 
+/**
+ * i18n_ctools_custom_content_ui class.
+ */
+
 module_load_include('php', 'ctools_custom_content', 'plugins/export_ui/ctools_custom_content_ui.class');
 
 class i18n_ctools_custom_content_ui extends ctools_custom_content_ui {
 
-  function edit_form(&$form, &$form_state) {
+  public function edit_form(&$form, &$form_state) {
     parent::edit_form($form, $form_state);
 
     if (empty($form_state['item']->cid)) {
