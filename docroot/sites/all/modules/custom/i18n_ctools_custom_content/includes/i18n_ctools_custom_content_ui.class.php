@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @file
  * i18n_ctools_custom_content_ui class.
  */
 
