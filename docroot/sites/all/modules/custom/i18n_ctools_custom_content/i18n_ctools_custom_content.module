@@ -1,0 +1,130 @@
+<?php
+
+/**
+ * @file
+ * i18n_ctools_custom_content module hooks and functions.
+ */
+
+define('I18N_CTOOLS_CUSTOM_CONTANT_TABLE', 'ctools_custom_content');
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function i18n_ctools_custom_content_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && $plugin == 'export_ui') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_pre_alter().
+ */
+function i18n_ctools_custom_content_ctools_plugin_pre_alter(&$plugin, &$info) {
+  if (!empty($plugin['schema']) && $plugin['schema'] == 'ctools_custom_content') {
+    // Change UI handler.
+    $plugin['handler'] = 'i18n_ctools_custom_content_ui';
+  }
+}
+
+/**
+ * Custom CRUD load callback.
+ */
+function i18n_ctools_custom_content_load_callback($name) {
+  global $language;
+  $langcode = $language->language;
+
+  // Try fetching a language-specific instance of the object.
+  $result = ctools_export_load_object(I18N_CTOOLS_CUSTOM_CONTANT_TABLE, 'conditions', array(
+    'name' => $name,
+    'language' => $langcode,
+  ));
+
+  // Try fetching any instance of the object if language-specific was not found.
+  if (!isset($result[$name])) {
+    $all_results = i18n_ctools_custom_content_load_all_callback();
+    if (isset($all_results[$name])) {
+      $result[$name] = $all_results[$name];
+      $result[$name]->export_type = EXPORT_IN_CODE;
+      $result[$name]->language = $langcode;
+      unset($result[$name]->cid);
+    }
+  }
+
+  if (isset($result[$name])) {
+    return $result[$name];
+  }
+}
+
+/**
+ * Custom CRUD load multiple callback.
+ */
+function i18n_ctools_custom_content_load_multiple_callback($names) {
+  global $language;
+  $langcode = $language->language;
+
+  // Load all objects with given name.
+  $results = ctools_export_load_object(I18N_CTOOLS_CUSTOM_CONTANT_TABLE, 'conditions', array(
+    'name' => $names,
+  ));
+
+  // Replace with language-specific instances.
+  $language_results = ctools_export_load_object(I18N_CTOOLS_CUSTOM_CONTANT_TABLE, 'conditions', array(
+    'name' => $names,
+    'language' => $langcode,
+  ));
+  foreach ($language_results as $key => $result) {
+    $results[$key] = $result;
+  }
+
+  return $results;
+}
+
+/**
+ * Custom CRUD load all callback.
+ */
+function i18n_ctools_custom_content_load_all_callback($reset = FALSE) {
+  global $language;
+  $langcode = $language->language;
+
+  // Load all objects.
+  $results = ctools_export_load_object(I18N_CTOOLS_CUSTOM_CONTANT_TABLE, 'all');
+
+  // Replace with language-specific instances.
+  $language_results = ctools_export_load_object(I18N_CTOOLS_CUSTOM_CONTANT_TABLE, 'conditions', array(
+    'language' => $langcode,
+  ));
+  foreach ($language_results as $key => $result) {
+    $results[$key] = $result;
+  }
+
+  return $results;
+}
+
+/**
+ * Custom CRUD save callback.
+ */
+function i18n_ctools_custom_content_save_callback(&$object) {
+  global $language;
+  $langcode = $language->language;
+
+  $schema = ctools_export_get_schema(I18N_CTOOLS_CUSTOM_CONTANT_TABLE);
+  $export = $schema['export'];
+
+  // Set current language if the object is being created.
+  if (empty($object->cid)) {
+    $object->language = $langcode;
+  }
+
+  $key = $export['primary key'];
+  if ($object->export_type & EXPORT_IN_DATABASE) {
+    // Existing record.
+    $update = array($key, 'language');
+  }
+  else {
+    // New record.
+    $update = array();
+    $object->export_type = EXPORT_IN_DATABASE;
+  }
+
+  return drupal_write_record(I18N_CTOOLS_CUSTOM_CONTANT_TABLE, $object, $update);
+}
