@@ -3707,3 +3707,10 @@ function nas_master_update_7255() {
     ),
   ));
 }
+
+/**
+ * Enable i18n_ctools_custom_content module.
+ */
+function nas_master_update_7256() {
+  module_enable(array('i18n_ctools_custom_content'));
+}
