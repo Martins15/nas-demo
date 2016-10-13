@@ -9,25 +9,30 @@
  * Implements hook_init().
  */
 function nas_alters_init() {
-  global $theme;
-
-  if ($theme == 'adminimal') {
-    drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
-  }
-
-  // Redirect articles only when field_article_redirect is filled and is full node page.
+  $fields = array(
+    'article' => array('field_article_redirect'),
+    'slideshow' => array('field_slideshow_redirect'),
+    'static_page' => array('field_static_page_redirect'),
+    'location' => array(
+      'field_location_link',
+      'field_article_redirect',
+    ),
+  );
+  // Redirect only when redirect field is filled and is full node page.
   if (_nas_alters_is_node_full_view_mode_page() && $node = menu_get_object('node')) {
-    $fields = array(
-      'article' => 'field_article_redirect',
-      'slideshow' => 'field_slideshow_redirect',
-      'static_page' => 'field_static_page_redirect'
-    );
     if (in_array($node->type, array_keys($fields))) {
-      $redirect = field_get_items('node', $node, $fields[$node->type]);
-      if (!empty($redirect[0]['url'])) {
-        drupal_goto($redirect[0]['url'], array(), 301);
+      foreach ($fields[$node->type] as $field_name) {
+        $redirect = field_get_items('node', $node, $field_name);
+        if (!empty($redirect[0]['url'])) {
+          drupal_goto($redirect[0]['url'], array(), 301);
+        }
       }
     }
+  }
+
+  global $theme;
+  if ($theme == 'adminimal') {
+    drupal_add_css(drupal_get_path('module', 'nas_alters') . '/css/nas_alters_adminimal.css');
   }
 
   if (drupal_is_front_page()) {
@@ -705,7 +710,7 @@ function _nas_alters_menu_admin_page($menu) {
 }
 
 /**
- * Returns whether is article full view mode page.
+ * Returns whether node is shown using node page.
  */
 function _nas_alters_is_node_full_view_mode_page() {
   $args = arg();
