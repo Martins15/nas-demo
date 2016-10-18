@@ -3731,7 +3731,10 @@ function nas_master_update_7257() {
  */
 function nas_master_update_7258() {
   $task = page_manager_get_task('page');
-  $handlers = page_manager_load_task_handlers($task, 'frontpage2');
+  $handlers = array();
+  $handlers = array_merge($handlers,
+    page_manager_load_task_handlers($task, 'frontpage2'),
+    page_manager_load_task_handlers($task, 'frontpage2_es_kwbg'));
 
   foreach ($handlers as $handler) {
     if ($handler->handler != 'panel_context') {
