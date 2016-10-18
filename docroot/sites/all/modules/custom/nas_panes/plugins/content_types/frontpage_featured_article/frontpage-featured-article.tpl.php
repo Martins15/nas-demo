@@ -11,18 +11,16 @@
  * - $contextual_links: rendered contextual links.
  */
 ?>
-  <div class="columns large-8 medium-6">
-    <div class="editorial-card contextual-links-region skip-nas-equalization" data-equalizer-watch>
-      <?php print $contextual_links; ?>
-      <div class="editorial-card-photo">
-        <a href="<?php print $article_raw_link ?>"><img src="<?php print $image_path; ?>" alt=""></a>
-      </div>
-      <div class="editorial-card-content minimal">
-      <a href="<?php print $section_link_url; ?>" class="editorial-card-slug"><?php print $section_link_text; ?></a>
-        <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h3>
-        <?php if ($subtitle): ?>
-          <p><?php print $subtitle; ?></p>
-        <?php endif; ?>
-      </div>
-    </div>
+<div class="editorial-card contextual-links-region skip-nas-equalization" data-equalizer-watch>
+  <?php print $contextual_links; ?>
+  <div class="editorial-card-photo">
+    <a href="<?php print $article_raw_link ?>"><img src="<?php print $image_path; ?>" alt=""></a>
   </div>
+  <div class="editorial-card-content minimal">
+  <a href="<?php print $section_link_url; ?>" class="editorial-card-slug"><?php print $section_link_text; ?></a>
+    <h3 class="editorial-card-title"><a href="<?php print $article_raw_link ?>"><?php print $article_title ?></a></h3>
+    <?php if ($subtitle): ?>
+      <p><?php print $subtitle; ?></p>
+    <?php endif; ?>
+  </div>
+</div>
