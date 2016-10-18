@@ -36,4 +36,6 @@
     </section>
   </section>
 </div>
-<?php print $content['footer']; ?>
+<div class="clearfix">
+  <?php print $content['footer']; ?>
+</div>
