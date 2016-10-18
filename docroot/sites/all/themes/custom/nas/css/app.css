@@ -10825,6 +10825,12 @@ body.black-bg .slide-caption {
   margin-top: 29px;
 }
 
+/* Panels IPE fixes. */
+.panels-ipe-editing .curtain,
+.panels-ipe-editing .curtain-content {
+  position: relative;
+}
+
 .bg-egg {
   position: absolute;
   display: none;
