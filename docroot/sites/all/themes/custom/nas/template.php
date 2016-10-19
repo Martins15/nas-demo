@@ -1892,3 +1892,10 @@ function nas_file_icon($variables) {
   $icon_url = base_path() . path_to_theme() . '/img/gnome_text_x_generic.png';
   return '<img class="file-icon" alt="" title="' . $mime . '" src="' . $icon_url . '" />';
 }
+
+/**
+ * Preprocess function for asc_landing_page theme.
+ */
+function nas_preprocess_asc_landing_page(&$vars) {
+  $vars['asc_landing_page_sidebar_title'] = drupal_static('asc_landing_page_sidebar_title', NULL);
+}
