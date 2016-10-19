@@ -76,6 +76,18 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     // MODIFICATIONS: Add local data to the results.
     $this->add_local_data($ret, $view);
 
+    // Sort the results according to weights and then common names inside the
+    // same weight group if results are not filtered, alphabetically otherwise.
+    $filtered = isset($this->filter_taxonomy);
+    // @codingStandardsIgnoreStart
+    uasort($ret, function($a, $b) use ($filtered) {
+      if ($filtered) {
+        return strcmp($a->CommonName, $b->CommonName);
+      }
+      return ($a->Weight - $b->Weight) ? ($a->Weight - $b->Weight) : strcmp($a->CommonName, $b->CommonName);
+    });
+    // @codingStandardsIgnoreEnd
+
     // Check if we should return Tier 1 results - find only Tier1 results.
     if ($view->current_display == 'native_plants_search_pane_tier1') {
       $ret = array_filter($ret, function($result) {
@@ -372,12 +384,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         }
       }
     }
-
-    // Sort the results according to weights and then common names inside the
-    // same weight group.
-    uasort($ret, function($a, $b) {
-      return ($a->Weight - $b->Weight) ? ($a->Weight - $b->Weight) : strcmp($a->CommonName, $b->CommonName);
-    });
 
     $static_cache[$view->name] = $ret;
   }
