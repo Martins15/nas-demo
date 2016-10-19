@@ -3707,3 +3707,21 @@ function nas_master_update_7255() {
     ),
   ));
 }
+
+/**
+ * Enable i18n_ctools_custom_content module.
+ */
+function nas_master_update_7256() {
+  module_enable(array('i18n_ctools_custom_content'));
+}
+
+/**
+ * Update Chapters & Centers CT - nas_location_feature.
+ */
+function nas_master_update_7257() {
+  features_revert(array(
+    'nas_location_feature' => array(
+      'metatag',
+    ),
+  ));
+}
