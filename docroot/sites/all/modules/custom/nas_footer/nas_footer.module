@@ -80,6 +80,10 @@ function nas_footer_mail_subscription_form($form, &$form_state, $conf = array())
     '#value' => $conf['nas_external_integration'],
   );
 
+  if (module_exists('honeypot')) {
+    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+  }
+
   return $form;
 }
 
