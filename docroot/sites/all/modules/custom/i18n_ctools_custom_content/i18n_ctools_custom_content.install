@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Installation routines for i18n_ctools_custom_content module.
+ */
+
+/**
+ * Implements hook_schema_alter().
+ */
+function i18n_ctools_custom_content_schema_alter(&$schema) {
+  $schema['ctools_custom_content']['fields']['language'] = _i18n_ctools_custom_content_language_field_schema();
+
+  // CRUD functions:
+  // create callback – not required, defined by ctools_custom_content.
+  // load callback – Done
+  // load multiple callback – Done
+  // load all callback – Done
+  // save callback – Done
+  // delete callback – Not required, works correctly.
+  // export callback – Not required, can't be implemented yet.
+  // import callback – Not required, works correctly.
+  $schema['ctools_custom_content']['export']['load callback'] = 'i18n_ctools_custom_content_load_callback';
+  $schema['ctools_custom_content']['export']['load multiple callback'] = 'i18n_ctools_custom_content_load_multiple_callback';
+  $schema['ctools_custom_content']['export']['load all callback'] = 'i18n_ctools_custom_content_load_all_callback';
+  $schema['ctools_custom_content']['export']['save callback'] = 'i18n_ctools_custom_content_save_callback';
+}
+
+
+/**
+ * Definition for language field.
+ *
+ * @return array
+ *   Field language.
+ */
+function _i18n_ctools_custom_content_language_field_schema() {
+  return array(
+    'description' => 'The languages.language of this page.',
+    'type' => 'varchar',
+    'length' => '12',
+    'not null' => TRUE,
+    'default' => language_default()->language,
+  );
+}
+
+/**
+ * Implements hook_install().
+ */
+function i18n_ctools_custom_content_install() {
+  $language = _i18n_ctools_custom_content_language_field_schema();
+  db_add_field('ctools_custom_content', 'language', $language);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function i18n_ctools_custom_content_uninstall() {
+  db_drop_field('ctools_custom_content', 'language');
+}

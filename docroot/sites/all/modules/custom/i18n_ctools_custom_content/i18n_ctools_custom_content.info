@@ -1,0 +1,8 @@
+name = CTools Custom Content Internationalization
+description = CTools Custom Content Internationalization
+core = 7.x
+
+dependencies[] = ctools_custom_content
+dependencies[] = locale
+
+files[] = includes/i18n_ctools_custom_content_ui.class.php
