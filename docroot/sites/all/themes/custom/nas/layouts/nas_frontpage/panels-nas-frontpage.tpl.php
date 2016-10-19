@@ -20,7 +20,9 @@
       <?php print $featured_frontpage_mobile_content; ?>
     <?php endif; ?>
     <div class="homepage-first-row row space-top double" data-equalizer>
-      <?php print $content['featured']; ?>
+      <div class="columns large-8 medium-6">
+        <?php print $content['featured']; ?>
+      </div>
       <div class="columns large-4 medium-6">
         <?php print $content['more_headlines']; ?>
       </div>
@@ -34,4 +36,6 @@
     </section>
   </section>
 </div>
-<?php print $content['footer']; ?>
+<div class="clearfix">
+  <?php print $content['footer']; ?>
+</div>
