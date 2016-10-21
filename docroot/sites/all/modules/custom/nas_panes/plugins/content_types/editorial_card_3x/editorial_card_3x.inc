@@ -389,7 +389,7 @@ function _editorial_card_3x_presets() {
       ),
     ),
     'static_page_related' => array(
-      'title' => t('Static page related'),
+      'title' => t('Static page/Article related'),
       'content' => array(
         'list' => array(
           'type' => 'er_field',

@@ -23,7 +23,7 @@ function nas_article_feature_taxonomy_default_vocabularies() {
       'name' => 'Menu Section',
       'machine_name' => 'menu_section',
       'description' => 'This vocabulary to Main menu',
-      'hierarchy' => 1,
+      'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
       'language' => 'und',
