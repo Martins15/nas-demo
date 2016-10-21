@@ -120,11 +120,17 @@ function nas_article_feature_strongarm() {
       'ical' => array(
         'custom_settings' => FALSE,
       ),
+      'fb_instant_article' => array(
+        'custom_settings' => TRUE,
+      ),
+      'nas_engagement_cards_full_width' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '5',
+          'weight' => '51',
         ),
         'path' => array(
           'weight' => '7',
