@@ -11,6 +11,9 @@ Drupal.behaviors.birdCardSet = {
                   $indicator = $this.find(".indicator"),
                   scroll;
 
+          if ($wrapper.length === 0) {
+            return;
+          }
           scroll = new IScroll($wrapper[0], {
             scrollX: true,
             scrollY: false,

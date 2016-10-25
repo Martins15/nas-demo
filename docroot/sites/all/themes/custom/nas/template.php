@@ -1816,17 +1816,26 @@ function _nas_related_features_attach_menu_section_class(&$field) {
  */
 function nas_extract_magazine_date($string) {
   // @todo should be improved.
-  $data = array();
-  $str = $string;
+  $str = check_plain($string);
+  $data = array(
+    'origin' => $str,
+    'first_month_part_1' => '',
+    'first_month_part_2' => '',
+    'sec_month_part_1' => '',
+    'sec_month_part_2' => '',
+    'year' => '',
+  );
   $str = explode('-', trim($str));
-  $first_month = $str[0];
-  $str[1] = explode(' ', trim($str[1]));
-  $second_month = $str[1][0];
-  $data['first_month_part_1'] = substr($first_month, 0, 3);
-  $data['first_month_part_2'] = substr($first_month, 3);
-  $data['sec_month_part_1'] = substr($second_month, 0, 3);
-  $data['sec_month_part_2'] = substr($second_month, 3);
-  $data['year'] = $str[1][1];
+  if (count($str) == 2) {
+    $first_month = $str[0];
+    $str[1] = explode(' ', trim($str[1]));
+    $second_month = $str[1][0];
+    $data['first_month_part_1'] = substr($first_month, 0, 3);
+    $data['first_month_part_2'] = substr($first_month, 3);
+    $data['sec_month_part_1'] = substr($second_month, 0, 3);
+    $data['sec_month_part_2'] = substr($second_month, 3);
+    $data['year'] = $str[1][1];
+  }
 
   return $data;
 }
@@ -1882,4 +1891,11 @@ function nas_file_icon($variables) {
   $mime = check_plain($file->filemime);
   $icon_url = base_path() . path_to_theme() . '/img/gnome_text_x_generic.png';
   return '<img class="file-icon" alt="" title="' . $mime . '" src="' . $icon_url . '" />';
+}
+
+/**
+ * Preprocess function for asc_landing_page theme.
+ */
+function nas_preprocess_asc_landing_page(&$vars) {
+  $vars['asc_landing_page_sidebar_title'] = drupal_static('asc_landing_page_sidebar_title', NULL);
 }

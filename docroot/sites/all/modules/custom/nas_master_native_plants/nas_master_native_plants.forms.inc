@@ -259,6 +259,10 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
     'scope' => 'footer',
   );
 
+  if (module_exists('honeypot')) {
+    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+  }
+
   return $form;
 }
 
@@ -405,6 +409,10 @@ function nas_master_native_plants_pledge_form($form, &$form_state, $conf = array
     'scope' => 'footer',
   );
 
+  if (module_exists('honeypot')) {
+    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+  }
+
   return $form;
 }
 
@@ -491,6 +499,10 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
   $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
     'scope' => 'footer',
   );
+
+  if (module_exists('honeypot')) {
+    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+  }
 
   return $form;
 }

@@ -7714,10 +7714,10 @@ input.header-search-input,
     margin-bottom: 7px;
   }
 }
-.global-header.dark-text .primary-nav > li > a {
+.global-header.dark-text .primary-nav > li > a, .panels-ipe-editing .global-header .primary-nav > li > a {
   color: #000;
 }
-.global-header.dark-text .primary-nav .primary-nav-item:not(:first-child):before {
+.global-header.dark-text .primary-nav .primary-nav-item:not(:first-child):before, .panels-ipe-editing .global-header .primary-nav .primary-nav-item:not(:first-child):before {
   color: #d4d4d4;
 }
 .global-header.alt .primary-nav {
@@ -10823,6 +10823,12 @@ body.black-bg .slide-caption {
 
 .admin-menu .curtain {
   margin-top: 29px;
+}
+
+/* Panels IPE fixes. */
+.panels-ipe-editing .curtain,
+.panels-ipe-editing .curtain-content {
+  position: relative;
 }
 
 .bg-egg {
