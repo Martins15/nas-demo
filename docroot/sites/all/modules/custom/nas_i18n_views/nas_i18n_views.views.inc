@@ -13,9 +13,9 @@ function nas_i18n_views_views_query_alter(&$view, &$query) {
     $langcode = $language->language;
     $default_language = language_default();
     if ($langcode == $default_language->language) {
-      $langcode = LANGUAGE_NONE;
+      $langcode = array($langcode, LANGUAGE_NONE);
     }
 
-    $query->add_where(0, 'node.language', $langcode, '=');
+    $query->add_where(0, 'node.language', $langcode, is_array($langcode) ? 'IN' : '=');
   }
 }
