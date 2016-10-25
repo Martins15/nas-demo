@@ -120,6 +120,7 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   $hero_image_mobile = '';
   $attribution = '';
 
+  $hero_icon = '';
   if (!empty($conf['icon'])) {
     $hero_icon_object = file_load($conf['icon']);
     $hero_icon = image_style_url('hero_icon', $hero_icon_object->uri);

@@ -924,3 +924,25 @@ function nas_alters_metatag_info() {
 
   return $info;
 }
+
+/**
+ * Implements hook_panels_pre_render().
+ */
+function nas_alters_panels_pre_render($panels_display, $renderer) {
+  // We need to hack landing page layout: move the title of the first pane in
+  // the sidebar_left region out to the main region.
+  if ($panels_display->layout != 'asc_landing_page' || !isset($panels_display->panels['sidebar_left'])) {
+    return;
+  }
+
+  // Get the key of the first pane in the sidebar_left region.
+  $key = reset($panels_display->panels['sidebar_left']);
+  // Set pane title to static variable and remove from pane.
+  // @see asc-landing-page.tpl.php
+  $pane = &$panels_display->content[$key];
+  if (isset($pane->configuration['override_title_text'])) {
+    $asc_landing_page_sidebar_title = &drupal_static('asc_landing_page_sidebar_title', NULL);
+    $asc_landing_page_sidebar_title = $pane->configuration['override_title_text'];
+    unset($pane->configuration['override_title_text']);
+  }
+}

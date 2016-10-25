@@ -99,7 +99,7 @@ function nas_article_feature_field_group_info() {
       5 => 'field_related_bird',
       6 => 'field_conservation_project',
       7 => 'field_is_this_a_press_release_',
-      8 => 'field_instant_article_',
+      8 => 'field_related',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

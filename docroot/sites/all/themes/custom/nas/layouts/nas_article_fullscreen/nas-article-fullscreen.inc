@@ -31,6 +31,7 @@ $plugin = array(
     'left' => t('Left'),
     'right' => t('Right'),
     'card_set' => t('Card Set'),
+    'related' => t('Related'),
     'article_more_features' => t('Article More Features'),
   ),
 );

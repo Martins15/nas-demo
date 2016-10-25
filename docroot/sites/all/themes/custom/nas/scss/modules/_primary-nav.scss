@@ -28,7 +28,8 @@
   }
 
   // Variants
-  .global-header.dark-text & {
+  .global-header.dark-text &,
+  .panels-ipe-editing .global-header & {
     > li > a {
       color: $color-black;
     }

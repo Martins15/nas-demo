@@ -21,6 +21,7 @@ $plugin = array(
     'file_attachments' => t('File attachments'),
     'right' => t('Right'),
     'header' => t('Header'),
-    'card_set' => t('Card Set')
+    'related' => t('Related'),
+    'card_set' => t('Card Set'),
   ),
 );

@@ -3725,3 +3725,35 @@ function nas_master_update_7257() {
     ),
   ));
 }
+
+/**
+ * Enable IPE for homepage.
+ */
+function nas_master_update_7258() {
+  $task = page_manager_get_task('page');
+  $handlers = array();
+  $handlers = array_merge($handlers,
+    page_manager_load_task_handlers($task, 'frontpage2'),
+    page_manager_load_task_handlers($task, 'frontpage2_es_kwbg'));
+
+  foreach ($handlers as $handler) {
+    if ($handler->handler != 'panel_context') {
+      continue;
+    }
+    $handler->conf['pipeline'] = 'ipe';
+    page_manager_save_task_handler($handler);
+  }
+}
+
+/**
+ * Output Related pane on article pages.
+ */
+function nas_master_update_7259() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'field_group',
+      'panelizer_defaults',
+    ),
+  ));
+}

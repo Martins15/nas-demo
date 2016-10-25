@@ -43,6 +43,7 @@
       </div>
     </div>
   </article>
+  <?php print $content['related']; ?>
   <section class="card-set reset-white">
     <?php print $content['card_set']; ?>
   </section>
