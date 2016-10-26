@@ -20,7 +20,7 @@
     </div>
   <?php endif; ?>
   <div class="inline-map">
-    <div class="inline-map-canvas">
+    <div class="inline-map-canvas"<?php print $height ? ' style="height: ' . $height . '; min-height: ' . $height . ';"' : ''; ?>>
       <?php if ($type == 'map'): ?>
         <div class="inline-map-mask"></div>
       <?php endif; ?>

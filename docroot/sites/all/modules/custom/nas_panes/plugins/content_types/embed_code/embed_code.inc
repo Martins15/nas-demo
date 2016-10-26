@@ -7,8 +7,8 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('Embed code(map/video)'),
-  'description' => t('Embed code(map/video).'),
+  'title' => t('Embed code (map/video)'),
+  'description' => t('Embed code (map/video).'),
   'category' => 'Basic Modules',
   'edit form' => 'embed_code_form',
   'render callback' => 'embed_code_render',
@@ -16,6 +16,7 @@ $plugin = array(
   'defaults' => array(
     'code' => array(
       'value' => '',
+      'format' => 'map',
     ),
     'type' => 'map',
     'styles' => array(
@@ -24,6 +25,7 @@ $plugin = array(
         'bottom' => 0,
       ),
     ),
+    'height' => '',
   ),
   'tags' => array('full_width', 'two_column'),
 );
@@ -32,7 +34,9 @@ $plugin = array(
  * An edit form for the pane's settings.
  */
 function embed_code_form($form, &$form_state) {
-  $conf = $form_state['conf'];
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
   $form['override_title_text']['#maxlength'] = 1024;
 
@@ -41,7 +45,7 @@ function embed_code_form($form, &$form_state) {
     '#title' => t('Embed Code'),
     '#rows' => 5,
     '#default_value' => $conf['code']['value'],
-    '#format' => 'video',
+    '#format' => $conf['code']['format'],
   );
 
   $form['type'] = array(
@@ -70,6 +74,13 @@ function embed_code_form($form, &$form_state) {
     '#default_value' => $conf['styles']['padding'],
   );
 
+  $form['height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Height'),
+    '#description' => t('Specify height value like "420px". This setting will override the responsive behavior applied to this pane.'),
+    '#default_value' => $conf['height'],
+  );
+
   return $form;
 }
 
@@ -85,19 +96,25 @@ function embed_code_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type).
- *
- * @see ctools_plugin_examples()
+ * Render callback.
  */
 function embed_code_render($subtype, $conf, $args, $context) {
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
+  }
+
   $block = new stdClass();
-  $block->content = theme('embed_code_pane', array(
-    'title' => isset($conf['override_title_text']) ? $conf['override_title_text'] : '',
-    'code' => $conf['code']['value'],
-    'type' => isset($conf['type']) ? $conf['type'] : 'map',
-    'space_top' => isset($conf['styles']['padding']['top']) ? $conf['styles']['padding']['top'] : '',
-    'space_bottom' => isset($conf['styles']['padding']['bottom']) ? $conf['styles']['padding']['bottom'] : '',
-  ));
+  $block->content = array(
+    '#theme' => 'embed_code_pane',
+    '#title' => !empty($conf['override_title']) ? $conf['override_title_text'] : '',
+    '#code' => $conf['code']['value'],
+    '#type' => $conf['type'],
+    '#space_top' => $conf['styles']['padding']['top'],
+    '#space_bottom' => $conf['styles']['padding']['bottom'],
+    '#height' => $conf['height'],
+  );
 
   return $block;
 }
@@ -113,6 +130,7 @@ function embed_code_theme(&$theme, $plugin) {
       'type' => NULL,
       'space_top' => '',
       'space_bottom' => '',
+      'height' => '',
     ),
     'template' => 'embed-code-pane',
     'path' => $plugin['path'],
