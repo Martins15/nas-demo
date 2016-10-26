@@ -1014,6 +1014,33 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: social_owl_image.
+  $styles['social_owl_image'] = array(
+    'label' => 'Social Owl image',
+    'effects' => array(
+      101 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1000,
+          'height' => 756,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => 1.777,
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 1,
+      ),
+      102 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 2,
+      ),
+    ),
+  );
+
   // Exported image style: static_cards_two_columns.
   $styles['static_cards_two_columns'] = array(
     'label' => 'Static cards two columns',
