@@ -532,12 +532,36 @@ function _nas_master_native_plants_get_list_form_ajax_callback($form, $form_stat
  */
 function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
+
+  // Get data for the plants in the cart.
+  $plants = drupal_json_decode($_COOKIE['native_plants_cart']);
+  foreach ($plants as $plant_id => $plant_common_name) {
+    // We are assuming the plant is always in the cache when this form is
+    // submitted.
+    if ($cached_plant = cache_get('native_plants_' . $plant_id)) {
+      $plant = $cached_plant->data;
+      $plants[$plant_id] = array(
+        'CommonName' => $plant_common_name,
+        'ScientificName' => $plant->ScientificName,
+        'BirdTypes' => implode(',', array_keys($plant->BirdTypes)),
+      );
+    }
+    else {
+      $plants[$plant_id] = array(
+        'CommonName' => $plant_common_name,
+        'ScientificName' => '',
+        'BirdTypes' => '',
+      );
+    }
+  }
+  $cart = drupal_json_encode($plants);
+
   // Create permalink entity.
   $values = array(
     'type' => 'permalink',
     'email' => $form_state['values']['email'],
     'zip_code' => $fields['zipcode'],
-    'plants_cart' => $_COOKIE['native_plants_cart'],
+    'plants_cart' => $cart,
     'square_feet' => 0,
   );
   if ($permalink = entity_create('permalink', $values)) {
