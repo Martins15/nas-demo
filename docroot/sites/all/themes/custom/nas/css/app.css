@@ -10306,18 +10306,6 @@ body.black-bg .slide-caption {
   position: relative;
 }
 
-.inline-map-mask {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-}
-.inline-map-mask.off {
-  display: none;
-}
-
 .inline-map-canvas {
   background-color: transparent;
   max-width: 100%;
@@ -10372,6 +10360,18 @@ body.black-bg .slide-caption {
   .inline-map-canvas iframe {
     position: absolute;
   }
+}
+
+.inline-map-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.inline-map-mask.off {
+  display: none;
 }
 
 .map-profile {
