@@ -46,11 +46,7 @@
   Drupal.native_plants_cart.update_cart = function(event) {
     var plants = Drupal.native_plants_cart.get_plants();
     if (event.plant_checked) {
-      plants[event.plant_id] = {
-        'CommonName': event.plant_common_name,
-        'ScientificName': event.plant_scientific_name,
-        'BirdTypes': event.plant_bird_types
-      };
+      plants[event.plant_id] = event.plant_common_name;
     }
     else {
       delete plants[event.plant_id];
@@ -63,7 +59,7 @@
     var plants_string = '', limit = false;
     $.each(plants, function(plant_id, plant) {
       if (plants_string.length < 60) {
-        plants_string += (plants_string ? ', ' + plant.CommonName : plant.CommonName);
+        plants_string += (plants_string ? ', ' + plant : plant);
       }
       else if (!limit) {
         limit = true;
@@ -85,7 +81,7 @@
   };
   Drupal.native_plants_cart.set_plants = function(plants) {
     var cart = JSON.stringify(plants);
-    $.cookie('native_plants_cart', cart, {expires: 7, path: Drupal.settings.basePath});
+    $.cookie('native_plants_cart', cart, {expires: 1, path: Drupal.settings.basePath});
     $('body').trigger('plants_updated.native_plants_cart');
   };
   Drupal.native_plants_cart.get_plants = function() {
@@ -95,6 +91,16 @@
       return plants;
     }
     plants = JSON.parse(cart);
+
+    // Convert from old format to new one.
+    $.each(plants, function(plant_id, plant) {
+      if (typeof plant !== 'object') {
+        return;
+      }
+
+      plants[plant_id] = plant.CommonName;
+    });
+
     return plants;
   };
 
