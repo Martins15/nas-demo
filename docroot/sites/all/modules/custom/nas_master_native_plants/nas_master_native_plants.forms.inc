@@ -260,7 +260,7 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
   );
 
   if (module_exists('honeypot')) {
-    honeypot_add_form_protection($form, $form_state, array('honeypot', 'time_restriction'));
+    honeypot_add_form_protection($form, $form_state, array('honeypot'));
   }
 
   return $form;
