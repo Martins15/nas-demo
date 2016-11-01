@@ -49,7 +49,9 @@
   </article>
   <?php print $content['related']; ?>
   <div class="row">
-    <?php print $content['comments']; ?>
+    <div class="column">
+      <?php print $content['comments']; ?>
+    </div>
   </div>
   <section class="card-set reset-white">
     <?php print $content['cards_set']; ?>
