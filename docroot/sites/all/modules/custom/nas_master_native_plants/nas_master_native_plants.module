@@ -433,7 +433,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     $collection = array();
     foreach ($results_filtered as $result) {
       foreach ($result as $key => $value) {
-        if (!empty($value) & !isset($collection[$key])) {
+        if (!empty($value) && !isset($collection[$key])) {
           $collection[$key] = $key;
         }
       }
