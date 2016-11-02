@@ -44,11 +44,15 @@
           </div>
         </div>
         <?php endif;?>
-        <?php print $content['comments']; ?>
       </div>
     </div>
   </article>
   <?php print $content['related']; ?>
+  <div class="row">
+    <div class="column">
+      <?php print $content['comments']; ?>
+    </div>
+  </div>
   <section class="card-set reset-white">
     <?php print $content['card_set']; ?>
   </section>
