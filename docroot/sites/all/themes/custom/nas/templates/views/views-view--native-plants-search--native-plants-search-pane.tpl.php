@@ -82,7 +82,6 @@
                   <label for="checkbox-f<?php print $result->PlantID; ?>"><?php print $result->CommonName; ?></label>
                   <?php if ($result->PlantImgLightbox): ?>
                     <a href="<?php print $result->PlantImgLightbox; ?>" class="icon-camera clearing-attach" title="<?php print t('Preview'); ?>"></a>
-                    <ul data-clearing class="clearing-thumbs"><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
                     <ul data-clearing>
                       <li style="display: none;">
                         <a href="<?php print $result->PlantImgLightbox; ?>">
