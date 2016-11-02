@@ -342,7 +342,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result_key = array_search($plant_id, $plant_ids);
       if ($result_key !== FALSE && $local_node->status == NODE_PUBLISHED) {
         if ($image = $local_node_wrapper->field_image->value()) {
-          $ret[$result_key]->LocalPlantImg = $image['uri'];
+          $ret[$result_key]->LocalPlantImg = $image;
+          $file_object = file_load($image['fid']);
+          $ret[$result_key]->LocalPlantImg['attribution'] = _nas_panes_format_image_attribution($file_object);
         }
 
         if ($local_node_wrapper->body->value()) {
