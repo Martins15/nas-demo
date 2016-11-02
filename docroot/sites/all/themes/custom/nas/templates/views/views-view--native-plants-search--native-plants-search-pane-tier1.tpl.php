@@ -69,7 +69,13 @@
                         <a href="#" class="clearing-attach">
                           <?php print $result->PlantImgDesktop; ?>
                         </a>
-                        <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
+                        <ul data-clearing>
+                          <li style="display: none;">
+                            <a href="<?php print $result->PlantImgLightbox; ?>">
+                              <?php print $result->PlantImgDesktop; ?>
+                            </a>
+                          </li>
+                        </ul>
                       </div>
                     <?php endif; ?>
                     <?php if ($result->PlantImgMobile): ?>
