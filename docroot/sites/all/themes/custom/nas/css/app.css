@@ -17133,6 +17133,15 @@ ul.clearing-thumbs {
 .clearing-assembled .clearing-container .clearing-main-next.disabled {
   display: none;
 }
+.clearing-assembled .clearing-caption {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 2px 5px;
+  margin: 10px;
+  width: auto;
+  left: auto;
+  right: 0;
+}
 
 /**
  * IBA State page exposed form.

@@ -433,7 +433,7 @@ function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_s
     $collection = array();
     foreach ($results_filtered as $result) {
       foreach ($result as $key => $value) {
-        if ($value & !isset($collection[$key])) {
+        if (!empty($value) && !isset($collection[$key])) {
           $collection[$key] = $key;
         }
       }
@@ -591,16 +591,19 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
     $result->PlantImgLightbox = '';
     if ($result->LocalPlantImg) {
       $result->PlantImgDesktop = theme('image_style', array(
-        'path' => $result->LocalPlantImg,
+        'path' => $result->LocalPlantImg['uri'],
         'style_name'=> 'native_plant_desktop',
         'alt' => $result->CommonName,
+        'attributes' => array(
+          'data-caption' => $result->LocalPlantImg['attribution'],
+        ),
       ));
       $result->PlantImgMobile = theme('image_style', array(
-        'path' => $result->LocalPlantImg,
+        'path' => $result->LocalPlantImg['uri'],
         'style_name'=> 'native_plant_mobile',
         'alt' => $result->CommonName,
       ));
-      $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $result->LocalPlantImg);
+      $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $result->LocalPlantImg['uri']);
     }
     elseif ($result->PlantImg) {
       $result->PlantImgDesktop = theme('imagecache_external', array(
