@@ -23,6 +23,7 @@ function nas_events_cron_job_scheduler_info() {
  * This function should only be called once a day.
  */
 function nas_events_update_nodes($job = NULL) {
+  nas_events_check_deleted_nodes();
   $timestamp = variable_get('nas_events_last_time_processed', NAS_AUDUBON_WORKS_START_TIMESTAMP);
   $uuids = nas_events_get_list($timestamp);
   foreach ($uuids as $uuid => $timestamp) {
@@ -293,6 +294,88 @@ function nas_events_sync_form_submit_sync($form, &$form_state) {
 }
 
 /**
+ * Deletes event nodes, that were deleted on Audubon Works.
+ */
+function nas_events_check_deleted_nodes() {
+  // Get list of uuids of available [upcoming] events.
+  $uuids = _nas_events_get_events_uuids();
+
+  // Call Audubon Works endpoint, to retrieve a list of removed nodes.
+  $removed = _nas_events_get_deleted_events_uuids($uuids);
+
+  $nids = array();
+  foreach ($removed as $uuid) {
+    $nid = _nas_event_get_nid_by_uuid($uuid);
+    $nids[] = $nid;
+  }
+  if ($nids) {
+    node_delete_multiple($nids);
+  }
+}
+
+/**
+ * Retrieves a node by its external uuid.
+ *
+ * @param string $uuid
+ *   The UUID.
+ *
+ * @param mixed
+ *   Node object or FALSE.
+ */
+function _nas_event_get_nid_by_uuid($uuid) {
+  $query = db_select('feeds_item', 'fi')
+    ->fields('fi', array('entity_id'))
+    ->condition('id', 'events_import')
+    ->condition('entity_type', 'node')
+    ->condition('guid', $uuid);
+  $nid = $query->execute()->fetchField();
+
+  if ($nid) {
+    return $nid;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Retrieves UUIDs of available Event nodes.
+ *
+ * Todo: do not check past events?
+ *
+ * @return mixed
+ */
+function _nas_events_get_events_uuids() {
+  $query = db_select('feeds_item', 'fi')
+    ->fields('fi', array('guid'))
+    ->condition('entity_type', 'node')
+    ->condition('id', 'events_import');
+  $uuids = $query->execute()->fetchAllKeyed(0, 0);
+
+  return $uuids;
+}
+
+/**
+ * Helper function; retrieves UUIDs of the nodes delete on Audubon Works.
+ *
+ * @param array $uuids
+ *   UUIDs of the events to be checked.
+ *
+ * @return array
+ *   Array of UUIDs of the events that were deleted.
+ */
+function _nas_events_get_deleted_events_uuids($uuids) {
+  $uri = variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . 'event/deleted';
+  $url = url($uri, array('external' => TRUE));
+  $result = drupal_http_request($url, array(
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+    'method' => 'POST',
+    'data' => http_build_query(array('uuids' => $uuids)),
+  ));
+
+  return drupal_json_decode($result->data);
+}
+
+/**
  * Callback for Ajax: Frontpage Flyways - Audubon Near You section.
  */
 function nas_events_ajax_flyways_events($state) {
@@ -420,4 +503,29 @@ function nas_events_add_existing_file($url, $type, $uid = 1, $status = FILE_STAT
     drupal_write_record('file_managed', $file);
   }
   return $file;
+}
+
+/**
+ * Custom page callback.
+ *
+ * Redirect to corresponding event node on Audubon Works site.
+ *
+ * @param object $node
+ *   Node object.
+ *
+ * @return mixed
+ */
+function nas_events_redirect_to_works($node) {
+  $query = db_select('feeds_item', 'fi')
+    ->fields('fi', array('guid'))
+    ->condition('entity_type', 'node')
+    ->condition('entity_id', $node->nid)
+    ->condition('id', 'events_import');
+  $guid = $query->execute()->fetchField();
+
+  if (!$guid) {
+    return MENU_NOT_FOUND;
+  }
+
+  drupal_goto(variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . '/edit-by-uuid/' . $guid);
 }
