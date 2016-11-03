@@ -35,3 +35,17 @@ function nas_master_hotfix_update_7002() {
 function nas_master_hotfix_update_7003() {
   features_revert_module('nas_image_styles_feature');
 }
+
+/**
+ * Enable honeypot module.
+ */
+function nas_master_hotfix_update_7004() {
+  module_enable(array('honeypot'));
+
+  // Regenerate the honeypot css file if it does not exist or is outdated.
+  $honeypot_css = honeypot_get_css_file_path();
+  $honeypot_element_name = variable_get('honeypot_element_name', 'url');
+  if (!file_exists($honeypot_css) || !honeypot_check_css($honeypot_element_name)) {
+    honeypot_create_css($honeypot_element_name);
+  }
+}
