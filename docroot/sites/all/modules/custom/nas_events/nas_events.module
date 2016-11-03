@@ -310,6 +310,7 @@ function nas_events_check_deleted_nodes() {
   }
   if ($nids) {
     node_delete_multiple($nids);
+    drupal_set_message('%count events have been deleted', array('%count' => count($nids)));
   }
 }
 
