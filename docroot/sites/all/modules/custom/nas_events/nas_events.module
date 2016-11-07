@@ -166,6 +166,33 @@ function nas_events_theme() {
 }
 
 /**
+ * Implements hook_menu_alter().
+ */
+function nas_events_menu_alter(&$items) {
+  $items['node/add/event']['page callback'] = 'nas_events_redirect_to_works_event_add';
+}
+
+/**
+ * Custom page callback.
+ */
+function nas_events_redirect_to_works_event_add() {
+  $works_url = variable_get('nas_events_works_url', 'http://worksdev.prod.acquia-sites.com/');
+  $site_name = variable_get('asc_site_name', 'national');
+
+  $path = 'admin/events-sync';
+  if ($site_name == 'national') {
+    $path = 'admin/content/nas/events/sync';
+  }
+
+  drupal_goto($works_url . 'node/add/event', array(
+    'query' => array(
+      'return' => url($path, array('absolute' => TRUE)),
+      'site' => variable_get('asc_site_name', 'national'),
+    ),
+  ));
+}
+
+/**
  * Implements hook_menu().
  */
 function nas_events_menu() {
