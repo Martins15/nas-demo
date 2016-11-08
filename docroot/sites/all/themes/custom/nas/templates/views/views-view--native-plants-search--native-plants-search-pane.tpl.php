@@ -82,7 +82,13 @@
                   <label for="checkbox-f<?php print $result->PlantID; ?>"><?php print $result->CommonName; ?></label>
                   <?php if ($result->PlantImgLightbox): ?>
                     <a href="<?php print $result->PlantImgLightbox; ?>" class="icon-camera clearing-attach" title="<?php print t('Preview'); ?>"></a>
-                    <ul data-clearing class="clearing-thumbs"><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
+                    <ul data-clearing>
+                      <li style="display: none;">
+                        <a href="<?php print $result->PlantImgLightbox; ?>">
+                          <?php print $result->PlantImgDesktop; ?>
+                        </a>
+                      </li>
+                    </ul>
                   <?php endif; ?>
                   <?php if (user_access('administer nodes')): ?>
                     <br><span><a href="<?php print $result->LocalLink; ?>" target="_blank"><?php print t('Add/edit local info'); ?></a></span>
@@ -118,7 +124,13 @@
                 <span class="mobile-search-full-results--label"><?php print t('Plant'); ?>:</span> <?php print $result->CommonName; ?>
                 <?php if ($result->PlantImgLightbox): ?>
                   <a href="<?php print $result->PlantImgLightbox; ?>" class="icon-camera clearing-attach" title="<?php print t('Preview'); ?>"></a>
-                  <ul data-clearing><li><a href="<?php print $result->PlantImgLightbox; ?>"></a></li></ul>
+                  <ul data-clearing>
+                    <li style="display: none;">
+                      <a href="<?php print $result->PlantImgLightbox; ?>">
+                        <?php print $result->PlantImgDesktop; ?>
+                      </a>
+                    </li>
+                  </ul>
                 <?php endif; ?>
               </div>
               <div>

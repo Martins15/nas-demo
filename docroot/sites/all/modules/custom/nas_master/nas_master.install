@@ -3757,3 +3757,12 @@ function nas_master_update_7259() {
     ),
   ));
 }
+
+/**
+ * Revert Event content type related permissions.
+ */
+function nas_master_update_7260() {
+  features_revert(array(
+    'nas_event_feature' => array('user_permission'),
+  ));
+}

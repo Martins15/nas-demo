@@ -1304,6 +1304,16 @@ ul.clearing-thumbs {
       display: none;
     }
   }
+
+  .clearing-caption {
+    color: $color-white;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 2px 5px;
+    margin: 10px;
+    width: auto;
+    left: auto;
+    right: 0;
+  }
 }
 
 /**
