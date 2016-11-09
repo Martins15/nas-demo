@@ -1,7 +1,7 @@
 name = NAS Image Styles
 core = 7.x
 package = NAS
-version = 7.x-1.2
+version = 7.x-1.3
 project = nas_image_styles_feature
 dependencies[] = image
 features[features_api][] = api:2
@@ -24,6 +24,7 @@ features[image][] = conservation_strategy_icon
 features[image][] = conservation_strategy_slideshow
 features[image][] = default_teaser_image
 features[image][] = donate_banner_bg
+features[image][] = facebook_image
 features[image][] = featured_frontpage
 features[image][] = featured_frontpage_hero_image
 features[image][] = front_flyway_image
