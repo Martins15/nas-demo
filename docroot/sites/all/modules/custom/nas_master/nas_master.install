@@ -3766,3 +3766,14 @@ function nas_master_update_7260() {
     'nas_event_feature' => array('user_permission'),
   ));
 }
+
+/**
+ * Revert twitter tag image metatag.
+ */
+function nas_master_update_7261() {
+  features_revert(array(
+    'nas_metatags_feature' => array(
+      'metatag',
+    ),
+  ));
+}
