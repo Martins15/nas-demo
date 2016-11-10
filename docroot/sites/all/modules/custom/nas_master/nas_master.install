@@ -3795,7 +3795,7 @@ function nas_master_update_7262() {
 
   foreach ($configs as $config_data) {
     $config = unserialize($config_data->configuration);
-    if (empty($config['donate_path'])) {
+    if (!empty($config['donate_path'])) {
       continue;
     }
     $config['donate_path'] = $plugin['defaults']['donate_path'];
