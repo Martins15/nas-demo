@@ -3768,9 +3768,20 @@ function nas_master_update_7260() {
 }
 
 /**
- * Restore default donate path for Editorial cards river-style listing panes.
+ * Revert twitter tag image metatag.
  */
 function nas_master_update_7261() {
+  features_revert(array(
+    'nas_metatags_feature' => array(
+      'metatag',
+    ),
+  ));
+}
+
+/**
+ * Restore default donate path for Editorial cards river-style listing panes.
+ */
+function nas_master_update_7262() {
   $panel_type = 'editorial_card_river';
   ctools_include('context');
   ctools_include('plugins');

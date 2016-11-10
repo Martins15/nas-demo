@@ -219,8 +219,8 @@ function nas_metatags_feature_metatag_export_default() {
       'twitter:description' => array(
         'value' => '[node:field_subtitle]',
       ),
-      'twitter:image:src' => array(
-        'value' => '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile]',
+      'twitter:image' => array(
+        'value' => '[node:field_social_media_photo:social_media_photo],[node:editorial_card_image:hero_mobile],[node:field_hero_image:hero_mobile]',
       ),
     ),
   );
