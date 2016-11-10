@@ -465,6 +465,27 @@ function nas_image_styles_feature_image_default_styles() {
     ),
   );
 
+  // Exported image style: facebook_image.
+  $styles['facebook_image'] = array(
+    'label' => 'Facebook image',
+    'effects' => array(
+      98 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1200,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 2,
+      ),
+      99 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 3,
+      ),
+    ),
+  );
+
   // Exported image style: featured_frontpage.
   $styles['featured_frontpage'] = array(
     'label' => 'Featured frontpage',
