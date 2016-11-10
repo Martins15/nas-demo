@@ -16,18 +16,16 @@ $plugin = array(
   'admin title' => 'editorial_card_river_admin_title',
   'admin info' => 'editorial_card_river_admin_info',
   'defaults' => array(
-    'config' => array(
-      'preset' => '',
-      'filter' => array(
-        'menu_section' => '',
-        'editorial_section' => array(),
-      ),
-      'more_link_text' => '',
-      'more_link_url' => '',
-      'donate_caption' => t('Remember that Audubon depends on your support to do the conservation work that we do.'),
-      'donate_path' => 'donate',
-      'paddings' => _editorial_card_river_default_paddings_conf(),
+    'preset' => '',
+    'filter' => array(
+      'menu_section' => '',
+      'editorial_section' => array(),
     ),
+    'more_link_text' => '',
+    'more_link_url' => '',
+    'donate_caption' => t('Remember that Audubon depends on your support to do the conservation work that we do.'),
+    'donate_path' => 'donate',
+    'paddings' => _editorial_card_river_default_paddings_conf(),
   ),
 );
 
