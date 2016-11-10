@@ -16498,6 +16498,9 @@ textarea.error {
   height: auto !important;
   background-image: none;
 }
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-paddings .form-item {
+  width: 90%;
+}
 
 .slideshow-sidebar-block {
   float: left;

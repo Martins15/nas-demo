@@ -3776,3 +3776,33 @@ function nas_master_update_7261() {
     'nas_image_styles_feature' => array('image'),
   ));
 }
+
+/**
+ * Restore default donate path for Editorial cards river-style listing panes.
+ */
+function nas_master_update_7262() {
+  $panel_type = 'editorial_card_river';
+  ctools_include('context');
+  ctools_include('plugins');
+  $plugin = ctools_get_plugins('ctools', 'content_types', $panel_type);
+
+  $configs = db_select('panels_pane', 'pp')
+    ->fields('pp', array('pid', 'configuration'))
+    ->condition('pp.type', $panel_type)
+    ->execute()
+    ->fetchAll();
+
+  foreach ($configs as $config_data) {
+    $config = unserialize($config_data->configuration);
+    if (!empty($config['donate_path'])) {
+      continue;
+    }
+    $config['donate_path'] = $plugin['defaults']['donate_path'];
+
+    db_update('panels_pane')
+      ->fields(array('configuration' => serialize($config)))
+      ->condition('type', $panel_type)
+      ->condition('pid', $config_data->pid)
+      ->execute();
+  }
+}
