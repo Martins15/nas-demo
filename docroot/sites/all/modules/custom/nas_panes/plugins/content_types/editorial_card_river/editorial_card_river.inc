@@ -15,6 +15,18 @@ $plugin = array(
   'required context' => new ctools_context_optional(t('Node'), 'node'),
   'admin title' => 'editorial_card_river_admin_title',
   'admin info' => 'editorial_card_river_admin_info',
+  'defaults' => array(
+    'preset' => '',
+    'filter' => array(
+      'menu_section' => '',
+      'editorial_section' => array(),
+    ),
+    'more_link_text' => '',
+    'more_link_url' => '',
+    'donate_caption' => t('Remember that Audubon depends on your support to do the conservation work that we do.'),
+    'donate_path' => 'donate',
+    'paddings' => _editorial_card_river_default_paddings_conf(),
+  ),
 );
 
 /**
@@ -41,7 +53,10 @@ function editorial_card_river_admin_info($subtype, $conf, $context = NULL) {
  * An edit form for the pane's settings.
  */
 function editorial_card_river_edit_form($form, &$form_state) {
-  $conf = $form_state['conf'];
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
+
   $form['#tree'] = TRUE;
 
   // Do not show context selector if configuration form is called from page.
@@ -94,7 +109,7 @@ function editorial_card_river_edit_form($form, &$form_state) {
     '#multiple' => TRUE,
     '#description' => t("If you'd like all articles tagged with a parent term and all its child terms to be shown in this listing you should only select this parent term. In case you want this listing to show articles tagged with a child term(s) please select one or more child terms with Ctrl+Mouse click"),
     '#size' => count($menu_section_options) / 2,
-    '#default_value' => !empty($conf['filter']['menu_section']) ? $conf['filter']['menu_section'] : '',
+    '#default_value' => $conf['filter']['menu_section'],
     '#states' => $filter_state,
   );
 
@@ -111,22 +126,22 @@ function editorial_card_river_edit_form($form, &$form_state) {
   $form['more_link_text'] = array(
     '#type' => 'textfield',
     '#title' => t('More link text'),
-    '#default_value' => !empty($conf['more_link_text']) ? $conf['more_link_text'] : '',
+    '#default_value' => $conf['more_link_text'],
   );
   $form['more_link_url'] = array(
     '#type' => 'textfield',
     '#title' => t('More link URL'),
-    '#default_value' => !empty($conf['more_link_url']) ? $conf['more_link_url'] : '',
+    '#default_value' => $conf['more_link_url'],
   );
   $form['donate_caption'] = array(
     '#type' => 'textfield',
     '#title' => t('Donate caption'),
-    '#default_value' => !empty($conf['donate_caption']) ? $conf['donate_caption'] : t('Remember that Audubon depends on your support to do the conservation work that we do.'),
+    '#default_value' => $conf['donate_caption'],
   );
   $form['donate_path'] = array(
     '#type' => 'textfield',
     '#title' => t('Donate URL'),
-    '#default_value' => !empty($conf['donate_path']) ? $conf['donate_path'] : '',
+    '#default_value' => $conf['donate_path'],
   );
   $form['paddings'] = array(
     '#type' => 'checkboxes',
