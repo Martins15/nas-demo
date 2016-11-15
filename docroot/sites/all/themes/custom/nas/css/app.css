@@ -8736,6 +8736,13 @@ body.touch .primary-sub-nav-index {
   height: 100%;
 }
 
+.article-video-container.center iframe,
+.article-video-container.center object,
+.article-video-container.center embed {
+  display: block;
+  margin: auto;
+}
+
 .article-body .bean-welcome-to-audubon {
   z-index: 1;
 }
@@ -16490,6 +16497,9 @@ textarea.error {
 #modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-filter #edit-filter-menu-section {
   height: auto !important;
   background-image: none;
+}
+#modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-paddings .form-item {
+  width: 90%;
 }
 
 .slideshow-sidebar-block {

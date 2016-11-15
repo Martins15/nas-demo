@@ -9,6 +9,7 @@ features[metatag][] = global:404
 features[metatag][] = global:frontpage
 features[metatag][] = node
 features[metatag][] = node:article
+features[metatag][] = node:bird
 features[metatag][] = node:project
 features[metatag][] = node:slideshow
 features[metatag][] = node:static_page
