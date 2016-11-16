@@ -1031,7 +1031,7 @@ function nas_views_feature_views_default_views() {
 
   $view = new view();
   $view->name = 'nas_most_viewed_articles';
-  $view->description = '';
+  $view->description = '[Active] Popular Stories';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Most viewed articles';
@@ -1069,16 +1069,11 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
-  /* Sort criterion: Statistics: Page Views since 2005 began */
+  /* Sort criterion: Statistics: Page Views in the past 7 days */
   $handler->display->display_options['sorts']['count']['id'] = 'count';
-  $handler->display->display_options['sorts']['count']['table'] = 'ga_stats_count_pageviews_forever';
+  $handler->display->display_options['sorts']['count']['table'] = 'ga_stats_count_pageviews_week';
   $handler->display->display_options['sorts']['count']['field'] = 'count';
   $handler->display->display_options['sorts']['count']['order'] = 'DESC';
-  /* Sort criterion: Statistics: Page Views in the past 31 days */
-  $handler->display->display_options['sorts']['count_1']['id'] = 'count_1';
-  $handler->display->display_options['sorts']['count_1']['table'] = 'ga_stats_count_pageviews_month';
-  $handler->display->display_options['sorts']['count_1']['field'] = 'count';
-  $handler->display->display_options['sorts']['count_1']['order'] = 'DESC';
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
@@ -1088,13 +1083,6 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['nid']['not'] = TRUE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -1102,13 +1090,20 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
   );
-  /* Filter criterion: Content: Post date */
-  $handler->display->display_options['filters']['created']['id'] = 'created';
-  $handler->display->display_options['filters']['created']['table'] = 'node';
-  $handler->display->display_options['filters']['created']['field'] = 'created';
-  $handler->display->display_options['filters']['created']['operator'] = '>=';
-  $handler->display->display_options['filters']['created']['value']['value'] = '-30 days';
-  $handler->display->display_options['filters']['created']['value']['type'] = 'offset';
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Statistics: Page Views in the past 7 days */
+  $handler->display->display_options['filters']['count']['id'] = 'count';
+  $handler->display->display_options['filters']['count']['table'] = 'ga_stats_count_pageviews_week';
+  $handler->display->display_options['filters']['count']['field'] = 'count';
+  $handler->display->display_options['filters']['count']['operator'] = '>=';
+  $handler->display->display_options['filters']['count']['value']['value'] = '200';
 
   /* Display: Most viewed articles */
   $handler = $view->new_display('panel_pane', 'Most viewed articles', 'nas_most_viewed_articles');
@@ -1405,7 +1400,7 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['term_node_tid_depth']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['term_node_tid_depth']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['term_node_tid_depth']['depth'] = '5';
+  $handler->display->display_options['arguments']['term_node_tid_depth']['depth'] = '0';
   $handler->display->display_options['arguments']['term_node_tid_depth']['break_phrase'] = TRUE;
   /* Contextual filter: Editorial section */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
