@@ -65,7 +65,10 @@ function nas_master_update_7009() {
  * Enable Conservation Strategy and Conservation Project features.
  */
 function nas_master_update_7013() {
-  module_enable(array('nas_conservation_strategy_feature', 'nas_conservation_project_feature'));
+  module_enable(array(
+    'nas_conservation_strategy_feature',
+    'nas_conservation_project_feature'
+  ));
 }
 
 /**
@@ -257,7 +260,7 @@ function nas_master_update_7028() {
   $structure_file = file_get_contents(drupal_get_path('module', 'nas_master') . '/resources/boa_structure.txt');
   $weight = 0;
   $family_mlid = NULL;
-  $genus_mlid= NULL;
+  $genus_mlid = NULL;
   foreach (explode("\n", $structure_file) as $structure_file_row) {
     $weight++;
     list($title, $link) = explode(':', $structure_file_row);
@@ -512,14 +515,29 @@ function nas_master_update_7049() {
   features_revert_module('nas_static_page_feature');
   features_revert_module('nas_boa_family_feature');
   features_revert_module('nas_boa_feature');
-  features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'strongarm'
+    )
+  ));
   features_revert(array('nas_bird_type_feature' => array('field_instance')));
-  features_revert(array('nas_conservation_project_feature' => array('field_instance', 'strongarm')));
+  features_revert(array(
+    'nas_conservation_project_feature' => array(
+      'field_instance',
+      'strongarm'
+    )
+  ));
   features_revert(array('nas_conservation_strategy_feature' => array('field_instance')));
   features_revert(array('nas_contact_type_feature' => array('field_instance')));
   features_revert(array('nas_flyway_feature' => array('field_instance')));
   features_revert(array('nas_welcome_to_audubon' => array('field_instance')));
-  features_revert(array('nas_fpp_feature' => array('field_base', 'field_instance')));
+  features_revert(array(
+    'nas_fpp_feature' => array(
+      'field_base',
+      'field_instance'
+    )
+  ));
   features_revert_module('nas_site_template_feature');
   features_revert(array('nas_magazine_issue_feature' => array('panelizer_defaults')));
 }
@@ -528,7 +546,12 @@ function nas_master_update_7049() {
  * Conservation strategy.
  */
 function nas_master_update_7050() {
-  features_revert(array('nas_article_feature' => array('field_instance', 'strongarm')));
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'strongarm'
+    )
+  ));
   features_revert_module('nas_conservation_strategy_feature');
   module_enable(array('nas_conservation'));
   pp_create_frontpage_conservation_section_image();
@@ -546,9 +569,9 @@ function nas_master_update_7051() {
   features_revert_module('nas_view_modes_feature');
   // Change weight of nas_alters module.
   db_update('system')
-  ->fields(array('weight' => 100))
-  ->condition('name', 'nas_alters')
-  ->execute();
+    ->fields(array('weight' => 100))
+    ->condition('name', 'nas_alters')
+    ->execute();
 }
 
 /**
@@ -715,7 +738,10 @@ function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_conten
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
   if ($sandbox['#finished'] >= 1) {
     $sandbox['#finished'] = 1;
-    watchdog('nas_master', '@count @name has been successfully imported.', array('@count' => $sandbox['progress'], '@name' => $human_name));
+    watchdog('nas_master', '@count @name has been successfully imported.', array(
+      '@count' => $sandbox['progress'],
+      '@name' => $human_name
+    ));
   }
 }
 
@@ -737,13 +763,23 @@ function nas_master_update_7059() {
  * Add Nodequeue module, Engagement cards.
  */
 function nas_master_update_7060() {
-  module_enable(array('nodequeue', 'auto_nodequeue', 'nas_engagement_cards_feature'));
+  module_enable(array(
+    'nodequeue',
+    'auto_nodequeue',
+    'nas_engagement_cards_feature'
+  ));
   features_revert_module('nas_bird_type_feature');
   features_revert_module('nas_article_feature');
   features_revert(array('nas_author_page' => array('panelizer')));
   features_revert(array('nas_contact_type_feature' => array('panelizer')));
   features_revert(array('nas_flyways_feature' => array('panelizer')));
-  features_revert(array('nas_slideshow_feature' => array('field_instance', 'panelizer', 'views_default')));
+  features_revert(array(
+    'nas_slideshow_feature' => array(
+      'field_instance',
+      'panelizer',
+      'views_default'
+    )
+  ));
   features_revert(array('nas_conservation_project_feature' => array('panelizer')));
   features_revert_module('nas_conservation_strategy_feature');
   features_revert_module('nas_frontpage_feature');
@@ -1175,7 +1211,10 @@ function nas_master_update_7078() {
  */
 function nas_master_update_7079() {
   features_revert(array('nas_article_feature' => array('panelizer_defaults')));
-  module_enable(array('nas_audubon_near_you_feature', 'nas_bird_friendly_feature'));
+  module_enable(array(
+    'nas_audubon_near_you_feature',
+    'nas_bird_friendly_feature'
+  ));
   features_revert_module('nas_bird_friendly_feature');
 }
 
@@ -1457,7 +1496,12 @@ function nas_master_update_7111() {
  * Revert features.
  */
 function nas_master_update_7112() {
-  module_enable(array('metatag', 'metatag_opengraph', 'imagecache_token', 'nas_editorial_cards'));
+  module_enable(array(
+    'metatag',
+    'metatag_opengraph',
+    'imagecache_token',
+    'nas_editorial_cards'
+  ));
   module_enable(array('nas_metatags_feature'));
   features_revert_module('nas_news_feature');
 }
@@ -1689,7 +1733,11 @@ function nas_master_update_7128() {
   features_revert(array('nas_site_template_feature' => array('page_manager_handlers')));
 
   ctools_include('export');
-  if ($handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array('task' => 'page', 'subtask' => 'frontpage2'))) {
+  if ($handlers = ctools_export_load_object('page_manager_handlers', 'conditions', array(
+    'task' => 'page',
+    'subtask' => 'frontpage2'
+  ))
+  ) {
     $handler = reset($handlers);
     $did = $handler->conf['did'];
     // Insert 'Stay abreast' pane into 'Footer' region of frontpage panel.
@@ -1846,7 +1894,12 @@ function nas_master_update_7133() {
  * Revert features.
  */
 function nas_master_update_7134() {
-  features_revert(array('nas_bird_type_feature' => array('field_base', 'field_instance')));
+  features_revert(array(
+    'nas_bird_type_feature' => array(
+      'field_base',
+      'field_instance'
+    )
+  ));
 }
 
 /**
@@ -1893,7 +1946,10 @@ function nas_master_update_7139() {
   $needle = 'public:///';
   $replace = 'public://';
   db_update('file_managed')
-    ->expression('uri', 'replace(uri, :needle, :replace)', array(':needle' => $needle, ':replace' => $replace))
+    ->expression('uri', 'replace(uri, :needle, :replace)', array(
+      ':needle' => $needle,
+      ':replace' => $replace
+    ))
     ->condition('uri', db_like($needle) . '%', 'LIKE')
     ->execute();
 }
@@ -1953,14 +2009,16 @@ function nas_master_update_7141() {
     db_update($table)
       ->expression('body_value', 'replace(body_value, :old, :new)', array(
         ':old' => '://audubon.wearepropeople.md/',
-        ':new' => '://audubon.prod.acquia-sites.com/'))
+        ':new' => '://audubon.prod.acquia-sites.com/'
+      ))
       ->condition('body_value', '%://audubon.wearepropeople.md/%', 'LIKE')
       ->execute();
     // ://nas.wearepropeople.md/staging/ -> ://www.audubon.org/.
     db_update($table)
       ->expression('body_value', 'replace(body_value, :old, :new)', array(
         ':old' => '://nas.wearepropeople.md/staging/',
-        ':new' => '://www.audubon.org/'))
+        ':new' => '://www.audubon.org/'
+      ))
       ->condition('body_value', '%://nas.wearepropeople.md/staging/%', 'LIKE')
       ->execute();
   }
@@ -1986,11 +2044,11 @@ function nas_master_update_7143() {
   // Remove default Map code.
   $map_html = '<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" scrolling="no" src="http://audubon.maps.arcgis.com/home/webmap/embedViewer.html?webmap=e47c7387f97d4f6f8f691e1c73e31a00&amp;extent=-74.1592,40.6498,-73.6521,40.8761"></iframe>';
   db_delete('field_data_field_article_map')
-  ->condition('field_article_map_value', $map_html, '=')
-  ->execute();
+    ->condition('field_article_map_value', $map_html, '=')
+    ->execute();
   db_delete('field_revision_field_article_map')
-  ->condition('field_article_map_value', $map_html, '=')
-  ->execute();
+    ->condition('field_article_map_value', $map_html, '=')
+    ->execute();
 }
 
 /**
@@ -2013,7 +2071,12 @@ function nas_master_update_7144() {
  * Revert features.
  */
 function nas_master_update_7146() {
-  features_revert(array('nas_article_feature' => array('panelizer', 'field_instance')));
+  features_revert(array(
+    'nas_article_feature' => array(
+      'panelizer',
+      'field_instance'
+    )
+  ));
   features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
   features_revert(array('nas_conservation_project_feature' => array('field_instance')));
   features_revert(array('nas_slideshow_feature' => array('field_instance')));
@@ -2056,7 +2119,10 @@ function nas_master_update_7148(&$sandbox) {
     module_load_include('inc', 'pathauto', 'pathauto');
     pathauto_node_update_alias_multiple($nids, 'update');
     $sandbox['progress'] += count($nids);
-    drupal_set_message(t('Processed @count / @max nodes', array('@count' => $sandbox['progress'], '@max' => $sandbox['max'])));
+    drupal_set_message(t('Processed @count / @max nodes', array(
+      '@count' => $sandbox['progress'],
+      '@max' => $sandbox['max']
+    )));
   }
 
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
@@ -2080,7 +2146,13 @@ function nas_master_update_7149() {
  */
 function nas_master_update_7150() {
   module_enable(array('search_api_autocomplete'));
-  features_revert(array('nas_solr_feature' => array('search_api_index', 'search_api_autocomplete_search', 'user_permission')));
+  features_revert(array(
+    'nas_solr_feature' => array(
+      'search_api_index',
+      'search_api_autocomplete_search',
+      'user_permission'
+    )
+  ));
 }
 
 /**
@@ -2259,9 +2331,9 @@ function nas_master_update_7166() {
     $handler->conf['body_classes_to_add'] = 'page-taxonomy-term-tags';
     $conf = serialize($handler->conf);
     db_update('page_manager_handlers')
-    ->fields(array('conf' => $conf))
-    ->condition('name', 'term_view_panel_context')
-    ->execute();
+      ->fields(array('conf' => $conf))
+      ->condition('name', 'term_view_panel_context')
+      ->execute();
   }
 }
 
@@ -2285,7 +2357,11 @@ function nas_master_update_7168() {
  * Enable and revert Events landing page related features.
  */
 function nas_master_update_7169() {
-  module_enable(array('date_views', 'nas_events_landing_feature', 'jquery_colorpicker'));
+  module_enable(array(
+    'date_views',
+    'nas_events_landing_feature',
+    'jquery_colorpicker'
+  ));
   module_enable(array('nas_video_page_feature'));
   features_revert(array(
     'nas_solr_feature' => array('search_api_index', 'facetapi'),
@@ -2310,7 +2386,14 @@ function nas_master_update_7169() {
     // Update Frontpage featured panel pane configuation.
     $conf['variant'] = 'curtain_simple';
 
-    $fields = array('image', 'title', 'title_link', 'blue_text', 'blue_text_link', 'summary');
+    $fields = array(
+      'image',
+      'title',
+      'title_link',
+      'blue_text',
+      'blue_text_link',
+      'summary'
+    );
     $conf['curtain_simple'] = array();
     foreach ($fields as $field) {
       $conf['curtain_simple'][$field] = $conf[$field];
@@ -2365,9 +2448,9 @@ function nas_master_update_7174() {
   features_revert(array('nas_article_feature' => array('field_instance')));
   // Move Disquss pane to the own panel.
   db_update('panels_pane')
-  ->fields(array('position' => 0, 'panel' => 'comments'))
-  ->condition('subtype', 'disqus-disqus_comments')
-  ->execute();
+    ->fields(array('position' => 0, 'panel' => 'comments'))
+    ->condition('subtype', 'disqus-disqus_comments')
+    ->execute();
 
   // Create new pane and configure content and visibility settings.
   $new_pane = panels_new_pane('entity_field', 'node:field_file_attachments', TRUE);
@@ -2462,7 +2545,10 @@ function nas_master_update_7175(&$sandbox) {
       watchdog('nas_master', ':s', array(':s' => 'group updated in ' . (microtime(1) - $_t)));
     }
     $sandbox['progress'] += count($groups);
-    drupal_set_message(t('Processed @count / @max groups', array('@count' => $sandbox['progress'], '@max' => $sandbox['max'])));
+    drupal_set_message(t('Processed @count / @max groups', array(
+      '@count' => $sandbox['progress'],
+      '@max' => $sandbox['max']
+    )));
   }
 
   $sandbox['#finished'] = empty($sandbox['max']) ? 1 : $sandbox['progress'] / $sandbox['max'];
@@ -2498,25 +2584,25 @@ function _nas_master_compare_by_title($a, $b) {
  */
 function nas_master_update_7178() {
   // Get NID from all birds nodes that have at least 1 audio file.
-  $nids = db_query("SELECT node.nid AS nid, node.title AS title ".
-                   "FROM {node} node ".
-                   "LEFT JOIN {field_data_field_bird_audio} field_data_field_bird_audio ".
-                     "ON node.nid = field_data_field_bird_audio.entity_id ".
-                     "AND (field_data_field_bird_audio.entity_type = 'node' ".
-                     "AND field_data_field_bird_audio.deleted = '0') ".
-                   "WHERE (( (node.status = '1') ".
-                     "AND (node.type IN  ('bird')) ".
-                     "AND (field_data_field_bird_audio.field_bird_audio_fid > '0') ))")->fetchAllKeyed();
+  $nids = db_query("SELECT node.nid AS nid, node.title AS title " .
+    "FROM {node} node " .
+    "LEFT JOIN {field_data_field_bird_audio} field_data_field_bird_audio " .
+    "ON node.nid = field_data_field_bird_audio.entity_id " .
+    "AND (field_data_field_bird_audio.entity_type = 'node' " .
+    "AND field_data_field_bird_audio.deleted = '0') " .
+    "WHERE (( (node.status = '1') " .
+    "AND (node.type IN  ('bird')) " .
+    "AND (field_data_field_bird_audio.field_bird_audio_fid > '0') ))")->fetchAllKeyed();
   foreach ($nids as $nid => $title) {
     $node = node_load($nid);
     // If there is more than 1 audio, sort them.
     if (!empty($node->field_bird_audio) and sizeof($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
       // Put the title of the file in the array for sorting.
       foreach ($node->field_bird_audio[LANGUAGE_NONE] as $key => $field) {
-        $filename = db_query("SELECT fm.filename AS filename ".
-                             "FROM {file_managed} fm ".
-                             "WHERE fm.fid = :fid",
-                             array(':fid' => $field['fid']))->fetchField();
+        $filename = db_query("SELECT fm.filename AS filename " .
+          "FROM {file_managed} fm " .
+          "WHERE fm.fid = :fid",
+          array(':fid' => $field['fid']))->fetchField();
         $node->field_bird_audio[LANGUAGE_NONE][$key]['title'] = $filename;
       }
       // Sort the audio files array by title.
@@ -2583,9 +2669,9 @@ function nas_master_update_7183() {
 function nas_master_update_7184() {
   module_enable(array('page_manager_search', 'nas_location_view_feature'));
   features_revert(array(
-      'nas_search_feature' => array('views_view', 'page_manager_pages'),
-      'nas_solr_feature' => array('search_api_index'),
-    ));
+    'nas_search_feature' => array('views_view', 'page_manager_pages'),
+    'nas_solr_feature' => array('search_api_index'),
+  ));
   // Workaround for empty search index.
   $indexes = entity_load('search_api_index', array('page_manager_pages'));
   $index = reset($indexes);
@@ -3001,7 +3087,7 @@ function nas_master_update_7213() {
 function nas_master_update_7214() {
   module_enable(array('nas_i18n_file'));
   features_revert(array(
-      'nas_bird_type_feature' => array('field_base'),
+    'nas_bird_type_feature' => array('field_base'),
   ));
 }
 
@@ -3227,7 +3313,9 @@ function nas_master_update_7227() {
     $mlid = menu_link_save($menu_link);
     $weight++;
 
-    if (empty($menu_item)) continue;
+    if (empty($menu_item)) {
+      continue;
+    }
 
     $inner_weight = -50;
     foreach ($menu_item['children'] as $menu_child_item_title => $menu_child_item_url) {
@@ -3321,7 +3409,10 @@ function nas_master_update_7232() {
     'format' => 'full_html',
   );
 
-  variable_set('nas_birds_guide-credits-content', array('en' => $default_value, 'es' => $default_value));
+  variable_set('nas_birds_guide-credits-content', array(
+    'en' => $default_value,
+    'es' => $default_value
+  ));
 
   $img_path = drupal_get_path('theme', 'nas') . '/img';
   $default_value = array(
@@ -3329,7 +3420,10 @@ function nas_master_update_7232() {
     'format' => 'full_html',
   );
 
-  variable_set('nas_birds_guide-download-content', array('en' => $default_value, 'es' => $default_value));
+  variable_set('nas_birds_guide-download-content', array(
+    'en' => $default_value,
+    'es' => $default_value
+  ));
 }
 
 /**
@@ -3811,5 +3905,5 @@ function nas_master_update_7262() {
  * Revert features.
  */
 function nas_master_update_7263() {
-    features_revert(array('nas_views_feature' => array('views_view')));
+  features_revert(array('nas_views_feature' => array('views_view')));
 }
