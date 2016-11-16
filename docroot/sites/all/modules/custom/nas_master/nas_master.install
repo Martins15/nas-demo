@@ -3806,10 +3806,3 @@ function nas_master_update_7262() {
       ->execute();
   }
 }
-
-/**
- * Revert features.
- */
-function nas_master_update_7263() {
-    features_revert(array('nas_views_feature' => array('views_view')));
-}
