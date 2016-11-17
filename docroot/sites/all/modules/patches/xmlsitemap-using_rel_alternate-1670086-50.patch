@@ -1,5 +1,5 @@
 diff --git a/xmlsitemap.admin.inc b/xmlsitemap.admin.inc
-index 55d6c2e..c6993bf 100644
+index 496dd2c..1392e00 100644
 --- a/xmlsitemap.admin.inc
 +++ b/xmlsitemap.admin.inc
 @@ -330,6 +330,32 @@ function xmlsitemap_settings_form($form, &$form_state) {
@@ -36,18 +36,18 @@ index 55d6c2e..c6993bf 100644
      '#type' => 'select',
      '#title' => t('Last modification date format'),
 diff --git a/xmlsitemap.generate.inc b/xmlsitemap.generate.inc
-index 3072fac..9a5df60 100644
+index 57c3bc1..5f985c0 100644
 --- a/xmlsitemap.generate.inc
 +++ b/xmlsitemap.generate.inc
 @@ -184,6 +184,7 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer,
+ 
    while ($link = $links->fetchAssoc()) {
      $link['language'] = $link['language'] != LANGUAGE_NONE ? xmlsitemap_language_load($link['language']) : $url_options['language'];
++    $link['original'] = $link['loc'];
      if ($url_options['alias']) {
-+      $link['original'] = $link['loc'];
        $link['loc'] = xmlsitemap_get_path_alias($link['loc'], $link['language']->language);
      }
-     $link_options = array(
-@@ -208,6 +209,11 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer,
+@@ -209,6 +210,11 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer,
  
      $element = array();
      $element['loc'] = $link_url;
@@ -57,11 +57,11 @@ index 3072fac..9a5df60 100644
 +    }
 +
      if ($link['lastmod']) {
-       $element['lastmod'] = gmdate($lastmod_format, $link['lastmod']);
-       // If the link has a lastmod value, update the changefreq so that links
-@@ -521,3 +527,52 @@ function xmlsitemap_get_rebuildable_link_types() {
+       if (!empty($output_elements['lastmod'])) {
+         $element['lastmod'] = gmdate($lastmod_format, $link['lastmod']);
+@@ -549,3 +555,52 @@ function xmlsitemap_rebuild_clear(array $types, $save_custom) {
  
-   return $rebuild_types;
+   return $query->execute();
  }
 +
 +/**
@@ -99,8 +99,8 @@ index 3072fac..9a5df60 100644
 +        'href' => url($link['original'], array('language' => $lang, 'absolute' => TRUE)),
 +        'hreflang' => $lang->language,
 +      );
-+      $x_default = xmlsitemap_var('multilingual_x_default');
 +    }
++    $x_default = xmlsitemap_var('multilingual_x_default');
 +    if ($x_default != 'none') {
 +      $x_default_lang = $x_default == "default" ? language_default()->language : $x_default;
 +      $xhtml_links[] = array(
@@ -113,10 +113,10 @@ index 3072fac..9a5df60 100644
 +  return isset($xhtml_links) ? $xhtml_links : array();
 +}
 diff --git a/xmlsitemap.install b/xmlsitemap.install
-index 169bd96..4340e44 100644
+index 916ebec..2eb3c00 100644
 --- a/xmlsitemap.install
 +++ b/xmlsitemap.install
-@@ -544,6 +544,15 @@ function xmlsitemap_update_7203() {
+@@ -554,6 +554,15 @@ function xmlsitemap_update_7203() {
    _xmlsitemap_sitemap_rehash_all();
  }
  
@@ -133,10 +133,10 @@ index 169bd96..4340e44 100644
    // Reload the schema cache and reprocess all sitemap hashes into smids.
    drupal_load('module', 'xmlsitemap');
 diff --git a/xmlsitemap.module b/xmlsitemap.module
-index 9f4868b..52703ed 100644
+index 09d02ea..730c3f5 100644
 --- a/xmlsitemap.module
 +++ b/xmlsitemap.module
-@@ -291,6 +291,9 @@ function xmlsitemap_variables() {
+@@ -292,6 +292,9 @@ function xmlsitemap_variables() {
      'xmlsitemap_batch_limit' => 100,
      'xmlsitemap_path' => 'xmlsitemap',
      'xmlsitemap_base_url' => $GLOBALS['base_url'],

@@ -164,7 +164,6 @@ class XMLSitemapWriter extends XMLWriter {
         $this->writeElement($sub_name, $sub_content);
       }
       $this->endElement();
-      parent::writeElement($name, $data['content']);
     }
   }
 
