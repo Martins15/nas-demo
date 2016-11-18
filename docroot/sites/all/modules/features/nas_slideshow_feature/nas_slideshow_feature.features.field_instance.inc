@@ -1165,7 +1165,7 @@ function nas_slideshow_feature_field_default_field_instances() {
           'caption' => 1,
           'comments' => 0,
           'credit' => 1,
-          'fullscreen' => 1,
+          'fullscreen' => 0,
           'likes' => 1,
           'style' => 'hero_mobile',
         ),

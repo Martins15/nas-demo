@@ -36,6 +36,7 @@ features[field_instance][] = node-video_page-field_video_embed_code
 features[node][] = video_page
 features[panelizer_defaults][] = node:video_page:default
 features[variable][] = field_bundle_settings_node__video_page
+features[variable][] = language_content_type_video_page
 features[variable][] = menu_options_video_page
 features[variable][] = menu_parent_video_page
 features[variable][] = node_options_video_page

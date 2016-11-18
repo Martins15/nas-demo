@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the Native Plants Taxonomy feature.
  */
+
+include_once 'nas_native_plants_taxonomy.features.inc';
