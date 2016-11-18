@@ -2,6 +2,7 @@ name = CBC Gallery
 core = 7.x
 package = Features
 dependencies[] = image
+dependencies[] = media
 dependencies[] = nas_bird_type_feature
 dependencies[] = text
 dependencies[] = views
