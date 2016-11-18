@@ -34,6 +34,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -129,6 +130,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -165,6 +167,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Referenced item',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -226,6 +229,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -262,6 +266,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Similar Bird',
     'required' => FALSE,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -300,12 +305,15 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Column count',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 5,
     ),
@@ -334,6 +342,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'file_directory' => '',
       'file_extensions' => 'jpg jpeg gif png',
       'max_filesize' => '',
@@ -400,6 +409,7 @@ function nas_fpp_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_maxlength' => 128,
@@ -448,6 +458,7 @@ function nas_fpp_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_maxlength' => 128,
@@ -511,6 +522,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -549,12 +561,15 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Color mode',
     'required' => 1,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 5,
     ),
@@ -584,6 +599,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -683,6 +699,7 @@ function nas_fpp_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_maxlength' => 128,
@@ -731,6 +748,7 @@ function nas_fpp_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_maxlength' => 128,
@@ -794,6 +812,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -854,6 +873,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -895,12 +915,15 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Block Visibility (Hide)',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 8,
     ),
@@ -928,6 +951,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Flyway',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -985,6 +1009,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -1045,6 +1070,7 @@ function nas_fpp_feature_field_default_field_instances() {
           ),
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -1080,6 +1106,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Background Cover',
     'required' => FALSE,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'file_extensions' => 'jpg jpeg gif png',
       'user_register_form' => FALSE,
     ),
@@ -1124,6 +1151,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -1199,6 +1227,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Similar Bird',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1240,6 +1269,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'label' => 'Flyway hero items',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1275,6 +1305,7 @@ function nas_fpp_feature_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'article_featured' => 0,
@@ -1355,6 +1386,7 @@ function nas_fpp_feature_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_maxlength' => 128,
@@ -1396,12 +1428,15 @@ function nas_fpp_feature_field_default_field_instances() {
           'status' => TRUE,
         ),
       ),
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => -4,
     ),

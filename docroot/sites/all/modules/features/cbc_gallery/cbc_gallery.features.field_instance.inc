@@ -24,6 +24,12 @@ function cbc_gallery_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -118,6 +124,12 @@ function cbc_gallery_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -249,6 +261,12 @@ function cbc_gallery_field_default_field_instances() {
         'type' => 'list_default',
         'weight' => 1,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -334,6 +352,12 @@ function cbc_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 3,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -458,6 +482,12 @@ function cbc_gallery_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -580,6 +610,12 @@ function cbc_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -705,6 +741,12 @@ function cbc_gallery_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 6,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',

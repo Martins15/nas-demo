@@ -34,6 +34,7 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'label' => 'Color',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -65,12 +66,15 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'label' => 'Machine attributes',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 2,
     ),
@@ -107,6 +111,7 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'none',
       'title_maxlength' => 128,
@@ -144,12 +149,15 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'label' => 'Machine attributes',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 2,
     ),
@@ -179,6 +187,7 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,

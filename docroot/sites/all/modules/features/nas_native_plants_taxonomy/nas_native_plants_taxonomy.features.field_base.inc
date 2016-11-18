@@ -26,6 +26,7 @@ function nas_native_plants_taxonomy_field_default_field_bases() {
     'locked' => 0,
     'module' => 'color_field',
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'palette' => '',
       'show_buttons' => 0,
       'show_input' => 1,
@@ -68,6 +69,7 @@ function nas_native_plants_taxonomy_field_default_field_bases() {
         'Vine' => 'Vine',
       ),
       'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',
@@ -97,6 +99,9 @@ function nas_native_plants_taxonomy_field_default_field_bases() {
     'module' => 'image',
     'settings' => array(
       'default_image' => 0,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
       'uri_scheme' => 'public',
     ),
     'translatable' => 0,

@@ -42,4 +42,7 @@ features[variable][] = panelizer_defaults_node_strategy
 features[variable][] = scheduler_publish_enable_strategy
 features[views_view][] = conservation_strategy_news
 features[views_view][] = conservation_strategy_projects
+features_exclude[variable][language_content_type_strategy] = language_content_type_strategy
+features_exclude[variable][panelizer_node:strategy:page_manager_selection] = panelizer_node:strategy:page_manager_selection
+features_exclude[variable][xmlsitemap_settings_node_strategy] = xmlsitemap_settings_node_strategy
 project path = sites/all/modules/features
