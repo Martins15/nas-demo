@@ -12,25 +12,26 @@
 ?>
 
 <?php if ($title || $more_link): ?>
-  <div class="row section-header<?php if ($spacetop): ?> space-top<?php endif; ?><?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
-    <?php if ($title): ?>
+  <div class="row section-header<?php if ($spacetop): ?> space-top<?php endif; ?>">
     <div class="column">
-      <h2 class="thin"><?php print $title; ?></h2>
+      <?php if ($title): ?>
+        <h2 class="thin"><?php print $title; ?></h2>
+      <?php endif; ?>
     </div>
-    <?php endif; ?>
-    <?php if ($more_link): ?>
     <div class="column">
-      <ul class="section-nav inline-list">
-        <li class="first"><?php print $more_link; ?></li>
-      </ul>
+      <?php if ($more_link): ?>
+        <ul class="inline-list section-nav">
+          <li><?php print $more_link; ?></li>
+        </ul>
+      <?php endif; ?>
     </div>
-    <?php endif; ?>
   </div>
 <?php endif; ?>
-
-<div class="row <?php print $spacebottom; ?> contextual-links-region">
+<div class="row<?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
   <?php print $contextual_links; ?>
   <?php foreach ($teasers as $teaser): ?>
-    <?php print $teaser; ?>
+    <div class="columns large-3">
+      <?php print $teaser; ?>
+    </div>
   <?php endforeach; ?>
 </div>
