@@ -546,7 +546,13 @@ function nas_master_native_plants_views_plugins() {
 }
 
 /**
- * Implements hook_acquia_purge_domains_alter().
+ * Helper function; retrieves image attributions by plantid.
+ *
+ * @param string $plant_id
+ *   MD5 plant hash.
+ *
+ * @return mixed
+ *   Formatted image attribution or FALSE.
  */
 function nas_master_native_plants_get_image_attributions_by_plantid($plant_id) {
   if (!$np_image_caption_credits = variable_get('np_image_caption_credits', array())) {
