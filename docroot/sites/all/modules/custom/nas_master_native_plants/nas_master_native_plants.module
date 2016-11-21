@@ -51,7 +51,7 @@ function nas_master_native_plants_menu() {
     'type' => MENU_LOCAL_TASK,
   );
   $items['admin/config/system/native-plants/update-tier-1-images'] = array(
-    'title' => 'Update Tier 1 plants images',
+    'title' => 'Update images',
     'description' => 'Update Tier 1 plants images',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('nas_master_native_plants_update_images'),

@@ -174,7 +174,7 @@ function nas_master_native_plants_native_plant_check_image($node_wrapper, $Plant
   if ($file = file_copy($source, $destination)) {
     $np_image_caption_credits = variable_get('np_image_caption_credits', array());
     if (!empty($np_image_caption_credits[$node_wrapper->nid->value()])) {
-      // If there were caption/credits set and then tier 1 plans images reset.
+      // If there were caption/credits set and then tier 1 plants images reset.
       $stored = $np_image_caption_credits[$node_wrapper->nid->value()];
       if (!empty($stored['caption'])) {
         $file->field_file_caption = $stored['caption'];
@@ -242,7 +242,7 @@ function nas_master_native_plants_plant_id_update_submit($form, &$form_state) {
 function nas_master_native_plants_update_images($form, &$form_state) {
   $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Update Tier 1 Plants images IDs'),
+    '#value' => t('Update Tier 1 Plants images'),
   );
 
   return $form;
@@ -257,7 +257,7 @@ function nas_master_native_plants_update_images_submit($form, &$form_state) {
   );
 
   $batch = array(
-    'title' => t('Updating Native Plants Plant IDs'),
+    'title' => t('Update Native Plants images'),
     'operations' => $operations,
     'finished' => 'nas_master_native_plants_update_images_finished_callback',
     'file' => drupal_get_path('module', 'nas_master_native_plants') . '/nas_master_native_plants.batch.inc',
