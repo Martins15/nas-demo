@@ -50,6 +50,15 @@ function nas_master_native_plants_menu() {
     'file' => 'nas_master_native_plants.admin.inc',
     'type' => MENU_LOCAL_TASK,
   );
+  $items['admin/config/system/native-plants/update-tier-1-images'] = array(
+    'title' => 'Update Tier 1 plants images',
+    'description' => 'Update Tier 1 plants images',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nas_master_native_plants_update_images'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'nas_master_native_plants.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
 
   $items['nas_master_native_plants/native_plant_create'] = array(
     'title' => 'Create Native Plant',
@@ -537,6 +546,35 @@ function nas_master_native_plants_views_plugins() {
 }
 
 /**
+ * Implements hook_acquia_purge_domains_alter().
+ */
+function nas_master_native_plants_get_image_attributions_by_plantid($plant_id) {
+  if (!$np_image_caption_credits = variable_get('np_image_caption_credits', array())) {
+    return FALSE;
+  }
+  // Check if there is native_plant with this PlantID.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'native_plant')
+    ->fieldCondition('field_native_plant_id', 'value', $plant_id);
+  $results = $query->execute();
+  if (isset($results['node'])) {
+    $nid = reset($results['node'])->nid;
+    if (!empty($np_image_caption_credits[$nid])) {
+      $fake_file = (object) array(
+        'type' => 'image',
+        'fid' => 0,
+        'field_file_caption' => isset($np_image_caption_credits[$nid]['caption']) ? $np_image_caption_credits[$nid]['caption'] : array(),
+        'field_file_credit' => isset($np_image_caption_credits[$nid]['credit']) ? $np_image_caption_credits[$nid]['credit'] : array(),
+      );
+      return _nas_panes_format_image_attribution($fake_file);
+    }
+  }
+
+  return FALSE;
+}
+
+/**
  * Implements hook_preprocess_views_view().
  */
 function nas_master_native_plants_preprocess_views_view(&$vars) {
@@ -606,17 +644,23 @@ function nas_master_native_plants_preprocess_views_view(&$vars) {
       $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $result->LocalPlantImg['uri']);
     }
     elseif ($result->PlantImg) {
-      $result->PlantImgDesktop = theme('imagecache_external', array(
+      $params = array(
         'path' => $result->PlantImg,
         'style_name'=> 'native_plant_desktop',
         'alt' => $result->CommonName,
-      ));
+      );
+      if ($attribution = nas_master_native_plants_get_image_attributions_by_plantid($result->PlantID)) {
+        $params['attributes'] = array(
+          'data-caption' => $attribution,
+        );
+      }
+      $result->PlantImgDesktop = theme('imagecache_external', $params);
       $result->PlantImgMobile = theme('imagecache_external', array(
         'path' => $result->PlantImg,
         'style_name'=> 'native_plant_mobile',
         'alt' => $result->CommonName,
       ));
-      if ($path =imagecache_external_generate_path($result->PlantImg)) {
+      if ($path = imagecache_external_generate_path($result->PlantImg)) {
         $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $path);
       }
     }

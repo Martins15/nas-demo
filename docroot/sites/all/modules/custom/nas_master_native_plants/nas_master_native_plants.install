@@ -129,3 +129,21 @@ function nas_master_native_plants_update_7008() {
 function nas_master_native_plants_update_7009() {
   module_enable(array('nas_external_integration'));
 }
+
+/**
+ * Refresh Native plants tier 1 images.
+ */
+function nas_master_native_plants_update_7010(&$sandbox) {
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.batch');
+  $context = array(
+    'sandbox' => $sandbox,
+  );
+  nas_master_native_plants_update_images_callback($context);
+  $sandbox = $context['sandbox'];
+  $sandbox['#finished'] = ($sandbox['progress'] >= $sandbox['max']) ? TRUE : $context['finished'];
+
+  if ($sandbox['#finished'] === TRUE) {
+    watchdog('nas_master_native_plants', '@count native plants nodes have been processed.', array('@count' => $sandbox['progress']));
+    return t('The native plants tier 1 images have been refreshed successful.');
+  }
+}
