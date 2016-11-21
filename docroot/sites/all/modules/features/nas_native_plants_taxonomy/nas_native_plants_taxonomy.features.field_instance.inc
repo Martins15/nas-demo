@@ -34,6 +34,7 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'label' => 'Color',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -65,12 +66,15 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'label' => 'Machine attributes',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 2,
     ),
@@ -107,6 +111,7 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
         'url_cutoff' => 80,
       ),
       'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
       'title' => 'none',
       'title_maxlength' => 128,
@@ -144,12 +149,15 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'label' => 'Machine attributes',
     'required' => 0,
     'settings' => array(
+      'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'checkall' => FALSE,
+      ),
       'type' => 'options_buttons',
       'weight' => 2,
     ),
@@ -179,6 +187,7 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
+      'entity_translation_sync' => FALSE,
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
@@ -195,17 +204,22 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
           'conservation_strategy_slideshow' => 0,
           'default_teaser_image' => 0,
           'engagement_card' => 0,
+          'engagement_card_full_width' => 0,
           'featured_frontpage' => 0,
           'featured_frontpage_hero_image' => 0,
           'front_flyway_image' => 0,
           'get_outside' => 0,
           'hero_cover_bird_page' => 0,
+          'hero_icon' => 0,
           'local_chapters_centers' => 0,
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,
           'nas_birds_landing_epsacrop_mobile' => 0,
+          'native_plant_desktop' => 0,
+          'native_plant_mobile' => 0,
           'slideshow_sidebar' => 0,
           'social_media_photo' => 0,
+          'social_owl_image' => 0,
           'static_cards_two_columns' => 0,
           'static_cards_two_columns_mobile' => 0,
         ),
@@ -223,6 +237,10 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
+          'feed' => 0,
+          'http' => 0,
+          'https' => 0,
+          'netx' => 0,
           'public' => 'public',
           'youtube' => 0,
         ),
@@ -236,6 +254,9 @@ function nas_native_plants_taxonomy_field_default_field_instances() {
           'media_default--media_browser_1' => 'media_default--media_browser_1',
           'media_default--media_browser_my_files' => 0,
           'media_internet' => 0,
+          'netx' => 'netx',
+          'netx-tree' => 'netx-tree',
+          'remote_file' => 0,
           'upload' => 'upload',
           'youtube' => 0,
         ),
