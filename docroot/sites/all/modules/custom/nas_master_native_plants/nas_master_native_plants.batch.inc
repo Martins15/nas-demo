@@ -164,3 +164,106 @@ function nas_master_native_plants_plant_id_update_finished_callback($success, $r
     drupal_set_message(t('Finished with an error.'));
   }
 }
+
+/**
+ * Helper function; returns tier 1 plants query.
+ */
+function _nas_master_native_plants_tier1_plants_query() {
+  $query = db_select('node', 'n');
+  $query->innerJoin('field_data_field_native_plant_tier1', 't1', 't1.entity_id = n.nid and t1.entity_type = :entity_type', array(':entity_type' => 'node'));
+  $query
+    ->condition('n.type', 'native_plant')
+    ->condition('t1.field_native_plant_tier1_value', 1);
+
+  return $query;
+}
+
+/**
+ * Implements callback_batch_operation().
+ */
+function nas_master_native_plants_update_images_callback(&$context) {
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['progress'] = 0;
+
+    // Count Native Plant nodes.
+    $count = _nas_master_native_plants_tier1_plants_query()
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    $context['sandbox']['max'] = $count;
+  }
+
+  // Process next $limit nodes.
+  $limit = 50;
+  $nids = _nas_master_native_plants_tier1_plants_query()
+    ->fields('n', array('nid'))
+    ->distinct()
+    ->orderBy('n.nid')
+    ->range($context['sandbox']['progress'], $limit)
+    ->execute()
+    ->fetchAllKeyed(0, 0);
+
+  foreach ($nids as $nid) {
+    $node = node_load($nid);
+    if (empty($node->field_image[LANGUAGE_NONE][0]['filename'])) {
+      // Empty image field.
+      $context['sandbox']['progress']++;
+      continue;
+    }
+    $image_filename = $node->field_image[LANGUAGE_NONE][0]['filename'];
+    if (!preg_match('/[0-9a-f]{32}.jpg/', $image_filename)) {
+      // Overridden.
+      $context['sandbox']['progress']++;
+      continue;
+    }
+    $fid = $node->field_image[LANGUAGE_NONE][0]['fid'];
+    if ($crop = _epsacrop_get_coords_from_fid($fid)) {
+      // Cropped == overridden.
+      $context['sandbox']['progress']++;
+      continue;
+    }
+
+    // Store overridden caption/credit fields.
+    if (!empty($node->field_image[LANGUAGE_NONE][0]['field_file_caption'])) {
+      $np_image_caption_credits = variable_get('np_image_caption_credits', array());
+      $np_image_caption_credits[$node->nid]['caption'] = $node->field_image[LANGUAGE_NONE][0]['field_file_caption'];
+      variable_set('np_image_caption_credits', $np_image_caption_credits);
+    }
+    if (!empty($node->field_image[LANGUAGE_NONE][0]['field_file_credit'])) {
+      $np_image_caption_credits = variable_get('np_image_caption_credits', array());
+      $np_image_caption_credits[$node->nid]['credit'] = $node->field_image[LANGUAGE_NONE][0]['field_file_credit'];
+      variable_set('np_image_caption_credits', $np_image_caption_credits);
+    }
+
+    // Delete the external file copy and its derivatives.
+    image_path_flush('public://externals/' . $image_filename);
+    unlink('public://externals/' . $image_filename);
+
+    // Empty image field.
+    $node->field_image[LANGUAGE_NONE] = array();
+    node_save($node);
+
+    watchdog('nas_master_native_plants', 'Image of Native plants node %nid has been updated', array('%nid' => $node->nid));
+
+    $context['sandbox']['progress']++;
+  }
+
+  $context['results']['count'] = $context['sandbox']['progress'];
+
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+/**
+ * Implements callback_batch_finished().
+ */
+function nas_master_native_plants_update_images_finished_callback($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(format_plural($results['count'], 'One node processed.', '@count nodes processed.'));
+  }
+  else {
+    drupal_set_message(t('Finished with an error.'));
+  }
+}
