@@ -555,29 +555,53 @@ function nas_master_native_plants_views_plugins() {
  *   Formatted image attribution or FALSE.
  */
 function nas_master_native_plants_get_image_attributions_by_plantid($plant_id) {
-  if (!$np_image_caption_credits = variable_get('np_image_caption_credits', array())) {
-    return FALSE;
-  }
-  // Check if there is native_plant with this PlantID.
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'native_plant')
-    ->fieldCondition('field_native_plant_id', 'value', $plant_id);
-  $results = $query->execute();
-  if (isset($results['node'])) {
-    $nid = reset($results['node'])->nid;
-    if (!empty($np_image_caption_credits[$nid])) {
-      $fake_file = (object) array(
-        'type' => 'image',
-        'fid' => 0,
-        'field_file_caption' => isset($np_image_caption_credits[$nid]['caption']) ? $np_image_caption_credits[$nid]['caption'] : array(),
-        'field_file_credit' => isset($np_image_caption_credits[$nid]['credit']) ? $np_image_caption_credits[$nid]['credit'] : array(),
-      );
-      return _nas_panes_format_image_attribution($fake_file);
+  if ($np_image_caption_credits = variable_get('np_image_caption_credits', array())) {
+    // Check if there is native_plant with this PlantID.
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'native_plant')
+      ->fieldCondition('field_native_plant_id', 'value', $plant_id);
+    $results = $query->execute();
+    if (isset($results['node'])) {
+      $nid = reset($results['node'])->nid;
+      if (!empty($np_image_caption_credits[$nid])) {
+        $fake_file = (object) array(
+          'type' => 'image',
+          'fid' => 0,
+          'field_file_caption' => isset($np_image_caption_credits[$nid]['caption']) ? $np_image_caption_credits[$nid]['caption'] : array(),
+          'field_file_credit' => isset($np_image_caption_credits[$nid]['credit']) ? $np_image_caption_credits[$nid]['credit'] : array(),
+        );
+        return _nas_panes_format_image_attribution($fake_file);
+      }
     }
   }
 
-  return FALSE;
+  return nas_master_native_plants_get_default_image_attribution();
+}
+
+/**
+ * Helper function; builds default image attribution.
+ *
+ * @return string
+ *   Formatted image attribution.
+ */
+function nas_master_native_plants_get_default_image_attribution() {
+  $default_credit = variable_get('nas_master_native_plants_default_credit', '');
+  $fake_file = (object) array(
+    'type' => 'image',
+    'fid' => 0,
+    'field_file_caption' => array(),
+    'field_file_credit' => array(
+      LANGUAGE_NONE => array(
+        array(
+          'value' => $default_credit,
+          'safe_value' => check_plain($default_credit),
+        ),
+      ),
+    ),
+  );
+
+  return _nas_panes_format_image_attribution($fake_file);
 }
 
 /**
