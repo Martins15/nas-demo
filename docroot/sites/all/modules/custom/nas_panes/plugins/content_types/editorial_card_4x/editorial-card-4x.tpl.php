@@ -10,20 +10,19 @@
  *  $teasers - array of rendered news.
  */
 ?>
-
 <?php if ($title || $more_link): ?>
   <div class="row section-header<?php if ($spacetop): ?> space-top<?php endif; ?><?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
     <?php if ($title): ?>
-    <div class="column">
-      <h2 class="thin"><?php print $title; ?></h2>
-    </div>
+      <div class="column">
+        <h2 class="thin"><?php print $title; ?></h2>
+      </div>
     <?php endif; ?>
     <?php if ($more_link): ?>
-    <div class="column">
-      <ul class="section-nav inline-list">
-        <li class="first"><?php print $more_link; ?></li>
-      </ul>
-    </div>
+      <div class="column">
+        <ul class="inline-list section-nav">
+          <li><?php print $more_link; ?></li>
+        </ul>
+      </div>
     <?php endif; ?>
   </div>
 <?php endif; ?>
@@ -31,6 +30,8 @@
 <div class="row <?php print $spacebottom; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php foreach ($teasers as $teaser): ?>
-    <?php print $teaser; ?>
+    <div class="columns large-3">
+      <?php print $teaser; ?>
+    </div>
   <?php endforeach; ?>
 </div>
