@@ -154,6 +154,7 @@ function xmlsitemap_generate_page(stdClass $sitemap, $page) {
 }
 
 function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer, $chunk) {
+  $output_elements = drupal_map_assoc(variable_get('xmlsitemap_output_elements', array('lastmod', 'changefreq', 'priority')));
   $lastmod_format = variable_get('xmlsitemap_lastmod_format', XMLSITEMAP_LASTMOD_MEDIUM);
 
   $url_options = $sitemap->uri['options'];
@@ -183,8 +184,8 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer, 
 
   while ($link = $links->fetchAssoc()) {
     $link['language'] = $link['language'] != LANGUAGE_NONE ? xmlsitemap_language_load($link['language']) : $url_options['language'];
+    $link['original'] = $link['loc'];
     if ($url_options['alias']) {
-      $link['original'] = $link['loc'];
       $link['loc'] = xmlsitemap_get_path_alias($link['loc'], $link['language']->language);
     }
     $link_options = array(
@@ -215,17 +216,19 @@ function xmlsitemap_generate_chunk(stdClass $sitemap, XMLSitemapWriter $writer, 
     }
 
     if ($link['lastmod']) {
-      $element['lastmod'] = gmdate($lastmod_format, $link['lastmod']);
+      if (!empty($output_elements['lastmod'])) {
+        $element['lastmod'] = gmdate($lastmod_format, $link['lastmod']);
+      }
       // If the link has a lastmod value, update the changefreq so that links
       // with a short changefreq but updated two years ago show decay.
       // We use abs() here just incase items were created on this same cron run
       // because lastmod would be greater than REQUEST_TIME.
       $link['changefreq'] = (abs(REQUEST_TIME - $link['lastmod']) + $link['changefreq']) / 2;
     }
-    if ($link['changefreq']) {
+    if (!empty($output_elements['changefreq']) && $link['changefreq']) {
       $element['changefreq'] = xmlsitemap_get_changefreq($link['changefreq']);
     }
-    if (isset($link['priority']) && $link['priority'] != 0.5) {
+    if (!empty($output_elements['priority']) && isset($link['priority']) && $link['priority'] != 0.5) {
       // Don't output the priority value for links that have 0.5 priority. This
       // is the default 'assumed' value if priority is not included as per the
       // sitemaps.org specification.
@@ -427,19 +430,8 @@ function xmlsitemap_batch_variable_set(array $variables) {
  */
 function xmlsitemap_rebuild_batch_clear(array $entities, $save_custom, &$context) {
   if (!empty($entities)) {
-    $query = db_delete('xmlsitemap');
-    $query->condition('type', $entities);
-
-    // If we want to save the custom data, make sure to exclude any links
-    // that are not using default inclusion or priority.
-    if ($save_custom) {
-      $query->condition('status_override', 0);
-      $query->condition('priority_override', 0);
-    }
-
-    $query->execute();
+    xmlsitemap_rebuild_clear($entities, $save_custom);
   }
-
   $context['message'] = t('Purging links.');
 }
 
@@ -461,6 +453,13 @@ function xmlsitemap_rebuild_batch_fetch($entity, &$context) {
   $query->addTag('xmlsitemap_rebuild');
   $query->addMetaData('entity', $entity);
   $query->addMetaData('entity_info', $info);
+  if ($types = xmlsitemap_get_link_type_enabled_bundles($entity)) {
+    $query->entityCondition('bundle', $types, 'IN');
+  }
+  else {
+    // If no enabled bundle types, skip everything else.
+    return;
+  }
 
   if (!isset($context['sandbox']['max'])) {
     $count_query = clone $query;
@@ -529,6 +528,35 @@ function xmlsitemap_get_rebuildable_link_types() {
 }
 
 /**
+ * Clear all sitemap links for given entity types.
+ *
+ * @param array $types
+ *   An array of link types.
+ * @param bool $save_custom
+ *   A boolean if links with status or priority overridden should not be
+ *   removed (and hence overridden values not lost).
+ *
+ * @return int
+ *   The number of deleted links.
+ */
+function xmlsitemap_rebuild_clear(array $types, $save_custom) {
+  // Let other modules respond to the rebuild clearing.
+  module_invoke_all('xmlsitemap_rebuild_clear', $types, $save_custom);
+
+  $query = db_delete('xmlsitemap');
+  $query->condition('type', $types);
+
+  // If we want to save the custom data, make sure to exclude any links
+  // that are not using default inclusion or priority.
+  if ($save_custom) {
+    $query->condition('status_override', 0);
+    $query->condition('priority_override', 0);
+  }
+
+  return $query->execute();
+}
+
+/**
  * Generate multilingual attributes.
  * See https://support.google.com/webmasters/answer/2620865?hl=en.
  *
@@ -563,8 +591,8 @@ function xmlsitemap_generate_multilingual($link) {
         'href' => url($link['original'], array('language' => $lang, 'absolute' => TRUE)),
         'hreflang' => $lang->language,
       );
-      $x_default = xmlsitemap_var('multilingual_x_default');
     }
+    $x_default = xmlsitemap_var('multilingual_x_default');
     if ($x_default != 'none') {
       $x_default_lang = $x_default == "default" ? language_default()->language : $x_default;
       $xhtml_links[] = array(
