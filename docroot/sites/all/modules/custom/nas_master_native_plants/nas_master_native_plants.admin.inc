@@ -16,6 +16,13 @@ function nas_master_native_plants_settings($form, &$form_state) {
     '#default_value' => variable_get('nas_master_native_plants_zip_fips', 0),
   );
 
+  $form['nas_master_native_plants_default_credit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Default image credit'),
+    '#description' => t('Specify default credit for the images pulled from the NP Webservice'),
+    '#default_value' => variable_get('nas_master_native_plants_default_credit', ''),
+  );
+
   return system_settings_form($form);
 }
 
