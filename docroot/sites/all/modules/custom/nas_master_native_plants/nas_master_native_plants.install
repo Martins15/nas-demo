@@ -147,3 +147,10 @@ function nas_master_native_plants_update_7010(&$sandbox) {
     return t('The native plants tier 1 images have been successfully refreshed.');
   }
 }
+
+/**
+ * Set default native plants image credit.
+ */
+function nas_master_native_plants_update_7011() {
+  variable_set('nas_master_native_plants_default_credit', 'Jesse M. Harris');
+}
