@@ -16,6 +16,13 @@ function nas_master_native_plants_settings($form, &$form_state) {
     '#default_value' => variable_get('nas_master_native_plants_zip_fips', 0),
   );
 
+  $form['nas_master_native_plants_default_credit'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Default image credit'),
+    '#description' => t('Specify default credit for the images pulled from the NP Webservice'),
+    '#default_value' => variable_get('nas_master_native_plants_default_credit', ''),
+  );
+
   return system_settings_form($form);
 }
 
@@ -172,6 +179,21 @@ function nas_master_native_plants_native_plant_check_image($node_wrapper, $Plant
   $destination = $destination_dir . '/' . basename($image_path);
 
   if ($file = file_copy($source, $destination)) {
+    $np_image_caption_credits = variable_get('np_image_caption_credits', array());
+    if (!empty($np_image_caption_credits[$node_wrapper->nid->value()])) {
+      // If there were caption/credits set and then tier 1 plants images reset.
+      $stored = $np_image_caption_credits[$node_wrapper->nid->value()];
+      if (!empty($stored['caption'])) {
+        $file->field_file_caption = $stored['caption'];
+      }
+      if (!empty($stored['credit'])) {
+        $file->field_file_credit = $stored['credit'];
+      }
+      unset($np_image_caption_credits[$node_wrapper->nid->value()]);
+      variable_set('np_image_caption_credits', $np_image_caption_credits);
+      $file = file_save($file);
+    }
+
     $node_wrapper->field_image->set((array) $file);
     return TRUE;
   }
@@ -216,6 +238,35 @@ function nas_master_native_plants_plant_id_update_submit($form, &$form_state) {
     'title' => t('Updating Native Plants Plant IDs'),
     'operations' => $operations,
     'finished' => 'nas_master_native_plants_plant_id_update_finished_callback',
+    'file' => drupal_get_path('module', 'nas_master_native_plants') . '/nas_master_native_plants.batch.inc',
+  );
+  batch_set($batch);
+}
+
+/**
+ * Native Plants Tier 1 Plants images update form.
+ */
+function nas_master_native_plants_update_images($form, &$form_state) {
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update Tier 1 Plants images'),
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for nas_master_native_plants_update_images().
+ */
+function nas_master_native_plants_update_images_submit($form, &$form_state) {
+  $operations = array(
+    array('nas_master_native_plants_update_images_callback', array()),
+  );
+
+  $batch = array(
+    'title' => t('Update Native Plants images'),
+    'operations' => $operations,
+    'finished' => 'nas_master_native_plants_update_images_finished_callback',
     'file' => drupal_get_path('module', 'nas_master_native_plants') . '/nas_master_native_plants.batch.inc',
   );
   batch_set($batch);
