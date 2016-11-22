@@ -27,7 +27,7 @@
   </div>
 <?php endif; ?>
 
-<div class="row <?php print $spacebottom; ?>">
+<div class="row <?php print $spacebottom; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php foreach ($teasers as $teaser): ?>
     <div class="columns large-3">
