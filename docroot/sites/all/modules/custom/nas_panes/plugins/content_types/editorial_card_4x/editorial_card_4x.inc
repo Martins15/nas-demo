@@ -133,9 +133,9 @@ function editorial_card_4x_render($subtype, $conf, $args, $context) {
  */
 function _editorial_card_4x_default_paddings_conf() {
   return array(
-    'top' => 'top',
-    'between' => 'between',
-    'bottom' => 'bottom',
+    'top' => 0,
+    'between' => 0,
+    'bottom' => 0,
     'double-bottom' => 0,
   );
 }

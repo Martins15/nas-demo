@@ -49,3 +49,11 @@ function nas_master_hotfix_update_7004() {
     honeypot_create_css($honeypot_element_name);
   }
 }
+
+/**
+ * Delete orphan node aliases.
+ */
+function nas_master_hotfix_update_7005() {
+  module_load_include('inc', 'nas_master', 'includes/nas_master.aliases_utils');
+  _nas_master_delete_orphan_node_aliases();
+}

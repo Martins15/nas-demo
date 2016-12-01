@@ -190,6 +190,7 @@ function nas_events_redirect_to_works_event_add() {
       'return' => url($path, array('absolute' => TRUE)),
       'site' => variable_get('asc_site_name', 'national'),
     ),
+    'https' => TRUE,
   ));
 }
 
