@@ -4513,7 +4513,7 @@ small {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
-.bird-card, .breakout-card, .engagement-card, .editorial-card, .editorial-card-4x .editorial-card, .bird-guide-card, .map-profile, .welcome-card {
+.bird-card, .breakout-card, .engagement-card, .editorial-card, .bird-guide-card, .map-profile, .welcome-card {
   background-color: #fff;
   border: 1px solid #d4d4d4;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -5125,8 +5125,12 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 }
 
 .editorial-card-4x .editorial-card {
-  border: 0;
+  border: none;
   box-shadow: none;
+}
+.editorial-card-4x .editorial-card-content {
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .sidebar > .local-cnc, .article-sidebar > .local-cnc {
