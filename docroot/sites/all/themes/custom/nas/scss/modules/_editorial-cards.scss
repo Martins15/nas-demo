@@ -332,6 +332,14 @@
   }
 }
 
+.editorial-card-4x {
+  .editorial-card {
+    @extend %card;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
 .sidebar > .local-cnc {
   padding-left: 0;
   padding-right: 0;
