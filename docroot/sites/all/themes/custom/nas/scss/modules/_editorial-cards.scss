@@ -334,9 +334,13 @@
 
 .editorial-card-4x {
   .editorial-card {
-    @extend %card;
-    border: 0;
+    border: none;
     box-shadow: none;
+  }
+
+  .editorial-card-content {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
