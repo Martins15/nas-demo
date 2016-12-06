@@ -3907,3 +3907,10 @@ function nas_master_update_7262() {
 function nas_master_update_7263() {
   features_revert(array('nas_views_feature' => array('views_view')));
 }
+
+/**
+ * Revert the feature with nas events landing view.
+ */
+function nas_master_update_7264() {
+  features_revert(array('nas_events_landing_feature' => array('views_view')));
+}
