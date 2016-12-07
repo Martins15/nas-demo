@@ -3909,9 +3909,16 @@ function nas_master_update_7263() {
 }
 
 /**
- * Enable netX revert features for fields.
+ * Revert the feature with nas events landing view.
  */
 function nas_master_update_7264() {
+  features_revert(array('nas_events_landing_feature' => array('views_view')));
+}
+
+/**
+ * Enable netX revert features for fields.
+ */
+function nas_master_update_7265() {
   module_enable(array('netx', 'nas_netx_feature', 'nas_file_entity'));
   features_revert(array('nas_beans_feature' => array('field_instance')));
   features_revert(array('nas_bird_type_feature' => array('field_instance')));

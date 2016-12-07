@@ -148,7 +148,7 @@ function nas_events_landing_feature_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
   $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'now';
+  $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'today';
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'events_listing_pane');
@@ -214,7 +214,7 @@ function nas_events_landing_feature_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['filters']['field_event_date_value2']['field'] = 'field_event_date_value2';
   $handler->display->display_options['filters']['field_event_date_value2']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'now';
+  $handler->display->display_options['filters']['field_event_date_value2']['value'] = 'today';
   $translatables['events_listing'] = array(
     t('Master'),
     t('more'),
@@ -308,8 +308,8 @@ function nas_events_landing_feature_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['filters']['field_event_date_value']['table'] = 'search_api_index_events';
   $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
-  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_event_date_value']['value'] = 'now';
+  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value']['value'] = 'today';
 
   /* Display: Upcoming events */
   $handler = $view->new_display('panel_pane', 'Upcoming events', 'panel_pane_1');
