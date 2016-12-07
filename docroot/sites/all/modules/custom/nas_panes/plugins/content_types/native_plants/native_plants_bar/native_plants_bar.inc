@@ -158,7 +158,8 @@ function native_plants_bar_render($subtype, $conf, $args, $contexts) {
 
   $image_path = '';
   if ($image = file_load($conf['sponsor_logo'])) {
-    $image_path = image_style_url('native_plants_sponsor_logo', $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url('native_plants_sponsor_logo', $image_uri);
   }
 
   $block = new stdClass();

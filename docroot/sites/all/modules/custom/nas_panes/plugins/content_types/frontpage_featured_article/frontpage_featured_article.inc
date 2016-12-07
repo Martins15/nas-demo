@@ -95,7 +95,8 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE, $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url(NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE, $image_uri);
   }
 
   $article_raw_link = url('node/' . $node->nid);

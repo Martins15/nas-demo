@@ -54,8 +54,9 @@ function conservation_strategy_top_render($subtype, $conf, $args, $contexts) {
   $hero_image_items = field_get_items('node', $node, 'field_hero_image');
   if (!empty($hero_image_items) && !empty($hero_image_items[0]['fid'])) {
     $hero_image_object = file_load($hero_image_items[0]['fid']);
-    $hero_image = image_style_url('hero_image', $hero_image_object->uri);
-    $hero_image_mobile = image_style_url('hero_mobile', $hero_image_object->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image_object->uri);
+    $hero_image = image_style_url('hero_image', $hero_image_uri);
+    $hero_image_mobile = image_style_url('hero_mobile', $hero_image_uri);
     $attribution = _nas_panes_format_image_attribution($hero_image_object);
   }
 
@@ -63,7 +64,7 @@ function conservation_strategy_top_render($subtype, $conf, $args, $contexts) {
   $icon_image_items = field_get_items('node', $node, 'field_image');
   if (!empty($icon_image_items) && !empty($icon_image_items[0]['fid'])) {
     $icon_image_object = file_load($icon_image_items[0]['fid']);
-    $icon = image_style_url('conservation_strategy_icon', $icon_image_object->uri);
+    $icon = image_style_url('conservation_strategy_icon', nas_alters_local_image_uri($icon_image_object->uri));
   }
 
   $content = theme('conservation_strategy_top', array(

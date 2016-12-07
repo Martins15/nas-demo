@@ -98,7 +98,8 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   $image_markup = '';
   if (!empty($conf['image'])) {
     $image_object = file_load($conf['image']);
-    $image = theme('image', array('path' => image_style_url('local_chapters_centers', $image_object->uri)));
+    $image_uri = nas_alters_local_image_uri($image_object->uri);
+    $image = theme('image', array('path' => image_style_url('local_chapters_centers', $image_uri)));
     $image_markup = !empty($conf['image_link']) ? l($image, $conf['image_link'], array('html' => TRUE)) : $image;
   }
 

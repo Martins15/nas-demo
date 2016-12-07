@@ -116,8 +116,9 @@ function bird_landing_featured_render($subtype, $conf, $args, $contexts) {
   $node = _i18n_node_load($conf['bird']['entity_id']);
 
   $hero_image = file_load($conf['image']);
-  $hero_image_path = image_style_url('hero_image', $hero_image->uri);
-  $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
+  $hero_image_uri = nas_alters_local_image_uri($hero_image->uri);
+  $hero_image_path = image_style_url('hero_image', $hero_image_uri);
+  $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image_uri);
 
   $attribution = _nas_panes_format_image_attribution($hero_image);
 
