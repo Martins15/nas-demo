@@ -27,7 +27,7 @@ function events_intro_render($subtype, $conf, $args, $context) {
   if ($get_featured_image = field_get_items('node', $node, 'field_image')) {
     $featured_image = theme('image_style', array(
       'style_name' => 'event_featured',
-      'path' => $get_featured_image[0]['uri'],
+      'path' => nas_alters_local_image_uri($get_featured_image[0]['uri']),
     ));
     if ($image_attribution = _nas_panes_format_image_attribution((object) $get_featured_image[0])) {
       $featured_image .= '<figcaption>' . $image_attribution . '</figcaption>';

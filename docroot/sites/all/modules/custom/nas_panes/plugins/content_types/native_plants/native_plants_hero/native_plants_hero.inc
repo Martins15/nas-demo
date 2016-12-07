@@ -122,7 +122,8 @@ function native_plants_hero_render($subtype, $conf, $args, $contexts) {
   $image_path = file_create_url('sites/all/themes/custom/nas/img/plants-background.jpg');
   $image_attribution = 'Photo: Lazlo Ilyes, Flickr Creative Commons';
   if ($image = file_load($conf['image'])) {
-    $image_path = image_style_url('hero_image', $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url('hero_image', $image_uri);
     $image_attribution = _nas_panes_format_image_attribution($image);
   }
 

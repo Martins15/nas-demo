@@ -217,13 +217,13 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     $nodes_array_to_show[$key]['hero_image'] = '';
     if (!empty($image_fid)) {
       $file = file_load($image_fid);
-      $nodes_array_to_show[$key]['hero_image'] = image_style_url('conservation_strategy_slideshow', $file->uri);
+      $nodes_array_to_show[$key]['hero_image'] = image_style_url('conservation_strategy_slideshow', nas_alters_local_image_uri($file->uri));
     }
     // Set icon.
     $nodes_array_to_show[$key]['icon'] = '';
     if (isset($value['icon']) && !empty($value['icon'])) {
       $file = file_load($value['icon']);
-      $nodes_array_to_show[$key]['icon'] = image_style_url('conservation_slideshow_icon', $file->uri);
+      $nodes_array_to_show[$key]['icon'] = image_style_url('conservation_slideshow_icon', nas_alters_local_image_uri($file->uri));
     }
     // Set link.
     if (empty($value['learn_more_link']['title']) || empty($value['learn_more_link']['url'])) {
@@ -248,7 +248,7 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
       $nodes_array_to_show[$key]['featured_node']['hero_image'] = '';
       $field_items = field_get_items('node', $featured_node, 'field_hero_image');
       if (!empty($field_items[0]['fid']) && $file = file_load($field_items[0]['fid'])) {
-        $nodes_array_to_show[$key]['featured_node']['hero_image'] = image_style_url('conservation_slideshow_featured_project', $file->uri);
+        $nodes_array_to_show[$key]['featured_node']['hero_image'] = image_style_url('conservation_slideshow_featured_project', nas_alters_local_image_uri($file->uri));
       }
       $nodes_array_to_show[$key]['featured_node']['title'] = l($featured_node->title, 'node/' . $featured_node->nid);
       $nodes_array_to_show[$key]['featured_node']['summary'] = '';

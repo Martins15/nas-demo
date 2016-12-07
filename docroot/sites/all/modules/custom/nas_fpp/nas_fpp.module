@@ -296,8 +296,9 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_featured_content_cards(&$v
   $get_field_image = field_get_items('fieldable_panels_pane', $fpp, 'field_image');
   $vars['banner_image'] = '';
   if (isset($get_field_image[0]['uri'])) {
-    $vars['banner_image'] = image_style_url('birds_landing_banner', $get_field_image[0]['uri']);
-    $vars['banner_mobile_image'] = image_style_url('nas_birds_landing_epsacrop_mobile', $get_field_image[0]['uri']);
+    $image_uri = nas_alters_local_image_uri($get_field_image[0]['uri']);
+    $vars['banner_image'] = image_style_url('birds_landing_banner', $image_uri);
+    $vars['banner_mobile_image'] = image_style_url('nas_birds_landing_epsacrop_mobile', $image_uri);
   }
 
   $get_field_link = field_get_items('fieldable_panels_pane', $fpp, 'field_link');
@@ -450,7 +451,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_fpp_flyway_hero(&$vars) {
         'subtitle_url' => isset($fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['url']) ? $fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['url'] : '',
         'subtitle_title' => isset($fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['title']) ? $fpp->field_flyway_subtitle[LANGUAGE_NONE][0]['title'] : '',
         'map_coordinates' => !empty($fc->field_map_coordinates[LANGUAGE_NONE][0]['safe_value']) ? $fc->field_map_coordinates[LANGUAGE_NONE][0]['safe_value'] : 'left:50%; top:50%;',
-        'background' => image_style_url('hero_image', $fc->field_background_image[LANGUAGE_NONE][0]['uri']),
+        'background' => image_style_url('hero_image', nas_alters_local_image_uri($fc->field_background_image[LANGUAGE_NONE][0]['uri'])),
         'description' => $fc->field_description[LANGUAGE_NONE][0]['safe_value'],
         'credit' => !empty($fc->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value']) ? $fc->field_background_image[LANGUAGE_NONE][0]['field_file_credit'][LANGUAGE_NONE][0]['value'] : '',
       );
@@ -561,7 +562,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
     $image = $items[0];
     $vars['image'] = theme('image_style', array(
       'style_name' => 'front_flyway_image',
-      'path' => $image['uri'],
+      'path' => nas_alters_local_image_uri($image['uri']),
     ));
   }
 
@@ -570,7 +571,7 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
   $field_items = field_get_items('fieldable_panels_pane', $fpp, 'field_hero_image');
   if (isset($field_items[0]['file']->uri)) {
     $image = $field_items[0]['file'];
-    $vars['hero_image'] = image_style_url('get_outside', $image->uri);
+    $vars['hero_image'] = image_style_url('get_outside', nas_alters_local_image_uri($image->uri));
     $vars['attribution'] = _nas_panes_format_image_attribution($image);
   }
 

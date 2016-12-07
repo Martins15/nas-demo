@@ -72,7 +72,8 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
   if (empty($image_items[0]['uri'])) {
     return;
   }
-  $image_thumbnail_path = image_style_url('boa_plate_thumbnail', $image_items[0]['uri']);
+  $image_uri = nas_alters_local_image_uri($image_items[0]['uri']);
+  $image_thumbnail_path = image_style_url('boa_plate_thumbnail', $image_uri);
   $subscribe_link = l(t('Download high-resolution file'), 'birds-of-america/nojs/subscribe/' . $node->nid, array(
     'attributes' => array(
       'class' => array(
@@ -85,7 +86,7 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
     'html' => TRUE,
   ));
   $original_image_path = '//df0bd6h5ujoev.cloudfront.net/' . rawurlencode($image_items[0]['filename']);
-  $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
+  $lightbox_image_path = image_style_url('boa_lightbox', $image_uri);
 
   drupal_add_js(array(
     'nas_panes' => array(

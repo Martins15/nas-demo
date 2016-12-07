@@ -31,7 +31,7 @@ function bird_hero_image_render($subtype, $conf, $args, $context) {
   }
 
   $block->content = theme('bird_hero_image', array(
-    'image_path' => image_style_url('hero_cover_bird_page', $hero_image->uri),
+    'image_path' => image_style_url('hero_cover_bird_page', nas_alters_local_image_uri($hero_image->uri)),
     'image_caption' => _nas_panes_format_image_attribution($hero_image, TRUE),
   ));
 
