@@ -188,7 +188,7 @@ function netx_file_formatter_netx_image_settings($form, &$form_state, $settings)
   $options = array();
   foreach (netx_get_attribues() as $attribute) {
     // There's only "label" as string and "value" as int available.
-    $options[$attribute['label']] = $attribute['label'];
+    $options[$attribute['name']] = $attribute['name'];
   }
   $element['attributes'] = array(
     '#type' => 'checkboxes',
