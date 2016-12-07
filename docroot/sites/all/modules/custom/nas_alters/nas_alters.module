@@ -959,3 +959,25 @@ function nas_alters_panels_pre_render($panels_display, $renderer) {
     unset($pane->configuration['override_title_text']);
   }
 }
+
+/**
+ * Helper function; ensure that local image uri is used.
+ *
+ * @param string $image_uri
+ *   Any image uri.
+ *
+ * @return mixed
+ *   Locally available image uri.
+ */
+function nas_alters_local_image_uri($image_uri) {
+  if (!$image_uri) {
+    return FALSE;
+  }
+
+  $wrapper = file_stream_wrapper_get_instance_by_uri($image_uri);
+  if (method_exists($wrapper, 'getLocalImagePath')) {
+    $image_uri = $wrapper->getLocalImagePath();
+  }
+
+  return $image_uri;
+}
