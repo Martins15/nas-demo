@@ -14,7 +14,7 @@ function nas_netx_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'netx_authentication_type';
-  $strongarm->value = 'call';
+  $strongarm->value = 'cookie';
   $export['netx_authentication_type'] = $strongarm;
 
   $strongarm = new stdClass();
