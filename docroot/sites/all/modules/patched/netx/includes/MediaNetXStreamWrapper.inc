@@ -188,25 +188,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
    * {@inheritdoc}
    */
   public function interpolateUrl() {
-    if ($this->imageStyle) {
-      $local_path = $this->getLocalImagePath();
-      list(, $internal_uri) = explode('://', $local_path);
-      $uri = 'public://styles/' . $this->imageStyle . '/public/' . $internal_uri;
-
-      $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
-
-      return $wrapper->getExternalUrl();
-    }
-
-    if ($parameters = $this->get_parameters()) {
-      // Redirect to NetX CDN via REST.
-      $repo = new NetXRepository();
-      return $repo->getRemoteOriginal(
-        $parameters['a'],
-        $parameters['n'],
-        $this->getMimeType($parameters['n'])
-      );
-    }
+    return file_create_url($this->getLocalImagePath());
   }
 
   /**
