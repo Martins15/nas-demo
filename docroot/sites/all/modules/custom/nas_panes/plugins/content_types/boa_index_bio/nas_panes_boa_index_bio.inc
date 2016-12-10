@@ -124,7 +124,8 @@ function nas_boa_index_bio_render($subtype, $conf, $args, $context) {
   $image_path = '';
   if (!empty($conf['image'])) {
     $image_file = file_load($conf['image']);
-    $image_path = image_style_url('boa_index_bio', $image_file->uri);
+    $image_uri = nas_alters_local_image_uri($image_file->uri);
+    $image_path = image_style_url('boa_index_bio', $image_uri);
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);

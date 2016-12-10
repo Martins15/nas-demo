@@ -2333,7 +2333,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
   if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
     $form['#prefix'] = '<div class="featured-image">' . theme('image_style', array(
         'style_name' => 'boa_mail_subscription',
-        'path' => $image->uri,
+        'path' => nas_alters_local_image_uri($image->uri),
       ));
     if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
       $form['#prefix'] .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
@@ -2405,7 +2405,7 @@ function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
   if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
     $content .= '<div class="featured-image">' . theme('image_style', array(
         'style_name' => 'boa_mail_subscription',
-        'path' => $image->uri,
+        'path' => nas_alters_local_image_uri($image->uri),
       ));
     if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
       $content .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';

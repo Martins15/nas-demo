@@ -118,7 +118,7 @@ function nas_language_message_render($subtype, $conf, $args, $context) {
 
   $image_path = $plugin['path'] . '/img/pinguin.png';
   if ($image = file_load($conf['image'])) {
-    $image_path = $image->uri;
+    $image_path = nas_alters_local_image_uri($image->uri);
   }
 
   ctools_include('modal');

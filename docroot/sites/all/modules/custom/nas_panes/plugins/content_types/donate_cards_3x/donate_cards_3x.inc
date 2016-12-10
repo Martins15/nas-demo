@@ -173,7 +173,7 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
     if (!empty($ref['image'])) {
       if ($file = file_load($ref['image'])) {
         $image = theme('image', array(
-          'path' => image_style_url('article_teaser', $file->uri),
+          'path' => image_style_url('article_teaser', nas_alters_local_image_uri($file->uri)),
           // TODO: replace with image's alt.
           'alt' => $ref['title'],
         ));

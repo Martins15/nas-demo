@@ -24,6 +24,12 @@ function cbc_gallery_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -106,6 +112,7 @@ function cbc_gallery_field_default_field_instances() {
   // Exported field_instance: 'node-gallery_image-field_cbc_photo'
   $field_instances['node-gallery_image-field_cbc_photo'] = array(
     'bundle' => 'gallery_image',
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -118,6 +125,12 @@ function cbc_gallery_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 5,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -198,11 +211,13 @@ function cbc_gallery_field_default_field_instances() {
           'conservation_strategy_slideshow' => 0,
           'default_teaser_image' => 'default_teaser_image',
           'engagement_card' => 0,
+          'engagement_card_full_width' => 0,
           'featured_frontpage' => 0,
           'featured_frontpage_hero_image' => 0,
           'front_flyway_image' => 0,
           'get_outside' => 0,
           'hero_cover_bird_page' => 0,
+          'hero_icon' => 0,
           'local_chapters_centers' => 0,
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,
@@ -211,6 +226,7 @@ function cbc_gallery_field_default_field_instances() {
           'native_plant_mobile' => 0,
           'slideshow_sidebar' => 0,
           'social_media_photo' => 0,
+          'social_owl_image' => 0,
           'static_cards_two_columns' => 0,
           'static_cards_two_columns_mobile' => 0,
         ),
@@ -225,12 +241,34 @@ function cbc_gallery_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'media',
       'settings' => array(
-        'preview_image_style' => 'article_teaser',
-        'progress_indicator' => 'throbber',
+        'allowed_schemes' => array(
+          'feed' => 0,
+          'http' => 0,
+          'https' => 0,
+          'netx' => 0,
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'netx' => 'netx',
+          'netx-tree' => 'netx-tree',
+          'remote_file' => 0,
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
       ),
-      'type' => 'image_image',
+      'type' => 'media_generic',
       'weight' => 44,
     ),
   );
@@ -248,6 +286,12 @@ function cbc_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_default',
         'weight' => 1,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -334,6 +378,12 @@ function cbc_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 3,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -458,6 +508,12 @@ function cbc_gallery_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'nas_editorial_card' => array(
         'label' => 'above',
         'settings' => array(),
@@ -580,6 +636,12 @@ function cbc_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 4,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',
@@ -705,6 +767,12 @@ function cbc_gallery_field_default_field_instances() {
         ),
         'type' => 'entityreference_label',
         'weight' => 6,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'nas_editorial_card' => array(
         'label' => 'above',

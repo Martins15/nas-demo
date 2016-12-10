@@ -75,7 +75,8 @@ function about_page_success_section_render($subtype, $conf, $args, $contexts) {
 
   if (!empty($conf['image'])) {
     $image_object = file_load($conf['image']);
-    $image = image_style_url('about_page_success_section', $image_object->uri);
+    $image_uri = nas_alters_local_image_uri($image_object->uri);
+    $image = image_style_url('about_page_success_section', $image_uri);
     $attribution = _nas_panes_format_image_attribution($image_object);
   }
 

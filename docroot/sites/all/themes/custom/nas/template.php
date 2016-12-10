@@ -289,9 +289,10 @@ function nas_preprocess_node_bird(&$vars) {
   // Add hero image.
   $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
   if (!empty($get_field_hero_image)) {
+    $image_uri = nas_alters_local_image_uri($get_field_hero_image[0]['file']->uri);
     $vars['hero_image'] = theme('image_style', array(
       'style_name' => 'hero_image',
-      'path' => $get_field_hero_image[0]['file']->uri,
+      'path' => $image_uri,
       'attributes' => array(
         'class' => array(
           'hide-for-tiny',
@@ -301,7 +302,7 @@ function nas_preprocess_node_bird(&$vars) {
     ));
     $vars['hero_mobile'] = theme('image_style', array(
       'style_name' => 'hero_mobile',
-      'path' => $get_field_hero_image[0]['file']->uri,
+      'path' => $image_uri,
       'attributes' => array(
         'class' => array(
           'hide-for-medium',
@@ -329,9 +330,10 @@ function nas_preprocess_node_bird(&$vars) {
     $get_field_bird_illustration = field_get_items('node', $node, 'field_bird_illustration');
     $image = '';
     if (!empty($get_field_bird_illustration[0]['file']->uri)) {
+      $image_uri = nas_alters_local_image_uri($get_field_bird_illustration[0]['file']->uri);
       $image = theme('image_style', array(
         'style_name' => 'nas_bird_teaser_illustration',
-        'path' => $get_field_bird_illustration[0]['file']->uri,
+        'path' => $image_uri,
       ));
     }
     $vars['bird_illustration'] = l($image, $node_path, array('html' => TRUE));
@@ -364,13 +366,14 @@ function nas_preprocess_node_boa(&$vars) {
   $vars['teaser_list_image'] = '';
   $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
   if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
+    $image_uri = nas_alters_local_image_uri($field_boa_illustration_items[0]['uri']);
     $illustration = theme('image_style', array(
         'style_name' => 'boa_family_species',
-        'path' => $field_boa_illustration_items[0]['uri'],
+        'path' => $image_uri,
         'attributes' => array('class' => array('lazy'))
     ));
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser_list', $field_boa_illustration_items[0]['uri']),
+      'path' => image_style_url('article_teaser_list', $image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
@@ -431,9 +434,10 @@ function nas_preprocess_node_contact(&$vars) {
   if ($vars['view_mode'] == 'teaser') {
     // Default illustration.
     if ($field_image_items = field_get_items('node', $node, 'field_image')) {
+      $image_uri = nas_alters_local_image_uri($field_image_items[0]['uri']);
       $image = theme('image_style', array(
         'style_name' => 'our_leadership',
-        'path' => $field_image_items[0]['uri'],
+        'path' => $image_uri,
         'alt' => $node->title,
       ));
     }
@@ -463,9 +467,10 @@ function nas_preprocess_node_boaf(&$vars) {
     $illustration = '<img src="' . base_path() . drupal_get_path('theme', 'nas') . '/img/boa-bird-1.jpg">';
     if ($boa = _nas_boa_family_birds($node->nid)) {
       if ($field_boa_illustration_items = field_get_items('node', $boa, 'field_boa_illustration')) {
+        $image_uri = nas_alters_local_image_uri($field_boa_illustration_items[0]['uri']);
         $illustration = theme('image_style', array(
             'style_name' => 'boa_family_species',
-            'path' => $field_boa_illustration_items[0]['uri'],
+            'path' => $image_uri,
         ));
       }
     }
@@ -634,7 +639,7 @@ function nas_preprocess_node_event(&$vars) {
   $vars['linked_image'] = '';
   $image_uri = FALSE;
   if ($get_image = field_get_items('node', $node, 'field_image')) {
-    $image_uri = $get_image[0]['uri'];
+    $image_uri = nas_alters_local_image_uri($get_image[0]['uri']);
   }
   if ($image_uri) {
     $image = theme('image', array(
@@ -694,9 +699,10 @@ function nas_preprocess_node_article(&$vars) {
   $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
     $hero_image = $hero_image_items[0]['file'];
-    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $image_uri = nas_alters_local_image_uri($hero_image->uri);
+    $vars['image_src'] = image_style_url('in_the_news', $image_uri);
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser', $hero_image->uri),
+      'path' => image_style_url('article_teaser', $image_uri),
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
@@ -705,7 +711,7 @@ function nas_preprocess_node_article(&$vars) {
       ));
 
     $image = theme('image', array(
-        'path' => image_style_url('article_teaser_list', $hero_image->uri),
+        'path' => image_style_url('article_teaser_list', $image_uri),
         'alt' => $node->title,
       ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
@@ -769,6 +775,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
     $image_uri = $image_items[0]['uri'];
   }
   if ($image_uri) {
+    $image_uri = nas_alters_local_image_uri($image_uri);
     $vars['image_uri'] = $image_uri;
     $image = theme('image', array(
       'path' => image_style_url('article_teaser', $image_uri),
@@ -828,8 +835,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   $editorial_extra_fields = FALSE;
   if ($vars['type'] == 'slideshow' or $vars['view_mode'] == 'editorial_card_3x') {
     if (!empty($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'])) {
+      $image_uri = nas_alters_local_image_uri($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri']);
       $vars['icon'] = theme('image_style', array(
-        'path' => $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'],
+        'path' => $image_uri,
         'style_name' => 'medium',
       ));
       if (!empty($node->field_editorial_card_icon_link[LANGUAGE_NONE][0]['value'])) {
@@ -883,10 +891,10 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
-    $hero_image = $hero_image_items[0]['file'];
-    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image_items[0]['file']->uri);
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image_uri);
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser', $hero_image->uri),
+      'path' => image_style_url('article_teaser', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
@@ -894,7 +902,7 @@ function nas_preprocess_node_static_page(&$vars) {
         'attributes' => array('title' => $node->title),
       ));
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'path' => image_style_url('article_teaser_list', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
@@ -929,9 +937,9 @@ function nas_preprocess_node_strategy(&$vars) {
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
-    $hero_image = $hero_image_items[0]['file'];
+    $hero_image_uri = nas_alters_local_image_uri($hero_image_items[0]['file']->uri);
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'path' => image_style_url('article_teaser_list', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
@@ -968,10 +976,10 @@ function nas_preprocess_node_project(&$vars) {
   $vars['teaser_list_image'] = '';
 
   if ($hero_image_items = field_get_items('node', $node, 'field_hero_image')) {
-    $hero_image = $hero_image_items[0]['file'];
-    $vars['image_src'] = image_style_url('in_the_news', $hero_image->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image_items[0]['file']->uri);
+    $vars['image_src'] = image_style_url('in_the_news', $hero_image_uri);
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser', $hero_image->uri),
+      'path' => image_style_url('article_teaser', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
@@ -979,7 +987,7 @@ function nas_preprocess_node_project(&$vars) {
         'attributes' => array('title' => $node->title),
       ));
     $image = theme('image', array(
-      'path' => image_style_url('article_teaser_list', $hero_image->uri),
+      'path' => image_style_url('article_teaser_list', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
@@ -1303,8 +1311,12 @@ function nas_preprocess_field(&$variables, $hook) {
 function nas_preprocess_field_field_hero_image(&$variables) {
   if (function_exists('_nas_panes_format_image_attribution')) {
     foreach ($variables['items'] as &$item) {
-      if (!empty($item['file'])) {
+      if (!empty($item['file']['#item'])) {
         $file = (object) $item['file']['#item'];
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      }
+      elseif (!empty($item['file']['#file'])) {
+        $file = (object) $item['file']['#file'];
         $item['#attributions'] = _nas_panes_format_image_attribution($file);
       }
     }
@@ -1362,17 +1374,19 @@ function nas_field__field_author__article($variables) {
       $path = url('node/' . $id);
       $image_field = field_get_items('node', $entity, 'field_image');
       if ($image_field) {
-        $image_file = file_load($image_field[0]['fid']);
-        $image = theme('image_style', array(
-          'style_name' => 'bio_image',
-          'path' => $image_file->uri,
-          'attributes' => array(
-            'class' => array(
-              'article-author-image',
+        if ($image_file = file_load($image_field[0]['fid'])) {
+          $image_uri = nas_alters_local_image_uri($image_file->uri);
+          $image = theme('image_style', array(
+            'style_name' => 'bio_image',
+            'path' => $image_uri,
+            'attributes' => array(
+              'class' => array(
+                'article-author-image',
+              ),
             ),
-          ),
-        ));
-        $output .= '<a href="' . $path . '">' . $image . '</a>';
+          ));
+          $output .= '<a href="' . $path . '">' . $image . '</a>';
+        }
       }
 
       $output .= '<a href="' . $path . '">';
@@ -1615,9 +1629,10 @@ function nas_preprocess_field_field_images_slideshow(&$variables) {
       if ($items = field_get_items('file', $image_file, 'field_file_image_title_text')) {
         $content_image['title'] = check_plain($items[0]['value']);
       }
+      $image_uri = nas_alters_local_image_uri($image_file->uri);
       $content_image['render'] = theme('image_style', array(
         'style_name' => 'slideshow',
-        'path' => $image_file->uri,
+        'path' => $image_uri,
         'height' => $image_file->height,
         'width' => $image_file->width,
         'alt' => $content_image['alt'],
@@ -1691,9 +1706,10 @@ function nas_preprocess_node_slideshow(&$vars) {
     $vars['slideshow_image'] = '';
     $image_items = field_get_items('node', $node, 'field_images');
     if (!empty($image_items[0]['uri'])) {
+      $image_uri = nas_alters_local_image_uri($image_items[0]['uri']);
       $output_image = theme('image_style', array(
           'style_name' => 'slideshow_teaser',
-          'path' => $image_items[0]['uri'],
+          'path' => $image_uri,
         ));
 
       $vars['slideshow_image'] = l($output_image, 'node/' . $node->nid, array('html' => TRUE));

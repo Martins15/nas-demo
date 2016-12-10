@@ -33,7 +33,7 @@ function nas_panes_iba_individual_gallery_content_type_render($subtype, $conf, $
         $image = file_load($get_field_bird_photo[0]['fid']);
         $images[] = theme('image_style', array(
           'style_name' => 'nas_bird_photo_thumbnnail',
-          'path' => $image->uri,
+          'path' => nas_alters_local_image_uri($image->uri),
         ));
       }
     }
