@@ -848,7 +848,8 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image_uri);
     $attribution = _nas_panes_format_image_attribution($image);
   }
 
@@ -920,7 +921,7 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
     $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
     $hero_image = theme('image_style', array(
       'style_name' => 'featured_frontpage_hero_image',
-      'path' => $image->uri,
+      'path' => nas_alters_local_image_uri($image->uri),
       'title' => $image_caption,
     ));
     $attribution = _nas_panes_format_image_attribution($image);
@@ -969,7 +970,8 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
 function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image_uri);
     $attribution_caption = $attribution_credit = '';
     if ($items = field_get_items('file', $image, 'field_file_caption')) {
       $attribution_caption = trim($items[0]['safe_value']);
@@ -1060,7 +1062,8 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   $attribution_caption = $attribution_credit = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image_uri);
     if ($items = field_get_items('file', $image, 'field_file_caption')) {
       $attribution_caption = trim($items[0]['safe_value']);
     }
@@ -1181,7 +1184,8 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image_uri);
   }
 
   $video = file_load($conf['video']);
@@ -1251,7 +1255,8 @@ function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
-    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image_uri);
     $attribution = _nas_panes_format_image_attribution($image);
   }
 

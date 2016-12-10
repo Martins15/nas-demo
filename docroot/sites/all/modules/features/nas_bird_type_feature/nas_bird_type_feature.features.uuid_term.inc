@@ -19,7 +19,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Cormorants',
@@ -31,7 +30,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Pigeons and Doves',
@@ -43,7 +41,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Starlings and Mynas',
@@ -55,7 +52,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'New England',
@@ -66,7 +62,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Great Lakes',
@@ -77,7 +72,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Ducks and Geese',
@@ -89,7 +83,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Swifts',
@@ -101,7 +94,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Extinct (EX)',
@@ -112,7 +104,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'conservation_status',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Ospreys',
@@ -124,7 +115,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Bulbuls',
@@ -136,7 +126,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Sandpipers',
@@ -148,7 +137,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Albatrosses',
@@ -160,7 +148,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Mockingbirds and Thrashers',
@@ -172,7 +159,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Cranes',
@@ -184,7 +170,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Eastern Canada',
@@ -195,7 +180,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Auks, Murres, Puffins',
@@ -207,7 +191,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Hummingbirds',
@@ -219,7 +202,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Larks',
@@ -231,7 +213,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Old World Warblers',
@@ -243,7 +224,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Storks',
@@ -255,7 +235,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Creepers',
@@ -267,7 +246,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Texas',
@@ -278,7 +256,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Southeast',
@@ -289,7 +266,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Dippers',
@@ -301,7 +277,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Plovers',
@@ -313,7 +288,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Longspurs and Snow Buntings',
@@ -325,7 +299,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Leaf-Warblers',
@@ -337,7 +310,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Cardinals',
@@ -349,7 +321,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'New World Quail',
@@ -361,7 +332,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Shearwaters and Petrels',
@@ -373,7 +343,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Tanagers',
@@ -385,7 +354,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Bushtits',
@@ -397,7 +365,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Ibises and Spoonbills',
@@ -409,7 +376,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Finches',
@@ -421,7 +387,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Oystercatchers',
@@ -433,7 +398,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Parrots and allies',
@@ -445,7 +409,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Chickadees and Titmice',
@@ -457,7 +420,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Thrushes',
@@ -469,7 +431,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Mid Atlantic',
@@ -480,7 +441,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'New World Sparrows',
@@ -492,7 +452,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Shrikes',
@@ -504,7 +463,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Nightjars',
@@ -516,7 +474,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Owls',
@@ -528,7 +485,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Grebes',
@@ -540,7 +496,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Barn Owls',
@@ -552,7 +507,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Hawks and Eagles',
@@ -564,7 +518,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Herons, Egrets, Bitterns',
@@ -576,7 +529,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Verdins',
@@ -588,7 +540,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Kingfishers',
@@ -600,7 +551,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Nuthatches',
@@ -612,7 +562,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Silky-flycatchers',
@@ -624,7 +573,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Gulls and Terns',
@@ -636,7 +584,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Pheasants and Grouse',
@@ -648,7 +595,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Swallows',
@@ -660,7 +606,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Waxwings',
@@ -672,7 +617,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Loons',
@@ -684,7 +628,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Old World Sparrows',
@@ -696,7 +639,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Tropicbirds',
@@ -708,7 +650,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Chachalacas',
@@ -720,7 +661,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Kinglets',
@@ -732,7 +672,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Pelicans',
@@ -744,7 +683,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Old World Flycatchers',
@@ -756,7 +694,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Tyrant Flycatchers',
@@ -768,7 +705,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Vireos',
@@ -780,7 +716,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Extinct in the wild (EW)',
@@ -791,7 +726,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'conservation_status',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Rocky Mountains',
@@ -802,7 +736,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'New World Vultures',
@@ -814,7 +747,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Bananaquits',
@@ -826,7 +758,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Northwest',
@@ -837,7 +768,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Wagtails and Pipits',
@@ -849,7 +779,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Limpkins',
@@ -861,7 +790,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'California',
@@ -872,7 +800,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Anhingas',
@@ -884,7 +811,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Cuckoos, Roadrunners, Anis',
@@ -896,7 +822,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Southwest',
@@ -907,7 +832,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Flamingos',
@@ -919,7 +843,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Plains',
@@ -930,7 +853,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Olive Warblers',
@@ -942,7 +864,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Falcons',
@@ -954,7 +875,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Skuas and Jaegers',
@@ -966,7 +886,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Gnatcatchers',
@@ -978,7 +897,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Trogons',
@@ -990,7 +908,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Wrens',
@@ -1002,7 +919,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Blackbirds and Orioles',
@@ -1014,7 +930,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Storm-Petrels',
@@ -1026,7 +941,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Alaska and The North',
@@ -1037,7 +951,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Rails, Gallinules, Coots',
@@ -1049,7 +962,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Wood Warblers',
@@ -1061,7 +973,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Crows, Magpies, Jays',
@@ -1073,7 +984,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Stilts and Avocets',
@@ -1085,7 +995,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Woodpeckers',
@@ -1097,7 +1006,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Becards, Tityras and allies',
@@ -1109,7 +1017,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Boobies and Gannets',
@@ -1121,7 +1028,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Western Canada',
@@ -1132,7 +1038,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'language' => 'und',
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_region',
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Frigatebirds',
@@ -1144,7 +1049,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   $terms[] = array(
     'name' => 'Jacanas',
@@ -1156,7 +1060,6 @@ function nas_bird_type_feature_uuid_features_default_terms() {
     'i18n_tsid' => 0,
     'vocabulary_machine_name' => 'bird_family',
     'field_bird_family_sci_name' => array(),
-    'metatags' => array(),
   );
   return $terms;
 }

@@ -119,8 +119,9 @@ function static_cards_two_columns_render($subtype, $conf, $args, $contexts) {
   $items = $conf['items'];
   foreach ($items as &$item) {
     $image_object = file_load($item['image']);
-    $item['image_url'] = image_style_url('static_cards_two_columns', $image_object->uri);
-    $item['image_url_mobile'] = image_style_url('static_cards_two_columns_mobile', $image_object->uri);
+    $image_uri = nas_alters_local_image_uri($image_object->uri);
+    $item['image_url'] = image_style_url('static_cards_two_columns', $image_uri);
+    $item['image_url_mobile'] = image_style_url('static_cards_two_columns_mobile', $image_uri);
 
     $item['top_link_markup'] = '';
     if (!empty($item['top_link']['url']) && !empty($item['top_link']['title'])) {

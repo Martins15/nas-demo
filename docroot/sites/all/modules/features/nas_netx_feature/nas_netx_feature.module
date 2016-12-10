@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NetX feature.
+ */
+
+include_once 'nas_netx_feature.features.inc';

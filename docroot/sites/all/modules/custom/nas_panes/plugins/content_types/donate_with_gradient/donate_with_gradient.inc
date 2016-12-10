@@ -104,8 +104,9 @@ function donate_with_gradient_render($subtype, $conf, $args, $contexts) {
   $background_image_small = '';
   $image = file_load($conf['image']);
   if (!empty($image)) {
-    $background_image = image_style_url('donate_banner_bg', $image->uri);
-    $background_image_small = image_style_url('hero_mobile', $image->uri);
+    $image_uri = nas_alters_local_image_uri($image->uri);
+    $background_image = image_style_url('donate_banner_bg', $image_uri);
+    $background_image_small = image_style_url('hero_mobile', $image_uri);
   }
 
   $title = !empty($conf['override_title_text']) ? $conf['override_title_text'] : 'Donate';

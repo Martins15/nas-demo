@@ -30,8 +30,9 @@ function nas_boa_hero_render($subtype, $conf, $args, $context) {
   }
 
   drupal_add_js(drupal_get_path('theme', 'nas') . '/js/mute/lightboxzoom.js', array('scope' => 'footer'));
-  $hero_image_path = image_style_url('boa_hero', $image_items[0]['uri']);
-  $lightbox_image_path = image_style_url('boa_lightbox', $image_items[0]['uri']);
+  $image_uri = nas_alters_local_image_uri($image_items[0]['uri']);
+  $hero_image_path = image_style_url('boa_hero', $image_uri);
+  $lightbox_image_path = image_style_url('boa_lightbox', $image_uri);
 
   $boa_plate_path = url('node/' . $node->nid . '/plate');
 
