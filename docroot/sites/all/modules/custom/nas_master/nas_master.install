@@ -3916,13 +3916,6 @@ function nas_master_update_7264() {
 }
 
 /**
- * Apply changes for events_listing view.
- */
-function nas_master_update_7265() {
-  features_revert(array('nas_events_landing_feature' => array('views_view')));
-}
-
-/**
  * Enable netX revert features for fields.
  */
 function nas_master_update_7265() {
@@ -3940,4 +3933,11 @@ function nas_master_update_7265() {
   features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
   features_revert(array('nas_native_plants_taxonomy' => array('field_instance')));
   features_revert(array('nas_social_media_photo' => array('field_instance')));
+}
+
+/**
+ * Apply changes for events_listing view.
+ */
+function nas_master_update_7266() {
+  features_revert(array('nas_events_landing_feature' => array('views_view')));
 }
