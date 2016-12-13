@@ -244,7 +244,7 @@ function editorial_card_2x_html_render($subtype, $conf, $args, $context) {
     $img = '';
     if (!empty($html['image']) && $image = file_load($html['image'])) {
       $img = theme('image', array(
-        'path' => image_style_url('article_teaser', $image->uri),
+        'path' => image_style_url('article_teaser', nas_alters_local_image_uri($image->uri)),
         'alt' => $html['title'],
       ));
     }

@@ -98,13 +98,14 @@ function slideshow_sidebar_block_render($subtype, $conf, $args, $contexts) {
 
   $image_markup = '';
   if (!empty($node->field_images[LANGUAGE_NONE][0]['uri'])) {
-    $image = theme('image', array('path' => image_style_url('slideshow_sidebar', $node->field_images[LANGUAGE_NONE][0]['uri'])));
+    $image_uri = nas_alters_local_image_uri($node->field_images[LANGUAGE_NONE][0]['uri']);
+    $image = theme('image', array('path' => image_style_url('slideshow_sidebar', $image_uri)));
     $image_markup = l($image, 'node/' . $node->nid, array('html' => TRUE));
   }
 
   $logo_markup = '';
   if (!empty($conf['logo'])) {
-    $logo_uri = $node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri'];
+    $logo_uri = nas_alters_local_image_uri($node->field_editorial_card_icon[LANGUAGE_NONE][0]['uri']);
     $logo = theme('image', array('path' => image_style_url('medium', $logo_uri)));
     $logo_markup = l($logo, 'node/' . $node->nid, array('html' => TRUE));
   }

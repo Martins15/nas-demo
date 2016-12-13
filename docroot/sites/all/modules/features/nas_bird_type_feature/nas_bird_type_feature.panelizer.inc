@@ -145,7 +145,7 @@ function nas_bird_type_feature_panelizer_defaults() {
         'es' => array(
           'value' => '<p>En el estudio más amplio y detallado de su tipo, los científicos Audubon han utilizado cientos de miles de observaciones de los ciudadanos en la ciencia y los modelos climáticos sofisticados para predecir cómo las aves en los E.U. y Canadá van a reaccionar al cambio climático.</p>
 
-<p><a href="[node:field_bird_climate_url]">Learn more</a></p>
+<p><a href="[node:field_bird_climate_url]">Obtenga más información</a></p>
 ',
           'format' => 'full_html',
         ),

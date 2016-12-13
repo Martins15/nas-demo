@@ -59,7 +59,7 @@ function adbn_sso_get_message_list($requested_key = NULL) {
     $messages[$key] = array(
       '#title' => t('Login (not authorized)'),
       '#description' => t('Displayed when a user tries to login, and he is not authorized to use the site.'),
-      '#default_provided_message' => 'You are not authorized to use this site. For more information, please contact <a href="mailto:works@audubon.org?subject=Account%20Not%20Authorized%20Inquiry">works@audubon.org</a>.',
+      '#default_provided_message' => 'You are not authorized to use this site. For more information, please contact <a href="mailto:computerhelp@audubon.org?subject=Account%20Not%20Authorized%20Inquiry">computerhelp@audubon.org</a>.',
     );
 
     $key = ADBN_SSO_MESSAGE_LOGIN_SAVE_ACCOUNT_FAILURE;
@@ -73,7 +73,7 @@ function adbn_sso_get_message_list($requested_key = NULL) {
     $messages[$key] = array(
       '#title' => t('Login (error logging in, too many tries)'),
       '#description' => t('Displayed when a user tries to login too many times (usually more than 5) with an incorrect password.'),
-      '#default_provided_message' => 'Your account has been temporarily disabled due to too many incorrect tries, please try back in 1 hour or contact <a href="mailto:works@audubon.org">works@audubon.org</a> for assistance.',
+      '#default_provided_message' => 'Your account has been temporarily disabled due to too many incorrect tries, please try back in 1 hour or contact <a href="mailto:computerhelp@audubon.org">computerhelp@audubon.org</a> for assistance.',
     );
 
     $key = ADBN_SSO_MESSAGE_EDIT_PROFILE_AD_USER;
@@ -275,7 +275,7 @@ This link can only be used once to log in. It expires after one day and nothing 
     $messages[$key] = array(
       '#title' => t('Registration to Login (local account blocked)'),
       '#description' => t('Displayed when a user submits the registration form, the specified email is an existing SSO account, a local account exists, but it is blocked.'),
-      '#default_provided_message' => 'The user %name is blocked. For more information, please contact <a href="mailto:works@audubon.org?subject=Blocked%20Account%20Inquiry">works@audubon.org</a>.',
+      '#default_provided_message' => 'The user %name is blocked. For more information, please contact <a href="mailto:computerhelp@audubon.org?subject=Blocked%20Account%20Inquiry">computerhelp@audubon.org</a>.',
     );
 
     $key = ADBN_SSO_MESSAGE_REGISTRATION_TO_LOGIN_PASSWORD_NOT_MATCHED;

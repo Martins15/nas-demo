@@ -134,7 +134,7 @@ class EntityFieldMapper extends OriginEntityFieldMapper {
           // Ensure images work, without requiring a full entity load.
           $item['uri'] = $file->uri;
         }
-        $image_url = image_style_url($settings['style'], $item['uri']);
+        $image_url = image_style_url($settings['style'], nas_alters_local_image_uri($item['uri']));
       }
       else {
         $image_url = file_create_url($item['uri']);
@@ -214,7 +214,7 @@ class EntityFieldMapper extends OriginEntityFieldMapper {
           // Ensure images work, without requiring a full entity load.
           $item['uri'] = $file->uri;
         }
-        $image_url = image_style_url($settings['style'], $item['uri']);
+        $image_url = image_style_url($settings['style'], nas_alters_local_image_uri($item['uri']));
       }
       else {
         $image_url = file_create_url($item['uri']);
