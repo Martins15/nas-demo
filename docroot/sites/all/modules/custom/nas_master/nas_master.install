@@ -3919,5 +3919,5 @@ function nas_master_update_7264() {
  * Apply changes for events_listing view.
  */
 function nas_master_update_7265() {
-  features_revert(array('events_listing' => array('views_view')));
+  features_revert(array('nas_events_landing_feature' => array('views_view')));
 }
