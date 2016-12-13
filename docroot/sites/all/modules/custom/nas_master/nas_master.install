@@ -3909,8 +3909,15 @@ function nas_master_update_7263() {
 }
 
 /**
- * Revert the feature with nas events landing view.
+ * Enable event date start field in Search API.
  */
 function nas_master_update_7264() {
-  features_revert(array('nas_events_landing_feature' => array('views_view')));
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+}
+
+/**
+ * Apply changes for events_listing view.
+ */
+function nas_master_update_7265() {
+  features_revert(array('events_listing' => array('views_view')));
 }
