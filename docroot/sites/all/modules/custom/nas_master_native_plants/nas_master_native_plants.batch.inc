@@ -236,10 +236,6 @@ function nas_master_native_plants_update_images_callback(&$context) {
       variable_set('np_image_caption_credits', $np_image_caption_credits);
     }
 
-    // Delete the external file copy and its derivatives.
-    image_path_flush('public://externals/' . $image_filename);
-    unlink('public://externals/' . $image_filename);
-
     // Empty image field.
     $node->field_image[LANGUAGE_NONE] = array();
     node_save($node);
@@ -250,6 +246,49 @@ function nas_master_native_plants_update_images_callback(&$context) {
   }
 
   $context['results']['count'] = $context['sandbox']['progress'];
+
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+function nas_master_native_plants_flush_imagecache_external_callback(&$context) {
+  global $base_path;
+
+  if (empty($context['sandbox'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['styles'] = image_styles();
+    $imagecache_dir = 'public://' . variable_get('imagecache_directory', 'externals');
+    $context['sandbox']['files'] = file_scan_directory($imagecache_dir, '/.*$/');
+    $context['sandbox']['max'] = count($context['sandbox']['files']);
+  }
+
+  $files = array_slice($context['sandbox']['files'], $context['sandbox']['progress'], 20);
+  foreach ($files as $file) {
+    // Delete the external file copy and its derivatives.
+    $expire_urls = array();
+    // Collect derivatives.
+    foreach ($context['sandbox']['styles'] as $style) {
+      $image_path = image_style_path($style['name'], $file->uri);
+      if (file_exists($image_path)) {
+        file_unmanaged_delete($image_path);
+        if (module_exists('expire')) {
+          $file_url = file_create_url($image_path);
+          $parsed_url = parse_url($file_url);
+          $expire_urls['file-' . md5($file_url)] = substr($parsed_url['path'], strlen($base_path));
+        }
+      }
+    }
+
+    file_unmanaged_delete($file->uri);
+    if (module_exists('expire')) {
+      $file_url = file_create_url($file->uri);
+      $parsed_url = parse_url($file_url);
+      $expire_urls['file-' . md5($file_url)] = substr($parsed_url['path'], strlen($base_path));
+      ExpireAPI::executeExpiration($expire_urls, 'file', $file);
+    }
+    $context['sandbox']['progress']++;
+  }
 
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
