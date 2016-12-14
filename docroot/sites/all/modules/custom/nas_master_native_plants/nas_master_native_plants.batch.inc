@@ -252,6 +252,9 @@ function nas_master_native_plants_update_images_callback(&$context) {
   }
 }
 
+/**
+ * Implements callback_batch_operation().
+ */
 function nas_master_native_plants_flush_imagecache_external_callback(&$context) {
   global $base_path;
 
