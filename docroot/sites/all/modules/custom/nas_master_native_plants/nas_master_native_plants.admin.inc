@@ -249,7 +249,7 @@ function nas_master_native_plants_plant_id_update_submit($form, &$form_state) {
 function nas_master_native_plants_update_images($form, &$form_state) {
   $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Update Tier 1 Plants images'),
+    '#value' => t('Update Native Plants images'),
   );
 
   return $form;
@@ -261,6 +261,7 @@ function nas_master_native_plants_update_images($form, &$form_state) {
 function nas_master_native_plants_update_images_submit($form, &$form_state) {
   $operations = array(
     array('nas_master_native_plants_update_images_callback', array()),
+    array('nas_master_native_plants_flush_imagecache_external_callback', array()),
   );
 
   $batch = array(
