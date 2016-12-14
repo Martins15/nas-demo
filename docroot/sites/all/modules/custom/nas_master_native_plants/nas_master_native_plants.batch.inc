@@ -245,7 +245,7 @@ function nas_master_native_plants_update_images_callback(&$context) {
     $context['sandbox']['progress']++;
   }
 
-  $context['results']['count'] = $context['sandbox']['progress'];
+  $context['results']['nodes processed'] = $context['sandbox']['progress'];
 
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
@@ -293,6 +293,8 @@ function nas_master_native_plants_flush_imagecache_external_callback(&$context) 
     $context['sandbox']['progress']++;
   }
 
+  $context['results']['images deleted'] = $context['sandbox']['progress'];
+
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
@@ -303,7 +305,8 @@ function nas_master_native_plants_flush_imagecache_external_callback(&$context) 
  */
 function nas_master_native_plants_update_images_finished_callback($success, $results, $operations) {
   if ($success) {
-    drupal_set_message(format_plural($results['count'], 'One node processed.', '@count nodes processed.'));
+    drupal_set_message(format_plural($results['nodes processed'], 'One node has been processed.', '@count nodes have been processed.'));
+    drupal_set_message(format_plural($results['images deleted'], 'One image has been deleted.', '@count images have been deleted.'));
   }
   else {
     drupal_set_message(t('Finished with an error.'));
