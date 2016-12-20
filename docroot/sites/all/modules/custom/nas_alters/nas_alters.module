@@ -565,7 +565,7 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
           $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
           // Removed past dates.
           $current_date = strtotime(date('F Y')) - 1;
-          $event_date = chunk_split($key, 4, '-') . '01 00:00:01';
+          $event_date = chunk_split($key, 4, '-') . '01 00:00:00';
           $event_date = strtotime($event_date);
           if (($event_date != FALSE) && ($event_date >= $current_date)) {
             // Convert month number to name.
