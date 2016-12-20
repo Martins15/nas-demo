@@ -135,7 +135,7 @@ function editorial_card_package_render($subtype, $conf, $args, $contexts) {
     $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
     $image_tag = theme('image_style', array(
       'style_name' => NAS_EDITORIAL_CARD_FEATURED_IMAGE_STYLE,
-      'path' => $image->uri,
+      'path' => nas_alters_local_image_uri($image->uri),
       'title' => $image_caption,
     ));
     $linked_image = l($image_tag, $conf['references'][0]['url'], array('html' => TRUE));

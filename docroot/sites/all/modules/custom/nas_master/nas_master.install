@@ -3907,3 +3907,23 @@ function nas_master_update_7262() {
 function nas_master_update_7263() {
   features_revert(array('nas_views_feature' => array('views_view')));
 }
+
+/**
+ * Enable netX revert features for fields.
+ */
+function nas_master_update_7264() {
+  module_enable(array('netx', 'nas_netx_feature', 'nas_file_entity'));
+  features_revert(array('nas_beans_feature' => array('field_instance')));
+  features_revert(array('nas_bird_type_feature' => array('field_instance')));
+  features_revert(array('cbc_gallery' => array('field_instance')));
+  features_revert(array('nas_static_page_feature' => array('field_instance')));
+  features_revert(array('nas_article_feature' => array('field_instance')));
+  features_revert(array('nas_conservation_project_feature' => array('field_instance')));
+  features_revert(array('nas_slideshow_feature' => array('field_instance')));
+  features_revert(array('nas_video_page_feature' => array('field_instance')));
+  features_revert(array('nas_conservation_strategy_feature' => array('field_instance')));
+  features_revert(array('nas_fpp_feature' => array('field_instance')));
+  features_revert(array('nas_magazine_issue_feature' => array('field_instance')));
+  features_revert(array('nas_native_plants_taxonomy' => array('field_instance')));
+  features_revert(array('nas_social_media_photo' => array('field_instance')));
+}

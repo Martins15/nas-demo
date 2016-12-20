@@ -66,7 +66,7 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
         $image_color = '';
         if (isset($get_field_boa_illustration[0]['fid'])) {
           $file = file_load($get_field_boa_illustration[0]['fid']);
-          $image_color = image_style_url('boa_plate_binocular', $file->uri);
+          $image_color = image_style_url('boa_plate_binocular', nas_alters_local_image_uri($file->uri));
           $credits = '';
           if ($get_field_file_credit = field_get_items('file', $file, 'field_file_credit')) {
             if (isset($get_field_file_credit[0]['value'])) {
@@ -77,7 +77,7 @@ function boa_plate_binocular_render($subtype, $conf, $args, $contexts) {
           if ($get_field_boa_plate_illustr_des = field_get_items('node', $node, 'field_boa_plate_illustr_des')) {
             if (isset($get_field_boa_plate_illustr_des[0]['fid'])) {
               $file = file_load($get_field_boa_plate_illustr_des[0]['fid']);
-              $image_desaturated = image_style_url('boa_plate_binocular', $file->uri);
+              $image_desaturated = image_style_url('boa_plate_binocular', nas_alters_local_image_uri($file->uri));
             }
           }
           $nodes[] = array(

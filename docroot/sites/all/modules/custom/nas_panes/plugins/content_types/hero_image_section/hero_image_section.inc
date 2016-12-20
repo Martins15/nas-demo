@@ -123,13 +123,15 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   $hero_icon = '';
   if (!empty($conf['icon'])) {
     $hero_icon_object = file_load($conf['icon']);
-    $hero_icon = image_style_url('hero_icon', $hero_icon_object->uri);
+    $hero_icon_uri = nas_alters_local_image_uri($hero_icon_object->uri);
+    $hero_icon = image_style_url('hero_icon', $hero_icon_uri);
   }
 
   if (!empty($conf['image'])) {
     $hero_image_object = file_load($conf['image']);
-    $hero_image = image_style_url('hero_image', $hero_image_object->uri);
-    $hero_image_mobile = image_style_url('hero_mobile', $hero_image_object->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image_object->uri);
+    $hero_image = image_style_url('hero_image', $hero_image_uri);
+    $hero_image_mobile = image_style_url('hero_mobile', $hero_image_uri);
     $attribution = _nas_panes_format_image_attribution($hero_image_object);
   }
 

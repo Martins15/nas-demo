@@ -153,8 +153,9 @@ function sc_editorial_card_2x_render($subtype, $conf, $args, $contexts) {
 
     $image_object = file_load($item['image']);
     if ($image_object) {
-      $image_url = image_style_url('static_cards_two_columns', $image_object->uri);
-      $image_url_mobile = image_style_url('static_cards_two_columns_mobile', $image_object->uri);
+      $image_uri = nas_alters_local_image_uri($image_object->uri);
+      $image_url = image_style_url('static_cards_two_columns', $image_uri);
+      $image_url_mobile = image_style_url('static_cards_two_columns_mobile', $image_uri);
       $attributes['style'] = 'background-image: url(\'' . $image_url . '\')';
       $attributes['data-bg-small'] = $image_url_mobile;
       $attributes['data-bg-large'] = $image_url;

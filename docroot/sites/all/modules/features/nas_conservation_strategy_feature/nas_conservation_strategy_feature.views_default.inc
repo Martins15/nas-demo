@@ -94,6 +94,26 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['pane_category']['name'] = 'NAS';
   $handler->display->display_options['pane_category']['weight'] = '0';
+  $translatables['conservation_strategy_news'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Show Me More'),
+    t('All'),
+    t('Content pane'),
+    t('NAS'),
+  );
   $export['conservation_strategy_news'] = $view;
 
   $view = new view();
@@ -158,6 +178,17 @@ function nas_conservation_strategy_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['relationship'] = 'reverse_field_conservation_strategy_node';
   $handler->display->display_options['filters']['type']['value'] = array(
     'project' => 'project',
+  );
+  $translatables['conservation_strategy_projects'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Conservation strategy project'),
+    t('All'),
   );
   $export['conservation_strategy_projects'] = $view;
 

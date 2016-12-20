@@ -31,6 +31,7 @@ function nas_conservation_strategy_feature_field_default_field_bases() {
         'light' => 'Light',
       ),
       'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
     ),
     'translatable' => 0,
     'type' => 'list_text',

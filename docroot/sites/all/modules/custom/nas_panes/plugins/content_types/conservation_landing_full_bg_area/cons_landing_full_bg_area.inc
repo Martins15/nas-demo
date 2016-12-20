@@ -115,7 +115,8 @@ function cons_landing_full_bg_area_render($subtype, $conf, $args, $contexts) {
 
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
-    $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image->uri);
+    $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image_uri);
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);

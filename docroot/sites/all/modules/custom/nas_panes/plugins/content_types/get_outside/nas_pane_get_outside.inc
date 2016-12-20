@@ -120,7 +120,8 @@ function nas_pane_get_outside_render($subtype, $conf, $args, $contexts) {
   $attribution = '';
   if (!empty($conf['image'])) {
     $hero_image = file_load($conf['image']);
-    $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image->uri);
+    $hero_image_path = image_style_url(NAS_GET_OUTSIDE_IMAGE_STYLE, $hero_image_uri);
     $attribution = _nas_panes_format_image_attribution($hero_image);
   }
 

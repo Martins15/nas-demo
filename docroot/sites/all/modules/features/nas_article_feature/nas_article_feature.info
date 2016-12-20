@@ -125,4 +125,6 @@ features[views_view][] = other_press_releases
 features_exclude[field_base][field_is_this_a_press_release_] = field_is_this_a_press_release_
 features_exclude[field_instance][node-article-field_is_this_a_press_release_] = node-article-field_is_this_a_press_release_
 features_exclude[variable][language_content_type_article] = language_content_type_article
+features_exclude[variable][xmlsitemap_settings_node_article] = xmlsitemap_settings_node_article
+features_exclude[variable][xmlsitemap_settings_taxonomy_term_menu_section] = xmlsitemap_settings_taxonomy_term_menu_section
 project path = sites/all/modules/features

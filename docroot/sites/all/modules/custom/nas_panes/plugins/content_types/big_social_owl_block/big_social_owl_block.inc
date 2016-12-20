@@ -194,7 +194,7 @@ function big_social_owl_block_render($subtype, $conf, $args, $contexts) {
   $image_src = url(drupal_get_path('theme', 'nas') . '/img/owl-head.png');
   $image = file_load($conf['center_image']['custom_image']);
   if (!empty($image)) {
-    $image_src = image_style_url('social_owl_image', $image->uri);
+    $image_src = image_style_url('social_owl_image', nas_alters_local_image_uri($image->uri));
   }
 
   $block->content = theme('big_social_owl_block', array(

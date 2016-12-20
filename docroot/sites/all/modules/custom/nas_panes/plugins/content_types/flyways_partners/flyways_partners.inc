@@ -101,7 +101,8 @@ function flyways_partners_render($subtype, $conf, $args, $contexts) {
   $conf['attribution'] = '';
   if (!empty($conf['background_image2'])) {
     $file = file_load($conf['background_image2']);
-    $conf['background_image'] = image_style_url('hero_image', $file->uri);
+    $file_uri = nas_alters_local_image_uri($file->uri);
+    $conf['background_image'] = image_style_url('hero_image', $file_uri);
     $conf['attribution'] = _nas_panes_format_image_attribution($file);
   }
 

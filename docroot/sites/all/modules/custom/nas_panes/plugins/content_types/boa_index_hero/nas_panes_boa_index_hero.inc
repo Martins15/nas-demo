@@ -99,7 +99,8 @@ function boa_index_hero_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
 
   $hero_image = file_load($conf['image']);
-  $hero_image_path = image_style_url('hero_image', $hero_image->uri);
+  $hero_image_uri = nas_alters_local_image_uri($hero_image->uri);
+  $hero_image_path = image_style_url('hero_image', $hero_image_uri);
   $attribution = _nas_panes_format_image_attribution($hero_image);
 
   $title = check_plain($conf['title']);

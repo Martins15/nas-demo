@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS File entity feature.
+ */
+
+include_once 'nas_file_entity.features.inc';
