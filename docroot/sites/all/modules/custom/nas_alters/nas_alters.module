@@ -576,6 +576,7 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
             $options[$key] = $month_name . ' ' . substr($key, 0, 4);
           }
         }
+        ksort($options);
       }
       $form['event_months']['#type'] = 'select';
       $form['event_months']['#options'] = $options;
