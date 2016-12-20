@@ -630,6 +630,16 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['submit']['#attributes']['class'][] = 'button';
     $form['submit']['#attributes']['class'][] = 'pea-green';
   }
+
+  if ($form['#id'] == 'views-exposed-form-nas-editorial-grid-default') {
+    $form['search_api_views_fulltext']['#placeholder'] = t('Search for ...');
+    $form['submit']['#attributes']['class'][] = 'editorial-grid-search-submit';
+    $form['submit']['#attributes']['class'][] = 'large';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $submit_btn_id = $form['submit']['#id'];
+    $form['reset']['#attributes']['onclick'] = 'javascript:jQuery(this.form).clearForm();jQuery(this.form).find(\'#' . $submit_btn_id . '\').trigger(\'click\');return false;';
+    $form['reset']['#attributes']['class'][] = 'editorial-grid-search-reset';
+  }
 }
 
 /**
