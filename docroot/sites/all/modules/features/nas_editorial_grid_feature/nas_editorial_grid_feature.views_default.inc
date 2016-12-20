@@ -105,6 +105,7 @@ function nas_editorial_grid_feature_views_default_views() {
     51 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
+    'body:value' => 'body:value',
     'field_event_description:value' => 'field_event_description:value',
     'title' => 'title',
   );
