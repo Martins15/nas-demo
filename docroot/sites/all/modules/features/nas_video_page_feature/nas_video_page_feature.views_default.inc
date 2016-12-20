@@ -66,6 +66,16 @@ function nas_video_page_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'video_page' => 'video_page',
   );
+  $translatables['latest_videos'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+  );
   $export['latest_videos'] = $view;
 
   return $export;

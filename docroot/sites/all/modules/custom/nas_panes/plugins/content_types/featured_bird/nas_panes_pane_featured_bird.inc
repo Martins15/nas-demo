@@ -127,8 +127,9 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $hero_image_path = '';
   $hero_image_path_mobile = '';
   if (isset($image_fid) && $hero_image = file_load($image_fid)) {
-    $hero_image_path = image_style_url('hero_image', $hero_image->uri);
-    $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image->uri);
+    $hero_image_uri = nas_alters_local_image_uri($hero_image->uri);
+    $hero_image_path = image_style_url('hero_image', $hero_image_uri);
+    $hero_image_path_mobile = image_style_url('hero_mobile', $hero_image_uri);
     $attribution = _nas_panes_format_image_attribution($hero_image);
   }
 
@@ -144,7 +145,8 @@ function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args,
   $illustration_item = field_get_items('node', $node, 'field_bird_illustration');
   if (!empty($illustration_item[0]['fid'])) {
     $illustration = file_load($illustration_item[0]['fid']);
-    $illustration_path = !empty($illustration->uri) ? image_style_url('nas_bird_teaser_illustration', $illustration->uri) : '';
+    $illustration_uri = nas_alters_local_image_uri($illustration->uri);
+    $illustration_path = !empty($illustration->uri) ? image_style_url('nas_bird_teaser_illustration', $illustration_uri) : '';
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);

@@ -332,6 +332,18 @@
   }
 }
 
+.editorial-card-4x {
+  .editorial-card {
+    border: none;
+    box-shadow: none;
+  }
+
+  .editorial-card-content {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 .sidebar > .local-cnc {
   padding-left: 0;
   padding-right: 0;

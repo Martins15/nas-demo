@@ -62,6 +62,19 @@ function nas_alters_views_api() {
 }
 
 /**
+ * Implements hook_js_alter().
+ */
+function nas_alters_js_alter(&$javascript) {
+  // Remove Views ajax history js for admin pages.
+  $views_ajax_history_js = drupal_get_path('module', 'views_ajax_history') . '/views_ajax_history.js';
+  if ($GLOBALS['theme_key'] != 'nas' && isset($javascript[$views_ajax_history_js])) {
+    $history_js = libraries_get_path('history.js') . '/scripts/bundled/html4+html5/jquery.history.js';
+    unset($javascript[$views_ajax_history_js]);
+    unset($javascript[$history_js]);
+  }
+}
+
+/**
  * Implements theme_button()
  * used to return <button> tag when needed
  */
@@ -945,4 +958,26 @@ function nas_alters_panels_pre_render($panels_display, $renderer) {
     $asc_landing_page_sidebar_title = $pane->configuration['override_title_text'];
     unset($pane->configuration['override_title_text']);
   }
+}
+
+/**
+ * Helper function; ensure that local image uri is used.
+ *
+ * @param string $image_uri
+ *   Any image uri.
+ *
+ * @return mixed
+ *   Locally available image uri.
+ */
+function nas_alters_local_image_uri($image_uri) {
+  if (!$image_uri) {
+    return FALSE;
+  }
+
+  $wrapper = file_stream_wrapper_get_instance_by_uri($image_uri);
+  if (method_exists($wrapper, 'getLocalImagePath')) {
+    $image_uri = $wrapper->getLocalImagePath();
+  }
+
+  return $image_uri;
 }

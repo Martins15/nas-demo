@@ -48,4 +48,5 @@ features[views_view][] = slideshow_related_features
 features_exclude[dependencies][views] = views
 features_exclude[dependencies][views_content] = views_content
 features_exclude[variable][language_content_type_slideshow] = language_content_type_slideshow
+features_exclude[variable][xmlsitemap_settings_node_slideshow] = xmlsitemap_settings_node_slideshow
 project path = sites/all/modules/features
