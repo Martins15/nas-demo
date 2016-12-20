@@ -86,24 +86,25 @@
  * @ingroup themeable
  */
 ?>
-
-<div class="editorial-card feature collapse-minimal">
-  <div class="editorial-card-photo">
-    <?php print $linked_image; ?>
-    <?php if ($editorial_extra_fields): ?>
-      <div class="editorial-card-banner gray overlap-banner">
-        <?php print $left_icon; ?>
-        <?php print $caption; ?>
-        <?php if (!empty($icon)): ?>
-          <div class="icon-wrapper"><?php print $icon; ?></div>
-        <?php endif; ?>
-      </div>
-    <?php endif; ?>
-  </div>
-  <div class="editorial-card-content">
-    <?php if (!empty($blue_text_link_url)): ?>
-      <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
-    <?php endif; ?>
-    <h4 class="editorial-card-title no-margin"><?php print $title_link; ?></h4>
+<div class="columns large-3">
+  <div class="editorial-card collapse-minimal">
+    <div class="editorial-card-photo">
+      <?php print $linked_image; ?>
+      <?php if ($editorial_extra_fields): ?>
+        <div class="editorial-card-banner gray overlap-banner">
+          <?php print $left_icon; ?>
+          <?php print $caption; ?>
+          <?php if (!empty($icon)): ?>
+            <div class="icon-wrapper"><?php print $icon; ?></div>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
+    </div>
+    <div class="editorial-card-content short">
+      <?php if (!empty($blue_text_link_url)): ?>
+        <a href="<?php print $blue_text_link_url; ?>" class="editorial-card-slug"><?php print $blue_text_link_text; ?></a>
+      <?php endif; ?>
+      <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
+    </div>
   </div>
 </div>
