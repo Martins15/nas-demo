@@ -563,12 +563,18 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
       if (!empty($facets['event_months'])) {
         foreach ($facets['event_months'] as $rawvalue) {
           $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
-          // Convert month number to name.
-          $month_num = (int) substr($key, 4, 2);
-          $date_obj = DateTime::createFromFormat('!m', $month_num);
-          $month_name = $date_obj->format('F');
-          // TODO: translate month name.
-          $options[$key] = $month_name . ' ' . substr($key, 0, 4);
+          // Removed past dates.
+          $current_date = strtotime(date('F Y'));
+          $event_date = chunk_split($key, 4, '-') . '01 00:00:01';
+          $event_date = strtotime($event_date);
+          if (($event_date != FALSE) && ($event_date >= $current_date)) {
+            // Convert month number to name.
+            $month_num = (int) substr($key, 4, 2);
+            $date_obj = DateTime::createFromFormat('!m', $month_num);
+            $month_name = $date_obj->format('F');
+            // TODO: translate month name.
+            $options[$key] = $month_name . ' ' . substr($key, 0, 4);
+          }
         }
       }
       $form['event_months']['#type'] = 'select';
