@@ -97,6 +97,9 @@ function nas_event_feature_strongarm() {
       'ical' => array(
         'custom_settings' => TRUE,
       ),
+      'editorial_grid_teaser' => array(
+          'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -123,6 +126,14 @@ function nas_event_feature_strongarm() {
         'language' => array(
           'ical' => array(
             'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'editorial_grid_teaser' => array(
+            'weight' => '4',
             'visible' => FALSE,
           ),
         ),
