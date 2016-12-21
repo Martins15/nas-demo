@@ -41,6 +41,11 @@ function nas_editorial_grid_feature_views_default_views() {
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Sort criterion: Indexed Content: Date */
+  $handler->display->display_options['sorts']['field_article_date']['id'] = 'field_article_date';
+  $handler->display->display_options['sorts']['field_article_date']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['field_article_date']['field'] = 'field_article_date';
+  $handler->display->display_options['sorts']['field_article_date']['order'] = 'DESC';
   /* Contextual filter: Indexed Content: Menu Section */
   $handler->display->display_options['arguments']['field_menu_section']['id'] = 'field_menu_section';
   $handler->display->display_options['arguments']['field_menu_section']['table'] = 'search_api_index_default_node_index';
