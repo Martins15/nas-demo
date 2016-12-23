@@ -1226,6 +1226,7 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
     'contextual_links' => $contextual_links,
     'video_source' => $video_source,
     'position' => $position,
+    'poster_source' => $image_path,
   ));
 
   // Pass mobile_content to theme
