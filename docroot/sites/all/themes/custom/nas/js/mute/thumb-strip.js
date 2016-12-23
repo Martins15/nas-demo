@@ -22,7 +22,6 @@
 
         if (loadedImages == totalImages) {
           Drupal.behaviors.thumb_strip.applyIScroll(self);
-          console.log('Loaded ' + loadedImages + ' out of ' + totalImages);
         }
       });
     },
