@@ -100,6 +100,7 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
       case 'before':
         $label = $config['label'] . ' ' . $config['current_status'];
         break;
+
       case 'after':
         $label = $config['current_status'] . ' ' . $config['label'];
         break;
