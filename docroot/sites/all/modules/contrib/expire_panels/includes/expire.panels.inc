@@ -58,7 +58,7 @@ class ExpirePanels implements ExpireInterface {
     }
 
     // Expire custom pages.
-    $expire_custom = variable_get('expire_panels_custom', EXPIRE_USER_CUSTOM);
+    $expire_custom = variable_get('expire_panels_custom', EXPIRE_PANELS_CUSTOM);
     if ($expire_custom) {
       $pages = variable_get('expire_panels_custom_pages');
       $urls = ExpireAPI::expireCustomPages($pages, array('panel' => $display));

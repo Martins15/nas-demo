@@ -4123,3 +4123,10 @@ function nas_master_update_7282() {
     'nas_text_format_feature' => array('filter'),
   ));
 }
+
+/**
+ * Enable Panels Cache Expiration module.
+ */
+function nas_master_update_7283() {
+  module_enable(array('expire_panels'));
+}
