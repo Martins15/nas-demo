@@ -3943,7 +3943,7 @@ function nas_master_update_7266() {
 }
 
 /**
- * Enabled taxonomy fields in Search API.
+ * Enable event date start field in Search API.
  */
 function nas_master_update_7267() {
   features_revert(array('nas_solr_feature' => array('search_api_index')));
