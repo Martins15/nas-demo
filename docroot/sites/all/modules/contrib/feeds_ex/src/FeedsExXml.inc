@@ -32,11 +32,9 @@ class FeedsExXml extends FeedsExBase {
   protected $entityLoader;
 
   /**
-   * The context query to execute; after preparation.
-   *
-   * @var string
+   * {@inheritdoc}
    */
-  protected $contextQuery;
+  protected $encoderClass = 'FeedsExXmlEncoder';
 
   /**
    * {@inheritdoc}
@@ -44,22 +42,6 @@ class FeedsExXml extends FeedsExBase {
   protected function setUp(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
     $document = $this->prepareDocument($source, $fetcher_result);
     $this->xpath = new FeedsExXpathDomXpath($document);
-
-    $state = $source->state(FEEDS_PARSE);
-
-    // Calculate the total once. If the total is zero, this will only execute
-    // once anyway.
-    if (!$state->total) {
-      $state->total = $this->xpath->evaluate('count(' . $this->config['context']['value'] . ')');
-    }
-
-    $start = $state->pointer ? $state->pointer : 0;
-    $limit = $start + $source->importer->getLimit();
-    $end = $limit > $state->total ? $state->total : $limit;
-    $state->pointer = $end;
-
-    // A batched XPath expression.
-    $this->contextQuery = '(' . $this->config['context']['value'] . ")[position() > $start and position() <= $end]";
   }
 
   /**
@@ -79,7 +61,18 @@ class FeedsExXml extends FeedsExBase {
    * {@inheritdoc}
    */
   protected function executeContext(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
-    return $this->xpath->query($this->contextQuery);
+    $state = $source->state(FEEDS_PARSE);
+
+    if (!$state->total) {
+      $state->total = $this->xpath->evaluate('count(' . $this->config['context']['value'] . ')');
+    }
+
+    $start = (int) $state->pointer;
+    $state->pointer = $start + $source->importer->getLimit();
+
+    // A batched XPath expression.
+    $context_query = '(' . $this->config['context']['value'] . ")[position() > $start and position() <= {$state->pointer}]";
+    return $this->xpath->query($context_query);
   }
 
   /**
@@ -96,7 +89,12 @@ class FeedsExXml extends FeedsExBase {
     }
 
     $return = array();
-    if (!empty($this->config['sources'][$machine_name]['raw'])) {
+    if (!empty($this->config['sources'][$machine_name]['inner'])) {
+      foreach ($result as $node) {
+        $return[] = $this->getInnerXml($node);
+      }
+    }
+    elseif (!empty($this->config['sources'][$machine_name]['raw'])) {
       foreach ($result as $node) {
         $return[] = $this->getRaw($node);
       }
@@ -108,27 +106,67 @@ class FeedsExXml extends FeedsExBase {
     }
 
     // Return a single value if there's only one value.
-    return count($return) === 1 ? $return[0] : $return;
+    return count($return) === 1 ? reset($return) : $return;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function configDefaults() {
+    return array(
+      'use_tidy' => FALSE,
+    ) + parent::configDefaults();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function configForm(&$form_state) {
+    $form = parent::configForm($form_state);
+    if (extension_loaded('tidy')) {
+      $form['use_tidy'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Use tidy'),
+        '#description' => t('The <a href="http://php.net/manual/en/book.tidy.php">Tidy PHP</a> extension has been detected. Select this to clean the markup before parsing.'),
+        '#default_value' => $this->config['use_tidy'],
+      );
+    }
+
+    return $form;
   }
 
   /**
    * {@inheritdoc}
    */
   protected function configFormTableHeader() {
-    return array('raw' => t('Raw'));
+    return array('raw' => t('Raw'), 'inner' => t('Inner XML'));
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function configFormTableColumn(array &$form_state, $column_name, array $source) {
-    switch ($column_name) {
+  protected function configFormTableColumn(array &$form_state, array $values, $column, $machine_name) {
+    $id = 'feeds-ex-xml-raw-' . check_plain($machine_name);
+
+    switch ($column) {
       case 'raw':
         return array(
           '#type' => 'checkbox',
           '#title' => t('Raw value'),
           '#title_display' => 'invisible',
-          '#default_value' => !empty($source['raw']) ? $source['raw'] : 0,
+          '#default_value' => (int) !empty($values['raw']),
+          '#id' => $id,
+        );
+
+      case 'inner':
+        return array(
+          '#type' => 'checkbox',
+          '#title' => t('Inner XML'),
+          '#title_display' => 'invisible',
+          '#default_value' => (int) !empty($values['inner']),
+          '#states' => array(
+            'visible' => array('#' . $id => array('checked' => TRUE)),
+          ),
         );
     }
   }
@@ -157,7 +195,7 @@ class FeedsExXml extends FeedsExBase {
       // Error code 1219 is an undefined namespace prefix.
       // Our sample doc doesn't have any namespaces.
       elseif ($error->code != 1219) {
-        $message = t('There was an error with the XPath expression: %error', array('%error' => $error->message));
+        $message = check_plain(trim($error->message));
       }
     }
 
@@ -168,28 +206,22 @@ class FeedsExXml extends FeedsExBase {
   /**
    * {@inheritdoc}
    */
+  public function configFormValidate(&$values) {
+    parent::configFormValidate($values);
+
+    // Remove values that are inner but not raw.
+    foreach ($values['sources'] as $machine_name => $source) {
+      if (!empty($source['inner']) && empty($source['raw'])) {
+        unset($values['sources'][$machine_name]['inner']);
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function convertEncoding($data, $encoding = 'UTF-8') {
-    // Check for an encoding declaration in the XML prolog.
-    $matches = FALSE;
-    if (preg_match('/^<\?xml[^>]+encoding\s*=\s*("|\')(.+?)(\1)/', $data, $matches)) {
-      $encoding = $matches[2];
-    }
-    elseif ($detected = parent::detectEncoding($data)) {
-      $encoding = $detected;
-    }
-
-    // Unsupported encodings are converted here into UTF-8.
-    $php_supported = array('utf-8', 'us-ascii', 'ascii');
-    if (in_array(strtolower($encoding), $php_supported)) {
-      return $data;
-    }
-
-    $data = parent::convertEncoding($data, $encoding);
-    if ($matches) {
-      $data = preg_replace('/^(<\?xml[^>]+encoding\s*=\s*("|\'))(.+?)(\2)/', '$1UTF-8$4', $data);
-    }
-
-    return $data;
+    return FeedsExXmlUtility::convertXmlEncoding($data, $this->config['source_encoding']);
   }
 
   /**
@@ -204,27 +236,15 @@ class FeedsExXml extends FeedsExBase {
    *   The DOM document.
    */
   protected function prepareDocument(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
-    $document = new DOMDocument('1.0', 'UTF-8');
-    $document->strictErrorChecking = FALSE;
-    $document->resolveExternals = FALSE;
-    // Libxml specific.
-    $document->substituteEntities = FALSE;
-    $document->recover = TRUE;
-    $document->encoding = 'UTF-8';
-
-    // Convert encoding.
-    $raw = $this->convertEncoding(trim($fetcher_result->getRaw()));
+    $raw = $this->prepareRaw($fetcher_result);
     // Remove default namespaces. This has to run after the encoding conversion
     // because a limited set of encodings are supported in regular expressions.
     $raw = FeedsExXmlUtility::removeDefaultNamespaces($raw);
 
-    $options = LIBXML_NOENT | LIBXML_NONET | defined('LIBXML_COMPACT') ? LIBXML_COMPACT : 0;
-    $success = $document->loadXML($raw, $options);
-    if (!$success) {
-      throw new RuntimeException(t('There was an error parsing the XML document.'));
+    if ($this->config['use_tidy'] && extension_loaded('tidy')) {
+      $raw = tidy_repair_string($raw, $this->getTidyConfig(), 'utf8');
     }
-
-    return $document;
+    return FeedsExXmlUtility::createXmlDocument($raw);
   }
 
   /**
@@ -238,6 +258,23 @@ class FeedsExXml extends FeedsExBase {
    */
   protected function getRaw(DOMNode $node) {
     return $node->ownerDocument->saveXML($node);
+  }
+
+  /**
+   * Returns the inner XML of a DOM node.
+   *
+   * @param DOMNode $node
+   *   The node to convert to raw XML.
+   *
+   * @return string
+   *   The inner XML.
+   */
+  protected function getInnerXml(DOMNode $node) {
+    $buffer = '';
+    foreach ($node->childNodes as $child) {
+      $buffer .= $this->getRaw($child);
+    }
+    return $buffer;
   }
 
   /**
@@ -304,6 +341,24 @@ class FeedsExXml extends FeedsExBase {
     }
 
     return $return;
+  }
+
+  /**
+   * Returns the options for phptidy.
+   *
+   * http://php.net/manual/en/book.tidy.php
+   *
+   * @see tidy_repair_string()
+   *
+   * @return array
+   *   The configuration array.
+   */
+  protected function getTidyConfig() {
+    return array(
+      'input-xml' => TRUE,
+      'wrap' => 0,
+      'tidy-mark' => FALSE,
+    );
   }
 
 }

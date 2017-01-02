@@ -33,10 +33,15 @@ abstract class FeedsExUnitTestBase extends TUnit {
     require_once $feeds . '/plugins/FeedsProcessor.inc';
     require_once $feeds . '/plugins/FeedsNodeProcessor.inc';
 
+    // This is out test feed source.
+    require_once dirname(__FILE__) . '/FeedsExTestFeedsSource.inc';
+
     drupal_load('module', 'feeds_ex');
     $this->moduleDir = DRUPAL_ROOT . '/' . drupal_get_path('module', 'feeds_ex');
     require_once $this->moduleDir . '/src/Json/Utility.php';
+    require_once $this->moduleDir . '/src/Text/Utility.php';
     require_once $this->moduleDir . '/src/Xml/Utility.php';
+    require_once $this->moduleDir . '/src/File/FeedsExLineIterator.php';
     require_once $this->moduleDir . '/src/FeedsExBase.inc';
   }
 
@@ -60,7 +65,7 @@ abstract class FeedsExUnitTestBase extends TUnit {
     $processor = $this->newInstanceWithoutConstructor($processor);
     $this->setProperty($importer, 'processor', $processor);
 
-    $source = $this->newInstanceWithoutConstructor('FeedsSource');
+    $source = $this->newInstanceWithoutConstructor('FeedsExTestFeedsSource');
     $this->setProperty($source, 'importer', $importer);
 
     return $source;
@@ -114,6 +119,31 @@ abstract class FeedsExUnitTestBase extends TUnit {
     define('FEEDS_EX_LIBRARY_PATH', $library_dir);
   }
 
+  /**
+   * Asserts that the correct number of items have been parsed.
+   *
+   * @param FeedsParserResult $result
+   *   The parser result.
+   * @param int $count
+   *   The number of items that should exist.
+   */
+  protected function assertParserResultItemCount(FeedsParserResult $result, $count) {
+    $this->assertEqual(count($result->items), $count, format_string('@count items parsed.', array('@count' => count($result->items))));
+  }
+
+  /**
+   * Asserts that the empty message is correct.
+   *
+   * @param array $messages
+   *   The list of error messages.
+   */
+  protected function assertEmptyFeedMessage(array $messages) {
+    $this->assertEqual(1, count($messages), 'The expected number of messages.');
+    $this->assertEqual($messages[0]['message'], 'The feed is empty.', 'Message text is correct.');
+    $this->assertEqual($messages[0]['type'], 'warning', 'Message type is warning.');
+    $this->assertFalse($messages[0]['repeat'], 'Repeat is set to false.');
+  }
+
 }
 
 /**
@@ -130,6 +160,7 @@ class FeedsExRemoveDefaultNamespaces extends DrupalUnitTestCase {
 
   public function setUp() {
     parent::setUp();
+    require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'feeds_ex') . '/src/Text/Utility.php';
     require_once DRUPAL_ROOT . '/' . drupal_get_path('module', 'feeds_ex') . '/src/Xml/Utility.php';
   }
 
@@ -165,6 +196,69 @@ class FeedsExRemoveDefaultNamespaces extends DrupalUnitTestCase {
    */
   protected function check($in, $out) {
     $this->assertEqual(FeedsExXmlUtility::removeDefaultNamespaces($in), $out);
+  }
+
+}
+
+/**
+ * Reading a line from a file.
+ */
+class FeedsExLineIteratorUnitTests extends DrupalUnitTestCase {
+
+  /**
+   * The module directory path.
+   *
+   * @var string
+   */
+  protected $moduleDir;
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Unit tests for the line reading iterator',
+      'description' => 'Unit tests for FeedsExLineIterator.',
+      'group' => 'Feeds EX',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp();
+    $this->moduleDir = drupal_get_path('module', 'feeds_ex');
+    require_once DRUPAL_ROOT . '/' . $this->moduleDir . '/src/File/FeedsExLineIterator.php';
+  }
+
+  /**
+   * Tests basic iteration.
+   */
+  public function test() {
+    $iterator = new FeedsExLineIterator($this->moduleDir . '/tests/resources/test.jsonl');
+    $this->assertEqual(count(iterator_to_array($iterator)), 4);
+  }
+
+  /**
+   * Tests settings line limits.
+   */
+  public function testLineLimit() {
+    foreach (range(1, 4) as $limit) {
+      $iterator = new FeedsExLineIterator($this->moduleDir . '/tests/resources/test.jsonl');
+      $iterator->setLineLimit($limit);
+      $array = iterator_to_array($iterator);
+      $this->assertEqual(count($array), $limit, format_string('@count lines read.', array('@count' => count($array))));
+    }
+  }
+
+  /**
+   * Tests resuming file position.
+   */
+  public function testFileResume() {
+    $iterator = new FeedsExLineIterator($this->moduleDir . '/tests/resources/test.jsonl');
+    $iterator->setLineLimit(1);
+    foreach (array('Gilbert', 'Alexa', 'May', 'Deloise') as $name) {
+      foreach ($iterator as $line) {
+        $line = drupal_json_decode($line);
+        $this->assertEqual($line['name'], $name);
+      }
+      $iterator->setStartPosition($iterator->ftell());
+    }
   }
 
 }

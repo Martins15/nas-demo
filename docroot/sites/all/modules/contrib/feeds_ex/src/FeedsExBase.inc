@@ -11,11 +11,25 @@
 abstract class FeedsExBase extends FeedsParser {
 
   /**
-   * Whether the current system handles mb_* functions.
+   * The object used to display messages to the user.
    *
-   * @var bool
+   * @var FeedsExMessengerInterface
    */
-  protected $isMultibyte;
+  protected $messenger;
+
+  /**
+   * The class used as the text encoder.
+   *
+   * @var string
+   */
+  protected $encoderClass = 'FeedsExTextEncoder';
+
+  /**
+   * The encoder used to convert encodings.
+   *
+   * @var FeedsExEncoderInterface
+   */
+  protected $encoder;
 
   /**
    * Returns rows to be parsed.
@@ -82,7 +96,7 @@ abstract class FeedsExBase extends FeedsParser {
   }
 
   /**
-   * Allows subclasses to cleanup.
+   * Allows subclasses to cleanup after parsing.
    *
    * @param FeedsSource $source
    *   The feed source.
@@ -95,25 +109,36 @@ abstract class FeedsExBase extends FeedsParser {
   /**
    * Starts internal error handling.
    *
-   * Subclasses can override this to do error handling.
+   * Subclasses can override this to being error handling.
    */
   protected function startErrorHandling() {
-    // No default error handling.
   }
 
   /**
    * Stops internal error handling.
    *
-   * Subclasses can override this to do error handling.
+   * Subclasses can override this to end error handling.
    */
   protected function stopErrorHandling() {
-    // No default error handling.
+  }
+
+  /**
+   * Loads the necessary library.
+   *
+   * Subclasses can override this to load the necessary library. It will be
+   * called automatically.
+   *
+   * @throws RuntimeException
+   *   Thrown if the library does not exist.
+   */
+  protected function loadLibrary() {
   }
 
   /**
    * Returns whether or not this parser uses a context query.
    *
-   * Sub-classes can return false here if they don't require a context query.
+   * Sub-classes can return false here if they don't require a user-configured
+   * context query.
    *
    * @return bool
    *   True if the parser uses a context query and false if not.
@@ -123,55 +148,63 @@ abstract class FeedsExBase extends FeedsParser {
   }
 
   /**
-   * {@inheritdoc}
+   * Reuturns the list of table headers.
+   *
+   * @return array
+   *   A list of header names keyed by the form keys.
    */
-  protected function __construct($id) {
-    parent::__construct($id);
-    $this->isMultibyte = $GLOBALS['multibyte'] == UNICODE_MULTIBYTE;
+  protected function configFormTableHeader() {
+    return array();
+  }
+
+  /**
+   * Returns a form element for a specific column.
+   *
+   * @param array &$form_state
+   *   The current form state.
+   * @param array $values
+   *   The individual source item values.
+   * @param string $column
+   *   The name of the column.
+   * @param string $machine_name
+   *   The machine name of the source.
+   *
+   * @return array
+   *   A single form element.
+   */
+  protected function configFormTableColumn(array &$form_state, array $values, $column, $machine_name) {
+    return array();
   }
 
   /**
    * {@inheritdoc}
    */
   public function parse(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
+    $this->loadLibrary();
     $this->startErrorHandling();
-
-    $config = $this->getConfig();
     $result = new FeedsParserResult();
-
     // Set link.
     $fetcher_config = $source->getConfigFor($source->importer->fetcher);
-    $result->link = $fetcher_config['source'];
-
-    $expressions = $this->prepareExpressions();
-    $variable_map = $this->prepareVariables($expressions);
+    $result->link = is_string($fetcher_config['source']) ? $fetcher_config['source'] : '';
 
     try {
       $this->setUp($source, $fetcher_result);
-
-      foreach ($this->executeContext($source, $fetcher_result) as $row) {
-        if ($item = $this->executeSources($row, $expressions, $variable_map)) {
-          $result->items[] = $item;
-        }
-      }
-
+      $this->parseItems($source, $fetcher_result, $result);
       $this->cleanUp($source, $result);
     }
-    catch (Expcetion $exception) {
+    catch (FeedsExEmptyException $e) {
+      // The feed is empty.
+      $this->getMessenger()->setMessage(t('The feed is empty.'), 'warning', FALSE);
+    }
+    catch (Exception $exception) {
       // Do nothing. Store for later.
     }
 
-    // Show some warnings.
+    // Display and log errors.
     $errors = $this->getErrors();
-    if ($this->config['display_errors']) {
-      $this->printErrors($errors, WATCHDOG_DEBUG);
-    }
-    else {
-      // Always print errors.
-      $this->printErrors($errors);
-    }
-    // Log any fatal errors.
+    $this->printErrors($errors, $this->config['display_errors'] ? WATCHDOG_DEBUG : WATCHDOG_ERROR);
     $this->logErrors($source, $errors);
+
     $this->stopErrorHandling();
 
     if (isset($exception)) {
@@ -179,6 +212,27 @@ abstract class FeedsExBase extends FeedsParser {
     }
 
     return $result;
+  }
+
+  /**
+   * Performs the actual parsing.
+   *
+   * @param FeedsSource $source
+   *   The feed source.
+   * @param FeedsFetcherResult $fetcher_result
+   *   The fetcher result.
+   * @param FeedsParserResult $result
+   *   The parser result object to populate.
+   */
+  protected function parseItems(FeedsSource $source, FeedsFetcherResult $fetcher_result, FeedsParserResult $result) {
+    $expressions = $this->prepareExpressions();
+    $variable_map = $this->prepareVariables($expressions);
+
+    foreach ($this->executeContext($source, $fetcher_result) as $row) {
+      if ($item = $this->executeSources($row, $expressions, $variable_map)) {
+        $result->items[] = $item;
+      }
+    }
   }
 
   /**
@@ -250,10 +304,7 @@ abstract class FeedsExBase extends FeedsParser {
       }
 
       $item[$machine_name] = $result;
-      while (is_array($result)) {
-        $result = reset($result);
-      }
-      $variables[$variable_map[$machine_name]] = $result;
+      $variables[$variable_map[$machine_name]] = is_array($result) ? reset($result) : $result;
     }
 
     return $item;
@@ -275,7 +326,7 @@ abstract class FeedsExBase extends FeedsParser {
       if ($error['severity'] > $severity) {
         continue;
       }
-      drupal_set_message(t($error['message'], $error['variables']), $error['severity'] <= WATCHDOG_ERROR ? 'error' : 'warning', FALSE);
+      $this->getMessenger()->setMessage(t($error['message'], $error['variables']), $error['severity'] <= WATCHDOG_ERROR ? 'error' : 'warning', FALSE);
     }
   }
 
@@ -303,48 +354,22 @@ abstract class FeedsExBase extends FeedsParser {
   }
 
   /**
-   * Detects the encoding of a string.
+   * Prepares the raw string for parsing.
    *
-   * @param string $data
-   *   The string to guess the encoding for.
-   *
-   * @return string|bool
-   *   Returns the encoding, or false if one could not be detected.
-   *
-   * @todo Add other methods of encoding detection.
-   */
-  protected function detectEncoding($data) {
-    if ($this->isMultibyte) {
-      return mb_detect_encoding($data, $this->config['source_encoding'], TRUE);
-    }
-    return FALSE;
-  }
-
-  /**
-   * Converts a string to UTF-8.
-   *
-   * Requires the iconv, GNU recode or mbstring PHP extension.
-   *
-   * @param string $data
-   *   The string to convert.
-   * @param string $encoding
-   *   The encoding to convert to.
+   * @param FeedsFetcherResult $fetcher_result
+   *   The fetcher result.
    *
    * @return string
-   *   The encoded string, or the original string if encoding failed.
-   *
-   * @see drupal_convert_to_utf8()
+   *   The prepared raw string.
    */
-  protected function convertEncoding($data, $encoding) {
-    $php_supported = array('utf-8', 'us-ascii', 'ascii');
-    if (in_array(strtolower($encoding), $php_supported)) {
-      return $data;
+  protected function prepareRaw(FeedsFetcherResult $fetcher_result) {
+    $raw = trim($this->getEncoder()->convertEncoding($fetcher_result->getRaw()));
+
+    if (!strlen($raw)) {
+      throw new FeedsExEmptyException();
     }
-    $converted = drupal_convert_to_utf8($data, $encoding);
-    if ($converted === FALSE) {
-      return $data;
-    }
-    return $converted;
+
+    return $raw;
   }
 
   /**
@@ -367,15 +392,14 @@ abstract class FeedsExBase extends FeedsParser {
       $data[$key] = check_plain($value);
     }
     $output .= theme('item_list', array('items' => $data));
-    drupal_set_message($output);
+    $this->getMessenger()->setMessage($output);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getMappingSources() {
-    $config = $this->getConfig();
-    return parent::getMappingSources() + $config['sources'];
+    return parent::getMappingSources() + $this->config['sources'];
   }
 
   /**
@@ -394,33 +418,6 @@ abstract class FeedsExBase extends FeedsParser {
   }
 
   /**
-   * Reuturns the list of table headers.
-   *
-   * @return []string
-   *   A list of header names.
-   */
-  protected function configFormTableHeader() {
-    return array();
-  }
-
-  /**
-   * Returns a form element for a specific column.
-   *
-   * @param array &$form_state
-   *   The current form state.
-   * @param string $column_name
-   *   The name of the column.
-   * @param array $source
-   *   The individual source item.
-   *
-   * @return array
-   *   A single form element.
-   */
-  protected function configFormTableColumn(array &$form_state, $column_name, array $source) {
-    return array();
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function configForm(&$form_state) {
@@ -430,7 +427,6 @@ abstract class FeedsExBase extends FeedsParser {
       '#prefix' => '<div id="feeds-ex-configuration-wrapper">',
       '#suffix' => '</div>',
     );
-    $config = $this->getConfig();
 
     if ($this->hasConfigurableContext()) {
       $form['context']['name'] = array(
@@ -441,12 +437,13 @@ abstract class FeedsExBase extends FeedsParser {
         '#type' => 'textfield',
         '#title' => t('Context value'),
         '#title_display' => 'invisible',
-        '#default_value' => $config['context']['value'],
+        '#default_value' => $this->config['context']['value'],
         '#size' => 50,
         '#required' => TRUE,
         // We're hiding the title, so add a little hint.
         '#description' => '<span class="form-required">*</span>',
         '#attributes' => array('class' => array('feeds-ex-context-value')),
+        '#maxlength' => 1024,
       );
     }
 
@@ -455,7 +452,7 @@ abstract class FeedsExBase extends FeedsParser {
     );
 
     $max_weight = 0;
-    foreach ($config['sources'] as $machine_name => $source) {
+    foreach ($this->config['sources'] as $machine_name => $source) {
       $form['sources'][$machine_name]['name'] = array(
         '#type' => 'textfield',
         '#title' => t('Name'),
@@ -474,10 +471,11 @@ abstract class FeedsExBase extends FeedsParser {
         '#title_display' => 'invisible',
         '#default_value' => $source['value'],
         '#size' => 50,
+        '#maxlength' => 1024,
       );
 
       foreach ($this->configFormTableHeader() as $column => $name) {
-        $form['sources'][$machine_name][$column] = $this->configFormTableColumn($form_state, $column, $source);
+        $form['sources'][$machine_name][$column] = $this->configFormTableColumn($form_state, $source, $column, $machine_name);
       }
 
       $form['sources'][$machine_name]['debug'] = array(
@@ -530,9 +528,10 @@ abstract class FeedsExBase extends FeedsParser {
       '#description' => t('Value'),
       '#title' => '&nbsp;',
       '#size' => 50,
+      '#maxlength' => 1024,
     );
     foreach ($this->configFormTableHeader() as $column => $name) {
-      $form['add'][$column] = $this->configFormTableColumn($form_state, $column, array());
+      $form['add'][$column] = $this->configFormTableColumn($form_state, array(), $column, '');
     }
     $form['add']['debug'] = array(
       '#type' => 'checkbox',
@@ -545,45 +544,29 @@ abstract class FeedsExBase extends FeedsParser {
       '#size' => 3,
       '#attributes' => array('class' => array('feeds-ex-source-weight')),
     );
-
     $form['display_errors'] = array(
       '#type' => 'checkbox',
       '#title' => t('Display errors'),
       '#description' => t('Display all error messages after parsing. Fatal errors will always be displayed.'),
-      '#default_value' => $config['display_errors'],
+      '#default_value' => $this->config['display_errors'],
     );
     $form['debug_mode'] = array(
       '#type' => 'checkbox',
       '#title' => t('Enable debug mode'),
       '#description' => t('Displays the configuration form on the feed source page to ease figuring out the expressions. Any values entered on that page will be saved here.'),
-      '#default_value' => $config['debug_mode'],
+      '#default_value' => $this->config['debug_mode'],
     );
 
-    if ($this->isMultibyte) {
-      $args = array('%encodings' => implode(', ', mb_detect_order()));
-      $form['source_encoding'] = array(
-        '#type' => 'textfield',
-        '#title' => t('Source encoding'),
-        '#description' => t('The possible encodings of the source files. auto: %encodings', $args),
-        '#default_value' => implode(', ', $config['source_encoding']),
-        '#autocomplete_path' => '_feds_ex/encoding_autocomplete',
-      );
-    }
+    $form = $this->getEncoder()->configForm($form, $form_state);
 
-    $form['#attached']['drupal_add_tabledrag'][] = array('feeds-ex-source-table', 'order', 'sibling', 'feeds-ex-source-weight');
+    $form['#attached']['drupal_add_tabledrag'][] = array(
+      'feeds-ex-source-table',
+      'order',
+      'sibling',
+      'feeds-ex-source-weight',
+    );
     $form['#attached']['css'][] = drupal_get_path('module', 'feeds_ex') . '/feeds_ex.css';
-
-    $form['#header'] = array(
-      'name' => t('Name'),
-      'machine_name' => t('Machine name'),
-      'value' => t('Value'),
-    );
-    $form['#header'] += $this->configFormTableHeader();
-    $form['#header'] += array(
-      'debug' => t('Debug'),
-      'remove' => t('Remove'),
-      'weight' => t('Weight'),
-    );
+    $form['#header'] = $this->getFormHeader();
 
     return $form;
   }
@@ -592,11 +575,17 @@ abstract class FeedsExBase extends FeedsParser {
    * {@inheritdoc}
    */
   public function configFormValidate(&$values) {
+    // Throwing an exception during validation shows a nasty error to users.
+    try {
+      $this->loadLibrary();
+    }
+    catch (RuntimeException $e) {
+      $this->getMessenger()->setMessage($e->getMessage(), 'error', FALSE);
+      return;
+    }
+
     // @todo We should do this in Feeds automatically.
     $values += $this->configDefaults();
-    $columns = array('name', 'value');
-    $columns = array_merge($columns, array_keys($this->configFormTableHeader()));
-    $columns = array_merge($columns, array('debug', 'weight'));
 
     // Remove sources.
     foreach ($values['sources'] as $machine_name => $source) {
@@ -606,8 +595,10 @@ abstract class FeedsExBase extends FeedsParser {
     }
 
     // Validate context.
-    if ($message = $this->validateExpression($values['context']['value'])) {
-      form_set_error('context', $message);
+    if ($this->hasConfigurableContext()) {
+      if ($message = $this->validateExpression($values['context']['value'])) {
+        form_set_error('context', $message);
+      }
     }
 
     // Validate expressions.
@@ -628,6 +619,10 @@ abstract class FeedsExBase extends FeedsParser {
     }
 
     // Rebuild sources to keep the configuration values clean.
+    $columns = $this->getFormHeader();
+    unset($columns['remove'], $columns['machine_name']);
+    $columns = array_keys($columns);
+
     foreach ($values['sources'] as $machine_name => $source) {
       $new_value = array();
       foreach ($columns as $column) {
@@ -639,25 +634,8 @@ abstract class FeedsExBase extends FeedsParser {
     // Sort by weight.
     uasort($values['sources'], 'ctools_plugin_sort');
 
-    if (!$this->isMultibyte) {
-      return;
-    }
-    // Normalize encodings. Make them exactly as they are defined in
-    // mb_list_encodings(), but maintain user-defined order.
-    $encodings = array_map('drupal_strtolower', array_map('trim', explode(',', $values['source_encoding'])));
-    $values['source_encoding'] = array();
-    foreach (mb_list_encodings() as $encoding) {
-      // Maintain order.
-      $pos = array_search(drupal_strtolower($encoding), $encodings);
-      if ($pos !== FALSE) {
-        $values['source_encoding'][$pos] = $encoding;
-      }
-    }
-    ksort($values['source_encoding']);
-    // Make sure there's some value set.
-    if (!$values['source_encoding']) {
-      $values['source_encoding'][] = 'auto';
-    }
+    // Let the encoder do its thing.
+    $this->getEncoder()->configFormValidate($values);
   }
 
   /**
@@ -682,8 +660,14 @@ abstract class FeedsExBase extends FeedsParser {
       return array();
     }
     $form_state = array();
+
     $form = $this->configForm($form_state);
-    $form['add']['machine_name']['#machine_name']['source'] = array('feeds', get_class($this), 'add', 'name');
+    $form['add']['machine_name']['#machine_name']['source'] = array(
+      'feeds',
+      get_class($this),
+      'add',
+      'name',
+    );
 
     return $form;
   }
@@ -716,115 +700,157 @@ abstract class FeedsExBase extends FeedsParser {
   }
 
   /**
-   * Sets the multibyte handling.
+   * Returns the configuration form table header.
    *
-   * @param bool $is_multibyte
-   *   Whether this parser should assume multibyte handling exists.
-   *
-   * @internal Used only during testing to force handling.
+   * @return array
+   *   The header array.
    */
-  public function setMultibyte($is_multibyte) {
-    $this->isMultibyte = $is_multibyte;
+  protected function getFormHeader() {
+    $header = array(
+      'name' => t('Name'),
+      'machine_name' => t('Machine name'),
+      'value' => t('Value'),
+    );
+    $header += $this->configFormTableHeader();
+    $header += array(
+      'debug' => t('Debug'),
+      'remove' => t('Remove'),
+      'weight' => t('Weight'),
+    );
+
+    return $header;
+  }
+
+  /**
+   * Sets the messenger to be used to display messages.
+   *
+   * @param FeedsExMessengerInterface $messenger
+   *   The messenger.
+   *
+   * @return $this
+   *   The parser object.
+   */
+  public function setMessenger(FeedsExMessengerInterface $messenger) {
+    $this->messenger = $messenger;
+    return $this;
+  }
+
+  /**
+   * Returns the messenger.
+   *
+   * @return FeedsExMessengerInterface
+   *   The messenger.
+   */
+  public function getMessenger() {
+    if (!isset($this->messenger)) {
+      $this->messenger = new FeedsExMessenger();
+    }
+    return $this->messenger;
+  }
+
+  /**
+   * Sets the encoder.
+   *
+   * @param FeedsExEncoderInterface $encoder
+   *   The encoder.
+   *
+   * @return $this
+   *   The parser object.
+   */
+  public function setEncoder(FeedsExEncoderInterface $encoder) {
+    $this->encoder = $encoder;
+    return $this;
+  }
+
+  /**
+   * Returns the encoder.
+   *
+   * @return FeedsExEncoderInterface
+   *   The encoder object.
+   */
+  public function getEncoder() {
+    if (!isset($this->encoder)) {
+      $class = $this->encoderClass;
+      $this->encoder = new $class($this->config['source_encoding']);
+    }
+    return $this->encoder;
   }
 
 }
 
 /**
- * Text lines from file iterator.
+ * Displays messages to the user.
  */
-class FeedsExLineIterator implements Iterator {
+interface FeedsExMessengerInterface {
 
   /**
-   * The open file handle.
+   * Sets a message to display to the user.
    *
-   * @var resource
-   */
-  protected $handle;
-
-  /**
-   * The current line being read.
+   * @param string $message
+   *   The message.
+   * @param string $type
+   *   (optional) The type of message. Defaults to 'status'.
+   * @param bool $repeat
+   *   (optional) Whether to allow the message to repeat. Defaults to true.
    *
-   * @var int
+   * @see drupal_set_message()
    */
-  protected $currentLine;
+  public function setMessage($message = NULL, $type = 'status', $repeat = TRUE);
+
+}
+
+/**
+ * Uses drupal_set_message() to show messages.
+ */
+class FeedsExMessenger implements FeedsExMessengerInterface {
 
   /**
-   * The current position in the file.
-   *
-   * @var int
+   * {@inheritdoc}
    */
-  protected $currentPos;
-
-  /**
-   * Constructs a FeedsExLineIterator object.
-   *
-   * @param string $filepath
-   *   The path to the file to iterate.
-   */
-  public function __construct($filepath) {
-    $this->handle = fopen($filepath, 'r');
-    $this->currentLine = NULL;
-    $this->currentPos = NULL;
-  }
-
-  /**
-   * Destructs a FeedsExLineIterator object.
-   */
-  public function __destruct() {
-    if ($this->handle) {
-      fclose($this->handle);
-    }
-  }
-
-  /**
-   * Implements Iterator::reqind().
-   */
-  public function rewind($pos = 0) {
-    if ($this->handle) {
-      fseek($this->handle, $pos);
-      $this->next();
-    }
-  }
-
-  /**
-   * Implements Iterator::next().
-   */
-  public function next() {
-    if ($this->handle) {
-      $this->currentLine = feof($this->handle) ? NULL : fgets($this->handle);
-      $this->currentPos = ftell($this->handle);
-    }
-  }
-
-  /**
-   * Implements Iterator::valid().
-   */
-  public function valid() {
-    return isset($this->currentLine);
-  }
-
-  /**
-   * Implements Iterator::current().
-   */
-  public function current() {
-    return $this->currentLine;
-  }
-
-  /**
-   * Implements Iterator::key().
-   */
-  public function key() {
-    return 'line';
-  }
-
-  /**
-   * Returns the current position in the file.
-   *
-   * @return int
-   *   The current position in the file.
-   */
-  public function currentPos() {
-    return $this->currentPos;
+  public function setMessage($message = NULL, $type = 'status', $repeat = TRUE) {
+    drupal_set_message($message, $type, $repeat);
   }
 
 }
+
+/**
+ * Stores messages without calling drupal_set_mesage().
+ */
+class FeedsExTestMessenger implements FeedsExMessengerInterface {
+
+  /**
+   * The messages that have been set.
+   *
+   * @var array
+   */
+  protected $messages = array();
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setMessage($message = NULL, $type = 'status', $repeat = TRUE) {
+    $this->messages[] = array(
+      'message' => $message,
+      'type' => $type,
+      'repeat' => $repeat,
+    );
+  }
+
+  /**
+   * Returns the messages.
+   *
+   * This is used to inspect messages that have been set.
+   *
+   * @return array
+   *   A list of message arrays.
+   */
+  public function getMessages() {
+    return $this->messages;
+  }
+
+}
+
+/**
+ * An exception thrown by parsers when they receive an empty feed.
+ */
+class FeedsExEmptyException extends RuntimeException {}

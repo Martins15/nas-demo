@@ -11,6 +11,10 @@
 function feeds_ex_feeds_plugins() {
   $path = drupal_get_path('module', 'feeds_ex') . '/src';
 
+  // In some cases, the module is not loaded yet when this include gets called.
+  // @todo Figure out why.
+  drupal_load('module', 'feeds_ex');
+
   $plugins = array(
     'FeedsExBase' => array(
       'hidden' => TRUE,
@@ -90,7 +94,6 @@ function feeds_ex_feeds_plugins() {
   }
 
   if (feeds_ex_jsonpath_library_path()) {
-    // FeedsExJsonPath
     $plugins['FeedsExJsonPath'] = array(
       'name' => 'JSON JSONPath parser',
       'description' => 'Parse JSON with JSONPath.',

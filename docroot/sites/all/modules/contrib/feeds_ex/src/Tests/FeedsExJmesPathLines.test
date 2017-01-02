@@ -2,20 +2,13 @@
 
 /**
  * @file
- * Contains tests for FeedsExJmesPathLines.
+ * Contains FeedsExJmesPathLinesUnitTests.
  */
 
 /**
  * Unit tests for FeedsExJmesPathLines.
  */
-class FeedsExJmesPathLinesUnitTests extends FeedsExUnitTestBase {
-
-  /**
-   * The mocked FeedsSource.
-   *
-   * @var FeedsSource
-   */
-  protected $source;
+class FeedsExJmesPathLinesUnitTests extends FeedsExJsonPathLinesUnitTests {
 
   public static function getInfo() {
     return array(
@@ -32,17 +25,15 @@ class FeedsExJmesPathLinesUnitTests extends FeedsExUnitTestBase {
     require_once $this->moduleDir . '/src/FeedsExJmesPathLines.inc';
 
     $this->source = $this->getMockFeedsSource();
-    $this->downloadJsonPath();
-  }
+    $this->parser = FeedsConfigurable::instance('FeedsExJmesPathLines', strtolower($this->randomName()));
+    $this->parser->setMessenger(new FeedsExTestMessenger());
 
-  /**
-   * Tests simple parsing.
-   */
-  public function testSimpleParsing() {
-    $parser = FeedsConfigurable::instance('FeedsExJmesPathLines', 'test_parser');
-    $fetcher_result = new FeedsFileFetcherResult($this->moduleDir . '/tests/resources/test.jsonl');
+    // Set compile directory manually.
+    $this->variableDel('feeds_ex_jmespath_compile_dir');
+    $path = file_directory_temp() . '/' . drupal_base64_encode(drupal_random_bytes(40)) . '_feeds_ex_jmespath_dir';
+    $this->variableSet('feeds_ex_jmespath_compile_dir', $path);
 
-    $parser->setConfig(array(
+    $this->parser->setConfig(array(
       'sources' => array(
         'title' => array(
           'name' => 'Title',
@@ -50,13 +41,8 @@ class FeedsExJmesPathLinesUnitTests extends FeedsExUnitTestBase {
         ),
       ),
     ));
-
-    $result = $parser->parse($this->source, $fetcher_result);
-    $this->assertEqual(count($result->items), 4, format_string('@count items parsed.', array('@count' => count($result->items))));
-
-    foreach (array('Gilbert', 'Alexa', 'May', 'Deloise') as $delta => $name) {
-      $this->assertEqual($name, $result->items[$delta]['title']);
-    }
+    $this->fetcherResult = new FeedsFileFetcherResult($this->moduleDir . '/tests/resources/test.jsonl');
+    // Tests are in FeedsExJsonPathLinesUnitTests.
   }
 
 }

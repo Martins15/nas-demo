@@ -11,13 +11,6 @@
 class FeedsExQueryPathXml extends FeedsExXml {
 
   /**
-   * The QueryPath object used for parsing.
-   *
-   * @var QueryPath
-   */
-  protected $queryPath;
-
-  /**
    * Options passed to QueryPath.
    *
    * @var array
@@ -34,39 +27,22 @@ class FeedsExQueryPathXml extends FeedsExXml {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
+  protected function executeContext(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
     $document = $this->prepareDocument($source, $fetcher_result);
     $parser = new QueryPath($document, NULL, $this->queryPathOptions);
-    $this->queryPath = $parser->find($this->config['context']['value']);
+    $query_path = $parser->find($this->config['context']['value']);
 
     $state = $source->state(FEEDS_PARSE);
 
-    // Calculate the total once. If the total is zero, this will only execute
-    // once anyway.
     if (!$state->total) {
-      $state->total = $this->queryPath->size();
+      $state->total = $query_path->size();
     }
 
-    $state->start = $state->pointer ? $state->pointer : 0;
-    $limit = $state->start + $source->importer->getLimit();
-    $state->pointer = $limit > $state->total ? $state->total : $limit;
-  }
+    $start = (int) $state->pointer;
+    $state->pointer = $start + $source->importer->getLimit();
+    $state->progress($state->total, $state->pointer);
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function cleanUp(FeedsSource $source, FeedsParserResult $result) {
-    // Try to free up some memory. There shouldn't be any other references to
-    // $this->queryPath.
-    unset($this->queryPath);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function executeContext(FeedsSource $source, FeedsFetcherResult $fetcher_result) {
-    $state = $source->state(FEEDS_PARSE);
-    return $this->queryPath->slice($state->start, $source->importer->getLimit());
+    return $query_path->slice($start, $source->importer->getLimit());
   }
 
   /**
@@ -79,12 +55,21 @@ class FeedsExQueryPathXml extends FeedsExXml {
       return;
     }
 
-    if (strlen($this->config['sources'][$machine_name]['attribute'])) {
-      return $result->attr($this->config['sources'][$machine_name]['attribute']);
-    }
+    $config = $this->config['sources'][$machine_name];
 
     $return = array();
-    if (!empty($this->config['sources'][$machine_name]['raw'])) {
+
+    if (strlen($config['attribute'])) {
+      foreach ($result as $node) {
+        $return[] = $node->attr($config['attribute']);
+      }
+    }
+    elseif (!empty($config['inner'])) {
+      foreach ($result as $node) {
+        $return[] = $node->innerXML();
+      }
+    }
+    elseif (!empty($config['raw'])) {
       foreach ($result as $node) {
         $return[] = $this->getRawValue($node);
       }
@@ -96,7 +81,7 @@ class FeedsExQueryPathXml extends FeedsExXml {
     }
 
     // Return a single value if there's only one value.
-    return count($return) === 1 ? $return[0] : $return;
+    return count($return) === 1 ? reset($return) : $return;
   }
 
   /**
@@ -140,19 +125,20 @@ class FeedsExQueryPathXml extends FeedsExXml {
   /**
    * {@inheritdoc}
    */
-  protected function configFormTableColumn(array &$form_state, $column_name, array $source) {
-    switch ($column_name) {
+  protected function configFormTableColumn(array &$form_state, array $values, $column, $machine_name) {
+    switch ($column) {
       case 'attribute':
         return array(
           '#type' => 'textfield',
           '#title' => t('Attribute name'),
           '#title_display' => 'invisible',
-          '#default_value' => !empty($source['attribute']) ? $source['attribute'] : '',
+          '#default_value' => !empty($values['attribute']) ? $values['attribute'] : '',
           '#size' => 10,
+          '#maxlength' => 1024,
         );
 
       default:
-        return parent::configFormTableColumn($form_state, $column_name, $source);
+        return parent::configFormTableColumn($form_state, $values, $column, $machine_name);
     }
   }
 
