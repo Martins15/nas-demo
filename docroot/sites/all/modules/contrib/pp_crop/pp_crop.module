@@ -69,8 +69,8 @@ function pp_crop_wysiwyg_settings_form_clear_caches() {
 }
 
 /**
-* Implements hook_entity_info_alter().
-*/
+ * Implements hook_entity_info_alter().
+ */
 function pp_crop_entity_info_alter(&$entity_info) {
   $wysiwyg_styles = variable_get('pp_crop_wysiwyg_settings', array());
   foreach (_epsacrop_load_styles() as $image_style) {
