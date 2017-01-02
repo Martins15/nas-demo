@@ -83,7 +83,7 @@ function fb_instant_articles_display_field_formatter_info() {
   );
   $formats['fbia_image_formatter'] = array(
     'label' => t('FBIA Image'),
-    'field types' => array('image', 'media'),
+    'field types' => array('image'),
     'settings'  => array(
       'style' => 'medium',
       'caption' => '',

@@ -181,9 +181,7 @@ function fb_instant_articles_init() {
       'facebook-instantarticles-client' => $appender,
     ),
   );
-  if (class_exists('Logger')) {
-    \Logger::configure($configuration);
-  }
+  \Logger::configure($configuration);
 }
 
 /**

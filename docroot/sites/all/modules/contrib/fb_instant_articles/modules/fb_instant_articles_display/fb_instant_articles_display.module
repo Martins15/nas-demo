@@ -81,19 +81,12 @@ function fb_instant_articles_display_module_implements_alter(&$implementations, 
 function fb_instant_articles_display_preprocess(&$variables, $hook) {
   $entities = array_keys(entity_get_info());
   if (isset($variables['elements']['#entity_type']) && in_array($variables['elements']['#entity_type'], $entities, TRUE)) {
-
     // Sometimes a rendered entity is passed into another theme function, in
     // which case do not process. Also account that #theme may be a hook
     // suggestion itself. For example. #theme = 'comment__node_type' and
     // $hook = 'comment'.
-    if (!empty($variables['elements']['#theme'])) {
-      $theme = $variables['elements']['#theme'];
-      if (is_array($theme)) {
-        $theme = reset($theme);
-      }
-      if ($theme != $hook && strpos($theme, $hook . '__') !== 0) {
-        return;
-      }
+    if ($variables['elements']['#theme'] != $hook && strpos($variables['elements']['#theme'], $hook . '__') !== 0) {
+      return;
     }
 
     if (isset($variables['view_mode']) && $variables['view_mode'] === 'fb_instant_article') {
@@ -270,7 +263,7 @@ function fb_instant_articles_display_get_article_entity_types() {
       'bundle' => $fia_entity_type->entity_bundle,
     );
   }
- 
+
   // Allow other modules to alter.
   drupal_alter('fb_instant_articles_display_entity_types', $entity_types);
   return $entity_types;
