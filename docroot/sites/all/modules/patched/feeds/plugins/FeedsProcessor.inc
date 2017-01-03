@@ -240,7 +240,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
    *   The result of the parsing stage.
    */
   public function process(FeedsSource $source, FeedsParserResult $parser_result) {
-    $state = $source->state(FEEDS_PROCESS);
+    $state = $source->getState(FEEDS_PROCESS);
     if (!isset($state->removeList) && $parser_result->items) {
       $this->initEntitiesToBeRemoved($source, $state);
     }
@@ -487,7 +487,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
    *   the processing stage.
    */
   public function clear(FeedsSource $source) {
-    $state = $source->state(FEEDS_PROCESS_CLEAR);
+    $state = $source->getState(FEEDS_PROCESS_CLEAR);
 
     // Build base select statement.
     $select = db_select('feeds_item')
@@ -575,7 +575,7 @@ abstract class FeedsProcessor extends FeedsPlugin {
    * @see FeedsSource::expire()
    */
   public function expire(FeedsSource $source, $time = NULL) {
-    $state = $source->state(FEEDS_PROCESS_EXPIRE);
+    $state = $source->getState(FEEDS_PROCESS_EXPIRE);
 
     if ($time === NULL) {
       $time = $this->expiryTime();

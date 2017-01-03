@@ -384,14 +384,14 @@ class FeedsSource extends FeedsConfigurable {
         if (module_exists('rules')) {
           rules_invoke_event('feeds_before_import', $this);
         }
-        $this->state[FEEDS_START] = time();
+        $this->setState(FEEDS_START, time());
       }
 
       // Fetch.
       if (empty($this->fetcher_result) || FEEDS_BATCH_COMPLETE == $this->progressParsing()) {
         $this->fetcher_result = $this->importer->fetcher->fetch($this);
         // Clean the parser's state, we are parsing an entirely new file.
-        unset($this->state[FEEDS_PARSE]);
+        $this->unsetState(FEEDS_PARSE);
       }
 
       // Parse.
@@ -416,13 +416,16 @@ class FeedsSource extends FeedsConfigurable {
     $result = $this->progressImporting();
     if ($result == FEEDS_BATCH_COMPLETE || isset($e)) {
       $this->imported = time();
-      $this->log('import', 'Imported in @s seconds.', array('@s' => $this->imported - $this->state[FEEDS_START]), WATCHDOG_INFO);
+      if (isset($this->state[FEEDS_START])) {
+        $this->log('import', 'Imported in @s seconds.', array('@s' => $this->imported - $this->state[FEEDS_START]), WATCHDOG_INFO);
+      }
       $this->importer->fetcher->afterImport($this);
       module_invoke_all('feeds_after_import', $this);
       if (module_exists('rules')) {
         rules_invoke_event('feeds_after_import', $this);
       }
-      unset($this->fetcher_result, $this->state);
+      unset($this->fetcher_result);
+      $this->clearState();
     }
     $this->save();
 
@@ -519,7 +522,7 @@ class FeedsSource extends FeedsConfigurable {
     $result = $this->progressClearing();
     if ($result == FEEDS_BATCH_COMPLETE || isset($e)) {
       module_invoke_all('feeds_after_clear', $this);
-      unset($this->state);
+      $this->clearState();
     }
     $this->save();
     if (isset($e)) {
@@ -552,15 +555,15 @@ class FeedsSource extends FeedsConfigurable {
    * Report progress as float between 0 and 1. 1 = FEEDS_BATCH_COMPLETE.
    */
   public function progressParsing() {
-    return $this->state(FEEDS_PARSE)->progress;
+    return $this->getState(FEEDS_PARSE)->progress;
   }
 
   /**
    * Report progress as float between 0 and 1. 1 = FEEDS_BATCH_COMPLETE.
    */
   public function progressImporting() {
-    $fetcher = $this->state(FEEDS_FETCH);
-    $parser = $this->state(FEEDS_PARSE);
+    $fetcher = $this->getState(FEEDS_FETCH);
+    $parser = $this->getState(FEEDS_PARSE);
     if ($fetcher->progress == FEEDS_BATCH_COMPLETE && $parser->progress == FEEDS_BATCH_COMPLETE) {
       return FEEDS_BATCH_COMPLETE;
     }
@@ -579,14 +582,14 @@ class FeedsSource extends FeedsConfigurable {
    * Report progress on clearing.
    */
   public function progressClearing() {
-    return $this->state(FEEDS_PROCESS_CLEAR)->progress;
+    return $this->getState(FEEDS_PROCESS_CLEAR)->progress;
   }
 
   /**
    * Report progress on expiry.
    */
   public function progressExpiring() {
-    return $this->state(FEEDS_PROCESS_EXPIRE)->progress;
+    return $this->getState(FEEDS_PROCESS_EXPIRE)->progress;
   }
 
   /**
@@ -600,7 +603,7 @@ class FeedsSource extends FeedsConfigurable {
    * @return
    *   The FeedsState object for the given stage.
    */
-  public function state($stage) {
+  public function getState($stage) {
     if (!is_array($this->state)) {
       $this->state = array();
     }
@@ -608,6 +611,32 @@ class FeedsSource extends FeedsConfigurable {
       $this->state[$stage] = new FeedsState();
     }
     return $this->state[$stage];
+  }
+
+  /**
+   * Set the state.
+   */
+  public function setState($key, $value) {
+    if (!is_array($this->state)) {
+      $this->state = array();
+    }
+    $this->state[$key] = $value;
+  }
+
+  /**
+   * Remove state value.
+   */
+  public function unsetState($key) {
+    if (isset($this->state[$key])) {
+      unset($this->state[$key]);
+    }
+  }
+
+  /**
+   * Remove all values from state.
+   */
+  public function clearState() {
+    $this->state = array();
   }
 
   /**
