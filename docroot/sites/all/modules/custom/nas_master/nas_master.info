@@ -68,3 +68,4 @@ dependencies[] = nas_event_feature
 dependencies[] = nas_events_landing_feature
 dependencies[] = nas_video_page_feature
 dependencies[] = nas_panels_ipe
+dependencies[] = search_api
