@@ -13,7 +13,7 @@
  */
 ?>
 
-<div class="progress-bar-wrapper">
+<div class="progress-bar-wrapper <?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
   <?php if ($title): ?>
     <div class="row section-header">
       <div class="column">
@@ -21,13 +21,13 @@
       </div>
     </div>
   <?php endif; ?>
-  <div class="row space-bottom">
+  <div class="row<?php if ($spacetop): ?> space-top<?php endif; ?><?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
     <div class="column">
       <div class="progress-bar-content">
         <div class="progress" style="width:<?php print $percentage; ?>%">
           <span class="progress-label">
             <span class="progress-start"><?php print $starting_point; ?></span>
-            <span class="progress-current"><?php print $label; ?></span>
+            <span class="progress-current"><?php print $current_status; ?></span>
           </span>
         </div>
         <span class="progress-finish"><?php print $goal_number; ?></span>
