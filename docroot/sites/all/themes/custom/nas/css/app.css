@@ -15859,6 +15859,18 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   right: 20px;
   top: 0;
 }
+.progress-bar-wrapper.space-top {
+  padding-top: 25px;
+}
+.progress-bar-wrapper.space-top.double {
+  padding-top: 50px;
+}
+.progress-bar-wrapper.space-bottom {
+  padding-bottom: 25px;
+}
+.progress-bar-wrapper.space-bottom.double {
+  padding-bottom: 50px;
+}
 
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
