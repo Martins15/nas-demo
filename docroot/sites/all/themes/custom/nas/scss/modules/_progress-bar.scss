@@ -48,4 +48,16 @@
       top: 0;
     }
   }
+  &.space-top {
+    padding-top: $column-gutter;
+    &.double {
+      padding-top: $column-gutter*2;
+    }
+  }
+  &.space-bottom {
+    padding-bottom: $column-gutter;
+    &.double {
+      padding-bottom: $column-gutter*2;
+    }
+  }
 }

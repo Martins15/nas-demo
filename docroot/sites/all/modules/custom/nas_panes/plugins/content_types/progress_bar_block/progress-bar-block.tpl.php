@@ -13,7 +13,7 @@
  */
 ?>
 
-<div class="progress-bar-wrapper <?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
+<div class="progress-bar-wrapper<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
   <?php if ($title): ?>
     <div class="row section-header">
       <div class="column">
@@ -21,7 +21,7 @@
       </div>
     </div>
   <?php endif; ?>
-  <div class="row<?php if ($spacetop): ?> space-top<?php endif; ?><?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
+  <div class="row<?php if ($spacebetween): ?> space-top<?php endif; ?>">
     <div class="column">
       <div class="progress-bar-content">
         <div class="progress" style="width:<?php print $percentage; ?>%">

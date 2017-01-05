@@ -21,8 +21,8 @@ $plugin = array(
       'label' => '',
       'label_position' => 'after',
       'paddings' => array(
-        'top' => 0,
-        'between' => 'between',
+        'top' => 'top',
+        'between' => 0,
         'bottom' => 'bottom',
         'double-bottom' => 0,
       ),
@@ -148,10 +148,10 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   }
   $spacebottom = '';
   if ($config['paddings']['double-bottom']) {
-    $spacebottom = 'space-bottom double';
+    $spacebottom = ' space-bottom double';
   }
   elseif ($config['paddings']['bottom']) {
-    $spacebottom = 'space-bottom';
+    $spacebottom = ' space-bottom';
   }
 
   $block = new stdClass();
