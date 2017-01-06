@@ -572,6 +572,7 @@ function nas_preprocess_node_event(&$vars) {
 
   $editorial_cards_view_modes = array(
     'nas_editorial_card',
+    'editorial_grid_teaser',
   );
 
   if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
@@ -680,6 +681,7 @@ function nas_preprocess_node_article(&$vars) {
   $editorial_cards_view_modes = array(
     'editorial_card_3x',
     'editorial_card_4x',
+    'editorial_grid_teaser',
     'nas_teaser_related_news',
     'nas_editorial_card',
     'nas_node_teaser_no_section_link',
@@ -882,7 +884,7 @@ function nas_preprocess_node_flyway(&$vars) {
  * theme_preprocess_node for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
-  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'search_result'))) {
+  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'editorial_grid_teaser', 'search_result'))) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }

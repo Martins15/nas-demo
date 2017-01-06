@@ -100,6 +100,9 @@ function nas_static_page_feature_strongarm() {
       'editorial_card_4x' => array(
         'custom_settings' => TRUE,
       ),
+      'editorial_grid_teaser' => array(
+          'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -122,7 +125,18 @@ function nas_static_page_feature_strongarm() {
           'weight' => '30',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'language' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'editorial_grid_teaser' => array(
+            'weight' => '9',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__static_page'] = $strongarm;

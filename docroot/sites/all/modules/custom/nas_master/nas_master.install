@@ -3948,3 +3948,10 @@ function nas_master_update_7266() {
 function nas_master_update_7267() {
   features_revert(array('nas_solr_feature' => array('search_api_index')));
 }
+
+/**
+ * Enable NAS Editorial Grid feature.
+ */
+function nas_master_update_7268() {
+  module_enable(array('nas_editorial_grid_feature'));
+}
