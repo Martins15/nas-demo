@@ -14,18 +14,11 @@ function netx_batch_process_previews_operation($paths, &$context) {
     $context['sandbox']['max'] = count($paths);
   }
 
-  $n = new NetXRepositoryProxy();
+  $netx_stream_wrapper = new MediaNetXStreamWrapper();
 
   foreach ($paths as $path) {
     $context['message'] = t('Retrieving %path preview', array('%path' => $path));
-    $local_file = file_default_scheme() . '://media-netx' . $path;
-    if (!file_exists($local_file)) {
-      $dirname = drupal_dirname($local_file);
-      file_prepare_directory($dirname, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
-
-      $asset_image = $n->getFileContent($path);
-      file_unmanaged_save_data($asset_image, $local_file, TRUE);
-    }
+    $netx_stream_wrapper->getLocalPreviewPath($path);
 
     // Update our progress information.
     $context['sandbox']['progress']++;
