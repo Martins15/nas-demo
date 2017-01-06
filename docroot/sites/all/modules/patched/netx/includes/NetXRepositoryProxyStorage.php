@@ -2,13 +2,27 @@
 
 /**
  * @file
- * Provides a simple cache storag class to for NetX.
+ * Provides a simple cache storage class to for NetX.
  */
 
 /**
  * Implements class NetXRepositoryProxyStorage.
  */
 class NetXRepositoryProxyStorage {
+
+  /**
+   * Categories cache ID.
+   *
+   * @var string
+   */
+  static $CATEGORIES_CACHE_ID = 'netx_repository_proxy_storage_categories';
+
+  /**
+   * Assets cache ID prefix.
+   *
+   * @var string
+   */
+  static $ASSETS_CACHE_ID_PREFIX = 'netx_repository_proxy_storage_assets_';
 
   /**
    * Sets categories cache.
@@ -20,7 +34,7 @@ class NetXRepositoryProxyStorage {
    *   Array of categories.
    */
   public function setCategories($categories) {
-    variable_set('netx_repository_proxy_storage_categories', $categories);
+    cache_set(self::$CATEGORIES_CACHE_ID, $categories);
     return $categories;
   }
 
@@ -31,7 +45,8 @@ class NetXRepositoryProxyStorage {
    *   Array of the categories.
    */
   public function getCategories() {
-    return variable_get('netx_repository_proxy_storage_categories', array());
+    $cache = cache_get(self::$CATEGORIES_CACHE_ID);
+    return $cache ? $cache->data : array();
   }
 
   /**
@@ -44,7 +59,7 @@ class NetXRepositoryProxyStorage {
    *   The name of variable.
    */
   private function getAssetsVariableName($cid) {
-    return 'netx_repository_proxy_storage_assets_' . $cid;
+    return self::$ASSETS_CACHE_ID_PREFIX . $cid;
   }
 
   /**
@@ -59,11 +74,7 @@ class NetXRepositoryProxyStorage {
    *   Category assets listing.
    */
   public function setAssets($cid, $assets) {
-    $assets_data = array(
-      'data' => $assets,
-      'timestamp' => time(),
-    );
-    variable_set($this->getAssetsVariableName($cid), $assets_data);
+    cache_set($this->getAssetsVariableName($cid), $assets, 'cache', time() + 86400);
     return $assets;
   }
 
@@ -77,17 +88,14 @@ class NetXRepositoryProxyStorage {
    *   Category assets listing.
    */
   public function getAssets($cid) {
-    $assets_data = variable_get($this->getAssetsVariableName($cid), array());
+    $cache = cache_get($this->getAssetsVariableName($cid));
 
-    if (empty($assets_data['data'])) {
-      return array();
-    }
     // Cache lifetime.
-    if (time() - $assets_data['timestamp'] > 86400) {
+    if (!$cache || time() > $cache->expire) {
       return array();
     }
 
-    return $assets_data['data'];
+    return $cache->data;
   }
 
 }

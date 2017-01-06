@@ -120,6 +120,16 @@ class NetXRepository {
   }
 
   /**
+   * Sets authentication call flag value.
+   *
+   * @param bool $call
+   *   The authentication call flag value.
+   */
+  public function setAuthenticationCall($call) {
+    $this->authentication_call = $call;
+  }
+
+  /**
    * Returns cookie from last response object.
    *
    * @return string
@@ -186,8 +196,8 @@ class NetXRepository {
   protected function doRequest($url, $options, $decode_data = TRUE) {
     if (!$this->authentication_call) {
       $this->ensureAuthorized();
+      $options['headers']['Cookie'] = $this->cookie;
     }
-    $options['headers']['Cookie'] = $this->cookie;
 
     // TODO: configure timeout.
     $options['timeout'] = isset($options['timeout']) ? $options['timeout'] : 180;
