@@ -1520,7 +1520,6 @@ function netx_warmup_cache($limit = 1000, $chunk_size = 4) {
   $cats_with_assets = netx_recurse_find_cats_with_assets($c);
   $category_ids = array_keys($cats_with_assets);
   shuffle($category_ids);
-  module_load_include('inc', 'media', '/includes/media.browser');
 
   // Temporarily disable logging.
   $netx_log_old = variable_get('netx_log_requests', FALSE);
