@@ -18,6 +18,8 @@ $plugin = array(
       'starting_point' => 0,
       'current_status' => 0,
       'goal_number' => 100,
+      'prefix' => '',
+      'prefix_position' => 'after',
       'label' => '',
       'label_position' => 'after',
       'paddings' => array(
@@ -60,6 +62,20 @@ function progress_bar_block_edit_form($form, &$form_state) {
     '#title' => t('Goal'),
     '#description' => t('Numeric value.'),
     '#default_value' => $conf['goal_number'],
+  );
+  $form['config']['prefix'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Prefix'),
+    '#default_value' => $conf['prefix'],
+  );
+  $form['config']['prefix_position'] = array(
+    '#type' => 'radios',
+    '#title' => t('Prefix position'),
+    '#options' => array(
+      'before' => t('Before number value'),
+      'after' => t('After number value'),
+    ),
+    '#default_value' => $conf['prefix_position'],
   );
   $form['config']['label'] = array(
     '#type' => 'textfield',
@@ -126,21 +142,38 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
 
   $percentage = round(($config['current_status'] - $config['starting_point']) * 100 / ($config['goal_number'] - $config['starting_point']));
 
+  $current_status = $config['current_status'];
+  $starting_point = $config['starting_point'];
+  $goal_number = $config['goal_number'];
   $label = $config['current_status'];
   if (!empty($config['label'])) {
     switch ($config['label_position']) {
       case 'before':
-        $starting_point = $config['label'] . ' ' . $config['starting_point'];
         $current_status = $config['label'] . ' ' . $config['current_status'];
-        $goal_number = $config['label'] . ' ' . $config['goal_number'];
         break;
 
       case 'after':
-        $starting_point = $config['starting_point'] . ' ' . $config['label'];
         $current_status = $config['current_status'] . ' ' . $config['label'];
-        $goal_number = $config['goal_number'] . ' ' . $config['label'];
         break;
     }
+  }
+  if (!empty($config['prefix'])) {
+    switch ($config['prefix_position']) {
+      case 'before':
+        $starting_point = $config['prefix'] . ' ' . $config['starting_point'];
+        $goal_number = $config['prefix'] . ' ' . $config['goal_number'];
+        break;
+
+      case 'after':
+        $starting_point = $config['starting_point'] . ' ' . $config['prefix'];
+        $goal_number = $config['goal_number'] . ' ' . $config['prefix'];
+        break;
+    }
+  }
+
+  $cs_value = strpos($current_status, '.');
+  if ($cs_value) {
+    $current_status = str_replace(".", ",", $current_status);
   }
 
   if (empty($config['paddings'])) {
