@@ -141,12 +141,11 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   $config = $conf['config'];
 
   $percentage = round(($config['current_status'] - $config['starting_point']) * 100 / ($config['goal_number'] - $config['starting_point']));
-
-  $current_status = $config['current_status'];
-  $starting_point = $config['starting_point'];
-  $goal_number = $config['goal_number'];
-  if (!empty($current_status)) {
-    $current_status = number_format($current_status, 2, '.', ',');
+  $float = (strpos($config['current_status'], '.') !== FALSE) ? 2 : 0;
+  $current_status = number_format($config['current_status'], $float, '.', ',');
+  $starting_point = number_format($config['starting_point'], 0, '.', ',');
+  $goal_number = number_format($config['goal_number'], 0, '.', ',');
+  if (!empty($config['label'])) {
     switch ($config['label_position']) {
       case 'before':
         $current_status = $config['label'] . ' ' . $current_status;
@@ -160,13 +159,13 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   if (!empty($config['prefix'])) {
     switch ($config['prefix_position']) {
       case 'before':
-        $starting_point = $config['prefix'] . $config['starting_point'];
-        $goal_number = $config['prefix'] . $config['goal_number'];
+        $starting_point = $config['prefix'] . $starting_point;
+        $goal_number = $config['prefix'] . $goal_number;
         break;
 
       case 'after':
-        $starting_point = $config['starting_point'] . $config['prefix'];
-        $goal_number = $config['goal_number'] . $config['prefix'];
+        $starting_point = $starting_point . $config['prefix'];
+        $goal_number = $goal_number . $config['prefix'];
         break;
     }
   }
