@@ -3948,3 +3948,14 @@ function nas_master_update_7266() {
 function nas_master_update_7267() {
   features_revert(array('nas_solr_feature' => array('search_api_index')));
 }
+
+/**
+ * Update NAS File entity feature.
+ */
+function nas_master_update_7268() {
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+  ));
+}
