@@ -182,6 +182,9 @@ function editorial_grid_render($subtype, $conf, $args, $context) {
     $filter['exposed'] = FALSE;
     $view->set_item('default', 'filter', 'search_api_views_fulltext', $filter);
   }
+  $pager = $view->display_handler->get_option('pager');
+  $pager['type'] = 'none';
+  $view->display_handler->set_option('pager', $pager);
   $view->pre_execute($args);
   $view->execute();
   $content = $view->render();
