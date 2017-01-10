@@ -11,7 +11,11 @@
   if(isset($item['file'])) {
     $item['file2'] = $item['file'];
     $item['file']['#image_style'] = 'hero_mobile';
-    $item['file']['#item']['attributes']['class'] = array('hide-for-medium', 'hide-for-large', 'hide-for-xlarge');
+    $item['file']['#item']['attributes']['class'] = array(
+      'hide-for-medium',
+      'hide-for-large',
+      'hide-for-xlarge',
+    );
     $item['file2']['#image_style'] = 'hero_image';
     $item['file2']['#item']['attributes']['class'] = array('hide-for-tiny', 'hide-for-small');
   }
