@@ -1324,35 +1324,6 @@ function nas_preprocess_field_field_hero_image(&$variables) {
 }
 
 /**
- * Preprocess function for media fields.
- */
-function nas_preprocess_field_field_bird_photo(&$variables) {
-  // Convert image to link with image.
-  $get_field_bird_photo = $variables['items'];
-  if (!empty($get_field_bird_photo)) {
-    foreach ($get_field_bird_photo as $key => $image) {
-      $file = file_load($image['#file']->fid);
-      $photo_thumbnail = theme('image_style', array(
-        'style_name' => 'media_thumbnail',
-        'path' => nas_alters_local_image_uri($file->uri),
-      ));
-      $photo_path = file_create_url($file->uri);
-      $photo_link = array(
-        '#theme' => 'link',
-        '#text' => $photo_thumbnail,
-        '#path' => $photo_path,
-        '#options' => array(
-          'attributes' => array('class' => 'colorbox cboxElement'),
-          'html' => TRUE,
-        ),
-      );
-      $bird_photo[$key] = $photo_link;
-    }
-    $variables['items'] = $bird_photo;
-  }
-}
-
-/**
  * Implements template_preprocess_panels_pane().
  */
 function nas_preprocess_panels_pane(&$vars) {
