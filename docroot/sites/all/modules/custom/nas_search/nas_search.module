@@ -657,6 +657,7 @@ function nas_search_search_api_solr_query_alter(array &$call_args, SearchApiQuer
     'search_api_views:search_results:birds' => 'ss_search_api_language',
     'search_api_views:search_results_pm:site_sections' => 'ss_language',
     'search_api_views:nas_bird_guide:nas_bird_guide_fav_birds' => 'ss_search_api_language',
+    'search_api_views:nas_editorial_grid:default' => 'ss_search_api_language',
   );
   $search_id = $query->getOption('search id');
   if (isset($search_ids_mapping[$search_id])) {
