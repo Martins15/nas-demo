@@ -3955,3 +3955,14 @@ function nas_master_update_7267() {
 function nas_master_update_7268() {
   module_enable(array('nas_editorial_grid_feature'));
 }
+
+/**
+ * Update NAS File entity feature.
+ */
+function nas_master_update_7269() {
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+  ));
+}
