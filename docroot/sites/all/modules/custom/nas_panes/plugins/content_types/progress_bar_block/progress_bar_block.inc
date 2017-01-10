@@ -53,7 +53,7 @@ function progress_bar_block_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#required' => TRUE,
     '#title' => t('Current status'),
-    '#description' => t('Numeric value.'),
+    '#description' => t('Numeric value. Example: 10000 = 10,000 or 10000.56 = 10,000.56'),
     '#default_value' => $conf['current_status'],
   );
   $form['config']['goal_number'] = array(
@@ -141,39 +141,33 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   $config = $conf['config'];
 
   $percentage = round(($config['current_status'] - $config['starting_point']) * 100 / ($config['goal_number'] - $config['starting_point']));
-
-  $current_status = $config['current_status'];
-  $starting_point = $config['starting_point'];
-  $goal_number = $config['goal_number'];
-  $label = $config['current_status'];
+  $float = (strpos($config['current_status'], '.') !== FALSE) ? 2 : 0;
+  $current_status = number_format($config['current_status'], $float, '.', ',');
+  $starting_point = number_format($config['starting_point'], 0, '.', ',');
+  $goal_number = number_format($config['goal_number'], 0, '.', ',');
   if (!empty($config['label'])) {
     switch ($config['label_position']) {
       case 'before':
-        $current_status = $config['label'] . ' ' . $config['current_status'];
+        $current_status = $config['label'] . ' ' . $current_status;
         break;
 
       case 'after':
-        $current_status = $config['current_status'] . ' ' . $config['label'];
+        $current_status = $current_status . ' ' . $config['label'];
         break;
     }
   }
   if (!empty($config['prefix'])) {
     switch ($config['prefix_position']) {
       case 'before':
-        $starting_point = $config['prefix'] . ' ' . $config['starting_point'];
-        $goal_number = $config['prefix'] . ' ' . $config['goal_number'];
+        $starting_point = $config['prefix'] . $starting_point;
+        $goal_number = $config['prefix'] . $goal_number;
         break;
 
       case 'after':
-        $starting_point = $config['starting_point'] . ' ' . $config['prefix'];
-        $goal_number = $config['goal_number'] . ' ' . $config['prefix'];
+        $starting_point = $starting_point . $config['prefix'];
+        $goal_number = $goal_number . $config['prefix'];
         break;
     }
-  }
-
-  $cs_value = strpos($current_status, '.');
-  if ($cs_value) {
-    $current_status = str_replace(".", ",", $current_status);
   }
 
   if (empty($config['paddings'])) {
@@ -194,7 +188,6 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
     'current_status' => $current_status,
     'goal_number' => $goal_number,
     'percentage' => $percentage,
-    'label' => $label,
     'spacetop' => $config['paddings']['top'],
     'spacebetween' => $config['paddings']['between'],
     'spacebottom' => $spacebottom,
@@ -214,7 +207,6 @@ function progress_bar_block_theme(&$theme, $plugin) {
       'current_status' => NULL,
       'goal_number' => NULL,
       'percentage' => NULL,
-      'label' => NULL,
       'spacetop' => NULL,
       'spacebetween' => NULL,
       'spacebottom' => NULL,
