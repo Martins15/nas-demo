@@ -6729,6 +6729,9 @@ body.node-type-bird .large-8.columns i:before {
 body.node-type-bird .large-8.columns .bird-guide-external i:before {
   display: block;
 }
+body.node-type-bird .large-8.columns .thumb-strip i:before {
+  display: block;
+}
 body.node-type-bird i.icon-info:before, body.node-type-bird i.icon-music:before {
   display: none;
 }
