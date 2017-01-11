@@ -120,6 +120,7 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   $percentage = round(($current_status_number - $starting_point_number) * 100 / ($goal_number - $starting_point_number));
 
   // Adds label for current status.
+  $current_status = $config['current_status'];
   if (!empty($config['label'])) {
     switch ($config['label_position']) {
       case 'before':
@@ -128,10 +129,6 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
 
       case 'after':
         $current_status = $config['current_status'] . ' ' . $config['label'];
-        break;
-
-      default:
-        $current_status = $config['current_status'];
         break;
     }
   }
