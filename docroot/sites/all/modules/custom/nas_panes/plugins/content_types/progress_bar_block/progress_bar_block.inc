@@ -160,11 +160,13 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
     switch ($config['prefix_position']) {
       case 'before':
         $starting_point = $config['prefix'] . $starting_point;
+        $current_status = $config['prefix'] . ' ' . $current_status;
         $goal_number = $config['prefix'] . $goal_number;
         break;
 
       case 'after':
         $starting_point = $starting_point . $config['prefix'];
+        $current_status = $current_status . ' ' . $config['prefix'];
         $goal_number = $goal_number . $config['prefix'];
         break;
     }
