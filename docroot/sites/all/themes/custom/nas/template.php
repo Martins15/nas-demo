@@ -572,6 +572,7 @@ function nas_preprocess_node_event(&$vars) {
 
   $editorial_cards_view_modes = array(
     'nas_editorial_card',
+    'editorial_grid_teaser',
   );
 
   if (in_array($vars['view_mode'], $editorial_cards_view_modes)) {
@@ -680,6 +681,7 @@ function nas_preprocess_node_article(&$vars) {
   $editorial_cards_view_modes = array(
     'editorial_card_3x',
     'editorial_card_4x',
+    'editorial_grid_teaser',
     'nas_teaser_related_news',
     'nas_editorial_card',
     'nas_node_teaser_no_section_link',
@@ -882,7 +884,7 @@ function nas_preprocess_node_flyway(&$vars) {
  * theme_preprocess_node for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
-  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'search_result'))) {
+  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'editorial_grid_teaser', 'search_result'))) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
@@ -1323,7 +1325,7 @@ function nas_preprocess_field_field_hero_image(&$variables) {
   }
 }
 
-/*
+/**
  * Implements template_preprocess_panels_pane().
  */
 function nas_preprocess_panels_pane(&$vars) {
@@ -1332,7 +1334,6 @@ function nas_preprocess_panels_pane(&$vars) {
     $vars['content']['#pane_region'] = $vars['pane']->panel;
   }
 }
-
 
 /**
  * Preprocess function for field_magazine_issue_article.
@@ -1485,7 +1486,7 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
   $color_mode = in_array($color_mode, array('dark', 'light')) ? $color_mode : 'dark';
 
   $variables['color_mode_gradient'] = $color_mode;
-  // Text color mode is inversion of gradient color mode
+  // Text color mode is inversion of gradient color mode.
   $variables['color_mode_text'] = $color_mode == 'dark' ? 'light' : 'dark';
 }
 
@@ -1538,9 +1539,9 @@ function nas_preprocess_nas_flyway(&$variables) {
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 
   // @Improve
-  //   Since replacement may be a field rendered value we have no access to
-  //   machine value. Thanks God human values for color_mode field are
-  //   Uppercased machine values. This does matter for particular situation.
+  // Since replacement may be a field rendered value we have no access to
+  // machine value. Thanks God human values for color_mode field are
+  // Uppercased machine values. This does matter for particular situation.
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'light'.
@@ -1584,7 +1585,7 @@ function nas_preprocess_views_view(&$vars) {
   }
 
   if ($view->name == 'boa_index') {
-    drupal_add_js(drupal_get_path('theme', 'nas') .'/js/nas/boa.js');
+    drupal_add_js(drupal_get_path('theme', 'nas') . '/js/nas/boa.js');
   }
 
   $vars['equalizer'] = FALSE;
@@ -1708,9 +1709,9 @@ function nas_preprocess_node_slideshow(&$vars) {
     if (!empty($image_items[0]['uri'])) {
       $image_uri = nas_alters_local_image_uri($image_items[0]['uri']);
       $output_image = theme('image_style', array(
-          'style_name' => 'slideshow_teaser',
-          'path' => $image_uri,
-        ));
+        'style_name' => 'slideshow_teaser',
+        'path' => $image_uri,
+      ));
 
       $vars['slideshow_image'] = l($output_image, 'node/' . $node->nid, array('html' => TRUE));
     }

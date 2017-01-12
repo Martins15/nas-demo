@@ -24,6 +24,13 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -168,6 +175,19 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'date_default',
         'weight' => 1,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'nas_date_day',
+          'fromto' => 'value',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 3,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -284,6 +304,13 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 6,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -416,6 +443,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'location_default',
         'weight' => 12,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -512,6 +545,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 10,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -644,6 +683,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 15,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -775,6 +820,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'link_default',
         'weight' => 7,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -889,6 +940,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 11,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1021,6 +1078,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1118,6 +1181,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'file_default',
         'weight' => 16,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1224,6 +1293,12 @@ function nas_event_feature_field_default_field_instances() {
         'type' => 'geofield_wkt',
         'weight' => 13,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1322,6 +1397,16 @@ function nas_event_feature_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 5,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 1,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1474,6 +1559,12 @@ function nas_event_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 14,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
