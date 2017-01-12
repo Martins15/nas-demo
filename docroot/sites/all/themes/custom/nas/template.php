@@ -1477,9 +1477,9 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 
   // @Improve
-  // Since replacement may be a field rendered value we have no access to
-  // machine value. Thanks God human values for color_mode field are
-  // Uppercased machine values. This does matter for particular situation.
+  //   Since replacement may be a field rendered value we have no access to
+  //   machine value. Thanks God human values for color_mode field are
+  //   Uppercased machine values. This does matter for particular situation.
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
