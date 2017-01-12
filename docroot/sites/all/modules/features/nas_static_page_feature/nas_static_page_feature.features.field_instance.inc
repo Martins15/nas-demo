@@ -35,6 +35,13 @@ function nas_static_page_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -197,6 +204,12 @@ function nas_static_page_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 1,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -319,6 +332,13 @@ function nas_static_page_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 7,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 6,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -454,6 +474,22 @@ function nas_static_page_feature_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 11,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'colorbox',
+        'settings' => array(
+          'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
+          'colorbox_gallery' => 'post',
+          'colorbox_gallery_custom' => '',
+          'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
+          'colorbox_node_style' => '',
+          'colorbox_node_style_first' => '',
+        ),
+        'type' => 'colorbox',
+        'weight' => 4,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -642,6 +678,15 @@ function nas_static_page_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 10,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'nas_formatters',
+        'settings' => array(
+          'title' => 'Bottom line',
+        ),
+        'type' => 'gray_block_with_title',
+        'weight' => 5,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -789,6 +834,17 @@ function nas_static_page_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 9,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
+        'weight' => 3,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -933,6 +989,12 @@ function nas_static_page_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1068,6 +1130,15 @@ function nas_static_page_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 4,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 2,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1253,6 +1324,12 @@ function nas_static_page_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 2,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1441,6 +1518,13 @@ function nas_static_page_feature_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 8,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 8,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1558,6 +1642,13 @@ function nas_static_page_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 6,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 7,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1679,6 +1770,12 @@ function nas_static_page_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
       ),
       'fb_instant_article' => array(
         'label' => 'above',
@@ -1804,6 +1901,17 @@ function nas_static_page_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 5,
+      ),
+      'editorial_grid_teaser' => array(
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
+        'weight' => 1,
       ),
       'fb_instant_article' => array(
         'label' => 'above',

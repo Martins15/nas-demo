@@ -96,6 +96,12 @@ body.node-type-bird {
         display: block;
       }
     }
+    // Photo gallery.
+    .thumb-strip {
+      i:before {
+        display: block;
+      }
+    }
   }
   i.icon-info:before,i.icon-music:before{
     display:none;

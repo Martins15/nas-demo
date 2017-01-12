@@ -1,7 +1,7 @@
 name = NAS File entity
 core = 7.x
 package = NAS
-version = 7.x-1.0
+version = 7.x-1.1
 project = nas_file_entity
 dependencies[] = ctools
 dependencies[] = file_entity
@@ -181,6 +181,7 @@ features[file_display][] = image__preview__file_field_image_attributions
 features[file_display][] = image__preview__file_field_soundmanager2_inline_player
 features[file_display][] = image__preview__file_field_soundmanager2_page_player
 features[file_display][] = image__preview__file_field_soundmanager2_ui360
+features[file_display][] = image__preview__file_field_colorbox
 features[file_display][] = image__preview__netx_audio
 features[file_display][] = image__preview__netx_document
 features[file_display][] = image__preview__netx_image

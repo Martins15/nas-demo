@@ -123,6 +123,9 @@ function nas_article_feature_strongarm() {
       'fb_instant_article' => array(
         'custom_settings' => TRUE,
       ),
+      'editorial_grid_teaser' => array(
+        'custom_settings' => TRUE,
+      ),
       'nas_engagement_cards_full_width' => array(
         'custom_settings' => FALSE,
       ),
@@ -130,7 +133,7 @@ function nas_article_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '51',
+          'weight' => '5',
         ),
         'path' => array(
           'weight' => '7',
@@ -177,6 +180,10 @@ function nas_article_feature_strongarm() {
             'weight' => '1002',
             'visible' => FALSE,
           ),
+          'editorial_grid_teaser' => array(
+            'weight' => '31',
+            'visible' => FALSE,
+          ),
         ),
         'language' => array(
           'default' => array(
@@ -189,6 +196,10 @@ function nas_article_feature_strongarm() {
           ),
           'fb_instant_article' => array(
             'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'editorial_grid_teaser' => array(
+            'weight' => '7',
             'visible' => FALSE,
           ),
         ),

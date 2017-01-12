@@ -3927,3 +3927,42 @@ function nas_master_update_7264() {
   features_revert(array('nas_native_plants_taxonomy' => array('field_instance')));
   features_revert(array('nas_social_media_photo' => array('field_instance')));
 }
+
+/**
+ * Enable event date start field in Search API.
+ */
+function nas_master_update_7265() {
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+}
+
+/**
+ * Apply changes for events_listing view.
+ */
+function nas_master_update_7266() {
+  features_revert(array('nas_events_landing_feature' => array('views_view')));
+}
+
+/**
+ * Enable event date start field in Search API.
+ */
+function nas_master_update_7267() {
+  features_revert(array('nas_solr_feature' => array('search_api_index')));
+}
+
+/**
+ * Enable NAS Editorial Grid feature.
+ */
+function nas_master_update_7268() {
+  module_enable(array('nas_editorial_grid_feature'));
+}
+
+/**
+ * Update NAS File entity feature.
+ */
+function nas_master_update_7269() {
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+  ));
+}

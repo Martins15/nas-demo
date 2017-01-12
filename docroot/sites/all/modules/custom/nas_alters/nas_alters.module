@@ -563,13 +563,19 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
       if (!empty($facets['event_months'])) {
         foreach ($facets['event_months'] as $rawvalue) {
           $key = preg_replace('/"(.*)"/', "$1", $rawvalue['filter']);
-          // Convert month number to name.
-          $month_num = (int) substr($key, 4, 2);
-          $date_obj = DateTime::createFromFormat('!m', $month_num);
-          $month_name = $date_obj->format('F');
-          // TODO: translate month name.
-          $options[$key] = $month_name . ' ' . substr($key, 0, 4);
+          // Removed past dates.
+          $current_date = strtotime(date('F Y')) - 1;
+          $event_date = chunk_split($key, 4, '-') . '01 00:00:00';
+          $event_date = strtotime($event_date);
+          if (($event_date != FALSE) && ($event_date >= $current_date)) {
+            // Convert month number to name.
+            $month_num = (int) substr($key, 4, 2);
+            $date_obj = DateTime::createFromFormat('!m', $month_num);
+            $month_name = $date_obj->format('F');
+            $options[$key] = t($month_name) . ' ' . substr($key, 0, 4);
+          }
         }
+        ksort($options);
       }
       $form['event_months']['#type'] = 'select';
       $form['event_months']['#options'] = $options;
@@ -629,6 +635,16 @@ function nas_alters_form_views_exposed_form_alter(&$form, &$form_state, $form_id
     $form['submit']['#attributes']['class'][] = 'large';
     $form['submit']['#attributes']['class'][] = 'button';
     $form['submit']['#attributes']['class'][] = 'pea-green';
+  }
+
+  if ($form['#id'] == 'views-exposed-form-nas-editorial-grid-default') {
+    $form['search_api_views_fulltext']['#placeholder'] = t('Search for ...');
+    $form['submit']['#attributes']['class'][] = 'editorial-grid-search-submit';
+    $form['submit']['#attributes']['class'][] = 'large';
+    $form['submit']['#attributes']['class'][] = 'button';
+    $submit_btn_id = $form['submit']['#id'];
+    $form['reset']['#attributes']['onclick'] = 'javascript:jQuery(this.form).clearForm();jQuery(this.form).find(\'#' . $submit_btn_id . '\').trigger(\'click\');return false;';
+    $form['reset']['#attributes']['class'][] = 'editorial-grid-search-reset';
   }
 }
 
