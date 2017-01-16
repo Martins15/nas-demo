@@ -613,8 +613,14 @@ textarea {
       }
     }
   }
-  & .close .tomato {
-    background: none;
+}
+
+#nas-language-message-modal{
+  .close.button.tomato.large {
+    background: #f15936;
+    &:hover {
+      background: #dd360f;
+    }
   }
 }
 
