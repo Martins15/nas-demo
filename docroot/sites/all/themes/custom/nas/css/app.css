@@ -16635,6 +16635,9 @@ textarea.error {
 #modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-paddings .form-item {
   width: 90%;
 }
+#modalContent .ctools-modal-content .close .tomato {
+  background: none;
+}
 
 .slideshow-sidebar-block {
   float: left;
