@@ -615,6 +615,15 @@ textarea {
   }
 }
 
+#nas-language-message-modal{
+  .close.button.tomato.large {
+    background: #f15936;
+    &:hover {
+      background: #dd360f;
+    }
+  }
+}
+
 .slideshow-sidebar-block {
   float: left;
 }
