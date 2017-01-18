@@ -61,7 +61,13 @@ var Nas = Nas || {};
         }
 
         var $video = $(this), video = this;
-        $video.hide();
+        var video_manager = setInterval(function () {
+          if (video.readyState === 4) {
+            video.play();
+            clearInterval(video_manager);
+          }
+        }, 1000);
+
         $video
           .bind('play', function () {
             $video.fadeIn('slow');
@@ -84,6 +90,7 @@ var Nas = Nas || {};
             marginTop: -height / 2
           });
           $(window).trigger('resize');
+          $video.fadeIn('slow');
         };
         if ($video.parent().hasClass('cover') || $video.parent().hasClass('center')) {
           $(window).bind('resize', function () {
