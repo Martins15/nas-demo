@@ -428,3 +428,11 @@ function fb_instant_articles_fb_instant_articles_transformer_rules() {
     ),
   );
 }
+
+if (!class_exists('Drupal\fb_instant_articles\ArticleWrapper')) {
+  require_once __DIR__ . '/src/ArticleWrapper.php';
+}
+
+if (!class_exists('Drupal\fb_instant_articles_display\EntityPropertyMapper')) {
+  require_once __DIR__ . '/modules/fb_instant_articles_display/src/EntityPropertyMapper.php';
+}
