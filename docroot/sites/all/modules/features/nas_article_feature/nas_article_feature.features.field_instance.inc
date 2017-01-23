@@ -1172,7 +1172,7 @@ function nas_article_feature_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -1735,7 +1735,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -2100,7 +2100,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -2895,7 +2895,7 @@ function nas_article_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 45,
+      'weight' => 46,
     ),
   );
 
@@ -4050,6 +4050,209 @@ function nas_article_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-article-field_hero_mobile_image'
+  $field_instances['node-article-field_hero_mobile_image'] = array(
+    'bundle' => 'article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'conservation_strategy_list_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 31,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_flyway_landing' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_teaser_related_news' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser_author_page' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hero_mobile_image',
+    'label' => 'Hero Mobile Image',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'epsacrop' => array(
+        'styles' => array(
+          'about_page_success_section' => 0,
+          'article_featured' => 'article_featured',
+          'birds_landing_banner' => 0,
+          'boa_family_species' => 0,
+          'boa_hero' => 0,
+          'boa_index_bio' => 0,
+          'boa_mail_subscription' => 0,
+          'boa_plate_binocular' => 0,
+          'boa_plate_thumbnail' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_slideshow' => 0,
+          'default_teaser_image' => 0,
+          'engagement_card' => 0,
+          'engagement_card_full_width' => 0,
+          'featured_frontpage' => 0,
+          'featured_frontpage_hero_image' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
+          'hero_cover_bird_page' => 0,
+          'hero_icon' => 0,
+          'local_chapters_centers' => 0,
+          'magazine_issue_cover' => 0,
+          'magazine_issue_cover_teaser' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 0,
+          'native_plant_desktop' => 0,
+          'native_plant_mobile' => 0,
+          'slideshow_sidebar' => 0,
+          'social_media_photo' => 0,
+          'social_owl_image' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
+        ),
+      ),
+      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm js',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'feed' => 0,
+          'http' => 0,
+          'https' => 0,
+          'netx' => 0,
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'netx' => 'netx',
+          'netx-tree' => 'netx-tree',
+          'remote_file' => 0,
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 43,
+    ),
+  );
+
   // Exported field_instance: 'node-article-field_internal_tagging'
   $field_instances['node-article-field_internal_tagging'] = array(
     'bundle' => 'article',
@@ -4230,7 +4433,7 @@ function nas_article_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -5588,6 +5791,7 @@ function nas_article_feature_field_default_field_instances() {
   t('Flyway');
   t('For internal use only');
   t('Hero Image');
+  t('Hero Mobile Image');
   t('If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.');
   t('If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.');
   t('Internal tagging');

@@ -23,8 +23,8 @@ function nas_conservation_project_feature_field_group_info() {
     'label' => 'Editorial card fields',
     'weight' => '2',
     'children' => array(
-      0 => 'field_editorial_card_title',
-      1 => 'field_editorial_card_subtitle',
+      0 => 'field_editorial_card_subtitle',
+      1 => 'field_editorial_card_title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -57,7 +57,8 @@ function nas_conservation_project_feature_field_group_info() {
       3 => 'field_subtitle',
       4 => 'field_project_description',
       5 => 'field_editorial_card_image',
-      6 => 'title',
+      6 => 'field_hero_mobile_image',
+      7 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

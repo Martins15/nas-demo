@@ -171,7 +171,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -304,7 +304,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'checkall' => FALSE,
       ),
       'type' => 'options_buttons',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -435,7 +435,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -646,7 +646,7 @@ function nas_static_page_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -1103,7 +1103,7 @@ function nas_static_page_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1301,6 +1301,185 @@ function nas_static_page_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-static_page-field_hero_mobile_image'
+  $field_instances['node-static_page-field_hero_mobile_image'] = array(
+    'bundle' => 'static_page',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 13,
+      ),
+      'editorial_card_3x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'static_page_related_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hero_mobile_image',
+    'label' => 'Hero Mobile Image',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'epsacrop' => array(
+        'styles' => array(
+          'about_page_success_section' => 0,
+          'article_featured' => 0,
+          'birds_landing_banner' => 0,
+          'boa_family_species' => 0,
+          'boa_hero' => 0,
+          'boa_index_bio' => 0,
+          'boa_mail_subscription' => 0,
+          'boa_plate_binocular' => 0,
+          'boa_plate_thumbnail' => 0,
+          'conservation_slideshow_featured_project' => 0,
+          'conservation_slideshow_icon' => 0,
+          'conservation_strategy_slideshow' => 0,
+          'default_teaser_image' => 0,
+          'engagement_card' => 0,
+          'engagement_card_full_width' => 0,
+          'featured_frontpage' => 0,
+          'featured_frontpage_hero_image' => 0,
+          'front_flyway_image' => 0,
+          'get_outside' => 0,
+          'hero_cover_bird_page' => 0,
+          'hero_icon' => 0,
+          'local_chapters_centers' => 0,
+          'magazine_issue_cover' => 0,
+          'magazine_issue_cover_teaser' => 0,
+          'nas_birds_landing_epsacrop_mobile' => 0,
+          'native_plant_desktop' => 0,
+          'native_plant_mobile' => 0,
+          'slideshow_sidebar' => 0,
+          'social_media_photo' => 0,
+          'social_owl_image' => 0,
+          'static_cards_two_columns' => 0,
+          'static_cards_two_columns_mobile' => 0,
+        ),
+      ),
+      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm js',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'feed' => 0,
+          'http' => 0,
+          'https' => 0,
+          'netx' => 0,
+          'public' => 'public',
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'netx' => 'netx',
+          'netx-tree' => 'netx-tree',
+          'remote_file' => 0,
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 4,
+    ),
+  );
+
   // Exported field_instance: 'node-static_page-field_images'
   $field_instances['node-static_page-field_images'] = array(
     'bundle' => 'static_page',
@@ -1486,7 +1665,7 @@ function nas_static_page_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -1614,7 +1793,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -1873,7 +2052,7 @@ function nas_static_page_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -2049,6 +2228,7 @@ function nas_static_page_feature_field_default_field_instances() {
   t('Editorial card title');
   t('File attachments');
   t('Hero Image');
+  t('Hero Mobile Image');
   t('Internal tagging');
   t('Legacy images');
   t('Menu Section');
