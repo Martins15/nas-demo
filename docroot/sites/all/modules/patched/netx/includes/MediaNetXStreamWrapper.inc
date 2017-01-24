@@ -107,7 +107,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
       $dirname = drupal_dirname($local_file);
       file_prepare_directory($dirname, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
 
-      $repository = new NetXRepository();
+      $repository = new NetXRepositoryProxy();
       try {
         $asset_image = $repository->getImageFileContent($this->getAssetID());
       }
@@ -139,7 +139,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
       $dirname = drupal_dirname($local_file);
       file_prepare_directory($dirname, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
 
-      $repository = new NetXRepository();
+      $repository = new NetXRepositoryProxy();
       // Copy preview image (jpg). Each asset has one.
       $asset_image = $repository->getFileContent($path);
       file_unmanaged_save_data($asset_image, $local_file, TRUE);
@@ -188,6 +188,27 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
    * {@inheritdoc}
    */
   public function interpolateUrl() {
+    if ($this->imageStyle) {
+      $local_path = $this->getLocalImagePath();
+      list(, $internal_uri) = explode('://', $local_path);
+      $uri = 'public://styles/' . $this->imageStyle . '/public/' . $internal_uri;
+
+      $wrapper = file_stream_wrapper_get_instance_by_uri($uri);
+
+      return $wrapper->getExternalUrl();
+    }
+
+    $netx_media_ui = &drupal_static('netx_media_ui', FALSE);
+    if ($netx_media_ui && $parameters = $this->get_parameters()) {
+      // Redirect to NetX CDN via REST.
+      $repo = new NetXRepositoryProxy();
+      return $repo->getRemoteOriginal(
+        $parameters['a'],
+        $parameters['n'],
+        $this->getMimeType($parameters['n'])
+      );
+    }
+
     return file_create_url($this->getLocalImagePath());
   }
 
@@ -204,7 +225,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
     // @todo Find a better way to extract last category name.
     $name = drupal_basename($path);
     if (empty($name)) {
-      $repo = new NetXRepository();
+      $repo = new NetXRepositoryProxy();
       $name = $repo->getDefaultCategory();
     }
     $categories = netx_get_categories();
@@ -322,7 +343,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
       // Open for writing, check that category accessible.
       $this->fileName = drupal_basename($uri);
       $dir = file_uri_target($this->dirname($uri));
-      $repo = new NetXRepository();
+      $repo = new NetXRepositoryProxy();
       if (empty($dir)) {
         $dir = $repo->getDefaultCategory();
       }
@@ -346,7 +367,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
     $extension = array_pop(explode('.', $this->fileName));
     $mimetype = media_get_extension_mimetype($extension);
 
-    $repo = new NetXRepository();
+    $repo = new NetXRepositoryProxy();
     $data = $repo->uploadFileData($this->tmpFile, $this->fileName, $mimetype);
 
     // Asset import started.
@@ -471,7 +492,7 @@ class MediaNetXStreamWrapper extends MediaReadOnlyStreamWrapper {
    */
   public function chmod($mode) {
     // Check online access.
-    $repo = new NetXRepository();
+    $repo = new NetXRepositoryProxy();
 
     list(, $dirname) = explode('://', $this->uri, 2);
     if (empty($dirname)) {

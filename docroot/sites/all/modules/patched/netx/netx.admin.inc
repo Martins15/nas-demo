@@ -150,8 +150,7 @@ function netx_settings_form_validate($form, &$form_state) {
   if ($authorize) {
     $repo = new NetXRepository($values['netx_server'], $values['netx_authentication_type']);
     try {
-      $authentication_call = &drupal_static('netx_auth_call', FALSE);
-      $authentication_call = TRUE;
+      $repo->setAuthenticationCall(TRUE);
       $account = $repo->authenticationValidation($values['netx_authentication_type'], $values['netx_user'], $values['netx_pass']);
     }
     catch (Exception $e) {
