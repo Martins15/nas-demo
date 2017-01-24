@@ -6729,6 +6729,9 @@ body.node-type-bird .large-8.columns i:before {
 body.node-type-bird .large-8.columns .bird-guide-external i:before {
   display: block;
 }
+body.node-type-bird .large-8.columns .thumb-strip i:before {
+  display: block;
+}
 body.node-type-bird i.icon-info:before, body.node-type-bird i.icon-music:before {
   display: none;
 }
@@ -15780,6 +15783,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   line-height: 20px;
 }
 .editorial-grid-column .editorial-card .editorial-card-subtitle {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 14px;
   line-height: 20px;
 }

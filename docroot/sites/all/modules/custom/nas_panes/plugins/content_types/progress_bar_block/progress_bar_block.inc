@@ -18,6 +18,8 @@ $plugin = array(
       'starting_point' => 0,
       'current_status' => 0,
       'goal_number' => 100,
+      'prefix' => '',
+      'prefix_position' => 'after',
       'label' => '',
       'label_position' => 'after',
       'paddings' => array(
@@ -51,7 +53,7 @@ function progress_bar_block_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#required' => TRUE,
     '#title' => t('Current status'),
-    '#description' => t('Numeric value.'),
+    '#description' => t('Numeric value. Example: 10000 = 10,000 or 10000.56 = 10,000.56'),
     '#default_value' => $conf['current_status'],
   );
   $form['config']['goal_number'] = array(
@@ -102,21 +104,6 @@ function progress_bar_block_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Validate handler for progress bar form.
- */
-function progress_bar_block_edit_form_validate(&$form, &$form_state) {
-  $date['starting_point'] = $form_state['values']['config']['starting_point'];
-  $date['current_status'] = $form_state['values']['config']['current_status'];
-  $date['goal_number'] = $form_state['values']['config']['goal_number'];
-  foreach ($date as $key => $value) {
-    if ($value !== '' && (!is_numeric($value) || $value < 0)) {
-      $field_name = ucfirst(str_replace('_', ' ', $key));
-      form_set_error($key, t('%name must be only positive numeric.', array('%name' => $field_name)));
-    }
-  }
-}
-
-/**
  * Run-time rendering of the body of the block (content type).
  *
  * See ctools_plugin_examples for more advanced info.
@@ -124,25 +111,29 @@ function progress_bar_block_edit_form_validate(&$form, &$form_state) {
 function progress_bar_block_render($subtype, $conf, $args, $context) {
   $config = $conf['config'];
 
-  $percentage = round(($config['current_status'] - $config['starting_point']) * 100 / ($config['goal_number'] - $config['starting_point']));
+  // Get numbers from string.
+  $current_status_number = filter_var($config['current_status'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $starting_point_number = filter_var($config['starting_point'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+  $goal_number = filter_var($config['goal_number'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-  $label = $config['current_status'];
+  // Calculate percent for the progress bar.
+  $percentage = round(($current_status_number - $starting_point_number) * 100 / ($goal_number - $starting_point_number));
+
+  // Adds label for current status.
+  $current_status = $config['current_status'];
   if (!empty($config['label'])) {
     switch ($config['label_position']) {
       case 'before':
-        $starting_point = $config['label'] . ' ' . $config['starting_point'];
         $current_status = $config['label'] . ' ' . $config['current_status'];
-        $goal_number = $config['label'] . ' ' . $config['goal_number'];
         break;
 
       case 'after':
-        $starting_point = $config['starting_point'] . ' ' . $config['label'];
         $current_status = $config['current_status'] . ' ' . $config['label'];
-        $goal_number = $config['goal_number'] . ' ' . $config['label'];
         break;
     }
   }
 
+  // Adds paddings for pane.
   if (empty($config['paddings'])) {
     $config['paddings'] = '';
   }
@@ -157,11 +148,10 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = theme('progress_bar_block', array(
     'title' => $conf['override_title'] ? $conf['override_title_text'] : '',
-    'starting_point' => $starting_point,
-    'current_status' => $current_status,
-    'goal_number' => $goal_number,
+    'starting_point' => _progress_bar_block_change_number($config['starting_point'], $starting_point_number),
+    'current_status' => _progress_bar_block_change_number($current_status, $current_status_number),
+    'goal_number' => _progress_bar_block_change_number($config['goal_number'], $goal_number),
     'percentage' => $percentage,
-    'label' => $label,
     'spacetop' => $config['paddings']['top'],
     'spacebetween' => $config['paddings']['between'],
     'spacebottom' => $spacebottom,
@@ -181,7 +171,6 @@ function progress_bar_block_theme(&$theme, $plugin) {
       'current_status' => NULL,
       'goal_number' => NULL,
       'percentage' => NULL,
-      'label' => NULL,
       'spacetop' => NULL,
       'spacebetween' => NULL,
       'spacebottom' => NULL,
@@ -189,4 +178,25 @@ function progress_bar_block_theme(&$theme, $plugin) {
     'template' => 'progress-bar-block',
     'path' => $plugin['path'],
   );
+}
+
+/**
+ * Adds a comma if thousands number in the string.
+ *
+ * @param string $string
+ *   String form field.
+ * @param int $number
+ *   Numeric.
+ *
+ * @return string
+ *   Return string with changed number.
+ */
+function _progress_bar_block_change_number($string, $number) {
+  // Check if number is float.
+  $float = (strpos($number, '.') !== FALSE) ? 2 : 0;
+  // Adds a comma if thousands.
+  $new_number = number_format($number, $float, '.', ',');
+  // Find the number and replace it with a new number with comma
+  // and return string.
+  return str_replace($number, $new_number, $string);
 }
