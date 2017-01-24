@@ -31,6 +31,7 @@ function netx_drush_command() {
  * Callback for Warmup NetX preview cache command.
  */
 function drush_netx_warmup_cache() {
+  global $conf;
   $args = drush_get_arguments();
 
   $chunk_size = 10;;
@@ -50,11 +51,11 @@ function drush_netx_warmup_cache() {
 
   // Temporarily disable logging.
   $netx_log_old = variable_get('netx_log_requests', FALSE);
-  variable_set('netx_log_requests', FALSE);
+  $conf['netx_log_requests'] = FALSE;
 
   // Process batch.
   drush_backend_batch_process();
 
   // Restore logging settings.
-  variable_set('netx_log_requests', $netx_log_old);
+  $conf['netx_log_requests'] = $netx_log_old;
 }
