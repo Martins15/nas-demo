@@ -56,6 +56,12 @@ class NetXRepository {
    */
   protected $authType;
 
+  /**
+   * Authentication call done.
+   *
+   * @var bool
+   */
+  protected $authentication_call;
 
   /**
    * Response object that used in last repository I/O.
@@ -109,6 +115,18 @@ class NetXRepository {
     else {
       $this->authType = $auth_type;
     }
+
+    $this->authentication_call = FALSE;
+  }
+
+  /**
+   * Sets authentication call flag value.
+   *
+   * @param bool $call
+   *   The authentication call flag value.
+   */
+  public function setAuthenticationCall($call) {
+    $this->authentication_call = $call;
   }
 
   /**
@@ -130,8 +148,7 @@ class NetXRepository {
    * @throws \Exception
    */
   protected function ensureAuthorized() {
-    $authentication_call = &drupal_static('netx_auth_call', FALSE);
-    $authentication_call = TRUE;
+    $this->authentication_call = TRUE;
 
     // Set new cookies if current are expired.
     if (!empty($this->cookie)) {
@@ -177,8 +194,7 @@ class NetXRepository {
    *   When no data or request failed.
    */
   protected function doRequest($url, $options, $decode_data = TRUE) {
-    $authentication_call = drupal_static('netx_auth_call', FALSE);
-    if (!$authentication_call) {
+    if (!$this->authentication_call) {
       $this->ensureAuthorized();
       $options['headers']['Cookie'] = $this->cookie;
     }
@@ -569,7 +585,7 @@ class NetXRepository {
    */
   public function getFileContent($path) {
     $url = 'https://' . $this->user . ':' . $this->pass . '@' . $this->server . $path;
-    $response = $this->doRequest($url, array(), FALSE);
+    $response = $this->doRequest($url, array('timeout' => 10), FALSE);
     return $response->data;
   }
 

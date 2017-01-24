@@ -8,6 +8,8 @@ files[] = includes/MediaNetXStreamWrapper.inc
 files[] = includes/MediaNetXBrowser.inc
 files[] = includes/MediaNetXTreeBrowser.inc
 files[] = includes/NetXRepository.php
+files[] = includes/NetXRepositoryProxy.php
+files[] = includes/NetXRepositoryProxyStorage.php
 files[] = views/netx.views.inc
 
 configure = admin/config/media/netx
