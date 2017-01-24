@@ -618,12 +618,12 @@
       color: $color-violet;
       display: inline-block;
       font-size: 24px;
-      height: 22px;
+      height: 16px;
       vertical-align: middle;
 
       @include breakpoint(medium-up) {
         font-size: 28px;
-        height: auto;
+        height: 10px;
         vertical-align: middle;
       }
     }

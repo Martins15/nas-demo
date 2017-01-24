@@ -14886,13 +14886,13 @@ h2.grey {
   color: #6a84d9;
   display: inline-block;
   font-size: 24px;
-  height: 22px;
+  height: 16px;
   vertical-align: middle;
 }
 @media only screen and (min-width: 601px) {
   .native-plants-full-search-results .icon-camera:before {
     font-size: 28px;
-    height: auto;
+    height: 10px;
     vertical-align: middle;
   }
 }
@@ -16635,6 +16635,13 @@ textarea.error {
 }
 #modalContent .ctools-modal-content #editorial-card-river-edit-form #edit-paddings .form-item {
   width: 90%;
+}
+
+#nas-language-message-modal .close.button.tomato.large {
+  background: #f15936;
+}
+#nas-language-message-modal .close.button.tomato.large:hover {
+  background: #dd360f;
 }
 
 .slideshow-sidebar-block {

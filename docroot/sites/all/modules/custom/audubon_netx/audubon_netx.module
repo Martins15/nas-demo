@@ -1,0 +1,97 @@
+<?php
+/**
+ * @file
+ * Contains additional features for NetX module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function audubon_netx_theme() {
+  return array(
+    'audubon_netx_preview_table' => array(
+      'render element' => 'element',
+      'template' => 'templates/netx-preview-table',
+    ),
+  );
+}
+
+/**
+ * Altering netx form to change default view of search results to a table view.
+ */
+function audubon_netx_form_netx_add_form_alter(&$form, &$form_state, $form_id) {
+  if (!isset($form['preview']['list']['#options'])) {
+    return;
+  }
+  $form['preview']['#theme'] = 'audubon_netx_preview_table';
+  $path = drupal_get_path('module', 'audubon_netx');
+  $form['preview']['#attached']['js'][] = $path . '/js/audubon-netx.js';
+  $form['preview']['#attached']['css'][] = $path . '/css/audubon-netx.css';
+
+  if (!$form['multiselect']['#value']) {
+    $form['preview']['list'] = array(
+      '#type' => 'radio',
+      '#default_value' => '',
+      '#attributes' => array(
+        'class' => array('element-invisible'),
+      ),
+    );
+  }
+
+  $form['preview']['title'] = array(
+    '#markup' => t(
+      'Page !page of !total',
+      array(
+        '!page' => $form_state['netx']['page'],
+        '!total' => ceil($form_state['netx']['assets']['total'] / 10),
+      )
+    ),
+  );
+  foreach ($form_state['netx']['assets']['list'] as $asset_id => $asset) {
+    $file = file_uri_to_object(_netx_build_asset_uri($asset));
+    if (!isset($file->fid)) {
+      $file->fid = 0;
+      $file->type = file_get_type($file);
+      $file->metadata = $asset;
+    }
+    audubon_netx_media_browser_build_media_item($file);
+    $form['preview']['image'][$asset_id] = array(
+      '#title' => $file->preview,
+      '#type' => $form['multiselect']['#value'] ? 'checkbox' : 'radio',
+      '#default_value' => 0,
+      '#return_value' => $asset_id,
+      '#process' => array('audubon_netx_radio_process'),
+      '#attributes' => array(
+        'class' => array('netx-thumbnail'),
+      ),
+    );
+    $form['preview']['filename'][$asset_id] = array(
+      '#markup' => $file->filename,
+    );
+
+    $form['preview']['dimensions'][$asset_id] = array(
+      '#markup' => $asset['filewidth'] . 'x' . $asset['fileheight'] . 'px',
+    );
+  }
+}
+
+/**
+ * Adds properties to the file.
+ *
+ * Additional properties on this file are needed by the media browser JS code.
+ */
+function audubon_netx_media_browser_build_media_item($file) {
+  $preview = media_get_thumbnail_preview($file);
+  $preview['#show_names'] = FALSE;
+  $file->preview = drupal_render($preview);
+  $file->url = file_create_url($file->uri);
+}
+
+/**
+ * Change element name attribute to replace result from POST to real field.
+ */
+function audubon_netx_radio_process($element) {
+  $element['#name'] = 'list';
+
+  return $element;
+}
