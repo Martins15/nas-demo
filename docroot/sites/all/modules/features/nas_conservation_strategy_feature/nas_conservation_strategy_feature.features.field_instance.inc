@@ -640,6 +640,7 @@ function nas_conservation_strategy_feature_field_default_field_instances() {
           'get_outside' => 0,
           'hero_cover_bird_page' => 0,
           'hero_icon' => 0,
+          'hero_mobile' => 'hero_mobile',
           'local_chapters_centers' => 0,
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,

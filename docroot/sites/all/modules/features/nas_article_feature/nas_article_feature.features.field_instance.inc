@@ -4183,7 +4183,7 @@ function nas_article_feature_field_default_field_instances() {
       'epsacrop' => array(
         'styles' => array(
           'about_page_success_section' => 0,
-          'article_featured' => 'article_featured',
+          'article_featured' => 0,
           'birds_landing_banner' => 0,
           'boa_family_species' => 0,
           'boa_hero' => 0,
@@ -4203,6 +4203,7 @@ function nas_article_feature_field_default_field_instances() {
           'get_outside' => 0,
           'hero_cover_bird_page' => 0,
           'hero_icon' => 0,
+          'hero_mobile' => 'hero_mobile',
           'local_chapters_centers' => 0,
           'magazine_issue_cover' => 0,
           'magazine_issue_cover_teaser' => 0,
