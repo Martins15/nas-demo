@@ -28,7 +28,8 @@ function nas_conservation_strategy_feature_field_group_info() {
       2 => 'field_image',
       3 => 'field_color_mode',
       4 => 'field_header_color_mode',
-      5 => 'title',
+      5 => 'field_hero_mobile_image',
+      6 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -53,7 +54,7 @@ function nas_conservation_strategy_feature_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Menu sections & references',
-    'weight' => '1',
+    'weight' => '3',
     'children' => array(
       0 => 'field_internal_tagging',
     ),

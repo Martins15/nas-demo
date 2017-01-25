@@ -76,7 +76,8 @@ function nas_alters_js_alter(&$javascript) {
 
 /**
  * Implements theme_button()
- * used to return <button> tag when needed
+ *
+ * Used to return <button> tag when needed.
  */
 function theme_nas_button($variables) {
   $element = $variables['element'];
@@ -156,7 +157,7 @@ function nas_alters_form_block_admin_configure_alter(&$form, &$form_state) {
 function nas_alters_form_bird_node_form_alter(&$form, &$form_state) {
   $conds = array();
   foreach (array('field_bird_endangered', 'field_bird_threatened') as $field) {
-    $conds[':input[name="' . $field  . '[' . LANGUAGE_NONE . ']"]'] = array('checked' => FALSE);
+    $conds[':input[name="' . $field . '[' . LANGUAGE_NONE . ']"]'] = array('checked' => FALSE);
   }
 
   $form['field_bird_climate_url'][LANGUAGE_NONE][0]['#pre_render'] = array('nas_alters_required_form_element_pre_render');
@@ -263,11 +264,11 @@ function nas_alters_form_static_page_node_form_alter(&$form, &$form_state, $form
  * Alter the Article node form.
  */
 function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id) {
-  //Remove unecessary options.
+  // Remove unecessary options.
   unset($form['options']['promote']);
   unset($form['options']['sticky']);
   $form['options']['#weight'] = '34';
-  //Change type of elements and combine them into one tab.
+  // Change type of elements and combine them into one tab.
   $form['options']['#type'] = 'container';
   $form['scheduler_settings']['#type'] = 'scheduler_settings';
   $form['publishing_custom_tab'] = array(
@@ -302,7 +303,7 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
         'attributes' => array(
           'class' => array(
             'button',
-            'remove'
+            'remove',
           ),
         ),
       ),
@@ -312,14 +313,17 @@ function nas_alters_form_article_node_form_alter(&$form, &$form_state, $form_id)
   $states = array(
     'big_image' => array(
       'field_hero_image',
+      'field_hero_mobile_image',
       'field_color_mode',
     ),
     'inline_hero_photo' => array(
       'field_hero_image',
+      'field_hero_mobile_image',
     ),
     'default' => array(),
     'fullscreen_image' => array(
       'field_hero_image',
+      'field_hero_mobile_image',
       'field_color_mode',
     ),
     'map' => array(

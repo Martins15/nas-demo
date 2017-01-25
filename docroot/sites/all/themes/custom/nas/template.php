@@ -1165,15 +1165,15 @@ function nas_theme_registry_alter(&$theme_registry) {
   return $theme_registry;
 }
 
-/*
+/**
  * Implements theme_image().
- * remove height and width to make image responsible
  */
 function nas_image($variables) {
   // These styles shouldn't have width and height for responsive design.
   $remove_attr_for = array(
     'hero_mobile',
     'hero_image',
+    'hero_mobile_image',
     'bio_image',
     'front_flyway_image',
     'conservation_strategy_icon',
@@ -1326,12 +1326,50 @@ function nas_preprocess_field_field_hero_image(&$variables) {
 }
 
 /**
+ * Preprocess function for media fields.
+ */
+function nas_preprocess_field_field_hero_mobile_image(&$variables) {
+  if (function_exists('_nas_panes_format_image_attribution')) {
+    foreach ($variables['items'] as &$item) {
+      if (!empty($item['file']['#item'])) {
+        $file = (object) $item['file']['#item'];
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      }
+      elseif (!empty($item['file']['#file'])) {
+        $file = (object) $item['file']['#file'];
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      }
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_panels_pane().
  */
 function nas_preprocess_panels_pane(&$vars) {
   if (is_array($vars['content'])) {
     // Will be used for theme_hook_suggestions in preprocess field.
     $vars['content']['#pane_region'] = $vars['pane']->panel;
+  }
+
+  // Responsive Hero Image logic.
+  if ($vars['pane']->type == 'entity_field' && $vars['pane']->subtype == 'node:field_hero_image') {
+    $node = $vars['content']['#object'];
+    if ($field_items = field_get_items('node', $node, 'field_hero_mobile_image')) {
+      $hero_image = $vars['content'];
+      $hero_image['#prefix'] = '<div class="hide-for-tiny hide-for-small">';
+      $hero_image['#suffix'] = '</div>';
+
+      $hero_mobile_image_file = reset($field_items)['file'];
+
+      $hero_mobile_image = $hero_image;
+      $hero_mobile_image[0]['file']['#item'] = (array) $hero_mobile_image_file;
+      $hero_mobile_image[0]['file']['#image_style'] = 'hero_mobile';
+      $hero_mobile_image['#prefix'] = '<div class="hide-for-medium hide-for-large hide-for-xlarge">';
+      $hero_mobile_image['#suffix'] = '</div>';
+
+      $vars['content'] = array($hero_image, $hero_mobile_image);
+    }
   }
 }
 
@@ -1477,9 +1515,9 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 
   // @Improve
-  //   Since replacement may be a field rendered value we have no access to
-  //   machine value. Thanks God human values for color_mode field are
-  //   Uppercased machine values. This does matter for particular situation.
+  // Since replacement may be a field rendered value we have no access to
+  // machine value. Thanks God human values for color_mode field are
+  // Uppercased machine values. This does matter for particular situation.
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.
