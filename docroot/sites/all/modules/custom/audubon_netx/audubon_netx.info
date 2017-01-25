@@ -1,0 +1,6 @@
+name = Audubon Netx
+description = Contains additional alters.
+core = 7.x
+package = Audubon
+
+dependencies[] = netx

@@ -132,12 +132,12 @@ var Nas = Nas || {};
     attach: function (context, settings) {
       $('.homepage-first-row', context).once('frontpage-equalizer', function () {
         var $row = $(this)
-        .on('after-height-change.fndth.equalizer', function (e) {
+        .on('after-height-change.fndtn.equalizer', function (e) {
           if (StateManager.state === '' || StateManager.state == 'tiny' || StateManager.state == 'small') {
             $('[data-equalizer-watch]', $(this)).removeAttr('style');
           }
         })
-        .trigger('after-height-change.fndth.equalizer');
+        .trigger('after-height-change.fndtn.equalizer');
       });
     }
   };

@@ -1,0 +1,16 @@
+.audubon-netx-preview table thead th {
+    text-align: left;
+}
+.audubon-netx-preview table tbody tr:nth-child(even) {
+    background: #f3f4ee;
+}
+.audubon-netx-preview table tbody tr .form-item {
+    margin: 0;
+}
+.audubon-netx-preview table tbody tr .media-item img {
+    display: inline;
+}
+
+.audubon-netx-preview table tbody tr.netx-selected{
+    background: #F4ECC7;
+}
