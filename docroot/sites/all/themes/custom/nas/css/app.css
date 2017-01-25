@@ -4782,7 +4782,7 @@ small {
     color: #404040;
     font-size: 23px;
     font-weight: 400;
-    line-height: 23px;
+    line-height: 27px;
   }
   .engagement-card.side-note .engagement-card-cta {
     text-align: left;
@@ -14886,13 +14886,13 @@ h2.grey {
   color: #6a84d9;
   display: inline-block;
   font-size: 24px;
-  height: 22px;
+  height: 16px;
   vertical-align: middle;
 }
 @media only screen and (min-width: 601px) {
   .native-plants-full-search-results .icon-camera:before {
     font-size: 28px;
-    height: auto;
+    height: 10px;
     vertical-align: middle;
   }
 }

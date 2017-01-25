@@ -94,7 +94,7 @@
       color: $color-text-gray;
       font-size: $size-text-h4;
       font-weight: 400;
-      line-height: $size-text-h4;
+      line-height: $size-text-h4 + 4px;
     }
     .engagement-card-cta {
       text-align: left;
