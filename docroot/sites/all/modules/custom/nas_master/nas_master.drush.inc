@@ -33,7 +33,15 @@ function drush_nas_master_search_server_local() {
   $entity->save();
 
   // Move indexes to the solr_4_x server.
+  $indexes = array(
+    'default_node_index',
+    'page_manager_pages',
+  );
   foreach (entity_load('search_api_index') as $entity) {
+    if (!in_array($entity->machine_name, $indexes)) {
+      continue;
+    }
+
     $entity->server = $server;
     $entity->save();
   }
