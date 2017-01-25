@@ -16,9 +16,16 @@
 <?php if ($title || $more_link): ?>
   <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?><?php if (!empty($spacebetween)): ?> space-bottom<?php endif; ?>">
     <?php if ($title): ?>
-      <div class="column">
-        <h2 class="thin"><?php print $title; ?></h2>
-      </div>
+        <div class="column">
+            <h2 class="thin"><?php print $title; ?></h2>
+        </div>
+    <?php endif; ?>
+    <?php if ($more_link): ?>
+        <div class="column">
+            <ul class="section-nav inline-list">
+                <li class="first"><?php print $more_link; ?></li>
+            </ul>
+        </div>
     <?php endif; ?>
   </div>
 <?php endif; ?>

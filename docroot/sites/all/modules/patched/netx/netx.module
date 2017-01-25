@@ -136,7 +136,7 @@ function netx_get_attribues($reset = FALSE) {
       $attributes = $cache->data;
     }
     else {
-      $repo = new NetXRepository();
+      $repo = new NetXRepositoryProxy();
 
       // Get extended meta to build a select list options elements.
       $pull_down_options = array();
@@ -191,7 +191,7 @@ function netx_get_categories($reset = FALSE) {
       $categories = $cache->data;
     }
     else {
-      $repo = new NetXRepository();
+      $repo = new NetXRepositoryProxy();
       $categories = $repo->getCategoryTree();
       drupal_alter('netx_categories', $categories);
       // State expiration is controlled.
@@ -810,7 +810,7 @@ function netx_assets_refresh($fid) {
     );
   }
   else {
-    $repo = new NetXRepository();
+    $repo = new NetXRepositoryProxy();
     if ($asset = $repo->getAssetBean($asset_id)) {
       $file->metadata = $asset;
       file_save($file);
@@ -844,7 +844,7 @@ function netx_assets_refresh($fid) {
 function netx_assets_upload($fid) {
   $file = file_load($fid);
 
-  $repo = new NetXRepository();
+  $repo = new NetXRepositoryProxy();
   $success = FALSE;
   try {
     if ($repo->uploadFile($file) === "<exogen>done</exogen>\n") {
@@ -899,7 +899,7 @@ function netx_assets_upload($fid) {
  *   - 'list': An array of found medias.
  */
 function netx_search_images($page, $keyword, $sort = '', $sort_type = 0) {
-  $repo = new NetXRepository();
+  $repo = new NetXRepositoryProxy();
 
   $total = $repo->doSearchAssetListLength($keyword);
   if (!$total) {
@@ -948,7 +948,7 @@ function netx_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
 
   // Fetch fresh attributes from DAM to prevent edit old data.
   // @todo Find a way to fetch only attributes for the asset.
-  $repo = new NetXRepository();
+  $repo = new NetXRepositoryProxy();
   $asset = $repo->getAssetBean($file->metadata['assetId']);
   if (empty($asset['assetId'])) {
     drupal_set_message(t('Asset has been deleted from the DAM'), 'error');
@@ -1207,7 +1207,7 @@ function _netx_form_file_entity_edit_submit($form, &$form_state) {
     // @codingStandardsIgnoreEnd
     $wrapper = file_stream_wrapper_get_instance_by_uri($file->uri);
     $asset_id = $wrapper->getAssetID();
-    $repo = new NetXRepository();
+    $repo = new NetXRepositoryProxy();
     $repo->updateAttributes(
       $asset_id,
       array_keys($attributes_update),
@@ -1299,7 +1299,7 @@ function netx_cfb_form($form, &$form_state, $types, $multiselect) {
  */
 function netx_cfb_form_submit($form, &$form_state) {
   if ($form_state['values']['list'] != 0) {
-    $n = new NetXRepository();
+    $n = new NetXRepositoryProxy();
     $asset = $n->getAssetBean($form_state['values']['list']);
     $form_state['netx']['assets']['list'][$form_state['values']['list']] = $asset;
     netx_add_form_submit($form, $form_state);
@@ -1327,17 +1327,8 @@ function netx_scan_tree() {
     $path = implode('/', $path);
   }
 
-  $n = new NetXRepository();
-  if (!isset($_SESSION['netx_cat_tree']) || (REQUEST_TIME - $_SESSION['netx_cat_tree']['timestamp'] > 60)) {
-    $c = $n->getCategoryTree();
-    $_SESSION['netx_cat_tree'] = array(
-      'category_tree' => $c,
-      'timestamp' => REQUEST_TIME,
-    );
-  }
-  else {
-    $c = $_SESSION['netx_cat_tree']['category_tree'];
-  }
+  $p = new NetXRepositoryProxy();
+  $c = $p->getCategoryTree();
 
   if ($path !== '') {
     $c = _netx_recursive_path_cleanup($path, $c);
@@ -1349,22 +1340,8 @@ function netx_scan_tree() {
   $tree->path = $c['path'];
   $tree->catId = $c['categoryId'];
   $tree->items = empty($c['subCategories']) ? array() : _netx_populate_categories($tree->path, $c['subCategories']);
-  $tree->pager = _netx_prepare_pager_data();
 
   return $tree;
-}
-
-/**
- * Prepares a pager-related response part.
- *
- * @return array
- *   Associative array of pager-related data.
- */
-function _netx_prepare_pager_data() {
-  return array(
-    'pages' => 5,
-    'current' => 0,
-  );
 }
 
 /**
@@ -1377,8 +1354,8 @@ function _netx_prepare_pager_data() {
  *   Array of Assets from NetX. NULL if not found.
  */
 function _netx_populate_assets_for_category($cid) {
-  $n = new NetXRepository();
-  $assets = $n->getAssetsForCategory($cid);
+  $p = new NetXRepositoryProxy();
+  $assets = $p->getAssetsForCategory($cid);
   if (empty($assets)) {
     return NULL;
   }
@@ -1392,6 +1369,8 @@ function _netx_populate_assets_for_category($cid) {
   $length = $assets_per_page;
   $paged_assets = array_slice($assets, $offset, $length);
 
+  $netx_media_ui = &drupal_static('netx_media_ui', FALSE);
+  $netx_media_ui = TRUE;
   foreach ($paged_assets as $id => $adata) {
     // Creating preview for an asset for later usage in UI.
     $file = file_uri_to_object(_netx_build_asset_uri($adata));
@@ -1410,6 +1389,7 @@ function _netx_populate_assets_for_category($cid) {
     $tree[$id]->assetId = $adata['assetId'];
     $tree[$id]->assetPreview = $file->preview;
   }
+  $netx_media_ui = FALSE;
 
   $pager = new stdClass();
   $pager->type = 'pager';
@@ -1524,4 +1504,86 @@ function _netx_populate_categories($path, $categories) {
  */
 function netx_get_authentication_type() {
   return variable_get('netx_authentication_type', NETX_AUTHENTICATION_TYPE_NEW);
+}
+
+/**
+ * Helper function to warmup NetX cache.
+ *
+ * @param int $limit
+ *   Items to
+ *
+ * @void
+ */
+function netx_warmup_cache($limit = 1000, $chunk_size = 4) {
+  $p = new NetXRepositoryProxy();
+  $c = $p->getCategoryTree();
+  $cats_with_assets = netx_recurse_find_cats_with_assets($c);
+  $category_ids = array_keys($cats_with_assets);
+  shuffle($category_ids);
+
+  // Temporarily disable logging.
+  $netx_log_old = variable_get('netx_log_requests', FALSE);
+  variable_set('netx_log_requests', FALSE);
+
+  // Collect absent preview paths.
+  $netx_preview_paths = array();
+  foreach ($category_ids as $cid) {
+    $assets = $p->getAssetsForCategory($cid);
+    if (empty($assets)) {
+      continue;
+    }
+    shuffle($assets);
+
+    foreach ($assets as $id => $adata) {
+      $path = $adata['previewUrl'];
+      $local_file = file_default_scheme() . '://media-netx' . $path;
+      if (!file_exists($local_file)) {
+        $netx_preview_paths[] = $path;
+        $limit--;
+      }
+
+      if (!$limit) {
+        break 2;
+      }
+    }
+  }
+
+  // Restore logging settings.
+  variable_set('netx_log_requests', $netx_log_old);
+
+  if ($netx_preview_paths) {
+    $batch = array(
+      'operations' => array(),
+      'title' => t('Processing NetX cache warmup batch'),
+      'file' => drupal_get_path('module', 'netx') . '/netx.batch.inc',
+    );
+    foreach (array_chunk($netx_preview_paths, $chunk_size) as $chunk) {
+      $batch['operations'][] = array('netx_batch_process_previews_operation', array($chunk));
+    }
+    batch_set($batch);
+  }
+}
+
+/**
+ * Helper function; searchs for categories with assests.
+ *
+ * @param mixed $parent
+ *   Parent subcategory array or NULL for the root.
+ *
+ * @return array
+ *   Associative array of the categories.
+ */
+function netx_recurse_find_cats_with_assets($parent = NULL) {
+  $cats = array();
+  $cat = $parent;
+
+  if ($cat['hasAssets']) {
+    $cats[$cat['categoryId']] = $cat['path'];
+  }
+
+  foreach ($cat['subCategories'] as $subcat) {
+    $cats += netx_recurse_find_cats_with_assets($subcat);
+  }
+
+  return $cats;
 }

@@ -508,26 +508,147 @@ function nas_events_add_existing_file($url, $type, $uid = 1, $status = FILE_STAT
 }
 
 /**
- * Custom page callback.
- *
- * Redirect to corresponding event node on Audubon Works site.
+ * Retrieves Audubon network event UUID.
  *
  * @param object $node
- *   Node object.
+ *   Event node object.
  *
- * @return mixed
+ * @return string
+ *   Audubon network event UUID.
  */
-function nas_events_redirect_to_works($node) {
+function nas_events_get_event_uuid($node) {
   $query = db_select('feeds_item', 'fi')
     ->fields('fi', array('guid'))
     ->condition('entity_type', 'node')
     ->condition('entity_id', $node->nid)
     ->condition('id', 'events_import');
-  $guid = $query->execute()->fetchField();
+  $uuid = $query->execute()->fetchField();
+
+  return $uuid;
+}
+
+/**
+ * Page callback.
+ */
+function nas_events_redirect_to_works($node) {
+  $guid = nas_events_get_event_uuid($node);
 
   if (!$guid) {
     return MENU_NOT_FOUND;
   }
 
   drupal_goto(variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . '/edit-by-uuid/' . $guid);
+}
+
+/**
+ * Helper function; returns event's path by UUID.
+ *
+ * @param string $uuid
+ *   UUID of the event.
+ *
+ * @return mixed
+ *   Absolute path of the node or null.
+ */
+function nas_events_path_by_uuid($uuid) {
+  if (!$nid = _nas_event_get_node_by_uuid($uuid)) {
+    return NULL;
+  }
+
+  if (!$node = node_load($nid)) {
+    return NULL;
+  }
+
+  $path = url('node/' . $nid, array('absolute' => TRUE));
+  drupal_json_output($path);
+  drupal_exit();
+}
+
+/**
+ * Returns whether node is shown using node page.
+ */
+function _nas_events_is_node_full_view_mode_page() {
+  $args = arg();
+  return $args[0] == 'node' && !empty($args[1]) && is_numeric($args[1]) && empty($args[2]);
+}
+
+/**
+ * Implements hook_init().
+ */
+function nas_events_init() {
+  if (!_nas_events_is_node_full_view_mode_page() || !$node = menu_get_object('node')) {
+    return;
+  }
+  if ($node->type != 'event') {
+    return;
+  }
+  if (!$event_origin_site = nas_events_get_event_origin_site($node)) {
+    return;
+  }
+  if ($event_origin_site['machine_name'] == nas_events_get_current_site_machine_name()) {
+    return;
+  }
+
+  nas_events_redirect_to_origin_site($node);
+}
+
+/**
+ * Returns origin site machine name.
+ *
+ * @param object $node
+ *   Event node object.
+ *
+ * @return mixed
+ *   Origin site info or FALSE.
+ */
+function nas_events_get_event_origin_site($node) {
+  static $origin = array();
+
+  if (!isset($origin[$node->nid])) {
+    $uri = variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL);
+    $uri .= 'event/get-origin-site/' . nas_events_get_event_uuid($node);
+    $url = url($uri, array('external' => TRUE));
+    $result = drupal_http_request($url);
+    if ($result->code != 200) {
+      return FALSE;
+    }
+    $origin[$node->nid] = drupal_json_decode($result->data);
+  }
+
+  return $origin[$node->nid];
+}
+
+/**
+ * Redirects to event origin site.
+ *
+ * @param object $node
+ *   Event node object.
+ * @param string $origin_site
+ *   Event node origin site machine name.
+ */
+function nas_events_redirect_to_origin_site($node) {
+  $uuid = nas_events_get_event_uuid($node);
+  $origin_site = nas_events_get_event_origin_site($node);
+
+  $uri = $origin_site['url'] . '/get-path-by-uuid/' . $uuid;
+  $url = url($uri, array('external' => TRUE));
+  $result = drupal_http_request($url);
+
+  // Do not redirect in case S&C site isn't ready.
+  if ($result->code != 200) {
+    return;
+  }
+
+  if ($redirect_url = drupal_json_decode($result->data)) {
+    drupal_goto($redirect_url, array('external' => TRUE));
+  }
+}
+
+/**
+ * Returns current site machine name.
+ *
+ * @return string
+ *   Current site machine name.
+ */
+function nas_events_get_current_site_machine_name() {
+  return variable_get('asc_site_name', 'national');
 }

@@ -3966,3 +3966,10 @@ function nas_master_update_7269() {
     ),
   ));
 }
+
+/**
+ * Enable module Audubon Netx.
+ */
+function nas_master_update_7270() {
+  module_enable(array('audubon_netx'));
+}
