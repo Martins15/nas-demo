@@ -3973,3 +3973,10 @@ function nas_master_update_7269() {
 function nas_master_update_7270() {
   module_enable(array('audubon_netx'));
 }
+
+/**
+ * Enable CDN feature.
+ */
+function nas_master_update_7272() {
+  module_enable(array('nas_cdn_feature'));
+}
