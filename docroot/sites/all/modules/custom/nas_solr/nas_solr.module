@@ -9,13 +9,19 @@
  * Implements hook_entity_load().
  */
 function nas_solr_entity_load($entities, $type) {
+  if ($type != 'search_api_server') {
+    return;
+  }
+
   // Variable solr_core is set in settings.php of demo and development sites.
   $solr_core = variable_get('solr_core', '');
-  if ($type == 'search_api_server' && !empty($solr_core)) {
-    foreach ($entities as &$entity) {
-      if ($entity->machine_name == 'solr_4_x') {
-        $entity->options['path'] = '/solr/' . $solr_core;
-      }
+  if (empty($solr_core)) {
+    return;
+  }
+
+  foreach ($entities as &$entity) {
+    if ($entity->machine_name == 'solr_4_x') {
+      $entity->options['path'] = '/solr/' . $solr_core;
     }
   }
 }
