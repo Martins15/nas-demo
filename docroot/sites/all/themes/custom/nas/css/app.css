@@ -14267,11 +14267,6 @@ h2.grey {
 .node-type-iba .sidebar .social-sharing, .node-type-iba .article-sidebar .social-sharing {
   margin-bottom: 16px;
 }
-@media only screen and (min-width: 768px) {
-  .node-type-iba .sidebar .social-sharing, .node-type-iba .article-sidebar .social-sharing {
-    margin-top: -49px;
-  }
-}
 .node-type-iba .sidebar .sidebar-section, .node-type-iba .article-sidebar .sidebar-section, .node-type-iba .sidebar .article-sidebar-section, .node-type-iba .article-sidebar .article-sidebar-section {
   margin-bottom: 16px;
 }
