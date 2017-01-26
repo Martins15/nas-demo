@@ -22,40 +22,23 @@ function nas_master_drush_command() {
 /**
  * Implements drush_hook_COMMAND().
  *
- * Callback for nas-master-acquia-search-disable Drush command.
+ * Callback for nas-master-search-server-local Drush command.
  */
 function drush_nas_master_search_server_local() {
-  $server = 'solr_4_x';
   // Enable the local SOLR search server.
+  $server = 'solr_4_x';
   $entities = entity_load('search_api_server', FALSE, array('machine_name' => $server));
   $entity = reset($entities);
   $entity->enabled = TRUE;
   $entity->save();
 
-  // Move indexes to the solr_4_x server.
-  $indexes = array(
-    'default_node_index',
-    'page_manager_pages',
-  );
-  foreach (entity_load('search_api_index') as $entity) {
-    if (!in_array($entity->machine_name, $indexes)) {
-      continue;
-    }
-
-    $entity->server = $server;
-    $entity->save();
-  }
-  // Mark everything indexed.
-  db_update('search_api_item')
-    ->fields(array('changed' => 0))
+  // We need to delete the acquia_search server to be able to move indexes to
+  // the local SOLR search server. The direct DB query is used as the exception
+  // is thrown in authenticateResponse() method of SearchApiAcquiaSearchConnection
+  // class if we will use search_api_server_delete() function.
+  db_delete('search_api_server')
+    ->condition('machine_name', 'acquia_search')
     ->execute();
-
-  // We need to delete the server first to be able to disable the module.
-  // db_delete('search_api_server')
-  //   ->condition('machine_name', 'acquia_search')
-  //   ->execute();
-  // Disable Acquia search related modules.
-  // module_disable(array('acquia_search_multi_subs', 'search_api_acquia'));
 }
 
 /**
