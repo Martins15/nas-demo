@@ -222,6 +222,11 @@
     shell: "{{ php_env_vars }} drush vset error_level 2"
     when: pp_environment == "default"
 
+  - name: Disable CDN feature
+    sudo: yes
+    shell: "{{ php_env_vars }} drush vset cdn_status 0"
+    when: pp_environment == "default"
+
   - name: Enable devel and views_ui for dev
     sudo: yes
     shell: "{{ php_env_vars }} drush en -y devel views_ui diff dblog"
