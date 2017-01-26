@@ -15,11 +15,11 @@ $plugin = array(
   'defaults' => array(
     'title' => '¡Atención!',
     'override_title_text' => '¡Atención!',
-    'spanish_message' => 'La página que intenta visitar sólo está disponible en inglés. ¡Disculpa!',
-    'english_message' => 'The page you are about to visit is currently only available in English. Sorry!',
-    'image' => 0,
   ),
 );
+
+define('NAS_LANGUAGE_DEFAULT_SPANISH_MESSAGE', 'La página que intenta visitar sólo está disponible en inglés. ¡Disculpa!');
+define('NAS_LANGUAGE_DEFAULT_ENGLISH_MESSAGE', 'The page you are about to visit is currently only available in English. Sorry!');
 
 /**
  * Callback to provide administrative info.
@@ -27,7 +27,10 @@ $plugin = array(
 function nas_language_message_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
   $block->title = $conf['title'];
-  $block->content = $conf['spanish_message'] . '<br />' . $conf['english_message'];
+  $block->content =
+    variable_get('nas_language_message_fieldset_spanish_message', NAS_LANGUAGE_DEFAULT_SPANISH_MESSAGE) .
+    '<br />' .
+    variable_get('nas_language_message_fieldset_english_message', NAS_LANGUAGE_DEFAULT_ENGLISH_MESSAGE);
   return $block;
 }
 
@@ -35,21 +38,17 @@ function nas_language_message_admin_info($subtype, $conf, $context = NULL) {
  * Configuration form.
  */
 function nas_language_message_edit_form($form, &$form_state) {
-  // We need to merge on the defaults to prevent notices if we have added any
-  // new settings after the pane has already been used on any site.
-  $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
-
   $form['override_title_heading']['#access'] = FALSE;
   $form['spanish_message'] = array(
     '#type' => 'textfield',
     '#title' => t('Spanish message'),
-    '#default_value' => $conf['spanish_message'],
+    '#default_value' => variable_get('nas_language_message_fieldset_spanish_message', NAS_LANGUAGE_DEFAULT_SPANISH_MESSAGE),
     '#size' => 100,
   );
   $form['english_message'] = array(
     '#type' => 'textfield',
     '#title' => t('English message'),
-    '#default_value' => $conf['english_message'],
+    '#default_value' => variable_get('nas_language_message_fieldset_english_message', NAS_LANGUAGE_DEFAULT_ENGLISH_MESSAGE),
     '#size' => 100,
   );
 
@@ -66,7 +65,7 @@ function nas_language_message_edit_form($form, &$form_state) {
         'types' => array('image'),
       ),
     ),
-    '#default_value' => $conf['image'],
+    '#default_value' => variable_get('nas_language_message_fieldset_image', 0),
   );
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'nas_language_message', 'nas_panes', 'plugins/content_types/nas_language_message');
@@ -78,14 +77,12 @@ function nas_language_message_edit_form($form, &$form_state) {
  * Submit handler for configuration.
  */
 function nas_language_message_edit_form_submit(&$form, &$form_state) {
-  foreach (array_keys($form_state['plugin']['defaults']) as $key) {
-    if (array_key_exists($key, $form_state['values'])) {
-      $form_state['conf'][$key] = $form_state['values'][$key];
-    }
-  }
-
   // Form build ID is required for contextual links.
-  $form_state['conf']['form_build_id'] = $form_state['values']['form_build_id'];
+  $form_state['conf']['form_build_id'] = $form_state['input']['form_build_id'];
+
+  variable_set('nas_language_message_fieldset_spanish_message', $form_state['values']['spanish_message']);
+  variable_set('nas_language_message_fieldset_english_message', $form_state['values']['english_message']);
+  variable_set('nas_language_message_fieldset_image', $form_state['values']['image']);
 }
 
 /**
@@ -117,7 +114,7 @@ function nas_language_message_render($subtype, $conf, $args, $context) {
   );
 
   $image_path = $plugin['path'] . '/img/pinguin.png';
-  if ($image = file_load($conf['image'])) {
+  if ($image = file_load(variable_get('nas_language_message_fieldset_image', 0))) {
     $image_path = nas_alters_local_image_uri($image->uri);
   }
 
@@ -148,8 +145,8 @@ function nas_language_message_render($subtype, $conf, $args, $context) {
       'loadingText' => filter_xss($conf['title']),
       'throbber' => theme('nas_language_message', array(
         'title' => filter_xss($conf['title']),
-        'spanish_message' => filter_xss($conf['spanish_message']),
-        'english_message' => filter_xss($conf['english_message']),
+        'spanish_message' => filter_xss(variable_get('nas_language_message_fieldset_spanish_message', NAS_LANGUAGE_DEFAULT_SPANISH_MESSAGE)),
+        'english_message' => filter_xss(variable_get('nas_language_message_fieldset_english_message', NAS_LANGUAGE_DEFAULT_SPANISH_MESSAGE)),
         'image' => theme('image', array(
           'path' => $image_path,
         )),
