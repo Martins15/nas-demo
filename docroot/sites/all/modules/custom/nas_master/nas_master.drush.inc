@@ -26,18 +26,18 @@ function nas_master_drush_command() {
  */
 function drush_nas_master_search_server_local() {
   // Enable the local SOLR search server.
-  $server = 'solr_4_x';
-  $entities = entity_load('search_api_server', FALSE, array('machine_name' => $server));
-  $entity = reset($entities);
-  $entity->enabled = TRUE;
-  $entity->save();
+  $machine_name = 'solr_4_x';
+  search_api_server_enable($machine_name);
 
   // We need to delete the acquia_search server to be able to move indexes to
   // the local SOLR search server. The direct DB query is used as the exception
   // is thrown in authenticateResponse() method of SearchApiAcquiaSearchConnection
-  // class if we will use search_api_server_delete() function.
+  // class if we will use search_api_server_delete() function. The same happens
+  // when trying to use the search_api_server_disable() function; and disabling
+  // it doesn't help so that is why we are deleting it.
+  $machine_name = 'acquia_search';
   db_delete('search_api_server')
-    ->condition('machine_name', 'acquia_search')
+    ->condition('machine_name', $machine_name)
     ->execute();
 }
 
