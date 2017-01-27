@@ -41,11 +41,6 @@ function nas_language_message_edit_form($form, &$form_state) {
     '#title' => t('Override title'),
     '#default_value' => variable_get('nas_language_message_fieldset_override_title_text', NAS_LANGUAGE_DEFAULT_TITLE),
     '#size' => 35,
-    '#states' => array(
-      'invisible' => array(
-        ':input[name="override_title"]' => array('checked' => FALSE),
-      ),
-    ),
   );
   $form['spanish_message'] = array(
     '#type' => 'textfield',
