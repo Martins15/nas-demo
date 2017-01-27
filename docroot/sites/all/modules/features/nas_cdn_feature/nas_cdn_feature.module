@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAS CDN feature feature.
+ */
+
+include_once 'nas_cdn_feature.features.inc';

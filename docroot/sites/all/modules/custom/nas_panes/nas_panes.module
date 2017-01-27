@@ -2672,3 +2672,24 @@ function _nas_panes_ctools_custom_content_type_theme(&$theme, $plugin) {
     'path' => drupal_get_path('module', 'nas_panes') . '/templates',
   );
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Needed to provide 'Language message' form inside site-information form for
+ * better usability.
+ */
+function nas_panes_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+  form_load_include($form_state, 'inc', 'nas_panes', 'plugins/content_types/nas_language_message/nas_language_message');
+  $nas_language_message_form = nas_language_message_edit_form($form, $form_state);
+  $form['nas_language_message_fields'] = $nas_language_message_form['nas_language_message_fields'];
+  $form['nas_language_message_fieldset'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Language message'),
+    '#collapsible' => FALSE,
+  );
+  foreach ($form['nas_language_message_fields']['#value'] as $field) {
+    $form['nas_language_message_fieldset'][$field] = $nas_language_message_form[$field];
+  }
+  array_unshift($form['#submit'], 'nas_language_message_edit_form_submit');
+}
