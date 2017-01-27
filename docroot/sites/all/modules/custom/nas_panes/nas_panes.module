@@ -2682,30 +2682,14 @@ function _nas_panes_ctools_custom_content_type_theme(&$theme, $plugin) {
 function nas_panes_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
   form_load_include($form_state, 'inc', 'nas_panes', 'plugins/content_types/nas_language_message/nas_language_message');
   $nas_language_message_form = nas_language_message_edit_form($form, $form_state);
+  $form['nas_language_message_fields'] = $nas_language_message_form['nas_language_message_fields'];
   $form['nas_language_message_fieldset'] = array(
     '#type' => 'fieldset',
     '#title' => t('Language message'),
     '#collapsible' => FALSE,
   );
-  $form['nas_language_message_fieldset']['override_title'] = array(
-    '#type' => 'checkbox',
-    '#default_value' => variable_get('nas_language_message_fieldset_override_title', FALSE),
-    '#title' => 'Override title',
-    '#id' => 'override-title-checkbox',
-  );
-  $form['nas_language_message_fieldset']['override_title_text'] = array(
-    '#type' => 'textfield',
-    '#default_value' => variable_get('nas_language_message_fieldset_override_title_text', NAS_LANGUAGE_DEFAULT_TITLE),
-    '#size' => 35,
-    '#id' => 'override-title-textfield',
-    '#states' => array(
-      'invisible' => array(
-        ':input[name="override_title"]' => array('checked' => FALSE),
-      ),
-    ),
-  );
-  $form['nas_language_message_fieldset']['spanish_message'] = $nas_language_message_form['spanish_message'];
-  $form['nas_language_message_fieldset']['english_message'] = $nas_language_message_form['english_message'];
-  $form['nas_language_message_fieldset']['image'] = $nas_language_message_form['image'];
-  $form['#submit'][] = 'nas_language_message_edit_form_submit';
+  foreach ($form['nas_language_message_fields']['#value'] as $field) {
+    $form['nas_language_message_fieldset'][$field] = $nas_language_message_form[$field];
+  }
+  array_unshift($form['#submit'], 'nas_language_message_edit_form_submit');
 }

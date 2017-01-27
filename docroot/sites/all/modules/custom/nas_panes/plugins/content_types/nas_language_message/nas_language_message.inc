@@ -12,6 +12,7 @@ $plugin = array(
   'edit form' => 'nas_language_message_edit_form',
   'render callback' => 'nas_language_message_render',
   'hook theme' => 'nas_language_message_theme',
+  'no title override' => TRUE,
 );
 
 define('NAS_LANGUAGE_DEFAULT_TITLE', '¡Atención!');
@@ -35,9 +36,17 @@ function nas_language_message_admin_info($subtype, $conf, $context = NULL) {
  * Configuration form.
  */
 function nas_language_message_edit_form($form, &$form_state) {
-  $form['override_title_heading']['#access'] = FALSE;
-  $form['override_title']['#default_value'] = variable_get('nas_language_message_fieldset_override_title', FALSE);
-  $form['override_title_text']['#default_value'] = variable_get('nas_language_message_fieldset_override_title_text', NAS_LANGUAGE_DEFAULT_TITLE);
+  $form['override_title_text'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Override title'),
+    '#default_value' => variable_get('nas_language_message_fieldset_override_title_text', NAS_LANGUAGE_DEFAULT_TITLE),
+    '#size' => 35,
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="override_title"]' => array('checked' => FALSE),
+      ),
+    ),
+  );
   $form['spanish_message'] = array(
     '#type' => 'textfield',
     '#title' => t('Spanish message'),
@@ -66,6 +75,15 @@ function nas_language_message_edit_form($form, &$form_state) {
     ),
     '#default_value' => variable_get('nas_language_message_fieldset_image', 0),
   );
+  $form['nas_language_message_fields'] = array(
+    '#type' => 'value',
+    '#value' => array(
+      'override_title_text',
+      'spanish_message',
+      'english_message',
+      'image'
+    )
+  );
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'nas_language_message', 'nas_panes', 'plugins/content_types/nas_language_message');
 
@@ -80,11 +98,10 @@ function nas_language_message_edit_form_submit(&$form, &$form_state) {
   if (!empty($form_state['values']['form_build_id'])) {
     $form_state['conf']['form_build_id'] = $form_state['values']['form_build_id'];
   }
-  variable_set('nas_language_message_fieldset_override_title', $form_state['values']['override_title']);
-  variable_set('nas_language_message_fieldset_override_title_text', $form_state['values']['override_title_text']);
-  variable_set('nas_language_message_fieldset_spanish_message', $form_state['values']['spanish_message']);
-  variable_set('nas_language_message_fieldset_english_message', $form_state['values']['english_message']);
-  variable_set('nas_language_message_fieldset_image', $form_state['values']['image']);
+  foreach ($form['nas_language_message_fields']['#value'] as $field) {
+    variable_set('nas_language_message_fieldset_' . $field, $form_state['values'][$field]);
+    unset($form_state['values'][$field]);
+  }
 }
 
 /**
