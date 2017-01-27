@@ -22,7 +22,7 @@
             'attributes' => array('title' => $result->_entity_properties['hero_image_title']),
           ));
       }
-      $title = l($result->_entity_properties['hero_image_title'], $result->_entity_properties['path']);
+      $title = l($result->_entity_properties['title'], $result->_entity_properties['path']);
     ?>
   <div class="columns large-3">
     <div class="editorial-card feature collapse-minimal">
