@@ -2687,6 +2687,23 @@ function nas_panes_form_system_site_information_settings_alter(&$form, &$form_st
     '#title' => t('Language message'),
     '#collapsible' => FALSE,
   );
+  $form['nas_language_message_fieldset']['override_title'] = array(
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('nas_language_message_fieldset_override_title', FALSE),
+    '#title' => 'Override title',
+    '#id' => 'override-title-checkbox',
+  );
+  $form['nas_language_message_fieldset']['override_title_text'] = array(
+    '#type' => 'textfield',
+    '#default_value' => variable_get('nas_language_message_fieldset_override_title_text', NAS_LANGUAGE_DEFAULT_TITLE),
+    '#size' => 35,
+    '#id' => 'override-title-textfield',
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="override_title"]' => array('checked' => FALSE),
+      ),
+    ),
+  );
   $form['nas_language_message_fieldset']['spanish_message'] = $nas_language_message_form['spanish_message'];
   $form['nas_language_message_fieldset']['english_message'] = $nas_language_message_form['english_message'];
   $form['nas_language_message_fieldset']['image'] = $nas_language_message_form['image'];
