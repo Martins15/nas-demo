@@ -1288,11 +1288,6 @@ input[type="checkbox"].np-checkbox {
 }
 
 .engagement-hero__column {
-  & h1.header--orange {
-    @include width-range(0px, #{upper-bound($medium-range)}) {
-      color: $color-orange;
-    }
-  }
   @include breakpoint(large-up) {
     min-width: 333px;
   }

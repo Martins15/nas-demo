@@ -15485,11 +15485,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
-@media only screen and (min-width: 0px) and (max-width: 767px) {
-  .engagement-hero__column h1.header--orange {
-    color: #E18400;
-  }
-}
 @media only screen and (min-width: 768px) {
   .engagement-hero__column {
     min-width: 333px;
