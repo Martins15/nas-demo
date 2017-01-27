@@ -84,13 +84,6 @@
 ?>
 <div class="hero-image<?php print $engagement_card_layout == 'half_black' ? ' half--black' : ''; ?>">
   <?php print render($content['field_image']); ?>
-  <div class="engagement-hero__content hide-for-large hide-for-xlarge">
-    <div class="row">
-      <div class="columns engagement-hero__column">
-        <h1 class="header--orange"><?php print $title; ?></h1>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="row hero-attribution">
@@ -104,7 +97,7 @@
 <div class="engagement-hero__content below-image">
   <div class="row">
     <div class="columns large-6 large-push-6 engagement-hero__column">
-      <h1 class="header--orange hide-for-tiny hide-for-small hide-for-medium"><?php print $title; ?></h1>
+      <h1 class="header--orange"><?php print $title; ?></h1>
       <div class="native-plants-hero-text">
         <?php print render($content['body']); ?>
       </div>
