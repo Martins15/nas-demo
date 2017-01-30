@@ -36,6 +36,13 @@ function nas_events_update_nodes($job = NULL) {
     $source->addConfig($config);
     $source->save();
     $source->import();
+    // Implementing fix from https://www.drupal.org/node/2087091 to hide notices
+    // "Indirect modification of overloaded property FeedsSource::state has no
+    // effect in FeedsSource->import()"
+    // during import.
+    $source->state(FEEDS_FETCH);
+    $source->state(FEEDS_PROCESS);
+    $source->state(FEEDS_PROCESS_CLEAR);
   }
   watchdog('events', "Last time Events were synced at '%time'", array('%time' => date('Y-m-d H:i:s', $timestamp)));
   variable_set('nas_events_last_time_processed', REQUEST_TIME);
