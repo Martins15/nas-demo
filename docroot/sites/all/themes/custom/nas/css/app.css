@@ -7768,11 +7768,6 @@ input.header-search-input,
     display: none;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
-  .primary-nav-item:nth-last-child(2) .primary-sub-nav {
-    right: 0;
-  }
-}
 
 .toggler,
 .primary-nav-toggler {
