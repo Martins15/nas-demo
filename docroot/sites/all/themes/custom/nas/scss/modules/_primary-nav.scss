@@ -73,6 +73,15 @@
     }
   }
 
+  // Adds position left for dropdown menu in the last item.
+  &:nth-last-child(2) {
+    .primary-sub-nav{
+      @include width-range(#{lower-bound($large-range)}, 1200px) {
+        right: 0;
+      }
+    }
+  }
+
 }
 
 .toggler,
