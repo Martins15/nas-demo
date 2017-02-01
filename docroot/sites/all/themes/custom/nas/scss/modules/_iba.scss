@@ -44,10 +44,6 @@
 
     .social-sharing {
       margin-bottom: 16px;
-
-      @include breakpoint(large-up) {
-        margin-top: -49px;
-      }
     }
 
     .sidebar-section {
