@@ -92,11 +92,18 @@
         setTimeout(function () {
           // Do not work with outer rows.
           $('.row').has(SELECTOR_STRING).not($('.row').has('.row')).each(function () {
-            equalizeCardsStart(
-              $(this),
-              $(".editorial-card", $(this)),
-              $(".engagement-card", $(this))
-            );
+            $(".editorial-card", $(this)).removeAttr("style");
+            $(".engagement-card", $(this)).removeAttr("style");
+
+            // Check screen is desktop.
+            if (window.matchMedia("(min-width: 768px)").matches) {
+              equalizeCardsStart(
+                $(this),
+                $(".editorial-card", $(this)),
+                $(".engagement-card", $(this))
+              );
+            }
+
           });
           // 2x Editorial & 2x small blocks.
           var cards = $('.editorial-card-2x-small .columns > .editorial-card');
@@ -112,6 +119,9 @@
         $('body.panels-ipe').bind('endIPE', function () {
           equalizeCardsInit();
         });
+      });
+      $(window).resize(function (e) {
+        equalizeCardsInit();
       });
     }
   };

@@ -336,11 +336,17 @@
   .editorial-card {
     border: none;
     box-shadow: none;
+    margin-bottom: auto;
   }
 
   .editorial-card-content {
     padding-right: 0;
     padding-left: 0;
+    padding-bottom: 0;
+
+    @include width-range(0px, 768px) {
+      min-height: 75px;
+    }
   }
 }
 
