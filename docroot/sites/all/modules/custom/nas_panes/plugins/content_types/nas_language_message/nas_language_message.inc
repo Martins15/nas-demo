@@ -140,7 +140,7 @@ function nas_language_message_render($subtype, $conf, $args, $context) {
       'modalSize' => array(
         'type' => 'notscale',
         'width' => 400,
-        'height' => 320,
+        'height' => 'auto',
         'addWidth' => 0,
         'addHeight' => 0,
         'contentRight' => 0,
