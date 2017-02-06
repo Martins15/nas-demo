@@ -4018,3 +4018,14 @@ function nas_master_update_7273() {
     ),
   ));
 }
+
+/**
+ * Revert IBA State view for add sortable fields.
+ */
+function nas_master_update_7274() {
+  features_revert(array(
+    'nas_iba_state' => array(
+      'views_view',
+    ),
+  ));
+}
