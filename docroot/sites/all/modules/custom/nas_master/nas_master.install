@@ -4029,3 +4029,10 @@ function nas_master_update_7274() {
     ),
   ));
 }
+
+/**
+ * Enable Quiz module and dependency module Rules.
+ */
+function nas_master_update_7275() {
+  module_enable(array('quiz', 'rules'));
+}
