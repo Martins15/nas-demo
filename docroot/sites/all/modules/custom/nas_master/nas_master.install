@@ -4020,8 +4020,19 @@ function nas_master_update_7273() {
 }
 
 /**
- * Enable Quiz module and dependency module Rules.
+ * Revert IBA State view for add sortable fields.
  */
 function nas_master_update_7274() {
+  features_revert(array(
+    'nas_iba_state' => array(
+      'views_view',
+    ),
+  ));
+}
+
+/**
+ * Enable Quiz module and dependency module Rules.
+ */
+function nas_master_update_7275() {
   module_enable(array('quiz', 'rules'));
 }
