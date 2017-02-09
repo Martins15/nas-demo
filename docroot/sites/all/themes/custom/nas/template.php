@@ -25,6 +25,15 @@ function nas_js_alter(&$javascript) {
   foreach ($javascript as $path => $js) {
     if (strpos($path, 'jquery.min.js') !== FALSE) {
       unset($javascript[$path]);
+
+      // Newer jQuery version for Native Plants.
+      if ($_GET['q'] == 'native-plants/search') {
+        $new_jquery_path = 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js';
+        $path = $new_jquery_path;
+        $js['data'] = $new_jquery_path;
+        $js['version'] = '1.8.3';
+      }
+
       $script_tag = array(
         '#theme' => 'html_tag',
         '#tag' => 'script',
@@ -38,6 +47,26 @@ function nas_js_alter(&$javascript) {
       $jquery = drupal_render($script_tag);
     }
   }
+}
+
+/**
+ * Implements hook_css_alter().
+ */
+function nas_css_alter(&$css) {
+  unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
+  unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
+  unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
+  unset($css[drupal_get_path('module', 'colorbox') . '/styles/plain/colorbox_style.css']);
+
+  // Unset Owl Carousel CSS v1 as we are using v2 for Native Plants.
+  if ($_GET['q'] == 'native-plants/search') {
+    unset($css['sites/all/themes/custom/nas/js/vendor/owl-carousel/owl.carousel.css']);
+  }
+
+  // Disable aggregation for main styles.
+  // IE8 can't recognize breakpoints when use @import for styles.
+  // @todo should be improved. Maybe affect to performance.
+  $css['sites/all/themes/custom/nas/css/app.css']['preprocess'] = FALSE;
 }
 
 /**
@@ -766,7 +795,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   $vars['image_uri'] = '';
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
+  $vars['links_open_new_tab'] = !empty($node->links_open_new_tab);
   $image_uri = FALSE;
+
   if ($image_items = field_get_items('node', $node, 'field_editorial_card_image')) {
     $image_uri = $image_items[0]['uri'];
   }
@@ -783,10 +814,17 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
       'path' => image_style_url('article_teaser', $image_uri),
       'alt' => $node->title,
     ));
-    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+
+    $link_options = array(
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    );
+
+    if (!empty($vars['links_open_new_tab'])) {
+      $link_options['attributes']['target'] = '_blank';
+    }
+
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, $link_options);
     $editorial_listings_view_modes = array(
       'nas_teaser_related_news',
       'nas_node_teaser_no_section_link',
@@ -800,18 +838,22 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
         'alt' => $node->title,
       ));
       $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-          'html' => TRUE,
-          'attributes' => array('title' => $node->title),
-        ));
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
     }
   }
 
   $title = _nas_editorial_cards_get_title($node);
   $vars['title'] = check_plain($title);
-  $vars['title_link'] = l($title, 'node/' . $node->nid);
 
+  $link_options = array();
+  if (!empty($vars['links_open_new_tab'])) {
+    $link_options['attributes'] = array('target' => '_blank');
+  }
+
+  $vars['title_link'] = l($title, 'node/' . $node->nid, $link_options);
   $vars['subtitle'] = _nas_editorial_cards_get_subtitle($node);
-
   $vars['url'] = url('node/' . $node->nid);
 
   if ($vars['type'] == 'project') {
@@ -1069,21 +1111,6 @@ function nas_preprocess_page(&$vars) {
 }
 
 /**
- * Implements hook_css_alter().
- */
-function nas_css_alter(&$css) {
-  unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
-  unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
-  unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
-  unset($css[drupal_get_path('module', 'colorbox') . '/styles/plain/colorbox_style.css']);
-
-  // Disable aggregation for main styles.
-  // IE8 can't recognize breakpoints when use @import for styles.
-  // @todo should be improved. Maybe affect to performance.
-  $css['sites/all/themes/custom/nas/css/app.css']['preprocess'] = FALSE;
-}
-
-/**
  * Implements hook_preprocess_site_template_small_header().
  */
 function nas_preprocess_site_template_small_header(&$vars) {
@@ -1165,15 +1192,15 @@ function nas_theme_registry_alter(&$theme_registry) {
   return $theme_registry;
 }
 
-/*
+/**
  * Implements theme_image().
- * remove height and width to make image responsible
  */
 function nas_image($variables) {
   // These styles shouldn't have width and height for responsive design.
   $remove_attr_for = array(
     'hero_mobile',
     'hero_image',
+    'hero_mobile_image',
     'bio_image',
     'front_flyway_image',
     'conservation_strategy_icon',
@@ -1326,12 +1353,50 @@ function nas_preprocess_field_field_hero_image(&$variables) {
 }
 
 /**
+ * Preprocess function for media fields.
+ */
+function nas_preprocess_field_field_hero_mobile_image(&$variables) {
+  if (function_exists('_nas_panes_format_image_attribution')) {
+    foreach ($variables['items'] as &$item) {
+      if (!empty($item['file']['#item'])) {
+        $file = (object) $item['file']['#item'];
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      }
+      elseif (!empty($item['file']['#file'])) {
+        $file = (object) $item['file']['#file'];
+        $item['#attributions'] = _nas_panes_format_image_attribution($file);
+      }
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_panels_pane().
  */
 function nas_preprocess_panels_pane(&$vars) {
   if (is_array($vars['content'])) {
     // Will be used for theme_hook_suggestions in preprocess field.
     $vars['content']['#pane_region'] = $vars['pane']->panel;
+  }
+
+  // Responsive Hero Image logic.
+  if ($vars['pane']->type == 'entity_field' && $vars['pane']->subtype == 'node:field_hero_image') {
+    $node = $vars['content']['#object'];
+    if ($field_items = field_get_items('node', $node, 'field_hero_mobile_image')) {
+      $hero_image = $vars['content'];
+      $hero_image['#prefix'] = '<div class="hide-for-tiny hide-for-small">';
+      $hero_image['#suffix'] = '</div>';
+
+      $hero_mobile_image_file = reset($field_items)['file'];
+
+      $hero_mobile_image = $hero_image;
+      $hero_mobile_image[0]['file']['#item'] = (array) $hero_mobile_image_file;
+      $hero_mobile_image[0]['file']['#image_style'] = 'hero_mobile';
+      $hero_mobile_image['#prefix'] = '<div class="hide-for-medium hide-for-large hide-for-xlarge">';
+      $hero_mobile_image['#suffix'] = '</div>';
+
+      $vars['content'] = array($hero_image, $hero_mobile_image);
+    }
   }
 }
 
@@ -1477,9 +1542,9 @@ function nas_preprocess_nas_article_fullscreen(&$variables) {
   $color_mode = ctools_context_keyword_substitute($variables['settings']['color_mode'], array(), $variables['display']->context);
 
   // @Improve
-  //   Since replacement may be a field rendered value we have no access to
-  //   machine value. Thanks God human values for color_mode field are
-  //   Uppercased machine values. This does matter for particular situation.
+  // Since replacement may be a field rendered value we have no access to
+  // machine value. Thanks God human values for color_mode field are
+  // Uppercased machine values. This does matter for particular situation.
   $color_mode = strtolower(trim($color_mode));
 
   // Allowed values are limited to 'dark' and 'light'. Default value is 'dark'.

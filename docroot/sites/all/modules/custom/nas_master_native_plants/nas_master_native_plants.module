@@ -68,6 +68,16 @@ function nas_master_native_plants_menu() {
     'file' => 'nas_master_native_plants.admin.inc',
   );
 
+  $items['native-plants/ajax/%'] = array(
+    'title' => 'Native Plants data',
+    'description' => 'Native Plants data by ZIP code',
+    'page callback' => 'nas_master_native_plants_data_zipcode',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'file' => 'nas_master_native_plants.angular.inc',
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
@@ -121,14 +131,26 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_master_native_plants_form_nursery_node_form_alter(&$form, &$form_state, $form_id) {
-  // Remove Canada states.
-  $states = &$form['field_nursery_states'][LANGUAGE_NONE];
+  _nas_master_native_plants_set_online_states($form['field_nursery_states'][LANGUAGE_NONE], 'field_nursery_online');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_community_resource_node_form_alter(&$form, &$form_state) {
+  _nas_master_native_plants_set_online_states($form['field_community_resource_states'][LANGUAGE_NONE], 'field_community_res_state_office');
+}
+
+/**
+ * Specific settings for states field.
+ */
+function _nas_master_native_plants_set_online_states(&$states, $field_name) {
   _nas_master_native_plants_remove_canada_states($states);
 
   // Show states checkboxes only if Nursery is online one.
   $states['#states'] = array(
     'visible' => array(
-      'input[name^="field_nursery_online"]' => array(
+      'input[name^="' . $field_name . '"]' => array(
         'checked' => TRUE,
       ),
     ),
@@ -174,299 +196,14 @@ function nas_master_native_plants_generate_plant_id($params) {
  * Implements hook_theme().
  */
 function nas_master_native_plants_theme($existing, $type, $theme, $path) {
-  $common_theme = drupal_common_theme();
-  $variables = $common_theme['pager']['variables'];
   return array(
-    'nas_master_native_plants_pager' => array(
-      'variables' => $variables,
-      'template' => 'templates/nas-master-native-plants-pager',
-      'preprocess functions' => array('nas_master_native_plants_pager_preprocess'),
-    ),
     'nas_master_native_plants_mail_native_plants_list' => array(
       'variables' => array(
         'permalink' => NULL,
       ),
       'template' => 'templates/nas-master-native-plants-mail-native-plants-list',
     ),
-    'nas_master_native_plants_views_exposed_form' => array(
-      'render element' => 'form',
-      'template' => 'templates/nas-master-native-plants-views-exposed-form',
-    ),
   );
-}
-
-/**
- * Preprocess function for the nas_master_native_plants_pager.
- */
-function nas_master_native_plants_pager_preprocess(&$variables) {
-  $tags = $variables['tags'];
-  $element = $variables['element'];
-  $parameters = $variables['parameters'];
-  $quantity = $variables['quantity'];
-  global $pager_page_array, $pager_total, $pager_total_items;
-  $variables['total_items'] = $pager_total_items[$element];
-
-  // Calculate various markers within this pager piece:
-  // Middle is used to "center" pages around the current page.
-  $pager_middle = ceil($quantity / 2);
-  // current is the page we are currently paged to
-  $pager_current = $pager_page_array[$element] + 1;
-  // first is the first page listed by this pager piece (re quantity)
-  $pager_first = $pager_current - $pager_middle + 1;
-  // last is the last page listed by this pager piece (re quantity)
-  $pager_last = $pager_current + $quantity - $pager_middle;
-  // max is the maximum page number
-  $pager_max = $pager_total[$element];
-  // End of marker calculations.
-
-  // Prepare for generation loop.
-  $i = $pager_first;
-  if ($pager_last > $pager_max) {
-    // Adjust "center" if at end of query.
-    $i = $i + ($pager_max - $pager_last);
-    $pager_last = $pager_max;
-  }
-  if ($i <= 0) {
-    // Adjust "center" if at start of query.
-    $pager_last = $pager_last + (1 - $i);
-    $i = 1;
-  }
-  // End of generation loop preparation.
-
-  $li_first = theme('pager_first', array('text' => 1, 'element' => $element, 'parameters' => $parameters));
-  $li_previous = theme('pager_previous', array('text' => (isset($tags[1]) ? $tags[1] : t('‹ previous')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_next = theme('pager_next', array('text' => (isset($tags[3]) ? $tags[3] : t('next ›')), 'element' => $element, 'interval' => 1, 'parameters' => $parameters));
-  $li_last = theme('pager_last', array('text' => $pager_max, 'element' => $element, 'parameters' => $parameters));
-
-  $items = array(
-    'first' => '',
-    'previous' => '',
-    'next' => '',
-    'last' => '',
-  );
-  if ($pager_total[$element] > 1) {
-    if ($li_first && $i > 1) {
-      $items['first'] = $li_first;
-    }
-    if ($li_previous) {
-      $items['previous'] = $li_previous;
-    }
-    else {
-      $items['previous'] = '<span class="pager-prev">' . (isset($tags[1]) ? $tags[1] : t('‹ previous')) . '</span>';
-    }
-
-    // When there is more than one page, create the pager list.
-    if ($i != $pager_max) {
-      if ($i > 1) {
-        $items[] = '<span>...</span>';
-      }
-      // Now generate the actual pager piece.
-      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
-        if ($i < $pager_current) {
-          $items[] = theme('pager_previous', array(
-            'text' => $i,
-            'element' => $element,
-            'interval' => ($pager_current - $i),
-            'parameters' => $parameters
-          ));
-        }
-        if ($i == $pager_current) {
-          $items[] = '<span>' . $i . '</span>';
-        }
-        if ($i > $pager_current) {
-          $items[] = theme('pager_next', array(
-            'text' => $i,
-            'element' => $element,
-            'interval' => ($i - $pager_current),
-            'parameters' => $parameters
-          ));
-        }
-      }
-      if ($i < $pager_max) {
-        $items[] = '<span>...</span>';
-      }
-    }
-    // End generation.
-    if ($li_next) {
-      $items['next'] = $li_next;
-    }
-    else {
-      $items['next'] = '<span class="pager-next">' . (isset($tags[3]) ? $tags[3] : t('next ›')) . '</span>';
-    }
-    if ($li_last && $i <= $pager_max) {
-      $items['last'] = $li_last;
-    }
-  }
-  $variables['items'] = $items;
-
-  // Define variable required for the template_process() function.
-  $variables['classes_array'] = array();
-  $variables['attributes_array'] = array();
-  $variables['title_attributes_array'] = array();
-  $variables['content_attributes_array'] = array();
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function nas_master_native_plants_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_state['view']->name != 'native_plants_search') {
-    return;
-  }
-  // Do not process cloned view.
-  if (isset($form_state['view']->nas_master_native_plants_cloned) && $form_state['view']->nas_master_native_plants_cloned) {
-    return;
-  }
-
-  switch ($form_state['view']->current_display) {
-    case 'native_plants_search_pane':
-      $form['#theme'] = 'nas_master_native_plants_views_exposed_form';
-
-      $form['#attributes'] = array(
-        'class' => array(
-          'native-plants-search-form',
-          'native-plants-search-form-inline',
-          'js-search-collapsible',
-          'collapsed',
-        ),
-      );
-
-      $form['zipcode']['#attributes'] = array(
-        'class' => array(
-          'native-plants-search-form--zip-code',
-        ),
-        'placeholder' => t('U.S. ZIP code'),
-        'data-native-plants-fields-sync' => 'zipcode',
-        'data-native-plants-fields-sync-override' => 1,
-      );
-      _nas_master_native_plants_attach_fields_sync($form);
-
-      $form['zipcode']['#element_validate'] = array(
-        'nas_master_native_plants_element_validate_zipcode_us',
-      );
-
-      $form['attribute']['#options']['All'] = t('All types of plants');
-      $form['bird_type']['#options']['All'] = t('Attracts: Any type of bird');
-
-      $form['submit']['#attributes'] = array(
-        'class' => array(
-          'native-plants-search-form--submit',
-          'button',
-          'tomato',
-          'large',
-        ),
-      );
-
-      break;
-
-    case 'native_plants_search_pane_tier1':
-      $form['#attributes'] = array(
-        'style' => array(
-          'display: none;',
-        ),
-      );
-
-      $form['zipcode']['#attributes'] = array(
-        'data-native-plants-fields-sync' => 'zipcode',
-        'data-native-plants-fields-sync-override' => 1,
-      );
-      _nas_master_native_plants_attach_fields_sync($form);
-
-      $form['attribute_tier1']['#options']['All'] = t('All types of plants');
-      $form['bird_type_tier1']['#options']['All'] = t('Attracts: Any type of bird');
-
-      $form['submit']['#id'] = 'edit-submit-native-plants-search-tier1';
-
-      break;
-  }
-
-  if (variable_get('nas_master_native_plants_zip_fips', 0)) {
-    $form['zipcode']['#element_validate'][] = 'nas_master_native_plants_element_validate_zipfips';
-  }
-
-  // We need to execute the view to get the array of results to apply filters to.
-  $view = $form_state['view']->clone_view();
-  $view->nas_master_native_plants_cloned = TRUE;
-  $view->execute($form_state['view']->current_display);
-
-  // Remove filter values that will produce no results with already set other filters.
-  $results_unfiltered = array();
-  if (isset($view->result_unfiltered)) {
-    $results_unfiltered = $view->result_unfiltered;
-  }
-  $view->destroy();
-
-  if (!$results_unfiltered) {
-    return;
-  }
-
-  $combinations = array(
-    'attribute' => array('bird_type'),
-    'bird_type' => array('attribute'),
-    'attribute_tier1' => array('bird_type_tier1'),
-    'bird_type_tier1' => array('attribute_tier1'),
-  );
-  foreach ($combinations as $filter_to_filter => $filters) {
-    if (!isset($form[$filter_to_filter])) {
-      continue;
-    }
-
-    $results_filtered = $results_unfiltered;
-
-    // Filter the unfiltered results by the value of all other filters.
-    foreach ($filters as $filter) {
-      $machine_values = array();
-      if (isset($form_state['input'][$filter]) && $term = taxonomy_term_load($form_state['input'][$filter])) {
-        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
-        foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
-          $machine_values[] = $field_wrapper->value();
-        }
-      }
-      if ($machine_values) {
-        foreach ($results_filtered as $key => $result) {
-          $unset = TRUE;
-          foreach ($machine_values as $value) {
-            if ($result->$value) {
-              $unset = FALSE;
-            }
-          }
-          if ($unset) {
-            unset($results_filtered[$key]);
-          }
-        }
-      }
-    }
-
-    // Determine our filter allowed values using the collection of keys present
-    // in the result set filtered by all other filters.
-    $collection = array();
-    foreach ($results_filtered as $result) {
-      foreach ($result as $key => $value) {
-        if (!empty($value) && !isset($collection[$key])) {
-          $collection[$key] = $key;
-        }
-      }
-    }
-
-    foreach ($form[$filter_to_filter]['#options'] as $term_tid => $term_name) {
-      if (!$term = taxonomy_term_load($term_tid)) {
-        continue;
-      }
-      $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
-
-      $unset = TRUE;
-      foreach ($term_wrapper->field_np_attr_machine_attributes as $field_wrapper) {
-        $value = $field_wrapper->value();
-        if (isset($collection[$value])) {
-          $unset = FALSE;
-        }
-      }
-
-      if ($unset) {
-        unset($form[$filter_to_filter]['#options'][$term_tid]);
-      }
-    }
-  }
 }
 
 /**
@@ -528,24 +265,6 @@ function nas_master_native_plants_element_validate_zipfips($element, &$form_stat
 }
 
 /**
- * Implements hook_views_plugins().
- */
-function nas_master_native_plants_views_plugins() {
-  return array(
-    'pager' => array(
-      'nas_master_native_plants_views_pager_plugin' => array(
-        'title' => t('Paged output, NAS Master Native Plants pager'),
-        'short title' => t('NAS Master Native Plants pager'),
-        'handler' => 'nas_master_native_plants_views_pager_plugin',
-        'help' => t('Paged output, NAS Master Native Plants pager'),
-        'help topic' => 'pager-nas-master-native-plants-pager',
-        'uses options' => TRUE,
-      ),
-    ),
-  );
-}
-
-/**
  * Helper function; retrieves image attributions by plantid.
  *
  * @param string $plant_id
@@ -602,266 +321,6 @@ function nas_master_native_plants_get_default_image_attribution() {
   );
 
   return _nas_panes_format_image_attribution($fake_file);
-}
-
-/**
- * Implements hook_preprocess_views_view().
- */
-function nas_master_native_plants_preprocess_views_view(&$vars) {
-  if ($vars['view']->name != 'native_plants_search') {
-    return;
-  }
-
-  // Add required assets.
-  $theme_path = drupal_get_path('theme', 'nas');
-  drupal_add_css($theme_path . '/js/vendor/owl-carousel/owl.transitions.css');
-  drupal_add_js($theme_path . '/js/vendor/owl-carousel/owl.carousel.min.js');
-  $module_path = drupal_get_path('module', 'nas_master_native_plants');
-  drupal_add_js($module_path . '/js/nas_master_native_plants.js', array('scope' => 'footer'));
-  drupal_add_js($module_path . '/js/nas_master_native_plants.ajax_screen_lock.js', array('scope' => 'footer'));
-
-  $vars['total_items'] = 0;
-  if (isset($vars['view']->query->pager)) {
-    $vars['total_items'] = $vars['view']->query->pager->total_items;
-  }
-
-  if (empty($vars['view']->result)) {
-    return;
-  }
-
-  foreach ($vars['view']->result as &$result) {
-    if (user_access('create native_plant content')) {
-      $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
-        'query' => array(
-          'CommonName' => $result->CommonName,
-          'ScientificName' => $result->ScientificName,
-          'Family' => $result->Family,
-          'PlantID' => $result->PlantID,
-          'PlantImg' => $result->PlantImg,
-        ),
-      ));
-    }
-
-    // Add Plant data attributes.
-    $result->PlantDataAttributes = 'data-plant-id="' . $result->PlantID . '" '
-      . 'data-plant-common-name="' . $result->CommonName . '" '
-      . 'data-plant-scientific-name="' . $result->ScientificName . '" '
-      . 'data-plant-bird-types="' . implode(',', array_keys($result->BirdTypes)) . '"';
-
-    // Randomize bird type cards ordering for Tier1 display.
-    if ($vars['view']->current_display == 'native_plants_search_pane_tier1') {
-      shuffle($result->BirdTypes);
-    }
-
-    // Prepare images.
-    $result->PlantImgDesktop = '';
-    $result->PlantImgMobile = '';
-    $result->PlantImgLightbox = '';
-    if ($result->LocalPlantImg) {
-      $result->PlantImgDesktop = theme('image_style', array(
-        'path' => nas_alters_local_image_uri($result->LocalPlantImg['uri']),
-        'style_name'=> 'native_plant_desktop',
-        'alt' => $result->CommonName,
-        'attributes' => array(
-          'data-caption' => $result->LocalPlantImg['attribution'],
-        ),
-      ));
-      $result->PlantImgMobile = theme('image_style', array(
-        'path' => nas_alters_local_image_uri($result->LocalPlantImg['uri']),
-        'style_name'=> 'native_plant_mobile',
-        'alt' => $result->CommonName,
-      ));
-      $result->PlantImgLightbox = image_style_url('native_plant_lightbox', nas_alters_local_image_uri($result->LocalPlantImg['uri']));
-    }
-    elseif ($result->PlantImg) {
-      $params = array(
-        'path' => $result->PlantImg,
-        'style_name'=> 'native_plant_desktop',
-        'alt' => $result->CommonName,
-      );
-      if ($attribution = nas_master_native_plants_get_image_attributions_by_plantid($result->PlantID)) {
-        $params['attributes'] = array(
-          'data-caption' => $attribution,
-        );
-      }
-      $result->PlantImgDesktop = theme('imagecache_external', $params);
-      $result->PlantImgMobile = theme('imagecache_external', array(
-        'path' => $result->PlantImg,
-        'style_name'=> 'native_plant_mobile',
-        'alt' => $result->CommonName,
-      ));
-      if ($path = imagecache_external_generate_path($result->PlantImg)) {
-        $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $path);
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_views_ajax_data_alter().
- */
-function nas_master_native_plants_views_ajax_data_alter(&$commands, $view) {
-  if ($view->name != 'native_plants_search') {
-    return;
-  }
-
-  // Add validation errors.
-  if ($messages = theme('status_messages')) {
-    $commands[] = ajax_command_prepend(
-      '#views-exposed-form-native-plants-search-native-plants-search-pane',
-      '<div class="row">' . $messages . '</div>'
-    );
-  }
-
-  if (!empty($view->filter['value']->value) && _nas_master_native_plants_zipcode_is_hawaii($view->filter['value']->value)) {
-    ctools_include('ajax');
-    $commands[] = ctools_ajax_command_redirect('/native-plants/hawaii');
-    $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
-    return;
-  }
-
-  // Handle best results view refresh.
-  if ($view->current_display == 'native_plants_search_pane_tier1') {
-    foreach ($commands as &$cmd) {
-      $cmd['selector'] = '.view-display-id-native_plants_search_pane_tier1';
-    }
-
-    // Refresh exposed form.
-    $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
-    if ($view->display_handler->get_option('exposed_block')) {
-      $form = $exposed_block_plugin->render_exposed_form(TRUE);
-      $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
-      array_unshift($commands, ajax_command_replace($id, $form));
-    }
-  }
-
-  // Handle full results view refresh.
-  if ($view->current_display != 'native_plants_search_pane') {
-    return;
-  }
-  foreach ($commands as &$cmd) {
-    $cmd['selector'] = '.view-display-id-native_plants_search_pane';
-  }
-
-  // Refresh exposed form.
-  $exposed_block_plugin = $view->display_handler->get_plugin('exposed_form');
-  if ($view->display_handler->get_option('exposed_block')) {
-    $form = $exposed_block_plugin->render_exposed_form(TRUE);
-    $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $view->name . '-' . $view->display_handler->display->id);
-    array_unshift($commands, ajax_command_replace($id, $form));
-  }
-
-  // Update best results view and panes only if there was ZIP code change.
-  if (!isset($_COOKIE['native_plants_zipcode_changed'])) {
-    return;
-  }
-  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
-
-  // Update best results view.
-  $br_view = views_get_view('native_plants_search');
-  $br_view_html = $br_view->preview('native_plants_search_pane_tier1');
-  $selector = '.view-display-id-native_plants_search_pane_tier1';
-  $command = ajax_command_replace($selector, $br_view_html);
-  array_unshift($commands, $command);
-  // Refresh best results exposed form.
-  $br_view->set_display('native_plants_search_pane_tier1');
-  $exposed_block_plugin = $br_view->display_handler->get_plugin('exposed_form');
-  if ($br_view->display_handler->get_option('exposed_block')) {
-    $form = $exposed_block_plugin->render_exposed_form(TRUE);
-    $id = '#' . drupal_clean_css_identifier('views-exposed-form-' . $br_view->name . '-' . $br_view->display_handler->display->id);
-    array_unshift($commands, ajax_command_replace($id, $form));
-  }
-
-  // Load the page and find handler to update the panes.
-  $page = page_manager_page_load('native_plants_search');
-  $task = page_manager_get_task($page->task);
-  $handlers = page_manager_load_task_handlers($task, $page->name);
-  foreach ($handlers as $handler) {
-    if ($handler->name === 'page_native_plants_search__native_plants_search_page') {
-      break;
-    }
-  }
-
-  // Load display if it is empty.
-  if (empty($handler->conf['display']) && !empty($handler->conf['did'])) {
-    $handler->conf['display'] = panels_load_display($handler->conf['did']);
-  }
-  if (empty($handler->conf['display']->content)) {
-    return;
-  }
-
-  // Update panes.
-  foreach ($handler->conf['display']->content as $pane) {
-    $selector = '';
-    switch ($pane->subtype) {
-      case 'native_plants_you_near_audubon':
-        $selector = '.native-plants-you-near-audubon';
-        break;
-
-      case 'native_plants_audubon_near_you':
-        $selector = '.native-plants-audubon-near-you';
-        break;
-
-      case 'native_plants_nurseries_near_you':
-        if ($pane->configuration['online']) {
-          $selector = '.native-plants-nurseries-near-you-online';
-        }
-        else {
-          $selector = '.native-plants-nurseries-near-you-offline';
-        }
-        break;
-    }
-
-    if ($selector) {
-      $output = _nas_master_native_plants_render_pane($pane, $handler->conf['display']);
-      $command = ajax_command_replace($selector, $output);
-      array_unshift($commands, $command);
-    }
-  }
-}
-
-/**
- * Helper function to render pane.
- */
-function _nas_master_native_plants_render_pane(&$pane, $display) {
-  module_invoke_all('panels_pane_prerender', $pane);
-  ctools_include('content');
-  $content = ctools_content_render($pane->type, $pane->subtype, $pane->configuration, array(), $display->args, $display->context);
-
-  foreach (module_implements('panels_pane_content_alter') as $module) {
-    $function = $module . '_panels_pane_content_alter';
-    $function($content, $pane, $display->args, $display->context, $this, $display);
-  }
-
-  // If there's content, check if we've css configuration to add.
-  if (!empty($content)) {
-    // Pass long the css_id that is usually available.
-    if (!empty($pane->css['css_id'])) {
-      $content->css_id = check_plain($pane->css['css_id']);
-    }
-
-    // Pass long the css_class that is usually available.
-    if (!empty($pane->css['css_class'])) {
-      $content->css_class = check_plain($pane->css['css_class']);
-    }
-  }
-
-  if (!empty($content->content)) {
-    if (!empty($pane->style['style'])) {
-      $style = panels_get_style($pane->style['style']);
-
-      if (isset($style) && isset($style['render pane'])) {
-        $output = theme($style['render pane'], array('content' => $content, 'pane' => $pane, 'display' => $display, 'style' => $style, 'settings' => $pane->style['settings']));
-
-        // This could be null if no theme function existed.
-        if (isset($output)) {
-          return $output;
-        }
-      }
-    }
-
-    return theme('panels_pane', array('content' => $content, 'pane' => $pane, 'display' => $display));
-  }
 }
 
 /**
@@ -1141,4 +600,238 @@ function nas_master_native_plants_feeds_presave(FeedsSource $source, $entity, $i
       }
       break;
   }
+}
+
+/**
+ * Implements hook_library().
+ */
+function nas_master_native_plants_library() {
+  $libraries['angularjs'] = array(
+    'title' => 'AngularJS',
+    'website' => 'https://angularjs.org/',
+    'version' => '1.6.1',
+    'js' => array(
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+  );
+  $libraries['angularjs-touch'] = array(
+    'title' => 'AngularJS Touch',
+    'website' => 'https://angularjs.org/',
+    'version' => '1.6.1',
+    'js' => array(
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-touch.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
+  $libraries['angularjs-sanitize'] = array(
+    'title' => 'AngularJS Sanitize',
+    'website' => 'https://angularjs.org/',
+    'version' => '1.6.1',
+    'js' => array(
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
+  $libraries['angularjs-cookies'] = array(
+    'title' => 'AngularJS Cookies',
+    'website' => 'https://angularjs.org/',
+    'version' => '1.6.1',
+    'js' => array(
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-cookies.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
+  $libraries['angularjs-ui-router'] = array(
+    'title' => 'AngularJS UI Router',
+    'website' => 'https://ui-router.github.io',
+    'version' => '0.3.2',
+    'js' => array(
+      '//unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
+  $libraries['angularjs-storage'] = array(
+    'title' => 'AngularJS Local and Sessions storage',
+    'website' => 'https://github.com/gsklee/ngStorage',
+    'version' => '0.3.11',
+    'js' => array(
+      '//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
+
+  $module_path = drupal_get_path('module', 'nas_master_native_plants');
+  $libraries['angularjs-native-plants'] = array(
+    'title' => 'AngularJS Native Plants',
+    'version' => '1.0.0',
+    'js' => array(
+      $module_path .  '/js/nas_master_native_plants.js' => array(
+        'type' => 'file',
+      ),
+      $module_path .  '/js/nas_master_native_plants.angular.js' => array(
+        'type' => 'file',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+      array('nas_master_native_plants', 'angularjs-sanitize'),
+      array('nas_master_native_plants', 'angularjs-cookies'),
+      array('nas_master_native_plants', 'angularjs-ui-router'),
+      array('nas_master_native_plants', 'angularjs-storage'),
+    ),
+  );
+  $libraries['angularjs-native-plants']['js'][] = array(
+    'type' => 'setting',
+    'data' => array(
+      'nas_master_native_plants' => array(
+        'callback' => 'native-plants/ajax/',
+      ),
+    ),
+  );
+
+  $theme_path = drupal_get_path('theme', 'nas');
+  $libraries['jquery-responsive-tabs'] = array(
+    'title' => 'jQuery Responsive tabs',
+    'website' => 'https://github.com/jellekralt/Responsive-Tabs',
+    'version' => '1.6.1',
+    'js' => array(
+      // TODO: change to minified version?
+      $theme_path . '/js/vendor/responsive-tabs/jquery.responsiveTabs.js' => array(
+        'type' => 'file',
+      ),
+    ),
+    'dependencies' => array(
+      array('system', 'jquery'),
+    ),
+  );
+  $libraries['jquery-owl-carousel2'] = array(
+    'title' => 'jQuery Owl Carousel 2',
+    'website' => 'https://github.com/OwlCarousel2/OwlCarousel2',
+    'version' => '2.2.0',
+    'js' => array(
+      $theme_path . '/js/vendor/owl-carousel2/owl.carousel.js' => array(
+        'type' => 'file',
+      ),
+    ),
+    'css' => array(
+      $theme_path . '/js/vendor/owl-carousel2/owl.carousel.css',
+    ),
+    'dependencies' => array(
+      array('system', 'jquery'),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_imagecache_external_directory_alter().
+ */
+function nas_master_native_plants_imagecache_external_directory_alter(&$directory, $filename, $url) {
+  // Check that URL is for Native Plants images.
+  if (!strstr($url, 'netapp.audubon.org/NativePlants')) {
+    return;
+  }
+
+  // Save Native Plants images to separate directory.
+  $directory = 'public://externals/native_plants';
+  $filepath = $directory . '/' . $filename;
+  if (file_exists($filepath)) {
+    return;
+  }
+
+  // Set cache value to fetch file in image effect callback.
+  variable_set('native_plants_image_' . $filename, $url);
+}
+
+/**
+ * Implements hook_imagecache_external_needs_refresh_alter().
+ */
+function nas_master_native_plants_imagecache_external_needs_refresh_alter(&$needs_refresh, $filepath) {
+  // Act only on Native Plants images.
+  if (!strstr($filepath, 'externals/native_plants')) {
+    return;
+  }
+
+  // Do not fetch image here, it will be done in image style effect.
+  $needs_refresh = FALSE;
+  if (file_exists($filepath)) {
+    // If it is still the fake file, then we need to clear image styles.
+    $image = image_load($filepath);
+    if ($image->info['width'] == 1 && $image->info['height'] == 1) {
+      image_path_flush($filepath);
+    }
+
+    return;
+  }
+
+  // Create fake file.
+  $image = image_load(drupal_get_path('module', 'nas_master_native_plants') . '/img/transparent.gif');
+  image_save($image, $filepath);
+}
+
+/**
+ * Implements hook_image_effect_info().
+ */
+function nas_master_native_plants_image_effect_info() {
+  $effects = array();
+
+  $effects['nas_master_native_plants'] = array(
+    'label' => t('Native Plants external image'),
+    'effect callback' => 'nas_master_native_plants_image_effect_callback',
+    'dimensions passthrough' => TRUE,
+  );
+
+  return $effects;
+}
+
+/**
+ * Native Plants external image effect callback.
+ */
+function nas_master_native_plants_image_effect_callback(&$image, $data) {
+  // Check for a fake file.
+  if (!strstr($image->source, 'externals/native_plants')
+    || $image->info['width'] != 1 || $image->info['height'] != 1) {
+    return TRUE;
+  }
+
+  // Replace fake file with the actual data from external link.
+  $filename = basename($image->source);
+  if (!$url = variable_get('native_plants_image_' . $filename)) {
+    watchdog('nas_master_native_plants', 'Failed to get original URL value for %filename.', array('%filename' => $filename), WATCHDOG_ERROR);
+    return FALSE;
+  }
+
+  if ($filepath = imagecache_external_fetch($url, $image->source)) {
+    variable_del('native_plants_image_' . $filename);
+  }
+  else {
+    watchdog('nas_master_native_plants', 'Failed to fetch original image for %filename, %url.', array('%filename' => $filename, '%url' => $url), WATCHDOG_ERROR);
+    return FALSE;
+  }
+
+  $image = image_load($filepath);
+  return TRUE;
 }

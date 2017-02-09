@@ -120,11 +120,10 @@ function native_plants_cart_render($subtype, $conf, $args, $contexts) {
 
   $block->content['#attached'] = array(
     'library' => array(
-      array('system', 'jquery.cookie'),
+      array('nas_master_native_plants', 'angularjs-native-plants'),
     ),
     'js' => array(
       $plugin['path'] . '/js/native_plants_cart.js',
-      libraries_get_path('json2') . '/json2.js',
     ),
   );
 

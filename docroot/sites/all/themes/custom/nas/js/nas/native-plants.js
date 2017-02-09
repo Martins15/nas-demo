@@ -8,15 +8,32 @@
         var self = $(this);
         self.owlCarousel({
           items: 2,
-          itemsDesktop: false,
-          itemsDesktopSmall: false,
-          itemsTablet: false,
-          itemsMobile: false,
-          paginationSpeed: 100,
-          navigation: true,
-          rewindNav: false,
+          nav:true,
           pagination: false,
-          navigationText: ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"]
+          autoWidth: true,
+          margin: 10,
+          navText: ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"],
+          responsive : {
+            0 : {
+              items: 1,
+              autoWidth: false
+            },
+
+            320 : {
+              items: 2,
+              autoWidth: false
+            },
+
+            580: {
+              items: 3,
+              autoWidth: false
+            },
+
+            602 : {
+              autoWidth: true,
+              items: 2
+            }
+          }
         });
 
         // Shift card title down if it gets split on several lines.
@@ -161,32 +178,14 @@
   Drupal.behaviors.tabs = {
     attach: function(context, settings) {
       var $jsTabs = $('.js-tabs');
-
-      // Generate a select box of tab items to display on mobile.
-      var $select = $('<select class="js-tabs-select tab-select hide-for-large hide-for-xlarge"></select>');
-
-      $jsTabs.each(function () {
-        $(this).find('li a').each(function() {
-          $select.append('<option>' + $(this).text() + '</option>');
+        $('.js-native-plants-tabs').responsiveTabs({
+            startCollapsed: 'accordion',
+            active: 0,
+            animation: 'slide',
+            duration: 200,
+            startCollapsed: false,
+            scrollToAccordion: true
         });
-
-        $select.insertAfter('.js-tabs');
-      });
-
-      // Synchronise the tab elements on 'nav' click.
-      $jsTabs.find('a').click(function (e) {
-        e.preventDefault();
-
-        var $mobileMenu = $(this).closest($jsTabs).siblings('.js-tabs-select');
-
-        $mobileMenu.find("option").removeAttr("selected")
-          .siblings('option:contains(' + $(this).text() + ')').attr("selected","selected");
-      });
-
-      // Synchronise the tab elements on 'select' click.
-      $('.js-tabs-select').on('click',function(){
-        $(this).siblings($jsTabs).find("li a:contains(" + $(this).val() + ")").click();
-      });
     }
   };
 

@@ -49,6 +49,10 @@ function nas_community_resources_near_you_feature_views_default_views() {
   $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['not'] = 0;
   $handler->display->display_options['arguments']['field_community_res_geofield_latlon']['radius'] = '1000';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
@@ -56,6 +60,22 @@ function nas_community_resources_near_you_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'community_resource' => 'community_resource',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Indexed Content: State Office */
+  $handler->display->display_options['filters']['field_community_res_state_office_1']['id'] = 'field_community_res_state_office_1';
+  $handler->display->display_options['filters']['field_community_res_state_office_1']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_community_res_state_office_1']['field'] = 'field_community_res_state_office';
+  $handler->display->display_options['filters']['field_community_res_state_office_1']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_community_res_state_office_1']['value'] = array();
+  $handler->display->display_options['filters']['field_community_res_state_office_1']['group'] = 2;
+  /* Filter criterion: Indexed Content: State Office */
+  $handler->display->display_options['filters']['field_community_res_state_office']['id'] = 'field_community_res_state_office';
+  $handler->display->display_options['filters']['field_community_res_state_office']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_community_res_state_office']['field'] = 'field_community_res_state_office';
+  $handler->display->display_options['filters']['field_community_res_state_office']['value'] = array(
+    0 => '0',
+  );
+  $handler->display->display_options['filters']['field_community_res_state_office']['group'] = 2;
   $translatables['community_resources_near_you'] = array(
     t('Master'),
     t('more'),
