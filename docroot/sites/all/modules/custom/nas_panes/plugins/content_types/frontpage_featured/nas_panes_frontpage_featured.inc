@@ -97,6 +97,23 @@ function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
     '#states' => $state,
     '#pp_crop_styles' => array('featured_frontpage'),
   );
+  $form['curtain_simple']['mobile_image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Mobile Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($_conf['mobile_image']) ? $_conf['mobile_image'] : 0,
+    '#states' => $state,
+    '#pp_crop_styles' => array('featured_frontpage'),
+  );
   $form['curtain_simple']['header_color_mode'] = array(
     '#type' => 'radios',
     '#title' => t('Header color mode'),
@@ -847,9 +864,17 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
 function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
+  $mobile_image = $image;
+
+  if (isset($conf['mobile_image']) && $conf['mobile_image'] != 0) {
+    $mobile_image = file_load($conf['mobile_image']);
+  }
+
   if (!empty($image)) {
     $image_uri = nas_alters_local_image_uri($image->uri);
     $image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $image_uri);
+    $mobile_image_uri = nas_alters_local_image_uri($mobile_image->uri);
+    $mobile_image_path = image_style_url(NAS_FEATURED_FRONTPAGE_IMAGE_STYLE, $mobile_image_uri);
     $attribution = _nas_panes_format_image_attribution($image);
   }
 
@@ -872,7 +897,7 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
     $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
-  // Pass image url value to theme
+  // Pass image url value to theme.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $featured_frontpage_image = $image_path;
   $content = theme('nas_frontpage_featured', array(
@@ -887,10 +912,10 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
     ),
   ));
 
-  // Pass mobile_content to theme
+  // Pass mobile_content to theme.
   $mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $mobile_content = theme('nas_frontpage_featured_mobile', array(
-    'image_path' => $image_path,
+    'image_path' => $mobile_image_path,
     'summary' => $summary,
     'title_link' => $title_link,
     'blue_text_link' => $blue_text_link,
