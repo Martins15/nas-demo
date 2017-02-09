@@ -967,7 +967,7 @@
       .flexbox-container {
         display: flex;
         flex-wrap: nowrap;
-        align-items: baseline;
+        align-items: flex-start;
       }
 
       .messages.error {
@@ -1496,7 +1496,7 @@ input[type="checkbox"].np-checkbox {
   }
   .field-prefix {
     white-space: nowrap;
-    margin-right: 16px;
+    margin: auto 16px auto auto;
   }
 }
 
