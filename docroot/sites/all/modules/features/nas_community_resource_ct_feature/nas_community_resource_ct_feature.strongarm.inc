@@ -19,22 +19,22 @@ function nas_community_resource_ct_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '10',
+          'weight' => '12',
         ),
         'metatags' => array(
-          'weight' => '11',
+          'weight' => '13',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '7',
-        ),
-        'redirect' => array(
           'weight' => '9',
         ),
+        'redirect' => array(
+          'weight' => '11',
+        ),
         'xmlsitemap' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
       ),
       'display' => array(),

@@ -154,3 +154,171 @@ function nas_master_native_plants_update_7010(&$sandbox) {
 function nas_master_native_plants_update_7011() {
   variable_set('nas_master_native_plants_default_credit', 'Jesse M. Harris');
 }
+
+/**
+ * Creating Resources vocabulary.
+ */
+function nas_master_native_plants_update_7012() {
+  features_revert(array(
+    'nas_native_plants_taxonomy' => array(
+      'taxonomy',
+      'field_base',
+      'field_instance',
+    ),
+  ));
+
+  $vocab = taxonomy_vocabulary_machine_name_load('native_plant_resources');
+  $term_names = array(
+    0 => 'Nectar',
+    1 => 'Fruit',
+    4 => 'Butterflies',
+    5 => 'Caterpillars',
+  );
+
+  foreach ($term_names as $weight => $name) {
+    $old_term = taxonomy_get_term_by_name($name, 'native_plant_attributes');
+    $old_term = reset($old_term);
+
+    $new_term = entity_create('taxonomy_term', array(
+      'name' => $name,
+      'vid' => $vocab->vid,
+      'weight' => $weight,
+    ));
+
+    $new_term->field_np_attr_machine_attributes = $old_term->field_np_attr_machine_attributes;
+    $new_term->field_np_attr_color = $old_term->field_np_attr_color;
+
+    taxonomy_term_save($new_term);
+    taxonomy_term_delete($old_term->tid);
+  }
+}
+
+/**
+ * Splitting Nuts/Seeds term in two parts.
+ */
+function nas_master_native_plants_update_7013() {
+  // Splitting Nuts/Seeds terms in two parts.
+  $term = taxonomy_get_term_by_name('Nuts/Seeds', 'native_plant_attributes');
+  $term = reset($term);
+  taxonomy_term_delete($term->tid);
+
+  $vocab = taxonomy_vocabulary_machine_name_load('native_plant_resources');
+  $terms_data = array(
+    2 => array('name' => 'Nuts', 'color' => '#d3874c'),
+    3 => array('name' => 'Seeds', 'color' => '#875834'),
+  );
+
+  foreach ($terms_data as $weight => $data) {
+    $term = entity_create('taxonomy_term', array(
+      'name' => $data['name'],
+      'vid' => $vocab->vid,
+      'weight' => $weight,
+    ));
+
+    $term->field_np_attr_machine_attributes = array(
+      LANGUAGE_NONE => array(array('value' => $data['name'])),
+    );
+
+    $term->field_np_attr_color = array(
+      LANGUAGE_NONE => array(array('rgb' => $data['color'])),
+    );
+
+    taxonomy_term_save($term);
+  }
+
+  // Updating bird type references to Nuts and Seeds.
+  $query = new EntityFieldQuery();
+  $results = $query->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', 'native_plant_bird_types')
+    ->fieldCondition('field_np_attr_machine_attributes', 'value', 'NutsSeeds')
+    ->execute();
+
+  if (empty($results['taxonomy_term'])) {
+    return;
+  }
+
+  foreach (taxonomy_term_load_multiple(array_keys($results['taxonomy_term'])) as $term) {
+    $values = array();
+    foreach (field_get_items('taxonomy_term', $term, 'field_np_attr_machine_attributes') as $value) {
+      if ($value['value'] == 'NutsSeeds') {
+        $values[] = array('value' => 'Nuts');
+        $values[] = array('value' => 'Seeds');
+      }
+      else {
+        $values[] = $value;
+      }
+    }
+
+    $term->field_np_attr_machine_attributes = array(LANGUAGE_NONE => $values);
+    taxonomy_term_save($term);
+  }
+}
+
+/**
+ * Adding Evergreen taxonomy term.
+ */
+function nas_master_native_plants_update_7014() {
+  $vocab = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
+  $new_term = entity_create('taxonomy_term', array(
+    'name' => 'Evergreen',
+    'vid' => $vocab->vid,
+    'weight' => 6,
+  ));
+
+  $new_term->field_np_attr_machine_attributes = array(
+    LANGUAGE_NONE => array(array('value' => 'Evergreen')),
+  );
+
+  $new_term->field_np_attr_color = array(
+    LANGUAGE_NONE => array(array('rgb' => '#087C2A')),
+  );
+
+  taxonomy_term_save($new_term);
+}
+
+/**
+ * Adding State Office field to Community Resource CT.
+ */
+function nas_master_native_plants_update_7015() {
+  features_revert(array(
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+    'nas_nursery_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
+    'nas_community_resources_near_you_feature' => array(
+      'views_view',
+    ),
+  ));
+}
+
+/**
+ * Update Native Plants to use Angular JS.
+ */
+function nas_master_native_plants_update_7016() {
+  features_revert(array(
+    'nas_native_plants_image_styles' => array('image'),
+    'nas_native_plants_search_page_feature' => array(
+      'page_manager_pages',
+      'views_view',
+    ),
+    'nas_nurseries_near_you_feature' => array(
+      'views_view'
+    ),
+  ));
+}
+
+/**
+ * Enabling Additional Resource CT feature.
+ */
+function nas_master_native_plants_update_7017() {
+  module_enable(array('nas_additional_resource_feature'));
+}

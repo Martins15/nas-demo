@@ -339,7 +339,7 @@ var Nas = Nas || {};
         var $colorbox_instance = $('.node-type-bird #colorbox');
         if (typeof $.colorbox != "undefined" && typeof $colorbox_instance != "undefined") {
           var offset = $colorbox_instance.offset();
-          if (offset !== null && typeof offset.left != "undefined") {
+          if (typeof offset != 'undefined' && offset !== null && typeof offset.left != 'undefined') {
             var colorbox_offset = ($(window).width() - (offset.left + $colorbox_instance.outerWidth()));
             // Resize colorbox when it overlapped.
             if (colorbox_offset < 0) {
@@ -461,12 +461,14 @@ var Nas = Nas || {};
       });
 
       function titlePosition(){
-        if ($(".view-display-id-articles_term_10 .tiny-8").position() !== null){
-          var lleft = $(".view-display-id-articles_term_10 .tiny-8").position().left;
+        var $selector = $('.view-display-id-articles_term_10 .tiny-8'),
+          $position = $selector.position();
+        if (typeof $position !== 'undefined' && $position !== null){
+          var lleft = $position.left;
           lleft = parseInt(lleft);
-          var pleft = $(".view-display-id-articles_term_10 .tiny-8").css("padding-left").replace(/[^-\d\.]/g, '');
+          var pleft = $selector.css('padding-left').replace(/[^-\d\.]/g, '');
           pleft = parseInt(pleft);
-          $(".tiny-12").css({"left":lleft+pleft,"width":"66%"});
+          $('.tiny-12').css({'left': lleft+pleft, 'width': '66%'});
         }
       }
     }

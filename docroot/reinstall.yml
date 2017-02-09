@@ -97,12 +97,12 @@
     shell: "{{ php_env_vars }} drush -y si {{ installation_profile_name }} --db-url=mysql://{{ mysql_user }}:{{ mysql_pass }}@127.0.0.1:/{{ mysql_db }} --account-name={{ drupal_user }} --account-pass={{ drupal_pass }} --uri={{ site_url }} nas_base_url={{ site_url }}"
     when: workflow_type == "profile"
 
-  - name: Remove settings.php
-    file: name=sites/default/settings.php state=absent
-    sudo: yes
-
   - name: Making everything accessible
     shell: chmod -R 777 sites/default
+    sudo: yes
+
+  - name: Remove settings.php
+    file: name=sites/default/settings.php state=absent
     sudo: yes
 
   - name: Creating settings.php
@@ -135,7 +135,7 @@
     lineinfile: dest='sites/default/settings.php' line='$conf[\"pp_environment\"] = \"{{ pp_environment }}\";'
     ignore_errors: yes
 
-  - name: Adding Solr variable to settings.php
+  - name: Adding SOLR core variable to settings.php
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"solr_core\"] = \"{{ solr_core }}\";'
     ignore_errors: yes
@@ -183,7 +183,7 @@
     lineinfile: dest='sites/default/settings.php' line='$conf[\"stage_file_proxy_origin\"] = \"http://www.audubon.org\";'
     when: pp_environment == "demo" or pp_environment == "default"
 
-  - name: Enable https
+  - name: Enable HTTPS
     sudo: yes
     lineinfile: dest='sites/default/settings.php' line='$conf[\"https\"] = TRUE;'
     when: pp_environment == "demo" or pp_environment == "default"
@@ -197,22 +197,32 @@
     shell: "{{ php_env_vars }} drush user-password {{ drupal_user }} --password={{ drupal_pass }}"
     when: pp_environment == "demo" or pp_environment == "default"
 
-  - name: Change search server to the local one
-    sudo: yes
-    shell: "{{ php_env_vars }} drush nas-master-search-server-local"
-    when: pp_environment == "default" or pp_environment == "demo"
-
   - name: Download fresh MaxMindDB
     sudo: yes
     shell: "{{ php_env_vars }} drush nas-master-update-geoip-db"
     when: pp_environment == "default" or pp_environment == "demo"
 
-  - name: Solr - clearing index
+  - name: Enable local SOLR search server (solr_4_x)
+    sudo: yes
+    shell: "{{ php_env_vars }} drush nas-master-search-server-local"
+    when: pp_environment == "default" or pp_environment == "demo"
+
+  - name: Move default_node_index index to local SOLR server
+    sudo: yes
+    shell: "{{ php_env_vars }} drush -y search-api-set-index-server default_node_index solr_4_x"
+    when: pp_environment == "default" or pp_environment == "demo"
+
+  - name: Move page_manager_pages index to local SOLR server
+    sudo: yes
+    shell: "{{ php_env_vars }} drush -y search-api-set-index-server page_manager_pages solr_4_x"
+    when: pp_environment == "default" or pp_environment == "demo"
+
+  - name: SOLR - clearing index
     sudo: yes
     shell: "{{ php_env_vars }} drush -y search-api-clear -l {{ site_url }}"
     when: reindex_solr and (pp_environment == "demo" or pp_environment == "staging")
 
-  - name: Solr - reindexing
+  - name: SOLR - reindexing
     sudo: yes
     shell: "{{ php_env_vars }} drush -y search-api-index -l {{ site_url }}"
     when: reindex_solr and (pp_environment == "demo" or pp_environment == "staging")
@@ -225,7 +235,7 @@
   - name: Disable CDN feature
     sudo: yes
     shell: "{{ php_env_vars }} drush vset cdn_status 0"
-    when: pp_environment == "default"
+    when: pp_environment == "default" or pp_environment == "demo"
 
   - name: Enable devel and views_ui for dev
     sudo: yes

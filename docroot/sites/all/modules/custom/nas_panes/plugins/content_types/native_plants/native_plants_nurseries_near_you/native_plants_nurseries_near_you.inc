@@ -21,7 +21,8 @@ $plugin = array(
     ),
     'zipcode' => '',
     'online' => 0,
-    'quantity' => 4,
+    'quantity' => 9,
+    'angular' => 0,
   ),
   'all contexts' => TRUE,
 );
@@ -54,7 +55,7 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
   $form['quantity'] = array(
     '#type' => 'select',
     '#title' => t('Quantity'),
-    '#options' => drupal_map_assoc(array(1, 2, 3, 4, 5, 6)),
+    '#options' => drupal_map_assoc(range(1, 9)),
     '#description' => t('Select how many nurseries to show.'),
     '#default_value' => $conf['quantity'],
   );
@@ -68,6 +69,12 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => t('ZIP code'),
     '#default_value' => $conf['zipcode'],
+  );
+  $form['angular'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Angular JS'),
+    '#description' => t('Output as Angular JS template.'),
+    '#default_value' => $conf['angular'],
   );
 
   return $form;
@@ -98,6 +105,19 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  if ($conf['angular']) {
+    $block = new stdClass();
+    $block->content = array(
+      '#theme' => 'native_plants_nurseries_near_you_angular',
+      '#title' => t(filter_xss($conf['override_title_text'])),
+      '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
+      '#online' => $conf['online'],
+      '#context_links' => $contextual_links,
+    );
+
+    return $block;
+  }
 
   if (empty($conf['zipcode'])) {
     $query_params = drupal_get_query_parameters();
@@ -140,6 +160,7 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     $nurseries[] = array(
       'title' => $nursery_wrapper->title->value(),
       'address' => $nursery_wrapper->field_nursery_address->value(),
+      'phone' => $nursery_wrapper->field_nursery_phone->value(),
       'link' => $nursery_wrapper->field_nursery_link->value(),
     );
     if (count($nurseries) == $conf['quantity']) {
@@ -175,6 +196,16 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
     'template' => 'native-plants-nurseries-near-you',
     'path' => $plugin['path'],
   );
+  $theme['native_plants_nurseries_near_you_angular'] = array(
+    'variables' => array(
+      'title' => '',
+      'description' => '',
+      'online' => 0,
+      'context_links' => '',
+    ),
+    'template' => 'native-plants-nurseries-near-you-angular',
+    'path' => $plugin['path'],
+  );
 }
 
 /**
@@ -188,16 +219,10 @@ function nas_panes_preprocess_native_plants_nurseries_near_you(&$variables) {
     $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
     $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
     if (!empty($res['link']['url'])) {
-      $res['link']['print'] = $res['link']['url'];
-      if (drupal_strlen($res['link']['url']) > 25) {
-        $res['link']['print'] = drupal_substr($res['link']['url'], 0, 22) . '&hellip;';
+      $res['link']['print'] = str_replace(array('http://www.', 'https://www.', 'http://', 'https://'), '', $res['link']['url']);
+      if (drupal_strlen($res['link']['print']) > 20) {
+        $res['link']['print'] = rtrim(drupal_substr($res['link']['print'], 0, 17), '.') . '&hellip;';
       }
     }
-  }
-  if ($variables['online']) {
-    $variables['classes_array'][] = 'native-plants-nurseries-near-you-online';
-  }
-  else {
-    $variables['classes_array'][] = 'native-plants-nurseries-near-you-offline';
   }
 }
