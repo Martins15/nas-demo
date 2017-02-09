@@ -100,7 +100,11 @@
       <?php endif; ?>
       <h4 class="editorial-card-title"><?php print $title_link; ?></h4>
       <p><?php print $subtitle; ?></p>
-      <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
+      <?php if (empty($links_open_new_tab)): ?>
+        <p><em><a href="<?php print $url; ?>" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
+      <?php else: ?>
+        <p><em><a href="<?php print $url; ?>" target="_blank" class="editorial-card-link"><?php print $custom_link_text; ?></a></em></p>
+      <?php endif; ?>
     </div>
   </div>
 </div>

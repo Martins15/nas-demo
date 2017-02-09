@@ -99,6 +99,10 @@ function native_plants_tabs_selector_render($subtype, $conf, $args, $contexts) {
   }
 
   $block->content['#attached'] = array(
+    'library' => array(
+      array('nas_master_native_plants', 'jquery-responsive-tabs'),
+      array('nas_master_native_plants', 'angularjs-native-plants'),
+    ),
     'js' => array(
       $plugin['path'] . '/js/native_plants_tabs_selector.js',
     ),

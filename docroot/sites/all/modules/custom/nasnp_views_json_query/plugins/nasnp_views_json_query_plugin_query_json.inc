@@ -238,13 +238,19 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     // Load all available plant attributes and bird types.
     $np_attr_voc = taxonomy_vocabulary_machine_name_load('native_plant_attributes');
+    $np_res_voc = taxonomy_vocabulary_machine_name_load('native_plant_resources');
     $np_bird_types_voc = taxonomy_vocabulary_machine_name_load('native_plant_bird_types');
     $np_attr_terms = taxonomy_get_tree($np_attr_voc->vid, 0, NULL, TRUE);
+    $np_res_terms = taxonomy_get_tree($np_res_voc->vid, 0, NULL, TRUE);
     $np_bird_types_terms = taxonomy_get_tree($np_bird_types_voc->vid, 0, NULL, TRUE);
     $np_attr_term_wrappers = array();
+    $np_res_term_wrappers = array();
     $np_bird_types_term_wrappers = array();
     foreach ($np_attr_terms as $term) {
       $np_attr_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
+    }
+    foreach ($np_res_terms as $term) {
+      $np_res_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
     }
     foreach ($np_bird_types_terms as $term) {
       $np_bird_types_term_wrappers[] = entity_metadata_wrapper('taxonomy_term', $term);
@@ -274,22 +280,29 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       $result->Description = '';
       $result->Source = '';
       $result->LocalLink = '';
-      $result->LocalPlantImg = '';
+      $result->PlantImgLocal = '';
+
+      $result->LocalLink = url('nas_master_native_plants/native_plant_create', array(
+        'query' => array(
+          'CommonName' => $result->CommonName,
+          'ScientificName' => $result->ScientificName,
+          'Family' => $result->Family,
+          'PlantID' => $result->PlantID,
+          'PlantImg' => $result->PlantImg,
+        ),
+      ));
 
       // Assign plant attributes and bird types; and weight results based on
       // the lightest attribute.
       $result->Attributes = array();
+      $result->Resources = array();
       $result->BirdTypes = array();
       $result->Weight = 100;
       foreach ($np_attr_term_wrappers as $wrapper) {
         foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
           $value = $field_wrapper->value();
-          if ($result->$value == '1') {
-            $result->Attributes[$wrapper->tid->value()] = array(
-              'tid' => $wrapper->tid->value(),
-              'name' => $wrapper->name->value(),
-              'color' => $wrapper->field_np_attr_color->value(),
-            );
+          if (property_exists($result, $value) && $result->$value == '1') {
+            $result->Attributes[] = $wrapper->tid->value();
 
             $weight = $wrapper->weight->value();
             if ($result->Weight > $weight) {
@@ -298,31 +311,29 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           }
         }
       }
-      foreach ($np_bird_types_term_wrappers as $wrapper) {
-        $link = $wrapper->field_link->value();
-        if ($link) {
-          $url = $link['url'];
-        }
-        else {
-          $url = '';
-        }
+      $result->Attributes = array_values(array_unique($result->Attributes));
+      foreach ($np_res_term_wrappers as $wrapper) {
         foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
           $value = $field_wrapper->value();
-          if ($result->$value == '1') {
-            $result->BirdTypes[$wrapper->tid->value()] = array(
-              'tid' => $wrapper->tid->value(),
-              'name' => $wrapper->name->value(),
-              'image' => $wrapper->field_np_bird_type_image->value(),
-              'url' => $url,
-            );
+          if (property_exists($result, $value) && $result->$value == '1') {
+            $result->Resources[] = $wrapper->tid->value();
           }
         }
       }
-
-      cache_set('native_plants_' . $plant_id, $result, 'cache', CACHE_TEMPORARY);
+      $result->Resources = array_values(array_unique($result->Resources));
+      foreach ($np_bird_types_term_wrappers as $wrapper) {
+        foreach ($wrapper->field_np_attr_machine_attributes as $field_wrapper) {
+          $value = $field_wrapper->value();
+          if (property_exists($result, $value) && $result->$value == '1') {
+            $result->BirdTypes[] = $wrapper->tid->value();
+          }
+        }
+      }
+      $result->BirdTypes = array_values(array_unique($result->BirdTypes));
+      $result->BirdTypesRandomized = $result->BirdTypes;
+      shuffle($result->BirdTypesRandomized);
     }
 
-    $results['node'] = array();
     if (!empty($plant_ids)) {
       $query = new EntityFieldQuery();
       $query->entityCondition('entity_type', 'node')
@@ -332,46 +343,117 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       if (!isset($results['node'])) {
         $results['node'] = array();
       }
-    }
 
-    foreach ($results['node'] as $node_info) {
-      $local_node = node_load($node_info->nid);
-      $local_node_wrapper = entity_metadata_wrapper('node', $local_node);
+      foreach ($results['node'] as $node_info) {
+        $local_node = node_load($node_info->nid);
+        $local_node_wrapper = entity_metadata_wrapper('node', $local_node);
 
-      $plant_id = $local_node_wrapper->field_native_plant_id->value();
-      $result_key = array_search($plant_id, $plant_ids);
-      if ($result_key !== FALSE && $local_node->status == NODE_PUBLISHED) {
-        if ($image = $local_node_wrapper->field_image->value()) {
-          $ret[$result_key]->LocalPlantImg = $image;
-          $file_object = file_load($image['fid']);
-          $ret[$result_key]->LocalPlantImg['attribution'] = _nas_panes_format_image_attribution($file_object);
-        }
-
-        if ($local_node_wrapper->body->value()) {
-          $description = $local_node_wrapper->body->value->value();
-          $ret[$result_key]->Description = $description;
-        }
-        if ($source = $local_node_wrapper->field_native_plant_source->value()) {
-          $ret[$result_key]->Source = l($source['title'], $source['url']);
-        }
-
-        // Check if this is Tier 1 result.
-        if (!$local_node_wrapper->field_native_plant_tier1->value()) {
-          cache_set('native_plants_' . $plant_id, $ret[$result_key], 'cache', CACHE_TEMPORARY);
-          continue;
-        }
-        $ret[$result_key]->Tier1 = TRUE;
-        // Check for Tier 1 states.
-        $tier1_states = $local_node_wrapper->field_native_plant_tier1_states->value();
-        if (!empty($tier1_states)) {
-          $tier1_state_codes = array();
-          foreach ($tier1_states as $state_term) {
-            $term_state_code = field_get_items('taxonomy_term', $state_term, 'field_iso_code');
-            $tier1_state_codes[] = reset($term_state_code)['value'];
+        $plant_id = $local_node_wrapper->field_native_plant_id->value();
+        $result_key = array_search($plant_id, $plant_ids);
+        if ($result_key !== FALSE && $local_node->status == NODE_PUBLISHED) {
+          if ($image = $local_node_wrapper->field_image->value()) {
+            $file_object = file_load($image['fid']);
+            $ret[$result_key]->PlantImgLocal = array(
+              'uri' => $image['uri'],
+              'attribution' => _nas_panes_format_image_attribution($file_object),
+            );
           }
-          $ret[$result_key]->Tier1StateCodes = $tier1_state_codes;
+
+          if ($local_node_wrapper->body->value()) {
+            $description = $local_node_wrapper->body->value->value();
+            $ret[$result_key]->Description = $description;
+          }
+          if ($source = $local_node_wrapper->field_native_plant_source->value()) {
+            $ret[$result_key]->Source = l($source['title'], $source['url']);
+          }
+
+          // Check if this is Tier 1 result.
+          if (!$local_node_wrapper->field_native_plant_tier1->value()) {
+            continue;
+          }
+          $ret[$result_key]->Tier1 = TRUE;
+          // Check for Tier 1 states.
+          $tier1_states = $local_node_wrapper->field_native_plant_tier1_states->value();
+          if (!empty($tier1_states)) {
+            $tier1_state_codes = array();
+            foreach ($tier1_states as $state_term) {
+              $term_state_code = field_get_items('taxonomy_term', $state_term, 'field_iso_code');
+              $tier1_state_codes[] = reset($term_state_code)['value'];
+            }
+            $ret[$result_key]->Tier1StateCodes = $tier1_state_codes;
+          }
         }
-        cache_set('native_plants_' . $plant_id, $ret[$result_key], 'cache', CACHE_TEMPORARY);
+      }
+
+      // Prepare images.
+      foreach ($ret as $result_key => &$result) {
+        $result->PlantImgDesktop = '';
+        $result->PlantImgMobile = '';
+        $result->PlantImgLightbox = '';
+        if ($result->PlantImgLocal) {
+          $result->PlantImgDesktop = theme('image_style', array(
+            'path' => nas_alters_local_image_uri($result->PlantImgLocal['uri']),
+            'style_name'=> 'native_plant_desktop',
+            'alt' => $result->CommonName,
+            'attributes' => array(
+              'data-caption' => $result->PlantImgLocal['attribution'],
+            ),
+          ));
+          $result->PlantImgMobile = theme('image_style', array(
+            'path' => nas_alters_local_image_uri($result->PlantImgLocal['uri']),
+            'style_name'=> 'native_plant_mobile',
+            'alt' => $result->CommonName,
+          ));
+          $result->PlantImgLightbox = image_style_url('native_plant_lightbox', nas_alters_local_image_uri($result->PlantImgLocal['uri']));
+        }
+        elseif ($result->PlantImg) {
+          $params = array(
+            'path' => $result->PlantImg,
+            'style_name'=> 'native_plant_desktop',
+            'alt' => $result->CommonName,
+          );
+          if ($attribution = nas_master_native_plants_get_image_attributions_by_plantid($result->PlantID)) {
+            $params['attributes'] = array(
+              'data-caption' => $attribution,
+            );
+          }
+          $result->PlantImgDesktop = theme('imagecache_external', $params);
+          $result->PlantImgMobile = theme('imagecache_external', array(
+            'path' => $result->PlantImg,
+            'style_name'=> 'native_plant_mobile',
+            'alt' => $result->CommonName,
+          ));
+          if ($path = imagecache_external_generate_path($result->PlantImg)) {
+            $result->PlantImgLightbox = image_style_url('native_plant_lightbox', $path);
+          }
+        }
+      }
+
+      // Clean-up and set cached values for plants.
+      foreach ($ret as $result_key => &$result) {
+        $unset_keys = array(
+          'ButterflyPlant',
+          'ButterflyTallamyPlant',
+          'Duration',
+          'Evergreen',
+          'FleshyFruits',
+          'Forbs',
+          'FruitVegetation',
+          'GrassGrasslike',
+          'HummingBirdNectar',
+          'Nuts',
+          'NutsSeeds',
+          'Seeds',
+          'Shrub',
+          'Succulent',
+          'Tree',
+          'Vegetation',
+          'Vine',
+        );
+        foreach ($unset_keys as $key) {
+          unset($result->$key);
+        }
+        cache_set('native_plants_' . $result->PlantID, $result, 'cache', CACHE_TEMPORARY);
       }
     }
 

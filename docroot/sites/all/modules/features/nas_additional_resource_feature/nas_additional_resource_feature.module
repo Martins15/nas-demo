@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Additional Resource CT feature.
+ */
+
+include_once 'nas_additional_resource_feature.features.inc';
