@@ -15530,6 +15530,12 @@ h2.grey {
   z-index: 3;
 }
 
+@media only screen and (min-width: 240px) and (max-width: 601px) {
+  .bird-card-carousel .owl-carousel {
+    margin: 0 10px;
+    width: calc(100% - 20px);
+  }
+}
 .bird-card-carousel .owl-carousel .owl-stage-outer:after {
   content: '';
   display: block;
