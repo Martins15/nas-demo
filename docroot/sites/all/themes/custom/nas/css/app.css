@@ -15797,6 +15797,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: inline-block;
   vertical-align: top;
   line-height: 22px;
+  font-size: 16px;
 }
 .where-to-buy__section .address {
   margin-bottom: 10px;
