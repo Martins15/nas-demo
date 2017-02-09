@@ -260,6 +260,29 @@ function _nas_master_native_plants_get_resources($zipcode) {
     }
   }
 
+  // Get state office resource.
+  $view_results = views_get_view_result('community_resources_near_you', 'state_office');
+  foreach ($view_results as $result) {
+    if (!$node = node_load($result->entity)) {
+      continue;
+    }
+    $node_wrapper = entity_metadata_wrapper('node', $node);
+    $resource = array(
+      'title' => $node_wrapper->title->value(),
+      'address' => $node_wrapper->field_community_resource_address->value(),
+      'phone' => $node_wrapper->field_community_resource_phone->value(),
+      'link' => $node_wrapper->field_community_resource_link->value(),
+      'services' => array(),
+    );
+    $field = field_info_field('field_community_res_services');
+    foreach ($node_wrapper->field_community_res_services->value() as $key) {
+      $resource['services'][] = $field['settings']['allowed_values'][$key];
+    }
+
+    $resources[] = $resource;
+    break;
+  }
+
   foreach ($resources as &$res) {
     $res['link']['rendered'] = l(t('Visit Site'),
       $res['link']['url'],
