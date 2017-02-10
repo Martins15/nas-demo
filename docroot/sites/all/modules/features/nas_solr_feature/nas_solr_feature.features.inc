@@ -104,6 +104,7 @@ function nas_solr_feature_default_search_api_index() {
         "field_bird_sci_name" : { "type" : "text" },
         "field_community_res_geofield:latlon" : { "type" : "string", "real_type" : "location" },
         "field_community_res_state_office" : { "type" : "boolean" },
+        "field_community_resource_states:field_iso_code" : { "type" : "list\\u003Cstring\\u003E" },
         "field_custom_section" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_event_date:value" : { "type" : "date" },
         "field_event_date:value2" : { "type" : "date" },
