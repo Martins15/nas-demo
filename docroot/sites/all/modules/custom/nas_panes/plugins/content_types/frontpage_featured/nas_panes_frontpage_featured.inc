@@ -111,7 +111,6 @@ function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
       ),
     ),
     '#default_value' => !empty($_conf['mobile_image']) ? $_conf['mobile_image'] : 0,
-    '#states' => $state,
     '#pp_crop_styles' => array('featured_frontpage'),
   );
   $form['curtain_simple']['header_color_mode'] = array(
