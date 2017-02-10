@@ -4181,15 +4181,50 @@ table td, table th {
   margin: 0 18px 16px 0;
 }
 
-.view-filters-controls .form-text, .view-filters-controls .button {
+.view-filters-controls .form-text,
+.view-filters-controls .button,
+.view-filters-controls .form-filter--controls {
   float: left;
 }
 @media only screen and (min-width: 768px) {
-  .view-filters-controls .form-text, .view-filters-controls .button {
+  .view-filters-controls .form-text,
+  .view-filters-controls .button,
+  .view-filters-controls .form-filter--controls {
     -webkit-order: 1;
     -ms-flex-order: 1;
     order: 1;
   }
+}
+.view-filters-controls .form-filter--controls {
+  margin-right: 18px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.view-filters-controls .form-filter--controls.form-filter--load {
+  position: relative;
+}
+.view-filters-controls .form-filter--controls.form-filter--load:before {
+  content: '';
+  display: block;
+  background: transparent url("../img/loading_animation.gif") 50% 50% no-repeat;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  transform: translateY(-50%);
+  background-size: 68% 68%;
+}
+@media only screen and (min-width: 768px) {
+  .view-filters-controls .form-filter--controls {
+    width: calc(100% / 3 - 18px);
+  }
+}
+.view-filters-controls .form-filter--controls .form-text {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding-right: 46px;
 }
 .view-filters-controls .button {
   border-radius: 8px;
