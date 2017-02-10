@@ -778,12 +778,6 @@ function nas_master_native_plants_imagecache_external_needs_refresh_alter(&$need
   // Do not fetch image here, it will be done in image style effect.
   $needs_refresh = FALSE;
   if (file_exists($filepath)) {
-    // If it is still the fake file, then we need to clear image styles.
-    $image = image_load($filepath);
-    if ($image->info['width'] == 1 && $image->info['height'] == 1) {
-      image_path_flush($filepath);
-    }
-
     return;
   }
 

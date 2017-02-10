@@ -16,7 +16,7 @@
         <span class="plants-counter"
               data-ng-bind-html="cartC.plantsCounter()"></span>
         <span class="clear-plants-list"> |
-          <a href="#" class="native-plants-bottom--clear-plants-list"
+          <a href="javascript:void(0)" class="native-plants-bottom--clear-plants-list"
              data-ng-click="cartC.storage.clearCart()"><?php print t('Clear list'); ?></a>
         </span>
       </span>
