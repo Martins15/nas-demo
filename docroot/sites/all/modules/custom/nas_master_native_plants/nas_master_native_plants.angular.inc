@@ -226,7 +226,8 @@ function _nas_master_native_plants_get_resources($zipcode) {
     }
   }
 
-  $resources = array();
+  $nodes = array();
+  // Get resources.
   if ($geometry) {
     $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
     $view_results = views_get_view_result('community_resources_near_you', 'default', $latlon);
@@ -235,37 +236,32 @@ function _nas_master_native_plants_get_resources($zipcode) {
     $view_results = views_get_view_result('community_resources_near_you', 'default');
   }
 
-  // Prepare resources.
   foreach ($view_results as $result) {
     if (!$node = node_load($result->entity)) {
       continue;
     }
-    $node_wrapper = entity_metadata_wrapper('node', $node);
-    $resource = array(
-      'title' => $node_wrapper->title->value(),
-      'address' => $node_wrapper->field_community_resource_address->value(),
-      'phone' => $node_wrapper->field_community_resource_phone->value(),
-      'link' => $node_wrapper->field_community_resource_link->value(),
-      'services' => array(),
-    );
-    $field = field_info_field('field_community_res_services');
-    foreach ($node_wrapper->field_community_res_services->value() as $key) {
-      $resource['services'][] = $field['settings']['allowed_values'][$key];
-    }
+    $nodes[] = $node;
 
-    $resources[] = $resource;
     // TODO: change hard coded value of 2 to some parameter?
-    if (count($resources) == 2) {
+    if (count($nodes) == 2) {
       break;
     }
   }
 
   // Get state office resource.
-  $view_results = views_get_view_result('community_resources_near_you', 'state_office');
+  $state_code = _nas_master_native_plants_zipcode_to_state($zipcode);
+  $view_results = views_get_view_result('community_resources_near_you', 'state_office', $state_code);
   foreach ($view_results as $result) {
     if (!$node = node_load($result->entity)) {
       continue;
     }
+    $nodes[] = $node;
+    break;
+  }
+
+  // Load resources data.
+  $resources = array();
+  foreach ($nodes as $node) {
     $node_wrapper = entity_metadata_wrapper('node', $node);
     $resource = array(
       'title' => $node_wrapper->title->value(),
@@ -280,7 +276,6 @@ function _nas_master_native_plants_get_resources($zipcode) {
     }
 
     $resources[] = $resource;
-    break;
   }
 
   foreach ($resources as &$res) {

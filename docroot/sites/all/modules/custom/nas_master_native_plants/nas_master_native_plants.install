@@ -322,3 +322,17 @@ function nas_master_native_plants_update_7016() {
 function nas_master_native_plants_update_7017() {
   module_enable(array('nas_additional_resource_feature'));
 }
+
+/**
+ * Add state office Audubon resource to Local Resources tab.
+ */
+function nas_master_native_plants_update_7018() {
+  features_revert(array(
+    'nas_community_resources_near_you_feature' => array(
+      'views_view',
+    ),
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
+  ));
+}
