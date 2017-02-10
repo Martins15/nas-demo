@@ -15480,7 +15480,7 @@ h2.grey {
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .flexbox-container {
   display: flex;
   flex-wrap: nowrap;
-  align-items: baseline;
+  align-items: flex-start;
 }
 .native-plants-bottom .native-plants-bottom-plant-list .native-plants-get-list-form .messages.error {
   background-image: none;
@@ -15946,7 +15946,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .native-plants-connect-form .field-prefix {
   white-space: nowrap;
-  margin-right: 16px;
+  margin: auto 16px auto auto;
 }
 
 @media only screen and (min-width: 768px) {
