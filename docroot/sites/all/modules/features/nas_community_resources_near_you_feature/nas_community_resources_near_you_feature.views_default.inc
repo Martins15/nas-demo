@@ -76,6 +76,41 @@ function nas_community_resources_near_you_feature_views_default_views() {
     0 => '0',
   );
   $handler->display->display_options['filters']['field_community_res_state_office']['group'] = 2;
+
+  /* Display: State office */
+  $handler = $view->new_display('panel_pane', 'State office', 'state_office');
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: States: ISO (indexed) */
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['id'] = 'field_community_resource_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['field'] = 'field_community_resource_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_community_resource_states_field_iso_code']['not'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'community_resource' => 'community_resource',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Indexed Content: State Office */
+  $handler->display->display_options['filters']['field_community_res_state_office']['id'] = 'field_community_res_state_office';
+  $handler->display->display_options['filters']['field_community_res_state_office']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_community_res_state_office']['field'] = 'field_community_res_state_office';
+  $handler->display->display_options['filters']['field_community_res_state_office']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_community_res_state_office']['group'] = 2;
   $translatables['community_resources_near_you'] = array(
     t('Master'),
     t('more'),
@@ -88,6 +123,8 @@ function nas_community_resources_near_you_feature_views_default_views() {
     t('.'),
     t(','),
     t('All'),
+    t('State office'),
+    t('View panes'),
   );
   $export['community_resources_near_you'] = $view;
 
