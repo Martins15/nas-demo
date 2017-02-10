@@ -1022,6 +1022,11 @@
 
 .bird-card-carousel {
   .owl-carousel {
+    @media only screen and (min-width: 240px) and (max-width: 601px) {
+      margin: 0 10px;
+      width: calc(100% - 20px);
+    }
+
 
     .owl-stage-outer {
       &:after {
@@ -1323,6 +1328,7 @@ input[type="checkbox"].np-checkbox {
     display: inline-block;
     vertical-align: top;
     line-height: 22px;
+    font-size: 16px;
 
     &.more {
 
