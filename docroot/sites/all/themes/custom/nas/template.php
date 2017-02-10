@@ -25,6 +25,15 @@ function nas_js_alter(&$javascript) {
   foreach ($javascript as $path => $js) {
     if (strpos($path, 'jquery.min.js') !== FALSE) {
       unset($javascript[$path]);
+
+      // Newer jQuery version for Native Plants.
+      if ($_GET['q'] == 'native-plants/search') {
+        $new_jquery_path = 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js';
+        $path = $new_jquery_path;
+        $js['data'] = $new_jquery_path;
+        $js['version'] = '1.8.3';
+      }
+
       $script_tag = array(
         '#theme' => 'html_tag',
         '#tag' => 'script',
@@ -38,6 +47,26 @@ function nas_js_alter(&$javascript) {
       $jquery = drupal_render($script_tag);
     }
   }
+}
+
+/**
+ * Implements hook_css_alter().
+ */
+function nas_css_alter(&$css) {
+  unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
+  unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
+  unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
+  unset($css[drupal_get_path('module', 'colorbox') . '/styles/plain/colorbox_style.css']);
+
+  // Unset Owl Carousel CSS v1 as we are using v2 for Native Plants.
+  if ($_GET['q'] == 'native-plants/search') {
+    unset($css['sites/all/themes/custom/nas/js/vendor/owl-carousel/owl.carousel.css']);
+  }
+
+  // Disable aggregation for main styles.
+  // IE8 can't recognize breakpoints when use @import for styles.
+  // @todo should be improved. Maybe affect to performance.
+  $css['sites/all/themes/custom/nas/css/app.css']['preprocess'] = FALSE;
 }
 
 /**
@@ -766,7 +795,9 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
   $vars['image_uri'] = '';
   $vars['linked_image'] = '';
   $vars['teaser_list_image'] = '';
+  $vars['links_open_new_tab'] = !empty($node->links_open_new_tab);
   $image_uri = FALSE;
+
   if ($image_items = field_get_items('node', $node, 'field_editorial_card_image')) {
     $image_uri = $image_items[0]['uri'];
   }
@@ -783,10 +814,17 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
       'path' => image_style_url('article_teaser', $image_uri),
       'alt' => $node->title,
     ));
-    $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+
+    $link_options = array(
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    );
+
+    if (!empty($vars['links_open_new_tab'])) {
+      $link_options['attributes']['target'] = '_blank';
+    }
+
+    $vars['linked_image'] = l($image, 'node/' . $node->nid, $link_options);
     $editorial_listings_view_modes = array(
       'nas_teaser_related_news',
       'nas_node_teaser_no_section_link',
@@ -800,18 +838,22 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
         'alt' => $node->title,
       ));
       $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-          'html' => TRUE,
-          'attributes' => array('title' => $node->title),
-        ));
+        'html' => TRUE,
+        'attributes' => array('title' => $node->title),
+      ));
     }
   }
 
   $title = _nas_editorial_cards_get_title($node);
   $vars['title'] = check_plain($title);
-  $vars['title_link'] = l($title, 'node/' . $node->nid);
 
+  $link_options = array();
+  if (!empty($vars['links_open_new_tab'])) {
+    $link_options['attributes'] = array('target' => '_blank');
+  }
+
+  $vars['title_link'] = l($title, 'node/' . $node->nid, $link_options);
   $vars['subtitle'] = _nas_editorial_cards_get_subtitle($node);
-
   $vars['url'] = url('node/' . $node->nid);
 
   if ($vars['type'] == 'project') {
@@ -1066,21 +1108,6 @@ function nas_preprocess_page(&$vars) {
   if (drupal_is_front_page()) {
     $vars['header_classes'] .= ' transparent dark-text light-bg';
   }
-}
-
-/**
- * Implements hook_css_alter().
- */
-function nas_css_alter(&$css) {
-  unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
-  unset($css[drupal_get_path('module', 'panels') . '/css/panels.css']);
-  unset($css[libraries_get_path('soundmanager2') . '/demo/play-mp3-links/css/inlineplayer.css']);
-  unset($css[drupal_get_path('module', 'colorbox') . '/styles/plain/colorbox_style.css']);
-
-  // Disable aggregation for main styles.
-  // IE8 can't recognize breakpoints when use @import for styles.
-  // @todo should be improved. Maybe affect to performance.
-  $css['sites/all/themes/custom/nas/css/app.css']['preprocess'] = FALSE;
 }
 
 /**

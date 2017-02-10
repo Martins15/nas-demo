@@ -364,6 +364,27 @@
   }
 }
 
+.mobile-plant-attributes--list,
+.mobile-plant-attracts--list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline;
+  vertical-align: top;
+
+  li {
+    display: inline-block;
+    vertical-align: top;
+
+    &:not(:last-child):after {
+      content: ',';
+      display: inline-block;
+      vertical-align: baseline;
+      padding: 0 4px 0 0;
+    }
+  }
+}
+
 .current-location h3 {
   color: $color-light-text-gray;
 
@@ -432,13 +453,28 @@
       padding: 7px 12px;
       display: block;
       border: 1px solid $color-white;
+      line-height: 34px;
+
+      .counter {
+        line-height: 28px;
+        font-size: 16px;
+        color: #626262;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .text {
+        display: none;
+      }
+
     }
 
-    .active a {
+    .r-tabs-state-active a {
       @include border-radius(10px 10px 0 0);
       border: 1px solid $color-middle-gray;
       border-bottom-color: $color-white;
       position: relative;
+      color: #404040;
     }
   }
 
@@ -519,6 +555,100 @@
       margin-top: 10px;
     }
   }
+
+  .r-tabs-accordion-title {
+    padding: 0 18px 0;
+    border-bottom: 1px solid #979797;
+
+    .r-tabs-anchor {
+      font-family: "Source Sans Pro", Verdana, sans-serif;
+      font-weight: 300;
+      display: block;
+      font-size: 20px;
+      line-height: 28px;
+      padding: 11px 0;
+      color: #5b5b5b;
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 6px 0 6px;
+        border-color: #76736c transparent transparent transparent;
+      }
+    }
+
+    .counter {
+      &:before {
+        content: ':';
+        line-height: inherit;
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+
+  .r-tabs-state-active {
+    .r-tabs-anchor {
+      &:before {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  label.view-filters--mobile {
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    font-weight: 300;
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    padding: 11px 0;
+    color: #5b5b5b;
+    position: relative;
+    border-bottom: 1px solid #979797;
+    margin-bottom: 14px;
+    margin-left: 0;
+    margin-right: 0;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 6px 0 6px;
+      border-color: #76736c rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    }
+  }
+
+  input {
+    &.view-filters--mobile {
+      &:checked {
+        ~ label.view-filters--mobile {
+
+          &:before {
+            transform: translateY(-50%) rotate(180deg);
+          }
+        }
+
+        ~ .view-filters {
+          display: block !important;
+          visibility: visible !important;
+        }
+      }
+    }
+  }
 }
 
 .native-plants-full-search-results {
@@ -575,6 +705,13 @@
     font-size: 16px;
     line-height: 25px;
 
+    .columns {
+      > div {
+        vertical-align: top;
+        @extend .clearfix;
+      }
+    }
+
     .view-row {
       border-bottom: 2px solid $color-middle-gray;
       padding-top: 10px;
@@ -589,6 +726,9 @@
 
       .mobile-search-full-results--label {
         color: $color-warm-gray;
+        display: block;
+        float: left;
+        padding: 0 4px 0 0;
       }
     }
   }
@@ -618,12 +758,12 @@
       color: $color-violet;
       display: inline-block;
       font-size: 24px;
-      height: 16px;
+      //height: 16px;
       vertical-align: middle;
 
       @include breakpoint(medium-up) {
         font-size: 28px;
-        height: 10px;
+        //height: 10px;
         vertical-align: middle;
       }
     }
@@ -645,7 +785,7 @@
 .search-results-total {
   background-color: $color-lighter-gray;
   clear: both;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 40px;
   font-family: $font-sans;
   overflow: hidden;
@@ -665,65 +805,80 @@
     }
   }
 
+  .pager-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    @extend .clearfix;
 
-  .pager {
-    font-weight: bold;
+    @include breakpoint(medium-only) {
+      display: inline-block;
+      vertical-align: top;
+    }
 
     @include breakpoint(large-up) {
-      text-align: right;
-    }
-
-    & > :first-child {
-      float: left;
-      margin-right: 14px;
-
-      &:before {
-        content: '< ';
-
-        @include breakpoint(medium-up) {
-          display: none;
-        }
-      }
-    }
-    & > :last-child {
+      margin: 0 52px 0 0;
       float: right;
-      margin-left: 20px;
-
-      &:after {
-        content: ' >';
-
-        @include breakpoint(medium-up) {
-          display: none;
-        }
-      }
-
-      @include breakpoint(large-up) {
-        margin-right: 52px;
-      }
     }
 
-    @include breakpoint(medium-up) {
-      & > :first-child {
-        float: none;
-      }
-
-      & > :last-child {
-        float: none;
-      }
+    li {
+      float: left;
     }
-  }
-
-  .pager-inner {
-    text-align: center;
 
     a, span {
-      display: inline-block;
-      width: 16px;
+      font-weight: bold;
+      display: block;
+      line-height: inherit;
+      padding: 0 6px;
     }
 
-    .text--blue {
-      margin-left: 4px;
-      margin-right: 4px;
+    a {
+      cursor: pointer;
+    }
+
+    .pager-item {
+      display: none;
+
+      @include breakpoint(medium-up) {
+        display: block;
+      }
+    }
+
+    .pager-item--ellipsis {
+      color: #0AA8E3;
+    }
+
+    .pager-next {
+      float: right;
+
+      a, span {
+        padding: 0 0 0 16px;
+
+        &:after {
+          content: ' >';
+
+          @include breakpoint(medium-up) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .pager-prev {
+      float: left;
+
+      a, span {
+        padding: 0 16px 0 0;
+
+        &:before {
+          content: '< ';
+
+          @include breakpoint(medium-up) {
+            display: none;
+          }
+        }
+      }
     }
   }
 }
@@ -867,22 +1022,50 @@
 
 .bird-card-carousel {
   .owl-carousel {
-    .owl-controls {
-      text-align: center;
-      color: #888;
 
-      .disabled i {
-        opacity: 0.4;
+    .owl-stage-outer {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -2px;
+        width: 22px;
+        background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+
+        @media only screen and (min-width: 240px) and (max-width: 601px) {
+          display: none;
+        }
       }
+    }
 
-      .owl-prev, .owl-next {
-        display: inline;
+    .owl-nav {
+      text-align: center;
+
+      .owl-prev,
+      .owl-next {
+        display: inline-block;
         margin: 0 5px;
+
+        &.disabled {
+          opacity: 0.4;
+        }
       }
     }
 
     .owl-item {
-      padding: 0 12.5px;
+      padding: 5px 0 0 0;
+
+      .bird-card {
+        width: 140px;
+
+        @media only screen and (min-width: 240px) and (max-width: 601px) {
+          width: 100%;
+        }
+      }
 
       @include breakpoint(medium-only) {
         padding-right: 0;
@@ -934,6 +1117,32 @@ input[type="checkbox"].np-checkbox {
 
   &:hover {
     color: #909090;
+  }
+}
+
+.native-plant-bird-category--list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    vertical-align: top;
+
+    &:not(:last-child):after {
+      content: ',';
+      display: inline-block;
+      vertical-align: baseline;
+      padding: 0 4px 0 0;
+    }
+  }
+
+  a {
+    color: $color-text-gray;
+    text-decoration: underline;
+
+    &:hover {
+      color: #909090;
+    }
   }
 }
 
@@ -1018,6 +1227,10 @@ input[type="checkbox"].np-checkbox {
       max-width: 142px;
     }
   }
+
+  &.row {
+    margin-bottom: 30px;
+  }
 }
 
 .connect-audubon-near-you--address {
@@ -1061,6 +1274,19 @@ input[type="checkbox"].np-checkbox {
 
 // Nurseries list
 .where-to-buy__section {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+
+  + .where-to-buy__section {
+    border-top: 1px solid #aaa;
+    padding-top: 16px;
+  }
+
+  &.row {
+      margin-bottom: 16px;
+  }
+
+  .columns {}
+
   h2 {
     letter-spacing: 0;
     margin-bottom: 14px;
@@ -1071,13 +1297,69 @@ input[type="checkbox"].np-checkbox {
     }
   }
 
+  h4 {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 0;
+    padding: 4px 0;
+    font-weight: 600;
+    color: #404040;
+  }
+
   p {
     font-size: 16px;
     line-height: 22px;
+
+    + .address {
+      margin-top: 6px;
+    }
   }
 
   .label {
     color: $color-warm-gray;
+  }
+
+  a {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 22px;
+
+    &.more {
+
+    }
+  }
+
+  .address {
+    margin-bottom: 10px;
+
+    p {
+      margin: 0 0 6px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      position: relative;
+      &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: baseline;
+        width: 13px;
+        height: 13px;
+       // background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" width="13" height="13"><path d="M7.7 0v1.2H11L3.7 8.4l1 1 7-7.4v3.3H13V0H7.7zM0 2.4V13h10.6V5.3l-1 1.2v5.3H1V3.5h5.3l1.2-1H0z" fill="#8f8f8f"/></svg>');
+        background-image: inline-image("icon-external.svg");
+        background-size: cover;
+        margin: 0 4px 0 0;
+      }
+    }
+  }
+
+  .medium-8  {
+    .medium-4 {
+      margin-bottom: 16px;
+    }
   }
 }
 

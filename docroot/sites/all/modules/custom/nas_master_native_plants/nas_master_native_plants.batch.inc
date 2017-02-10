@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Batch operations for the NAS Master native Plants module.
+ * Batch operations for the NAS Master Native Plants module.
  */
 
 /**

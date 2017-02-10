@@ -23,7 +23,12 @@ function nas_native_plants_image_styles_image_default_styles() {
   $styles['native_plant_desktop'] = array(
     'label' => 'Native Plant Desktop',
     'effects' => array(
-      45 => array(
+      137 => array(
+        'name' => 'nas_master_native_plants',
+        'data' => array(),
+        'weight' => -10,
+      ),
+      101 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 900,
@@ -36,20 +41,20 @@ function nas_native_plants_image_styles_image_default_styles() {
             'fallback' => 1,
           ),
         ),
-        'weight' => -10,
+        'weight' => -9,
       ),
-      46 => array(
+      106 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
           'width' => 450,
           'height' => 450,
         ),
-        'weight' => -9,
+        'weight' => -8,
       ),
-      43 => array(
+      111 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => -8,
+        'weight' => -7,
       ),
     ),
   );
@@ -58,19 +63,24 @@ function nas_native_plants_image_styles_image_default_styles() {
   $styles['native_plant_lightbox'] = array(
     'label' => 'Native Plant Lightbox',
     'effects' => array(
-      43 => array(
+      138 => array(
+        'name' => 'nas_master_native_plants',
+        'data' => array(),
+        'weight' => -10,
+      ),
+      116 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 1200,
           'height' => 800,
           'upscale' => 0,
         ),
-        'weight' => 2,
+        'weight' => -9,
       ),
-      44 => array(
+      121 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );
@@ -79,7 +89,12 @@ function nas_native_plants_image_styles_image_default_styles() {
   $styles['native_plant_mobile'] = array(
     'label' => 'Native Plant Mobile',
     'effects' => array(
-      50 => array(
+      139 => array(
+        'name' => 'nas_master_native_plants',
+        'data' => array(),
+        'weight' => -10,
+      ),
+      126 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 1275,
@@ -92,20 +107,20 @@ function nas_native_plants_image_styles_image_default_styles() {
             'fallback' => 1,
           ),
         ),
-        'weight' => -10,
+        'weight' => -9,
       ),
-      49 => array(
+      131 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
           'width' => 850,
           'height' => 600,
         ),
-        'weight' => -9,
+        'weight' => -8,
       ),
-      48 => array(
+      136 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
-        'weight' => -8,
+        'weight' => -7,
       ),
     ),
   );

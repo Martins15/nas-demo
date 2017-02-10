@@ -15,7 +15,7 @@ $plugin = array(
   'no title override' => TRUE,
   'defaults' => array(
     'description' => array(
-      'value' => "You're near the <span class=\"text--blue\"><strong>!resource_name</strong></span> in !resource_address. <span class=\"text--blue\">They can help</span>.",
+      'value' => "<p>We&#39;ve found native plants for your zip code. The nearest Audubon offering&nbsp;native plant services&nbsp;is <span class=\"text--blue\" data-ng-click=\"resourceC.activateLocalResources()\" style=\"cursor: pointer;\"><strong data-ng-bind=\"resource.title\">!resource_name</strong></span> in <span data-ng-bind=\"resource.address.rendered_short\">!resource_address</span>. <span class=\"text--blue\" data-ng-click=\"resourceC.activateLocalResources()\" style=\"cursor: pointer;\"><strong>They can help</strong></span>.</p>",
       'format' => 'full_html',
     ),
     'zipcode' => '',
@@ -129,16 +129,6 @@ function native_plants_you_near_audubon_render($subtype, $conf, $args, $contexts
       '!resource_address' => $resource['address']['rendered'],
     )),
     '#context_links' => $contextual_links,
-  );
-
-  if (!$plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
-    return $block;
-  }
-
-  $block->content['#attached'] = array(
-    'js' => array(
-      $plugin['path'] . '/js/native_plants_you_near_audubon.js',
-    ),
   );
 
   return $block;
