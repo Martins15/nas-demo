@@ -85,6 +85,8 @@ class SlideshowImageLikeRule extends SlideshowImageRule {
       $image->withCaption($caption);
     }
 
+    $caption->withPosition(Caption::POSITION_BELOW);
+
     $caption_credit = $this->getProperty(self::PROPERTY_CAPTION_CREDIT, $node);
     if ($caption_credit) {
       $caption->withCredit($caption_credit);

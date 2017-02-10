@@ -227,6 +227,16 @@ function nas_fbia_fb_instant_articles_transformer_rules_alter(&$rules) {
   ];
 
   $rules[] = [
+    'class' => 'SocialEmbedRule',
+    'selector' => '.article-audio-container',
+    'properties' => [
+      'socialembed.iframe' => [
+        'selector' => '.content',
+        'type' => 'children',
+      ],
+    ],
+  ];
+  $rules[] = [
     'class' => 'SlideshowRule',
     'selector' => '.slideshow',
   ];
