@@ -4,52 +4,32 @@
  * Template for the Native Plants Nurseries near you.
  */
 ?>
-<div class="<?php print $classes; ?>">
+<div class="row where-to-buy__section <?php print $classes; ?><?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
+  <?php print $context_links; ?>
+  <div class="large-4 medium-6 columns">
+    <h2 class="thin"><?php print $title; ?></h2>
+    <?php print $description; ?>
+  </div>
   <?php if ($nurseries): ?>
-    <div class="clearfix where-to-buy__section__row vertical-spacing--top--half<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
-      <?php print $context_links; ?>
-      <div class="column medium-4">
-        <h2 class="thin"><?php print $title; ?></h2>
-        <?php print $description; ?>
-      </div>
-      <div class="column medium-8 where-to-buy__nurseries">
+    <div class="large-8 medium-6 columns">
+      <?php foreach (array_chunk($nurseries, 3) as $row): ?>
         <div class="row">
-          <?php foreach ($nurseries as $nursery): ?>
-            <div class="column large-6 where-to-buy__nursery__row">
-              <div class="row">
-                <div class="column tiny-3">
-                  <p class="label"><?php print t('Nursery'); ?></p>
-                </div>
-                <div class="column tiny-9">
-                  <p><?php print $nursery['title'] ?></p>
-                </div>
+          <?php foreach ($row as $nursery): ?>
+            <div class="large-4 medium-12 columns">
+              <div class="address">
+                <h4><?php print $nursery['title'] ?></h4>
+                <p><?php print $nursery['address']['rendered']; ?></p>
+                <?php if (!empty($nursery['phone'])): ?>
+                  <p><?php print $nursery['phone']; ?></p>
+                <?php endif; ?>
+                <?php if (!empty($nursery['link']['url'])): ?>
+                  <a target="_blank" href="<?php print $nursery['link']['url']; ?>"><?php print $nursery['link']['print']; ?></a>
+                <?php endif; ?>
               </div>
-              <div class="row">
-                <div class="column tiny-3">
-                  <p class="label"><?php print t('Address'); ?></p>
-                </div>
-                <div class="column tiny-9">
-                  <p>
-                    <?php print $nursery['address']['rendered']; ?>
-                  </p>
-                </div>
-              </div>
-              <?php if (!empty($nursery['link']['url'])): ?>
-                <div class="row">
-                  <div class="column tiny-3">
-                    <p class="label"><?php print t('Website'); ?></p>
-                  </div>
-                  <div class="column tiny-9">
-                    <p>
-                      <a href="<?php print $nursery['link']['url']; ?>"><?php print $nursery['link']['print']; ?></a>
-                    </p>
-                  </div>
-                </div>
-              <?php endif; ?>
             </div>
           <?php endforeach; ?>
         </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   <?php endif; ?>
 </div>

@@ -153,9 +153,26 @@ function imagecache_external_field_formatter_view($entity_type, $entity, $field,
     $link_file = TRUE;
   }
 
+  // Check if the field provides a title.
+  if ($field['type'] == 'link_field') { 
+    if ($instance['settings']['title'] != 'none') {
+      $field_title = TRUE;
+    }
+  }
+
   foreach ($items as $delta => $item) {
+    // Set path and alt text.
+    $image_alt = '';
     if ($field['type'] == 'link_field') {
       $image_path = imagecache_external_generate_path($item['url']);
+      // If present, use the Link field title to provide the alt text.
+      if (isset($field_title)) {
+        // The link field appends the url as title when the title is empty.
+        // We don't want the url in the alt tag, so let's check this. 
+        if ($item['title'] != $item['url']) {
+          $image_alt = isset($field_title) ? $item['title'] : '';
+        }
+      }
     }
     else {
       $image_path = imagecache_external_generate_path($item['value']);
@@ -165,7 +182,7 @@ function imagecache_external_field_formatter_view($entity_type, $entity, $field,
       'uri' => $image_path,
       'width' => $image_info['width'],
       'height' => $image_info['height'],
-      'alt' => '',
+      'alt' => $image_alt,
       'title' => '',
     );
     if (isset($link_file)) {
@@ -242,8 +259,8 @@ function imagecache_external_generate_path($url) {
   // Check if this is a non-standard file stream and adjust accordingly.
   $scheme = file_uri_scheme($url);
   if ($scheme != 'http' && $scheme != 'https') {
-    // Obtain the "real" URL to this file.
-    $url = drupal_realpath($url);
+    // Obtain the external URL to this file.
+    $url = file_create_url($url);
   }
 
   // Parse the url to get the path components.
@@ -262,6 +279,10 @@ function imagecache_external_generate_path($url) {
 
   $default_scheme = file_default_scheme();
   $directory = $default_scheme . '://' . variable_get('imagecache_directory', 'externals');
+
+  // Allow other modules to change the directory.
+  drupal_alter('imagecache_external_directory', $directory, $filename, $url);
+
   if (file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
     $needs_refresh = FALSE;
     $filepath = $directory . '/' . $filename;
@@ -302,12 +323,24 @@ function imagecache_external_fetch($url, $cachepath) {
     return FALSE;
   }
 
-  $result = drupal_http_request($url);
+  // Pass cookies along with HTTP Request.
+  $cookies = '';
+  foreach ($_COOKIE as $key => $value) {
+    $cookies .= $key . '=' . urlencode($value) . ';';
+  }
+  if (!empty($cookies)) {
+    $headers = array('Cookie' => $cookies);
+    $result = drupal_http_request($url, array('headers' => $headers));
+  }
+  else {
+    $result = drupal_http_request($url);
+  }
+
   $code   = floor($result->code / 100) * 100;
   $types  = imagecache_external_allowed_mimetypes();
 
   // If content-type not set, use the default 'application/octet-stream'.
-  $response_mimetype = isset($result->headers['content-type']) ? strtolower($result->headers['content-type']) : 'application/octet-stream';
+  $response_mimetype = !empty($result->headers['content-type']) ? strtolower($result->headers['content-type']) : 'application/octet-stream';
 
   // Add extension to the cached file to allow file_entity to use it for
   // mimetype identification.
@@ -468,4 +501,13 @@ function imagecache_external_allowed_mimetypes() {
     'application/octet-stream',
     'application/octet-stream;charset=utf-8',
   ));
+}
+
+/**
+ * Implements hook_stage_file_proxy_excluded_paths_alter().
+ *
+ * Prevent the Stage File Proxy module, if exists, to fetch external images.
+ */
+function imagecache_external_stage_file_proxy_excluded_paths_alter(array &$excluded_paths, $uri) {
+  $excluded_paths[] = '/' . variable_get('imagecache_directory', 'externals') . '/';
 }

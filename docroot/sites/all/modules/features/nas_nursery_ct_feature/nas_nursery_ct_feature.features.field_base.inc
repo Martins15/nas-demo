@@ -138,6 +138,25 @@ function nas_nursery_ct_feature_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
+  // Exported field_base: 'field_nursery_phone'
+  $field_bases['field_nursery_phone'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_nursery_phone',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'phone',
+    'settings' => array(
+      'country' => 'ca',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'phone',
+  );
+
   // Exported field_base: 'field_nursery_states'
   $field_bases['field_nursery_states'] = array(
     'active' => 1,
