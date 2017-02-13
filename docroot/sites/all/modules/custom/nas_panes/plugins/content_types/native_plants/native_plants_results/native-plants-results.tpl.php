@@ -92,14 +92,14 @@
                      data-tid="{{attributeID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"
-                     data-ng-click="resultsC.storage.setStateParam('attribute', attributeID, 'page')"></a>
+                     data-ng-click="resultsC.setFilter('attribute', attributeID, 'page')"></a>
                 </li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"
-                     data-ng-click="resultsC.storage.setStateParam('resource', resourceID, 'page')"></a>
+                     data-ng-click="resultsC.setFilter('resource', resourceID, 'page')"></a>
                 </li>
               </ul>
             </td>
@@ -147,13 +147,13 @@
                      data-tid="{{attributeID}}"
                      style="color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"
-                     data-ng-click="resultsC.storage.setStateParam('attribute', attributeID, 'page')"></a></li>
+                     data-ng-click="resultsC.setFilter('attribute', attributeID, 'page')"></a></li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"
-                     data-ng-click="resultsC.storage.setStateParam('resource', resourceID, 'page')"></a></li>
+                     data-ng-click="resultsC.setFilter('resource', resourceID, 'page')"></a></li>
               </ul>
             </div>
             <div>

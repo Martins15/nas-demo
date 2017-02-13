@@ -124,14 +124,14 @@
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{attributeID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
-                     data-ng-click="resultsC.storage.setStateParam('attribute_tier1', attributeID, 'page_tier1')"
+                     data-ng-click="resultsC.setFilter('attribute_tier1', attributeID, 'page_tier1')"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"></a>
                 </li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
-                     data-ng-click="resultsC.storage.setStateParam('resource_tier1', resourceID, 'page_tier1')"
+                     data-ng-click="resultsC.setFilter('resource_tier1', resourceID, 'page_tier1')"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"></a>
                 </li>
               </ul>
