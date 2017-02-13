@@ -404,13 +404,18 @@
       self.storage = storage;
     });
 
-    NativePlantsApp.controller('NativePlantsResultsController', function ($sce, storage) {
+    NativePlantsApp.controller('NativePlantsResultsController', function ($sce, $anchorScroll, storage) {
       var self = this;
       self.storage = storage;
 
       self.setFilter = function (param, value, page) {
         self.storage.activate_tab = false;
         self.storage.setStateParam(param, value, page);
+      };
+      self.setPage = function (param, value) {
+        self.storage.activate_tab = false;
+        self.storage.setStateParam(param, value);
+        $anchorScroll('pager-scroll-' + param);
       };
 
       self.plantDescriptionClass = function (plant) {

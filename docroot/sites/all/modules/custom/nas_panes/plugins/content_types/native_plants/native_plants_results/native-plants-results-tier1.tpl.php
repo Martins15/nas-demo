@@ -58,7 +58,7 @@
   </div>
 
   <!--View Content-->
-  <div class="view-content row">
+  <div id="pager-scroll-page_tier1" class="view-content row">
     <div class="view-row columns"
          data-ng-repeat="plant in resultsC.storage.results_tier1_filtered |
          orderBy : resultsC.storage.stateParams.orderBy_tier1 |
@@ -182,12 +182,12 @@
       <ul class="pager-list">
         <li class="pager-prev">
           <a href="javascript:void(0)" data-ng-if="resultsC.storage.pager_tier1.pager_items.previous.link"
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.previous.page)"><?php print t('Previous page'); ?></a>
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.previous.page)"><?php print t('Previous page'); ?></a>
           <span class="pager-prev" data-ng-if="!resultsC.storage.pager_tier1.pager_items.previous.link"><?php print t('Previous page'); ?></span>
         </li>
         <li class="pager-item" data-ng-if="resultsC.storage.pager_tier1.pager_items.first.link">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.first.page)"
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.first.page)"
              data-ng-bind="resultsC.storage.pager_tier1.pager_items.first.page"></a>
         </li>
         <li class="pager-item pager-item--ellipsis"
@@ -196,7 +196,7 @@
         </li>
         <li class="pager-item" data-ng-repeat="item in resultsC.storage.pager_tier1.pager_items.items_before">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', item.page)"
+             data-ng-click="resultsC.setPage('page_tier1', item.page)"
              data-ng-bind="item.page"></a>
         </li>
         <li class="pager-item">
@@ -204,7 +204,7 @@
         </li>
         <li class="pager-item" data-ng-repeat="item in resultsC.storage.pager_tier1.pager_items.items_after">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', item.page)"
+             data-ng-click="resultsC.setPage('page_tier1', item.page)"
              data-ng-bind="item.page"></a>
         </li>
         <li class="pager-item pager-item--ellipsis"
@@ -213,12 +213,12 @@
         </li>
         <li class="pager-item" data-ng-if="resultsC.storage.pager_tier1.pager_items.last.link">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.last.page)"
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.last.page)"
              data-ng-bind="resultsC.storage.pager_tier1.pager_items.last.page"></a>
         </li>
         <li class="pager-next">
           <a href="javascript:void(0)" data-ng-if="resultsC.storage.pager_tier1.pager_items.next.link"
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.next.page)"><?php print t('Next page'); ?></a>
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.next.page)"><?php print t('Next page'); ?></a>
           <span class="pager-next" data-ng-if="!resultsC.storage.pager_tier1.pager_items.next.link"><?php print t('Next page'); ?></span>
         </li>
       </ul>
