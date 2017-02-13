@@ -284,22 +284,35 @@
                         });
                     }
 
+                    // Preview for images in table.
                     if (scannedFiles.length) {
+                        fileList.wrap("<div class='audubon-netx-preview'></div>");
+                        var tHead = $('<table><thead><tr><th>Image</th><th>Filename</th><th>Dimensions</th></tr></thead><tbody>');
+                        var tbodyEnd = $('</tbody>');
+                        tHead.appendTo(fileList);
                         scannedFiles.forEach(function (f) {
                             var fileSize = bytesToSize(f.size),
                                 name = escapeHTML(f.name),
-                                assetId  = parseInt(f.assetId),
+                                assetId = parseInt(f.assetId),
                                 fileType = name.split('.'),
                                 preview = f.assetPreview,
                                 icon = '<span class="icon file"></span>';
+                            dimensions = escapeHTML(f.dimensions) + 'px';
                             fileType = fileType[fileType.length - 1];
                             // @todo change icons with a real image thumbnails.
                             icon = '<span class="icon file f-' + fileType + '">.' + fileType + '</span>';
                             // @todo add class for ability to have selections for a form.
-                            var file = $('<li class="sfb__file" assetId="' + assetId + '">' + preview + '</li>');
+
+                            var rowStart = '<tr class="sfb__file" assetId="' + assetId + '">',
+                                image = '<td>' + preview + '</td>',
+                                fileName = '<td>' + name + '</td>',
+                                dimensions = '<td>' + dimensions + '</td>',
+                                rowEnd = '</tr>',
+                                file = $(rowStart + image + fileName + dimensions + rowEnd);
+                            file.find('.label-wrapper').remove();
                             file.appendTo(fileList);
                         });
-
+                        tbodyEnd.appendTo(fileList);
                     }
 
                     pager.empty();
@@ -394,10 +407,8 @@
                     var url = '';
                     if (filemanager.hasClass('searching')) {
                         url = '<span>Search results: </span>';
-                        fileList.removeClass('animated');
                     }
                     else {
-                        fileList.addClass('animated');
                         breadcrumbsUrls.forEach(function (u, i) {
                             var name = u.split('/');
                             if (i !== breadcrumbsUrls.length - 1) {
@@ -412,7 +423,6 @@
 
                     // Show the generated elements.
                     fileList.addClass('media-list-thumbnails');
-                    fileList.animate({'display': 'inline-block'});
                     fileList.show();
 
                     // Mark file item as selected.
