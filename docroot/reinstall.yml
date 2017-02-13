@@ -235,7 +235,7 @@
   - name: Disable CDN feature
     sudo: yes
     shell: "{{ php_env_vars }} drush vset cdn_status 0"
-    when: pp_environment == "default"
+    when: pp_environment == "default" or pp_environment == "demo"
 
   - name: Enable devel and views_ui for dev
     sudo: yes

@@ -29,5 +29,15 @@ function nas_native_plants_taxonomy_taxonomy_default_vocabularies() {
       'language' => 'und',
       'i18n_mode' => 1,
     ),
+    'native_plant_resources' => array(
+      'name' => 'Native Plant resources',
+      'machine_name' => 'native_plant_resources',
+      'description' => 'Different plant attributes',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+      'language' => 'und',
+      'i18n_mode' => 1,
+    ),
   );
 }
