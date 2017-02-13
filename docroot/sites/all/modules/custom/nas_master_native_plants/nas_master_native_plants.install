@@ -343,3 +343,14 @@ function nas_master_native_plants_update_7018() {
 function nas_master_native_plants_update_7019() {
   module_enable(array('nas_additional_resource_import_feature'));
 }
+
+/**
+ * Reverting email settings.
+ */
+function nas_master_native_plants_update_7020() {
+  features_revert(array(
+    'nas_native_plants_email_feature' => array('variable'),
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+    'nas_additional_resource_feature' => array('views_view'),
+  ));
+}

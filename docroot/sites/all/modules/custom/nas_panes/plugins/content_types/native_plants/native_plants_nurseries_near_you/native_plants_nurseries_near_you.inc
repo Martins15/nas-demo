@@ -14,6 +14,7 @@ $plugin = array(
   'hook theme' => 'native_plants_nurseries_near_you_theme',
   'defaults' => array(
     'title' => 'Where to buy native plants near you',
+    'type' => 'nursery',
     'override_title_text' => 'Where to buy native plants near you',
     'description' => array(
       'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these nurseries.</p>',
@@ -45,12 +46,27 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
+  $form['type'] = array(
+    '#title' => t('Type'),
+    '#type' => 'select',
+    '#default_value' => $conf['type'],
+    '#options' => array(
+      'nursery' => t('Nursery'),
+      'additional_resource' => t('Additional resource'),
+    ),
+  );
+
   $form['override_title_heading']['#access'] = FALSE;
   $form['online'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show online nurseries'),
     '#description' => t('Select this option to show only online nurseries.'),
     '#default_value' => $conf['online'],
+    '#states' => array(
+      'visible' => array(
+        ':input[name="type"]' => array('value' => 'nursery'),
+      ),
+    ),
   );
   $form['quantity'] = array(
     '#type' => 'select',
@@ -124,48 +140,18 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
-  }
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-
-  $geometry = array();
-  // Perform proximity search only if we are looking for offline nurseries.
-  if (!$conf['online']) {
-    ctools_include('plugins');
-    if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-      if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-        $geometry = $function($zipcode);
+    else {
+      foreach ($contexts as $context) {
+        if ($context->plugin == 'entity:permalink') {
+          $conf['zipcode'] = $context->data->zip_code;
+          break;
+        }
       }
     }
   }
-
-  $nurseries = array();
-  if (!$conf['online'] && $geometry) {
-    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online'], $latlon);
-  }
-  elseif ($conf['online']) {
-    $state_code = _nas_master_native_plants_zipcode_to_state($zipcode);
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online'], 'all', $state_code);
-  }
-  else {
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online']);
-  }
-
-  // Prepare nurseries.
-  foreach ($view_results as $result) {
-    if (!$nursery = node_load($result->entity)) {
-      continue;
-    }
-    $nursery_wrapper = entity_metadata_wrapper('node', $nursery);
-    $nurseries[] = array(
-      'title' => $nursery_wrapper->title->value(),
-      'address' => $nursery_wrapper->field_nursery_address->value(),
-      'phone' => $nursery_wrapper->field_nursery_phone->value(),
-      'link' => $nursery_wrapper->field_nursery_link->value(),
-    );
-    if (count($nurseries) == $conf['quantity']) {
-      break;
-    }
+  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+  if (!$nurseries = native_plants_nurseries_near_you_get_nurseries($zipcode, $conf['type'], $conf['quantity'], $conf['online'])) {
+    return '';
   }
 
   $block = new stdClass();
@@ -179,6 +165,73 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   );
 
   return $block;
+}
+
+/**
+ * Get nurseries from zipcode.
+ */
+function native_plants_nurseries_near_you_get_nurseries($zipcode, $type, $limit = 6, $online = 0) {
+  $latln = NULL;
+  $state = NULL;
+
+  if ($online) {
+    $latln = 'all';
+    $state = _nas_master_native_plants_zipcode_to_state($zipcode);
+  }
+  else {
+    ctools_include('plugins');
+
+    if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
+      if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
+        $geometry = $function($zipcode);
+        $latln = $geometry->coords[1] . ',' . $geometry->coords[0];
+      }
+    }
+  }
+
+  if ($type == 'nursery') {
+    $view_results = views_get_view_result('nurseries_near_you', 'default', $online, $latln, $state);
+    $fields = array(
+      'address' => 'field_nursery_address',
+      'phone' => 'field_nursery_phone',
+      'link' => 'field_nursery_link',
+    );
+  }
+  else {
+    $view_results = views_get_view_result('additional_resources_near_you', 'default', $latln);
+    $fields = array(
+      'address' => 'field_additional_resource_addr',
+      'phone' => 'field_additional_resource_phone',
+      'link' => 'field_additional_resource_link',
+    );
+  }
+
+  // Prepare nurseries.
+  $nurseries = array();
+  foreach ($view_results as $result) {
+    if (!$nursery = node_load($result->entity)) {
+      continue;
+    }
+
+    $wrapper = entity_metadata_wrapper('node', $nursery);
+    $body = $wrapper->body->value();
+
+    $row = array(
+      'title' => $wrapper->title->value(),
+      'description' => check_markup($body['value'], $body['format']),
+    );
+
+    foreach ($fields as $key => $field) {
+      $row[$key] = $wrapper->{$field}->value();
+    }
+
+    $nurseries[] = $row;
+    if (count($nurseries) == $limit) {
+      break;
+    }
+  }
+
+  return $nurseries;
 }
 
 /**

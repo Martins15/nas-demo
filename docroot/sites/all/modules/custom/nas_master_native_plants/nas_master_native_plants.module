@@ -203,6 +203,12 @@ function nas_master_native_plants_theme($existing, $type, $theme, $path) {
       ),
       'template' => 'templates/nas-master-native-plants-mail-native-plants-list',
     ),
+    'nas_master_native_plants_mail_native_plants_list_responsive' => array(
+      'variables' => array(
+        'permalink' => NULL,
+      ),
+      'template' => 'templates/nas-master-native-plants-mail-native-plants-list-responsive',
+    ),
   );
 }
 
@@ -360,13 +366,13 @@ function nas_master_native_plants_convio_integration($values) {
  * Implements hook_mail().
  */
 function nas_master_native_plants_mail($key, &$message, $params) {
-  if ($key != 'native_plants_list') {
+  if (strpos($key, 'native_plants_list') !== 0) {
     return;
   }
 
   // TODO: do we need to do anything else to send HTML correctly? modify headers?
   $message['subject'] = 'Audubon Native Plants list';
-  $message['body'][] = theme('nas_master_native_plants_mail_native_plants_list', array(
+  $message['body'][] = theme('nas_master_native_plants_mail_' . $key, array(
     'permalink' => $params['permalink'],
   ));
 }
@@ -471,6 +477,50 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
         break;
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for nas_master_native_plants_mail_native_plants_list_responsive.
+ */
+function nas_master_native_plants_preprocess_nas_master_native_plants_mail_native_plants_list_responsive(&$variables) {
+  module_load_include('inc', 'nas_panes', 'plugins/content_types/native_plants/native_plants_audubon_near_you/native_plants_audubon_near_you');
+  module_load_include('inc', 'nas_panes', 'plugins/content_types/native_plants/native_plants_nurseries_near_you/native_plants_nurseries_near_you');
+
+  nas_master_native_plants_preprocess_nas_master_native_plants_mail_native_plants_list($variables);
+
+  $theme_path = drupal_get_path('theme', 'nas');
+
+  $variables['css_url'] = file_create_url($theme_path . '/prototypes/native-plants-2.1/css/app.css');
+  $variables['logo_url'] = file_create_url($theme_path . '/img/footer-logo.png');
+  $variables['icon_link_url'] = file_create_url($theme_path . '/img/icon-link.jpg');
+  $variables['icon_map_url'] = file_create_url($theme_path . '/img/icon-map.jpg');
+  $variables['wordmark_url'] = file_create_url($theme_path . '/img/wordmark-white.png');
+  $variables['search_url'] = url('native-plants/search', array(
+    'query' => array('zipcode' => $variables['permalink']->zip_code),
+    'absolute' => TRUE,
+  ));
+
+  $zipcode = $variables['permalink']->zip_code;
+
+  $variables['resources'] = native_plants_audubon_near_you_get_resources($zipcode);
+  $variables['online_nurseries'] = native_plants_nurseries_near_you_get_nurseries($zipcode, 'nursery', 6, 1);
+  $variables['additional_resources'] = native_plants_nurseries_near_you_get_nurseries($zipcode, 'additional_resource', 2);
+  $variables['_nurseries'] = native_plants_nurseries_near_you_get_nurseries($zipcode, 'nursery');
+
+  $keys = array(
+    'resources',
+    'online_nurseries',
+    'additional_resources',
+    '_nurseries',
+  );
+
+  foreach ($keys as $key) {
+    $variables['nurseries'] = $variables[$key];
+    nas_panes_preprocess_native_plants_nurseries_near_you($variables);
+    $variables[$key] = $variables['nurseries'];
+  }
+
+  unset($variables['_nurseries']);
 }
 
 /**

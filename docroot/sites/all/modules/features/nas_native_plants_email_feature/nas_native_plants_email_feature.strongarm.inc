@@ -25,6 +25,8 @@ function nas_native_plants_email_feature_strongarm() {
     'default-system' => 'SmtpMailSystem',
     'mandrill_test' => 'MandrillMailSystem',
     'nas_master_native_plants_native_plants_list' => 'MandrillMailSystem',
+    'webform_submission' => 'DefaultMailSystem',
+    'nas_master_native_plants_native_plants_list_responsive' => 'MandrillMailSystem',
   );
   $export['mail_system'] = $strongarm;
 
