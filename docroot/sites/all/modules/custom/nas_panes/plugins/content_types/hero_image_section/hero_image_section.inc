@@ -70,6 +70,23 @@ function hero_image_section_form($form, &$form_state) {
     '#required' => TRUE,
   );
 
+  $form['mobile_image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Mobile Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => '',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => !empty($conf['mobile_image']) ? $conf['mobile_image'] : 0,
+    '#required' => FALSE,
+  );
+
   ctools_form_include($form_state, 'content');
   ctools_form_include($form_state, 'hero_image_section', 'nas_panes', 'plugins/content_types/hero_image_section');
 
@@ -116,8 +133,10 @@ function hero_image_section_form_submit(&$form, &$form_state) {
  */
 function hero_image_section_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
-  $hero_image = '';
-  $hero_image_mobile = '';
+  $hero_image = file_load($conf['image']);;
+  $hero_image_mobile = $hero_image;
+  $hero_image_path = '';
+  $hero_image_mobile_path = '';
   $attribution = '';
 
   $hero_icon = '';
@@ -127,12 +146,16 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
     $hero_icon = image_style_url('hero_icon', $hero_icon_uri);
   }
 
-  if (!empty($conf['image'])) {
-    $hero_image_object = file_load($conf['image']);
-    $hero_image_uri = nas_alters_local_image_uri($hero_image_object->uri);
-    $hero_image = image_style_url('hero_image', $hero_image_uri);
-    $hero_image_mobile = image_style_url('hero_mobile', $hero_image_uri);
-    $attribution = _nas_panes_format_image_attribution($hero_image_object);
+  if (isset($conf['mobile_image']) && $conf['mobile_image'] != 0) {
+    $hero_image_mobile = file_load($conf['mobile_image']);
+  }
+
+  if (!empty($hero_image)) {
+    $hero_image_uri = nas_alters_local_image_uri($hero_image->uri);
+    $hero_image_path = image_style_url('hero_image', $hero_image_uri);
+    $hero_image_mobile_uri = nas_alters_local_image_uri($hero_image_mobile->uri);
+    $hero_image_mobile_path = image_style_url('hero_mobile', $hero_image_mobile_uri);
+    $attribution = _nas_panes_format_image_attribution($hero_image);
   }
 
   $contextual_links = '';
@@ -152,17 +175,17 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('hero_image_section', array(
-      'slug' => $conf['slug'],
-      'title' => $conf['title'],
-      'subtitle' => $conf['subtitle'],
-      'hero_icon' => $hero_icon,
-      'hero_image' => $hero_image,
-      'hero_image_mobile' => $hero_image_mobile,
-      'credit' => $attribution,
-      'color_mode_gradient' => $color_mode_gradient,
-      'color_mode_text' => $conf['text_color_mode'],
-      'contextual_links' => $contextual_links,
-    ));
+    'slug' => $conf['slug'],
+    'title' => $conf['title'],
+    'subtitle' => $conf['subtitle'],
+    'hero_icon' => $hero_icon,
+    'hero_image' => $hero_image_path,
+    'hero_image_mobile' => $hero_image_mobile_path,
+    'credit' => $attribution,
+    'color_mode_gradient' => $color_mode_gradient,
+    'color_mode_text' => $conf['text_color_mode'],
+    'contextual_links' => $contextual_links,
+  ));
 
   $block->content = $content;
 
