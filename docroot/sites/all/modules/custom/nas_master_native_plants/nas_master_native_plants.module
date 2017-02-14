@@ -490,7 +490,6 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
 
   $theme_path = drupal_get_path('theme', 'nas');
 
-  $variables['css_url'] = file_create_url($theme_path . '/prototypes/native-plants-2.1/css/app.css');
   $variables['logo_url'] = file_create_url($theme_path . '/img/footer-logo.png');
   $variables['icon_link_url'] = file_create_url($theme_path . '/img/icon-link.jpg');
   $variables['icon_map_url'] = file_create_url($theme_path . '/img/icon-map.jpg');
@@ -587,8 +586,17 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
         'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : '',
       );
       $plant['BirdTypesValues'][$wrapper->tid->value()] = $bird_type;
-      $plant['BirdTypesDesktop'][] = l($bird_type['name'], $bird_type['url'], array('attributes' => array('class' => array('native-plant-bird-category-link'))));
-      $plant['BirdTypesMobile'][] = l($bird_type['name'], $bird_type['url']);
+      $plant['BirdTypesDesktop'][] = l($bird_type['name'], $bird_type['url'], array(
+        'attributes' => array(
+          'class' => array('native-plant-bird-category-link'),
+          'style' => 'Margin: 0; color: #404040; font-family: inherit; font-weight: inherit; line-height: inherit; margin: 0; padding: 0; text-align: left; text-decoration: underline; white-space: nowrap;',
+        ),
+      ));
+      $plant['BirdTypesMobile'][] = l($bird_type['name'], $bird_type['url'], array(
+        'attributes' => array(
+          'style' => 'Margin: 0; color: #0AA8E3; font-family: inherit; font-weight: inherit; line-height: inherit; margin: 0; mso-hide: all; padding: 0; text-align: left; text-decoration: none;',
+        ),
+      ));
     }
   }
 }
