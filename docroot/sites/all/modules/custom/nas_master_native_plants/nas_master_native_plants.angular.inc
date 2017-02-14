@@ -27,6 +27,7 @@ function nas_master_native_plants_data_zipcode($zipcode) {
     'terms' => _nas_master_native_plants_get_terms(),
     'nurseries' => _nas_master_native_plants_get_nurseries($zipcode),
     'resources' => _nas_master_native_plants_get_resources($zipcode),
+    'additional_resource' => _nas_master_native_plants_get_additional_resource($zipcode),
   );
   drupal_json_output($output);
 }
@@ -172,6 +173,62 @@ function _nas_master_native_plants_get_nurseries($zipcode) {
   );
 
   return $nurseries;
+}
+
+/**
+ * Load native Plants Additional Resource data.
+ *
+ * @param $zipcode
+ * @return array
+ */
+function _nas_master_native_plants_get_additional_resource($zipcode) {
+  $geometry = array();
+  ctools_include('plugins');
+  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
+    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
+      $geometry = $function($zipcode);
+    }
+  }
+  if ($geometry) {
+    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
+    $view_results = views_get_view_result('additional_resource_near_you', 'default', $latlon);
+  }
+  else {
+    $view_results = views_get_view_result('additional_resource_near_you', 'default');
+  }
+  $additional_resources = array();
+  foreach ($view_results as $result) {
+    if (!$node = node_load($result->entity)) {
+      continue;
+    }
+    $node_wrapper = entity_metadata_wrapper('node', $node);
+    $node = array(
+      'title' => $node_wrapper->title->value(),
+      'address' => $node_wrapper->field_additional_resource_addr->value(),
+      'phone' => $node_wrapper->field_additional_resource_phone->value(),
+      'link' => $node_wrapper->field_additional_resource_link->value(),
+    );
+
+    $node['address']['rendered'] = '';
+    $node['address']['rendered'] .= $node['address']['thoroughfare'] ? $node['address']['thoroughfare'] . '<br/>' : '';
+    $node['address']['rendered'] .= $node['address']['locality'] ? $node['address']['locality'] . ', ' : '';
+    $node['address']['rendered'] .= $node['address']['administrative_area'] ? $node['address']['administrative_area'] : '';
+    $node['address']['rendered'] .= $node['address']['postal_code'] ? ' ' . $node['address']['postal_code'] : '';
+    if (!empty($node['link']['url'])) {
+      $node['link']['print'] = str_replace(array(
+        'http://www.',
+        'https://www.',
+        'http://',
+        'https://'
+      ), '', $node['link']['url']);
+      if (drupal_strlen($node['link']['print']) > 20) {
+        $node['link']['print'] = rtrim(drupal_substr($node['link']['print'], 0, 17), '.') . '&hellip;';
+      }
+    }
+    $additional_resources[] = $node;
+  }
+
+  return $additional_resources;
 }
 
 /**

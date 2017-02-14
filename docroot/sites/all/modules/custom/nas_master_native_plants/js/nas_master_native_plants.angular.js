@@ -496,6 +496,34 @@
       };
     });
 
+    NativePlantsApp.controller('NativePlantsAdditionalResourcesController', function ($scope, $attrs, storage) {
+      var self = this;
+      self.storage = storage;
+      self.rowsLimit = 1;
+
+      self.limitToggle = function () {
+        self.rowsLimit = self.rowsLimit ? null : 1;
+      };
+
+      $scope.$watch(function () {
+        return self.storage.data;
+      }, function (newVal, oldVal) {
+        self.rows = [];
+        if (typeof newVal == 'undefined') {
+          return;
+        }
+        self.additional_resource = self.storage.data.additional_resource;
+        var row = [];
+        for ($i = 0; $i < Math.ceil(self.additional_resource.length / 2); $i++) {
+          for ($j = 0; $j < 2 && ($i * 2 + $j < self.additional_resource.length); $j++) {
+            row.push(self.additional_resource[$i * 2 + $j]);
+          }
+          self.rows.push(row);
+          row = [];
+        }
+      });
+    });
+
     NativePlantsApp.controller('NativePlantsResourcesController', function (storage) {
       var self = this;
       self.storage = storage;
