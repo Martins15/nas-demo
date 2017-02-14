@@ -76,7 +76,8 @@
                 <ul data-clearing class="clearing-thumbs"
                     data-ng-if="plant.PlantImgLightbox">
                   <li>
-                    <a target="_self" data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                    <a target="_self"
+                       data-ng-href="{{plant.PlantImgLightbox}}"></a>
                   </li>
                 </ul>
                 <?php if (user_access('create native_plant content')): ?>
@@ -131,7 +132,8 @@
               <ul data-clearing class="clearing-thumbs"
                   data-ng-if="plant.PlantImgLightbox">
                 <li>
-                  <a target="_self" data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                  <a target="_self"
+                     data-ng-href="{{plant.PlantImgLightbox}}"></a>
                 </li>
               </ul>
             </div>

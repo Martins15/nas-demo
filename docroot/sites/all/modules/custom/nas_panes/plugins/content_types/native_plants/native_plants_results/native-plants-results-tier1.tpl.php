@@ -73,12 +73,12 @@
           <div class="row">
             <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small"
                  data-ng-if="plant.PlantImgDesktop">
-              <a href="#" class="clearing-attach" data-ng-bind-html="plant.PlantImgDesktop"></a>
+              <a href="#" class="clearing-attach" data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
               <ul data-clearing>
                 <li style="display: none;">
                   <a target="_self"
                      data-ng-href="{{plant.PlantImgLightbox}}"
-                     data-ng-bind-html="plant.PlantImgDesktop"></a>
+                     data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                 </li>
               </ul>
             </div>

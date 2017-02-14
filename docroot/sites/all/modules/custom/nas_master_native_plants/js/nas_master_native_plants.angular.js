@@ -378,6 +378,12 @@
 
     });
 
+    NativePlantsApp.filter('trusted', ['$sce', function($sce){
+      return function(text) {
+        return $sce.trustAsHtml(text);
+      };
+    }]);
+
     NativePlantsApp.controller('NativePlantsTabsController', function ($sce, storage) {
       var self = this;
       self.storage = storage;
