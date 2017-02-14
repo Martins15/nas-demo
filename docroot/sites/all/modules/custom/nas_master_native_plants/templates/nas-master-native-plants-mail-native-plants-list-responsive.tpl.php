@@ -13,11 +13,12 @@
 
   </head>
   <body style="-moz-box-sizing: border-box; -moz-osx-font-smoothing: grayscale; -ms-text-size-adjust: 100%; -webkit-box-sizing: border-box; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; Margin: 0; box-sizing: border-box; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; min-width: 100%; padding: 0; text-align: left; width: 100% !important">
-    <style>@media only screen {
-      html {
-        min-height: 100%;
-        background: #fefefe;
-      }
+    <style>
+      @media only screen {
+        html {
+          min-height: 100%;
+          background: #fefefe;
+        }
       }
 
       @media only screen and (max-width: 716px) {
@@ -359,7 +360,8 @@
         .editorial-card-content {
           min-height: 170px !important;
         }
-      }</style>
+      }
+    </style>
     <span class="preheader" style="color: #fefefe; display: none !important; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; mso-hide: all !important; opacity: 0; overflow: hidden; visibility: hidden"></span>
     <table class="body" style="Margin: 0; background: #fefefe; border-collapse: collapse; border-spacing: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; height: 100%; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 100%">
       <tbody>
