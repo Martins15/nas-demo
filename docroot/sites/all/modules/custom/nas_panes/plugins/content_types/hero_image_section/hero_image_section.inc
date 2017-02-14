@@ -175,7 +175,7 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('hero_image_section', array(
-    'slug' => $conf['slug'],
+    'slug' => isset($conf['slug']) ? $conf['slug'] : '',
     'title' => $conf['title'],
     'subtitle' => $conf['subtitle'],
     'hero_icon' => $hero_icon,
