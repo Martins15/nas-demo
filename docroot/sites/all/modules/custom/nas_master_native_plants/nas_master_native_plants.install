@@ -343,3 +343,15 @@ function nas_master_native_plants_update_7018() {
 function nas_master_native_plants_update_7019() {
   module_enable(array('nas_additional_resource_import_feature'));
 }
+
+/**
+ * Enable Additional resource near you feature. Revert feature `nas_native_plants_search_page_feature`.
+ */
+function nas_master_native_plants_update_7020() {
+  module_enable(array('nas_additional_resource_near_you'));
+  features_revert(array(
+    'nas_native_plants_search_page_feature' => array(
+      'page_manager_pages',
+    ),
+  ));
+}
