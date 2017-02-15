@@ -583,7 +583,7 @@
                       </h3>
 
                       <ul style="font-size: 16px; mso-hide: all">
-                        <?php foreach ($resource['services'] as $service): ?>
+                        <?php foreach ($resource['services'] as $key => $service): ?>
                           <?php if ($key != 'rendered'): ?>
                             <li style="mso-hide: all"><?php print $service; ?></li>
                           <?php endif; ?>
