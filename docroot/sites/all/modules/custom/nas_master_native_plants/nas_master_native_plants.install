@@ -355,3 +355,16 @@ function nas_master_native_plants_update_7020() {
     ),
   ));
 }
+
+/**
+ * Revert feature Community Resource CT.
+ */
+function nas_master_native_plants_update_7021() {
+  features_revert(array(
+    'nas_community_resource_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+  ));
+}
