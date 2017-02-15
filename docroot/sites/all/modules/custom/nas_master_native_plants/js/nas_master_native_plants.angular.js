@@ -421,27 +421,32 @@
         priority: 0,
         restrict: 'A',
         link: function (scope, element, attrs) {
-          scope.$watch(function() {
+          scope.$watch(function () {
             if (angular.isUndefined(storage.data)) {
               return null;
             }
             return storage.data.terms;
-          }, function(newVal, oldVal) {
+          }, function (newVal, oldVal) {
             if (!newVal) {
               return;
             }
 
             scope.$evalAsync(function() {
               var $element = $(element);
-              $element.once('native-plants-multiselect').multiselect({
-                placeholder: $element.data('placeholder')
-              });
+              if ($element.hasClass('native-plants-multiselect-processed')) {
+                $element.multiselect('reload');
+              }
+              else {
+                $element.addClass('native-plants-multiselect-processed');
+                $element.multiselect({
+                  placeholder: $element.data('placeholder')
+                });
+              }
             });
           });
         }
       };
     });
-
 
     NativePlantsApp.controller('NativePlantsTabsController', function ($sce, storage) {
       var self = this;
@@ -480,6 +485,11 @@
         });
         self.storage.activate_tab = false;
         self.storage.setStateParam(param, values.join(','), page);
+      };
+      self.setFilterLink = function (param, value, page) {
+        self.storage.activate_tab = false;
+        self.storage.setStateParam(param, value, page);
+        $anchorScroll('pager-scroll-' + page);
       };
       self.setPage = function (param, value) {
         self.storage.activate_tab = false;
