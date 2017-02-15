@@ -43,8 +43,8 @@
             {key1: 'attribute_tier1', key2: 'native_plant_attributes'},
             {key1: 'resource', key2: 'native_plant_resources'},
             {key1: 'resource_tier1', key2: 'native_plant_resources'},
-            {key1: 'bird_type', key2: 'native_plant_birds_types'},
-            {key1: 'bird_type_tier1', key2: 'native_plant_birds_types'}
+            {key1: 'bird_type', key2: 'native_plant_bird_types'},
+            {key1: 'bird_type_tier1', key2: 'native_plant_bird_types'}
           ];
           angular.forEach(filters, function(value) {
             storage[value.key1] = [];
@@ -434,9 +434,7 @@
             scope.$evalAsync(function() {
               var $element = $(element);
               $element.once('native-plants-multiselect').multiselect({
-                texts: {
-                  placeholder: $element.data('placeholder')
-                }
+                placeholder: $element.data('placeholder')
               });
             });
           });
