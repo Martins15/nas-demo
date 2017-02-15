@@ -88,19 +88,6 @@ function _nas_master_native_plants_get_terms() {
   }
 
   $plant_terms = array();
-  // Add empty/all options.
-  $plant_terms['native_plant_attributes'][''] = array(
-    'tid' => '',
-    'name' => t('All types of plants'),
-  );
-  $plant_terms['native_plant_resources'][''] = array(
-    'tid' => '',
-    'name' => t('All plant resources'),
-  );
-  $plant_terms['native_plant_bird_types'][''] = array(
-    'tid' => '',
-    'name' => t('Attracts: Any type of bird'),
-  );
   $voc_machine_names = array(
     'native_plant_attributes',
     'native_plant_resources',

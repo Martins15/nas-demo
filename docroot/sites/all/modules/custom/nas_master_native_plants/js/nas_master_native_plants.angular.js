@@ -38,12 +38,24 @@
         url: '/native-plants/search?zipcode&active_tab&attribute&attribute_tier1&resource&resource_tier1&bird_type&bird_type_tier1&page&page_tier1',
         params: defaultStateParams,
         onEnter: function(storage, $stateParams) {
-          storage.attribute = storage.data.terms.native_plant_attributes[$stateParams.attribute];
-          storage.attribute_tier1 = storage.data.terms.native_plant_attributes[$stateParams.attribute_tier1];
-          storage.resource = storage.data.terms.native_plant_resources[$stateParams.resource];
-          storage.resource_tier1 = storage.data.terms.native_plant_resources[$stateParams.resource_tier1];
-          storage.bird_type = storage.data.terms.native_plant_bird_types[$stateParams.bird_type];
-          storage.bird_type_tier1 = storage.data.terms.native_plant_bird_types[$stateParams.bird_type_tier1];
+          var filters = [
+            {key1: 'attribute', key2: 'native_plant_attributes'},
+            {key1: 'attribute_tier1', key2: 'native_plant_attributes'},
+            {key1: 'resource', key2: 'native_plant_resources'},
+            {key1: 'resource_tier1', key2: 'native_plant_resources'},
+            {key1: 'bird_type', key2: 'native_plant_birds_types'},
+            {key1: 'bird_type_tier1', key2: 'native_plant_birds_types'}
+          ];
+          angular.forEach(filters, function(value) {
+            storage[value.key1] = [];
+            if (!$stateParams[value.key1]) {
+              return;
+            }
+            var values = $stateParams[value.key1].split(',');
+            angular.forEach(values, function(value2) {
+              storage[value.key1].push(storage.data.terms[value.key2][value2]);
+            });
+          });
         },
         resolve: {
           data: function(storage, $stateParams) {
@@ -144,14 +156,24 @@
           return;
         }
         self.results = $filter('filter')(self.data.plants, function(value, index, array) {
-          if (self.stateParams.attribute && value.Attributes.indexOf(self.stateParams.attribute) == -1) {
-            return false;
-          }
-          if (self.stateParams.resource && value.Resources.indexOf(self.stateParams.resource) == -1) {
-            return false;
-          }
-          if (self.stateParams.bird_type && value.BirdTypes.indexOf(self.stateParams.bird_type) == -1) {
-            return false;
+          var filters = [
+            {key1: 'attribute', key2: 'Attributes'},
+            {key1: 'resource', key2: 'Resources'},
+            {key1: 'bird_type', key2: 'BirdTypes'}
+          ];
+          for (var i = 0; i < 3; i++) {
+            if (self[filters[i].key1].length) {
+              var exclude = true;
+              angular.forEach(self[filters[i].key1], function(val) {
+                if (value[filters[i].key2].indexOf(val.tid) != -1) {
+                  exclude = false;
+                }
+              });
+
+              if (exclude) {
+                return false;
+              }
+            }
           }
 
           return true;
@@ -161,14 +183,24 @@
             return false;
           }
 
-          if (self.stateParams.attribute_tier1 && value.Attributes.indexOf(self.stateParams.attribute_tier1) == -1) {
-            return false;
-          }
-          if (self.stateParams.resource_tier1 && value.Resources.indexOf(self.stateParams.resource_tier1) == -1) {
-            return false;
-          }
-          if (self.stateParams.bird_type_tier1 && value.BirdTypes.indexOf(self.stateParams.bird_type_tier1) == -1) {
-            return false;
+          var filters = [
+            {key1: 'attribute_tier1', key2: 'Attributes'},
+            {key1: 'resource_tier1', key2: 'Resources'},
+            {key1: 'bird_type_tier1', key2: 'BirdTypes'}
+          ];
+          for (var i = 0; i < 3; i++) {
+            if (self[filters[i].key1].length) {
+              var exclude = true;
+              angular.forEach(self[filters[i].key1], function(val) {
+                if (value[filters[i].key2].indexOf(val.tid) != -1) {
+                  exclude = false;
+                }
+              });
+
+              if (exclude) {
+                return false;
+              }
+            }
           }
 
           return true;
@@ -384,6 +416,35 @@
       };
     }]);
 
+    NativePlantsApp.directive('nativePlantsMultiselect', function ($timeout, storage) {
+      return {
+        priority: 0,
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+          scope.$watch(function() {
+            if (angular.isUndefined(storage.data)) {
+              return null;
+            }
+            return storage.data.terms;
+          }, function(newVal, oldVal) {
+            if (!newVal) {
+              return;
+            }
+
+            scope.$evalAsync(function() {
+              var $element = $(element);
+              $element.once('native-plants-multiselect').multiselect({
+                texts: {
+                  placeholder: $element.data('placeholder')
+                }
+              });
+            });
+          });
+        }
+      };
+    });
+
+
     NativePlantsApp.controller('NativePlantsTabsController', function ($sce, storage) {
       var self = this;
       self.storage = storage;
@@ -414,9 +475,13 @@
       var self = this;
       self.storage = storage;
 
-      self.setFilter = function (param, value, page) {
+      self.setFilter = function (param, selected, page) {
+        var values = [];
+        angular.forEach(selected, function(value, key) {
+          values.push(value.tid);
+        });
         self.storage.activate_tab = false;
-        self.storage.setStateParam(param, value, page);
+        self.storage.setStateParam(param, values.join(','), page);
       };
       self.setPage = function (param, value) {
         self.storage.activate_tab = false;

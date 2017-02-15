@@ -8,17 +8,26 @@
   <!--View Filters-->
   <div class="view-filters">
     <div class="view-filters-select clearfix">
-      <select data-ng-model="resultsC.storage.attribute"
+      <select class="search-select" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All types of plants'); ?>"
+              data-ng-model="resultsC.storage.attribute"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute.tid, 'page')">
+              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute, 'page')">
       </select>
-      <select data-ng-model="resultsC.storage.resource"
+      <select class="search-select" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All plant resources'); ?>"
+              data-ng-model="resultsC.storage.resource"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource.tid, 'page')">
+              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource, 'page')">
       </select>
-      <select data-ng-model="resultsC.storage.bird_type"
+      <select class="search-select" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+              data-ng-model="resultsC.storage.bird_type"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type.tid, 'page')">
+              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type, 'page')">
       </select>
     </div>
     <div class="view-filters-controls clearfix">
