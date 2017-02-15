@@ -533,8 +533,10 @@
                               </h3>
 
                               <ul style="font-size: 16px">
-                                <?php foreach ($resource['services'] as $service): ?>
-                                  <li><?php print $service; ?></li>
+                                <?php foreach ($resource['services'] as $key => $service): ?>
+                                  <?php if ($key != 'rendered'): ?>
+                                    <li><?php print $service; ?></li>
+                                  <?php endif; ?>
                                 <?php endforeach; ?>
                               </ul>
                             </td>
@@ -582,7 +584,9 @@
 
                       <ul style="font-size: 16px; mso-hide: all">
                         <?php foreach ($resource['services'] as $service): ?>
-                          <li style="mso-hide: all"><?php print $service; ?></li>
+                          <?php if ($key != 'rendered'): ?>
+                            <li style="mso-hide: all"><?php print $service; ?></li>
+                          <?php endif; ?>
                         <?php endforeach; ?>
                       </ul>
 
@@ -594,14 +598,14 @@
               <table align="center" class="container show-for-large" style="Margin: 0 auto; background: none; border-collapse: collapse; border-spacing: 0; margin: 0 auto; padding: 0; text-align: inherit; vertical-align: top; width: 700px"><tbody><tr style="padding: 0; text-align: left; vertical-align: top"><td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word">
                 <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
                   <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0; text-align: left">
-                    <?php if (!empty($nurseries)): ?>
+                    <?php if (!empty($nurseries['offline'])): ?>
                       <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 0; padding: 0; text-align: left; word-wrap: normal">
                           <?php print t('Where to buy native plants near you'); ?>
                       </h2>
 
                       <table style="border-collapse: collapse; border-spacing: 0; font-family: 'Source Sans Pro', Verdana, sans-serif; padding: 0; text-align: left; vertical-align: top; width: 100%">
                         <tbody>
-                          <?php foreach (array_chunk($nurseries, 3) as $row): ?>
+                          <?php foreach (array_chunk($nurseries['offline'], 3) as $row): ?>
                             <tr style="padding: 0; text-align: left; vertical-align: top">
                               <?php foreach ($row as $nursery): ?>
                                 <td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 33.33%; word-wrap: break-word">
@@ -633,13 +637,13 @@
                       </table>
                     <?php endif; ?>
 
-                    <?php if (!empty($online_nurseries)): ?>
+                    <?php if (!empty($nurseries['online'])): ?>
                       <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
                         <?php print t('Online Retailers'); ?>
                       </h2>
                       <table style="border-collapse: collapse; border-spacing: 0; font-family: 'Source Sans Pro', Verdana, sans-serif; padding: 0; text-align: left; vertical-align: top; width: 100%">
                         <tbody>
-                          <?php foreach (array_chunk($online_nurseries, 3) as $row): ?>
+                          <?php foreach (array_chunk($nurseries['online'], 3) as $row): ?>
                             <tr style="padding: 0; text-align: left; vertical-align: top">
                               <?php foreach ($row as $nursery): ?>
                                 <td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 33.33%; word-wrap: break-word">
@@ -716,7 +720,7 @@
               </td></tr></tbody></table>
 
               <div class="hide-for-large" style="display: none; font-size: 0; line-height: 0; max-height: 0; mso-hide: all; overflow: hidden; width: 0">
-                <?php if (!empty($nurseries)): ?>
+                <?php if (!empty($nurseries['offline'])): ?>
                   <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; mso-hide: all; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody style="mso-hide: all"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top">
                     <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; mso-hide: all; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; mso-hide: all; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0; text-align: left">
                       <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
@@ -726,7 +730,7 @@
                     <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
                   </tr></tbody></table>
 
-                  <?php foreach ($nurseries as $nursery): ?>
+                  <?php foreach ($nurseries['offline'] as $nursery): ?>
                     <div class="clearfix view-row" style="mso-hide: all">
                       <div class="columns" style="mso-hide: all">
                         <div class="address" style="color: #fff; font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.6px; line-height: 17px; margin: 0 !important; margin-bottom: 16px !important; mso-hide: all; text-align: left">
@@ -752,7 +756,7 @@
                   <?php endforeach; ?>
                 <?php endif; ?>
 
-                <?php if (!empty($online_nurseries)): ?>
+                <?php if (!empty($nurseries['online'])): ?>
                   <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; mso-hide: all; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody style="mso-hide: all"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top">
                     <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; mso-hide: all; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; mso-hide: all; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0; text-align: left">
                       <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
@@ -762,7 +766,7 @@
                     <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
                   </tr></tbody></table>
 
-                  <?php foreach ($online_nurseries as $nursery): ?>
+                  <?php foreach ($nurseries['online'] as $nursery): ?>
                     <div class="clearfix view-row" style="mso-hide: all">
                       <div class="columns" style="mso-hide: all">
                         <div class="address" style="color: #fff; font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.6px; line-height: 17px; margin: 0 !important; margin-bottom: 16px !important; mso-hide: all; text-align: left">

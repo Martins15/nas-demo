@@ -345,12 +345,23 @@ function nas_master_native_plants_update_7019() {
 }
 
 /**
- * Reverting email settings.
+ * Enable Additional resource near you feature. Revert feature `nas_native_plants_search_page_feature`.
  */
 function nas_master_native_plants_update_7020() {
+  module_enable(array('nas_additional_resource_near_you'));
+  features_revert(array(
+    'nas_native_plants_search_page_feature' => array(
+      'page_manager_pages',
+    ),
+  ));
+}
+
+/**
+ * Reverting email settings.
+ */
+function nas_master_native_plants_update_7021() {
   features_revert(array(
     'nas_native_plants_email_feature' => array('variable'),
     'nas_native_plants_permalink_page' => array('page_manager_pages'),
-    'nas_additional_resource_feature' => array('views_view'),
   ));
 }

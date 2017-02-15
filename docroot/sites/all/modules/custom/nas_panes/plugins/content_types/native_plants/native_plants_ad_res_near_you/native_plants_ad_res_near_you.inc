@@ -1,27 +1,26 @@
 <?php
 /**
  * @file
- * Native Plants Nurseries near you plugin.
+ * Native Plants Additional Resource near you plugin.
  */
 
 $plugin = array(
-  'title' => t('Native Plants Nurseries near you'),
-  'description' => t('List of nurseries near user ZIP code.'),
+  'title' => t('Native Plants Additional Resource near you'),
+  'description' => t('List of Additional Resource near user ZIP code.'),
   'category' => 'Native Plants',
-  'admin info' => 'native_plants_nurseries_near_you_admin_info',
-  'edit form' => 'native_plants_nurseries_near_you_edit_form',
-  'render callback' => 'native_plants_nurseries_near_you_render',
-  'hook theme' => 'native_plants_nurseries_near_you_theme',
+  'admin info' => 'native_plants_additional_resource_near_you_admin_info',
+  'edit form' => 'native_plants_additional_resource_near_you_edit_form',
+  'render callback' => 'native_plants_additional_resource_near_you_render',
+  'hook theme' => 'native_plants_additional_resource_near_you_theme',
   'defaults' => array(
     'title' => 'Where to buy native plants near you',
     'override_title_text' => 'Where to buy native plants near you',
     'description' => array(
-      'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these nurseries.</p>',
+      'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these additional resource.</p>',
       'format' => 'full_html',
     ),
     'zipcode' => '',
-    'online' => 0,
-    'quantity' => 9,
+    'quantity' => 2,
     'angular' => 0,
   ),
   'all contexts' => TRUE,
@@ -30,7 +29,7 @@ $plugin = array(
 /**
  * Administrative info callback.
  */
-function native_plants_nurseries_near_you_admin_info($subtype, $conf, $context = NULL) {
+function native_plants_additional_resource_near_you_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
   $block->title = $conf['override_title_text'];
   $block->content = check_markup($conf['description']['value'], $conf['description']['format']);
@@ -40,23 +39,17 @@ function native_plants_nurseries_near_you_admin_info($subtype, $conf, $context =
 /**
  * Configuration form.
  */
-function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
+function native_plants_additional_resource_near_you_edit_form($form, &$form_state) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
   $form['override_title_heading']['#access'] = FALSE;
-  $form['online'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Show online nurseries'),
-    '#description' => t('Select this option to show only online nurseries.'),
-    '#default_value' => $conf['online'],
-  );
   $form['quantity'] = array(
     '#type' => 'select',
     '#title' => t('Quantity'),
     '#options' => drupal_map_assoc(range(1, 9)),
-    '#description' => t('Select how many nurseries to show.'),
+    '#description' => t('Select how many additional resource to show.'),
     '#default_value' => $conf['quantity'],
   );
   $form['description'] = array(
@@ -83,7 +76,7 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
 /**
  * Submit handler for configuration.
  */
-function native_plants_nurseries_near_you_edit_form_submit(&$form, &$form_state) {
+function native_plants_additional_resource_near_you_edit_form_submit(&$form, &$form_state) {
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     if (array_key_exists($key, $form_state['values'])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -97,7 +90,7 @@ function native_plants_nurseries_near_you_edit_form_submit(&$form, &$form_state)
 /**
  * Render callback.
  */
-function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contexts) {
+function native_plants_additional_resource_near_you_render($subtype, $conf, $args, $contexts) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
@@ -105,14 +98,12 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
-
   if ($conf['angular']) {
     $block = new stdClass();
     $block->content = array(
-      '#theme' => 'native_plants_nurseries_near_you_angular',
+      '#theme' => 'native_plants_additional_resource_near_you_angular',
       '#title' => t(filter_xss($conf['override_title_text'])),
       '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
-      '#online' => $conf['online'],
       '#context_links' => $contextual_links,
     );
 
@@ -134,20 +125,17 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     }
   }
 
-  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
-
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-  if (!$nurseries = _nas_master_native_plants_get_nurseries($zipcode, 'nursery', $conf['online'], $conf['quantity'])) {
+  if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity'])) {
     return '';
   }
 
   $block = new stdClass();
   $block->content = array(
-    '#theme' => 'native_plants_nurseries_near_you',
+    '#theme' => 'native_plants_additional_resource_near_you',
     '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
-    '#online' => $conf['online'],
-    '#nurseries' => $nurseries,
+    '#additional_resource' => $additional_resources,
     '#context_links' => $contextual_links,
   );
 
@@ -157,26 +145,24 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
 /**
  * Delegated implementation of hook_theme().
  */
-function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
-  $theme['native_plants_nurseries_near_you'] = array(
+function native_plants_additional_resource_near_you_theme(&$theme, $plugin) {
+  $theme['native_plants_additional_resource_near_you'] = array(
     'variables' => array(
       'title' => '',
       'description' => '',
-      'online' => 0,
-      'nurseries' => array(),
+      'additional_resource' => array(),
       'context_links' => '',
     ),
-    'template' => 'native-plants-nurseries-near-you',
+    'template' => 'native-plants-additional-resource-near-you',
     'path' => $plugin['path'],
   );
-  $theme['native_plants_nurseries_near_you_angular'] = array(
+  $theme['native_plants_additional_resource_near_you_angular'] = array(
     'variables' => array(
       'title' => '',
       'description' => '',
-      'online' => 0,
       'context_links' => '',
     ),
-    'template' => 'native-plants-nurseries-near-you-angular',
+    'template' => 'native-plants-additional-resource-near-you-angular',
     'path' => $plugin['path'],
   );
 }

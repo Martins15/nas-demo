@@ -696,25 +696,23 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $display->content['new-0836d4b1-fca0-41a0-b7cf-415cfcd89004'] = $pane;
     $display->panels['main'][6] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $pane = new stdClass();
-    $pane->pid = 'new-c7635476-fe41-4e6c-9ebf-4c4a9d9781a5';
+    $pane->pid = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $pane->panel = 'main';
-    $pane->type = 'native_plants_nurseries_near_you';
-    $pane->subtype = 'native_plants_nurseries_near_you';
+    $pane->type = 'native_plants_ad_res_near_you';
+    $pane->subtype = 'native_plants_ad_res_near_you';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'title' => 'Where to buy native plants near you',
-      'type' => 'additional_resource',
       'override_title_text' => 'Other Local Resources',
       'description' => array(
         'value' => '',
         'format' => 'full_html',
       ),
       'zipcode' => '',
-      'online' => 0,
       'quantity' => '2',
       'angular' => 0,
-      'form_build_id' => 'form-G4mYKq85PY1AqaAKn3MfDQkuw-XhNnGVj6JQnAZTx_g',
+      'form_build_id' => 'form-GO7UiFCprNyNWURJtSeovCuPzB15SWrcNCKjABAUnT4',
       'override_title' => 1,
       'override_title_heading' => 'h2',
     );
@@ -726,9 +724,9 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 7;
     $pane->locks = array();
-    $pane->uuid = 'c7635476-fe41-4e6c-9ebf-4c4a9d9781a5';
-    $display->content['new-c7635476-fe41-4e6c-9ebf-4c4a9d9781a5'] = $pane;
-    $display->panels['main'][7] = 'new-c7635476-fe41-4e6c-9ebf-4c4a9d9781a5';
+    $pane->uuid = '088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $display->content['new-088f3a1d-7f4a-415e-9f90-03167ad47f6f'] = $pane;
+    $display->panels['main'][7] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $pane = new stdClass();
     $pane->pid = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane->panel = 'main';

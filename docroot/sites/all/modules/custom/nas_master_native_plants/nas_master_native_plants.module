@@ -483,8 +483,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
  * Implements hook_preprocess_HOOK() for nas_master_native_plants_mail_native_plants_list_responsive.
  */
 function nas_master_native_plants_preprocess_nas_master_native_plants_mail_native_plants_list_responsive(&$variables) {
-  module_load_include('inc', 'nas_panes', 'plugins/content_types/native_plants/native_plants_audubon_near_you/native_plants_audubon_near_you');
-  module_load_include('inc', 'nas_panes', 'plugins/content_types/native_plants/native_plants_nurseries_near_you/native_plants_nurseries_near_you');
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
   nas_master_native_plants_preprocess_nas_master_native_plants_mail_native_plants_list($variables);
 
@@ -501,25 +500,12 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
 
   $zipcode = $variables['permalink']->zip_code;
 
-  $variables['resources'] = native_plants_audubon_near_you_get_resources($zipcode);
-  $variables['online_nurseries'] = native_plants_nurseries_near_you_get_nurseries($zipcode, 'nursery', 6, 1);
-  $variables['additional_resources'] = native_plants_nurseries_near_you_get_nurseries($zipcode, 'additional_resource', 2);
-  $variables['_nurseries'] = native_plants_nurseries_near_you_get_nurseries($zipcode, 'nursery');
-
-  $keys = array(
-    'resources',
-    'online_nurseries',
-    'additional_resources',
-    '_nurseries',
+  $variables['resources'] = _nas_master_native_plants_get_resources($zipcode, 2, FALSE);
+  $variables['additional_resources'] = _nas_master_native_plants_get_additional_resources($zipcode, 2);
+  $variables['nurseries'] = array(
+    'online' => _nas_master_native_plants_get_online_nurseries($zipcode, 6),
+    'offline' => _nas_master_native_plants_get_offline_nurseries($zipcode, 6),
   );
-
-  foreach ($keys as $key) {
-    $variables['nurseries'] = $variables[$key];
-    nas_panes_preprocess_native_plants_nurseries_near_you($variables);
-    $variables[$key] = $variables['nurseries'];
-  }
-
-  unset($variables['_nurseries']);
 }
 
 /**

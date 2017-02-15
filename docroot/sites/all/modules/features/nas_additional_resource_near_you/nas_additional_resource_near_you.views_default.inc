@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * nas_additional_resource_feature.views_default.inc
+ * nas_additional_resource_near_you.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function nas_additional_resource_feature_views_default_views() {
+function nas_additional_resource_near_you_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'additional_resources_near_you';
+  $view->name = 'additional_resource_near_you';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'search_api_index_default_node_index';
-  $view->human_name = 'Additional resources near you';
+  $view->human_name = 'Additional Resource near you';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -27,8 +27,7 @@ function nas_additional_resource_feature_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Indexed Content: Node ID */
@@ -55,7 +54,7 @@ function nas_additional_resource_feature_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'additional_resource' => 'additional_resource',
   );
-  $translatables['additional_resources_near_you'] = array(
+  $translatables['additional_resource_near_you'] = array(
     t('Master'),
     t('more'),
     t('Apply'),
@@ -63,12 +62,19 @@ function nas_additional_resource_feature_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
     t('Node ID'),
     t('.'),
     t(','),
     t('All'),
   );
-  $export['additional_resources_near_you'] = $view;
+  $export['additional_resource_near_you'] = $view;
 
   return $export;
 }
