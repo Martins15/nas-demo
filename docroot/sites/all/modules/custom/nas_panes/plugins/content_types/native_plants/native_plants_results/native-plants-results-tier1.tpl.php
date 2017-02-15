@@ -8,21 +8,21 @@
   <!--View Filters-->
   <div class="view-filters">
     <div class="view-filters-select clearfix">
-      <select class="search-select" multiple
+      <select class="search-select wrap-select-skip" multiple
               data-native-plants-multiselect
               data-placeholder="<?php print t('All types of plants'); ?>"
               data-ng-model="resultsC.storage.attribute_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
               data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1, 'page_tier1')">
       </select>
-      <select class="search-select" multiple
+      <select class="search-select wrap-select-skip" multiple
               data-native-plants-multiselect
               data-placeholder="<?php print t('All plant resources'); ?>"
               data-ng-model="resultsC.storage.resource_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
               data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1, 'page_tier1')">
       </select>
-      <select class="search-select" multiple
+      <select class="search-select wrap-select-skip" multiple
               data-native-plants-multiselect
               data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
               data-ng-model="resultsC.storage.bird_type_tier1"
