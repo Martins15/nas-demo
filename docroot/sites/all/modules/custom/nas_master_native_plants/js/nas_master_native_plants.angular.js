@@ -102,6 +102,7 @@
     // Service to hold information shared between controllers.
     NativePlantsApp.service('storage', function ($rootScope, $q, $cookies, $filter, $state, $localStorage, courier) {
       var self = this, cache = [];
+      self.multiselect_reload = false;
       self.localStorage = $localStorage;
       self.stateParams = defaultStateParams;
 
@@ -141,6 +142,10 @@
           hasRegistered = false;
           Drupal.behaviors.npClearingFix.attached();
           Drupal.behaviors.npOwl.attached();
+          if (self.multiselect_reload) {
+            self.multiselect_reload = false;
+            $('.search-select').multiselect('reload');
+          }
         });
       });
 
@@ -156,20 +161,35 @@
         });
       };
 
+      // Watch data received from server to recalculate results and pagers.
       $rootScope.$watch(
         function() {
           return self.data;
         },
         function(newVal, oldVal) {
-          if (typeof newVal == 'undefined') {
-            return;
-          }
           self.calculateResults();
-          self.calculatePagerItems(self.results_filtered.length, 'pager');
-          self.calculatePagerItems(self.results_tier1_filtered.length, 'pager_tier1');
+          self.calculateResultsTier1();
+        });
+      // Watch combined filter values and recalculate results.
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type;
+        },
+        function(newVal, oldVal) {
+          self.calculateResults();
+        });
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1;
+        },
+        function(newVal, oldVal) {
+          self.calculateResultsTier1();
         });
 
       self.calculateResults = function() {
+        if (typeof self.data == 'undefined') {
+          return;
+        }
         self.results = $filter('filter')(self.data.plants, function(value, index, array) {
           var filters = [
             {key1: 'attribute', key2: 'Attributes'},
@@ -193,6 +213,12 @@
 
           return true;
         });
+        self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
+      };
+      self.calculateResultsTier1 = function() {
+        if (typeof self.data == 'undefined') {
+          return;
+        }
         self.results_tier1 = $filter('filter')(self.data.plants, function(value, index, array) {
           if (value.Tier1 == false) {
             return false;
@@ -220,7 +246,6 @@
 
           return true;
         });
-        self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
         self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
       };
 
@@ -375,8 +400,10 @@
         self.stateParams['page' + tier] = 1;
         self['results' + tier + '_filtered'] = $filter('filter')(self['results' + tier], self.stateParams['text_search' + tier]);
       };
+      // Clear all the filters.
       self.clearFilters = function() {
         self.activate_tab = false;
+        self.multiselect_reload = true;
         defaultStateParams.active_tab = self.stateParams.active_tab;
         $state.go('main', defaultStateParams, {reload: true});
       };
@@ -530,6 +557,7 @@
       };
       self.setFilterLink = function (param, value, page) {
         self.storage.activate_tab = false;
+        self.storage.multiselect_reload = true;
         self.storage.setStateParam(param, value, page);
         $anchorScroll('pager-scroll-' + page);
       };
