@@ -19,6 +19,7 @@
            data-ng-repeat="resource in row">
         <div class="address">
           <h4 data-ng-bind="resource.title"></h4>
+          <div data-ng-if="resource.body" data-ng-bind-html="resource.body"></div>
           <p data-ng-bind-html="resource.address.rendered"></p>
           <p data-ng-if="resource.phone" data-ng-bind="resource.phone"></p>
           <a target="_blank" data-ng-href="{{resource.link.url}}"

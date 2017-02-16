@@ -290,6 +290,7 @@ function _nas_master_native_plants_get_additional_resource($zipcode) {
     $node_wrapper = entity_metadata_wrapper('node', $node);
     $node = array(
       'title' => $node_wrapper->title->value(),
+      'body' => $node_wrapper->body->value->value(),
       'address' => $node_wrapper->field_additional_resource_addr->value(),
       'phone' => $node_wrapper->field_additional_resource_phone->value(),
       'link' => $node_wrapper->field_additional_resource_link->value(),
