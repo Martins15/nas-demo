@@ -97,6 +97,7 @@ function nas_solr_feature_default_search_api_index() {
         "created" : { "type" : "date" },
         "event_months" : { "type" : "list\\u003Cinteger\\u003E" },
         "event_state" : { "type" : "string" },
+        "field_additional_resource_geo:latlon" : { "type" : "string", "real_type" : "location" },
         "field_article_date" : { "type" : "date" },
         "field_bird_call_type" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_bird_family" : { "type" : "integer", "entity_type" : "taxonomy_term" },
