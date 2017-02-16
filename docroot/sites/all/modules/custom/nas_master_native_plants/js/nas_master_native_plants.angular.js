@@ -61,7 +61,8 @@
           data: function(storage, $stateParams) {
             Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
-            return storage.getData($stateParams.zipcode).then(function () {
+            return storage.getData($stateParams.zipcode).then(function (data) {
+              storage.data = data;
               $.unblockUI();
               Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
@@ -74,14 +75,14 @@
     });
 
     // Service to communicate with backend.
-    NativePlantsApp.factory('courier', function($http, $q, $cookies, $httpParamSerializerJQLike) {
+    NativePlantsApp.factory('courier', function($http, $q) {
       function getData(zipcode) {
         var deferred = $q.defer();
         if (typeof zipcode === 'undefined') {
           deferred.resolve(null);
         }
         else {
-          $http.get(settings.basePath + settings.nas_master_native_plants.callback + zipcode, {cache: true}).then(function(response) {
+          $http.get(settings.basePath + settings.nas_master_native_plants.callback + zipcode).then(function(response) {
             if ($.isEmptyObject(response.data)) {
               deferred.resolve(null);
               return;
@@ -99,8 +100,8 @@
     });
 
     // Service to hold information shared between controllers.
-    NativePlantsApp.service('storage', function ($rootScope, $cookies, $filter, $state, $localStorage, courier) {
-      var self = this;
+    NativePlantsApp.service('storage', function ($rootScope, $q, $cookies, $filter, $state, $localStorage, courier) {
+      var self = this, cache = [];
       self.localStorage = $localStorage;
       self.stateParams = defaultStateParams;
 
@@ -144,8 +145,14 @@
       });
 
       self.getData = function(zipcode) {
+        if (typeof cache[zipcode] != 'undefined') {
+          var deferred = $q.defer();
+          deferred.resolve(cache[zipcode]);
+          return deferred.promise;
+        }
         return courier.getData(zipcode).then(function (data) {
-          self.data = data;
+          cache[zipcode] = data;
+          return data;
         });
       };
 
