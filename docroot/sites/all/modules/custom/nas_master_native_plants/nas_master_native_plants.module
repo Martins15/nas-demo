@@ -786,6 +786,19 @@ function nas_master_native_plants_library() {
       array('system', 'jquery'),
     ),
   );
+  $libraries['jquery-multiselect'] = array(
+    'title' => 'jQuery Multi Select',
+    'website' => 'https://github.com/nobleclem/jQuery-MultiSelect',
+    'version' => '2.0',
+    'js' => array(
+      $theme_path . '/js/vendor/jquery.multiselect/jquery.multiselect.js' => array(
+        'type' => 'file',
+      ),
+    ),
+    'dependencies' => array(
+      array('system', 'jquery'),
+    ),
+  );
 
   return $libraries;
 }

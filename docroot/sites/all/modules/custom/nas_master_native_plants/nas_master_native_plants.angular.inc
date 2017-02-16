@@ -37,30 +37,6 @@ function nas_master_native_plants_data_zipcode($zipcode) {
 }
 
 /**
- * ZIP code validation.
- *
- * @param $zipcode
- *   ZIP code.
- * @return array|bool
- *   Either error message or TRUE.
- */
-function _nas_master_native_plants_validate_zipcode($zipcode) {
-  if ($zipcode == '' || !module_exists('postal_code_validation')) {
-    return TRUE;
-  }
-
-  $validation = postal_code_validation_validate($zipcode, 'US');
-  if ($validation['error']) {
-    return array(
-      'status' => 'error',
-      'error' => $validation['error'],
-    );
-  }
-
-  return TRUE;
-}
-
-/**
  * Get Native Plants for ZIP code.
  *
  * @param $zipcode
@@ -92,19 +68,6 @@ function _nas_master_native_plants_get_terms() {
   }
 
   $plant_terms = array();
-  // Add empty/all options.
-  $plant_terms['native_plant_attributes'][''] = array(
-    'tid' => '',
-    'name' => t('All types of plants'),
-  );
-  $plant_terms['native_plant_resources'][''] = array(
-    'tid' => '',
-    'name' => t('All plant resources'),
-  );
-  $plant_terms['native_plant_bird_types'][''] = array(
-    'tid' => '',
-    'name' => t('Attracts: Any type of bird'),
-  );
   $voc_machine_names = array(
     'native_plant_attributes',
     'native_plant_resources',
@@ -346,7 +309,7 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
 
     $res = array(
       'title' => $wrapper->title->value(),
-      'description' => check_markup($body['value'], $body['format']),
+      'body' => check_markup($body['value'], $body['format']),
     );
 
     foreach ($fields as $key => $field) {

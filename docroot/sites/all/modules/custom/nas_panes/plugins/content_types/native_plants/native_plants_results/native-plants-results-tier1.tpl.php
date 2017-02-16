@@ -8,17 +8,26 @@
   <!--View Filters-->
   <div class="view-filters">
     <div class="view-filters-select clearfix">
-      <select data-ng-model="resultsC.storage.attribute_tier1"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All types of plants'); ?>"
+              data-ng-model="resultsC.storage.attribute_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1.tid, 'page_tier1')">
+              data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1, 'page_tier1')">
       </select>
-      <select data-ng-model="resultsC.storage.resource_tier1"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All plant resources'); ?>"
+              data-ng-model="resultsC.storage.resource_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1.tid, 'page_tier1')">
+              data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1, 'page_tier1')">
       </select>
-      <select data-ng-model="resultsC.storage.bird_type_tier1"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+              data-ng-model="resultsC.storage.bird_type_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type_tier1', resultsC.storage.bird_type_tier1.tid, 'page_tier1')">
+              data-ng-change="resultsC.setFilter('bird_type_tier1', resultsC.storage.bird_type_tier1, 'page_tier1')">
       </select>
     </div>
     <div class="view-filters-controls clearfix">
@@ -124,14 +133,14 @@
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{attributeID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
-                     data-ng-click="resultsC.setFilter('attribute_tier1', attributeID, 'page_tier1')"
+                     data-ng-click="resultsC.setFilterLink('attribute_tier1', attributeID, 'page_tier1')"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"></a>
                 </li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
-                     data-ng-click="resultsC.setFilter('resource_tier1', resourceID, 'page_tier1')"
+                     data-ng-click="resultsC.setFilterLink('resource_tier1', resourceID, 'page_tier1')"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"></a>
                 </li>
               </ul>

@@ -5,7 +5,8 @@
  */
 ?>
 <div class="row where-to-buy__section <?php print $classes; ?><?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>"
-     data-ng-controller="NativePlantsAdditionalResourcesController as addResourcesC">
+     data-ng-controller="NativePlantsAdditionalResourcesController as addResourcesC"
+     data-ng-if="tabsC.storage.data.additional_resource.length">
   <?php print $context_links; ?>
   <div class="large-4 medium-6 columns">
     <h2 class="thin"><?php print $title; ?></h2>
@@ -18,6 +19,7 @@
            data-ng-repeat="resource in row">
         <div class="address">
           <h4 data-ng-bind="resource.title"></h4>
+          <div data-ng-if="resource.body" data-ng-bind-html="resource.body"></div>
           <p data-ng-bind-html="resource.address.rendered"></p>
           <p data-ng-if="resource.phone" data-ng-bind="resource.phone"></p>
           <a target="_blank" data-ng-href="{{resource.link.url}}"

@@ -125,6 +125,8 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
     }
   }
 
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
+
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
   if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity'])) {
     return '';

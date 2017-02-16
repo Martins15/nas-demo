@@ -688,9 +688,9 @@
                                   <h4 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; margin: 0; margin-bottom: 0; padding: 0; text-align: left; word-wrap: normal">
                                     <?php print $resource['title']; ?>
                                   </h4>
-                                  <?php if (!empty($resource['description'])): ?>
+                                  <?php if (!empty($resource['body'])): ?>
                                     <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; padding: 0; text-align: left">
-                                      <?php print strip_tags($resource['description']); ?>
+                                      <?php print strip_tags($resource['body']); ?>
                                     </p>
                                   <?php endif; ?>
                                   <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; padding: 0; text-align: left">
@@ -810,9 +810,9 @@
                         <h4 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; margin: 0; margin-bottom: 0; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
                           <?php print $resource['title']; ?>
                         </h4>
-                        <?php if (!empty($resource['description'])): ?>
+                        <?php if (!empty($resource['body'])): ?>
                           <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; mso-hide: all; padding: 0; text-align: left">
-                            <?php print strip_tags($resource['description']); ?>
+                            <?php print strip_tags($resource['body']); ?>
                           </p>
                         <?php endif; ?>
                         <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; mso-hide: all; padding: 0; text-align: left">

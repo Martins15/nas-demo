@@ -18,6 +18,9 @@
             <div class="large-6 medium-12 columns">
               <div class="address">
                 <h4><?php print $resource['title'] ?></h4>
+                <?php if (!empty($resource['body'])): ?>
+                  <div><?php print $resource['body']; ?></div>
+                <?php endif; ?>
                 <p><?php print $resource['address']['rendered']; ?></p>
                 <?php if (!empty($resource['phone'])): ?>
                   <p><?php print $resource['phone']; ?></p>
