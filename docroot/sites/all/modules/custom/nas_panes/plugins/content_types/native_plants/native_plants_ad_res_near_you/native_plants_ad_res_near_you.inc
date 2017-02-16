@@ -117,7 +117,6 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
     }
   }
   $geometry = array();
-  $additional_resources = array();
   if ($geometry) {
     $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
     $view_results = views_get_view_result('additional_resource_near_you', 'default', $latlon);
@@ -135,6 +134,7 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
     $node_wrapper = entity_metadata_wrapper('node', $node);
     $node = array(
       'title' => $node_wrapper->title->value(),
+      'body' => $node_wrapper->body->value->value(),
       'address' => $node_wrapper->field_additional_resource_addr->value(),
       'phone' => $node_wrapper->field_additional_resource_phone->value(),
       'link' => $node_wrapper->field_additional_resource_link->value(),
