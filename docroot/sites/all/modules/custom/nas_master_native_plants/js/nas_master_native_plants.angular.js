@@ -156,12 +156,20 @@
         });
       };
 
-      $rootScope.$watch(function() {
-        return self.data;
-      }, function(newVal, oldVal) {
-        if (typeof newVal == 'undefined') {
-          return;
-        }
+      $rootScope.$watch(
+        function() {
+          return self.data;
+        },
+        function(newVal, oldVal) {
+          if (typeof newVal == 'undefined') {
+            return;
+          }
+          self.calculateResults();
+          self.calculatePagerItems(self.results_filtered.length, 'pager');
+          self.calculatePagerItems(self.results_tier1_filtered.length, 'pager_tier1');
+        });
+
+      self.calculateResults = function() {
         self.results = $filter('filter')(self.data.plants, function(value, index, array) {
           var filters = [
             {key1: 'attribute', key2: 'Attributes'},
@@ -214,9 +222,7 @@
         });
         self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
         self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
-        self.calculatePagerItems(self.results_filtered.length, 'pager');
-        self.calculatePagerItems(self.results_tier1_filtered.length, 'pager_tier1');
-      });
+      };
 
       // Pager params.
       self.pager = {
@@ -229,23 +235,48 @@
         quantity: 8,
         current_page_param: 'page_tier1'
       };
-      // Watch filtered results array and calculate pager items.
-      $rootScope.$watch(function() {
-        if (angular.isUndefined(self.results_filtered)) {
-          return null;
-        }
-        return self.results_filtered.length;
-      }, function(newVal, oldVal) {
-        self.calculatePagerItems(newVal, 'pager');
-      });
-      $rootScope.$watch(function() {
-        if (angular.isUndefined(self.results_tier1_filtered)) {
-          return null;
-        }
-        return self.results_tier1_filtered.length;
-      }, function(newVal, oldVal) {
-        self.calculatePagerItems(newVal, 'pager_tier1');
-      });
+      // Watch current page state parameter and calculate pager items.
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.page;
+        },
+        function(newVal, oldVal) {
+          if (typeof self.results_filtered == 'undefined') {
+            return;
+          }
+          self.calculatePagerItems(self.results_filtered.length, 'pager');
+        });
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.page_tier1;
+        },
+        function(newVal, oldVal) {
+          if (typeof self.results_tier1_filtered == 'undefined') {
+            return;
+          }
+          self.calculatePagerItems(self.results_tier1_filtered.length, 'pager_tier1');
+        });
+      // Watch filtered results arrays and calculate pager items.
+      $rootScope.$watch(
+        function() {
+          if (angular.isUndefined(self.results_filtered)) {
+            return null;
+          }
+          return self.results_filtered.length;
+        },
+        function(newVal, oldVal) {
+          self.calculatePagerItems(newVal, 'pager');
+        });
+      $rootScope.$watch(
+        function() {
+          if (angular.isUndefined(self.results_tier1_filtered)) {
+            return null;
+          }
+          return self.results_tier1_filtered.length;
+        },
+        function(newVal, oldVal) {
+          self.calculatePagerItems(newVal, 'pager_tier1');
+        });
 
       self.calculatePagerItems = function (count, pager) {
         if (count === null) {
@@ -381,11 +412,13 @@
         });
       };
 
-      $rootScope.$watch(function() {
-        return self.results_tier1_filtered;
-      }, function(newVal, oldVal) {
-        self.calculateTier1inCart();
-      });
+      $rootScope.$watch(
+        function() {
+          return self.results_tier1_filtered;
+        },
+        function(newVal, oldVal) {
+          self.calculateTier1inCart();
+        });
       self.calculateTier1inCart = function () {
         if (angular.isUndefined(self.localStorage.cart)) {
           self.all_tier1_in_cart = false;
@@ -404,16 +437,18 @@
       };
 
       // Watch cart changes.
-      $rootScope.$watch(function() {
-        if (angular.isUndefined(self.localStorage.cart)) {
-          return 0;
-        }
-        return $.map(self.localStorage.cart, function(n, i) { return i; }).length;
-      }, function(newVal, oldVal) {
-        self.calculateTier1inCart();
-        $('.native-plants-get-list-form').find('[name="native_plants_cart"]')
-          .val(angular.toJson(self.localStorage.cart));
-      });
+      $rootScope.$watch(
+        function() {
+          if (angular.isUndefined(self.localStorage.cart)) {
+            return 0;
+          }
+          return $.map(self.localStorage.cart, function(n, i) { return i; }).length;
+        },
+        function(newVal, oldVal) {
+          self.calculateTier1inCart();
+          $('.native-plants-get-list-form').find('[name="native_plants_cart"]')
+            .val(angular.toJson(self.localStorage.cart));
+        });
 
     });
 
