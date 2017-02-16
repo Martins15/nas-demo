@@ -5,7 +5,8 @@
  */
 ?>
 <div class="row where-to-buy__section <?php print $classes; ?><?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>"
-     data-ng-controller="NativePlantsAdditionalResourcesController as addResourcesC">
+     data-ng-controller="NativePlantsAdditionalResourcesController as addResourcesC"
+     data-ng-if="tabsC.storage.data.additional_resource.length">
   <?php print $context_links; ?>
   <div class="large-4 medium-6 columns">
     <h2 class="thin"><?php print $title; ?></h2>

@@ -33,30 +33,6 @@ function nas_master_native_plants_data_zipcode($zipcode) {
 }
 
 /**
- * ZIP code validation.
- *
- * @param $zipcode
- *   ZIP code.
- * @return array|bool
- *   Either error message or TRUE.
- */
-function _nas_master_native_plants_validate_zipcode($zipcode) {
-  if ($zipcode == '' || !module_exists('postal_code_validation')) {
-    return TRUE;
-  }
-
-  $validation = postal_code_validation_validate($zipcode, 'US');
-  if ($validation['error']) {
-    return array(
-      'status' => 'error',
-      'error' => $validation['error'],
-    );
-  }
-
-  return TRUE;
-}
-
-/**
  * Get Native Plants for ZIP code.
  *
  * @param $zipcode
@@ -88,19 +64,6 @@ function _nas_master_native_plants_get_terms() {
   }
 
   $plant_terms = array();
-  // Add empty/all options.
-  $plant_terms['native_plant_attributes'][''] = array(
-    'tid' => '',
-    'name' => t('All types of plants'),
-  );
-  $plant_terms['native_plant_resources'][''] = array(
-    'tid' => '',
-    'name' => t('All plant resources'),
-  );
-  $plant_terms['native_plant_bird_types'][''] = array(
-    'tid' => '',
-    'name' => t('Attracts: Any type of bird'),
-  );
   $voc_machine_names = array(
     'native_plant_attributes',
     'native_plant_resources',
@@ -144,18 +107,12 @@ function _nas_master_native_plants_get_terms() {
  * Load native Plants nurseries data.
  *
  * @param $zipcode
- *   ZIP code
+ *   ZIP code.
  * @return array
  *   Array of Native Plants nurseries data for ZIP code.
  */
 function _nas_master_native_plants_get_nurseries($zipcode) {
-  $geometry = array();
-  ctools_include('plugins');
-  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-      $geometry = $function($zipcode);
-    }
-  }
+  $geometry = _nas_master_native_plants_zipcode_geocode($zipcode);
 
   if ($geometry) {
     $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
@@ -173,62 +130,6 @@ function _nas_master_native_plants_get_nurseries($zipcode) {
   );
 
   return $nurseries;
-}
-
-/**
- * Load native Plants Additional Resource data.
- *
- * @param $zipcode
- * @return array
- */
-function _nas_master_native_plants_get_additional_resource($zipcode) {
-  $geometry = array();
-  ctools_include('plugins');
-  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-      $geometry = $function($zipcode);
-    }
-  }
-  if ($geometry) {
-    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    $view_results = views_get_view_result('additional_resource_near_you', 'default', $latlon);
-  }
-  else {
-    $view_results = views_get_view_result('additional_resource_near_you', 'default');
-  }
-  $additional_resources = array();
-  foreach ($view_results as $result) {
-    if (!$node = node_load($result->entity)) {
-      continue;
-    }
-    $node_wrapper = entity_metadata_wrapper('node', $node);
-    $node = array(
-      'title' => $node_wrapper->title->value(),
-      'address' => $node_wrapper->field_additional_resource_addr->value(),
-      'phone' => $node_wrapper->field_additional_resource_phone->value(),
-      'link' => $node_wrapper->field_additional_resource_link->value(),
-    );
-
-    $node['address']['rendered'] = '';
-    $node['address']['rendered'] .= $node['address']['thoroughfare'] ? $node['address']['thoroughfare'] . '<br/>' : '';
-    $node['address']['rendered'] .= $node['address']['locality'] ? $node['address']['locality'] . ', ' : '';
-    $node['address']['rendered'] .= $node['address']['administrative_area'] ? $node['address']['administrative_area'] : '';
-    $node['address']['rendered'] .= $node['address']['postal_code'] ? ' ' . $node['address']['postal_code'] : '';
-    if (!empty($node['link']['url'])) {
-      $node['link']['print'] = str_replace(array(
-        'http://www.',
-        'https://www.',
-        'http://',
-        'https://'
-      ), '', $node['link']['url']);
-      if (drupal_strlen($node['link']['print']) > 20) {
-        $node['link']['print'] = rtrim(drupal_substr($node['link']['print'], 0, 17), '.') . '&hellip;';
-      }
-    }
-    $additional_resources[] = $node;
-  }
-
-  return $additional_resources;
 }
 
 /**
@@ -275,13 +176,7 @@ function _nas_master_native_plants_prepare_nurseries($view_results) {
  *   Array of Audubon resources for ZIP code.
  */
 function _nas_master_native_plants_get_resources($zipcode) {
-  $geometry = array();
-  ctools_include('plugins');
-  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-      $geometry = $function($zipcode);
-    }
-  }
+  $geometry = _nas_master_native_plants_zipcode_geocode($zipcode);
 
   $nodes = array();
   // Get resources.
@@ -367,4 +262,96 @@ function _nas_master_native_plants_get_resources($zipcode) {
   }
 
   return $resources;
+}
+
+/**
+ * Load Native Plants Additional Resource data.
+ *
+ * @param $zipcode
+ *   ZIP code.
+ * @return array
+ *   Array of additional resources for ZIP code.
+ */
+function _nas_master_native_plants_get_additional_resource($zipcode) {
+  $geometry = _nas_master_native_plants_zipcode_geocode($zipcode);
+
+  if ($geometry) {
+    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
+    $view_results = views_get_view_result('additional_resource_near_you', 'default', $latlon);
+  }
+  else {
+    $view_results = views_get_view_result('additional_resource_near_you', 'default');
+  }
+  $additional_resources = array();
+  foreach ($view_results as $result) {
+    if (!$node = node_load($result->entity)) {
+      continue;
+    }
+    $node_wrapper = entity_metadata_wrapper('node', $node);
+    $node = array(
+      'title' => $node_wrapper->title->value(),
+      'address' => $node_wrapper->field_additional_resource_addr->value(),
+      'phone' => $node_wrapper->field_additional_resource_phone->value(),
+      'link' => $node_wrapper->field_additional_resource_link->value(),
+    );
+
+    $node['address']['rendered'] = '';
+    $node['address']['rendered'] .= $node['address']['thoroughfare'] ? $node['address']['thoroughfare'] . '<br/>' : '';
+    $node['address']['rendered'] .= $node['address']['locality'] ? $node['address']['locality'] . ', ' : '';
+    $node['address']['rendered'] .= $node['address']['administrative_area'] ? $node['address']['administrative_area'] : '';
+    $node['address']['rendered'] .= $node['address']['postal_code'] ? ' ' . $node['address']['postal_code'] : '';
+    if (!empty($node['link']['url'])) {
+      $node['link']['print'] = str_replace(array(
+        'http://www.',
+        'https://www.',
+        'http://',
+        'https://'
+      ), '', $node['link']['url']);
+      if (drupal_strlen($node['link']['print']) > 20) {
+        $node['link']['print'] = rtrim(drupal_substr($node['link']['print'], 0, 17), '.') . '&hellip;';
+      }
+    }
+    $additional_resources[] = $node;
+  }
+
+  return $additional_resources;
+}
+
+/**
+ * ZIP code validation.
+ *
+ * @param $zipcode
+ *   ZIP code.
+ * @return array|bool
+ *   Either error message or TRUE.
+ */
+function _nas_master_native_plants_validate_zipcode($zipcode) {
+  if ($zipcode == '' || !module_exists('postal_code_validation')) {
+    return TRUE;
+  }
+
+  $validation = postal_code_validation_validate($zipcode, 'US');
+  if ($validation['error']) {
+    return array(
+      'status' => 'error',
+      'error' => $validation['error'],
+    );
+  }
+
+  return TRUE;
+}
+
+/**
+ * Geocode ZIP code.
+ */
+function _nas_master_native_plants_zipcode_geocode($zipcode) {
+  $geometry = NULL;
+  ctools_include('plugins');
+  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
+    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
+      $geometry = $function($zipcode);
+    }
+  }
+
+  return $geometry;
 }
