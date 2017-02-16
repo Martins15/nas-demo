@@ -585,12 +585,8 @@
       self.storage = storage;
       self.rowsLimit = 1;
 
-      self.limitToggle = function () {
-        self.rowsLimit = self.rowsLimit ? null : 1;
-      };
-
       $scope.$watch(function () {
-        return self.storage.data;
+        return self.storage.data.additional_resource;
       }, function (newVal, oldVal) {
         self.rows = [];
         if (typeof newVal == 'undefined') {
@@ -606,6 +602,10 @@
           row = [];
         }
       });
+
+      self.limitToggle = function () {
+        self.rowsLimit = self.rowsLimit ? null : 1;
+      };
     });
 
     NativePlantsApp.controller('NativePlantsResourcesController', function (storage) {
