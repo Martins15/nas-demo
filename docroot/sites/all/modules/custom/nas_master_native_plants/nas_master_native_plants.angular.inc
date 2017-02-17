@@ -166,17 +166,9 @@ function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0
  *   Array of Audubon resources for ZIP code.
  */
 function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_state_resource = FALSE) {
-  ctools_include('plugins');
-
-  $latlon = NULL;
-  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-      $geometry = $function($zipcode);
-      $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    }
-  }
-
+  $latlon = _nas_master_native_plants_zipcode_geocode($zipcode);
   $view_results = views_get_view_result('community_resources_near_you', 'default', $latlon);
+
   foreach ($view_results as $result) {
     if (!$node = node_load($result->entity)) {
       continue;
@@ -262,22 +254,14 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
     return FALSE;
   }
 
-  $latln = NULL;
+  $latln = 'all';
   $state = NULL;
 
   if ($online) {
-    $latln = 'all';
     $state = _nas_master_native_plants_zipcode_to_state($zipcode);
   }
   else {
-    ctools_include('plugins');
-
-    if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-      if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-        $geometry = $function($zipcode);
-        $latln = $geometry->coords[1] . ',' . $geometry->coords[0];
-      }
-    }
+    $latln = _nas_master_native_plants_zipcode_geocode($zipcode);
   }
 
   if ($type == 'nursery') {
@@ -331,6 +315,47 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
   }
 
   return $nurseries;
+}
+
+/**
+ * ZIP code validation.
+ *
+ * @param $zipcode
+ *   ZIP code.
+ * @return array|bool
+ *   Either error message or TRUE.
+ */
+function _nas_master_native_plants_validate_zipcode($zipcode) {
+  if ($zipcode == '' || !module_exists('postal_code_validation')) {
+    return TRUE;
+  }
+
+  $validation = postal_code_validation_validate($zipcode, 'US');
+  if ($validation['error']) {
+    return array(
+      'status' => 'error',
+      'error' => $validation['error'],
+    );
+  }
+
+  return TRUE;
+}
+
+/**
+ * Geocode ZIP code.
+ */
+function _nas_master_native_plants_zipcode_geocode($zipcode) {
+  $latlon = NULL;
+
+  ctools_include('plugins');
+  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
+    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
+      $geometry = $function($zipcode);
+      $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
+    }
+  }
+
+  return $latlon;
 }
 
 /**
