@@ -4071,3 +4071,10 @@ function nas_master_update_7278() {
     ),
   ));
 }
+
+/**
+ * Enable Quiz configuration feature.
+ */
+function nas_master_update_7279() {
+  module_enable(array('nas_quiz_configuration'));
+}
