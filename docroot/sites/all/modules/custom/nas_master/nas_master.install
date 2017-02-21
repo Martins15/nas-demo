@@ -4078,3 +4078,12 @@ function nas_master_update_7278() {
 function nas_master_update_7279() {
   module_enable(array('nas_quiz_configuration'));
 }
+
+/**
+ * Update RSS feature and RSS view modes.
+ */
+function nas_master_update_7280() {
+  features_revert(array(
+    'nas_rss' => array('views_view'),
+  ));
+}
