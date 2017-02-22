@@ -4041,7 +4041,8 @@ function nas_master_update_7276() {
  * Enable Quiz module and dependency module Rules.
  */
 function nas_master_update_7277() {
-  module_enable(array('quiz', 'rules'));
+  module_enable(array('rules'));
+  module_enable(array('quiz'));
 }
 
 /**
