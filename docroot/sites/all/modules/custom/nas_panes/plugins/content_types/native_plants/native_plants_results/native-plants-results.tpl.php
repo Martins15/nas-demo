@@ -8,17 +8,26 @@
   <!--View Filters-->
   <div class="view-filters">
     <div class="view-filters-select clearfix">
-      <select data-ng-model="resultsC.storage.attribute"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All types of plants'); ?>"
+              data-ng-model="resultsC.storage.attribute"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute.tid, 'page')">
+              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute, 'page')">
       </select>
-      <select data-ng-model="resultsC.storage.resource"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All plant resources'); ?>"
+              data-ng-model="resultsC.storage.resource"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource.tid, 'page')">
+              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource, 'page')">
       </select>
-      <select data-ng-model="resultsC.storage.bird_type"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+              data-ng-model="resultsC.storage.bird_type"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type.tid, 'page')">
+              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type, 'page')">
       </select>
     </div>
     <div class="view-filters-controls clearfix">
@@ -47,7 +56,7 @@
   </div>
 
   <!--View Content-->
-  <div class="view-content row">
+  <div id="pager-scroll-page" class="view-content row">
     <div class="native-plants-full-search-results">
       <div class="columns">
         <table class="hide-for-tiny hide-for-small">
@@ -76,7 +85,8 @@
                 <ul data-clearing class="clearing-thumbs"
                     data-ng-if="plant.PlantImgLightbox">
                   <li>
-                    <a target="_self" data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                    <a target="_self"
+                       data-ng-href="{{plant.PlantImgLightbox}}"></a>
                   </li>
                 </ul>
                 <?php if (user_access('create native_plant content')): ?>
@@ -88,18 +98,18 @@
             <td>
               <ul class="clearfix plant-attributes-list plant-attributes-list-small">
                 <li data-ng-repeat="attributeID in plant.Attributes">
-                  <a href="#" class="native-plants-attribute"
+                  <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{attributeID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"
-                     data-ng-click="resultsC.storage.setStateParam('attribute', attributeID, 'page')"></a>
+                     data-ng-click="resultsC.setFilterLink('attribute', attributeID, 'page')"></a>
                 </li>
                 <li data-ng-repeat="resourceID in plant.Resources">
-                  <a href="#" class="native-plants-attribute"
+                  <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"
-                     data-ng-click="resultsC.storage.setStateParam('resource', resourceID, 'page')"></a>
+                     data-ng-click="resultsC.setFilterLink('resource', resourceID, 'page')"></a>
                 </li>
               </ul>
             </td>
@@ -131,7 +141,8 @@
               <ul data-clearing class="clearing-thumbs"
                   data-ng-if="plant.PlantImgLightbox">
                 <li>
-                  <a target="_self" data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                  <a target="_self"
+                     data-ng-href="{{plant.PlantImgLightbox}}"></a>
                 </li>
               </ul>
             </div>
@@ -143,17 +154,17 @@
               <span class="mobile-search-full-results--label"><?php print t('Attributes'); ?>:</span>
               <ul class="mobile-plant-attributes--list">
                 <li data-ng-repeat="attributeID in plant.Attributes">
-                  <a href="#" class="native-plants-attribute"
+                  <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{attributeID}}"
                      style="color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"
-                     data-ng-click="resultsC.storage.setStateParam('attribute', attributeID, 'page')"></a></li>
+                     data-ng-click="resultsC.setFilterLink('attribute', attributeID, 'page')"></a></li>
                 <li data-ng-repeat="resourceID in plant.Resources">
-                  <a href="#" class="native-plants-attribute"
+                  <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"
-                     data-ng-click="resultsC.storage.setStateParam('resource', resourceID, 'page')"></a></li>
+                     data-ng-click="resultsC.setFilterLink('resource', resourceID, 'page')"></a></li>
               </ul>
             </div>
             <div>
@@ -185,13 +196,13 @@
     <div class="column medium-12 large-9">
       <ul class="pager-list">
         <li class="pager-prev">
-          <a href="#" data-ng-if="resultsC.storage.pager.pager_items.previous.link"
-             data-ng-click="resultsC.storage.setStateParam('page', resultsC.storage.pager.pager_items.previous.page)"><?php print t('Previous page'); ?></a>
+          <a href="javascript:void(0)" data-ng-if="resultsC.storage.pager.pager_items.previous.link"
+             data-ng-click="resultsC.setPage('page', resultsC.storage.pager.pager_items.previous.page)"><?php print t('Previous page'); ?></a>
           <span class="pager-prev" data-ng-if="!resultsC.storage.pager.pager_items.previous.link"><?php print t('Previous page'); ?></span>
         </li>
         <li class="pager-item" data-ng-if="resultsC.storage.pager.pager_items.first.link">
-          <a href="#" title=""
-             data-ng-click="resultsC.storage.setStateParam('page', resultsC.storage.pager.pager_items.first.page)"
+          <a href="javascript:void(0)" title=""
+             data-ng-click="resultsC.setPage('page', resultsC.storage.pager.pager_items.first.page)"
              data-ng-bind="resultsC.storage.pager.pager_items.first.page"></a>
         </li>
         <li class="pager-item pager-item--ellipsis"
@@ -199,16 +210,16 @@
           <span>...</span>
         </li>
         <li class="pager-item" data-ng-repeat="item in resultsC.storage.pager.pager_items.items_before">
-          <a href="#" title=""
-             data-ng-click="resultsC.storage.setStateParam('page', item.page)"
+          <a href="javascript:void(0)" title=""
+             data-ng-click="resultsC.setPage('page', item.page)"
              data-ng-bind="item.page"></a>
         </li>
         <li class="pager-item">
           <span data-ng-bind="resultsC.storage.pager.pager_items.current.page"></span>
         </li>
         <li class="pager-item" data-ng-repeat="item in resultsC.storage.pager.pager_items.items_after">
-          <a href="#" title=""
-             data-ng-click="resultsC.storage.setStateParam('page', item.page)"
+          <a href="javascript:void(0)" title=""
+             data-ng-click="resultsC.setPage('page', item.page)"
              data-ng-bind="item.page"></a>
         </li>
         <li class="pager-item pager-item--ellipsis"
@@ -216,13 +227,13 @@
           <span >...</span>
         </li>
         <li class="pager-item" data-ng-if="resultsC.storage.pager.pager_items.last.link">
-          <a href="#" title=""
-             data-ng-click="resultsC.storage.setStateParam('page', resultsC.storage.pager.pager_items.last.page)"
+          <a href="javascript:void(0)" title=""
+             data-ng-click="resultsC.setPage('page', resultsC.storage.pager.pager_items.last.page)"
              data-ng-bind="resultsC.storage.pager.pager_items.last.page"></a>
         </li>
         <li class="pager-next">
-          <a href="#" data-ng-if="resultsC.storage.pager.pager_items.next.link"
-             data-ng-click="resultsC.storage.setStateParam('page', resultsC.storage.pager.pager_items.next.page)"><?php print t('Next page'); ?></a>
+          <a href="javascript:void(0)" data-ng-if="resultsC.storage.pager.pager_items.next.link"
+             data-ng-click="resultsC.setPage('page', resultsC.storage.pager.pager_items.next.page)"><?php print t('Next page'); ?></a>
           <span class="pager-next" data-ng-if="!resultsC.storage.pager.pager_items.next.link"><?php print t('Next page'); ?></span>
         </li>
       </ul>

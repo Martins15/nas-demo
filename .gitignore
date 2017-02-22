@@ -10,3 +10,4 @@ backup/*
 *.sql.gz
 *.sql
 .idea
+.tern-port

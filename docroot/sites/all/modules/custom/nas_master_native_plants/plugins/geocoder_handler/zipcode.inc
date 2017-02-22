@@ -28,6 +28,11 @@ function geocoder_zipcode($string, $options = array()) {
     $string .= ' ' . $country;
   }
 
+  $cache = &drupal_static(__FUNCTION__);
+  if (isset($cache[$string])) {
+    return $cache[$string];
+  }
+
   // Use the DB of zipcodes from Location module.
   if (module_exists('location')) {
     $location = array(
@@ -37,8 +42,8 @@ function geocoder_zipcode($string, $options = array()) {
 
     if ($latlon = location_latlon_rough($location)) {
       geophp_load();
-      $geometry = new Point($latlon['lon'], $latlon['lat']);
-      return $geometry;
+      $cache[$string] = new Point($latlon['lon'], $latlon['lat']);
+      return $cache[$string];
     }
   }
 
@@ -46,12 +51,17 @@ function geocoder_zipcode($string, $options = array()) {
   ctools_include('plugins');
   if ($google_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'google')) {
     if ($function = ctools_plugin_get_function($google_geocoder, 'callback')) {
-      $geometry = $function($string, $options);
-      return $geometry;
+      $cache[$string] = $function($string, $options);
+      return $cache[$string];
     }
   }
+
+  return NULL;
 }
 
+/**
+ * Geocode field value.
+ */
 function geocoder_zipcode_field($field, $field_item, $options = array()) {
   if ($field['type'] == 'text' || $field['type'] == 'text_long' || $field['type'] == 'text_with_summary' || $field['type'] == 'computed') {
     return geocoder_zipcode($field_item['value'], $options);
@@ -68,6 +78,8 @@ function geocoder_zipcode_field($field, $field_item, $options = array()) {
   }
   if ($field['type'] == 'taxonomy_term_reference') {
     $term = taxonomy_term_load($field_item['tid']);
-    return geocoder_zipcode($term->name);
+    return geocoder_zipcode($term->name, $options);
   }
+
+  return NULL;
 }
