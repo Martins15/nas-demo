@@ -1,0 +1,43 @@
+diff --git a/docroot/sites/all/modules/patched/ctools/page_manager/page_manager.module b/docroot/sites/all/modules/patched/ctools/page_manager/page_manager.module
+index 7023752..cee4388 100644
+--- a/docroot/sites/all/modules/patched/ctools/page_manager/page_manager.module
++++ b/docroot/sites/all/modules/patched/ctools/page_manager/page_manager.module
+@@ -300,7 +300,8 @@ function page_manager_get_page_cache($task_name) {
+   $caches = drupal_static(__FUNCTION__, array());
+   if (!isset($caches[$task_name])) {
+     ctools_include('object-cache');
+-    $cache = ctools_object_cache_get('page_manager_page', $task_name);
++    global $user;
++    $cache = ctools_object_cache_get('page_manager_page', $task_name, FALSE, $user->sid);
+     if (!$cache) {
+       $cache = new stdClass();
+       $cache->task_name = $task_name;
+@@ -338,7 +339,7 @@ function page_manager_get_page_cache($task_name) {
+     }
+ 
+     if ($task_name != '::new') {
+-      $cache->locked = ctools_object_cache_test('page_manager_page', $task_name);
++      $cache->locked = ctools_object_cache_test('page_manager_page', $task_name, $user->sid);
+     }
+     else {
+       $cache->locked = FALSE;
+@@ -364,7 +365,8 @@ function page_manager_set_page_cache($page) {
+ 
+   ctools_include('object-cache');
+   $page->changed = TRUE;
+-  $cache = ctools_object_cache_set('page_manager_page', $page->task_name, $page);
++  global $user;
++  $cache = ctools_object_cache_set('page_manager_page', $page->task_name, $page, $user->sid);
+ }
+ 
+ /**
+@@ -372,7 +374,8 @@ function page_manager_set_page_cache($page) {
+  */
+ function page_manager_clear_page_cache($name) {
+   ctools_include('object-cache');
+-  ctools_object_cache_clear('page_manager_page', $name);
++  global $user;
++  ctools_object_cache_clear('page_manager_page', $name, $user->sid);
+ }
+ 
+ /**
