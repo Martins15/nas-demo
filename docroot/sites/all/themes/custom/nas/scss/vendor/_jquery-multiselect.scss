@@ -141,7 +141,9 @@
 
 .view-filters-controls {
 
-  .form-text, .button {
+  .form-text,
+  .button,
+  .form-filter--controls {
     float: left;
 
     @include breakpoint(large-up) {
@@ -151,13 +153,46 @@
     }
   }
 
+  .form-filter--controls {
+    margin-right: 18px;
+    margin-bottom: 16px;
+    width: 100%;
+
+    &.form-filter--load {
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        background: transparent url('../img/loading_animation.gif') 50% 50% no-repeat;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 44px;
+        height: 44px;
+        transform: translateY(-50%);
+        background-size: 68% 68%;
+
+      }
+    }
+
+    @include breakpoint(large-up) {
+      width: calc(100% / 3 - 18px);
+    }
+
+    .form-text {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 0;
+      padding-right: 46px;
+    }
+  }
+
   .button {
     border-radius: 8px;
   }
 
   .form-text {
-    //max-width: 246px;
-    //min-width: 246px;
     height: 44px;
     margin: 0 18px 16px 0;
 

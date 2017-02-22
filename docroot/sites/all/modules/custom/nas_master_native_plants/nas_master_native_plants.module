@@ -742,6 +742,19 @@ function nas_master_native_plants_library() {
       array('system', 'jquery'),
     ),
   );
+  $libraries['jquery-multiselect'] = array(
+    'title' => 'jQuery Multi Select',
+    'website' => 'https://github.com/nobleclem/jQuery-MultiSelect',
+    'version' => '2.0',
+    'js' => array(
+      $theme_path . '/js/vendor/jquery.multiselect/jquery.multiselect.js' => array(
+        'type' => 'file',
+      ),
+    ),
+    'dependencies' => array(
+      array('system', 'jquery'),
+    ),
+  );
 
   return $libraries;
 }
@@ -778,12 +791,6 @@ function nas_master_native_plants_imagecache_external_needs_refresh_alter(&$need
   // Do not fetch image here, it will be done in image style effect.
   $needs_refresh = FALSE;
   if (file_exists($filepath)) {
-    // If it is still the fake file, then we need to clear image styles.
-    $image = image_load($filepath);
-    if ($image->info['width'] == 1 && $image->info['height'] == 1) {
-      image_path_flush($filepath);
-    }
-
     return;
   }
 

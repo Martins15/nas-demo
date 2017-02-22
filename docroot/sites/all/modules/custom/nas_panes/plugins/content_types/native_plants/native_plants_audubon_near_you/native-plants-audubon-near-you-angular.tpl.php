@@ -8,7 +8,7 @@
      data-ng-controller="NativePlantsResourcesController as resourcesC">
   <?php print $context_links; ?>
   <div class=" vertical-spacing--bottom clearfix"
-       data-ng-repeat="resource in resourcesC.storage.data.resources | limitTo : 2">
+       data-ng-repeat="resource in resourcesC.storage.data.resources | limitTo : 3">
     <div class="column medium-4">
       <h2 class="connect-audubon-near-you--title text--blue"
           data-ng-bind="resource.title"></h2>

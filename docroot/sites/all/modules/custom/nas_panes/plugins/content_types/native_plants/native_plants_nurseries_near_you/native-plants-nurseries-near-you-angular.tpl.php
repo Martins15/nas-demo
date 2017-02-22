@@ -31,10 +31,10 @@
     <div class="row"
          data-ng-if="nurseriesC.rows.length > 3">
       <div class="large-12 medium-12 columns">
-        <a class="more" href="#"
+        <a class="more" href="javascript:void(0)"
            data-ng-if="nurseriesC.rowsLimit"
            data-ng-click="nurseriesC.limitToggle();"><?php print t('Show more') . ' &raquo;'; ?></a>
-        <a class="more" href="#"
+        <a class="more" href="javascript:void(0)"
            data-ng-if="!nurseriesC.rowsLimit"
            data-ng-click="nurseriesC.limitToggle();"><?php print t('Show less') . ' &laquo;'; ?></a>
       </div>
