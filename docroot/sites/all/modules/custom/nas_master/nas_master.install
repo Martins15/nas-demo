@@ -3980,3 +3980,102 @@ function nas_master_update_7270() {
 function nas_master_update_7272() {
   module_enable(array('nas_cdn_feature'));
 }
+
+/**
+ * Adds Hero Mobile Image field.
+ */
+function nas_master_update_7273() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_conservation_project_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_conservation_strategy_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_image_styles_feature' => array(
+      'image',
+    ),
+  ));
+}
+
+/**
+ * Enable CDN feature.
+ */
+function nas_master_update_7274() {
+  module_enable(array('nas_cdn_feature'));
+}
+
+/**
+ * Revert Search feature for add title field.
+ */
+function nas_master_update_7275() {
+  features_revert(array(
+    'nas_search_feature' => array(
+      'views_view',
+    ),
+  ));
+}
+
+/**
+ * Revert IBA State view for add sortable fields.
+ */
+function nas_master_update_7276() {
+  features_revert(array(
+    'nas_iba_state' => array(
+      'views_view',
+    ),
+  ));
+}
+
+/**
+ * Enable Quiz module and dependency module Rules.
+ */
+function nas_master_update_7277() {
+  module_enable(array('rules'));
+  module_enable(array('quiz'));
+}
+
+/**
+ * Adds Hero Mobile Image field.
+ */
+function nas_master_update_7278() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+    ),
+    'nas_conservation_project_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_conservation_strategy_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'field_group',
+    ),
+    'nas_image_styles_feature' => array(
+      'image',
+    ),
+  ));
+}
+
+/**
+ * Enable Quiz configuration feature.
+ */
+function nas_master_update_7279() {
+  module_enable(array('nas_quiz_configuration'));
+}

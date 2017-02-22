@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Additional Resource near you feature.
+ */
+
+include_once 'nas_additional_resource_near_you.features.inc';

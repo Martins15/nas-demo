@@ -43,28 +43,30 @@ function nas_iba_state_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['style_options']['columns'] = array(
-    'title' => 'title',
+    'title_string' => 'title_string',
     'field_iba_status' => 'field_iba_status',
     'field_iba_priority' => 'field_iba_priority',
     'field_iba_county' => 'field_iba_county',
     'field_iba_criteria' => 'field_iba_criteria',
   );
-  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['default'] = 'title_string';
   $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
+    'title_string' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'field_iba_status' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'field_iba_priority' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -93,13 +95,13 @@ function nas_iba_state_views_default_views() {
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
   $handler->display->display_options['empty']['area']['content'] = 'No IBAs matching your search query were found';
   $handler->display->display_options['empty']['area']['format'] = 'html';
-  /* Field: Indexed Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = 'Site Name';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_entity'] = 1;
+  /* Field: Indexed Content: Title string */
+  $handler->display->display_options['fields']['title_string']['id'] = 'title_string';
+  $handler->display->display_options['fields']['title_string']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['fields']['title_string']['field'] = 'title_string';
+  $handler->display->display_options['fields']['title_string']['label'] = 'Site Name';
+  $handler->display->display_options['fields']['title_string']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_string']['link_to_entity'] = 1;
   /* Field: Indexed Content: Status */
   $handler->display->display_options['fields']['field_iba_status']['id'] = 'field_iba_status';
   $handler->display->display_options['fields']['field_iba_status']['table'] = 'search_api_index_default_node_index';

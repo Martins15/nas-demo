@@ -58,7 +58,8 @@ function nas_static_page_feature_field_group_info() {
       4 => 'field_images',
       5 => 'field_editorial_card_image',
       6 => 'field_file_attachments',
-      7 => 'title',
+      7 => 'field_hero_mobile_image',
+      8 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

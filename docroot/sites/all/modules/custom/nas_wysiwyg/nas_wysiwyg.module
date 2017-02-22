@@ -54,6 +54,13 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     $entity = $vars['elements']['#entity'];
     $vars['figcaption'] = '';
     $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
+    // Check if we got audio and replace 'image' template with 'audio'
+    $type = $get_field_wysiwyg_image[0]['file']->type;
+    if ($type == 'audio') {
+      end($vars['theme_hook_suggestions']);
+      $key = key($vars['theme_hook_suggestions']);
+      $vars['theme_hook_suggestions'][$key] = 'bean__' . $type;
+    }
     if (!empty($get_field_wysiwyg_image)) {
       $vars['figcaption'] = _nas_panes_format_image_attribution($get_field_wysiwyg_image[0]['file']);
     }
@@ -208,6 +215,13 @@ function nas_wysiwyg_theme() {
         'alignment' => '',
       ),
       'template' => 'bean--video',
+      'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
+    ),
+    'bean__audio' => array(
+      'variables' => array(
+        'alignment' => '',
+      ),
+      'template' => 'bean--audio',
       'path' => drupal_get_path('module', 'nas_wysiwyg') . '/theme'
     ),
   );

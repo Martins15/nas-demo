@@ -643,7 +643,7 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['hero_icon'] = array(
     'label' => 'Hero icon',
     'effects' => array(
-      32 => array(
+      144 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 205,
@@ -658,7 +658,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
-      34 => array(
+      145 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 205,
@@ -667,7 +667,7 @@ function nas_image_styles_feature_image_default_styles() {
         ),
         'weight' => 3,
       ),
-      35 => array(
+      146 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 4,
@@ -700,18 +700,33 @@ function nas_image_styles_feature_image_default_styles() {
   $styles['hero_mobile'] = array(
     'label' => 'Hero mobile',
     'effects' => array(
-      11 => array(
+      141 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 1060,
+          'width' => 1080,
           'height' => 994,
           'upscale' => 0,
         ),
         'weight' => 2,
       ),
-      12 => array(
+      142 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
+        'weight' => 3,
+      ),
+      143 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1080,
+          'height' => 994,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
         'weight' => 3,
       ),
     ),

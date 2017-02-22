@@ -649,6 +649,39 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
     $display->content['new-f9e661e8-0a3c-4b07-98f5-6d19b97fb30e'] = $pane;
     $display->panels['tab3'][1] = 'new-f9e661e8-0a3c-4b07-98f5-6d19b97fb30e';
     $pane = new stdClass();
+    $pane->pid = 'new-56d1e1a4-8c29-4da2-9e33-9ffa77076bc6';
+    $pane->panel = 'tab3';
+    $pane->type = 'native_plants_ad_res_near_you';
+    $pane->subtype = 'native_plants_ad_res_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'More Local Resources',
+      'override_title_text' => 'More Local Resources',
+      'description' => array(
+        'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these nurseries. Disclaimer statement TK.</p>
+',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '',
+      'quantity' => '2',
+      'angular' => 1,
+      'form_build_id' => 'form--cvVJNsv1tqPTlc5TxpbmegrhqISFQV-U5A4ZnrP2iQ',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = '56d1e1a4-8c29-4da2-9e33-9ffa77076bc6';
+    $display->content['new-56d1e1a4-8c29-4da2-9e33-9ffa77076bc6'] = $pane;
+    $display->panels['tab3'][2] = 'new-56d1e1a4-8c29-4da2-9e33-9ffa77076bc6';
+    $pane = new stdClass();
     $pane->pid = 'new-0e62ded8-b0ae-46f4-bf9f-a2ad487953dd';
     $pane->panel = 'tab3';
     $pane->type = 'native_plants_nurseries_near_you';
@@ -677,11 +710,11 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 3;
     $pane->locks = array();
     $pane->uuid = '0e62ded8-b0ae-46f4-bf9f-a2ad487953dd';
     $display->content['new-0e62ded8-b0ae-46f4-bf9f-a2ad487953dd'] = $pane;
-    $display->panels['tab3'][2] = 'new-0e62ded8-b0ae-46f4-bf9f-a2ad487953dd';
+    $display->panels['tab3'][3] = 'new-0e62ded8-b0ae-46f4-bf9f-a2ad487953dd';
     $pane = new stdClass();
     $pane->pid = 'new-9279f9c3-d6fb-4bec-8359-db377caef5a8';
     $pane->panel = 'tab3';
@@ -711,11 +744,11 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = '9279f9c3-d6fb-4bec-8359-db377caef5a8';
     $display->content['new-9279f9c3-d6fb-4bec-8359-db377caef5a8'] = $pane;
-    $display->panels['tab3'][3] = 'new-9279f9c3-d6fb-4bec-8359-db377caef5a8';
+    $display->panels['tab3'][4] = 'new-9279f9c3-d6fb-4bec-8359-db377caef5a8';
     $pane = new stdClass();
     $pane->pid = 'new-20b24c14-0b60-4abd-a0d2-73c2f167d15f';
     $pane->panel = 'tab3';
@@ -740,11 +773,11 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 5;
     $pane->locks = array();
     $pane->uuid = '20b24c14-0b60-4abd-a0d2-73c2f167d15f';
     $display->content['new-20b24c14-0b60-4abd-a0d2-73c2f167d15f'] = $pane;
-    $display->panels['tab3'][4] = 'new-20b24c14-0b60-4abd-a0d2-73c2f167d15f';
+    $display->panels['tab3'][5] = 'new-20b24c14-0b60-4abd-a0d2-73c2f167d15f';
     $pane = new stdClass();
     $pane->pid = 'new-d8ebd61a-c2a7-49e1-83a8-8df8b0ce9c1b';
     $pane->panel = 'tab3';
@@ -813,11 +846,11 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = array();
     $pane->uuid = 'd8ebd61a-c2a7-49e1-83a8-8df8b0ce9c1b';
     $display->content['new-d8ebd61a-c2a7-49e1-83a8-8df8b0ce9c1b'] = $pane;
-    $display->panels['tab3'][5] = 'new-d8ebd61a-c2a7-49e1-83a8-8df8b0ce9c1b';
+    $display->panels['tab3'][6] = 'new-d8ebd61a-c2a7-49e1-83a8-8df8b0ce9c1b';
     $pane = new stdClass();
     $pane->pid = 'new-189b06b5-6dfa-494b-8c9f-3f1f987f97da';
     $pane->panel = 'tab4';

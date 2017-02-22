@@ -10,7 +10,7 @@
  */
 ?>
 <div class="audubon-netx-preview">
-  <h2><?php print print drupal_render($element['title']); ?></h2>
+  <h2><?php print drupal_render($element['title']); ?></h2>
   <div class="form-radios netx-thumbnail">
     <table>
       <thead>
@@ -34,5 +34,6 @@
       </tbody>
     </table>
   </div>
+  <div class="view-pager"></div>
   <?php print drupal_render_children($element); ?>
 </div>
