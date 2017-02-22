@@ -115,34 +115,21 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
-  }
-  $geometry = array();
-  if ($geometry) {
-    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    $view_results = views_get_view_result('additional_resource_near_you', 'default', $latlon);
-  }
-  else {
-    $view_results = views_get_view_result('additional_resource_near_you', 'default');
+    else {
+      foreach ($contexts as $context) {
+        if ($context->plugin == 'entity:permalink') {
+          $conf['zipcode'] = $context->data->zip_code;
+          break;
+        }
+      }
+    }
   }
 
-  // Prepare additional resource.
-  $additional_resources = array();
-  foreach ($view_results as $result) {
-    if (!$node = node_load($result->entity)) {
-      continue;
-    }
-    $node_wrapper = entity_metadata_wrapper('node', $node);
-    $node = array(
-      'title' => $node_wrapper->title->value(),
-      'body' => $node_wrapper->body->value->value(),
-      'address' => $node_wrapper->field_additional_resource_addr->value(),
-      'phone' => $node_wrapper->field_additional_resource_phone->value(),
-      'link' => $node_wrapper->field_additional_resource_link->value(),
-    );
-    $additional_resources[] = $node;
-    if (count($additional_resources) == $conf['quantity']) {
-      break;
-    }
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
+
+  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+  if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity'])) {
+    return '';
   }
 
   $block = new stdClass();
@@ -180,28 +167,4 @@ function native_plants_additional_resource_near_you_theme(&$theme, $plugin) {
     'template' => 'native-plants-additional-resource-near-you-angular',
     'path' => $plugin['path'],
   );
-}
-
-/**
- * Preprocess function.
- */
-function nas_panes_preprocess_native_plants_additional_resource_near_you(&$variables) {
-  foreach ($variables['additional_resource'] as &$res) {
-    $res['address']['rendered'] = '';
-    $res['address']['rendered'] .= $res['address']['thoroughfare'] ? $res['address']['thoroughfare'] . '<br/>' : '';
-    $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
-    $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
-    $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
-    if (!empty($res['link']['url'])) {
-      $res['link']['print'] = str_replace(array(
-        'http://www.',
-        'https://www.',
-        'http://',
-        'https://'
-      ), '', $res['link']['url']);
-      if (drupal_strlen($res['link']['print']) > 20) {
-        $res['link']['print'] = rtrim(drupal_substr($res['link']['print'], 0, 17), '.') . '&hellip;';
-      }
-    }
-  }
 }
