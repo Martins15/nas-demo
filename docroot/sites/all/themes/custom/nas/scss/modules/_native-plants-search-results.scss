@@ -1696,3 +1696,12 @@ input[type="checkbox"].np-checkbox {
     }
   }
 }
+
+// Style for ZIP Code.
+.page-native-plants-list {
+  .native-plants-pledge-form-pl-pane {
+    & + div {
+      font-family: "Source Sans Pro", Verdana, sans-serif;
+    }
+  }
+}

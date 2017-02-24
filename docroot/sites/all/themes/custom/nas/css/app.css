@@ -16173,6 +16173,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+.page-native-plants-list .native-plants-pledge-form-pl-pane + div {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+
 /* Inline Panels Editor custom styles */
 .panels-ipe-display-container .nas-panels-ipe-collapsible-button {
   padding: 10px;
