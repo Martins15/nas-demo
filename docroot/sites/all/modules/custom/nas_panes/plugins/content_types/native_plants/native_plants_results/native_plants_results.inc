@@ -81,6 +81,7 @@ function native_plants_results_render($subtype, $conf, $args, $contexts) {
     'library' => array(
       array('nas_master_native_plants', 'angularjs-native-plants'),
       array('nas_master_native_plants', 'jquery-owl-carousel2'),
+      array('nas_master_native_plants', 'jquery-multiselect'),
     ),
   );
 

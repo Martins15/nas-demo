@@ -63,7 +63,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
   $handler->conf = array(
     'title' => 'Thank you page',
     'no_blocks' => 0,
-    'pipeline' => 'standard',
+    'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
     'css_id' => '',
@@ -253,13 +253,13 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'text' => array(
         'value' => '<p>By growing native plants, you will help birds and the environment both locally and across the hemisphere.</p>
 
-<p>You can find more information on the benefits of native plants <a href="https://www.audubon.org/plantsforbirds">here</a>.</p>
+<p>You can find more information on the benefits of native plants <a href="https://www.audubon.org/plantsforbirds">here</a>.&nbsp;<span>Your local Audubon chapter or center can be a great source of native plant information. Below is the Audubon closest to you, along with the native plant services offered there.</span></p>
 ',
         'format' => 'full_html',
       ),
       'label_desktop' => 'Share your list',
       'label_mobile' => 'Share your list',
-      'form_build_id' => 'form-qECuewq1Pu3BDvRXmbAqiArI69px3QRsLIrmDgLCmeQ',
+      'form_build_id' => 'form-9TimQyurkPghZnXULNpx9BQLf2YbwXOAVpYv3SD1Tsw',
       'context' => array(
         0 => 'argument_entity_uuid:permalink_1',
       ),
@@ -315,14 +315,16 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'title' => 'Where to buy native plants near you',
       'override_title_text' => 'Where to buy native plants near you',
       'description' => array(
-        'value' => '<p>These nurseries are likely a good place to start. It&#39;s a good idea to call ahead to these nurseries to verify native stocks. <a href="https://www.audubon.org/news/bird-friendly-plants-faq#2">Read more on buying native plants</a>.&nbsp;</p>
+        'value' => '<p><span>The nurseries listed at the right are likely a good place to start. (The native plants movement is just beginning, so your mileage may vary with these nurseries.) It&#39;s a good idea to call ahead to&nbsp;verify native stocks.</span> <a href="https://www.audubon.org/news/bird-friendly-plants-faq#2">Read more on buying native plants</a>.&nbsp;</p>
 ',
         'format' => 'full_html',
       ),
       'zipcode' => '%permalink:zip-code',
-      'form_build_id' => 'form-F1lu-azt5Ut7PtFcgadvC13ERPhEst5CHfVbyr1cbbk',
+      'form_build_id' => 'form-aCJzvYDStZQo5sNtvFzNK3mGYO31s-4oDj6vXiWraMI',
       'override_title' => 0,
       'override_title_heading' => 'h2',
+      'online' => 0,
+      'quantity' => '4',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -343,10 +345,14 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'title_desktop' => 'Audubon Native Plants Database',
+      'title_desktop' => 'Native Plants Database',
       'title_mobile' => 'Native Plants Database',
       'background_color' => '66a122',
       'form_build_id' => 'form-VBQMdIf64e6N2TnEx0BbdAE8x2dRo__kL9hDOng2AMo',
+      'title_link' => 'native-plants',
+      'sponsor_logo' => '93236',
+      'sponsor_link' => 'http://www.aveda.com/product/7479/39957/gifts/aveda-love-composition-oil/index.tmpl',
+      'sponsor_preambule' => 'Supported by',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -405,7 +411,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
   $handler->conf = array(
     'title' => 'Plant list page',
     'no_blocks' => 0,
-    'pipeline' => 'standard',
+    'pipeline' => 'ipe',
     'body_classes_to_remove' => '',
     'body_classes_to_add' => '',
     'css_id' => '',
@@ -472,7 +478,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'title' => 'Your Native Plant List',
-      'override_title_text' => 'Your Native Plant List',
+      'override_title_text' => 'Your Native Plants List',
       'text_top' => array(
         'value' => '<p>Thank you for planting for birds. With your help, we can grow 1 million bird-friendly plants.&nbsp;Below you can find the plant list you selected from <a href="/native-plants">Audubon&#39;s Native Plants Database</a>.</p>
 
@@ -486,14 +492,14 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
 ',
         'format' => 'full_html',
       ),
-      'form_build_id' => 'form-slCtblCgQ3aVokFmlO_p0KHsW2nwz3lHIRzaAF8tYGs',
+      'form_build_id' => 'form-E8Rvdqkkst6tQ0drWjeQJSJG8C9r5njGLWZPn7ezI7s',
       'context' => array(
         0 => 'argument_entity_uuid:permalink_1',
       ),
       'override_title' => 0,
       'override_title_heading' => 'h2',
       'text' => array(
-        'value' => '<p>Thank you for planting for birds. With your help, we can grow 1 million bird-friendly plants.&nbsp;Below you can find the plant list you selected from <a href="/native-plants">Audubon&#39;s Native Plants Database</a>.</p>
+        'value' => '<p>Your Native Plant List Thank you for joining Audubon&#39;s bird-friendly plants effort. Below you can find the plant list you selected from <a href="/native-plants">the Audubons native plants database</a>.</p>
 
 <p>You can access this list on the web at any time using the following link:</p>
 
@@ -522,17 +528,17 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->access = array();
     $pane->configuration = array(
       'title' => 'Your Native Plant List',
-      'override_title_text' => 'Tell us about your plants',
+      'override_title_text' => 'Tell Us about Your Plants',
       'text' => array(
         'value' => '<p>Our goal is to put a million bird-friendly plants in the ground. Tell us how many plants you intend to plant to help us quantify the positive impact we&#39;re having for birds.</p>
 ',
         'format' => 'full_html',
       ),
-      'form_build_id' => 'form-8TGnqtkhKfSkt8AJguUveZHH23LUVUaGNDZSCh5tArc',
+      'form_build_id' => 'form-yIunHdE1XEpUPe2FS3S_OWapJwGGO6DwLwz0uhzY6SE',
       'context' => array(
         0 => 'argument_entity_uuid:permalink_1',
       ),
-      'override_title' => 1,
+      'override_title' => 0,
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
@@ -561,7 +567,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'email_placeholder' => 'Email Address',
       'button_text' => 'OK',
       'redirect' => 'native-plants',
-      'form_build_id' => 'form-NtmPdI_Z7tUKS49mQ26m6YYkgDYonWUv7sNuokhYvF8',
+      'form_build_id' => 'form-DA8bzOSur7EkMeOD1Ns1JCnQmNNSeVvAbGgzu_KTXao',
+      'nas_external_integration' => array(
+        'provider' => 'every_action',
+        'id' => 'OWNEk65CFkebuTGeUNewSw2',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -574,6 +584,39 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->uuid = '47c63d45-cd26-4b4f-be55-3d0c715b09c9';
     $display->content['new-47c63d45-cd26-4b4f-be55-3d0c715b09c9'] = $pane;
     $display->panels['main'][2] = 'new-47c63d45-cd26-4b4f-be55-3d0c715b09c9';
+    $pane = new stdClass();
+    $pane->pid = 'new-1598fe37-5d4c-4e1a-b605-769548f62ed2';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_list_description';
+    $pane->subtype = 'native_plants_list_description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Your Native Plant List',
+      'override_title_text' => '',
+      'text' => array(
+        'value' => '<p>Zip Code: <a href="/native-plants/search?zipcode=%permalink:zip-code">%permalink:zip-code (Search again)</a></p>
+',
+        'format' => 'full_html',
+      ),
+      'form_build_id' => 'form-fgC7EkjRtQAD6xwfs2vMJnd2bsnPMYI88LddHZOqyGw',
+      'context' => array(
+        0 => 'argument_entity_uuid:permalink_1',
+      ),
+      'override_title' => 1,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $pane->uuid = '1598fe37-5d4c-4e1a-b605-769548f62ed2';
+    $display->content['new-1598fe37-5d4c-4e1a-b605-769548f62ed2'] = $pane;
+    $display->panels['main'][3] = 'new-1598fe37-5d4c-4e1a-b605-769548f62ed2';
     $pane = new stdClass();
     $pane->pid = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
     $pane->panel = 'main';
@@ -588,11 +631,135 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 3;
+    $pane->position = 4;
     $pane->locks = array();
     $pane->uuid = 'b0e0091a-27f6-474f-a766-98b4d2cbe773';
     $display->content['new-b0e0091a-27f6-474f-a766-98b4d2cbe773'] = $pane;
-    $display->panels['main'][3] = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
+    $display->panels['main'][4] = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
+    $pane = new stdClass();
+    $pane->pid = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_audubon_near_you';
+    $pane->subtype = 'native_plants_audubon_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'services_title_desktop' => 'Services provided at !resource_name',
+      'services_title_mobile' => 'Native plant services provided:',
+      'zipcode' => '',
+      'quantity' => '2',
+      'angular' => 0,
+      'form_build_id' => 'form--5wlcKyzrfdlfKAM2yl-AqyoVwmxNGYPsY8RYWfbX6w',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $pane->uuid = 'f64cb49a-d776-46b5-822e-2dd59896becf';
+    $display->content['new-f64cb49a-d776-46b5-822e-2dd59896becf'] = $pane;
+    $display->panels['main'][5] = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
+    $pane = new stdClass();
+    $pane->pid = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_nurseries_near_you';
+    $pane->subtype = 'native_plants_nurseries_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Where to buy native plants near you',
+      'description' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '',
+      'online' => 0,
+      'quantity' => '6',
+      'angular' => 0,
+      'form_build_id' => 'form-L2oUL-waa23mDzKk2W8xLX2fXH82KkjRn3rmt6a8qfk',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 6;
+    $pane->locks = array();
+    $pane->uuid = '9110eb6f-12af-4f72-afa1-326067aafc13';
+    $display->content['new-9110eb6f-12af-4f72-afa1-326067aafc13'] = $pane;
+    $display->panels['main'][6] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
+    $pane = new stdClass();
+    $pane->pid = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_nurseries_near_you';
+    $pane->subtype = 'native_plants_nurseries_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Online Retailers',
+      'description' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '',
+      'online' => 1,
+      'quantity' => '6',
+      'angular' => 0,
+      'form_build_id' => 'form-ZCb0eZdb2KwWsrNEozlivY8PlNIPEqkXXRokfsLQunU',
+      'override_title' => 1,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $pane->uuid = '0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $display->content['new-0836d4b1-fca0-41a0-b7cf-415cfcd89004'] = $pane;
+    $display->panels['main'][7] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $pane = new stdClass();
+    $pane->pid = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_ad_res_near_you';
+    $pane->subtype = 'native_plants_ad_res_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Other Local Resources',
+      'description' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '',
+      'quantity' => '2',
+      'angular' => 0,
+      'form_build_id' => 'form-GO7UiFCprNyNWURJtSeovCuPzB15SWrcNCKjABAUnT4',
+      'override_title' => 1,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 8;
+    $pane->locks = array();
+    $pane->uuid = '088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $display->content['new-088f3a1d-7f4a-415e-9f90-03167ad47f6f'] = $pane;
+    $display->panels['main'][8] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $pane = new stdClass();
     $pane->pid = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane->panel = 'main';
@@ -607,7 +774,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       ),
       'context' => 'empty',
       'override_title' => 1,
-      'override_title_text' => 'More Audubon Native Plant resources',
+      'override_title_text' => 'More Audubon Native Plant Resources',
       'override_title_heading' => 'h2',
       'preset' => 'manual_override',
       'more_link_text' => '',
@@ -628,6 +795,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
             'entity_label' => 'How to Start: Things to Consider Before Hitting the Nursery',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
+            'entity_uuid' => 'b8990dda-96c8-4622-ad5c-ff9b1f95b821',
           ),
         ),
         2 => array(
@@ -636,15 +804,17 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
             'entity_label' => 'Why Native Plants Are Better for Birds and People',
             'entity_type' => 'node',
             'entity_bundle' => 'article',
+            'entity_uuid' => '9faab5d1-4daa-415d-a3e6-fd891f8139f8',
           ),
         ),
         3 => array(
           'reference' => FALSE,
         ),
       ),
-      'form_build_id' => 'form-Z1Kcf_SFjyhdXuv29VwuvS_IKZ0skfSBGSXTqNhxLv8',
-      'form_token' => '6GRGmMKzRQN2gTOnZsGdv7V8_HZwSRUGcD217zyvsuo',
+      'form_build_id' => 'form-blmWH-CINzRMnVL1epThIn0XXsyDdQzC6D501Nuc1R4',
+      'form_token' => 'LVcVEVn9e7O-2r_C-W-82xTyq9R9YSTNtLaoLjLzjio',
       'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
     );
     $pane->cache = array();
     $pane->style = array(
@@ -652,11 +822,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 4;
+    $pane->position = 9;
     $pane->locks = array();
     $pane->uuid = 'b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $display->content['new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1'] = $pane;
-    $display->panels['main'][4] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
+    $display->panels['main'][9] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane = new stdClass();
     $pane->pid = 'new-4e911b59-b652-43d0-8a5e-89cfd63f9088';
     $pane->panel = 'top';
@@ -665,11 +835,14 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'title_desktop' => 'Audubon Native Plants Database',
+      'title_desktop' => 'Native Plants Database',
       'title_mobile' => 'Native Plants Database',
       'background_color' => '66a122',
-      'form_build_id' => 'form-T62wtSbp8M9v75cXJ-Jv8WqJPOrE12RqUAnD8y9WFBc',
+      'form_build_id' => 'form-o-xhNUNGaJHC1EDK5H-4QILlN7LJqNTdjg_POe342t8',
       'title_link' => 'native-plants',
+      'sponsor_logo' => '93236',
+      'sponsor_link' => 'http://www.aveda.com/product/7479/39957/gifts/aveda-love-composition-oil/index.tmpl',
+      'sponsor_preambule' => 'Supported by',
     );
     $pane->cache = array();
     $pane->style = array(

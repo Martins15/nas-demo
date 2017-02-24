@@ -38,18 +38,31 @@
         url: '/native-plants/search?zipcode&active_tab&attribute&attribute_tier1&resource&resource_tier1&bird_type&bird_type_tier1&page&page_tier1',
         params: defaultStateParams,
         onEnter: function(storage, $stateParams) {
-          storage.attribute = storage.data.terms.native_plant_attributes[$stateParams.attribute];
-          storage.attribute_tier1 = storage.data.terms.native_plant_attributes[$stateParams.attribute_tier1];
-          storage.resource = storage.data.terms.native_plant_resources[$stateParams.resource];
-          storage.resource_tier1 = storage.data.terms.native_plant_resources[$stateParams.resource_tier1];
-          storage.bird_type = storage.data.terms.native_plant_bird_types[$stateParams.bird_type];
-          storage.bird_type_tier1 = storage.data.terms.native_plant_bird_types[$stateParams.bird_type_tier1];
+          var filters = [
+            {key1: 'attribute', key2: 'native_plant_attributes'},
+            {key1: 'attribute_tier1', key2: 'native_plant_attributes'},
+            {key1: 'resource', key2: 'native_plant_resources'},
+            {key1: 'resource_tier1', key2: 'native_plant_resources'},
+            {key1: 'bird_type', key2: 'native_plant_bird_types'},
+            {key1: 'bird_type_tier1', key2: 'native_plant_bird_types'}
+          ];
+          angular.forEach(filters, function(value) {
+            storage[value.key1] = [];
+            if (!$stateParams[value.key1]) {
+              return;
+            }
+            var values = $stateParams[value.key1].split(',');
+            angular.forEach(values, function(value2) {
+              storage[value.key1].push(storage.data.terms[value.key2][value2]);
+            });
+          });
         },
         resolve: {
           data: function(storage, $stateParams) {
             Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
-            return storage.getData($stateParams.zipcode).then(function () {
+            return storage.getData($stateParams.zipcode).then(function (data) {
+              storage.data = data;
               $.unblockUI();
               Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
@@ -62,14 +75,14 @@
     });
 
     // Service to communicate with backend.
-    NativePlantsApp.factory('courier', function($http, $q, $cookies, $httpParamSerializerJQLike) {
+    NativePlantsApp.factory('courier', function($http, $q) {
       function getData(zipcode) {
         var deferred = $q.defer();
         if (typeof zipcode === 'undefined') {
           deferred.resolve(null);
         }
         else {
-          $http.get(settings.basePath + settings.nas_master_native_plants.callback + zipcode, {cache: true}).then(function(response) {
+          $http.get(settings.basePath + settings.nas_master_native_plants.callback + zipcode).then(function(response) {
             if ($.isEmptyObject(response.data)) {
               deferred.resolve(null);
               return;
@@ -87,8 +100,9 @@
     });
 
     // Service to hold information shared between controllers.
-    NativePlantsApp.service('storage', function ($rootScope, $cookies, $filter, $state, $localStorage, courier) {
-      var self = this;
+    NativePlantsApp.service('storage', function ($rootScope, $q, $cookies, $filter, $state, $localStorage, courier) {
+      var self = this, cache = [];
+      self.multiselect_reload = false;
       self.localStorage = $localStorage;
       self.stateParams = defaultStateParams;
 
@@ -128,56 +142,112 @@
           hasRegistered = false;
           Drupal.behaviors.npClearingFix.attached();
           Drupal.behaviors.npOwl.attached();
+          if (self.multiselect_reload) {
+            self.multiselect_reload = false;
+            $('.search-select').multiselect('reload');
+          }
         });
       });
 
       self.getData = function(zipcode) {
+        if (typeof cache[zipcode] != 'undefined') {
+          var deferred = $q.defer();
+          deferred.resolve(cache[zipcode]);
+          return deferred.promise;
+        }
         return courier.getData(zipcode).then(function (data) {
-          self.data = data;
+          cache[zipcode] = data;
+          return data;
         });
       };
 
-      $rootScope.$watch(function() {
-        return self.data;
-      }, function(newVal, oldVal) {
-        if (typeof newVal == 'undefined') {
+      // Watch data received from server to recalculate results and pagers.
+      $rootScope.$watch(
+        function() {
+          return self.data;
+        },
+        function(newVal, oldVal) {
+          self.calculateResults();
+          self.calculateResultsTier1();
+        });
+      // Watch combined filter values and recalculate results.
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type;
+        },
+        function(newVal, oldVal) {
+          self.calculateResults();
+        });
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1;
+        },
+        function(newVal, oldVal) {
+          self.calculateResultsTier1();
+        });
+
+      self.calculateResults = function() {
+        if (typeof self.data == 'undefined') {
           return;
         }
         self.results = $filter('filter')(self.data.plants, function(value, index, array) {
-          if (self.stateParams.attribute && value.Attributes.indexOf(self.stateParams.attribute) == -1) {
-            return false;
-          }
-          if (self.stateParams.resource && value.Resources.indexOf(self.stateParams.resource) == -1) {
-            return false;
-          }
-          if (self.stateParams.bird_type && value.BirdTypes.indexOf(self.stateParams.bird_type) == -1) {
-            return false;
-          }
+          var filters = [
+            {key1: 'attribute', key2: 'Attributes'},
+            {key1: 'resource', key2: 'Resources'},
+            {key1: 'bird_type', key2: 'BirdTypes'}
+          ];
+          for (var i = 0; i < 3; i++) {
+            if (self[filters[i].key1].length) {
+              var exclude = true;
+              angular.forEach(self[filters[i].key1], function(val) {
+                if (value[filters[i].key2].indexOf(val.tid) != -1) {
+                  exclude = false;
+                }
+              });
 
-          return true;
-        });
-        self.results_tier1 = $filter('filter')(self.data.plants, function(value, index, array) {
-          if (value.Tier1 == false) {
-            return false;
-          }
-
-          if (self.stateParams.attribute_tier1 && value.Attributes.indexOf(self.stateParams.attribute_tier1) == -1) {
-            return false;
-          }
-          if (self.stateParams.resource_tier1 && value.Resources.indexOf(self.stateParams.resource_tier1) == -1) {
-            return false;
-          }
-          if (self.stateParams.bird_type_tier1 && value.BirdTypes.indexOf(self.stateParams.bird_type_tier1) == -1) {
-            return false;
+              if (exclude) {
+                return false;
+              }
+            }
           }
 
           return true;
         });
         self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
+      };
+      self.calculateResultsTier1 = function() {
+        if (typeof self.data == 'undefined') {
+          return;
+        }
+        self.results_tier1 = $filter('filter')(self.data.plants, function(value, index, array) {
+          if (value.Tier1 == false) {
+            return false;
+          }
+
+          var filters = [
+            {key1: 'attribute_tier1', key2: 'Attributes'},
+            {key1: 'resource_tier1', key2: 'Resources'},
+            {key1: 'bird_type_tier1', key2: 'BirdTypes'}
+          ];
+          for (var i = 0; i < 3; i++) {
+            if (self[filters[i].key1].length) {
+              var exclude = true;
+              angular.forEach(self[filters[i].key1], function(val) {
+                if (value[filters[i].key2].indexOf(val.tid) != -1) {
+                  exclude = false;
+                }
+              });
+
+              if (exclude) {
+                return false;
+              }
+            }
+          }
+
+          return true;
+        });
         self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
-        self.calculatePagerItems(self.results_filtered.length, 'pager');
-        self.calculatePagerItems(self.results_tier1_filtered.length, 'pager_tier1');
-      });
+      };
 
       // Pager params.
       self.pager = {
@@ -190,23 +260,48 @@
         quantity: 8,
         current_page_param: 'page_tier1'
       };
-      // Watch filtered results array and calculate pager items.
-      $rootScope.$watch(function() {
-        if (angular.isUndefined(self.results_filtered)) {
-          return null;
-        }
-        return self.results_filtered.length;
-      }, function(newVal, oldVal) {
-        self.calculatePagerItems(newVal, 'pager');
-      });
-      $rootScope.$watch(function() {
-        if (angular.isUndefined(self.results_tier1_filtered)) {
-          return null;
-        }
-        return self.results_tier1_filtered.length;
-      }, function(newVal, oldVal) {
-        self.calculatePagerItems(newVal, 'pager_tier1');
-      });
+      // Watch current page state parameter and calculate pager items.
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.page;
+        },
+        function(newVal, oldVal) {
+          if (typeof self.results_filtered == 'undefined') {
+            return;
+          }
+          self.calculatePagerItems(self.results_filtered.length, 'pager');
+        });
+      $rootScope.$watch(
+        function() {
+          return self.stateParams.page_tier1;
+        },
+        function(newVal, oldVal) {
+          if (typeof self.results_tier1_filtered == 'undefined') {
+            return;
+          }
+          self.calculatePagerItems(self.results_tier1_filtered.length, 'pager_tier1');
+        });
+      // Watch filtered results arrays and calculate pager items.
+      $rootScope.$watch(
+        function() {
+          if (angular.isUndefined(self.results_filtered)) {
+            return null;
+          }
+          return self.results_filtered.length;
+        },
+        function(newVal, oldVal) {
+          self.calculatePagerItems(newVal, 'pager');
+        });
+      $rootScope.$watch(
+        function() {
+          if (angular.isUndefined(self.results_tier1_filtered)) {
+            return null;
+          }
+          return self.results_tier1_filtered.length;
+        },
+        function(newVal, oldVal) {
+          self.calculatePagerItems(newVal, 'pager_tier1');
+        });
 
       self.calculatePagerItems = function (count, pager) {
         if (count === null) {
@@ -305,8 +400,10 @@
         self.stateParams['page' + tier] = 1;
         self['results' + tier + '_filtered'] = $filter('filter')(self['results' + tier], self.stateParams['text_search' + tier]);
       };
+      // Clear all the filters.
       self.clearFilters = function() {
         self.activate_tab = false;
+        self.multiselect_reload = true;
         defaultStateParams.active_tab = self.stateParams.active_tab;
         $state.go('main', defaultStateParams, {reload: true});
       };
@@ -342,11 +439,13 @@
         });
       };
 
-      $rootScope.$watch(function() {
-        return self.results_tier1_filtered;
-      }, function(newVal, oldVal) {
-        self.calculateTier1inCart();
-      });
+      $rootScope.$watch(
+        function() {
+          return self.results_tier1_filtered;
+        },
+        function(newVal, oldVal) {
+          self.calculateTier1inCart();
+        });
       self.calculateTier1inCart = function () {
         if (angular.isUndefined(self.localStorage.cart)) {
           self.all_tier1_in_cart = false;
@@ -365,16 +464,18 @@
       };
 
       // Watch cart changes.
-      $rootScope.$watch(function() {
-        if (angular.isUndefined(self.localStorage.cart)) {
-          return 0;
-        }
-        return $.map(self.localStorage.cart, function(n, i) { return i; }).length;
-      }, function(newVal, oldVal) {
-        self.calculateTier1inCart();
-        $('.native-plants-get-list-form').find('[name="native_plants_cart"]')
-          .val(angular.toJson(self.localStorage.cart));
-      });
+      $rootScope.$watch(
+        function() {
+          if (angular.isUndefined(self.localStorage.cart)) {
+            return 0;
+          }
+          return $.map(self.localStorage.cart, function(n, i) { return i; }).length;
+        },
+        function(newVal, oldVal) {
+          self.calculateTier1inCart();
+          $('.native-plants-get-list-form').find('[name="native_plants_cart"]')
+            .val(angular.toJson(self.localStorage.cart));
+        });
 
     });
 
@@ -383,6 +484,38 @@
         return $sce.trustAsHtml(text);
       };
     }]);
+
+    NativePlantsApp.directive('nativePlantsMultiselect', function ($timeout, storage) {
+      return {
+        priority: 0,
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+          scope.$watch(function () {
+            if (angular.isUndefined(storage.data)) {
+              return null;
+            }
+            return storage.data.terms;
+          }, function (newVal, oldVal) {
+            if (!newVal) {
+              return;
+            }
+
+            scope.$evalAsync(function() {
+              var $element = $(element);
+              if ($element.hasClass('native-plants-multiselect-processed')) {
+                $element.multiselect('reload');
+              }
+              else {
+                $element.addClass('native-plants-multiselect-processed');
+                $element.multiselect({
+                  placeholder: $element.data('placeholder')
+                });
+              }
+            });
+          });
+        }
+      };
+    });
 
     NativePlantsApp.controller('NativePlantsTabsController', function ($sce, storage) {
       var self = this;
@@ -414,9 +547,19 @@
       var self = this;
       self.storage = storage;
 
-      self.setFilter = function (param, value, page) {
+      self.setFilter = function (param, selected, page) {
+        var values = [];
+        angular.forEach(selected, function(value, key) {
+          values.push(value.tid);
+        });
         self.storage.activate_tab = false;
+        self.storage.setStateParam(param, values.join(','), page);
+      };
+      self.setFilterLink = function (param, value, page) {
+        self.storage.activate_tab = false;
+        self.storage.multiselect_reload = true;
         self.storage.setStateParam(param, value, page);
+        $anchorScroll('pager-scroll-' + page);
       };
       self.setPage = function (param, value) {
         self.storage.activate_tab = false;
@@ -512,12 +655,8 @@
       self.storage = storage;
       self.rowsLimit = 1;
 
-      self.limitToggle = function () {
-        self.rowsLimit = self.rowsLimit ? null : 1;
-      };
-
       $scope.$watch(function () {
-        return self.storage.data;
+        return self.storage.data.additional_resource;
       }, function (newVal, oldVal) {
         self.rows = [];
         if (typeof newVal == 'undefined') {
@@ -533,6 +672,10 @@
           row = [];
         }
       });
+
+      self.limitToggle = function () {
+        self.rowsLimit = self.rowsLimit ? null : 1;
+      };
     });
 
     NativePlantsApp.controller('NativePlantsResourcesController', function (storage) {

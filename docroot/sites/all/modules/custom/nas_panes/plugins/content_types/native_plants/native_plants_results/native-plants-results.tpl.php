@@ -8,17 +8,26 @@
   <!--View Filters-->
   <div class="view-filters">
     <div class="view-filters-select clearfix">
-      <select data-ng-model="resultsC.storage.attribute"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All types of plants'); ?>"
+              data-ng-model="resultsC.storage.attribute"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute.tid, 'page')">
+              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute, 'page')">
       </select>
-      <select data-ng-model="resultsC.storage.resource"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All plant resources'); ?>"
+              data-ng-model="resultsC.storage.resource"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource.tid, 'page')">
+              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource, 'page')">
       </select>
-      <select data-ng-model="resultsC.storage.bird_type"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+              data-ng-model="resultsC.storage.bird_type"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type.tid, 'page')">
+              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type, 'page')">
       </select>
     </div>
     <div class="view-filters-controls clearfix">
@@ -93,14 +102,14 @@
                      data-tid="{{attributeID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"
-                     data-ng-click="resultsC.setFilter('attribute', attributeID, 'page')"></a>
+                     data-ng-click="resultsC.setFilterLink('attribute', attributeID, 'page')"></a>
                 </li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"
-                     data-ng-click="resultsC.setFilter('resource', resourceID, 'page')"></a>
+                     data-ng-click="resultsC.setFilterLink('resource', resourceID, 'page')"></a>
                 </li>
               </ul>
             </td>
@@ -149,13 +158,13 @@
                      data-tid="{{attributeID}}"
                      style="color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"
-                     data-ng-click="resultsC.setFilter('attribute', attributeID, 'page')"></a></li>
+                     data-ng-click="resultsC.setFilterLink('attribute', attributeID, 'page')"></a></li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"
-                     data-ng-click="resultsC.setFilter('resource', resourceID, 'page')"></a></li>
+                     data-ng-click="resultsC.setFilterLink('resource', resourceID, 'page')"></a></li>
               </ul>
             </div>
             <div>
