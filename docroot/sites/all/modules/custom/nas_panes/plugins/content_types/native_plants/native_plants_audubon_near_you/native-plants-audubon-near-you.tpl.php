@@ -15,6 +15,11 @@
           <?php print $resource['address']['rendered']; ?><br/>
           <?php print $resource['phone']; ?>
         </p>
+        <?php if($resource['email']): ?>
+          <a class="connect-audubon-near-you--address" href="mailto:<?php print $resource['email'];?>">
+            <?php print $resource['email']; ?>
+          </a>
+        <?php endif; ?>
         <?php print $resource['link']['rendered']; ?>
       </div>
       <div class="column medium-8 connect-audubon-near-you--services">

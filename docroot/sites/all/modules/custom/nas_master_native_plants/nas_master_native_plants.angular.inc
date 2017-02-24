@@ -202,6 +202,7 @@ function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_
       'address' => $node_wrapper->field_community_resource_address->value(),
       'phone' => $node_wrapper->field_community_resource_phone->value(),
       'link' => $node_wrapper->field_community_resource_link->value(),
+      'email' => $node_wrapper->field_community_resource_email->value(),
       'services' => array(),
     );
     $field = field_info_field('field_community_res_services');
