@@ -405,6 +405,10 @@
         self.activate_tab = false;
         self.multiselect_reload = true;
         defaultStateParams.active_tab = self.stateParams.active_tab;
+        self.stateParams.text_search = '';
+        self.stateParams.text_search_tier1 = '';
+        self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
+        self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
         $state.go('main', defaultStateParams, {reload: true});
       };
 
