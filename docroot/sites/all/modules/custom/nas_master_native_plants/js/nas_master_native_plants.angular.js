@@ -173,14 +173,14 @@
       // Watch combined filter values and recalculate results.
       $rootScope.$watch(
         function() {
-          return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type;
+          return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type + self.stateParams.text_search;
         },
         function(newVal, oldVal) {
           self.calculateResults();
         });
       $rootScope.$watch(
         function() {
-          return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1;
+          return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1 + self.stateParams.text_search_tier1;
         },
         function(newVal, oldVal) {
           self.calculateResultsTier1();
@@ -405,10 +405,6 @@
         self.activate_tab = false;
         self.multiselect_reload = true;
         defaultStateParams.active_tab = self.stateParams.active_tab;
-        self.stateParams.text_search = '';
-        self.stateParams.text_search_tier1 = '';
-        self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
-        self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
         $state.go('main', defaultStateParams, {reload: true});
       };
 
