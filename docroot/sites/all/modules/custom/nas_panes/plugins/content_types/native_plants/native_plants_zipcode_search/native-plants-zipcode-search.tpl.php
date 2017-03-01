@@ -15,6 +15,8 @@
     <div class="columns">
       <h2 class="thin hide-for-tiny hide-for-small"><?php print $title; ?></h2>
       <input type="text" value="" class="form-text native-plants-search-form--zip-code" placeholder="<?php print $zipcode_placeholder; ?>"
+             data-native-plants-fields-sync="zipcode"
+             data-native-plants-fields-sync-override="0"
              data-ng-model="zipcodeC.storage.stateParams.zipcode"/>
       <button type="submit" class="native-plants-search-form--submit form-submit button tomato large"
               data-ng-click="zipcodeC.storage.setZipcode()">

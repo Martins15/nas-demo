@@ -118,57 +118,30 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
+    else {
+      foreach ($contexts as $context) {
+        if ($context->plugin == 'entity:permalink') {
+          $conf['zipcode'] = $context->data->zip_code;
+          break;
+        }
+      }
+    }
   }
+
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
+
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-
-  $geometry = array();
-  ctools_include('plugins');
-  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-      $geometry = $function($zipcode);
-    }
+  if (!$resources = _nas_master_native_plants_get_resources($zipcode, $conf['quantity'])) {
+    return '';
   }
 
-  $resources = array();
-  if ($geometry) {
-    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    $view_results = views_get_view_result('community_resources_near_you', 'default', $latlon);
-  }
-  else {
-    $view_results = views_get_view_result('community_resources_near_you', 'default');
-  }
-
-  // Prepare resources.
-  foreach ($view_results as $result) {
-    if (!$node = node_load($result->entity)) {
-      continue;
-    }
-    $node_wrapper = entity_metadata_wrapper('node', $node);
-    $resource = array(
-      'title' => $node_wrapper->title->value(),
-      'address' => $node_wrapper->field_community_resource_address->value(),
-      'phone' => $node_wrapper->field_community_resource_phone->value(),
-      'link' => $node_wrapper->field_community_resource_link->value(),
-      'services' => array(),
-    );
-    $field = field_info_field('field_community_res_services');
-    foreach ($node_wrapper->field_community_res_services->value() as $key) {
-      $resource['services'][] = $field['settings']['allowed_values'][$key];
-    }
-
+  foreach ($resources as $delta => $resource) {
     $resource['services_title_desktop'] = t($conf['services_title_desktop'],
       array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>'));
     $resource['services_title_mobile'] = t($conf['services_title_mobile'],
       array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>'));
 
-    $resources[] = $resource;
-    if (count($resources) == $conf['quantity']) {
-      break;
-    }
-  }
-
-  if (!$resources) {
-    return '';
+    $resources[$delta] = $resource;
   }
 
   $block = new stdClass();
@@ -202,31 +175,4 @@ function native_plants_audubon_near_you_theme(&$theme, $plugin) {
     'template' => 'native-plants-audubon-near-you-angular',
     'path' => $plugin['path'],
   );
-}
-
-/**
- * Preprocess function.
- */
-function nas_panes_preprocess_native_plants_audubon_near_you(&$variables) {
-  foreach ($variables['resources'] as &$res) {
-    $res['link']['rendered'] = l(t('Visit Site'),
-      $res['link']['url'],
-      array('attributes' => array('class' => array('button', 'xlarge', 'expand', 'pea-green'))));
-    $res['address']['rendered'] = '';
-    $res['address']['rendered'] .= $res['address']['thoroughfare'] ? $res['address']['thoroughfare'] . '<br/>' : '';
-    $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
-    $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
-    $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
-
-    $services_list = array(
-      '#theme' => 'item_list',
-      '#items' => $res['services'],
-      '#attributes' => array(
-        'class' => array(
-          'connect-audubon-near-you--services-list'
-        ),
-      ),
-    );
-    $res['services']['rendered'] = drupal_render($services_list);
-  }
 }

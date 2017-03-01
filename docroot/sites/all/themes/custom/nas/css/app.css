@@ -4106,7 +4106,7 @@ table td, table th {
   z-index: 2000;
   border: 1px solid #d4d4d4;
   border-top: none;
-  max-height: 200px !important;
+  max-height: 215px !important;
   border-radius: 0 0 8px 8px;
 }
 .ms-options-wrap > .ms-options ul {
@@ -16178,6 +16178,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .sponsor-attribution img {
     height: 30px;
   }
+}
+
+.page-native-plants-list .native-plants-pledge-form-pl-pane + div {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
 /* Inline Panels Editor custom styles */

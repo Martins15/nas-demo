@@ -564,7 +564,7 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   nas_external_integration_process_form_submission($values, $form_state['values']['nas_external_integration']);
 
   // Send plant list - it is set up to go through Mandrill.
-  drupal_mail('nas_master_native_plants', 'native_plants_list', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
+  drupal_mail('nas_master_native_plants', 'native_plants_list_responsive', $permalink->email, language_default(), array('permalink' => $permalink), 'no-reply@np.audubon.org');
 
   // Redirect to permalink page.
   $form_state['redirect'] = 'native-plants/list/' . $permalink->uuid;
