@@ -61,6 +61,7 @@
       shell: "cd {{ composer_dir }} && composer remove {{ item.package }}"
       with_items: composer_global_require
       when: sniffers_update == true
+      ignore_errors: true
       tags:
         - sniffers
         - composer
