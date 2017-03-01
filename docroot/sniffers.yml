@@ -14,7 +14,7 @@
     docroot: docroot/
     sniff_diffs: false
     installation_profile_path: "profiles/{{ installation_profile_name }}"
-    scan_security: true
+    scan_security: false
     phpcs_extensions: php,inc,install,module
     phpcs_features_extensions: module
     custom_modules_path: sites/all/modules/custom/
