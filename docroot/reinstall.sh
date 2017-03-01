@@ -1,8 +1,7 @@
 #!/bin/sh
-# You should install ansible for ability to run this script
-# sudo apt-get install software-properties-common
-# sudo apt-add-repository ppa:ansible/ansible
-# sudo apt-get update
-# sudo apt-get install ansible
-# sudo apt-get install python-mysqldb
-ansible-playbook reinstall.yml
+
+if [ "$1" = "--windows" ]; then
+    time ansible-playbook -vvvv reinstall.yml -i 'localhost,' --connection=local --extra-vars "is_windows=true"
+else
+    time ansible-playbook -vvvv reinstall.yml -i 'localhost,' --connection=local
+fi
