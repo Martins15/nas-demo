@@ -1,8 +1,27 @@
 #!/bin/sh
-# You should install ansible for ability to run this script
-# sudo apt-get install software-properties-common
-# sudo apt-add-repository ppa:ansible/ansible
-# sudo apt-get update
-# sudo apt-get install ansible
-# sudo apt-get install python-mysqldb
-ansible-playbook sniffers.yml
+
+#
+# Sniffers Runner
+#
+# This script runs Ansible sniffers.yml Ansible playbook.
+# Use "-n" option to prevent the playbook from updating software each time.
+# Example: ./runsniffers.sh -n
+
+UPDATE=1
+while getopts ":n" opt; do
+  case $opt in
+    n)
+	  UPDATE=0
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+if [ $UPDATE -eq 1 ]
+then
+  time ansible-playbook -vvvv sniffers.yml -i 'localhost,' --connection=local
+else
+  time ansible-playbook -vvvv sniffers.yml -i 'localhost,' --connection=local --extra-vars "sniffers_update=false"
+fi
