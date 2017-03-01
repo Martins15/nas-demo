@@ -27,3 +27,31 @@
     width: auto;
     max-width: 100%;
 }
+
+/*-------------------------
+	Pagers
+-------------------------*/
+.view-pager {
+    display: block;
+    text-align: center;
+}
+.netx-pager {
+    clear: both;
+}
+.netx-pager .netx-pager-item {
+    display: inline-block;
+    margin: 0;
+    float: none;
+}
+.netx-pager .netx-pager-item a {
+    padding: 0 10px;
+    display: block
+}
+.netx-pager .netx-pager-item.current a {
+    font-weight: bold;
+    background-color: #EEE;
+}
+.netx-pager .netx-pager-item a:hover {
+    background-color: #03689b;
+    color: #FFF;
+}

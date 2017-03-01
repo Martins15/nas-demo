@@ -341,7 +341,6 @@
                                 }
                                 // Adjust "center" if at start of query.
                                 if ($item <= 0) {
-                                    $pagerLast = $pagerLast + (1 - $item);
                                     $item = 1;
                                 }
                                 // Add Previous page link or text.
@@ -377,7 +376,7 @@
                                     $pagerItem.appendTo($pagerList);
                                 }
 
-                                if ($item < $pagerMax) {
+                                if (i < $pagerMax) {
                                     $pagerItem = $('<li class="netx-pager-item">' +
                                         '<span>...</span>' + '</li>');
                                     $pagerItem.appendTo($pagerList);

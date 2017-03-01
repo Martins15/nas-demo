@@ -473,6 +473,9 @@ function nas_master_native_plants_get_list_form($form, &$form_state, $conf = arr
     '#required' => TRUE,
     '#element_validate' => array('nas_master_native_plants_element_validate_email'),
   );
+  $form['native_plants_cart'] = array(
+    '#type' => 'hidden',
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t(filter_xss($conf['get_list_button_text'])),
@@ -534,25 +537,9 @@ function nas_master_native_plants_get_list_form_submit($form, &$form_state) {
   $fields = drupal_json_decode($_COOKIE['native_plants_fields_sync']);
 
   // Get data for the plants in the cart.
-  $plants = drupal_json_decode($_COOKIE['native_plants_cart']);
-  foreach ($plants as $plant_id => $plant_common_name) {
-    // We are assuming the plant is always in the cache when this form is
-    // submitted.
-    if ($cached_plant = cache_get('native_plants_' . $plant_id)) {
-      $plant = $cached_plant->data;
-      $plants[$plant_id] = array(
-        'CommonName' => $plant_common_name,
-        'ScientificName' => $plant->ScientificName,
-        'BirdTypes' => implode(',', array_keys($plant->BirdTypes)),
-      );
-    }
-    else {
-      $plants[$plant_id] = array(
-        'CommonName' => $plant_common_name,
-        'ScientificName' => '',
-        'BirdTypes' => '',
-      );
-    }
+  $plants = drupal_json_decode($form_state['values']['native_plants_cart']);
+  foreach ($plants as $plant_id => &$plant) {
+    $plant['BirdTypes'] = implode(',', $plant['BirdTypes']);
   }
   $cart = drupal_json_encode($plants);
 

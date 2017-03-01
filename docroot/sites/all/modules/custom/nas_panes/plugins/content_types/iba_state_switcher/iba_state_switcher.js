@@ -20,7 +20,7 @@
           .insertAfter(this);
 
         // Navigate page.
-        window.location.pathname = $(this).find(':selected').val();
+        window.location.assign($(this).find(':selected').val());
       });      
     }      
   };

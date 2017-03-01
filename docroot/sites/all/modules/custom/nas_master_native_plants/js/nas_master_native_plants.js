@@ -1,106 +1,47 @@
 (function ($) {
-  Drupal.behaviors.nas_master_native_plants_filters = {};
-  Drupal.behaviors.nas_master_native_plants_filters.attach = function(context, settings) {
-    // Remove the clones.
-    var wrappers = $('#edit-attribute-clone, #edit-bird-type-clone, #edit-attribute-tier1-clone, #edit-bird-type-tier1-clone').parent('.-wrap-select');
-    $('#edit-attribute-clone').remove();
-    $('#edit-bird-type-clone').remove();
-    $('#edit-attribute-tier1-clone').remove();
-    $('#edit-bird-type-tier1-clone').remove();
-    wrappers.remove();
-
-    // We can't use context here as pager links do not update the exposed form in block.
-    var $attributes = $('#edit-attribute'), $bird_types = $('#edit-bird-type'),
-      $attributes_tier1 = $('#edit-attribute-tier1'), $bird_types_tier1 = $('#edit-bird-type-tier1');
-    if ($attributes.length === 0) {
-      return;
-    }
-
-    // Clone the taxonomy filters and position the clones.
-    var $attributes_clone = $attributes.clone()
-      .attr({'id': $attributes.attr('id') + '-clone', 'name': $attributes.attr('name') + '-clone'})
-      .val($attributes.val())
-      .appendTo('.inner-filters-wrapper').show();
-    var $bird_types_clone = $bird_types.clone()
-      .attr({'id': $bird_types.attr('id') + '-clone', 'name': $bird_types.attr('name') + '-clone'})
-      .val($bird_types.val())
-      .appendTo('.inner-filters-wrapper').show();
-    var $attributes_tier1_clone = $attributes_tier1.clone()
-      .attr({'id': $attributes_tier1.attr('id') + '-clone', 'name': $attributes_tier1.attr('name') + '-clone'})
-      .val($attributes_tier1.val())
-      .appendTo('.inner-filters-wrapper-tier1').show();
-    var $bird_types_tier1_clone = $bird_types_tier1.clone()
-      .attr({'id': $bird_types_tier1.attr('id') + '-clone', 'name': $bird_types_tier1.attr('name') + '-clone'})
-      .val($bird_types_tier1.val())
-      .appendTo('.inner-filters-wrapper-tier1').show();
-
-    // Update the source select values upon changes on the clones and submit the form.
-    $attributes_clone.change(function() {
-      $attributes.val($attributes_clone.val());
-      $('#edit-submit-native-plants-search').click();
-    });
-    $bird_types_clone.change(function() {
-      $bird_types.val($bird_types_clone.val());
-      $('#edit-submit-native-plants-search').click();
-    });
-    $attributes_tier1_clone.change(function() {
-      $attributes_tier1.val($attributes_tier1_clone.val());
-      $('#edit-submit-native-plants-search-tier1').click();
-    });
-    $bird_types_tier1_clone.change(function() {
-      $bird_types_tier1.val($bird_types_tier1_clone.val());
-      $('#edit-submit-native-plants-search-tier1').click();
-    });
-
-    Drupal.behaviors.wrap_select.attach(context, settings);
-  };
-
-  // Click on the attribute filters the view.
-  Drupal.behaviors.nas_master_native_plants_attributes = {};
-  Drupal.behaviors.nas_master_native_plants_attributes.attach = function(context, settings) {
-    $('.native-plants-full-search-results .native-plants-attribute', context).click(function(event) {
-      event.preventDefault();
-      $('#edit-attribute').val($(this).data('tid'));
-      $('#edit-submit-native-plants-search').click();
-    });
-    $('.native-plants-search-results .native-plants-attribute', context).click(function(event) {
-      event.preventDefault();
-      $('#edit-attribute-tier1').val($(this).data('tid'));
-      $('#edit-submit-native-plants-search-tier1').click();
-    });
-  };
-
-  /**
-   * Modified Views function to ajaxify our pager links.
-   */
-  Drupal.views.ajaxView.prototype.attachPagerAjax = function() {
-    this.$view.find('ul.pager > li > a, th.views-field a, .attachment .views-summary a, .search-results-total .pager a')
-      .each(jQuery.proxy(this.attachPagerLinkAjax, this));
-  };
-
   /**
    * Birds Carousel on Native plants search results page.
    */
   Drupal.behaviors.npOwl = {
-    attach: function(context, settings) {
-      $(".bird-card-carousel .owl-carousel").once('np-owl', function () {
+    attached: function(context, settings) {
+      $('.bird-card-carousel .owl-carousel').once('np-owl', function () {
         var self = $(this);
+        if (self.find('.node').length === 0) {
+          return;
+        }
         self.owlCarousel({
           items: 2,
-          itemsDesktop: false,
-          itemsDesktopSmall: false,
-          itemsTablet: false,
-          itemsMobile: false,
-          paginationSpeed: 100,
-          navigation: true,
-          rewindNav: false,
+          nav:true,
           pagination: false,
-          navigationText: ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"]
+          autoWidth: true,
+          margin: 10,
+          navText: ["<i class=\"indicator-left icon-arrow-left\"></i>", "<i class=\"indicator-right icon-arrow-right\"></i>"],
+          responsive : {
+            0 : {
+              items: 1,
+              autoWidth: false
+            },
+
+            320 : {
+              items: 2,
+              autoWidth: false
+            },
+
+            580: {
+              items: 3,
+              autoWidth: false
+            },
+
+            602 : {
+              items: 2,
+              autoWidth: true
+            }
+          }
         });
 
         // Shift card title down if it gets split on several lines.
         $(window).bind('resize', function (e) {
-          $(".bird-card-caption", self).each(function () {
+          $('.bird-card-caption', self).each(function () {
             var $caption = $(this);
             var $header = $(this).find('h4');
             if ($header.height() > parseInt($header.css('line-height')) + 2) {
@@ -119,7 +60,7 @@
    * Bind camera icon to clearing thumbs.
    */
   Drupal.behaviors.npClearingFix = {
-    attach: function(context, settings) {
+    attached: function(context, settings) {
       if (typeof Foundation === 'undefined') {
         return;
       }

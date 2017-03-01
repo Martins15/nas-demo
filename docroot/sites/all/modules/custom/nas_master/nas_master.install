@@ -3975,9 +3975,16 @@ function nas_master_update_7270() {
 }
 
 /**
+ * Enable CDN feature.
+ */
+function nas_master_update_7272() {
+  module_enable(array('nas_cdn_feature'));
+}
+
+/**
  * Adds Hero Mobile Image field.
  */
-function nas_master_update_7271() {
+function nas_master_update_7273() {
   features_revert(array(
     'nas_article_feature' => array(
       'field_instance',
@@ -4004,14 +4011,14 @@ function nas_master_update_7271() {
 /**
  * Enable CDN feature.
  */
-function nas_master_update_7272() {
+function nas_master_update_7274() {
   module_enable(array('nas_cdn_feature'));
 }
 
 /**
  * Revert Search feature for add title field.
  */
-function nas_master_update_7273() {
+function nas_master_update_7275() {
   features_revert(array(
     'nas_search_feature' => array(
       'views_view',
@@ -4022,7 +4029,7 @@ function nas_master_update_7273() {
 /**
  * Revert IBA State view for add sortable fields.
  */
-function nas_master_update_7274() {
+function nas_master_update_7276() {
   features_revert(array(
     'nas_iba_state' => array(
       'views_view',
@@ -4033,14 +4040,14 @@ function nas_master_update_7274() {
 /**
  * Enable Quiz module and dependency module Rules.
  */
-function nas_master_update_7275() {
+function nas_master_update_7277() {
   module_enable(array('quiz', 'rules'));
 }
 
 /**
  * Adds Hero Mobile Image field.
  */
-function nas_master_update_7276() {
+function nas_master_update_7278() {
   features_revert(array(
     'nas_article_feature' => array(
       'field_base',
@@ -4062,5 +4069,21 @@ function nas_master_update_7276() {
     'nas_image_styles_feature' => array(
       'image',
     ),
+  ));
+}
+
+/**
+ * Enable Quiz configuration feature.
+ */
+function nas_master_update_7279() {
+  module_enable(array('nas_quiz_configuration'));
+}
+
+/**
+ * Update RSS feature and RSS view modes.
+ */
+function nas_master_update_7280() {
+  features_revert(array(
+    'nas_rss' => array('views_view'),
   ));
 }

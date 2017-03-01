@@ -83,6 +83,12 @@ function editorial_card_3x_edit_form($form, &$form_state) {
     '#title' => t('More link URL'),
     '#default_value' => !empty($conf['more_link_url']) ? $conf['more_link_url'] : '',
   );
+  $form['open_new_tab'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Open content links in a new tab'),
+    '#default_value' => !empty($conf['open_new_tab']),
+  );
+
   $form['additional_classes'] = array(
     '#type' => 'textfield',
     '#title' => t('Additional classes'),
@@ -191,6 +197,7 @@ function editorial_card_3x_change_number_of_items($form, &$form_state) {
  * See ctools_plugin_examples for more advanced info
  */
 function editorial_card_3x_render($subtype, $conf, $args, $context) {
+  $open_new_tab = !empty($conf['open_new_tab']);
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   $more_link = '';
@@ -220,6 +227,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
           foreach ($view_results as $result) {
             $node = _i18n_node_load($result->{$options['result_key']});
             $node_view = node_view($node, 'editorial_card_3x');
+            $node_view['#node']->links_open_new_tab = $open_new_tab;
             $content[$key][] = drupal_render($node_view);
           }
           break;
@@ -266,6 +274,7 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
     foreach ($conf['refs'] as $ref) {
       if (!empty($ref['reference']['entity_id']) && $node = _i18n_node_load($ref['reference']['entity_id'])) {
         $build = node_view($node, 'editorial_card_3x');
+        $build['#node']->links_open_new_tab = $open_new_tab;
         $teaser = drupal_render($build);
       }
       else {
