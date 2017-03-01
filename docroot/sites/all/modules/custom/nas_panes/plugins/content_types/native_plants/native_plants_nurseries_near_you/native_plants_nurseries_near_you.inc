@@ -124,48 +124,21 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
-  }
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-
-  $geometry = array();
-  // Perform proximity search only if we are looking for offline nurseries.
-  if (!$conf['online']) {
-    ctools_include('plugins');
-    if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-      if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-        $geometry = $function($zipcode);
+    else {
+      foreach ($contexts as $context) {
+        if ($context->plugin == 'entity:permalink') {
+          $conf['zipcode'] = $context->data->zip_code;
+          break;
+        }
       }
     }
   }
 
-  $nurseries = array();
-  if (!$conf['online'] && $geometry) {
-    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online'], $latlon);
-  }
-  elseif ($conf['online']) {
-    $state_code = _nas_master_native_plants_zipcode_to_state($zipcode);
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online'], 'all', $state_code);
-  }
-  else {
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online']);
-  }
+  module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
-  // Prepare nurseries.
-  foreach ($view_results as $result) {
-    if (!$nursery = node_load($result->entity)) {
-      continue;
-    }
-    $nursery_wrapper = entity_metadata_wrapper('node', $nursery);
-    $nurseries[] = array(
-      'title' => $nursery_wrapper->title->value(),
-      'address' => $nursery_wrapper->field_nursery_address->value(),
-      'phone' => $nursery_wrapper->field_nursery_phone->value(),
-      'link' => $nursery_wrapper->field_nursery_link->value(),
-    );
-    if (count($nurseries) == $conf['quantity']) {
-      break;
-    }
+  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+  if (!$nurseries = _nas_master_native_plants_get_nurseries($zipcode, 'nursery', $conf['online'], $conf['quantity'])) {
+    return '';
   }
 
   $block = new stdClass();
@@ -206,23 +179,4 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
     'template' => 'native-plants-nurseries-near-you-angular',
     'path' => $plugin['path'],
   );
-}
-
-/**
- * Preprocess function.
- */
-function nas_panes_preprocess_native_plants_nurseries_near_you(&$variables) {
-  foreach ($variables['nurseries'] as &$res) {
-    $res['address']['rendered'] = '';
-    $res['address']['rendered'] .= $res['address']['thoroughfare'] ? $res['address']['thoroughfare'] . '<br/>' : '';
-    $res['address']['rendered'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
-    $res['address']['rendered'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
-    $res['address']['rendered'] .= $res['address']['postal_code'] ? ' ' . $res['address']['postal_code'] : '';
-    if (!empty($res['link']['url'])) {
-      $res['link']['print'] = str_replace(array('http://www.', 'https://www.', 'http://', 'https://'), '', $res['link']['url']);
-      if (drupal_strlen($res['link']['print']) > 20) {
-        $res['link']['print'] = rtrim(drupal_substr($res['link']['print'], 0, 17), '.') . '&hellip;';
-      }
-    }
-  }
 }
