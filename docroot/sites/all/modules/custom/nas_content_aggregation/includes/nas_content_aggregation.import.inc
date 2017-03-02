@@ -14,7 +14,7 @@
  * @return array
  *   Batch array.
  */
-function nas_content_aggregation_import_nodes($storage) {
+function nas_content_aggregation_import_nodes(array $storage) {
   variable_set('nas_content_aggregation_import_timer', time());
   variable_set('nas_content_aggregation_import_node_counter', 0);
   // Clear static caches so ctools_export_load_object can load feeds_importer
@@ -67,7 +67,7 @@ function nas_content_aggregation_import_nodes($storage) {
  * @return array
  *   Batch array.
  */
-function nas_content_aggregation_import_individual_nodes($storage) {
+function nas_content_aggregation_import_individual_nodes(array $storage) {
   variable_set('nas_import_timer', time());
   variable_set('nas_import_node_counter', 0);
   // Clear static caches so ctools_export_load_object can load feeds_importer
@@ -119,7 +119,7 @@ function nas_content_aggregation_import_individual_nodes($storage) {
  * @param array $operations
  *   List of operations.
  */
-function nas_content_aggregation_import_batch_finished_callback($success, $results, $operations) {
+function nas_content_aggregation_import_batch_finished_callback($success, array $results, array $operations) {
   $messages = array();
   $args = array();
   if ($success) {
@@ -158,7 +158,7 @@ function nas_content_aggregation_import_batch_finished_callback($success, $resul
  * @param array $context
  *   Batch context.
  */
-function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, $object_url, $data, &$context) {
+function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, $object_url, array $data, array &$context) {
   $domain = parse_url($object_url, PHP_URL_HOST);
   $context['message'] = t('Processed @count nodes from @domain', array(
     '@count' => count($items),
@@ -192,7 +192,7 @@ function nas_content_aggregation_import_nodes_batch(array $items, $importer_id, 
  * @return bool
  *   Status.
  */
-function nas_content_aggregation_feeds_presave_alter(FeedsSource $source, &$entity, &$item) {
+function nas_content_aggregation_feeds_presave_alter(FeedsSource $source, StdClass &$entity, array &$item) {
   global $user;
   $map = array(
     'subtitle' => 'field_subtitle'

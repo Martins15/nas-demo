@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains profile related behavior.

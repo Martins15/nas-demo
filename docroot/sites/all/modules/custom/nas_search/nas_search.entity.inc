@@ -1,9 +1,13 @@
 <?php
+
 /**
  * @file
  * Contains Page manager search Entity controller class without content loading.
  */
 
+/**
+ * Class PageManagerSearchEntityControllerWithoutContent.
+ */
 class PageManagerSearchEntityControllerWithoutContent extends PageManagerSearchEntityController {
 
   /**

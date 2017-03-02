@@ -1,26 +1,33 @@
 .show-for-ie {
   display: block !important;
-  visibility: visible !important; }
+  visibility: visible !important;
+}
 
 .show-for-ie-ib {
-  display: inline-block !important; }
+  display: inline-block !important;
+}
 
 .show-for-ie-in {
-  display: inline !important; }
+  display: inline !important;
+}
 
 .hide-for-ie {
-  display: none !important; }
+  display: none !important;
+}
 
 .strip-nav ul {
   width: 1000px !important;
-  overflow: visible; }
+  overflow: visible;
+}
 
 .dont-miss {
-  height: 38px; }
+  height: 38px;
+}
 
 .primary-nav-item,
 .action-nav-item {
-  margin-right: 5px; }
+  margin-right: 5px;
+}
 
 .wordmark,
 .hero,
@@ -31,7 +38,8 @@
 .icon-close,
 .slideshow-button,
 .banner {
-  -ms-behavior: url(../js/backgroundsize.min.htc); }
+  -ms-behavior: url(../js/backgroundsize.min.htc);
+}
 
 section,
 header,
@@ -39,24 +47,31 @@ footer,
 aside,
 .mailing-list {
   margin-top: 0 !important;
-  margin-bottom: 0 !important; }
+  margin-bottom: 0 !important;
+}
 
 .slideshow-img img {
   max-height: 600px;
-  width: 100%; }
+  width: 100%;
+}
 
 .bg-egg {
-  display: none !important; }
+  display: none !important;
+}
 
 .bird-card-set,
 .bird-card-grid {
-  background-image: none !important; }
+  background-image: none !important;
+}
 
 .mailing-list .row:before {
-  background-image: none !important; }
+  background-image: none !important;
+}
 
 .mailing-list-text {
-  padding-left: 0; }
+  padding-left: 0;
+}
 
 .editorial-card-banner i {
-  display: none !important; }
+  display: none !important;
+}

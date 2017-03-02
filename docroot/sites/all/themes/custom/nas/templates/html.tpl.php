@@ -2,8 +2,7 @@
 
 /**
  * @file
- * Default theme implementation to display the basic html structure of a single
- * Drupal page.
+ * Default theme Drupal page implementation.
  *
  * Variables:
  * - $css: An array of CSS files for the current page.

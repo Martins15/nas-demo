@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Audubon Near You. Local Offices & Chapters template file.
@@ -36,9 +37,9 @@
                 <?php print $item['address_label']; ?>
               </span>
               <?php print $item['address']['thoroughfare']; ?>
-              <?php print $item['address']['postal_code']."<br/>"; ?>
-              <?php print $item['address']['locality']." - "; ?>
-              <?php print $item['address']['administrative_area']." - "; ?>
+              <?php print $item['address']['postal_code']; ?><br/>
+              <?php print $item['address']['locality']; ?> -
+              <?php print $item['address']['administrative_area']; ?> -
               <?php print $item['address']['country']; ?>
             </div>
           </div>

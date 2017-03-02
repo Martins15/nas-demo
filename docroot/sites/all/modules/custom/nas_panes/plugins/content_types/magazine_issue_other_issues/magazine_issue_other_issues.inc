@@ -49,8 +49,7 @@ function magazine_issue_other_issues_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function magazine_issue_other_issues_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -62,6 +61,7 @@ function magazine_issue_other_issues_edit_form_submit(&$form, &$form_state) {
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function magazine_issue_other_issues_render($subtype, $conf, $args, $context) {
@@ -81,7 +81,7 @@ function magazine_issue_other_issues_render($subtype, $conf, $args, $context) {
     }
   }
   $magazine_issue_nodes = array();
-  //Default behavior is to display 4 past issues.
+  // Default behavior is to display 4 past issues.
   if ($conf_is_empty) {
     $get_field_issue_date = field_get_items('node', $context_node, 'field_issue_date');
     if (!empty($get_field_issue_date)) {
@@ -129,7 +129,7 @@ function magazine_issue_other_issues_render($subtype, $conf, $args, $context) {
 
   $block = new stdClass();
   $block->content = '';
-  //Lets keep white space, so contextual area will be selectible if empty.
+  // Let's keep white space, so contextual area will be selectible if empty.
   if (empty($teasers)) {
     $teasers = array('&nbsp;');
   }
@@ -149,7 +149,7 @@ function magazine_issue_other_issues_render($subtype, $conf, $args, $context) {
  * @param object $node
  *   Current article node.
  *
- * @return
+ * @return string
  *   Rendered contextual links.
  */
 function magazine_issue_other_issues_build_contextual_links($subtype, $node) {

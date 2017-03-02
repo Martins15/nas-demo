@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains install and update functions for nas_pm_xmlsitemap.

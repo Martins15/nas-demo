@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Featured Frontpage template file.

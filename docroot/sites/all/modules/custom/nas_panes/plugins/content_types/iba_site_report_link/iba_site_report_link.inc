@@ -17,6 +17,7 @@ $plugin = array(
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function iba_site_report_link_render($subtype, $conf, $args, $context) {

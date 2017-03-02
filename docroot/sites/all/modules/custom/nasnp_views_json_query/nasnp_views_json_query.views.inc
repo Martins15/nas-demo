@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Views hooks for nasnp_views_json_query.

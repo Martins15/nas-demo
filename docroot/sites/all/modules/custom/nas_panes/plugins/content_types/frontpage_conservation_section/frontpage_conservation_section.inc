@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -96,7 +96,7 @@ function frontpage_conservation_section_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved.
+ * Submit callback..
  */
 function frontpage_conservation_section_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -148,13 +148,13 @@ function frontpage_conservation_section_render($subtype, $conf, $args, $contexts
   }
 
   $content = theme('frontpage_conservation_section', array(
-      'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
-      'image_path' => $hero_image_path,
-      'attribution' => $attribution,
-      'contextual_links' => $contextual_links,
-      'content' => $content,
-      'color_mode' => $conf['color_mode'],
-      'text_color' => $conf['color_mode'] == 'dark' ? 'light' : 'dark',
+    'title' => $conf['override_title'] ? $conf['override_title_text'] : $conf['title'],
+    'image_path' => $hero_image_path,
+    'attribution' => $attribution,
+    'contextual_links' => $contextual_links,
+    'content' => $content,
+    'color_mode' => $conf['color_mode'],
+    'text_color' => $conf['color_mode'] == 'dark' ? 'light' : 'dark',
   ));
 
   $block->content = $content;

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -341,7 +341,7 @@ function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) 
       '#title' => t('Story !num', array('!num' => $i + 1)),
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
-      '#prefix' => '<div class="wrapper-' . $i .'">',
+      '#prefix' => '<div class="wrapper-' . $i . '">',
       '#suffix' => '</div>',
     );
     $form['curtain_3stories']['articles'][$i]['entity_reference'] = array(
@@ -372,8 +372,9 @@ function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) 
 }
 
 /**
- * Form builder for curtain with a package of stories displayed horizontally
- * variant.
+ * Form builder.
+ *
+ * For curtain with a package of stories displayed horizontally variant.
  */
 function _frontpage_featured_curtain_package_form(&$form, &$form_state, $conf) {
   $form['curtain_package'] = array(
@@ -480,7 +481,7 @@ function _frontpage_featured_curtain_package_form(&$form, &$form_state, $conf) {
       '#title' => t('Story !num', array('!num' => $i + 1)),
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
-      '#prefix' => '<div class="wrapper-' . $i .'">',
+      '#prefix' => '<div class="wrapper-' . $i . '">',
       '#suffix' => '</div>',
     );
     $form['curtain_package']['articles'][$i]['entity_reference'] = array(
@@ -787,8 +788,7 @@ function frontpage_featured_curtain_package_add_more($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function frontpage_featured_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -803,8 +803,9 @@ function frontpage_featured_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function frontpage_featured_render($subtype, $conf, $args, $contexts) {
   $contextual_links = '';
@@ -860,7 +861,7 @@ function frontpage_featured_render($subtype, $conf, $args, $contexts) {
  * @return string
  *   Rendered HTML markup.
  */
-function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
+function _frontpage_featured_simple_curtain_render(array $conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
   $mobile_image = $image;
@@ -938,7 +939,7 @@ function _frontpage_featured_simple_curtain_render($conf, $contextual_links) {
  * @return string
  *   Rendered HTML markup.
  */
-function _frontpage_featured_hero_image_render($conf, $contextual_links) {
+function _frontpage_featured_hero_image_render(array $conf, $contextual_links) {
   $image = file_load($conf['image']);
   if (!empty($image)) {
     $image_wrapper = entity_metadata_wrapper('file', $image);
@@ -991,7 +992,7 @@ function _frontpage_featured_hero_image_render($conf, $contextual_links) {
  * @return string
  *   Rendered HTML markup.
  */
-function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
+function _frontpage_featured_curtain_3stories_render(array $conf, $contextual_links) {
   $image = file_load($conf['image']);
   if (!empty($image)) {
     $image_uri = nas_alters_local_image_uri($image->uri);
@@ -1001,11 +1002,11 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
       $attribution_caption = trim($items[0]['safe_value']);
     }
     if ($items = field_get_items('file', $image, 'field_file_credit')) {
-      $attribution_credit = t('Photo:') .' ' . trim($items[0]['safe_value']);
+      $attribution_credit = t('Photo:') . ' ' . trim($items[0]['safe_value']);
     }
   }
 
-  // Pass image url value to theme
+  // Pass image url value to theme.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $featured_frontpage_image = $image_path;
 
@@ -1027,7 +1028,8 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
     $action_link = l(t($conf['action_text']), $conf['action_text_link'], array(
       'attributes' => array(
         'class' => array('button', 'large', 'expand', 'tomato'),
-      )));
+      ),
+    ));
   }
 
   $stories = array();
@@ -1048,7 +1050,7 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
     }
   }
 
-  // Pass mobile_content to theme
+  // Pass mobile_content to theme.
   $mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $mobile_content = theme('nas_frontpage_featured__curtain_3stories_mobile', array(
     'image_path' => $image_path,
@@ -1071,8 +1073,9 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
 }
 
 /**
- * Helper function for rendering 'Curtain with a package of stories' pane
- * variant.
+ * Helper function.
+ *
+ * Renders 'Curtain with a package of stories' pane variant.
  *
  * @param array $conf
  *   Configuration array.
@@ -1082,7 +1085,7 @@ function _frontpage_featured_curtain_3stories_render($conf, $contextual_links) {
  * @return string
  *   Rendered HTML markup.
  */
-function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
+function _frontpage_featured_curtain_package_render(array $conf, $contextual_links) {
   $image = file_load($conf['image']);
   $attribution_caption = $attribution_credit = '';
   if (!empty($image)) {
@@ -1096,7 +1099,7 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
     }
   }
 
-  // Pass image url value to theme
+  // Pass image url value to theme.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $featured_frontpage_image = $image_path;
 
@@ -1123,8 +1126,8 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
   $featured_slug_link = '';
   if ($conf['slug_link']['title'] && $conf['slug_link']['url']) {
     $featured_slug_link = l(t($conf['slug_link']['title']), $conf['slug_link']['url'], array(
-        'attributes' => array('class' => array('hero-slug')),
-      ));
+      'attributes' => array('class' => array('hero-slug')),
+    ));
     $mobile_featured_slug_link = l(t($conf['slug_link']['title']), $conf['slug_link']['url']);
   }
 
@@ -1134,11 +1137,13 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
     $action_link = l(t($conf['action_item']['title']), $conf['action_item']['url'], array(
       'attributes' => array(
         'class' => array('button', 'large', 'blue'),
-      )));
+      ),
+    ));
     $mobile_action_link = l(t($conf['action_item']['title']), $conf['action_item']['url'], array(
       'attributes' => array(
         'class' => array('button', 'large', 'blue', 'expand'),
-      )));
+      ),
+    ));
   }
 
   $summary = '';
@@ -1164,7 +1169,7 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
     }
   }
 
-  // Pass mobile_content to theme
+  // Pass mobile_content to theme.
   $mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $mobile_content = theme('nas_frontpage_featured__curtain_package_mobile', array(
     'image_path' => $image_path,
@@ -1204,7 +1209,7 @@ function _frontpage_featured_curtain_package_render($conf, $contextual_links) {
  * @return string
  *   Rendered HTML markup.
  */
-function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
+function _frontpage_featured_curtain_video_render(array $conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
@@ -1253,7 +1258,7 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
     'poster_source' => $image_path,
   ));
 
-  // Pass mobile_content to theme
+  // Pass mobile_content to theme.
   $mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $mobile_content = theme('nas_frontpage_featured_mobile', array(
     'image_path' => $image_path,
@@ -1265,6 +1270,7 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
 
   return $content;
 }
+
 /**
  * Helper function for rendering 'HTML curtain' pane variant.
  *
@@ -1276,7 +1282,7 @@ function _frontpage_featured_curtain_video_render($conf, $contextual_links) {
  * @return string
  *   Rendered HTML markup.
  */
-function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
+function _frontpage_featured_curtain_html_render(array $conf, $contextual_links) {
   $image = file_load($conf['image']);
   $image_path = '';
   if (!empty($image)) {
@@ -1295,7 +1301,7 @@ function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
 
   $summary = _filter_htmlcorrector($conf['summary']);
 
-  // Pass image url value to theme
+  // Pass image url value to theme.
   $featured_frontpage_image = &drupal_static('featured_frontpage_image');
   $featured_frontpage_image = $image_path;
   $content = theme('nas_frontpage_featured__curtain_html', array(
@@ -1310,7 +1316,7 @@ function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
     ),
   ));
 
-  // Pass mobile_content to theme
+  // Pass mobile_content to theme.
   $mobile_content = &drupal_static('featured_frontpage_mobile_content');
   $mobile_content = theme('nas_frontpage_featured_mobile', array(
     'image_path' => $image_path,
@@ -1325,4 +1331,3 @@ function _frontpage_featured_curtain_html_render($conf, $contextual_links) {
 
   return $content;
 }
-

@@ -49,8 +49,7 @@ function magazine_issue_featured_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function magazine_issue_featured_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -62,6 +61,7 @@ function magazine_issue_featured_edit_form_submit(&$form, &$form_state) {
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function magazine_issue_featured_render($subtype, $conf, $args, $context) {
@@ -102,7 +102,7 @@ function magazine_issue_featured_render($subtype, $conf, $args, $context) {
 
   $block = new stdClass();
   $block->content = '';
-  //Lets keep white space, so contextual area will be selectible.
+  // Let's keep white space, so contextual area will be selectible.
   if (empty($teasers)) {
     $teasers = array('&nbsp;');
   }
@@ -122,7 +122,7 @@ function magazine_issue_featured_render($subtype, $conf, $args, $context) {
  * @param object $node
  *   Current article node.
  *
- * @return
+ * @return string
  *   Rendered contextual links.
  */
 function magazine_issue_featured_build_contextual_links($subtype, $node) {

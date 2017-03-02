@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 define('NAS_FOOTER_PAGE_MANAGER_CACHE_KEY', 'site_template');
@@ -56,6 +56,9 @@ function nas_footer_theme() {
   );
 }
 
+/**
+ * Form builder.
+ */
 function nas_footer_mail_subscription_form($form, &$form_state, $conf = array()) {
   $form['email'] = array(
     '#type' => 'textfield',

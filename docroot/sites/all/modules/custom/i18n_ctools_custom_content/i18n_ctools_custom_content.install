@@ -26,7 +26,6 @@ function i18n_ctools_custom_content_schema_alter(&$schema) {
   $schema['ctools_custom_content']['export']['save callback'] = 'i18n_ctools_custom_content_save_callback';
 }
 
-
 /**
  * Definition for language field.
  *

@@ -40,10 +40,10 @@ function pp_wysiwyg_wysiwyg_plugin($editor, $version) {
   if ($editor == 'ckeditor') {
     return array(
       'codemirror' => array(
-         'extensions' => array('codemirror' => t('CodeMirror')),
-         'path' => wysiwyg_get_path('ckeditor_plugins') . '/codemirror',
-         'internal' => FALSE,
-         'load' => TRUE,
+        'extensions' => array('codemirror' => t('CodeMirror')),
+        'path' => wysiwyg_get_path('ckeditor_plugins') . '/codemirror',
+        'internal' => FALSE,
+        'load' => TRUE,
       ),
     );
   }

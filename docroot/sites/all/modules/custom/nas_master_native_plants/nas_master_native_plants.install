@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants hook_update_X functions.
@@ -25,7 +26,11 @@ function nas_master_native_plants_update_7002() {
  */
 function nas_master_native_plants_update_7003() {
   features_revert(array(
-    'nas_native_plant_ct_feature' => array('field_base', 'field_instance', 'variable'),
+    'nas_native_plant_ct_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
   ));
 }
 

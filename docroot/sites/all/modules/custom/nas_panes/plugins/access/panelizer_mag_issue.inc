@@ -2,12 +2,11 @@
 
 /**
  * @file
- * define ctools access plugin.
+ * Defines ctools access plugin.
  */
 
 /**
- * Plugins are described by creating a $plugin array which will
- * be used by the system that includes the file.
+ * Plugin definition.
  */
 $plugin = array(
   'title' => t('Node: panelizer & magazine issue'),

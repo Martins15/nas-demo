@@ -17,6 +17,9 @@ $plugin = array(
   'admin info' => 'editorial_card_3x_admin_info',
 );
 
+/**
+ * Pane title callback.
+ */
 function editorial_card_3x_admin_title($subtype, $conf, $context = NULL) {
   $presets = _editorial_card_3x_presets();
   $output = t('Editorial card (3x)') . ': ' . $presets[$conf['preset']]['title'];
@@ -24,8 +27,7 @@ function editorial_card_3x_admin_title($subtype, $conf, $context = NULL) {
 }
 
 /**
- * Callback to provide administrative info (the preview in panels when building
- * a panel).
+ * Callback to provide administrative info.
  */
 function editorial_card_3x_admin_info($subtype, $conf, $context = NULL) {
   $presets = _editorial_card_3x_presets();
@@ -174,8 +176,7 @@ function editorial_card_3x_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function editorial_card_3x_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -193,8 +194,9 @@ function editorial_card_3x_change_number_of_items($form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function editorial_card_3x_render($subtype, $conf, $args, $context) {
   $open_new_tab = !empty($conf['open_new_tab']);
@@ -321,6 +323,9 @@ function editorial_card_3x_render($subtype, $conf, $args, $context) {
   return $block;
 }
 
+/**
+ * Editorial card 3x presets.
+ */
 function _editorial_card_3x_presets() {
   $presets = array(
     'manual_override' => array(
@@ -443,15 +448,15 @@ function _editorial_card_3x_default_paddings_conf() {
 /**
  * Helper function to get arguments to embeded view from existing contexts.
  *
- * @param $settings array
+ * @param array $settings
  *   Array of required context types.
- * @param $context
+ * @param object $context
  *   Available context.
  *
  * @return array
  *   Array of args to be passed into view.
  */
-function _editorial_card_3x_get_view_args($settings, $context) {
+function _editorial_card_3x_get_view_args(array $settings, $context) {
   $args = array();
   foreach ($settings as $require_context) {
     if (in_array($require_context, $context->type)) {

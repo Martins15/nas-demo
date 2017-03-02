@@ -239,20 +239,17 @@ function editorial_grid_theme(&$theme, $plugin) {
  *
  * @param array $args
  *   Arguments.
- *
  * @param array $settings
  *   Array of required context types.
- *
  * @param array $context
  *   Available context.
- *
  * @param array $conf
  *   Pane configuration.
  *
  * @return array
  *   Array of args to be passed into view.
  */
-function _editorial_grid_get_view_args(&$args, $settings, $context, $conf = array()) {
+function _editorial_grid_get_view_args(array &$args, array $settings, array $context, array $conf = array()) {
   foreach ($settings as $require_context) {
     $arg_key = count($args);
     switch ($require_context) {

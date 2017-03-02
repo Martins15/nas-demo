@@ -16,7 +16,7 @@
   font-weight: 300;
 }
 
-#nas-language-message-modal p:not(.title)+p{
+#nas-language-message-modal p:not(.title)+p {
   padding-right: 30px;
 }
 

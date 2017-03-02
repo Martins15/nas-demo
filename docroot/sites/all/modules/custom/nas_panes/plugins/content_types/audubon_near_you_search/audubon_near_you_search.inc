@@ -85,7 +85,9 @@ function audubon_near_you_search_form($form, &$form_state) {
   // Check if module nas_near_you is enabled and zip database is set.
   $nas_near_you = module_exists('nas_near_you');
   $already_tried_zip = (isset($form_state['rebuild_info']['chid']) and $form_state['rebuild_info']['chid'] == 0) ? TRUE : FALSE;
-  if (!variable_get('nas_near_you_database_set', FALSE)) $nas_near_you = FALSE;
+  if (!variable_get('nas_near_you_database_set', FALSE)) {
+    $nas_near_you = FALSE;
+  }
 
   if ($nas_near_you and empty($query['state']) and !$already_tried_zip) {
     $form['zip_code'] = array(
@@ -133,13 +135,13 @@ function audubon_near_you_search_form_validate($form, &$form_state) {
       form_set_error('zip_code', t('This zip code is invalid. Please enter a valid zip code number.'));
     }
     elseif ($nid == NULL) {
-      // if zip code was not found, rebuild the form with state select
+      // If zip code was not found, rebuild the form with state select.
       $form_state['rebuild'] = TRUE;
       $form_state['rebuild_info']['chid'] = 0;
       drupal_set_message(t("Sorry! This zip code is not on our database. Select your state."), 'error');
     }
     else {
-      // if no error is set, store chapter nid for submit handler
+      // If no error is set, store chapter nid for submit handler.
       $_SESSION['audubon_near_you_chid'] = $nid;
     }
   }
@@ -149,25 +151,22 @@ function audubon_near_you_search_form_validate($form, &$form_state) {
  * Submit handler for the search form.
  */
 function audubon_near_you_search_form_submit($form, &$form_state) {
-  global $user;
   $nas_near_you = module_exists('nas_near_you');
   $query = array();
-  $debug = '';
   if (!empty($form_state['values']['zip_code']) and $nas_near_you) {
     $zip = $form_state['values']['zip_code'];
-    $debug .= 'zipcode if';
     if (isset($_SESSION['audubon_near_you_chid'])) {
       $nid = $_SESSION['audubon_near_you_chid'];
-      $debug .= ' session nid';
     }
     else {
       $nid = nas_get_chapter_by_zip(check_zip($zip));
-      $debug .= ' function nid';
     }
-    if (!$nid) return;
+    if (!$nid) {
+      return;
+    }
     $node = _i18n_node_load($nid);
     $field = field_get_items('node', $node, 'field_location_address');
-    // load node and get state of the node.
+    // Load node and get state of the node.
     $query['state'] = $field[0]['administrative_area'];
     $query['chid'] = $nid;
     user_cookie_save(array('state' => $query['state'], 'chid' => $query['chid']));
@@ -185,9 +184,12 @@ function audubon_near_you_search_form_submit($form, &$form_state) {
   );
 }
 
+/**
+ * Helper function; checks zipcode.
+ */
 function check_zip($zip) {
   $plain = check_plain($zip);
-  $replaced = preg_replace( '/[^0-9]/', '', $plain );
+  $replaced = preg_replace('/[^0-9]/', '', $plain);
   $cut = substr($replaced, 0, 5);
   return $cut;
 }

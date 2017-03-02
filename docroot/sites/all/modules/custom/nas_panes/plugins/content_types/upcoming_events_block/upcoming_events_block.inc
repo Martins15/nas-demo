@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -104,12 +104,12 @@ function upcoming_events_block_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('upcoming_events_block', array(
-      'contextual_links' => $contextual_links,
-      'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Upcoming Events'),
-      'image' => $image_markup,
-      'bottom_link' => $bottom_link,
-      'content' => theme('upcoming_events_block_content', array('locations' => $locations)),
-    ));
+    'contextual_links' => $contextual_links,
+    'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Upcoming Events'),
+    'image' => $image_markup,
+    'bottom_link' => $bottom_link,
+    'content' => theme('upcoming_events_block_content', array('locations' => $locations)),
+  ));
 
   $block->content = $content;
   return $block;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template implementation to display "Related Birds" field of contact nodes.

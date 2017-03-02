@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Define ctools content type.
  */
 
 $plugin = array(
@@ -99,10 +99,10 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context)
   $logo = '';
   if (!empty($logo_path)) {
     $logo = theme_image(array(
-        'path' => file_create_url($logo_path),
-        'alt' => '',
-        'attributes' => array('class' => array('canon-logo')),
-      ));
+      'path' => file_create_url($logo_path),
+      'alt' => '',
+      'attributes' => array('class' => array('canon-logo')),
+    ));
   }
 
   $pane_attr = array('class' => array('guide-bar'));
@@ -150,7 +150,6 @@ function nas_menu_guide_bar_search_pane_render($subtype, $conf, $args, $context)
  *
  * @param bool $auto_submit
  *   Whether form should use auto submit.
- *
  * @param bool $external_page
  *   If search block uses on internal page.
  *

@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @file
  * Search form template.
  */
-
 ?>
 
 <div class="top-search-form-input">

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Menu Bar Section template file.

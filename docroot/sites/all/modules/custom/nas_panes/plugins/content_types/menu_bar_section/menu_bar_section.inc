@@ -74,9 +74,7 @@ function menu_bar_section_render($subtype, $conf, $args, $contexts) {
     $items[] = l(t($item['link']['link_title']), $item['link']['link_path']);
   }
 
-  $block->content = theme('menu_bar_section', array(
-      'items' => $items,
-    ));
+  $block->content = theme('menu_bar_section', array('items' => $items));
 
   return $block;
 }
