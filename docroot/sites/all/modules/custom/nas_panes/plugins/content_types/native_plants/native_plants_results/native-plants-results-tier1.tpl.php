@@ -8,17 +8,26 @@
   <!--View Filters-->
   <div class="view-filters">
     <div class="view-filters-select clearfix">
-      <select data-ng-model="resultsC.storage.attribute_tier1"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All types of plants'); ?>"
+              data-ng-model="resultsC.storage.attribute_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1.tid, 'page_tier1')">
+              data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1, 'page_tier1')">
       </select>
-      <select data-ng-model="resultsC.storage.resource_tier1"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('All plant resources'); ?>"
+              data-ng-model="resultsC.storage.resource_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1.tid, 'page_tier1')">
+              data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1, 'page_tier1')">
       </select>
-      <select data-ng-model="resultsC.storage.bird_type_tier1"
+      <select class="search-select wrap-select-skip" multiple
+              data-native-plants-multiselect
+              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+              data-ng-model="resultsC.storage.bird_type_tier1"
               data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type_tier1', resultsC.storage.bird_type_tier1.tid, 'page_tier1')">
+              data-ng-change="resultsC.setFilter('bird_type_tier1', resultsC.storage.bird_type_tier1, 'page_tier1')">
       </select>
     </div>
     <div class="view-filters-controls clearfix">
@@ -58,7 +67,7 @@
   </div>
 
   <!--View Content-->
-  <div class="view-content row">
+  <div id="pager-scroll-page_tier1" class="view-content row">
     <div class="view-row columns"
          data-ng-repeat="plant in resultsC.storage.results_tier1_filtered |
          orderBy : resultsC.storage.stateParams.orderBy_tier1 |
@@ -73,12 +82,12 @@
           <div class="row">
             <div class="column medium-4 tier-1-plant-picture hide-for-tiny hide-for-small"
                  data-ng-if="plant.PlantImgDesktop">
-              <a href="#" class="clearing-attach" data-ng-bind-html="plant.PlantImgDesktop"></a>
+              <a href="#" class="clearing-attach" data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
               <ul data-clearing>
                 <li style="display: none;">
                   <a target="_self"
                      data-ng-href="{{plant.PlantImgLightbox}}"
-                     data-ng-bind-html="plant.PlantImgDesktop"></a>
+                     data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                 </li>
               </ul>
             </div>
@@ -124,14 +133,14 @@
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{attributeID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_attributes[attributeID].color}};"
-                     data-ng-click="resultsC.storage.setStateParam('attribute_tier1', attributeID, 'page_tier1')"
+                     data-ng-click="resultsC.setFilterLink('attribute_tier1', attributeID, 'page_tier1')"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_attributes[attributeID].name"></a>
                 </li>
                 <li data-ng-repeat="resourceID in plant.Resources">
                   <a href="javascript:void(0)" class="native-plants-attribute"
                      data-tid="{{resourceID}}"
                      style="background-color: {{resultsC.storage.data.terms.native_plant_resources[resourceID].color}};"
-                     data-ng-click="resultsC.storage.setStateParam('resource_tier1', resourceID, 'page_tier1')"
+                     data-ng-click="resultsC.setFilterLink('resource_tier1', resourceID, 'page_tier1')"
                      data-ng-bind="resultsC.storage.data.terms.native_plant_resources[resourceID].name"></a>
                 </li>
               </ul>
@@ -182,12 +191,12 @@
       <ul class="pager-list">
         <li class="pager-prev">
           <a href="javascript:void(0)" data-ng-if="resultsC.storage.pager_tier1.pager_items.previous.link"
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.previous.page)"><?php print t('Previous page'); ?></a>
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.previous.page)"><?php print t('Previous page'); ?></a>
           <span class="pager-prev" data-ng-if="!resultsC.storage.pager_tier1.pager_items.previous.link"><?php print t('Previous page'); ?></span>
         </li>
         <li class="pager-item" data-ng-if="resultsC.storage.pager_tier1.pager_items.first.link">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.first.page)"
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.first.page)"
              data-ng-bind="resultsC.storage.pager_tier1.pager_items.first.page"></a>
         </li>
         <li class="pager-item pager-item--ellipsis"
@@ -196,7 +205,7 @@
         </li>
         <li class="pager-item" data-ng-repeat="item in resultsC.storage.pager_tier1.pager_items.items_before">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', item.page)"
+             data-ng-click="resultsC.setPage('page_tier1', item.page)"
              data-ng-bind="item.page"></a>
         </li>
         <li class="pager-item">
@@ -204,7 +213,7 @@
         </li>
         <li class="pager-item" data-ng-repeat="item in resultsC.storage.pager_tier1.pager_items.items_after">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', item.page)"
+             data-ng-click="resultsC.setPage('page_tier1', item.page)"
              data-ng-bind="item.page"></a>
         </li>
         <li class="pager-item pager-item--ellipsis"
@@ -213,12 +222,12 @@
         </li>
         <li class="pager-item" data-ng-if="resultsC.storage.pager_tier1.pager_items.last.link">
           <a href="javascript:void(0)" title=""
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.last.page)"
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.last.page)"
              data-ng-bind="resultsC.storage.pager_tier1.pager_items.last.page"></a>
         </li>
         <li class="pager-next">
           <a href="javascript:void(0)" data-ng-if="resultsC.storage.pager_tier1.pager_items.next.link"
-             data-ng-click="resultsC.storage.setStateParam('page_tier1', resultsC.storage.pager_tier1.pager_items.next.page)"><?php print t('Next page'); ?></a>
+             data-ng-click="resultsC.setPage('page_tier1', resultsC.storage.pager_tier1.pager_items.next.page)"><?php print t('Next page'); ?></a>
           <span class="pager-next" data-ng-if="!resultsC.storage.pager_tier1.pager_items.next.link"><?php print t('Next page'); ?></span>
         </li>
       </ul>

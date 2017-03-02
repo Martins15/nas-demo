@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Additional resource import feature.
+ */
+
+include_once 'nas_additional_resource_import_feature.features.inc';

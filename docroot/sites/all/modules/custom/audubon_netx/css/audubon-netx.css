@@ -1,3 +1,11 @@
+.cfbpager {
+    text-align: center;
+}
+
+.cfbbreadcrumbs {
+    margin-bottom: 10px;
+}
+
 .audubon-netx-preview table thead th {
     text-align: left;
 }
@@ -14,6 +22,12 @@
 .audubon-netx-preview table tbody tr.netx-selected{
     background: #F4ECC7;
 }
+
+.media-browser-tab .cfbfilemanager {
+    width: auto;
+    max-width: 100%;
+}
+
 /*-------------------------
 	Pagers
 -------------------------*/

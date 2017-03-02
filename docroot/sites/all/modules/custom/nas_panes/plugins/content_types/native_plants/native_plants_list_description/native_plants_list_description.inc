@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants List description plugin.
@@ -16,7 +17,7 @@ $plugin = array(
     new ctools_context_required(t('Permalink'), 'entity:permalink'),
   ),
   'defaults' => array(
-    'title'=> 'Your Native Plant List',
+    'title' => 'Your Native Plant List',
     'override_title_text' => 'Your Native Plant List',
     'text' => array(
       'value' => '<p>Thank you for planting for birds. With your help, we can grow 1 million bird-friendly plants.&nbsp;Below you can find the plant list you selected from <a href="/native-plants">Audubon&#39;s Native Plants Database</a>.</p>
@@ -81,11 +82,12 @@ function native_plants_list_description_render($subtype, $conf, $args, $contexts
   $text = ctools_context_keyword_substitute($conf['text']['value'], array(), $contexts);
   $text = check_markup($text, $conf['text']['format']);
   $text = strtr($text, array('!permalink' => l($permalink_url, $permalink_url)));
+  $title = filter_xss($conf['override_title_text']);
 
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_list_description',
-    '#title' => t(filter_xss($conf['override_title_text'])),
+    '#title' => t('@title', array('@title' => $title)),
     '#text' => $text,
     '#permalink' => $permalink_url,
     '#context_links' => $contextual_links,
