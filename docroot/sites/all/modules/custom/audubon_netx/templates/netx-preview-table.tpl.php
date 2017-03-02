@@ -3,6 +3,7 @@
 /**
  * @file
  * This template handles the layout of the NetX preview form.
+ *
  * It displays results in a table view.
  *
  * Variables available:

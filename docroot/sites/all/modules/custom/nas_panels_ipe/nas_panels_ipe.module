@@ -2,7 +2,7 @@
 
 /**
  * @file
- * NAS Panels IPE modifications
+ * NAS Panels IPE modifications.
  */
 
 /**
@@ -46,7 +46,7 @@ function nas_panels_ipe_panels_ipe_region_links_alter(&$links, &$context) {
  *
  * @throws \Exception
  */
-function nas_panels_ipe_template_preprocess_pane_wrapper(&$vars) {
+function nas_panels_ipe_template_preprocess_pane_wrapper(array &$vars) {
   $collapsible_button = theme('nas_panels_ipe_collapsible_button');
   if (!empty($collapsible_button)) {
     // We need to ensure our behavior runs later than PanelsIPE.
@@ -71,8 +71,8 @@ function nas_panels_ipe_template_preprocess_pane_wrapper(&$vars) {
  * @return string
  *   Html for button.
  */
-function theme_nas_panels_ipe_collapsible_button($vars) {
-  $output = '<div style="display:none" class="nas-panels-ipe-collapsible-button open">';
+function theme_nas_panels_ipe_collapsible_button(array $vars) {
+  $output = '<div style="display:none;" class="nas-panels-ipe-collapsible-button open">';
   $output .= '<a href="javascript:void(0);" class="nas-panels-ipe-button">' . t('Hide content') . '</a>';
   $output .= '</div>';
   return $output;

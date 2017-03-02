@@ -1,3 +1,4 @@
 name = NAS IBA Redirect
 core = 7.x
+description = NAS IBA Redirect module
 package = IBA

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Default theme implementation for beans.
@@ -31,6 +32,7 @@
  */
 ?>
 <?php
+
 /**
  * Don't use div inside bean block markup. For some reason WYSIWYG may remove last div.
  */

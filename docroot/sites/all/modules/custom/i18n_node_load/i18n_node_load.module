@@ -2,11 +2,11 @@
 
 /**
  * @file
- * i18n_node_load routines.
+ * Module i18n_node_load routines.
  */
 
 /**
- * i18n wrapper over standard node_load().
+ * I18n wrapper over standard node_load().
  */
 function _i18n_node_load($nid = NULL, $vid = NULL, $reset = FALSE) {
   global $language;
@@ -40,18 +40,16 @@ function i18n_node_load_translation_tab_access($node) {
 }
 
 /**
- * i18n wrapper for node_load_miltiple().
+ * I18n wrapper for node_load_miltiple().
  */
 function _i18n_node_load_multiple($nids = array(), $conditions = array(), $reset = FALSE) {
   if (!empty($nids) && empty($conditions) && !$reset) {
     $all_translations = array();
     foreach ($nids as $nid) {
       $node = _i18n_node_load($nid);
-      /**
-       * Keep in mind that if source array is [1, 2, 3],
-       * Returned array can be [1 => stdClass, 2345 => stdClass, 3 => stdClass]
-       * when node 2 has node 2345 as translation.
-       */
+      // Keep in mind that if source array is [1, 2, 3],
+      // Returned array can be [1 => stdClass, 2345 => stdClass, 3 => stdClass]
+      // when node 2 has node 2345 as translation.
       $all_translations[$node->nid] = $node;
     }
     return $all_translations;
@@ -63,18 +61,18 @@ function _i18n_node_load_multiple($nids = array(), $conditions = array(), $reset
 /**
  * Gets all nodes in a given translation set.
  *
- * @see translation_node_get_translations()
- *
- * @param $tnid
+ * @param int $tnid
  *   The translation source nid of the translation set, the identifier of the
  *   node used to derive all translations in the set.
  *
- * @return
+ * @return array
  *   Array of partial node objects (nid, title, language) representing all
  *   nodes in the translation set, in effect all translations of node $tnid,
  *   including node $tnid itself. Because these are partial nodes, you need to
  *   node_load() the full node, if you need more properties. The array is
  *   indexed by language code.
+ *
+ * @see translation_node_get_translations()
  */
 function _i18n_translation_node_get_translations($tnid) {
   if (is_numeric($tnid) && $tnid) {

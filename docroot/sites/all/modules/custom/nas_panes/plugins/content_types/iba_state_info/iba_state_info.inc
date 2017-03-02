@@ -17,6 +17,7 @@ $plugin = array(
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function iba_state_info_render($subtype, $conf, $args, $context) {
@@ -50,7 +51,7 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
 
   $state_link = '';
   if ($link_field = field_get_items('node', $node, 'field_iba_state_link')) {
-    // 'Important Bird Areas of California'
+    // Important Bird Areas of California.
     $link_field_value = reset($link_field);
     // Check for empty title.
     if (empty($link_field_value['title'])) {
@@ -94,8 +95,8 @@ function iba_state_info_render($subtype, $conf, $args, $context) {
   $block = new stdClass();
   $block->content = '';
   $block->content = theme('iba_state_info', array(
-    'contact_name' =>  $contact_name,
-    'contact_title' => !empty($contact_title[0]['#markup']) ? $contact_title[0]['#markup'] :'',
+    'contact_name' => $contact_name,
+    'contact_title' => !empty($contact_title[0]['#markup']) ? $contact_title[0]['#markup'] : '',
     'state_link' => $state_link,
     'priorities_data' => $priorities_data,
     'state_title' => $node->title,

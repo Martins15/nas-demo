@@ -1,5 +1,6 @@
 name = NAS menu
 core = 7.x
+description = NAS menu module
 package = NAS
 dependencies[] = menu_attributes
 dependencies[] = nas_panes

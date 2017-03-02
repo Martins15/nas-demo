@@ -1,9 +1,8 @@
 <?php
+
 /**
  * @file
  * Redirect for old IBA paths.
- * nas_iba_redirect/Site/%
- * nas_iba_redirect/State/%
  */
 
 /**

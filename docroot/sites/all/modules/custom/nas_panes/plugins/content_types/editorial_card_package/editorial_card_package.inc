@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -110,8 +110,7 @@ function editorial_card_package_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function editorial_card_package_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -122,8 +121,9 @@ function editorial_card_package_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function editorial_card_package_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
@@ -161,10 +161,10 @@ function editorial_card_package_render($subtype, $conf, $args, $contexts) {
     'linked_image' => $linked_image,
     'references' => $references,
     'button' => l($conf['button_text'], $conf['button_url'], array(
-        'attributes' => array(
-          'class' => array('button', 'tomato', 'xlarge'),
-        ),
-      )),
+      'attributes' => array(
+        'class' => array('button', 'tomato', 'xlarge'),
+      ),
+    )),
     'contextual_links' => $contextual_links,
   ));
 

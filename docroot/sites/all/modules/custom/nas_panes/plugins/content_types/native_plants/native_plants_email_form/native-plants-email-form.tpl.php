@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants Email form template.

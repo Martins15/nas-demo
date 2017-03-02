@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * IBA State switcher.
@@ -12,9 +13,9 @@
     <li>
       <small>View Another State</small>
       <select>
-				<?php foreach ($options as $option): ?>
-        <option <?php $option['default'] ? print 'secleted="selected"' : ''; ?> value="<?php print $option['path']; ?>"><?php print $option['title']; ?></option>
-				<?php endforeach; ?>
+        <?php foreach ($options as $option): ?>
+          <option <?php $option['default'] ? print 'secleted="selected"' : ''; ?> value="<?php print $option['path']; ?>"><?php print $option['title']; ?></option>
+        <?php endforeach; ?>
       </select>
     </li>
   </ul>

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -73,7 +73,7 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved.
+ * Submit callback..
  */
 function conservation_strategy_news_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -144,11 +144,11 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
 
   $block = new stdClass();
   $block->content = theme('conservation_strategy_news', array(
-      'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Related News'),
-      'news_list' => $news_list,
-      'featured_news' => $featured_news,
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Related News'),
+    'news_list' => $news_list,
+    'featured_news' => $featured_news,
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }

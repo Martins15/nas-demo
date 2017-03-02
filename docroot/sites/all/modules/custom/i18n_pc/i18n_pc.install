@@ -5,6 +5,9 @@
  * Installation routines for i18n_pc module.
  */
 
+/**
+ * Implements hook_schema_alter().
+ */
 function i18n_pc_schema_alter(&$schema) {
   $schema['page_manager_pages']['fields']['language'] = _i18n_pc_language_field_schema();
   $schema['page_manager_pages']['fields']['tpid'] = _i18n_pc_tpid_field_schema();

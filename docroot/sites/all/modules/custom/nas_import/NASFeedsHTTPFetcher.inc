@@ -2,15 +2,16 @@
 
 /**
  * @file
- * Custom Feeds fetcher and fetcher result.
+ * Contains NASFeedsHTTPFetcherResult class.
  */
 
 /**
  * Override to use cache.
  */
 class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
+
   /**
-   * Overrides FeedsFetcherResult::getRaw();
+   * Overrides FeedsFetcherResult::getRaw().
    */
   public function getRaw() {
 
@@ -33,6 +34,7 @@ class NASFeedsHTTPFetcherResult extends FeedsHTTPFetcherResult {
     }
     return $this->sanitizeRaw($data);
   }
+
 }
 
 /**
@@ -57,4 +59,5 @@ class NASFeedsHTTPFetcher extends FeedsHTTPFetcher {
     $fetcher_result->setTimeout($this->config['request_timeout']);
     return $fetcher_result;
   }
+
 }

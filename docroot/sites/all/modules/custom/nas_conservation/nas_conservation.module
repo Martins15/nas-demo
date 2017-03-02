@@ -5,7 +5,6 @@
  * Code related to conservation strategy and projects.
  */
 
-
 define('NAS_CONSERVATION_MENU_SECTION_VOCABULARY', 'menu_section');
 define('NAS_CONSERVATION_STRATEGY_DEFAULT_MENU_SECTION_NAME', 'Conservation');
 define('NAS_CONSERVATION_STRATEGY_DEFAULT_MENU_SECTION_ID', 14);

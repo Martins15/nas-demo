@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -30,7 +30,7 @@ function iba_state_switcher_render($subtype, $conf, $args, $context) {
 
   foreach ($nodes as $node) {
     $options[] = array(
-      'default' => $node->nid == $context->data->nid ?  TRUE : FALSE,
+      'default' => $node->nid == $context->data->nid,
       'title' => $node->title,
       'path' => base_path() . drupal_get_path_alias('node/' . $node->nid),
     );

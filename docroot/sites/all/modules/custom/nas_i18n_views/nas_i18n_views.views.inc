@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Views specific hooks for the NAS i18n Views module.

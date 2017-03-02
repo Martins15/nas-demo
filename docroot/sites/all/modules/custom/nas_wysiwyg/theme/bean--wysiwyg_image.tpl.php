@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Default theme implementation for beans.
@@ -32,6 +33,7 @@
  */
 ?>
 <?php
+
 /**
  * Don't use div inside bean block markup. For some reason WYSIWYG may remove last div.
  */
@@ -39,7 +41,7 @@
 <?php if ($width == 'default'): ?>
 <figure class="article-image type-full">
   <?php print render($content['field_wysiwyg_image']); ?>
-    <?php if (!empty($figcaption)): ?>
+  <?php if (!empty($figcaption)): ?>
     <figcaption class="caption">
       <?php print $figcaption; ?>
     </figcaption>

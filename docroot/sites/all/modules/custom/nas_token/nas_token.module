@@ -144,7 +144,7 @@ function _nas_token_article($node) {
 }
 
 /**
- * Token value for [nas-static-menu-section]
+ * Token value for [nas-static-menu-section].
  */
 function _nas_token_menu_section($node) {
   $menu_section = field_get_items('node', $node, 'field_menu_section');
@@ -223,7 +223,6 @@ function _nas_tokens_simple($node, $token_name) {
 
   return implode(NAS_TOKEN_PLACEHOLDER, $pattern);
 }
-
 
 /**
  * Get the news article type.

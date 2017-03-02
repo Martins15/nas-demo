@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Slideshow Sidebad Block template file.

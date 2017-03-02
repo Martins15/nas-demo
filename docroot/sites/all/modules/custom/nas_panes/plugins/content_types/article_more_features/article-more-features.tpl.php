@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane flyway_in_the_news.

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -54,11 +54,10 @@ function about_page_map_render($subtype, $conf, $args, $context) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
 
   $block->content = theme('about_page_map', array(
-      'title' => $conf['override_title_text'],
-      'map' => $conf['map']['value'],
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => $conf['override_title_text'],
+    'map' => $conf['map']['value'],
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }
-

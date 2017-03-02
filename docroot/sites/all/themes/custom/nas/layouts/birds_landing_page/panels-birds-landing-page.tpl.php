@@ -8,7 +8,7 @@
 <?php print $content['header']; ?>
 </header>
 <?php print $content['hero']; ?>
-<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content no-padding">
+<section <?php print !empty($css_id) ? "id=\"$css_id\"" : ''; ?> class="global-content no-padding">
   <div class="bird-card-set">
     <?php print $content['bird_card_set']; ?>
   </div>

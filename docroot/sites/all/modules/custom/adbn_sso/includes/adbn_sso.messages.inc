@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains error / status messages related functionality.

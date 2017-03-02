@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Helper functions for "bad" aliases.
@@ -28,7 +29,7 @@ function _nas_master_get_orphan_node_aliases() {
   $query->leftJoin('node', 'n', 'REPLACE(ua.source, :node_prefix, :empty_prefix) = n.nid', array(
     ':node_prefix' => 'node/',
     ':empty_prefix' => '',
-    ));
+  ));
   $query->addExpression('SUBSTRING(source, 1, 5)', 'node_path');
   $query->where('SUBSTRING(source, 1, 5) = :node_prefix', array(':node_prefix' => 'node/'));
   $query->isNull('n.nid');

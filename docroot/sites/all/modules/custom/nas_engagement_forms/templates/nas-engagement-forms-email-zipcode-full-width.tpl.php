@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for Email and ZIP code form.

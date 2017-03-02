@@ -87,7 +87,7 @@
  */
 ?>
 
-<div class="editorial-card collapse-minimal<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>">
+<div class="editorial-card collapse-minimal<?php print !$linked_image ? ' editorial-card-no-image' : ''; ?>">
   <div class="editorial-card-photo">
     <?php print $linked_image; ?>
   </div>

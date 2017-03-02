@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Hero image section template file.
