@@ -758,6 +758,7 @@
       color: $color-violet;
       display: inline-block;
       font-size: 24px;
+      margin-bottom: -6px;
       //height: 16px;
       vertical-align: middle;
 
@@ -967,7 +968,7 @@
       .flexbox-container {
         display: flex;
         flex-wrap: nowrap;
-        align-items: baseline;
+        align-items: flex-start;
       }
 
       .messages.error {
@@ -1022,6 +1023,11 @@
 
 .bird-card-carousel {
   .owl-carousel {
+    @media only screen and (min-width: 240px) and (max-width: 601px) {
+      margin: 0 10px;
+      width: calc(100% - 20px);
+    }
+
 
     .owl-stage-outer {
       &:after {
@@ -1323,6 +1329,7 @@ input[type="checkbox"].np-checkbox {
     display: inline-block;
     vertical-align: top;
     line-height: 22px;
+    font-size: 16px;
 
     &.more {
 
@@ -1496,7 +1503,7 @@ input[type="checkbox"].np-checkbox {
   }
   .field-prefix {
     white-space: nowrap;
-    margin-right: 16px;
+    margin: auto 16px auto auto;
   }
 }
 
@@ -1686,6 +1693,15 @@ input[type="checkbox"].np-checkbox {
 
     @include breakpoint(medium-up) {
       height: 30px;
+    }
+  }
+}
+
+// Style for ZIP Code.
+.page-native-plants-list {
+  .native-plants-pledge-form-pl-pane {
+    & + div {
+      font-family: "Source Sans Pro", Verdana, sans-serif;
     }
   }
 }

@@ -1,21 +1,24 @@
 <?php
 /**
  * @file
- * Native Plants Audubon Near You plugin.
+ * Native Plants Additional Resource near you plugin.
  */
 
 $plugin = array(
-  'title' => t('Native Plants Audubon Near You'),
-  'description' => t('Native Plants Audubon Near You.'),
+  'title' => t('Native Plants Additional Resource near you'),
+  'description' => t('List of Additional Resource near user ZIP code.'),
   'category' => 'Native Plants',
-  'admin info' => 'native_plants_audubon_near_you_admin_info',
-  'edit form' => 'native_plants_audubon_near_you_edit_form',
-  'render callback' => 'native_plants_audubon_near_you_render',
-  'hook theme' => 'native_plants_audubon_near_you_theme',
-  'no title override' => TRUE,
+  'admin info' => 'native_plants_additional_resource_near_you_admin_info',
+  'edit form' => 'native_plants_additional_resource_near_you_edit_form',
+  'render callback' => 'native_plants_additional_resource_near_you_render',
+  'hook theme' => 'native_plants_additional_resource_near_you_theme',
   'defaults' => array(
-    'services_title_desktop' => 'Services provided at !resource_name',
-    'services_title_mobile' => 'Native plant services provided:',
+    'title' => 'Where to buy native plants near you',
+    'override_title_text' => 'Where to buy native plants near you',
+    'description' => array(
+      'value' => '<p>The native plants movement is just beginning. Your mileage may vary with these additional resource.</p>',
+      'format' => 'full_html',
+    ),
     'zipcode' => '',
     'quantity' => 2,
     'angular' => 0,
@@ -26,37 +29,34 @@ $plugin = array(
 /**
  * Administrative info callback.
  */
-function native_plants_audubon_near_you_admin_info($subtype, $conf, $context = NULL) {
+function native_plants_additional_resource_near_you_admin_info($subtype, $conf, $context = NULL) {
   $block = new stdClass();
-  $block->title = t('Native Plants Audubon Near You');
-  $block->content = $conf['services_title_desktop'];
+  $block->title = $conf['override_title_text'];
+  $block->content = check_markup($conf['description']['value'], $conf['description']['format']);
   return $block;
 }
 
 /**
  * Configuration form.
  */
-function native_plants_audubon_near_you_edit_form($form, &$form_state) {
+function native_plants_additional_resource_near_you_edit_form($form, &$form_state) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
 
-  $form['services_title_desktop'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Services title desktop'),
-    '#default_value' => $conf['services_title_desktop'],
-  );
-  $form['services_title_mobile'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Services title mobile'),
-    '#default_value' => $conf['services_title_mobile'],
-  );
+  $form['override_title_heading']['#access'] = FALSE;
   $form['quantity'] = array(
     '#type' => 'select',
     '#title' => t('Quantity'),
-    '#options' => drupal_map_assoc(range(1, 3)),
-    '#description' => t('Select how many resources to show.'),
+    '#options' => drupal_map_assoc(range(1, 9)),
+    '#description' => t('Select how many additional resource to show.'),
     '#default_value' => $conf['quantity'],
+  );
+  $form['description'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Description'),
+    '#default_value' => $conf['description']['value'],
+    '#format' => $conf['description']['format'],
   );
   $form['zipcode'] = array(
     '#type' => 'textfield',
@@ -76,7 +76,7 @@ function native_plants_audubon_near_you_edit_form($form, &$form_state) {
 /**
  * Submit handler for configuration.
  */
-function native_plants_audubon_near_you_edit_form_submit(&$form, &$form_state) {
+function native_plants_additional_resource_near_you_edit_form_submit(&$form, &$form_state) {
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     if (array_key_exists($key, $form_state['values'])) {
       $form_state['conf'][$key] = $form_state['values'][$key];
@@ -90,7 +90,7 @@ function native_plants_audubon_near_you_edit_form_submit(&$form, &$form_state) {
 /**
  * Render callback.
  */
-function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts) {
+function native_plants_additional_resource_near_you_render($subtype, $conf, $args, $contexts) {
   // We need to merge on the defaults to prevent notices if we have added any
   // new settings after the pane has already been used on any site.
   if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
@@ -98,15 +98,12 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
-
   if ($conf['angular']) {
     $block = new stdClass();
     $block->content = array(
-      '#theme' => 'native_plants_audubon_near_you_angular',
-      '#services_title_desktop' => t($conf['services_title_desktop'],
-        array('!resource_name' => '<span class="no-wrap">{{ resource.title }}</span>')),
-      '#services_title_mobile' => t($conf['services_title_mobile'],
-        array('!resource_name' => '<span class="no-wrap">{{ resource.title }}</span>')),
+      '#theme' => 'native_plants_additional_resource_near_you_angular',
+      '#title' => t(filter_xss($conf['override_title_text'])),
+      '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
       '#context_links' => $contextual_links,
     );
 
@@ -131,23 +128,16 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
   $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-  if (!$resources = _nas_master_native_plants_get_resources($zipcode, $conf['quantity'])) {
+  if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity'])) {
     return '';
-  }
-
-  foreach ($resources as $delta => $resource) {
-    $resource['services_title_desktop'] = t($conf['services_title_desktop'],
-      array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>'));
-    $resource['services_title_mobile'] = t($conf['services_title_mobile'],
-      array('!resource_name' => '<span class="no-wrap">' . $resource['title'] . '</span>'));
-
-    $resources[$delta] = $resource;
   }
 
   $block = new stdClass();
   $block->content = array(
-    '#theme' => 'native_plants_audubon_near_you',
-    '#resources' => $resources,
+    '#theme' => 'native_plants_additional_resource_near_you',
+    '#title' => t(filter_xss($conf['override_title_text'])),
+    '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
+    '#additional_resource' => $additional_resources,
     '#context_links' => $contextual_links,
   );
 
@@ -157,22 +147,24 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
 /**
  * Delegated implementation of hook_theme().
  */
-function native_plants_audubon_near_you_theme(&$theme, $plugin) {
-  $theme['native_plants_audubon_near_you'] = array(
+function native_plants_additional_resource_near_you_theme(&$theme, $plugin) {
+  $theme['native_plants_additional_resource_near_you'] = array(
     'variables' => array(
-      'resources' => array(),
+      'title' => '',
+      'description' => '',
+      'additional_resource' => array(),
       'context_links' => '',
     ),
-    'template' => 'native-plants-audubon-near-you',
+    'template' => 'native-plants-additional-resource-near-you',
     'path' => $plugin['path'],
   );
-  $theme['native_plants_audubon_near_you_angular'] = array(
+  $theme['native_plants_additional_resource_near_you_angular'] = array(
     'variables' => array(
-      'services_title_desktop' => '',
-      'services_title_mobile' => '',
+      'title' => '',
+      'description' => '',
       'context_links' => '',
     ),
-    'template' => 'native-plants-audubon-near-you-angular',
+    'template' => 'native-plants-additional-resource-near-you-angular',
     'path' => $plugin['path'],
   );
 }

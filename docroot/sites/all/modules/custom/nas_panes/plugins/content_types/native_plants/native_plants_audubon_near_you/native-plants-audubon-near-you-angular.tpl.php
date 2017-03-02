@@ -8,13 +8,17 @@
      data-ng-controller="NativePlantsResourcesController as resourcesC">
   <?php print $context_links; ?>
   <div class=" vertical-spacing--bottom clearfix"
-       data-ng-repeat="resource in resourcesC.storage.data.resources | limitTo : 2">
+       data-ng-repeat="resource in resourcesC.storage.data.resources | limitTo : 3">
     <div class="column medium-4">
       <h2 class="connect-audubon-near-you--title text--blue"
           data-ng-bind="resource.title"></h2>
       <p class="connect-audubon-near-you--address"
          data-ng-bind-html="resourcesC.iconMap + resource.address.rendered + '<br/>' + resource.phone">
       </p>
+      <a class="connect-audubon-near-you--address" data-ng-href="mailto:{{resource.email}}"
+        data-ng-if="resource.email"
+        data-ng-bind-html="resource.email">
+      </a>
       <div data-ng-bind-html="resource.link.rendered"></div>
     </div>
     <div class="column medium-8 connect-audubon-near-you--services">
