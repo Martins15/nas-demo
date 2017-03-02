@@ -35,8 +35,8 @@
 
     phpcs_standards:
       - Drupal
-      - DrupalPractice
       - DrupalSecure
+      # - DrupalPractice
 
     jshint_folders:
       - { name: 'modules', path: 'sites/all/modules/custom' }
