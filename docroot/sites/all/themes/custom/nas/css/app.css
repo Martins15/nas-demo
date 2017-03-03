@@ -4998,6 +4998,14 @@ small {
   top: 0;
 }
 
+.bird-card-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .bird-card.small {
   max-width: 160px;
 }

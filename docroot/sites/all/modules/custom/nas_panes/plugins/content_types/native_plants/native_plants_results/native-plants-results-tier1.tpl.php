@@ -161,19 +161,18 @@
                      data-ng-repeat="birdTypeID in plant.BirdTypesRandomized">
                   <figure class="bird-card">
                     <div class="bird-card-illustration">
-                      <a data-ng-href="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].url}}" target="_blank">
-                        <img alt="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name}}"
-                             data-ng-src="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].image}}">
-                      </a>
+                      <img alt="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name}}"
+                           data-ng-src="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].image}}">
                     </div>
                     <figcaption class="bird-card-caption">
-                      <h4 class="common-name">
-                        <a target="_blank"
-                           data-ng-href="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].url}}"
-                           data-ng-bind="resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name"></a>
+                      <h4 class="common-name"
+                          data-ng-bind="resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name">
                       </h4>
                     </figcaption>
                   </figure>
+                  <a target="_blank"
+                    class="bird-card-link"
+                    data-ng-href="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].url}}"></a>
                 </div>
               </div>
             </div>
