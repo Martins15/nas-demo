@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane boa_header.

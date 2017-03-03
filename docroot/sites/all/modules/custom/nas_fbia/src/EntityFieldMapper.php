@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\nas_fbia\EntityFieldMapper.
- */
-
 namespace Drupal\nas_fbia;
 
 use Drupal\fb_instant_articles_display\EntityFieldMapper as OriginEntityFieldMapper;
@@ -29,7 +24,7 @@ use Facebook\InstantArticles\Elements\TextContainer;
 use Facebook\InstantArticles\Elements\Video;
 
 /**
- * Class EntityFieldMapper
+ * Class EntityFieldMapper.
  *
  * @package Drupal\nas_fbia
  */
@@ -110,12 +105,12 @@ class EntityFieldMapper extends OriginEntityFieldMapper {
    *
    * @param array $items
    *   The Field items.
-   * @param Element $region
+   * @param \Facebook\InstantArticles\Elements\Element $region
    *   The Layout Region.
    * @param array $settings
    *   Display (formatter) settings.
    */
-  private function fieldFormatMediaElement($items, Element $region, $settings) {
+  private function fieldFormatMediaElement(array $items, Element $region, array $settings) {
     foreach ($items as $delta => $item) {
       if (empty($item['fid']) || !$file = file_load($item['fid'])) {
         continue;
@@ -173,7 +168,7 @@ class EntityFieldMapper extends OriginEntityFieldMapper {
         // Header can only have one image, break after the first.
         break;
       }
-      else if ($region instanceof InstantArticle) {
+      elseif ($region instanceof InstantArticle) {
         $region->addChild($image);
       }
     }
@@ -184,12 +179,12 @@ class EntityFieldMapper extends OriginEntityFieldMapper {
    *
    * @param array $items
    *   The Field items.
-   * @param Element $region
+   * @param \Facebook\InstantArticles\Elements\Element $region
    *   The Layout Region.
    * @param array $settings
    *   Display (formatter) settings.
    */
-  private function fieldFormatMediaSlideshowElement($items, Element $region, $settings) {
+  private function fieldFormatMediaSlideshowElement(array $items, Element $region, array $settings) {
     // Only allow embedding slideshows into body.
     if (!$region instanceof InstantArticle) {
       return;

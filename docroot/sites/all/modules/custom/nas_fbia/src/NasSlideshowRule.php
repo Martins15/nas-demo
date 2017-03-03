@@ -1,16 +1,17 @@
 <?php
-/**
- * @file
- * Contains \Drupal\nas_fbia\NasSlideshowRule
- */
 
 namespace Drupal\nas_fbia;
 
 use Facebook\InstantArticles\Elements\InstantArticle;
 use Facebook\InstantArticles\Transformer\Rules\SlideshowRule;
 
-class NasSlideshowRule extends SlideshowRule
-{
+/**
+ * Class NasSlideshowRule.
+ *
+ * @package Drupal\nas_fbia
+ */
+class NasSlideshowRule extends SlideshowRule {
+
   /**
    * {@inheritdoc}
    */
@@ -39,7 +40,7 @@ class NasSlideshowRule extends SlideshowRule
    * {@inheritdoc}
    */
   public function apply($transformer, $instant_article, $node) {
-    // Builds the slideshow
+    // Builds the slideshow.
     $slideshow = NasSlideshow::create();
     $instant_article->addChild($slideshow);
 
@@ -47,4 +48,5 @@ class NasSlideshowRule extends SlideshowRule
 
     return $instant_article;
   }
+
 }

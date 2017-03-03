@@ -1,3 +1,4 @@
 name = NAS Permissions module
 core = 7.x
+description = Nas Permission module
 package = NAS

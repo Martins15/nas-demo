@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -66,8 +66,7 @@ function frontpage_featured_article_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function frontpage_featured_article_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -78,8 +77,9 @@ function frontpage_featured_article_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
@@ -100,7 +100,7 @@ function frontpage_featured_article_render($subtype, $conf, $args, $contexts) {
   }
 
   $article_raw_link = url('node/' . $node->nid);
-  // Card title
+  // Card title.
   if ($ec_title_items = field_get_items('node', $node, 'field_editorial_card_title')) {
     $article_title = $ec_title_items[0]['safe_value'];
   }

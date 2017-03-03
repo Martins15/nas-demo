@@ -7,7 +7,6 @@
 
 define('NAS_VOC_MACHINE_NAME', 'menu_section');
 
-
 /**
  * Implements hook_install().
  */
@@ -23,7 +22,7 @@ function nas_import_install() {
 }
 
 /**
- * Function create vocabulary. 
+ * Function create vocabulary.
  */
 function nas_import_create_voc() {
   $bird_voc_main_menu = (object) array(
@@ -35,7 +34,7 @@ function nas_import_create_voc() {
 }
 
 /**
- * Function to created term to vocabulary Main menu. 
+ * Function to created term to vocabulary Main menu.
  */
 function nas_import_create_terms() {
   $vocabulary = taxonomy_vocabulary_machine_name_load(NAS_VOC_MACHINE_NAME);

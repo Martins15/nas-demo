@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Engagement card full width template.

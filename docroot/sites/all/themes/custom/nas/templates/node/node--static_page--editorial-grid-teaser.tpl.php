@@ -86,7 +86,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="editorial-card<?php if (!$linked_image): ?> editorial-card-no-image<?php endif; ?>" data-equalizer-watch>
+<div class="editorial-card<?php print !$linked_image ? ' editorial-card-no-image' : ''; ?>" data-equalizer-watch>
   <div class="editorial-card-photo">
     <?php print $linked_image; ?>
   </div>

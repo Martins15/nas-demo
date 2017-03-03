@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Constant Contact integration plugin.
@@ -16,6 +17,7 @@ $plugin = array(
  * Form submission callback.
  */
 function nas_external_integration_provider_constant_contact_form_submission_callback($values, $settings) {
+  // @codingStandardsIgnoreStart
   $cc = _nas_external_integration_cc_api_init($settings['apikey']);
 
   try {
@@ -31,4 +33,5 @@ function nas_external_integration_provider_constant_contact_form_submission_call
       watchdog('nas_external_integration', $error->error_key . ': ' . $error->error_message);
     }
   }
+  // @codingStandardsIgnoreEnd
 }

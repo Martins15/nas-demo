@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Main panel pane template
+ * Main panel pane template.
  *
  * Variables available:
  * - $pane->type: the content type inside this pane
@@ -27,10 +28,10 @@
 
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
-  <<?php print $title_heading; ?><?php print $title_attributes; ?>>
-  <?php print $title; ?>
-</<?php print $title_heading; ?>>
-<?php endif; ?>
+    <<?php print $title_heading; ?><?php print $title_attributes; ?>>
+    <?php print $title; ?>
+    </<?php print $title_heading; ?>>
+  <?php endif; ?>
 <?php print render($title_suffix); ?>
 
 <?php if ($feeds): ?>

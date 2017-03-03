@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @file
  * Search form template.
  */
-
 ?>
 
 <ul class="aid-filter">

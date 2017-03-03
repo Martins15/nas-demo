@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for custom content_type.

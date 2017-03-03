@@ -412,8 +412,10 @@ function nas_alters_form_campaign_node_form_alter(&$form, &$form_state, $form_id
 }
 
 /**
- * A function name to invoke for checking whether
- * a submitted url parameter value already exists.
+ * Helper function.
+ *
+ * A function name to invoke for checking whether a submitted url parameter
+ * value already exists.
  */
 function nas_alters_campaign_url_parameter_exists($name, $nid, $validate = FALSE) {
   if ($validate) {
@@ -692,8 +694,6 @@ function nas_alters_form_file_entity_edit_alter(&$form, &$form_state, $form_id) 
  * Implements hook_form_FORM_ID_alter().
  */
 function nas_alters_form_bean_form_alter(&$form, &$form_state, $form_id) {
-  //$form['label']['#prefix'] = '<div style="display:none;">';
-  //$form['label']['#suffix'] = '</div>';
   $form['label']['#default_value'] = 'bean_block';
   $form['title']['#prefix'] = '<div style="display:none;">';
   $form['title']['#suffix'] = '</div>';
@@ -898,7 +898,8 @@ function nas_alters_lang_dropdown() {
 
 /**
  * Modified lang_dropdown_block_view().
- * @see lang_dropdown_block_view().
+ *
+ * @see lang_dropdown_block_view()
  */
 function _nas_alters_lang_dropdown_block_view($type = 'language') {
   if (drupal_multilingual()) {

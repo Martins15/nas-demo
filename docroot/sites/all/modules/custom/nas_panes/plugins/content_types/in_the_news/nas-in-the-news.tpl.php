@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Custom view template to display Bird in the News.
@@ -25,5 +26,3 @@
     <?php endforeach; ?>
   </div>
 </div>
-
-

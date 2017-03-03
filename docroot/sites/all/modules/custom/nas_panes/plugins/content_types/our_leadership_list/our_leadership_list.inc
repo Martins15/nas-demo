@@ -66,11 +66,10 @@ function our_leadership_list_render($subtype, $conf, $args, $contexts) {
   }
 
   $block->content = theme('our_leadership_list', array(
-      'title' => $conf['override_title_text'] ? $conf['override_title_text'] : t('Meet our leadership team.'),
-      'items' => $items,
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => $conf['override_title_text'] ? $conf['override_title_text'] : t('Meet our leadership team.'),
+    'items' => $items,
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }
-

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * About Page Map template file.
@@ -22,4 +23,3 @@
       </div>
     </div>
   </div>
-

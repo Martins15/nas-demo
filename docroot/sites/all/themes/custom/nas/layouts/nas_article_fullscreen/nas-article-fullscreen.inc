@@ -38,10 +38,6 @@ $plugin = array(
 
 /**
  * Layout settings form builder.
- *
- * @param $display
- * @param $layout
- * @param $layout_settings
  */
 function nas_article_fullscreen_settings_form($display, $layout, $layout_settings) {
   $form = array();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Provide a field formatter view for Soundmanager2 module.
@@ -119,15 +120,19 @@ function nas_soundmanager_field_formatter_view($entity_type, $entity, $field, $i
           '#tracks' => $tracks,
           '#attached' => array(
             'library' => array(
-              array('soundmanager2', variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2'),
+              array(
+                'soundmanager2',
+                variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2',
+              ),
               array('soundmanager2', 'soundmanager2_page_player'),
             ),
           ),
         );
         drupal_add_js(array(
           'soundmanager2' => array(
-          'stream' => $settings['stream'],
-        )), 'setting');
+            'stream' => $settings['stream'],
+          ),
+        ), 'setting');
         // Add in the config files.
         theme('soundmanager2_config');
         if ($settings['pause'] == 'stop') {
@@ -143,7 +148,10 @@ function nas_soundmanager_field_formatter_view($entity_type, $entity, $field, $i
           '#settings' => $settings,
           '#attached' => array(
             'library' => array(
-              array('soundmanager2', variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2'),
+              array(
+                'soundmanager2',
+                variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2',
+              ),
               array('soundmanager2', 'soundmanager2_ui360'),
             ),
           ),
@@ -151,12 +159,13 @@ function nas_soundmanager_field_formatter_view($entity_type, $entity, $field, $i
         // Add relevant JS settings.
         drupal_add_js(array(
           'soundmanager2' => array(
-          'visualization' => $settings['visualization'],
-          'waveform' => $settings['waveform'],
-          'eq' => $settings['eq'],
-          'amplifier' => $settings['amplifier'],
-          'stream' => $settings['stream'],
-        )), 'setting');
+            'visualization' => $settings['visualization'],
+            'waveform' => $settings['waveform'],
+            'eq' => $settings['eq'],
+            'amplifier' => $settings['amplifier'],
+            'stream' => $settings['stream'],
+          ),
+        ), 'setting');
 
         // Add CSS.
         drupal_add_css('.ui360-vis, .ui360-vis .sm2-360ui, .sm2-inline-list .ui360-vis { width: ' . $settings['diameter'] . 'px; height: ' . $settings['diameter'] . 'px; } .ui360-vis .sm2-timing { line-height: ' . $settings['diameter'] . 'px; } .sm2-inline-list .ui360, .sm2-inline-block .ui360 { margin-bottom: 0; }', 'inline');
@@ -177,7 +186,10 @@ function nas_soundmanager_field_formatter_view($entity_type, $entity, $field, $i
           '#tracks' => $tracks,
           '#attached' => array(
             'library' => array(
-              array('soundmanager2', variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2'),
+              array(
+                'soundmanager2',
+                variable_get('sm2_debug_mode', FALSE) ? 'soundmanager2_debug' : 'soundmanager2',
+              ),
               array('soundmanager2', 'soundmanager2_inline_player'),
             ),
           ),
@@ -185,8 +197,9 @@ function nas_soundmanager_field_formatter_view($entity_type, $entity, $field, $i
 
         drupal_add_js(array(
           'soundmanager2' => array(
-          'stream' => $settings['stream'],
-        )), 'setting');
+            'stream' => $settings['stream'],
+          ),
+        ), 'setting');
 
         // Add in the config files.
         theme('soundmanager2_config');

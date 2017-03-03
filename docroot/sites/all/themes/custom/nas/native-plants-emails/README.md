@@ -85,5 +85,3 @@ Testing in Litmus requires the images to be hosted publicly. The provided gulp t
 For a full list of Litmus' supported test clients(applications) see their [client list](https://litmus.com/emails/clients.xml).
 
 **Caution:** AWS Service Fees will result, however, are usually very low do to minimal traffic. Use at your own discretion.
-
-

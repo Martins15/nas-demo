@@ -156,10 +156,10 @@ function nas_master_native_plants_native_plant_create() {
 /**
  * Helper function to check Native Plants node image.
  */
-function nas_master_native_plants_native_plant_check_image($node_wrapper, $PlantImg) {
+function nas_master_native_plants_native_plant_check_image($node_wrapper, $plant_img) {
   global $user;
   // If there is no PlantImg or it is not fetchable.
-  if (!$PlantImg || !$image_path = imagecache_external_generate_path($PlantImg)) {
+  if (!$plant_img || !$image_path = imagecache_external_generate_path($plant_img)) {
     return FALSE;
   }
 
@@ -203,11 +203,11 @@ function nas_master_native_plants_native_plant_check_image($node_wrapper, $Plant
 /**
  * Helper function to check Native Plant node title and common name.
  */
-function nas_master_native_plants_native_plant_check_title($node_wrapper, $CommonName) {
-  if ($node_wrapper->title->value() != $CommonName
-    || $node_wrapper->field_native_plant_common_name->value() != $CommonName) {
-    $node_wrapper->title->set($CommonName);
-    $node_wrapper->field_native_plant_common_name->set($CommonName);
+function nas_master_native_plants_native_plant_check_title($node_wrapper, $common_name) {
+  if ($node_wrapper->title->value() != $common_name
+    || $node_wrapper->field_native_plant_common_name->value() != $common_name) {
+    $node_wrapper->title->set($common_name);
+    $node_wrapper->field_native_plant_common_name->set($common_name);
     return TRUE;
   }
 

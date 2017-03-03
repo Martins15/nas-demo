@@ -14,9 +14,9 @@ $plugin = array(
   'required context' => new ctools_context_required(t('Node'), 'node'),
 );
 
-
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function magazine_issue_listing_bot_render($subtype, $conf, $args, $context) {

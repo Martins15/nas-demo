@@ -1,10 +1,10 @@
 <?php
-/**
- * @file
- * Contains NASFeedsExJsonPath.
- */
 
+/**
+ * Class NASFeedsExJsonPath.
+ */
 class NASFeedsExJsonPath extends FeedsExJsonPath {
+
   /**
    * {@inheritdoc}
    */
@@ -20,4 +20,5 @@ class NASFeedsExJsonPath extends FeedsExJsonPath {
     }
     return jsonPath($parsed, $this->config['context']['value']);
   }
+
 }

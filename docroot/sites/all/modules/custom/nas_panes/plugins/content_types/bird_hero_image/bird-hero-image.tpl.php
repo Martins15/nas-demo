@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Bird hero image.

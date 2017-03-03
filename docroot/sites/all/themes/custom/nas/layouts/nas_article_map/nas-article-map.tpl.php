@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template of Article layout with Map.

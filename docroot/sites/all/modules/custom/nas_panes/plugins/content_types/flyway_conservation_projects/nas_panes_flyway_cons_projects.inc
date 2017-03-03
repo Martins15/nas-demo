@@ -49,8 +49,7 @@ function nas_panes_flyway_conservation_projects_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_panes_flyway_conservation_projects_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -61,8 +60,9 @@ function nas_panes_flyway_conservation_projects_edit_form_submit(&$form, &$form_
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_panes_flyway_conservation_projects_render($subtype, $conf, $args, $context) {
   $context_node = $context->data;
@@ -126,8 +126,10 @@ function nas_panes_flyway_conservation_projects_render($subtype, $conf, $args, $
 /**
  * Builds contextual links.
  *
- * @param $subtype - pane subtype.
- * @param $nid - current flyway node nid.
+ * @param string $subtype
+ *   Pane subtype.
+ * @param int $nid
+ *   Current flyway node nid.
  */
 function nas_panes_flyway_conservation_projects_build_contextual_links($subtype, $nid) {
   ctools_include('modal');

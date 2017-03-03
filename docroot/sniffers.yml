@@ -22,6 +22,9 @@
       - sites/all/modules/custom/adbn_sso/vendor
       - sites/all/modules/custom/adbn_sso
       - sites/all/modules/custom/nas_external_integration/vendor
+      - sites/all/themes/custom/nas/js
+      - sites/all/themes/custom/nas/css
+      - sites/all/themes/custom/nas/prototypes
     composer_global_require:
       - squizlabs/php_codesniffer=1.5.6
       - drupal/coder:dev-7.x-2.x
@@ -35,8 +38,8 @@
 
     phpcs_standards:
       - Drupal
-      - DrupalPractice
       - DrupalSecure
+      # - DrupalPractice
 
     jshint_folders:
       - { name: 'modules', path: 'sites/all/modules/custom' }
@@ -82,6 +85,7 @@
   - name: PHP CodeSniffer for features
     sudo: yes
     shell: 'echo "CodeSniffer: Features {{ item }} standard file {{ webroot }}/Features{{ item }}sniff.txt" >> {{ workspace_root }}/{{ artifacts_file }} && phpcs --standard={{ item }} --extensions={{ phpcs_features_extensions }} -n {{ features_path }} --report-file=Features{{ item }}sniff.txt --ignore={{ features_ignore_path }}'
+    ignore_errors: yes
     with_items: phpcs_standards
     
   - name: JSHint

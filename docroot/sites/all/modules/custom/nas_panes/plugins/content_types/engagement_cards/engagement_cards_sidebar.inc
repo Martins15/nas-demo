@@ -104,8 +104,7 @@ function engagement_cards_sidebar_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function engagement_cards_sidebar_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -117,6 +116,7 @@ function engagement_cards_sidebar_edit_form_submit(&$form, &$form_state) {
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function engagement_cards_sidebar_render($subtype, $conf, $args, $context) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Every Action integration plugin.

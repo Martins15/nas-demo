@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -99,12 +99,12 @@ function local_chapters_centers_block_render($subtype, $conf, $args, $contexts) 
 
   $locations = _nas_panes_get_local_chapters_centers();
   $content = theme('local_chapters_centers_block', array(
-      'contextual_links' => $contextual_links,
-      'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Local Chapters & Centers'),
-      'image' => $image_markup,
-      'bottom_link' => $bottom_link,
-      'content' => theme('local_chapters_centers_block_content', array('locations' => $locations)),
-    ));
+    'contextual_links' => $contextual_links,
+    'title' => !empty($conf['override_title']) ? $conf['override_title_text'] : t('Local Chapters & Centers'),
+    'image' => $image_markup,
+    'bottom_link' => $bottom_link,
+    'content' => theme('local_chapters_centers_block_content', array('locations' => $locations)),
+  ));
 
   $block->content = $content;
 

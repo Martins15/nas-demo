@@ -9,10 +9,10 @@
  * Helper function to get editorial card title.
  *
  * @param object $node
- *  Node object
+ *   Node object.
  *
  * @return string
- *  Unsanitized title string.
+ *   Unsanitized title string.
  */
 function _nas_editorial_cards_get_title($node) {
   $title = $node->title;
@@ -26,10 +26,10 @@ function _nas_editorial_cards_get_title($node) {
  * Helper function to get editorial card subtitle.
  *
  * @param object $node
- *  Node object
+ *   Node object.
  *
  * @return string
- *  Unsanitized title string.
+ *   Unsanitized title string.
  */
 function _nas_editorial_cards_get_subtitle($node) {
   $subtitle = '';
@@ -44,8 +44,21 @@ function _nas_editorial_cards_get_subtitle($node) {
   }
   elseif ($node->type !== 'project' && $field_items = field_get_items('node', $node, 'body')) {
     // Remove some tags.
-    $tags = array('i', 'em', 'span', 'b', 'strong', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a');
-    $text = preg_replace('/<(' . implode( '|', $tags) . ')(?:[^>]+)>(.*)?<\/\1>/Uus', '$2', $field_items[0]['value']);
+    $tags = array(
+      'i',
+      'em',
+      'span',
+      'b',
+      'strong',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+      'a'
+    );
+    $text = preg_replace('/<(' . implode('|', $tags) . ')(?:[^>]+)>(.*)?<\/\1>/Uus', '$2', $field_items[0]['value']);
     // Remove image tags.
     $text = preg_replace('/<img[^>]*>/', '', $text);
     // Remove block_insert tags.

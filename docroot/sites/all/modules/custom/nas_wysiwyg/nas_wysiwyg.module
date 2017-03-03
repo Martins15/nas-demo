@@ -54,7 +54,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
     $entity = $vars['elements']['#entity'];
     $vars['figcaption'] = '';
     $get_field_wysiwyg_image = field_get_items('bean', $entity, 'field_wysiwyg_image');
-    // Check if we got audio and replace 'image' template with 'audio'
+    // Check if we got audio and replace 'image' template with 'audio'.
     $type = $get_field_wysiwyg_image[0]['file']->type;
     if ($type == 'audio') {
       end($vars['theme_hook_suggestions']);
@@ -238,7 +238,7 @@ function nas_wysiwyg_article_aside_pre_render_text_format($element) {
   }
 
   $field = &$element['value'];
-  $tagmap = _nas_wysiwyg_article_aside_generate_tagMap($field['#value']);
+  $tagmap = _nas_wysiwyg_article_aside_generate_tag_map($field['#value']);
 
   if (isset($tagmap)) {
     drupal_add_js(array('nas_wysiwyg_tagmap' => $tagmap), 'setting');
@@ -264,15 +264,14 @@ function nas_wysiwyg_article_aside_token_to_markup($match) {
   $text = theme('nas_article_aside', array(
     'head' => $head[1],
     'text' => $text[1],
-    )
-  );
+  ));
   return $text;
 }
 
 /**
  * Tagmap generator function.
  */
-function _nas_wysiwyg_article_aside_generate_tagMap($text) {
+function _nas_wysiwyg_article_aside_generate_tag_map($text) {
   static $tagmap = array();
   preg_match_all("/\[article_aside_insert\].*?\[\/article_aside_insert\]/s", $text, $matches, PREG_SET_ORDER);
   foreach ($matches as $match) {

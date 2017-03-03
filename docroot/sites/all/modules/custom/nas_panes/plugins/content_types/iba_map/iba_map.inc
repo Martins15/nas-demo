@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -84,8 +84,8 @@ function iba_map_render($subtype, $conf, $args, $context) {
 function iba_map_theme(&$theme, $plugin) {
   $theme['iba_map'] = array(
     'variables' => array(
-        'src' => '',
-      ),
+      'src' => '',
+    ),
     'template' => 'iba-map',
     'path' => $plugin['path'],
   );
