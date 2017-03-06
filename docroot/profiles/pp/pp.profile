@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Enables modules and site configuration for a pp site installation.
@@ -283,7 +284,9 @@ function pp_content_after_import() {
 function pp_import_save_timer() {
   $start = variable_get('pp_import_timer', time());
   $stop = time();
+  // @codingStandardsIgnoreStart
   watchdog('pp_import_time', number_format(($stop - $start) / 60, 2) . 'm');
+  // @codingStandardsIgnoreEnd
   variable_del('pp_import_timer');
 }
 
@@ -406,7 +409,7 @@ function pp_create_test_flyway() {
   $term1 = taxonomy_get_term_by_name('California');
   $term1 = reset($term1);
   $term2 = taxonomy_get_term_by_name('Oregon');
-  $term2 =  reset($term2);
+  $term2 = reset($term2);
   $node->field_flyway_states[LANGUAGE_NONE][0]['tid'] = $term1->tid;
   $node->field_flyway_states[LANGUAGE_NONE][1]['tid'] = $term2->tid;
   node_save($node);
@@ -452,7 +455,13 @@ function pp_create_flyway_navigation_menu_fpp() {
     $handler = panelizer_entity_plugin_get_handler('node');
     $bundle = 'flyway.page_manager';
     $panelizer = $handler->get_default_panelizer_object($bundle, $name);
-    $cache_key = implode(':', array('panelizer', 'default', $handler->entity_type, $bundle, $name));
+    $cache_key = implode(':', array(
+      'panelizer',
+      'default',
+      $handler->entity_type,
+      $bundle,
+      $name
+    ));
     $panelizer->display = panels_edit_cache_get($cache_key)->display;
     ctools_export_crud_save('panelizer_defaults', $panelizer);
     // Get display id for future usage.
@@ -476,6 +485,8 @@ function pp_create_flyway_navigation_menu_fpp() {
 }
 
 /**
+ * Helper function.
+ *
  * Creates default Press Release contact node and initialize variable
  * nas_default_pressrelease_contact used in features to provide default field
  * value and in import process with the same purpose.

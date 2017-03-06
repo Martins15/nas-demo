@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * SoundManager 2 Inline Player
+ * SoundManager 2 Inline Player template.
  */
 ?>
 <ul class="no-bullets">

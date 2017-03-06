@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -83,8 +83,7 @@ function nas_panes_pane_featured_bird_custom_pane_edit_form($form, &$form_state)
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_panes_pane_featured_bird_custom_pane_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -99,8 +98,9 @@ function nas_panes_pane_featured_bird_custom_pane_edit_form_submit(&$form, &$for
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_panes_pane_featured_bird_custom_pane_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();

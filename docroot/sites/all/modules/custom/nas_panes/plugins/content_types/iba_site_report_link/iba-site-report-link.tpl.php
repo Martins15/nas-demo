@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for custom pane IBA Site Report Link.

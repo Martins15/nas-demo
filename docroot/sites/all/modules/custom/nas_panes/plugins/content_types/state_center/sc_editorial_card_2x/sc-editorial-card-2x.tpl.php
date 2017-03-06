@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Editorial cards two columns template file.

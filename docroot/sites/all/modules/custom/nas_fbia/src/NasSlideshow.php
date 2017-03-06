@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\nas_fbia\NasSlideshow
- */
 
 namespace Drupal\nas_fbia;
 
@@ -13,8 +9,10 @@ use Facebook\InstantArticles\Elements\Image;
 use Facebook\InstantArticles\Elements\Container;
 use Facebook\InstantArticles\Validators\Type;
 
+// @codingStandardsIgnoreStart
 /**
- * Class NasSlideshow
+ * Class NasSlideshow.
+ *
  * This element Class is the slideshow for the article.
  *
  * Example:
@@ -30,48 +28,57 @@ use Facebook\InstantArticles\Validators\Type;
  *
  * @see {link:https://developers.intern.facebook.com/docs/instant-articles/reference/image}
  */
-class NasSlideshow extends Slideshow
-{
+class NasSlideshow extends Slideshow {
+
   /**
-   * @var Caption The caption for the NasSlideshow
+   * @var \Facebook\InstantArticles\Elements\Caption
+   *   The caption for the NasSlideshow
    */
   private $caption;
 
   /**
-   * @var Image[] the images hosted on web that will be shown on the NasSlideshow
+   * @var \Facebook\InstantArticles\Elements\Image[]
+   *   The images hosted on web that will be shown on the NasSlideshow
    */
   private $article_images = [];
 
   /**
-   * @var Audio The audio if the NasSlideshow uses audio
+   * @var \Facebook\InstantArticles\Elements\Audio
+   *   The audio if the NasSlideshow uses audio
    */
   private $audio;
 
   /**
-   * @var string The attribution citation text in the <cite>...</cite> tags.
+   * @var string
+   *  The attribution citation text in the <cite>...</cite> tags.
    */
   private $attribution;
 
+  /**
+   * NasSlideshow constructor.
+   */
   private function __construct() {
+    // Intentionally empty.
   }
 
   /**
-   * Factory method for the NasSlideshow
-   *
-   * @return NasSlideshow the new instance
+   * {@inheritdoc}
    */
   public static function create() {
     return new self();
   }
 
   /**
-   * Sets the Image list of images for the NasSlideshow. It is REQUIRED.
+   * Sets the Image list of images for the NasSlideshow.
    *
-   * @param Image[] The images. Ie: http://domain.com/img.png
+   * It is REQUIRED.
+   *
+   * @param \Facebook\InstantArticles\Elements\Image[] $article_images
+   *   The images. Ie: http://domain.com/img.png
    *
    * @return $this
    */
-  public function withImages($article_images) {
+  public function withImages(Image $article_images) {
     Type::enforceArrayOf($article_images, Image::getClassName());
     $this->article_images = $article_images;
 
@@ -79,13 +86,16 @@ class NasSlideshow extends Slideshow
   }
 
   /**
-   * Adds a new image to the NasSlideshow. It is REQUIRED.
+   * Adds a new image to the NasSlideshow.
    *
-   * @param Image $article_image The image.
+   * It is REQUIRED.
+   *
+   * @param \Facebook\InstantArticles\Elements\Image $article_image
+   *   The image.
    *
    * @return $this
    */
-  public function addImage($article_image) {
+  public function addImage(Image $article_image) {
     Type::enforce($article_image, Image::getClassName());
     $this->article_images[] = $article_image;
 
@@ -93,7 +103,10 @@ class NasSlideshow extends Slideshow
   }
 
   /**
-   * @return Image[] The ArticleImages content of the slideshow
+   * Returns Artcile images.
+   *
+   * @return \Facebook\InstantArticles\Elements\Image[]
+   *  The ArticleImages content of the slideshow
    */
   public function getArticleImages() {
     return $this->article_images;
@@ -102,11 +115,12 @@ class NasSlideshow extends Slideshow
   /**
    * Structure and create the full NasSlideshow in a XML format DOMElement.
    *
-   * @param \DOMDocument $document where this element will be appended. Optional
+   * @param \DOMDocument $document
+   *   Where this element will be appended. Optional.
    *
    * @return \DOMElement
    */
-  public function toDOMElement($document = NULL) {
+  public function toDOMElement(\DOMDocument $document = NULL) {
     if (!$document) {
       $document = new \DOMDocument();
     }
@@ -115,7 +129,7 @@ class NasSlideshow extends Slideshow
       return $this->emptyElement($document);
     }
     $element = $this->emptyElement($document);
-    // URL markup required
+    // URL markup required.
     if ($this->article_images) {
       foreach ($this->article_images as $article_image) {
         $article_image_element = $article_image->toDOMElement($document);
@@ -129,7 +143,8 @@ class NasSlideshow extends Slideshow
   /**
    * Overrides the Element::isValid().
    *
-   * @see Element::isValid().
+   * @see Element::isValid()
+   *
    * @return TRUE for valid NasSlideshow that contains at least one Image valid, FALSE otherwise.
    */
   public function isValid() {
@@ -144,8 +159,10 @@ class NasSlideshow extends Slideshow
   /**
    * Implements the Container::getContainerChildren().
    *
-   * @see Container::getContainerChildren().
-   * @return array of Elements contained by Image.
+   * @see Container::getContainerChildren()
+   *
+   * @return array
+   *   Array of Elements contained by Image.
    */
   public function getContainerChildren() {
     $children = array();
@@ -160,16 +177,13 @@ class NasSlideshow extends Slideshow
       $children[] = $this->caption;
     }
 
-    // // Geotag markup optional
-    // if ($this->geoTag) {
-    //     $children[] = $this->geoTag;
-    // }
-
-    // Audio markup optional
+    // Audio markup optional.
     if ($this->audio) {
       $children[] = $this->audio;
     }
 
     return $children;
   }
+
 }
+// @codingStandardsIgnoreEnd

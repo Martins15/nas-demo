@@ -31,7 +31,7 @@ function bird_card_edit_form($form, &$form_state) {
     'plugins/content_types/bird_card'
   );
 
-  $rows_number =  NAS_BIRD_CARDS_NUMBER;
+  $rows_number = NAS_BIRD_CARDS_NUMBER;
   if (!empty($form_state['values']['rows'])) {
     $rows_number = $form_state['values']['rows'];
   }
@@ -126,7 +126,6 @@ function bird_card_change_rows_callback($form, &$form_state) {
   return $form['refs'];
 }
 
-
 /**
  * Theme callback for the bird_card_edit_form form.
  *
@@ -147,11 +146,8 @@ function theme_bird_card_edit_form($variables) {
   return $output;
 }
 
-
 /**
- * Submit function, anything in the formstate[conf] automatically gets saved.
- *
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function bird_card_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -171,7 +167,7 @@ function bird_card_edit_form_submit(&$form, &$form_state) {
 /**
  * Run-time rendering of the body of the block (content type).
  *
- * See ctools_plugin_examples for more advanced info
+ * See ctools_plugin_examples for more advanced info.
  */
 function bird_card_render($subtype, $conf, $args, $context) {
   $js_options = array(

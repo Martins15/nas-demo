@@ -2,7 +2,7 @@
 
 /**
  * @file
- * i18n_ctools_custom_content module hooks and functions.
+ * Module i18n_ctools_custom_content hooks and functions.
  */
 
 define('I18N_CTOOLS_CUSTOM_CONTANT_TABLE', 'ctools_custom_content');

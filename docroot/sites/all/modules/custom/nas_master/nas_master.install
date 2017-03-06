@@ -5,6 +5,9 @@
  * For hook_update_X functions.
  */
 
+/**
+ * Implements hook_install().
+ */
 function nas_master_install() {
   $files = array('footer-logo.png', 'canon-logo.png');
   foreach ($files as $file) {
@@ -54,6 +57,7 @@ function nas_master_update_7008() {
 
 /**
  * Revert Article CT feature.
+ *
  * Revert NAS Flyways Landing feature.
  */
 function nas_master_update_7009() {
@@ -97,6 +101,7 @@ function nas_master_update_7015() {
 
 /**
  * Revert NAS Views feature.
+ *
  * Insert Flyway Conservation Projects pane in panelized overriden flyway nodes.
  */
 function nas_master_update_7016() {
@@ -136,6 +141,7 @@ function nas_master_update_7017() {
 
 /**
  * Revert NAS Image Styles feature.
+ *
  * Revert Conservation Project feature.
  */
 function nas_master_update_7018() {
@@ -322,6 +328,9 @@ function nas_master_update_7028() {
 
 }
 
+/**
+ * Helper function.
+ */
 function _nas_master_update_7027_get_type($link) {
   if (preg_match('/F[0-9]*$/', $link)) {
     return 'boaf';
@@ -334,6 +343,7 @@ function _nas_master_update_7027_get_type($link) {
 
 /**
  * Delete instance of field_related_bird from Conservation Project CT.
+ *
  * Revert features for Conservation projects "Birds native to this area" pane.
  */
 function nas_master_update_7029() {
@@ -352,6 +362,8 @@ function nas_master_update_7030() {
 }
 
 /**
+ * Revert nas_bird_type_feature feature.
+ *
  * Revert nas_bird_type_feature feature to update image file entity view mode
  * settings.
  */
@@ -369,6 +381,8 @@ function nas_master_update_7032() {
 }
 
 /**
+ * Revert features.
+ *
  * Revert features for Conservation project's 'Explore More Conservation
  * Projects' block.
  */
@@ -403,8 +417,7 @@ function nas_master_update_7037() {
 }
 
 /**
- * Revert nas_conservation_project_feature feature.
- * Revert nas_bird_type_feature feature.
+ * Revert nas_conservation_project_feature, nas_bird_type_feature features.
  */
 function nas_master_update_7038() {
   features_revert_module('nas_conservation_project_feature');
@@ -460,6 +473,7 @@ function nas_master_update_7044() {
 
 /**
  * Revert editor permissions.
+ *
  * Revert nas_boa_family_feature feature.
  * Enable memcache.
  */
@@ -489,6 +503,7 @@ function nas_master_update_7046() {
 
 /**
  * Fullscreen Article changes.
+ *
  * [ANW-324] Flyway related birds: bird feature and views feature reverted.
  * [ANW-327] Contact Node CT: allowed text formats limited for Bio field.
  */
@@ -576,8 +591,8 @@ function nas_master_update_7051() {
 
 /**
  * Create instance of Welcome to Audubon bean.
- * Revert features components.
- * Delete unused fields.
+ *
+ * Revert features components, delete unused fields.
  */
 function nas_master_update_7052() {
   features_revert_module('nas_welcome_to_audubon');
@@ -664,23 +679,18 @@ function nas_master_update_7058(&$sandbox) {
  *
  * @param array $sandbox
  *   Batch sandbox.
- *
  * @param int $chunk
  *   Count of nodes for one batch operation.
- *
  * @param string $d6_content_type
  *   Name of the content type in Drupal 6.
- *
  * @param string $feeds_importer
  *   Machine name of the feeds importer.
- *
  * @param string $human_name
  *   Human readable name of the content type.
- *
  * @param bool $only_new
  *   Flag to import only new content.
  */
-function _nas_master_migrate_operation_from_update(&$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name, $only_new = FALSE) {
+function _nas_master_migrate_operation_from_update(array &$sandbox, $chunk, $d6_content_type, $feeds_importer, $human_name, $only_new = FALSE) {
   if (!isset($sandbox['progress'])) {
     // Add nids to sandbox.
     switch ($d6_content_type) {
@@ -796,6 +806,7 @@ function nas_master_update_7060() {
 
 /**
  * Revert features related to ANW-397.
+ *
  * Update overridden flyways nodes panelizer settings.
  */
 function nas_master_update_7061() {
@@ -939,11 +950,10 @@ function nas_master_update_7066(&$sandbox) {
  *
  * @param array $sandbox
  *   Batch sandbox.
- *
  * @param int $chunk
  *   Count of nodes for one batch operation.
  */
-function _nas_master_bulk_update_aliases(&$sandbox, $chunk) {
+function _nas_master_bulk_update_aliases(array &$sandbox, $chunk) {
   module_load_include('inc', 'pathauto', 'pathauto');
   if (!isset($sandbox['progress'])) {
     $sandbox['progress'] = 0;
@@ -1540,7 +1550,6 @@ function nas_master_update_7115() {
 
 /**
  * Change field_bird_conserv_status field from text to text_long.
- * Revert features.
  */
 function nas_master_update_7116() {
   // Manual database changes.
@@ -1793,6 +1802,7 @@ function nas_master_update_7128() {
 
 /**
  * Flush all image styles.
+ *
  * Revert features.
  */
 function nas_master_update_7129() {
@@ -1824,7 +1834,7 @@ function _nas_master_update_7129_update_frontpage_engagement_card() {
       ->condition('did', $handler->conf['did'])
       ->execute();
     if ($pane = $query->fetchObject()) {
-      // Update configuration
+      // Update configuration.
       $pane->configuration = unserialize($pane->configuration);
       $pane->configuration['default'] += array(
         'equalize_height' => 1,
@@ -2060,7 +2070,8 @@ function nas_master_update_7145() {
 
 /**
  * Enable CAPTCHA, reCAPTCHA, nas_captcha_feature.
- * Revert nas_captcha_feature
+ *
+ * Revert nas_captcha_feature.
  */
 function nas_master_update_7144() {
   module_enable(array('captcha', 'recaptcha', 'nas_captcha_feature'));
@@ -2101,7 +2112,7 @@ function nas_master_update_7148(&$sandbox) {
   if (!isset($sandbox['progress'])) {
     $sandbox['progress'] = 0;
     $q = db_select('node', 'n');
-    // This ugly join helps to select he alias for the nodes right away
+    // This ugly join helps to select the alias for the nodes right away.
     $q->innerJoin('url_alias', 'path', 'path.source = CONCAT(:node, n.nid)', array(':node' => 'node/'));
     $q->addField('n', 'nid');
     $q->condition('n.status', 1);
@@ -2408,17 +2419,17 @@ function nas_master_update_7169() {
 }
 
 /**
- * Enable NAS field max length module and increasing slideshow subtitle length
+ * Enable NAS field max length module and increasing slideshow subtitle length.
  */
 function nas_master_update_7170() {
-  // Remove in favor of nas_sla
+  // Remove in favor of nas_sla.
 }
 
 /**
  * Enable Panelizer Layout Thumbnails module for changing type of choosing layouts.
  */
 function nas_master_update_7171() {
-  // Remove in favor of nas_sla
+  // Remove in favor of nas_sla.
 }
 
 /**
@@ -2570,43 +2581,44 @@ function nas_master_update_7176() {
 }
 
 /**
- * Bird call reordering.
  * Sort helper function.
- * See nas_master_update_7178()
+ *
+ * See nas_master_update_7178().
  */
 function _nas_master_compare_by_title($a, $b) {
-  return strcmp($a["title"], $b["title"]);
+  return strcmp($a['title'], $b['title']);
 }
 
 /**
  * Bird call reordering.
- * https://propeople-us.atlassian.net/browse/ANW-670
+ *
+ * See https://propeople-us.atlassian.net/browse/ANW-670
  */
 function nas_master_update_7178() {
   // Get NID from all birds nodes that have at least 1 audio file.
-  $nids = db_query("SELECT node.nid AS nid, node.title AS title " .
-    "FROM {node} node " .
-    "LEFT JOIN {field_data_field_bird_audio} field_data_field_bird_audio " .
-    "ON node.nid = field_data_field_bird_audio.entity_id " .
-    "AND (field_data_field_bird_audio.entity_type = 'node' " .
-    "AND field_data_field_bird_audio.deleted = '0') " .
-    "WHERE (( (node.status = '1') " .
-    "AND (node.type IN  ('bird')) " .
-    "AND (field_data_field_bird_audio.field_bird_audio_fid > '0') ))")->fetchAllKeyed();
+  $nids = db_query("SELECT nid, title
+    FROM {node} node
+    LEFT JOIN {field_data_field_bird_audio}
+      ON nid = entity_id
+      AND entity_type = 'node'
+      AND deleted = 0
+    WHERE status = '1'
+      AND type = 'bird'
+      AND field_bird_audio_fid > 0")->fetchAllKeyed();
   foreach ($nids as $nid => $title) {
     $node = node_load($nid);
     // If there is more than 1 audio, sort them.
-    if (!empty($node->field_bird_audio) and sizeof($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
+    if (!empty($node->field_bird_audio) and count($node->field_bird_audio[LANGUAGE_NONE]) > 1) {
       // Put the title of the file in the array for sorting.
       foreach ($node->field_bird_audio[LANGUAGE_NONE] as $key => $field) {
-        $filename = db_query("SELECT fm.filename AS filename " .
-          "FROM {file_managed} fm " .
-          "WHERE fm.fid = :fid",
+        $filename = db_query('SELECT fm.filename AS filename
+          FROM {file_managed} fm
+          WHERE fm.fid = :fid',
           array(':fid' => $field['fid']))->fetchField();
         $node->field_bird_audio[LANGUAGE_NONE][$key]['title'] = $filename;
       }
       // Sort the audio files array by title.
-      usort($node->field_bird_audio[LANGUAGE_NONE], "_nas_master_compare_by_title");
+      usort($node->field_bird_audio[LANGUAGE_NONE], '_nas_master_compare_by_title');
       // Save the node with the sorted audio files.
       variable_set('menu_rebuild_needed', FALSE);
       lock_acquire('menu_rebuild');
@@ -2641,7 +2653,8 @@ function nas_master_update_7181() {
 }
 
 /**
- * Remove duplicated file_attachments panes
+ * Remove duplicated file_attachments panes.
+ *
  * Update BOA Index view.
  */
 function nas_master_update_7183() {
@@ -2708,7 +2721,8 @@ function nas_master_update_7184() {
 }
 
 /**
- * Enable Campaign feature, revent features,
+ * Enable Campaign feature, revent features.
+ *
  * Add Welcome to Audubon block to all articles.
  */
 function nas_master_update_7185() {
@@ -3055,8 +3069,7 @@ function nas_master_update_7211() {
   registry_rebuild();
 }
 
-
-/*
+/**
  * Update Event CT feature.
  */
 function nas_master_update_7212() {
@@ -3352,7 +3365,7 @@ function nas_master_update_7228() {
       ->condition('did', $handler->conf['did'])
       ->execute();
     while ($pane = $query->fetchObject()) {
-      // Update configuration
+      // Update configuration.
       $pane->configuration = unserialize($pane->configuration);
       $pane->configuration['default'] += array(
         'wrapper' => 1,
@@ -3444,7 +3457,6 @@ function nas_master_update_7234() {
     array('nas_site_template_feature' => array('page_manager_handlers'))
   );
 }
-
 
 /**
  * Enable Acquia Search Multiple Indexes module.
@@ -3621,7 +3633,7 @@ function nas_master_update_7244() {
   // Prevent rebuilding composer.json.
   variable_set('composer_manager_autobuild_packages', 0);
 
-  // Enable modules
+  // Enable modules.
   module_enable(array(
     'nas_fbia',
     'fb_instant_articles_display',
@@ -4095,5 +4107,19 @@ function nas_master_update_7280() {
 function nas_master_update_7281() {
   features_revert(array(
     'nas_metatags_feature' => array('metatag'),
+  ));
+}
+
+/**
+ * Enable h5p module.
+ */
+function nas_master_update_7282() {
+  module_enable(array(
+    'h5p',
+    'h5peditor',
+    'nas_h5p',
+  ));
+  features_revert(array(
+    'nas_text_format_feature' => array('filter'),
   ));
 }

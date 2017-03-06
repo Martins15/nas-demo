@@ -1,10 +1,19 @@
 <?php
+
 /**
  * @file
  * Query plugin for nasnp_views_json_query.
  */
 
+// @codingStandardsIgnoreStart
+/**
+ * Class nasnp_views_json_query_plugin_query_json.
+ */
 class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_query_json {
+
+  /**
+   * {@inheritdoc}
+   */
   public function query($get_count = FALSE) {
     $filters = array();
     if (isset($this->filter)) {
@@ -28,7 +37,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     if (isset($this->filter)) {
       foreach ($this->filter as $key => $filter) {
         if ($filter->options['key'] == 'zipcode') {
-          $uri = str_replace('zipcode', $filter->value, $uri);
+          $uri = str_replace('zipcode ', $filter->value, $uri);
           unset($this->filter[$key]);
           $request = TRUE;
         }
@@ -79,18 +88,16 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     // Sort the results according to weights and then common names inside the
     // same weight group if results are not filtered, alphabetically otherwise.
     $filtered = isset($this->filter_taxonomy);
-    // @codingStandardsIgnoreStart
     uasort($ret, function($a, $b) use ($filtered) {
       if ($filtered) {
         return strcmp($a->CommonName, $b->CommonName);
       }
       return ($a->Weight - $b->Weight) ? ($a->Weight - $b->Weight) : strcmp($a->CommonName, $b->CommonName);
     });
-    // @codingStandardsIgnoreEnd
 
     // Check if we should return Tier 1 results - find only Tier1 results.
     if ($view->current_display == 'native_plants_search_pane_tier1') {
-      $ret = array_filter($ret, function($result) {
+      $ret = array_filter($ret, function ($result) {
         return $result->Tier1;
       });
     }
@@ -154,7 +161,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
       $result = array();
       foreach ($ret as $row) {
-        $new_row = new stdClass();
         $new_row = $this->parse_row(NULL, $row, $row);
         $result[] = (object) $new_row;
       }
@@ -393,7 +399,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         if ($result->PlantImgLocal) {
           $result->PlantImgDesktop = theme('image_style', array(
             'path' => nas_alters_local_image_uri($result->PlantImgLocal['uri']),
-            'style_name'=> 'native_plant_desktop',
+            'style_name' => 'native_plant_desktop',
             'alt' => $result->CommonName,
             'attributes' => array(
               'data-caption' => $result->PlantImgLocal['attribution'],
@@ -401,7 +407,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           ));
           $result->PlantImgMobile = theme('image_style', array(
             'path' => nas_alters_local_image_uri($result->PlantImgLocal['uri']),
-            'style_name'=> 'native_plant_mobile',
+            'style_name' => 'native_plant_mobile',
             'alt' => $result->CommonName,
           ));
           $result->PlantImgLightbox = image_style_url('native_plant_lightbox', nas_alters_local_image_uri($result->PlantImgLocal['uri']));
@@ -409,7 +415,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
         elseif ($result->PlantImg) {
           $params = array(
             'path' => $result->PlantImg,
-            'style_name'=> 'native_plant_desktop',
+            'style_name' => 'native_plant_desktop',
             'alt' => $result->CommonName,
           );
           if ($attribution = nas_master_native_plants_get_image_attributions_by_plantid($result->PlantID)) {
@@ -420,7 +426,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
           $result->PlantImgDesktop = theme('imagecache_external', $params);
           $result->PlantImgMobile = theme('imagecache_external', array(
             'path' => $result->PlantImg,
-            'style_name'=> 'native_plant_mobile',
+            'style_name' => 'native_plant_mobile',
             'alt' => $result->CommonName,
           ));
           if ($path = imagecache_external_generate_path($result->PlantImg)) {
@@ -471,4 +477,6 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
 
     $static_cache[$view->name] = $ret;
   }
+
 }
+// @codingStandardsIgnoreEnd

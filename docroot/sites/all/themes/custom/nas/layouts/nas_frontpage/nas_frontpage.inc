@@ -32,8 +32,8 @@ $plugin = array(
 /**
  * Returns and sets current frontpage variant key.
  *
- * @param string $variant
- *  'curtain' or 'hero_image' key.
+ * @param string $key
+ *   The variant key ('curtain' or 'hero_image').
  *
  * @return string
  *   Key of current variant.

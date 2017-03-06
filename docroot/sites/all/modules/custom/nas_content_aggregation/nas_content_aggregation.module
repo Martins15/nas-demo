@@ -325,7 +325,7 @@ function _nas_content_aggregation_start_individual_import_helper($source_url) {
  * @return array
  *   An array of nids matching the query.
  */
-function nas_content_aggregation_taxonomy_select_nodes($tid, $available_ct) {
+function nas_content_aggregation_taxonomy_select_nodes($tid, array $available_ct) {
   if (!variable_get('taxonomy_maintain_index_table', TRUE)) {
     return array();
   }
@@ -410,7 +410,7 @@ function nas_content_aggregation_cron_queue_info() {
  * @param array $item
  *   Array with settings for import.
  */
-function nas_content_aggregation_import_cron_queue($item) {
+function nas_content_aggregation_import_cron_queue(array $item) {
   $context = array();
   nas_content_aggregation_import_nodes_batch($item['items'], $item['importer'], $item['url'], $item['data'], $context);
 }

@@ -1,13 +1,14 @@
 <?php
+
 /**
  * @file
  * Template for guide bar.
- * 
+ *
  * Available variables:
  * - $attributes: attributes like class and style if available.
- * - $title: guide bar title
- * - $preamble: text displayed before logo
- * - $logo: img tag with log
+ * - $title: guide bar title.
+ * - $preamble: text displayed before logo.
+ * - $logo: img tag with log.
  */
 ?>
 

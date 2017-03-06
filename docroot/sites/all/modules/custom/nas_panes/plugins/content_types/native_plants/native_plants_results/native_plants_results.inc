@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants Angular results listing plugin.

@@ -2,27 +2,27 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 define('NAS_MENU_FOOTER_MENU', 'menu-footer');
 define('NAS_MENU_FOOTER_COPYRIGHT_MENU', 'menu-footer-copyright');
 
 $plugin = array(
-    'single' => TRUE,
-    'title' => t('Footer'),
-    'description' => t('Display footer section'),
-    'category' => 'NAS Header/Footer',
-    'edit form' => 'nas_footer_pane_custom_pane_edit_form',
-    'render callback' => 'nas_footer_pane_custom_pane_render',
-    'admin info' => 'nas_footer_pane_custom_pane_admin_info',
-    'defaults' => array(
-        'logo_path' => 'public://footer-logo.png',
-        'title' => '',
-        'mission' => '',
-        'copyright' => '',
-    ),
-    'all contexts' => TRUE,
+  'single' => TRUE,
+  'title' => t('Footer'),
+  'description' => t('Display footer section'),
+  'category' => 'NAS Header/Footer',
+  'edit form' => 'nas_footer_pane_custom_pane_edit_form',
+  'render callback' => 'nas_footer_pane_custom_pane_render',
+  'admin info' => 'nas_footer_pane_custom_pane_admin_info',
+  'defaults' => array(
+    'logo_path' => 'public://footer-logo.png',
+    'title' => '',
+    'mission' => '',
+    'copyright' => '',
+  ),
+  'all contexts' => TRUE,
 );
 
 /**
@@ -32,39 +32,31 @@ function nas_footer_pane_custom_pane_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
   $form['logo_path'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Path to logo'),
-      //'#description' => t('Text to display, it may use substitution strings'),
-      '#default_value' => $conf['logo_path'],
+    '#type' => 'textfield',
+    '#title' => t('Path to logo'),
+    '#default_value' => $conf['logo_path'],
   );
-
   $form['title'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Mission title'),
-      //'#description' => t('Text to display, it may use substitution strings'),
-      '#default_value' => $conf['title'],
+    '#type' => 'textfield',
+    '#title' => t('Mission title'),
+    '#default_value' => $conf['title'],
   );
-
   $form['mission'] = array(
-      '#type' => 'textarea',
-      '#title' => t('Mission'),
-      //'#description' => t('Text to display, it may use substitution strings'),
-      '#default_value' => $conf['mission'],
+    '#type' => 'textarea',
+    '#title' => t('Mission'),
+    '#default_value' => $conf['mission'],
   );
-
   $form['copyright'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Copyright'),
-      //'#description' => t('Text to display, it may use substitution strings'),
-      '#default_value' => $conf['title'],
+    '#type' => 'textfield',
+    '#title' => t('Copyright'),
+    '#default_value' => $conf['title'],
   );
 
   return $form;
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_footer_pane_custom_pane_edit_form_submit(&$form, &$form_state) {
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
@@ -82,8 +74,9 @@ function nas_footer_pane_custom_pane_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
@@ -105,7 +98,11 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $logo = '';
   $logo_path = filter_xss($conf['logo_path']);
   if ($logo_path) {
-    $logo = theme_image(array('path' => file_create_url($logo_path), 'alt' => '', 'attributes' => array('class' => array('footer-logo'))));
+    $logo = theme_image(array(
+      'path' => file_create_url($logo_path),
+      'alt' => '',
+      'attributes' => array('class' => array('footer-logo')),
+    ));
   }
 
   $title = filter_xss($conf['title']);
@@ -149,6 +146,9 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   return $block;
 }
 
+/**
+ * Contextual links builder.
+ */
 function nas_footer_pane_get_contextual_links() {
   if (!user_access('edit NAS panes')) {
     return array();

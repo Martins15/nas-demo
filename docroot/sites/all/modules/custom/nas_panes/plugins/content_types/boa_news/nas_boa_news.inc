@@ -46,8 +46,7 @@ function nas_boa_news_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_boa_news_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -59,6 +58,7 @@ function nas_boa_news_edit_form_submit(&$form, &$form_state) {
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function nas_boa_news_render($subtype, $conf, $args, $context) {
@@ -113,7 +113,7 @@ function nas_boa_news_render($subtype, $conf, $args, $context) {
  * @param object $node
  *   Current article node.
  *
- * @return
+ * @return string
  *   Rendered contextual links.
  */
 function nas_boa_news_build_contextual_links($subtype, $node) {

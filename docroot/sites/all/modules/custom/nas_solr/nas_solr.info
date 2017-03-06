@@ -1,3 +1,4 @@
 name = NAS Solr
 core = 7.x
+description = NAS Solr
 package = NAS

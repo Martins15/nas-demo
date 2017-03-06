@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for don't miss menu.

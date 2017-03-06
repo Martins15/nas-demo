@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -12,7 +12,6 @@ $plugin = array(
   'category' => 'NAS',
   'render callback' => 'audubon_near_you_bird_guide_render',
 );
-
 
 /**
  * Run-time rendering of the body of the block (content type).

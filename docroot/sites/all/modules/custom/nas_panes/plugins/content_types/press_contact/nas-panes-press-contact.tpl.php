@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Press contact block.

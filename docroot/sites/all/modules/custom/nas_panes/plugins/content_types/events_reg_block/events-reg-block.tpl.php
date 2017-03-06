@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Event Page Registration block template file.

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * i18n_pc module routines.
+ * Module i18n_pc routines.
  */
 
 /**
@@ -362,7 +362,6 @@ function i18n_pc_translation_redirect($page_name, $lang) {
   ctools_include('ajax');
   ctools_add_js('ajax-responder');
   $commands = array();
-  // $redirect_url = ($redirect_language->prefix == '') ? $cloned_page->path : $redirect_language->prefix . '/' . $cloned_page->path;
   $redirect_url = $cloned_page->path;
   $commands[] = ctools_ajax_command_redirect(
     $redirect_url,
@@ -376,11 +375,11 @@ function i18n_pc_translation_redirect($page_name, $lang) {
 /**
  * Init new handler.
  *
- * @param $subtask
+ * @param string $subtask
  *   Subtask name to be attached to.
- * @param $destination
+ * @param string $destination
  *   Redirect destination in case of language detected.
- * @param $name
+ * @param string $name
  *   Unique name of the handler.
  * @param string $for_lang
  *   For which language should be access ON.
@@ -453,7 +452,7 @@ function i18n_pc_init_redirect_handler(
  */
 function i18n_pc_init_access_language_plugin(
   $for_lang = LANGUAGE_NONE,
-  &$plugin = array()
+  array &$plugin = array()
 ) {
 
   $default_language = variable_get('language_default');
@@ -491,8 +490,8 @@ function i18n_pc_init_access_language_plugin(
  *   Language for page to be applied to.
  */
 function i18n_pc_init_redirect_handlers(
-  &$handlers,
-  $redirect_handler,
+  array &$handlers,
+  array $redirect_handler,
   $for_lang = LANGUAGE_NONE
 ) {
   $has_lang_plugin = FALSE;
@@ -540,7 +539,7 @@ function i18n_pc_init_redirect_handlers(
  */
 function i18n_pc_add_redirect_handlers(
   &$page,
-  $redirect_handler,
+  array $redirect_handler,
   $for_lang = LANGUAGE_NONE
 ) {
   $handlers = &$page->handlers;

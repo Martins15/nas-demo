@@ -27,13 +27,8 @@ $plugin = array(
   ),
 );
 
-
 /**
  * Layout settings form builder.
- *
- * @param $display
- * @param $layout
- * @param $layout_settings
  */
 function nas_flyway_settings_form($display, $layout, $layout_settings) {
   $form = array();
@@ -52,4 +47,3 @@ function nas_flyway_settings_form($display, $layout, $layout_settings) {
 
   return $form;
 }
-

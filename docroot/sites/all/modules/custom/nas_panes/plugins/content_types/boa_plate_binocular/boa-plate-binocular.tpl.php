@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * BOA Plate Binocular tpl file.

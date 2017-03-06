@@ -5,7 +5,7 @@
  * Template implementation to display the panel's layout.
  */
 ?>
-<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content">
+<section <?php print !empty($css_id) ? "id=\"$css_id\"" : ''; ?> class="global-content">
   <div class="row space-top">
     <article class="event">
       <div class="large-8 columns">

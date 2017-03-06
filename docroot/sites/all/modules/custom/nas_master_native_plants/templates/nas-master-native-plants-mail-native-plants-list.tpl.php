@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants list template for mail message.
@@ -85,7 +86,12 @@
             <tr>
               <td height="129" style="height:129px; vertical-align: middle;" valign="middle">
                 <a href="<?php print url('<front>', array('absolute' => TRUE)); ?>">
-                  <?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/wordmark-white.png', 'alt' => '', 'width' => 236, 'attributes' => array('style' => 'width: 236px;'))); ?>
+                  <?php print theme('image', array(
+                    'path' => drupal_get_path('theme', 'nas') . '/img/wordmark-white.png',
+                    'alt' => '',
+                    'width' => 236,
+                    'attributes' => array('style' => 'width: 236px;'),
+                  )); ?>
                 </a>
               </td>
             </tr>
@@ -156,7 +162,11 @@
                     foreach ($editorial_cards as $card):
                     if (!$first_card): ?>
                     <td width="20" border="0"  style="border-bottom: 1px solid #FFF;">
-                      <?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/transparent.gif', 'alt' => '', 'width' => 20)); ?>
+                      <?php print theme('image', array(
+                        'path' => drupal_get_path('theme', 'nas') . '/img/email/transparent.gif',
+                        'alt' => '',
+                        'width' => 20,
+                      )); ?>
                     </td>
                     <?php endif;
                     $first_card = FALSE; ?>
@@ -193,7 +203,15 @@
                   </tr>
                   <tr  border="0" style="border: none;">
                     <td colspan="3" border="0" style="border: 0;">
-                      <?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/transparent.gif', 'alt' => '', 'height' => 70, 'attributes' => array('style' => 'height: 70px;', 'height' => '70'))); ?>
+                      <?php print theme('image', array(
+                        'path' => drupal_get_path('theme', 'nas') . '/img/email/transparent.gif',
+                        'alt' => '',
+                        'height' => 70,
+                        'attributes' => array(
+                          'style' => 'height: 70px;',
+                          'height' => '70',
+                        ),
+                      )); ?>
                     </td>
                   </tr>
                 </table>
@@ -213,7 +231,11 @@
                   <tr>
                     <td width="260" valign="top" align="right" style="border-right: 1px solid #4e4e4e; padding-right: 15px;">
                       <a href="<?php print url('<front>', array('absolute' => TRUE)); ?>">
-                        <?php print theme('image', array('path' => drupal_get_path('theme', 'nas') . '/img/email/footer-logo.png', 'width' => 144, 'alt' => '')); ?>
+                        <?php print theme('image', array(
+                          'path' => drupal_get_path('theme', 'nas') . '/img/email/footer-logo.png',
+                          'width' => 144,
+                          'alt' => '',
+                        )); ?>
                       </a>
                     </td>
                     <td width="" valign="center" style="padding-left: 15px;">

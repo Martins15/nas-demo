@@ -54,10 +54,10 @@ function about_page_leadership_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $block->content = theme('about_page_leadership', array(
-      'title' => $conf['override_title_text'],
-      'full_width_text' => $conf['full_width_text']['value'],
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => $conf['override_title_text'],
+    'full_width_text' => $conf['full_width_text']['value'],
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }

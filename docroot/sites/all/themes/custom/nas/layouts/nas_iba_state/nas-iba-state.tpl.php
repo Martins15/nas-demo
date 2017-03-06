@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template implementation to display the panel's layout.
@@ -35,6 +36,6 @@
   </div>
   <?php print $content['more']; ?>
   <section class="card-set bg-1">
-  	<?php print $content['cards_set']; ?>
+    <?php print $content['cards_set']; ?>
   </section>
 </section>

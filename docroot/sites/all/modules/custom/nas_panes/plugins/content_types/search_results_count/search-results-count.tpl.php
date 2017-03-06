@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Search page editorial results count pane template.
@@ -9,7 +10,7 @@
   <h2><?php print $title; ?></h2>
   <p class="sub-heading">
     <?php print t('Showing 1–!current of @total results', array(
-        '!current' => '<span class="search-counter">' . $current_rows .'</span>',
+        '!current' => '<span class="search-counter">' . $current_rows . '</span>',
         '@total' => $total_rows,
       )); ?>
   </p>

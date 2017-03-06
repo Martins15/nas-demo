@@ -133,8 +133,7 @@ function donate_cards_3x_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function donate_cards_3x_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -152,8 +151,9 @@ function donate_cards_3x_change_number_of_items($form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function donate_cards_3x_render($subtype, $conf, $args, $context) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
@@ -188,8 +188,8 @@ function donate_cards_3x_render($subtype, $conf, $args, $context) {
     }
     if (!empty($ref['url'])) {
       $teaser['title'] = l($ref['title'], $ref['url'], array(
-          'attributes' => array('title' => $ref['title']),
-        ));
+        'attributes' => array('title' => $ref['title']),
+      ));
     }
 
     $teasers[] = $teaser;
