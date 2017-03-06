@@ -1,0 +1,26 @@
+---
+env:
+  pre_settings: []
+  modules:
+    - { name: 'dblog', status: true }
+    - { name: 'stage_file_proxy', status: true }
+    - { name: 'devel', status: true }
+    - { name: 'views_ui', status: true }
+    - { name: 'diff', status: true }
+  drush_commands:
+    # Update admin username and password.
+    - { name: 'sqlq', status: true, arguments: "\"UPDATE users SET name='{{ drupal_user }}' WHERE uid=1\"" }
+    - { name: 'upwd', status: true, arguments: "{{ drupal_user }} --password={{ drupal_pass }}" }
+    - { name: 'nas-master-update-geoip-db', status: true, arguments: "" }
+    - { name: 'nas-master-search-server-local', status: true, arguments: "" }
+    - { name: 'search-api-set-index-server', status: true, arguments: 'default_node_index solr_4_x' }
+    - { name: 'search-api-set-index-server', status: true, arguments: 'page_manager_pages solr_4_x' }
+    - { name: 'vset', status: true, arguments: 'cdn_status 0' }
+  post_settings:
+    - { name: '$conf["error_level"]', status: true, value: '2' }
+    - { name: '$conf["cache"]', status: true, value: '0' }
+    - { name: '$conf["block_cache"]', status: true, value: '0' }
+    - { name: '$conf["preprocess_css"]', status: false, value: '0' }
+    - { name: '$conf["preprocess_js"]', status: false, value: '0' }
+    - { name: '$conf["stage_file_proxy_origin"]', status: true, value: "{{ origin_site_url }}" }
+    - { name: '$conf["https"]', status: true, value: 'true' }
