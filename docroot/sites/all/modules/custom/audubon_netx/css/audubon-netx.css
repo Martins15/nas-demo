@@ -1,43 +1,65 @@
-.audubon-netx-preview table thead th {
-    text-align: left;
-}
-.audubon-netx-preview table tbody tr:nth-child(even) {
-    background: #f3f4ee;
-}
-.audubon-netx-preview table tbody tr .form-item {
-    margin: 0;
-}
-.audubon-netx-preview table tbody tr .media-item img {
-    display: inline;
+.cfbpager {
+  text-align: center;
 }
 
-.audubon-netx-preview table tbody tr.netx-selected{
-    background: #F4ECC7;
+.cfbbreadcrumbs {
+  margin-bottom: 10px;
 }
+
+.audubon-netx-preview table thead th {
+  text-align: left;
+}
+
+.audubon-netx-preview table tbody tr:nth-child(even) {
+  background: #f3f4ee;
+}
+
+.audubon-netx-preview table tbody tr .form-item {
+  margin: 0;
+}
+
+.audubon-netx-preview table tbody tr .media-item img {
+  display: inline;
+}
+
+.audubon-netx-preview table tbody tr.netx-selected {
+  background: #f4ecc7;
+}
+
+.media-browser-tab .cfbfilemanager {
+  width: auto;
+  max-width: 100%;
+}
+
 /*-------------------------
 	Pagers
 -------------------------*/
 .view-pager {
-    display: block;
-    text-align: center;
+  display: block;
+  text-align: center;
 }
+
 .netx-pager {
-    clear: both;
+  clear: both;
 }
+
 .netx-pager .netx-pager-item {
-    display: inline-block;
-    margin: 0;
-    float: none;
+  display: inline-block;
+  margin: 0;
+  float: none;
 }
+
 .netx-pager .netx-pager-item a {
-    padding: 0 10px;
-    display: block
+  padding: 0 10px;
+  display: block;
 }
+
 .netx-pager .netx-pager-item.current a {
-    font-weight: bold;
-    background-color: #EEE;
+  font-weight: bold;
+  background-color: #eee;
 }
+
 .netx-pager .netx-pager-item a:hover {
-    background-color: #03689b;
-    color: #FFF;
+  background-color: #03689b;
+  color: #fff;
 }
