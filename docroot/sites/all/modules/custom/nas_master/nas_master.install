@@ -3980,3 +3980,12 @@ function nas_master_update_7270() {
 function nas_master_update_7272() {
   module_enable(array('nas_cdn_feature'));
 }
+
+/**
+ * Revert Native Plants features.
+ */
+function nas_master_update_7273() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}

@@ -637,6 +637,38 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $display->content['new-b0e0091a-27f6-474f-a766-98b4d2cbe773'] = $pane;
     $display->panels['main'][4] = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
     $pane = new stdClass();
+    $pane->pid = 'new-4a36de91-66cb-4467-bcdf-96ea44a4152a';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_list_description';
+    $pane->subtype = 'native_plants_list_description';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Your Native Plant List',
+      'override_title_text' => 'Local Resources',
+      'text' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'form_build_id' => 'form-omIPoB1-vkmLh9R4T_HG9CV6q6B7ZEfJC23vL03zTOY',
+      'context' => array(
+        0 => 'argument_entity_uuid:permalink_1',
+      ),
+      'override_title' => 1,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $pane->uuid = '4a36de91-66cb-4467-bcdf-96ea44a4152a';
+    $display->content['new-4a36de91-66cb-4467-bcdf-96ea44a4152a'] = $pane;
+    $display->panels['main'][5] = 'new-4a36de91-66cb-4467-bcdf-96ea44a4152a';
+    $pane = new stdClass();
     $pane->pid = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
     $pane->panel = 'main';
     $pane->type = 'native_plants_audubon_near_you';
@@ -657,11 +689,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = array();
     $pane->uuid = 'f64cb49a-d776-46b5-822e-2dd59896becf';
     $display->content['new-f64cb49a-d776-46b5-822e-2dd59896becf'] = $pane;
-    $display->panels['main'][5] = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
+    $display->panels['main'][6] = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
     $pane = new stdClass();
     $pane->pid = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
     $pane->panel = 'main';
@@ -690,11 +722,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 6;
+    $pane->position = 7;
     $pane->locks = array();
     $pane->uuid = '9110eb6f-12af-4f72-afa1-326067aafc13';
     $display->content['new-9110eb6f-12af-4f72-afa1-326067aafc13'] = $pane;
-    $display->panels['main'][6] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
+    $display->panels['main'][7] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
     $pane = new stdClass();
     $pane->pid = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $pane->panel = 'main';
@@ -723,11 +755,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 7;
+    $pane->position = 8;
     $pane->locks = array();
     $pane->uuid = '0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $display->content['new-0836d4b1-fca0-41a0-b7cf-415cfcd89004'] = $pane;
-    $display->panels['main'][7] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $display->panels['main'][8] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $pane = new stdClass();
     $pane->pid = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $pane->panel = 'main';
@@ -755,11 +787,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 8;
+    $pane->position = 9;
     $pane->locks = array();
     $pane->uuid = '088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $display->content['new-088f3a1d-7f4a-415e-9f90-03167ad47f6f'] = $pane;
-    $display->panels['main'][8] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $display->panels['main'][9] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $pane = new stdClass();
     $pane->pid = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane->panel = 'main';
@@ -822,11 +854,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 9;
+    $pane->position = 10;
     $pane->locks = array();
     $pane->uuid = 'b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $display->content['new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1'] = $pane;
-    $display->panels['main'][9] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
+    $display->panels['main'][10] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane = new stdClass();
     $pane->pid = 'new-4e911b59-b652-43d0-8a5e-89cfd63f9088';
     $pane->panel = 'top';
