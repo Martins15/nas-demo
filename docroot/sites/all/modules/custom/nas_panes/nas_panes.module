@@ -2214,21 +2214,25 @@ function _nas_panes_format_image_attribution($file, $plain = FALSE) {
   $parts = array();
 
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
-    if ($plain) {
-      $parts[] = trim($items[0]['safe_value']);
-    }
-    else {
-      $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
+    if (isset($items[0]['safe_value'])) {
+      if ($plain) {
+        $parts[] = trim($items[0]['safe_value']);
+      }
+      else {
+        $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
+      }
     }
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    if ($plain) {
-      $parts[] = t('Photo:');
-      $parts[] = trim($items[0]['safe_value']);
-    }
-    else {
-      $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
-      $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
+    if (isset($items[0]['safe_value'])) {
+      if ($plain) {
+        $parts[] = t('Photo:');
+        $parts[] = trim($items[0]['safe_value']);
+      }
+      else {
+        $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
+        $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
+      }
     }
   }
   return implode(' ', $parts);
