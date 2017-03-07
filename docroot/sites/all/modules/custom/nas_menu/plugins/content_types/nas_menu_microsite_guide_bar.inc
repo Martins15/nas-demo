@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Define ctools content type.
  */
 
 $plugin = array(
@@ -72,8 +72,7 @@ function nas_menu_guide_bar_pane_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit handler.
  */
 function nas_menu_guide_bar_pane_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -84,8 +83,9 @@ function nas_menu_guide_bar_pane_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
   $title = t(filter_xss($conf['title'], array('span')));
@@ -96,7 +96,11 @@ function nas_menu_guide_bar_pane_render($subtype, $conf, $args, $contexts) {
   $link = !empty($conf['link']) ? url($conf['link']) : '';
   $logo = '';
   if ($logo_path) {
-    $logo = theme_image(array('path' => file_create_url($logo_path), 'alt' => '', 'attributes' => array('class' => array('canon-logo'))));
+    $logo = theme_image(array(
+      'path' => file_create_url($logo_path),
+      'alt' => '',
+      'attributes' => array('class' => array('canon-logo')),
+    ));
   }
 
   $pane_attr = array('class' => array('guide-bar'));

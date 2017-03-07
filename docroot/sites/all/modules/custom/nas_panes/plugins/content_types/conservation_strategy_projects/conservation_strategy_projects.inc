@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -46,7 +46,7 @@ function conservation_strategy_projects_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved.
+ * Submit callback..
  */
 function conservation_strategy_projects_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -91,10 +91,10 @@ function conservation_strategy_projects_render($subtype, $conf, $args, $context)
   }
 
   $block->content = theme('conservation_strategy_projects', array(
-      'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Featured projects'),
-      'teasers' => $teasers,
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => !empty($conf[$conf_key]['block_title']) ? $conf[$conf_key]['block_title'] : t('Featured projects'),
+    'teasers' => $teasers,
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }

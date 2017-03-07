@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Link pane template file.

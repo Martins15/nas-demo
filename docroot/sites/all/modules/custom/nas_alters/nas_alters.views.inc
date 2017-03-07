@@ -13,10 +13,11 @@
  * 'path' key returned by MODULENAME_views_api(), or the same directory as the
  * .module file, if 'path' is unspecified.
  *
- * @param $view
+ * @param object $view
  *   The view object about to be processed.
- * @param $query
+ * @param object $query
  *   An object describing the query.
+ *
  * @see hook_views_query_substitutions()
  */
 function nas_alters_views_query_alter(&$view, &$query) {

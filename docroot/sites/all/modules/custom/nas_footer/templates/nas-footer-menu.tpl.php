@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @file
  * Template for footer menu.
- * 
+ *
  * Available variables:
  * - $menu_tree: menu items. Example
  *  $menu_tree = array(
@@ -37,8 +38,12 @@
  */
 ?>
 
-<?php end($menu_tree); $last_key = key($menu_tree); reset($menu_tree);
-  foreach ($menu_tree as $key => $menu_item) : ?>
+<?php
+  end($menu_tree);
+  $last_key = key($menu_tree);
+  reset($menu_tree);
+?>
+<?php foreach ($menu_tree as $key => $menu_item) : ?>
   <?php if ($menu_item['below']) : ?>
     <?php $item_attr = drupal_attributes(array('class' => $menu_item['link']['options']['attributes']['class'])); ?>
     <div <?php print $item_attr; ?>>

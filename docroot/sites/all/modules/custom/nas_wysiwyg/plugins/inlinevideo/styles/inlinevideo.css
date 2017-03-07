@@ -1,21 +1,21 @@
-.video-wrapper{
+.video-wrapper {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.video-wrapper *{
+.video-wrapper * {
   box-sizing: border-box;
 }
 
-.video-wrapper .video-frame{
+.video-wrapper .video-frame {
   width: 100%;
   max-width: 100%;
   text-align: center;
-  margin: 10px auto;  
+  margin: 10px auto;
 }
 
-.video-wrapper .video-caption{
+.video-wrapper .video-caption {
   width: 100%;
   margin: 10px 0;
   padding: 0 10px;
@@ -25,19 +25,19 @@
 
 .group:before,
 .group:after {
-    content: "";
-    display: table;
+  content: "";
+  display: table;
 }
 
 .group:after {
-    clear: both;
+  clear: both;
 }
 
 .group {
-    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+  zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 }
 
-body{
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #404040;

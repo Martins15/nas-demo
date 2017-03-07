@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -13,7 +13,6 @@ $plugin = array(
   'render callback' => 'nas_panes_boa_social_block_render',
   'all contexts' => TRUE,
 );
-
 
 /**
  * Run-time rendering of the body of the block (content type).

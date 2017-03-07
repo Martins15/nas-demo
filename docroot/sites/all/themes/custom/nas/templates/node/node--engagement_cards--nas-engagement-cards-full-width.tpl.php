@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Custom theme implementation to display a node.

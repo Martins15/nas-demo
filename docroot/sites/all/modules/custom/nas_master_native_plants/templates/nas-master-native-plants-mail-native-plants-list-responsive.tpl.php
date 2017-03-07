@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants responsive list template for mail message.

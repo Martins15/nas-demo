@@ -91,7 +91,9 @@
   <div class="boa-bird-card">
     <div class="photo">
       <?php print $bird_illustration; ?>
-      <?php if ($conservation_status): ?><span class="endangered-bird"><?php print $conservation_status; ?></span><?php endif; ?>
+      <?php if ($conservation_status): ?>
+        <span class="endangered-bird"><?php print $conservation_status; ?></span>
+      <?php endif; ?>
     </div>
     <h4 class="common-name"><?php print $title_link; ?></h4>
     <p class="scientific-name"><?php print $scientific_name; ?></p>

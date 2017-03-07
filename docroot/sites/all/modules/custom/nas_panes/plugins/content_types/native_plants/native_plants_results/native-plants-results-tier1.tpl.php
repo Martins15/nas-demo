@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for Native Plants results listing.
@@ -49,7 +50,6 @@
       </div>
       <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
              data-ng-model="resultsC.storage.stateParams.text_search_tier1"
-             data-ng-model-options="{ debounce: 500 }"
              data-ng-change="resultsC.storage.applyTextSearch('_tier1')"/>
       <button class="button tomato large"
               data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>

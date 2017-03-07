@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -14,8 +14,9 @@ $plugin = array(
 );
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function boa_listing_render($subtype, $conf, $args, $contexts) {
   $links = array(
@@ -45,8 +46,8 @@ function boa_listing_render($subtype, $conf, $args, $contexts) {
 
   $block = new stdClass();
   $block->content = theme('boa_listing', array(
-      'title' => $title,
-      'content' => views_embed_view('boa_index', $links[$current_link]['display']),
-    ));
+    'title' => $title,
+    'content' => views_embed_view('boa_index', $links[$current_link]['display']),
+  ));
   return $block;
 }

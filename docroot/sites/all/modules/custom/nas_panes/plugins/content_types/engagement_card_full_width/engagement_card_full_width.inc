@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Engagement card Full width plugin.

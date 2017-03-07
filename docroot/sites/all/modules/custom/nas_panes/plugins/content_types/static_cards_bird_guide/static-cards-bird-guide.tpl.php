@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Static cards Bird Guide template file.

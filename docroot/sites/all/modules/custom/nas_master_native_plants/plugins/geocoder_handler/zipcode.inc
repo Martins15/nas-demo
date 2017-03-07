@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Plugin to provide a ZIP code geocoder.
@@ -8,10 +9,17 @@ $plugin = array(
   'title' => t('ZIP code Geocoder'),
   'description' => t('Geocodes ZIP codes'),
   'callback' => 'geocoder_zipcode',
-  'field_types' => array('text', 'text_long', 'addressfield', 'location', 'text_with_summary', 'computed', 'taxonomy_term_reference'),
+  'field_types' => array(
+    'text',
+    'text_long',
+    'addressfield',
+    'location',
+    'text_with_summary',
+    'computed',
+    'taxonomy_term_reference'
+  ),
   'field_callback' => 'geocoder_zipcode_field',
 );
-
 
 /**
  * Geocode string with ZIP code.

@@ -2,12 +2,11 @@
 
 /**
  * @file
- * define ctools access plugin.
+ * Defines ctools access plugin.
  */
 
 /**
- * Plugins are described by creating a $plugin array which will
- * be used by the system that includes the file.
+ * Plugin defition.
  */
 $plugin = array(
   'title' => t('Donate button rule for Magazine Issue'),
@@ -39,7 +38,7 @@ function nas_panes_donate_pane_rule_mag_issue_ctools_settings($form, &$form_stat
  */
 function nas_panes_donate_pane_rule_mag_issue_ctools_access_check($conf, $context) {
   if (isset($context->data->nid)) {
-    //Check count of referenced nodes.
+    // Check count of referenced nodes.
     $query = db_select('node', 'n');
     $query->fields('n', array('nid', 'type'));
     $query->leftJoin('field_data_field_magazine_issue', 'f', 'n.nid = f.entity_id');

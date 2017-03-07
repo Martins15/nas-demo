@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * IBA State switcher.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * This template handles the layout of the views exposed filter form.
@@ -15,7 +16,7 @@
  * - $reset_button: A button to reset the exposed filter applied. May be optional.
  * - $button: The submit button for the form.
  * - $q: in case of disabled 'clean urls' contains hidden input <input type="hidden" name="q" />
- * 
+ *
  * @ingroup views_templates
  */
 ?>
@@ -32,7 +33,7 @@
     </div>
     <div class="row">
       <?php
-        // Remove fulltext search widget as it already shown
+        // Remove fulltext search widget as it already shown.
         unset($widgets['filter-title']);
       ?>
       <?php foreach ($widgets as $id => $widget): ?>

@@ -14,6 +14,9 @@ $plugin = array(
   'default description' => 'State abbrev to full name',
 );
 
+/**
+ * Plugins form builder.
+ */
 function nas_master_native_plants_abbrev_to_state_form($importer, $element_key, $settings) {
   $form = array();
   $form['help'] = array(
@@ -23,6 +26,9 @@ function nas_master_native_plants_abbrev_to_state_form($importer, $element_key, 
   return $form;
 }
 
+/**
+ * Helper function.
+ */
 function nas_master_native_plants_abbrev_to_state_callback($result, $item_key, $element_key, &$field, $settings) {
   static $states;
 
@@ -49,6 +55,9 @@ function nas_master_native_plants_abbrev_to_state_callback($result, $item_key, $
   }
 }
 
+/**
+ * Returns the list of the States abbreviations.
+ */
 function _nas_master_native_plants_abbrev_to_state_states_get_list() {
   $states = array(
     'AL' => 'Alabama',

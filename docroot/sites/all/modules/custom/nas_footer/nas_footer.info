@@ -1,4 +1,5 @@
 name = NAS footer custom pane
 core = 7.x
+description = Provides a footer custom pane
 package = NAS
 dependencies[] = ctools

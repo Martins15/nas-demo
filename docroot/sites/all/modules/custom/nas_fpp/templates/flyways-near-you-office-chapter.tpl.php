@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Audubon Near You. Offices & Chapters template file.
@@ -23,7 +24,7 @@
         <small class="serif">
           <em><?php print $item['subtitle']; ?></em>
         </small>
-       <?php endif; ?>
+      <?php endif; ?>
     </h5>
   </div>
 <?php endforeach; ?>

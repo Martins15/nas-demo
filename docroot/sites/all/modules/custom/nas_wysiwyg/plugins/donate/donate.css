@@ -29,11 +29,12 @@
 @media only screen and (min-width: 601px) {
   .donate-bar {
     font-size: 20px;
-    line-height: 25.5px; 
+    line-height: 25.5px;
   }
 }
 
-.donate-bar-caption, .donate-bar-button {
+.donate-bar-caption,
+.donate-bar-button {
   display: inline-block;
   vertical-align: middle;
   width: 100%;

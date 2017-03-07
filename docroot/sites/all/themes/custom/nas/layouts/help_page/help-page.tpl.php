@@ -6,7 +6,7 @@
  */
 ?>
 <?php print $content['hero']; ?>
-<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content no-padding">
+<section <?php print !empty($css_id) ? "id=\"$css_id\"" : ''; ?> class="global-content no-padding">
   <div class="row banner-set">
     <div class="large-6 columns"><?php print $content['left_card']; ?></div>
     <div class="large-6 columns"><?php print $content['right_card']; ?></div>

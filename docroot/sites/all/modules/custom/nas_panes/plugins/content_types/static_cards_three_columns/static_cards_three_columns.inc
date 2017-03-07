@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -131,9 +131,9 @@ function static_cards_three_columns_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('static_cards_three_columns', array(
-      'items' => $items,
-      'contextual_links' => $contextual_links,
-    ));
+    'items' => $items,
+    'contextual_links' => $contextual_links,
+  ));
 
   $block->content = $content;
 

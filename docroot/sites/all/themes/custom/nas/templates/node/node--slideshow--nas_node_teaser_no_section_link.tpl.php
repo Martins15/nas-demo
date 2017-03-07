@@ -87,11 +87,8 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="editorial-card index <?php print $classes; ?>"<?php print $attributes; ?>>
   <div class="row">
-
-<?php 
-$field_images = $content['field_editorial_card_image'];
-if (!empty($field_images)):
-?>
+    <?php $field_images = $content['field_editorial_card_image']; ?>
+    <?php if (!empty($field_images)): ?>
     <div class="tiny-4 columns">
       <div class="editorial-card-photo">
         <?php print render($field_images); ?>

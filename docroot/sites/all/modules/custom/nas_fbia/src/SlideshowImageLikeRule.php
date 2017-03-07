@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\nas_fbia\SlideshowImageLikeRule.
- */
-
 namespace Drupal\nas_fbia;
 
 use Facebook\InstantArticles\Elements\Image;
@@ -14,7 +9,7 @@ use Facebook\InstantArticles\Transformer\Warnings\InvalidSelector;
 use Facebook\InstantArticles\Transformer\Rules\SlideshowImageRule;
 
 /**
- * Class SlideshowImageLikeRule
+ * Class SlideshowImageLikeRule.
  *
  * @package Drupal\nas_fbia
  */
@@ -59,7 +54,7 @@ class SlideshowImageLikeRule extends SlideshowImageRule {
   public function apply($transformer, $slideshow, $node) {
     $image = Image::create();
 
-    // Builds the image
+    // Builds the image.
     $url = $this->getProperty(self::PROPERTY_IMAGE_URL, $node);
     if ($url) {
       $image->withURL($url);
@@ -84,6 +79,8 @@ class SlideshowImageLikeRule extends SlideshowImageRule {
       $caption->withTitle($caption_title);
       $image->withCaption($caption);
     }
+
+    $caption->withPosition(Caption::POSITION_BELOW);
 
     $caption_credit = $this->getProperty(self::PROPERTY_CAPTION_CREDIT, $node);
     if ($caption_credit) {

@@ -31,11 +31,19 @@ function nas_events_update_nodes($job = NULL) {
       'FeedsHTTPFetcher' => array(
         'source' => variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . 'event/' . $uuid . '?' . $_SERVER['REQUEST_TIME'],
         'uuid' => $uuid,
-      ));
+      ),
+    );
     $source = feeds_source('events_import');
     $source->addConfig($config);
     $source->save();
     $source->import();
+    // Implementing fix from https://www.drupal.org/node/2087091 to hide notices
+    // "Indirect modification of overloaded property FeedsSource::state has no
+    // effect in FeedsSource->import()"
+    // during import.
+    $source->state(FEEDS_FETCH);
+    $source->state(FEEDS_PROCESS);
+    $source->state(FEEDS_PROCESS_CLEAR);
   }
   watchdog('events', "Last time Events were synced at '%time'", array('%time' => date('Y-m-d H:i:s', $timestamp)));
   variable_set('nas_events_last_time_processed', REQUEST_TIME);
@@ -45,7 +53,7 @@ function nas_events_update_nodes($job = NULL) {
  * Get list of uuid and timestamp pairs().
  */
 function nas_events_get_list($timestamp, $page = 1, $site = 'National') {
-  $params  = array(
+  $params = array(
     'timestamp' => $timestamp,
     'site' => $site,
     'page' => $page,
@@ -137,13 +145,13 @@ function nas_events_feeds_after_save(FeedsSource $source, $entity, $item, $entit
         $entity->field_event_location[LANGUAGE_NONE][0] = array('lid' => $lid);
         field_attach_update('node', $entity);
         if (!empty($item['address']['latitude']) && !empty($item['address']['longitude'])) {
-          $query = db_update('location')
+          db_update('location')
             ->condition('lid', $lid)
             ->fields(array(
-                'latitude' => $item['address']['latitude'],
-                'longitude' => $item['address']['longitude'],
-                'source' => 1,
-              ))
+              'latitude' => $item['address']['latitude'],
+              'longitude' => $item['address']['longitude'],
+              'source' => 1,
+            ))
             ->execute();
         }
       }
@@ -321,7 +329,7 @@ function nas_events_check_deleted_nodes() {
  * @param string $uuid
  *   The UUID.
  *
- * @param mixed
+ * @return mixed
  *   Node object or FALSE.
  */
 function _nas_event_get_nid_by_uuid($uuid) {
@@ -344,7 +352,8 @@ function _nas_event_get_nid_by_uuid($uuid) {
  *
  * Todo: do not check past events?
  *
- * @return mixed
+ * @return array
+ *   UUIDs of available Event nodes.
  */
 function _nas_events_get_events_uuids() {
   $query = db_select('feeds_item', 'fi')
@@ -365,7 +374,7 @@ function _nas_events_get_events_uuids() {
  * @return array
  *   Array of UUIDs of the events that were deleted.
  */
-function _nas_events_get_deleted_events_uuids($uuids) {
+function _nas_events_get_deleted_events_uuids(array $uuids) {
   $uri = variable_get('nas_events_works_url', NAS_AUDUBON_WORKS_EVENTS_URL) . 'event/deleted';
   $url = url($uri, array('external' => TRUE));
   $result = drupal_http_request($url, array(
@@ -445,7 +454,7 @@ function _nas_events_get_events($state = 'all') {
 }
 
 /**
- * Implements hook_date_ical_export_post_render_alter() {
+ * Implements hook_date_ical_export_post_render_alter().
  */
 function nas_events_date_ical_export_post_render_alter(&$rendered_calendar, $view) {
   $node = _i18n_node_load($view->args[0]);
@@ -622,8 +631,6 @@ function nas_events_get_event_origin_site($node) {
  *
  * @param object $node
  *   Event node object.
- * @param string $origin_site
- *   Event node origin site machine name.
  */
 function nas_events_redirect_to_origin_site($node) {
   $uuid = nas_events_get_event_uuid($node);
