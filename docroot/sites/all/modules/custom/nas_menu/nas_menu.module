@@ -105,7 +105,12 @@ function nas_menu_search_form($form, &$form_state) {
   $options = array(
     'html' => TRUE,
     'attributes' => array(
-      'class' => array('hide-for-tiny', 'hide-for-small', 'hide-for-medium', 'header-search-close'),
+      'class' => array(
+        'hide-for-tiny',
+        'hide-for-small',
+        'hide-for-medium',
+        'header-search-close',
+      ),
     ),
   );
   $search_close = l('<i class="icon-close"></i>', '<front>', $options);
@@ -124,7 +129,7 @@ function nas_menu_search_form_submit($form, $form_state) {
 }
 
 /**
- * Render contextual links for menu
+ * Render contextual links for menu.
  */
 function nas_menu_cl($menu_delta, $additional_links = array()) {
   if (!module_exists('contextual') || !user_access('access contextual links')) {
@@ -170,9 +175,9 @@ function nas_menu_query_boaf_order_alter($query) {
   $orderBy = array();
   // Join to menu_links.
   $query->innerJoin('menu_links', 'ml', 'CONCAT(:node_prefix, node.nid) = ml.link_path AND ml.menu_name = :menu_name', array(
-      ':node_prefix' => 'node/',
-      ':menu_name' => 'boa',
-    ));
+    ':node_prefix' => 'node/',
+    ':menu_name' => 'boa',
+  ));
   // Order by menu structure.
   $query->orderBy('ml.weight');
 }

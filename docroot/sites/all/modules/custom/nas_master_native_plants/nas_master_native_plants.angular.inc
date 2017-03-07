@@ -8,7 +8,7 @@
 /**
  * Output Native Plants data in JSON per ZIP code.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
  */
 function nas_master_native_plants_data_zipcode($zipcode) {
@@ -39,8 +39,9 @@ function nas_master_native_plants_data_zipcode($zipcode) {
 /**
  * Get Native Plants for ZIP code.
  *
- * @param $zipcode
- *   ZIP code
+ * @param string $zipcode
+ *   ZIP code.
+ *
  * @return array
  *   Array of Native Plants data for ZIP code.
  */
@@ -110,9 +111,9 @@ function _nas_master_native_plants_get_terms() {
 /**
  * Get Audubon online nurseries for ZIP code.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
- * @param $limit
+ * @param int $limit
  *   Number of online nurseries to return.
  *
  * @return array
@@ -125,9 +126,9 @@ function _nas_master_native_plants_get_online_nurseries($zipcode, $limit = 0) {
 /**
  * Get Audubon nurseries for ZIP code.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
- * @param $limit
+ * @param int $limit
  *   Number of nurseries to return.
  *
  * @return array
@@ -140,9 +141,9 @@ function _nas_master_native_plants_get_offline_nurseries($zipcode, $limit = 0) {
 /**
  * Get Audubon additional resources for ZIP code.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
- * @param $limit
+ * @param int $limit
  *   Number of resources to return.
  *
  * @return array
@@ -155,11 +156,11 @@ function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0
 /**
  * Get Audubon resources for ZIP code.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
- * @param $limit
+ * @param int $limit
  *   Number of resources to return.
- * @param $include_state_resource
+ * @param bool $include_state_resource
  *   Whether to include state resource.
  *
  * @return array
@@ -245,8 +246,15 @@ function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_
 /**
  * Load native Plants nurseries data.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
+ * @param string $type
+ *   The type.
+ * @param bool $online
+ *   Online flag.
+ * @param int $limit
+ *   The limit.
+ *
  * @return array
  *   Array of Native Plants nurseries data for ZIP code.
  */
@@ -282,6 +290,7 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
     );
   }
 
+  $patterns = array('http://www.', 'https://www.', 'http://', 'https://');
   // Prepare nurseries.
   $nurseries = array();
   foreach ($view_results as $result) {
@@ -303,7 +312,7 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
 
     $res['address']['rendered'] = _native_master_native_plants_process_address($res['address']);
     if (!empty($res['link']['url'])) {
-      $res['link']['print'] = str_replace(array('http://www.', 'https://www.', 'http://', 'https://'), '', $res['link']['url']);
+      $res['link']['print'] = str_replace($patterns, '', $res['link']['url']);
       if (drupal_strlen($res['link']['print']) > 20) {
         $res['link']['print'] = rtrim(drupal_substr($res['link']['print'], 0, 17), '.') . '&hellip;';
       }
@@ -321,8 +330,9 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
 /**
  * ZIP code validation.
  *
- * @param $zipcode
+ * @param string $zipcode
  *   ZIP code.
+ *
  * @return array|bool
  *   Either error message or TRUE.
  */

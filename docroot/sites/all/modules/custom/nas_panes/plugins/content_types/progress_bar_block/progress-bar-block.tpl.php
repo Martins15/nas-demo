@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for custom pane progress bar.
@@ -21,7 +22,7 @@
       </div>
     </div>
   <?php endif; ?>
-  <div class="row<?php if ($spacebetween): ?> space-top<?php endif; ?>">
+  <div class="row<?php print $spacebetween ? ' space-top' : ''; ?>">
     <div class="column">
       <div class="progress-bar-content">
         <div class="progress" style="width:<?php print $percentage; ?>%">

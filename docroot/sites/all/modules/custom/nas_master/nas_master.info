@@ -1,5 +1,6 @@
 name = NAS master
 core = 7.x
+description = NAS master module.
 package = NAS
 dependencies[] = nas_date_feature
 dependencies[] = nas_bird_type_feature

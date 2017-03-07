@@ -27,14 +27,14 @@ function search_results_count_render($subtype, $conf, $args, $contexts) {
     return;
   }
 
-  $sort_links= _search_results_count_render_sort_links();
+  $sort_links = _search_results_count_render_sort_links();
 
   $block = new stdClass();
   $block->content = theme('search_results_count', array(
-      'title' => t('Articles'),
-      'total_rows' => $view->total_rows,
-      'current_rows' => count($view->result),
-      'sort_links' => $sort_links,
+    'title' => t('Articles'),
+    'total_rows' => $view->total_rows,
+    'current_rows' => count($view->result),
+    'sort_links' => $sort_links,
   ));
   return $block;
 }

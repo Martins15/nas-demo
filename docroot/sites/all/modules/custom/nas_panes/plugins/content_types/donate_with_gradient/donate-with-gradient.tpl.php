@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Donate card with gradient template file.

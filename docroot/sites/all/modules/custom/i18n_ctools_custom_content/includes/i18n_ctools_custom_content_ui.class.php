@@ -2,13 +2,20 @@
 
 /**
  * @file
- * i18n_ctools_custom_content_ui class.
+ * Contains i18n_ctools_custom_content_ui class.
  */
 
+// @codingStandardsIgnoreStart
 module_load_include('php', 'ctools_custom_content', 'plugins/export_ui/ctools_custom_content_ui.class');
 
+/**
+ * Class i18n_ctools_custom_content_ui.
+ */
 class i18n_ctools_custom_content_ui extends ctools_custom_content_ui {
 
+  /**
+   * {@inheritdoc}
+   */
   public function edit_form(&$form, &$form_state) {
     parent::edit_form($form, $form_state);
 
@@ -27,3 +34,4 @@ class i18n_ctools_custom_content_ui extends ctools_custom_content_ui {
   }
 
 }
+// @codingStandardsIgnoreEnd

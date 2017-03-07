@@ -61,8 +61,7 @@ function nas_panes_other_projects_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_panes_other_projects_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {

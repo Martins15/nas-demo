@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Special message to show when there is no translation of the page.
@@ -103,8 +104,6 @@ function nas_language_message_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function nas_language_message_render($subtype, $conf, $args, $context) {
-  // $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
-
   $block = new stdClass();
   $block->content = array(
     '#markup' => '',
@@ -147,7 +146,6 @@ function nas_language_message_render($subtype, $conf, $args, $context) {
         'contentBottom' => 0,
       ),
       'modalTheme' => 'NASLanguageMessageModalDialog',
-      // 'throbberTheme' => 'NASLanguageMessageModalThrobber',
       'modalOptions' => array(
         'opacity' => 0.55,
         'background' => '#000',

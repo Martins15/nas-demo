@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Frontpage Editorial Cards template file.

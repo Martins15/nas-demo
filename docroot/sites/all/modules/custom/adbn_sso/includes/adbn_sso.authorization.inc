@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains authorization hooks and functions.

@@ -92,7 +92,7 @@
       <?php print $linked_image; ?>
       <div class="editorial-card-banner gray overlap-banner<?php print $caption ? ' custom-caption' : ''; ?>">
         <?php print $left_icon; ?>
-        <?php print $caption ? $caption: t('Slideshow'); ?>
+        <?php print $caption ? $caption : t('Slideshow'); ?>
         <?php if (!empty($icon)): ?>
           <div class="icon-wrapper"><?php print $icon; ?></div>
         <?php endif; ?>

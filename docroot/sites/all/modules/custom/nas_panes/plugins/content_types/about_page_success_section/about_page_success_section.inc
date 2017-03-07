@@ -81,13 +81,12 @@ function about_page_success_section_render($subtype, $conf, $args, $contexts) {
   }
 
   $block->content = theme('about_page_success_section', array(
-      'title' => $conf['override_title_text'],
-      'text' => $conf['text']['value'],
-      'image' => $image,
-      'attribution' => $attribution,
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => $conf['override_title_text'],
+    'text' => $conf['text']['value'],
+    'image' => $image,
+    'attribution' => $attribution,
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }
-

@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @file
  * Typeahead.js drupal integration module.
  */
 
 /**
- * Define typeahead.js library url
+ * Define typeahead.js library url.
  */
 define('TWITTER_TYPEAHEAD_WEBSITE_URL', 'http://twitter.github.io/typeahead.js');
 
@@ -105,7 +106,7 @@ function twitter_typeahead_pre_render_textfield($element) {
 /**
  * Get the location of the typeahead.js library.
  *
- * @return
+ * @return mixed
  *   The location of the library, or FALSE if the library isn't installed.
  */
 function twitter_typeahead_get_path() {

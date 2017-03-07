@@ -5,12 +5,17 @@
  * Definition of views_handler_filter_panelizer_layout.
  */
 
+// @codingStandardsIgnoreStart
 /**
  * Filter by panelizer layout.
  *
  * @ingroup views_filter_handlers
  */
 class views_handler_filter_panelizer_layout extends views_handler_filter_in_operator {
+
+  /**
+   * {@inheritdoc}
+   */
   public function get_value_options() {
     if (isset($this->value_options)) {
       return;
@@ -21,4 +26,6 @@ class views_handler_filter_panelizer_layout extends views_handler_filter_in_oper
     $layouts = array_keys(ctools_export_crud_load_all('panelizer_defaults'));
     $this->value_options = array_combine($layouts, $layouts);
   }
+
 }
+// @codingStandardsIgnoreEnd

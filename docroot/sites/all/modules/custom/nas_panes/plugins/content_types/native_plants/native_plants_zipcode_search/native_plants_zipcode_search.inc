@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants ZIP code form plugin.
@@ -12,7 +13,6 @@ $plugin = array(
   'edit form' => 'native_plants_zipcode_search_edit_form',
   'render callback' => 'native_plants_zipcode_search_render',
   'hook theme' => 'native_plants_zipcode_search_theme',
-  // 'no title override' => TRUE,
   'defaults' => array(
     'title' => 'Search',
     'override_title_text' => 'Search',

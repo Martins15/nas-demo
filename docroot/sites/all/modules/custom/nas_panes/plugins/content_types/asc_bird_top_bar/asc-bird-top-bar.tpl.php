@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * S&C Field Guide Top bar template.

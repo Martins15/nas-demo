@@ -14,7 +14,8 @@
   display: inline-block;
 }
 
-#OptimizelyDonationBar input[type="submit"], #OptimizelyDonationBar a.buttonLink {
+#OptimizelyDonationBar input[type="submit"],
+#OptimizelyDonationBar a.buttonLink {
   background-color: #ef5a3e;
   border: none;
   border-color: #dd360f;

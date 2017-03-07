@@ -122,7 +122,7 @@ function nas_engagement_cards_preprocess_node(&$variables) {
  *
  * @return mixed
  *   associative array of config variables - for engagement cards set up with
- * a form element;
+ *   a form element;
  *   FALSE - for any other nodes.
  */
 function _nas_engagement_cards_get_config($node) {

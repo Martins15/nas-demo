@@ -19,15 +19,22 @@
  * @ingroup views_templates
  */
 ?>
-<table <?php if ($classes) { print 'class="data row-borders responsive '. $classes . '" '; } ?><?php print $attributes; ?>>
-   <?php if (!empty($title) || !empty($caption)) : ?>
+<table
+  <?php if ($classes) : ?>
+    <?php print 'class="data row-borders responsive ' . $classes . '" '; ?>
+  <?php endif; ?>
+  <?php print $attributes; ?>>
+  <?php if (!empty($title) || !empty($caption)) : ?>
      <caption><?php print $caption . $title; ?></caption>
   <?php endif; ?>
   <?php if (!empty($header)) : ?>
     <thead>
       <tr>
         <?php foreach ($header as $field => $label): ?>
-          <th <?php if ($header_classes[$field]) { print 'class="'. $header_classes[$field] . '" '; } ?>>
+          <th
+            <?php if ($header_classes[$field]) : ?>
+              <?php print 'class="' . $header_classes[$field] . '" '; ?>
+            <?php endif; ?>>
             <?php print $label; ?>
           </th>
         <?php endforeach; ?>
@@ -36,9 +43,16 @@
   <?php endif; ?>
   <tbody>
     <?php foreach ($rows as $row_count => $row): ?>
-      <tr <?php if ($row_classes[$row_count]) { print 'class="' . implode(' ', $row_classes[$row_count]) .'"';  } ?>>
+      <tr
+        <?php if ($row_classes[$row_count]) : ?>
+          <?php print 'class="' . implode(' ', $row_classes[$row_count]) . '"'; ?>
+        <?php endif; ?>>
         <?php foreach ($row as $field => $content): ?>
-          <td <?php if ($field_classes[$field][$row_count]) { print 'class="'. $field_classes[$field][$row_count] . '" '; } ?><?php print drupal_attributes($field_attributes[$field][$row_count]); ?>>
+          <td
+            <?php if ($field_classes[$field][$row_count]) : ?>
+              <?php print 'class="' . $field_classes[$field][$row_count] . '" '; ?>
+            <?php endif; ?>
+            <?php print drupal_attributes($field_attributes[$field][$row_count]); ?>>
             <?php print $content; ?>
           </td>
         <?php endforeach; ?>

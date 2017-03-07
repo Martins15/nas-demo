@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -46,8 +46,7 @@ function nas_panes_pane_in_the_news_custom_pane_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function nas_panes_pane_in_the_news_custom_pane_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -58,8 +57,9 @@ function nas_panes_pane_in_the_news_custom_pane_edit_form_submit(&$form, &$form_
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_panes_pane_in_the_news_custom_pane_render($subtype, $conf, $args, $contexts) {
   $condition = 'page';
@@ -79,7 +79,7 @@ function nas_panes_pane_in_the_news_custom_pane_render($subtype, $conf, $args, $
 
   $news_nodes = array();
 
-  $conf_is_empty = function($conf) {
+  $conf_is_empty = function ($conf) {
     foreach ($conf as $item) {
       if (isset($item['entity_reference']) && !empty($item['entity_reference'])) {
         return TRUE;

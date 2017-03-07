@@ -8,7 +8,7 @@
 /**
  * Implements hook_field_attach_form().
  */
-function  panelizer_layout_thumb_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
+function panelizer_layout_thumb_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
   if ($handler = panelizer_entity_plugin_get_handler($entity_type)) {
     if (isset($form['panelizer'])) {
       foreach ($form['panelizer'] as $key => &$item) {
@@ -22,17 +22,18 @@ function  panelizer_layout_thumb_field_attach_form($entity_type, $entity, &$form
 }
 
 /**
- * Alter form field and add layout thumbs.
+ * Alters form field and add layout thumbs.
+ *
  * @param PanelizerEntityDefault $plugin
- *  Plugin object
+ *   Plugin object.
  * @param string $view_mode
- *  Panelizer view mode
+ *   Panelizer view mode.
  * @param array $item
- *  Form field with list of layouts in options.
+ *   Form field with list of layouts in options.
  * @param object $entity
- *  Entity object
+ *   Entity object.
  */
-function panelizer_layout_thumb_add_layout_thumbs($plugin, $view_mode, &$item, $entity) {
+function panelizer_layout_thumb_add_layout_thumbs(PanelizerEntityDefault $plugin, $view_mode, array &$item, $entity) {
   ctools_include('common', 'panels');
   $bundle = $entity->type . '.' . $view_mode;
   $allowed_layouts = panelizer_get_allowed_layouts_option($plugin->entity_type, $entity->type);

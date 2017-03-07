@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -43,8 +43,7 @@ function species_across_audubon_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function species_across_audubon_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -55,8 +54,9 @@ function species_across_audubon_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function species_across_audubon_render($subtype, $conf, $args, $contexts) {
   $block_title = t('Across Audubon');
@@ -72,7 +72,7 @@ function species_across_audubon_render($subtype, $conf, $args, $contexts) {
   }
   $nodes = array();
 
-  $conf_is_empty = function($data) {
+  $conf_is_empty = function ($data) {
     foreach ($data as $item) {
       if (isset($item['entity_reference']) && !empty($item['entity_reference'])) {
         return TRUE;

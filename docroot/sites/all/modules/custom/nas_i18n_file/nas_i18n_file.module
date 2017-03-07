@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * nas_i18n_file routines.
+ * Module nas_i18n_file routines.
  */
 
 /**
@@ -19,12 +20,12 @@ function nas_i18n_file_entity_info_alter(&$entity_info) {
  * Return current site language instead of entity language.
  *
  * @param string $entity_type
- *  Type of inspected entity, is not in use.
+ *   Type of inspected entity, is not in use.
  * @param mixed $entity
- *  Inspected entity, is not in use.
+ *   Inspected entity, is not in use.
  *
  * @return string
- *  Language code.
+ *   Language code.
  */
 function nas_i18n_file_entity_language_callback($entity_type, $entity) {
   global $language;

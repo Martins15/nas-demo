@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for stay abreast footer section.
