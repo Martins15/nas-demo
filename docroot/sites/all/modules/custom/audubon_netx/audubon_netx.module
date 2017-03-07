@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains additional features for NetX module.
@@ -14,6 +15,17 @@ function audubon_netx_theme() {
       'template' => 'templates/netx-preview-table',
     ),
   );
+}
+
+/**
+ * Altering netx form to change default view of search results to a table view.
+ */
+function audubon_netx_form_netx_cfb_form_alter(&$form, &$form_state, $form_id) {
+  $form['cfb'] = array(
+    '#markup' => '<div class="cfbfilemanager"><div class="cfbbreadcrumbs"></div><table class="cfbdata"></table><div class="cfbpager"></div></div>',
+  );
+  $path = drupal_get_path('module', 'audubon_netx');
+  $form['preview']['#attached']['css'][] = $path . '/css/audubon-netx.css';
 }
 
 /**

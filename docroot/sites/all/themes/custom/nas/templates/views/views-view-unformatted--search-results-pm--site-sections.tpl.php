@@ -14,13 +14,13 @@
       $image = '';
       if ($file = file_load($result->_entity_properties['image'])) {
         $image = theme('image', array(
-            'path' => image_style_url('article_teaser', $file->uri),
-            'alt' => $result->_entity_properties['hero_image_title'],
-          ));
+          'path' => image_style_url('article_teaser', $file->uri),
+          'alt' => $result->_entity_properties['hero_image_title'],
+        ));
         $linked_image = l($image, $result->_entity_properties['path'], array(
-            'html' => TRUE,
-            'attributes' => array('title' => $result->_entity_properties['hero_image_title']),
-          ));
+          'html' => TRUE,
+          'attributes' => array('title' => $result->_entity_properties['hero_image_title']),
+        ));
       }
       $title = l($result->_entity_properties['title'], $result->_entity_properties['path']);
     ?>

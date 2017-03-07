@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Event Page Intro template file.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template implementation to display the panel's layout.

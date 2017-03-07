@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Provides a class with implemented SOAP methods for SSO service.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Conservation Strategy News template file.

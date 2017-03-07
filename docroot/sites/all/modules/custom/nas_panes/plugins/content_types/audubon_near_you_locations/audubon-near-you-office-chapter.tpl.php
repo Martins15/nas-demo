@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @file
  * Audubon Near You. Offices & Chapters template file.
  */
 ?>
 
-<div id="audubon-near-you--office-chapter--wrapper"<?php if (!empty($top_offset)) print " class='{$top_offset}'"; ?>>
+<div id="audubon-near-you--office-chapter--wrapper"<?php print !empty($top_offset) ? " class='$top_offset'" : ''; ?>>
   <div class="large-4 columns">
     <h2 class="title-block"><?php print t('Offices & Chapters'); ?></h2>
     <?php if (empty($items)) : ?>
@@ -36,9 +37,9 @@
                 <?php print $item['address_label']; ?>
               </span>
               <?php print $item['address']['thoroughfare']; ?>
-              <?php print $item['address']['postal_code']."<br/>"; ?>
-              <?php print $item['address']['locality']." - "; ?>
-              <?php print $item['address']['administrative_area']." - "; ?>
+              <?php print $item['address']['postal_code']; ?><br/>
+              <?php print $item['address']['locality']; ?> -
+              <?php print $item['address']['administrative_area']; ?> -
               <?php print $item['address']['country']; ?>
             </div>
           </div>

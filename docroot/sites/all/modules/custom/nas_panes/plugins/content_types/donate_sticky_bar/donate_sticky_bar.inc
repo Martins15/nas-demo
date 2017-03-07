@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Donate sticky bar at the bottom of the page.

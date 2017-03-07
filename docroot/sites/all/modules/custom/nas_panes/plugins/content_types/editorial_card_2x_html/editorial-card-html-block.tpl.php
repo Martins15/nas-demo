@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Free HTML block template file.

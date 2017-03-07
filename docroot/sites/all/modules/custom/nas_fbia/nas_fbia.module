@@ -19,8 +19,10 @@ function nas_fbia_field_formatter_view($entity_type, $entity, $field, $instance,
   $article = $entity->fb_instant_article;
   list(, , $bundle) = entity_extract_ids($entity_type, $entity);
   $layout_settings = fb_instant_articles_display_get_layout_settings($entity_type, $bundle);
+  // @codingStandardsIgnoreStart
   \Drupal\nas_fbia\EntityFieldMapper::create($layout_settings, $article)
     ->map($field, $instance, $langcode, $items, $display);
+  // @codingStandardsIgnoreEnd
 }
 
 /**
@@ -158,12 +160,14 @@ function nas_fbia_fb_instant_articles_article_alter($instantArticle, $context) {
   $header = $instantArticle->getHeader();
   // Author.
   $info = $wrapper->getPropertyInfo();
+  // @codingStandardsIgnoreStart
   if (isset($info['field_author']) && $contact_node = $wrapper->field_author->value()) {
     $header->withAuthors([\Facebook\InstantArticles\Elements\Author::create()->withName($contact_node->title)]);
   }
   else {
     $header->withAuthors([\Facebook\InstantArticles\Elements\Author::create()->withName('@NationalAudubonSociety')]);
   }
+  // @codingStandardsIgnoreEnd
 
   if ($section = nas_search_get_article_section($context['entity'], array(), '', 'node')) {
     $header->withKicker($section->name);
@@ -237,7 +241,7 @@ function nas_fbia_fb_instant_articles_transformer_rules_alter(&$rules) {
     ],
   ];
   $rules[] = [
-    'class' => 'SlideshowRule',
+    'class' => '\Drupal\nas_fbia\NasSlideshowRule',
     'selector' => '.slideshow',
   ];
   $rules[] = [

@@ -71,12 +71,12 @@ function about_page_intro_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $block->content = theme('about_page_intro', array(
-      'title' => $conf['override_title_text'],
-      'left_column' => $conf['left_column']['value'],
-      'right_column' => $conf['right_column']['value'],
-      'full_width_text' => $conf['full_width_text']['value'],
-      'contextual_links' => $contextual_links,
-    ));
+    'title' => $conf['override_title_text'],
+    'left_column' => $conf['left_column']['value'],
+    'right_column' => $conf['right_column']['value'],
+    'full_width_text' => $conf['full_width_text']['value'],
+    'contextual_links' => $contextual_links,
+  ));
 
   return $block;
 }

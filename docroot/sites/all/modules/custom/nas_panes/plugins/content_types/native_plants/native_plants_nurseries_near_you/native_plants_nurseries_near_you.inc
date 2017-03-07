@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants Nurseries near you plugin.
@@ -124,13 +125,47 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
-    else {
-      foreach ($contexts as $context) {
-        if ($context->plugin == 'entity:permalink') {
-          $conf['zipcode'] = $context->data->zip_code;
-          break;
-        }
+  }
+  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+
+  $geometry = array();
+  // Perform proximity search only if we are looking for offline nurseries.
+  if (!$conf['online']) {
+    ctools_include('plugins');
+    if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
+      if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
+        $geometry = $function($zipcode);
       }
+    }
+  }
+
+  $nurseries = array();
+  if (!$conf['online'] && $geometry) {
+    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
+    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online'], $latlon);
+  }
+  elseif ($conf['online']) {
+    $state_code = _nas_master_native_plants_zipcode_to_state($zipcode);
+    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online'], 'all', $state_code);
+  }
+  else {
+    $view_results = views_get_view_result('nurseries_near_you', 'default', $conf['online']);
+  }
+
+  // Prepare nurseries.
+  foreach ($view_results as $result) {
+    if (!$nursery = node_load($result->entity)) {
+      continue;
+    }
+    $nursery_wrapper = entity_metadata_wrapper('node', $nursery);
+    $nurseries[] = array(
+      'title' => $nursery_wrapper->title->value(),
+      'address' => $nursery_wrapper->field_nursery_address->value(),
+      'phone' => $nursery_wrapper->field_nursery_phone->value(),
+      'link' => $nursery_wrapper->field_nursery_link->value(),
+    );
+    if (count($nurseries) == $conf['quantity']) {
+      break;
     }
   }
 

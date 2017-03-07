@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Event social sharing block.

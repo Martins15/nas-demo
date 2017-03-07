@@ -11,7 +11,7 @@
   <h3><?php print $title; ?></h3>
 <?php endif; ?>
 <?php foreach ($rows as $id => $row): ?>
-  <div<?php if ($classes_array[$id]) { print ' class="page-' . $view->query->pager->current_page . ' ' . $classes_array[$id] .'"';  } ?>>
+  <div<?php print $classes_array[$id] ? ' class="page-' . $view->query->pager->current_page . ' ' . $classes_array[$id] . '"' : ''; ?>>
     <?php print $row; ?>
   </div>
 <?php endforeach; ?>

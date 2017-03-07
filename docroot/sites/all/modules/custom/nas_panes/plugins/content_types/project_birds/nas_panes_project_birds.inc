@@ -16,6 +16,7 @@ $plugin = array(
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function nas_panes_project_birds_render($subtype, $conf, $args, $context) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane Donate cards (3x).
@@ -16,7 +17,7 @@
 <div class="editorial-card-3x <?php print $additional_classes; ?> <?php print !empty($spacebottom) ? $spacebottom : ''; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php if ($title): ?>
-    <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?><?php if (!empty($spacebetween)): ?> space-bottom<?php endif; ?>">
+    <div class="row section-header<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebetween) ? ' space-bottom' : ''; ?>">
       <?php if ($title): ?>
       <div class="column">
         <h2 class="thin"><?php print $title; ?></h2>
@@ -32,7 +33,7 @@
         <?php print $teaser; ?>
       <?php elseif (is_array($teaser)): ?>
         <div class="columns large-4">
-          <div class="editorial-card<?php if (!$teaser['linked_image']): ?> editorial-card-no-image<?php endif; ?> collapse-minimal">
+          <div class="editorial-card<?php print !$teaser['linked_image'] ? ' editorial-card-no-image' : ''; ?> collapse-minimal">
             <div class="editorial-card-photo">
               <?php print $teaser['linked_image']; ?>
             </div>

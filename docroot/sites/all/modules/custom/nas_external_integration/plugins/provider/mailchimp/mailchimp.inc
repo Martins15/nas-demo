@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Mailchimp integration plugin.

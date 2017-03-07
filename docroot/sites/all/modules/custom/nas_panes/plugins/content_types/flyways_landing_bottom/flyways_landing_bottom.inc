@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -93,8 +93,7 @@ function flyways_landing_bottom_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function flyways_landing_bottom_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -105,14 +104,15 @@ function flyways_landing_bottom_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
   // @codingStandardsIgnoreStart
   // Sanitize configuration before passing to template.
-  array_walk_recursive($conf, function(&$value, $key) {
+  array_walk_recursive($conf, function (&$value, $key) {
     if (strpos($key, 'image') !== FALSE) {
       $value = file_create_url($value);
     }
@@ -125,7 +125,7 @@ function flyways_landing_bottom_render($subtype, $conf, $args, $contexts) {
   });
   // @codingStandardsIgnoreEnd
 
-  $conf_is_not_empty = function($conf) {
+  $conf_is_not_empty = function ($conf) {
     foreach ($conf['entity_reference'] as $item) {
       if (isset($item['entity_id']) && !empty($item['entity_id'])) {
         return TRUE;

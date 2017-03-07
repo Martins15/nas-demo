@@ -1388,6 +1388,7 @@ function _netx_populate_assets_for_category($cid) {
     $tree[$id]->size = $adata['filesize'];
     $tree[$id]->assetId = $adata['assetId'];
     $tree[$id]->assetPreview = $file->preview;
+    $tree[$id]->dimensions = $adata['filewidth'] . 'x' . $adata['fileheight'];
   }
   $netx_media_ui = FALSE;
 

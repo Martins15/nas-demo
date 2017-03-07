@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Main file for the NAS Master Native Plants module.
@@ -731,10 +732,10 @@ function nas_master_native_plants_library() {
     'title' => 'AngularJS Native Plants',
     'version' => '1.0.0',
     'js' => array(
-      $module_path .  '/js/nas_master_native_plants.js' => array(
+      $module_path . '/js/nas_master_native_plants.js' => array(
         'type' => 'file',
       ),
-      $module_path .  '/js/nas_master_native_plants.angular.js' => array(
+      $module_path . '/js/nas_master_native_plants.angular.js' => array(
         'type' => 'file',
       ),
     ),

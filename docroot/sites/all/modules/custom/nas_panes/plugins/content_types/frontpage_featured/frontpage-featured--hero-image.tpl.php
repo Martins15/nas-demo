@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Featured Frontpage (hero image variant) template file.
@@ -37,4 +38,3 @@
     </div>
   <?php endif; ?>
 </div>
-

@@ -15,8 +15,9 @@ $plugin = array(
 );
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
   $context_node = $context->data;
@@ -26,7 +27,6 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
 
   $parameters = array(
     'only_active_trail' => FALSE,
-    'min_depth' => 1,
     'min_depth' => 1,
   );
   $_links = i18n_menu_localize_tree(menu_build_tree('boa', $parameters));
@@ -47,24 +47,28 @@ function nas_panes_boa_family_pager_render($subtype, $conf, $args, $context) {
   $prev_node = _i18n_node_load($nid);
   $prev_title_link = l($prev_node->title, $prev_path);
   $prev_text_link = l(t('Previous Family'), $prev_path);
+  // @codingStandardsIgnoreStart
   $prev_link = l('', $prev_path, array('attributes' => array('class' => 'previous')));
+  // @codingStandardsIgnoreEnd
 
   $next_path = $links[$next_key]['link_path'];
   list(, $nid) = explode('/', $next_path);
   $next_node = _i18n_node_load($nid);
   $next_title_link = l($next_node->title, $next_path);
   $next_text_link = l(t('Next Family'), $next_path);
+  // @codingStandardsIgnoreStart
   $next_link = l('', $next_path, array('attributes' => array('class' => 'next')));
+  // @codingStandardsIgnoreEnd
 
   $block = new stdClass();
   $block->content = '';
   $block->content = theme('boa_family_pager', array(
-      'prev_text_link' => $prev_text_link,
-      'prev_title_link' => $prev_title_link,
-      'prev_link' => $prev_link,
-      'next_text_link' => $next_text_link,
-      'next_title_link' => $next_title_link,
-      'next_link' => $next_link,
+    'prev_text_link' => $prev_text_link,
+    'prev_title_link' => $prev_title_link,
+    'prev_link' => $prev_link,
+    'next_text_link' => $next_text_link,
+    'next_title_link' => $next_title_link,
+    'next_link' => $next_link,
   ));
 
   return $block;

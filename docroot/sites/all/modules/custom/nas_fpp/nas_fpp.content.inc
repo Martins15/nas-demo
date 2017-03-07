@@ -28,10 +28,13 @@ function nas_fpp_get_default_image($filename) {
 
 /**
  * Save image to public folder.
- * $filepath path to file
- * $filedata file properties
+ *
+ * @param string $filepath
+ *   Path to file.
+ * @param array $filedata
+ *   File properties.
  */
-function nas_fpp_save_default_image($filepath, $filedata = array()) {
+function nas_fpp_save_default_image($filepath, array $filedata = array()) {
   $filepath_array = explode('/', $filepath);
   $filename = array_pop($filepath_array);
   $public_uri = 'public://' . $filename;
@@ -443,7 +446,8 @@ function nas_fpp_create_panels_pane($did, $bundle, $region, $position = 0, $uuid
 /**
  * Creates Flyway Hero and Flyway Navigation FPPs test content.
  *
- * @param $node object Node in which panelizer panel FPP should be added.
+ * @param object $node
+ *   Node in which panelizer panel FPP should be added.
  */
 function nas_fpp_flyway_create_test_content($node) {
   $did = db_query('SELECT did FROM {panelizer_entity}

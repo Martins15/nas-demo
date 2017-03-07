@@ -25,6 +25,11 @@ function nas_text_format_feature_filter_default_formats() {
           'filter_url_length' => 72,
         ),
       ),
+      'h5p_content' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
+      ),
       'bean_wysiwyg_filter' => array(
         'weight' => 2,
         'status' => 1,
@@ -57,6 +62,11 @@ function nas_text_format_feature_filter_default_formats() {
         'settings' => array(
           'filter_url_length' => 72,
         ),
+      ),
+      'h5p_content' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
       ),
       'bean_wysiwyg_filter' => array(
         'weight' => 2,

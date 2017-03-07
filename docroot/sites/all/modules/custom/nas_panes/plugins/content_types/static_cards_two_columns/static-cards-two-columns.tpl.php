@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Static cards two columns template file.

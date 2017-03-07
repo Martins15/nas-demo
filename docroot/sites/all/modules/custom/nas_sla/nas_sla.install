@@ -5,6 +5,9 @@
  * For hook_update_X functions.
  */
 
+/**
+ * Implements hook_install().
+ */
 function nas_sla_install() {
   features_revert_module('nas_news_page_feature');
   features_revert_module('nas_static_page_feature');
@@ -22,6 +25,7 @@ function nas_sla_update_7102() {
 
 /**
  * Enable module Taxonomy Order Select.
+ *
  * Revert NAS Article CT feature.
  */
 function nas_sla_update_7103() {
