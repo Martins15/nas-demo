@@ -4091,3 +4091,35 @@ function nas_master_update_7278() {
 function nas_master_update_7279() {
   module_enable(array('nas_quiz_configuration'));
 }
+
+/**
+ * Update RSS feature and RSS view modes.
+ */
+function nas_master_update_7280() {
+  features_revert(array(
+    'nas_rss' => array('views_view'),
+  ));
+}
+
+/**
+ * Revert feature nas_metatags_feature.
+ */
+function nas_master_update_7281() {
+  features_revert(array(
+    'nas_metatags_feature' => array('metatag'),
+  ));
+}
+
+/**
+ * Enable h5p module.
+ */
+function nas_master_update_7282() {
+  module_enable(array(
+    'h5p',
+    'h5peditor',
+    'nas_h5p',
+  ));
+  features_revert(array(
+    'nas_text_format_feature' => array('filter'),
+  ));
+}

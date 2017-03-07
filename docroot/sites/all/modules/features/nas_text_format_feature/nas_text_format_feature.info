@@ -4,6 +4,7 @@ package = NAS
 dependencies[] = bean_wysiwyg
 dependencies[] = features
 dependencies[] = filter
+dependencies[] = h5p
 dependencies[] = media_wysiwyg
 dependencies[] = nas_wysiwyg
 dependencies[] = rel_to_abs

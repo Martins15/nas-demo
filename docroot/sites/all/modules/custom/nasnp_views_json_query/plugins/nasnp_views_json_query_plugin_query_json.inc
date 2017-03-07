@@ -37,7 +37,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     if (isset($this->filter)) {
       foreach ($this->filter as $key => $filter) {
         if ($filter->options['key'] == 'zipcode') {
-          $uri = str_replace('zipcode ', $filter->value, $uri);
+          $uri = str_replace('zipcode', $filter->value, $uri);
           unset($this->filter[$key]);
           $request = TRUE;
         }
