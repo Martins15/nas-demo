@@ -20,7 +20,6 @@
     custom_modules_path: sites/all/modules/custom/
     custom_themes_path: sites/all/themes/custom
     features_path: sites/all/modules/features
-    features_ignore_path: sites/all/features/nonstandard
     phpcs_modules_ignore:
       - sites/all/themes/circle
       - sites/all/modules/custom/adbn_sso/vendor

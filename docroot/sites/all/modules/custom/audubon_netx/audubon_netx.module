@@ -20,6 +20,17 @@ function audubon_netx_theme() {
 /**
  * Altering netx form to change default view of search results to a table view.
  */
+function audubon_netx_form_netx_cfb_form_alter(&$form, &$form_state, $form_id) {
+  $form['cfb'] = array(
+    '#markup' => '<div class="cfbfilemanager"><div class="cfbbreadcrumbs"></div><table class="cfbdata"></table><div class="cfbpager"></div></div>',
+  );
+  $path = drupal_get_path('module', 'audubon_netx');
+  $form['preview']['#attached']['css'][] = $path . '/css/audubon-netx.css';
+}
+
+/**
+ * Altering netx form to change default view of search results to a table view.
+ */
 function audubon_netx_form_netx_add_form_alter(&$form, &$form_state, $form_id) {
   if (!isset($form['preview']['list']['#options'])) {
     return;

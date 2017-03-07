@@ -241,7 +241,7 @@ function nas_fbia_fb_instant_articles_transformer_rules_alter(&$rules) {
     ],
   ];
   $rules[] = [
-    'class' => 'SlideshowRule',
+    'class' => '\Drupal\nas_fbia\NasSlideshowRule',
     'selector' => '.slideshow',
   ];
   $rules[] = [
