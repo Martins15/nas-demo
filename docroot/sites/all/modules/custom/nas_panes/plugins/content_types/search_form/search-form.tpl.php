@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * About Page Intro template file.

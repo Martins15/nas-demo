@@ -5463,10 +5463,17 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 .editorial-card-4x .editorial-card {
   border: none;
   box-shadow: none;
+  margin-bottom: auto;
 }
 .editorial-card-4x .editorial-card-content {
   padding-right: 0;
   padding-left: 0;
+  padding-bottom: 0;
+}
+@media only screen and (min-width: 0px) and (max-width: 768px) {
+  .editorial-card-4x .editorial-card-content {
+    min-height: 75px;
+  }
 }
 
 .sidebar > .local-cnc, .article-sidebar > .local-cnc {

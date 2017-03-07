@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Similar birds pane for the bird node view.

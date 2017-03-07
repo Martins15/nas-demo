@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Featured Article social block template file.

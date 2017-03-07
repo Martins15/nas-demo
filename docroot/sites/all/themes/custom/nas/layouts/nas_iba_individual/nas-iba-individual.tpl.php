@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template implementation to display the panel's layout.
@@ -13,16 +14,16 @@
   </header>
   <div class="row space-bottom double">
     <div class="large-8 columns text-container">
-    	<?php print $content['main']; ?>
+      <?php print $content['main']; ?>
     </div>
     <div class="large-4 columns sidebar">
-    	<div class="row">
-    		<?php print $content['sidebar']; ?>
-    	</div>
+      <div class="row">
+        <?php print $content['sidebar']; ?>
+      </div>
     </div>
   </div>
   <?php print $content['featured']; ?>
   <section class="card-set bg-1">
-  	<?php print $content['cards_set']; ?>
+    <?php print $content['cards_set']; ?>
   </section>
 </section>

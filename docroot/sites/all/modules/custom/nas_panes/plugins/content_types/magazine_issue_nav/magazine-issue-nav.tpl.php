@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane Magazine Issue. Featured Articles.

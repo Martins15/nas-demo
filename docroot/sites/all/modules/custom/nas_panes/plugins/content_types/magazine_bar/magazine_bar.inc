@@ -42,4 +42,3 @@ function magazine_bar_render($subtype, $conf, $args, $context) {
 
   return $block;
 }
-

@@ -22,7 +22,7 @@
  * - $pager: The pager next/prev links to display, if any
  * - $exposed: Exposed widget form/info to display
  * - $feed_icon: Feed icon to display, if any
- * - $more: A link to view more, if any
+ * - $more: A link to view more, if any.
  *
  * @ingroup views_templates
  */
@@ -52,7 +52,7 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <div class="view-content"<?php if ($equalizer) { print ' data-equalizer '; } ?>>
+    <div class="view-content"<?php print $equalizer ? ' data-equalizer ' : ''; ?>>
       <?php print $rows; ?>
     </div>
   <?php elseif ($empty): ?>

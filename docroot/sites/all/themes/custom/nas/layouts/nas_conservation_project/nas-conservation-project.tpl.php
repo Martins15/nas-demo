@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template implementation to display the panel's layout.
@@ -18,8 +19,8 @@
       <div class="column">
         <?php print $content['strategy_icon']; ?>
         <h4 class="hero-slug"><?php print $content['strategy']; ?></h4>
-        <h2 class="hero-title big<?php if ($content['strategy_icon']): ?> with-icon<?php endif; ?>"><?php print $content['title']; ?></h2>
-        <p class="hero-blurb<?php if ($content['strategy_icon']): ?> with-icon<?php endif; ?>"><?php print $content['subtitle']; ?></p>
+        <h2 class="hero-title big<?php print $content['strategy_icon'] ? ' with-icon' : ''; ?>"><?php print $content['title']; ?></h2>
+        <p class="hero-blurb<?php print $content['strategy_icon'] ? ' with-icon' : ''; ?>"><?php print $content['subtitle']; ?></p>
       </div>
     </div>
   </div>

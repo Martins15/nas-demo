@@ -38,6 +38,7 @@ features[field_instance][] = node-static_page-field_editorial_card_subtitle
 features[field_instance][] = node-static_page-field_editorial_card_title
 features[field_instance][] = node-static_page-field_file_attachments
 features[field_instance][] = node-static_page-field_hero_image
+features[field_instance][] = node-static_page-field_hero_mobile_image
 features[field_instance][] = node-static_page-field_images
 features[field_instance][] = node-static_page-field_internal_tagging
 features[field_instance][] = node-static_page-field_menu_section

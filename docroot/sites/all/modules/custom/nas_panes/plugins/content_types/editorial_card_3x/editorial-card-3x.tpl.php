@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane flyway_in_the_news.
@@ -17,7 +18,7 @@
 <div class="editorial-card-3x <?php print $additional_classes; ?> <?php print !empty($spacebottom) ? $spacebottom : ''; ?> contextual-links-region">
   <?php print $contextual_links; ?>
   <?php if ($title || $more_link): ?>
-    <div class="row section-header<?php if (!empty($spacetop)): ?> space-top<?php endif; ?><?php if (!empty($spacebetween)): ?> space-bottom<?php endif; ?>">
+    <div class="row section-header<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebetween) ? ' space-bottom' : ''; ?>">
       <?php if ($title): ?>
       <div class="column">
         <h2 class="thin">

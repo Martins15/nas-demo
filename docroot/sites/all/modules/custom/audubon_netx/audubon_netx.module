@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains additional features for NetX module.
@@ -38,15 +39,21 @@ function audubon_netx_form_netx_add_form_alter(&$form, &$form_state, $form_id) {
     );
   }
 
-  $form['preview']['title'] = array(
-    '#markup' => t(
-      'Page !page of !total',
-      array(
-        '!page' => $form_state['netx']['page'],
-        '!total' => ceil($form_state['netx']['assets']['total'] / 10),
-      )
-    ),
+  $current_page = $form_state['netx']['page'];
+  $total = $form_state['netx']['assets']['total'];
+
+  $title = t(
+    'Page !page of !total',
+    array(
+      '!page' => $current_page,
+      '!total' => ceil($total / 10),
+    )
   );
+
+  $form['preview']['title'] = array(
+    '#markup' => $title,
+  );
+
   foreach ($form_state['netx']['assets']['list'] as $asset_id => $asset) {
     $file = file_uri_to_object(_netx_build_asset_uri($asset));
     if (!isset($file->fid)) {
@@ -73,6 +80,41 @@ function audubon_netx_form_netx_add_form_alter(&$form, &$form_state, $form_id) {
       '#markup' => $asset['filewidth'] . 'x' . $asset['fileheight'] . 'px',
     );
   }
+  $form['preview']['pager']['current_page'] = array(
+    '#type' => 'hidden',
+    '#value' => $current_page,
+    '#attributes' => array(
+      'class' => array('netx-current-page'),
+    ),
+  );
+  $form['preview']['pager']['total'] = array(
+    '#type' => 'hidden',
+    '#value' => ceil($total / 10),
+    '#attributes' => array(
+      'class' => array('netx-total-pages'),
+    ),
+  );
+  $form['preview']['pager']['current_page'] = array(
+    '#type' => 'hidden',
+    '#value' => $current_page,
+    '#attributes' => array(
+      'class' => array('netx-current-page'),
+    ),
+  );
+  $form['preview']['pager']['page'] = array(
+    '#type' => 'submit',
+    '#value' => t('Go to page'),
+    '#submit' => array('_netx_search_images_page_submit'),
+    '#attributes' => array(
+      'id' => array('netx-pager-submit'),
+    ),
+    '#ajax' => array(
+      'callback' => '_netx_preview_callback',
+      'wrapper' => 'netx-preview',
+    ),
+  );
+  $form['preview']['pager']['prev']['#access'] = FALSE;
+  $form['preview']['pager']['next']['#access'] = FALSE;
 }
 
 /**
@@ -94,4 +136,13 @@ function audubon_netx_radio_process($element) {
   $element['#name'] = 'list';
 
   return $element;
+}
+
+/**
+ * Submit handler for the "Go to page" button.
+ */
+function _netx_search_images_page_submit($form, &$form_state) {
+  global $_POST;
+  $form_state['netx']['page'] = isset($_POST['current_page']) ? $_POST['current_page'] : 1;
+  _netx_search_helper($form_state);
 }

@@ -118,6 +118,7 @@ function boa_index_bio_form_submit($form, &$form_state) {
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function nas_boa_index_bio_render($subtype, $conf, $args, $context) {

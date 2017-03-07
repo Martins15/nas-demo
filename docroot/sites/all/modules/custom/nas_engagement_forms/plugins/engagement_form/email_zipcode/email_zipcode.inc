@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Engagement form with email address and ZIP code fields.

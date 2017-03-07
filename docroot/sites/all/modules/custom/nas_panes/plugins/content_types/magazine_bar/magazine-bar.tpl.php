@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Magazine bar template.

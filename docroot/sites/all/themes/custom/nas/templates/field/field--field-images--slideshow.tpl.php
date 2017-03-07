@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template implementation to display slideshow images.
@@ -69,7 +70,7 @@
                     </div>
                   </div>
                   <div class="columns tiny-12 small-8 small-offset-2 medium-6 medium-offset-3 large-4 large-offset-0 end text-container">
-                    <?php 
+                    <?php
                       $nas_engagement_cards_sidebar_rendered_card = &drupal_static('nas_engagement_cards_sidebar_rendered_card');
                       print $nas_engagement_cards_sidebar_rendered_card;
                     ?>

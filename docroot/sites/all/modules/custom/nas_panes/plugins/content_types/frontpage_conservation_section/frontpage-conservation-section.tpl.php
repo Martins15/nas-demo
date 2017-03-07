@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Frontpage conservation section. Full bg area template file.

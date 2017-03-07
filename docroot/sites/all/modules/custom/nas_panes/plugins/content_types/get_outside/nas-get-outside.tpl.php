@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Featured Bird template file.

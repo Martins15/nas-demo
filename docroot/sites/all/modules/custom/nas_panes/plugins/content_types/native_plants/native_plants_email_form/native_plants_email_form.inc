@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants email form plugin.

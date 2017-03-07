@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Search page editorial results count pane template.

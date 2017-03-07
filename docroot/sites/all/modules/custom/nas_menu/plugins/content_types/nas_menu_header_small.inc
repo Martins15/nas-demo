@@ -87,13 +87,12 @@ function nas_menu_nas_menu_header_small_content_type_render() {
   $rendered_form = drupal_render($form);
 
   $content = theme('nas_small_header', array(
-      'items' => $items,
-      'frontpage_url' => $frontpage_url,
-      'site_name' => $site_name,
-      'form' => $rendered_form,
-      'searchpage_url' => $searchpage_url,
-    )
-  );
+    'items' => $items,
+    'frontpage_url' => $frontpage_url,
+    'site_name' => $site_name,
+    'form' => $rendered_form,
+    'searchpage_url' => $searchpage_url,
+  ));
 
   $block->content = $content;
   return $block;

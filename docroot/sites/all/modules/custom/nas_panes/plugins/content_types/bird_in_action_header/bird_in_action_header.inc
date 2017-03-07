@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Header for the in action block for birds pages (nodes).
@@ -8,7 +9,6 @@ $plugin = array(
   'title' => t('Bird in action - Header'),
   'description' => t('Header for the in action block for birds pages.'),
   'category' => 'NAS',
-  // 'edit form' => 'bird_in_action_header_edit',
   'render callback' => 'bird_in_action_header_render',
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'hook theme' => 'bird_in_action_header_theme',

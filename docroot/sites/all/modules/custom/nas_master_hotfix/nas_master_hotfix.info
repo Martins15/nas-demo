@@ -1,3 +1,4 @@
 name = NAS master for hotfixes
 core = 7.x
+description = Master module for hotfixes
 package = NAS

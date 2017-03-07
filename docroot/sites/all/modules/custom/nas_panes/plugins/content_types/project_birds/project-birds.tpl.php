@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane flyway_in_the_news.
@@ -54,7 +55,7 @@
                   <li class="see-all-show"><?php print $teasers[$i]; ?></li>
                 <?php endif; ?>
               <?php endfor; ?>
-           <?php endif; ?>
+            <?php endif; ?>
           </ul>
         <?php endif; ?>
       </div>
