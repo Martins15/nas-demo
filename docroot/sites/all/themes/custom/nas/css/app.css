@@ -4121,6 +4121,10 @@ table td, table th {
   padding: 0 16px;
 }
 
+.search-select:first-child + .ms-options-wrap > .ms-options {
+  min-height: 225px !important;
+}
+
 .ms-options-wrap > .ms-options > .ms-search input {
   width: 100%;
   padding: 4px 5px;
