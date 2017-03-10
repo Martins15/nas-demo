@@ -84,9 +84,10 @@
                    data-ng-href="{{plant.PlantImgLightbox}}"></a>
                 <ul data-clearing class="clearing-thumbs"
                     data-ng-if="plant.PlantImgLightbox">
-                  <li>
+                  <li class="ng-hide">
                     <a target="_self"
-                       data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                       data-ng-href="{{plant.PlantImgLightbox}}"
+                       data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                   </li>
                 </ul>
                 <?php if (user_access('create native_plant content')): ?>

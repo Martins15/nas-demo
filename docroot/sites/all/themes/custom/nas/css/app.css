@@ -16196,6 +16196,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
+.page-native-plants-search #full_results .clearing-caption {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+}
+
 /* Inline Panels Editor custom styles */
 .panels-ipe-display-container .nas-panels-ipe-collapsible-button {
   padding: 10px;
