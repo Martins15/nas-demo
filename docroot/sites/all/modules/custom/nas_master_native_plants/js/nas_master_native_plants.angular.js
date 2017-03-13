@@ -100,7 +100,7 @@
     });
 
     // Service to hold information shared between controllers.
-    NativePlantsApp.service('storage', function ($rootScope, $q, $cookies, $filter, $state, $localStorage, courier) {
+    NativePlantsApp.service('storage', function ($rootScope, $q, $timeout, $cookies, $filter, $state, $localStorage, courier) {
       var self = this, cache = [];
       self.multiselect_reload = false;
       self.localStorage = $localStorage;
@@ -175,78 +175,88 @@
         function() {
           return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type + self.stateParams.text_search;
         },
-        function(newVal, oldVal) {
-          self.calculateResults();
+        function (newVal, oldVal) {
+          self.text_search_progress = true;
+          self.calculateResults().then(function () {
+            self.text_search_progress = false;
+          });
         });
       $rootScope.$watch(
         function() {
           return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1 + self.stateParams.text_search_tier1;
         },
-        function(newVal, oldVal) {
-          self.calculateResultsTier1();
+        function (newVal, oldVal) {
+          self.text_search_progress_tier1 = true;
+          self.calculateResultsTier1().then(function () {
+            self.text_search_progress_tier1 = false;
+          });
         });
 
-      self.calculateResults = function() {
-        if (typeof self.data == 'undefined') {
-          return;
-        }
-        self.results = $filter('filter')(self.data.plants, function(value, index, array) {
-          var filters = [
-            {key1: 'attribute', key2: 'Attributes'},
-            {key1: 'resource', key2: 'Resources'},
-            {key1: 'bird_type', key2: 'BirdTypes'}
-          ];
-          for (var i = 0; i < 3; i++) {
-            if (self[filters[i].key1].length) {
-              var exclude = true;
-              angular.forEach(self[filters[i].key1], function(val) {
-                if (value[filters[i].key2].indexOf(val.tid) != -1) {
-                  exclude = false;
-                }
-              });
+      self.calculateResults = function () {
+        return $timeout(function () {
+          if (typeof self.data == 'undefined') {
+            return;
+          }
+          self.results = $filter('filter')(self.data.plants, function (value, index, array) {
+            var filters = [
+              {key1: 'attribute', key2: 'Attributes'},
+              {key1: 'resource', key2: 'Resources'},
+              {key1: 'bird_type', key2: 'BirdTypes'}
+            ];
+            for (var i = 0; i < 3; i++) {
+              if (self[filters[i].key1].length) {
+                var exclude = true;
+                angular.forEach(self[filters[i].key1], function (val) {
+                  if (value[filters[i].key2].indexOf(val.tid) != -1) {
+                    exclude = false;
+                  }
+                });
 
-              if (exclude) {
-                return false;
+                if (exclude) {
+                  return false;
+                }
               }
             }
-          }
 
-          return true;
-        });
-        self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
+            return true;
+          });
+          self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
+        }, 0);
       };
-      self.calculateResultsTier1 = function() {
-        if (typeof self.data == 'undefined') {
-          return;
-        }
-        self.results_tier1 = $filter('filter')(self.data.plants, function(value, index, array) {
-          if (value.Tier1 == false) {
-            return false;
+      self.calculateResultsTier1 = function () {
+        return $timeout(function () {
+          if (typeof self.data == 'undefined') {
+            return;
           }
+          self.results_tier1 = $filter('filter')(self.data.plants, function (value, index, array) {
+            if (value.Tier1 == false) {
+              return false;
+            }
 
-          var filters = [
-            {key1: 'attribute_tier1', key2: 'Attributes'},
-            {key1: 'resource_tier1', key2: 'Resources'},
-            {key1: 'bird_type_tier1', key2: 'BirdTypes'}
-          ];
-          for (var i = 0; i < 3; i++) {
-            if (self[filters[i].key1].length) {
-              var exclude = true;
-              angular.forEach(self[filters[i].key1], function(val) {
-                if (value[filters[i].key2].indexOf(val.tid) != -1) {
-                  exclude = false;
+            var filters = [
+              {key1: 'attribute_tier1', key2: 'Attributes'},
+              {key1: 'resource_tier1', key2: 'Resources'},
+              {key1: 'bird_type_tier1', key2: 'BirdTypes'}
+            ];
+            for (var i = 0; i < 3; i++) {
+              if (self[filters[i].key1].length) {
+                var exclude = true;
+                angular.forEach(self[filters[i].key1], function (val) {
+                  if (value[filters[i].key2].indexOf(val.tid) != -1) {
+                    exclude = false;
+                  }
+                });
+
+                if (exclude) {
+                  return false;
                 }
-              });
-
-              if (exclude) {
-                return false;
               }
             }
-          }
 
-          return true;
-        });
-        self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
+            return true;
+          });
+          self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
+        }, 0);
       };
 
       // Pager params.
@@ -395,11 +405,6 @@
         self.clearFilters();
       };
 
-      // Apply text search filter.
-      self.applyTextSearch = function(tier) {
-        self.stateParams['page' + tier] = 1;
-        self['results' + tier + '_filtered'] = $filter('filter')(self['results' + tier], self.stateParams['text_search' + tier]);
-      };
       // Clear all the filters.
       self.clearFilters = function() {
         self.activate_tab = false;
@@ -587,6 +592,14 @@
           '<strong>Results:</strong> 1 plant',
           '<strong>Results:</strong> @count plants'
         ));
+      };
+
+      self.textSearchProgressCheck = function (tier) {
+        if (tier) {
+          return (self.storage.text_search_progress_tier1) ? 'form-filter--load' : '';
+        } else {
+          return (self.storage.text_search_progress) ? 'form-filter--load' : '';
+        }
       };
     });
 
