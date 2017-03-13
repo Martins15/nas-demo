@@ -4132,10 +4132,3 @@ function nas_master_update_7283() {
     'nas_native_plants_permalink_page' => array('page_manager_pages'),
   ));
 }
-
-/**
- * Revert Native Plants features.
- */
-function nas_master_update_7284() {
-  nas_master_update_7283();
-}
