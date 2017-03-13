@@ -405,11 +405,6 @@
         self.clearFilters();
       };
 
-      // Apply text search filter.
-      self.applyTextSearch = function(tier) {
-        self.stateParams['page' + tier] = 1;
-        self['results' + tier + '_filtered'] = $filter('filter')(self['results' + tier], self.stateParams['text_search' + tier]);
-      };
       // Clear all the filters.
       self.clearFilters = function() {
         self.activate_tab = false;

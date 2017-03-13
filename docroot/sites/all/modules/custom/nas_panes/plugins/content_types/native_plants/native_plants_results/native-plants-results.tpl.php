@@ -49,7 +49,7 @@
       <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('')">
         <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
                data-ng-model="resultsC.storage.stateParams.text_search"
-               data-ng-model-options="{ debounce: 250 }""/>
+               data-ng-model-options="{ debounce: 250 }"/>
       </div>
       <button class="button tomato large"
               data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
