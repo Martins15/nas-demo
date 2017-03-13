@@ -695,6 +695,38 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $display->content['new-f64cb49a-d776-46b5-822e-2dd59896becf'] = $pane;
     $display->panels['main'][6] = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
     $pane = new stdClass();
+    $pane->pid = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_ad_res_near_you';
+    $pane->subtype = 'native_plants_ad_res_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Other Local Resources',
+      'description' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '',
+      'quantity' => '2',
+      'angular' => 0,
+      'form_build_id' => 'form-GO7UiFCprNyNWURJtSeovCuPzB15SWrcNCKjABAUnT4',
+      'override_title' => 1,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $pane->uuid = '088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $display->content['new-088f3a1d-7f4a-415e-9f90-03167ad47f6f'] = $pane;
+    $display->panels['main'][7] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $pane = new stdClass();
     $pane->pid = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
     $pane->panel = 'main';
     $pane->type = 'native_plants_nurseries_near_you';
@@ -722,11 +754,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 7;
+    $pane->position = 8;
     $pane->locks = array();
     $pane->uuid = '9110eb6f-12af-4f72-afa1-326067aafc13';
     $display->content['new-9110eb6f-12af-4f72-afa1-326067aafc13'] = $pane;
-    $display->panels['main'][7] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
+    $display->panels['main'][8] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
     $pane = new stdClass();
     $pane->pid = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $pane->panel = 'main';
@@ -755,43 +787,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 8;
+    $pane->position = 9;
     $pane->locks = array();
     $pane->uuid = '0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $display->content['new-0836d4b1-fca0-41a0-b7cf-415cfcd89004'] = $pane;
-    $display->panels['main'][8] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
-    $pane = new stdClass();
-    $pane->pid = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
-    $pane->panel = 'main';
-    $pane->type = 'native_plants_ad_res_near_you';
-    $pane->subtype = 'native_plants_ad_res_near_you';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'title' => 'Where to buy native plants near you',
-      'override_title_text' => 'Other Local Resources',
-      'description' => array(
-        'value' => '',
-        'format' => 'full_html',
-      ),
-      'zipcode' => '',
-      'quantity' => '2',
-      'angular' => 0,
-      'form_build_id' => 'form-GO7UiFCprNyNWURJtSeovCuPzB15SWrcNCKjABAUnT4',
-      'override_title' => 1,
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 9;
-    $pane->locks = array();
-    $pane->uuid = '088f3a1d-7f4a-415e-9f90-03167ad47f6f';
-    $display->content['new-088f3a1d-7f4a-415e-9f90-03167ad47f6f'] = $pane;
-    $display->panels['main'][9] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $display->panels['main'][9] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $pane = new stdClass();
     $pane->pid = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane->panel = 'main';
