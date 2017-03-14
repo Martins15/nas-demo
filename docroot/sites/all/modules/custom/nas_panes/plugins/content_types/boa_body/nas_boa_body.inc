@@ -31,7 +31,7 @@ function nas_boa_body_render($subtype, $conf, $args, $context) {
 
   $body_items = field_get_items('node', $node, 'body');
   if (!empty($body_items)) {
-    $variables['body'] = $body_items[0]['safe_value'];
+    $variables['body'] = check_markup($body_items[0]['value'], $body_items[0]['format']);
   }
 
   $block = new stdClass();
