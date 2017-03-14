@@ -1,16 +1,15 @@
 ---
 global_env:
   pre_settings:
-    - { name: '$conf["pp_environment"]', status: true, value: "{{ pp_environment }}" }
     - { name: '$conf["file_temporary_path"]', status: true, value: '{{ tmp_folder }}' }
+    - { name: '$conf["memcache_key_prefix"]', status: true, value: '{{ mysql_db }}' }
+    - { name: '$conf["cache_backends"][]', status: true, value: 'sites/all/modules/contrib/memcache/memcache.inc' }
+    - { name: '$conf["cache_default_class"]', status: true, value: 'MemCacheDrupal' }
+    - { name: '$conf["pp_environment"]', status: true, value: "{{ pp_environment }}" }
+    - { name: '$conf["solr_core"]', status: true, value: "{{ solr_core }}" }
   modules: []
   drush_commands:
     - { name: 'vdel', status: true, arguments: "file_private_path" }
   post_settings:
-    - { name: '$conf["pp_environment"]', status: true, value: "{{ pp_environment }}" }
     - { name: '$base_url', status: false, value: "{{ site_url }}" }
-    - { name: '$conf["file_temporary_path"]', status: true, value: '{{ tmp_folder }}' }
-    - { name: '$conf["cache_default_class"]', status: false, value: "{{ pp_environment }}" }
-    - { name: '$conf["cache_backends"][]', status: false, value: 'sites/all/modules/contrib/memcache/memcache.inc' }
-    - { name: '$conf["cache_default_class"]', status: false, value: 'MemCacheDrupal' }
     - { name: '$conf["drupal_http_request_fails"]', status: true, value: 'FALSE' }
