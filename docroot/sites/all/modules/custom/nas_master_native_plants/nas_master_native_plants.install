@@ -392,3 +392,12 @@ function nas_master_native_plants_update_7023() {
     'nas_native_plants_permalink_page' => array('page_manager_pages'),
   ));
 }
+
+/**
+ * Revert Native Plants Permalink page features.
+ */
+function nas_master_native_plants_update_7024() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}

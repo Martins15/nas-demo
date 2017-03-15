@@ -505,7 +505,7 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
   $variables['additional_resources'] = _nas_master_native_plants_get_additional_resources($zipcode, 2);
   $variables['nurseries'] = array(
     'online' => _nas_master_native_plants_get_online_nurseries($zipcode, 6),
-    'offline' => _nas_master_native_plants_get_offline_nurseries($zipcode, 6),
+    'offline' => _nas_master_native_plants_get_offline_nurseries($zipcode, 9),
   );
 }
 
@@ -570,7 +570,7 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
         'tid' => $wrapper->tid->value(),
         'name' => $wrapper->name->value(),
         'image' => $wrapper->field_np_bird_type_image->value(),
-        'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : '',
+        'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : 'http://www.audubon.org/taxonomy/term/' . $wrapper->tid->value(),
       );
       $plant['BirdTypesValues'][$wrapper->tid->value()] = $bird_type;
       $plant['BirdTypesDesktop'][] = l($bird_type['name'], $bird_type['url'], array(
