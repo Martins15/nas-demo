@@ -221,7 +221,7 @@
             return true;
           });
           self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
-        }, 0);
+        }, 500);
       };
       self.calculateResultsTier1 = function () {
         return $timeout(function () {
@@ -256,7 +256,7 @@
             return true;
           });
           self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
-        }, 0);
+        }, 500);
       };
 
       // Pager params.
