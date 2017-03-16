@@ -47,10 +47,11 @@
           </div>
         </fieldset>
       </div>
-      <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
-             data-ng-model="resultsC.storage.stateParams.text_search"
-             data-ng-model-options="{ debounce: 500 }"
-             data-ng-change="resultsC.storage.applyTextSearch('')"/>
+      <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('')">
+        <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
+               data-ng-model="resultsC.storage.stateParams.text_search"
+               data-ng-model-options="{ debounce: 250 }"/>
+      </div>
       <button class="button tomato large"
               data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
     </div>
@@ -85,9 +86,10 @@
                    data-ng-href="{{plant.PlantImgLightbox}}"></a>
                 <ul data-clearing class="clearing-thumbs"
                     data-ng-if="plant.PlantImgLightbox">
-                  <li>
+                  <li class="ng-hide">
                     <a target="_self"
-                       data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                       data-ng-href="{{plant.PlantImgLightbox}}"
+                       data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                   </li>
                 </ul>
                 <?php if (user_access('create native_plant content')): ?>
@@ -141,9 +143,10 @@
                  data-ng-href="plant.PlantImgLightbox"></a>
               <ul data-clearing class="clearing-thumbs"
                   data-ng-if="plant.PlantImgLightbox">
-                <li>
+                <li class="ng-hide">
                   <a target="_self"
-                     data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                     data-ng-href="{{plant.PlantImgLightbox}}"
+                     data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                 </li>
               </ul>
             </div>
