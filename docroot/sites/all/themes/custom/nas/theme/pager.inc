@@ -5,10 +5,10 @@
  * Functions to aid in presenting database results as a set of pages.
  */
 
- /**
+/**
  * Returns HTML for the "next page" link in a query pager.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - text: The name (or image) of the link.
  *   - element: An optional integer to distinguish between multiple pagers on
@@ -19,7 +19,7 @@
  *
  * @ingroup themeable
  */
-function nas_pager_next($variables) {
+function nas_pager_next(array $variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $interval = $variables['interval'];
@@ -28,16 +28,27 @@ function nas_pager_next($variables) {
   global $pager_page_array, $pager_total;
   $output = '';
 
-  // If we are anywhere but the last page
+  // If we are anywhere but the last page.
   if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {
     $page_new = pager_load_array($pager_page_array[$element] + $interval, $element, $pager_page_array);
     // If the next page is the last page, mark the link as such.
     if ($page_new[$element] == ($pager_total[$element] - 1)) {
-      $output = theme('pager_last', array('text' => $text, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+      $output = theme('pager_last', array(
+        'text' => $text,
+        'element' => $element,
+        'parameters' => $parameters,
+        'attributes' => $attributes,
+      ));
     }
     // The next page is not the last page.
     else {
-      $output = theme('pager_link', array('text' => $text, 'page_new' => $page_new, 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+      $output = theme('pager_link', array(
+        'text' => $text,
+        'page_new' => $page_new,
+        'element' => $element,
+        'parameters' => $parameters,
+        'attributes' => $attributes,
+      ));
     }
   }
 
@@ -47,7 +58,7 @@ function nas_pager_next($variables) {
 /**
  * Returns HTML for the "last page" link in query pager.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - text: The name (or image) of the link.
  *   - element: An optional integer to distinguish between multiple pagers on
@@ -57,7 +68,7 @@ function nas_pager_next($variables) {
  *
  * @ingroup themeable
  */
-function nas_pager_last($variables) {
+function nas_pager_last(array $variables) {
   $text = $variables['text'];
   $element = $variables['element'];
   $parameters = $variables['parameters'];
@@ -65,9 +76,15 @@ function nas_pager_last($variables) {
   global $pager_page_array, $pager_total;
   $output = '';
 
-  // If we are anywhere but the last page
+  // If we are anywhere but the last page.
   if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {
-    $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters, 'attributes' => $attributes));
+    $output = theme('pager_link', array(
+      'text' => $text,
+      'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array),
+      'element' => $element,
+      'parameters' => $parameters,
+      'attributes' => $attributes,
+    ));
   }
 
   return $output;
@@ -76,7 +93,7 @@ function nas_pager_last($variables) {
 /**
  * Returns HTML for a link to a specific query result page.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - text: The link text. Also used to figure out the title attribute of the
  *     link, if it is not provided in $variables['attributes']['title']; in
@@ -95,7 +112,7 @@ function nas_pager_last($variables) {
  *
  * @ingroup themeable
  */
-function nas_pager_link($variables) {
+function nas_pager_link(array $variables) {
   $text = $variables['text'];
   $page_new = $variables['page_new'];
   $element = $variables['element'];
@@ -115,7 +132,7 @@ function nas_pager_link($variables) {
     $query = array_merge($query, $query_pager);
   }
 
-  // Set each pager link title
+  // Set each pager link title.
   if (!isset($attributes['title'])) {
     static $titles = NULL;
     if (!isset($titles)) {
@@ -147,7 +164,7 @@ function nas_pager_link($variables) {
  * Theme function for views load more pager.
  */
 function nas_views_load_more_pager($vars) {
-  global $pager_page_array, $pager_total;
+  global $pager_total;
 
   $tags = $vars['tags'];
   $element = $vars['element'];
@@ -167,9 +184,12 @@ function nas_views_load_more_pager($vars) {
     $li_next = empty($vars['more_button_empty_text']) ? '&nbsp;' : t($vars['more_button_empty_text']);
     $pager_classes[] = 'pager-load-more-empty';
   }
-  // Compatibility with tao theme's pager
-  else if (isset($li_next['title'], $li_next['href'], $li_next['attributes'], $li_next['query'])) {
-    $li_next = l($li_next['title'], $li_next['href'], array('attributes' => $li_next['attributes'], 'query' => $li_next['query']));
+  // Compatibility with tao theme's pager.
+  elseif (isset($li_next['title'], $li_next['href'], $li_next['attributes'], $li_next['query'])) {
+    $li_next = l($li_next['title'], $li_next['href'], array(
+      'attributes' => $li_next['attributes'],
+      'query' => $li_next['query'],
+    ));
   }
 
   if ($pager_total[$element] > 1) {

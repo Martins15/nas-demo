@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains authorization type administration callbacks.

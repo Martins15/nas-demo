@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -68,14 +68,14 @@ function conservation_strategy_top_render($subtype, $conf, $args, $contexts) {
   }
 
   $content = theme('conservation_strategy_top', array(
-      'hero_image' => $hero_image,
-      'hero_image_mobile' => $hero_image_mobile,
-      'icon' => $icon,
-      'title' => $node->title,
-      'attribution' => $attribution,
-      'color_mode_gradient' => $color_mode_gradient,
-      'color_mode_text' => $color_mode,
-    ));
+    'hero_image' => $hero_image,
+    'hero_image_mobile' => $hero_image_mobile,
+    'icon' => $icon,
+    'title' => $node->title,
+    'attribution' => $attribution,
+    'color_mode_gradient' => $color_mode_gradient,
+    'color_mode_text' => $color_mode,
+  ));
 
   $block->content = $content;
 

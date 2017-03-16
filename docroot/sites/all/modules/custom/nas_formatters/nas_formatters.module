@@ -3,6 +3,7 @@
 /**
  * @file
  * NAS Formatters module.
+ *
  * Defines site-specific field formatters.
  */
 
@@ -41,7 +42,7 @@ function nas_formatters_theme() {
     'gray_block_with_title' => array(
       'variables' => array(
         'element' => NULL,
-       ),
+      ),
       'template' => 'gray-block-with-title',
       'path' => drupal_get_path('module', 'nas_formatters') . '/templates',
     ),

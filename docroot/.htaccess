@@ -292,6 +292,9 @@ DirectoryIndex index.php index.html index.htm
   # Close access to reinstall.yml.
   RewriteRule ^reinstall.yml$ [R=404,L,NC]
 
+  # Redirect favicons
+  RewriteRule ^favicon.ico$ [R=404,L,NC]
+
   # Redirect all non www.audubon.org requests to www.audubon.org
   RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
   RewriteCond %{HTTP_HOST} !www.audubon.org$

@@ -28,11 +28,11 @@ function nas_near_you_menu() {
 
 /**
  * Get chapter node ID based on zip code.
- * 
+ *
  * @params string $zip
  *   String with the zip code number already sanitized.
- * 
- * @return integer
+ *
+ * @return int
  *   The nid of the 'Chapters & Centers' type node related
  *   to the zip code.
  */

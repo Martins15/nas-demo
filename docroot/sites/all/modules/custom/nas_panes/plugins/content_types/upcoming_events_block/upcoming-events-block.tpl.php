@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Upcoming Events block template file.

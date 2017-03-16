@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * BOA social block template file.

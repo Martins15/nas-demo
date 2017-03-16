@@ -144,11 +144,6 @@ function nas_content_aggregation_editorial_cards_form($form, &$form_state) {
 
 /**
  * Add additional field for url.
- *
- * @param array $form
- *   Array of form elements.
- * @param array $form_state
- *   Array of Form state elements
  */
 function nas_content_aggregation_ajax_add_more_add_one($form, &$form_state) {
   $form_state['num_urls']++;
@@ -157,11 +152,6 @@ function nas_content_aggregation_ajax_add_more_add_one($form, &$form_state) {
 
 /**
  * Return a form after updating number of form elements.
- *
- * @param array $form
- *   Array of form elements.
- * @param array $form_state
- *   Array of Form state elements
  */
 function nas_content_aggregation_ajax_form_update_callback($form, $form_state) {
   return $form['nas_agg_wrap']['nas_agg_urls'];
@@ -169,11 +159,6 @@ function nas_content_aggregation_ajax_form_update_callback($form, $form_state) {
 
 /**
  * Remove field for url from form.
- *
- * @param array $form
- *   Array of form elements.
- * @param array $form_state
- *   Array of Form state elements.
  */
 function nas_content_aggregation_ajax_add_more_remove_one($form, &$form_state) {
   $parents = &$form_state['triggering_element']['#parents'];
@@ -186,7 +171,6 @@ function nas_content_aggregation_ajax_add_more_remove_one($form, &$form_state) {
   }
   $form_state['rebuild'] = TRUE;
 }
-
 
 /**
  * Validation form.
@@ -254,7 +238,6 @@ function nas_content_aggregation_editorial_cards_form_submit($form, &$form_state
     nas_content_aggregation_import_nodes($storage);
   }
 }
-
 
 /**
  * Form for configuring import individual content.
@@ -443,8 +426,9 @@ function nas_content_aggregation_editorial_individual_form_submit($form, &$form_
  *   Header key which should contain remote url for import.
  *
  * @return bool
+ *   The Url is valid flag.
  */
-function nas_content_aggregation_validate_remote_url(&$form_state, $key, $url, $header_key) {
+function nas_content_aggregation_validate_remote_url(array &$form_state, $key, $url, $header_key) {
   if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
     form_set_error("nas_agg_wrap][nas_agg_urls][$key][url", t('Entered URL address is incorrect.'));
     return FALSE;

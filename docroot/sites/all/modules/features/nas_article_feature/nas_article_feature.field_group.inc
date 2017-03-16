@@ -133,6 +133,7 @@ function nas_article_feature_field_group_info() {
       4 => 'field_editorial_card_image',
       5 => 'field_credit_caption_map',
       6 => 'field_social_media_photo',
+      7 => 'field_hero_mobile_image',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

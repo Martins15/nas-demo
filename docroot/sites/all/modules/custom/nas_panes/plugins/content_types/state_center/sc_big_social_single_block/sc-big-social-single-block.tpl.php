@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Big social single block template file.

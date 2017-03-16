@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for Native Plants results listing.
@@ -47,10 +48,11 @@
           </div>
         </fieldset>
       </div>
-      <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
-             data-ng-model="resultsC.storage.stateParams.text_search_tier1"
-             data-ng-model-options="{ debounce: 500 }"
-             data-ng-change="resultsC.storage.applyTextSearch('_tier1')"/>
+      <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('tier1')">
+        <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
+               data-ng-model="resultsC.storage.stateParams.text_search_tier1"
+               data-ng-model-options="{ debounce: 250 }"/>
+      </div>
       <button class="button tomato large"
               data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
     </div>
@@ -161,19 +163,18 @@
                      data-ng-repeat="birdTypeID in plant.BirdTypesRandomized">
                   <figure class="bird-card">
                     <div class="bird-card-illustration">
-                      <a data-ng-href="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].url}}" target="_blank">
-                        <img alt="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name}}"
-                             data-ng-src="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].image}}">
-                      </a>
+                      <img alt="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name}}"
+                           data-ng-src="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].image}}">
                     </div>
                     <figcaption class="bird-card-caption">
-                      <h4 class="common-name">
-                        <a target="_blank"
-                           data-ng-href="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].url}}"
-                           data-ng-bind="resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name"></a>
+                      <h4 class="common-name"
+                          data-ng-bind="resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].name">
                       </h4>
                     </figcaption>
                   </figure>
+                  <a target="_blank"
+                    class="bird-card-link"
+                    data-ng-href="{{resultsC.storage.data.terms.native_plant_bird_types[birdTypeID].url}}"></a>
                 </div>
               </div>
             </div>

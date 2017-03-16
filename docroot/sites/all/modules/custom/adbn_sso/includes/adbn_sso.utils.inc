@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Contains SSO utility functions used in several places.

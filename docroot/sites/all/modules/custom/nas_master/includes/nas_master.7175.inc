@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Helper functions for hook_update_7175.
@@ -38,7 +39,7 @@ function _nas_master_get_duplicated_contacts() {
 
   foreach ($comma_separated_contacts as $nid => $title) {
     $p = explode(', ', $title);
-    $p  = array_reverse($p);
+    $p = array_reverse($p);
     $name = implode(' ', $p);
 
     // Look for non-comma-separated contact.
@@ -78,13 +79,12 @@ function _nas_master_get_duplicated_contacts() {
  * Return back references to nodes with particular nids.
  *
  * @param array $nids
- *  Array of nids.
+ *   Array of nids.
  *
  * @return array
- *  Associative array with reference stats:
- *    -
+ *   Associative array with reference stats.
  */
-function _nas_master_contact_group_stats($nids) {
+function _nas_master_contact_group_stats(array $nids) {
   $query = db_select('node', 'n');
   $query->leftJoin('field_data_field_author', 'fa', 'fa.field_author_target_id = n.nid');
   $query->leftJoin('field_data_field_pressrelease_contact', 'fprc', 'fprc.field_pressrelease_contact_target_id = n.nid');
@@ -112,13 +112,12 @@ function _nas_master_contact_group_stats($nids) {
 }
 
 /**
+ * Helper function.
+ *
  * Determinate primary node of group and update it setting empty fields value
  * if they were set in other nodes.
- *
  * Primary node is the most referenced node. If tied then most filled node is
  * used.
- *
- * @param $nids
  */
 function _nas_master_get_primary_node_of_group($stats) {
   $nids = array_keys($stats);
@@ -198,13 +197,13 @@ function _nas_master_get_primary_node_of_group($stats) {
  * Update referencing articles to reference on primary node.
  *
  * @param array $references
- *   nids of referencing articles.
+ *   Nids of referencing articles.
  * @param object $primary_node
  *   Node to be referenced by articles.
  * @param int $secondary_nid
- *   target nid of the reference to be replaced.
+ *   Target nid of the reference to be replaced.
  */
-function _nas_master_update_references_to_contact_nodes($references, $primary_node, $secondary_nid) {
+function _nas_master_update_references_to_contact_nodes(array $references, $primary_node, $secondary_nid) {
   $chunk = 10;
   $processed = 0;
   while ($part = array_slice($references, $processed, $chunk)) {

@@ -28,6 +28,7 @@ features[field_instance][] = node-strategy-body
 features[field_instance][] = node-strategy-field_color_mode
 features[field_instance][] = node-strategy-field_header_color_mode
 features[field_instance][] = node-strategy-field_hero_image
+features[field_instance][] = node-strategy-field_hero_mobile_image
 features[field_instance][] = node-strategy-field_image
 features[field_instance][] = node-strategy-field_internal_tagging
 features[node][] = strategy

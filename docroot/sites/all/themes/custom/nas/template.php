@@ -225,7 +225,7 @@ function nas_preprocess_node(&$vars) {
 }
 
 /**
- * theme_preprocess_node for RSS view mode.
+ * Implements theme_preprocess_node() for RSS view mode.
  */
 function nas_preprocess_node_rss(&$vars) {
   $vars['author'] = $vars['user']->name;
@@ -233,7 +233,7 @@ function nas_preprocess_node_rss(&$vars) {
 }
 
 /**
- * theme_preprocess_node for bird content type.
+ * Implements theme_preprocess_node() for bird content type.
  */
 function nas_preprocess_node_bird(&$vars) {
   $node = $vars['node'];
@@ -268,7 +268,12 @@ function nas_preprocess_node_bird(&$vars) {
     $vars['climate_url'] = url($climate_url[0]['url']);
   }
 
-  foreach (array('field_bird_priority', 'field_bird_threatened', 'field_bird_endangered') as $field) {
+  $field_names = array(
+    'field_bird_priority',
+    'field_bird_threatened',
+    'field_bird_endangered',
+  );
+  foreach ($field_names as $field) {
     $value = field_get_items('node', $node, $field);
     $vars[substr($field, 6)] = !empty($value) && !empty($value[0]['value']);
   }
@@ -397,18 +402,18 @@ function nas_preprocess_node_boa(&$vars) {
   if ($field_boa_illustration_items = field_get_items('node', $node, 'field_boa_illustration')) {
     $image_uri = nas_alters_local_image_uri($field_boa_illustration_items[0]['uri']);
     $illustration = theme('image_style', array(
-        'style_name' => 'boa_family_species',
-        'path' => $image_uri,
-        'attributes' => array('class' => array('lazy'))
+      'style_name' => 'boa_family_species',
+      'path' => $image_uri,
+      'attributes' => array('class' => array('lazy')),
     ));
     $image = theme('image', array(
       'path' => image_style_url('article_teaser_list', $image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
   }
   $vars['bird_illustration'] = l($illustration, $node_path, array('html' => TRUE));
 
@@ -498,8 +503,8 @@ function nas_preprocess_node_boaf(&$vars) {
       if ($field_boa_illustration_items = field_get_items('node', $boa, 'field_boa_illustration')) {
         $image_uri = nas_alters_local_image_uri($field_boa_illustration_items[0]['uri']);
         $illustration = theme('image_style', array(
-            'style_name' => 'boa_family_species',
-            'path' => $image_uri,
+          'style_name' => 'boa_family_species',
+          'path' => $image_uri,
         ));
       }
     }
@@ -515,7 +520,7 @@ function nas_preprocess_node_boaf(&$vars) {
 /**
  * Helper function to group BOA by BOA families and get first BOA of BOA Family.
  *
- * @param $boaf_nid int
+ * @param int $nid
  *   BOA Family node's nid.
  *
  * @return mixed
@@ -561,7 +566,7 @@ function _nas_boa_family_birds($nid = FALSE) {
 }
 
 /**
- * theme_preprocess_node for magazine-issue content type.
+ * Implements theme_preprocess_node() for magazine-issue content type.
  */
 function nas_preprocess_node_magazine_issue(&$vars) {
   $node = $vars['node'];
@@ -574,7 +579,7 @@ function nas_preprocess_node_magazine_issue(&$vars) {
 }
 
 /**
- * theme_preprocess_node for Event CT.
+ * Implements theme_preprocess_node() for Event CT.
  */
 function nas_preprocess_node_event(&$vars) {
   // Event dates.
@@ -659,9 +664,10 @@ function nas_preprocess_node_event(&$vars) {
   if ($field_items = field_get_items('node', $node, 'field_event_type')) {
     if (($term = taxonomy_term_load($field_items[0]['tid'])) && $term->name) {
       $vars['event_type'] = l($term->name, 'taxonomy/term/' . $term->tid, array(
-          'attributes' => array(
-            'class' => array('event-type'),
-          )));
+        'attributes' => array(
+          'class' => array('event-type'),
+        ),
+      ));
       $vars['event_type'] .= ' | ';
     }
   }
@@ -684,7 +690,7 @@ function nas_preprocess_node_event(&$vars) {
 }
 
 /**
- * theme_preprocess_node for article content type.
+ * Implements theme_preprocess_node() for article content type.
  */
 function nas_preprocess_node_article(&$vars) {
   $node = $vars['node'];
@@ -737,18 +743,17 @@ function nas_preprocess_node_article(&$vars) {
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
-
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
     $image = theme('image', array(
-        'path' => image_style_url('article_teaser_list', $image_uri),
-        'alt' => $node->title,
-      ));
+      'path' => image_style_url('article_teaser_list', $image_uri),
+      'alt' => $node->title,
+    ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
   }
 
   $subtitle_modes = array(
@@ -909,7 +914,7 @@ function nas_preprocess_nodes_editorial_cards(&$vars) {
 }
 
 /**
- * theme_preprocess_node for Flyway content type.
+ * Implements theme_preprocess_node() for Flyway content type.
  */
 function nas_preprocess_node_flyway(&$vars) {
   $node = $vars['node'];
@@ -923,10 +928,16 @@ function nas_preprocess_node_flyway(&$vars) {
 }
 
 /**
- * theme_preprocess_node for Static page content type.
+ * Implements theme_preprocess_node() for Static page content type.
  */
 function nas_preprocess_node_static_page(&$vars) {
-  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'editorial_grid_teaser', 'search_result'))) {
+  $view_modes = array(
+    'editorial_card_3x',
+    'editorial_card_4x',
+    'editorial_grid_teaser',
+    'search_result',
+  );
+  if (in_array($vars['view_mode'], $view_modes)) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
@@ -942,17 +953,17 @@ function nas_preprocess_node_static_page(&$vars) {
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
     $image = theme('image', array(
       'path' => image_style_url('article_teaser_list', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
   }
 
   $vars['dateline'] = format_date($node->created, 'nas_date');
@@ -971,9 +982,8 @@ function nas_preprocess_node_static_page(&$vars) {
   $vars['custom_link_text'] = t('Read more');
 }
 
-
 /**
- * theme_preprocess_node for Conservation strategy content type.
+ * Implements theme_preprocess_node() for Conservation strategy content type.
  */
 function nas_preprocess_node_strategy(&$vars) {
   $node = $vars['node'];
@@ -1000,16 +1010,33 @@ function nas_preprocess_node_strategy(&$vars) {
   if ($field_items = field_get_items('node', $node, 'body')) {
     $vars['subtitle'] = text_summary($field_items[0]['value'], 'full_html', 150);
     // Tags to remove.
-    $tags = array('i', 'em', 'span', 'b', 'strong', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
-    $vars['subtitle'] = preg_replace('/<(' . implode( '|', $tags) . ')(?:[^>]+)?>(.*)?<\/\1>/s', '$2', $vars['subtitle']);
+    $tags = array(
+      'i',
+      'em',
+      'span',
+      'b',
+      'strong',
+      'h1',
+      'h2',
+      'h3',
+      'h4',
+      'h5',
+      'h6',
+    );
+    $vars['subtitle'] = preg_replace('/<(' . implode('|', $tags) . ')(?:[^>]+)?>(.*)?<\/\1>/s', '$2', $vars['subtitle']);
   }
 }
 
 /**
- * theme_preprocess_node for Conservation Project content type.
+ * Implements theme_preprocess_node() for Conservation Project content type.
  */
 function nas_preprocess_node_project(&$vars) {
-  if (in_array($vars['view_mode'], array('editorial_card_3x', 'editorial_card_4x', 'search_result'))) {
+  $view_modes = array(
+    'editorial_card_3x',
+    'editorial_card_4x',
+    'search_result',
+  );
+  if (in_array($vars['view_mode'], $view_modes)) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
@@ -1027,17 +1054,17 @@ function nas_preprocess_node_project(&$vars) {
       'alt' => $node->title,
     ));
     $vars['linked_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
     $image = theme('image', array(
       'path' => image_style_url('article_teaser_list', $hero_image_uri),
       'alt' => $node->title,
     ));
     $vars['teaser_list_image'] = l($image, 'node/' . $node->nid, array(
-        'html' => TRUE,
-        'attributes' => array('title' => $node->title),
-      ));
+      'html' => TRUE,
+      'attributes' => array('title' => $node->title),
+    ));
   }
 
   $vars['strategy_link'] = '';
@@ -1048,7 +1075,12 @@ function nas_preprocess_node_project(&$vars) {
     }
   }
 
-  if (in_array($vars['view_mode'], array('nas_node_teaser_small', 'nas_node_project_teaser', 'search_result'))) {
+  $view_modes = array(
+    'nas_node_teaser_small',
+    'nas_node_project_teaser',
+    'search_result',
+  );
+  if (in_array($vars['view_mode'], $view_modes)) {
     $vars['description'] = '';
     if (!empty($node->field_project_description[LANGUAGE_NONE][0]['safe_value'])) {
       $vars['description'] = $node->field_project_description[LANGUAGE_NONE][0]['safe_value'];
@@ -1072,7 +1104,7 @@ function nas_preprocess_node_article_news_from_network(&$vars) {
 }
 
 /**
- * theme_preprocess_node for engagement cards content type.
+ * Implements theme_preprocess_node() for Engagement Cards content type.
  */
 function nas_preprocess_node_engagement_cards(&$vars) {
   $node = $vars['node'];
@@ -1115,10 +1147,9 @@ function nas_preprocess_page(&$vars) {
  */
 function nas_preprocess_site_template_small_header(&$vars) {
   $vars['footer_logo'] = theme('image', array(
-      'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
-      'attributes' => array('class' => 'footer-logo'),
-    )
-  );
+    'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
+    'attributes' => array('class' => 'footer-logo'),
+  ));
 }
 
 /**
@@ -1141,14 +1172,13 @@ function nas_preprocess_site_template_big_header(&$vars) {
     }
   }
   $vars['footer_logo'] = theme('image', array(
-      'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
-      'attributes' => array('class' => 'footer-logo'),
-    )
-  );
+    'path' => base_path() . path_to_theme() . '/img/footer-logo.png',
+    'attributes' => array('class' => 'footer-logo'),
+  ));
 }
 
-/*
- * Implements theme_form_element()
+/**
+ * Implements theme_form_element().
  */
 function nas_form_element($variables) {
   $no_wrap = array('nas-mail-subscription-email', 'nas-menu-search-input');
@@ -1159,8 +1189,9 @@ function nas_form_element($variables) {
 }
 
 /**
- * Implements theme_button()
- * used to return <button> tag when needed
+ * Implements theme_button().
+ *
+ * Used to return <button> tag when needed.
  */
 function nas_button($variables) {
   // TODO: improve to not to use ids.
@@ -1282,7 +1313,7 @@ function nas_image($variables) {
   }
 }
 
-/*
+/**
  * Implements template_preprocess_field().
  */
 function nas_preprocess_field(&$variables, $hook) {
@@ -1802,7 +1833,8 @@ function nas_preprocess_node_slideshow(&$vars) {
  * For Videos page content type.
  */
 function nas_preprocess_node_video_page(&$vars) {
-  if (in_array($vars['view_mode'], array('teaser', 'editorial_card_3x', 'editorial_card_4x'))) {
+  $view_modes = array('teaser', 'editorial_card_3x', 'editorial_card_4x');
+  if (in_array($vars['view_mode'], $view_modes)) {
     nas_preprocess_nodes_editorial_cards($vars);
     return;
   }
@@ -1922,6 +1954,9 @@ function nas_extract_magazine_date($string) {
   return $data;
 }
 
+/**
+ * Implements theme_images_thumbnails_list().
+ */
 function nas_images_thumbnails_list($variables) {
   if (empty($variables['thumbnail_options']) || $variables['file'] == NULL) {
     return;
@@ -1930,6 +1965,7 @@ function nas_images_thumbnails_list($variables) {
   $file = file_load($variables['file']);
   $file_info = image_get_info($file->uri);
 
+  // @codingStandardsIgnoreStart
   $manage_crop_link = "<span class=\"manage-link-wrapper\"></br><a class=\"button manage-crop-link\" href=\"javascript:Drupal.PPCrop.dialog("
     . "'" . $variables['entity_type'] . "',"
     . "'" . $variables['field_name'] . "' ,"
@@ -1938,6 +1974,7 @@ function nas_images_thumbnails_list($variables) {
     . image_style_url('epsacrop_thumb', $file->uri) . "&quot;, ["
     . $file_info['width'] . ","
     . $file_info['height'] . "]);\">" . t("Change thumbnails") . "</a> <a class=\"button dialog-close\" href=\"#\"> " . t('Close preview') . " </a></br></br></span>";
+  // @codingStandardsIgnoreEnd
 
   $thumbnail_options = $variables['thumbnail_options'];
 
@@ -1958,7 +1995,7 @@ function nas_images_thumbnails_list($variables) {
 /**
  * Returns HTML for an image with an appropriate icon for the given file.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - file: A file object for which to make an icon.
  *   - icon_directory: (optional) A path to a directory of icons to be used for
@@ -1966,7 +2003,7 @@ function nas_images_thumbnails_list($variables) {
  *
  * @ingroup themeable
  */
-function nas_file_icon($variables) {
+function nas_file_icon(array $variables) {
   $file = $variables['file'];
   $icon_directory = $variables['icon_directory'];
 

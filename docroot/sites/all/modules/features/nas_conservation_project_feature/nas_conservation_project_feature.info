@@ -36,6 +36,7 @@ features[field_instance][] = node-project-field_editorial_card_subtitle
 features[field_instance][] = node-project-field_editorial_card_title
 features[field_instance][] = node-project-field_flyway
 features[field_instance][] = node-project-field_hero_image
+features[field_instance][] = node-project-field_hero_mobile_image
 features[field_instance][] = node-project-field_image
 features[field_instance][] = node-project-field_internal_tagging
 features[field_instance][] = node-project-field_project_description

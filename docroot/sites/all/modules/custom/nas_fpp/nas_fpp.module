@@ -599,15 +599,19 @@ function nas_fpp_preprocess_fieldable_panels_pane_nas_flyway_section(&$vars) {
       $near_you = FALSE;
     }
     elseif ($first) {
-      if (is_numeric(strpos($first, 'flyways_events'))) $events = FALSE;
-      else $near_you = FALSE;
+      if (is_numeric(strpos($first, 'flyways_events'))) {
+        $events = FALSE;
+      }
+      else {
+        $near_you = FALSE;
+      }
     }
   }
 
   $vars['events'] = NULL;
   if ($events && variable_get('events_frontpage_enabled', 0)) {
     $events = theme('flyways_events', array(
-     'items' => _nas_events_get_events(),
+      'items' => _nas_events_get_events(),
     ));
     $vars['events'] = $events;
   }

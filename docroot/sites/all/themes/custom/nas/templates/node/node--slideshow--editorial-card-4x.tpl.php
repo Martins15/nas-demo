@@ -87,12 +87,12 @@
  */
 ?>
 <div class="columns large-3">
-  <div class="editorial-card collapse-minimal">
+  <div class="editorial-card">
     <div class="editorial-card-photo slideshow-card">
       <?php print $linked_image; ?>
       <div class="editorial-card-banner gray overlap-banner<?php print $caption ? ' custom-caption' : ''; ?>">
         <?php print $left_icon; ?>
-        <?php print $caption ? $caption: t('Slideshow'); ?>
+        <?php print $caption ? $caption : t('Slideshow'); ?>
         <?php if (!empty($icon)): ?>
           <div class="icon-wrapper"><?php print $icon; ?></div>
         <?php endif; ?>

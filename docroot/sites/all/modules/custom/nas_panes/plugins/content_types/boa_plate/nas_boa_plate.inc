@@ -53,6 +53,7 @@ function nas_panes_nas_boa_plate_content_type_edit_form_submit($form, &$form_sta
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function nas_boa_plate_render($subtype, $conf, $args, $context) {
@@ -96,15 +97,15 @@ function nas_boa_plate_render($subtype, $conf, $args, $context) {
   ), 'setting');
 
   $deepzoom_link = l('<i class="icon-magnifier"></i> ' . t('See full plate'), 'node/' . $node->nid . '/plate', array(
-      'attributes' => array(
-        'class' => array(
-          'see-full-plate',
-          'ctools-use-modal',
-          'ctools-modal-boa-plate',
-        ),
+    'attributes' => array(
+      'class' => array(
+        'see-full-plate',
+        'ctools-use-modal',
+        'ctools-modal-boa-plate',
       ),
-      'html' => TRUE,
-    ));
+    ),
+    'html' => TRUE,
+  ));
 
   $block = new stdClass();
   $block->content = theme('boa_plate', array(

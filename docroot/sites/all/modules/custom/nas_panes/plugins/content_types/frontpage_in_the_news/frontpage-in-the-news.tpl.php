@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Custom view template to display Frontpage Bird in the News.
@@ -24,14 +25,16 @@
   <div class="row bird-card-container">
     <div class="bird-card-scroller">
       <?php for ($i = 0; $i < 4; $i++): ?>
-      <?php if (!isset($teasers[$i])) { continue; } ?>
-      <div class="columns tiny-3">
-        <?php print $teasers[$i]['bird']; ?>
-        <?php if (!empty($teasers[$i]['blue_link_url'])): ?>
-        <a href="<?php print $teasers[$i]['blue_link_url']; ?>" class="editorial-card-slug"><?php print $teasers[$i]['blue_link_text']; ?></a>
+        <?php if (!isset($teasers[$i])): ?>
+          <?php continue; ?>
         <?php endif; ?>
-        <h4 class="editorial-card-title"><a href="<?php print $teasers[$i]['article_url']; ?>"><?php print $teasers[$i]['article_title']; ?></a></h4>
-      </div>
+        <div class="columns tiny-3">
+          <?php print $teasers[$i]['bird']; ?>
+          <?php if (!empty($teasers[$i]['blue_link_url'])): ?>
+          <a href="<?php print $teasers[$i]['blue_link_url']; ?>" class="editorial-card-slug"><?php print $teasers[$i]['blue_link_text']; ?></a>
+          <?php endif; ?>
+          <h4 class="editorial-card-title"><a href="<?php print $teasers[$i]['article_url']; ?>"><?php print $teasers[$i]['article_title']; ?></a></h4>
+        </div>
       <?php endfor; ?>
     </div>
   </div>

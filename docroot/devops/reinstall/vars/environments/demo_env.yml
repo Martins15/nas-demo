@@ -1,0 +1,22 @@
+---
+env:
+  pre_settings: []
+  modules:
+    - { name: 'dblog', status: true }
+    - { name: 'stage_file_proxy', status: true }
+    - { name: 'devel', status: true }
+    - { name: 'views_ui', status: false }
+    - { name: 'diff', status: false }
+  drush_commands:
+    - { name: 'nas-master-update-geoip-db', status: true, arguments: "" }
+    - { name: 'nas-master-search-server-local', status: true, arguments: "" }
+    - { name: 'search-api-set-index-server', status: true, arguments: 'default_node_index solr_4_x' }
+    - { name: 'search-api-set-index-server', status: true, arguments: 'page_manager_pages solr_4_x' }
+    - { name: 'vset', status: true, arguments: 'cdn_status 0' }
+    - { name: 'search-api-clear', status: false, arguments: "-l {{ site_url }}" }
+    - { name: 'search-api-index', status: false, arguments: "-l {{ site_url }}" }
+    - { name: 'solr-mark-all', status: false, arguments: "-l {{ site_url }}" }
+    - { name: 'solr-index ', status: false, arguments: "-l {{ site_url }}" }
+  post_settings:
+    - { name: '$conf["error_level"]', status: true, value: '0' }
+    - { name: '$conf["stage_file_proxy_origin"]', status: true, value: "{{ origin_site_url }}" }

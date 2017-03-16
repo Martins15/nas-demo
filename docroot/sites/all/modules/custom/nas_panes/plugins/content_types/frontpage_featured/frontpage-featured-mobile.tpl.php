@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Featured Frontpage mobile template file.
@@ -14,7 +15,7 @@
   <div class="curtain-fallback-content">
     <div class="columns contextual-links-region">
       <?php print $contextual_links; ?>
-      <div class="curtain-card no-border <?php if (empty($extra_options['no_bg'])) print 'no-bg'?>">
+      <div class="curtain-card no-border <?php print empty($extra_options['no_bg']) ? 'no-bg' : ''; ?>">
         <?php print $blue_text_link; ?>
         <h3 class="curtain-card-headline"><?php print $title_link; ?></h3>
         <p><?php print $summary; ?></p>

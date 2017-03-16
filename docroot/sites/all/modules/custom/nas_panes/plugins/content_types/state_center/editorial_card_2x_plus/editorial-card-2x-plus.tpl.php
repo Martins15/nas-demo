@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template for custom pane 2 editorial cards and 1 engagement card.

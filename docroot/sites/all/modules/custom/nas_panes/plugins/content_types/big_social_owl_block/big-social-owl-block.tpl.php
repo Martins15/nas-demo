@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Big social owl block template file.

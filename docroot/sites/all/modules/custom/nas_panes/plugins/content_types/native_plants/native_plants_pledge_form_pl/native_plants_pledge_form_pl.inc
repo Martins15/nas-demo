@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Native Plants pledge form plugin for permalink page.

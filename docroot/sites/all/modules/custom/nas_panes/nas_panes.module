@@ -1143,7 +1143,7 @@ function nas_panes_preprocess_nas_featured_bird(&$variables) {
 }
 
 /**
- * Preprocess
+ * Preprocess function.
  */
 function nas_panes_preprocess_nas_flyways_landing_bottom(&$vars) {
   foreach ($vars['flyway'] as &$flyway) {
@@ -1269,7 +1269,6 @@ function nas_panes_boa_previous($node) {
  *
  * @param string $subtype
  *   Pane's subtype.
- *
  * @param object $entity
  *   Panelized entity object.
  *
@@ -1293,13 +1292,10 @@ function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
  *
  * @param string $subtype
  *   Pane subtype.
- *
  * @param object $entity
  *   Current panelized entity.
- *
  * @param string $bundle
  *   Entity bundle.
- *
  * @param string $panelizer_default
  *   Name of the panelizer layout.
  *
@@ -1362,12 +1358,14 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
   }
   $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(
     ':type' => $pane_type,
-    ':did' => $display->did))->fetchField();
+    ':did' => $display->did,
+  ))->fetchField();
   if (empty($pid)) {
     nas_panes_resave_panel($page_cache_key);
     $pid = db_query('SELECT pid FROM {panels_pane} WHERE type = :type AND did = :did', array(
       ':type' => $pane_type,
-      ':did' => $display->did))->fetchField();
+      ':did' => $display->did,
+    ))->fetchField();
   }
   $links = array(
     'edit' => array(
@@ -1394,8 +1392,8 @@ function nas_panes_build_page_contextual_links($pane_type, $page_cache_key, $con
 /**
  * Helper function to get Magazine issue's article node nids.
  *
- * @param $node
- *  Node of type 'magazine_issue'.
+ * @param object $node
+ *   Node of type 'magazine_issue'.
  *
  * @return array
  *   Array of integers - nids.
@@ -1438,15 +1436,8 @@ function _nas_panes_magazin_featured_articles($node) {
  *
  * @param string $subtype
  *   Panelizer subtype.
- *
  * @param object $node
  *   Node object.
- *
- * @param string $bundle
- *   Node bundle.
- *
- * @param string $panelizer_layout
- *   Name of the panelizer layout.
  *
  * @return int
  *   ID of the panelizer.
@@ -1482,16 +1473,17 @@ function _nas_panes_save_panelizer($subtype, $node) {
 /**
  * Save panelizer changes.
  *
- * @param object $context_node
- *   Node object.
- *
+ * @param object $subtype
+ *   Subtype.
  * @param array $data
- *   Pane's conf.
+ *   Data.
+ * @param bool $first
+ *   Get first.
  *
  * @return array
  *   Array of node ojects and contextual_links.
  */
-function nas_panes_engagement_cards_get_cards($subtype, $data, $first = FALSE) {
+function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FALSE) {
   global $language;
   $lang = $language->language == 'en' ? 'und' : $language->language;
   $nodes = $context = array();
@@ -1732,7 +1724,6 @@ function nas_panes_build_page_contextual_links_from_current_page($subtype, $conf
  *
  * @param string $subtype
  *   Pane's subtype.
- *
  * @param object $display
  *   Display object.
  *
@@ -1770,7 +1761,6 @@ function nas_panes_form_alter(&$form, &$form_state) {
  *
  * @param string $state
  *   State/province. Two letters.
- *
  * @param string $postal_code
  *   Postal code.
  *
@@ -1854,7 +1844,6 @@ function _nas_panes_get_upcoming_events($state = 'all') {
  *
  * @param string $state
  *   State/province. Two letters.
- *
  * @param string $type
  *   Type of the location.
  *
@@ -1897,7 +1886,9 @@ function _nas_panes_get_locations($state = 'all', $type = 'all', $nid = NULL, $v
       $options = array(
         'attributes' => array(
           'target' => '_blank',
-          'class' => array('more-link')));
+          'class' => array('more-link'),
+        ),
+      );
       $url = $item->field_field_location_link[0]['raw']['url'];
       $items[$item->nid]['site_link'] = l(t('View Website'), $item->field_field_location_link[0]['raw']['url'], $options);
       $items[$item->nid]['site_address'] = (!empty($url)) ? $url : NULL;
@@ -1981,7 +1972,8 @@ function nas_panes_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array(
       'nas_panes_boa_mail_subscription_settings_form',
-      2),
+      2,
+    ),
     'weight' => 11,
   );
   $items['birds-of-america/%ctools_js/subscribe/%'] = array(
@@ -2158,6 +2150,7 @@ function _nas_panes_hide_pane_title_field(&$form) {
 
 /**
  * Returns options for menu section.
+ *
  * @deprecated
  * @see _nas_panes_get_taxonomy_options()
  */
@@ -2171,7 +2164,6 @@ function _nas_panes_get_menu_section_options() {
  *
  * @param string $vocabulary_name
  *   Vocabulary machine name.
- *
  * @param int $parent
  *   Parent level number.
  *
@@ -2209,7 +2201,7 @@ function _nas_panes_default_social_pages_url() {
  * Helper function to format image attribution text.
  *
  * @param object $file
- *  Loaded file entity of bundle 'image'.
+ *   Loaded file entity of bundle 'image'.
  *
  * @return string
  *   Image caption and credit formatted like "[Caption] Photo: [Credit]".
@@ -2222,21 +2214,25 @@ function _nas_panes_format_image_attribution($file, $plain = FALSE) {
   $parts = array();
 
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
-    if ($plain) {
-      $parts[] = trim($items[0]['safe_value']);
-    }
-    else {
-      $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
+    if (isset($items[0]['safe_value'])) {
+      if ($plain) {
+        $parts[] = trim($items[0]['safe_value']);
+      }
+      else {
+        $parts[] = '<span class="image-caption">' . trim($items[0]['safe_value']) . '</span>';
+      }
     }
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
-    if ($plain) {
-      $parts[] = t('Photo:');
-      $parts[] = trim($items[0]['safe_value']);
-    }
-    else {
-      $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
-      $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
+    if (isset($items[0]['safe_value'])) {
+      if ($plain) {
+        $parts[] = t('Photo:');
+        $parts[] = trim($items[0]['safe_value']);
+      }
+      else {
+        $parts[] = '<span class="credit-intro">' . t('Photo:') . '</span>';
+        $parts[] = '<span class="credit-value">' . trim($items[0]['safe_value']) . '</span>';
+      }
     }
   }
   return implode(' ', $parts);
@@ -2332,9 +2328,9 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
 
   if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
     $form['#prefix'] = '<div class="featured-image">' . theme('image_style', array(
-        'style_name' => 'boa_mail_subscription',
-        'path' => nas_alters_local_image_uri($image->uri),
-      ));
+      'style_name' => 'boa_mail_subscription',
+      'path' => nas_alters_local_image_uri($image->uri),
+    ));
     if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
       $form['#prefix'] .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
     }
@@ -2345,7 +2341,7 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
 }
 
 /**
- * boa_mail_subscription_form validation callback.
+ * Custom validation callback.
  */
 function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
   $email = strtolower(trim($form_state['values']['email']));
@@ -2392,7 +2388,7 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
 }
 
 /**
- * boa_mail_subscription_form submit callback.
+ * Custom submit callback.
  */
 function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
   $node = _i18n_node_load($form_state['nid']);
@@ -2404,9 +2400,9 @@ function nas_panes_boa_mail_subscription_form_submit($form, $form_state) {
   $content = '<p>' . variable_get('boa_mail_subscription_settings_form_after', '') . '</p>' . $original_image_link;
   if ($image = file_load(variable_get('boa_mail_subscription_settings_form_image', ''))) {
     $content .= '<div class="featured-image">' . theme('image_style', array(
-        'style_name' => 'boa_mail_subscription',
-        'path' => nas_alters_local_image_uri($image->uri),
-      ));
+      'style_name' => 'boa_mail_subscription',
+      'path' => nas_alters_local_image_uri($image->uri),
+    ));
     if (!empty($image->field_file_caption[LANGUAGE_NONE][0]['value'])) {
       $content .= '<figcaption>' . $image->field_file_caption[LANGUAGE_NONE][0]['value'] . '</figcaption>';
     }
@@ -2473,7 +2469,7 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
 }
 
 /**
- * boa_mail_subscription_settings_form submit callback.
+ * Custom submit callback.
  */
 function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state) {
   variable_set('boa_mail_subscription_settings_form_title', $form_state['values']['title']);
@@ -2487,13 +2483,13 @@ function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state
 /**
  * Returns HTML for a 3x3 grid of radios for video cover placing handle.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - element: A render element containing radio buttons.
  *
  * @ingroup themeable
  */
-function theme_x_image_anchor($variables) {
+function theme_x_image_anchor(array $variables) {
   $element = $variables['element'];
 
   $rows = array(
@@ -2530,7 +2526,8 @@ function theme_x_image_anchor($variables) {
   return theme('table', array(
     'header' => array(),
     'rows' => $rows,
-    'attributes' => array('class' => array('x-image-anchor'))));
+    'attributes' => array('class' => array('x-image-anchor'))
+  ));
 }
 
 /**
@@ -2602,7 +2599,7 @@ function nas_panes_get_site_info($node) {
 function nas_panes_get_external_bird_content($node) {
   $data = nas_panes_get_site_info($node);
   if (!$data || empty($data['content'])) {
-    return;
+    return '';
   }
   return $data['content'];
 }
@@ -2619,9 +2616,12 @@ function nas_panes_get_external_bird_content($node) {
 function nas_panes_get_external_bird_headline($node) {
   $data = nas_panes_get_site_info($node);
   if (!$data || empty($data['content'])) {
-    return;
+    return '';
   }
-  return t('!birdname around @sitename', array('!birdname' => $node->title, '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))));
+  return t('!birdname around @sitename', array(
+    '!birdname' => $node->title,
+    '@sitename' => trim(preg_replace('/Audubon/', '', $data['title']))
+  ));
 }
 
 /**
@@ -2671,4 +2671,25 @@ function _nas_panes_ctools_custom_content_type_theme(&$theme, $plugin) {
     'template' => 'nas-panes-ctools-custom-content-type',
     'path' => drupal_get_path('module', 'nas_panes') . '/templates',
   );
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Needed to provide 'Language message' form inside site-information form for
+ * better usability.
+ */
+function nas_panes_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+  form_load_include($form_state, 'inc', 'nas_panes', 'plugins/content_types/nas_language_message/nas_language_message');
+  $nas_language_message_form = nas_language_message_edit_form($form, $form_state);
+  $form['nas_language_message_fields'] = $nas_language_message_form['nas_language_message_fields'];
+  $form['nas_language_message_fieldset'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Language message'),
+    '#collapsible' => FALSE,
+  );
+  foreach ($form['nas_language_message_fields']['#value'] as $field) {
+    $form['nas_language_message_fieldset'][$field] = $nas_language_message_form[$field];
+  }
+  array_unshift($form['#submit'], 'nas_language_message_edit_form_submit');
 }

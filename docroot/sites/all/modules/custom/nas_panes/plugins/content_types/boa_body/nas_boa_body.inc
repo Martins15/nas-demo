@@ -16,6 +16,7 @@ $plugin = array(
 
 /**
  * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function nas_boa_body_render($subtype, $conf, $args, $context) {
@@ -30,7 +31,7 @@ function nas_boa_body_render($subtype, $conf, $args, $context) {
 
   $body_items = field_get_items('node', $node, 'body');
   if (!empty($body_items)) {
-    $variables['body'] = $body_items[0]['safe_value'];
+    $variables['body'] = check_markup($body_items[0]['value'], $body_items[0]['format']);
   }
 
   $block = new stdClass();

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -39,8 +39,7 @@ function iba_landing_body_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function iba_landing_body_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -51,8 +50,9 @@ function iba_landing_body_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function iba_landing_body_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);

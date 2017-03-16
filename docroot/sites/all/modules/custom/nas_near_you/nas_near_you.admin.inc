@@ -12,14 +12,12 @@ function nas_near_you_zip_form($form, &$form_state) {
   $form['zip_database'] = array(
     '#title' => t('ZIP Database'),
     '#type' => 'managed_file',
-    '#description' => t('The upload file will be exported to the DB and used '.
-                        'for ZIP code location on /audubon-near-you page. '.
-                        'This may take several minutes.'),
+    '#description' => t('The upload file will be exported to the DB and used for ZIP code location on /audubon-near-you page. This may take several minutes.'),
     '#default_value' => variable_get('nas_near_you_zip_database', 0),
     '#upload_location' => 'public://near_you_database/',
     '#upload_validators' => array(
       'file_validate_extensions' => array('csv'),
-      'file_validate_size' => array(1024*1024*1024),
+      'file_validate_size' => array(1024 * 1024 * 1024),
     ),
     '#required' => TRUE,
   );
@@ -53,14 +51,16 @@ function nas_near_you_zip_form_submit($form, &$form_state) {
   else {
     $file = file_load($fid);
   }
-  //$batch = _nas_near_you_batch($file);
   $batch = _nas_near_you_batch($file);
   batch_set($batch);
 }
 
+/**
+ * Custom function.
+ */
 function _nas_near_you_batch($file) {
   $rows = file($file->uri);
-  $row_count = sizeof($rows);
+  $row_count = count($rows);
   $batch_size = 200;
   $offset = 1;
   $operations = array();
@@ -73,7 +73,8 @@ function _nas_near_you_batch($file) {
     $slice = array_slice($rows, $offset, $batch_size);
     $operations[] = array(
       '_nas_near_you_operation',
-      array($slice));
+      array($slice),
+    );
     $offset += $batch_size;
   } while ($offset < $row_count);
 
@@ -89,11 +90,13 @@ function _nas_near_you_batch($file) {
   return $batch;
 }
 
+/**
+ * Custom batch operation callback.
+ */
 function _nas_near_you_operation($rows, &$context) {
-  // Variables
   $chcode = '';
   $nid = 0;
-  // Process each row
+  // Process each row.
   foreach ($rows as $row) {
     $row = explode(',', $row);
     // Fix import error where the chapter code (e.g. 'A00') were 5 chars long.
@@ -101,18 +104,19 @@ function _nas_near_you_operation($rows, &$context) {
     // If is the same chaptercode as the prev, do not query nid.
     if (strcmp($chcode, $row[2]) != 0) {
       // Finding Chapter for each ZIP code base on chapter_code.
-      $nid = db_query('SELECT chapter.entity_id AS nid '.
-                      'FROM {field_data_field_chapter_code} chapter '.
-                      'WHERE chapter.field_chapter_code_value = :chcode',
+      $nid = db_query('SELECT chapter.entity_id AS nid
+                       FROM {field_data_field_chapter_code} chapter
+                       WHERE chapter.field_chapter_code_value = :chcode',
                    array(':chcode' => $row[2]))->fetchField();
       $nid = intval($nid);
     }
     // Add zip_code to DB.
     if (is_numeric($nid) and $nid > 0) {
-      $result = db_insert('zip_code')
+      db_insert('zip_code')
         ->fields(array(
           'nid' => $nid,
-          'zipcode' => $row[0]))
+          'zipcode' => $row[0],
+        ))
         ->execute();
     }
     $chcode = $row[2];
@@ -120,6 +124,9 @@ function _nas_near_you_operation($rows, &$context) {
   $context['results'][] = 1;
 }
 
+/**
+ * Custom callback.
+ */
 function _nas_near_you_batch_finished($success, $results, $operations) {
   if ($success) {
     variable_set('nas_near_you_database_set', TRUE);

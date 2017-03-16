@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -15,8 +15,9 @@ $plugin = array(
 );
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function frontpage_in_the_news_render($subtype, $conf, $args, $contexts) {
   $teasers = array();

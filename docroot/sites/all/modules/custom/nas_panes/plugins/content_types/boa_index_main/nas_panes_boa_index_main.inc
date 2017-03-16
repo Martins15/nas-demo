@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -14,8 +14,9 @@ $plugin = array(
 );
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function boa_index_main_render($subtype, $conf, $args, $contexts) {
   $block = new stdClass();
@@ -79,12 +80,13 @@ function boa_index_main_render($subtype, $conf, $args, $contexts) {
     }
     else {
       $links_to_display[] = l($link['title'], 'birds-of-america', array(
-          'query' => $link['query'],
-          'fragment' => 'boa-index-plates',
-          'attributes' => array(
-            'id' => $id,
-            'class' => array('cta'),
-          )));
+        'query' => $link['query'],
+        'fragment' => 'boa-index-plates',
+        'attributes' => array(
+          'id' => $id,
+          'class' => array('cta'),
+        ),
+      ));
     }
   }
 

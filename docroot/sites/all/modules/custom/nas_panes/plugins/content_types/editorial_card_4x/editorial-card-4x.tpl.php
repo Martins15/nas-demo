@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Template to custom pane flyway_in_the_news.
@@ -14,7 +15,7 @@
 <?php if ($teasers || $contextual_links): ?>
   <div class="editorial-card-4x <?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
     <?php if ($title || $more_link): ?>
-      <div class="row section-header<?php if ($spacetop): ?> space-top<?php endif; ?><?php if ($spacebetween): ?> space-bottom<?php endif; ?>">
+      <div class="row section-header<?php print $spacetop ? ' space-top' : ''; ?><?php print $spacebetween ? ' space-bottom' : ''; ?>">
         <?php if ($title): ?>
         <div class="column">
           <h2 class="thin"><?php print $title; ?></h2>

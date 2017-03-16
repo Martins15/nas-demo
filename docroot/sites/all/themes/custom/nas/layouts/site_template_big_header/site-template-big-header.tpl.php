@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Site template with big header.

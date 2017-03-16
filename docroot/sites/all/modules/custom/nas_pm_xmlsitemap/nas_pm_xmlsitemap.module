@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Main XMLSitemap - Page manager integration module file.
@@ -46,8 +47,10 @@ function nas_pm_xmlsitemap_load_pages($dec = NULL, $length = 9) {
 }
 
 /**
- * Helper function; Convert Page manager page machine name to a decimal
- * conversion of the MD5 hash.
+ * Helper function.
+ *
+ * Converts Page manager page machine name to a decimal conversion of the MD5
+ * hash.
  */
 function nas_pm_xmlsitemap_machine_name_to_dec($machine_name, $length = 10) {
   // As not every subtask has a PID we need to convert the subtask id to a

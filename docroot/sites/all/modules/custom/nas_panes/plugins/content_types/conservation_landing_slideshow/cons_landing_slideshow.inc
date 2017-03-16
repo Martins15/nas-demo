@@ -2,7 +2,7 @@
 
 /**
  * @file
- * define ctools content type.
+ * Defines ctools content type.
  */
 
 $plugin = array(
@@ -73,7 +73,7 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
       '#title' => '',
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
-      '#prefix' => '<div class="wrapper-' . $i .'">',
+      '#prefix' => '<div class="wrapper-' . $i . '">',
       '#suffix' => '</div>',
     );
     $form['wrapper'][$i]['entity_reference'] = array(
@@ -154,8 +154,7 @@ function cons_landing_slideshow_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
- * Notice, the magic that automatically does that for you.
+ * Submit callback.
  */
 function cons_landing_slideshow_edit_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -173,7 +172,7 @@ function cons_landing_slideshow_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Edit form submit for add group
+ * Edit form submit for add group.
  */
 function cons_landing_slideshow_add_group($form, &$form_state) {
   $form_state['count']++;
@@ -181,7 +180,8 @@ function cons_landing_slideshow_add_group($form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
+ * Run-time rendering of the body of the block (content type).
+ *
  * See ctools_plugin_examples for more advanced info.
  */
 function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
@@ -200,11 +200,11 @@ function cons_landing_slideshow_render($subtype, $conf, $args, $contexts) {
     // Set title.
     $title = empty($value['title']) ? $node->title : $value['title'];
     $nodes_array_to_show[$key]['title_link'] = l($title, 'node/' . $node->nid, array(
-        'attributes' => array(
-          'title' => $node->title,
-          'class' => array('conservation-slide-headline'),
-        ),
-      ));
+      'attributes' => array(
+        'title' => $node->title,
+        'class' => array('conservation-slide-headline'),
+      ),
+    ));
 
     // Set image.
     $image_fid = $value['image'];

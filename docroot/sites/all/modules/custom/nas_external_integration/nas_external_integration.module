@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Main file for the NAS External Integration module.
@@ -149,11 +150,13 @@ function nas_external_integration_settings_form($form, &$form_state, $conf = arr
             $list_options[$list->id] = $list->name . ' (' . $list->status . ')';
           }
         }
+        // @codingStandardsIgnoreStart
         catch (Ctct\Exceptions\CtctException $ex) {
           foreach ($ex->getErrors() as $error) {
             watchdog('nas_external_integration', $error->error_key . ': ' . $error->error_message);
           }
         }
+        // @codingStandardsIgnoreEnd
       }
       break;
 
@@ -223,12 +226,13 @@ function nas_external_integration_get_lists_ajax($form, &$form_state) {
  * Helper function to initialize Constant Contact API.
  */
 function _nas_external_integration_cc_api_init($apikey) {
-  // $path = drupal_get_path('module', 'nas_external_integration');
   $path = drupal_get_path('module', 'nas_external_integration');
   require_once $path . '/vendor/constantcontact/constantcontact/src/Ctct/autoload.php';
   require_once $path . '/vendor/autoload.php';
 
+  // @codingStandardsIgnoreStart
   $cc = new Ctct\ConstantContact($apikey);
+  // @codingStandardsIgnoreEnd
   return $cc;
 }
 
@@ -274,8 +278,9 @@ function nas_external_integration_default_conf() {
  * Helper function to log external submission.
  */
 function _nas_external_integration_submission_log($provider, $email, $answer) {
-  watchdog('nas_external_integration', $provider . ' integration - %email entered. Service answer was !answer',
+  watchdog('nas_external_integration', '%provider integration - %email entered. Service answer was !answer',
     array(
+      '%provider' => $provider,
       '%email' => $email,
       '!answer' => '<pre>' . htmlspecialchars(print_r($answer, TRUE)) . '</pre>',
     )

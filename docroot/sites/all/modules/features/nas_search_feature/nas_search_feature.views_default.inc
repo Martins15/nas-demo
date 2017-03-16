@@ -44,6 +44,10 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Sort criterion: Indexed Content: Title string */
+  $handler->display->display_options['sorts']['title_string']['id'] = 'title_string';
+  $handler->display->display_options['sorts']['title_string']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['sorts']['title_string']['field'] = 'title_string';
   /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
@@ -243,6 +247,11 @@ function nas_search_feature_views_default_views() {
   $handler->display->display_options['fields']['path']['table'] = 'search_api_index_page_manager_pages';
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['link_to_entity'] = 0;
+  /* Field: Indexed Page manager: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'search_api_index_page_manager_pages';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['link_to_entity'] = 0;
   /* Filter criterion: Search: Fulltext search */
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_page_manager_pages';

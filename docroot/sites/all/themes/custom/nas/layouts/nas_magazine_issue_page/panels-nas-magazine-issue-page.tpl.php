@@ -7,7 +7,7 @@
 ?>
 <?php print $content['header']; ?>
 </header>
-<section <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?> class="global-content">
+<section <?php print !empty($css_id) ? "id=\"$css_id\"" : ''; ?> class="global-content">
   <div class="row section-header mag-issue-header">
     <div class="columns">
       <h1 class="mag-issue-title"><?php print t('Audubon Magazine'); ?> <span><?php print $content['title']; ?></span></h1>

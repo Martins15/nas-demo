@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Bird in action Header template.

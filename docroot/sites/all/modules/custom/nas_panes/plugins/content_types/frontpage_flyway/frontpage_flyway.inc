@@ -15,8 +15,9 @@ $plugin = array(
 );
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function frontpage_flyway_pane_render($subtype, $conf, $args, $contexts) {
   $block_title = '';
@@ -28,10 +29,10 @@ function frontpage_flyway_pane_render($subtype, $conf, $args, $contexts) {
   drupal_add_js('geoip/js/geoip.js');
   drupal_add_js(drupal_get_path('module', 'nas_panes') . '/plugins/content_types/frontpage_flyway/frontpage_flyway.js');
 
-  //We use 2 functions from this plugin.
+  // We use 2 functions from this plugin.
   module_load_include('inc', 'fieldable_panels_panes', 'plugins/content_types/fieldable_panels_pane');
 
-  //Select all nas_flyway_section FPPs.
+  // Select all nas_flyway_section FPPs.
   $query = db_select('fieldable_panels_panes', 'fpp');
   $query->fields('fpp', array('bundle', 'uuid'));
   $query->condition('fpp.bundle', 'nas_flyway_section', '=');

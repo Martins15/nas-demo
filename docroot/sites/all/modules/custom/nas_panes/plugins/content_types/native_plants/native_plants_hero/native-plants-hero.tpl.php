@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @file
+ * Native Plants hero template.
+ */
 ?>
 <div class="bg-respond hero small<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>">
   <?php print $context_links; ?>
