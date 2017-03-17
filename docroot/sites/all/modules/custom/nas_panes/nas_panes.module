@@ -1298,7 +1298,7 @@ function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
  * @return string
  *   Zipcode.
  */
-function _nas_panes_get_pane_zipcode(array &$conf, $contexts) {
+function _nas_panes_get_pane_zipcode(array &$conf, array $contexts) {
   if (empty($conf['zipcode'])) {
     $query_params = drupal_get_query_parameters();
     if (isset($query_params['zipcode'])) {
