@@ -59,6 +59,7 @@
         },
         resolve: {
           data: function(storage, $stateParams) {
+            storage.data_loaded = false;
             Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
             return storage.getData($stateParams.zipcode).then(function (data) {
@@ -66,6 +67,7 @@
               $.unblockUI();
               Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
+              storage.data_loaded = true;
             });
           }
         }
@@ -102,6 +104,7 @@
     // Service to hold information shared between controllers.
     NativePlantsApp.service('storage', function ($rootScope, $q, $timeout, $cookies, $filter, $state, $localStorage, courier) {
       var self = this, cache = [];
+      self.data_loaded = false;
       self.multiselect_reload = false;
       self.localStorage = $localStorage;
       self.stateParams = defaultStateParams;
@@ -529,6 +532,11 @@
           });
         }
       };
+    });
+
+    NativePlantsApp.controller('NativePlantsController', function (storage) {
+      var self = this;
+      self.storage = storage;
     });
 
     NativePlantsApp.controller('NativePlantsTabsController', function ($sce, storage) {
