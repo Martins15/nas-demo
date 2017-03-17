@@ -25,7 +25,7 @@
       text_search: '',
       text_search_tier1: ''
     };
-    var NativePlantsApp = angular.module('NativePlants', ['ngCookies', 'ngSanitize', 'ui.router', 'ngStorage']);
+    var NativePlantsApp = angular.module('NativePlants', ['ngCookies', 'ngSanitize', 'ui.router', 'ngStorage', 'duScroll']);
 
     NativePlantsApp.config(function($locationProvider, $stateProvider) {
       $locationProvider.html5Mode({
@@ -167,8 +167,11 @@
           return self.data;
         },
         function(newVal, oldVal) {
-          self.calculateResults();
-          self.calculateResultsTier1();
+          if (!angular.isObject(newVal)) {
+            return;
+          }
+          self.calculateResults(0);
+          self.calculateResultsTier1(0);
         });
       // Watch combined filter values and recalculate results.
       $rootScope.$watch(
@@ -176,8 +179,11 @@
           return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type + self.stateParams.text_search;
         },
         function (newVal, oldVal) {
+          if (!angular.isObject(self.data)) {
+            return;
+          }
           self.text_search_progress = true;
-          self.calculateResults().then(function () {
+          self.calculateResults(500).then(function () {
             self.text_search_progress = false;
           });
         });
@@ -186,13 +192,16 @@
           return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1 + self.stateParams.text_search_tier1;
         },
         function (newVal, oldVal) {
+          if (!angular.isObject(self.data)) {
+            return;
+          }
           self.text_search_progress_tier1 = true;
-          self.calculateResultsTier1().then(function () {
+          self.calculateResultsTier1(500).then(function () {
             self.text_search_progress_tier1 = false;
           });
         });
 
-      self.calculateResults = function () {
+      self.calculateResults = function (timeout) {
         return $timeout(function () {
           if (typeof self.data == 'undefined') {
             return;
@@ -221,9 +230,9 @@
             return true;
           });
           self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
-        }, 500);
+        }, timeout);
       };
-      self.calculateResultsTier1 = function () {
+      self.calculateResultsTier1 = function (timeout) {
         return $timeout(function () {
           if (typeof self.data == 'undefined') {
             return;
@@ -256,7 +265,7 @@
             return true;
           });
           self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
-        }, 500);
+        }, timeout);
       };
 
       // Pager params.
@@ -548,7 +557,7 @@
       self.storage = storage;
     });
 
-    NativePlantsApp.controller('NativePlantsResultsController', function ($sce, $anchorScroll, storage) {
+    NativePlantsApp.controller('NativePlantsResultsController', function ($sce, $document, storage) {
       var self = this;
       self.storage = storage;
 
@@ -561,15 +570,25 @@
         self.storage.setStateParam(param, values.join(','), page);
       };
       self.setFilterLink = function (param, value, page) {
-        self.storage.activate_tab = false;
-        self.storage.multiselect_reload = true;
-        self.storage.setStateParam(param, value, page);
-        $anchorScroll('pager-scroll-' + page);
+        var element;
+        if (Foundation.utils.is_medium_up()) {
+          element = angular.element(document.getElementById('native-plants-tabs-selector'));
+        }
+        else {
+          element = angular.element(document.getElementById('pager-scroll-' + page));
+        }
+        $document.scrollToElement(element, 0, 1000).then(function () {
+          self.storage.activate_tab = false;
+          self.storage.multiselect_reload = true;
+          self.storage.setStateParam(param, value, page);
+        });
       };
       self.setPage = function (param, value) {
-        self.storage.activate_tab = false;
-        self.storage.setStateParam(param, value);
-        $anchorScroll('pager-scroll-' + param);
+        var element = angular.element(document.getElementById('pager-scroll-' + param));
+        $document.scrollToElement(element, 0, 1000).then(function () {
+          self.storage.activate_tab = false;
+          self.storage.setStateParam(param, value);
+        });
       };
 
       self.plantDescriptionClass = function (plant) {
@@ -597,7 +616,8 @@
       self.textSearchProgressCheck = function (tier) {
         if (tier) {
           return (self.storage.text_search_progress_tier1) ? 'form-filter--load' : '';
-        } else {
+        }
+        else {
           return (self.storage.text_search_progress) ? 'form-filter--load' : '';
         }
       };
