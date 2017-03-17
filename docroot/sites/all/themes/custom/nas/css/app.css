@@ -16201,6 +16201,38 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 14px;
 }
 
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition: all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.animate-fade {
+  transition: all linear 0.5s;
+}
+
+.animate-fade.fade-add,
+.animate-fade.fade-remove.fade-remove-active {
+  opacity: 1;
+}
+
+.animate-fade.fade-add.fade-add-active,
+.animate-fade.fade-remove {
+  opacity: 0;
+}
+
 /* Inline Panels Editor custom styles */
 .panels-ipe-display-container .nas-panels-ipe-collapsible-button {
   padding: 10px;

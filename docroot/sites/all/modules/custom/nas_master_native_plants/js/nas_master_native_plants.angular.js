@@ -25,7 +25,7 @@
       text_search: '',
       text_search_tier1: ''
     };
-    var NativePlantsApp = angular.module('NativePlants', ['ngCookies', 'ngSanitize', 'ui.router', 'ngStorage', 'duScroll']);
+    var NativePlantsApp = angular.module('NativePlants', ['ngCookies', 'ngSanitize', 'ngAnimate', 'ui.router', 'ngStorage', 'duScroll']);
 
     NativePlantsApp.config(function($locationProvider, $stateProvider) {
       $locationProvider.html5Mode({
@@ -236,6 +236,7 @@
         }, timeout);
       };
       self.calculateResultsTier1 = function (timeout) {
+        self.calculate_results_progress_tier1 = true;
         return $timeout(function () {
           if (typeof self.data == 'undefined') {
             return;
@@ -268,6 +269,7 @@
             return true;
           });
           self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
+          self.calculate_results_progress_tier1 = false;
         }, timeout);
       };
 
@@ -629,6 +631,10 @@
           return (self.storage.text_search_progress) ? 'form-filter--load' : '';
         }
       };
+
+      self.animationClass = function () {
+        return (self.storage.calculate_results_progress_tier1) ? 'fade' : '';
+      }
     });
 
     NativePlantsApp.controller('NativePlantsCartController', function ($sce, storage) {

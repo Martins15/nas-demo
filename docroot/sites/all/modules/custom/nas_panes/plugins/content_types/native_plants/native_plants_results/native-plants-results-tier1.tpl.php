@@ -73,8 +73,8 @@
   </div>
 
   <!--View Content-->
-  <div id="pager-scroll-page_tier1" class="view-content row">
-    <div class="view-row columns"
+  <div id="pager-scroll-page_tier1" class="view-content row animate-fade" data-ng-class="resultsC.animationClass()">
+    <div class="view-row columns animate-repeat"
          data-ng-repeat="plant in resultsC.storage.results_tier1_filtered |
          orderBy : resultsC.storage.stateParams.orderBy_tier1 |
          limitTo : resultsC.storage.pager_tier1.items_per_page : ((resultsC.storage.stateParams.page_tier1 - 1) * resultsC.storage.pager_tier1.items_per_page)">
