@@ -570,7 +570,13 @@
         self.storage.setStateParam(param, values.join(','), page);
       };
       self.setFilterLink = function (param, value, page) {
-        var element = angular.element(document.getElementById('native-plants-tabs-selector'));
+        var element;
+        if (Foundation.utils.is_medium_up()) {
+          element = angular.element(document.getElementById('native-plants-tabs-selector'));
+        }
+        else {
+          element = angular.element(document.getElementById('pager-scroll-' + page));
+        }
         $document.scrollToElement(element, 0, 1000).then(function () {
           self.storage.activate_tab = false;
           self.storage.multiselect_reload = true;
