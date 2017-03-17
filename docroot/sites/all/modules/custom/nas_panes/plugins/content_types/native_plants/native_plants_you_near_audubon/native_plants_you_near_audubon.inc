@@ -20,6 +20,7 @@ $plugin = array(
       'format' => 'full_html',
     ),
     'zipcode' => '',
+    'angular' => 0,
   ),
   'all contexts' => TRUE,
 );
@@ -53,6 +54,12 @@ function native_plants_you_near_audubon_edit_form($form, &$form_state) {
     '#title' => t('ZIP code'),
     '#default_value' => $conf['zipcode'],
   );
+  $form['angular'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Angular JS'),
+    '#description' => t('Output as Angular JS template.'),
+    '#default_value' => $conf['angular'],
+  );
 
   return $form;
 }
@@ -75,61 +82,53 @@ function native_plants_you_near_audubon_edit_form_submit(&$form, &$form_state) {
  * Render callback.
  */
 function native_plants_you_near_audubon_render($subtype, $conf, $args, $contexts) {
-  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
-
-  if (empty($conf['zipcode'])) {
-    $query_params = drupal_get_query_parameters();
-    if (isset($query_params['zipcode'])) {
-      $conf['zipcode'] = $query_params['zipcode'];
-    }
-  }
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-  ctools_include('plugins');
-  $geometry = array();
-  if ($zipcode_geocoder = ctools_get_plugins('geocoder', 'geocoder_handler', 'zipcode')) {
-    if ($function = ctools_plugin_get_function($zipcode_geocoder, 'callback')) {
-      $geometry = $function($zipcode);
-    }
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
   }
 
-  $resource = array();
-  if ($geometry) {
-    $latlon = $geometry->coords[1] . ',' . $geometry->coords[0];
-    $view_results = views_get_view_result('community_resources_near_you', 'default', $latlon);
+  if ($conf['angular']) {
+    $mappings = array(
+      '!resource_name' => '{{resource.title}}',
+      '!resource_address' => '{{resource.address.rendered_short}}',
+    );
   }
   else {
-    $view_results = views_get_view_result('community_resources_near_you', 'default');
-  }
-
-  // Prepare 1 community resource.
-  foreach ($view_results as $result) {
-    if (!$node = node_load($result->entity)) {
-      continue;
+    if (empty($conf['zipcode'])) {
+      $query_params = drupal_get_query_parameters();
+      if (isset($query_params['zipcode'])) {
+        $conf['zipcode'] = $query_params['zipcode'];
+      }
+      else {
+        foreach ($contexts as $context) {
+          if ($context->plugin == 'entity:permalink') {
+            $conf['zipcode'] = $context->data->zip_code;
+            break;
+          }
+        }
+      }
     }
-    $node_wrapper = entity_metadata_wrapper('node', $node);
-    $resource = array(
-      'title' => $node_wrapper->title->value(),
-      'address' => $node_wrapper->field_community_resource_address->value(),
+
+    module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
+
+    $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+    if (!$resources = _nas_master_native_plants_get_resources($zipcode, 1)) {
+      return '';
+    }
+
+    $resource = reset($resources);
+    $mappings = array(
+      '!resource_name' => $resource['title'],
+      '!resource_address' => $resource['address']['rendered_short'],
     );
-    break;
   }
-
-  if (!$resource) {
-    return '';
-  }
-
-  $resource['address']['rendered'] = '';
-  $resource['address']['rendered'] .= $resource['address']['locality'] ? $resource['address']['locality'] . ', ' : '';
-  $resource['address']['rendered'] .= $resource['address']['administrative_area'] ? $resource['address']['administrative_area'] : '';
 
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_you_near_audubon',
-    '#description' => strtr(check_markup($conf['description']['value'], $conf['description']['format']), array(
-      '!resource_name' => $resource['title'],
-      '!resource_address' => $resource['address']['rendered'],
-    )),
-    '#context_links' => $contextual_links,
+    '#description' => strtr(check_markup($conf['description']['value'], $conf['description']['format']), $mappings),
+    '#context_links' => nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts),
   );
 
   return $block;
