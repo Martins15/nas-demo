@@ -5,7 +5,7 @@
  * Template for Native Plants tabs selector pane.
  */
 ?>
-<div class="row<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>"
+<div id="native-plants-tabs-selector" class="row<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>"
      data-ng-controller="NativePlantsTabsController as tabsC">
   <?php print $context_links; ?>
   <div class="columns">

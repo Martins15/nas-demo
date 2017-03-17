@@ -726,6 +726,19 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs'),
     ),
   );
+  $libraries['angularjs-scroll'] = array(
+    'title' => 'Scrollspy, animated scrollTo and scroll events for angular.js',
+    'website' => 'https://github.com/oblador/angular-scroll',
+    'version' => '1.0.0',
+    'js' => array(
+      '//cdnjs.cloudflare.com/ajax/libs/angular-scroll/1.0.0/angular-scroll.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
 
   $module_path = drupal_get_path('module', 'nas_master_native_plants');
   $libraries['angularjs-native-plants'] = array(
@@ -745,6 +758,7 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs-cookies'),
       array('nas_master_native_plants', 'angularjs-ui-router'),
       array('nas_master_native_plants', 'angularjs-storage'),
+      array('nas_master_native_plants', 'angularjs-scroll'),
     ),
   );
   $libraries['angularjs-native-plants']['js'][] = array(
