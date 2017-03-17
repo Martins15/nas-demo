@@ -19,8 +19,6 @@ $plugin = array(
       'value' => "<p>We&#39;ve found native plants for your zip code. The nearest Audubon offering&nbsp;native plant services&nbsp;is <span class=\"text--blue\" data-ng-click=\"resourceC.activateLocalResources()\" style=\"cursor: pointer;\"><strong data-ng-bind=\"resource.title\">!resource_name</strong></span> in <span data-ng-bind=\"resource.address.rendered_short\">!resource_address</span>. <span class=\"text--blue\" data-ng-click=\"resourceC.activateLocalResources()\" style=\"cursor: pointer;\"><strong>They can help</strong></span>.</p>",
       'format' => 'full_html',
     ),
-    'zipcode' => '',
-    'angular' => 0,
   ),
   'all contexts' => TRUE,
 );
@@ -48,17 +46,6 @@ function native_plants_you_near_audubon_edit_form($form, &$form_state) {
     '#title' => t('Description'),
     '#default_value' => $conf['description']['value'],
     '#format' => $conf['description']['format'],
-  );
-  $form['zipcode'] = array(
-    '#type' => 'textfield',
-    '#title' => t('ZIP code'),
-    '#default_value' => $conf['zipcode'],
-  );
-  $form['angular'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Angular JS'),
-    '#description' => t('Output as Angular JS template.'),
-    '#default_value' => $conf['angular'],
   );
 
   return $form;
@@ -88,31 +75,13 @@ function native_plants_you_near_audubon_render($subtype, $conf, $args, $contexts
     $conf = array_merge($plugin['defaults'], $conf);
   }
 
-  if ($conf['angular']) {
-    $mappings = array(
-      '!resource_name' => '{{resource.title}}',
-      '!resource_address' => '{{resource.address.rendered_short}}',
-    );
-  }
-  else {
-    module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
-
-    $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
-    if (!$resources = _nas_master_native_plants_get_resources($zipcode, 1)) {
-      return '';
-    }
-
-    $resource = reset($resources);
-    $mappings = array(
-      '!resource_name' => $resource['title'],
-      '!resource_address' => $resource['address']['rendered_short'],
-    );
-  }
-
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'native_plants_you_near_audubon',
-    '#description' => strtr(check_markup($conf['description']['value'], $conf['description']['format']), $mappings),
+    '#description' => strtr(check_markup($conf['description']['value'], $conf['description']['format']), array(
+      '!resource_name' => '',
+      '!resource_address' => '',
+    )),
     '#context_links' => nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts),
   );
 

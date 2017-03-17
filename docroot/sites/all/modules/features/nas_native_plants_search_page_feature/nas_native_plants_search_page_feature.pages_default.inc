@@ -461,9 +461,7 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
 ',
         'format' => 'full_html',
       ),
-      'zipcode' => '',
       'form_build_id' => 'form-ri35KH8lm6bXGmJBHY95su9220VvG_CSd3z8AV9ZDTg',
-      'angular' => 1,
     );
     $pane->cache = array();
     $pane->style = array(
