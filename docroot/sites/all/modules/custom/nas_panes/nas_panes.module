@@ -1292,19 +1292,20 @@ function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
  *
  * @param array $conf
  *   Pane configuration.
- * @param array $entity
+ * @param array $contexts
  *   Pane contexts.
  *
  * @return string
  *   Zipcode.
  */
-function _nas_panes_get_pane_zipcode(&$conf, $contexts) {
+function _nas_panes_get_pane_zipcode(array &$conf, $contexts) {
   if (empty($conf['zipcode'])) {
     $query_params = drupal_get_query_parameters();
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
     else {
+      // Making zip code available on permalink page.
       foreach ($contexts as $context) {
         if ($context->plugin == 'entity:permalink') {
           $conf['zipcode'] = $context->data->zip_code;
