@@ -24,7 +24,7 @@
       if ($(this).data('native-plants-fields-sync-override')) {
         var key = $(this).data('native-plants-fields-sync'),
           value = $(this).val();
-        if (value != '') {
+        if (value !== '') {
           fields[key] = $(this).val();
         }
       }
@@ -60,6 +60,6 @@
   // Add function to remove native_plants_zipcode_changed cookie.
   Drupal.ajax.prototype.commands.nas_master_native_plants_zipcode_changed_cookie_remove =  function(ajax, response, status) {
     $.cookie('native_plants_zipcode_changed', null, {path: Drupal.settings.basePath});
-  }
+  };
 
 })(jQuery);

@@ -245,7 +245,7 @@
             return;
           }
           self.results_tier1 = $filter('filter')(self.data.plants, function (value, index, array) {
-            if (value.Tier1 == false) {
+            if (value.Tier1 === false) {
               return false;
             }
 
@@ -652,7 +652,7 @@
 
       self.animationClass = function (results_key) {
         return (self.storage['hide_' + results_key]) ? 'hide-results' : '';
-      }
+      };
     });
 
     NativePlantsApp.controller('NativePlantsCartController', function ($sce, storage) {
