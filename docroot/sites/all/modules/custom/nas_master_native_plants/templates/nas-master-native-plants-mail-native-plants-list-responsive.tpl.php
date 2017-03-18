@@ -609,13 +609,6 @@
                 <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
                   <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0; text-align: left">
                     <?php if (!empty($nurseries['offline'])): ?>
-                      <?php
-                      $nurseries_show_more = FALSE;
-                      if (count($nurseries['offline']) > 6) {
-                        $nurseries['offline'] = array_slice($nurseries['offline'], 0, 6);
-                        $nurseries_show_more = TRUE;
-                      }
-                      ?>
                       <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 0; padding: 0; text-align: left; word-wrap: normal">
                           <?php print t('Where to buy native plants near you'); ?>
                       </h2>
@@ -651,11 +644,11 @@
                             </tr>
                           <?php endforeach; ?>
                           <?php if ($nurseries_show_more): ?>
-                          <tr colspan="3" style="padding: 0; text-align: left; vertical-align: top">
-                            <td>
-                              <a href="<?php print $permalink_url; ?>" target="_blank" style="color:#0AA8E3; font-family:'Source Sans Pro',Verdana,sans-serif; font-size:16px; font-weight:inherit; line-height:inherit; margin:0; padding:0; text-align:left; text-decoration:none"><?php print t('Show more »'); ?></a>
-                            </td>
-                          </tr>
+                            <tr colspan="3" style="padding: 0; text-align: left; vertical-align: top">
+                              <td>
+                                <a href="<?php print $permalink_url; ?>" target="_blank" style="color:#0AA8E3; font-family:'Source Sans Pro',Verdana,sans-serif; font-size:16px; font-weight:inherit; line-height:inherit; margin:0; padding:0; text-align:left; text-decoration:none"><?php print t('Show more »'); ?></a>
+                              </td>
+                            </tr>
                           <?php endif; ?>
                         </tbody>
                       </table>
