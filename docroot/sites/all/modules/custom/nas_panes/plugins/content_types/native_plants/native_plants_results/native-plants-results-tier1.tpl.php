@@ -40,13 +40,16 @@
             <legend><?php print t('Sort by'); ?></legend>
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="common-name-tier1" value="CommonName"
-                     data-ng-model="resultsC.storage.stateParams.orderBy_tier1"/>
+                     data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results_tier1')"/>
               <label for="common-name-tier1"><?php print t('Common Name'); ?></label>
             </div>
-
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="scientific-name-tier1" value="ScientificName"
-                     data-ng-model="resultsC.storage.stateParams.orderBy_tier1"/>
+                     data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results_tier1')"/>
               <label for="scientific-name-tier1"><?php print t('Scientific Name'); ?></label>
             </div>
           </fieldset>
@@ -73,8 +76,8 @@
   </div>
 
   <!--View Content-->
-  <div id="pager-scroll-page_tier1" class="view-content row animate-fade" data-ng-class="resultsC.animationClass()">
-    <div class="view-row columns animate-repeat"
+  <div id="pager-scroll-page_tier1" class="view-content row animate-results" data-ng-class="resultsC.animationClass('results_tier1')">
+    <div class="view-row columns"
          data-ng-repeat="plant in resultsC.storage.results_tier1_filtered |
          orderBy : resultsC.storage.stateParams.orderBy_tier1 |
          limitTo : resultsC.storage.pager_tier1.items_per_page : ((resultsC.storage.stateParams.page_tier1 - 1) * resultsC.storage.pager_tier1.items_per_page)">

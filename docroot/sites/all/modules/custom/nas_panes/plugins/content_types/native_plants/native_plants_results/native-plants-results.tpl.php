@@ -40,12 +40,16 @@
             <legend><?php print t('Sort by'); ?></legend>
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort" id="common-name" value="CommonName"
-                     data-ng-model="resultsC.storage.stateParams.orderBy"/>
+                     data-ng-model="resultsC.storage.stateParams.orderBy"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results')"/>
               <label for="common-name"><?php print t('Common Name'); ?></label>
             </div>
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort" id="scientific-name" value="ScientificName"
-                     data-ng-model="resultsC.storage.stateParams.orderBy"/>
+                     data-ng-model="resultsC.storage.stateParams.orderBy"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results')"/>
               <label for="scientific-name"><?php print t('Scientific Name'); ?></label>
             </div>
           </fieldset>
@@ -74,7 +78,7 @@
             <th><?php print t('May attract'); ?></th>
           </tr>
           </thead>
-          <tbody>
+          <tbody class="animate-results" data-ng-class="resultsC.animationClass('results')">
           <tr data-ng-repeat="plant in resultsC.storage.results_filtered |
               orderBy : resultsC.storage.stateParams.orderBy |
               limitTo : resultsC.storage.pager.items_per_page : ((resultsC.storage.stateParams.page - 1) * resultsC.storage.pager.items_per_page)">
@@ -133,7 +137,7 @@
         </table>
       </div>
 
-      <div class="mobile-search-full-results hide-for-medium hide-for-large hide-for-xlarge">
+      <div class="mobile-search-full-results animate-results hide-for-medium hide-for-large hide-for-xlarge" data-ng-class="resultsC.animationClass('results')">
         <div class="clearfix view-row"
              data-ng-repeat="plant in resultsC.storage.results_filtered |
              orderBy : resultsC.storage.stateParams.orderBy |

@@ -1716,34 +1716,20 @@ input[type="checkbox"].np-checkbox {
 }
 
 // Angular animations.
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter,
-.animate-repeat.ng-leave {
+.animate-results {
   transition:all linear 0.5s;
-}
 
-.animate-repeat.ng-leave.ng-leave-active,
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter {
-  opacity:0;
-}
+  &.hide-results {
+    opacity: 0;
+  }
 
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
-  opacity:1;
-}
+  &.hide-results-add,
+  &.hide-results-remove.hide-results-remove-active {
+    opacity: 1;
+  }
 
-.animate-fade {
-  transition:all linear 0.5s;
-}
-
-.animate-fade.fade-add,
-.animate-fade.fade-remove.fade-remove-active {
-  opacity: 1;
-}
-
-.animate-fade.fade-add.fade-add-active,
-.animate-fade.fade-remove {
-  opacity: 0;
+  &.hide-results-add.hide-results-add-active,
+  &.hide-results-remove {
+    opacity: 0;
+  }
 }
