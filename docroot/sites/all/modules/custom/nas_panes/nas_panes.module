@@ -1304,15 +1304,6 @@ function _nas_panes_get_pane_zipcode(array &$conf, array $contexts) {
     if (isset($query_params['zipcode'])) {
       $conf['zipcode'] = $query_params['zipcode'];
     }
-    else {
-      // Making zip code available on permalink page.
-      foreach ($contexts as $context) {
-        if ($context->plugin == 'entity:permalink') {
-          $conf['zipcode'] = $context->data->zip_code;
-          break;
-        }
-      }
-    }
   }
 
   return ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
