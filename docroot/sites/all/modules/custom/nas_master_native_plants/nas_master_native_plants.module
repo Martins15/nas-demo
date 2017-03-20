@@ -700,6 +700,19 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs'),
     ),
   );
+  $libraries['angularjs-animate'] = array(
+    'title' => 'AngularJS Animate',
+    'website' => 'https://angularjs.org/',
+    'version' => '1.6.1',
+    'js' => array(
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
   $libraries['angularjs-ui-router'] = array(
     'title' => 'AngularJS UI Router',
     'website' => 'https://ui-router.github.io',
@@ -759,6 +772,7 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs-ui-router'),
       array('nas_master_native_plants', 'angularjs-storage'),
       array('nas_master_native_plants', 'angularjs-scroll'),
+      array('nas_master_native_plants', 'angularjs-animate'),
     ),
   );
   $libraries['angularjs-native-plants']['js'][] = array(

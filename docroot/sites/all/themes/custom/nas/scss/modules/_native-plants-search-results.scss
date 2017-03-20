@@ -1714,3 +1714,22 @@ input[type="checkbox"].np-checkbox {
     }
   }
 }
+
+// Angular animations.
+.animate-results {
+  transition:all linear 0.5s;
+
+  &.hide-results {
+    opacity: 0;
+  }
+
+  &.hide-results-add,
+  &.hide-results-remove.hide-results-remove-active {
+    opacity: 1;
+  }
+
+  &.hide-results-add.hide-results-add-active,
+  &.hide-results-remove {
+    opacity: 0;
+  }
+}

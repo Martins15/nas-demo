@@ -16201,6 +16201,19 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 14px;
 }
 
+.animate-results {
+  transition: all linear 0.5s;
+}
+.animate-results.hide-results {
+  opacity: 0;
+}
+.animate-results.hide-results-add, .animate-results.hide-results-remove.hide-results-remove-active {
+  opacity: 1;
+}
+.animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove {
+  opacity: 0;
+}
+
 /* Inline Panels Editor custom styles */
 .panels-ipe-display-container .nas-panels-ipe-collapsible-button {
   padding: 10px;
