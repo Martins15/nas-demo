@@ -14879,7 +14879,8 @@ h2.grey {
 
 .native-plants-search-results h3 {
   color: #626262;
-  font-size: 18px;
+  font-size: 22px;
+  line-height: 25px;
   margin-bottom: 7px;
 }
 @media only screen and (min-width: 601px) {
@@ -15204,6 +15205,7 @@ h2.grey {
   display: block;
   font-size: 20px;
   line-height: 28px;
+  text-transform: capitalize;
   padding: 11px 0;
   color: #5b5b5b;
   position: relative;
@@ -15222,10 +15224,11 @@ h2.grey {
   border-color: #76736c transparent transparent transparent;
 }
 .native-plants-tabs .r-tabs-accordion-title .counter:before {
-  content: ':';
+  content: ':\00a0';
   line-height: inherit;
   display: inline-block;
   vertical-align: top;
+  margin-left: -3px;
 }
 .native-plants-tabs .r-tabs-state-active .r-tabs-anchor:before {
   transform: translateY(-50%) rotate(180deg);

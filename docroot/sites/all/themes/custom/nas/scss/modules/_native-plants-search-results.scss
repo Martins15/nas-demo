@@ -208,7 +208,8 @@
 .native-plants-search-results {
   h3 {
     color: $color-light-text-gray;
-    font-size: 18px;
+    font-size: 22px;
+    line-height: 25px;
     margin-bottom: 7px;
 
     @include breakpoint(medium-up) {
@@ -566,6 +567,7 @@
       display: block;
       font-size: 20px;
       line-height: 28px;
+      text-transform: capitalize;
       padding: 11px 0;
       color: #5b5b5b;
       position: relative;
@@ -587,10 +589,11 @@
 
     .counter {
       &:before {
-        content: ':';
+        content: ':\00a0';
         line-height: inherit;
         display: inline-block;
         vertical-align: top;
+        margin-left: -3px;
       }
     }
   }
