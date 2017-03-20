@@ -590,23 +590,40 @@
         else {
           element = angular.element(document.getElementById('pager-scroll-' + page));
         }
-        $document.scrollToElement(element, 0, scroll_duration).then(function () {
-          self.storage.activate_tab = false;
-          self.storage.multiselect_reload = true;
-          self.storage.setStateParam(param, value, page);
-        });
+        $document.scrollToElement(element, 0, scroll_duration).then(
+          function () {
+            self.storage.activate_tab = false;
+            self.storage.multiselect_reload = true;
+            self.storage.setStateParam(param, value, page);
+          },
+          function () {
+            self.storage.activate_tab = false;
+            self.storage.multiselect_reload = true;
+            self.storage.setStateParam(param, value, page);
+          }
+        );
       };
       self.setPage = function (page_key, value) {
         var results_key = (page_key == 'page' ? 'results' : 'results_tier1');
         var element = angular.element(document.getElementById('pager-scroll-' + page_key));
-        $document.scrollToElement(element, 0, scroll_duration).then(function () {
-          self.storage['hide_' + results_key] = true;
-          $timeout(function () {
-            self.storage['hide_' + results_key] = false;
-            self.storage.activate_tab = false;
-            self.storage.setStateParam(page_key, value);
-          }, animation_duration);
-        });
+        $document.scrollToElement(element, 0, scroll_duration).then(
+          function () {
+            self.storage['hide_' + results_key] = true;
+            $timeout(function () {
+              self.storage['hide_' + results_key] = false;
+              self.storage.activate_tab = false;
+              self.storage.setStateParam(page_key, value);
+            }, animation_duration);
+          },
+          function () {
+            self.storage['hide_' + results_key] = true;
+            $timeout(function () {
+              self.storage['hide_' + results_key] = false;
+              self.storage.activate_tab = false;
+              self.storage.setStateParam(page_key, value);
+            }, animation_duration);
+          }
+        );
       };
 
       self.orderByChange = function (results_key) {

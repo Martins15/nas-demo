@@ -65,6 +65,7 @@
     </div>
   </div>
 
+  <div id="pager-scroll-page_tier1"></div>
   <div>
     <div class="form-item form-item-checkbox">
       <input type="checkbox" class="np-checkbox" id="select-all-tier1"
@@ -76,7 +77,7 @@
   </div>
 
   <!--View Content-->
-  <div id="pager-scroll-page_tier1" class="view-content row animate-results" data-ng-class="resultsC.animationClass('results_tier1')">
+  <div class="view-content row animate-results" data-ng-class="resultsC.animationClass('results_tier1')">
     <div class="view-row columns"
          data-ng-repeat="plant in resultsC.storage.results_tier1_filtered |
          orderBy : resultsC.storage.stateParams.orderBy_tier1 |

@@ -66,7 +66,8 @@
   </div>
 
   <!--View Content-->
-  <div id="pager-scroll-page" class="view-content row">
+  <div id="pager-scroll-page"></div>
+  <div class="view-content row">
     <div class="native-plants-full-search-results">
       <div class="columns">
         <table class="hide-for-tiny hide-for-small">
