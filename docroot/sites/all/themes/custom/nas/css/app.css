@@ -15178,6 +15178,17 @@ h2.grey {
   list-style-type: none;
   text-transform: capitalize;
 }
+.native-plants-tabs .tabs li.form-filter--load a:after {
+  content: '';
+  display: inline-block;
+  background: #fff url("../img/loading_animation.gif") 50% 50% no-repeat;
+  width: 32px;
+  height: 32px;
+  vertical-align: bottom;
+}
+.native-plants-tabs .tabs li.form-filter--load .counter {
+  display: none;
+}
 .native-plants-tabs .tabs a {
   padding: 7px 12px;
   display: block;

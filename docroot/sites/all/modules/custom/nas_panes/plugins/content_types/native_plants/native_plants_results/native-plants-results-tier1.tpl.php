@@ -54,7 +54,7 @@
             </div>
           </fieldset>
         </div>
-        <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('tier1')">
+        <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('_tier1')">
           <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
                  data-ng-model="resultsC.storage.stateParams.text_search_tier1"
                  data-ng-model-options="{ debounce: 250 }"/>

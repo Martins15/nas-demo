@@ -518,6 +518,24 @@
       float: left;
       list-style-type: none;
       text-transform: capitalize;
+
+      &.form-filter--load {
+
+        a:after {
+          content: '';
+          display: inline-block;
+          background: $color-white url('../img/loading_animation.gif') 50% 50% no-repeat;
+          width: 32px;
+          height: 32px;
+          vertical-align: bottom;
+        }
+
+        .counter {
+          display: none;
+        }
+
+      }
+
     }
 
     a {
