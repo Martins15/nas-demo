@@ -6,70 +6,78 @@
  */
 ?>
 <div data-ng-controller="NativePlantsResultsController as resultsC">
-  <!--View Filters-->
-  <div class="view-filters">
-    <div class="view-filters-select clearfix">
-      <select class="search-select wrap-select-skip" multiple
-              data-native-plants-multiselect
-              data-placeholder="<?php print t('All types of plants'); ?>"
-              data-ng-model="resultsC.storage.attribute_tier1"
-              data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1, 'page_tier1')">
-      </select>
-      <select class="search-select wrap-select-skip" multiple
-              data-native-plants-multiselect
-              data-placeholder="<?php print t('All plant resources'); ?>"
-              data-ng-model="resultsC.storage.resource_tier1"
-              data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1, 'page_tier1')">
-      </select>
-      <select class="search-select wrap-select-skip" multiple
-              data-native-plants-multiselect
-              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
-              data-ng-model="resultsC.storage.bird_type_tier1"
-              data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type_tier1', resultsC.storage.bird_type_tier1, 'page_tier1')">
-      </select>
-    </div>
-    <div class="view-filters-controls clearfix">
-      <div class="filters-controls-wrapper">
-        <fieldset>
-          <legend><?php print t('Sort by'); ?></legend>
-          <div class="form-item form-item-radio">
-            <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="common-name-tier1" value="CommonName"
-                   data-ng-model="resultsC.storage.stateParams.orderBy_tier1"/>
-            <label for="common-name-tier1"><?php print t('Common Name'); ?></label>
-          </div>
-
-          <div class="form-item form-item-radio">
-            <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="scientific-name-tier1" value="ScientificName"
-                   data-ng-model="resultsC.storage.stateParams.orderBy_tier1"/>
-            <label for="scientific-name-tier1"><?php print t('Scientific Name'); ?></label>
-          </div>
-        </fieldset>
+  <input type="checkbox" id="checkbox-open-filter-1" class="hide-for-tiny hide-for-small hide-for-medium hide-for-large hide-for-xlarge view-filters--mobile">
+  <label for="checkbox-open-filter-1" class="view-filters--mobile hide-for-large hide-for-xlarge">Filter &amp; Sort</label>
+  <div class="view-filters hide-for-tiny hide-for-small hide-for-medium">
+    <!--View Filters-->
+    <div class="view-filters">
+      <div class="view-filters-select clearfix">
+        <select class="search-select wrap-select-skip" multiple
+                data-native-plants-multiselect
+                data-placeholder="<?php print t('All types of plants'); ?>"
+                data-ng-model="resultsC.storage.attribute_tier1"
+                data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
+                data-ng-change="resultsC.setFilter('attribute_tier1', resultsC.storage.attribute_tier1, 'page_tier1')">
+        </select>
+        <select class="search-select wrap-select-skip" multiple
+                data-native-plants-multiselect
+                data-placeholder="<?php print t('All plant resources'); ?>"
+                data-ng-model="resultsC.storage.resource_tier1"
+                data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
+                data-ng-change="resultsC.setFilter('resource_tier1', resultsC.storage.resource_tier1, 'page_tier1')">
+        </select>
+        <select class="search-select wrap-select-skip" multiple
+                data-native-plants-multiselect
+                data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+                data-ng-model="resultsC.storage.bird_type_tier1"
+                data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
+                data-ng-change="resultsC.setFilter('bird_type_tier1', resultsC.storage.bird_type_tier1, 'page_tier1')">
+        </select>
       </div>
-      <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('tier1')">
-        <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
-               data-ng-model="resultsC.storage.stateParams.text_search_tier1"
-               data-ng-model-options="{ debounce: 250 }"/>
-      </div>
-      <button class="button tomato large"
-              data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
-    </div>
-
-    <div>
-      <div class="form-item form-item-checkbox">
-        <input type="checkbox" class="np-checkbox" id="select-all-tier1"
-               data-ng-model="resultsC.storage.all_tier1_in_cart"
-               data-ng-change="resultsC.storage.calculateTier1inCart()"/>
-        <label for="select-all-tier1"
-               data-ng-click="resultsC.storage.selectAllTier1()"><?php print t('Add all plants below to your list'); ?></label>
+      <div class="view-filters-controls clearfix">
+        <div class="filters-controls-wrapper">
+          <fieldset>
+            <legend><?php print t('Sort by'); ?></legend>
+            <div class="form-item form-item-radio">
+              <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="common-name-tier1" value="CommonName"
+                     data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results_tier1')"/>
+              <label for="common-name-tier1"><?php print t('Common Name'); ?></label>
+            </div>
+            <div class="form-item form-item-radio">
+              <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="scientific-name-tier1" value="ScientificName"
+                     data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results_tier1')"/>
+              <label for="scientific-name-tier1"><?php print t('Scientific Name'); ?></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('_tier1')">
+          <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
+                 data-ng-model="resultsC.storage.stateParams.text_search_tier1"
+                 data-ng-model-options="{ debounce: 250 }"/>
+        </div>
+        <button class="button tomato large"
+                data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
       </div>
     </div>
   </div>
 
+  <div id="pager-scroll-page_tier1"></div>
+  <div>
+    <div class="form-item form-item-checkbox">
+      <input type="checkbox" class="np-checkbox" id="select-all-tier1"
+             data-ng-model="resultsC.storage.all_tier1_in_cart"
+             data-ng-change="resultsC.storage.calculateTier1inCart()"/>
+      <label for="select-all-tier1"
+             data-ng-click="resultsC.storage.selectAllTier1()"><?php print t('Add all plants below to your list'); ?></label>
+    </div>
+  </div>
+
   <!--View Content-->
-  <div id="pager-scroll-page_tier1" class="view-content row">
+  <div class="view-content row animate-results" data-ng-class="resultsC.animationClass('results_tier1')">
     <div class="view-row columns"
          data-ng-repeat="plant in resultsC.storage.results_tier1_filtered |
          orderBy : resultsC.storage.stateParams.orderBy_tier1 |

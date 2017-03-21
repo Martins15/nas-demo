@@ -10,6 +10,7 @@
     // Create base tag for Angular routing.
     $('head').append('<base href="' + settings.basePath + '">');
 
+    var animation_duration = 500, scroll_duration = 500;
     var defaultStateParams = {
       active_tab: 'best_results',
       attribute: '',
@@ -25,7 +26,7 @@
       text_search: '',
       text_search_tier1: ''
     };
-    var NativePlantsApp = angular.module('NativePlants', ['ngCookies', 'ngSanitize', 'ui.router', 'ngStorage']);
+    var NativePlantsApp = angular.module('NativePlants', ['ngCookies', 'ngSanitize', 'ngAnimate', 'ui.router', 'ngStorage', 'duScroll']);
 
     NativePlantsApp.config(function($locationProvider, $stateProvider) {
       $locationProvider.html5Mode({
@@ -59,6 +60,7 @@
         },
         resolve: {
           data: function(storage, $stateParams) {
+            storage.data_loaded = false;
             Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
             return storage.getData($stateParams.zipcode).then(function (data) {
@@ -66,6 +68,7 @@
               $.unblockUI();
               Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
+              storage.data_loaded = true;
             });
           }
         }
@@ -102,6 +105,7 @@
     // Service to hold information shared between controllers.
     NativePlantsApp.service('storage', function ($rootScope, $q, $timeout, $cookies, $filter, $state, $localStorage, courier) {
       var self = this, cache = [];
+      self.data_loaded = false;
       self.multiselect_reload = false;
       self.localStorage = $localStorage;
       self.stateParams = defaultStateParams;
@@ -167,8 +171,11 @@
           return self.data;
         },
         function(newVal, oldVal) {
-          self.calculateResults();
-          self.calculateResultsTier1();
+          if (!angular.isObject(newVal)) {
+            return;
+          }
+          self.calculateResults(0);
+          self.calculateResultsTier1(0);
         });
       // Watch combined filter values and recalculate results.
       $rootScope.$watch(
@@ -176,9 +183,12 @@
           return self.stateParams.attribute + self.stateParams.resource + self.stateParams.bird_type + self.stateParams.text_search;
         },
         function (newVal, oldVal) {
-          self.text_search_progress = true;
-          self.calculateResults().then(function () {
-            self.text_search_progress = false;
+          if (!angular.isObject(self.data)) {
+            return;
+          }
+          self.filtering_in_progress = true;
+          self.calculateResults(animation_duration).then(function () {
+            self.filtering_in_progress = false;
           });
         });
       $rootScope.$watch(
@@ -186,13 +196,17 @@
           return self.stateParams.attribute_tier1 + self.stateParams.resource_tier1 + self.stateParams.bird_type_tier1 + self.stateParams.text_search_tier1;
         },
         function (newVal, oldVal) {
-          self.text_search_progress_tier1 = true;
-          self.calculateResultsTier1().then(function () {
-            self.text_search_progress_tier1 = false;
+          if (!angular.isObject(self.data)) {
+            return;
+          }
+          self.filtering_in_progress_tier1 = true;
+          self.calculateResultsTier1(animation_duration).then(function () {
+            self.filtering_in_progress_tier1 = false;
           });
         });
 
-      self.calculateResults = function () {
+      self.calculateResults = function (timeout) {
+        self.hide_results = true;
         return $timeout(function () {
           if (typeof self.data == 'undefined') {
             return;
@@ -221,15 +235,17 @@
             return true;
           });
           self.results_filtered = $filter('filter')(self.results, self.stateParams.text_search);
-        }, 500);
+          self.hide_results = false;
+        }, timeout);
       };
-      self.calculateResultsTier1 = function () {
+      self.calculateResultsTier1 = function (timeout) {
+        self.hide_results_tier1 = true;
         return $timeout(function () {
           if (typeof self.data == 'undefined') {
             return;
           }
           self.results_tier1 = $filter('filter')(self.data.plants, function (value, index, array) {
-            if (value.Tier1 == false) {
+            if (value.Tier1 === false) {
               return false;
             }
 
@@ -256,7 +272,8 @@
             return true;
           });
           self.results_tier1_filtered = $filter('filter')(self.results_tier1, self.stateParams.text_search_tier1);
-        }, 500);
+          self.hide_results_tier1 = false;
+        }, timeout);
       };
 
       // Pager params.
@@ -522,6 +539,11 @@
       };
     });
 
+    NativePlantsApp.controller('NativePlantsController', function (storage) {
+      var self = this;
+      self.storage = storage;
+    });
+
     NativePlantsApp.controller('NativePlantsTabsController', function ($sce, storage) {
       var self = this;
       self.storage = storage;
@@ -541,6 +563,11 @@
           '<span class="quantity">@count</span> <span class="text">plants</span>'
         ));
       };
+
+      self.filterSearchProgressCheck = function (tier) {
+        return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
+      }
+
     });
 
     NativePlantsApp.controller('NativePlantsZipcodeSearchController', function (storage) {
@@ -548,7 +575,7 @@
       self.storage = storage;
     });
 
-    NativePlantsApp.controller('NativePlantsResultsController', function ($sce, $anchorScroll, storage) {
+    NativePlantsApp.controller('NativePlantsResultsController', function ($sce, $document, $timeout, storage) {
       var self = this;
       self.storage = storage;
 
@@ -561,15 +588,57 @@
         self.storage.setStateParam(param, values.join(','), page);
       };
       self.setFilterLink = function (param, value, page) {
-        self.storage.activate_tab = false;
-        self.storage.multiselect_reload = true;
-        self.storage.setStateParam(param, value, page);
-        $anchorScroll('pager-scroll-' + page);
+        var element;
+        if (Foundation.utils.is_medium_up()) {
+          element = angular.element(document.getElementById('native-plants-tabs-selector'));
+        }
+        else {
+          element = angular.element(document.getElementById('pager-scroll-' + page));
+        }
+        $document.scrollToElement(element, 0, scroll_duration).then(
+          function () {
+            self.storage.activate_tab = false;
+            self.storage.multiselect_reload = true;
+            self.storage.setStateParam(param, value, page);
+          },
+          function () {
+            self.storage.activate_tab = false;
+            self.storage.multiselect_reload = true;
+            self.storage.setStateParam(param, value, page);
+          }
+        );
       };
-      self.setPage = function (param, value) {
-        self.storage.activate_tab = false;
-        self.storage.setStateParam(param, value);
-        $anchorScroll('pager-scroll-' + param);
+      self.setPage = function (page_key, value) {
+        var results_key = (page_key == 'page' ? 'results' : 'results_tier1');
+        var element = angular.element(document.getElementById('pager-scroll-' + page_key));
+        $document.scrollToElement(element, 0, scroll_duration).then(
+          function () {
+            self.storage['hide_' + results_key] = true;
+            $timeout(function () {
+              self.storage['hide_' + results_key] = false;
+              self.storage.activate_tab = false;
+              self.storage.setStateParam(page_key, value);
+            }, animation_duration);
+          },
+          function () {
+            self.storage['hide_' + results_key] = true;
+            $timeout(function () {
+              self.storage['hide_' + results_key] = false;
+              self.storage.activate_tab = false;
+              self.storage.setStateParam(page_key, value);
+            }, animation_duration);
+          }
+        );
+      };
+
+      self.orderByChange = function (results_key) {
+        self.storage['hide_' + results_key] = true;
+        if (angular.isObject(self.promise)) {
+          $timeout.cancel(self.promise);
+        }
+        self.promise = $timeout(function () {
+          self.storage['hide_' + results_key] = false;
+        }, animation_duration);
       };
 
       self.plantDescriptionClass = function (plant) {
@@ -595,11 +664,11 @@
       };
 
       self.textSearchProgressCheck = function (tier) {
-        if (tier) {
-          return (self.storage.text_search_progress_tier1) ? 'form-filter--load' : '';
-        } else {
-          return (self.storage.text_search_progress) ? 'form-filter--load' : '';
-        }
+        return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
+      };
+
+      self.animationClass = function (results_key) {
+        return (self.storage['hide_' + results_key]) ? 'hide-results' : '';
       };
     });
 

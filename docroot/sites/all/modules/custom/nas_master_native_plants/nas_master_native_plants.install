@@ -394,7 +394,7 @@ function nas_master_native_plants_update_7023() {
 }
 
 /**
- * Revert Native Plants Permalink page features.
+ * Revert panes default values on permalink page.
  */
 function nas_master_native_plants_update_7024() {
   features_revert(array(

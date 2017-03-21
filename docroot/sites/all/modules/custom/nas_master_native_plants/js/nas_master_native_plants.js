@@ -121,7 +121,7 @@
     attach: function (context, settings) {
       $('body').once('np-endIPE', function () {
         $('body.panels-ipe').bind('endIPE', function () {
-          if ($('.view-native-plants-search').length == 0) {
+          if ($('.view-native-plants-search').length === 0) {
             return;
           }
           $('.view-filters .form-select:first', $('.view-native-plants-search')).trigger('change');

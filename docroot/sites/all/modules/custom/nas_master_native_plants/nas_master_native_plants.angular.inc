@@ -233,11 +233,7 @@ function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_
       ),
     );
     $res['services']['rendered'] = drupal_render($services_list);
-
     $resources[] = $res;
-    if (count($resources) == $limit) {
-      break;
-    }
   }
 
   return $resources;
