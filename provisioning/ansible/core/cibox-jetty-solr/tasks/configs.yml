@@ -5,9 +5,19 @@
   register: drupal_solr_module
 
 - name: Download Drupal modules with solr configs
-  shell: drush dl {{ jetty_solr_module }} --destination=/root
-  when: drupal_solr_module.stat.exists == false
+  shell: drush dl {{ jetty_solr_module_version }} --destination=/root
+  when: drupal_solr_module.stat.exists == false or jetty_solr_module_force_download
+
+- name: Empty conf directories
+  shell: rm -rf /opt/solr/solr/{{ item.value.name }}/conf/*
+  with_dict: jetty_solr_cores
 
 - name: Set configs to Solr
   shell: rsync -ra /root/{{ jetty_solr_module }}/{{ jetty_solr_module_config_path }}/ /opt/solr/solr/{{ item.value.name }}/conf/
   with_dict: jetty_solr_cores
+
+- name: Extra configs to Solr
+  shell: rsync -ra {{ item[1] }} /opt/solr/solr/{{ item[0] }}/conf/
+  with_nested:
+    - jetty_solr_cores
+    - jetty_solr_extra_configs
