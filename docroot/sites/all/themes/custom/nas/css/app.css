@@ -14929,6 +14929,54 @@ h2.grey {
   max-height: 120px;
   max-width: 92%;
 }
+.native-plants-search-results .view-filters {
+  position: relative;
+}
+@media only screen and (min-width: 768px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper {
+    position: absolute;
+    top: 105px;
+    right: 0;
+  }
+}
+.native-plants-search-results .view-filters .filters-controls-wrapper legend {
+  margin: 0 5px 0 0;
+}
+.native-plants-search-results .view-filters .filters-controls-wrapper legend:after {
+  content: ':\00a0';
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: top;
+}
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper legend {
+    width: auto;
+  }
+}
+.native-plants-search-results .view-filters .filters-controls-wrapper label {
+  margin-left: 0;
+  margin-right: 0;
+}
+.native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio] {
+  visibility: hidden;
+}
+.native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label {
+  color: #0aa8e3;
+}
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio {
+    float: left;
+    width: 18%;
+    position: relative;
+  }
+}
+.native-plants-search-results .view-filters .filters-controls-wrapper #common-name-tier1 + label:after {
+  content: '\00a0|\00a0';
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #777777;
+}
 
 .tier-1-plant-picture {
   line-height: 0;

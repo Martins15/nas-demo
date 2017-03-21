@@ -260,6 +260,62 @@
       }
     }
   }
+
+  .view-filters {
+    position: relative;
+
+    .filters-controls-wrapper {
+      @include breakpoint(large-up) {
+        position: absolute;
+        top: 105px;
+        right: 0;
+      }
+
+      legend {
+        margin: 0 5px 0 0;
+        &:after {
+          content: ':\00a0';
+          line-height: inherit;
+          display: inline-block;
+          vertical-align: top;
+        }
+
+        @include width-range(0px, #{upper-bound($medium-range)}) {
+          width: auto;
+        }
+      }
+
+      label {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .form-item-radio {
+        input[type=radio] {
+          visibility: hidden;
+          &:checked + label {
+            color: rgb(10, 168, 227);
+          }
+        }
+
+        @include width-range(0px, #{upper-bound($medium-range)}) {
+          float: left;
+          width: 18%;
+          position: relative;
+        }
+      }
+
+      #common-name-tier1 + label {
+        &:after {
+          content: '\00a0|\00a0';
+          line-height: inherit;
+          display: inline-block;
+          vertical-align: top;
+          color: rgb(119, 119, 119);
+        }
+      }
+    }
+  }
 }
 
 .tier-1-plant-picture {
