@@ -186,9 +186,9 @@
           if (!angular.isObject(self.data)) {
             return;
           }
-          self.text_search_progress = true;
+          self.filtering_in_progress = true;
           self.calculateResults(animation_duration).then(function () {
-            self.text_search_progress = false;
+            self.filtering_in_progress = false;
           });
         });
       $rootScope.$watch(
@@ -199,9 +199,9 @@
           if (!angular.isObject(self.data)) {
             return;
           }
-          self.text_search_progress_tier1 = true;
+          self.filtering_in_progress_tier1 = true;
           self.calculateResultsTier1(animation_duration).then(function () {
-            self.text_search_progress_tier1 = false;
+            self.filtering_in_progress_tier1 = false;
           });
         });
 
@@ -563,6 +563,11 @@
           '<span class="quantity">@count</span> <span class="text">plants</span>'
         ));
       };
+
+      self.filterSearchProgressCheck = function (tier) {
+        return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
+      }
+
     });
 
     NativePlantsApp.controller('NativePlantsZipcodeSearchController', function (storage) {
@@ -659,12 +664,7 @@
       };
 
       self.textSearchProgressCheck = function (tier) {
-        if (tier) {
-          return (self.storage.text_search_progress_tier1) ? 'form-filter--load' : '';
-        }
-        else {
-          return (self.storage.text_search_progress) ? 'form-filter--load' : '';
-        }
+        return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
       };
 
       self.animationClass = function (results_key) {
