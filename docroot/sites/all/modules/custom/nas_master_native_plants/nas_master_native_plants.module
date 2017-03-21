@@ -118,7 +118,7 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
 
   // Remove Canada states.
   $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
-  _nas_master_native_plants_remove_canada_states($states);
+  _nas_master_native_plants_set_online_states($form['field_native_plant_tier1_states'][LANGUAGE_NONE], 'field_native_plant_tier1');
 
   // Assign all states if no states selected yet.
   if (!$states['#default_value']) {
