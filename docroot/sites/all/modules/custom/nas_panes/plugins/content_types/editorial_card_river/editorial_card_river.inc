@@ -280,7 +280,7 @@ function _editorial_card_river_presets() {
  *   Arguments.
  * @param array $settings
  *   Array of required context types.
- * @param stdClass $context
+ * @param array $context
  *   Available context.
  * @param array $conf
  *   Pane configuration.
@@ -288,7 +288,7 @@ function _editorial_card_river_presets() {
  * @return array
  *   Array of args to be passed into view.
  */
-function _editorial_card_river_get_view_args(array &$args, array $settings, stdClass $context, array $conf = array()) {
+function _editorial_card_river_get_view_args(array &$args, array $settings, $context, array $conf = array()) {
   foreach ($settings as $require_context) {
     $arg_key = count($args);
     switch ($require_context) {
