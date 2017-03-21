@@ -14929,48 +14929,69 @@ h2.grey {
   max-height: 120px;
   max-width: 92%;
 }
-.native-plants-search-results .view-filters {
+
+@media only screen and (min-width: 601px) {
+  .native-plants-full-results .view-filters {
+    margin-bottom: 45px;
+  }
+}
+
+.native-plants-search-results .view-filters,
+.native-plants-full-results .view-filters {
   position: relative;
 }
 @media only screen and (min-width: 768px) {
-  .native-plants-search-results .view-filters .filters-controls-wrapper {
+  .native-plants-search-results .view-filters .filters-controls-wrapper,
+  .native-plants-full-results .view-filters .filters-controls-wrapper {
     position: absolute;
     top: 105px;
     right: 0;
   }
 }
-.native-plants-search-results .view-filters .filters-controls-wrapper legend {
+.native-plants-search-results .view-filters .filters-controls-wrapper legend,
+.native-plants-full-results .view-filters .filters-controls-wrapper legend {
   margin: 0 5px 0 0;
+  width: auto;
 }
-.native-plants-search-results .view-filters .filters-controls-wrapper legend:after {
+.native-plants-search-results .view-filters .filters-controls-wrapper legend:after,
+.native-plants-full-results .view-filters .filters-controls-wrapper legend:after {
   content: ':\00a0';
   line-height: inherit;
   display: inline-block;
   vertical-align: top;
 }
-@media only screen and (min-width: 0px) and (max-width: 767px) {
-  .native-plants-search-results .view-filters .filters-controls-wrapper legend {
-    width: auto;
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper legend,
+  .native-plants-full-results .view-filters .filters-controls-wrapper legend {
+    width: 100%;
   }
 }
-.native-plants-search-results .view-filters .filters-controls-wrapper label {
+.native-plants-search-results .view-filters .filters-controls-wrapper label,
+.native-plants-full-results .view-filters .filters-controls-wrapper label {
   margin-left: 0;
   margin-right: 0;
 }
-.native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio] {
+.native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio],
+.native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio] {
   visibility: hidden;
 }
-.native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label {
+.native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label,
+.native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label {
   color: #0aa8e3;
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
-  .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio {
+  .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio,
+  .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio {
     float: left;
-    width: 18%;
+    width: 100%;
+    max-width: 127px;
     position: relative;
   }
 }
-.native-plants-search-results .view-filters .filters-controls-wrapper #common-name-tier1 + label:after {
+.native-plants-search-results .view-filters .filters-controls-wrapper #common-name-tier1 + label:after,
+.native-plants-search-results .view-filters .filters-controls-wrapper #common-name + label:after,
+.native-plants-full-results .view-filters .filters-controls-wrapper #common-name-tier1 + label:after,
+.native-plants-full-results .view-filters .filters-controls-wrapper #common-name + label:after {
   content: '\00a0|\00a0';
   line-height: inherit;
   display: inline-block;

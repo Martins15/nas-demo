@@ -260,7 +260,16 @@
       }
     }
   }
-
+}
+.native-plants-full-results {
+  .view-filters {
+    @include breakpoint(medium-up) {
+      margin-bottom: 45px;
+    }
+  }
+}
+.native-plants-search-results,
+.native-plants-full-results {
   .view-filters {
     position: relative;
 
@@ -273,6 +282,8 @@
 
       legend {
         margin: 0 5px 0 0;
+        width: auto;
+
         &:after {
           content: ':\00a0';
           line-height: inherit;
@@ -280,8 +291,8 @@
           vertical-align: top;
         }
 
-        @include width-range(0px, #{upper-bound($medium-range)}) {
-          width: auto;
+        @include width-range(0px, 320px) {
+          width: 100%;
         }
       }
 
@@ -300,24 +311,27 @@
 
         @include width-range(0px, #{upper-bound($medium-range)}) {
           float: left;
-          width: 18%;
+          width: 100%;
+          max-width: 127px;
           position: relative;
         }
       }
 
-      #common-name-tier1 + label {
-        &:after {
-          content: '\00a0|\00a0';
-          line-height: inherit;
-          display: inline-block;
-          vertical-align: top;
-          color: rgb(119, 119, 119);
+      #common-name-tier1,
+      #common-name {
+        & + label {
+          &:after {
+            content: '\00a0|\00a0';
+            line-height: inherit;
+            display: inline-block;
+            vertical-align: top;
+            color: rgb(119, 119, 119);
+          }
         }
       }
     }
   }
 }
-
 .tier-1-plant-picture {
   line-height: 0;
 
