@@ -56,8 +56,8 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
   $form['quantity'] = array(
     '#type' => 'select',
     '#title' => t('Quantity'),
-    '#options' => drupal_map_assoc(range(1, 9)),
-    '#description' => t('Select how many nurseries to show.'),
+    '#options' => drupal_map_assoc(range(0, 9)),
+    '#description' => t('Select how many nurseries to show. Set 0 if you want see all nurseries.'),
     '#default_value' => $conf['quantity'],
   );
   $form['description'] = array(
@@ -133,8 +133,19 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
     '#online' => $conf['online'],
-    '#nurseries' => $nurseries,
+    '#nurseries_show' => array_slice($nurseries, 0, 6),
+    '#nurseries_hidden' => array_slice($nurseries, 6),
     '#context_links' => $contextual_links,
+  );
+
+  if (!$plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    return $block;
+  }
+
+  $block->content['#attached'] = array(
+    'js' => array(
+      $plugin['path'] . '/js/native_plants_nurseries_near_you.js',
+    ),
   );
 
   return $block;
@@ -149,7 +160,8 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
       'title' => '',
       'description' => '',
       'online' => 0,
-      'nurseries' => array(),
+      'nurseries_show' => array(),
+      'nurseries_hidden' => array(),
       'context_links' => '',
     ),
     'template' => 'native-plants-nurseries-near-you',
