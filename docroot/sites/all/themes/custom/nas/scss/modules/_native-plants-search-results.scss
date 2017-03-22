@@ -1172,18 +1172,6 @@ input[type="checkbox"].np-checkbox {
     padding-left: 26px;
     padding-bottom: 10px;
 
-    .native-plant-select-all-plants & {
-      margin-right: 0;
-      padding-left: 0;
-      color: rgb(10, 168, 227);
-      &:hover {
-        color: #07729a;
-      }
-      @include breakpoint(medium-up) {
-        padding-bottom: 10px;
-      }
-    }
-
     &:before {
       background-image: url(../img/np-checkbox.png);
       background-position: top right;
@@ -1195,10 +1183,6 @@ input[type="checkbox"].np-checkbox {
       margin-top: 3px;
       height: 18px;
       width: 18px;
-
-      .native-plant-select-all-plants & {
-        display: none;
-      }
     }
   }
 
@@ -1211,15 +1195,16 @@ input[type="checkbox"].np-checkbox {
 
 .native-plant-select-all-plants {
   padding-bottom: 10px;
+  a {
+    font-size: 20px;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    line-height: 24px;
+    color: rgb(10, 168, 227);
+  }
 }
 
 .native-plants-top--clear-plants-list {
-  font-size: 20px;
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-  line-height: 24px;
-  color: rgb(10, 168, 227);
   text-transform: capitalize;
-  
   &:before {
     content: '\00a0|\00a0';
     line-height: inherit;
