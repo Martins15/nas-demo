@@ -14950,8 +14950,9 @@ h2.grey {
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper legend,
 .native-plants-full-results .view-filters .filters-controls-wrapper legend {
-  margin: 0 5px 0 0;
   width: auto;
+  margin: 0 5px 0 0;
+  font-weight: 600;
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper legend:after,
 .native-plants-full-results .view-filters .filters-controls-wrapper legend:after {
@@ -14970,6 +14971,7 @@ h2.grey {
 .native-plants-full-results .view-filters .filters-controls-wrapper label {
   margin-left: 0;
   margin-right: 0;
+  font-weight: normal;
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio],
 .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio] {
@@ -15727,6 +15729,19 @@ input[type="checkbox"].np-checkbox + label {
   padding-left: 26px;
   padding-bottom: 10px;
 }
+.native-plant-select-all-plants input[type="checkbox"].np-checkbox + label {
+  margin-right: 0;
+  padding-left: 0;
+  color: #0aa8e3;
+}
+.native-plant-select-all-plants input[type="checkbox"].np-checkbox + label:hover {
+  color: #07729a;
+}
+@media only screen and (min-width: 601px) {
+  .native-plant-select-all-plants input[type="checkbox"].np-checkbox + label {
+    padding-bottom: 10px;
+  }
+}
 input[type="checkbox"].np-checkbox + label:before {
   background-image: url(../img/np-checkbox.png);
   background-position: top right;
@@ -15739,8 +15754,30 @@ input[type="checkbox"].np-checkbox + label:before {
   height: 18px;
   width: 18px;
 }
+.native-plant-select-all-plants input[type="checkbox"].np-checkbox + label:before {
+  display: none;
+}
 input[type="checkbox"].np-checkbox:checked + label:before {
   background-position: top left;
+}
+
+.native-plant-select-all-plants {
+  padding-bottom: 10px;
+}
+
+.native-plants-top--clear-plants-list {
+  font-size: 20px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  line-height: 24px;
+  color: #0aa8e3;
+  text-transform: capitalize;
+}
+.native-plants-top--clear-plants-list:before {
+  content: '\00a0|\00a0';
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #777777;
 }
 
 .native-plant-bird-category-link {
