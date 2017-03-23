@@ -314,7 +314,7 @@
         @include width-range(0px, #{upper-bound($medium-range)}) {
           float: left;
           width: 100%;
-          max-width: 127px;
+          max-width: 130px;
           position: relative;
         }
       }
@@ -1204,13 +1204,20 @@ input[type="checkbox"].np-checkbox {
 }
 
 .native-plants-top--clear-plants-list {
+  display: block;
+  width: 100%;
   text-transform: capitalize;
-  &:before {
-    content: '\00a0|\00a0';
-    line-height: inherit;
-    display: inline-block;
-    vertical-align: top;
-    color: rgb(119, 119, 119);
+
+  @include breakpoint(small-up) {
+    display: inline;
+    width: auto;
+    &:before {
+      content: '\00a0|\00a0';
+      line-height: inherit;
+      display: inline-block;
+      vertical-align: top;
+      color: rgb(119, 119, 119);
+    }
   }
 }
 
