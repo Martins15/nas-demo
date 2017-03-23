@@ -5,12 +5,13 @@
  * Template for Native Plants tabs selector pane.
  */
 ?>
-<div class="row<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>"
+<div id="native-plants-tabs-selector" class="row<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?> <?php print $classes; ?>"
      data-ng-controller="NativePlantsTabsController as tabsC">
   <?php print $context_links; ?>
   <div class="columns">
     <ul class="tabs js-tabs hide-for-tiny hide-for-small hide-for-medium" data-tab-responsive>
-      <li class="tab-title">
+      <li class="tab-title"
+          data-ng-class="tabsC.filterSearchProgressCheck('_tier1')">
         <a href="#best_results" class="js-ajax-tab js-tab"
            data-ng-click="tabsC.activateTab('best_results')">
           <?php print $tab1_title; ?>
@@ -18,7 +19,8 @@
                 data-ng-bind-html="tabsC.tabResults(tabsC.storage.results_tier1_filtered.length)"></span>
         </a>
       </li>
-      <li class="tab-title">
+      <li class="tab-title"
+          data-ng-class="tabsC.filterSearchProgressCheck('')">
         <a href="#full_results" class="js-ajax-tab js-tab"
            data-ng-click="tabsC.activateTab('full_results')">
           <?php print $tab2_title; ?>
