@@ -15756,22 +15756,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 
 .native-plants-top--clear-plants-list {
-  display: block;
-  width: 100%;
   text-transform: capitalize;
 }
-@media only screen and (min-width: 480px) {
-  .native-plants-top--clear-plants-list {
-    display: inline;
-    width: auto;
-  }
-  .native-plants-top--clear-plants-list:before {
-    content: '\00a0|\00a0';
-    line-height: inherit;
-    display: inline-block;
-    vertical-align: top;
-    color: #777777;
-  }
+.native-plants-top--clear-plants-list:before {
+  content: '\00a0|\00a0';
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #777777;
 }
 
 .native-plant-bird-category-link {

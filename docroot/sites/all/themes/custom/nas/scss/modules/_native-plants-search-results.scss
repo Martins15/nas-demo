@@ -1204,20 +1204,13 @@ input[type="checkbox"].np-checkbox {
 }
 
 .native-plants-top--clear-plants-list {
-  display: block;
-  width: 100%;
   text-transform: capitalize;
-
-  @include breakpoint(small-up) {
-    display: inline;
-    width: auto;
-    &:before {
-      content: '\00a0|\00a0';
-      line-height: inherit;
-      display: inline-block;
-      vertical-align: top;
-      color: rgb(119, 119, 119);
-    }
+  &:before {
+    content: '\00a0|\00a0';
+    line-height: inherit;
+    display: inline-block;
+    vertical-align: top;
+    color: rgb(119, 119, 119);
   }
 }
 
