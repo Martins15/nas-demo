@@ -61,14 +61,9 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     }
 
     $pub_cache_file_uri = 'public://views_json_query/' . $cache_file;
-    if ($output = file_exists($pub_cache_file_uri) ? file_get_contents($pub_cache_file_uri) : parent::fetch_file($uri)) {
-      if (!file_prepare_directory($tmp_cache_dest, FILE_CREATE_DIRECTORY |
-        FILE_MODIFY_PERMISSIONS)) {
-        throw new Exception(
-          t('Files directory either cannot be created or is not writable.')
-        );
-      }
+    $output = file_exists($pub_cache_file_uri) ? file_get_contents($pub_cache_file_uri) : parent::fetch_file($uri);
 
+    if ($output && file_prepare_directory($tmp_cache_dest, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
       file_unmanaged_save_data($output, $tmp_cache_file_uri, FILE_EXISTS_REPLACE);
     }
 
