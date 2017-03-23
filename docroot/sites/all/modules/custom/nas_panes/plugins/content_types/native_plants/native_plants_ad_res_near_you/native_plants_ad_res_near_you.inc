@@ -111,24 +111,9 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
     return $block;
   }
 
-  if (empty($conf['zipcode'])) {
-    $query_params = drupal_get_query_parameters();
-    if (isset($query_params['zipcode'])) {
-      $conf['zipcode'] = $query_params['zipcode'];
-    }
-    else {
-      foreach ($contexts as $context) {
-        if ($context->plugin == 'entity:permalink') {
-          $conf['zipcode'] = $context->data->zip_code;
-          break;
-        }
-      }
-    }
-  }
-
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+  $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
   if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity'])) {
     return '';
   }

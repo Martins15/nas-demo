@@ -6,58 +6,68 @@
  */
 ?>
 <div data-ng-controller="NativePlantsResultsController as resultsC">
-  <!--View Filters-->
-  <div class="view-filters">
-    <div class="view-filters-select clearfix">
-      <select class="search-select wrap-select-skip" multiple
-              data-native-plants-multiselect
-              data-placeholder="<?php print t('All types of plants'); ?>"
-              data-ng-model="resultsC.storage.attribute"
-              data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
-              data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute, 'page')">
-      </select>
-      <select class="search-select wrap-select-skip" multiple
-              data-native-plants-multiselect
-              data-placeholder="<?php print t('All plant resources'); ?>"
-              data-ng-model="resultsC.storage.resource"
-              data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
-              data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource, 'page')">
-      </select>
-      <select class="search-select wrap-select-skip" multiple
-              data-native-plants-multiselect
-              data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
-              data-ng-model="resultsC.storage.bird_type"
-              data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
-              data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type, 'page')">
-      </select>
-    </div>
-    <div class="view-filters-controls clearfix">
-      <div class="filters-controls-wrapper">
-        <fieldset>
-          <legend><?php print t('Sort by'); ?></legend>
-          <div class="form-item form-item-radio">
-            <input type="radio" class="form-radio" name="native-plants-sort" id="common-name" value="CommonName"
-                   data-ng-model="resultsC.storage.stateParams.orderBy"/>
-            <label for="common-name"><?php print t('Common Name'); ?></label>
-          </div>
-          <div class="form-item form-item-radio">
-            <input type="radio" class="form-radio" name="native-plants-sort" id="scientific-name" value="ScientificName"
-                   data-ng-model="resultsC.storage.stateParams.orderBy"/>
-            <label for="scientific-name"><?php print t('Scientific Name'); ?></label>
-          </div>
-        </fieldset>
+  <input type="checkbox" id="checkbox-open-filter-2" class="hide-for-tiny hide-for-small hide-for-medium hide-for-large hide-for-xlarge view-filters--mobile">
+  <label for="checkbox-open-filter-2" class="view-filters--mobile hide-for-large hide-for-xlarge">Filter &amp; Sort</label>
+  <div class="view-filters hide-for-tiny hide-for-small hide-for-medium">
+    <!--View Filters-->
+    <div class="view-filters">
+      <div class="view-filters-select clearfix">
+        <select class="search-select wrap-select-skip" multiple
+                data-native-plants-multiselect
+                data-placeholder="<?php print t('All types of plants'); ?>"
+                data-ng-model="resultsC.storage.attribute"
+                data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_attributes track by term.tid"
+                data-ng-change="resultsC.setFilter('attribute', resultsC.storage.attribute, 'page')">
+        </select>
+        <select class="search-select wrap-select-skip" multiple
+                data-native-plants-multiselect
+                data-placeholder="<?php print t('All plant resources'); ?>"
+                data-ng-model="resultsC.storage.resource"
+                data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_resources track by term.tid"
+                data-ng-change="resultsC.setFilter('resource', resultsC.storage.resource, 'page')">
+        </select>
+        <select class="search-select wrap-select-skip" multiple
+                data-native-plants-multiselect
+                data-placeholder="<?php print t('Attracts: Any type of bird'); ?>"
+                data-ng-model="resultsC.storage.bird_type"
+                data-ng-options="term.name for term in resultsC.storage.data.terms.native_plant_bird_types track by term.tid"
+                data-ng-change="resultsC.setFilter('bird_type', resultsC.storage.bird_type, 'page')">
+        </select>
       </div>
-      <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
-             data-ng-model="resultsC.storage.stateParams.text_search"
-             data-ng-model-options="{ debounce: 500 }"
-             data-ng-change="resultsC.storage.applyTextSearch('')"/>
-      <button class="button tomato large"
-              data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
+      <div class="view-filters-controls clearfix">
+        <div class="filters-controls-wrapper">
+          <fieldset>
+            <legend><?php print t('Sort by'); ?></legend>
+            <div class="form-item form-item-radio">
+              <input type="radio" class="form-radio" name="native-plants-sort" id="common-name" value="CommonName"
+                     data-ng-model="resultsC.storage.stateParams.orderBy"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results')"/>
+              <label for="common-name"><?php print t('Common Name'); ?></label>
+            </div>
+            <div class="form-item form-item-radio">
+              <input type="radio" class="form-radio" name="native-plants-sort" id="scientific-name" value="ScientificName"
+                     data-ng-model="resultsC.storage.stateParams.orderBy"
+                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-click="resultsC.orderByChange('results')"/>
+              <label for="scientific-name"><?php print t('Scientific Name'); ?></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-filter--controls" data-ng-class="resultsC.textSearchProgressCheck('')">
+          <input class="form-text" type="text" placeholder="<?php print t('Filter by plant name'); ?>"
+                 data-ng-model="resultsC.storage.stateParams.text_search"
+                 data-ng-model-options="{ debounce: 250 }"/>
+        </div>
+        <button class="button tomato large"
+                data-ng-click="resultsC.storage.clearFilters()"><?php print t('Clear all filters'); ?></button>
+      </div>
     </div>
   </div>
 
   <!--View Content-->
-  <div id="pager-scroll-page" class="view-content row">
+  <div id="pager-scroll-page"></div>
+  <div class="view-content row">
     <div class="native-plants-full-search-results">
       <div class="columns">
         <table class="hide-for-tiny hide-for-small">
@@ -69,7 +79,7 @@
             <th><?php print t('May attract'); ?></th>
           </tr>
           </thead>
-          <tbody>
+          <tbody class="animate-results" data-ng-class="resultsC.animationClass('results')">
           <tr data-ng-repeat="plant in resultsC.storage.results_filtered |
               orderBy : resultsC.storage.stateParams.orderBy |
               limitTo : resultsC.storage.pager.items_per_page : ((resultsC.storage.stateParams.page - 1) * resultsC.storage.pager.items_per_page)">
@@ -85,9 +95,10 @@
                    data-ng-href="{{plant.PlantImgLightbox}}"></a>
                 <ul data-clearing class="clearing-thumbs"
                     data-ng-if="plant.PlantImgLightbox">
-                  <li>
+                  <li class="ng-hide">
                     <a target="_self"
-                       data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                       data-ng-href="{{plant.PlantImgLightbox}}"
+                       data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                   </li>
                 </ul>
                 <?php if (user_access('create native_plant content')): ?>
@@ -127,7 +138,7 @@
         </table>
       </div>
 
-      <div class="mobile-search-full-results hide-for-medium hide-for-large hide-for-xlarge">
+      <div class="mobile-search-full-results animate-results hide-for-medium hide-for-large hide-for-xlarge" data-ng-class="resultsC.animationClass('results')">
         <div class="clearfix view-row"
              data-ng-repeat="plant in resultsC.storage.results_filtered |
              orderBy : resultsC.storage.stateParams.orderBy |
@@ -141,9 +152,10 @@
                  data-ng-href="plant.PlantImgLightbox"></a>
               <ul data-clearing class="clearing-thumbs"
                   data-ng-if="plant.PlantImgLightbox">
-                <li>
+                <li class="ng-hide">
                   <a target="_self"
-                     data-ng-href="{{plant.PlantImgLightbox}}"></a>
+                     data-ng-href="{{plant.PlantImgLightbox}}"
+                     data-ng-bind-html="plant.PlantImgDesktop | trusted"></a>
                 </li>
               </ul>
             </div>

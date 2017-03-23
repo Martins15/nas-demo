@@ -38,6 +38,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
       foreach ($this->filter as $key => $filter) {
         if ($filter->options['key'] == 'zipcode') {
           $uri = str_replace('zipcode', $filter->value, $uri);
+          $this->zipcode = $this->filter[$key]->value;
           unset($this->filter[$key]);
           $request = TRUE;
         }
@@ -464,7 +465,7 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     }
 
     // Check Tier 1 plants by user state code.
-    $user_state_code = _nas_master_native_plants_zipcode_to_state();
+    $user_state_code = _nas_master_native_plants_zipcode_to_state($this->zipcode);
     if (!empty($user_state_code)) {
       foreach ($ret as &$result) {
         if ($result->Tier1 && !empty($result->Tier1StateCodes)) {

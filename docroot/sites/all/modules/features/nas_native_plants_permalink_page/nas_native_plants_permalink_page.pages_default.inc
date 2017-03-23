@@ -637,6 +637,37 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $display->content['new-b0e0091a-27f6-474f-a766-98b4d2cbe773'] = $pane;
     $display->panels['main'][4] = 'new-b0e0091a-27f6-474f-a766-98b4d2cbe773';
     $pane = new stdClass();
+    $pane->pid = 'new-f76716e4-4a32-4a43-a396-1fc346f7b620';
+    $pane->panel = 'main';
+    $pane->type = 'custom';
+    $pane->subtype = 'custom';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'admin_title' => 'Local Resources heading',
+      'title' => '',
+      'body' => '<div class="row">
+	<div class="columns large-12 ">
+		<h3 class="thin">Local Resources</h3>
+	</div>
+</div>
+',
+      'format' => 'full_html',
+      'substitute' => 1,
+      'form_build_id' => 'form-rCWx6Qa-EaMknWuG6BBdgfj5wrhDc3UeN-1yAfkup64',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $pane->uuid = 'f76716e4-4a32-4a43-a396-1fc346f7b620';
+    $display->content['new-f76716e4-4a32-4a43-a396-1fc346f7b620'] = $pane;
+    $display->panels['main'][5] = 'new-f76716e4-4a32-4a43-a396-1fc346f7b620';
+    $pane = new stdClass();
     $pane->pid = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
     $pane->panel = 'main';
     $pane->type = 'native_plants_audubon_near_you';
@@ -646,7 +677,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     $pane->configuration = array(
       'services_title_desktop' => 'Services provided at !resource_name',
       'services_title_mobile' => 'Native plant services provided:',
-      'zipcode' => '',
+      'zipcode' => '%permalink:zip-code',
       'quantity' => '2',
       'angular' => 0,
       'form_build_id' => 'form--5wlcKyzrfdlfKAM2yl-AqyoVwmxNGYPsY8RYWfbX6w',
@@ -657,77 +688,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 5;
+    $pane->position = 6;
     $pane->locks = array();
     $pane->uuid = 'f64cb49a-d776-46b5-822e-2dd59896becf';
     $display->content['new-f64cb49a-d776-46b5-822e-2dd59896becf'] = $pane;
-    $display->panels['main'][5] = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
-    $pane = new stdClass();
-    $pane->pid = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
-    $pane->panel = 'main';
-    $pane->type = 'native_plants_nurseries_near_you';
-    $pane->subtype = 'native_plants_nurseries_near_you';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'title' => 'Where to buy native plants near you',
-      'override_title_text' => 'Where to buy native plants near you',
-      'description' => array(
-        'value' => '',
-        'format' => 'full_html',
-      ),
-      'zipcode' => '',
-      'online' => 0,
-      'quantity' => '6',
-      'angular' => 0,
-      'form_build_id' => 'form-L2oUL-waa23mDzKk2W8xLX2fXH82KkjRn3rmt6a8qfk',
-      'override_title' => 0,
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 6;
-    $pane->locks = array();
-    $pane->uuid = '9110eb6f-12af-4f72-afa1-326067aafc13';
-    $display->content['new-9110eb6f-12af-4f72-afa1-326067aafc13'] = $pane;
-    $display->panels['main'][6] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
-    $pane = new stdClass();
-    $pane->pid = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
-    $pane->panel = 'main';
-    $pane->type = 'native_plants_nurseries_near_you';
-    $pane->subtype = 'native_plants_nurseries_near_you';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'title' => 'Where to buy native plants near you',
-      'override_title_text' => 'Online Retailers',
-      'description' => array(
-        'value' => '',
-        'format' => 'full_html',
-      ),
-      'zipcode' => '',
-      'online' => 1,
-      'quantity' => '6',
-      'angular' => 0,
-      'form_build_id' => 'form-ZCb0eZdb2KwWsrNEozlivY8PlNIPEqkXXRokfsLQunU',
-      'override_title' => 1,
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 7;
-    $pane->locks = array();
-    $pane->uuid = '0836d4b1-fca0-41a0-b7cf-415cfcd89004';
-    $display->content['new-0836d4b1-fca0-41a0-b7cf-415cfcd89004'] = $pane;
-    $display->panels['main'][7] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $display->panels['main'][6] = 'new-f64cb49a-d776-46b5-822e-2dd59896becf';
     $pane = new stdClass();
     $pane->pid = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $pane->panel = 'main';
@@ -742,7 +707,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
         'value' => '',
         'format' => 'full_html',
       ),
-      'zipcode' => '',
+      'zipcode' => '%permalink:zip-code',
       'quantity' => '2',
       'angular' => 0,
       'form_build_id' => 'form-GO7UiFCprNyNWURJtSeovCuPzB15SWrcNCKjABAUnT4',
@@ -755,11 +720,77 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 8;
+    $pane->position = 7;
     $pane->locks = array();
     $pane->uuid = '088f3a1d-7f4a-415e-9f90-03167ad47f6f';
     $display->content['new-088f3a1d-7f4a-415e-9f90-03167ad47f6f'] = $pane;
-    $display->panels['main'][8] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $display->panels['main'][7] = 'new-088f3a1d-7f4a-415e-9f90-03167ad47f6f';
+    $pane = new stdClass();
+    $pane->pid = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_nurseries_near_you';
+    $pane->subtype = 'native_plants_nurseries_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Where to buy native plants near you',
+      'description' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '%permalink:zip-code',
+      'online' => 0,
+      'quantity' => '0',
+      'angular' => 0,
+      'form_build_id' => 'form-yC4IZcMU2vtR0mJH1xYehoVKZIiRelmxD3_wGHQkVI0',
+      'override_title' => 0,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 8;
+    $pane->locks = array();
+    $pane->uuid = '9110eb6f-12af-4f72-afa1-326067aafc13';
+    $display->content['new-9110eb6f-12af-4f72-afa1-326067aafc13'] = $pane;
+    $display->panels['main'][8] = 'new-9110eb6f-12af-4f72-afa1-326067aafc13';
+    $pane = new stdClass();
+    $pane->pid = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $pane->panel = 'main';
+    $pane->type = 'native_plants_nurseries_near_you';
+    $pane->subtype = 'native_plants_nurseries_near_you';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'title' => 'Where to buy native plants near you',
+      'override_title_text' => 'Online Retailers',
+      'description' => array(
+        'value' => '',
+        'format' => 'full_html',
+      ),
+      'zipcode' => '%permalink:zip-code',
+      'online' => 1,
+      'quantity' => '6',
+      'angular' => 0,
+      'form_build_id' => 'form-ZCb0eZdb2KwWsrNEozlivY8PlNIPEqkXXRokfsLQunU',
+      'override_title' => 1,
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 9;
+    $pane->locks = array();
+    $pane->uuid = '0836d4b1-fca0-41a0-b7cf-415cfcd89004';
+    $display->content['new-0836d4b1-fca0-41a0-b7cf-415cfcd89004'] = $pane;
+    $display->panels['main'][9] = 'new-0836d4b1-fca0-41a0-b7cf-415cfcd89004';
     $pane = new stdClass();
     $pane->pid = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane->panel = 'main';
@@ -822,11 +853,11 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 9;
+    $pane->position = 10;
     $pane->locks = array();
     $pane->uuid = 'b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $display->content['new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1'] = $pane;
-    $display->panels['main'][9] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
+    $display->panels['main'][10] = 'new-b00cc134-3d94-4b66-91f7-af16ce0ec9b1';
     $pane = new stdClass();
     $pane->pid = 'new-4e911b59-b652-43d0-8a5e-89cfd63f9088';
     $pane->panel = 'top';
