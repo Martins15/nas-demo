@@ -51,15 +51,28 @@ class nasnp_views_json_query_plugin_query_json extends views_json_query_plugin_q
     }
 
     // Hard code caching - if there are saved results use them.
-    $destination = 'public://views_json_query';
     $cache_file = 'views_json_query_' . md5($uri);
-    $cache_file_uri = "$destination/$cache_file";
 
-    if (file_exists($cache_file_uri)) {
-      return file_get_contents($cache_file_uri);
+    $tmp_cache_dest = 'temporary://views_json_query';
+    $tmp_cache_file_uri = $tmp_cache_dest . '/' . $cache_file;
+
+    if (file_exists($tmp_cache_file_uri)) {
+      return file_get_contents($tmp_cache_file_uri);
     }
 
-    return parent::fetch_file($uri);
+    if (!file_prepare_directory($tmp_cache_dest, FILE_CREATE_DIRECTORY |
+      FILE_MODIFY_PERMISSIONS)) {
+      throw new Exception(
+        t('Files directory either cannot be created or is not writable.')
+      );
+    }
+
+    $pub_cache_file_uri = 'public://views_json_query/' . $cache_file;
+    if ($output = file_exists($pub_cache_file_uri) ? file_get_contents($pub_cache_file_uri) : parent::fetch_file($uri)) {
+      file_unmanaged_save_data($output, $tmp_cache_file_uri, FILE_EXISTS_REPLACE);
+    }
+
+    return $output;
   }
 
   /**
