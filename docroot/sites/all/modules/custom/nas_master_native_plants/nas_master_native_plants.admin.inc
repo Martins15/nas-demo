@@ -51,20 +51,28 @@ function nas_master_native_plants_cache_clear($form, &$form_state) {
 function nas_master_native_plants_cache_clear_submit($form, &$form_state) {
   switch ($form_state['triggering_element']['#name']) {
     case 'native_plants_cache_api':
-      foreach (array('temporary://', 'public://') as $scheme) {
+      $schemes = array(
+        'temporary://' => t('temporary'),
+        'public://' => t('persistent'),
+      );
+
+      foreach ($schemes as $scheme => $label) {
         $destination = $scheme . 'views_json_query';
-        if (!file_unmanaged_delete_recursive($destination)) {
-          drupal_set_message('Failed to clear Native Plants API cache.', 'error');
-          return;
+        $args = array('!scheme' => $label);
+
+        if (file_unmanaged_delete_recursive($destination)) {
+          drupal_set_message(t('Cleared Native Plants API !scheme cache.', $args));
+        }
+        else {
+          drupal_set_message(t('Failed to clear Native Plants API !scheme cache.', $args), 'error');
         }
       }
 
-      drupal_set_message('Cleared Native Plants API cache.');
       break;
 
     case 'native_plants_cache_local_data':
       cache_clear_all('native_plants_*', 'cache', TRUE);
-      drupal_set_message('Cleared Native Plants local data cache.');
+      drupal_set_message(t('Cleared Native Plants local data cache.'));
       break;
   }
 }
