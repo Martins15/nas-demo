@@ -440,7 +440,7 @@
                           <tr style="border-bottom: 1px solid #d4d4d4; border-top: 1px solid #d4d4d4; padding: 0; text-align: left; vertical-align: top">
                             <td class="plant-name-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 24px; margin: 0; padding: 12px; text-align: left; vertical-align: middle; word-wrap: break-word"><?php print $plant['CommonName']; ?></td>
                             <td class="scientific-name-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 24px; margin: 0; padding: 12px; text-align: center; vertical-align: middle; word-wrap: break-word"><em><?php print $plant['ScientificName']; ?></em></td>
-                            <td class="may-attract-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 26px; margin: 0; padding: 12px; text-align: left; vertical-align: middle; width: 160px; word-wrap: break-word">
+                            <td class="may-attract-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 26px; margin: 0; padding: 12px; text-align: left; vertical-align: middle; width: 160px !important; word-wrap: break-word !important">
                               <?php print implode(', ', $plant['BirdTypesDesktop']); ?>
                             </td>
                           </tr>
@@ -643,6 +643,13 @@
                               <?php endforeach; ?>
                             </tr>
                           <?php endforeach; ?>
+                          <?php if ($nurseries_show_more): ?>
+                            <tr colspan="3" style="padding: 0; text-align: left; vertical-align: top">
+                              <td>
+                                <a href="<?php print $permalink_url; ?>" target="_blank" style="color:#0AA8E3; font-family:'Source Sans Pro',Verdana,sans-serif; font-size:16px; font-weight:inherit; line-height:inherit; margin:0; padding:0; text-align:left; text-decoration:none"><?php print t('Show more »'); ?></a>
+                              </td>
+                            </tr>
+                          <?php endif; ?>
                         </tbody>
                       </table>
                     <?php endif; ?>
