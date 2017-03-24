@@ -14952,6 +14952,7 @@ h2.grey {
 .native-plants-full-results .view-filters .filters-controls-wrapper legend {
   width: auto;
   margin: 0 5px 0 0;
+  font-size: 16px;
   font-weight: 600;
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper legend:after,
@@ -14960,6 +14961,12 @@ h2.grey {
   line-height: inherit;
   display: inline-block;
   vertical-align: top;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper legend,
+  .native-plants-full-results .view-filters .filters-controls-wrapper legend {
+    font-size: 20px;
+  }
 }
 @media only screen and (min-width: 0px) and (max-width: 320px) {
   .native-plants-search-results .view-filters .filters-controls-wrapper legend,
@@ -14971,7 +14978,14 @@ h2.grey {
 .native-plants-full-results .view-filters .filters-controls-wrapper label {
   margin-left: 0;
   margin-right: 0;
+  font-size: 16px;
   font-weight: normal;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper label,
+  .native-plants-full-results .view-filters .filters-controls-wrapper label {
+    font-size: 20px;
+  }
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio],
 .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio] {
@@ -14986,7 +15000,7 @@ h2.grey {
   .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio {
     float: left;
     width: 100%;
-    max-width: 130px;
+    max-width: 117px;
     position: relative;
   }
 }
@@ -15760,29 +15774,26 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-bottom: 10px;
 }
 .native-plant-select-all-plants a {
-  font-size: 20px;
+  font-size: 16px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   line-height: 24px;
   color: #0aa8e3;
 }
+@media only screen and (min-width: 601px) {
+  .native-plant-select-all-plants a {
+    font-size: 20px;
+  }
+}
 
 .native-plants-top--clear-plants-list {
-  display: block;
-  width: 100%;
   text-transform: capitalize;
 }
-@media only screen and (min-width: 480px) {
-  .native-plants-top--clear-plants-list {
-    display: inline;
-    width: auto;
-  }
-  .native-plants-top--clear-plants-list:before {
-    content: '\00a0|\00a0';
-    line-height: inherit;
-    display: inline-block;
-    vertical-align: top;
-    color: #777777;
-  }
+.native-plants-top--clear-plants-list:before {
+  content: '\00a0|\00a0';
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #777777;
 }
 
 .native-plant-bird-category-link {
