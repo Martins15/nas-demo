@@ -30,7 +30,7 @@ function nas_master_native_plants_data_zipcode($zipcode) {
       'offline' => _nas_master_native_plants_get_offline_nurseries($zipcode),
     ),
     'resources' => _nas_master_native_plants_get_resources($zipcode, 2, TRUE),
-    'additional_resource' => _nas_master_native_plants_get_additional_resources($zipcode, 2, TRUE),
+    'additional_resource' => _nas_master_native_plants_get_additional_resources($zipcode),
   );
 
   drupal_json_output($output);
@@ -144,7 +144,7 @@ function _nas_master_native_plants_get_offline_nurseries($zipcode, $limit = 0) {
  * Get Audubon nurseries.
  *
  * @param int $online
- *   1 to display online nurseries, 0 to display offline nurseries.
+ *   Boolean to set whether to display online nurseries.
  * @param int $limit
  *   Number of nurseries to return.
  * @param string $latln
@@ -177,7 +177,7 @@ function _nas_master_native_plants_get_nurseries($online, $limit, $latln, $state
  * @return array
  *   Array of Audubon additional resources for ZIP code.
  */
-function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0, $include_state_office = FALSE) {
+function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0, $include_state_resources = TRUE) {
   $latln = _nas_master_native_plants_zipcode_geocode($zipcode);
   $fields = array(
     'address' => 'field_additional_resource_addr',
@@ -188,10 +188,10 @@ function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0
   $view_results = views_get_view_result('additional_resource_near_you', 'default', $latln);
   $resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
 
-  if ($include_state_office) {
+  if ($include_state_resources && (!$limit || ($limit = count($resources) - $limit))) {
     $state = _nas_master_native_plants_zipcode_to_state($zipcode);
-    $view_results = views_get_view_result('additional_resource_near_you', 'state_office', $state);
-    $state_resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields);
+    $view_results = views_get_view_result('additional_resource_near_you', 'state_resource', $state);
+    $state_resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
     $resources = array_merge($resources, $state_resources);
   }
 
@@ -297,7 +297,7 @@ function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_
  * @return array
  *   Array of complete Native Plants nurseries data.
  */
-function _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit = 0) {
+function _nas_master_native_plants_process_nurseries_results(array $view_results, array $fields, $limit = 0) {
   $patterns = array('http://www.', 'https://www.', 'http://', 'https://');
 
   // Prepare resources.

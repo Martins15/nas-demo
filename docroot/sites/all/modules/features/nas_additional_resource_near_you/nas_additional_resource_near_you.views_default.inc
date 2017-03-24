@@ -49,10 +49,6 @@ function nas_additional_resource_near_you_views_default_views() {
   $handler->display->display_options['arguments']['field_additional_resource_geo_latlon']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['field_additional_resource_geo_latlon']['not'] = 0;
   $handler->display->display_options['arguments']['field_additional_resource_geo_latlon']['radius'] = '100';
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'OR',
-  );
   /* Filter criterion: Indexed Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
@@ -61,30 +57,21 @@ function nas_additional_resource_near_you_views_default_views() {
     'additional_resource' => 'additional_resource',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Indexed Content: State office */
-  $handler->display->display_options['filters']['field_add_resource_state_office_1']['id'] = 'field_add_resource_state_office_1';
-  $handler->display->display_options['filters']['field_add_resource_state_office_1']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['filters']['field_add_resource_state_office_1']['field'] = 'field_add_resource_state_office';
-  $handler->display->display_options['filters']['field_add_resource_state_office_1']['operator'] = 'empty';
-  $handler->display->display_options['filters']['field_add_resource_state_office_1']['value'] = array();
-  $handler->display->display_options['filters']['field_add_resource_state_office_1']['group'] = 2;
-  /* Filter criterion: Indexed Content: State office */
-  $handler->display->display_options['filters']['field_add_resource_state_office']['id'] = 'field_add_resource_state_office';
-  $handler->display->display_options['filters']['field_add_resource_state_office']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['filters']['field_add_resource_state_office']['field'] = 'field_add_resource_state_office';
-  $handler->display->display_options['filters']['field_add_resource_state_office']['value'] = array(
-    0 => '0',
-  );
-  $handler->display->display_options['filters']['field_add_resource_state_office']['group'] = 2;
+  /* Filter criterion: States: ISO (indexed) */
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['id'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['field'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['operator'] = 'empty';
 
-  /* Display: State office */
-  $handler = $view->new_display('panel_pane', 'State office', 'state_office');
+  /* Display: State resource */
+  $handler = $view->new_display('panel_pane', 'State resource', 'state_resource');
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: States: ISO (indexed) */
   $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['id'] = 'field_additional_resource_states_field_iso_code';
   $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
   $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['field'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['default_action'] = 'empty';
   $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['break_phrase'] = 0;
@@ -99,14 +86,11 @@ function nas_additional_resource_near_you_views_default_views() {
     'additional_resource' => 'additional_resource',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Indexed Content: State office */
-  $handler->display->display_options['filters']['field_add_resource_state_office']['id'] = 'field_add_resource_state_office';
-  $handler->display->display_options['filters']['field_add_resource_state_office']['table'] = 'search_api_index_default_node_index';
-  $handler->display->display_options['filters']['field_add_resource_state_office']['field'] = 'field_add_resource_state_office';
-  $handler->display->display_options['filters']['field_add_resource_state_office']['value'] = array(
-    1 => '1',
-  );
-  $handler->display->display_options['filters']['field_add_resource_state_office']['group'] = 1;
+  /* Filter criterion: States: ISO (indexed) */
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['id'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['field'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['operator'] = 'not empty';
   $translatables['additional_resource_near_you'] = array(
     t('Master'),
     t('more'),
@@ -119,7 +103,7 @@ function nas_additional_resource_near_you_views_default_views() {
     t('.'),
     t(','),
     t('All'),
-    t('State office'),
+    t('State resource'),
     t('View panes'),
   );
   $export['additional_resource_near_you'] = $view;

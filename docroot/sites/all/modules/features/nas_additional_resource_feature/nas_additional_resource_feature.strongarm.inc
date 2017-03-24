@@ -101,22 +101,22 @@ function nas_additional_resource_feature_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'locations' => array(
-          'weight' => '11',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '11',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '10',
+          'weight' => '9',
         ),
         'xmlsitemap' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
       ),
       'display' => array(),
