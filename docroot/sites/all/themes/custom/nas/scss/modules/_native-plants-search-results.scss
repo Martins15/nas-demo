@@ -1855,3 +1855,53 @@ input[type="checkbox"].np-checkbox {
     opacity: 0;
   }
 }
+
+// Opened image and its close button styles
+.clearing-assembled {
+  &.clearing-blackout {
+    background: rgba(51, 51, 51, 0.8);
+  }
+  .clearing-container div.visible-img {
+    background: transparent;
+  }
+}
+
+.clearing-blackout {
+
+  .visible-img img {
+    max-height: 90%;
+    max-width: 90%;
+    border: 10px solid #fff;
+  }
+  .clearing-close {
+    display: none;
+    color: tomato;
+    font-size: 46px;
+    line-height: 1;
+    z-index: 999;
+    transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    padding: 0;
+    &:hover {
+      color: tomato;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+      margin: -20px 0 0 -21px;
+      width: 42px;
+      height: 42px;
+      background: #000;
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
+}

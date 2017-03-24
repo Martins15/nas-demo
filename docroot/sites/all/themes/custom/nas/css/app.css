@@ -8327,7 +8327,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #919191;
+    color: #909090;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -16326,6 +16326,50 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove {
   opacity: 0;
+}
+
+.clearing-assembled.clearing-blackout {
+  background: rgba(51, 51, 51, 0.8);
+}
+.clearing-assembled .clearing-container div.visible-img {
+  background: transparent;
+}
+
+.clearing-blackout .visible-img img {
+  max-height: 90%;
+  max-width: 90%;
+  border: 10px solid #fff;
+}
+.clearing-blackout .clearing-close {
+  display: none;
+  color: tomato;
+  font-size: 46px;
+  line-height: 1;
+  z-index: 999;
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  padding: 0;
+}
+.clearing-blackout .clearing-close:hover {
+  color: tomato;
+}
+.clearing-blackout .clearing-close:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin: -20px 0 0 -21px;
+  width: 42px;
+  height: 42px;
+  background: #000;
+  border-radius: 50%;
+  z-index: -1;
 }
 
 /* Inline Panels Editor custom styles */
