@@ -283,6 +283,7 @@
       legend {
         width: auto;
         margin: 0 5px 0 0;
+        font-size: 16px;
         font-weight: 600;
 
         &:after {
@@ -291,7 +292,9 @@
           display: inline-block;
           vertical-align: top;
         }
-
+        @include breakpoint(medium-up) {
+          font-size: 20px;
+        }
         @include width-range(0px, 320px) {
           width: 100%;
         }
@@ -300,7 +303,11 @@
       label {
         margin-left: 0;
         margin-right: 0;
+        font-size: 16px;
         font-weight: normal;
+        @include breakpoint(medium-up) {
+          font-size: 20px;
+        }
       }
 
       .form-item-radio {
@@ -314,7 +321,7 @@
         @include width-range(0px, #{upper-bound($medium-range)}) {
           float: left;
           width: 100%;
-          max-width: 130px;
+          max-width: 117px;
           position: relative;
         }
       }
@@ -1196,10 +1203,13 @@ input[type="checkbox"].np-checkbox {
 .native-plant-select-all-plants {
   padding-bottom: 10px;
   a {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Source Sans Pro", Verdana, sans-serif;
     line-height: 24px;
     color: rgb(10, 168, 227);
+    @include breakpoint(medium-up) {
+      font-size: 20px;
+    }
   }
 }
 
