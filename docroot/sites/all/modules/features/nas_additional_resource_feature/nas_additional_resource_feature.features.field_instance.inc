@@ -250,7 +250,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -359,7 +359,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -565,7 +565,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
       'module' => 'phone',
       'settings' => array(),
       'type' => 'phone_textfield',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -665,7 +665,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
         'checkall' => FALSE,
       ),
       'type' => 'options_buttons',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -676,7 +676,6 @@ function nas_additional_resource_feature_field_default_field_instances() {
   t('Geo Location');
   t('Link');
   t('Phone');
-  t('State office');
   t('States');
 
   return $field_instances;
