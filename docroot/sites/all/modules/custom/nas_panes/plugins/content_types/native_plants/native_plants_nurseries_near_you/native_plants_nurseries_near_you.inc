@@ -122,8 +122,10 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
 
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
+  $function = $conf['online'] ? '_nas_master_native_plants_get_online_nurseries' : '_nas_master_native_plants_get_offline_nurseries';
   $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
-  if (!$nurseries = _nas_master_native_plants_get_nurseries($zipcode, 'nursery', $conf['online'], $conf['quantity'])) {
+
+  if (!$nurseries = $function($zipcode, $conf['quantity'])) {
     return '';
   }
 

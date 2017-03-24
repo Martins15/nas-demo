@@ -401,3 +401,22 @@ function nas_master_native_plants_update_7024() {
     'nas_native_plants_permalink_page' => array('page_manager_pages'),
   ));
 }
+
+/**
+ * Adding State flag to Additional Resources and adding search by State.
+ */
+function nas_master_native_plants_update_7025() {
+  features_revert(array(
+    'nas_additional_resource_feature' => array(
+      'field_base',
+      'field_instance',
+      'variable',
+    ),
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
+    'nas_additional_resource_near_you' => array(
+      'views_view',
+    ),
+  ));
+}

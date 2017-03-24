@@ -143,6 +143,13 @@ function nas_master_native_plants_form_community_resource_node_form_alter(&$form
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_master_native_plants_form_additional_resource_node_form_alter(&$form, &$form_state) {
+  _nas_master_native_plants_set_online_states($form['field_additional_resource_states'][LANGUAGE_NONE], 'field_add_resource_state_office');
+}
+
+/**
  * Specific settings for states field.
  */
 function _nas_master_native_plants_set_online_states(&$states, $field_name) {

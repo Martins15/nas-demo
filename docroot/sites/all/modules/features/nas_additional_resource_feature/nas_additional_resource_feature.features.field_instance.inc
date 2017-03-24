@@ -140,7 +140,106 @@ function nas_additional_resource_feature_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 3,
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-additional_resource-field_add_resource_state_office'
+  $field_instances['node-additional_resource-field_add_resource_state_office'] = array(
+    'bundle' => 'additional_resource',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+      'fb_instant_article' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_editorial_card' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_featured_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_related_features' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_no_section_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'nas_node_teaser_small_state' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_add_resource_state_office',
+    'label' => 'State office',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'quiz_result' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 2,
     ),
   );
 
@@ -237,17 +336,20 @@ function nas_additional_resource_feature_field_default_field_instances() {
       'module' => 'addressfield',
       'settings' => array(
         'available_countries' => array(),
-        'default_country' => '',
+        'default_country' => 'US',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
           'organisation' => 'organisation',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
           'name-full' => 0,
           'name-oneline' => 0,
+          'address-optional' => 0,
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -356,7 +458,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -562,7 +664,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
       'module' => 'phone',
       'settings' => array(),
       'type' => 'phone_textfield',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -662,7 +764,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
         'checkall' => FALSE,
       ),
       'type' => 'options_buttons',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -673,6 +775,7 @@ function nas_additional_resource_feature_field_default_field_instances() {
   t('Geo Location');
   t('Link');
   t('Phone');
+  t('State office');
   t('States');
 
   return $field_instances;
