@@ -305,6 +305,7 @@
         margin-right: 0;
         font-size: 16px;
         font-weight: normal;
+        color: rgb(10, 168, 227);
         @include breakpoint(medium-up) {
           font-size: 20px;
         }
@@ -334,7 +335,7 @@
             line-height: inherit;
             display: inline-block;
             vertical-align: top;
-            color: rgb(10, 168, 227);
+            color: rgb(119, 119, 119);
           }
         }
       }
