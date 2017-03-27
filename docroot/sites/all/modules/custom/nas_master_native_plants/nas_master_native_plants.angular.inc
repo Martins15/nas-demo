@@ -188,7 +188,7 @@ function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0
   $view_results = views_get_view_result('additional_resource_near_you', 'default', $latln);
   $resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
 
-  if ($include_state_resources && (!$limit || ($limit = count($resources) - $limit))) {
+  if ($include_state_resources && (!$limit || ($limit = $limit - count($resources)))) {
     $state = _nas_master_native_plants_zipcode_to_state($zipcode);
     $view_results = views_get_view_result('additional_resource_near_you', 'state_resource', $state);
     $state_resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
