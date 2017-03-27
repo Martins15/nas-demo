@@ -66,13 +66,12 @@
   </div>
 
   <div id="pager-scroll-page_tier1"></div>
-  <div>
+  <div class="native-plant-select-all-plants">
     <div class="form-item form-item-checkbox">
-      <input type="checkbox" class="np-checkbox" id="select-all-tier1"
-             data-ng-model="resultsC.storage.all_tier1_in_cart"
-             data-ng-change="resultsC.storage.calculateTier1inCart()"/>
-      <label for="select-all-tier1"
-             data-ng-click="resultsC.storage.selectAllTier1()"><?php print t('Add all plants below to your list'); ?></label>
+        <a href="javascript:void(0)"
+           data-ng-click="resultsC.storage.selectAllTier1()"><?php print t('Add all plants below to your list'); ?></a>
+        <a href="javascript:void(0)" class="native-plants-top--clear-plants-list"
+           data-ng-click="resultsC.storage.clearCart()"><?php print t('Clear list'); ?></a>
     </div>
   </div>
 

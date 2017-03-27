@@ -461,30 +461,6 @@
         });
       };
 
-      $rootScope.$watch(
-        function() {
-          return self.results_tier1_filtered;
-        },
-        function(newVal, oldVal) {
-          self.calculateTier1inCart();
-        });
-      self.calculateTier1inCart = function () {
-        if (angular.isUndefined(self.localStorage.cart)) {
-          self.all_tier1_in_cart = false;
-          return;
-        }
-
-        var status = true;
-        angular.forEach(self.results_tier1_filtered, function(plant) {
-          if (angular.isUndefined(self.localStorage.cart[plant.PlantID])) {
-            status = false;
-            return;
-          }
-        });
-
-        self.all_tier1_in_cart = status;
-      };
-
       // Watch cart changes.
       $rootScope.$watch(
         function() {
@@ -494,7 +470,6 @@
           return $.map(self.localStorage.cart, function(n, i) { return i; }).length;
         },
         function(newVal, oldVal) {
-          self.calculateTier1inCart();
           $('.native-plants-get-list-form').find('[name="native_plants_cart"]')
             .val(angular.toJson(self.localStorage.cart));
         });
