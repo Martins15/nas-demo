@@ -27,7 +27,8 @@ function nas_additional_resource_near_you_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Indexed Content: Node ID */
@@ -54,6 +55,41 @@ function nas_additional_resource_near_you_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'additional_resource' => 'additional_resource',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: States: ISO (indexed) */
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['id'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['field'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['operator'] = 'empty';
+
+  /* Display: State resource */
+  $handler = $view->new_display('panel_pane', 'State resource', 'state_resource');
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: States: ISO (indexed) */
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['id'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['field'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['default_action'] = 'empty';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['break_phrase'] = 0;
+  $handler->display->display_options['arguments']['field_additional_resource_states_field_iso_code']['not'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'additional_resource' => 'additional_resource',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: States: ISO (indexed) */
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['id'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['table'] = 'search_api_index_default_node_index';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['field'] = 'field_additional_resource_states_field_iso_code';
+  $handler->display->display_options['filters']['field_additional_resource_states_field_iso_code']['operator'] = 'not empty';
   $translatables['additional_resource_near_you'] = array(
     t('Master'),
     t('more'),
@@ -62,17 +98,12 @@ function nas_additional_resource_near_you_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
     t('Node ID'),
     t('.'),
     t(','),
     t('All'),
+    t('State resource'),
+    t('View panes'),
   );
   $export['additional_resource_near_you'] = $view;
 
