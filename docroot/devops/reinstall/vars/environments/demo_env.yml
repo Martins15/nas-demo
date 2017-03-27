@@ -8,6 +8,9 @@ env:
     - { name: 'views_ui', status: false }
     - { name: 'diff', status: false }
   drush_commands:
+    # Update admin username and password.
+    - { name: 'sqlq', status: true, arguments: "\"UPDATE users SET name='{{ drupal_user }}' WHERE uid=1\"" }
+    - { name: 'upwd', status: true, arguments: "{{ drupal_user }} --password={{ drupal_pass }}" }
     - { name: 'nas-master-update-geoip-db', status: true, arguments: "" }
     - { name: 'nas-master-search-server-local', status: true, arguments: "" }
     - { name: 'search-api-set-index-server', status: true, arguments: 'default_node_index solr_4_x' }

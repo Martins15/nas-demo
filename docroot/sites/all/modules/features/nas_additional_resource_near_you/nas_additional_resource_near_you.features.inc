@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * additional_resource_near_you.features.inc
+ * nas_additional_resource_near_you.features.inc
  */
 
 /**
