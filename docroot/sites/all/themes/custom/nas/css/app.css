@@ -8327,7 +8327,7 @@ body.touch .primary-sub-nav-index {
     color: #aaa;
   }
   .secondary-nav a:hover {
-    color: #909090;
+    color: #919191;
   }
   .secondary-nav li {
     padding: 0 10px;
@@ -14993,7 +14993,7 @@ h2.grey {
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label,
 .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label {
-  color: #0aa8e3;
+  color: #777777;
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio,
@@ -15012,7 +15012,7 @@ h2.grey {
   line-height: inherit;
   display: inline-block;
   vertical-align: top;
-  color: #777777;
+  color: #0aa8e3;
 }
 
 .tier-1-plant-picture {
