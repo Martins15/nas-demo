@@ -545,7 +545,7 @@
                               <ul style="font-size: 16px">
                                 <?php foreach ($resource['services'] as $key => $service): ?>
                                   <?php if ($key != 'rendered'): ?>
-                                    <li><?php print $service; ?></li>
+                                    <li style="Margin: 0;"><?php print $service; ?></li>
                                   <?php endif; ?>
                                 <?php endforeach; ?>
                               </ul>
@@ -649,8 +649,8 @@
                     <?php endif; ?>
 
                     <?php if (!empty($nurseries['offline'])): ?>
-                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 0; padding: 0; text-align: left; word-wrap: normal">
-                          <?php print t('Where to buy native plants near you'); ?>
+                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
+                          <?php print t('Where to Buy Native Plants Near You'); ?>
                       </h2>
 
                       <table style="border-collapse: collapse; border-spacing: 0; font-family: 'Source Sans Pro', Verdana, sans-serif; padding: 0; text-align: left; vertical-align: top; width: 100%">
@@ -857,7 +857,7 @@
               <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
                 <th class="small-12 large-12 columns first last" larget="12" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0; text-align: left">
                   <h2 class="editorial-cards-title" style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 31px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
-                    <?php print t('More Audubon Native Plant resources'); ?>
+                    <?php print t('More Audubon Native Plant Resources'); ?>
                   </h2>
                 </th>
                 <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
