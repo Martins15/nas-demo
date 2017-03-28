@@ -57,7 +57,7 @@
   <div class="native-plants-loading row ng-hide" data-ng-show="!npC.storage.data_loaded">
     <div class="columns">
       <div class="svg-throbber"></div>
-      <div class="native-plants-loading-text"><?php print t('Your results are loading...'); ?></div>
+      <h3 class="thin"><?php print t('Your results are loading...'); ?></h3>
     </div>
   </div>
 </div>

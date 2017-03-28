@@ -467,33 +467,59 @@
   }
 }
 
-.current-location h3 {
-  color: $color-light-text-gray;
+.current-location,
+.native-plants-loading {
+  h3 {
+    color: $color-light-text-gray;
 
-  @include width-range(0px, #{upper-bound($small-range)}) {
-    line-height: 22px;
-    font-size: 18px;
-    font-weight: normal;
-    letter-spacing: 0;
-    margin-bottom: 0;
-    padding-left: 33px;
-    position: relative;
-  }
-
-  @include breakpoint(medium-up) {
-    padding-left: 28px;
-  }
-
-  .icon {
-    font-size: 31px;
-    position: absolute;
-    left: 0;
-    top: 5px;
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      line-height: 22px;
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: 0;
+      margin-bottom: 0;
+      padding-left: 33px;
+      position: relative;
+    }
 
     @include breakpoint(medium-up) {
-      font-size: 33px;
-      left: 7px;
-      top: 0;
+      padding-left: 28px;
+    }
+
+    .icon {
+      font-size: 31px;
+      position: absolute;
+      left: 0;
+      top: 5px;
+
+      @include breakpoint(medium-up) {
+        font-size: 33px;
+        left: 7px;
+        top: 0;
+      }
+    }
+  }
+}
+
+.native-plants-loading {
+  margin-bottom: 25px;
+
+  h3 {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      padding-left: 28px;
+    }
+    @include breakpoint(medium-up) {
+      padding-left: 32px;
+    }
+  }
+  .svg-throbber {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      height: 22px;
+      width: 22px;
+    }
+    @include breakpoint(medium-up) {
+      height: 28px;
+      width: 28px;
     }
   }
 }
@@ -1907,20 +1933,5 @@ input[type="checkbox"].np-checkbox {
       border-radius: 50%;
       z-index: -1;
     }
-  }
-}
-
-.native-plants-loading {
-  .native-plants-loading-text {
-    font-size: 28px;
-    font-weight: 300;
-    font-family: "Source Sans Pro", Verdana, sans-serif;
-    color: #626262;
-    margin-left: 32px;
-    margin-bottom: 25px;
-  }
-  .svg-throbber {
-    height: 28px;
-    width: 28px;
   }
 }
