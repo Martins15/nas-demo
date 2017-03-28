@@ -9,7 +9,7 @@
      data-ng-controller="NativePlantsResourcesController as resourceC">
   <?php print $context_links; ?>
   <div class="columns ng-hide"
-       data-ng-show="resourceC.storage.data.resources.length"
+       data-ng-show="resourceC.storage.data_loaded && resourceC.storage.data.resources.length"
        data-ng-repeat="resource in resourceC.storage.data.resources | limitTo : 1">
     <h3 class="thin">
       <span class="icon icon-marker"></span><?php print $description; ?>

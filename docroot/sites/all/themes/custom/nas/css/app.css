@@ -16384,6 +16384,19 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   z-index: -1;
 }
 
+.native-plants-loading .native-plants-loading-text {
+  font-size: 28px;
+  font-weight: 300;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  color: #626262;
+  margin-left: 32px;
+  margin-bottom: 40px;
+}
+.native-plants-loading .svg-throbber {
+  height: 28px;
+  width: 28px;
+}
+
 /* Inline Panels Editor custom styles */
 .panels-ipe-display-container .nas-panels-ipe-collapsible-button {
   padding: 10px;

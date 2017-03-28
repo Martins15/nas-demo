@@ -1909,3 +1909,18 @@ input[type="checkbox"].np-checkbox {
     }
   }
 }
+
+.native-plants-loading {
+  .native-plants-loading-text {
+    font-size: 28px;
+    font-weight: 300;
+    font-family: "Source Sans Pro", Verdana, sans-serif;
+    color: #626262;
+    margin-left: 32px;
+    margin-bottom: 25px;
+  }
+  .svg-throbber {
+    height: 28px;
+    width: 28px;
+  }
+}

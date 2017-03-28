@@ -61,12 +61,9 @@
         resolve: {
           data: function(storage, $stateParams) {
             storage.data_loaded = false;
-            Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
             return storage.getData($stateParams.zipcode).then(function (data) {
               storage.data = data;
-              $.unblockUI();
-              Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
               storage.data_loaded = true;
             });

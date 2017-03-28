@@ -51,7 +51,13 @@
       </div>
     </div>
   </section>
-  <div class="native-plants-bottom">
+  <div class="native-plants-bottom ng-hide" data-ng-show="npC.storage.data_loaded">
     <?php print $content['bottom']; ?>
+  </div>
+  <div class="native-plants-loading row ng-hide" data-ng-show="!npC.storage.data_loaded">
+    <div class="columns">
+      <div class="svg-throbber"></div>
+      <div class="native-plants-loading-text"><?php print t('Your results are loading...'); ?></div>
+    </div>
   </div>
 </div>
