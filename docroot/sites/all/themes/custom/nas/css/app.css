@@ -15174,9 +15174,6 @@ h2.grey {
   }
 }
 
-.native-plants-loading {
-  margin-bottom: 25px;
-}
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .native-plants-loading h3 {
     padding-left: 28px;

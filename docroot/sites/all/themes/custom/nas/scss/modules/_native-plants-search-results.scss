@@ -502,8 +502,6 @@
 }
 
 .native-plants-loading {
-  margin-bottom: 25px;
-
   h3 {
     @include width-range(0px, #{upper-bound($small-range)}) {
       padding-left: 28px;
