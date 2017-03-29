@@ -680,8 +680,10 @@
     NativePlantsApp.controller('NativePlantsNurseriesController', function ($scope, $attrs, storage) {
       var self = this;
       self.storage = storage;
-      self.rowsLimit = 3;
       self.status = $attrs.online;
+      self.quantity = $attrs.quantity;
+      self.quantity_total = $attrs.qtotal;
+      self.rowsLimit = self.quantity;
 
       $scope.$watch(function() {
         return self.storage.data.nurseries;
@@ -703,7 +705,12 @@
       });
 
       self.limitToggle = function () {
-        self.rowsLimit = self.rowsLimit ? null : 3;
+        if (self.rowsLimit == self.quantity_total) {
+          self.rowsLimit = self.quantity;
+        }
+        else {
+          self.rowsLimit = self.quantity_total;
+        }
       };
     });
 

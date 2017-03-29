@@ -23,6 +23,7 @@ $plugin = array(
     'zipcode' => '',
     'online' => 0,
     'quantity' => 9,
+    'quantity_total' => 18,
     'angular' => 0,
   ),
   'all contexts' => TRUE,
@@ -55,10 +56,17 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
   );
   $form['quantity'] = array(
     '#type' => 'select',
-    '#title' => t('Quantity'),
-    '#options' => drupal_map_assoc(range(0, 9)),
-    '#description' => t('Select how many nurseries to show. Set 0 if you want see all nurseries.'),
+    '#title' => t('First Quantity'),
+    '#options' => _native_plants_nurseries_near_you_quantity(),
+    '#description' => t('Select how many nurseries to show first.'),
     '#default_value' => $conf['quantity'],
+  );
+  $form['quantity_total'] = array(
+    '#type' => 'select',
+    '#title' => t('Quantity total'),
+    '#options' => _native_plants_nurseries_near_you_quantity(),
+    '#description' => t('Select how many nurseries to show all'),
+    '#default_value' => $conf['quantity_total'],
   );
   $form['description'] = array(
     '#type' => 'text_format',
@@ -106,6 +114,8 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+  $quantity_total = $conf['quantity_total'] / 3;
+  $quantity = $conf['quantity'] / 3;
 
   if ($conf['angular']) {
     $block = new stdClass();
@@ -114,6 +124,8 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
       '#title' => t(filter_xss($conf['override_title_text'])),
       '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
       '#online' => $conf['online'],
+      '#quantity' => $quantity ? $quantity : 100,
+      '#quantity_total' => $quantity_total ? $quantity_total : 100,
       '#context_links' => $contextual_links,
     );
 
@@ -125,8 +137,17 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
   $function = $conf['online'] ? '_nas_master_native_plants_get_online_nurseries' : '_nas_master_native_plants_get_offline_nurseries';
   $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
 
-  if (!$nurseries = $function($zipcode, $conf['quantity'])) {
+  if (!$nurseries = $function($zipcode, $conf['quantity_total'])) {
     return '';
+  }
+
+  if ($conf['quantity'] != 0) {
+    $nurseries_show = array_slice($nurseries, 0, $conf['quantity']);
+    $nurseries_hidden = $conf['quantity_total'] != 0 ? array_slice($nurseries, $conf['quantity'], $conf['quantity_total']) : array_slice($nurseries, $conf['quantity']);
+  }
+  else {
+    $nurseries_show = array_slice($nurseries, $conf['quantity']);
+    $nurseries_hidden = array();
   }
 
   $block = new stdClass();
@@ -135,8 +156,8 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
     '#online' => $conf['online'],
-    '#nurseries_show' => array_slice($nurseries, 0, 6),
-    '#nurseries_hidden' => array_slice($nurseries, 6),
+    '#nurseries_show' => $nurseries_show,
+    '#nurseries_hidden' => $nurseries_hidden,
     '#context_links' => $contextual_links,
   );
 
@@ -174,9 +195,30 @@ function native_plants_nurseries_near_you_theme(&$theme, $plugin) {
       'title' => '',
       'description' => '',
       'online' => 0,
+      'quantity' => 0,
+      'quantity_total' => 0,
       'context_links' => '',
     ),
     'template' => 'native-plants-nurseries-near-you-angular',
     'path' => $plugin['path'],
+  );
+}
+
+/**
+ * Helper function to provide list of numbers.
+ */
+function _native_plants_nurseries_near_you_quantity() {
+  return array(
+    '0' => t('All'),
+    '3' => 3,
+    '6' => 6,
+    '9' => 9,
+    '12' => 12,
+    '15' => 15,
+    '18' => 18,
+    '21' => 21,
+    '24' => 24,
+    '27' => 27,
+    '30' => 30,
   );
 }
