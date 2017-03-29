@@ -83,9 +83,18 @@
  * @ingroup themeable
  */
 ?>
-<div class="hero-image">
+<div class="hero-image half--black">
   <?php print render($content['field_image']); ?>
+  <?php print $mobile_image; ?>
+  <div class="engagement-hero__content hide-for-large hide-for-xlarge">
+    <div class="row">
+      <div class="columns engagement-hero__column">
+        <h1 class="engagement-hero__header"><?php print $title; ?></h1>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <div class="row hero-attribution">
   <p class="column">
@@ -95,7 +104,7 @@
   </p>
 </div>
 
-<div class="engagement-hero__content below-image">
+<div class="engagement-hero__content half--black below-image">
   <div class="row">
     <div class="columns large-6 large-push-6 engagement-hero__column">
       <h1 class="engagement-hero__header"><?php print $title; ?></h1>
