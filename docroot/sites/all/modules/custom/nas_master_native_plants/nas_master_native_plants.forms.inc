@@ -244,6 +244,10 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
         'tomato',
       ),
     ),
+    '#ajax' => array(
+      'callback' => '_nas_master_native_plants_initial_form_ajax_callback',
+      'wrapper' => 'nas-master-native-plants-initial-form',
+    ),
     '#id' => 'nas-master-native-plants-initial-form-submit',
   );
   $form['nas_external_integration'] = array(
@@ -252,12 +256,36 @@ function nas_master_native_plants_initial_form($form, &$form_state, $conf = arra
   );
 
   _nas_master_native_plants_attach_fields_sync($form);
+  $form['#attached']['js'][drupal_get_path('module', 'nas_master_native_plants') . '/js/nas_master_native_plants.ajax_screen_lock.js'] = array(
+    'scope' => 'footer',
+  );
 
   if (module_exists('honeypot')) {
     honeypot_add_form_protection($form, $form_state, array('honeypot'));
   }
 
   return $form;
+}
+
+/**
+ * AJAX callback for Native Plants initial form.
+ */
+function _nas_master_native_plants_initial_form_ajax_callback($form, $form_state) {
+  if (!$form_state['redirect']) {
+    return $form;
+  }
+
+  ctools_include('ajax');
+  ctools_add_js('ajax-responder');
+  $commands = array();
+  $commands[] = ctools_ajax_command_redirect($form_state['redirect'][0], 0, $form_state['redirect'][1]);
+  // Do not remove the screen lock.
+  $commands[] = array('command' => 'ajaxScreenLockSetUnblockFalse');
+  $commands[] = array('command' => 'nas_master_native_plants_zipcode_changed_cookie_remove');
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
 }
 
 /**
