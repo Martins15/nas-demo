@@ -15136,11 +15136,13 @@ h2.grey {
   padding: 0 4px 0 0;
 }
 
-.current-location h3 {
+.current-location h3,
+.current-location-loading h3 {
   color: #626262;
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  .current-location h3 {
+  .current-location h3,
+  .current-location-loading h3 {
     line-height: 22px;
     font-size: 18px;
     font-weight: normal;
@@ -15151,21 +15153,47 @@ h2.grey {
   }
 }
 @media only screen and (min-width: 601px) {
-  .current-location h3 {
+  .current-location h3,
+  .current-location-loading h3 {
     padding-left: 28px;
   }
 }
-.current-location h3 .icon {
+.current-location h3 .icon,
+.current-location-loading h3 .icon {
   font-size: 31px;
   position: absolute;
   left: 0;
   top: 5px;
 }
 @media only screen and (min-width: 601px) {
-  .current-location h3 .icon {
+  .current-location h3 .icon,
+  .current-location-loading h3 .icon {
     font-size: 33px;
     left: 7px;
     top: 0;
+  }
+}
+
+.current-location-loading {
+  position: absolute;
+  left: 12.5px;
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .current-location-loading h3 {
+    padding-left: 26px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .current-location-loading .svg-throbber {
+    height: 22px;
+    width: 22px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .current-location-loading .svg-throbber {
+    margin-left: -3px;
+    height: 28px;
+    width: 28px;
   }
 }
 
@@ -16337,6 +16365,13 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   opacity: 1;
 }
 .animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove {
+  opacity: 0;
+}
+
+.animate-results-loading {
+  transition: all linear 0.5s;
+}
+.animate-results-loading.ng-hide {
   opacity: 0;
 }
 

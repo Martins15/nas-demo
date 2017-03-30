@@ -41,14 +41,14 @@
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="common-name-tier1" value="CommonName"
                      data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
-                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-model-options="{ debounce: 500 }"
                      data-ng-click="resultsC.orderByChange('results_tier1')"/>
               <label for="common-name-tier1"><?php print t('Common Name'); ?></label>
             </div>
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="scientific-name-tier1" value="ScientificName"
                      data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
-                     data-ng-model-options="{ debounce: 100 }"
+                     data-ng-model-options="{ debounce: 500 }"
                      data-ng-click="resultsC.orderByChange('results_tier1')"/>
               <label for="scientific-name-tier1"><?php print t('Scientific Name'); ?></label>
             </div>
