@@ -52,7 +52,7 @@
       </div>
     </div>
   </section>
-  <div class="native-plants-bottom ng-hide animate-loading" data-ng-show="npC.storage.data_loaded">
+  <div class="native-plants-bottom ng-hide animate-results-loading" data-ng-show="npC.storage.data_loaded">
     <?php print $content['bottom']; ?>
   </div>
 </div>
