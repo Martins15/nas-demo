@@ -316,6 +316,7 @@
           visibility: hidden;
           &:checked + label {
             color: rgb(119, 119, 119);
+            cursor: default;
           }
         }
 

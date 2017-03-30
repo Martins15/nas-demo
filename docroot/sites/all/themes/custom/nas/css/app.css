@@ -14995,6 +14995,7 @@ h2.grey {
 .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label,
 .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label {
   color: #777777;
+  cursor: default;
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio,

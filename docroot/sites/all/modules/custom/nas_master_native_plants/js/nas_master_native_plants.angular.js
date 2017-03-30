@@ -621,7 +621,11 @@
         );
       };
 
-      self.orderByChange = function (results_key) {
+      self.orderByChange = function (results_key, orderBy_key, orderBy_value) {
+        if (orderBy_value === storage.stateParams[orderBy_key]) {
+          return;
+        }
+
         self.storage['hide_' + results_key] = true;
         if (angular.isObject(self.promise)) {
           $timeout.cancel(self.promise);
