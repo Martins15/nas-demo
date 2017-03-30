@@ -741,11 +741,12 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       ),
       'zipcode' => '%permalink:zip-code',
       'online' => 0,
-      'quantity' => '0',
+      'quantity' => '6',
       'angular' => 0,
       'form_build_id' => 'form-yC4IZcMU2vtR0mJH1xYehoVKZIiRelmxD3_wGHQkVI0',
       'override_title' => 0,
       'override_title_heading' => 'h2',
+      'quantity_total' => '0',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -779,6 +780,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       'form_build_id' => 'form-ZCb0eZdb2KwWsrNEozlivY8PlNIPEqkXXRokfsLQunU',
       'override_title' => 1,
       'override_title_heading' => 'h2',
+      'quantity_total' => '0',
     );
     $pane->cache = array();
     $pane->style = array(
