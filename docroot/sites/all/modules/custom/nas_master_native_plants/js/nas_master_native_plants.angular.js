@@ -556,7 +556,7 @@
 
       self.filterSearchProgressCheck = function (tier) {
         return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
-      }
+      };
 
     });
 
