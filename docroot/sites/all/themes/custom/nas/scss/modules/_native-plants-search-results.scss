@@ -468,7 +468,7 @@
 }
 
 .current-location,
-.native-plants-loading {
+.current-location-loading {
   h3 {
     color: $color-light-text-gray;
 
@@ -501,13 +501,13 @@
   }
 }
 
-.native-plants-loading {
+.current-location-loading {
+  position: absolute;
+  left: 12.5px;
+
   h3 {
     @include width-range(0px, #{upper-bound($small-range)}) {
-      padding-left: 28px;
-    }
-    @include breakpoint(medium-up) {
-      padding-left: 32px;
+      padding-left: 26px;
     }
   }
   .svg-throbber {
@@ -516,6 +516,7 @@
       width: 22px;
     }
     @include breakpoint(medium-up) {
+      margin-left: -3px;
       height: 28px;
       width: 28px;
     }
@@ -1866,8 +1867,9 @@ input[type="checkbox"].np-checkbox {
 }
 
 // Angular animations.
-.animate-results {
-  transition:all linear 0.5s;
+.animate-results,
+.animate-results-loading {
+  transition: all linear 0.5s;
 
   &.hide-results {
     opacity: 0;
@@ -1880,6 +1882,12 @@ input[type="checkbox"].np-checkbox {
 
   &.hide-results-add.hide-results-add-active,
   &.hide-results-remove {
+    opacity: 0;
+  }
+}
+
+.animate-results-loading {
+  &.ng-hide {
     opacity: 0;
   }
 }

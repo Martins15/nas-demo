@@ -66,6 +66,7 @@
               storage.data = data;
               storage.activateTab();
               storage.data_loaded = true;
+              storage.closeMobileSearchForm();
             });
           }
         }
@@ -132,6 +133,15 @@
         }
         $tabs.responsiveTabs('activate', tabRef);
       };
+
+      self.closeMobileSearchForm = function() {
+        $timeout(function() {
+          var $icon = angular.element('.native-plants-search-icon.close');
+          if ($icon.is(':visible')) {
+            $icon.triggerHandler('click');
+          }
+        });
+      }
 
       // Run JS things when digest cycle has finished.
       // It is better to implement this Angular way in the future.

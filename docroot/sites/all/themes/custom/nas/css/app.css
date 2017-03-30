@@ -15137,12 +15137,12 @@ h2.grey {
 }
 
 .current-location h3,
-.native-plants-loading h3 {
+.current-location-loading h3 {
   color: #626262;
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .current-location h3,
-  .native-plants-loading h3 {
+  .current-location-loading h3 {
     line-height: 22px;
     font-size: 18px;
     font-weight: normal;
@@ -15154,12 +15154,12 @@ h2.grey {
 }
 @media only screen and (min-width: 601px) {
   .current-location h3,
-  .native-plants-loading h3 {
+  .current-location-loading h3 {
     padding-left: 28px;
   }
 }
 .current-location h3 .icon,
-.native-plants-loading h3 .icon {
+.current-location-loading h3 .icon {
   font-size: 31px;
   position: absolute;
   left: 0;
@@ -15167,31 +15167,31 @@ h2.grey {
 }
 @media only screen and (min-width: 601px) {
   .current-location h3 .icon,
-  .native-plants-loading h3 .icon {
+  .current-location-loading h3 .icon {
     font-size: 33px;
     left: 7px;
     top: 0;
   }
 }
 
-@media only screen and (min-width: 0px) and (max-width: 600px) {
-  .native-plants-loading h3 {
-    padding-left: 28px;
-  }
-}
-@media only screen and (min-width: 601px) {
-  .native-plants-loading h3 {
-    padding-left: 32px;
-  }
+.current-location-loading {
+  position: absolute;
+  left: 12.5px;
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  .native-plants-loading .svg-throbber {
+  .current-location-loading h3 {
+    padding-left: 26px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .current-location-loading .svg-throbber {
     height: 22px;
     width: 22px;
   }
 }
 @media only screen and (min-width: 601px) {
-  .native-plants-loading .svg-throbber {
+  .current-location-loading .svg-throbber {
+    margin-left: -3px;
     height: 28px;
     width: 28px;
   }
@@ -16355,16 +16355,26 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 14px;
 }
 
-.animate-results {
+.animate-results,
+.animate-results-loading {
   transition: all linear 0.5s;
 }
-.animate-results.hide-results {
+.animate-results.hide-results,
+.animate-results-loading.hide-results {
   opacity: 0;
 }
-.animate-results.hide-results-add, .animate-results.hide-results-remove.hide-results-remove-active {
+.animate-results.hide-results-add, .animate-results.hide-results-remove.hide-results-remove-active,
+.animate-results-loading.hide-results-add,
+.animate-results-loading.hide-results-remove.hide-results-remove-active {
   opacity: 1;
 }
-.animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove {
+.animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove,
+.animate-results-loading.hide-results-add.hide-results-add-active,
+.animate-results-loading.hide-results-remove {
+  opacity: 0;
+}
+
+.animate-results-loading.ng-hide {
   opacity: 0;
 }
 
