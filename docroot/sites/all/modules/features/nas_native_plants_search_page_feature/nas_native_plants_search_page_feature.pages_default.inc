@@ -737,6 +737,7 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
       'online' => 1,
       'quantity' => '9',
       'angular' => 1,
+      'quantity_total' => '18',
     );
     $pane->cache = array();
     $pane->style = array(

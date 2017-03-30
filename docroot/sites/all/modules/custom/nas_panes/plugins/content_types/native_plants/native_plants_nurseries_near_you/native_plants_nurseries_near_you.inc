@@ -146,7 +146,7 @@ function native_plants_nurseries_near_you_render($subtype, $conf, $args, $contex
     $nurseries_hidden = $conf['quantity_total'] != 0 ? array_slice($nurseries, $conf['quantity'], $conf['quantity_total']) : array_slice($nurseries, $conf['quantity']);
   }
   else {
-    $nurseries_show = array_slice($nurseries, $conf['quantity']);
+    $nurseries_show = $nurseries;
     $nurseries_hidden = array();
   }
 
