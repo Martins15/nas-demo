@@ -60,15 +60,10 @@
         },
         resolve: {
           data: function(storage, $stateParams) {
-            storage.data_loaded = false;
-            Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
             return storage.getData($stateParams.zipcode).then(function (data) {
               storage.data = data;
-              $.unblockUI();
-              Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
-              storage.data_loaded = true;
             });
           }
         }
@@ -154,14 +149,34 @@
       });
 
       self.getData = function(zipcode) {
-        if (typeof cache[zipcode] != 'undefined') {
+        // We have cache for this ZIP code.
+        if (typeof cache[zipcode] !== 'undefined') {
           var deferred = $q.defer();
           deferred.resolve(cache[zipcode]);
           return deferred.promise;
         }
+
+        // We don't have cache for this ZIP code.
+        self.closeMobileSearchForm();
+        self.data_loaded = false;
         return courier.getData(zipcode).then(function (data) {
           cache[zipcode] = data;
+
+          // We need this timeout so that the results are rendered and then shown.
+          $timeout(function () {
+            self.data_loaded = true;
+          }, 500);
+
           return data;
+        });
+      };
+
+      self.closeMobileSearchForm = function() {
+        $timeout(function() {
+          var $icon = angular.element('.native-plants-search-icon.close');
+          if ($icon.is(':visible')) {
+            $icon.triggerHandler('click');
+          }
         });
       };
 
@@ -541,7 +556,7 @@
 
       self.filterSearchProgressCheck = function (tier) {
         return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
-      }
+      };
 
     });
 
