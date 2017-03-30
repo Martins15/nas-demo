@@ -1867,8 +1867,7 @@ input[type="checkbox"].np-checkbox {
 }
 
 // Angular animations.
-.animate-results,
-.animate-results-loading {
+.animate-results {
   transition: all linear 0.5s;
 
   &.hide-results {
@@ -1887,6 +1886,8 @@ input[type="checkbox"].np-checkbox {
 }
 
 .animate-results-loading {
+  transition: all linear 0.5s;
+
   &.ng-hide {
     opacity: 0;
   }

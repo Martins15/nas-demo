@@ -16355,25 +16355,22 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-size: 14px;
 }
 
-.animate-results,
-.animate-results-loading {
+.animate-results {
   transition: all linear 0.5s;
 }
-.animate-results.hide-results,
-.animate-results-loading.hide-results {
+.animate-results.hide-results {
   opacity: 0;
 }
-.animate-results.hide-results-add, .animate-results.hide-results-remove.hide-results-remove-active,
-.animate-results-loading.hide-results-add,
-.animate-results-loading.hide-results-remove.hide-results-remove-active {
+.animate-results.hide-results-add, .animate-results.hide-results-remove.hide-results-remove-active {
   opacity: 1;
 }
-.animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove,
-.animate-results-loading.hide-results-add.hide-results-add-active,
-.animate-results-loading.hide-results-remove {
+.animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove {
   opacity: 0;
 }
 
+.animate-results-loading {
+  transition: all linear 0.5s;
+}
 .animate-results-loading.ng-hide {
   opacity: 0;
 }

@@ -17,7 +17,7 @@
 <?php $cl_class = ($contextual_links['menu']) ? ' contextual-links-region' : '';?>
 <footer class="global-footer"
         data-ng-controller="NativePlantsController as npC">
-  <div class="ng-hide" data-ng-show="npC.storage.data_loaded">
+  <div class="ng-hide animate-results-loading" data-ng-show="npC.storage.data_loaded">
     <section class="footer-site-map">
       <div class="row<?php print $cl_class; ?>">
         <?php print $contextual_links['menu']; ?>
