@@ -56,16 +56,16 @@ function native_plants_nurseries_near_you_edit_form($form, &$form_state) {
   );
   $form['quantity'] = array(
     '#type' => 'select',
-    '#title' => t('First Quantity'),
+    '#title' => t('Initial quantity'),
     '#options' => _native_plants_nurseries_near_you_quantity(),
-    '#description' => t('Select how many nurseries to show first.'),
+    '#description' => t('Select how many nurseries to show initially.'),
     '#default_value' => $conf['quantity'],
   );
   $form['quantity_total'] = array(
     '#type' => 'select',
-    '#title' => t('Quantity total'),
+    '#title' => t('Total quantity'),
     '#options' => _native_plants_nurseries_near_you_quantity(),
-    '#description' => t('Select how many nurseries to show all'),
+    '#description' => t('Select how many nurseries to show total.'),
     '#default_value' => $conf['quantity_total'],
   );
   $form['description'] = array(
