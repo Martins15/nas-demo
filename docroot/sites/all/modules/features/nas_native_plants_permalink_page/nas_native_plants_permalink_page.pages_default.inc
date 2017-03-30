@@ -709,6 +709,7 @@ function nas_native_plants_permalink_page_default_page_manager_pages() {
       ),
       'zipcode' => '%permalink:zip-code',
       'quantity' => '2',
+      'quantity_total' => '18',
       'angular' => 0,
       'form_build_id' => 'form-GO7UiFCprNyNWURJtSeovCuPzB15SWrcNCKjABAUnT4',
       'override_title' => 1,

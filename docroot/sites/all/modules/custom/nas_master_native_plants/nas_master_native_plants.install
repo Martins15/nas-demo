@@ -428,3 +428,10 @@ function nas_master_native_plants_update_7026() {
     'nas_native_plants_search_page_feature' => array('page_manager_pages'),
   ));
 }
+
+/**
+ * Revert panes in native_plants_permalink and native_plants_search.
+ */
+function nas_master_native_plants_update_7027() {
+  nas_master_native_plants_update_7026();
+}

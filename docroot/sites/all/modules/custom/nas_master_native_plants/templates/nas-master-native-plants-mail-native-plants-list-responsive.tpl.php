@@ -643,6 +643,13 @@
                               </div>
                             </td>
                           <?php endforeach; ?>
+                          <?php if ($additional_resources_show_more): ?>
+                            <tr colspan="3" style="padding: 0; text-align: left; vertical-align: top">
+                              <td>
+                                <a href="<?php print $permalink_url; ?>" target="_blank" style="color:#0AA8E3; font-family:'Source Sans Pro',Verdana,sans-serif; font-size:16px; font-weight:inherit; line-height:inherit; margin:0; padding:0; text-align:left; text-decoration:none"><?php print t('Show more »'); ?></a>
+                              </td>
+                           </tr>
+                          <?php endif; ?>
                         </tr>
                         </tbody>
                       </table>
