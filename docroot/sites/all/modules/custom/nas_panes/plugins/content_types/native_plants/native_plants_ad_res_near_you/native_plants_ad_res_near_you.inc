@@ -51,14 +51,14 @@ function native_plants_additional_resource_near_you_edit_form($form, &$form_stat
     '#type' => 'select',
     '#title' => t('Initial quantity'),
     '#options' => _native_plants_additional_resource_near_you_quantity(),
-    '#description' => t('Select how many additional resource to show initially.'),
+    '#description' => t('Select how many additional resources to show initially.'),
     '#default_value' => $conf['quantity'],
   );
   $form['quantity_total'] = array(
     '#type' => 'select',
     '#title' => t('Total quantity'),
     '#options' => _native_plants_additional_resource_near_you_quantity(),
-    '#description' => t('Select how many additional resource to show total.'),
+    '#description' => t('Select how many additional resources to show total.'),
     '#default_value' => $conf['quantity_total'],
   );
   $form['description'] = array(

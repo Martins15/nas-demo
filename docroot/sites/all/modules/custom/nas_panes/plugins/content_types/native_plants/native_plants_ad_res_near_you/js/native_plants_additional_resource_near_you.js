@@ -5,9 +5,9 @@
    * Native Plants Additional resource near you pane show more results.
    */
   Drupal.behaviors.nativePlantsAdditionalResourceNearYou  = {
-    attach: function (settings) {
+    attach: function (context, settings) {
       var $hidden = $('.row .hidden');
-      $(".show-more-resources").on('click', function (event) {
+      $('.show-more-resources', context).on('click', function (event) {
         event.preventDefault();
         if ($hidden.hasClass('hide')) {
           $hidden.addClass('invisible').removeClass('hide');

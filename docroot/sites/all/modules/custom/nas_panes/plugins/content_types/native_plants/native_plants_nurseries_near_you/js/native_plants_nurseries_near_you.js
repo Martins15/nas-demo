@@ -6,9 +6,9 @@
   Drupal.behaviors.nativePlantsNurseriesNearYou  = {
     attach: function (context, settings) {
       var $hidden = $('.row .hidden');
-      $(".show-more-nurseries").on('click', function (event) {
+      $('.show-more-nurseries', context).on('click', function (event) {
         event.preventDefault();
-        if($hidden.hasClass("hide")) {
+        if($hidden.hasClass('hide')) {
           $hidden.addClass('invisible').removeClass('hide');
           $(this).text('Show less «');
         }
