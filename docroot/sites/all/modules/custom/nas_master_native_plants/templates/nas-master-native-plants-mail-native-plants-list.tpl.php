@@ -153,6 +153,14 @@
               <td>
 
                 <h2 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
+                  <?php print t('Local resources'); ?>
+                </h2>
+              </td>
+            </tr>
+            <tr>
+               <td>
+
+                <h2 style="font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; line-height: 31px; font-weight: 300; color: #404040;">
                   <?php print $editorial_cards_title; ?>
                 </h2>
 

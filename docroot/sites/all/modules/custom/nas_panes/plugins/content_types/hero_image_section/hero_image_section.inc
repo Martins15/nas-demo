@@ -92,13 +92,21 @@ function hero_image_section_form($form, &$form_state) {
 
   $form['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
+      'none' => t('Solid black background above hero image, white text'),
     ),
     '#default_value' => !empty($conf['header_color_mode']) ? $conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['disable_gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable gradient'),
+    '#default_value' => isset($conf['disable_gradient']) ? $conf['disable_gradient'] : '',
+    '#return_value' => 'disable',
+    '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
   );
 
   $form['text_color_mode'] = array(
@@ -164,9 +172,11 @@ function hero_image_section_render($subtype, $conf, $args, $contexts) {
   }
 
   $class = &drupal_static('nas_header_class');
-  $class = 'dark-text light-bg transparent';
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
-    $class = 'light-text dark-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
   $color_mode_gradient = 'light';

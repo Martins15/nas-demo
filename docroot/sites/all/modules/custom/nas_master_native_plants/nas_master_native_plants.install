@@ -383,3 +383,21 @@ function nas_master_native_plants_update_7022() {
     ),
   ));
 }
+
+/**
+ * Revert Native Plants features.
+ */
+function nas_master_native_plants_update_7023() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}
+
+/**
+ * Revert panes default values on permalink page.
+ */
+function nas_master_native_plants_update_7024() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}

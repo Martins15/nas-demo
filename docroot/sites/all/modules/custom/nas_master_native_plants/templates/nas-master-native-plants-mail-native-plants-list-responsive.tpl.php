@@ -440,7 +440,7 @@
                           <tr style="border-bottom: 1px solid #d4d4d4; border-top: 1px solid #d4d4d4; padding: 0; text-align: left; vertical-align: top">
                             <td class="plant-name-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 24px; margin: 0; padding: 12px; text-align: left; vertical-align: middle; word-wrap: break-word"><?php print $plant['CommonName']; ?></td>
                             <td class="scientific-name-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 24px; margin: 0; padding: 12px; text-align: center; vertical-align: middle; word-wrap: break-word"><em><?php print $plant['ScientificName']; ?></em></td>
-                            <td class="may-attract-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 26px; margin: 0; padding: 12px; text-align: left; vertical-align: middle; width: 160px; word-wrap: break-word">
+                            <td class="may-attract-cell" style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 18px; font-weight: normal; hyphens: auto; letter-spacing: -0.5px; line-height: 26px; margin: 0; padding: 12px; text-align: left; vertical-align: middle; width: 160px !important; word-wrap: break-word !important">
                               <?php print implode(', ', $plant['BirdTypesDesktop']); ?>
                             </td>
                           </tr>
@@ -480,6 +480,15 @@
                   </div>
                 <?php endforeach; ?>
               </div>
+
+              <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
+                <th class="small-12 large-12 columns first last" larget="12" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0; text-align: left">
+                  <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 0; padding: 0; text-align: left; word-wrap: normal">
+                     <?php print t('Local Resources'); ?>
+                    </h2>
+                  </th>
+                <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
+              </tr></tbody></table>
 
               <table align="center" class="container show-for-large" style="Margin: 0 auto; background: none; border-collapse: collapse; border-spacing: 0; margin: 0 auto; padding: 0; text-align: inherit; vertical-align: top; width: 700px"><tbody><tr style="padding: 0; text-align: left; vertical-align: top"><td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word">
                 <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
@@ -634,6 +643,13 @@
                               <?php endforeach; ?>
                             </tr>
                           <?php endforeach; ?>
+                          <?php if ($nurseries_show_more): ?>
+                            <tr colspan="3" style="padding: 0; text-align: left; vertical-align: top">
+                              <td>
+                                <a href="<?php print $permalink_url; ?>" target="_blank" style="color:#0AA8E3; font-family:'Source Sans Pro',Verdana,sans-serif; font-size:16px; font-weight:inherit; line-height:inherit; margin:0; padding:0; text-align:left; text-decoration:none"><?php print t('Show more »'); ?></a>
+                              </td>
+                            </tr>
+                          <?php endif; ?>
                         </tbody>
                       </table>
                     <?php endif; ?>
