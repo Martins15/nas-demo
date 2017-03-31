@@ -132,7 +132,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
 
   $theme_hook = 'nas_footer';
 
-  if ($_GET['q'] == "native-plants/search") {
+  if (current_path() == "native-plants/search") {
     $theme_hook = 'nas_footer_native_plants_search';
   }
 
@@ -143,7 +143,7 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
     'copyright' => t($copyright),
     'footer_menu' => $footer_menu,
     'footer_copyright_menu' => $footer_copyright_menu,
-    'contextual_links' => $contextual_links
+    'contextual_links' => $contextual_links,
   );
   $content = theme($theme_hook, $t_vars);
   $block->title = t('Footer');
