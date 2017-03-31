@@ -59,7 +59,7 @@
         <?php endforeach; ?>
         <div class="row">
           <div class="large-12 medium-12 columns">
-            <a class="how-more-resources" href="#">Show more »</a>
+            <a class="show-more-resources" href="#"><?php print t('Show more »'); ?></a>
           </div>
         </div>
       <?php endif; ?>

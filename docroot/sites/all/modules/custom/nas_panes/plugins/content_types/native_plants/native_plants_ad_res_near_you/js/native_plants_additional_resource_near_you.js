@@ -2,14 +2,14 @@
   'use strict';
 
   /**
-   * Native Plants Nurseries near you pane show more results.
+   * Native Plants Additional resource near you pane show more results.
    */
-  Drupal.behaviors.nativePlantsArNearYou  = {
-    attach: function (context, settings) {
+  Drupal.behaviors.nativePlantsAdditionalResourceNearYou  = {
+    attach: function (settings) {
       var $hidden = $('.row .hidden');
-      $(".how-more-resources").on('click', function (event) {
+      $(".show-more-resources").on('click', function (event) {
         event.preventDefault();
-        if($hidden.hasClass("hide")) {
+        if ($hidden.hasClass('hide')) {
           $hidden.addClass('invisible').removeClass('hide');
           $(this).text('Show less «');
         }
