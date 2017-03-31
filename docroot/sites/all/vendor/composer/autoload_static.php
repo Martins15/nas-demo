@@ -177,15 +177,15 @@ class ComposerStaticInitComposerManager
         ),
         'Drupal\\nas_fbia\\' => 
         array (
-            0 => __DIR__ . '/../../..'.'/default/files/composer' . '/../../../all/modules/custom/nas_fbia/src',
+            0 => __DIR__ . '/../../modules/custom/nas_fbia/src',
         ),
         'Drupal\\fb_instant_articles_display\\' => 
         array (
-            0 => __DIR__ . '/../../..'.'/default/files/composer' . '/../../../all/modules/patched/fb_instant_articles/modules/fb_instant_articles_display/src',
+            0 => __DIR__ . '/../../modules/patched/fb_instant_articles/modules/fb_instant_articles_display/src',
         ),
         'Drupal\\fb_instant_articles\\' => 
         array (
-            0 => __DIR__ . '/../../..'.'/default/files/composer' . '/../../../all/modules/patched/fb_instant_articles/src',
+            0 => __DIR__ . '/../../modules/patched/fb_instant_articles/src',
         ),
     );
 
