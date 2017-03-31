@@ -15,32 +15,29 @@
  */
 ?>
 <?php $cl_class = ($contextual_links['menu']) ? ' contextual-links-region' : '';?>
-<footer class="global-footer"
-        data-ng-controller="NativePlantsController as npC">
-  <div class="ng-hide animate-results-loading" data-ng-show="npC.storage.data_loaded">
-    <section class="footer-site-map">
-      <div class="row<?php print $cl_class; ?>">
-        <?php print $contextual_links['menu']; ?>
-        <div class="medium-12 large-3 columns">
-          <?php if ($logo) : ?>
-            <?php print $logo; ?>
-          <?php endif; ?>
-          <h5><?php print $mission_title; ?></h5>
-          <p><?php print $mission; ?></p>
-        </div>
-        <?php print $footer_menu; ?>
+<footer class="global-footer">
+  <section class="footer-site-map">
+    <div class="row<?php print $cl_class; ?>">
+      <?php print $contextual_links['menu']; ?>
+      <div class="medium-12 large-3 columns">
+        <?php if ($logo) : ?>
+          <?php print $logo; ?>
+        <?php endif; ?>
+        <h5><?php print $mission_title; ?></h5>
+        <p><?php print $mission; ?></p>
       </div>
-    </section>
-    <section class="footer-copyright">
-      <div class="row">
-        <div class="column footer-copyright-links<?php print $cl_class; ?>">
-          <?php print $contextual_links['cr_menu']; ?>
-          <p>
-            <?php print $copyright; ?>
-            <span class="footer-copyright-links"><?php print $footer_copyright_menu; ?></span>
-          </p>
-        </div>
+      <?php print $footer_menu; ?>
+    </div>
+  </section>
+  <section class="footer-copyright">
+    <div class="row">
+      <div class="column footer-copyright-links<?php print $cl_class; ?>">
+        <?php print $contextual_links['cr_menu']; ?>
+        <p>
+          <?php print $copyright; ?>
+          <span class="footer-copyright-links"><?php print $footer_copyright_menu; ?></span>
+        </p>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </footer>
