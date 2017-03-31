@@ -204,13 +204,6 @@ class ComposerStaticInitComposerManager
                 0 => __DIR__ . '/..' . '/querypath/querypath/src',
             ),
         ),
-        'C' => 
-        array (
-            'Ctct' => 
-            array (
-                0 => __DIR__ . '/..' . '/constantcontact/constantcontact/src',
-            ),
-        ),
     );
 
     public static $classMap = array (
