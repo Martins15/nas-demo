@@ -736,7 +736,10 @@
     NativePlantsApp.controller('NativePlantsAdditionalResourcesController', function ($scope, $attrs, storage) {
       var self = this;
       self.storage = storage;
-      self.rowsLimit = 1;
+      self.quantity = $attrs.quantity;
+      self.quantity_total = $attrs.qtotal;
+      self.rowsLimit = self.quantity;
+      self.showMore = true;
 
       $scope.$watch(function () {
         return self.storage.data.additional_resource;
@@ -757,7 +760,14 @@
       });
 
       self.limitToggle = function () {
-        self.rowsLimit = self.rowsLimit ? null : 1;
+        if (self.rowsLimit == self.quantity_total) {
+          self.rowsLimit = self.quantity;
+          self.showMore = true;
+        }
+        else {
+          self.rowsLimit = self.quantity_total;
+          self.showMore = false;
+        }
       };
     });
 
