@@ -1,12 +1,13 @@
 (function($) {
+  'use strict';
 
   /**
-   * Native Plants Nurseries near you pane show more results.
+   * Native Plants Additional resource near you pane show more results.
    */
-  Drupal.behaviors.nativePlantsNurseriesNearYou  = {
+  Drupal.behaviors.nativePlantsAdditionalResourceNearYou  = {
     attach: function (context, settings) {
       var $hidden = $('.row .hidden', context);
-      $('.show-more-nurseries', context).on('click', function (event) {
+      $('.show-more-resources', context).on('click', function (event) {
         event.preventDefault();
         if ($hidden.hasClass('hide')) {
           $hidden.addClass('invisible').removeClass('hide');

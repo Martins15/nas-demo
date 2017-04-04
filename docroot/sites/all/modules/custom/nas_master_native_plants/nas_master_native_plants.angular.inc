@@ -30,7 +30,7 @@ function nas_master_native_plants_data_zipcode($zipcode) {
       'offline' => _nas_master_native_plants_get_offline_nurseries($zipcode),
     ),
     'resources' => _nas_master_native_plants_get_resources($zipcode, 2, TRUE),
-    'additional_resource' => _nas_master_native_plants_get_additional_resources($zipcode, 2),
+    'additional_resource' => _nas_master_native_plants_get_additional_resources($zipcode),
   );
 
   drupal_json_output($output);
@@ -120,11 +120,12 @@ function _nas_master_native_plants_get_terms() {
  *   Array of Audubon online nurseries for ZIP code.
  */
 function _nas_master_native_plants_get_online_nurseries($zipcode, $limit = 0) {
-  return _nas_master_native_plants_get_nurseries($zipcode, 'nursery', 1, $limit);
+  $state = _nas_master_native_plants_zipcode_to_state($zipcode);
+  return _nas_master_native_plants_get_nurseries(1, $limit, 'all', $state);
 }
 
 /**
- * Get Audubon nurseries for ZIP code.
+ * Get Audubon offline nurseries for ZIP code.
  *
  * @param string $zipcode
  *   ZIP code.
@@ -135,7 +136,34 @@ function _nas_master_native_plants_get_online_nurseries($zipcode, $limit = 0) {
  *   Array of Audubon nurseries for ZIP code.
  */
 function _nas_master_native_plants_get_offline_nurseries($zipcode, $limit = 0) {
-  return _nas_master_native_plants_get_nurseries($zipcode, 'nursery', 0, $limit);
+  $latln = _nas_master_native_plants_zipcode_geocode($zipcode);
+  return _nas_master_native_plants_get_nurseries(0, $limit, $latln);
+}
+
+/**
+ * Get Audubon nurseries.
+ *
+ * @param int $online
+ *   Boolean to set whether to display online nurseries.
+ * @param int $limit
+ *   Number of nurseries to return.
+ * @param string $latln
+ *   Nursery geo coordinates.
+ * @param string $state
+ *   Nursery state.
+ *
+ * @return array
+ *   Array of Audubon nurseries for ZIP code.
+ */
+function _nas_master_native_plants_get_nurseries($online, $limit, $latln, $state = NULL) {
+  $view_results = views_get_view_result('nurseries_near_you', 'default', $online, $latln, $state);
+  $fields = array(
+    'address' => 'field_nursery_address',
+    'phone' => 'field_nursery_phone',
+    'link' => 'field_nursery_link',
+  );
+
+  return _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
 }
 
 /**
@@ -149,8 +177,25 @@ function _nas_master_native_plants_get_offline_nurseries($zipcode, $limit = 0) {
  * @return array
  *   Array of Audubon additional resources for ZIP code.
  */
-function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0) {
-  return _nas_master_native_plants_get_nurseries($zipcode, 'additional_resource', 0, $limit);
+function _nas_master_native_plants_get_additional_resources($zipcode, $limit = 0, $include_state_resources = TRUE) {
+  $latln = _nas_master_native_plants_zipcode_geocode($zipcode);
+  $fields = array(
+    'address' => 'field_additional_resource_addr',
+    'phone' => 'field_additional_resource_phone',
+    'link' => 'field_additional_resource_link',
+  );
+
+  $view_results = views_get_view_result('additional_resource_near_you', 'default', $latln);
+  $resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
+
+  if ($include_state_resources && (!$limit || ($limit = $limit - count($resources)))) {
+    $state = _nas_master_native_plants_zipcode_to_state($zipcode);
+    $view_results = views_get_view_result('additional_resource_near_you', 'state_resource', $state);
+    $state_resources = _nas_master_native_plants_process_nurseries_results($view_results, $fields, $limit);
+    $resources = array_merge($resources, $state_resources);
+  }
+
+  return $resources;
 }
 
 /**
@@ -218,7 +263,7 @@ function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_
       ),
     ));
 
-    $res['address']['rendered'] = _native_master_native_plants_process_address($res['address']);
+    $res['address']['rendered'] = _nas_master_native_plants_process_address($res['address']);
     $res['address']['rendered_short'] = '';
     $res['address']['rendered_short'] .= $res['address']['locality'] ? $res['address']['locality'] . ', ' : '';
     $res['address']['rendered_short'] .= $res['address']['administrative_area'] ? $res['address']['administrative_area'] : '';
@@ -240,61 +285,29 @@ function _nas_master_native_plants_get_resources($zipcode, $limit = 0, $include_
 }
 
 /**
- * Load native Plants nurseries data.
+ * Processes nurseries view results data.
  *
- * @param string $zipcode
- *   ZIP code.
- * @param string $type
- *   The type.
- * @param bool $online
- *   Online flag.
+ * @param array $view_results
+ *   View results.
+ * @param array $fields
+ *   Fields to attach to results.
  * @param int $limit
  *   The limit.
  *
  * @return array
- *   Array of Native Plants nurseries data for ZIP code.
+ *   Array of complete Native Plants nurseries data.
  */
-function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limit = 0) {
-  if (!in_array($type, array('nursery', 'additional_resource'))) {
-    return FALSE;
-  }
-
-  $latln = 'all';
-  $state = NULL;
-
-  if ($online) {
-    $state = _nas_master_native_plants_zipcode_to_state($zipcode);
-  }
-  else {
-    $latln = _nas_master_native_plants_zipcode_geocode($zipcode);
-  }
-
-  if ($type == 'nursery') {
-    $view_results = views_get_view_result('nurseries_near_you', 'default', $online, $latln, $state);
-    $fields = array(
-      'address' => 'field_nursery_address',
-      'phone' => 'field_nursery_phone',
-      'link' => 'field_nursery_link',
-    );
-  }
-  else {
-    $view_results = views_get_view_result('additional_resource_near_you', 'default', $latln);
-    $fields = array(
-      'address' => 'field_additional_resource_addr',
-      'phone' => 'field_additional_resource_phone',
-      'link' => 'field_additional_resource_link',
-    );
-  }
-
+function _nas_master_native_plants_process_nurseries_results(array $view_results, array $fields, $limit = 0) {
   $patterns = array('http://www.', 'https://www.', 'http://', 'https://');
-  // Prepare nurseries.
+
+  // Prepare resources.
   $nurseries = array();
   foreach ($view_results as $result) {
-    if (!$nursery = node_load($result->entity)) {
+    if (!$node = node_load($result->entity)) {
       continue;
     }
 
-    $wrapper = entity_metadata_wrapper('node', $nursery);
+    $wrapper = entity_metadata_wrapper('node', $node);
     $body = $wrapper->body->value();
 
     $res = array(
@@ -306,7 +319,7 @@ function _nas_master_native_plants_get_nurseries($zipcode, $type, $online, $limi
       $res[$key] = $wrapper->{$field}->value();
     }
 
-    $res['address']['rendered'] = _native_master_native_plants_process_address($res['address']);
+    $res['address']['rendered'] = _nas_master_native_plants_process_address($res['address']);
     if (!empty($res['link']['url'])) {
       $res['link']['print'] = str_replace($patterns, '', $res['link']['url']);
       if (drupal_strlen($res['link']['print']) > 20) {
@@ -368,7 +381,7 @@ function _nas_master_native_plants_zipcode_geocode($zipcode) {
 /**
  * Auxiliary function to get a printable address from an address array.
  */
-function _native_master_native_plants_process_address($data) {
+function _nas_master_native_plants_process_address($data) {
   $address = '';
   $address .= $data['thoroughfare'] ? $data['thoroughfare'] . '<br/>' : '';
   $address .= $data['locality'] ? $data['locality'] . ', ' : '';

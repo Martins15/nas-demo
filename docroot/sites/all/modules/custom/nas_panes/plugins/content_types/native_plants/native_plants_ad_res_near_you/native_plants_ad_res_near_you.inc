@@ -22,6 +22,7 @@ $plugin = array(
     ),
     'zipcode' => '',
     'quantity' => 2,
+    'quantity_total' => 18,
     'angular' => 0,
   ),
   'all contexts' => TRUE,
@@ -48,10 +49,17 @@ function native_plants_additional_resource_near_you_edit_form($form, &$form_stat
   $form['override_title_heading']['#access'] = FALSE;
   $form['quantity'] = array(
     '#type' => 'select',
-    '#title' => t('Quantity'),
-    '#options' => drupal_map_assoc(range(1, 9)),
-    '#description' => t('Select how many additional resource to show.'),
+    '#title' => t('Initial quantity'),
+    '#options' => _native_plants_additional_resource_near_you_quantity(),
+    '#description' => t('Select how many additional resources to show initially.'),
     '#default_value' => $conf['quantity'],
+  );
+  $form['quantity_total'] = array(
+    '#type' => 'select',
+    '#title' => t('Total quantity'),
+    '#options' => _native_plants_additional_resource_near_you_quantity(),
+    '#description' => t('Select how many additional resources to show total.'),
+    '#default_value' => $conf['quantity_total'],
   );
   $form['description'] = array(
     '#type' => 'text_format',
@@ -99,11 +107,16 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+  $quantity = $conf['quantity'] / 2;
+  $quantity_total = $conf['quantity_total'] / 2;
+
   if ($conf['angular']) {
     $block = new stdClass();
     $block->content = array(
       '#theme' => 'native_plants_additional_resource_near_you_angular',
       '#title' => t(filter_xss($conf['override_title_text'])),
+      '#quantity' => $quantity ? $quantity : 100,
+      '#quantity_total' => $quantity_total ? $quantity_total : 100,
       '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
       '#context_links' => $contextual_links,
     );
@@ -114,8 +127,17 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
   $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
-  if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity'])) {
+  if (!$additional_resources = _nas_master_native_plants_get_additional_resources($zipcode, $conf['quantity_total'])) {
     return '';
+  }
+
+  if ($conf['quantity'] != 0) {
+    $additional_resource_show = array_slice($additional_resources, 0, $conf['quantity']);
+    $additional_resource_hidden = $conf['quantity_total'] != 0 ? array_slice($additional_resources, $conf['quantity'], $conf['quantity_total']) : array_slice($additional_resources, $conf['quantity']);
+  }
+  else {
+    $additional_resource_show = $additional_resources;
+    $additional_resource_hidden = array();
   }
 
   $block = new stdClass();
@@ -123,8 +145,15 @@ function native_plants_additional_resource_near_you_render($subtype, $conf, $arg
     '#theme' => 'native_plants_additional_resource_near_you',
     '#title' => t(filter_xss($conf['override_title_text'])),
     '#description' => check_markup($conf['description']['value'], $conf['description']['format']),
-    '#additional_resource' => $additional_resources,
+    '#additional_resource_show' => $additional_resource_show,
+    '#additional_resource_hidden' => $additional_resource_hidden,
     '#context_links' => $contextual_links,
+  );
+
+  $block->content['#attached'] = array(
+    'js' => array(
+      $plugin['path'] . '/js/native_plants_additional_resource_near_you.js',
+    ),
   );
 
   return $block;
@@ -138,7 +167,8 @@ function native_plants_additional_resource_near_you_theme(&$theme, $plugin) {
     'variables' => array(
       'title' => '',
       'description' => '',
-      'additional_resource' => array(),
+      'additional_resource_show' => '',
+      'additional_resource_hidden' => '',
       'context_links' => '',
     ),
     'template' => 'native-plants-additional-resource-near-you',
@@ -147,10 +177,31 @@ function native_plants_additional_resource_near_you_theme(&$theme, $plugin) {
   $theme['native_plants_additional_resource_near_you_angular'] = array(
     'variables' => array(
       'title' => '',
+      'quantity' => '',
+      'quantity_total' => '',
       'description' => '',
       'context_links' => '',
     ),
     'template' => 'native-plants-additional-resource-near-you-angular',
     'path' => $plugin['path'],
+  );
+}
+
+/**
+ * Helper function to provide list of numbers.
+ */
+function _native_plants_additional_resource_near_you_quantity() {
+  return array(
+    '0' => t('All'),
+    '2' => 2,
+    '4' => 4,
+    '6' => 6,
+    '8' => 8,
+    '10' => 10,
+    '12' => 12,
+    '14' => 14,
+    '16' => 16,
+    '18' => 18,
+    '20' => 20,
   );
 }

@@ -130,6 +130,12 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
   $contextual_links['menu'] = nas_menu_cl(NAS_MENU_FOOTER_MENU, $custom_links);
   $contextual_links['cr_menu'] = nas_menu_cl(NAS_MENU_FOOTER_COPYRIGHT_MENU);
 
+  $theme_hook = 'nas_footer';
+
+  if (current_path() == "native-plants/search") {
+    $theme_hook = 'nas_footer_native_plants_search';
+  }
+
   $t_vars = array(
     'logo' => $logo,
     'mission_title' => t($title),
@@ -137,9 +143,9 @@ function nas_footer_pane_custom_pane_render($subtype, $conf, $args, $contexts) {
     'copyright' => t($copyright),
     'footer_menu' => $footer_menu,
     'footer_copyright_menu' => $footer_copyright_menu,
-    'contextual_links' => $contextual_links
+    'contextual_links' => $contextual_links,
   );
-  $content = theme('nas_footer', $t_vars);
+  $content = theme($theme_hook, $t_vars);
   $block->title = t('Footer');
   $block->content = $content;
 

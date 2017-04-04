@@ -9,7 +9,8 @@
   <?php print $content['top']; ?>
   <section class="global-content static-page-content">
     <?php print $content['main']; ?>
-    <div class="native-plants-tabs js-native-plants-tabs ng-hide" data-ng-show="npC.storage.data_loaded">
+    <div class="native-plants-tabs js-native-plants-tabs ng-hide animate-results-loading"
+         data-ng-show="npC.storage.data_loaded">
       <?php print $content['tab_selector']; ?>
       <div class="tab-content" data-ng-controller="NativePlantsTabsController as tabsC">
         <div class="tab-pane" id="best_results">
@@ -51,7 +52,7 @@
       </div>
     </div>
   </section>
-  <div class="native-plants-bottom">
+  <div class="native-plants-bottom ng-hide animate-results-loading" data-ng-show="npC.storage.data_loaded">
     <?php print $content['bottom']; ?>
   </div>
 </div>

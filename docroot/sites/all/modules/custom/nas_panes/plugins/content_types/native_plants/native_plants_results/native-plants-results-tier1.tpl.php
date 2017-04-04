@@ -41,15 +41,15 @@
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="common-name-tier1" value="CommonName"
                      data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
-                     data-ng-model-options="{ debounce: 100 }"
-                     data-ng-click="resultsC.orderByChange('results_tier1')"/>
+                     data-ng-model-options="{ debounce: 500 }"
+                     data-ng-click="resultsC.orderByChange('results_tier1', 'orderBy_tier1', 'CommonName')"/>
               <label for="common-name-tier1"><?php print t('Common Name'); ?></label>
             </div>
             <div class="form-item form-item-radio">
               <input type="radio" class="form-radio" name="native-plants-sort-tier1" id="scientific-name-tier1" value="ScientificName"
                      data-ng-model="resultsC.storage.stateParams.orderBy_tier1"
-                     data-ng-model-options="{ debounce: 100 }"
-                     data-ng-click="resultsC.orderByChange('results_tier1')"/>
+                     data-ng-model-options="{ debounce: 500 }"
+                     data-ng-click="resultsC.orderByChange('results_tier1', 'orderBy_tier1', 'ScientificName')"/>
               <label for="scientific-name-tier1"><?php print t('Scientific Name'); ?></label>
             </div>
           </fieldset>
@@ -66,13 +66,12 @@
   </div>
 
   <div id="pager-scroll-page_tier1"></div>
-  <div>
+  <div class="native-plant-select-all-plants">
     <div class="form-item form-item-checkbox">
-      <input type="checkbox" class="np-checkbox" id="select-all-tier1"
-             data-ng-model="resultsC.storage.all_tier1_in_cart"
-             data-ng-change="resultsC.storage.calculateTier1inCart()"/>
-      <label for="select-all-tier1"
-             data-ng-click="resultsC.storage.selectAllTier1()"><?php print t('Add all plants below to your list'); ?></label>
+        <a href="javascript:void(0)"
+           data-ng-click="resultsC.storage.selectAllTier1()"><?php print t('Add all plants below to your list'); ?></a>
+        <a href="javascript:void(0)" class="native-plants-top--clear-plants-list"
+           data-ng-click="resultsC.storage.clearCart()"><?php print t('Clear list'); ?></a>
     </div>
   </div>
 
