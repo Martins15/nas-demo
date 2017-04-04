@@ -115,11 +115,11 @@ function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
   );
   $form['curtain_simple']['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
-      'none' => t('None'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
+      'none' => t('Solid black background above hero image, white text'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
@@ -129,6 +129,7 @@ function _frontpage_featured_simple_curtain_form(&$form, $form_state, $conf) {
     '#title' => t('Disable gradient'),
     '#default_value' => isset($_conf['disable_gradient']) ? $_conf['disable_gradient'] : '',
     '#return_value' => 'disable',
+    '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
   );
   $form['curtain_simple']['header_bg'] = array(
     '#type' => 'radios',
@@ -212,13 +213,21 @@ function _frontpage_featured_hero_image_form(&$form, $form_state, $conf) {
   );
   $form['hero_image']['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
+      'none' => t('Solid black background above hero image, white text'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['hero_image']['disable_gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable gradient'),
+    '#default_value' => isset($_conf['disable_gradient']) ? $_conf['disable_gradient'] : '',
+    '#return_value' => 'disable',
+    '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
   );
   $form['hero_image']['title'] = array(
     '#type' => 'textfield',
@@ -277,13 +286,21 @@ function _frontpage_featured_curtain_3stories_form(&$form, &$form_state, $conf) 
   );
   $form['curtain_3stories']['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
+      'none' => t('Solid black background above hero image, white text'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['curtain_3stories']['disable_gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable gradient'),
+    '#default_value' => isset($_conf['disable_gradient']) ? $_conf['disable_gradient'] : '',
+    '#return_value' => 'disable',
+    '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
   );
   $form['curtain_3stories']['title'] = array(
     '#type' => 'textfield',
@@ -407,10 +424,10 @@ function _frontpage_featured_curtain_package_form(&$form, &$form_state, $conf) {
   );
   $form['curtain_package']['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
@@ -419,8 +436,8 @@ function _frontpage_featured_curtain_package_form(&$form, &$form_state, $conf) {
     '#type' => 'radios',
     '#title' => t('Background color mode'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
     ),
     '#default_value' => !empty($_conf['bg_color_mode']) ? $_conf['bg_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to bottom content.'),
@@ -525,6 +542,24 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
       'select[name="variant"]' => array('value' => 'curtain_video'),
     ),
   );
+  $form['curtain_video']['header_color_mode'] = array(
+    '#type' => 'radios',
+    '#title' => t('Nav bar coloring'),
+    '#options' => array(
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
+      'none' => t('Solid black background above hero image, white text'),
+    ),
+    '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
+    '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+  );
+  $form['curtain_video']['disable_gradient'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable gradient'),
+    '#default_value' => isset($_conf['disable_gradient']) ? $_conf['disable_gradient'] : '',
+    '#return_value' => 'disable',
+    '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
+  );
   $form['curtain_video']['image'] = array(
     '#type' => 'media',
     '#tree' => TRUE,
@@ -577,10 +612,10 @@ function _frontpage_featured_curtain_video_form(&$form, $form_state, $conf) {
   );
   $form['curtain_video']['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the video you uploaded is dark or light so that proper font styles were applied to header content.'),
@@ -671,11 +706,11 @@ function _frontpage_featured_curtain_html_form(&$form, $form_state, $conf) {
   );
   $form['curtain_html']['header_color_mode'] = array(
     '#type' => 'radios',
-    '#title' => t('Header color mode'),
+    '#title' => t('Nav bar coloring'),
     '#options' => array(
-      'dark' => t('Dark'),
-      'light' => t('Light'),
-      'none' => t('None'),
+      'dark' => t('Light background, black text'),
+      'light' => t('Dark background, white text'),
+      'none' => t('Solid black background above hero image, white text'),
     ),
     '#default_value' => !empty($_conf['header_color_mode']) ? $_conf['header_color_mode'] : 'dark',
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
@@ -953,9 +988,11 @@ function _frontpage_featured_hero_image_render(array $conf, $contextual_links) {
   }
 
   $class = &drupal_static('nas_header_class');
-  $class = 'dark-text light-bg transparent';
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
-    $class = 'light-text dark-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
   $title_link = t($conf['title']);
@@ -1011,9 +1048,11 @@ function _frontpage_featured_curtain_3stories_render(array $conf, $contextual_li
   $featured_frontpage_image = $image_path;
 
   $class = &drupal_static('nas_header_class');
-  $class = 'dark-text light-bg transparent';
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
-    $class = 'light-text dark-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
   $title_link = t($conf['title']);
@@ -1236,9 +1275,11 @@ function _frontpage_featured_curtain_video_render(array $conf, $contextual_links
   $bg_color = $conf['bg_color'];
 
   $class = &drupal_static('nas_header_class');
-  $class = 'dark-text light-bg transparent';
   if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
-    $class = 'light-text dark-bg transparent';
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
   }
 
   $position = 'cover';

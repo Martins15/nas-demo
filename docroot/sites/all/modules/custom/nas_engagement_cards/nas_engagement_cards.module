@@ -14,6 +14,11 @@ function nas_engagement_cards_entity_info_alter(&$entity_info) {
     'label' => t('Engagement cards - Full width'),
     'custom settings' => FALSE,
   );
+  // Adding view mode for full width half black engagement card.
+  $entity_info['node']['view modes']['nas_engagement_cards_full_width_half_black'] = array(
+    'label' => t('Engagement cards - Full width (Half Black)'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
