@@ -97,6 +97,9 @@ function nas_engagement_cards_feature_strongarm() {
       'nas_engagement_cards_full_width' => array(
         'custom_settings' => TRUE,
       ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'custom_settings' => TRUE,
+      ),
       'nas_node_teaser_small_state' => array(
         'custom_settings' => TRUE,
       ),
@@ -144,6 +147,10 @@ function nas_engagement_cards_feature_strongarm() {
             'visible' => FALSE,
           ),
           'nas_engagement_cards_full_width' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'nas_engagement_cards_full_width_half_black' => array(
             'weight' => '0',
             'visible' => FALSE,
           ),

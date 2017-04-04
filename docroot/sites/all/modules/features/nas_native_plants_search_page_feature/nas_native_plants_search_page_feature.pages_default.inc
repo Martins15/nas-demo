@@ -664,6 +664,7 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
       ),
       'zipcode' => '',
       'quantity' => '2',
+      'quantity_total' => '18',
       'angular' => 1,
       'form_build_id' => 'form--cvVJNsv1tqPTlc5TxpbmegrhqISFQV-U5A4ZnrP2iQ',
       'override_title' => 0,
@@ -702,6 +703,7 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
       'online' => 0,
       'quantity' => '9',
       'angular' => 1,
+      'quantity_total' => '18',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -736,6 +738,7 @@ h1.native-plants-hero-title.hero-title.column.hide-for-medium.hide-for-small.hid
       'online' => 1,
       'quantity' => '9',
       'angular' => 1,
+      'quantity_total' => '18',
     );
     $pane->cache = array();
     $pane->style = array(
