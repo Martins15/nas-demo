@@ -15204,8 +15204,10 @@ h2.grey {
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper legend,
 .native-plants-full-results .view-filters .filters-controls-wrapper legend {
-  margin: 0 5px 0 0;
   width: auto;
+  margin: 0 5px 0 0;
+  font-size: 16px;
+  font-weight: 600;
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper legend:after,
 .native-plants-full-results .view-filters .filters-controls-wrapper legend:after {
@@ -15213,6 +15215,12 @@ h2.grey {
   line-height: inherit;
   display: inline-block;
   vertical-align: top;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper legend,
+  .native-plants-full-results .view-filters .filters-controls-wrapper legend {
+    font-size: 20px;
+  }
 }
 @media only screen and (min-width: 0px) and (max-width: 320px) {
   .native-plants-search-results .view-filters .filters-controls-wrapper legend,
@@ -15224,6 +15232,15 @@ h2.grey {
 .native-plants-full-results .view-filters .filters-controls-wrapper label {
   margin-left: 0;
   margin-right: 0;
+  font-size: 16px;
+  font-weight: normal;
+  color: #0aa8e3;
+}
+@media only screen and (min-width: 601px) {
+  .native-plants-search-results .view-filters .filters-controls-wrapper label,
+  .native-plants-full-results .view-filters .filters-controls-wrapper label {
+    font-size: 20px;
+  }
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio],
 .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio] {
@@ -15231,14 +15248,15 @@ h2.grey {
 }
 .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label,
 .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio input[type=radio]:checked + label {
-  color: #0aa8e3;
+  color: #777777;
+  cursor: default;
 }
 @media only screen and (min-width: 0px) and (max-width: 767px) {
   .native-plants-search-results .view-filters .filters-controls-wrapper .form-item-radio,
   .native-plants-full-results .view-filters .filters-controls-wrapper .form-item-radio {
     float: left;
     width: 100%;
-    max-width: 127px;
+    max-width: 117px;
     position: relative;
   }
 }
@@ -15373,11 +15391,13 @@ h2.grey {
   padding: 0 4px 0 0;
 }
 
-.current-location h3 {
+.current-location h3,
+.current-location-loading h3 {
   color: #626262;
 }
 @media only screen and (min-width: 0px) and (max-width: 600px) {
-  .current-location h3 {
+  .current-location h3,
+  .current-location-loading h3 {
     line-height: 22px;
     font-size: 18px;
     font-weight: normal;
@@ -15388,21 +15408,47 @@ h2.grey {
   }
 }
 @media only screen and (min-width: 601px) {
-  .current-location h3 {
+  .current-location h3,
+  .current-location-loading h3 {
     padding-left: 28px;
   }
 }
-.current-location h3 .icon {
+.current-location h3 .icon,
+.current-location-loading h3 .icon {
   font-size: 31px;
   position: absolute;
   left: 0;
   top: 5px;
 }
 @media only screen and (min-width: 601px) {
-  .current-location h3 .icon {
+  .current-location h3 .icon,
+  .current-location-loading h3 .icon {
     font-size: 33px;
     left: 7px;
     top: 0;
+  }
+}
+
+.current-location-loading {
+  position: absolute;
+  left: 12.5px;
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .current-location-loading h3 {
+    padding-left: 26px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .current-location-loading .svg-throbber {
+    height: 22px;
+    width: 22px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .current-location-loading .svg-throbber {
+    margin-left: -3px;
+    height: 28px;
+    width: 28px;
   }
 }
 
@@ -16008,6 +16054,32 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   background-position: top left;
 }
 
+.native-plant-select-all-plants {
+  padding-bottom: 10px;
+}
+.native-plant-select-all-plants a {
+  font-size: 16px;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  line-height: 24px;
+  color: #0aa8e3;
+}
+@media only screen and (min-width: 601px) {
+  .native-plant-select-all-plants a {
+    font-size: 20px;
+  }
+}
+
+.native-plants-top--clear-plants-list {
+  text-transform: capitalize;
+}
+.native-plants-top--clear-plants-list:before {
+  content: '\00a0|\00a0';
+  line-height: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #777777;
+}
+
 .native-plant-bird-category-link {
   color: #404040;
   text-decoration: underline;
@@ -16389,6 +16461,75 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 
 .page-native-plants-list .native-plants-pledge-form-pl-pane + div {
   font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+
+.page-native-plants-search #full_results .clearing-caption, .page-native-plants-search #best_results .clearing-caption {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.animate-results {
+  transition: all linear 0.5s;
+}
+.animate-results.hide-results {
+  opacity: 0;
+}
+.animate-results.hide-results-add, .animate-results.hide-results-remove.hide-results-remove-active {
+  opacity: 1;
+}
+.animate-results.hide-results-add.hide-results-add-active, .animate-results.hide-results-remove {
+  opacity: 0;
+}
+
+.animate-results-loading {
+  transition: all linear 0.5s;
+}
+.animate-results-loading.ng-hide {
+  opacity: 0;
+}
+
+.clearing-assembled.clearing-blackout {
+  background: rgba(51, 51, 51, 0.8);
+}
+.clearing-assembled .clearing-container div.visible-img {
+  background: transparent;
+}
+
+.clearing-blackout .visible-img img {
+  max-height: 90%;
+  max-width: 90%;
+  border: 10px solid #fff;
+}
+.clearing-blackout .clearing-close {
+  display: none;
+  color: tomato;
+  font-size: 46px;
+  line-height: 1;
+  z-index: 999;
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  padding: 0;
+}
+.clearing-blackout .clearing-close:hover {
+  color: tomato;
+}
+.clearing-blackout .clearing-close:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin: -20px 0 0 -21px;
+  width: 42px;
+  height: 42px;
+  background: #000;
+  border-radius: 50%;
+  z-index: -1;
 }
 
 /* Inline Panels Editor custom styles */

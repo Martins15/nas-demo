@@ -545,7 +545,7 @@
                               <ul style="font-size: 16px">
                                 <?php foreach ($resource['services'] as $key => $service): ?>
                                   <?php if ($key != 'rendered'): ?>
-                                    <li><?php print $service; ?></li>
+                                    <li style="Margin: 0;"><?php print $service; ?></li>
                                   <?php endif; ?>
                                 <?php endforeach; ?>
                               </ul>
@@ -591,26 +591,70 @@
                       <h3 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 22px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 15px; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
                         <?php print t('Services provided at @title', array('@title' => $resource['title'])); ?>
                       </h3>
-
                       <ul style="font-size: 16px; mso-hide: all">
                         <?php foreach ($resource['services'] as $key => $service): ?>
                           <?php if ($key != 'rendered'): ?>
                             <li style="mso-hide: all"><?php print $service; ?></li>
                           <?php endif; ?>
                         <?php endforeach; ?>
-                      </ul>
-
+                      </ul><p style="display: none">1</p>
                     </div>
                   </div>
                 <?php endforeach; ?>
               </td></tr></tbody></table>
-
               <table align="center" class="container show-for-large" style="Margin: 0 auto; background: none; border-collapse: collapse; border-spacing: 0; margin: 0 auto; padding: 0; text-align: inherit; vertical-align: top; width: 700px"><tbody><tr style="padding: 0; text-align: left; vertical-align: top"><td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; word-wrap: break-word">
                 <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
                   <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0; text-align: left">
+                    <?php if (!empty($additional_resources)): ?>
+                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
+                        <?php print t('Other Local Resources'); ?>
+                      </h2>
+                      <table style="border-collapse: collapse; border-spacing: 0; font-family: 'Source Sans Pro', Verdana, sans-serif; padding: 0; text-align: left; vertical-align: top; width: 100%">
+                        <tbody>
+                        <tr style="padding: 0; text-align: left; vertical-align: top">
+                          <?php foreach ($additional_resources as $resource): ?>
+                            <td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 50%; word-wrap: break-word">
+                              <div class="address" style="color: #fff; font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.6px; line-height: 17px; margin: 0 !important; margin-bottom: 16px !important; margin-right: 10px !important; text-align: left">
+                                <h4 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; margin: 0; margin-bottom: 0; padding: 0; text-align: left; word-wrap: normal">
+                                  <?php print $resource['title']; ?>
+                                </h4>
+                                <?php if (!empty($resource['body'])): ?>
+                                  <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; padding: 0; text-align: left">
+                                    <?php print strip_tags($resource['body']); ?>
+                                  </p>
+                                <?php endif; ?>
+                                <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; padding: 0; text-align: left">
+                                  <?php print $resource['address']['rendered']; ?>
+                                </p>
+                                <?php if (!empty($resource['phone'])): ?>
+                                  <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 0; padding: 0; text-align: left">
+                                    <?php print $resource['phone']; ?>
+                                  </p>
+                                <?php endif; ?>
+                                <?php if (!empty($resource['link']['url'])): ?>
+                                  <a style="Margin: 0; color: #0AA8E3; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: inherit; line-height: inherit; margin: 0; padding: 0; text-align: left; text-decoration: none" href="<?php print $resource['link']['url']; ?>">
+                                    <img alt="link" src="<?php print $icon_link_url; ?>" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: inline-block; max-width: 100%; outline: none; text-decoration: none; vertical-align: baseline; width: auto">
+                                    <?php print $resource['link']['print']; ?>
+                                  </a>
+                                <?php endif; ?>
+                              </div>
+                            </td>
+                          <?php endforeach; ?>
+                          <?php if ($additional_resources_show_more): ?>
+                            <tr colspan="3" style="padding: 0; text-align: left; vertical-align: top">
+                              <td>
+                                <a href="<?php print $permalink_url; ?>" target="_blank" style="color:#0AA8E3; font-family:'Source Sans Pro',Verdana,sans-serif; font-size:16px; font-weight:inherit; line-height:inherit; margin:0; padding:0; text-align:left; text-decoration:none"><?php print t('Show more »'); ?></a>
+                              </td>
+                           </tr>
+                          <?php endif; ?>
+                        </tr>
+                        </tbody>
+                      </table>
+                    <?php endif; ?>
+
                     <?php if (!empty($nurseries['offline'])): ?>
-                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 0; padding: 0; text-align: left; word-wrap: normal">
-                          <?php print t('Where to buy native plants near you'); ?>
+                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
+                          <?php print t('Where to Buy Native Plants Near You'); ?>
                       </h2>
 
                       <table style="border-collapse: collapse; border-spacing: 0; font-family: 'Source Sans Pro', Verdana, sans-serif; padding: 0; text-align: left; vertical-align: top; width: 100%">
@@ -691,52 +735,54 @@
                         </tbody>
                       </table>
                     <?php endif; ?>
-
-                    <?php if (!empty($additional_resources)): ?>
-                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
-                        <?php print t('Other Local Resources'); ?>
-                      </h2>
-                      <table style="border-collapse: collapse; border-spacing: 0; font-family: 'Source Sans Pro', Verdana, sans-serif; padding: 0; text-align: left; vertical-align: top; width: 100%">
-                        <tbody>
-                          <tr style="padding: 0; text-align: left; vertical-align: top">
-                            <?php foreach ($additional_resources as $resource): ?>
-                              <td style="-moz-hyphens: auto; -webkit-hyphens: auto; Margin: 0; border-collapse: collapse !important; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; hyphens: auto; line-height: 24px; margin: 0; padding: 0; text-align: left; vertical-align: top; width: 50%; word-wrap: break-word">
-                                <div class="address" style="color: #fff; font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.6px; line-height: 17px; margin: 0 !important; margin-bottom: 16px !important; margin-right: 10px !important; text-align: left">
-                                  <h4 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; margin: 0; margin-bottom: 0; padding: 0; text-align: left; word-wrap: normal">
-                                    <?php print $resource['title']; ?>
-                                  </h4>
-                                  <?php if (!empty($resource['body'])): ?>
-                                    <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; padding: 0; text-align: left">
-                                      <?php print strip_tags($resource['body']); ?>
-                                    </p>
-                                  <?php endif; ?>
-                                  <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; padding: 0; text-align: left">
-                                    <?php print $resource['address']['rendered']; ?>
-                                  </p>
-                                  <?php if (!empty($resource['phone'])): ?>
-                                    <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 0; padding: 0; text-align: left">
-                                      <?php print $resource['phone']; ?>
-                                    </p>
-                                  <?php endif; ?>
-                                  <?php if (!empty($resource['link']['url'])): ?>
-                                    <a style="Margin: 0; color: #0AA8E3; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: inherit; line-height: inherit; margin: 0; padding: 0; text-align: left; text-decoration: none" href="<?php print $resource['link']['url']; ?>">
-                                      <img alt="link" src="<?php print $icon_link_url; ?>" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: inline-block; max-width: 100%; outline: none; text-decoration: none; vertical-align: baseline; width: auto">
-                                      <?php print $resource['link']['print']; ?>
-                                    </a>
-                                  <?php endif; ?>
-                                </div>
-                              </td>
-                            <?php endforeach; ?>
-                          </tr>
-                        </tbody>
-                      </table>
-                    <?php endif; ?>
                   </th>
                   <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
                 </tr></tbody></table>
               </td></tr></tbody></table>
 
               <div class="hide-for-large" style="display: none; font-size: 0; line-height: 0; max-height: 0; mso-hide: all; overflow: hidden; width: 0">
+                <?php if (!empty($additional_resources)): ?>
+                  <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; mso-hide: all; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody style="mso-hide: all"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top">
+                    <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; mso-hide: all; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; mso-hide: all; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0; text-align: left">
+                      <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
+                        <?php print t('Other Local Resources'); ?>
+                      </h2>
+                    </th>
+                    <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
+                  </tr></tbody></table>
+
+                  <?php foreach ($additional_resources as $resource): ?>
+                    <div class="clearfix view-row" style="mso-hide: all">
+                      <div class="columns" style="mso-hide: all">
+                        <div class="address" style="color: #fff; font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.6px; line-height: 17px; margin: 0 !important; margin-bottom: 16px !important; mso-hide: all; text-align: left">
+                          <h4 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; margin: 0; margin-bottom: 0; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
+                            <?php print $resource['title']; ?>
+                          </h4>
+                          <?php if (!empty($resource['body'])): ?>
+                            <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; mso-hide: all; padding: 0; text-align: left">
+                              <?php print strip_tags($resource['body']); ?>
+                            </p>
+                          <?php endif; ?>
+                          <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; mso-hide: all; padding: 0; text-align: left">
+                            <?php print $resource['address']['rendered']; ?>
+                          </p>
+                          <?php if (!empty($resource['phone'])): ?>
+                            <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 0; mso-hide: all; padding: 0; text-align: left">
+                              <?php print $resource['phone']; ?>
+                            </p>
+                          <?php endif; ?>
+                          <?php if (!empty($resource['link']['url'])): ?>
+                            <a style="Margin: 0; color: #0AA8E3; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: inherit; line-height: inherit; margin: 0; mso-hide: all; padding: 0; text-align: left; text-decoration: none" href="<?php print $resource['link']['url']; ?>">
+                              <img alt="link" src="<?php print $icon_link_url; ?>" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: inline-block; max-width: 100%; mso-hide: all; outline: none; text-decoration: none; vertical-align: baseline; width: auto">
+                              <?php print $resource['link']['print']; ?>
+                            </a>
+                          <?php endif; ?>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+                <?php endif; ?>
+
                 <?php if (!empty($nurseries['offline'])): ?>
                   <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; mso-hide: all; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody style="mso-hide: all"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top">
                     <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; mso-hide: all; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; mso-hide: all; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0; text-align: left">
@@ -810,52 +856,12 @@
                     </div>
                   <?php endforeach; ?>
                 <?php endif; ?>
-
-                <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; mso-hide: all; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody style="mso-hide: all"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top">
-                  <th class="small-12 large-12 columns first last" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; mso-hide: all; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; mso-hide: all; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="mso-hide: all; padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0; text-align: left">
-                    <h2 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 30px; margin: 0; margin-bottom: 15px; margin-top: 30px; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
-                      <?php print t('Other Local Resources'); ?>
-                    </h2>
-                  </th>
-                  <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; mso-hide: all; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>
-                </tr></tbody></table>
-
-                <?php foreach ($additional_resources as $resource): ?>
-                  <div class="clearfix view-row" style="mso-hide: all">
-                    <div class="columns" style="mso-hide: all">
-                      <div class="address" style="color: #fff; font-family: Arial; font-size: 13px; font-weight: bold; letter-spacing: -0.6px; line-height: 17px; margin: 0 !important; margin-bottom: 16px !important; mso-hide: all; text-align: left">
-                        <h4 style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; margin: 0; margin-bottom: 0; mso-hide: all; padding: 0; text-align: left; word-wrap: normal">
-                          <?php print $resource['title']; ?>
-                        </h4>
-                        <?php if (!empty($resource['body'])): ?>
-                          <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; mso-hide: all; padding: 0; text-align: left">
-                            <?php print strip_tags($resource['body']); ?>
-                          </p>
-                        <?php endif; ?>
-                        <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 6px; mso-hide: all; padding: 0; text-align: left">
-                          <?php print $resource['address']['rendered']; ?>
-                        </p>
-                        <?php if (!empty($resource['phone'])): ?>
-                          <p style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: normal; line-height: 24px; margin: 0; margin-bottom: 0; mso-hide: all; padding: 0; text-align: left">
-                            <?php print $resource['phone']; ?>
-                          </p>
-                        <?php endif; ?>
-                        <?php if (!empty($resource['link']['url'])): ?>
-                          <a style="Margin: 0; color: #0AA8E3; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 16px; font-weight: inherit; line-height: inherit; margin: 0; mso-hide: all; padding: 0; text-align: left; text-decoration: none" href="<?php print $resource['link']['url']; ?>">
-                            <img alt="link" src="<?php print $icon_link_url; ?>" style="-ms-interpolation-mode: bicubic; border: none; clear: both; display: inline-block; max-width: 100%; mso-hide: all; outline: none; text-decoration: none; vertical-align: baseline; width: auto">
-                            <?php print $resource['link']['print']; ?>
-                          </a>
-                        <?php endif; ?>
-                      </div>
-                    </div>
-                  </div>
-                <?php endforeach; ?>
               </div>
 
               <table class="row" style="border-collapse: collapse; border-spacing: 0; display: table; padding: 0; position: relative; text-align: left; vertical-align: top; width: 100%"><tbody><tr style="padding: 0; text-align: left; vertical-align: top">
                 <th class="small-12 large-12 columns first last" larget="12" style="Margin: 0 auto; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0 auto; padding: 0; padding-bottom: 16px; padding-left: 16px; padding-right: 16px; text-align: left; width: 684px"><table style="border-collapse: collapse; border-spacing: 0; padding: 0; text-align: left; vertical-align: top; width: 100%"><tr style="padding: 0; text-align: left; vertical-align: top"><th style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0; text-align: left">
                   <h2 class="editorial-cards-title" style="Margin: 0; Margin-bottom: 15px; color: #404040; font-family: 'Source Sans Pro', Verdana, sans-serif; font-size: 28px; font-weight: 300; line-height: 31px; margin: 0; margin-bottom: 15px; margin-top: 30px; padding: 0; text-align: left; word-wrap: normal">
-                    <?php print t('More Audubon Native Plant resources'); ?>
+                    <?php print t('More Audubon Native Plant Resources'); ?>
                   </h2>
                 </th>
                 <th class="expander" style="Margin: 0; color: #404040; font-family: 'Noto Serif', Georgia, serif; font-size: 18px; font-weight: normal; line-height: 24px; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0"></th></tr></table></th>

@@ -60,15 +60,10 @@
         },
         resolve: {
           data: function(storage, $stateParams) {
-            storage.data_loaded = false;
-            Drupal.ajaxScreenLock.blockUI();
             storage.stateParams = $stateParams;
             return storage.getData($stateParams.zipcode).then(function (data) {
               storage.data = data;
-              $.unblockUI();
-              Drupal.ajaxScreenLock.unblock = false;
               storage.activateTab();
-              storage.data_loaded = true;
             });
           }
         }
@@ -154,14 +149,34 @@
       });
 
       self.getData = function(zipcode) {
-        if (typeof cache[zipcode] != 'undefined') {
+        // We have cache for this ZIP code.
+        if (typeof cache[zipcode] !== 'undefined') {
           var deferred = $q.defer();
           deferred.resolve(cache[zipcode]);
           return deferred.promise;
         }
+
+        // We don't have cache for this ZIP code.
+        self.closeMobileSearchForm();
+        self.data_loaded = false;
         return courier.getData(zipcode).then(function (data) {
           cache[zipcode] = data;
+
+          // We need this timeout so that the results are rendered and then shown.
+          $timeout(function () {
+            self.data_loaded = true;
+          }, 500);
+
           return data;
+        });
+      };
+
+      self.closeMobileSearchForm = function() {
+        $timeout(function() {
+          var $icon = angular.element('.native-plants-search-icon.close');
+          if ($icon.is(':visible')) {
+            $icon.triggerHandler('click');
+          }
         });
       };
 
@@ -461,30 +476,6 @@
         });
       };
 
-      $rootScope.$watch(
-        function() {
-          return self.results_tier1_filtered;
-        },
-        function(newVal, oldVal) {
-          self.calculateTier1inCart();
-        });
-      self.calculateTier1inCart = function () {
-        if (angular.isUndefined(self.localStorage.cart)) {
-          self.all_tier1_in_cart = false;
-          return;
-        }
-
-        var status = true;
-        angular.forEach(self.results_tier1_filtered, function(plant) {
-          if (angular.isUndefined(self.localStorage.cart[plant.PlantID])) {
-            status = false;
-            return;
-          }
-        });
-
-        self.all_tier1_in_cart = status;
-      };
-
       // Watch cart changes.
       $rootScope.$watch(
         function() {
@@ -494,7 +485,6 @@
           return $.map(self.localStorage.cart, function(n, i) { return i; }).length;
         },
         function(newVal, oldVal) {
-          self.calculateTier1inCart();
           $('.native-plants-get-list-form').find('[name="native_plants_cart"]')
             .val(angular.toJson(self.localStorage.cart));
         });
@@ -566,7 +556,7 @@
 
       self.filterSearchProgressCheck = function (tier) {
         return (self.storage['filtering_in_progress' + tier]) ? 'form-filter--load' : '';
-      }
+      };
 
     });
 
@@ -631,7 +621,11 @@
         );
       };
 
-      self.orderByChange = function (results_key) {
+      self.orderByChange = function (results_key, orderBy_key, orderBy_value) {
+        if (orderBy_value === storage.stateParams[orderBy_key]) {
+          return;
+        }
+
         self.storage['hide_' + results_key] = true;
         if (angular.isObject(self.promise)) {
           $timeout.cancel(self.promise);
@@ -705,8 +699,10 @@
     NativePlantsApp.controller('NativePlantsNurseriesController', function ($scope, $attrs, storage) {
       var self = this;
       self.storage = storage;
-      self.rowsLimit = 3;
       self.status = $attrs.online;
+      self.quantity = $attrs.quantity;
+      self.quantity_total = $attrs.qtotal;
+      self.rowsLimit = self.quantity;
 
       $scope.$watch(function() {
         return self.storage.data.nurseries;
@@ -728,14 +724,22 @@
       });
 
       self.limitToggle = function () {
-        self.rowsLimit = self.rowsLimit ? null : 3;
+        if (self.rowsLimit == self.quantity_total) {
+          self.rowsLimit = self.quantity;
+        }
+        else {
+          self.rowsLimit = self.quantity_total;
+        }
       };
     });
 
     NativePlantsApp.controller('NativePlantsAdditionalResourcesController', function ($scope, $attrs, storage) {
       var self = this;
       self.storage = storage;
-      self.rowsLimit = 1;
+      self.quantity = $attrs.quantity;
+      self.quantity_total = $attrs.qtotal;
+      self.rowsLimit = self.quantity;
+      self.showMore = true;
 
       $scope.$watch(function () {
         return self.storage.data.additional_resource;
@@ -756,7 +760,14 @@
       });
 
       self.limitToggle = function () {
-        self.rowsLimit = self.rowsLimit ? null : 1;
+        if (self.rowsLimit == self.quantity_total) {
+          self.rowsLimit = self.quantity;
+          self.showMore = true;
+        }
+        else {
+          self.rowsLimit = self.quantity_total;
+          self.showMore = false;
+        }
       };
     });
 

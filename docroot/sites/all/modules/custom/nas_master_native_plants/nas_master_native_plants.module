@@ -502,9 +502,11 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
   $zipcode = $variables['permalink']->zip_code;
 
   $nurseries_offline = _nas_master_native_plants_get_offline_nurseries($zipcode, 9);
-  $variables['nurseries_show_more'] = (count($nurseries_offline) > 6) ? TRUE : FALSE;
+  $additional_resources = _nas_master_native_plants_get_additional_resources($zipcode);
 
-  $variables['resources'] = _nas_master_native_plants_get_resources($zipcode, 2, FALSE);
+  $variables['nurseries_show_more'] = (count($nurseries_offline) > 6) ? TRUE : FALSE;
+  $variables['additional_resources_show_more'] = (count($additional_resources) > 2) ? TRUE : FALSE;
+  $variables['resources'] = _nas_master_native_plants_get_resources($zipcode, 2, TRUE);
   $variables['additional_resources'] = _nas_master_native_plants_get_additional_resources($zipcode, 2);
   $variables['nurseries'] = array(
     'online' => _nas_master_native_plants_get_online_nurseries($zipcode, 6),
