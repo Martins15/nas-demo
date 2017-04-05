@@ -60,6 +60,24 @@ function flyways_landing_top_form($form, &$form_state) {
       '#title' => 'Image',
       '#default_value' => !empty($conf['flyway'][$i]['image']) ? $conf['flyway'][$i]['image'] : '',
     );
+    $form['header_color_mode'] = array(
+      '#type' => 'radios',
+      '#title' => t('Nav bar coloring'),
+      '#options' => array(
+        'dark' => t('Light background, black text'),
+        'light' => t('Dark background, white text'),
+        'none' => t('Solid black background above hero image, white text'),
+      ),
+      '#default_value' => !empty($conf['header_color_mode']) ? $conf['header_color_mode'] : 'dark',
+      '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
+    );
+    $form['disable_gradient'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Disable gradient'),
+      '#default_value' => isset($conf['disable_gradient']) ? $conf['disable_gradient'] : '',
+      '#return_value' => 'disable',
+      '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
+    );
     $form['flyway'][$i]['coordinates'] = array(
       '#type' => 'textfield',
       '#title' => 'Coordinates',
@@ -97,8 +115,14 @@ function flyways_landing_top_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info.
  */
 function flyways_landing_top_render($subtype, $conf, $args, $contexts) {
-  $header_class = &drupal_static('nas_header_class');
-  $header_class = 'transparent light-bg dark-text';
+
+  $class = &drupal_static('nas_header_class');
+  if (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'light') {
+    $class = !empty($conf['disable_gradient']) ? 'light-text transparent' : 'light-text dark-bg transparent';
+  }
+  elseif (!empty($conf['header_color_mode']) && $conf['header_color_mode'] == 'dark') {
+    $class = !empty($conf['disable_gradient']) ? 'dark-text transparent' : 'dark-text light-bg transparent';
+  }
 
   $block = new stdClass();
   // @codingStandardsIgnoreStart

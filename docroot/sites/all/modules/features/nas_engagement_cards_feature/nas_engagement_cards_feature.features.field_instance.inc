@@ -43,6 +43,13 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 0,
       ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -180,6 +187,12 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -292,6 +305,13 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'type' => 'list_default',
         'weight' => 7,
       ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -374,6 +394,16 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'type' => 'image',
         'weight' => 2,
       ),
+      'engagement_card_full_width_half_black' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'engagement_card_full_width_half_black',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -392,6 +422,16 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'settings' => array(
           'image_link' => '',
           'image_style' => 'engagement_card_full_width',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'engagement_card_full_width_half_black',
         ),
         'type' => 'image',
         'weight' => 2,
@@ -476,6 +516,7 @@ function nas_engagement_cards_feature_field_default_field_instances() {
           'default_teaser_image' => 0,
           'engagement_card' => 'engagement_card',
           'engagement_card_full_width' => 'engagement_card_full_width',
+          'engagement_card_full_width_half_black' => 'engagement_card_full_width_half_black',
           'featured_frontpage' => 0,
           'featured_frontpage_hero_image' => 0,
           'front_flyway_image' => 0,
@@ -560,6 +601,13 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_engagement_cards_full_width' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+      'nas_engagement_cards_full_width_half_black' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
@@ -662,6 +710,13 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_engagement_cards_full_width' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 1,
+      ),
+      'nas_engagement_cards_full_width_half_black' => array(
         'label' => 'hidden',
         'module' => 'link',
         'settings' => array(),
@@ -788,6 +843,12 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -891,6 +952,13 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
       ),
       'nas_node_featured' => array(
         'label' => 'above',
@@ -1028,6 +1096,13 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 9,
       ),
+      'nas_engagement_cards_full_width_half_black' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
+      ),
       'nas_node_featured' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1157,6 +1232,12 @@ function nas_engagement_cards_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'nas_engagement_cards_full_width' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'nas_engagement_cards_full_width_half_black' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
