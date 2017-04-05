@@ -53,6 +53,18 @@ function nas_footer_theme() {
       ),
       'template' => 'templates/nas-stay-abreast',
     ),
+    'nas_footer_native_plants_search' => array(
+      'variables' => array(
+        'logo' => NULL,
+        'mission_title' => NULL,
+        'mission' => NULL,
+        'copyright' => NULL,
+        'footer_menu' => NULL,
+        'footer_copyright_menu' => NULL,
+        'contextual_links' => NULL,
+      ),
+      'template' => 'templates/nas-footer-native-plants-search',
+    ),
   );
 }
 

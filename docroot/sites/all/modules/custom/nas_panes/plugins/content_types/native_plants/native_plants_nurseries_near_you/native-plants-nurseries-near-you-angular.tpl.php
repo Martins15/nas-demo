@@ -8,6 +8,8 @@
 <div class="row where-to-buy__section <?php print $classes; ?><?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>"
      data-ng-controller="NativePlantsNurseriesController as nurseriesC"
      data-online="<?php print $online ? 'online' : 'offline'; ?>"
+     data-quantity="<?php print $quantity; ?>"
+     data-qtotal="<?php print $quantity_total; ?>"
      data-ng-if="tabsC.storage.data.nurseries.<?php print $online ? 'online' : 'offline'; ?>.length">
   <?php print $context_links; ?>
   <div class="large-4 medium-6 columns">
@@ -33,10 +35,10 @@
          data-ng-if="nurseriesC.rows.length > 3">
       <div class="large-12 medium-12 columns">
         <a class="more" href="javascript:void(0)"
-           data-ng-if="nurseriesC.rowsLimit"
+           data-ng-if="nurseriesC.rowsLimit != <?php print $quantity_total; ?>"
            data-ng-click="nurseriesC.limitToggle();"><?php print t('Show more') . ' &raquo;'; ?></a>
         <a class="more" href="javascript:void(0)"
-           data-ng-if="!nurseriesC.rowsLimit"
+           data-ng-if="nurseriesC.rowsLimit == <?php print $quantity_total; ?>"
            data-ng-click="nurseriesC.limitToggle();"><?php print t('Show less') . ' &laquo;'; ?></a>
       </div>
     </div>

@@ -117,7 +117,7 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
   $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
-  if (!$resources = _nas_master_native_plants_get_resources($zipcode, $conf['quantity'])) {
+  if (!$resources = _nas_master_native_plants_get_resources($zipcode, $conf['quantity'], TRUE)) {
     return '';
   }
 
