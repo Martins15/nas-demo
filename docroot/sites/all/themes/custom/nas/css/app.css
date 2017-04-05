@@ -5218,8 +5218,9 @@ small {
 }
 .engagement-hero__content .engagement-hero__header {
   display: block;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   font-size: 33px;
+  font-weight: 400;
   letter-spacing: -1px;
   line-height: 38px;
   text-transform: capitalize;
@@ -5238,7 +5239,7 @@ small {
   }
 }
 .engagement-hero__content .engagement-hero-text {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   clear: both;
   font-size: 17px;
@@ -5272,6 +5273,11 @@ small {
     clear: both;
     line-height: 20px;
     margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .half--black .engagement-hero__content {
+    padding-bottom: 10px;
   }
 }
 

@@ -196,8 +196,9 @@
 
   .engagement-hero__header {
     display: block;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     font-size: 33px;
+    font-weight: 400;
     letter-spacing: -1px;
     line-height: 38px;
     text-transform: capitalize;
@@ -216,7 +217,7 @@
   }
 
   .engagement-hero-text {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     font-family: $font-sans;
     clear: both;
     font-size: 17px;
@@ -250,6 +251,12 @@
         line-height: 20px;
         margin-bottom: 30px;
       }
+    }
+  }
+
+  .half--black & {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      padding-bottom: 10px;
     }
   }
 }
