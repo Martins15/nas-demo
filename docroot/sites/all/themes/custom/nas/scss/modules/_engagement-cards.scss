@@ -57,7 +57,7 @@
 .engagement-card-headline {
   color: $color-orange;
   font-size: $size-text-h3;
-  font-family: $font-sans;  
+  font-family: $font-sans;
   font-weight: 300;
   letter-spacing: -1px;
   line-height: $size-text-h3 + 3px;
@@ -124,7 +124,7 @@
       height: 100%;
 
       .engagement-card-content {
-  //      margin-bottom: 60px;
+        // margin-bottom: 60px;
         padding-bottom: 62%;
 
         .engagement-card-cta {
@@ -158,5 +158,260 @@
       padding: 0.5rem 0.75rem;
       height: 2.125rem;
     }
+  }
+}
+
+// Engagement card - Full width
+
+.engagement-hero__column {
+  @include breakpoint(large-up) {
+    min-width: 333px;
+    z-index: 2;
+  }
+}
+
+.engagement-hero__content {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 25px;
+
+  @include breakpoint(large-up){
+    bottom: initial;
+    top: 15px;
+    padding-bottom: 50px;
+  }
+
+  &.below-image {
+    @include breakpoint(medium-up) {
+      padding-top: 20px;
+    }
+
+    @include width-range(0px, #{upper-bound($medium-range)}) {
+      position: static;
+    }
+  }
+
+  .engagement-hero__header {
+    display: block;
+    margin-bottom: 25px;
+    font-size: 33px;
+    letter-spacing: -1px;
+    line-height: 38px;
+    text-transform: capitalize;
+    color: $color-orange;
+    text-shadow: none;
+
+    @include breakpoint(large-up) {
+      margin-bottom: 36px;
+      font-size: 52px;
+      letter-spacing: -2px;
+      line-height: 57px;
+      text-transform: capitalize;
+      color: $color-white;
+      text-shadow: 0 1px 6px rgba($color-black, 0.75);
+    }
+  }
+
+  .engagement-hero-text {
+    margin-bottom: 5px;
+    font-family: $font-sans;
+    clear: both;
+    font-size: 17px;
+    line-height: 22px;
+
+    a {
+      color: $color-text-gray;
+      text-decoration: underline;
+
+      @include breakpoint(large-up) {
+        color: $color-white;
+      }
+    }
+
+    @include breakpoint(large-only) {
+      width: 100%;
+    }
+
+    @include breakpoint(large-up) {
+      color: $color-white;
+      margin-bottom: 25px;
+      text-shadow: 0 1px 6px rgba($color-black, 0.75);
+
+    }
+
+    & + .hero-attribution {
+      @include width-range(0px, #{upper-bound($small-range)}) {
+        background: transparent;
+        color: $color-middle-gray;
+        clear: both;
+        line-height: 20px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.engagement-hero {
+  @include breakpoint(large-up) {
+    margin-top: 60px;
+  }
+
+  .hero-image {
+    max-height: 580px;
+
+    img {
+      @include width-range(0px, #{upper-bound($small-range)}) {
+        @include translateX(-50%);
+        height: 350px;
+        max-height: 100%;
+        max-width: none;
+        margin-left: 50%;
+      }
+    }
+
+    &:before {
+      @include breakpoint(large-up) {
+        content: ' ';
+        position: absolute;
+        bottom: auto;
+        right: 0;
+        width: 66%;
+        height: 100%;
+        top: 0;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.5) 66%, rgba(0, 0, 0, 0.7) 100%);
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        z-index: 2;
+      }
+    }
+  }
+
+  .hero-attribution {
+    @include width-range(0px, #{upper-bound($small-range)}) {
+      background: transparent;
+      color: $color-warm-gray;
+      font-size: 12px;
+    }
+
+    @include breakpoint(large-up) {
+      padding-bottom: 0;
+      z-index: 3;
+    }
+  }
+
+  .half--black {
+    &:nth-child(1) {
+      &:before {
+        @include width-range(0px, #{upper-bound($medium-range)}) {
+          content: ' ';
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 66%;
+          background: linear-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.5) 66%, rgba(0, 0, 0, 0.7) 100%);
+          background-position: center top;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          z-index: 2;
+        }
+
+        @include breakpoint(large-up) {
+          content: '';
+          position: absolute;
+          top: 0;
+          height: 100%;
+          left: 48%;
+          max-width: 52%;
+          background: $color-black;
+          z-index: 1;
+        }
+      }
+    }
+
+    .engagement-hero__header {
+      color: $color-white;
+      @include breakpoint(large-up) {
+        color: $color-orange;
+      }
+      @include width-range(0px, #{upper-bound($medium-range)}) {
+        font-size: 36px;
+      }
+      @include width-range(1600px) {
+        padding-top: 70px;
+      }
+    }
+
+    &.below-image {
+      .engagement-hero__header {
+        @include width-range(0px, #{upper-bound($medium-range)}) {
+          display: none;
+        }
+      }
+    }
+
+    .engagement-hero-text {
+      font-family: $font-sans;
+      clear: both;
+      font-size: 17px;
+      line-height: 22px;
+
+      p { margin-bottom: 12px; }
+
+      @include breakpoint(large-only) {
+        width: 100%;
+      }
+
+      @include breakpoint(large-up) {
+        color: $color-white;
+        margin-bottom: 25px;
+      }
+    }
+
+    img {
+      &:nth-child(1) {
+        display: none;
+        @include breakpoint(large-up) {
+          display: block;
+          overflow: hidden;
+          margin-right: 52%;
+          max-width: 48% !important;
+          min-width: 460px;
+          max-height: 613px;
+          min-height: 0;
+        }
+        @include breakpoint(xlarge-up) {
+          max-height: none;
+        }
+      }
+      &:nth-child(2) {
+        display: block;
+        @include breakpoint(large-up) {
+          display: none;
+        }
+      }
+
+    }
+  }
+}
+
+.engagement-hero-form {
+  @extend %native-plants-search-form;
+
+  @include breakpoint(large-up) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(xlarge-up) {
+    margin-bottom: 40px;
+  }
+  .native-plants-search-form--submit {
+    font-weight: 400;
+    font-size: 24px;
   }
 }

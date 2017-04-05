@@ -40,6 +40,7 @@ features[field_instance][] = node-engagement_cards-field_nas_external_integratio
 features[field_instance][] = node-engagement_cards-field_related_bird
 features[image][] = engagement_card
 features[image][] = engagement_card_full_width
+features[image][] = engagement_card_full_width_half_black
 features[node][] = engagement_cards
 features[variable][] = field_bundle_settings_node__engagement_cards
 features[variable][] = language_content_type_engagement_cards

@@ -599,7 +599,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 
 # Set bigger memory limit for drush.
 if (function_exists('drush_main')) {
-  ini_set('memory_limit', '1024M');
+  ini_set('memory_limit', '2048M');
 }
 
 /**
