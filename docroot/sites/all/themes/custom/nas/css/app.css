@@ -16463,6 +16463,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
 
+.page-native-plants-search #full_results, .page-native-plants-search #best_results {
+  overflow: visible !important;
+}
 .page-native-plants-search #full_results .clearing-caption, .page-native-plants-search #best_results .clearing-caption {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 14px;

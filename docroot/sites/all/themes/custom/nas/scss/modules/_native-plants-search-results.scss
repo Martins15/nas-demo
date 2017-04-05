@@ -1717,6 +1717,7 @@ input[type="checkbox"].np-checkbox {
 
 .page-native-plants-search {
   #full_results, #best_results {
+    overflow: visible !important;
     .clearing-caption {
       font-family: "Source Sans Pro", Verdana, sans-serif;
       font-size: $size-text-small - 1px;
