@@ -114,25 +114,10 @@ function native_plants_audubon_near_you_render($subtype, $conf, $args, $contexts
     return $block;
   }
 
-  if (empty($conf['zipcode'])) {
-    $query_params = drupal_get_query_parameters();
-    if (isset($query_params['zipcode'])) {
-      $conf['zipcode'] = $query_params['zipcode'];
-    }
-    else {
-      foreach ($contexts as $context) {
-        if ($context->plugin == 'entity:permalink') {
-          $conf['zipcode'] = $context->data->zip_code;
-          break;
-        }
-      }
-    }
-  }
-
   module_load_include('inc', 'nas_master_native_plants', 'nas_master_native_plants.angular');
 
-  $zipcode = ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
-  if (!$resources = _nas_master_native_plants_get_resources($zipcode, $conf['quantity'])) {
+  $zipcode = _nas_panes_get_pane_zipcode($conf, $contexts);
+  if (!$resources = _nas_master_native_plants_get_resources($zipcode, $conf['quantity'], TRUE)) {
     return '';
   }
 

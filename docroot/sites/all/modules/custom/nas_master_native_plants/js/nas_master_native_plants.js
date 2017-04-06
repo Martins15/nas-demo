@@ -66,7 +66,15 @@
       }
       $(document).foundation({
         clearing: {
-          close_selectors: '.clearing-close, div.clearing-blackout, div.visible-img, img'
+          close_selectors: '.clearing-close, div.clearing-blackout, div.visible-img, img',
+          templates : {
+            viewing : '<div class="visible-img" style="display: none"><div class="clearing-touch-label"></div><img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt="" />' +
+            '<a href="#" class="clearing-close">&times;</a>' +
+            '<p class="clearing-caption"></p><a href="#" class="clearing-main-prev"><span></span></a>' +
+            '<a href="#" class="clearing-main-next"><span></span></a></div>' +
+            '<img class="clearing-preload-next" style="display: none" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt="" />' +
+            '<img class="clearing-preload-prev" style="display: none" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" alt="" />'
+          }
         }
       });
       $('a.clearing-attach').once('np-clearing-fix', function () {
@@ -75,6 +83,30 @@
           $self.parent().find('[data-clearing] a').trigger('click');
           return false;
         });
+      });
+
+      $(document.body).on("opened.fndtn.clearing", function(event) {
+        // Find image dimensions and ratio
+        var imageHeight = $('img', event.target)[0].offsetHeight;
+        var imageWidth = $('img', event.target)[0].offsetWidth;
+        var imageRatio = imageHeight / imageWidth;
+        // Find window dimentions and ratio
+        // 0.9 is 90% of the width - we need it becase close button is outside of image perimeter, so it won't be cur off.
+        var windowWidth = window.innerWidth * 0.9;
+        var windowHeight = window.innerHeight * 0.9;
+        var windowRatio = windowHeight / windowWidth;
+        // Use smaller one, because of side margins or for the case when image will be smaller than window.
+        var margins = {};
+        if (windowRatio <= imageRatio) {
+          imageHeight = (imageHeight < windowHeight) ? imageHeight : windowHeight;
+          margins["margin-top"] = imageHeight / -2;
+          margins["margin-left"] = imageHeight / imageRatio / -2;
+        } else {
+          imageWidth = (imageWidth < windowWidth) ? imageWidth : windowWidth;
+          margins["margin-top"] = imageWidth * imageRatio / -2;
+          margins['margin-left'] = imageWidth / -2;
+        }
+        $(".clearing-close").css(margins);
       });
     }
   };
@@ -121,7 +153,7 @@
     attach: function (context, settings) {
       $('body').once('np-endIPE', function () {
         $('body.panels-ipe').bind('endIPE', function () {
-          if ($('.view-native-plants-search').length == 0) {
+          if ($('.view-native-plants-search').length === 0) {
             return;
           }
           $('.view-filters .form-select:first', $('.view-native-plants-search')).trigger('change');

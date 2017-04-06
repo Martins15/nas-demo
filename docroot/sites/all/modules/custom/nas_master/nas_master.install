@@ -4128,8 +4128,31 @@ function nas_master_update_7282() {
 }
 
 /**
- * Enable Panels Cache Expiration module.
+ * Revert Native Plants features.
  */
 function nas_master_update_7283() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}
+
+/**
+ * Revert nas_engagement_cards_feature.
+ */
+function nas_master_update_7284() {
+  features_revert(array(
+    'nas_engagement_cards_feature' => array(
+      'field_instance',
+      'field_group',
+      'strongarm',
+      'variable',
+    ),
+  ));
+}
+
+/**
+ * Enable Panels Cache Expiration module.
+ */
+function nas_master_update_7285() {
   module_enable(array('expire_panels'));
 }

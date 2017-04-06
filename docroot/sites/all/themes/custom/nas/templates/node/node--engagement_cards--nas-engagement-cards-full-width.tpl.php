@@ -83,7 +83,7 @@
  * @ingroup themeable
  */
 ?>
-<div class="hero-image<?php print $engagement_card_layout == 'half_black' ? ' half--black' : ''; ?>">
+<div class="hero-image">
   <?php print render($content['field_image']); ?>
 </div>
 
@@ -98,8 +98,8 @@
 <div class="engagement-hero__content below-image">
   <div class="row">
     <div class="columns large-6 large-push-6 engagement-hero__column">
-      <h1 class="header--orange"><?php print $title; ?></h1>
-      <div class="native-plants-hero-text">
+      <h1 class="engagement-hero__header"><?php print $title; ?></h1>
+      <div class="engagement-hero-text">
         <?php print render($content['body']); ?>
       </div>
     </div>

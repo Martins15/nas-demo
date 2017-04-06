@@ -1288,6 +1288,28 @@ function _nas_panes_panelizer_lookup_pid($subtype, $entity) {
 }
 
 /**
+ * Get zipcode from Native Plants resources panes.
+ *
+ * @param array $conf
+ *   Pane configuration.
+ * @param array $contexts
+ *   Pane contexts.
+ *
+ * @return string
+ *   Zipcode.
+ */
+function _nas_panes_get_pane_zipcode(array &$conf, array $contexts) {
+  if (empty($conf['zipcode'])) {
+    $query_params = drupal_get_query_parameters();
+    if (isset($query_params['zipcode'])) {
+      $conf['zipcode'] = $query_params['zipcode'];
+    }
+  }
+
+  return ctools_context_keyword_substitute($conf['zipcode'], array(), $contexts);
+}
+
+/**
  * Builds contextual links.
  *
  * @param string $subtype
