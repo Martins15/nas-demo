@@ -11,7 +11,7 @@
 ?>
 <div class="engagement-hero<?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>">
   <?php print $context_links; ?>
-  <div class="bg-respond hero native-plants-hero">
+  <div class="bg-respond hero">
     <?php print $engagement_card; ?>
   </div>
 </div>

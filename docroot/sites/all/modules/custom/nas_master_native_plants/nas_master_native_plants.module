@@ -118,7 +118,7 @@ function nas_master_native_plants_form_native_plant_node_form_alter(&$form, &$fo
 
   // Remove Canada states.
   $states = &$form['field_native_plant_tier1_states'][LANGUAGE_NONE];
-  _nas_master_native_plants_remove_canada_states($states);
+  _nas_master_native_plants_set_online_states($form['field_native_plant_tier1_states'][LANGUAGE_NONE], 'field_native_plant_tier1');
 
   // Assign all states if no states selected yet.
   if (!$states['#default_value']) {
@@ -501,11 +501,16 @@ function nas_master_native_plants_preprocess_nas_master_native_plants_mail_nativ
 
   $zipcode = $variables['permalink']->zip_code;
 
-  $variables['resources'] = _nas_master_native_plants_get_resources($zipcode, 2, FALSE);
+  $nurseries_offline = _nas_master_native_plants_get_offline_nurseries($zipcode, 9);
+  $additional_resources = _nas_master_native_plants_get_additional_resources($zipcode);
+
+  $variables['nurseries_show_more'] = (count($nurseries_offline) > 6) ? TRUE : FALSE;
+  $variables['additional_resources_show_more'] = (count($additional_resources) > 2) ? TRUE : FALSE;
+  $variables['resources'] = _nas_master_native_plants_get_resources($zipcode, 2, TRUE);
   $variables['additional_resources'] = _nas_master_native_plants_get_additional_resources($zipcode, 2);
   $variables['nurseries'] = array(
     'online' => _nas_master_native_plants_get_online_nurseries($zipcode, 6),
-    'offline' => _nas_master_native_plants_get_offline_nurseries($zipcode, 6),
+    'offline' => array_slice($nurseries_offline, 0, 6),
   );
 }
 
@@ -570,7 +575,7 @@ function _nas_master_native_plants_preprocess_plants_list(&$variables) {
         'tid' => $wrapper->tid->value(),
         'name' => $wrapper->name->value(),
         'image' => $wrapper->field_np_bird_type_image->value(),
-        'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : '',
+        'url' => $wrapper->field_link->value() ? $wrapper->field_link->value()['url'] : 'http://www.audubon.org/taxonomy/term/' . $wrapper->tid->value(),
       );
       $plant['BirdTypesValues'][$wrapper->tid->value()] = $bird_type;
       $plant['BirdTypesDesktop'][] = l($bird_type['name'], $bird_type['url'], array(
@@ -700,6 +705,19 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs'),
     ),
   );
+  $libraries['angularjs-animate'] = array(
+    'title' => 'AngularJS Animate',
+    'website' => 'https://angularjs.org/',
+    'version' => '1.6.1',
+    'js' => array(
+      '//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
   $libraries['angularjs-ui-router'] = array(
     'title' => 'AngularJS UI Router',
     'website' => 'https://ui-router.github.io',
@@ -726,6 +744,19 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs'),
     ),
   );
+  $libraries['angularjs-scroll'] = array(
+    'title' => 'Scrollspy, animated scrollTo and scroll events for angular.js',
+    'website' => 'https://github.com/oblador/angular-scroll',
+    'version' => '1.0.0',
+    'js' => array(
+      '//cdnjs.cloudflare.com/ajax/libs/angular-scroll/1.0.0/angular-scroll.min.js' => array(
+        'type' => 'external',
+      ),
+    ),
+    'dependencies' => array(
+      array('nas_master_native_plants', 'angularjs'),
+    ),
+  );
 
   $module_path = drupal_get_path('module', 'nas_master_native_plants');
   $libraries['angularjs-native-plants'] = array(
@@ -745,6 +776,8 @@ function nas_master_native_plants_library() {
       array('nas_master_native_plants', 'angularjs-cookies'),
       array('nas_master_native_plants', 'angularjs-ui-router'),
       array('nas_master_native_plants', 'angularjs-storage'),
+      array('nas_master_native_plants', 'angularjs-scroll'),
+      array('nas_master_native_plants', 'angularjs-animate'),
     ),
   );
   $libraries['angularjs-native-plants']['js'][] = array(

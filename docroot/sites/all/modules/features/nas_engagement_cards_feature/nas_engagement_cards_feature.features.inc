@@ -93,7 +93,7 @@ function nas_engagement_cards_feature_image_default_styles() {
   $styles['engagement_card_full_width'] = array(
     'label' => 'Engagement card full width',
     'effects' => array(
-      48 => array(
+      179 => array(
         'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 2400,
@@ -108,7 +108,7 @@ function nas_engagement_cards_feature_image_default_styles() {
         ),
         'weight' => 2,
       ),
-      51 => array(
+      180 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 2400,
@@ -117,7 +117,43 @@ function nas_engagement_cards_feature_image_default_styles() {
         ),
         'weight' => 3,
       ),
-      52 => array(
+      181 => array(
+        'name' => 'imagemagick_strip',
+        'data' => array(),
+        'weight' => 4,
+      ),
+    ),
+  );
+
+  // Exported image style: engagement_card_full_width_half_black.
+  $styles['engagement_card_full_width_half_black'] = array(
+    'label' => 'Engagement card full width - Half-black',
+    'effects' => array(
+      182 => array(
+        'name' => 'epsacrop_crop',
+        'data' => array(
+          'width' => 1800,
+          'height' => 1800,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'black',
+            'bgopacity' => 0.6,
+            'fallback' => 0,
+          ),
+        ),
+        'weight' => 2,
+      ),
+      184 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1800,
+          'height' => 1800,
+          'upscale' => 0,
+        ),
+        'weight' => 3,
+      ),
+      185 => array(
         'name' => 'imagemagick_strip',
         'data' => array(),
         'weight' => 4,

@@ -383,3 +383,55 @@ function nas_master_native_plants_update_7022() {
     ),
   ));
 }
+
+/**
+ * Revert Native Plants features.
+ */
+function nas_master_native_plants_update_7023() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}
+
+/**
+ * Revert panes default values on permalink page.
+ */
+function nas_master_native_plants_update_7024() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+  ));
+}
+
+/**
+ * Adding search for additional resources by State.
+ */
+function nas_master_native_plants_update_7025() {
+  features_revert(array(
+    'nas_additional_resource_feature' => array(
+      'field_instance',
+    ),
+    'nas_solr_feature' => array(
+      'search_api_index',
+    ),
+    'nas_additional_resource_near_you' => array(
+      'views_view',
+    ),
+  ));
+}
+
+/**
+ * Revert panes in native_plants_permalink and native_plants_search.
+ */
+function nas_master_native_plants_update_7026() {
+  features_revert(array(
+    'nas_native_plants_permalink_page' => array('page_manager_pages'),
+    'nas_native_plants_search_page_feature' => array('page_manager_pages'),
+  ));
+}
+
+/**
+ * Revert panes in native_plants_permalink and native_plants_search.
+ */
+function nas_master_native_plants_update_7027() {
+  nas_master_native_plants_update_7026();
+}

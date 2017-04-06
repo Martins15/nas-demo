@@ -7,6 +7,8 @@
 ?>
 <div class="row where-to-buy__section <?php print $classes; ?><?php print !empty($context_links) ? ' contextual-links-region' : ''; ?>"
      data-ng-controller="NativePlantsAdditionalResourcesController as addResourcesC"
+     data-quantity="<?php print $quantity; ?>"
+     data-qtotal="<?php print $quantity_total; ?>"
      data-ng-if="tabsC.storage.data.additional_resource.length">
   <?php print $context_links; ?>
   <div class="large-4 medium-6 columns">
@@ -33,10 +35,10 @@
          data-ng-if="addResourcesC.rows.length > 1">
       <div class="large-12 medium-12 columns">
         <a class="more" href="javascript:void(0)"
-           data-ng-if="addResourcesC.rowsLimit"
+           data-ng-if="addResourcesC.showMore"
            data-ng-click="addResourcesC.limitToggle();"><?php print t('Show more') . ' &raquo;'; ?></a>
         <a class="more" href="javascript:void(0)"
-           data-ng-if="!addResourcesC.rowsLimit"
+           data-ng-if="!addResourcesC.showMore"
            data-ng-click="addResourcesC.limitToggle();"><?php print t('Show less') . ' &laquo;'; ?></a>
       </div>
     </div>

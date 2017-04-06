@@ -78,8 +78,9 @@ function engagement_card_full_width_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   $node = node_load($conf['reference']['entity_id']);
-  $node->engagement_card_layout = $conf['layout'];
-  $node_build = node_view($node, 'nas_engagement_cards_full_width');
+  $view_mode = ($conf['layout'] == 'half_black') ? 'nas_engagement_cards_full_width_half_black' : 'nas_engagement_cards_full_width';
+
+  $node_build = node_view($node, $view_mode);
   $engagement_card = drupal_render($node_build);
 
   $block = new stdClass();
