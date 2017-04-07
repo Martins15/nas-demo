@@ -580,6 +580,7 @@ $conf['cache_default_class'] = 'MemCacheDrupal';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 $conf['cache_class_cache_page'] = 'DrupalFakeCache';
 $conf['https'] = TRUE;
+$conf['lock_inc'] = 'sites/all/modules/contrib/memcache/memcache-lock.inc';
 
 /**
  * Override domain detection in Acquia Purge.
