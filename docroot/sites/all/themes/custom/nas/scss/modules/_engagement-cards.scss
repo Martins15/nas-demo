@@ -196,7 +196,7 @@
 
   .engagement-hero__header {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 33px;
     font-weight: 400;
     letter-spacing: -1px;
@@ -217,7 +217,7 @@
   }
 
   .engagement-hero-text {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     font-family: $font-sans;
     clear: both;
     font-size: 17px;
@@ -251,12 +251,6 @@
         line-height: 20px;
         margin-bottom: 30px;
       }
-    }
-  }
-
-  .half--black & {
-    @include width-range(0px, #{upper-bound($small-range)}) {
-      padding-bottom: 10px;
     }
   }
 }
@@ -293,6 +287,19 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         z-index: 2;
+      }
+    }
+    &.half--black {
+      .engagement-hero__content {
+        padding-bottom: 5px;
+        @include breakpoint(medium-up) {
+          padding-bottom: 25px;
+        }
+      }
+      .engagement-hero__header {
+        @include width-range(0px, #{upper-bound($medium-range)}) {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -362,6 +369,7 @@
     }
 
     .engagement-hero-text {
+      margin-bottom: 5px;
       font-family: $font-sans;
       clear: both;
       font-size: 17px;
