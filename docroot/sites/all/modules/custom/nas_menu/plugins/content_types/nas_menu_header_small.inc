@@ -21,13 +21,25 @@ $plugin = array(
  * Render function.
  */
 function nas_menu_nas_menu_header_small_content_type_render() {
-  $menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_HEADER_SMALL_MENU));
+  $menu_tree_small = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_HEADER_SMALL_MENU));
+  $menu_tree = i18n_menu_localize_tree(menu_tree_all_data(NAS_MENU_MAIN_NAVIGATION));
 
   $block = new stdClass();
+
+  // Copy 'Donate' menu item from 'small menu' to 'main menu'.
+  foreach ($menu_tree_small as $id => $menu_item) {
+    if (strpos($id, 'Donate') !== FALSE) {
+      $menu_tree[$id] = $menu_item;
+    }
+  }
 
   $items = array();
   $activated = FALSE;
   foreach ($menu_tree as $menu_item) {
+    // Do not show hidden menu items.
+    if ($menu_item['link']['hidden']) {
+      continue;
+    }
     $item = array();
     $classes = array(
       'li_class' => array(),
