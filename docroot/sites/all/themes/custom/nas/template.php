@@ -1110,7 +1110,8 @@ function nas_preprocess_node_engagement_cards(&$vars) {
   $node = $vars['node'];
   if ($field_link_items = field_get_items('node', $node, 'field_link')) {
     $classes = array('button', 'tomato', 'large');
-    if ($vars['view_mode'] == 'nas_engagement_cards_full_width') {
+    $view_mode = array('nas_engagement_cards_full_width', 'nas_engagement_cards_full_width_half_black');
+    if (in_array($vars['view_mode'], $view_mode)) {
       $classes[] = 'native-plants-search-form--submit';
     }
     $vars['button'] = l($field_link_items[0]['title'], $field_link_items[0]['url'], array(

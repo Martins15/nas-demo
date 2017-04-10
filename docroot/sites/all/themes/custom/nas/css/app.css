@@ -5218,8 +5218,9 @@ small {
 }
 .engagement-hero__content .engagement-hero__header {
   display: block;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
   font-size: 33px;
+  font-weight: 400;
   letter-spacing: -1px;
   line-height: 38px;
   text-transform: capitalize;
@@ -5238,7 +5239,7 @@ small {
   }
 }
 .engagement-hero__content .engagement-hero-text {
-  margin-bottom: 5px;
+  margin-bottom: 12px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   clear: both;
   font-size: 17px;
@@ -5311,6 +5312,19 @@ small {
     z-index: 2;
   }
 }
+.engagement-hero .hero-image.half--black .engagement-hero__content {
+  padding-bottom: 5px;
+}
+@media only screen and (min-width: 601px) {
+  .engagement-hero .hero-image.half--black .engagement-hero__content {
+    padding-bottom: 25px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .engagement-hero .hero-image.half--black .engagement-hero__header {
+    margin-bottom: 0;
+  }
+}
 @media only screen and (min-width: 0px) and (max-width: 600px) {
   .engagement-hero .hero-attribution, .engagement-hero .hero-attribution-fullscreen {
     background: transparent;
@@ -5375,6 +5389,7 @@ small {
   }
 }
 .engagement-hero .half--black .engagement-hero-text {
+  margin-bottom: 5px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   clear: both;
   font-size: 17px;
