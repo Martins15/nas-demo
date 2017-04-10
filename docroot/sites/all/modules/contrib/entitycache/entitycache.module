@@ -213,21 +213,9 @@ function entitycache_user_login(&$edit, $account) {
   cache_clear_all($account->uid, 'cache_entity_user');
 }
 
-if (!class_exists('EntityCacheUserController')) {
-  require_once __DIR__ . '/includes/entitycache.user.inc';
-}
-if (!class_exists('EntityCacheTaxonomyTermController')) {
-  require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
-}
-if (!class_exists('EntityCacheTaxonomyVocabularyController')) {
-  require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
-}
-if (!class_exists('EntityCacheControllerHelper')) {
-  require_once __DIR__ . '/includes/entitycache.entitycachecontrollerhelper.inc';
-}
-if (!class_exists('EntityCacheDefaultEntityController')) {
-  require_once __DIR__ . '/includes/entitycache.defaultentitycontroller.inc';
-}
-if (!class_exists('EntityCacheNodeController')) {
-  require_once __DIR__ . '/includes/entitycache.node.inc';
-}
+require_once __DIR__ . '/includes/entitycache.user.inc';
+require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
+require_once __DIR__ . '/includes/entitycache.taxonomy.inc';
+require_once __DIR__ . '/includes/entitycache.entitycachecontrollerhelper.inc';
+require_once __DIR__ . '/includes/entitycache.defaultentitycontroller.inc';
+require_once __DIR__ . '/includes/entitycache.node.inc';
