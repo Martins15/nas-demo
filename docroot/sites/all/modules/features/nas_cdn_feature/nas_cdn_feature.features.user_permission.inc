@@ -13,7 +13,9 @@ function nas_cdn_feature_user_default_permissions() {
   // Exported permission: 'access files on CDN when in testing mode'.
   $permissions['access files on CDN when in testing mode'] = array(
     'name' => 'access files on CDN when in testing mode',
-    'roles' => array(),
+    'roles' => array(
+      'super' => 'super',
+    ),
     'module' => 'cdn',
   );
 
@@ -27,7 +29,9 @@ function nas_cdn_feature_user_default_permissions() {
   // Exported permission: 'administer CDN configuration'.
   $permissions['administer CDN configuration'] = array(
     'name' => 'administer CDN configuration',
-    'roles' => array(),
+    'roles' => array(
+      'super' => 'super',
+    ),
     'module' => 'cdn',
   );
 
