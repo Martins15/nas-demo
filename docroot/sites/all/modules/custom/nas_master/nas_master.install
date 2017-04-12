@@ -4156,3 +4156,10 @@ function nas_master_update_7284() {
 function nas_master_update_7285() {
   module_enable(array('expire_panels'));
 }
+
+/**
+ * Enable nas_imagecache_token_feature feature.
+ */
+function nas_master_update_7286() {
+  module_enable(array('nas_imagecache_token_feature'));
+}

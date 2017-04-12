@@ -1,0 +1,11 @@
+name = NAS Imagecache token feature
+description = settings for imagecahe_token module
+core = 7.x
+package = NAS
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = imagecache_token_fields
+project path = sites/all/modules/features
