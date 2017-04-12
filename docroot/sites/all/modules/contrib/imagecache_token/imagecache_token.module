@@ -227,7 +227,8 @@ function imagecache_token_tokens($type, $tokens, array $data = array(), array $o
             }
           }
           else {
-            $output[] = image_style_url($token, $field['uri']);
+            $uri = !empty($field['file']->uri) ? $field['file']->uri : $field['uri'];
+            $output[] = image_style_url($token, $uri);
           }
         }
 
