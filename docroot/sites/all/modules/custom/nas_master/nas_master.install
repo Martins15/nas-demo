@@ -27,6 +27,17 @@ function nas_master_install() {
 }
 
 /**
+ * Implements hook_update_dependencies().
+ */
+function nas_master_update_dependencies() {
+  $dependencies['nas_master'][7286] = array(
+    'lazyloader' => 7201,
+  );
+
+  return $dependencies;
+}
+
+/**
  * Enable nas_slideshow_feature feature.
  */
 function nas_master_update_7002() {
@@ -4158,8 +4169,9 @@ function nas_master_update_7285() {
 }
 
 /**
- * Enable nas_imagecache_token_feature feature.
+ * Enable nas_imagecache_token_feature feature. Set proper variable for updated lazyloader.
  */
 function nas_master_update_7286() {
   module_enable(array('nas_imagecache_token_feature'));
+  variable_set('lazyloader_page_exclude_option', LAZYLOADER_PAGE_EXCLUDE_OPTION);
 }
