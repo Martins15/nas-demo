@@ -1495,3 +1495,17 @@ function feeds_api_version() {
   $version = feeds_ctools_plugin_api('feeds', 'plugins');
   return $version['version'];
 }
+
+/**
+ * Implements hook_init().
+ */
+function feeds_init() {
+  require_once __DIR__ . '/plugins/FeedsHTTPFetcher.inc';
+}
+require_once __DIR__ . '/includes/FeedsConfigurable.inc';
+require_once __DIR__ . '/includes/FeedsImporter.inc';
+require_once __DIR__ . '/includes/FeedsSource.inc';
+require_once __DIR__ . '/plugins/FeedsPlugin.inc';
+require_once __DIR__ . '/plugins/FeedsFetcher.inc';
+require_once __DIR__ . '/plugins/FeedsParser.inc';
+require_once __DIR__ . '/plugins/FeedsProcessor.inc';

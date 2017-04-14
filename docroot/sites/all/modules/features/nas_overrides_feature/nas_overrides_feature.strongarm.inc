@@ -293,16 +293,16 @@ function nas_overrides_feature_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'lazyloader_exclude_option';
-  $strongarm->value = 'include';
-  $export['lazyloader_exclude_option'] = $strongarm;
+  $strongarm->name = 'lazyloader_icon';
+  $strongarm->value = '7';
+  $export['lazyloader_icon'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'lazyloader_icon';
-  $strongarm->value = '7';
-  $export['lazyloader_icon'] = $strongarm;
+  $strongarm->name = 'lazyloader_page_exclude_option';
+  $strongarm->value = 'exclude';
+  $export['lazyloader_page_exclude_option'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
