@@ -754,7 +754,9 @@ function nas_boa_feature_field_default_field_instances() {
     'bundle' => 'boa',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Used for sorting cards by state on BOA landing page',
+    'description' => 'Used for sorting cards by a state on BOA landing page.<br> 
+Selecting multiple options:<br> For windows: Hold down the control (ctrl) button to select multiple options.<br> 
+For Mac: Hold down the command button to select multiple options.Used for sorting cards by state on BOA landing page',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -832,7 +834,7 @@ function nas_boa_feature_field_default_field_instances() {
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 35,
     ),
   );
