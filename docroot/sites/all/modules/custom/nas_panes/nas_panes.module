@@ -1670,7 +1670,8 @@ function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FA
     // Manual override.
     if (empty($nodes) && isset($data['references'])) {
       foreach ($data['references'] as $value) {
-        if (isset($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
+        $node = !empty($value['entity_reference']['entity_id']) ? _i18n_node_load($value['entity_reference']['entity_id']) : FALSE;
+        if ($node && $node->status === '1') {
           $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
         }
       }

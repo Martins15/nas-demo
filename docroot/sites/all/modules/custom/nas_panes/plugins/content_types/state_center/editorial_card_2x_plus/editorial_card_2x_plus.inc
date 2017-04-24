@@ -30,7 +30,7 @@ $plugin = array(
       'more_link' => array(
         'more_link_text' => '',
         'more_link_url' => '',
-      )
+      ),
     ),
   ),
 );
@@ -211,7 +211,8 @@ function editorial_card_2x_plus_render($subtype, $conf, $args, $context) {
         $teasers[$key][] = drupal_render($build);
       }
     }
-    if (!empty($ref['engagement']['entity_id']) && $node = node_load($ref['engagement']['entity_id'])) {
+    $node = !empty($ref['engagement']['entity_id']) ? node_load($ref['engagement']['entity_id']) : FALSE;
+    if ($node && $node->status === '1') {
       $teasers[$key][] = _editorial_card_2x_plus_render_engagement_helper($node);
     }
     else {
