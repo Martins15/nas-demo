@@ -16702,6 +16702,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   flex-flow: wrap row;
 }
 .editorial-grid-column .editorial-card {
+  margin-bottom: 5.5px;
   padding-right: 12.5px;
   padding-left: 12.5px;
   width: 50%;
@@ -16717,7 +16718,15 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: block;
 }
 .editorial-grid-column .editorial-card .editorial-card-content {
-  padding: 12.5px 0;
+  padding: 12.5px 0 0;
+}
+.editorial-grid-column .editorial-card .editorial-card-content.short {
+  min-height: 120px;
+}
+@media only screen and (min-width: 900px) {
+  .editorial-grid-column .editorial-card .editorial-card-content.short {
+    padding: 12.5px 0;
+  }
 }
 .editorial-grid-column .editorial-card .editorial-card-title {
   margin-bottom: 5px;
