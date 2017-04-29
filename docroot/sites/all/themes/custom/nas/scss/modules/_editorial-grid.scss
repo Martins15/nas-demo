@@ -9,17 +9,22 @@
 .editorial-grid-column {
   display: flex;
   flex-flow: wrap row;
+  &.row:before, &.row:after {
+    content: none;
+    display: none;
+  }
 
   .editorial-card {
     @extend %card;
-    margin-bottom: 5.5px;
+    margin-bottom: 10px;
     padding-right: 12.5px;
     padding-left: 12.5px;
     width: 50%;
     border: 0;
     box-shadow: none;
-    @include breakpoint(min-width, 900px) {
+    @include breakpoint(large-up) {
       width: 20%;
+      margin-bottom: 5.5px;
     }
 
     .editorial-card-photo {
@@ -29,7 +34,7 @@
       padding: 12.5px 0 0;
       &.short {
         min-height: 120px;
-        @include breakpoint(min-width, 900px) {
+        @include breakpoint(large-up) {
           padding: 12.5px 0;
         }
       }
