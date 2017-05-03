@@ -4173,3 +4173,18 @@ function nas_master_update_7285() {
   }
 
 }
+
+/**
+ * Turn off auto-add engagement cards to nodequeue.
+ */
+function nas_master_update_7286() {
+  // qid of engagement_cards from table 'nodequeue_queue'.
+  $qid = 1;
+  $form_state = array(
+    'values' => array(
+      'qid' => $qid,
+      'auto_add' => 0,
+    )
+  );
+  auto_nodequeue_nodequeue_edit_queue_form_submit(array(), $form_state);
+}
