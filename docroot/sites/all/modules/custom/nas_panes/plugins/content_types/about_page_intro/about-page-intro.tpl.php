@@ -6,17 +6,17 @@
  */
 ?>
 
-<?php if (!empty($title)): ?>
-  <div class="row">
+<?php if ($title): ?>
+  <div class="row<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebetween) ? ' space-bottom' : ''; ?>">
     <div class="column">
-      <h2 class="thin">
+      <<?php print $title_heading; ?> class="thin">
         <?php print $title; ?>
       </h2>
     </div>
   </div>
 <?php endif; ?>
 
-<div class="row text-container<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?>">
+<div class="row <?php print !empty($spacebottom) ? $spacebottom : ''; ?> text-container<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
   <?php print $contextual_links; ?>
 
   <?php if (!empty($left_column)): ?>
