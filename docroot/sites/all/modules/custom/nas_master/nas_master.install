@@ -4175,3 +4175,18 @@ function nas_master_update_7286() {
   module_enable(array('nas_imagecache_token_feature'));
   variable_set('lazyloader_page_exclude_option', LAZYLOADER_PAGE_EXCLUDE_OPTION);
 }
+
+/**
+ * Set excluded image styles for lazyloader.
+ */
+function nas_master_update_7287() {
+  $options = array();
+  $styles = image_styles();
+  foreach ($styles as $style) {
+    $options[$style['name']] = $style['name'];
+    if ($style['name'] == 'engagement_card' || $style['name'] == 'boa_mail_subscription') {
+      $options[$style['name']] = 0;
+    }
+  }
+  variable_set('lazyloader_image_styles', $options);
+}

@@ -4436,10 +4436,6 @@ img, video, embed, object, iframe {
   max-width: 100%;
 }
 
-img {
-  height: auto;
-}
-
 h1, h2, h3, h4, h5 {
   color: #262626;
   font-family: "Source Sans Pro", Verdana, sans-serif;
