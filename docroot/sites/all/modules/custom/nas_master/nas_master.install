@@ -4146,3 +4146,30 @@ function nas_master_update_7284() {
     ),
   ));
 }
+
+/**
+ * Move value from field_state to field_boa_state for BOA.
+ */
+function nas_master_update_7285() {
+  features_revert(array(
+    'nas_boa_feature' => array(
+      'field_base',
+      'field_instance',
+      'field_group',
+    ),
+    'nas_boa_index_feature' => array(
+      'views_view',
+    ),
+  ));
+
+  $node_load_multiple = node_load_multiple(array(), array('type' => 'boa'));
+  foreach ($node_load_multiple as $node) {
+    $node->field_boa_state = $node->field_state;
+    field_attach_update('node', $node);
+  }
+
+  if ($instance = field_info_instance('node', 'field_state', 'boa')) {
+    field_delete_instance($instance);
+  }
+
+}

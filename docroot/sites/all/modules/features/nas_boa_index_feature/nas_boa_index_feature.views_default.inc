@@ -39,11 +39,11 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'nas_node_teaser_small';
   $handler->display->display_options['row_options']['links'] = FALSE;
-  /* Relationship: Content: State (field_state) */
-  $handler->display->display_options['relationships']['field_state_tid']['id'] = 'field_state_tid';
-  $handler->display->display_options['relationships']['field_state_tid']['table'] = 'field_data_field_state';
-  $handler->display->display_options['relationships']['field_state_tid']['field'] = 'field_state_tid';
-  $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
+  /* Relationship: Content: State (field_boa_state) */
+  $handler->display->display_options['relationships']['field_boa_state_tid']['id'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['table'] = 'field_data_field_boa_state';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['field'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['label'] = 'boa_state';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_boa_bird_target_id']['id'] = 'field_boa_bird_target_id';
   $handler->display->display_options['relationships']['field_boa_bird_target_id']['table'] = 'field_data_field_boa_bird';
@@ -74,7 +74,7 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['sorts']['name']['id'] = 'name';
   $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
-  $handler->display->display_options['sorts']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['sorts']['name']['relationship'] = 'field_boa_state_tid';
   $handler->display->display_options['sorts']['name']['exposed'] = TRUE;
   $handler->display->display_options['sorts']['name']['expose']['label'] = 'State';
   /* Filter criterion: Content: Published */
@@ -95,6 +95,17 @@ function nas_boa_index_feature_views_default_views() {
   /* Display: BOA Index birds */
   $handler = $view->new_display('panel_pane', 'BOA Index birds', 'boa_index');
   $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: State (field_boa_state) */
+  $handler->display->display_options['relationships']['field_boa_state_tid']['id'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['table'] = 'field_data_field_boa_state';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['field'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['label'] = 'boa_state';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_boa_bird_target_id']['id'] = 'field_boa_bird_target_id';
+  $handler->display->display_options['relationships']['field_boa_bird_target_id']['table'] = 'field_data_field_boa_bird';
+  $handler->display->display_options['relationships']['field_boa_bird_target_id']['field'] = 'field_boa_bird_target_id';
+  $handler->display->display_options['relationships']['field_boa_bird_target_id']['label'] = 'Bird guide referenced bird';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
@@ -210,18 +221,18 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: State (field_state) */
-  $handler->display->display_options['relationships']['field_state_tid']['id'] = 'field_state_tid';
-  $handler->display->display_options['relationships']['field_state_tid']['table'] = 'field_data_field_state';
-  $handler->display->display_options['relationships']['field_state_tid']['field'] = 'field_state_tid';
-  $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
-  $handler->display->display_options['relationships']['field_state_tid']['required'] = TRUE;
+  /* Relationship: Content: State (field_boa_state) */
+  $handler->display->display_options['relationships']['field_boa_state_tid']['id'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['table'] = 'field_data_field_boa_state';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['field'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['label'] = 'boa_state';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['required'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_boa_state_tid';
   $handler->display->display_options['fields']['name']['label'] = '';
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
@@ -229,7 +240,7 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['sorts']['name']['id'] = 'name';
   $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
-  $handler->display->display_options['sorts']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['sorts']['name']['relationship'] = 'field_boa_state_tid';
   $handler->display->display_options['sorts']['name']['expose']['label'] = 'State';
   $handler->display->display_options['inherit_panels_path'] = '1';
 
@@ -260,23 +271,25 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Content: State (field_state) */
-  $handler->display->display_options['relationships']['field_state_tid']['id'] = 'field_state_tid';
-  $handler->display->display_options['relationships']['field_state_tid']['table'] = 'field_data_field_state';
-  $handler->display->display_options['relationships']['field_state_tid']['field'] = 'field_state_tid';
-  $handler->display->display_options['relationships']['field_state_tid']['label'] = 'state';
-  $handler->display->display_options['relationships']['field_state_tid']['required'] = TRUE;
+  /* Relationship: Content: State (field_boa_state) */
+  $handler->display->display_options['relationships']['field_boa_state_tid']['id'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['table'] = 'field_data_field_boa_state';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['field'] = 'field_boa_state_tid';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['label'] = 'boa_state';
+  $handler->display->display_options['relationships']['field_boa_state_tid']['required'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: State */
-  $handler->display->display_options['fields']['field_state_1']['id'] = 'field_state_1';
-  $handler->display->display_options['fields']['field_state_1']['table'] = 'field_data_field_state';
-  $handler->display->display_options['fields']['field_state_1']['field'] = 'field_state';
-  $handler->display->display_options['fields']['field_state_1']['label'] = '';
-  $handler->display->display_options['fields']['field_state_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_state_1']['element_wrapper_type'] = 'h2';
-  $handler->display->display_options['fields']['field_state_1']['element_wrapper_class'] = 'thin';
-  $handler->display->display_options['fields']['field_state_1']['element_default_classes'] = FALSE;
-  $handler->display->display_options['fields']['field_state_1']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_boa_state_1']['id'] = 'field_boa_state_1';
+  $handler->display->display_options['fields']['field_boa_state_1']['table'] = 'field_data_field_boa_state';
+  $handler->display->display_options['fields']['field_boa_state_1']['field'] = 'field_boa_state';
+  $handler->display->display_options['fields']['field_boa_state_1']['label'] = '';
+  $handler->display->display_options['fields']['field_boa_state_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_boa_state_1']['element_wrapper_type'] = 'h2';
+  $handler->display->display_options['fields']['field_boa_state_1']['element_wrapper_class'] = 'thin';
+  $handler->display->display_options['fields']['field_boa_state_1']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_boa_state_1']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_boa_state_1']['group_rows'] = FALSE;
+  $handler->display->display_options['fields']['field_boa_state_1']['delta_offset'] = '0';
   /* Field: Content: Rendered Content */
   $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
   $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
@@ -291,18 +304,18 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'nas_node_teaser_small_state';
   $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 1;
   /* Field: Content: State */
-  $handler->display->display_options['fields']['field_state']['id'] = 'field_state';
-  $handler->display->display_options['fields']['field_state']['table'] = 'field_data_field_state';
-  $handler->display->display_options['fields']['field_state']['field'] = 'field_state';
-  $handler->display->display_options['fields']['field_state']['label'] = '';
-  $handler->display->display_options['fields']['field_state']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_state']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_state']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_boa_state']['id'] = 'field_boa_state';
+  $handler->display->display_options['fields']['field_boa_state']['table'] = 'field_data_field_boa_state';
+  $handler->display->display_options['fields']['field_boa_state']['field'] = 'field_boa_state';
+  $handler->display->display_options['fields']['field_boa_state']['label'] = '';
+  $handler->display->display_options['fields']['field_boa_state']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_boa_state']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_boa_state']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Taxonomy term: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_boa_state_tid';
   $handler->display->display_options['fields']['name']['label'] = '';
   $handler->display->display_options['fields']['name']['exclude'] = TRUE;
   $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
@@ -311,7 +324,7 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['sorts']['name']['id'] = 'name';
   $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
-  $handler->display->display_options['sorts']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['sorts']['name']['relationship'] = 'field_boa_state_tid';
   $handler->display->display_options['sorts']['name']['expose']['label'] = 'State';
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
@@ -337,7 +350,7 @@ function nas_boa_index_feature_views_default_views() {
   $handler->display->display_options['filters']['name']['id'] = 'name';
   $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['relationship'] = 'field_state_tid';
+  $handler->display->display_options['filters']['name']['relationship'] = 'field_boa_state_tid';
   $handler->display->display_options['filters']['name']['operator'] = 'not empty';
   $handler->display->display_options['inherit_panels_path'] = '1';
   $translatables['boa_index'] = array(
@@ -357,7 +370,7 @@ function nas_boa_index_feature_views_default_views() {
     t('next ›'),
     t('last »'),
     t('Show More'),
-    t('state'),
+    t('boa_state'),
     t('Bird guide referenced bird'),
     t('plate'),
     t('Title'),

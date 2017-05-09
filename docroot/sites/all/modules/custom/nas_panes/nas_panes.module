@@ -591,17 +591,6 @@ function nas_panes_theme() {
       'template' => 'about-page-menu-bar',
       'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_menu_bar',
     ),
-    'about_page_intro' => array(
-      'variables' => array(
-        'title' => NULL,
-        'left_column' => NULL,
-        'right_column' => NULL,
-        'full_width_text' => NULL,
-        'contextual_links' => NULL,
-      ),
-      'template' => 'about-page-intro',
-      'path' => drupal_get_path('module', 'nas_panes') . '/plugins/content_types/about_page_intro',
-    ),
     'about_page_leadership' => array(
       'variables' => array(
         'title' => NULL,
@@ -1670,7 +1659,8 @@ function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FA
     // Manual override.
     if (empty($nodes) && isset($data['references'])) {
       foreach ($data['references'] as $value) {
-        if (isset($value['entity_reference']['entity_id']) && $node = _i18n_node_load($value['entity_reference']['entity_id'])) {
+        $node = !empty($value['entity_reference']['entity_id']) ? _i18n_node_load($value['entity_reference']['entity_id']) : FALSE;
+        if ($node && $node->status === '1') {
           $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
         }
       }
