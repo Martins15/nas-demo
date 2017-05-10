@@ -144,9 +144,9 @@
       width: auto;
       height: auto;
       position: absolute;
-      transform: scale(1.5);
+      transform: scale(1.0);
       margin: 0 auto !important;
-      -webkit-transform: scale(1.5);
+      -webkit-transform: scale(1.0);
     }
   }
 
@@ -159,7 +159,8 @@
 
   &.center {
     video {
-      transform: translate(-50%, -50%) scale(1.5);
+      transform: translate(-50%, -50%) scale(1.0);
+      -webkit-transform: translate(-50%, -50%) scale(1.0);
     }
   }
 

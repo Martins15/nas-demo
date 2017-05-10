@@ -11331,16 +11331,17 @@ body.black-bg .slide-caption {
   width: auto;
   height: auto;
   position: absolute;
-  transform: scale(1.5);
+  transform: scale(1);
   margin: 0 auto !important;
-  -webkit-transform: scale(1.5);
+  -webkit-transform: scale(1);
 }
 .curtain-video.center video, .curtain-video.cover video {
   top: 50%;
   left: 50%;
 }
 .curtain-video.center video {
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 .curtain-video.top-left video {
   top: 0;
