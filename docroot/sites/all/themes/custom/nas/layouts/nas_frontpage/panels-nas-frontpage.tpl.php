@@ -35,7 +35,5 @@
       <?php print $content['cards_set']; ?>
     </section>
   </section>
-</div>
-<div class="clearfix">
   <?php print $content['footer']; ?>
 </div>
