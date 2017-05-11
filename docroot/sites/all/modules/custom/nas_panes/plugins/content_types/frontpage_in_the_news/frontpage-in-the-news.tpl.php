@@ -11,6 +11,7 @@
  * - $bird_guide_title: title of the Bird Guide link.
  */
 ?>
+<div>
   <div class="row section-header">
     <div class="columns">
       <h2 class="thin"><?php print $title; ?></h2>

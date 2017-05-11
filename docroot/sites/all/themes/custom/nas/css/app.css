@@ -11309,6 +11309,7 @@ body.black-bg .slide-caption {
 
 .curtain-video {
   position: absolute;
+  top: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
@@ -11323,9 +11324,24 @@ body.black-bg .slide-caption {
   min-width: 100%;
   max-width: none;
 }
-.curtain-video.cover video, .curtain-video.center video {
-  left: 50%;
+.curtain-video.center video, .curtain-video.top-left video, .curtain-video.top-right video, .curtain-video.bottom-left video, .curtain-video.bottom-right video {
+  max-width: none;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  transform: scale(1);
+  margin: 0 auto !important;
+  -webkit-transform: scale(1);
+}
+.curtain-video.center video, .curtain-video.cover video {
   top: 50%;
+  left: 50%;
+}
+.curtain-video.center video {
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 .curtain-video.top-left video {
   top: 0;
