@@ -3,6 +3,27 @@ Nav = {};
 var Nas = Nas || {};
 
 (function ($) {
+  // Fix for Bird card llustration on Safari.
+  Drupal.behaviors.fixSafari = {
+    attach: function (context, settings) {
+      var is_safari = navigator.userAgent.indexOf("Safari") != -1;
+      var is_chrome = navigator.userAgent.indexOf('Chrome') == -1;
+      if (is_safari && is_chrome) {
+        var cards = $(".bird-card-illustration img").css("width", '100%');
+        setTimeout(function () {
+          cards.css("width", 'auto');
+        }, 0);
+
+        $(".bird-card-illustration img").each(function () {
+          var self = jQuery(this).css('width', '100%');
+          setTimeout(function () {
+            self.css('width', '');
+          }, 0);
+        });
+      }
+    }
+  };
+
   Drupal.behaviors.nasMenu = {
     attach: function (context, settings) {
       $(document).bind("respond", function (e) {
