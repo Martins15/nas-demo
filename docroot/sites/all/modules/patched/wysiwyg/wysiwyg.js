@@ -136,7 +136,9 @@ Drupal.behaviors.attachWysiwyg = {
     if (/KDE/.test(navigator.vendor)) {
       return;
     }
-
+    if ($(context).parents('body').size() < 1) {
+      return;
+    }
     $('.wysiwyg:input', context).once('wysiwyg', function () {
       var $this = $('#' + this.id, context), trigger = settings.wysiwyg.triggers[this.id];
       // Skip processing if the trigger is unknown or does not exist in this
