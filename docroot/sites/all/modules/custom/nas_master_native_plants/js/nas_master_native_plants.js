@@ -152,9 +152,9 @@
   Drupal.behaviors.nativePlantsEndIPE = {
     attach: function (context, settings) {
       $('body').once('np-endIPE', function () {
-        $('body.panels-ipe').bind('endIPE', function () {
+        $(document).bind('endIPE', function () {
           if ($('.view-native-plants-search').length === 0) {
-            return;
+            window.location.reload();
           }
           $('.view-filters .form-select:first', $('.view-native-plants-search')).trigger('change');
         });
