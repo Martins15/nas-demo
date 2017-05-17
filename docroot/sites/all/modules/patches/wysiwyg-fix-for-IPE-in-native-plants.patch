@@ -7,7 +7,7 @@ index 5251558..7cd00b3 100644
        return;
      }
 -
-+    if ($(context).parents('body').size() < 1) {
++    if (context != document && $(context).parents('body').size() < 1) {
 +      return;
 +    }
      $('.wysiwyg:input', context).once('wysiwyg', function () {
