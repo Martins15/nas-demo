@@ -136,7 +136,7 @@ Drupal.behaviors.attachWysiwyg = {
     if (/KDE/.test(navigator.vendor)) {
       return;
     }
-    if ($(context).parents('body').size() < 1) {
+    if (context != document && $(context).parents('body').size() < 1) {
       return;
     }
     $('.wysiwyg:input', context).once('wysiwyg', function () {
