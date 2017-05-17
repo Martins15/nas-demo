@@ -1575,7 +1575,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_deepzoom_file';
-  $file_display->weight = 0;
+  $file_display->weight = -38;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__file_field_deepzoom_file'] = $file_display;
@@ -1583,7 +1583,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_deepzoom_image';
-  $file_display->weight = 0;
+  $file_display->weight = -37;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'deepzoom_processor' => 'batch',
@@ -1594,7 +1594,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_fbia_image_formatter';
-  $file_display->weight = 0;
+  $file_display->weight = -40;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'style' => 'medium',
@@ -1608,7 +1608,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_fbia_media_slideshow_formatter';
-  $file_display->weight = 0;
+  $file_display->weight = -36;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'style' => 'medium',
@@ -1623,7 +1623,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_fbia_video_formatter';
-  $file_display->weight = 0;
+  $file_display->weight = -35;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__file_field_fbia_video_formatter'] = $file_display;
@@ -1631,15 +1631,86 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_image_attributions';
-  $file_display->weight = 0;
+  $file_display->weight = -34;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__file_field_image_attributions'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_media_large_icon';
+  $file_display->weight = -41;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__nas_wysiwyg_image__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_image';
+  $file_display->weight = -32;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => '',
+    'image_link' => '',
+  );
+  $export['image__nas_wysiwyg_image__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_file_url_plain';
+  $file_display->weight = -45;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__nas_wysiwyg_image__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_file_table';
+  $file_display->weight = -44;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__nas_wysiwyg_image__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_file_download_link';
+  $file_display->weight = -39;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'text' => 'Download [file:name]',
+  );
+  $export['image__nas_wysiwyg_image__file_field_file_download_link'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_file_default';
+  $file_display->weight = -31;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__nas_wysiwyg_image__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__nas_wysiwyg_image__file_field_colorbox';
+  $file_display->weight = -30;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'colorbox_node_style' => 'bean_wysiwyg_full_width',
+    'colorbox_node_style_first' => '',
+    'colorbox_image_style' => '',
+    'colorbox_gallery' => 'post',
+    'colorbox_gallery_custom' => '',
+    'colorbox_caption' => 'custom',
+    'colorbox_caption_custom' => '[file:field_file_caption] [file:field_file_credit]',
+  );
+  $export['image__nas_wysiwyg_image__file_field_colorbox'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_soundmanager2_inline_player';
-  $file_display->weight = 0;
+  $file_display->weight = -48;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'pause' => 'pause',
@@ -1650,7 +1721,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_soundmanager2_page_player';
-  $file_display->weight = 0;
+  $file_display->weight = -46;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'pause' => 'pause',
@@ -1661,7 +1732,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__file_field_soundmanager2_ui360';
-  $file_display->weight = 0;
+  $file_display->weight = -43;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'pause' => 'pause',
@@ -1678,7 +1749,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__netx_audio';
-  $file_display->weight = 0;
+  $file_display->weight = -42;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__netx_audio'] = $file_display;
@@ -1686,7 +1757,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__netx_document';
-  $file_display->weight = 0;
+  $file_display->weight = -47;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__netx_document'] = $file_display;
@@ -1694,7 +1765,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__netx_image';
-  $file_display->weight = 0;
+  $file_display->weight = -33;
   $file_display->status = TRUE;
   $file_display->settings = array(
     'image_style' => '',
@@ -1725,7 +1796,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__netx_preview';
-  $file_display->weight = 0;
+  $file_display->weight = -49;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'image_style' => '',
@@ -1735,7 +1806,7 @@ function nas_file_entity_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__nas_wysiwyg_image__netx_video';
-  $file_display->weight = 0;
+  $file_display->weight = -50;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__nas_wysiwyg_image__netx_video'] = $file_display;
