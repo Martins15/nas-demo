@@ -70,6 +70,7 @@ features[field_instance][] = node-article-field_article_redirect
 features[field_instance][] = node-article-field_author
 features[field_instance][] = node-article-field_color_mode
 features[field_instance][] = node-article-field_conservation_project
+features[field_instance][] = node-article-field_conservation_strategy
 features[field_instance][] = node-article-field_credit_caption_map
 features[field_instance][] = node-article-field_custom_section
 features[field_instance][] = node-article-field_editorial_card_caption

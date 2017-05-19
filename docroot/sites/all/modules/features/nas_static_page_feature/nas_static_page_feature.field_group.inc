@@ -90,6 +90,7 @@ function nas_static_page_feature_field_group_info() {
       1 => 'field_menu_section',
       2 => 'field_related',
       3 => 'field_internal_tagging',
+      4 => 'field_conservation_strategy',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

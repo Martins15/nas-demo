@@ -22,6 +22,21 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
   _nas_panes_hide_pane_title_field($form);
 
+  // The two function calls below are necessary if we want to use a media
+  // element type, because it causes ajax requests, which in turn call
+  // drupal_form_rebuild(), and without the below includes, Drupal will
+  // not be able to rebuild the form.
+
+  // Include the CTools content type plugin file, because it provides
+  // the ctools_content_configure_form_defaults() function, which is needed
+  // when rebuilding the form, because of an ajax action, like selecting
+  // a media element.
+  ctools_form_include($form_state, 'content');
+
+  // Include this plugin file as well, so that when the form is rebuilt, it
+  // can successfully retrieve the settings form.
+  ctools_form_include($form_state, 'conservation_strategy_news', 'nas_panes', 'plugins/content_types/conservation_strategy_news');
+
   $conf_key = 'default';
   if ($context = reset($form_state['display']->context)) {
     // Not on default panel, not article.
@@ -60,6 +75,13 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
     );
   }
 
+  $form[$conf_key]['referencing_nodes'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Conservation Strategy node reference'),
+    '#description' => t('Filter nodes that appear by the Conservation Strategy association.'),
+    '#default_value' => !empty($conf[$conf_key]['referencing_nodes']) ? $conf[$conf_key]['referencing_nodes'] : '',
+  );
+
   $form[$conf_key]['menu_item'] = array(
     '#type' => 'select',
     '#title' => t('Menu item'),
@@ -67,6 +89,12 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
     '#default_value' => !empty($conf[$conf_key]['menu_item']) ? $conf[$conf_key]['menu_item'] : '',
     '#options' => taxonomy_allowed_values(field_info_field('field_menu_section')),
     '#description' => t('Menu item to filter news list.'),
+    '#states' => array(
+      // Only show this field when the 'referencing_nodes' checkbox is disabled.
+      'disabled' => array(
+        ':input[name="' . $conf_key . '[referencing_nodes]"]' => array('checked' => TRUE),
+      ),
+    ),
   );
 
   return $form;
@@ -102,10 +130,6 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
   }
 
   // Get featured news.
-  $args = array(
-    'conservation_strategy_news',
-    'default',
-  );
   $featured_news = array();
   $featured_news_ids = array();
   if (!empty($conf[$conf_key]['articles'])) {
@@ -125,10 +149,25 @@ function conservation_strategy_news_render($subtype, $conf, $args, $context) {
     }
   }
 
-  // Filter by menu item and exclude nodes from right block.
-  if (!empty($conf[$conf_key]['menu_item'])) {
-    $args[] = $conf[$conf_key]['menu_item'];
+  if (!empty($conf[$conf_key]['referencing_nodes'])) {
+    // Filter by menu item and exclude nodes from right block.
+    $args = array(
+      'nas_news',
+      'strategy_related_news',
+    );
+    $args[] = $conf_key;
   }
+  else {
+    // Filter by menu item and exclude nodes from right block.
+    $args = array(
+      'conservation_strategy_news',
+      'default',
+    );
+    if (!empty($conf[$conf_key]['menu_item'])) {
+      $args[] = $conf[$conf_key]['menu_item'];
+    }
+  }
+
   if (!empty($featured_news_ids)) {
     $args[] = implode('+', $featured_news_ids);
   }
