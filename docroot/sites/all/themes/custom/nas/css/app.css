@@ -16904,7 +16904,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .article-sidebar-section .article-author-name {
   font-size: 18px;
-  line-height: 15px;
+  line-height: 20px;
   margin: 0 0 5px 0;
 }
 .article-sidebar-section .article-date {
