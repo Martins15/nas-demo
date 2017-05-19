@@ -79,7 +79,7 @@ function conservation_strategy_news_edit_form($form, &$form_state) {
     '#type' => 'checkbox',
     '#title' => t('Conservation Strategy node reference'),
     '#description' => t('Filter nodes that appear by the Conservation Strategy association.'),
-    '#default_value' => !empty($_conf[$conf_key]['referencing_nodes']) ? $_conf[$conf_key]['referencing_nodes'] : '',
+    '#default_value' => !empty($conf[$conf_key]['referencing_nodes']) ? $conf[$conf_key]['referencing_nodes'] : '',
   );
 
   $form[$conf_key]['menu_item'] = array(
