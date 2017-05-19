@@ -71,23 +71,25 @@ function engagement_card_full_width_render($subtype, $conf, $args, $contexts) {
     $conf = array_merge($plugin['defaults'], $conf);
   }
 
-  if (empty($conf['reference']['entity_id'])) {
-    return '';
+  $data = array();
+  if (!empty($conf['reference']['entity_id'])) {
+    $data['references'] = array(
+      array(
+        'entity_reference' => $conf['reference']
+      )
+    );
   }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
-  // Check if node exist and published get node object.
-  $node = node_load($conf['reference']['entity_id']);
-  if (!$node || $node->status === '0') {
-    return '';
-  }
+  $nodes = nas_panes_engagement_cards_get_cards($subtype, $data, 1);
 
   $view_mode = ($conf['layout'] == 'half_black') ? 'nas_engagement_cards_full_width_half_black' : 'nas_engagement_cards_full_width';
 
-  $node_build = node_view($node, $view_mode);
-  $engagement_card = drupal_render($node_build);
-
+  foreach ($nodes as $node) {
+    $node_build = node_view($node, $view_mode);
+    $engagement_card = drupal_render($node_build);
+  }
   $block = new stdClass();
   $block->content = array(
     '#theme' => 'engagement_card_full_width',
