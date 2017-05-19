@@ -1488,13 +1488,13 @@ function _nas_panes_save_panelizer($subtype, $node) {
  *   Subtype.
  * @param array $data
  *   Data.
- * @param bool $first
+ * @param bool $sidebar
  *   Get first.
  *
  * @return array
  *   Array of node ojects and contextual_links.
  */
-function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FALSE) {
+function nas_panes_engagement_cards_get_cards($subtype, array $data, $number_of_cards = 1, $sidebar = FALSE) {
   global $language;
   $lang = $language->language == 'en' ? 'und' : $language->language;
   $nodes = $context = array();
@@ -1554,79 +1554,91 @@ function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FA
     }
   }
 
-  // Array which order will be used to show engagement card for sidebar and footer block.
-  $cards_priority = array();
-  // Check if we have loaded cards from Campaign and pass 1st card for sidebar.
-  if ($first) {
+  $nas_panes_engagement_cards_get_cards = &drupal_static(__FUNCTION__, FALSE);
+  if ($nas_panes_engagement_cards_get_cards === FALSE) {
+    $cards_priority = array();
+    // Check if we have loaded cards from Campaign and pass 1st card for sidebar.
+    if ($sidebar) {
+      $cards_priority[] = array(
+        'function_name' => 'campaign',
+        'nodes' => &$nodes
+      );
+    }
+    // Bird content type related. Check if some editorial cards has reference to bird.
+    if (!empty($context_node) && $context_node->type == 'bird') {
+      $cards_priority[] = array(
+        'function_name' => 'ct_bird',
+        'field' => 'field_related_bird',
+        'context_node' => $context_node,
+        'all_nodes_positioned' => $all_nodes_positioned,
+        'nodes' => &$nodes
+      );
+    }
+    // Check if related bird matches.
     $cards_priority[] = array(
-      'function_name' => 'campaign',
-      'nodes' => &$nodes
-    );
-  }
-  // Manual override.
-  $cards_priority[] = array(
-    'function_name' => 'manual',
-    'data' => $data,
-    'nodes' => &$nodes
-  );
-  // Bird content type related. Check if some editorial cards has reference to bird.
-  if (!empty($context_node) && $context_node->type == 'bird') {
-    $cards_priority[] = array(
-      'function_name' => 'ct_bird',
+      'function_name' => 'n_fields',
       'field' => 'field_related_bird',
+      'field_key' => 'target_id',
       'context_node' => $context_node,
       'all_nodes_positioned' => $all_nodes_positioned,
       'nodes' => &$nodes
     );
+    // Check if editorial section matches.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_custom_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Check if menu section matches.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_menu_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Perform search for all conditions.
+    nas_panes_engagemanet_cards_prioritize($cards_priority);
+    $nas_panes_engagement_cards_get_cards = $nodes;
   }
-  // Check if related bird matches.
-  $cards_priority[] = array(
-    'function_name' => 'n_fields',
-    'field' => 'field_related_bird',
-    'field_key' => 'target_id',
-    'context_node' => $context_node,
-    'all_nodes_positioned' => $all_nodes_positioned,
-    'nodes' => &$nodes
-  );
-  // Check if editorial section matches.
-  $cards_priority[] = array(
-    'function_name' => 'n_fields',
-    'field' => 'field_custom_section',
-    'field_key' => 'tid',
-    'context_node' => $context_node,
-    'all_nodes_positioned' => $all_nodes_positioned,
-    'nodes' => &$nodes
-  );
-  // Check if menu section matches.
-  $cards_priority[] = array(
-    'function_name' => 'n_fields',
-    'field' => 'field_menu_section',
-    'field_key' => 'tid',
-    'context_node' => $context_node,
-    'all_nodes_positioned' => $all_nodes_positioned,
-    'nodes' => &$nodes
-  );
-  // Perform search for all conditions.
-  nas_panes_engagemanet_cards_prioritize($cards_priority);
+  // For case if $nas_panes_engagement_cards_get_cards was already defined. We
+  // need to keep those variables separately to be able to add manual override
+  // cards.
+  $nodes = $nas_panes_engagement_cards_get_cards;
+  nas_panes_engagemanet_cards_manual($data, $nodes);
+  nas_panes_engagemanet_cards_cut_paste_cards($sidebar, $number_of_cards, $all_nodes_positioned, $nodes);
+  return $nodes;
+}
 
-  // Load more cards for sidebar or footer block if not enough.
-  if ($first) {
-    $amount_to_load = 1;
-    $all_nodes_positioned = array_slice($all_nodes_positioned, 3);
+/**
+ * Manage matching cards, remove/add them if needed.
+ */
+function nas_panes_engagemanet_cards_cut_paste_cards($sidebar, $number_of_cards, $all_nodes_positioned, &$nodes) {
+  if ($sidebar) {
+    // Cut nodequeue array to take 4th element firstly in case nothing matches.
+    $all_nodes_positioned = array_slice($all_nodes_positioned, 3, count($all_nodes_positioned) - 3, TRUE);
   }
-  else {
-    $amount_to_load = 3;
-  }
-  if (count($nodes) < $amount_to_load) {
+  // Add or cut cards if needed.
+  if (count($nodes) < $number_of_cards) {
     foreach ($all_nodes_positioned as $node) {
       $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-      if ($amount_to_load == count($nodes)) {
+      if ($number_of_cards == count($nodes)) {
         break;
       }
     }
   }
-  $cards_array['nodes'] = $nodes;
-  return $cards_array;
+  else {
+    $nodes = array_slice($nodes, 0, $number_of_cards, TRUE);
+  }
+  $nas_panes_engagement_cards_get_cards = &drupal_static('nas_panes_engagement_cards_get_cards', array());
+  // Remove already added cards from static queue.
+  foreach ($nodes as $key => $node) {
+    unset($nas_panes_engagement_cards_get_cards[$key]);
+  }
 }
 
 /**
@@ -1661,10 +1673,8 @@ function nas_panes_engagemanet_cards_campaign(&$arguments) {
 /**
  * Search engagement cards matches for manual override in panels.
  */
-function nas_panes_engagemanet_cards_manual(&$arguments) {
-  $data = $arguments['data'];
-  $nodes = &$arguments['nodes'];
-  if (!empty($nodes) || !isset($data['references'])) {
+function nas_panes_engagemanet_cards_manual($data, &$nodes) {
+  if (!isset($data['references'])) {
     return;
   }
   foreach ($data['references'] as $value) {
@@ -1672,7 +1682,7 @@ function nas_panes_engagemanet_cards_manual(&$arguments) {
       continue;
     }
     if ($node->status == NODE_PUBLISHED) {
-      $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+      $nodes = array(nodequeue_subqueue_position(1, $value['entity_reference']['entity_id']) => $node) + $nodes;
     }
   }
 }
