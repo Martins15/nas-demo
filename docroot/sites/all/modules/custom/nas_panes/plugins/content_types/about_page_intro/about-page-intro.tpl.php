@@ -7,16 +7,16 @@
 ?>
 
 <?php if ($title): ?>
-  <div class="row<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebetween) ? ' space-bottom' : ''; ?>">
+  <div class="row<?php print !empty($spacetop) ? ' space-top' : ''; ?><?php print !empty($spacebetween) ? ' space-bottom' : ''; ?>">
     <div class="column">
       <<?php print $title_heading; ?> class="thin">
         <?php print $title; ?>
-      </h2>
+      </<?php print $title_heading; ?>>
     </div>
   </div>
 <?php endif; ?>
 
-<div class="row <?php print !empty($spacebottom) ? $spacebottom : ''; ?> text-container<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?>">
+<div class="row text-container<?php print !empty($contextual_links) ? ' contextual-links-region' : ''; ?><?php print !empty($spacebottom) ? $spacebottom : ''; ?><?php print empty($title) ? ' space-top' : ''; ?>">
   <?php print $contextual_links; ?>
 
   <?php if (!empty($left_column)): ?>
