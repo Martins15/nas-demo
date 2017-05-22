@@ -761,6 +761,10 @@ function nas_alters_form_alter(&$form, &$form_state, $form_id) {
     $form['override_title']['#default_value'] = 1;
     $form['override_title_text']['#title'] = t('Title');
   }
+  // Hide title field in the custom type pane.
+  if ($form_id === 'ctools_custom_content_type_edit_form') {
+    $form['title']['#access'] = FALSE;
+  }
 }
 
 /**
