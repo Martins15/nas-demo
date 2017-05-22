@@ -116,7 +116,7 @@ function about_page_intro_render($subtype, $conf, $args, $contexts) {
 
   $block->content = theme('about_page_intro', array(
     'title' => $conf['override_title_text'],
-    'title_heading' => $conf['override_title_heading'],
+    'title_heading' => isset($conf['override_title_heading']) ? $conf['override_title_heading'] : 'h2',
     'left_column' => $conf['left_column']['value'],
     'right_column' => $conf['right_column']['value'],
     'full_width_text' => $conf['full_width_text']['value'],
