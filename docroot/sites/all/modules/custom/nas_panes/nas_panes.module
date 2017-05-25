@@ -1488,13 +1488,13 @@ function _nas_panes_save_panelizer($subtype, $node) {
  *   Subtype.
  * @param array $data
  *   Data.
- * @param bool $first
+ * @param bool $sidebar
  *   Get first.
  *
  * @return array
  *   Array of node ojects and contextual_links.
  */
-function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FALSE) {
+function nas_panes_engagement_cards_get_cards($subtype, array $data, $number_of_cards = 1, $sidebar = FALSE) {
   global $language;
   $lang = $language->language == 'en' ? 'und' : $language->language;
   $nodes = $context = array();
@@ -1554,125 +1554,206 @@ function nas_panes_engagement_cards_get_cards($subtype, array $data, $first = FA
     }
   }
 
-  // Sidebar display card logic.
-  if ($first) {
-    // Check if we have loaded cards from Campaign
-    // and pass 1st card for sidebar.
-    if (!empty($nodes) && isset($nodes[0])) {
-      $nodes = array($nodes[0]);
-      // Pass to js special var for unchecking First Time Visitors.
-      drupal_add_js(array(
-        'nas_panes' => array(
-          'ignore_first_time_visitor' => TRUE,
-        ),
-      ), 'setting'
+  $nas_panes_engagement_cards_get_cards = &drupal_static(__FUNCTION__, FALSE);
+  if ($nas_panes_engagement_cards_get_cards === FALSE) {
+    $cards_priority = array();
+    // Check if we have loaded cards from Campaign and pass 1st card for sidebar.
+    if ($sidebar) {
+      $cards_priority[] = array(
+        'function_name' => 'campaign',
+        'nodes' => &$nodes
       );
     }
-    // Manual override.
-    if (empty($nodes) &&
-      !empty($data['references'][1]['entity_reference']['entity_id']) &&
-      node_load($data['references'][1]['entity_reference']['entity_id'])->status == NODE_PUBLISHED &&
-      $node = _i18n_node_load($data['references'][1]['entity_reference']['entity_id'])) {
-      $nodes[nodequeue_subqueue_position(1, $data['references'][1]['entity_reference']['entity_id'])] = $node;
+    // Bird content type related. Check if some editorial cards has reference to bird.
+    if (!empty($context_node) && $context_node->type == 'bird') {
+      $cards_priority[] = array(
+        'function_name' => 'ct_bird',
+        'field' => 'field_related_bird',
+        'context_node' => $context_node,
+        'all_nodes_positioned' => $all_nodes_positioned,
+        'nodes' => &$nodes
+      );
     }
-    if (empty($nodes)) {
-      // Check if some editorial cards has reference to bird.
-      if (isset($context_node)) {
-        if ($context_node->type == 'bird') {
-          foreach ($all_nodes_positioned as $node) {
-            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
-              foreach ($field_related_bird_items as $value) {
-                if ($value['target_id'] == $context_node->nid) {
-                  $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-                }
-              }
-            }
-          }
-        }
-        if ($context_node->type == 'article') {
-          foreach ($all_nodes_positioned as $node) {
-            if ($node->field_related_bird && $field_related_bird_items = field_get_items('node', $node, 'field_related_bird')) {
-              if ($context_node->field_related_bird && $context_node_field_related_bird_items = field_get_items('node', $context_node, 'field_related_bird')) {
-                foreach ($field_related_bird_items as $value) {
-                  foreach ($context_node_field_related_bird_items as $context_node_value) {
-                    if ($context_node_value['target_id'] == $value['target_id']) {
-                      $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      // Not Manual overrides, not Birds references were provided.
-      if (empty($nodes) && isset($context_node)
-        && isset($context_node->field_menu_section) && $field_menu_section_items = field_get_items('node', $context_node, 'field_menu_section')) {
-        $current_page_sections = array();
-        foreach ($field_menu_section_items as $value) {
-          $current_page_sections[] = $value['tid'];
-        }
-        foreach ($all_nodes_positioned as $node) {
-          if ($node->field_menu_section && $field_menu_section_items = field_get_items('node', $node, 'field_menu_section')) {
-            foreach ($field_menu_section_items as $value) {
-              if (in_array($value['tid'], $current_page_sections)) {
-                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-              }
-            }
-          }
-        }
-      }
-
-      // Check engagement cards for 'Important Bird Areas' internal tag for IBA nodes.
-      if (empty($nodes) && isset($context_node) && $context_node->type == 'iba') {
-        $internal_tag = taxonomy_get_term_by_name('Important Bird Areas', 'internal_tagging');
-        $current_page_internal_tags = array(reset($internal_tag)->tid);
-        foreach ($all_nodes_positioned as $node) {
-          if ($node->field_internal_tagging && $field_internal_tagging = field_get_items('node', $node, 'field_internal_tagging')) {
-            foreach ($field_internal_tagging as $value) {
-              if (in_array($value['tid'], $current_page_internal_tags)) {
-                $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
-              }
-            }
-          }
-        }
-      }
-    }
-    // Load card number 4 if manual override was not provided or context not matched.
-    if (empty($nodes)) {
-      if (isset($all_nodes_positioned[4])) {
-        $nodes[] = $all_nodes_positioned[4];
-      }
-    }
-    $cards_array['nodes'] = $nodes;
+    // Check if related bird matches.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_related_bird',
+      'field_key' => 'target_id',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Check if editorial section matches.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_custom_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Check if menu section matches. Check only last this time because it has
+    // more priority on others.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_menu_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes,
+      'single_item' => 'last'
+    );
+    // Check if menu section matches. Check all items, last will be checked too
+    // but will not fall into order cause it will br present there already.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_menu_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes
+    );
+    // Perform search for all conditions.
+    nas_panes_engagemanet_cards_prioritize($cards_priority);
+    $nas_panes_engagement_cards_get_cards = $nodes;
   }
-  // Footer block display cards logic.
+  // For case if $nas_panes_engagement_cards_get_cards was already defined. We
+  // need to keep those variables separately to be able to add manual override
+  // cards.
+  $nodes = $nas_panes_engagement_cards_get_cards;
+  nas_panes_engagemanet_cards_manual($data, $nodes);
+  nas_panes_engagemanet_cards_cut_paste_cards($sidebar, $number_of_cards, $all_nodes_positioned, $nodes);
+  return $nodes;
+}
+
+/**
+ * Manage matching cards, remove/add them if needed.
+ */
+function nas_panes_engagemanet_cards_cut_paste_cards($sidebar, $number_of_cards, $all_nodes_positioned, &$nodes) {
+  if ($sidebar) {
+    // Cut nodequeue array to take 4th element firstly in case nothing matches.
+    $all_nodes_positioned = array_slice($all_nodes_positioned, 3, count($all_nodes_positioned) - 3, TRUE);
+  }
+  // Add or cut cards if needed.
+  if (count($nodes) < $number_of_cards) {
+    foreach ($all_nodes_positioned as $node) {
+      $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+      if ($number_of_cards == count($nodes)) {
+        break;
+      }
+    }
+  }
   else {
-    // Check if we have loaded cards from Campaign
-    // and pass 2,3,4 cards for footer.
-    if (!empty($nodes) && count($nodes) == 4) {
-      $nodes = array_slice($nodes, 1, 3);
+    $nodes = array_slice($nodes, 0, $number_of_cards, TRUE);
+  }
+  $nas_panes_engagement_cards_get_cards = &drupal_static('nas_panes_engagement_cards_get_cards', array());
+  // Remove already added cards from static queue.
+  foreach ($nodes as $key => $node) {
+    unset($nas_panes_engagement_cards_get_cards[$key]);
+  }
+}
+
+/**
+ * Main function to handle order of searching matching engagement cards.
+ */
+function nas_panes_engagemanet_cards_prioritize(&$priority) {
+  foreach ($priority as &$parameters) {
+    $function_name = 'nas_panes_engagemanet_cards_' . $parameters['function_name'];
+    if (function_exists($function_name)) {
+      call_user_func_array($function_name, array(&$parameters));
     }
-    else {
-      $nodes = array();
+  }
+}
+
+/**
+ * Search engagement cards matches campaign.
+ */
+function nas_panes_engagemanet_cards_campaign(&$arguments) {
+  $nodes = &$arguments['nodes'];
+  if (!empty($nodes) && isset($nodes[0])) {
+    $nodes = array($nodes[0]);
+    // Pass to js special var for unchecking First Time Visitors.
+    drupal_add_js(array(
+      'nas_panes' => array(
+        'ignore_first_time_visitor' => TRUE,
+      ),
+    ), 'setting'
+    );
+  }
+}
+
+/**
+ * Search engagement cards matches for manual override in panels.
+ */
+function nas_panes_engagemanet_cards_manual($data, &$nodes) {
+  if (!isset($data['references'])) {
+    return;
+  }
+  foreach ($data['references'] as $value) {
+    if (empty($value['entity_reference']['entity_id']) || !$node = _i18n_node_load($value['entity_reference']['entity_id'])) {
+      continue;
     }
-    // Manual override.
-    if (empty($nodes) && isset($data['references'])) {
-      foreach ($data['references'] as $value) {
-        $node = !empty($value['entity_reference']['entity_id']) ? _i18n_node_load($value['entity_reference']['entity_id']) : FALSE;
-        if ($node && $node->status === '1') {
-          $nodes[nodequeue_subqueue_position(1, $value['entity_reference']['entity_id'])] = $node;
+    if ($node->status == NODE_PUBLISHED) {
+      $nodes = array(nodequeue_subqueue_position(1, $value['entity_reference']['entity_id']) => $node) + $nodes;
+    }
+  }
+}
+
+/**
+ * For BIRD content type only.
+ */
+function nas_panes_engagemanet_cards_ct_bird($arguments) {
+  $field = $arguments['field'];
+  $context_node = $arguments['context_node'];
+  $all_nodes_positioned = $arguments['all_nodes_positioned'];
+  $nodes = &$arguments['nodes'];
+  if (empty($context_node)) {
+    return;
+  }
+  foreach ($all_nodes_positioned as $node) {
+    if (!$node->{$field} || !$field_items = field_get_items('node', $node, $field)) {
+      continue;
+    }
+    foreach ($field_items as $value) {
+      if ($value['target_id'] == $context_node->nid) {
+        $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+      }
+    }
+  }
+}
+
+/**
+ * Search engagement cards that matches provided field.
+ */
+function nas_panes_engagemanet_cards_n_fields(&$arguments) {
+  $field = $arguments['field'];
+  $field_key = $arguments['field_key'];
+  $context_node = $arguments['context_node'];
+  $all_nodes_positioned = $arguments['all_nodes_positioned'];
+  $nodes = &$arguments['nodes'];
+  if (empty($context_node) || empty($context_node->{$field}) || !$context_field_items = field_get_items('node', $context_node, $field)) {
+    return;
+  }
+  if ($field == "field_menu_section"
+    && count($context_field_items) > 1
+    && !empty($arguments['single_item'])
+    && $arguments['single_item'] == 'last'
+  ) {
+    end($context_field_items);
+    $context_field_items = array(current($context_field_items));
+  }
+  foreach ($all_nodes_positioned as $card) {
+    if (!$card->{$field} || !$card_field_items = field_get_items('node', $card, $field)) {
+      continue;
+    }
+    foreach ($card_field_items as $value) {
+      foreach ($context_field_items as $context_value) {
+        if ($context_value[$field_key] == $value[$field_key]) {
+          $nodes[nodequeue_subqueue_position(1, $card->nid)] = $card;
         }
       }
     }
-    // Load first 3 from nodequeue if manual override was not provided.
-    if (empty($nodes)) {
-      $nodes = array_slice($all_nodes_positioned, 0, 3, TRUE);
-    }
-    $cards_array['nodes'] = $nodes;
   }
-
-  return $cards_array;
 }
 
 /**

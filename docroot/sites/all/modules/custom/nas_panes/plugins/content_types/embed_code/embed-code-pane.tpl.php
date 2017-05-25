@@ -16,7 +16,7 @@
   <?php if (!empty($title)) : ?>
     <div class="row">
       <div class="column">
-        <h2 class="thin centered"><?php print $title; ?></h2>
+        <h2 class="thin"><?php print $title; ?></h2>
       </div>
     </div>
   <?php endif; ?>

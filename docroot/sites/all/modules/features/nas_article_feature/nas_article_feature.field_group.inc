@@ -100,6 +100,7 @@ function nas_article_feature_field_group_info() {
       6 => 'field_conservation_project',
       7 => 'field_is_this_a_press_release_',
       8 => 'field_related',
+      9 => 'field_conservation_strategy',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
