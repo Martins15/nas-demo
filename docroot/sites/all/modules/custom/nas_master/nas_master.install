@@ -4178,13 +4178,34 @@ function nas_master_update_7285() {
  * Turn off auto-add engagement cards to nodequeue.
  */
 function nas_master_update_7286() {
-  // qid of engagement_cards from table 'nodequeue_queue'.
+  // Qid of engagement_cards from table 'nodequeue_queue'.
   $qid = 1;
   $form_state = array(
     'values' => array(
       'qid' => $qid,
       'auto_add' => 0,
-    )
+    ),
   );
   auto_nodequeue_nodequeue_edit_queue_form_submit(array(), $form_state);
+}
+
+/**
+ * Revert content types: article and static page and nas_view.
+ */
+function nas_master_update_7287() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'field_group',
+      'variable',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'field_group',
+      'variable',
+    ),
+    'nas_view_feature' => array(
+      'views_view',
+    ),
+  ));
 }
