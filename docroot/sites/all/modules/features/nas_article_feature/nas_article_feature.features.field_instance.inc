@@ -146,6 +146,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'module' => 'amp',
+        'settings' => array(),
+        'type' => 'amp_text',
+        'weight' => 4,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -380,6 +387,19 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'nas_date',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 3,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'date',
@@ -631,6 +651,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -809,6 +835,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 18,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -1017,6 +1049,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'If this field is filled instead of displaying the node, user will be redirected to specified url. Please include "http://" at the start for external websites.',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1183,6 +1221,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Can be left empty if Press Release panelizer is applied',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -1384,6 +1428,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image. (Applies for fullscreen image layout)',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'list',
@@ -1561,6 +1611,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -1746,6 +1802,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1893,6 +1955,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 28,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2073,6 +2141,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -2258,6 +2332,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 30,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2437,6 +2517,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 27,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2644,6 +2730,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 29,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2823,6 +2915,18 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'module' => 'amp',
+        'settings' => array(
+          'amp_fixed_height' => 300,
+          'amp_layout' => 'responsive',
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'amp_image',
+        'weight' => 1,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3053,6 +3157,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 31,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3200,6 +3310,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 25,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3378,6 +3494,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 24,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3555,6 +3677,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 26,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -3724,6 +3852,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -3910,6 +4044,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'mediafield',
@@ -4203,6 +4343,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 33,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -4408,6 +4554,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'For internal use only',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -4592,6 +4744,13 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'To be used when building a link to the node. For example in Editorial Card.',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'module' => 'amp',
+        'settings' => array(),
+        'type' => 'amp_text',
+        'weight' => 2,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -4801,6 +4960,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Adds magazine issue information tab on article view page',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -4998,6 +5163,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'If multiple menu sections are selected, the section at the bottom of the list will appear in the blue slug link above the headline.',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'taxonomy',
@@ -5189,6 +5360,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -5386,6 +5563,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 32,
+      ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -5535,6 +5718,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -5732,6 +5921,12 @@ function nas_article_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
         'module' => 'text',

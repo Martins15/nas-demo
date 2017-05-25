@@ -4209,3 +4209,40 @@ function nas_master_update_7287() {
     ),
   ));
 }
+
+/**
+ * Enable AMPTheme theme.
+ */
+function nas_master_update_7288() {
+  theme_enable(array(
+    'amptheme',
+    'nas_amp',
+  ));
+}
+
+/**
+ * Enable AMP module.
+ */
+function nas_master_update_7289() {
+  module_enable(array(
+    'amp',
+    'nas_amp_feature',
+  ));
+}
+
+/**
+ * Revert Metatags, Article and Static Page features.
+ */
+function nas_master_update_7290() {
+  features_revert(array(
+    'nas_metatags_feature' => array('metatag'),
+    'nas_article_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+  ));
+}
