@@ -132,9 +132,10 @@ function theme_nas_panels_ipe_theme_panels_ipe_toolbar($vars) {
   if (empty($buttons)) {
     return '';
   }
-
+  ctools_include('cleanstring');
   $output = "<div id='panels-ipe-control-container' class='clearfix'>";
   foreach ($buttons as $key => $ipe_buttons) {
+    $key = ctools_cleanstring($key);
     $output .= "<div id='panels-ipe-control-$key' class='panels-ipe-control'>";
 
     // Controls in this container will appear when the IPE is not on.
