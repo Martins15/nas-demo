@@ -5820,6 +5820,7 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 
 @media only screen {
   .mailing-list {
+    margin-top: 25px;
     text-align: center;
   }
 
