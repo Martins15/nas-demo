@@ -16821,6 +16821,7 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   height: 60px;
   padding: 0 20px;
   width: 99.9%;
+  white-space: nowrap;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label .progress-start {
   float: left;
@@ -16830,6 +16831,11 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: inline-block;
   white-space: pre-line;
   overflow: hidden;
+}
+@media only screen and (max-width: 600px) {
+  .progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-start {
+    display: none;
+  }
 }
 .progress-bar-wrapper .progress-bar-content .progress-finish {
   position: absolute;

@@ -30,6 +30,7 @@
         height: 60px;
         padding: 0 20px;
         width: 99.9%;
+        white-space: nowrap;
 
         .progress-start {
           float: left;
@@ -39,6 +40,13 @@
           display: inline-block;
           white-space: pre-line;
           overflow: hidden;
+        }
+      }
+      @include breakpoint(max-width, #{upper-bound($small-range)}) {
+        &.progress-low {
+          .progress-start {
+            display: none;
+          }
         }
       }
     }
