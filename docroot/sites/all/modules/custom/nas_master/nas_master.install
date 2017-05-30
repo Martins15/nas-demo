@@ -4209,3 +4209,10 @@ function nas_master_update_7287() {
     ),
   ));
 }
+
+/**
+ * Enable webform_validation module.
+ */
+function nas_master_update_7288() {
+  module_enable(array('webform_validation'));
+}
