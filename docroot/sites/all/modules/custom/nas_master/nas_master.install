@@ -4209,3 +4209,10 @@ function nas_master_update_7287() {
     ),
   ));
 }
+
+/**
+ * Revert nas_news feature with .
+ */
+function nas_master_update_7288() {
+  features_revert(array('nas_news' => array('views_view')));
+}
