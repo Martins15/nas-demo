@@ -133,6 +133,9 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
     }
   }
 
+  // Adds progress-low class if $percentage less 25%.
+  $progress_low_class = ($percentage < 60) ? ' progress-low' : '';
+
   // Adds paddings for pane.
   if (empty($config['paddings'])) {
     $config['paddings'] = '';
@@ -152,6 +155,7 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
     'current_status' => _progress_bar_block_change_number($current_status, $current_status_number),
     'goal_number' => _progress_bar_block_change_number($config['goal_number'], $goal_number),
     'percentage' => $percentage,
+    'progress_low_class' => $progress_low_class,
     'spacetop' => $config['paddings']['top'],
     'spacebetween' => $config['paddings']['between'],
     'spacebottom' => $spacebottom,
@@ -171,6 +175,7 @@ function progress_bar_block_theme(&$theme, $plugin) {
       'current_status' => NULL,
       'goal_number' => NULL,
       'percentage' => NULL,
+      'progress_low_class' => NULL,
       'spacetop' => NULL,
       'spacebetween' => NULL,
       'spacebottom' => NULL,

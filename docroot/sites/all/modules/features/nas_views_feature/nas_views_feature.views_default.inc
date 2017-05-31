@@ -1412,6 +1412,15 @@ function nas_views_feature_views_default_views() {
   $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['tid']['break_phrase'] = TRUE;
+  /* Contextual filter: Content: Conservation Strategy (field_conservation_strategy) */
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['id'] = 'field_conservation_strategy_target_id';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['table'] = 'field_data_field_conservation_strategy';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['field'] = 'field_conservation_strategy_target_id';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_conservation_strategy_target_id']['break_phrase'] = TRUE;
 
   /* Display: Articles listing (bot) */
   $handler = $view->new_display('panel_pane', 'Articles listing (bot)', 'articles_list_bot');
