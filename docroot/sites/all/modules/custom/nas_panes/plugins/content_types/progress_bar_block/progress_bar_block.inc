@@ -134,7 +134,7 @@ function progress_bar_block_render($subtype, $conf, $args, $context) {
   }
 
   // Adds progress-low class if $percentage less 25%.
-  $progress_low_class = ($percentage < 25) ? ' progress-low' : '';
+  $progress_low_class = ($percentage < 60) ? ' progress-low' : '';
 
   // Adds paddings for pane.
   if (empty($config['paddings'])) {

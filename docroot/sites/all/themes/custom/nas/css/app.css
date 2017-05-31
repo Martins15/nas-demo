@@ -16817,24 +16817,41 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   max-width: 100%;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label {
+  border-radius: 30px;
   display: block;
   height: 60px;
-  padding: 0 20px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
   width: 99.9%;
   white-space: nowrap;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label .progress-start {
   float: left;
-  padding-right: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .progress-bar-wrapper .progress-bar-content .progress .progress-label .progress-current {
   display: inline-block;
   white-space: pre-line;
   overflow: hidden;
+  text-align: center;
+  padding: 0 20px;
+  position: absolute;
+  right: 0;
+  max-width: 100%;
+  width: 100%;
+}
+.progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-current {
+  background: #7BA701;
+  width: auto;
 }
 @media only screen and (max-width: 600px) {
   .progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-start {
     display: none;
+  }
+  .progress-bar-wrapper .progress-bar-content .progress.progress-low .progress-current {
+    width: 100%;
   }
 }
 .progress-bar-wrapper .progress-bar-content .progress-finish {

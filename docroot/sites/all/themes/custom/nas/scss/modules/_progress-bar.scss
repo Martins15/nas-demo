@@ -26,26 +26,46 @@
       max-width: 100%;
 
       .progress-label {
+        border-radius: 30px;
         display: block;
         height: 60px;
-        padding: 0 20px;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
         width: 99.9%;
         white-space: nowrap;
 
         .progress-start {
           float: left;
-          padding-right: 15px;
+          padding-left: 20px;
+          padding-right: 20px;
         }
         .progress-current {
           display: inline-block;
           white-space: pre-line;
           overflow: hidden;
+          text-align: center;
+          padding: 0 20px;
+          position: absolute;
+          right: 0;
+          max-width: 100%;
+          width: 100%;
         }
       }
+      &.progress-low {
+        .progress-current {
+          background: $color-pea-green;
+          width: auto;
+        }
+      }
+
       @include breakpoint(max-width, #{upper-bound($small-range)}) {
         &.progress-low {
           .progress-start {
             display: none;
+          }
+          .progress-current {
+            width: 100%;
           }
         }
       }
