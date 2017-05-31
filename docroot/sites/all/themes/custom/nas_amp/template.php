@@ -3,7 +3,7 @@
 /**
  * Implements hook_preprocess().
  */
-function nas_amp_preprocess(&$vars, $hook) {
+function nas_amp_preprocess(&$vars) {
   unset($vars['amptheme_path_file']);
   $vars['nas_amp_path_file'] = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'nas_amp');
 }
@@ -38,4 +38,20 @@ function nas_amp_page_alter(&$page) {
   if (isset($page['page_bottom']['admin_menu'])) {
     unset($page['page_bottom']['admin_menu']);
   }
+}
+
+/**
+ * Implements template_image_style().
+ */
+function nas_amp_image_style($variables) {
+  $styled_path = image_style_path('hero_mobile', $variables['path']);
+  if (!file_exists($styled_path)) {
+    $style = image_style_load('hero_mobile');
+    image_style_create_derivative($style, $variables['path'], $styled_path);
+  }
+  $variables['path'] = $styled_path;
+  list($width, $height, $type, $attributes) = @getimagesize($styled_path);
+  $variables['width'] = $width;
+  $variables['height'] = $height;
+  return theme('image', $variables);
 }
