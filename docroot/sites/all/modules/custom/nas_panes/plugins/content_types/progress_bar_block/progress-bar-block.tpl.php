@@ -25,7 +25,7 @@
   <div class="row<?php print $spacebetween ? ' space-top' : ''; ?>">
     <div class="column">
       <div class="progress-bar-content">
-        <div class="progress" style="width:<?php print $percentage; ?>%">
+        <div class="progress<?php print $progress_low_class;?>" style="width:<?php print $percentage; ?>%">
           <span class="progress-label">
             <span class="progress-start"><?php print $starting_point; ?></span>
             <span class="progress-current"><?php print $current_status; ?></span>
