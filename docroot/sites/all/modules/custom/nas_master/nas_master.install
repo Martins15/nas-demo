@@ -4211,9 +4211,16 @@ function nas_master_update_7287() {
 }
 
 /**
- * Enable AMPTheme theme.
+ * Revert nas_news feature with .
  */
 function nas_master_update_7288() {
+  features_revert(array('nas_news' => array('views_view')));
+}
+
+/**
+ * Enable AMPTheme theme.
+ */
+function nas_master_update_7289() {
   theme_enable(array(
     'amptheme',
     'nas_amp',
@@ -4223,7 +4230,7 @@ function nas_master_update_7288() {
 /**
  * Enable AMP module.
  */
-function nas_master_update_7289() {
+function nas_master_update_7290() {
   module_enable(array(
     'amp',
     'nas_amp_feature',
@@ -4233,7 +4240,7 @@ function nas_master_update_7289() {
 /**
  * Revert Metatags, Article and Static Page features.
  */
-function nas_master_update_7290() {
+function nas_master_update_7291() {
   features_revert(array(
     'nas_metatags_feature' => array('metatag'),
     'nas_article_feature' => array(

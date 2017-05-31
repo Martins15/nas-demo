@@ -1592,7 +1592,19 @@ function nas_panes_engagement_cards_get_cards($subtype, array $data, $number_of_
       'all_nodes_positioned' => $all_nodes_positioned,
       'nodes' => &$nodes
     );
-    // Check if menu section matches.
+    // Check if menu section matches. Check only last this time because it has
+    // more priority on others.
+    $cards_priority[] = array(
+      'function_name' => 'n_fields',
+      'field' => 'field_menu_section',
+      'field_key' => 'tid',
+      'context_node' => $context_node,
+      'all_nodes_positioned' => $all_nodes_positioned,
+      'nodes' => &$nodes,
+      'single_item' => 'last'
+    );
+    // Check if menu section matches. Check all items, last will be checked too
+    // but will not fall into order cause it will br present there already.
     $cards_priority[] = array(
       'function_name' => 'n_fields',
       'field' => 'field_menu_section',
@@ -1719,19 +1731,25 @@ function nas_panes_engagemanet_cards_n_fields(&$arguments) {
   $context_node = $arguments['context_node'];
   $all_nodes_positioned = $arguments['all_nodes_positioned'];
   $nodes = &$arguments['nodes'];
-  if (empty($context_node)) {
+  if (empty($context_node) || empty($context_node->{$field}) || !$context_field_items = field_get_items('node', $context_node, $field)) {
     return;
   }
-  foreach ($all_nodes_positioned as $node) {
-    if ((!$node->{$field} || !$field_items = field_get_items('node', $node, $field)) ||
-      (empty($context_node->{$field}) || !$context_field_items = field_get_items('node', $context_node, $field))
-    ) {
+  if ($field == "field_menu_section"
+    && count($context_field_items) > 1
+    && !empty($arguments['single_item'])
+    && $arguments['single_item'] == 'last'
+  ) {
+    end($context_field_items);
+    $context_field_items = array(current($context_field_items));
+  }
+  foreach ($all_nodes_positioned as $card) {
+    if (!$card->{$field} || !$card_field_items = field_get_items('node', $card, $field)) {
       continue;
     }
-    foreach ($field_items as $value) {
+    foreach ($card_field_items as $value) {
       foreach ($context_field_items as $context_value) {
         if ($context_value[$field_key] == $value[$field_key]) {
-          $nodes[nodequeue_subqueue_position(1, $node->nid)] = $node;
+          $nodes[nodequeue_subqueue_position(1, $card->nid)] = $card;
         }
       }
     }
@@ -2713,6 +2731,7 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
   if ($info['type'] == 'content_types' && $plugin['name'] == 'custom') {
     // Adding form_build_id to use it for "NAS-style" contextual link.
     $plugin['defaults']['form_build_id'] = '';
+    unset($plugin['no title override']);
     $plugin['render callback'] = '_nas_panes_ctools_custom_content_type_render';
     $plugin['hook theme'] = '_nas_panes_ctools_custom_content_type_theme';
   }
@@ -2723,6 +2742,13 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
  */
 function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  // Add check if not exist override_title add to pane override_title.
+  if (!isset($conf['override_title'])) {
+    $conf['override_title'] = 1;
+    $conf['override_title_text'] = $conf['title'];
+    $conf['override_title_heading'] = 'h2';
+  }
 
   $block = ctools_custom_content_type_render($subtype, $conf, $args, $contexts);
   $block->content = array(
