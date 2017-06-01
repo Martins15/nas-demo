@@ -19,6 +19,7 @@ $plugin = array(
     'filter' => array(
       'menu_section' => '',
       'editorial_section' => array(),
+      'sort_by' => 'date',
     ),
     'more_link_text' => '',
     'more_link_url' => '',
@@ -96,6 +97,15 @@ function editorial_grid_edit_form($form, &$form_state) {
     '#era_cardinality' => -1,
     '#states' => $filter_state,
   );
+  $form['filter']['sort_by'] = array(
+    '#type' => 'select',
+    '#title' => t('Sort by'),
+    '#options' => array(
+      'date' => t('Date'),
+      'title' => t('Title'),
+    ),
+    '#default_value' => $conf['filter']['sort_by'],
+  );
   $form['show_search'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show search'),
@@ -166,12 +176,14 @@ function editorial_grid_render($subtype, $conf, $args, $context) {
   if (!empty($conf['more_link_text']) && !empty($conf['more_link_url'])) {
     $more_link = l($conf['more_link_text'], $conf['more_link_url']);
   }
+  // Check if sort_by index issset or add default data.
+  $view_sort_by = isset($conf['filter']['sort_by']) ? $conf['filter']['sort_by'] : 'date';
 
   $args = array();
   _editorial_grid_get_view_args($args, array(
     'menu_section',
     'editorial_section',
-    'internal_tagging'
+    'internal_tagging',
   ), $context, $conf);
 
   $view = views_get_view('nas_editorial_grid');
@@ -185,6 +197,11 @@ function editorial_grid_render($subtype, $conf, $args, $context) {
   $pager = $view->display_handler->get_option('pager');
   $pager['type'] = 'none';
   $view->display_handler->set_option('pager', $pager);
+  // Sort by title.
+  if ($view_sort_by == 'title') {
+    $view->set_item('default', 'sort', 'field_article_date', NULL);
+    $view->add_item('default', 'sort', 'search_api_index_default_node_index', 'title_string', array('order' => 'ASC'));
+  }
   $view->pre_execute($args);
   $view->execute();
   $content = $view->render();

@@ -58,6 +58,7 @@
 
 @include breakpoint(tiny-up) {
   .mailing-list {
+    margin-top: 25px;
     text-align: center;
   }
   .mailing-list-form {
