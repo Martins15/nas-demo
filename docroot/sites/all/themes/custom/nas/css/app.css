@@ -16612,6 +16612,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   display: none !important;
 }
 
+.cke_editable_themed p {
+  margin-bottom: 25.5px;
+}
+
 .social-bar {
   position: relative;
   background-color: #FBFAF6;
