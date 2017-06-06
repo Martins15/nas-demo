@@ -2922,7 +2922,7 @@ function nas_article_feature_field_default_field_instances() {
           'amp_fixed_height' => 300,
           'amp_layout' => 'responsive',
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'social_media_photo',
         ),
         'type' => 'amp_image',
         'weight' => 1,
