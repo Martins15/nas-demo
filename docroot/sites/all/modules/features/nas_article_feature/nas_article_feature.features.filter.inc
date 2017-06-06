@@ -16,7 +16,7 @@ function nas_article_feature_filter_default_formats() {
     'name' => 'Map',
     'cache' => 1,
     'status' => 1,
-    'weight' => -8,
+    'weight' => -9,
     'filters' => array(
       'filter_html' => array(
         'weight' => -10,

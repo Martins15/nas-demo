@@ -1440,6 +1440,10 @@ function nas_preprocess_panels_pane(&$vars) {
   // Add default nas class for title for custom type pane.
   if ($vars['pane']->type == 'custom' && $vars['pane']->subtype == 'custom') {
     $vars['title_attributes_array']['class'][] = 'thin';
+    if (isset($vars['content']['#left_margin']) && $vars['content']['#left_margin'] > 0) {
+      $vars['title_prefix'] = '<div class="row"><div class="column">';
+      $vars['title_suffix'] = '</div></div>';
+    }
   }
 }
 

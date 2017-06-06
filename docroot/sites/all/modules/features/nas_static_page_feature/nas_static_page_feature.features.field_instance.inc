@@ -17,6 +17,13 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'module' => 'amp',
+        'settings' => array(),
+        'type' => 'amp_text',
+        'weight' => 1,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -186,6 +193,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -315,6 +328,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -438,6 +457,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -568,6 +593,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'image',
@@ -780,6 +811,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -936,6 +973,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'text',
@@ -1093,6 +1136,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'file',
@@ -1236,6 +1285,15 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'module' => 'mediafield',
+        'settings' => array(
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'media',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -1430,6 +1488,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'mediafield',
@@ -1610,6 +1674,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1800,6 +1870,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
@@ -1928,6 +2004,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -2056,6 +2138,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'default' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2187,6 +2275,12 @@ function nas_static_page_feature_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'amp' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
