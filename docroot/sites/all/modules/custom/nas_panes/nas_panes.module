@@ -2731,6 +2731,7 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
   if ($info['type'] == 'content_types' && $plugin['name'] == 'custom') {
     // Adding form_build_id to use it for "NAS-style" contextual link.
     $plugin['defaults']['form_build_id'] = '';
+    unset($plugin['no title override']);
     $plugin['render callback'] = '_nas_panes_ctools_custom_content_type_render';
     $plugin['hook theme'] = '_nas_panes_ctools_custom_content_type_theme';
   }
@@ -2741,6 +2742,13 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
  */
 function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
+
+  // Add check if not exist override_title add to pane override_title.
+  if (!isset($conf['override_title'])) {
+    $conf['override_title'] = 1;
+    $conf['override_title_text'] = $conf['title'];
+    $conf['override_title_heading'] = 'h2';
+  }
 
   $block = ctools_custom_content_type_render($subtype, $conf, $args, $contexts);
   $block->content = array(

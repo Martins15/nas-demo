@@ -1437,6 +1437,10 @@ function nas_preprocess_panels_pane(&$vars) {
       $vars['content'] = array($hero_image, $hero_mobile_image);
     }
   }
+  // Add default nas class for title for custom type pane.
+  if ($vars['pane']->type == 'custom' && $vars['pane']->subtype == 'custom') {
+    $vars['title_attributes_array']['class'][] = 'thin';
+  }
 }
 
 /**
