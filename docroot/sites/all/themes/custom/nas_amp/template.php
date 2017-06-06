@@ -39,19 +39,3 @@ function nas_amp_page_alter(&$page) {
     unset($page['page_bottom']['admin_menu']);
   }
 }
-
-/**
- * Implements template_image_style().
- */
-function nas_amp_image_style($variables) {
-  $styled_path = image_style_path('hero_mobile', $variables['path']);
-  if (!file_exists($styled_path)) {
-    $style = image_style_load('hero_mobile');
-    image_style_create_derivative($style, $variables['path'], $styled_path);
-  }
-  $variables['path'] = $styled_path;
-  list($width, $height, $type, $attributes) = @getimagesize($styled_path);
-  $variables['width'] = $width;
-  $variables['height'] = $height;
-  return theme('image', $variables);
-}
