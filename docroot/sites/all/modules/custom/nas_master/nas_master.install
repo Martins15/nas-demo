@@ -4194,19 +4194,13 @@ function nas_master_update_7287() {
 /**
  * Revert nas_file_entity.
  */
-function nas_master_update_7288() {
-  module_load_include('inc', 'nas_file_entity', 'nas_file_entity.file_default_displays');
-  $file_displays = nas_file_entity_file_default_displays();
-  foreach ($file_displays as $file_display) {
-    if (strpos($file_display->name, 'nas_wysiwyg_image') !== FALSE) {
-      db_merge('file_display')
-        ->key(array('name' => $file_display->name))
-        ->fields(array(
-          'weight' => $file_display->weight,
-          'settings' => serialize($file_display->settings),
-          'status' => (int) $file_display->status,
-        ))
-        ->execute();
-    }
-  }
+function nas_master_update_7289() {
+  features_revert(array(
+    'nas_file_entity' => array(
+      'file_display',
+    ),
+    'nas_view_modes_feature' => array(
+      'file_display',
+    ),
+  ));
 }
