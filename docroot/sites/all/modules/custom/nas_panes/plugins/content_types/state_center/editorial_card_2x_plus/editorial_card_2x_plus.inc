@@ -258,7 +258,7 @@ function editorial_card_2x_plus_render($subtype, $conf, $args, $context) {
  *   Rendered HTML result.
  */
 function _editorial_card_2x_plus_render_engagement_helper($node) {
-  $build = node_view($node, 'teaser');
+  $build = node_view($node);
   return '<div class="columns large-4">' . drupal_render($build) . '</div>';
 }
 

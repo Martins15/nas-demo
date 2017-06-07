@@ -5820,7 +5820,8 @@ a:last-child .editorial-card-title, .editorial-card-title.no-margin {
 
 @media only screen {
   .mailing-list {
-    margin-top: 25px;
+    position: relative;
+    z-index: 5;
     text-align: center;
   }
 
@@ -16609,6 +16610,10 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .panels-ipe-display-container .contextual-links-wrapper {
   display: none !important;
+}
+
+.cke_editable_themed p {
+  margin-bottom: 25.5px;
 }
 
 .social-bar {

@@ -1,0 +1,13 @@
+name = NAS AMP Subtheme
+description = The ExAMPle subtheme sets custom styles on AMP pages.
+package = Custom
+core = 7.x
+base theme = amptheme
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[header]  = 'Header'
+regions[content] = 'Content'
+regions[footer]  = 'Footer'
