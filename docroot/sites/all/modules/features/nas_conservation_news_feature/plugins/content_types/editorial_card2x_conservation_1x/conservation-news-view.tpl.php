@@ -29,9 +29,9 @@
               </a>
             </li>
           <?php endforeach; ?>
-          <?php if ($more_link): ?>
+          <?php if ($filter_more_link): ?>
             <li>
-              <?php print $more_link; ?>
+              <?php print $filter_more_link; ?>
             </li>
           <?php endif; ?>
         </ul>
