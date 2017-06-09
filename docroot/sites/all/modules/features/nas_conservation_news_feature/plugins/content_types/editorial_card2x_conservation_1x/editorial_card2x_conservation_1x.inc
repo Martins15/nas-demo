@@ -144,16 +144,15 @@ function editorial2_conservation1_render($subtype, $conf, $args, $context) {
   foreach ($config['references'] as $reference) {
     if (
       !empty($reference['entity_reference']['entity_id']) &&
-      $node = node_load($reference['entity_reference']['entity_id'])
+      ($node = node_load($reference['entity_reference']['entity_id'])) &&
+      $node->status == NODE_PUBLISHED
     ) {
       $build = node_view($node, 'editorial_card_3x');
       $teasers[] = drupal_render($build);
     }
   }
 
-
   $views_block = array(
-//    '#theme' => 'conservation_news_view',
     'attached' => array(
       'js' => array(
         drupal_get_path('module', 'nas_conservation_news_feature') . '/plugins/content_types/editorial_card2x_conservation_1x/editorial_card2x_conservation_1x.js'

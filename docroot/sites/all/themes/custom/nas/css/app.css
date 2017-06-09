@@ -6751,6 +6751,22 @@ table.row-borders tbody td {
   cursor: pointer;
 }
 
+.editorial-card-2x-conservation-news-block .conservation-news-column h4 {
+  margin-bottom: 12.5px;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .editorial-card {
+  border: none;
+  box-shadow: none;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .view-conservation-news {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .view-conservation-news .views-row {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  line-height: 20px;
+}
+
 .view-conservation-news-filter {
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -6776,15 +6792,8 @@ table.row-borders tbody td {
   color: #07729a;
 }
 
-.view-conservation-news {
-  font-family: "Source Sans Pro", Verdana, sans-serif;
-}
-.view-conservation-news .views-field {
-  font-size: 14px;
-}
-.view-conservation-news .views-field p {
-  margin-bottom: 0;
-  display: inherit;
+.view-conservation-news .date-display-single:after {
+  content: ":";
 }
 .view-conservation-news .views-field-field-conservation-news-date {
   font-weight: 600;
@@ -6799,15 +6808,22 @@ table.row-borders tbody td {
 .view-conservation-news .views-field-body .field-content {
   display: inherit;
 }
+.view-conservation-news .views-field-field-conservation-news-link .field-content p,
+.view-conservation-news .views-field-field-conservation-news-date .field-content p,
+.view-conservation-news .views-field-body .field-content p {
+  margin-bottom: 0;
+  display: inherit;
+}
 .view-conservation-news .pager {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  height: 50px;
   list-style: none;
   margin-left: 0;
   position: relative;
-  height: 50px;
 }
 .view-conservation-news .pager li {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   font-size: 15px;
 }
 .view-conservation-news .pager .pager-previous {
@@ -6820,54 +6836,71 @@ table.row-borders tbody td {
   display: none;
 }
 
-.view-conservation-news-views-list {
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list {
   position: relative;
 }
-.view-conservation-news-views-list .view {
-  float: left;
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list .view {
+  display: none;
 }
-
-.conservation-news-title {
-  line-height: 1.3;
-}
-
-.conservation-news-image {
-  width: 55px;
-  float: left;
-}
-
-.conservation-news-icon {
-  margin: auto;
+.editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view {
   display: block;
 }
-
-.conservation-news-heading + div {
-  font: italic 22px "Source Sans Pro", Verdana, sans-serif;
+.editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view.hidden {
+  display: none;
 }
 
 .conservation-menu-jump-menu {
   margin-bottom: 37.5px;
   font: 20px "Source Sans Pro", Verdana, sans-serif;
-  line-height: 1;
+  line-height: 27px;
 }
 .conservation-menu-jump-menu .jump-to {
   float: left;
   line-height: inherit;
+  padding-right: 0.2em;
 }
 .conservation-menu-jump-menu .jump-to-menu {
   margin: 0;
 }
 .conservation-menu-jump-menu .jump-to-item {
   display: inline-block;
-  border-right: 1px solid #404040;
-  padding: 0 5px;
+  padding-right: 0.2em;
+}
+.conservation-menu-jump-menu .jump-to-item:after {
+  content: " | ";
+  color: #404040;
 }
 .conservation-menu-jump-menu .jump-to-item:last-child {
   border-right: none;
 }
+.conservation-menu-jump-menu .jump-to-item:last-child:after {
+  content: "";
+}
 
-.hidden {
-  display: none;
+.conservation-news-block .conservation-news-title {
+  line-height: 1.3;
+}
+.conservation-news-block .conservation-news-image {
+  float: left;
+  margin-right: 15px;
+  width: 40px;
+}
+.conservation-news-block .conservation-news-icon {
+  margin: auto;
+  display: block;
+  height: auto;
+}
+.conservation-news-block .conservation-news-heading + div {
+  font: italic 22px "Source Sans Pro", Verdana, sans-serif;
+}
+.conservation-news-block .view-conservation-news .views-row {
+  margin-bottom: 2em;
+}
+.conservation-news-block .view-conservation-news .pager {
+  height: 25px;
+}
+.conservation-news-block .view-conservation-news .pager li {
+  font-size: 16px;
 }
 
 /* @todo refactor like crazy for more hero variations */

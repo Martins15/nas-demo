@@ -12,8 +12,9 @@
  */
 ?>
 
-<div class="columns large-4">
-  <div data-equalizer-watch>
+<div class="columns large-4 conservation-news-column">
+  <div class="editorial-card" data-equalizer-watch>
+    <h4>Conservation News</h4>
     <?php if ($terms): ?>
       <div class="view-conservation-news-filter">
         <?php if ($filter_title): ?>
@@ -21,12 +22,13 @@
         <?php endif; ?>
         <ul class="filter-items">
           <?php foreach ($terms as $term): ?>
-            <li data-term-id="<?php print $term['term_id']; ?>"
-                class="filter-item">
-              <a href="taxonomy/term/<?php print $term['term_id']; ?>"
-                 title="<?php print $term['term_label']; ?>">
-                <?php print $term['term_label']; ?>
-              </a>
+            <li class="filter-item">
+              <?php print l($term['term_label'], 'taxonomy/term/' . $term['term_id'], array(
+                'attributes' => array(
+                  'title' => $term['term_label'],
+                  'data-term-id' => $term['term_id'],
+                ),
+              )); ?>
             </li>
           <?php endforeach; ?>
           <?php if ($more_link): ?>

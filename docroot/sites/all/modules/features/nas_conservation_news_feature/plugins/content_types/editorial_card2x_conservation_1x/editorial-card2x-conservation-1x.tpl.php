@@ -15,7 +15,7 @@
 ?>
 
 <?php if ($teasers): ?>
-  <div class="editorial-card-3x <?php print $additional_classes; ?> <?php print !empty($space_bottom) ? $space_bottom : ''; ?><?php print $space_top ? ' space-top' : ''; ?>">
+  <div class="editorial-card-3x editorial-card-2x-conservation-news-block <?php print $additional_classes; ?> <?php print !empty($space_bottom) ? $space_bottom : ''; ?><?php print $space_top ? ' space-top' : ''; ?>">
     <?php if ($title || $more_link): ?>
       <div class="row section-header<?php print $space_between ? ' space-bottom' : ''; ?>">
         <?php if ($title): ?>
@@ -33,7 +33,7 @@
       </div>
     <?php endif; ?>
 
-    <div class="row card-set">
+    <div class="row card-set" data-equalizer data-equalizer-mq="large-up">
       <?php foreach ($teasers as $teaser): ?>
         <?php print $teaser; ?>
       <?php endforeach; ?>
