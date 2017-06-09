@@ -4262,11 +4262,20 @@ function nas_master_update_7292() {
 }
 
 /**
+ * Enable NAS Grid Gallery feature.
+ */
+function nas_master_update_7293() {
+  module_enable(array(
+    'nas_grid_gallery_feature',
+  ));
+}
+
+/**
  * Enable conservation news feature.
  *
  * Turn on ability to export taxonomy terms, enable fe_date.
  */
-function nas_master_update_7293() {
+function nas_master_update_7294() {
   $taxonomy_settings = array(
     'conservation_news_tracker' => 'conservation_news_tracker'
   );
