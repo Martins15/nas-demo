@@ -4260,3 +4260,16 @@ function nas_master_update_7291() {
 function nas_master_update_7292() {
   module_enable(array('webform_validation'));
 }
+
+/**
+ * Enable conservation news feature.
+ *
+ * Turn on ability to export taxonomy terms, enable fe_date.
+ */
+function nas_master_update_7293() {
+  $taxonomy_settings = array(
+    'conservation_news_tracker' => 'conservation_news_tracker'
+  );
+  variable_set('uuid_features_entity_taxonomy_term', $taxonomy_settings);
+  module_enable(array('fe_date', 'nas_conservation_news_feature'));
+}

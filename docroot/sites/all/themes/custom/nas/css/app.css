@@ -6751,6 +6751,125 @@ table.row-borders tbody td {
   cursor: pointer;
 }
 
+.view-conservation-news-filter {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.view-conservation-news-filter .filter-label {
+  float: left;
+  color: #838078;
+}
+.view-conservation-news-filter .filter-items {
+  margin: 0;
+}
+.view-conservation-news-filter .filter-items li {
+  display: inline;
+  border-right: 1px solid #404040;
+  padding: 0 5px;
+  cursor: pointer;
+  color: #0AA8E3;
+  transition: color 0.15s;
+}
+.view-conservation-news-filter .filter-items li:last-child {
+  border-right: none;
+}
+.view-conservation-news-filter .filter-items li:hover {
+  color: #07729a;
+}
+
+.view-conservation-news {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.view-conservation-news .views-field {
+  font-size: 14px;
+}
+.view-conservation-news .views-field p {
+  margin-bottom: 0;
+  display: inherit;
+}
+.view-conservation-news .views-field-field-conservation-news-date {
+  font-weight: 600;
+}
+.view-conservation-news .views-field-field-conservation-news-link,
+.view-conservation-news .views-field-field-conservation-news-date,
+.view-conservation-news .views-field-body {
+  display: inline;
+}
+.view-conservation-news .views-field-field-conservation-news-link .field-content,
+.view-conservation-news .views-field-field-conservation-news-date .field-content,
+.view-conservation-news .views-field-body .field-content {
+  display: inherit;
+}
+.view-conservation-news .pager {
+  list-style: none;
+  margin-left: 0;
+  position: relative;
+  height: 50px;
+}
+.view-conservation-news .pager li {
+  position: absolute;
+  bottom: 0;
+  font-size: 15px;
+}
+.view-conservation-news .pager .pager-previous {
+  left: 0;
+}
+.view-conservation-news .pager .pager-next {
+  right: 0;
+}
+.view-conservation-news .pager-current {
+  display: none;
+}
+
+.view-conservation-news-views-list {
+  position: relative;
+}
+.view-conservation-news-views-list .view {
+  float: left;
+}
+
+.conservation-news-title {
+  line-height: 1.3;
+}
+
+.conservation-news-image {
+  width: 55px;
+  float: left;
+}
+
+.conservation-news-icon {
+  margin: auto;
+  display: block;
+}
+
+.conservation-news-heading + div {
+  font: italic 22px "Source Sans Pro", Verdana, sans-serif;
+}
+
+.conservation-menu-jump-menu {
+  margin-bottom: 37.5px;
+  font: 20px "Source Sans Pro", Verdana, sans-serif;
+  line-height: 1;
+}
+.conservation-menu-jump-menu .jump-to {
+  float: left;
+  line-height: inherit;
+}
+.conservation-menu-jump-menu .jump-to-menu {
+  margin: 0;
+}
+.conservation-menu-jump-menu .jump-to-item {
+  display: inline-block;
+  border-right: 1px solid #404040;
+  padding: 0 5px;
+}
+.conservation-menu-jump-menu .jump-to-item:last-child {
+  border-right: none;
+}
+
+.hidden {
+  display: none;
+}
+
 /* @todo refactor like crazy for more hero variations */
 .hero {
   position: relative;

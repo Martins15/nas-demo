@@ -1,0 +1,119 @@
+// -----------------------
+// Conservation news block.
+// -----------------------
+.view-conservation-news-filter {
+  font-family: $font-sans;
+  .filter-label {
+    float: left;
+    color: $color-warm-gray;
+  }
+  .filter-items {
+    margin: 0;
+    li {
+      display: inline;
+      border-right: 1px solid $color-text-gray;
+      padding: 0 5px;
+      cursor: pointer;
+      color: $color-bright-blue;
+      transition: color 0.15s;
+      &:last-child {
+        border-right: none;
+      }
+      &:hover {
+        color: #07729a;
+      }
+    }
+  }
+}
+
+.view-conservation-news {
+  font-family: $font-sans;
+  .views-field {
+    font-size: 14px;
+    p {
+      margin-bottom: 0;
+      display: inherit;
+    }
+  }
+  .views-field-field-conservation-news-date {
+    font-weight: 600;
+  }
+  .views-field-field-conservation-news-link,
+  .views-field-field-conservation-news-date,
+  .views-field-body {
+    display: inline;
+    .field-content {
+      display: inherit;
+    }
+  }
+  .pager {
+    list-style: none;
+    margin-left: 0;
+    position: relative;
+    height: 50px;
+    li {
+      position: absolute;
+      bottom: 0;
+      font-size: 15px;
+    }
+    .pager-previous {
+      left: 0;
+    }
+    .pager-next {
+      right: 0;
+    }
+  }
+  .pager-current {
+    display: none;
+  }
+}
+
+.view-conservation-news-views-list {
+  position: relative;
+  .view {
+    float: left;
+  }
+}
+
+.conservation-news-title {
+  line-height: 1.3;
+}
+
+.conservation-news-image {
+  width: 55px;
+  float: left;
+}
+
+.conservation-news-icon {
+  margin: auto;
+  display: block;
+}
+
+.conservation-news-heading + div {
+  font: italic 22px $font-sans;
+}
+
+.conservation-menu-jump-menu {
+  margin-bottom: 37.5px;
+  font: 20px $font-sans;
+  line-height: 1;
+  .jump-to {
+    float: left;
+    line-height: inherit;
+  }
+  .jump-to-menu {
+    margin: 0;
+  }
+  .jump-to-item {
+    display: inline-block;
+    border-right: 1px solid $color-text-gray;
+    padding: 0 5px;
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
