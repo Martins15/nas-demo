@@ -17,6 +17,19 @@ $plugin = array(
       'references' => array(),
       'news_references' => array(),
       'node_references' => array(),
+      'styles' => array(
+        'padding' => array(
+          'top' => 0,
+          'between' => 0,
+          'bottom' => 0,
+          'double-bottom' => 0,
+        ),
+        'additional_classes' => '',
+      ),
+      'more_link' => array(
+        'more_link_text' => '',
+        'more_link_url' => '',
+      ),
     ),
   ),
 
@@ -35,7 +48,7 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
     '#tree' => TRUE,
   );
   for ($i = 1; $i <= 2; $i++) {
-    $default_value = &$conf['config']['references'][$i]['entity_reference']['entity_id'];
+    $default_value = &$conf[$conf_key]['references'][$i]['entity_reference']['entity_id'];
     $form[$conf_key]['references'][$i]['entity_reference'] = array(
       '#type' => 'entityreference',
       '#default_value' => $default_value ? $default_value : '',
@@ -50,7 +63,7 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
     );
   }
   for ($i = 1; $i <= 3; $i++) {
-    $default_value = &$conf['config']['news_references'][$i]['entity_reference']['entity_id'];
+    $default_value = &$conf[$conf_key]['news_references'][$i]['entity_reference']['entity_id'];
     $form[$conf_key]['news_references'][$i]['entity_reference'] = array(
       '#type' => 'entityreference',
       '#default_value' => $default_value ? $default_value : '',
@@ -61,7 +74,7 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
       '#era_cardinality' => 1,
     );
   }
-  $default_value = &$conf['config']['node_references']['entity_reference']['entity_id'];
+  $default_value = &$conf[$conf_key]['node_references']['entity_reference']['entity_id'];
   $form[$conf_key]['node_references']['entity_reference'] = array(
     '#type' => 'entityreference',
     '#default_value' => $default_value ? $default_value : '',
@@ -82,12 +95,12 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
   $form[$conf_key]['more_link']['more_link_text'] = array(
     '#type' => 'textfield',
     '#title' => t('More link text'),
-    '#default_value' => $conf['more_link']['more_link_text'],
+    '#default_value' => $conf[$conf_key]['more_link']['more_link_text'],
   );
   $form[$conf_key]['more_link']['more_link_url'] = array(
     '#type' => 'textfield',
     '#title' => t('More link URL'),
-    '#default_value' => $conf['more_link']['more_link_url'],
+    '#default_value' => $conf[$conf_key]['more_link']['more_link_url'],
   );
 
   $form[$conf_key]['styles'] = array(
@@ -100,7 +113,7 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
   $form[$conf_key]['styles']['additional_classes'] = array(
     '#type' => 'textfield',
     '#title' => t('Additional classes'),
-    '#default_value' => $conf['styles']['additional_classes'],
+    '#default_value' => $conf[$conf_key]['styles']['additional_classes'],
   );
   $form[$conf_key]['styles']['padding'] = array(
     '#type' => 'checkboxes',
@@ -111,7 +124,7 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
       'bottom' => t('Bottom padding'),
       'double-bottom' => t('Double bottom padding'),
     ),
-    '#default_value' => $conf['styles']['padding'],
+    '#default_value' => $conf[$conf_key]['styles']['padding'],
   );
   return $form;
 }
@@ -180,7 +193,7 @@ function editorial2_conservation1_render($subtype, $conf, $args, $context) {
   }
 
   if ($node_entity_id = $config['node_references']['entity_reference']['entity_id']) {
-    $views_block['more_link'] = l(t('More'), 'node/' . $node_entity_id);
+    $views_block['filter_more_link'] = l(t('More'), 'node/' . $node_entity_id);
   }
   $teasers[] = theme('conservation_news_view', $views_block);
 
@@ -240,7 +253,7 @@ function editorial2_conservation1_theme(&$theme, $plugin) {
       ),
       'views' => NULL,
       'filter_title' => NULL,
-      'more_link' => NULL,
+      'filter_more_link' => NULL,
     ),
     'template' => 'conservation-news-view',
     'path' => $plugin['path'],
