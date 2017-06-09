@@ -4255,9 +4255,16 @@ function nas_master_update_7291() {
 }
 
 /**
- * Enable NAS Grid Gallery feature.
+ * Enable webform_validation module.
  */
 function nas_master_update_7292() {
+  module_enable(array('webform_validation'));
+}
+
+/**
+ * Enable NAS Grid Gallery feature.
+ */
+function nas_master_update_7293() {
   module_enable(array(
     'nas_grid_gallery_feature',
   ));
