@@ -1,0 +1,14 @@
+#gallery-images-wrapper {
+  display: flex;
+  flex-flow: wrap row;
+  align-content: space-between;
+}
+
+#modalContent .ctools-modal-content #gallery-images-wrapper label {
+  font-size: 16px;
+  float: none;
+}
+
+#gallery-images-wrapper .media-thumbnail .label-wrapper {
+  display: none;
+}
