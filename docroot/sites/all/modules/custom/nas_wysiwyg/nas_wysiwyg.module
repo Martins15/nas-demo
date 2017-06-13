@@ -97,7 +97,7 @@ function nas_wysiwyg_preprocess_entity(&$vars) {
           'style_name' => 'wysiwyg_slide',
           'path' => nas_alters_local_image_uri($file->uri),
           'width' => $file->metadata['width'],
-          'height' => $file->metadata['width'],
+          'height' => $file->metadata['height'],
         ));
         $slides[$key]['caption'] = _nas_panes_format_image_attribution($file);
       }

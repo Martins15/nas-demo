@@ -2738,16 +2738,55 @@ function nas_panes_ctools_plugin_pre_alter(&$plugin, &$info) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nas_panes_form_ctools_custom_content_type_edit_form_alter(&$form, &$form_state, $form_id) {
+  $conf = $form_state['conf'];
+  $form['override_title_left_margin'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add left margin for title'),
+    '#default_value' => !empty($conf['override_title_left_margin']) ? $conf['override_title_left_margin'] : '',
+    '#weight' => 1,
+    '#states' => array(
+      'visible' => array(
+        'input[name="override_title"]' => array(
+          'checked' => TRUE,
+        ),
+      ),
+    ),
+  );
+  // Change weight for body field in form.
+  $form['body']['#weight'] = 2;
+  // Add custom submit function for title options.
+  $form['#submit'][] = '_nas_panes_ctools_custom_content_type_form_submit';
+}
+
+/**
+ * Submit handler for configuration.
+ */
+function _nas_panes_ctools_custom_content_type_form_submit(&$form, &$form_state) {
+  foreach (element_children($form) as $key) {
+    if (isset($form_state['values'][$key])) {
+      $form_state['conf'][$key] = $form_state['values'][$key];
+    }
+  }
+}
+
+/**
  * Render callback for custom content_type.
  */
 function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $contexts) {
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $contexts);
 
   // Add check if not exist override_title add to pane override_title.
-  if (!isset($conf['override_title'])) {
+  if (!isset($conf['override_title']) && !empty($conf['title'])) {
     $conf['override_title'] = 1;
     $conf['override_title_text'] = $conf['title'];
     $conf['override_title_heading'] = 'h2';
+  }
+  // Add check if not exist override_title_left_margin.
+  if (!isset($conf['override_title_left_margin'])) {
+    $conf['override_title_left_margin'] = 0;
   }
 
   $block = ctools_custom_content_type_render($subtype, $conf, $args, $contexts);
@@ -2755,6 +2794,7 @@ function _nas_panes_ctools_custom_content_type_render($subtype, $conf, $args, $c
     '#theme' => 'nas_panes_ctools_custom_content_type',
     '#markup' => $block->content,
     '#context_links' => $contextual_links,
+    '#left_margin' => $conf['override_title_left_margin'],
   );
 
   return $block;

@@ -184,6 +184,10 @@ function nas_article_feature_strongarm() {
             'weight' => '31',
             'visible' => FALSE,
           ),
+          'amp' => array(
+            'weight' => '5',
+            'visible' => TRUE,
+          ),
         ),
         'language' => array(
           'default' => array(
@@ -201,6 +205,10 @@ function nas_article_feature_strongarm() {
           'editorial_grid_teaser' => array(
             'weight' => '7',
             'visible' => FALSE,
+          ),
+          'amp' => array(
+            'weight' => '0',
+            'visible' => TRUE,
           ),
         ),
       ),
@@ -279,6 +287,12 @@ function nas_article_feature_strongarm() {
         'choice' => 0,
       ),
       'search_result' => array(
+        'status' => 0,
+        'substitute' => 0,
+        'default' => 0,
+        'choice' => 0,
+      ),
+      'amp' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,
