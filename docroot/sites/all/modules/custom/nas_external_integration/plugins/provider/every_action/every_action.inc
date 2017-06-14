@@ -16,7 +16,7 @@ $plugin = array(
 /**
  * Form submission callback.
  */
-function nas_external_integration_provider_every_action_form_submission_callback($values, $settings) {
+function nas_external_integration_provider_every_action_form_submission_callback(&$values, $settings) {
   // Tested with ID S49LshHFBUKAejEkZAfw-g2 and q2XV7OpjIE2SKrwPpdiFuA2.
   $url = 'https://secure.everyaction.com/v1/Forms/' . $settings['id'];
 
@@ -45,5 +45,6 @@ function nas_external_integration_provider_every_action_form_submission_callback
     'timeout' => 15,
   );
   $result = drupal_http_request($url, $options);
+  $values['result'] = $result;
   _nas_external_integration_submission_log('Every Action', $values['email'], $result);
 }
