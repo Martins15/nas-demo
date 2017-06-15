@@ -14,7 +14,7 @@
 
 <div class="columns large-4 conservation-news-column">
   <div class="editorial-card" data-equalizer-watch>
-    <h4>Conservation News</h4>
+    <h4><?php print t('Conservation News'); ?></h4>
     <?php if ($terms): ?>
       <div class="view-conservation-news-filter">
         <?php if ($filter_title): ?>

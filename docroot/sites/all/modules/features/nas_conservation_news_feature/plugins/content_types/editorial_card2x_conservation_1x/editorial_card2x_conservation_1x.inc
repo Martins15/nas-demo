@@ -79,7 +79,7 @@ function editorial2_conservation1_edit_form($form, &$form_state) {
     '#type' => 'entityreference',
     '#default_value' => $default_value ? $default_value : '',
     '#title' => t('Conservation News Tracker full page.'),
-    '#description' => t('For \'More\' link in filer.'),
+    '#description' => t('For \'More\' link in filter.'),
     '#required' => TRUE,
     '#era_entity_type' => 'node',
     '#era_bundles' => array('static_page'),
