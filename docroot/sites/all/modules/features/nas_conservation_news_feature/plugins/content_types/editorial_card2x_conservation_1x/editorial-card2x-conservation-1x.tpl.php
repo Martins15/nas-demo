@@ -20,11 +20,18 @@
       <div class="row section-header<?php print $space_between ? ' space-bottom' : ''; ?>">
         <?php if ($title): ?>
           <div class="column">
-            <h2 class="thin"><?php print $title; ?></h2>
+            <h2 class="thin">
+              <?php print $title; ?>
+              <?php if ($more_link): ?>
+                <small class="hide-for-large hide-for-xlarge right">
+                  <?php print $more_link; ?>
+                </small>
+              <?php endif; ?>
+            </h2>
           </div>
         <?php endif; ?>
         <?php if ($more_link): ?>
-          <div class="column">
+          <div class="column hide-for-tiny hide-for-small hide-for-medium">
             <ul class="section-nav inline-list">
               <li class="first"><?php print $more_link; ?></li>
             </ul>
