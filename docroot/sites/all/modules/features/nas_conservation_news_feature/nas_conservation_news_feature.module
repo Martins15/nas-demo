@@ -1,0 +1,60 @@
+<?php
+/**
+ * @file
+ * Code for the NAS Conservation News Feature feature.
+ */
+
+include_once 'nas_conservation_news_feature.features.inc';
+
+define('CONSERVATION_NEWS_VIEW', 'conservation_news');
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function nas_conservation_news_feature_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && !empty($plugin_type)) {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function nas_conservation_news_feature_views_pre_view(&$view) {
+  if ($view->name == CONSERVATION_NEWS_VIEW) {
+    if (empty($view->display_handler->default_display->options['css_class'])) {
+      $view->display_handler->default_display->options['css_class'] = 'view-term-id-' . $view->args[0];
+    }
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function nas_conservation_news_feature_js_alter(&$javascript) {
+  if (drupal_static('nas_conservation_news_feature_remove_ajx_history')) {
+    $history_js = libraries_get_path('history.js') . '/scripts/bundled/html4+html5/jquery.history.js';
+    $views_ajax_history = drupal_get_path('module', 'views_ajax_history') . '/views_ajax_history.js';
+    unset($javascript[$history_js]);
+    unset($javascript[$views_ajax_history]);
+  }
+}
+
+/**
+ * Helper function to load correct term data.
+ */
+function nas_conservation_news_feature_load_temrs($term_name) {
+  $vocabulary = 'conservation_news_tracker';
+  $terms = taxonomy_get_term_by_name($term_name, $vocabulary);
+  $entity_reference = array();
+  if (count($terms) == 1) {
+    $term = current($terms);
+    $entity_reference = array(
+      'entity_id' => $term->tid,
+      'entity_label' => $term_name,
+      'entity_type' => 'taxonomy_term',
+      'entity_bundle' => $vocabulary,
+      'entity_uuid' => $term->uuid,
+    );
+  }
+  return $entity_reference;
+}

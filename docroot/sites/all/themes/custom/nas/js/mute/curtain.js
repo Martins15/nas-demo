@@ -117,7 +117,7 @@
             Drupal.curtain = new Curtain($curtain);
           }
           else {
-            Drupal.curtain.init();
+            // Drupal.curtain.init();
           }
         }
         else {
