@@ -31,12 +31,18 @@
           $(event.target).find('.credit').text($(gallery.list[index]).find('img').data('credit') || '');
 
           var $title = $(event.target).find('.title');
-          $title.stop().animate({opacity:0}, 100, function() {
+          var $description = $(event.target).find('.description');
+          $title.stop().animate({opacity:0}, 200, function() {
             $title.html($(gallery.list[index]).find('img').data('title'));
-            $title.parent().removeClass('overlay');
+            $title.parents('.title-wrapper').removeClass('overlay');
             if ($title.outerHeight() > $title.parent().outerHeight()) {
-              $title.parent().addClass('overlay');
+              $title.parents('.title-wrapper').addClass('overlay');
             }
+            $description
+              .css({
+                paddingLeft: ($(window).width() - $(slide).find('img').width()) / 2 - 12.5,
+                paddingRight: ($(window).width() - $(slide).find('img').width()) / 2 - 12.5,
+              });
             $title.animate({opacity:1}, 400);
           });
         })
