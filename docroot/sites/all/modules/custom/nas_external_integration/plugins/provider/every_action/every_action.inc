@@ -25,6 +25,12 @@ function nas_external_integration_provider_every_action_form_submission_callback
     'YesSignMeUpForUpdatesForBinder' => 'true',
   );
 
+  if (!empty($values['firstName'])) {
+    $data['FirstName'] = $values['firstName'];
+  }
+  if (!empty($values['lastName'])) {
+    $data['LastName'] = $values['lastName'];
+  }
   if (!empty($values['zipcode'])) {
     $data['PostalCode'] = $values['zipcode'];
   }
