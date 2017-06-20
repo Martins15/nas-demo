@@ -16,6 +16,8 @@
         }
       }
 
+      var waitingSlide = false;
+
       $("#grid-gallery", context)
         .on('open', function (event) {
           // Gallery open event handler
@@ -35,15 +37,25 @@
           $title.stop().animate({opacity:0}, 200, function() {
             $title.html($(gallery.list[index]).find('img').data('title'));
             $title.parents('.title-wrapper').removeClass('overlay');
-            if ($title.outerHeight() > $title.parent().outerHeight()) {
-              $title.parents('.title-wrapper').addClass('overlay');
+            if (!$(slide).hasClass('slide-loading')) {
+              var padding = Math.max(($(window).width() - $(slide).find('img').width()) / 2 - 12.5, 0);
+              $description
+                .css({
+                  paddingLeft: padding,
+                  paddingRight: padding
+                });
+
+                setTimeout(function () {
+                  if ($title.outerHeight() > $title.parent().outerHeight()) {
+                    $title.parents('.title-wrapper').addClass('overlay');
+                  }
+                }, 100);
+              $title.animate({opacity:1}, 400);
+              waitingSlide = false;
             }
-            $description
-              .css({
-                paddingLeft: ($(window).width() - $(slide).find('img').width()) / 2 - 12.5,
-                paddingRight: ($(window).width() - $(slide).find('img').width()) / 2 - 12.5,
-              });
-            $title.animate({opacity:1}, 400);
+            else {
+              waitingSlide = index;
+            }
           });
         })
         .on('slideend', function (event, index, slide) {
@@ -52,6 +64,24 @@
         })
         .on('slidecomplete', function (event, index, slide) {
           // Gallery slidecomplete event handler
+          if (waitingSlide === index) {
+            waitingSlide = false;
+            var $title = $(event.target).find('.title');
+            var $description = $(event.target).find('.description');
+            var padding = Math.max(($(window).width() - $(slide).find('img').width()) / 2 - 12.5, 0);
+            $description
+              .css({
+                paddingLeft: padding,
+                paddingRight: padding
+              });
+
+            setTimeout(function () {
+              if ($title.outerHeight() > $title.parent().outerHeight()) {
+                $title.parents('.title-wrapper').addClass('overlay');
+              }
+            }, 100);
+            $title.animate({opacity:1}, 400);
+          }
         })
         .on('close', function (event) {
           // Gallery close event handler
