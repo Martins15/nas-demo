@@ -2400,13 +2400,6 @@ function nas_panes_boa_mail_subscription_form($form, &$form_state) {
     ),
     '#id' => 'nas-boa-mail-subscription-submit',
   );
-  $form['cancel'] = array(
-    '#type' => 'link',
-    '#title' => t('No thanks'),
-    '#attributes' => array(
-      'class' => array('cancel'),
-    ),
-  );
   $form['privacy_policy'] = array(
     '#suffix' => '</div>',
     '#type' => 'link',
@@ -2447,35 +2440,18 @@ function nas_panes_boa_mail_subscription_form_validate($form, &$form_state) {
     return;
   }
 
-  $url = 'http://www.audubonaction.org/site/Survey';
-  $data = array(
-    'cons_email' => $email,
-    'cons_info_component' => 't',
-    'cons_mail_opt_in' => 't',
-    'cons_email_opt_in' => 1,
-    'cons_email_opt_in_requested' => 'true',
-    'cons_first_name' => $first_name,
-    'cons_last_name' => $last_name,
-    'cons_zip_code' => $zip_code,
-    's_rememberMe' => 0,
-    'remember_me_opt_in_requested' => 'true',
-    'ACTION_SUBMIT_SURVEY_RESPONSE' => 'Sign Up',
-    'SURVEY_ID' => '18260',
-    'denySubmit' => '',
-    "3340_18260_2_14661" => "1441",
-    "3340_18260_2_14661" => "1401",
+  // External integration.
+  $values = array(
+    'email' => $email,
+    'firstName' => $first_name,
+    'lastName' => $last_name,
+    'zipcode' => $zip_code,
+    'square_feet' => 0,
   );
-  $options = array(
-    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-    'method' => 'POST',
-    'data' => http_build_query($data),
-    'timeout' => 60,
-  );
-  $result = drupal_http_request($url, $options);
-  watchdog('email_subscribe', 'Email %email entered', array('%email' => $email));
-  watchdog('email_subscribe', 'Service answer was !answer', array('!answer' => '<pre>' . htmlspecialchars(print_r($result, 1)) . '</pre>'));
-  // Set up cookie for showing download link of already subscribed users.
-  if (isset($result->code) && ($result->code == 200)) {
+  ctools_include('plugins');
+  $nas_boa_plate = ctools_get_plugins('ctools', 'content_types', 'nas_boa_plate');
+  nas_external_integration_process_form_submission($values, $nas_boa_plate['defaults']['nas_external_integration']);
+  if (isset($values['result']->code) && ($values['result']->code == 200)) {
     setcookie('show_download_link', 1, time() + (86400 * 365), '/');
   }
 }
@@ -2548,11 +2524,6 @@ function nas_panes_boa_mail_subscription_settings_form($form, &$form_state) {
     '#type' => 'textarea',
     '#default_value' => variable_get('boa_mail_subscription_settings_form_after', ''),
   );
-  $form['after_no'] = array(
-    '#title' => t('Text after No Thanks.'),
-    '#type' => 'textarea',
-    '#default_value' => variable_get('boa_mail_subscription_settings_form_after_no', ''),
-  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
@@ -2570,7 +2541,6 @@ function nas_panes_boa_mail_subscription_settings_form_submit($form, $form_state
   variable_set('boa_mail_subscription_settings_form_image', $form_state['values']['image']);
   variable_set('boa_mail_subscription_settings_form_intro', $form_state['values']['intro']);
   variable_set('boa_mail_subscription_settings_form_after', $form_state['values']['after']);
-  variable_set('boa_mail_subscription_settings_form_after_no', $form_state['values']['after_no']);
 }
 
 /**
