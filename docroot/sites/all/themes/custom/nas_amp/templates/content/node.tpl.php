@@ -89,7 +89,10 @@
 
     <header>
       <h1 class="hg-title"><?php print $title; ?></h1>
-      <?php print render($content['field_article_date']); ?>
+      <time class="hg-pubdate" datetime="<?php print $date_long; ?>">
+        <span class="date-display-single"><?php print $date; ?></span>
+      </time>
+
     </header>
 
     <?php print render($content['body']); ?>

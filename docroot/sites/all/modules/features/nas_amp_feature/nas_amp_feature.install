@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * For hook_update_X functions.
+ */
+
+/**
+ * Revert Article and Static Page features.
+ */
+function nas_amp_feature_update_7201() {
+  features_revert(array(
+    'nas_article_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+    'nas_static_page_feature' => array(
+      'field_instance',
+      'strongarm',
+    ),
+  ));
+}
