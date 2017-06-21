@@ -7,11 +7,10 @@
 
       if (context == document) {
         var links = $('[data-gallery="#grid-gallery"]');
-        var slide_index = parseInt(window.location.hash.substring(1));
-        if (slide_index) {
-          slide = links.get(slide_index - 1);
+        var slide_index = window.location.hash.substring(6);
+        if (!isNaN(slide_index) && slide_index !== '' && $(window).width() >= 600) {
           setTimeout(function() {
-            $(slide).trigger('click');
+            $(links.get(slide_index - 1)).trigger('click');
           }, 100);
         }
       }
@@ -29,22 +28,22 @@
           // Gallery slide event handler
           var gallery = $(event.target).data('gallery');
           var total = (index + 1) + ' of ' + gallery.list.length;
-          $(event.target).find('.total').text(total);
-          $(event.target).find('.credit').text($(gallery.list[index]).find('img').data('credit') || '');
+          gallery.container.find('.total').text(total);
+          gallery.container.find('.credit').text($(gallery.list[index]).find('img').data('credit') || '');
 
-          var $title = $(event.target).find('.title');
-          var $description = $(event.target).find('.description');
+          var $title = gallery.container.find('.title');
+          var $description = gallery.container.find('.description');
           $title.stop().animate({opacity:0}, 200, function() {
             $title.html($(gallery.list[index]).find('img').data('title'));
             $title.parents('.title-wrapper').removeClass('overlay');
             if (!$(slide).hasClass('slide-loading')) {
-              var padding = Math.max(($(window).width() - $(slide).find('img').width()) / 2 - 12.5, 0);
+              var image_width = Math.max($(slide).find('img').width(), 320);
+              var padding = Math.max(($(window).width() - image_width) / 2 - 12.5, 0);
               $description
                 .css({
                   paddingLeft: padding,
                   paddingRight: padding
                 });
-
                 setTimeout(function () {
                   if ($title.outerHeight() > $title.parent().outerHeight()) {
                     $title.parents('.title-wrapper').addClass('overlay');
@@ -60,15 +59,17 @@
         })
         .on('slideend', function (event, index, slide) {
           // Gallery slideend event handler
-          window.location.hash = index + 1;
+          window.history.pushState(null, null, '#' + 'photo' + (index + 1));
         })
         .on('slidecomplete', function (event, index, slide) {
           // Gallery slidecomplete event handler
           if (waitingSlide === index) {
+            var gallery = $(event.target).data('gallery');
             waitingSlide = false;
-            var $title = $(event.target).find('.title');
-            var $description = $(event.target).find('.description');
-            var padding = Math.max(($(window).width() - $(slide).find('img').width()) / 2 - 12.5, 0);
+            var $title = gallery.container.find('.title');
+            var $description = gallery.container.find('.description');
+            var image_width = Math.max($(slide).find('img').width(), 320);
+            var padding = Math.max(($(window).width() - image_width) / 2 - 12.5, 0);
             $description
               .css({
                 paddingLeft: padding,
@@ -85,7 +86,7 @@
         })
         .on('close', function (event) {
           // Gallery close event handler
-          window.location.hash = '';
+          window.history.pushState(null, null, '#');
         })
         .on('closed', function (event) {
           // Gallery closed event handler
