@@ -185,7 +185,7 @@ function nas_article_feature_strongarm() {
             'visible' => FALSE,
           ),
           'amp' => array(
-            'weight' => '5',
+            'weight' => '6',
             'visible' => TRUE,
           ),
         ),
@@ -287,12 +287,6 @@ function nas_article_feature_strongarm() {
         'choice' => 0,
       ),
       'search_result' => array(
-        'status' => 0,
-        'substitute' => 0,
-        'default' => 0,
-        'choice' => 0,
-      ),
-      'amp' => array(
         'status' => 0,
         'substitute' => 0,
         'default' => 0,

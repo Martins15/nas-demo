@@ -137,7 +137,7 @@ function nas_static_page_feature_strongarm() {
           ),
           'amp' => array(
             'weight' => '0',
-            'visible' => FALSE,
+            'visible' => TRUE,
           ),
         ),
       ),

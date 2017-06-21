@@ -24,7 +24,6 @@ function nas_amp_custom_theme() {
  */
 function nas_amp_entity_view_mode_alter(&$view_mode, $context) {
   if ($view_mode == 'amp' && amp_is_amp_request()) {
-    $view_mode = 'amp';
     unset($context['entity']->panelizer);
   }
 }
@@ -38,4 +37,12 @@ function nas_amp_page_alter(&$page) {
   if (isset($page['page_bottom']['admin_menu'])) {
     unset($page['page_bottom']['admin_menu']);
   }
+}
+
+/**
+ * Implements theme_preprocess_node().
+ */
+function nas_amp_preprocess_node(&$variables) {
+  $variables['date'] = format_date($variables['created'], 'nas_date');
+  $variables['date_long'] = format_date($variables['created'], 'custom', 'Y-m-d H:i:s');
 }
