@@ -4282,3 +4282,12 @@ function nas_master_update_7294() {
   variable_set('uuid_features_entity_taxonomy_term', $taxonomy_settings);
   module_enable(array('fe_date', 'nas_conservation_news_feature'));
 }
+
+/**
+ * Enable panels_revision.
+ */
+function nas_master_update_7295() {
+  module_enable(array(
+    'panels_revision',
+  ));
+}
