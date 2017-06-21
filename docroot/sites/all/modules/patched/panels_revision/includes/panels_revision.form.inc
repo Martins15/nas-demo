@@ -35,6 +35,15 @@ function display_panels_review($id) {
 }
 
 /**
+ * Revert callback.
+ */
+function panel_revert_revision($display) {
+  panels_save_display($display['configuration']);
+  drupal_set_message(t('Revision was reverted.'), 'status');
+  drupal_goto($_SERVER['HTTP_REFERER']);
+}
+
+/**
  * Implementation form look logs in variant.
  */
 function panels_revision_form($form, &$form_state) {
@@ -43,6 +52,7 @@ function panels_revision_form($form, &$form_state) {
     array('data' => t('Time')),
     array('data' => t('User')),
     array('data' => t('View')),
+    array('data' => t('Revert')),
   );
 
   $query = db_select('panels_revision', 'log')->extend('PagerDefault');
@@ -59,6 +69,7 @@ function panels_revision_form($form, &$form_state) {
     $row->user = theme('username', array('account' => $user));
 
     $row->view = l(t('Review'), 'admin/structure/panels-revision-content/' . $row->id, array('attributes' => array('target' => '_blank')));
+    $row->revert = l(t('Revert'), 'admin/structure/panels-revision-content/' . $row->id . '/revert');
     unset($row->id);
     $rows[] = array('data' => (array) $row);
   }
@@ -71,7 +82,9 @@ function panels_revision_form($form, &$form_state) {
     '#rows' => $rows,
     '#empty' => t('There are no date formats found in the db'),
   );
-
+  if (!empty($build['pager_table']['#rows'])) {
+    $build['pager_table']['#rows'][0]['data']['revert'] = t('Current');
+  }
   // Attach the pager theme.
   $build['pager_pager'] = array('#theme' => 'pager');
 

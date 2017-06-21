@@ -20,6 +20,15 @@ function panels_revision_menu() {
     'file' => 'includes/panels_revision.form.inc',
   );
 
+  $items['admin/structure/panels-revision-content/%panels_revision/revert'] = array(
+    'title' => 'Revert panel',
+    'page callback' => 'panel_revert_revision',
+    'page arguments' => array(3),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_CALLBACK,
+    'file' => 'includes/panels_revision.form.inc',
+  );
+
   return $items;
 }
 
