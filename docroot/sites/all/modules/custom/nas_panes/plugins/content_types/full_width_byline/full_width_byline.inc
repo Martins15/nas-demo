@@ -55,33 +55,21 @@ function full_width_byline_theme(&$theme, $plugin) {
  * Get information about author.
  */
 function _full_width_byline_author($node) {
-  $author = array(
-    'name' => '',
-    'link' => '',
-    'image_path' => FALSE,
-    'date' => '',
-  );
-  $published = '';
+  $author = array();
   $node_wrapper = entity_metadata_wrapper('node', $node);
+  $author_node = $node_wrapper->field_author->value();
 
-  if (!empty($node->field_author['und'][0]['target_id'])) {
-    $item_id[] = $node->field_author['und'][0]['target_id'];
-    $entities = entity_load('node', $item_id);
-    foreach ($entities as $id => $entity) {
-      $image_field = field_get_items('node', $entity, 'field_image');
-      if ($image_field) {
-        if ($image_file = file_load($image_field[0]['fid'])) {
-          $image_uri = nas_alters_local_image_uri($image_file->uri);
-          $author['image_path'] = image_style_url('bio_image', $image_uri);
-          ;
-        }
-      }
-      $author['name'] = check_plain($entity->title);
-      $author['link'] = url('node/' . $id);
-    }
+  $author_image_uri = $author_node->field_image[LANGUAGE_NONE][0]['uri'];
+  if (!empty($author_image_uri)) {
+    $author_image_uri = nas_alters_local_image_uri($author_image_uri);
+    $author_image_path = image_style_url('bio_image', $author_image_uri);
   }
+  $author['image_path'] = isset($author_image_path) ? $author_image_path : FALSE;
+  $author['name'] = check_plain($author_node->title);
+  $author['link'] = url('node/' . $author_node->nid);
 
   // Set published date from issue magazine title.
+  $published = '';
   $magazine_issue = $node_wrapper->field_magazine_issue->value();
   if (!empty($magazine_issue->title)) {
     $published = $magazine_issue->title;
@@ -96,7 +84,7 @@ function _full_width_byline_author($node) {
     }
     $published = date('F d, Y', $created);
   }
-
   $author['date'] = t('@date', array('@date' => $published));
+
   return $author;
 }
