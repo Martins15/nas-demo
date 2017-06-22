@@ -137,7 +137,9 @@ function full_width_hero_block_render($subtype, $conf, $args, $context) {
 
   $theme = $subtype;
 
-  if ($content = _full_width_hero_hero_photo_render($node)) {
+  $content = _full_width_hero_hero_photo_render($node);
+
+  if ($data['variants'] != 'title_only' && !empty($content)) {
     $theme = ($data['variants'] == 'standard_hero_photo') ? $subtype . '_standard_hero_photo' : $subtype . '_fullscreen_hero_photo';
   }
 
