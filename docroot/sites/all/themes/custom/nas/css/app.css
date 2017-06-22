@@ -17264,7 +17264,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   left: 0;
   margin: auto;
   margin-top: 25px;
-  max-width: 665px;
   max-width: 799px;
   padding: 0 12.5px;
   width: 100%;
