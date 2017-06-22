@@ -17030,6 +17030,85 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-bottom: 50px;
 }
 
+.grid-gallery {
+  margin: 15px 0;
+}
+.grid-gallery .grid-gallery__thumbs {
+  margin-left: -2.5px;
+  margin-right: -2.5px;
+  width: auto;
+}
+.grid-gallery .grid-gallery__thumbs .columns {
+  padding-bottom: 2.5px;
+  padding-top: 2.5px;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+}
+@media only screen and (min-width: 601px) {
+  .grid-gallery .grid-gallery__thumbs {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .grid-gallery .grid-gallery__thumbs .columns {
+    padding-bottom: 6.25px;
+    padding-top: 6.25px;
+    padding-left: 6.25px;
+    padding-right: 6.25px;
+  }
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox {
+  line-height: 0;
+  display: block;
+  position: relative;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox:before {
+  transition: opacity 0.1s;
+  background-image: url(../prototypes/full-screen-article/expander-x2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 100%;
+  content: "";
+  display: block;
+  height: 36px;
+  position: absolute;
+  left: 100%;
+  margin-left: -27px;
+  margin-top: -27px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 36px;
+  opacity: 0;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox:hover:before {
+  opacity: 1;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__image {
+  width: 100%;
+}
+.grid-gallery .grid-gallery__caption {
+  color: #76736C;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+@media only screen and (min-width: 480px) {
+  .grid-gallery .grid-gallery__caption {
+    text-align: right;
+  }
+}
+.grid-gallery.grid-gallery-single-image img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 601px) {
+  .grid-gallery-slideshow-wrapper {
+    height: 0;
+    overflow: hidden;
+  }
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
