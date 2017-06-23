@@ -18,6 +18,8 @@ $plugin = array(
     'gallery_caption' => '',
     'grid_size' => 0,
     'gallery_images' => array(),
+    'mobile_fallback' => 0,
+    'mobile_fallback_image' => 0,
   ),
 );
 
@@ -40,17 +42,19 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
 
   // Include this plugin file as well, so that when the form is rebuilt, it
   // can successfully retrieve the settings form.
-  ctools_form_include($form_state, 'nas_grid_gallery', 'nas_grid_gallery_feature', 'plugins/content_types');
+  ctools_form_include($form_state, 'nas_grid_gallery', 'nas_grid_gallery_feature', 'plugins/content_types/nas_grid_gallery');
 
   $form['#tree'] = TRUE;
 
   $grid_size_options = array(
     '0' => t('- Select grid size -'),
-    '1x1' => t('(1x1) 1 row, 1 column'),
-    '2x2' => t('(2x2) 2 rows, 2 columns'),
-    '2x3' => t('(2x3) 2 rows, 3 columns'),
-    '3x1' => t('(3x1) 3 rows, 1 column'),
-    '3x6' => t('(3x6) 3 rows, 6 columns'),
+    '1x1' => t('(1x1) 1 column, 1 row'),
+    '2x1' => t('(2x1) 2 columns, 1 row'),
+    '2x2' => t('(2x2) 2 columns, 2 rows'),
+    '3x2' => t('(3x2) 3 columns, 2 rows'),
+    '3x1' => t('(3x1) 3 columns, 1 row'),
+    '6x2' => t('(6x2) 6 columns, 2 rows'),
+    '6x3' => t('(6x3) 6 columns, 3 rows'),
   );
 
   $form['grid_size'] = array(
@@ -108,7 +112,7 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
         'global' => array(
           'file_extensions' => 'png jpg jpeg gif',
           'max_filesize' => '20 MB',
-          'file_directory' => '',
+          'file_directory' => 'grid_gallery',
           'types' => array('image'),
         ),
       ),
@@ -123,7 +127,40 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
     '#default_value' => $conf['gallery_caption'],
   );
 
-  $form['#attached']['css'][] = drupal_get_path('module', 'nas_grid_gallery_feature') . '/plugins/content_types/css/grid_gallery_admin.css';
+  $form['mobile_fallback'] = array(
+    '#type' => 'select',
+    '#title' => t('Mobile fallback'),
+    '#options' => array(
+      0 => t('None'),
+      'slideshow' => t('Slideshow'),
+      'single' => t('Single picture'),
+    ),
+    '#default_value' => $conf['mobile_fallback'],
+  );
+
+  $form['mobile_fallback_image'] = array(
+    '#type' => 'media',
+    '#tree' => TRUE,
+    '#title' => t('Mobile Fallback Image'),
+    '#description' => t('Allowed formats: png, jpg, jpeg, gif.'),
+    '#media_options' => array(
+      'global' => array(
+        'file_extensions' => 'png jpg jpeg gif',
+        'max_filesize' => '20 MB',
+        'file_directory' => 'grid_gallery',
+        'types' => array('image'),
+      ),
+    ),
+    '#default_value' => $conf['mobile_fallback_image'],
+  );
+
+  $plugin_path = drupal_get_path('module', 'nas_grid_gallery_feature') . '/plugins/content_types/nas_grid_gallery';
+  $form['#attached']['css'][] = $plugin_path . '/css/blueimp-gallery.min.css';
+  $form['#attached']['css'][] = $plugin_path . '/css/grid_gallery_admin.css';
+  $form['#attached']['js'][] = $plugin_path . '/js/grid_gallery.js';
+  $form['#attached']['js'][] = $plugin_path . '/js/blueimp-gallery.js';
+  $form['#attached']['js'][] = $plugin_path . '/js/blueimp-gallery-fulscreen.js';
+  $form['#attached']['js'][] = $plugin_path . '/js/jquery.blueimp-gallery.js';
 
   return $form;
 }
@@ -132,13 +169,19 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
  * Validation callback.
  */
 function nas_grid_gallery_edit_form_validate($form, $form_state) {
-  $values =& $form_state['values'];
+  $values = &$form_state['values'];
   // Check if all images exist.
   if (isset($values['gallery_images'])) {
     foreach ($values['gallery_images'] as $item) {
       if (!$item['image']) {
         form_set_error('images', t('Please add other images.'));
       }
+    }
+  }
+
+  if ($values['mobile_fallback'] == 'single') {
+    if (!$values['mobile_fallback_image'] || !file_load($values['mobile_fallback_image'])) {
+      form_set_error('mobile_fallback_image', t('Please specify the mobile fallback image.'));
     }
   }
 }
@@ -164,36 +207,58 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
     $conf = array_merge($plugin['defaults'], $conf);
   }
 
-  $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
+  if (!$conf['gallery_images']) {
+    return;
+  }
 
+  $grid_classes = array(
+    '1x1' => 'tiny-12',
+    '2x1' => 'tiny-6',
+    '2x2' => 'tiny-6',
+    '3x1' => 'small-4 tiny-12',
+    '3x2' => 'small-4 tiny-6',
+    '6x2' => 'small-2 tiny-6',
+    '6x3' => 'small-2 tiny-6',
+  );
   $grid_info = _nas_grid_gallery_grid_info($conf['grid_size']);
+  $class_column = $grid_classes[$conf['grid_size']];
 
-  if ($conf['gallery_images']) {
-    foreach ($conf['gallery_images'] as $image) {
-      if (!empty($image['image'])) {
-        $image_file = file_load($image['image']);
-        $image_uri = nas_alters_local_image_uri($image_file->uri);
-        $vars['thumbnail_path'] = image_style_url('grid_gallery_thumbnail', nas_alters_local_image_uri($image_uri));
-        $vars['lightbox_path'] = image_style_url('grid_gallery_lightbox', nas_alters_local_image_uri($image_uri));
-        $vars['thumbnail_title'] = '';
-        if (!empty($image_file) && function_exists('_nas_panes_format_image_attribution')) {
-          $vars['thumbnail_title'] = _nas_panes_format_image_attribution($image_file);
-        }
-      }
-      $images[] = $vars;
+  $images = array();
+  foreach ($conf['gallery_images'] as $image) {
+    if (empty($image['image'])) {
+      continue;
+    }
+    if (!$image_file = file_load($image['image'])) {
+      continue;
+    }
+    $image_uri = nas_alters_local_image_uri($image_file->uri);
+    $vars = array(
+      'thumbnail_path' => image_style_url('grid_gallery_thumbnail', $image_uri),
+      'lightbox_path' => image_style_url('grid_gallery_lightbox', $image_uri),
+      'attributes' => '',
+      'attributes_plain' => '',
+      'caption' => '',
+      'credit' => '',
+      'class_column' => $class_column,
+    );
+    if (function_exists('_nas_panes_format_image_attribution')) {
+      $vars['attributes'] = _nas_panes_format_image_attribution($image_file);
+      $vars['attributes_plain'] = _nas_panes_format_image_attribution($image_file, TRUE);
+      $image_attributes = _nas_panes_format_image_attribution($image_file, FALSE, TRUE);
+      $vars['caption'] = $image_attributes['caption'];
+      $vars['credit'] = $image_attributes['credit'] ? 'Photo: ' . $image_attributes['credit'] : '';
+    }
+    $images[] = $vars;
+  }
+
+  $mobile_fallback_image = '';
+  if ($conf['mobile_fallback'] == 'single') {
+    if ($mobile_fallback_image_file = file_load($conf['mobile_fallback_image'])) {
+      $mobile_fallback_image_uri = nas_alters_local_image_uri($mobile_fallback_image_file->uri);
+      $mobile_fallback_image = image_style_url('grid_gallery_thumbnail', $mobile_fallback_image_uri);
     }
   }
 
-  $class_column = ' large-12';
-  if ($grid_info['columns'] == 2) {
-    $class_column = ' large-6';
-  }
-  if ($grid_info['columns'] == 3) {
-    $class_column = ' large-4';
-  }
-  if ($grid_info['columns'] == 6) {
-    $class_column = ' large-2';
-  }
 
   $block = new stdClass();
   $block->content = array(
@@ -202,21 +267,26 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
     '#images' => $images,
     '#rows' => $grid_info['rows'],
     '#columns' => $grid_info['columns'],
-    '#class_column' => $class_column,
-    '#gallery_caption' => !empty($conf['gallery_caption']) ? check_plain($conf['gallery_caption']) : FALSE,
-    '#contextual_links' => $contextual_links,
+    '#gallery_caption' => !empty($conf['gallery_caption']) ? nl2br(check_plain($conf['gallery_caption'])) : FALSE,
+    '#output_placeholder' => _nas_grid_gallery_placeholder(),
+    '#mobile_fallback' => $conf['mobile_fallback'],
+    '#mobile_fallback_image' => $mobile_fallback_image,
   );
 
-  if (!$plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+  if (!$plugin) {
     return $block;
   }
 
   $block->content['#attached'] = array(
     'css' => array(
+      $plugin['path'] . '/css/blueimp-gallery.min.css',
       $plugin['path'] . '/css/grid_gallery.css',
     ),
     'js' => array(
       $plugin['path'] . '/js/grid_gallery.js',
+      $plugin['path'] . '/js/blueimp-gallery.js',
+      $plugin['path'] . '/js/blueimp-gallery-fullscreen.js',
+      $plugin['path'] . '/js/jquery.blueimp-gallery.js',
     ),
   );
 
@@ -233,9 +303,10 @@ function nas_grid_gallery_theme(&$theme, $plugin) {
       'images' => NULL,
       'rows' => NULL,
       'columns' => NULL,
-      'class_column' => NULL,
       'gallery_caption' => NULL,
-      'contextual_links' => NULL,
+      'output_placeholder' => NULL,
+      'mobile_fallback' => NULL,
+      'mobile_fallback_image' => NULL,
     ),
     'template' => 'nas-grid-gallery',
     'path' => $plugin['path'],
@@ -250,13 +321,36 @@ function _nas_grid_gallery_ajax_form_callback($form, &$form_state) {
 }
 
 /**
+ * Helper function to control gallery ligthbox placeholder output.
+ *
+ * Grid Gallery lightbox must be output only once on the page.
+ *
+ * @return bool
+ *   True if gallery lightbox placeholder needs to be output.
+ */
+function _nas_grid_gallery_placeholder() {
+  static $called = FALSE;
+
+  if (!$called) {
+    $called = TRUE;
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
  * Create array with information about grid.
  */
 function _nas_grid_gallery_grid_info($grid_size) {
   if ($grid_size) {
-    list($columns, $rows) = explode("x", $grid_size, 2);
+    list($columns, $rows) = explode('x', $grid_size, 2);
     $images = $rows * $columns;
-    return array('rows' => $rows, 'columns' => $columns, 'images' => $images);
+    return array(
+      'rows' => $rows,
+      'columns' => $columns,
+      'images' => $images,
+    );
   }
   return array();
 }
