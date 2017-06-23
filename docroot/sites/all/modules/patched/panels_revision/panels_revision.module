@@ -51,6 +51,38 @@ function panels_revision_panels_display_save($display) {
 }
 
 /**
+ * Implements hook_panels_pane_update().
+ */
+function panels_revision_panels_pane_update($pane) {
+  // Select 2 last items from panels_revision. 2 because current configuration
+  // was already inserted in DB at this moment. Use second last item from db
+  // which was current before, to check if we have $pane->pid in his
+  // configuration, so we can decide if pane was deleted and we need to add it
+  // in current revert.
+  $result = db_select('panels_revision', 'pr')
+    ->fields('pr', array('configuration'))
+    ->condition('did', $pane->did)
+    ->orderBy('id', 'DESC')
+    ->range(0, 2)
+    ->execute()
+    ->fetchAll();
+  if (count($result) != 2) {
+    return;
+  }
+  $configuration = unserialize($result[0]->configuration);
+  $insert = TRUE;
+  foreach ($configuration->panels as $panel) {
+    if (in_array($pane->pid, $panel)) {
+      $insert = FALSE;
+      break;
+    }
+  }
+  if ($insert) {
+    drupal_write_record('panels_pane', $pane);
+  }
+}
+
+/**
  * Implements hook_page_manager_operations_alter().
  */
 function panels_revision_page_manager_operations_alter(&$result, &$page) {
