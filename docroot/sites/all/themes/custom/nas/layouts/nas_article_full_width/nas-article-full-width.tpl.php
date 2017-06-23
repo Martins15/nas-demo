@@ -24,4 +24,6 @@
 <!-- Region: Secondary content-->
 <?php print $content['secondary_content']; ?>
 <!-- /Region: Secondary content-->
+
+<div class="clearfix"></div>
 <!-- Full width layout end -->
