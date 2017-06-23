@@ -86,6 +86,52 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-637cfa03-30e2-494d-b82c-e7ef5bec3a64'] = $pane;
     $display->panels['author'][0] = 'new-637cfa03-30e2-494d-b82c-e7ef5bec3a64';
     $pane = new stdClass();
+    $pane->pid = 'new-00ed67f4-2d8a-4780-af0b-40fe82069f01';
+    $pane->panel = 'big_image';
+    $pane->type = 'custom';
+    $pane->subtype = 'clone_of_geico_banner';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:engagement_cards:field_menu_section',
+          'settings' => array(
+            'field_menu_section' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '22',
+                ),
+              ),
+            ),
+            'field_menu_section_tid' => array(
+              0 => '22',
+            ),
+          ),
+          'context' => 'panelizer',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '00ed67f4-2d8a-4780-af0b-40fe82069f01';
+    $display->content['new-00ed67f4-2d8a-4780-af0b-40fe82069f01'] = $pane;
+    $display->panels['big_image'][0] = 'new-00ed67f4-2d8a-4780-af0b-40fe82069f01';
+    $pane = new stdClass();
     $pane->pid = 'new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
     $pane->panel = 'big_image';
     $pane->type = 'custom';
@@ -126,11 +172,11 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
     $display->content['new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724'] = $pane;
-    $display->panels['big_image'][0] = 'new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
+    $display->panels['big_image'][1] = 'new-7df47cec-a2cb-4cb3-8a9a-82938c3ca724';
     $pane = new stdClass();
     $pane->pid = 'new-8a9afa12-b950-40ac-9997-39ec4c8640fa';
     $pane->panel = 'big_image';
@@ -150,6 +196,7 @@ function nas_article_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -157,11 +204,11 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '8a9afa12-b950-40ac-9997-39ec4c8640fa';
     $display->content['new-8a9afa12-b950-40ac-9997-39ec4c8640fa'] = $pane;
-    $display->panels['big_image'][1] = 'new-8a9afa12-b950-40ac-9997-39ec4c8640fa';
+    $display->panels['big_image'][2] = 'new-8a9afa12-b950-40ac-9997-39ec4c8640fa';
     $pane = new stdClass();
     $pane->pid = 'new-ed30cce7-6a5f-4999-9bed-fe49928d9028';
     $pane->panel = 'birds';
@@ -254,6 +301,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -422,6 +470,7 @@ function nas_article_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -464,6 +513,7 @@ function nas_article_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -493,6 +543,7 @@ function nas_article_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -541,12 +592,20 @@ function nas_article_feature_panelizer_defaults() {
           'reference' => FALSE,
         ),
         3 => array(
-          'reference' => FALSE,
+          'reference' => array(
+            'entity_id' => '49306',
+            'entity_label' => 'New York’s Fresh Kills Landfill Gets an Epic Facelift',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+            'entity_uuid' => 'f4382492-5edb-406c-9e8d-365eb0fa39a1',
+          ),
         ),
       ),
-      'form_build_id' => 'form-wvsSp6zqCt4YxhdXYfS-Ishp8Akl4bq1azuz8hBnqCg',
-      'form_token' => '1PTzvhfzqAqZnAJ5XcSVezepIqdwH1HUwpXVVFj0Zxo',
+      'form_build_id' => 'form-Q4BnsIeq9TK0cfe_Z6UEOQWwBZ2P3v0lXtSl8NNx_7Q',
+      'form_token' => 'tXNyBDGS_kqUS7SWpsLqJSaNghzc6tLKLj1F_9fN3F0',
       'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+      'title' => 'Related',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -579,8 +638,8 @@ function nas_article_feature_panelizer_defaults() {
         ),
         'hide_for_firsttime_visitors' => 1,
       ),
-      'form_build_id' => 'form-qEvPOWKSxEFhqZlt7YTeYfRoXnhsdlQonn66K9czanE',
-      'form_token' => 'cWGtfaehQnj-QGX62Q8G2cudFskpBVTPXQYGBM0PL1c',
+      'form_build_id' => 'form-cIsiQk6LyksZiKaQfyJ3U7lRmRaZfEeRygPQtlf0YIM',
+      'form_token' => '4VtKoIH8tAnJ8r3aUYqlcx5xdQ7ZbW_5Rq-kAoOG_xI',
       'form_id' => 'engagement_cards_sidebar_edit_form',
       'override_title_heading' => 'h2',
       47536 => array(
@@ -883,10 +942,11 @@ function nas_article_feature_panelizer_defaults() {
         'references' => array(
           1 => array(
             'entity_reference' => array(
-              'entity_id' => '52036',
-              'entity_label' => 'The Audubon Bird Guide App',
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
               'entity_type' => 'node',
               'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
             ),
           ),
         ),
@@ -950,6 +1010,195 @@ function nas_article_feature_panelizer_defaults() {
               'entity_type' => 'node',
               'entity_bundle' => 'engagement_cards',
               'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      128946 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '128951',
+              'entity_label' => 'Restore the Colorado River Delta',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '27c0857f-6e23-4ba1-ba59-4b459eb955b4',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      153111 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '159041',
+              'entity_label' => 'Thank President Obama for Protecting the Arctic Ocean',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '24062a00-46be-470f-aee9-eb28a9b60f81',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192146 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192111 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '192416',
+              'entity_label' => 'Endangered Species Act in Trouble',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '50e77cdf-4714-47c4-bf99-ea9cb52cf90e',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      119656 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193041 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '193951',
+              'entity_label' => 'Meet the Birds of Belize This Fall',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'd8f4c3df-19e3-4564-bf2b-3659805fae74',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      63341 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '191791',
+              'entity_label' => 'Meet Colombia\'s Birds This October',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'c164ce41-1ae5-4b41-ab33-15ddc7aeeee8',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195641 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '903c6a4c-9bff-43e4-9c8e-94a2cbedb647',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195516 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184656',
+              'entity_label' => 'Crippling Budget Cuts Endanger Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '605d67cb-3328-4399-9e1a-547a08802722',
             ),
           ),
         ),
@@ -1346,11 +1595,57 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-7d1f4825-e861-473e-8a3b-1aeb0423a561'] = $pane;
     $display->panels['left'][0] = 'new-7d1f4825-e861-473e-8a3b-1aeb0423a561';
     $pane = new stdClass();
+    $pane->pid = 'new-e411bf95-7b78-43ad-bb47-9bd8ba0c7e02';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'custom';
+    $pane->subtype = 'clone_of_geico_banner';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:engagement_cards:field_menu_section',
+          'settings' => array(
+            'field_menu_section' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '22',
+                ),
+              ),
+            ),
+            'field_menu_section_tid' => array(
+              0 => '22',
+            ),
+          ),
+          'context' => 'panelizer',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'admin_title' => '',
+      'title' => '',
+      'body' => '',
+      'format' => 'full_html',
+      'substitute' => TRUE,
+      'form_build_id' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e411bf95-7b78-43ad-bb47-9bd8ba0c7e02';
+    $display->content['new-e411bf95-7b78-43ad-bb47-9bd8ba0c7e02'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-e411bf95-7b78-43ad-bb47-9bd8ba0c7e02';
+    $pane = new stdClass();
     $pane->pid = 'new-5197f1d6-585c-4777-b4a0-9e6fb13f3213';
     $pane->panel = 'magazine_bar';
     $pane->type = 'custom';
     $pane->subtype = 'clone_of_bwb_header';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array(
       'plugins' => array(
         0 => array(
@@ -1386,11 +1681,11 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '5197f1d6-585c-4777-b4a0-9e6fb13f3213';
     $display->content['new-5197f1d6-585c-4777-b4a0-9e6fb13f3213'] = $pane;
-    $display->panels['magazine_bar'][0] = 'new-5197f1d6-585c-4777-b4a0-9e6fb13f3213';
+    $display->panels['magazine_bar'][1] = 'new-5197f1d6-585c-4777-b4a0-9e6fb13f3213';
     $pane = new stdClass();
     $pane->pid = 'new-292f486d-056e-4bcc-9c01-98f7581a46df';
     $pane->panel = 'magazine_bar';
@@ -1417,11 +1712,11 @@ function nas_article_feature_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '292f486d-056e-4bcc-9c01-98f7581a46df';
     $display->content['new-292f486d-056e-4bcc-9c01-98f7581a46df'] = $pane;
-    $display->panels['magazine_bar'][1] = 'new-292f486d-056e-4bcc-9c01-98f7581a46df';
+    $display->panels['magazine_bar'][2] = 'new-292f486d-056e-4bcc-9c01-98f7581a46df';
     $pane = new stdClass();
     $pane->pid = 'new-7a3b5211-9151-4e55-8275-98633290512b';
     $pane->panel = 'main';
@@ -1554,8 +1849,8 @@ function nas_article_feature_panelizer_defaults() {
         ),
         'hide_for_firsttime_visitors' => 1,
       ),
-      'form_build_id' => 'form-pAmpXGbpM9AMf0SAKB1LrkouzMe1TLZNWylJ233gWmk',
-      'form_token' => '8PIUTBlBUVsPA4EdvsyHCTjcqP6UHag5PlbkjTvpr1Y',
+      'form_build_id' => 'form-JNa73_bUUtk0eEBqhR_IgufaGFd0wM_kXMZiefcC1Eg',
+      'form_token' => '_nVWZFrCH0x-81qyOcYEM2NEo_QASz4IlgB5yZCq41U',
       'form_id' => 'engagement_cards_sidebar_edit_form',
       'override_title_heading' => 'h2',
       47531 => array(
@@ -1623,10 +1918,11 @@ function nas_article_feature_panelizer_defaults() {
         'references' => array(
           1 => array(
             'entity_reference' => array(
-              'entity_id' => '46841',
-              'entity_label' => 'Join Our Climate Community',
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
               'entity_type' => 'node',
               'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '903c6a4c-9bff-43e4-9c8e-94a2cbedb647',
             ),
           ),
         ),
@@ -2249,10 +2545,10 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-159b6d01-4739-42b5-9179-544ba64e25cb'] = $pane;
     $display->panels['left'][0] = 'new-159b6d01-4739-42b5-9179-544ba64e25cb';
     $pane = new stdClass();
-    $pane->pid = 'new-c7c46a75-7261-4b69-9c3a-d7e9af95171d';
+    $pane->pid = 'new-762c2ae9-1c42-4282-8fcf-f8d9baa1a490';
     $pane->panel = 'magazine_bar';
     $pane->type = 'custom';
-    $pane->subtype = 'bwb_header';
+    $pane->subtype = 'clone_of_geico_banner';
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
@@ -2262,12 +2558,12 @@ function nas_article_feature_panelizer_defaults() {
             'field_menu_section' => array(
               'und' => array(
                 0 => array(
-                  'tid' => '5',
+                  'tid' => '22',
                 ),
               ),
             ),
             'field_menu_section_tid' => array(
-              0 => '5',
+              0 => '22',
             ),
           ),
           'context' => 'panelizer',
@@ -2279,8 +2575,9 @@ function nas_article_feature_panelizer_defaults() {
       'admin_title' => '',
       'title' => '',
       'body' => '',
-      'format' => 'map',
+      'format' => 'full_html',
       'substitute' => TRUE,
+      'form_build_id' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -2290,9 +2587,9 @@ function nas_article_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'c7c46a75-7261-4b69-9c3a-d7e9af95171d';
-    $display->content['new-c7c46a75-7261-4b69-9c3a-d7e9af95171d'] = $pane;
-    $display->panels['magazine_bar'][0] = 'new-c7c46a75-7261-4b69-9c3a-d7e9af95171d';
+    $pane->uuid = '762c2ae9-1c42-4282-8fcf-f8d9baa1a490';
+    $display->content['new-762c2ae9-1c42-4282-8fcf-f8d9baa1a490'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-762c2ae9-1c42-4282-8fcf-f8d9baa1a490';
     $pane = new stdClass();
     $pane->pid = 'new-50c09e0e-e5c2-4f3a-957f-09b02dd86971';
     $pane->panel = 'magazine_bar';
@@ -2560,6 +2857,229 @@ function nas_article_feature_panelizer_defaults() {
   $panelizer = new stdClass();
   $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
   $panelizer->api_version = 1;
+  $panelizer->name = 'node:article:fullwidth';
+  $panelizer->title = 'Full-width';
+  $panelizer->panelizer_type = 'node';
+  $panelizer->panelizer_key = 'article';
+  $panelizer->no_blocks = FALSE;
+  $panelizer->css_id = '';
+  $panelizer->css = '';
+  $panelizer->pipeline = 'ipe';
+  $panelizer->contexts = array();
+  $panelizer->relationships = array();
+  $panelizer->access = array();
+  $panelizer->view_mode = 'page_manager';
+  $panelizer->css_class = '';
+  $panelizer->title_element = 'H2';
+  $panelizer->link_to_entity = TRUE;
+  $panelizer->extra = array();
+  $display = new panels_display();
+  $display->layout = 'nas-article-full-width';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'top' => NULL,
+      'primary_content' => NULL,
+      'secondary_content' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '%node:title';
+  $display->uuid = 'f2bc5eff-80db-4daf-913f-b167c2505d80';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-58fb27e3-8fe3-44a0-8eb6-b03fa97f9cb7';
+    $pane->panel = 'primary_content';
+    $pane->type = 'full_width_body_text';
+    $pane->subtype = 'full_width_body_text';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'body_text' => array(
+        'value' => '<p>Empty body text pane.</p>',
+        'format' => 'full_html',
+      ),
+      'add_margin' => 1,
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'form_build_id' => 'form-mJ4Cz3i5pvAm9j66Z69si0jrdX38EPnHaBYFA8QKP1k',
+      'form_token' => 'nwA4VTFqn2X_ZiFSb-z7Gj98bdxs2SZKCnYSMZFZwRc',
+      'form_id' => 'full_width_body_text_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '58fb27e3-8fe3-44a0-8eb6-b03fa97f9cb7';
+    $display->content['new-58fb27e3-8fe3-44a0-8eb6-b03fa97f9cb7'] = $pane;
+    $display->panels['primary_content'][0] = 'new-58fb27e3-8fe3-44a0-8eb6-b03fa97f9cb7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8ef53bc0-9812-4ce6-aac4-9ef001a17516';
+    $pane->panel = 'secondary_content';
+    $pane->type = 'editorial_card_3x';
+    $pane->subtype = 'editorial_card_3x';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 1,
+      'override_title_text' => 'Related',
+      'override_title_heading' => 'h2',
+      'preset' => 'static_page_related',
+      'more_link_text' => '',
+      'more_link_url' => '',
+      'open_new_tab' => 0,
+      'additional_classes' => '',
+      'paddings' => array(
+        'top' => 0,
+        'between' => 0,
+        'bottom' => 0,
+        'double-bottom' => 0,
+      ),
+      'count' => '3',
+      'update_count' => 'Update count',
+      'refs' => array(
+        1 => array(
+          'reference' => FALSE,
+        ),
+        2 => array(
+          'reference' => FALSE,
+        ),
+        3 => array(
+          'reference' => FALSE,
+        ),
+      ),
+      'form_build_id' => 'form-Cr2VOPgQjhRlxJIgfoISIc072kc2Ws2OMWD5j-fh8Kk',
+      'form_token' => 'aouQdUtPDJAdq5ixZdfQNSj2kQnw6ioc2pVfiX8N-W0',
+      'form_id' => 'editorial_card_3x_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8ef53bc0-9812-4ce6-aac4-9ef001a17516';
+    $display->content['new-8ef53bc0-9812-4ce6-aac4-9ef001a17516'] = $pane;
+    $display->panels['secondary_content'][0] = 'new-8ef53bc0-9812-4ce6-aac4-9ef001a17516';
+    $pane = new stdClass();
+    $pane->pid = 'new-493c9bd2-8c0d-415b-bbb1-93064be9989c';
+    $pane->panel = 'secondary_content';
+    $pane->type = 'engagement_cards';
+    $pane->subtype = 'engagement_cards';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'default' => array(
+        'title' => 'How you can help, right now',
+        'references' => array(
+          1 => array(
+            'entity_reference' => FALSE,
+          ),
+          2 => array(
+            'entity_reference' => FALSE,
+          ),
+          3 => array(
+            'entity_reference' => FALSE,
+          ),
+        ),
+        'wrapper' => 0,
+      ),
+      'form_build_id' => 'form-P7POhYQAVoDHzB0qDRWdhqeDC2bTyjKrnGWiGU5BHTU',
+      'form_token' => '5UzT0E1CsgvIpX-4LrNLz6SOEcsZ37RcVBk-rlljRIo',
+      'form_id' => 'engagement_cards_edit_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '493c9bd2-8c0d-415b-bbb1-93064be9989c';
+    $display->content['new-493c9bd2-8c0d-415b-bbb1-93064be9989c'] = $pane;
+    $display->panels['secondary_content'][1] = 'new-493c9bd2-8c0d-415b-bbb1-93064be9989c';
+    $pane = new stdClass();
+    $pane->pid = 'new-e379f7d0-c18d-441b-b07b-b180d9af7e30';
+    $pane->panel = 'top';
+    $pane->type = 'full_width_hero_block';
+    $pane->subtype = 'full_width_hero_block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'buttons' => array(
+        'return' => 'Finish',
+        'cancel' => 'Cancel',
+      ),
+      'context' => 'panelizer',
+      'override_title_heading' => 'h2',
+      'default' => array(
+        'variants' => 'title_only',
+        'header_color_mode' => 'dark',
+        'disable_gradient' => 0,
+        'text_color_mode' => 'dark',
+      ),
+      'form_build_id' => 'form-2rY2tvbZqN5V_WcRto4i1EiYbEZooT6Zt5T-bdc1fyM',
+      'form_token' => 'Vcn6E4cq_uED8rxxQQ9epk5L198FHa2ICWyAuIZcH8A',
+      'form_id' => 'full_width_hero_block_form',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e379f7d0-c18d-441b-b07b-b180d9af7e30';
+    $display->content['new-e379f7d0-c18d-441b-b07b-b180d9af7e30'] = $pane;
+    $display->panels['top'][0] = 'new-e379f7d0-c18d-441b-b07b-b180d9af7e30';
+    $pane = new stdClass();
+    $pane->pid = 'new-01efc33c-b0c7-44f6-8f91-df3da682d89b';
+    $pane->panel = 'top';
+    $pane->type = 'full_width_byline';
+    $pane->subtype = 'full_width_byline';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '01efc33c-b0c7-44f6-8f91-df3da682d89b';
+    $display->content['new-01efc33c-b0c7-44f6-8f91-df3da682d89b'] = $pane;
+    $display->panels['top'][1] = 'new-01efc33c-b0c7-44f6-8f91-df3da682d89b';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = '0';
+  $panelizer->display = $display;
+  $export['node:article:fullwidth'] = $panelizer;
+
+  $panelizer = new stdClass();
+  $panelizer->disabled = FALSE; /* Edit this to true to make a default panelizer disabled initially */
+  $panelizer->api_version = 1;
   $panelizer->name = 'node:article:inline_hero_photo';
   $panelizer->title = 'Inline hero photo';
   $panelizer->panelizer_type = 'node';
@@ -2726,6 +3246,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -2925,10 +3446,10 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-4baa20e7-d4fe-4b90-99ef-dd2e675b48df'] = $pane;
     $display->panels['left'][0] = 'new-4baa20e7-d4fe-4b90-99ef-dd2e675b48df';
     $pane = new stdClass();
-    $pane->pid = 'new-40d9e468-45cd-4f03-b1ab-5cfe93f7e0cb';
+    $pane->pid = 'new-011dba6c-0dba-472e-b305-786cfa2df51d';
     $pane->panel = 'magazine_bar';
     $pane->type = 'custom';
-    $pane->subtype = 'clone_of_bwb_header';
+    $pane->subtype = 'clone_of_geico_banner';
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
@@ -2955,7 +3476,7 @@ function nas_article_feature_panelizer_defaults() {
       'admin_title' => '',
       'title' => '',
       'body' => '',
-      'format' => 'map',
+      'format' => 'full_html',
       'substitute' => TRUE,
       'form_build_id' => '',
     );
@@ -2967,9 +3488,9 @@ function nas_article_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '40d9e468-45cd-4f03-b1ab-5cfe93f7e0cb';
-    $display->content['new-40d9e468-45cd-4f03-b1ab-5cfe93f7e0cb'] = $pane;
-    $display->panels['magazine_bar'][0] = 'new-40d9e468-45cd-4f03-b1ab-5cfe93f7e0cb';
+    $pane->uuid = '011dba6c-0dba-472e-b305-786cfa2df51d';
+    $display->content['new-011dba6c-0dba-472e-b305-786cfa2df51d'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-011dba6c-0dba-472e-b305-786cfa2df51d';
     $pane = new stdClass();
     $pane->pid = 'new-9cd2e493-6635-4d30-86b2-0efe19f3757c';
     $pane->panel = 'magazine_bar';
@@ -3012,6 +3533,7 @@ function nas_article_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -3041,6 +3563,7 @@ function nas_article_feature_panelizer_defaults() {
       'context' => 'panelizer',
       'override_title' => 1,
       'override_title_text' => '',
+      'title' => '',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -3089,12 +3612,20 @@ function nas_article_feature_panelizer_defaults() {
           'reference' => FALSE,
         ),
         3 => array(
-          'reference' => FALSE,
+          'reference' => array(
+            'entity_id' => '62591',
+            'entity_label' => 'How to Stop a Murder of Crows (Hint: Throw Them a Giant Party)',
+            'entity_type' => 'node',
+            'entity_bundle' => 'article',
+            'entity_uuid' => 'ed7d314b-1c02-42cb-adf3-57ec548f049a',
+          ),
         ),
       ),
-      'form_build_id' => 'form-7cKSWbFVaf20bT-DGRDXh5dvD-lMq9-qEx3lJJX1yVE',
-      'form_token' => '1PTzvhfzqAqZnAJ5XcSVezepIqdwH1HUwpXVVFj0Zxo',
+      'form_build_id' => 'form-fGPXKTEScH0RZrwSV1fpC9HwXmQZKvCcyvKjtbW3cQ0',
+      'form_token' => 'vzHWsCgpAE3fjyPrhIwsZzK1wj8d0Gjjuryup_cUzaY',
       'form_id' => 'editorial_card_3x_edit_form',
+      'nas_panes_resave_panel' => TRUE,
+      'title' => 'Related',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -3127,8 +3658,8 @@ function nas_article_feature_panelizer_defaults() {
         ),
         'hide_for_firsttime_visitors' => 1,
       ),
-      'form_build_id' => 'form--CxoQgJa7vAu9DiOW-oEJTFwS-__1KEaklpKu_t90VA',
-      'form_token' => 'JJWquYOnPUdByEWO6RnpygmmAjf1a2q3qJDk9ifk-7s',
+      'form_build_id' => 'form-RKaUmpy3UD1k4L3AlmQyBBaw8NSbzhxvjIpVM5uT_iY',
+      'form_token' => 'hicf9u1LpYOJ8C6AZl4xf_shkSV7c_fUTP5gk4sOEVs',
       'form_id' => 'engagement_cards_sidebar_edit_form',
       'override_title_heading' => 'h2',
       7971 => array(
@@ -3633,6 +4164,552 @@ function nas_article_feature_panelizer_defaults() {
           'instagram' => 'http://instagram.com/audubonsociety',
         ),
       ),
+      128956 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '128951',
+              'entity_label' => 'Restore the Colorado River Delta',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '27c0857f-6e23-4ba1-ba59-4b459eb955b4',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      153106 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '159041',
+              'entity_label' => 'Thank President Obama for Protecting the Arctic Ocean',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '24062a00-46be-470f-aee9-eb28a9b60f81',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      184671 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '191686',
+              'entity_label' => 'Protect Washington\'s Marbled Murrelets',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '352cb28d-0d63-4a03-8947-cedbf74dbf63',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192411 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '192416',
+              'entity_label' => 'Endangered Species Act in Trouble',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '50e77cdf-4714-47c4-bf99-ea9cb52cf90e',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192386 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192556 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192976 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '65106',
+              'entity_label' => 'Find Your Bird-Friendly Plants',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'cf88570d-16f6-46ac-b048-a9e9edf9b10f',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      182761 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '42646',
+              'entity_label' => 'You Are What Hope Looks Like',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'a73f4c0b-774a-4ae9-885c-7030f7f561ad',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193831 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184651',
+              'entity_label' => 'Protect the Arctic National Wildlife Refuge',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '8b528930-fa55-4189-b5b7-824029ea366e',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193756 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184651',
+              'entity_label' => 'Protect the Arctic National Wildlife Refuge',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '8b528930-fa55-4189-b5b7-824029ea366e',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      62831 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '191791',
+              'entity_label' => 'Meet Colombia\'s Birds This October',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => 'c164ce41-1ae5-4b41-ab33-15ddc7aeeee8',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193971 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '903c6a4c-9bff-43e4-9c8e-94a2cbedb647',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192656 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195426',
+              'entity_label' => 'Get Updates on Climate Watch',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '06210855-8168-4954-99a5-69d9387bc1e8',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192876 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195426',
+              'entity_label' => 'Get Updates on Climate Watch',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '06210855-8168-4954-99a5-69d9387bc1e8',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      192881 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195426',
+              'entity_label' => 'Get Updates on Climate Watch',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '06210855-8168-4954-99a5-69d9387bc1e8',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195421 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '159076',
+              'entity_label' => 'New Threats to Greater Sage-Grouse',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '9a69244c-bfcd-41c4-9e85-4a80e3d8fd97',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195431 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195461',
+              'entity_label' => 'Protect America’s Land and Water Conservation Legacy',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '3cf9a993-5c69-4904-bf74-74f7fbaed1e7',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195626 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195661',
+              'entity_label' => 'Birds Tell Us That We Need To Act On Climate',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '3a75a127-b2b2-4110-a236-da18358176ba',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195721 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '47621',
+              'entity_label' => 'Start Helping Hummingbirds Now',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '903c6a4c-9bff-43e4-9c8e-94a2cbedb647',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195741 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195461',
+              'entity_label' => 'Support Land and Water Conservation',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '3cf9a993-5c69-4904-bf74-74f7fbaed1e7',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      195746 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '195461',
+              'entity_label' => 'Support Land and Water Conservation',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '3cf9a993-5c69-4904-bf74-74f7fbaed1e7',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      196056 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184656',
+              'entity_label' => 'Crippling Budget Cuts Endanger Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '605d67cb-3328-4399-9e1a-547a08802722',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      196071 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184656',
+              'entity_label' => 'Crippling Budget Cuts Endanger Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '605d67cb-3328-4399-9e1a-547a08802722',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193761 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '184656',
+              'entity_label' => 'Crippling Budget Cuts Endanger Birds',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '605d67cb-3328-4399-9e1a-547a08802722',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      196291 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '196316',
+              'entity_label' => 'Arctic National Wildlife Refuge Under Attack',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '1c96fb7d-a67e-4c19-8923-10ed4a1a0ebd',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
+      193106 => array(
+        'references' => array(
+          1 => array(
+            'entity_reference' => array(
+              'entity_id' => '192416',
+              'entity_label' => 'Endangered Species Act in Trouble',
+              'entity_type' => 'node',
+              'entity_bundle' => 'engagement_cards',
+              'entity_uuid' => '50e77cdf-4714-47c4-bf99-ea9cb52cf90e',
+            ),
+          ),
+        ),
+        'hide_for_firsttime_visitors' => 0,
+        'equalize_height' => 0,
+        'show_social_icons' => 0,
+        'social_icons' => array(
+          'twitter' => 'https://twitter.com/audubonsociety',
+          'facebook' => 'https://www.facebook.com/NationalAudubonSociety',
+          'instagram' => 'http://instagram.com/audubonsociety',
+        ),
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -4043,10 +5120,10 @@ function nas_article_feature_panelizer_defaults() {
     $display->content['new-f20e9d32-4ee5-44a0-9500-32f0617c2ef9'] = $pane;
     $display->panels['left'][0] = 'new-f20e9d32-4ee5-44a0-9500-32f0617c2ef9';
     $pane = new stdClass();
-    $pane->pid = 'new-d28a7488-a9ae-42af-b167-dbdbb01c97b9';
+    $pane->pid = 'new-9f846639-d372-468a-a2dd-bb131abaece9';
     $pane->panel = 'magazine_bar';
     $pane->type = 'custom';
-    $pane->subtype = 'clone_of_bwb_header';
+    $pane->subtype = 'clone_of_geico_banner';
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
@@ -4073,7 +5150,7 @@ function nas_article_feature_panelizer_defaults() {
       'admin_title' => '',
       'title' => '',
       'body' => '',
-      'format' => 'map',
+      'format' => 'full_html',
       'substitute' => TRUE,
       'form_build_id' => '',
     );
@@ -4085,9 +5162,9 @@ function nas_article_feature_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'd28a7488-a9ae-42af-b167-dbdbb01c97b9';
-    $display->content['new-d28a7488-a9ae-42af-b167-dbdbb01c97b9'] = $pane;
-    $display->panels['magazine_bar'][0] = 'new-d28a7488-a9ae-42af-b167-dbdbb01c97b9';
+    $pane->uuid = '9f846639-d372-468a-a2dd-bb131abaece9';
+    $display->content['new-9f846639-d372-468a-a2dd-bb131abaece9'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-9f846639-d372-468a-a2dd-bb131abaece9';
     $pane = new stdClass();
     $pane->pid = 'new-0a63fd9d-4713-4802-a3ed-3839e1cc4229';
     $pane->panel = 'magazine_bar';
