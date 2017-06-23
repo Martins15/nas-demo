@@ -10,7 +10,7 @@
  */
 ?>
 
-<div class="<?php print ($margin > 0) ? 'article-text row' : ''; ?>">
+<div class="article-text<?php print ($margin > 0) ? ' row' : ''; ?>">
   <?php if ($title['title']): ?>
     <<?php print $title['title_heading']; ?>>
       <?php print $title['title_text']; ?>

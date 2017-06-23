@@ -8,7 +8,7 @@
 $plugin = array(
   'single' => TRUE,
   'title' => t('Full-width Body text'),
-  'no title override' => TRUE,
+  'no title override' => FALSE,
   'description' => t('Full-width Body text for article'),
   'category' => 'Full width',
   'edit form' => 'full_width_body_text_form',
@@ -16,12 +16,23 @@ $plugin = array(
   'hook theme' => 'full_width_body_text_theme',
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'tags' => array('primary_content'),
+  'defaults' => array(
+    'body_text' => array(
+      'value' => '',
+      'format' => 'full_html',
+    ),
+    'add_margin' => 1,
+  ),
 );
 
 /**
  * An edit form for the pane's settings.
  */
 function full_width_body_text_form($form, &$form_state) {
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  $conf = array_merge($form_state['plugin']['defaults'], $form_state['conf']);
+
   // Include the CTools content type plugin file, because it provides
   // the ctools_content_configure_form_defaults() function, which is needed
   // when rebuilding the form, because of an ajax action, like selecting
@@ -32,85 +43,20 @@ function full_width_body_text_form($form, &$form_state) {
   // can successfully retrieve the settings form.
   ctools_form_include($form_state, 'full_width_body_text', 'nas_panes', 'plugins/content_types/full_width_body_text');
 
-  $conf = $form_state['conf'];
-  $form['#tree'] = TRUE;
-  $conf_key = 'default';
+  $form['override_title_text']['#maxlength'] = 1024;
 
-  // Panelizer.
-  if (isset($form_state['display']->context['panelizer']) && !$form_state['display']->context['panelizer']->empty) {
-    $conf_key = $form_state['display']->context['panelizer']->keyword . $form_state['display']->context['panelizer']->argument;
-    // Support old version of the key that was simple nid. For the future it is
-    // better to have also type of the entity in the key so we could enable
-    // panelizer for taxonomy terms and have no conflicts in node's and term's ids.
-    if (!isset($conf[$conf_key])) {
-      $conf_key = $form_state['display']->context['panelizer']->argument;
-    }
-  }
-
-  $form[$conf_key] = array(
-    '#type' => 'fieldset',
-    '#tree' => TRUE,
-  );
-
-  $form[$conf_key]['aligner_start'] = array(
-    '#markup' => '<div class="option-text-aligner clearfix">',
-  );
-  $form[$conf_key]['override_title'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Override title'),
-    '#default_value' => !empty($conf[$conf_key]['override_title']) ? $conf[$conf_key]['override_title'] : '',
-    '#id' => 'override-title-checkbox',
-  );
-
-  $form[$conf_key]['override_title_text'] = array(
-    '#type' => 'textfield',
-    '#size' => 35,
-    '#default_value' => !empty($conf[$conf_key]['override_title_text']) ? $conf[$conf_key]['override_title_text'] : '',
-    '#id' => 'override-title-textfield',
-    '#dependency_type' => 'hidden',
-    '#dependency' => array('override-title-checkbox' => array(1)),
-    '#maxlength' => 1024,
-  );
-
-  $form[$conf_key]['override_title_heading'] = array(
-    '#type' => 'select',
-    '#options' => array(
-      'h1' => 'h1',
-      'h2' => 'h2',
-      'h3' => 'h3',
-      'h4' => 'h4',
-      'h5' => 'h5',
-      'h6' => 'h6',
-      'div' => 'div',
-      'span' => 'span',
-    ),
-    '#default_value' => !empty($conf[$conf_key]['override_title_heading']) ? $conf[$conf_key]['override_title_heading'] : 'h2',
-    '#id' => 'override-title-heading',
-    '#dependency' => array('override-title-checkbox' => array(1)),
-  );
-
-  $form[$conf_key]['aligner_stop'] = array(
-    '#markup' => '</div>',
-  );
-
-  $form[$conf_key]['override_title_markup'] = array(
-    '#prefix' => '<div class="description">',
-    '#suffix' => '</div>',
-    '#markup' => 'You may use %keywords from contexts, as well as %title to contain the original title.',
-  );
-
-  $form[$conf_key]['add_margin'] = array(
+  $form['add_margin'] = array(
     '#type' => 'checkbox',
     '#title' => t('Add left and right margin for block'),
-    '#default_value' => !empty($conf[$conf_key]['add_margin']) ? $conf[$conf_key]['add_margin'] : 1,
+    '#default_value' => $conf['add_margin'],
   );
 
-  $form[$conf_key]['body_text'] = array(
+  $form['body_text'] = array(
     '#type' => 'text_format',
     '#title' => t('Text'),
     '#rows' => 8,
-    '#default_value' => !empty($conf[$conf_key]['body_text']['value']) ? $conf[$conf_key]['body_text']['value'] : '',
-    '#format' => !empty($conf[$conf_key]['body_text']['format']) ? $conf[$conf_key]['body_text']['format'] : 'full_html',
+    '#default_value' => $conf['body_text']['value'],
+    '#format' => $conf['body_text']['format'],
     '#maxlength' => 3000,
   );
 
@@ -118,7 +64,7 @@ function full_width_body_text_form($form, &$form_state) {
 }
 
 /**
- * Submit callback.
+ * Submit handler for configuration.
  */
 function full_width_body_text_form_submit(&$form, &$form_state) {
   foreach (element_children($form) as $key) {
@@ -134,34 +80,21 @@ function full_width_body_text_form_submit(&$form, &$form_state) {
  * See ctools_plugin_examples for more advanced info.
  */
 function full_width_body_text_render($subtype, $conf, $args, $context) {
-  // We can't add node context to the pane, because it's use on landing pages too.
-  $conf_key = 'default';
-  if ($context_node = menu_get_object('node')) {
-    // Support old configuration when key was nid only.
-    if (isset($conf[$context_node->nid])) {
-      $conf_key = $context_node->nid;
-    }
-    // New configuration has entity type prefix.
-    if (isset($conf['node' . $context_node->nid])) {
-      $conf_key = 'node' . $context_node->nid;
-    }
+  // We need to merge on the defaults to prevent notices if we have added any
+  // new settings after the pane has already been used on any site.
+  if ($plugin = ctools_get_plugins('ctools', 'content_types', $subtype)) {
+    $conf = array_merge($plugin['defaults'], $conf);
   }
-
-  if (isset($conf[$conf_key])) {
-    $data = $conf[$conf_key];
-  }
-
-  $title = array(
-    'title' => $data['override_title'],
-    'title_text' => $data['override_title_text'],
-    'title_heading' => $data['override_title_heading'],
-  );
 
   $block = new stdClass();
   $block->content = theme('full_width_body_text', array(
-    'title' => $title,
-    'body_text' => !empty($data['body_text']['value']) ? $data['body_text']['value'] : '',
-    'margin' => $data['add_margin'],
+    'title' => array(
+      'title' => $conf['override_title'],
+      'title_text' => check_plain($conf['override_title_text']),
+      'title_heading' => $conf['override_title_heading'],
+    ),
+    'body_text' => check_markup($conf['body_text']['value']),
+    'margin' => $conf['add_margin'],
   ));
 
   return $block;

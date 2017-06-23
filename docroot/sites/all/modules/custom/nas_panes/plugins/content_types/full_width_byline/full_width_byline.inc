@@ -59,9 +59,9 @@ function _full_width_byline_author($node) {
   $node_wrapper = entity_metadata_wrapper('node', $node);
   $author_node = $node_wrapper->field_author->value();
 
-  $get_field_image = field_get_items('node', $author_node, 'field_image');
-  if (!empty($get_field_image[0]['uri'])) {
-    $author_image_uri = nas_alters_local_image_uri($get_field_image[0]['uri']);
+  $author_image_uri = $author_node->field_image[LANGUAGE_NONE][0]['uri'];
+  if (!empty($author_image_uri)) {
+    $author_image_uri = nas_alters_local_image_uri($author_image_uri);
     $author_image_path = image_style_url('bio_image', $author_image_uri);
   }
   $author['image_path'] = isset($author_image_path) ? $author_image_path : FALSE;
