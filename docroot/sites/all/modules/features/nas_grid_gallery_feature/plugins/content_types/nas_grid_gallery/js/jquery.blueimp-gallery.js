@@ -30,6 +30,10 @@
   // Global click handler to open links with data-gallery attribute
   // in the Gallery lightbox:
   $(document).on('click', '[data-gallery]', function (event) {
+    // Prevent openning of the lightbox when IPE is enabled.
+    if ($(this).parents('.panels-ipe-editing').size()) {
+      return false;
+    }
     // Get the container id from the data-gallery attribute:
     var id = $(this).data('gallery')
     var widget = $(id)
