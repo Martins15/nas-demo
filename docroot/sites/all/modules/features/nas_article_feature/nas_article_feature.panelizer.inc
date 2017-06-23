@@ -2898,7 +2898,7 @@ function nas_article_feature_panelizer_defaults() {
     $pane->access = array();
     $pane->configuration = array(
       'body_text' => array(
-        'value' => '',
+        'value' => '<p>Empty body text pane.</p>',
         'format' => 'full_html',
       ),
       'add_margin' => 1,

@@ -155,12 +155,7 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
   );
 
   $plugin_path = drupal_get_path('module', 'nas_grid_gallery_feature') . '/plugins/content_types/nas_grid_gallery';
-  $form['#attached']['css'][] = $plugin_path . '/css/blueimp-gallery.min.css';
   $form['#attached']['css'][] = $plugin_path . '/css/grid_gallery_admin.css';
-  $form['#attached']['js'][] = $plugin_path . '/js/grid_gallery.js';
-  $form['#attached']['js'][] = $plugin_path . '/js/blueimp-gallery.js';
-  $form['#attached']['js'][] = $plugin_path . '/js/blueimp-gallery-fulscreen.js';
-  $form['#attached']['js'][] = $plugin_path . '/js/jquery.blueimp-gallery.js';
 
   return $form;
 }
