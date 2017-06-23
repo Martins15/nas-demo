@@ -59,7 +59,7 @@
         })
         .on('slideend', function (event, index, slide) {
           // Gallery slideend event handler
-          window.history.pushState(null, null, '#' + 'photo' + (index + 1));
+          window.history.replaceState(null, null, '#' + 'photo' + (index + 1));
         })
         .on('slidecomplete', function (event, index, slide) {
           // Gallery slidecomplete event handler
@@ -86,7 +86,7 @@
         })
         .on('close', function (event) {
           // Gallery close event handler
-          window.history.pushState(null, null, '#');
+          window.history.replaceState(null, null, '#');
         })
         .on('closed', function (event) {
           // Gallery closed event handler
