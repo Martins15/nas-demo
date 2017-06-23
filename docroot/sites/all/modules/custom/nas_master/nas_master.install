@@ -4282,14 +4282,3 @@ function nas_master_update_7294() {
   variable_set('uuid_features_entity_taxonomy_term', $taxonomy_settings);
   module_enable(array('fe_date', 'nas_conservation_news_feature'));
 }
-
-/**
- * Add new variant page.
- */
-function nas_master_update_7295() {
-  features_revert(array(
-    'nas_article_feature' => array(
-      'panelizer_defaults',
-    ),
-  ));
-}

@@ -55,7 +55,6 @@
       }
     }
 
-
     .grid-gallery__image {
       width: 100%;
     }
@@ -69,6 +68,17 @@
 
     @include breakpoint(small-up) {
       text-align: right;
+      .columns {
+        padding-left: 2.5px;
+        padding-right: 2.5px;
+      }
+    }
+
+    @include breakpoint(medium-up) {
+      .columns {
+        padding-left: 6.25px;
+        padding-right: 6.25px;
+      }
     }
   }
 
