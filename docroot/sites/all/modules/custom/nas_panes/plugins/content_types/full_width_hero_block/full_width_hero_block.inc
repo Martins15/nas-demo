@@ -41,13 +41,10 @@ function full_width_hero_block_form($form, &$form_state) {
 
   // Panelizer.
   if (isset($form_state['display']->context['panelizer']) && !$form_state['display']->context['panelizer']->empty) {
-    $conf_key = $form_state['display']->context['panelizer']->keyword . $form_state['display']->context['panelizer']->argument;
     // Support old version of the key that was simple nid. For the future it is
     // better to have also type of the entity in the key so we could enable
     // panelizer for taxonomy terms and have no conflicts in node's and term's ids.
-    if (!isset($conf[$conf_key])) {
-      $conf_key = $form_state['display']->context['panelizer']->argument;
-    }
+    $conf_key = $form_state['display']->context['panelizer']->argument;
   }
 
   $form[$conf_key] = array(
@@ -64,7 +61,7 @@ function full_width_hero_block_form($form, &$form_state) {
     '#type' => 'select',
     '#title' => t('Variants'),
     '#options' => $variants,
-    '#default_value' => !empty($conf[$conf_key]['variants']) ? $conf[$conf_key]['variants'] : 'title_only',
+    '#default_value' => !empty($conf[$conf_key]['variants']) ? $conf[$conf_key]['variants'] : $conf['default']['variants'],
   );
 
   $form[$conf_key]['header_color_mode'] = array(
@@ -75,13 +72,13 @@ function full_width_hero_block_form($form, &$form_state) {
       'light' => t('Dark background, white text'),
       'none' => t('Solid black background above hero image, white text'),
     ),
-    '#default_value' => !empty($conf[$conf_key]['header_color_mode']) ? $conf[$conf_key]['header_color_mode'] : 'dark',
+    '#default_value' => !empty($conf[$conf_key]['header_color_mode']) ? $conf[$conf_key]['header_color_mode'] : $conf['default']['header_color_mode'],
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to header content.'),
   );
   $form[$conf_key]['disable_gradient'] = array(
     '#type' => 'checkbox',
     '#title' => t('Disable gradient'),
-    '#default_value' => !empty($conf[$conf_key]['disable_gradient']) ? $conf[$conf_key]['disable_gradient'] : '',
+    '#default_value' => !empty($conf[$conf_key]['disable_gradient']) ? $conf[$conf_key]['disable_gradient'] : $conf['default']['disable_gradient'],
     '#return_value' => 'disable',
     '#description' => t('By default the nav bar appears overlaid on top of the hero image with a gradient background (which can be disabled). Additionally, the hero image can sit underneath a solid black nav bar with white text.'),
   );
@@ -93,7 +90,7 @@ function full_width_hero_block_form($form, &$form_state) {
       'dark' => t('Dark'),
       'light' => t('Light'),
     ),
-    '#default_value' => !empty($conf[$conf_key]['text_color_mode']) ? $conf[$conf_key]['text_color_mode'] : 'dark',
+    '#default_value' => !empty($conf[$conf_key]['text_color_mode']) ? $conf[$conf_key]['text_color_mode'] : $conf['default']['text_color_mode'],
     '#description' => t('You can choose if the image you uploaded is dark or light so that proper font styles were applied to any text content visible on that image.'),
   );
 
@@ -120,15 +117,10 @@ function full_width_hero_block_render($subtype, $conf, $args, $context) {
   $node = $context->data;
   // We can't add node context to the pane, because it's use on landing pages too.
   $conf_key = 'default';
-  if ($context_node = menu_get_object('node')) {
-    // Support old configuration when key was nid only.
-    if (isset($conf[$context_node->nid])) {
-      $conf_key = $context_node->nid;
-    }
-    // New configuration has entity type prefix.
-    if (isset($conf['node' . $context_node->nid])) {
-      $conf_key = 'node' . $context_node->nid;
-    }
+
+  // New configuration has entity type prefix.
+  if (isset($conf[$node->nid])) {
+    $conf_key = $node->nid;
   }
 
   if (isset($conf[$conf_key])) {
@@ -136,15 +128,26 @@ function full_width_hero_block_render($subtype, $conf, $args, $context) {
   }
 
   $theme = $subtype;
-
   if ($content = _full_width_hero_hero_photo_render($node)) {
-    $theme = ($data['variants'] == 'standard_hero_photo') ? $subtype . '_standard_hero_photo' : $subtype . '_fullscreen_hero_photo';
+    switch ($data['variants']) {
+      case 'standard_hero_photo':
+        $theme = 'full_width_hero_block_standard_hero_photo';
+        break;
+
+      case 'fullscreen_hero_photo':
+        $theme = 'full_width_hero_block_fullscreen_hero_photo';
+        break;
+    }
   }
 
   list($category_text, $category_url) = nas_panes_get_blue_text_link($node);
   $category_link = l($category_text, $category_url, array('attributes' => array('class' => 'article-slug')));
 
+  $subtitle = '';
   $field_subtitle = field_get_items('node', $node, 'field_subtitle');
+  if (!empty($field_subtitle[0]['safe_value'])) {
+    $subtitle = $field_subtitle[0]['safe_value'];
+  }
 
   // Header color mode.
   $class = &drupal_static('nas_header_class');
@@ -162,8 +165,8 @@ function full_width_hero_block_render($subtype, $conf, $args, $context) {
   }
 
   $default_content = array(
-    'title' => $node->title,
-    'subtitle' => !empty($field_subtitle[0]['safe_value']) ? $field_subtitle[0]['safe_value'] : FALSE,
+    'title' => check_plain($node->title),
+    'subtitle' => $subtitle,
     'category_link' => $category_link,
     'color_mode_gradient' => $color_mode_gradient,
     'color_mode_text' => $data['text_color_mode'],
@@ -188,24 +191,26 @@ function full_width_hero_block_render($subtype, $conf, $args, $context) {
  */
 function _full_width_hero_hero_photo_render($node) {
   // Add hero image.
-  $get_field_hero_image = field_get_items('node', $node, 'field_hero_image');
-  if (!empty($get_field_hero_image)) {
-    $image_wrapper = entity_metadata_wrapper('file', $get_field_hero_image[0]['file']);
-    $image_caption = check_plain($image_wrapper->field_file_caption->value()['value']);
-    $hero_image = theme('image_style', array(
-      'style_name' => 'hero_image',
-      'path' => nas_alters_local_image_uri($get_field_hero_image[0]['file']->uri),
-      'title' => $image_caption,
-    ));
-
-    $content = array(
-      'hero_image' => $hero_image,
-      'caption' => _nas_panes_format_image_attribution($get_field_hero_image[0]['file']),
-    );
-    return $content;
+  $items = field_get_items('node', $node, 'field_hero_image');
+  if (empty($items[0]['fid'])) {
+    return array();
   }
+  if (!$file = file_load($items[0]['fid'])) {
+    return array();
+  }
+  $image_wrapper = entity_metadata_wrapper('file', $file);
+  $caption = $image_wrapper->field_file_caption->value();
+  $image_caption = check_markup($caption['value'], $caption['format']);
+  $hero_image = theme('image_style', array(
+    'style_name' => 'hero_image',
+    'path' => nas_alters_local_image_uri($file->uri),
+    'title' => $image_caption,
+  ));
 
-  return array();
+  return array(
+    'hero_image' => $hero_image,
+    'caption' => _nas_panes_format_image_attribution($file),
+  );
 }
 
 /**
