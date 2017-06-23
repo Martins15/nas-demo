@@ -18,7 +18,7 @@ $plugin = array(
   'tags' => array('primary_content'),
   'defaults' => array(
     'body_text' => array(
-      'value' => '',
+      'value' => '<p>Empty body text</p>',
       'format' => 'full_html',
     ),
     'add_margin' => 1,
@@ -43,8 +43,6 @@ function full_width_body_text_form($form, &$form_state) {
   // can successfully retrieve the settings form.
   ctools_form_include($form_state, 'full_width_body_text', 'nas_panes', 'plugins/content_types/full_width_body_text');
 
-  $form['override_title_text']['#maxlength'] = 1024;
-
   $form['add_margin'] = array(
     '#type' => 'checkbox',
     '#title' => t('Add left and right margin for block'),
@@ -57,7 +55,6 @@ function full_width_body_text_form($form, &$form_state) {
     '#rows' => 8,
     '#default_value' => $conf['body_text']['value'],
     '#format' => $conf['body_text']['format'],
-    '#maxlength' => 3000,
   );
 
   return $form;
@@ -93,7 +90,7 @@ function full_width_body_text_render($subtype, $conf, $args, $context) {
       'title_text' => check_plain($conf['override_title_text']),
       'title_heading' => $conf['override_title_heading'],
     ),
-    'body_text' => check_markup($conf['body_text']['value']),
+    'body_text' => check_markup($conf['body_text']['value'], $conf['body_text']['format']),
     'margin' => $conf['add_margin'],
   ));
 
