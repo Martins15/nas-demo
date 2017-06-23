@@ -2295,19 +2295,28 @@ function _nas_panes_default_social_pages_url() {
  *
  * @param object $file
  *   Loaded file entity of bundle 'image'.
+ * @param bool $plain
+ *   Flags if it doesn't need add HTML markup.
+ * @param bool $raw
+ *   Flags if only the raw values are required.
  *
- * @return string
+ * @return string|array
  *   Image caption and credit formatted like "[Caption] Photo: [Credit]".
  */
-function _nas_panes_format_image_attribution($file, $plain = FALSE) {
+function _nas_panes_format_image_attribution($file, $plain = FALSE, $raw = FALSE) {
   if (!$file) {
     return '';
   }
 
   $parts = array();
+  $raw_values = array(
+    'caption' => '',
+    'credit' => '',
+  );
 
   if ($items = field_get_items('file', $file, 'field_file_caption')) {
     if (isset($items[0]['safe_value'])) {
+      $raw_values['caption'] = $items[0]['safe_value'];
       if ($plain) {
         $parts[] = trim($items[0]['safe_value']);
       }
@@ -2318,6 +2327,7 @@ function _nas_panes_format_image_attribution($file, $plain = FALSE) {
   }
   if ($items = field_get_items('file', $file, 'field_file_credit')) {
     if (isset($items[0]['safe_value'])) {
+      $raw_values['credit'] = $items[0]['safe_value'];
       if ($plain) {
         $parts[] = t('Photo:');
         $parts[] = trim($items[0]['safe_value']);
@@ -2328,6 +2338,11 @@ function _nas_panes_format_image_attribution($file, $plain = FALSE) {
       }
     }
   }
+
+  if ($raw) {
+    return $raw_values;
+  }
+
   return implode(' ', $parts);
 }
 
