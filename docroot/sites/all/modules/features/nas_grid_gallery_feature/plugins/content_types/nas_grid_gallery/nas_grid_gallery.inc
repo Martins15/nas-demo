@@ -275,13 +275,35 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
   $block->content['#attached'] = array(
     'css' => array(
       $plugin['path'] . '/css/blueimp-gallery.min.css',
-      $plugin['path'] . '/css/grid_gallery.css',
+      $plugin['path'] . '/css/grid_gallery.css' => array(
+        'group' => CSS_THEME,
+        'weight' => 999
+      ),
     ),
     'js' => array(
-      $plugin['path'] . '/js/grid_gallery.js',
-      $plugin['path'] . '/js/blueimp-gallery.js',
-      $plugin['path'] . '/js/blueimp-gallery-fullscreen.js',
-      $plugin['path'] . '/js/jquery.blueimp-gallery.js',
+      array(
+        'type' => 'file',
+        'data' => $plugin['path'] . '/js/blueimp-gallery.js',
+        'group' => JS_LIBRARY,
+        'weight' => 100,
+      ),
+      array(
+        'type' => 'file',
+        'data' => $plugin['path'] . '/js/blueimp-gallery-fullscreen.js',
+        'group' => JS_LIBRARY,
+        'weight' => 101,
+      ),
+      array(
+        'type' => 'file',
+        'data' => $plugin['path'] . '/js/jquery.blueimp-gallery.js',
+        'group' => JS_LIBRARY,
+        'weight' => 102,
+      ),
+      array(
+        'type' => 'file',
+        'data' => $plugin['path'] . '/js/grid_gallery.js',
+        'group' => JS_THEME,
+      ),
     ),
   );
 
