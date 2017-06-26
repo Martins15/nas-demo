@@ -241,7 +241,7 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
       $vars['attributes'] = _nas_panes_format_image_attribution($image_file);
       $vars['attributes_plain'] = _nas_panes_format_image_attribution($image_file, TRUE);
       $image_attributes = _nas_panes_format_image_attribution($image_file, FALSE, TRUE);
-      $vars['caption'] = filter_xss(_filter_autop($image_attributes['caption']), array('a', 'em', 'i', 'b', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p'));
+      $vars['caption'] = filter_xss(_filter_autop($image_attributes['caption']), array('a', 'em', 'i', 'b', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p', 'br'));
       $vars['credit'] = $image_attributes['credit'] ? 'Photo: ' . filter_xss($image_attributes['credit']) : '';
     }
     $images[] = $vars;
@@ -262,7 +262,7 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
     '#images' => $images,
     '#rows' => $grid_info['rows'],
     '#columns' => $grid_info['columns'],
-    '#gallery_caption' => !empty($conf['gallery_caption']) ? filter_xss(_filter_autop($conf['gallery_caption']), array('a', 'em', 'i', 'b', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p')) : FALSE,
+    '#gallery_caption' => !empty($conf['gallery_caption']) ? filter_xss(_filter_autop($conf['gallery_caption']), array('a', 'em', 'i', 'b', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p', 'br')) : FALSE,
     '#output_placeholder' => _nas_grid_gallery_placeholder(),
     '#mobile_fallback' => $conf['mobile_fallback'],
     '#mobile_fallback_image' => $mobile_fallback_image,
