@@ -214,6 +214,7 @@ function nas_grid_gallery_render($subtype, $conf, $args, $context) {
     '3x2' => 'small-4 tiny-6',
     '6x2' => 'small-2 tiny-6',
     '6x3' => 'small-2 tiny-6',
+    '6x6' => 'small-2 tiny-6',
   );
   $grid_info = _nas_grid_gallery_grid_info($conf['grid_size']);
   $class_column = $grid_classes[$conf['grid_size']];
