@@ -13,6 +13,23 @@
   margin: 0;
   max-width: none;
   transform: translateX(-50%);
+  transition: height 1s;
+}
+
+.nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content.slide-content-landscape {
+  height: auto;
+  max-height: none;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  width: 100%;
+  transform: translateX(-50%) translatey(-50%);
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content.slide-content-landscape {
+    width: 90%;
+  }
 }
 
 .nas-blueimp-gallery.blueimp-gallery>.slides {
@@ -54,6 +71,8 @@
   right: 12.5px;
   text-align: right;
   top: 0;
+  max-height: 36px;
+  overflow: hidden;
 }
 
 .nas-blueimp-gallery .description .title-wrapper {
