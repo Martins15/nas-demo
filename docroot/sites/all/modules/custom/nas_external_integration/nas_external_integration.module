@@ -253,7 +253,7 @@ function _nas_external_integration_mailchimp_api_init($apikey) {
 /**
  * Process external integration.
  */
-function nas_external_integration_process_form_submission($values, $settings) {
+function nas_external_integration_process_form_submission(&$values, $settings) {
   if ($provider = nas_external_integration_get_provider($settings['provider'])) {
     if ($function = ctools_plugin_get_function($provider, 'form_submission_callback')) {
       $function($values, $settings);

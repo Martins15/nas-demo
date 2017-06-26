@@ -154,6 +154,7 @@
 @import "modules/social-bar";
 @import "modules/editorial-grid";
 @import "modules/progress-bar";
+@import "modules/grid-gallery";
 
 // Sidebar modules
 @import "modules/sidebar";
@@ -161,6 +162,9 @@
 @import "modules/story-list";
 @import "modules/contact-info";
 @import "modules/welcome-cards";
+
+// Article layouts
+@import "layout/article/full-width";
 
 //NAS
 @import "nas";

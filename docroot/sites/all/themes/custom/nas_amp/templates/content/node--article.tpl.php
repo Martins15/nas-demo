@@ -80,8 +80,8 @@
  * @ingroup themeable
  */
 ?>
-<?php if (!empty($content['field_editorial_card_image'])): ?>
-  <?php print render($content['field_editorial_card_image']); ?>
+<?php if (!empty($content['field_hero_image'])): ?>
+  <?php print render($content['field_hero_image']); ?>
 <?php endif; ?>
 
 <article class="hg-content-container">
