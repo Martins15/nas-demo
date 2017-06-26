@@ -17104,6 +17104,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     padding-right: 6.25px;
   }
 }
+.grid-gallery .grid-gallery__caption p {
+  margin-bottom: 1em;
+}
 .grid-gallery.grid-gallery-single-image img {
   width: 100%;
   height: auto;
