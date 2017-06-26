@@ -57,10 +57,17 @@
 }
 
 .nas-blueimp-gallery .description .title-wrapper {
-  height: 72px;
-  margin-top: 20px;
+  height: 95px;
+  margin-top: 16px;
   overflow: hidden;
   position: relative;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title-wrapper {
+    height: 72px;
+    margin-top: 20px;
+  }
 }
 
 .nas-blueimp-gallery .description .title-wrapper-inner {
@@ -69,11 +76,17 @@
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 30px;
+  padding-right: 10px;
   position: absolute;
   right: 0;
   top: 0;
   z-index: 5;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title-wrapper-inner {
+    padding-right: 30px;
+  }
 }
 
 .nas-blueimp-gallery .description .title-wrapper.overlay:before {
@@ -102,13 +115,20 @@
 
 .nas-blueimp-gallery .description .title {
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: normal;
   color: #404040;
   text-shadow: none;
   display: block;
-  line-height: 23px;
+  line-height: 19px;
   position: relative;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title {
+    font-size: 18px;
+    line-height: 23px;
+  }
 }
 
 .nas-blueimp-gallery .description .title p {
