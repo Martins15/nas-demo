@@ -67,7 +67,7 @@
     line-height: 18px;
 
     @include breakpoint(small-up) {
-      text-align: right;
+
       .columns {
         padding-left: 2.5px;
         padding-right: 2.5px;

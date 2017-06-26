@@ -17093,9 +17093,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   line-height: 18px;
 }
 @media only screen and (min-width: 480px) {
-  .grid-gallery .grid-gallery__caption {
-    text-align: right;
-  }
   .grid-gallery .grid-gallery__caption .columns {
     padding-left: 2.5px;
     padding-right: 2.5px;
