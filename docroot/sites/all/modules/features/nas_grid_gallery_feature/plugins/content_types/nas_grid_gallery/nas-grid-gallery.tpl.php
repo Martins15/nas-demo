@@ -29,9 +29,9 @@
       <a class="grid-gallery__lightbox white" href="<?php print $image['lightbox_path']; ?>" data-gallery="#grid-gallery">
         <img class="grid-gallery__image"
              src="<?php print $image['thumbnail_path']; ?>"
-             title="<?php print $image['attributes_plain']; ?>"
-             data-credit="<?php print $image['credit']; ?>"
-             data-title="<?php print $image['caption']; ?>">
+             title="<?php print htmlspecialchars($image['attributes_plain']); ?>"
+             data-credit="<?php print htmlspecialchars($image['credit']); ?>"
+             data-title="<?php print htmlspecialchars($image['caption']); ?>">
       </a>
     </div>
   <?php endforeach; ?>
@@ -95,7 +95,6 @@
           <div class="slide">
             <div class="slide-img">
               <img src="<?php print $image['thumbnail_path']; ?>" />
-<!--              width="300" height="300" alt="" -->
             </div>
             <div class="row">
               <div class="large-9 columns">

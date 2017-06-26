@@ -13,6 +13,23 @@
   margin: 0;
   max-width: none;
   transform: translateX(-50%);
+  transition: height 1s;
+}
+
+.nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content.slide-content-landscape {
+  height: auto;
+  max-height: none;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  width: 100%;
+  transform: translateX(-50%) translatey(-50%);
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery.blueimp-gallery>.slides>.slide>.slide-content.slide-content-landscape {
+    width: 90%;
+  }
 }
 
 .nas-blueimp-gallery.blueimp-gallery>.slides {
@@ -54,13 +71,22 @@
   right: 12.5px;
   text-align: right;
   top: 0;
+  max-height: 36px;
+  overflow: hidden;
 }
 
 .nas-blueimp-gallery .description .title-wrapper {
-  height: 72px;
-  margin-top: 20px;
+  height: 95px;
+  margin-top: 16px;
   overflow: hidden;
   position: relative;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title-wrapper {
+    height: 72px;
+    margin-top: 20px;
+  }
 }
 
 .nas-blueimp-gallery .description .title-wrapper-inner {
@@ -69,11 +95,17 @@
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 30px;
+  padding-right: 10px;
   position: absolute;
   right: 0;
   top: 0;
   z-index: 5;
+}
+
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title-wrapper-inner {
+    padding-right: 30px;
+  }
 }
 
 .nas-blueimp-gallery .description .title-wrapper.overlay:before {
@@ -102,17 +134,24 @@
 
 .nas-blueimp-gallery .description .title {
   font-family: "Source Sans Pro", Verdana, sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: normal;
   color: #404040;
   text-shadow: none;
   display: block;
-  line-height: 23px;
+  line-height: 19px;
   position: relative;
 }
 
+@media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery .description .title {
+    font-size: 18px;
+    line-height: 23px;
+  }
+}
+
 .nas-blueimp-gallery .description .title p {
-  padding-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .blueimp-gallery .prev,
