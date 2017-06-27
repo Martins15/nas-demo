@@ -310,6 +310,10 @@
   left: 50%;
 }
 
+.blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative p {
+  margin-bottom: 1em;
+}
+
 @media only screen and (min-width: 801px) {
   .blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative {
     top: 50px;
@@ -317,8 +321,7 @@
 }
 
 .blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-inner {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 35px;
 }
 
 .blueimp-gallery.nas-blueimp-gallery-alternative .description {
