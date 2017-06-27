@@ -6751,6 +6751,158 @@ table.row-borders tbody td {
   cursor: pointer;
 }
 
+.editorial-card-2x-conservation-news-block .conservation-news-column h4 {
+  margin-bottom: 12.5px;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .editorial-card {
+  border: none;
+  box-shadow: none;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .view-conservation-news {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.editorial-card-2x-conservation-news-block .conservation-news-column .view-conservation-news .views-row {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  line-height: 20px;
+}
+
+.view-conservation-news-filter {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+}
+.view-conservation-news-filter .filter-label {
+  float: left;
+  color: #838078;
+}
+.view-conservation-news-filter .filter-items {
+  margin: 0;
+}
+.view-conservation-news-filter .filter-items li {
+  display: inline;
+  border-right: 1px solid #404040;
+  padding: 0 5px;
+  cursor: pointer;
+  color: #0AA8E3;
+  transition: color 0.15s;
+}
+.view-conservation-news-filter .filter-items li:last-child {
+  border-right: none;
+}
+.view-conservation-news-filter .filter-items li:hover {
+  color: #07729a;
+}
+
+.view-conservation-news .date-display-single:after {
+  content: ":";
+}
+.view-conservation-news .views-field-field-conservation-news-date {
+  font-weight: 600;
+}
+.view-conservation-news .views-field-field-conservation-news-link,
+.view-conservation-news .views-field-field-conservation-news-date,
+.view-conservation-news .views-field-body {
+  display: inline;
+}
+.view-conservation-news .views-field-field-conservation-news-link .field-content,
+.view-conservation-news .views-field-field-conservation-news-date .field-content,
+.view-conservation-news .views-field-body .field-content {
+  display: inherit;
+}
+.view-conservation-news .views-field-field-conservation-news-link .field-content p,
+.view-conservation-news .views-field-field-conservation-news-date .field-content p,
+.view-conservation-news .views-field-body .field-content p {
+  margin-bottom: 0;
+  display: inherit;
+}
+.view-conservation-news .pager {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  height: 50px;
+  list-style: none;
+  margin-left: 0;
+  position: relative;
+}
+.view-conservation-news .pager li {
+  position: absolute;
+  bottom: 5px;
+  font-size: 15px;
+}
+.view-conservation-news .pager .pager-previous {
+  left: 0;
+}
+.view-conservation-news .pager .pager-next {
+  right: 0;
+}
+.view-conservation-news .pager-current {
+  display: none;
+}
+
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list {
+  position: relative;
+}
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list .view {
+  display: none;
+}
+.editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view {
+  display: block;
+}
+.editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view.hidden {
+  display: none;
+}
+
+.conservation-menu-jump-menu {
+  margin-bottom: 37.5px;
+  font: 20px "Source Sans Pro", Verdana, sans-serif;
+  line-height: 27px;
+}
+.conservation-menu-jump-menu .jump-to {
+  float: left;
+  line-height: inherit;
+  padding-right: 0.2em;
+}
+.conservation-menu-jump-menu .jump-to-menu {
+  margin: 0;
+}
+.conservation-menu-jump-menu .jump-to-item {
+  display: inline-block;
+  padding-right: 0.2em;
+}
+.conservation-menu-jump-menu .jump-to-item:after {
+  content: " | ";
+  color: #404040;
+}
+.conservation-menu-jump-menu .jump-to-item:last-child {
+  border-right: none;
+}
+.conservation-menu-jump-menu .jump-to-item:last-child:after {
+  content: "";
+}
+
+.conservation-news-block .conservation-news-title {
+  line-height: 1.3;
+}
+.conservation-news-block .conservation-news-image {
+  float: left;
+  margin-right: 15px;
+  width: 40px;
+}
+.conservation-news-block .conservation-news-icon {
+  margin: auto;
+  display: block;
+  height: auto;
+}
+.conservation-news-block .conservation-news-heading + div {
+  font: italic 22px "Source Sans Pro", Verdana, sans-serif;
+}
+.conservation-news-block .view-conservation-news .views-row {
+  margin-bottom: 2em;
+}
+.conservation-news-block .view-conservation-news .pager {
+  height: 25px;
+}
+.conservation-news-block .view-conservation-news .pager li {
+  font-size: 16px;
+}
+
 /* @todo refactor like crazy for more hero variations */
 .hero {
   position: relative;
@@ -16878,6 +17030,95 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding-bottom: 50px;
 }
 
+.grid-gallery {
+  margin: 15px 0;
+}
+.grid-gallery .grid-gallery__thumbs {
+  margin-left: -2.5px;
+  margin-right: -2.5px;
+  width: auto;
+}
+.grid-gallery .grid-gallery__thumbs .columns {
+  padding-bottom: 2.5px;
+  padding-top: 2.5px;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+}
+@media only screen and (min-width: 601px) {
+  .grid-gallery .grid-gallery__thumbs {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .grid-gallery .grid-gallery__thumbs .columns {
+    padding-bottom: 6.25px;
+    padding-top: 6.25px;
+    padding-left: 6.25px;
+    padding-right: 6.25px;
+  }
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox {
+  line-height: 0;
+  display: block;
+  position: relative;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox:before {
+  transition: opacity 0.1s;
+  background-image: url(../prototypes/full-screen-article/expander-x2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 100%;
+  content: "";
+  display: block;
+  height: 36px;
+  position: absolute;
+  left: 100%;
+  margin-left: -27px;
+  margin-top: -27px;
+  transform: translateX(-50%) translateY(-50%);
+  width: 36px;
+  opacity: 0;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__lightbox:hover:before {
+  opacity: 1;
+}
+.grid-gallery .grid-gallery__thumbs .grid-gallery__image {
+  width: 100%;
+}
+.grid-gallery .grid-gallery__caption {
+  color: #76736C;
+  font-family: "Source Sans Pro", Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+@media only screen and (min-width: 480px) {
+  .grid-gallery .grid-gallery__caption .columns {
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .grid-gallery .grid-gallery__caption .columns {
+    padding-left: 6.25px;
+    padding-right: 6.25px;
+  }
+}
+.grid-gallery .grid-gallery__caption p {
+  margin-bottom: 1em;
+}
+.grid-gallery.grid-gallery-single-image img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 601px) {
+  .grid-gallery-slideshow-wrapper {
+    height: 0;
+    overflow: hidden;
+  }
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }
@@ -17060,6 +17301,79 @@ input[type="checkbox"].np-checkbox:checked + label:before {
 }
 .welcome-card.orange .welcome-card-banner {
   background-color: #dd7537;
+}
+
+.title-letter {
+  display: block;
+  float: left;
+  font-size: 82px;
+  height: 75px;
+  line-height: 75px;
+  margin-right: 10px;
+}
+
+.article-full-width .large-header {
+  max-width: 799px;
+  width: 100%;
+}
+.article-full-width .article-meta {
+  margin-top: 0;
+}
+.article-full-width.article-header {
+  margin-bottom: 25px;
+}
+
+.article-full-width-byline .article-author-image {
+  height: 45px;
+  width: 45px;
+  margin-right: 22px;
+}
+.article-full-width-byline .article-author-name {
+  font-size: 18px;
+}
+.article-full-width-byline .article-date {
+  font-size: 14px;
+}
+.article-full-width-byline .social-sharing {
+  display: none;
+}
+@media only screen and (min-width: 601px) {
+  .article-full-width-byline .social-sharing {
+    display: block;
+    margin-right: 12.5px;
+    position: absolute;
+    right: 64px;
+    text-align: right;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.article-full-width-layout .article-text {
+  left: 0;
+  margin: auto;
+  margin-top: 25px;
+  width: 100%;
+}
+.article-full-width-layout .article-text.row {
+  padding: 0 12.5px;
+  max-width: 799px;
+}
+.article-full-width-layout .article-text.row > :not(.article-aside):not(.article-image) {
+  margin: 0 auto 25.5px auto;
+  max-width: 640px;
+  width: 100%;
+}
+@media only screen and (min-width: 815px) {
+  .article-full-width-layout .article-text.row > :not(.article-aside):not(.article-image) {
+    margin-left: 67px;
+    margin-right: 67px;
+  }
+}
+.article-full-width-layout .article-text.row > .slideshow,
+.article-full-width-layout .article-text.row > .article-image {
+  max-width: none !important;
+  width: 100%;
 }
 
 .sm2_playing .icon-sound-full:before {

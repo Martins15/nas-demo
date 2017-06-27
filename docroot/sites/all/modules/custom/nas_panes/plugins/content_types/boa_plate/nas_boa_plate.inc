@@ -14,7 +14,11 @@ $plugin = array(
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'defaults' => array(
     'link_title' => 'Learn more about John J Audubon',
-    'link_uri' => '<front>'
+    'link_uri' => '<front>',
+    'nas_external_integration' => array(
+      'provider' => 'every_action',
+      'id' => 'E0wUY_msBkaO8gCuaoU8GQ2',
+    ),
   ),
 );
 
@@ -37,6 +41,15 @@ function nas_panes_nas_boa_plate_content_type_edit_form($form, &$form_state) {
     '#type' => 'textfield',
     '#default_value' => $conf['link_uri'],
   );
+
+  // External integration.
+  if (module_exists('nas_external_integration')) {
+    $form = nas_external_integration_settings_form($form, $form_state, array());
+    $provider = &$conf['nas_external_integration']['provider'];
+    $id = &$conf['nas_external_integration']['id'];
+    $form['nas_external_integration']['provider']['#default_value'] = (!empty($provider) && $provider != 'none') ? $provider : $form_state['plugin']['defaults']['nas_external_integration']['provider'];
+    $form['nas_external_integration']['id']['#default_value'] = !empty($id) ? $id : $form_state['plugin']['defaults']['nas_external_integration']['id'];
+  }
 
   return $form;
 }

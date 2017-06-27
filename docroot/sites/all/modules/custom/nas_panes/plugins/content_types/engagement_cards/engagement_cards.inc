@@ -124,8 +124,15 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
   if (isset($conf[$conf_key])) {
     $data = $conf[$conf_key];
   }
-  // Call main function and get what we have to render.
-  $nodes = nas_panes_engagement_cards_get_cards($subtype, $data, 3);
+
+  $nodes = array();
+  engagement_cards_manual($data, $nodes);
+
+  // If don't have manual carts call main function
+  // and get what we have to render.
+  if (empty($nodes)) {
+    $nodes = nas_panes_engagement_cards_get_cards($subtype, $data, 3);
+  }
 
   $contextual_links = nas_panes_build_page_contextual_links_from_current_page($subtype, $conf, $args, $context);
   if (arg(0) == 'frontpage') {
@@ -152,4 +159,20 @@ function engagement_cards_render($subtype, $conf, $args, $context) {
   }
 
   return $block;
+}
+
+/**
+ * Get manual engagement cards.
+ */
+function engagement_cards_manual($data, &$nodes) {
+  if (!isset($data['references'])) {
+    return;
+  }
+  foreach ($data['references'] as $value) {
+    if (!empty($value['entity_reference']['entity_id']) && $node = node_load($value['entity_reference']['entity_id'])) {
+      if ($node->status == NODE_PUBLISHED) {
+        $nodes[] = $node;
+      }
+    }
+  }
 }
