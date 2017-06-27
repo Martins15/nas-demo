@@ -50,6 +50,11 @@
 <div id="grid-gallery" class="blueimp-gallery nas-blueimp-gallery blueimp-gallery-controls" data-title-element=".title">
   <div class="slides"></div>
   <a class="close"></a>
+  <div class="title-wrapper title-wrapper-alternative">
+    <div class="title-wrapper-inner">
+      <div class="title"></div>
+    </div>
+  </div>
   <div class="description">
     <div class="row">
       <div class="columns">
