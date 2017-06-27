@@ -118,13 +118,20 @@
 
         var is_alternative = false;
         if (current_slide) {
+          var alw = window.innerWidth - 25;
+          if (window.innerWidth > 1000) {
+            alw = window.innerWidth - 100;
+          }
+          else if (window.innerWidth > 800) {
+            alw = window.innerWidth - 25 - 75 * (window.innerWidth - 800) / 200;
+          }
           var maximum_allowed = {
             height: window.innerHeight,
-            width: window.innerWidth > 1000 ? Math.max(1000, window.innerWidth * 0.8) : window.innerWidth
+            width: alw
           };
           var minimum_description_width = 320;
 
-          var eff_height = maximum_allowed.height - 50 - parseInt($('.slides').css('padding-top'));
+          var eff_height = maximum_allowed.height - 96 - parseInt($('.slides').css('padding-top'));
           var eff_width = eff_height * image_aspect_ratio;
 
           if (eff_width > maximum_allowed.width - minimum_description_width) {
@@ -138,7 +145,7 @@
               height: $img.height()
             };
             $('.title-wrapper-alternative').css({
-              marginLeft: image_dimensions.width / 2 - 160,
+              marginLeft: (image_dimensions.width - minimum_description_width) / 2,
               maxHeight: image_dimensions.height,
               overflow: 'auto'
             });
