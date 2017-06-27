@@ -151,7 +151,7 @@ function nas_article_feature_field_default_field_instances() {
         'module' => 'amp',
         'settings' => array(),
         'type' => 'amp_text',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -398,7 +398,7 @@ function nas_article_feature_field_default_field_instances() {
           'multiple_to' => '',
         ),
         'type' => 'date_default',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -1835,6 +1835,12 @@ function nas_article_feature_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'editorial_grid_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'fb_instant_article' => array(
         'label' => 'above',
         'settings' => array(),
@@ -2917,15 +2923,9 @@ function nas_article_feature_field_default_field_instances() {
     'display' => array(
       'amp' => array(
         'label' => 'hidden',
-        'module' => 'amp',
-        'settings' => array(
-          'amp_fixed_height' => 300,
-          'amp_layout' => 'responsive',
-          'image_link' => '',
-          'image_style' => 'social_media_photo',
-        ),
-        'type' => 'amp_image',
-        'weight' => 1,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'conservation_strategy_list_teaser' => array(
         'label' => 'above',
@@ -4046,9 +4046,15 @@ function nas_article_feature_field_default_field_instances() {
     'display' => array(
       'amp' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
+        'module' => 'nas_amp_feature',
+        'settings' => array(
+          'amp_fixed_height' => 300,
+          'amp_layout' => 'responsive',
+          'image_link' => '',
+          'image_style' => 'article_featured',
+        ),
+        'type' => 'amp_media',
+        'weight' => 1,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',
@@ -4371,6 +4377,12 @@ function nas_article_feature_field_default_field_instances() {
         'weight' => 0,
       ),
       'editorial_card_4x' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'editorial_grid_teaser' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -4749,7 +4761,7 @@ function nas_article_feature_field_default_field_instances() {
         'module' => 'amp',
         'settings' => array(),
         'type' => 'amp_text',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'conservation_strategy_featured_teaser' => array(
         'label' => 'hidden',

@@ -119,7 +119,7 @@ function about_page_intro_render($subtype, $conf, $args, $contexts) {
     'title_heading' => isset($conf['override_title_heading']) ? $conf['override_title_heading'] : 'h2',
     'left_column' => $conf['left_column']['value'],
     'right_column' => $conf['right_column']['value'],
-    'full_width_text' => $conf['full_width_text']['value'],
+    'full_width_text' => check_markup($conf['full_width_text']['value'], $conf['full_width_text']['format']),
     'contextual_links' => $contextual_links,
     'spacetop' => $conf['paddings']['top'],
     'spacebetween' => $conf['paddings']['between'],
