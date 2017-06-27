@@ -51,6 +51,10 @@
   transition: padding-left 0.1s, padding-right 0.1s;
 }
 
+.nas-blueimp-gallery .description .row {
+  max-width: none;
+}
+
 .nas-blueimp-gallery .description .indicator {
   display: none;
 }
@@ -132,6 +136,7 @@
   opacity: 0;
 }
 
+.nas-blueimp-gallery-alternative .title-wrapper .title,
 .nas-blueimp-gallery .description .title {
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-size: 14px;
@@ -144,6 +149,7 @@
 }
 
 @media only screen and (min-width: 801px) {
+  .nas-blueimp-gallery-alternative .title-wrapper .title,
   .nas-blueimp-gallery .description .title {
     font-size: 18px;
     line-height: 23px;
@@ -278,4 +284,47 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.title-wrapper-alternative {
+  display: none;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative {
+  padding-bottom: 50px;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .description {
+  height: 50px;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .description .title-wrapper {
+  display: none;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative {
+  display: block;
+  position: absolute;
+  top: 40px;
+  width: 320px;
+  left: 50%;
+}
+
+@media only screen and (min-width: 801px) {
+  .blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-alternative {
+    top: 50px;
+  }
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .title-wrapper-inner {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.blueimp-gallery.nas-blueimp-gallery-alternative .description {
+  margin-left: -160px;
+}
+
+.nas-blueimp-gallery.blueimp-gallery.nas-blueimp-gallery-alternative>.slides>.slide>.slide-content {
+  margin-left: -160px;
 }

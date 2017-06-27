@@ -3001,7 +3001,7 @@ function nas_article_feature_panelizer_defaults() {
             'entity_reference' => FALSE,
           ),
         ),
-        'wrapper' => 0,
+        'wrapper' => 1,
       ),
       'form_build_id' => 'form-P7POhYQAVoDHzB0qDRWdhqeDC2bTyjKrnGWiGU5BHTU',
       'form_token' => '5UzT0E1CsgvIpX-4LrNLz6SOEcsZ37RcVBk-rlljRIo',
