@@ -8,7 +8,7 @@ $plugin = array(
   'single' => TRUE,
   'title' => t('Grid Gallery'),
   'description' => t('Gallery images based on Ligthbox.'),
-  'category' => 'NAS',
+  'category' => 'Full width',
   'edit form' => 'nas_grid_gallery_edit_form',
   'render callback' => 'nas_grid_gallery_render',
   'hook theme' => 'nas_grid_gallery_theme',
@@ -55,6 +55,7 @@ function nas_grid_gallery_edit_form($form, &$form_state) {
     '3x1' => t('(3x1) 3 columns, 1 row'),
     '6x2' => t('(6x2) 6 columns, 2 rows'),
     '6x3' => t('(6x3) 6 columns, 3 rows'),
+    '6x6' => t('(6x6) 6 columns, 6 rows'),
   );
 
   $form['grid_size'] = array(
