@@ -4282,3 +4282,20 @@ function nas_master_update_7294() {
   variable_set('uuid_features_entity_taxonomy_term', $taxonomy_settings);
   module_enable(array('fe_date', 'nas_conservation_news_feature'));
 }
+
+/**
+ * Update AMP Matadata for Article.
+ */
+function nas_master_update_7295() {
+  $amp_metadata = array(
+    'amp_metadata_config_schemaType' => 'NewsArticle',
+    'amp_metadata_config_headline' => '[node:title]',
+    'amp_metadata_config_datePublished' => '[node:created:custom:c]',
+    'amp_metadata_config_dateModified' => '[node:changed:custom:c]',
+    'amp_metadata_config_description' => '[node:field_subtitle]',
+    'amp_metadata_config_author' => '[node:field_author]',
+    'amp_metadata_config_image' => '[node:field_hero_image]',
+    'amp_metadata_config_imageStyle' => '',
+  );
+  variable_set('amp_metadata_options_article', $amp_metadata);
+}

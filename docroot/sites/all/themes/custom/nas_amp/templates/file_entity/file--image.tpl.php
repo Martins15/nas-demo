@@ -69,7 +69,4 @@
  */
 ?>
 
-<?php
-//  $content['file']['#image_style'] = 'hero_image';
-  print render($content['file'])
-?>
+<?php print render($content['file']) ?>
