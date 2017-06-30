@@ -20,3 +20,20 @@ function nas_amp_feature_update_7201() {
     ),
   ));
 }
+
+/**
+ * Update AMP Matadata for Article.
+ */
+function nas_amp_feature_update_7202() {
+  $amp_metadata = array(
+    'amp_metadata_config_schemaType' => 'NewsArticle',
+    'amp_metadata_config_headline' => '[node:title]',
+    'amp_metadata_config_datePublished' => '[node:created:custom:c]',
+    'amp_metadata_config_dateModified' => '[node:changed:custom:c]',
+    'amp_metadata_config_description' => '[node:field_subtitle]',
+    'amp_metadata_config_author' => '[node:field_author]',
+    'amp_metadata_config_image' => '[node:field_hero_image]',
+    'amp_metadata_config_imageStyle' => 'amp_metadata_content_image_min_696px_wide',
+  );
+  variable_set('amp_metadata_options_article', $amp_metadata);
+}
