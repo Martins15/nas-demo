@@ -23,7 +23,7 @@
   <?php if ($mobile_fallback): ?>
     hide-for-tiny hide-for-small
   <?php endif; ?>">
-  <div class="row grid-gallery__thumbs">
+  <div class="<?php print ($grid_size == '5x3') ? 'clearfix' : 'row'; ?> grid-gallery__thumbs">
   <?php foreach ($images as $image): ?>
     <div class="columns <?php print $image['class_column']; ?>">
       <a class="grid-gallery__lightbox white" href="<?php print $image['lightbox_path']; ?>" data-gallery="#grid-gallery">
@@ -39,7 +39,7 @@
 
   <?php if ($gallery_caption): ?>
     <div class="row grid-gallery__caption">
-      <div class="columns large-12">
+      <div class="columns<?php print ($grid_size == '5x3') ? ' large-centered grid-gallery__caption--left' : ' large-12'; ?>">
         <?php print $gallery_caption; ?>
       </div>
     </div>

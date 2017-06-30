@@ -17119,6 +17119,21 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   }
 }
 
+@media only screen and (min-width: 480px) {
+  .grid-gallery-5x3 .column-5 {
+    width: 20%;
+  }
+}
+.grid-gallery-5x3 .grid-gallery__caption--left {
+  width: 100%;
+  max-width: 782px;
+}
+@media only screen and (min-width: 480px) {
+  .grid-gallery-5x3 .grid-gallery__caption {
+    text-align: left;
+  }
+}
+
 .sidebar, .article-sidebar {
   margin-bottom: 25px;
 }

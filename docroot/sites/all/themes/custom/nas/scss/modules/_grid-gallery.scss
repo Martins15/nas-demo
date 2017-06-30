@@ -101,3 +101,20 @@
     overflow: hidden;
   }
 }
+
+.grid-gallery-5x3 {
+  .column-5 {
+    @include breakpoint(small-up) {
+      width: 20%;
+    }
+  }
+  .grid-gallery__caption {
+    &--left {
+      width: 100%;
+      max-width: 782px;
+    }
+    @include breakpoint(small-up) {
+      text-align: left;
+    }
+  }
+}
