@@ -17124,9 +17124,14 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     width: 20%;
   }
 }
-.grid-gallery-5x3 .grid-gallery__caption--left {
-  width: 100%;
+.grid-gallery-5x3 .grid-gallery__thumbs {
+  max-width: none;
+}
+.grid-gallery-5x3 .grid-gallery__caption .columns {
   max-width: 782px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
 }
 @media only screen and (min-width: 480px) {
   .grid-gallery-5x3 .grid-gallery__caption {

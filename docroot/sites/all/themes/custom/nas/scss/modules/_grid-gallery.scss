@@ -108,10 +108,15 @@
       width: 20%;
     }
   }
+  .grid-gallery__thumbs {
+    max-width: none;
+  }
   .grid-gallery__caption {
-    &--left {
-      width: 100%;
+    .columns {
       max-width: 782px;
+      margin-left: auto;
+      margin-right: auto;
+      float: none;
     }
     @include breakpoint(small-up) {
       text-align: left;
