@@ -44,7 +44,14 @@ function nas_conservation_news_feature_uuid_features_default_content() {
   ),
   'field_custom_section' => array(),
   'field_hero_image' => array(),
-  'field_menu_section' => array(),
+  'field_menu_section' => array(
+    'und' => array(
+      0 => array(
+        'tid' => '88702afe-3135-4cd5-985a-ceaec1633072',
+        'uuid' => '88702afe-3135-4cd5-985a-ceaec1633072',
+      ),
+    ),
+  ),
   'field_subtitle' => array(
     'und' => array(
       0 => array(
