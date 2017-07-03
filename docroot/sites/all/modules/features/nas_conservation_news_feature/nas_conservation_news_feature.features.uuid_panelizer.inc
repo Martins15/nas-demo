@@ -118,6 +118,28 @@ function nas_conservation_news_feature_uuid_features_default_panelizer() {
     $display->content['new-e66ec009-5229-432b-a378-516227db73a3'] = $pane;
     $display->panels['file_attachments'][0] = 'new-e66ec009-5229-432b-a378-516227db73a3';
     $pane = new stdClass();
+    $pane->pid = 'new-4b465c0f-558c-4ddb-b493-5810fa5cdf4a';
+    $pane->panel = 'header';
+    $pane->type = 'article_section';
+    $pane->subtype = 'article_section';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'classes' => 'article-slug',
+      'context' => 'panelizer',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4b465c0f-558c-4ddb-b493-5810fa5cdf4a';
+    $display->content['new-4b465c0f-558c-4ddb-b493-5810fa5cdf4a'] = $pane;
+    $display->panels['header'][0] = 'new-4b465c0f-558c-4ddb-b493-5810fa5cdf4a';
+    $pane = new stdClass();
     $pane->pid = 'new-c927bbd8-d7c4-42c0-86fd-ce1e757a9263';
     $pane->panel = 'header';
     $pane->type = 'node_title';
@@ -140,11 +162,11 @@ function nas_conservation_news_feature_uuid_features_default_panelizer() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'c927bbd8-d7c4-42c0-86fd-ce1e757a9263';
     $display->content['new-c927bbd8-d7c4-42c0-86fd-ce1e757a9263'] = $pane;
-    $display->panels['header'][0] = 'new-c927bbd8-d7c4-42c0-86fd-ce1e757a9263';
+    $display->panels['header'][1] = 'new-c927bbd8-d7c4-42c0-86fd-ce1e757a9263';
     $pane = new stdClass();
     $pane->pid = 'new-c90250f8-d011-4822-8598-78bcbcb45f47';
     $pane->panel = 'header';
@@ -177,11 +199,43 @@ function nas_conservation_news_feature_uuid_features_default_panelizer() {
       'css_class' => 'conservation_news_heading_subtitle',
     );
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = 'c90250f8-d011-4822-8598-78bcbcb45f47';
     $display->content['new-c90250f8-d011-4822-8598-78bcbcb45f47'] = $pane;
-    $display->panels['header'][1] = 'new-c90250f8-d011-4822-8598-78bcbcb45f47';
+    $display->panels['header'][2] = 'new-c90250f8-d011-4822-8598-78bcbcb45f47';
+    $pane = new stdClass();
+    $pane->pid = 'new-4108b831-4971-4d9f-a823-85fc072064b5';
+    $pane->panel = 'magazine_bar';
+    $pane->type = 'entity_field';
+    $pane->subtype = 'node:field_hero_image';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'label' => 'title',
+      'formatter' => 'media',
+      'delta_limit' => 0,
+      'delta_offset' => '0',
+      'delta_reversed' => FALSE,
+      'formatter_settings' => array(
+        'file_view_mode' => 'hero',
+      ),
+      'context' => 'panelizer',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '4108b831-4971-4d9f-a823-85fc072064b5';
+    $display->content['new-4108b831-4971-4d9f-a823-85fc072064b5'] = $pane;
+    $display->panels['magazine_bar'][0] = 'new-4108b831-4971-4d9f-a823-85fc072064b5';
     $pane = new stdClass();
     $pane->pid = 'new-5b9db914-bbf9-4118-b970-10e117d1c170';
     $pane->panel = 'main';
@@ -450,6 +504,44 @@ function nas_conservation_news_feature_uuid_features_default_panelizer() {
     $pane->uuid = 'cfe57bd2-e840-43b5-b907-6959de517451';
     $display->content['new-cfe57bd2-e840-43b5-b907-6959de517451'] = $pane;
     $display->panels['related'][0] = 'new-cfe57bd2-e840-43b5-b907-6959de517451';
+    $pane = new stdClass();
+    $pane->pid = 'new-9dbbee28-8a19-43f8-929a-6107a9d66275';
+    $pane->panel = 'social';
+    $pane->type = 'nas_panes_pane_in_the_article';
+    $pane->subtype = 'nas_panes_pane_in_the_article';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '9dbbee28-8a19-43f8-929a-6107a9d66275';
+    $display->content['new-9dbbee28-8a19-43f8-929a-6107a9d66275'] = $pane;
+    $display->panels['social'][0] = 'new-9dbbee28-8a19-43f8-929a-6107a9d66275';
+    $pane = new stdClass();
+    $pane->pid = 'new-4b091a60-7ae7-4627-9fa7-daddfdb5370e';
+    $pane->panel = 'social';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'nas_most_viewed_articles-nas_most_viewed_articles';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '4b091a60-7ae7-4627-9fa7-daddfdb5370e';
+    $display->content['new-4b091a60-7ae7-4627-9fa7-daddfdb5370e'] = $pane;
+    $display->panels['social'][1] = 'new-4b091a60-7ae7-4627-9fa7-daddfdb5370e';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-5b9db914-bbf9-4118-b970-10e117d1c170';
   $uuid_panelizer[] = $display;

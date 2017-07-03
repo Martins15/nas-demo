@@ -4282,3 +4282,13 @@ function nas_master_update_7294() {
   variable_set('uuid_features_entity_taxonomy_term', $taxonomy_settings);
   module_enable(array('fe_date', 'nas_conservation_news_feature'));
 }
+
+/**
+ * Revert nas_conservation_news_feature.
+ */
+function nas_master_update_7295() {
+  $name = 'nas_conservation_news_feature';
+  module_disable(array($name));
+  drupal_uninstall_modules(array($name));
+  module_enable(array($name));
+}

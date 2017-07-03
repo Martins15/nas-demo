@@ -116,6 +116,10 @@
 
     .view {
       display: none;
+
+      .view-content {
+        font-size: 16px;
+      }
     }
   }
 
@@ -201,4 +205,8 @@
       }
     }
   }
+}
+
+.conservation_news_heading + div{
+  @extend .deck;
 }
