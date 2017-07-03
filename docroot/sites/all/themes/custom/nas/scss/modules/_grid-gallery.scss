@@ -101,3 +101,25 @@
     overflow: hidden;
   }
 }
+
+.grid-gallery-5x3 {
+  .column-5 {
+    @include breakpoint(small-up) {
+      width: 20%;
+    }
+  }
+  .grid-gallery__thumbs {
+    max-width: none;
+  }
+  .grid-gallery__caption {
+    .columns {
+      max-width: 782px;
+      margin-left: auto;
+      margin-right: auto;
+      float: none;
+    }
+    @include breakpoint(small-up) {
+      text-align: left;
+    }
+  }
+}
