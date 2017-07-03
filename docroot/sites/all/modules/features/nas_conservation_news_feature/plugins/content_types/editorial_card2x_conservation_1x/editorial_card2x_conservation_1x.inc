@@ -174,16 +174,14 @@ function editorial2_conservation1_render($subtype, $conf, $args, $context) {
   );
 
   //Search for Conservation News References.
+  $views_block['views'][] = _editorial2_conservation1_get_view();
+  $views_block['terms'][] = array(
+    'term_id' => '',
+    'term_label' => t('All'),
+  );
   foreach ($config['news_references'] as $reference) {
     if ($entity_id = $reference['entity_reference']['entity_id']) {
-      $view = views_get_view(CONSERVATION_NEWS_VIEW);
-      $view->set_display("block");
-      $view->set_arguments(array($entity_id));
-      $view->display_handler->default_display->options['css_class'] = 'view-term-id-' . $entity_id;
-      $view->pre_execute();
-      $view->execute();
-      $view->post_execute();
-      $views_block['views'][] = $view->render();
+      $views_block['views'][] = _editorial2_conservation1_get_view($entity_id);
       $views_block['terms'][] = array(
         'term_id' => $entity_id,
         'term_label' => $reference['entity_reference']['entity_label'],
@@ -258,4 +256,20 @@ function editorial2_conservation1_theme(&$theme, $plugin) {
     'template' => 'conservation-news-view',
     'path' => $plugin['path'],
   );
+}
+
+/**
+ * Helper function to get rendered view.
+ */
+function _editorial2_conservation1_get_view($entity_id = FALSE) {
+  $view = views_get_view(CONSERVATION_NEWS_VIEW);
+  $view->set_display("block");
+  if ($entity_id) {
+    $view->set_arguments(array($entity_id));
+  }
+  $view->display_handler->default_display->options['css_class'] = 'view-term-id-' . $entity_id;
+  $view->pre_execute();
+  $view->execute();
+  $view->post_execute();
+  return $view->render();
 }
