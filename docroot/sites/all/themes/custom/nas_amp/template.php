@@ -46,3 +46,13 @@ function nas_amp_preprocess_node(&$variables) {
   $variables['date'] = format_date($variables['created'], 'nas_date');
   $variables['date_long'] = format_date($variables['created'], 'custom', 'Y-m-d H:i:s');
 }
+
+/**
+ * Implements hook_html_head_alter().
+ */
+function nas_amp_html_head_alter(&$head_elements) {
+  if (function_exists('cdn_status_is_enabled') && cdn_status_is_enabled()) {
+    unset($head_elements['cdn_dns_prefetch_meta']);
+    unset($head_elements['cdn_dns_prefetch_block']);
+  }
+}

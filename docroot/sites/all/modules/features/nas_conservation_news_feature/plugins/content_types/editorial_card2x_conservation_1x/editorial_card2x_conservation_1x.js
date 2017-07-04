@@ -16,7 +16,11 @@
               setTimeout(function() { $(window).trigger('resize'); }, 0);
             }
           });
-          $list.first().trigger('click');
+          $list
+            .first()
+            .trigger('click')
+            .parent('li')
+            .hide();
         });
 
       $('.editorial-card-2x-conservation-news-block .view:not(hidden)').once().each(function() {
