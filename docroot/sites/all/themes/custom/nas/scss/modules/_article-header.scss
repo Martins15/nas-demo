@@ -16,7 +16,9 @@
 
 .article-header {
   margin-top: $column-gutter;
-  margin-bottom: $column-gutter*1.5;
+  @include breakpoint(min-width, 767px) {
+    margin-bottom: $column-gutter*1.5;
+  }
 }
 .article-slug {
   font-family: $font-sans;
