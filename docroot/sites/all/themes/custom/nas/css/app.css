@@ -4797,7 +4797,7 @@ select {
   padding-bottom: 12.5px;
 }
 
-.deck {
+.deck, .conservation_news_heading + div {
   font-style: italic;
 }
 
@@ -4808,7 +4808,7 @@ select {
 }
 
 @media only screen and (min-width: 768px) {
-  .deck {
+  .deck, .conservation_news_heading + div {
     font-size: 23px;
     line-height: 30px;
   }
@@ -6841,6 +6841,9 @@ table.row-borders tbody td {
 }
 .editorial-card-2x-conservation-news-block .view-conservation-news-views-list .view {
   display: none;
+}
+.editorial-card-2x-conservation-news-block .view-conservation-news-views-list .view .view-content {
+  font-size: 16px;
 }
 .editorial-card-2x-conservation-news-block.editorial-card-2x-conservation-news-block-processed .view {
   display: block;
@@ -14527,10 +14530,10 @@ body.touch .sticky-wrapper {
   margin-top: 300px;
 }
 
-.static-page-content .deck {
+.static-page-content .deck, .static-page-content .conservation_news_heading + div {
   padding-bottom: 1em;
 }
-.static-page-content .text-container .deck {
+.static-page-content .text-container .deck, .static-page-content .text-container .conservation_news_heading + div {
   padding-bottom: 0;
 }
 
@@ -15030,7 +15033,7 @@ h2.grey {
 .node-type-iba h1 {
   margin: 0 0 5px 0;
 }
-.node-type-iba .deck {
+.node-type-iba .deck, .node-type-iba .conservation_news_heading + div {
   font-style: normal;
   font-family: "Source Sans Pro", Verdana, sans-serif;
 }
@@ -17093,9 +17096,6 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   line-height: 18px;
 }
 @media only screen and (min-width: 480px) {
-  .grid-gallery .grid-gallery__caption {
-    text-align: right;
-  }
   .grid-gallery .grid-gallery__caption .columns {
     padding-left: 2.5px;
     padding-right: 2.5px;
@@ -17107,6 +17107,9 @@ input[type="checkbox"].np-checkbox:checked + label:before {
     padding-right: 6.25px;
   }
 }
+.grid-gallery .grid-gallery__caption p {
+  margin-bottom: 1em;
+}
 .grid-gallery.grid-gallery-single-image img {
   width: 100%;
   height: auto;
@@ -17116,6 +17119,26 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   .grid-gallery-slideshow-wrapper {
     height: 0;
     overflow: hidden;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .grid-gallery-5x3 .column-5 {
+    width: 20%;
+  }
+}
+.grid-gallery-5x3 .grid-gallery__thumbs {
+  max-width: none;
+}
+.grid-gallery-5x3 .grid-gallery__caption .columns {
+  max-width: 782px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+@media only screen and (min-width: 480px) {
+  .grid-gallery-5x3 .grid-gallery__caption {
+    text-align: left;
   }
 }
 
@@ -17359,16 +17382,21 @@ input[type="checkbox"].np-checkbox:checked + label:before {
   padding: 0 12.5px;
   max-width: 799px;
 }
-.article-full-width-layout .article-text.row > p {
+.article-full-width-layout .article-text.row > :not(.article-aside):not(.article-image) {
   margin: 0 auto 25.5px auto;
   max-width: 640px;
   width: 100%;
 }
 @media only screen and (min-width: 815px) {
-  .article-full-width-layout .article-text.row > p {
+  .article-full-width-layout .article-text.row > :not(.article-aside):not(.article-image) {
     margin-left: 67px;
     margin-right: 67px;
   }
+}
+.article-full-width-layout .article-text.row > .slideshow,
+.article-full-width-layout .article-text.row > .article-image {
+  max-width: none !important;
+  width: 100%;
 }
 
 .sm2_playing .icon-sound-full:before {
@@ -18056,7 +18084,7 @@ body.node-type-slideshow .slideshow .engagement-card-photo {
 }
 
 @media only screen and (max-width: 479px) {
-  .title-slide-content .deck {
+  .title-slide-content .deck, .title-slide-content .conservation_news_heading + div {
     font-size: 12px;
     line-height: 15px;
   }
@@ -18270,7 +18298,7 @@ article.event .event-header > a {
 article.event .event-header h1 {
   margin-bottom: 8px;
 }
-article.event .event-header .deck {
+article.event .event-header .deck, article.event .event-header .conservation_news_heading + div {
   margin: 8px 0 40px;
 }
 article.event .event-header h4 {

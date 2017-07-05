@@ -4284,9 +4284,19 @@ function nas_master_update_7294() {
 }
 
 /**
- * Enable panels_revision.
+ * Revert nas_conservation_news_feature.
  */
 function nas_master_update_7295() {
+  $name = 'nas_conservation_news_feature';
+  module_disable(array($name));
+  drupal_uninstall_modules(array($name));
+  module_enable(array($name));
+}
+
+/**
+ * Enable panels_revision.
+ */
+function nas_master_update_7296() {
   module_enable(array(
     'panels_revision',
   ));

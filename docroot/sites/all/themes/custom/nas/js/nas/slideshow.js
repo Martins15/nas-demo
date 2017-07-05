@@ -301,27 +301,29 @@
 
         $(window).bind("resize", function () {
           var $body = $('body');
-          var $slideshow = $(".slideshow");
-
           var body_width = $body.width();
-          $slideshow.removeAttr('style');
-          var diff_width = body_width - $slideshow.width();
-          var margin = 0;
-          if (diff_width > 0) {
-            margin = diff_width / 2;
-          }
-          var negative_margin = margin * (-1);
-          $slideshow.css({
-            width: body_width,
-            'margin-left': negative_margin,
-            'margin-right': negative_margin
-          });
-          if ($slideshow.offset().left !== 0) {
+
+          $(".slideshow").each(function() {
+            var $slideshow = $(this);
+            $slideshow.removeAttr('style');
+            var diff_width = body_width - $slideshow.width();
+            var margin = 0;
+            if (diff_width > 0) {
+              margin = diff_width / 2;
+            }
+            var negative_margin = margin * (-1);
             $slideshow.css({
-              'margin-left': (margin + $slideshow.offset().left) * (-1),
-              'margin-right': (margin - $slideshow.offset().left) * (-1)
+              width: body_width,
+              'margin-left': negative_margin,
+              'margin-right': negative_margin
             });
-          }
+            if ($slideshow.offset().left !== 0) {
+              $slideshow.css({
+                'margin-left': (margin + $slideshow.offset().left) * (-1),
+                'margin-right': (margin - $slideshow.offset().left) * (-1)
+              });
+            }
+          });
           Slideshow.resize();
         });
 

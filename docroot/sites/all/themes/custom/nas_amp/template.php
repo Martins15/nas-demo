@@ -4,6 +4,9 @@
  * Implements hook_preprocess().
  */
 function nas_amp_preprocess(&$vars) {
+  if (extension_loaded('newrelic')) {
+    newrelic_disable_autorum();
+  }
   unset($vars['amptheme_path_file']);
   $vars['nas_amp_path_file'] = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'nas_amp');
 }
@@ -45,4 +48,14 @@ function nas_amp_page_alter(&$page) {
 function nas_amp_preprocess_node(&$variables) {
   $variables['date'] = format_date($variables['created'], 'nas_date');
   $variables['date_long'] = format_date($variables['created'], 'custom', 'Y-m-d H:i:s');
+}
+
+/**
+ * Implements hook_html_head_alter().
+ */
+function nas_amp_html_head_alter(&$head_elements) {
+  if (function_exists('cdn_status_is_enabled') && cdn_status_is_enabled()) {
+    unset($head_elements['cdn_dns_prefetch_meta']);
+    unset($head_elements['cdn_dns_prefetch_block']);
+  }
 }
