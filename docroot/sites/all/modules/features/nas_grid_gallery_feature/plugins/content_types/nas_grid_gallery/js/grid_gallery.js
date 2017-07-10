@@ -21,8 +21,11 @@
       // Workaround for mobile description scrolling.
       var prevEventCoords = null;
       $('.nas-blueimp-gallery .description .title-wrapper').on('touchstart touchend touchmove', function(e) {
-        var $target = $(this).find('.title-wrapper-inner');
+        if (e.type == 'touchmove') {
+          e.preventDefault();
+        }
         if (typeof e.originalEvent.touches[0] != 'undefined') {
+          var $target = $(this).find('.title-wrapper-inner');
           var curEventCoords = {
             screenX: e.originalEvent.touches[0].screenX,
             screenY: e.originalEvent.touches[0].screenY
@@ -34,7 +37,6 @@
           }
           prevEventCoords = curEventCoords;
         }
-        e.preventDefault();
       });
 
       $('#grid-gallery', context)
