@@ -18,6 +18,27 @@
       var waitingSlide = false;
       var lastSlide = false;
 
+      // Workaround for mobile description scrolling.
+      var prevEventCoords = null;
+      $('.nas-blueimp-gallery .description .title-wrapper').on('touchstart touchend touchmove', function(e) {
+        if (e.type == 'touchmove') {
+          e.preventDefault();
+        }
+        if (typeof e.originalEvent.touches[0] != 'undefined') {
+          var $target = $(this).find('.title-wrapper-inner');
+          var curEventCoords = {
+            screenX: e.originalEvent.touches[0].screenX,
+            screenY: e.originalEvent.touches[0].screenY
+          };
+          if (prevEventCoords != null && e.type == 'touchmove') {
+            var cst = $target.scrollTop();
+            var delta = curEventCoords.screenY - prevEventCoords.screenY;
+            $target.scrollTop(cst - delta);
+          }
+          prevEventCoords = curEventCoords;
+        }
+      });
+
       $('#grid-gallery', context)
         .on('open', function (event) {
           // Gallery open event handler
@@ -35,6 +56,8 @@
           var total = (index + 1) + ' of ' + gallery.list.length;
           gallery.container.find('.total').text(total);
           gallery.container.find('.credit').text($(gallery.list[index]).find('img').data('credit') || '');
+          // Reset scroll top on slide.
+          gallery.container.find('.title-wrapper-inner').scrollTop(0);
 
           var $title = gallery.container.find('.title');
           var $description = gallery.container.find('.description');
