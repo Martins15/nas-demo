@@ -1,0 +1,67 @@
+diff --git a/docroot/sites/all/modules/patched/panels_revision/includes/panels_revision.form.inc b/docroot/sites/all/modules/patched/panels_revision/includes/panels_revision.form.inc
+index 2f69b3a..adb0745 100644
+--- a/docroot/sites/all/modules/patched/panels_revision/includes/panels_revision.form.inc
++++ b/docroot/sites/all/modules/patched/panels_revision/includes/panels_revision.form.inc
+@@ -35,6 +35,15 @@ function display_panels_review($id) {
+ }
+ 
+ /**
++ * Revert callback.
++ */
++function panel_revert_revision($display) {
++  panels_save_display($display['configuration']);
++  drupal_set_message(t('Revision was reverted.'), 'status');
++  drupal_goto($_SERVER['HTTP_REFERER']);
++}
++
++/**
+  * Implementation form look logs in variant.
+  */
+ function panels_revision_form($form, &$form_state) {
+@@ -43,6 +52,7 @@ function panels_revision_form($form, &$form_state) {
+     array('data' => t('Time')),
+     array('data' => t('User')),
+     array('data' => t('View')),
++    array('data' => t('Revert')),
+   );
+ 
+   $query = db_select('panels_revision', 'log')->extend('PagerDefault');
+@@ -59,6 +69,7 @@ function panels_revision_form($form, &$form_state) {
+     $row->user = theme('username', array('account' => $user));
+ 
+     $row->view = l(t('Review'), 'admin/structure/panels-revision-content/' . $row->id, array('attributes' => array('target' => '_blank')));
++    $row->revert = l(t('Revert'), 'admin/structure/panels-revision-content/' . $row->id . '/revert');
+     unset($row->id);
+     $rows[] = array('data' => (array) $row);
+   }
+@@ -71,7 +82,9 @@ function panels_revision_form($form, &$form_state) {
+     '#rows' => $rows,
+     '#empty' => t('There are no date formats found in the db'),
+   );
+-
++  if (!empty($build['pager_table']['#rows'])) {
++    $build['pager_table']['#rows'][0]['data']['revert'] = t('Current');
++  }
+   // Attach the pager theme.
+   $build['pager_pager'] = array('#theme' => 'pager');
+ 
+diff --git a/docroot/sites/all/modules/patched/panels_revision/panels_revision.module b/docroot/sites/all/modules/patched/panels_revision/panels_revision.module
+index 2211304..185e6c8 100644
+--- a/docroot/sites/all/modules/patched/panels_revision/panels_revision.module
++++ b/docroot/sites/all/modules/patched/panels_revision/panels_revision.module
+@@ -20,6 +20,15 @@ function panels_revision_menu() {
+     'file' => 'includes/panels_revision.form.inc',
+   );
+ 
++  $items['admin/structure/panels-revision-content/%panels_revision/revert'] = array(
++    'title' => 'Revert panel',
++    'page callback' => 'panel_revert_revision',
++    'page arguments' => array(3),
++    'access arguments' => array('access administration pages'),
++    'type' => MENU_CALLBACK,
++    'file' => 'includes/panels_revision.form.inc',
++  );
++
+   return $items;
+ }
+ 

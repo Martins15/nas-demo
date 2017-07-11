@@ -4292,3 +4292,12 @@ function nas_master_update_7295() {
   drupal_uninstall_modules(array($name));
   module_enable(array($name));
 }
+
+/**
+ * Enable panels_revision.
+ */
+function nas_master_update_7296() {
+  module_enable(array(
+    'panels_revision',
+  ));
+}
