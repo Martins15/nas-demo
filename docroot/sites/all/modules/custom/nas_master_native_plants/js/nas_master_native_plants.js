@@ -162,4 +162,27 @@
     }
   };
 
+  /**
+   * Reload all iframes in the Local Resources tab on click.
+   */
+  Drupal.behaviors.nativePlantsReloadEsriMap = {
+    attach: function (context, settings) {
+      var $tabs = $('.js-native-plants-tabs'),
+        reloadMap = false;
+
+      $tabs.responsiveTabs({
+        activate: function (event, tab) {
+          if (tab['selector'] == '#local_resources' && reloadMap == false) {
+            $('#local_resources iframe[src^="//audubon.maps.arcgis"]').each(function () {
+              $(this).attr('src', function (i, val) {
+                return val;
+              });
+            });
+            reloadMap = true;
+          }
+        }
+      });
+    }
+  };
+
 })(jQuery);

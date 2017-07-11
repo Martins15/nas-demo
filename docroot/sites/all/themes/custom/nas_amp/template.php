@@ -4,6 +4,9 @@
  * Implements hook_preprocess().
  */
 function nas_amp_preprocess(&$vars) {
+  if (extension_loaded('newrelic')) {
+    newrelic_disable_autorum();
+  }
   unset($vars['amptheme_path_file']);
   $vars['nas_amp_path_file'] = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'nas_amp');
 }

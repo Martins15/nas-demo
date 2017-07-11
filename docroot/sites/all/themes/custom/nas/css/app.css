@@ -9452,7 +9452,11 @@ body.touch .primary-sub-nav-index {
 
 .article-header {
   margin-top: 25px;
-  margin-bottom: 37.5px;
+}
+@media only screen and (min-width: 767px) {
+  .article-header {
+    margin-bottom: 37.5px;
+  }
 }
 
 .article-slug {
