@@ -4301,3 +4301,12 @@ function nas_master_update_7296() {
     'panels_revision',
   ));
 }
+
+/**
+ * Enable NAS Emoji module.
+ */
+function nas_master_update_7297() {
+  module_enable(array(
+    'nas_emoji',
+  ));
+}

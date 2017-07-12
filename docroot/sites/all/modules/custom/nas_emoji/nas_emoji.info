@@ -1,0 +1,4 @@
+name = NAS Emoji
+description = Allow for emojis in Drupal WYSIWYG editor.
+core = 7.x
+package = NAS
