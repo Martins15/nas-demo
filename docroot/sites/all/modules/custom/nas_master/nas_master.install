@@ -4310,3 +4310,16 @@ function nas_master_update_7297() {
     'nas_emoji',
   ));
 }
+
+/**
+ * Revert nas_conservation_news_feature.
+ */
+function nas_master_update_7298() {
+  features_revert(array(
+    'nas_conservation_news_feature' => array(
+      'field_instance',
+      'strongarm',
+      'views_default'
+    )
+  ));
+}
