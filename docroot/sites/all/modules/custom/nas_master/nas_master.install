@@ -4322,4 +4322,8 @@ function nas_master_update_7298() {
       'views_default'
     )
   ));
+  variable_set('xmlsitemap_settings_node_conservation_news', array(
+    'status' => 0,
+    'priority' => 0.5
+  ));
 }
